@@ -31,13 +31,20 @@ void parse_command_line_args(
     exit(-1);
   }
 
-  std::ifstream input_file(argv[1]);
+  std::ifstream input_file(argv[1], std::ios::binary);
   if (!input_file.is_open()) 
   {
     std::cerr << "Failed to open input file: " << argv[1] << std::endl;
     exit(-1);
   }
 
-  input_file.read((char*)Data, IMAGE_HEIGHT * IMAGE_WIDTH);
+  for (int i = 0; i < IMAGE_HEIGHT; i++)
+  {
+    for (int j = 0; j < IMAGE_WIDTH; j++)
+    {
+      input_file.read(reinterpret_cast<char*>(&Data[i][j]), sizeof(unsigned char));
+    }
+  }
+
   input_file.close();
 }

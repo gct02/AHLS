@@ -32,10 +32,9 @@ def process_image(image_as_ndarray):
     '''
     downscaled_image = binarize(resize(image_as_ndarray))
 
-    # Add 14 bits on the top of the image (necessary to centralize it vertically)
-    # and padding bits to make the image 256 bits long
+    # Add padding bits to make the image 256 bits long
     downscaled_image = np.concatenate([downscaled_image.flatten(), np.zeros(60, dtype=int)])[::-1]
-
+    
     # Pack the image in 64-bit integers and return it
     return np.packbits(downscaled_image.reshape((-1, 64)).astype(np.uint8), bitorder='little').view(np.uint64)[::-1]
 
