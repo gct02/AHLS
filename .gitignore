@@ -1,0 +1,11 @@
+__pycache__/
+*__pycache__/
+.vscode/
+venv/
+raise*/
+*.log
+*.sh
+*.tcl
+config.txt
+passes/update_passes.sh
+
