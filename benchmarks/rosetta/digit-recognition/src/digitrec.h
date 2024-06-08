@@ -14,6 +14,7 @@
 void DigitRec(
   const DigitType* training_set, 
   const DigitType* test_set, 
+  const LabelType* training_labels,
   LabelType* results, 
   int num_test, 
   int num_training);

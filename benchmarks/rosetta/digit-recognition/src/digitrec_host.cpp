@@ -31,10 +31,11 @@ int main(int argc, char ** argv)
   int num_test = 0, num_training = 0;
   DigitType* training_data = NULL;
   DigitType* testing_data = NULL;
+  LabelType* training_labels = NULL;
   LabelType* expected = NULL;
 
   // parse command line arguments
-  parse_command_line_args(argc, argv, num_training, num_test, &training_data, &testing_data, &expected);
+  parse_command_line_args(argc, argv, num_training, num_test, &training_data, &testing_data, &training_labels, &expected);
 
   if (num_training <= 0 || num_test <= 0 || training_data == NULL || testing_data == NULL || expected == NULL) 
   {
@@ -47,7 +48,7 @@ int main(int argc, char ** argv)
 
   // software version
   gettimeofday(&start, NULL);
-  DigitRec(training_data, testing_data, result, num_test, num_training);
+  DigitRec(training_data, testing_data, training_labels, result, num_test, num_training);
   gettimeofday(&end, NULL);
 
   // check results  

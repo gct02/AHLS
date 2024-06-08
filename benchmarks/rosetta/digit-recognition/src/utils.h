@@ -16,4 +16,5 @@ void parse_command_line_args(
   int& num_test, 
   DigitType** training_data, 
   DigitType** test_data, 
+  LabelType** training_labels,
   LabelType** expected);

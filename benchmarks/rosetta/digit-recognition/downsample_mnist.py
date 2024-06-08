@@ -26,6 +26,19 @@ def binarize(image_as_ndarray, threshold=128):
     '''
     return np.where(image_as_ndarray > threshold, 1, 0)
 
+def process_image(image_as_ndarray):
+    '''
+    Resize and binarize a 28x28 image. Return it as an array with 4 64-bit integers
+    '''
+    downscaled_image = binarize(resize(image_as_ndarray))
+
+    # Add 14 bits on the top of the image (necessary to centralize it vertically)
+    # and padding bits to make the image 256 bits long
+    downscaled_image = np.concatenate([downscaled_image.flatten(), np.zeros(60, dtype=int)])[::-1]
+
+    # Pack the image in 64-bit integers and return it
+    return np.packbits(downscaled_image.reshape((-1, 64)).astype(np.uint8), bitorder='little').view(np.uint64)[::-1]
+
 if __name__ == '__main__':
     # Constants
     NUM_TRAINING_SAMPLES = 60000
@@ -34,47 +47,27 @@ if __name__ == '__main__':
     # Load the MNIST dataset
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-    print(y_test)
-
     # Resize the images
-    x_train_resized = np.array([resize(image) for image in x_train])
-    x_test_resized = np.array([resize(image) for image in x_test])
-
-    # Binarize the images
-    x_train_binarized = np.array([binarize(image) for image in x_train_resized])
-    x_test_binarized = np.array([binarize(image) for image in x_test_resized])
-
-    # Transform each image in a 1D array
-    x_train_binarized = np.array([image.flatten() for image in x_train_binarized])
-    x_test_binarized = np.array([image.flatten() for image in x_test_binarized])
-
-    # Add padding bits to make the images 256 bits long
-    padding_size = 256 - x_train_binarized.shape[1]
-    x_train_binarized = np.array([np.concatenate([image, np.zeros(padding_size, dtype=int)])[::-1] for image in x_train_binarized])
-    x_test_binarized = np.array([np.concatenate([image, np.zeros(padding_size, dtype=int)])[::-1] for image in x_test_binarized])
-
-    # Reshape the image arrays to be packed in 64-bit integers
-    x_train_packed = np.array([np.packbits(image.reshape((-1, 64)).astype(np.uint8), bitorder='little').view(np.uint64)[::-1] for image in x_train_binarized])
-    x_test_packed = np.array([np.packbits(image.reshape((-1, 64)).astype(np.uint8), bitorder='little').view(np.uint64)[::-1] for image in x_test_binarized])
+    x_train_downscaled = np.array([process_image(image) for image in x_train])
+    x_test_downscaled = np.array([process_image(image) for image in x_test])
     
     # Save the dataset
     with open('data/downsampled_mnist_train.dat', 'wb') as f:
         f.write(struct.pack('i', NUM_TRAINING_SAMPLES))
-        for image in x_train_packed:
+        for image in x_train_downscaled:
             for i in range(4):
                 f.write(struct.pack('Q', image[i]))
 
     with open('data/downsampled_mnist_test.dat', 'wb') as f:
         f.write(struct.pack('i', NUM_TEST_SAMPLES))
-        for image in x_test_packed:
-            print(image)
+        for image in x_test_downscaled:
             for i in range(4):
                 f.write(struct.pack('Q', image[i]))
     
     with open('data/downsampled_mnist_train_labels.dat', 'wb') as f:
         for label in y_train:
-            f.write(struct.pack('c', int(label).to_bytes(1, byteorder='little')))
+            f.write(label)
 
     with open('data/downsampled_mnist_test_labels.dat', 'wb') as f:
         for label in y_test:
-            f.write(struct.pack('c', int(label).to_bytes(1, byteorder='little')))
+            f.write(label)

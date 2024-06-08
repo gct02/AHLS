@@ -26,7 +26,7 @@ int popcount(DigitType x)
    return x & 0x7f;
 }
 
-void update_knn( const DigitType* train_inst, const DigitType* test_inst, int dists[K_CONST], int labels[K_CONST], int label ) 
+void update_knn(const DigitType* train_inst, const DigitType* test_inst, int dists[K_CONST], int labels[K_CONST], int label) 
 {
   int dist = 0;
 
@@ -84,13 +84,12 @@ LabelType knn_vote(int labels[K_CONST])
 // sw top function
 void DigitRec(
   const DigitType* training_set, 
-  const DigitType* test_set, 
+  const DigitType* test_set,
+  const LabelType* training_labels,
   LabelType* results, 
   int num_test, 
-  int num_training) 
+  int num_training)
 {
-  const int CLASS_SIZE = num_training / NUM_CLASSES;
-
   // nearest neighbor set
   int dists[K_CONST];
   int labels[K_CONST];
@@ -108,7 +107,7 @@ void DigitRec(
 
     // for each training instance, compare it with the test instance, and update the nearest neighbor set
     TRAINING_LOOP : for ( int i = 0; i < num_training; ++i ) 
-      update_knn(&training_set[i * DIGIT_WIDTH], &test_set[t * DIGIT_WIDTH], dists, labels, i / CLASS_SIZE);
+      update_knn(&training_set[i * DIGIT_WIDTH], &test_set[t * DIGIT_WIDTH], dists, labels, (int)training_labels[i]);
       
     // Compute the final output
     LabelType max_vote = knn_vote(labels);

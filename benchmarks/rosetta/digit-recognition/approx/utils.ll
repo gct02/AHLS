@@ -41,8 +41,8 @@ target triple = "x86_64-unknown-linux-gnu"
 
 @_ZStL8__ioinit = internal global %"class.std::ios_base::Init" zeroinitializer, align 1, !dbg !0
 @__dso_handle = external hidden global i8
-@.str = private unnamed_addr constant [53 x i8] c"usage: %s -t training_data -s test_data -e expected\0A\00", align 1
-@.str.1 = private unnamed_addr constant [7 x i8] c"t:s:e:\00", align 1
+@.str = private unnamed_addr constant [81 x i8] c"usage: %s -t training_samples -l training_labels -s test_samples -e test_labels\0A\00", align 1
+@.str.1 = private unnamed_addr constant [9 x i8] c"t:s:e:l:\00", align 1
 @optarg = external global i8*, align 8
 @optopt = external global i32, align 4
 @stderr = external global %struct._IO_FILE*, align 8
@@ -76,7 +76,7 @@ entry:
   store i8* %filename, i8** %filename.addr, align 8
   call void @llvm.dbg.declare(metadata i8** %filename.addr, metadata !969, metadata !DIExpression()), !dbg !970
   %0 = load i8*, i8** %filename.addr, align 8, !dbg !971
-  %call = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([53 x i8], [53 x i8]* @.str, i32 0, i32 0), i8* %0), !dbg !972
+  %call = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([81 x i8], [81 x i8]* @.str, i32 0, i32 0), i8* %0), !dbg !972
   ret void, !dbg !973
 }
 
@@ -86,7 +86,7 @@ declare void @llvm.dbg.declare(metadata, metadata, metadata) #5
 declare i32 @printf(i8*, ...) #1
 
 ; Function Attrs: noinline optnone uwtable
-define void @_Z23parse_command_line_argsiPPcRiS1_PPyS3_PPh(i32 %argc, i8** %argv, i32* dereferenceable(4) %num_training, i32* dereferenceable(4) %num_test, i64** %training_data, i64** %test_data, i8** %expected) #4 personality i8* bitcast (i32 (...)* @__gxx_personality_v0 to i8*) !dbg !974 {
+define void @_Z23parse_command_line_argsiPPcRiS1_PPyS3_PPhS5_(i32 %argc, i8** %argv, i32* dereferenceable(4) %num_training, i32* dereferenceable(4) %num_test, i64** %training_data, i64** %test_data, i8** %training_labels, i8** %expected) #4 personality i8* bitcast (i32 (...)* @__gxx_personality_v0 to i8*) !dbg !974 {
 entry:
   %argc.addr = alloca i32, align 4
   %argv.addr = alloca i8**, align 8
@@ -94,21 +94,25 @@ entry:
   %num_test.addr = alloca i32*, align 8
   %training_data.addr = alloca i64**, align 8
   %test_data.addr = alloca i64**, align 8
+  %training_labels.addr = alloca i8**, align 8
   %expected.addr = alloca i8**, align 8
   %c = alloca i32, align 4
   %training_data_filename = alloca %"class.std::__cxx11::basic_string", align 8
   %test_data_filename = alloca %"class.std::__cxx11::basic_string", align 8
+  %training_labels_filename = alloca %"class.std::__cxx11::basic_string", align 8
   %expected_filename = alloca %"class.std::__cxx11::basic_string", align 8
   %exn.slot = alloca i8*
   %ehselector.slot = alloca i32
   %training_data_file = alloca %"class.std::basic_ifstream", align 8
   %test_data_file = alloca %"class.std::basic_ifstream", align 8
   %expected_file = alloca %"class.std::basic_ifstream", align 8
+  %training_labels_file = alloca %"class.std::basic_ifstream", align 8
   %i = alloca i32, align 4
   %j = alloca i32, align 4
-  %i87 = alloca i32, align 4
-  %j91 = alloca i32, align 4
-  %i107 = alloca i32, align 4
+  %i99 = alloca i32, align 4
+  %j103 = alloca i32, align 4
+  %i119 = alloca i32, align 4
+  %i130 = alloca i32, align 4
   store i32 %argc, i32* %argc.addr, align 4
   call void @llvm.dbg.declare(metadata i32* %argc.addr, metadata !985, metadata !DIExpression()), !dbg !986
   store i8** %argv, i8*** %argv.addr, align 8
@@ -121,495 +125,577 @@ entry:
   call void @llvm.dbg.declare(metadata i64*** %training_data.addr, metadata !993, metadata !DIExpression()), !dbg !994
   store i64** %test_data, i64*** %test_data.addr, align 8
   call void @llvm.dbg.declare(metadata i64*** %test_data.addr, metadata !995, metadata !DIExpression()), !dbg !996
+  store i8** %training_labels, i8*** %training_labels.addr, align 8
+  call void @llvm.dbg.declare(metadata i8*** %training_labels.addr, metadata !997, metadata !DIExpression()), !dbg !998
   store i8** %expected, i8*** %expected.addr, align 8
-  call void @llvm.dbg.declare(metadata i8*** %expected.addr, metadata !997, metadata !DIExpression()), !dbg !998
-  call void @llvm.dbg.declare(metadata i32* %c, metadata !999, metadata !DIExpression()), !dbg !1000
-  store i32 0, i32* %c, align 4, !dbg !1000
-  call void @llvm.dbg.declare(metadata %"class.std::__cxx11::basic_string"* %training_data_filename, metadata !1001, metadata !DIExpression()), !dbg !1007
-  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1Ev(%"class.std::__cxx11::basic_string"* %training_data_filename) #3, !dbg !1007
-  call void @llvm.dbg.declare(metadata %"class.std::__cxx11::basic_string"* %test_data_filename, metadata !1008, metadata !DIExpression()), !dbg !1009
-  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1Ev(%"class.std::__cxx11::basic_string"* %test_data_filename) #3, !dbg !1009
-  call void @llvm.dbg.declare(metadata %"class.std::__cxx11::basic_string"* %expected_filename, metadata !1010, metadata !DIExpression()), !dbg !1011
-  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1Ev(%"class.std::__cxx11::basic_string"* %expected_filename) #3, !dbg !1011
-  br label %while.cond, !dbg !1012
+  call void @llvm.dbg.declare(metadata i8*** %expected.addr, metadata !999, metadata !DIExpression()), !dbg !1000
+  call void @llvm.dbg.declare(metadata i32* %c, metadata !1001, metadata !DIExpression()), !dbg !1002
+  store i32 0, i32* %c, align 4, !dbg !1002
+  call void @llvm.dbg.declare(metadata %"class.std::__cxx11::basic_string"* %training_data_filename, metadata !1003, metadata !DIExpression()), !dbg !1009
+  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1Ev(%"class.std::__cxx11::basic_string"* %training_data_filename) #3, !dbg !1009
+  call void @llvm.dbg.declare(metadata %"class.std::__cxx11::basic_string"* %test_data_filename, metadata !1010, metadata !DIExpression()), !dbg !1011
+  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1Ev(%"class.std::__cxx11::basic_string"* %test_data_filename) #3, !dbg !1011
+  call void @llvm.dbg.declare(metadata %"class.std::__cxx11::basic_string"* %training_labels_filename, metadata !1012, metadata !DIExpression()), !dbg !1013
+  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1Ev(%"class.std::__cxx11::basic_string"* %training_labels_filename) #3, !dbg !1013
+  call void @llvm.dbg.declare(metadata %"class.std::__cxx11::basic_string"* %expected_filename, metadata !1014, metadata !DIExpression()), !dbg !1015
+  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1Ev(%"class.std::__cxx11::basic_string"* %expected_filename) #3, !dbg !1015
+  br label %while.cond, !dbg !1016
 
 while.cond:                                       ; preds = %sw.epilog, %entry
-  %0 = load i32, i32* %argc.addr, align 4, !dbg !1013
-  %1 = load i8**, i8*** %argv.addr, align 8, !dbg !1014
-  %call = call i32 @getopt(i32 %0, i8** %1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @.str.1, i32 0, i32 0)) #3, !dbg !1015
-  store i32 %call, i32* %c, align 4, !dbg !1016
-  %cmp = icmp ne i32 %call, -1, !dbg !1017
-  br i1 %cmp, label %while.body, label %while.end, !dbg !1012
+  %0 = load i32, i32* %argc.addr, align 4, !dbg !1017
+  %1 = load i8**, i8*** %argv.addr, align 8, !dbg !1018
+  %call = call i32 @getopt(i32 %0, i8** %1, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @.str.1, i32 0, i32 0)) #3, !dbg !1019
+  store i32 %call, i32* %c, align 4, !dbg !1020
+  %cmp = icmp ne i32 %call, -1, !dbg !1021
+  br i1 %cmp, label %while.body, label %while.end, !dbg !1016
 
 while.body:                                       ; preds = %while.cond
-  %2 = load i32, i32* %c, align 4, !dbg !1018
+  %2 = load i32, i32* %c, align 4, !dbg !1022
   switch i32 %2, label %sw.default [
     i32 116, label %sw.bb
     i32 115, label %sw.bb2
     i32 101, label %sw.bb5
-    i32 63, label %sw.bb8
-  ], !dbg !1020
+    i32 108, label %sw.bb8
+    i32 63, label %sw.bb11
+  ], !dbg !1024
 
 sw.bb:                                            ; preds = %while.body
-  %3 = load i8*, i8** @optarg, align 8, !dbg !1021
+  %3 = load i8*, i8** @optarg, align 8, !dbg !1025
   %call1 = invoke dereferenceable(32) %"class.std::__cxx11::basic_string"* @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEaSEPKc(%"class.std::__cxx11::basic_string"* %training_data_filename, i8* %3)
-          to label %invoke.cont unwind label %lpad, !dbg !1023
+          to label %invoke.cont unwind label %lpad, !dbg !1027
 
 invoke.cont:                                      ; preds = %sw.bb
-  br label %sw.epilog, !dbg !1024
-
-lpad:                                             ; preds = %if.end34, %if.then31, %sw.default, %if.end22, %if.else19, %if.then16, %if.then, %sw.bb5, %sw.bb2, %sw.bb
-  %4 = landingpad { i8*, i32 }
-          cleanup, !dbg !1025
-  %5 = extractvalue { i8*, i32 } %4, 0, !dbg !1025
-  store i8* %5, i8** %exn.slot, align 8, !dbg !1025
-  %6 = extractvalue { i8*, i32 } %4, 1, !dbg !1025
-  store i32 %6, i32* %ehselector.slot, align 4, !dbg !1025
-  br label %ehcleanup122, !dbg !1025
-
-sw.bb2:                                           ; preds = %while.body
-  %7 = load i8*, i8** @optarg, align 8, !dbg !1026
-  %call4 = invoke dereferenceable(32) %"class.std::__cxx11::basic_string"* @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEaSEPKc(%"class.std::__cxx11::basic_string"* %test_data_filename, i8* %7)
-          to label %invoke.cont3 unwind label %lpad, !dbg !1027
-
-invoke.cont3:                                     ; preds = %sw.bb2
   br label %sw.epilog, !dbg !1028
 
+lpad:                                             ; preds = %if.end37, %if.then34, %sw.default, %if.end25, %if.else22, %if.then19, %if.then, %sw.bb8, %sw.bb5, %sw.bb2, %sw.bb
+  %4 = landingpad { i8*, i32 }
+          cleanup, !dbg !1029
+  %5 = extractvalue { i8*, i32 } %4, 0, !dbg !1029
+  store i8* %5, i8** %exn.slot, align 8, !dbg !1029
+  %6 = extractvalue { i8*, i32 } %4, 1, !dbg !1029
+  store i32 %6, i32* %ehselector.slot, align 4, !dbg !1029
+  br label %ehcleanup146, !dbg !1029
+
+sw.bb2:                                           ; preds = %while.body
+  %7 = load i8*, i8** @optarg, align 8, !dbg !1030
+  %call4 = invoke dereferenceable(32) %"class.std::__cxx11::basic_string"* @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEaSEPKc(%"class.std::__cxx11::basic_string"* %test_data_filename, i8* %7)
+          to label %invoke.cont3 unwind label %lpad, !dbg !1031
+
+invoke.cont3:                                     ; preds = %sw.bb2
+  br label %sw.epilog, !dbg !1032
+
 sw.bb5:                                           ; preds = %while.body
-  %8 = load i8*, i8** @optarg, align 8, !dbg !1029
+  %8 = load i8*, i8** @optarg, align 8, !dbg !1033
   %call7 = invoke dereferenceable(32) %"class.std::__cxx11::basic_string"* @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEaSEPKc(%"class.std::__cxx11::basic_string"* %expected_filename, i8* %8)
-          to label %invoke.cont6 unwind label %lpad, !dbg !1030
+          to label %invoke.cont6 unwind label %lpad, !dbg !1034
 
 invoke.cont6:                                     ; preds = %sw.bb5
-  br label %sw.epilog, !dbg !1031
+  br label %sw.epilog, !dbg !1035
 
 sw.bb8:                                           ; preds = %while.body
-  %9 = load i32, i32* @optopt, align 4, !dbg !1032
-  %cmp9 = icmp eq i32 %9, 116, !dbg !1034
-  br i1 %cmp9, label %if.then, label %lor.lhs.false, !dbg !1035
+  %9 = load i8*, i8** @optarg, align 8, !dbg !1036
+  %call10 = invoke dereferenceable(32) %"class.std::__cxx11::basic_string"* @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEaSEPKc(%"class.std::__cxx11::basic_string"* %training_labels_filename, i8* %9)
+          to label %invoke.cont9 unwind label %lpad, !dbg !1037
 
-lor.lhs.false:                                    ; preds = %sw.bb8
-  %10 = load i32, i32* @optopt, align 4, !dbg !1036
-  %cmp10 = icmp eq i32 %10, 101, !dbg !1037
-  br i1 %cmp10, label %if.then, label %lor.lhs.false11, !dbg !1038
+invoke.cont9:                                     ; preds = %sw.bb8
+  br label %sw.epilog, !dbg !1038
 
-lor.lhs.false11:                                  ; preds = %lor.lhs.false
-  %11 = load i32, i32* @optopt, align 4, !dbg !1039
-  %cmp12 = icmp eq i32 %11, 115, !dbg !1040
-  br i1 %cmp12, label %if.then, label %if.else, !dbg !1041
+sw.bb11:                                          ; preds = %while.body
+  %10 = load i32, i32* @optopt, align 4, !dbg !1039
+  %cmp12 = icmp eq i32 %10, 116, !dbg !1041
+  br i1 %cmp12, label %if.then, label %lor.lhs.false, !dbg !1042
 
-if.then:                                          ; preds = %lor.lhs.false11, %lor.lhs.false, %sw.bb8
-  %12 = load %struct._IO_FILE*, %struct._IO_FILE** @stderr, align 8, !dbg !1042
-  %13 = load i32, i32* @optopt, align 4, !dbg !1043
-  %call14 = invoke i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %12, i8* getelementptr inbounds ([34 x i8], [34 x i8]* @.str.2, i32 0, i32 0), i32 %13)
-          to label %invoke.cont13 unwind label %lpad, !dbg !1044
+lor.lhs.false:                                    ; preds = %sw.bb11
+  %11 = load i32, i32* @optopt, align 4, !dbg !1043
+  %cmp13 = icmp eq i32 %11, 101, !dbg !1044
+  br i1 %cmp13, label %if.then, label %lor.lhs.false14, !dbg !1045
 
-invoke.cont13:                                    ; preds = %if.then
-  br label %if.end22, !dbg !1044
+lor.lhs.false14:                                  ; preds = %lor.lhs.false
+  %12 = load i32, i32* @optopt, align 4, !dbg !1046
+  %cmp15 = icmp eq i32 %12, 115, !dbg !1047
+  br i1 %cmp15, label %if.then, label %if.else, !dbg !1048
 
-if.else:                                          ; preds = %lor.lhs.false11
-  %14 = load i32, i32* @optopt, align 4, !dbg !1045
-  %call15 = call i32 @isprint(i32 %14) #9, !dbg !1047
-  %tobool = icmp ne i32 %call15, 0, !dbg !1047
-  br i1 %tobool, label %if.then16, label %if.else19, !dbg !1048
+if.then:                                          ; preds = %lor.lhs.false14, %lor.lhs.false, %sw.bb11
+  %13 = load %struct._IO_FILE*, %struct._IO_FILE** @stderr, align 8, !dbg !1049
+  %14 = load i32, i32* @optopt, align 4, !dbg !1050
+  %call17 = invoke i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %13, i8* getelementptr inbounds ([34 x i8], [34 x i8]* @.str.2, i32 0, i32 0), i32 %14)
+          to label %invoke.cont16 unwind label %lpad, !dbg !1051
 
-if.then16:                                        ; preds = %if.else
-  %15 = load %struct._IO_FILE*, %struct._IO_FILE** @stderr, align 8, !dbg !1049
-  %16 = load i32, i32* @optopt, align 4, !dbg !1050
-  %call18 = invoke i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %15, i8* getelementptr inbounds ([23 x i8], [23 x i8]* @.str.3, i32 0, i32 0), i32 %16)
-          to label %invoke.cont17 unwind label %lpad, !dbg !1051
+invoke.cont16:                                    ; preds = %if.then
+  br label %if.end25, !dbg !1051
 
-invoke.cont17:                                    ; preds = %if.then16
-  br label %if.end, !dbg !1051
+if.else:                                          ; preds = %lor.lhs.false14
+  %15 = load i32, i32* @optopt, align 4, !dbg !1052
+  %call18 = call i32 @isprint(i32 %15) #9, !dbg !1054
+  %tobool = icmp ne i32 %call18, 0, !dbg !1054
+  br i1 %tobool, label %if.then19, label %if.else22, !dbg !1055
 
-if.else19:                                        ; preds = %if.else
-  %17 = load %struct._IO_FILE*, %struct._IO_FILE** @stderr, align 8, !dbg !1052
-  %18 = load i32, i32* @optopt, align 4, !dbg !1053
-  %call21 = invoke i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %17, i8* getelementptr inbounds ([34 x i8], [34 x i8]* @.str.4, i32 0, i32 0), i32 %18)
-          to label %invoke.cont20 unwind label %lpad, !dbg !1054
+if.then19:                                        ; preds = %if.else
+  %16 = load %struct._IO_FILE*, %struct._IO_FILE** @stderr, align 8, !dbg !1056
+  %17 = load i32, i32* @optopt, align 4, !dbg !1057
+  %call21 = invoke i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %16, i8* getelementptr inbounds ([23 x i8], [23 x i8]* @.str.3, i32 0, i32 0), i32 %17)
+          to label %invoke.cont20 unwind label %lpad, !dbg !1058
 
-invoke.cont20:                                    ; preds = %if.else19
+invoke.cont20:                                    ; preds = %if.then19
+  br label %if.end, !dbg !1058
+
+if.else22:                                        ; preds = %if.else
+  %18 = load %struct._IO_FILE*, %struct._IO_FILE** @stderr, align 8, !dbg !1059
+  %19 = load i32, i32* @optopt, align 4, !dbg !1060
+  %call24 = invoke i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %18, i8* getelementptr inbounds ([34 x i8], [34 x i8]* @.str.4, i32 0, i32 0), i32 %19)
+          to label %invoke.cont23 unwind label %lpad, !dbg !1061
+
+invoke.cont23:                                    ; preds = %if.else22
   br label %if.end
 
-if.end:                                           ; preds = %invoke.cont20, %invoke.cont17
-  br label %if.end22
+if.end:                                           ; preds = %invoke.cont23, %invoke.cont20
+  br label %if.end25
 
-if.end22:                                         ; preds = %if.end, %invoke.cont13
-  %19 = load i8**, i8*** %argv.addr, align 8, !dbg !1055
-  %arrayidx = getelementptr inbounds i8*, i8** %19, i64 0, !dbg !1055
-  %20 = load i8*, i8** %arrayidx, align 8, !dbg !1055
-  invoke void @_Z11print_usagePc(i8* %20)
-          to label %invoke.cont23 unwind label %lpad, !dbg !1056
+if.end25:                                         ; preds = %if.end, %invoke.cont16
+  %20 = load i8**, i8*** %argv.addr, align 8, !dbg !1062
+  %arrayidx = getelementptr inbounds i8*, i8** %20, i64 0, !dbg !1062
+  %21 = load i8*, i8** %arrayidx, align 8, !dbg !1062
+  invoke void @_Z11print_usagePc(i8* %21)
+          to label %invoke.cont26 unwind label %lpad, !dbg !1063
 
-invoke.cont23:                                    ; preds = %if.end22
-  call void @exit(i32 -1) #10, !dbg !1057
-  unreachable, !dbg !1057
+invoke.cont26:                                    ; preds = %if.end25
+  call void @exit(i32 -1) #10, !dbg !1064
+  unreachable, !dbg !1064
 
 sw.default:                                       ; preds = %while.body
-  %21 = load i8**, i8*** %argv.addr, align 8, !dbg !1058
-  %arrayidx24 = getelementptr inbounds i8*, i8** %21, i64 0, !dbg !1058
-  %22 = load i8*, i8** %arrayidx24, align 8, !dbg !1058
-  invoke void @_Z11print_usagePc(i8* %22)
-          to label %invoke.cont25 unwind label %lpad, !dbg !1059
+  %22 = load i8**, i8*** %argv.addr, align 8, !dbg !1065
+  %arrayidx27 = getelementptr inbounds i8*, i8** %22, i64 0, !dbg !1065
+  %23 = load i8*, i8** %arrayidx27, align 8, !dbg !1065
+  invoke void @_Z11print_usagePc(i8* %23)
+          to label %invoke.cont28 unwind label %lpad, !dbg !1066
 
-invoke.cont25:                                    ; preds = %sw.default
-  call void @exit(i32 -1) #10, !dbg !1060
-  unreachable, !dbg !1060
+invoke.cont28:                                    ; preds = %sw.default
+  call void @exit(i32 -1) #10, !dbg !1067
+  unreachable, !dbg !1067
 
-sw.epilog:                                        ; preds = %invoke.cont6, %invoke.cont3, %invoke.cont
-  br label %while.cond, !dbg !1012, !llvm.loop !1061
+sw.epilog:                                        ; preds = %invoke.cont9, %invoke.cont6, %invoke.cont3, %invoke.cont
+  br label %while.cond, !dbg !1016, !llvm.loop !1068
 
 while.end:                                        ; preds = %while.cond
-  %call26 = call zeroext i1 @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5emptyEv(%"class.std::__cxx11::basic_string"* %training_data_filename) #3, !dbg !1063
-  br i1 %call26, label %if.then31, label %lor.lhs.false27, !dbg !1065
+  %call29 = call zeroext i1 @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5emptyEv(%"class.std::__cxx11::basic_string"* %training_data_filename) #3, !dbg !1070
+  br i1 %call29, label %if.then34, label %lor.lhs.false30, !dbg !1072
 
-lor.lhs.false27:                                  ; preds = %while.end
-  %call28 = call zeroext i1 @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5emptyEv(%"class.std::__cxx11::basic_string"* %test_data_filename) #3, !dbg !1066
-  br i1 %call28, label %if.then31, label %lor.lhs.false29, !dbg !1067
+lor.lhs.false30:                                  ; preds = %while.end
+  %call31 = call zeroext i1 @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5emptyEv(%"class.std::__cxx11::basic_string"* %test_data_filename) #3, !dbg !1073
+  br i1 %call31, label %if.then34, label %lor.lhs.false32, !dbg !1074
 
-lor.lhs.false29:                                  ; preds = %lor.lhs.false27
-  %call30 = call zeroext i1 @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5emptyEv(%"class.std::__cxx11::basic_string"* %expected_filename) #3, !dbg !1068
-  br i1 %call30, label %if.then31, label %if.end34, !dbg !1069
+lor.lhs.false32:                                  ; preds = %lor.lhs.false30
+  %call33 = call zeroext i1 @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5emptyEv(%"class.std::__cxx11::basic_string"* %expected_filename) #3, !dbg !1075
+  br i1 %call33, label %if.then34, label %if.end37, !dbg !1076
 
-if.then31:                                        ; preds = %lor.lhs.false29, %lor.lhs.false27, %while.end
-  %23 = load i8**, i8*** %argv.addr, align 8, !dbg !1070
-  %arrayidx32 = getelementptr inbounds i8*, i8** %23, i64 0, !dbg !1070
-  %24 = load i8*, i8** %arrayidx32, align 8, !dbg !1070
-  invoke void @_Z11print_usagePc(i8* %24)
-          to label %invoke.cont33 unwind label %lpad, !dbg !1072
-
-invoke.cont33:                                    ; preds = %if.then31
-  call void @exit(i32 -1) #10, !dbg !1073
-  unreachable, !dbg !1073
-
-if.end34:                                         ; preds = %lor.lhs.false29
-  call void @llvm.dbg.declare(metadata %"class.std::basic_ifstream"* %training_data_file, metadata !1074, metadata !DIExpression()), !dbg !1079
-  %call35 = call i8* @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5c_strEv(%"class.std::__cxx11::basic_string"* %training_data_filename) #3, !dbg !1080
-  invoke void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEEC1EPKcSt13_Ios_Openmode(%"class.std::basic_ifstream"* %training_data_file, i8* %call35, i32 8)
+if.then34:                                        ; preds = %lor.lhs.false32, %lor.lhs.false30, %while.end
+  %24 = load i8**, i8*** %argv.addr, align 8, !dbg !1077
+  %arrayidx35 = getelementptr inbounds i8*, i8** %24, i64 0, !dbg !1077
+  %25 = load i8*, i8** %arrayidx35, align 8, !dbg !1077
+  invoke void @_Z11print_usagePc(i8* %25)
           to label %invoke.cont36 unwind label %lpad, !dbg !1079
 
-invoke.cont36:                                    ; preds = %if.end34
-  call void @llvm.dbg.declare(metadata %"class.std::basic_ifstream"* %test_data_file, metadata !1081, metadata !DIExpression()), !dbg !1082
-  %call37 = call i8* @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5c_strEv(%"class.std::__cxx11::basic_string"* %test_data_filename) #3, !dbg !1083
-  invoke void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEEC1EPKcSt13_Ios_Openmode(%"class.std::basic_ifstream"* %test_data_file, i8* %call37, i32 8)
-          to label %invoke.cont39 unwind label %lpad38, !dbg !1082
+invoke.cont36:                                    ; preds = %if.then34
+  call void @exit(i32 -1) #10, !dbg !1080
+  unreachable, !dbg !1080
 
-invoke.cont39:                                    ; preds = %invoke.cont36
-  call void @llvm.dbg.declare(metadata %"class.std::basic_ifstream"* %expected_file, metadata !1084, metadata !DIExpression()), !dbg !1085
-  %call40 = call i8* @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5c_strEv(%"class.std::__cxx11::basic_string"* %expected_filename) #3, !dbg !1086
-  invoke void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEEC1EPKcSt13_Ios_Openmode(%"class.std::basic_ifstream"* %expected_file, i8* %call40, i32 8)
-          to label %invoke.cont42 unwind label %lpad41, !dbg !1085
+if.end37:                                         ; preds = %lor.lhs.false32
+  call void @llvm.dbg.declare(metadata %"class.std::basic_ifstream"* %training_data_file, metadata !1081, metadata !DIExpression()), !dbg !1086
+  %call38 = call i8* @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5c_strEv(%"class.std::__cxx11::basic_string"* %training_data_filename) #3, !dbg !1087
+  invoke void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEEC1EPKcSt13_Ios_Openmode(%"class.std::basic_ifstream"* %training_data_file, i8* %call38, i32 8)
+          to label %invoke.cont39 unwind label %lpad, !dbg !1086
+
+invoke.cont39:                                    ; preds = %if.end37
+  call void @llvm.dbg.declare(metadata %"class.std::basic_ifstream"* %test_data_file, metadata !1088, metadata !DIExpression()), !dbg !1089
+  %call40 = call i8* @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5c_strEv(%"class.std::__cxx11::basic_string"* %test_data_filename) #3, !dbg !1090
+  invoke void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEEC1EPKcSt13_Ios_Openmode(%"class.std::basic_ifstream"* %test_data_file, i8* %call40, i32 8)
+          to label %invoke.cont42 unwind label %lpad41, !dbg !1089
 
 invoke.cont42:                                    ; preds = %invoke.cont39
-  %call45 = invoke zeroext i1 @_ZNSt14basic_ifstreamIcSt11char_traitsIcEE7is_openEv(%"class.std::basic_ifstream"* %training_data_file)
-          to label %invoke.cont44 unwind label %lpad43, !dbg !1087
+  call void @llvm.dbg.declare(metadata %"class.std::basic_ifstream"* %expected_file, metadata !1091, metadata !DIExpression()), !dbg !1092
+  %call43 = call i8* @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5c_strEv(%"class.std::__cxx11::basic_string"* %expected_filename) #3, !dbg !1093
+  invoke void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEEC1EPKcSt13_Ios_Openmode(%"class.std::basic_ifstream"* %expected_file, i8* %call43, i32 8)
+          to label %invoke.cont45 unwind label %lpad44, !dbg !1092
 
-invoke.cont44:                                    ; preds = %invoke.cont42
-  br i1 %call45, label %lor.lhs.false46, label %if.then52, !dbg !1089
+invoke.cont45:                                    ; preds = %invoke.cont42
+  call void @llvm.dbg.declare(metadata %"class.std::basic_ifstream"* %training_labels_file, metadata !1094, metadata !DIExpression()), !dbg !1095
+  %call46 = call i8* @_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5c_strEv(%"class.std::__cxx11::basic_string"* %training_labels_filename) #3, !dbg !1096
+  invoke void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEEC1EPKcSt13_Ios_Openmode(%"class.std::basic_ifstream"* %training_labels_file, i8* %call46, i32 8)
+          to label %invoke.cont48 unwind label %lpad47, !dbg !1095
 
-lor.lhs.false46:                                  ; preds = %invoke.cont44
-  %call48 = invoke zeroext i1 @_ZNSt14basic_ifstreamIcSt11char_traitsIcEE7is_openEv(%"class.std::basic_ifstream"* %test_data_file)
-          to label %invoke.cont47 unwind label %lpad43, !dbg !1090
+invoke.cont48:                                    ; preds = %invoke.cont45
+  %call51 = invoke zeroext i1 @_ZNSt14basic_ifstreamIcSt11char_traitsIcEE7is_openEv(%"class.std::basic_ifstream"* %training_data_file)
+          to label %invoke.cont50 unwind label %lpad49, !dbg !1097
 
-invoke.cont47:                                    ; preds = %lor.lhs.false46
-  br i1 %call48, label %lor.lhs.false49, label %if.then52, !dbg !1091
+invoke.cont50:                                    ; preds = %invoke.cont48
+  br i1 %call51, label %lor.lhs.false52, label %if.then61, !dbg !1099
 
-lor.lhs.false49:                                  ; preds = %invoke.cont47
-  %call51 = invoke zeroext i1 @_ZNSt14basic_ifstreamIcSt11char_traitsIcEE7is_openEv(%"class.std::basic_ifstream"* %expected_file)
-          to label %invoke.cont50 unwind label %lpad43, !dbg !1092
+lor.lhs.false52:                                  ; preds = %invoke.cont50
+  %call54 = invoke zeroext i1 @_ZNSt14basic_ifstreamIcSt11char_traitsIcEE7is_openEv(%"class.std::basic_ifstream"* %test_data_file)
+          to label %invoke.cont53 unwind label %lpad49, !dbg !1100
 
-invoke.cont50:                                    ; preds = %lor.lhs.false49
-  br i1 %call51, label %if.end55, label %if.then52, !dbg !1093
+invoke.cont53:                                    ; preds = %lor.lhs.false52
+  br i1 %call54, label %lor.lhs.false55, label %if.then61, !dbg !1101
 
-if.then52:                                        ; preds = %invoke.cont50, %invoke.cont47, %invoke.cont44
-  %call54 = invoke i32 (i8*, ...) @printf(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @.str.5, i32 0, i32 0))
-          to label %invoke.cont53 unwind label %lpad43, !dbg !1094
+lor.lhs.false55:                                  ; preds = %invoke.cont53
+  %call57 = invoke zeroext i1 @_ZNSt14basic_ifstreamIcSt11char_traitsIcEE7is_openEv(%"class.std::basic_ifstream"* %expected_file)
+          to label %invoke.cont56 unwind label %lpad49, !dbg !1102
 
-invoke.cont53:                                    ; preds = %if.then52
-  call void @exit(i32 -1) #10, !dbg !1096
-  unreachable, !dbg !1096
+invoke.cont56:                                    ; preds = %lor.lhs.false55
+  br i1 %call57, label %lor.lhs.false58, label %if.then61, !dbg !1103
 
-lpad38:                                           ; preds = %invoke.cont36
-  %25 = landingpad { i8*, i32 }
-          cleanup, !dbg !1097
-  %26 = extractvalue { i8*, i32 } %25, 0, !dbg !1097
-  store i8* %26, i8** %exn.slot, align 8, !dbg !1097
-  %27 = extractvalue { i8*, i32 } %25, 1, !dbg !1097
-  store i32 %27, i32* %ehselector.slot, align 4, !dbg !1097
-  br label %ehcleanup121, !dbg !1097
+lor.lhs.false58:                                  ; preds = %invoke.cont56
+  %call60 = invoke zeroext i1 @_ZNSt14basic_ifstreamIcSt11char_traitsIcEE7is_openEv(%"class.std::basic_ifstream"* %training_labels_file)
+          to label %invoke.cont59 unwind label %lpad49, !dbg !1104
+
+invoke.cont59:                                    ; preds = %lor.lhs.false58
+  br i1 %call60, label %if.end64, label %if.then61, !dbg !1105
+
+if.then61:                                        ; preds = %invoke.cont59, %invoke.cont56, %invoke.cont53, %invoke.cont50
+  %call63 = invoke i32 (i8*, ...) @printf(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @.str.5, i32 0, i32 0))
+          to label %invoke.cont62 unwind label %lpad49, !dbg !1106
+
+invoke.cont62:                                    ; preds = %if.then61
+  call void @exit(i32 -1) #10, !dbg !1108
+  unreachable, !dbg !1108
 
 lpad41:                                           ; preds = %invoke.cont39
-  %28 = landingpad { i8*, i32 }
-          cleanup, !dbg !1097
-  %29 = extractvalue { i8*, i32 } %28, 0, !dbg !1097
-  store i8* %29, i8** %exn.slot, align 8, !dbg !1097
-  %30 = extractvalue { i8*, i32 } %28, 1, !dbg !1097
-  store i32 %30, i32* %ehselector.slot, align 4, !dbg !1097
-  br label %ehcleanup, !dbg !1097
+  %26 = landingpad { i8*, i32 }
+          cleanup, !dbg !1109
+  %27 = extractvalue { i8*, i32 } %26, 0, !dbg !1109
+  store i8* %27, i8** %exn.slot, align 8, !dbg !1109
+  %28 = extractvalue { i8*, i32 } %26, 1, !dbg !1109
+  store i32 %28, i32* %ehselector.slot, align 4, !dbg !1109
+  br label %ehcleanup145, !dbg !1109
 
-lpad43:                                           ; preds = %invoke.cont119, %invoke.cont118, %for.end117, %for.body110, %for.body94, %for.body79, %invoke.cont71, %invoke.cont67, %if.end66, %if.then63, %invoke.cont56, %if.end55, %if.then52, %lor.lhs.false49, %lor.lhs.false46, %invoke.cont42
-  %31 = landingpad { i8*, i32 }
-          cleanup, !dbg !1098
-  %32 = extractvalue { i8*, i32 } %31, 0, !dbg !1098
-  store i8* %32, i8** %exn.slot, align 8, !dbg !1098
-  %33 = extractvalue { i8*, i32 } %31, 1, !dbg !1098
-  store i32 %33, i32* %ehselector.slot, align 4, !dbg !1098
-  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %expected_file) #3, !dbg !1097
-  br label %ehcleanup, !dbg !1097
+lpad44:                                           ; preds = %invoke.cont42
+  %29 = landingpad { i8*, i32 }
+          cleanup, !dbg !1109
+  %30 = extractvalue { i8*, i32 } %29, 0, !dbg !1109
+  store i8* %30, i8** %exn.slot, align 8, !dbg !1109
+  %31 = extractvalue { i8*, i32 } %29, 1, !dbg !1109
+  store i32 %31, i32* %ehselector.slot, align 4, !dbg !1109
+  br label %ehcleanup144, !dbg !1109
 
-if.end55:                                         ; preds = %invoke.cont50
-  %34 = bitcast %"class.std::basic_ifstream"* %training_data_file to %"class.std::basic_istream"*, !dbg !1099
-  %35 = load i32*, i32** %num_training.addr, align 8, !dbg !1100
-  %36 = bitcast i32* %35 to i8*, !dbg !1101
-  %call57 = invoke dereferenceable(280) %"class.std::basic_istream"* @_ZNSi4readEPcl(%"class.std::basic_istream"* %34, i8* %36, i64 4)
-          to label %invoke.cont56 unwind label %lpad43, !dbg !1102
+lpad47:                                           ; preds = %invoke.cont45
+  %32 = landingpad { i8*, i32 }
+          cleanup, !dbg !1109
+  %33 = extractvalue { i8*, i32 } %32, 0, !dbg !1109
+  store i8* %33, i8** %exn.slot, align 8, !dbg !1109
+  %34 = extractvalue { i8*, i32 } %32, 1, !dbg !1109
+  store i32 %34, i32* %ehselector.slot, align 4, !dbg !1109
+  br label %ehcleanup, !dbg !1109
 
-invoke.cont56:                                    ; preds = %if.end55
-  %37 = bitcast %"class.std::basic_ifstream"* %test_data_file to %"class.std::basic_istream"*, !dbg !1103
-  %38 = load i32*, i32** %num_test.addr, align 8, !dbg !1104
-  %39 = bitcast i32* %38 to i8*, !dbg !1105
-  %call59 = invoke dereferenceable(280) %"class.std::basic_istream"* @_ZNSi4readEPcl(%"class.std::basic_istream"* %37, i8* %39, i64 4)
-          to label %invoke.cont58 unwind label %lpad43, !dbg !1106
+lpad49:                                           ; preds = %invoke.cont142, %invoke.cont141, %for.end140, %for.body133, %for.body122, %for.body106, %for.body91, %invoke.cont83, %invoke.cont80, %invoke.cont76, %if.end75, %if.then72, %invoke.cont65, %if.end64, %if.then61, %lor.lhs.false58, %lor.lhs.false55, %lor.lhs.false52, %invoke.cont48
+  %35 = landingpad { i8*, i32 }
+          cleanup, !dbg !1110
+  %36 = extractvalue { i8*, i32 } %35, 0, !dbg !1110
+  store i8* %36, i8** %exn.slot, align 8, !dbg !1110
+  %37 = extractvalue { i8*, i32 } %35, 1, !dbg !1110
+  store i32 %37, i32* %ehselector.slot, align 4, !dbg !1110
+  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %training_labels_file) #3, !dbg !1109
+  br label %ehcleanup, !dbg !1109
 
-invoke.cont58:                                    ; preds = %invoke.cont56
-  %40 = load i32*, i32** %num_training.addr, align 8, !dbg !1107
-  %41 = load i32, i32* %40, align 4, !dbg !1107
-  %cmp60 = icmp sle i32 %41, 0, !dbg !1109
-  br i1 %cmp60, label %if.then63, label %lor.lhs.false61, !dbg !1110
+if.end64:                                         ; preds = %invoke.cont59
+  %38 = bitcast %"class.std::basic_ifstream"* %training_data_file to %"class.std::basic_istream"*, !dbg !1111
+  %39 = load i32*, i32** %num_training.addr, align 8, !dbg !1112
+  %40 = bitcast i32* %39 to i8*, !dbg !1113
+  %call66 = invoke dereferenceable(280) %"class.std::basic_istream"* @_ZNSi4readEPcl(%"class.std::basic_istream"* %38, i8* %40, i64 4)
+          to label %invoke.cont65 unwind label %lpad49, !dbg !1114
 
-lor.lhs.false61:                                  ; preds = %invoke.cont58
-  %42 = load i32*, i32** %num_test.addr, align 8, !dbg !1111
-  %43 = load i32, i32* %42, align 4, !dbg !1111
-  %cmp62 = icmp sle i32 %43, 0, !dbg !1112
-  br i1 %cmp62, label %if.then63, label %if.end66, !dbg !1113
+invoke.cont65:                                    ; preds = %if.end64
+  %41 = bitcast %"class.std::basic_ifstream"* %test_data_file to %"class.std::basic_istream"*, !dbg !1115
+  %42 = load i32*, i32** %num_test.addr, align 8, !dbg !1116
+  %43 = bitcast i32* %42 to i8*, !dbg !1117
+  %call68 = invoke dereferenceable(280) %"class.std::basic_istream"* @_ZNSi4readEPcl(%"class.std::basic_istream"* %41, i8* %43, i64 4)
+          to label %invoke.cont67 unwind label %lpad49, !dbg !1118
 
-if.then63:                                        ; preds = %lor.lhs.false61, %invoke.cont58
-  %call65 = invoke i32 (i8*, ...) @printf(i8* getelementptr inbounds ([44 x i8], [44 x i8]* @.str.6, i32 0, i32 0))
-          to label %invoke.cont64 unwind label %lpad43, !dbg !1114
+invoke.cont67:                                    ; preds = %invoke.cont65
+  %44 = load i32*, i32** %num_training.addr, align 8, !dbg !1119
+  %45 = load i32, i32* %44, align 4, !dbg !1119
+  %cmp69 = icmp sle i32 %45, 0, !dbg !1121
+  br i1 %cmp69, label %if.then72, label %lor.lhs.false70, !dbg !1122
 
-invoke.cont64:                                    ; preds = %if.then63
-  call void @exit(i32 -1) #10, !dbg !1116
-  unreachable, !dbg !1116
+lor.lhs.false70:                                  ; preds = %invoke.cont67
+  %46 = load i32*, i32** %num_test.addr, align 8, !dbg !1123
+  %47 = load i32, i32* %46, align 4, !dbg !1123
+  %cmp71 = icmp sle i32 %47, 0, !dbg !1124
+  br i1 %cmp71, label %if.then72, label %if.end75, !dbg !1125
 
-if.end66:                                         ; preds = %lor.lhs.false61
-  %44 = load i32*, i32** %num_training.addr, align 8, !dbg !1117
-  %45 = load i32, i32* %44, align 4, !dbg !1117
-  %mul = mul nsw i32 %45, 4, !dbg !1118
-  %conv = sext i32 %mul to i64, !dbg !1117
-  %46 = call { i64, i1 } @llvm.umul.with.overflow.i64(i64 %conv, i64 8), !dbg !1119
-  %47 = extractvalue { i64, i1 } %46, 1, !dbg !1119
-  %48 = extractvalue { i64, i1 } %46, 0, !dbg !1119
-  %49 = select i1 %47, i64 -1, i64 %48, !dbg !1119
-  %call68 = invoke i8* @_Znam(i64 %49) #11
-          to label %invoke.cont67 unwind label %lpad43, !dbg !1119
+if.then72:                                        ; preds = %lor.lhs.false70, %invoke.cont67
+  %call74 = invoke i32 (i8*, ...) @printf(i8* getelementptr inbounds ([44 x i8], [44 x i8]* @.str.6, i32 0, i32 0))
+          to label %invoke.cont73 unwind label %lpad49, !dbg !1126
 
-invoke.cont67:                                    ; preds = %if.end66
-  %50 = bitcast i8* %call68 to i64*, !dbg !1119
-  %51 = load i64**, i64*** %training_data.addr, align 8, !dbg !1120
-  store i64* %50, i64** %51, align 8, !dbg !1121
-  %52 = load i32*, i32** %num_test.addr, align 8, !dbg !1122
-  %53 = load i32, i32* %52, align 4, !dbg !1122
-  %mul69 = mul nsw i32 %53, 4, !dbg !1123
-  %conv70 = sext i32 %mul69 to i64, !dbg !1122
-  %54 = call { i64, i1 } @llvm.umul.with.overflow.i64(i64 %conv70, i64 8), !dbg !1124
-  %55 = extractvalue { i64, i1 } %54, 1, !dbg !1124
-  %56 = extractvalue { i64, i1 } %54, 0, !dbg !1124
-  %57 = select i1 %55, i64 -1, i64 %56, !dbg !1124
-  %call72 = invoke i8* @_Znam(i64 %57) #11
-          to label %invoke.cont71 unwind label %lpad43, !dbg !1124
+invoke.cont73:                                    ; preds = %if.then72
+  call void @exit(i32 -1) #10, !dbg !1128
+  unreachable, !dbg !1128
 
-invoke.cont71:                                    ; preds = %invoke.cont67
-  %58 = bitcast i8* %call72 to i64*, !dbg !1124
-  %59 = load i64**, i64*** %test_data.addr, align 8, !dbg !1125
-  store i64* %58, i64** %59, align 8, !dbg !1126
-  %60 = load i32*, i32** %num_test.addr, align 8, !dbg !1127
-  %61 = load i32, i32* %60, align 4, !dbg !1127
-  %conv73 = sext i32 %61 to i64, !dbg !1127
-  %call75 = invoke i8* @_Znam(i64 %conv73) #11
-          to label %invoke.cont74 unwind label %lpad43, !dbg !1128
+if.end75:                                         ; preds = %lor.lhs.false70
+  %48 = load i32*, i32** %num_training.addr, align 8, !dbg !1129
+  %49 = load i32, i32* %48, align 4, !dbg !1129
+  %mul = mul nsw i32 %49, 4, !dbg !1130
+  %conv = sext i32 %mul to i64, !dbg !1129
+  %50 = call { i64, i1 } @llvm.umul.with.overflow.i64(i64 %conv, i64 8), !dbg !1131
+  %51 = extractvalue { i64, i1 } %50, 1, !dbg !1131
+  %52 = extractvalue { i64, i1 } %50, 0, !dbg !1131
+  %53 = select i1 %51, i64 -1, i64 %52, !dbg !1131
+  %call77 = invoke i8* @_Znam(i64 %53) #11
+          to label %invoke.cont76 unwind label %lpad49, !dbg !1131
 
-invoke.cont74:                                    ; preds = %invoke.cont71
-  %62 = load i8**, i8*** %expected.addr, align 8, !dbg !1129
-  store i8* %call75, i8** %62, align 8, !dbg !1130
-  call void @llvm.dbg.declare(metadata i32* %i, metadata !1131, metadata !DIExpression()), !dbg !1133
-  store i32 0, i32* %i, align 4, !dbg !1133
-  br label %for.cond, !dbg !1134
+invoke.cont76:                                    ; preds = %if.end75
+  %54 = bitcast i8* %call77 to i64*, !dbg !1131
+  %55 = load i64**, i64*** %training_data.addr, align 8, !dbg !1132
+  store i64* %54, i64** %55, align 8, !dbg !1133
+  %56 = load i32*, i32** %num_test.addr, align 8, !dbg !1134
+  %57 = load i32, i32* %56, align 4, !dbg !1134
+  %mul78 = mul nsw i32 %57, 4, !dbg !1135
+  %conv79 = sext i32 %mul78 to i64, !dbg !1134
+  %58 = call { i64, i1 } @llvm.umul.with.overflow.i64(i64 %conv79, i64 8), !dbg !1136
+  %59 = extractvalue { i64, i1 } %58, 1, !dbg !1136
+  %60 = extractvalue { i64, i1 } %58, 0, !dbg !1136
+  %61 = select i1 %59, i64 -1, i64 %60, !dbg !1136
+  %call81 = invoke i8* @_Znam(i64 %61) #11
+          to label %invoke.cont80 unwind label %lpad49, !dbg !1136
 
-for.cond:                                         ; preds = %for.inc84, %invoke.cont74
-  %63 = load i32, i32* %i, align 4, !dbg !1135
-  %64 = load i32*, i32** %num_training.addr, align 8, !dbg !1137
-  %65 = load i32, i32* %64, align 4, !dbg !1137
-  %cmp76 = icmp slt i32 %63, %65, !dbg !1138
-  br i1 %cmp76, label %for.body, label %for.end86, !dbg !1139
+invoke.cont80:                                    ; preds = %invoke.cont76
+  %62 = bitcast i8* %call81 to i64*, !dbg !1136
+  %63 = load i64**, i64*** %test_data.addr, align 8, !dbg !1137
+  store i64* %62, i64** %63, align 8, !dbg !1138
+  %64 = load i32*, i32** %num_training.addr, align 8, !dbg !1139
+  %65 = load i32, i32* %64, align 4, !dbg !1139
+  %conv82 = sext i32 %65 to i64, !dbg !1139
+  %call84 = invoke i8* @_Znam(i64 %conv82) #11
+          to label %invoke.cont83 unwind label %lpad49, !dbg !1140
+
+invoke.cont83:                                    ; preds = %invoke.cont80
+  %66 = load i8**, i8*** %training_labels.addr, align 8, !dbg !1141
+  store i8* %call84, i8** %66, align 8, !dbg !1142
+  %67 = load i32*, i32** %num_test.addr, align 8, !dbg !1143
+  %68 = load i32, i32* %67, align 4, !dbg !1143
+  %conv85 = sext i32 %68 to i64, !dbg !1143
+  %call87 = invoke i8* @_Znam(i64 %conv85) #11
+          to label %invoke.cont86 unwind label %lpad49, !dbg !1144
+
+invoke.cont86:                                    ; preds = %invoke.cont83
+  %69 = load i8**, i8*** %expected.addr, align 8, !dbg !1145
+  store i8* %call87, i8** %69, align 8, !dbg !1146
+  call void @llvm.dbg.declare(metadata i32* %i, metadata !1147, metadata !DIExpression()), !dbg !1149
+  store i32 0, i32* %i, align 4, !dbg !1149
+  br label %for.cond, !dbg !1150
+
+for.cond:                                         ; preds = %for.inc96, %invoke.cont86
+  %70 = load i32, i32* %i, align 4, !dbg !1151
+  %71 = load i32*, i32** %num_training.addr, align 8, !dbg !1153
+  %72 = load i32, i32* %71, align 4, !dbg !1153
+  %cmp88 = icmp slt i32 %70, %72, !dbg !1154
+  br i1 %cmp88, label %for.body, label %for.end98, !dbg !1155
 
 for.body:                                         ; preds = %for.cond
-  call void @llvm.dbg.declare(metadata i32* %j, metadata !1140, metadata !DIExpression()), !dbg !1143
-  store i32 0, i32* %j, align 4, !dbg !1143
-  br label %for.cond77, !dbg !1144
+  call void @llvm.dbg.declare(metadata i32* %j, metadata !1156, metadata !DIExpression()), !dbg !1159
+  store i32 0, i32* %j, align 4, !dbg !1159
+  br label %for.cond89, !dbg !1160
 
-for.cond77:                                       ; preds = %for.inc, %for.body
-  %66 = load i32, i32* %j, align 4, !dbg !1145
-  %cmp78 = icmp slt i32 %66, 4, !dbg !1147
-  br i1 %cmp78, label %for.body79, label %for.end, !dbg !1148
-
-for.body79:                                       ; preds = %for.cond77
-  %67 = bitcast %"class.std::basic_ifstream"* %training_data_file to %"class.std::basic_istream"*, !dbg !1149
-  %68 = load i64**, i64*** %training_data.addr, align 8, !dbg !1151
-  %69 = load i64*, i64** %68, align 8, !dbg !1152
-  %70 = load i32, i32* %i, align 4, !dbg !1153
-  %mul80 = mul nsw i32 %70, 4, !dbg !1154
-  %71 = load i32, i32* %j, align 4, !dbg !1155
-  %add = add nsw i32 %mul80, %71, !dbg !1156
-  %idxprom = sext i32 %add to i64, !dbg !1157
-  %arrayidx81 = getelementptr inbounds i64, i64* %69, i64 %idxprom, !dbg !1157
-  %72 = bitcast i64* %arrayidx81 to i8*, !dbg !1158
-  %call83 = invoke dereferenceable(280) %"class.std::basic_istream"* @_ZNSi4readEPcl(%"class.std::basic_istream"* %67, i8* %72, i64 8)
-          to label %invoke.cont82 unwind label %lpad43, !dbg !1159
-
-invoke.cont82:                                    ; preds = %for.body79
-  br label %for.inc, !dbg !1160
-
-for.inc:                                          ; preds = %invoke.cont82
+for.cond89:                                       ; preds = %for.inc, %for.body
   %73 = load i32, i32* %j, align 4, !dbg !1161
-  %inc = add nsw i32 %73, 1, !dbg !1161
-  store i32 %inc, i32* %j, align 4, !dbg !1161
-  br label %for.cond77, !dbg !1162, !llvm.loop !1163
+  %cmp90 = icmp slt i32 %73, 4, !dbg !1163
+  br i1 %cmp90, label %for.body91, label %for.end, !dbg !1164
 
-for.end:                                          ; preds = %for.cond77
-  br label %for.inc84, !dbg !1165
+for.body91:                                       ; preds = %for.cond89
+  %74 = bitcast %"class.std::basic_ifstream"* %training_data_file to %"class.std::basic_istream"*, !dbg !1165
+  %75 = load i64**, i64*** %training_data.addr, align 8, !dbg !1167
+  %76 = load i64*, i64** %75, align 8, !dbg !1168
+  %77 = load i32, i32* %i, align 4, !dbg !1169
+  %mul92 = mul nsw i32 %77, 4, !dbg !1170
+  %78 = load i32, i32* %j, align 4, !dbg !1171
+  %add = add nsw i32 %mul92, %78, !dbg !1172
+  %idxprom = sext i32 %add to i64, !dbg !1173
+  %arrayidx93 = getelementptr inbounds i64, i64* %76, i64 %idxprom, !dbg !1173
+  %79 = bitcast i64* %arrayidx93 to i8*, !dbg !1174
+  %call95 = invoke dereferenceable(280) %"class.std::basic_istream"* @_ZNSi4readEPcl(%"class.std::basic_istream"* %74, i8* %79, i64 8)
+          to label %invoke.cont94 unwind label %lpad49, !dbg !1175
 
-for.inc84:                                        ; preds = %for.end
-  %74 = load i32, i32* %i, align 4, !dbg !1166
-  %inc85 = add nsw i32 %74, 1, !dbg !1166
-  store i32 %inc85, i32* %i, align 4, !dbg !1166
-  br label %for.cond, !dbg !1167, !llvm.loop !1168
+invoke.cont94:                                    ; preds = %for.body91
+  br label %for.inc, !dbg !1176
 
-for.end86:                                        ; preds = %for.cond
-  call void @llvm.dbg.declare(metadata i32* %i87, metadata !1170, metadata !DIExpression()), !dbg !1172
-  store i32 0, i32* %i87, align 4, !dbg !1172
-  br label %for.cond88, !dbg !1173
+for.inc:                                          ; preds = %invoke.cont94
+  %80 = load i32, i32* %j, align 4, !dbg !1177
+  %inc = add nsw i32 %80, 1, !dbg !1177
+  store i32 %inc, i32* %j, align 4, !dbg !1177
+  br label %for.cond89, !dbg !1178, !llvm.loop !1179
 
-for.cond88:                                       ; preds = %for.inc104, %for.end86
-  %75 = load i32, i32* %i87, align 4, !dbg !1174
-  %76 = load i32*, i32** %num_test.addr, align 8, !dbg !1176
-  %77 = load i32, i32* %76, align 4, !dbg !1176
-  %cmp89 = icmp slt i32 %75, %77, !dbg !1177
-  br i1 %cmp89, label %for.body90, label %for.end106, !dbg !1178
+for.end:                                          ; preds = %for.cond89
+  br label %for.inc96, !dbg !1181
 
-for.body90:                                       ; preds = %for.cond88
-  call void @llvm.dbg.declare(metadata i32* %j91, metadata !1179, metadata !DIExpression()), !dbg !1182
-  store i32 0, i32* %j91, align 4, !dbg !1182
-  br label %for.cond92, !dbg !1183
+for.inc96:                                        ; preds = %for.end
+  %81 = load i32, i32* %i, align 4, !dbg !1182
+  %inc97 = add nsw i32 %81, 1, !dbg !1182
+  store i32 %inc97, i32* %i, align 4, !dbg !1182
+  br label %for.cond, !dbg !1183, !llvm.loop !1184
 
-for.cond92:                                       ; preds = %for.inc101, %for.body90
-  %78 = load i32, i32* %j91, align 4, !dbg !1184
-  %cmp93 = icmp slt i32 %78, 4, !dbg !1186
-  br i1 %cmp93, label %for.body94, label %for.end103, !dbg !1187
+for.end98:                                        ; preds = %for.cond
+  call void @llvm.dbg.declare(metadata i32* %i99, metadata !1186, metadata !DIExpression()), !dbg !1188
+  store i32 0, i32* %i99, align 4, !dbg !1188
+  br label %for.cond100, !dbg !1189
 
-for.body94:                                       ; preds = %for.cond92
-  %79 = bitcast %"class.std::basic_ifstream"* %test_data_file to %"class.std::basic_istream"*, !dbg !1188
-  %80 = load i64**, i64*** %test_data.addr, align 8, !dbg !1190
-  %81 = load i64*, i64** %80, align 8, !dbg !1191
-  %82 = load i32, i32* %i87, align 4, !dbg !1192
-  %mul95 = mul nsw i32 %82, 4, !dbg !1193
-  %83 = load i32, i32* %j91, align 4, !dbg !1194
-  %add96 = add nsw i32 %mul95, %83, !dbg !1195
-  %idxprom97 = sext i32 %add96 to i64, !dbg !1196
-  %arrayidx98 = getelementptr inbounds i64, i64* %81, i64 %idxprom97, !dbg !1196
-  %84 = bitcast i64* %arrayidx98 to i8*, !dbg !1197
-  %call100 = invoke dereferenceable(280) %"class.std::basic_istream"* @_ZNSi4readEPcl(%"class.std::basic_istream"* %79, i8* %84, i64 8)
-          to label %invoke.cont99 unwind label %lpad43, !dbg !1198
+for.cond100:                                      ; preds = %for.inc116, %for.end98
+  %82 = load i32, i32* %i99, align 4, !dbg !1190
+  %83 = load i32*, i32** %num_test.addr, align 8, !dbg !1192
+  %84 = load i32, i32* %83, align 4, !dbg !1192
+  %cmp101 = icmp slt i32 %82, %84, !dbg !1193
+  br i1 %cmp101, label %for.body102, label %for.end118, !dbg !1194
 
-invoke.cont99:                                    ; preds = %for.body94
-  br label %for.inc101, !dbg !1199
+for.body102:                                      ; preds = %for.cond100
+  call void @llvm.dbg.declare(metadata i32* %j103, metadata !1195, metadata !DIExpression()), !dbg !1198
+  store i32 0, i32* %j103, align 4, !dbg !1198
+  br label %for.cond104, !dbg !1199
 
-for.inc101:                                       ; preds = %invoke.cont99
-  %85 = load i32, i32* %j91, align 4, !dbg !1200
-  %inc102 = add nsw i32 %85, 1, !dbg !1200
-  store i32 %inc102, i32* %j91, align 4, !dbg !1200
-  br label %for.cond92, !dbg !1201, !llvm.loop !1202
+for.cond104:                                      ; preds = %for.inc113, %for.body102
+  %85 = load i32, i32* %j103, align 4, !dbg !1200
+  %cmp105 = icmp slt i32 %85, 4, !dbg !1202
+  br i1 %cmp105, label %for.body106, label %for.end115, !dbg !1203
 
-for.end103:                                       ; preds = %for.cond92
-  br label %for.inc104, !dbg !1204
+for.body106:                                      ; preds = %for.cond104
+  %86 = bitcast %"class.std::basic_ifstream"* %test_data_file to %"class.std::basic_istream"*, !dbg !1204
+  %87 = load i64**, i64*** %test_data.addr, align 8, !dbg !1206
+  %88 = load i64*, i64** %87, align 8, !dbg !1207
+  %89 = load i32, i32* %i99, align 4, !dbg !1208
+  %mul107 = mul nsw i32 %89, 4, !dbg !1209
+  %90 = load i32, i32* %j103, align 4, !dbg !1210
+  %add108 = add nsw i32 %mul107, %90, !dbg !1211
+  %idxprom109 = sext i32 %add108 to i64, !dbg !1212
+  %arrayidx110 = getelementptr inbounds i64, i64* %88, i64 %idxprom109, !dbg !1212
+  %91 = bitcast i64* %arrayidx110 to i8*, !dbg !1213
+  %call112 = invoke dereferenceable(280) %"class.std::basic_istream"* @_ZNSi4readEPcl(%"class.std::basic_istream"* %86, i8* %91, i64 8)
+          to label %invoke.cont111 unwind label %lpad49, !dbg !1214
 
-for.inc104:                                       ; preds = %for.end103
-  %86 = load i32, i32* %i87, align 4, !dbg !1205
-  %inc105 = add nsw i32 %86, 1, !dbg !1205
-  store i32 %inc105, i32* %i87, align 4, !dbg !1205
-  br label %for.cond88, !dbg !1206, !llvm.loop !1207
+invoke.cont111:                                   ; preds = %for.body106
+  br label %for.inc113, !dbg !1215
 
-for.end106:                                       ; preds = %for.cond88
-  call void @llvm.dbg.declare(metadata i32* %i107, metadata !1209, metadata !DIExpression()), !dbg !1211
-  store i32 0, i32* %i107, align 4, !dbg !1211
-  br label %for.cond108, !dbg !1212
+for.inc113:                                       ; preds = %invoke.cont111
+  %92 = load i32, i32* %j103, align 4, !dbg !1216
+  %inc114 = add nsw i32 %92, 1, !dbg !1216
+  store i32 %inc114, i32* %j103, align 4, !dbg !1216
+  br label %for.cond104, !dbg !1217, !llvm.loop !1218
 
-for.cond108:                                      ; preds = %for.inc115, %for.end106
-  %87 = load i32, i32* %i107, align 4, !dbg !1213
-  %88 = load i32*, i32** %num_test.addr, align 8, !dbg !1215
-  %89 = load i32, i32* %88, align 4, !dbg !1215
-  %cmp109 = icmp slt i32 %87, %89, !dbg !1216
-  br i1 %cmp109, label %for.body110, label %for.end117, !dbg !1217
+for.end115:                                       ; preds = %for.cond104
+  br label %for.inc116, !dbg !1220
 
-for.body110:                                      ; preds = %for.cond108
-  %90 = bitcast %"class.std::basic_ifstream"* %expected_file to %"class.std::basic_istream"*, !dbg !1218
-  %91 = load i8**, i8*** %expected.addr, align 8, !dbg !1220
-  %92 = load i8*, i8** %91, align 8, !dbg !1221
-  %93 = load i32, i32* %i107, align 4, !dbg !1222
-  %idxprom111 = sext i32 %93 to i64, !dbg !1223
-  %arrayidx112 = getelementptr inbounds i8, i8* %92, i64 %idxprom111, !dbg !1223
-  %call114 = invoke dereferenceable(280) %"class.std::basic_istream"* @_ZNSi4readEPcl(%"class.std::basic_istream"* %90, i8* %arrayidx112, i64 1)
-          to label %invoke.cont113 unwind label %lpad43, !dbg !1224
+for.inc116:                                       ; preds = %for.end115
+  %93 = load i32, i32* %i99, align 4, !dbg !1221
+  %inc117 = add nsw i32 %93, 1, !dbg !1221
+  store i32 %inc117, i32* %i99, align 4, !dbg !1221
+  br label %for.cond100, !dbg !1222, !llvm.loop !1223
 
-invoke.cont113:                                   ; preds = %for.body110
-  br label %for.inc115, !dbg !1225
+for.end118:                                       ; preds = %for.cond100
+  call void @llvm.dbg.declare(metadata i32* %i119, metadata !1225, metadata !DIExpression()), !dbg !1227
+  store i32 0, i32* %i119, align 4, !dbg !1227
+  br label %for.cond120, !dbg !1228
 
-for.inc115:                                       ; preds = %invoke.cont113
-  %94 = load i32, i32* %i107, align 4, !dbg !1226
-  %inc116 = add nsw i32 %94, 1, !dbg !1226
-  store i32 %inc116, i32* %i107, align 4, !dbg !1226
-  br label %for.cond108, !dbg !1227, !llvm.loop !1228
+for.cond120:                                      ; preds = %for.inc127, %for.end118
+  %94 = load i32, i32* %i119, align 4, !dbg !1229
+  %95 = load i32*, i32** %num_training.addr, align 8, !dbg !1231
+  %96 = load i32, i32* %95, align 4, !dbg !1231
+  %cmp121 = icmp slt i32 %94, %96, !dbg !1232
+  br i1 %cmp121, label %for.body122, label %for.end129, !dbg !1233
 
-for.end117:                                       ; preds = %for.cond108
+for.body122:                                      ; preds = %for.cond120
+  %97 = bitcast %"class.std::basic_ifstream"* %training_labels_file to %"class.std::basic_istream"*, !dbg !1234
+  %98 = load i8**, i8*** %training_labels.addr, align 8, !dbg !1236
+  %99 = load i8*, i8** %98, align 8, !dbg !1237
+  %100 = load i32, i32* %i119, align 4, !dbg !1238
+  %idxprom123 = sext i32 %100 to i64, !dbg !1239
+  %arrayidx124 = getelementptr inbounds i8, i8* %99, i64 %idxprom123, !dbg !1239
+  %call126 = invoke dereferenceable(280) %"class.std::basic_istream"* @_ZNSi4readEPcl(%"class.std::basic_istream"* %97, i8* %arrayidx124, i64 1)
+          to label %invoke.cont125 unwind label %lpad49, !dbg !1240
+
+invoke.cont125:                                   ; preds = %for.body122
+  br label %for.inc127, !dbg !1241
+
+for.inc127:                                       ; preds = %invoke.cont125
+  %101 = load i32, i32* %i119, align 4, !dbg !1242
+  %inc128 = add nsw i32 %101, 1, !dbg !1242
+  store i32 %inc128, i32* %i119, align 4, !dbg !1242
+  br label %for.cond120, !dbg !1243, !llvm.loop !1244
+
+for.end129:                                       ; preds = %for.cond120
+  call void @llvm.dbg.declare(metadata i32* %i130, metadata !1246, metadata !DIExpression()), !dbg !1248
+  store i32 0, i32* %i130, align 4, !dbg !1248
+  br label %for.cond131, !dbg !1249
+
+for.cond131:                                      ; preds = %for.inc138, %for.end129
+  %102 = load i32, i32* %i130, align 4, !dbg !1250
+  %103 = load i32*, i32** %num_test.addr, align 8, !dbg !1252
+  %104 = load i32, i32* %103, align 4, !dbg !1252
+  %cmp132 = icmp slt i32 %102, %104, !dbg !1253
+  br i1 %cmp132, label %for.body133, label %for.end140, !dbg !1254
+
+for.body133:                                      ; preds = %for.cond131
+  %105 = bitcast %"class.std::basic_ifstream"* %expected_file to %"class.std::basic_istream"*, !dbg !1255
+  %106 = load i8**, i8*** %expected.addr, align 8, !dbg !1257
+  %107 = load i8*, i8** %106, align 8, !dbg !1258
+  %108 = load i32, i32* %i130, align 4, !dbg !1259
+  %idxprom134 = sext i32 %108 to i64, !dbg !1260
+  %arrayidx135 = getelementptr inbounds i8, i8* %107, i64 %idxprom134, !dbg !1260
+  %call137 = invoke dereferenceable(280) %"class.std::basic_istream"* @_ZNSi4readEPcl(%"class.std::basic_istream"* %105, i8* %arrayidx135, i64 1)
+          to label %invoke.cont136 unwind label %lpad49, !dbg !1261
+
+invoke.cont136:                                   ; preds = %for.body133
+  br label %for.inc138, !dbg !1262
+
+for.inc138:                                       ; preds = %invoke.cont136
+  %109 = load i32, i32* %i130, align 4, !dbg !1263
+  %inc139 = add nsw i32 %109, 1, !dbg !1263
+  store i32 %inc139, i32* %i130, align 4, !dbg !1263
+  br label %for.cond131, !dbg !1264, !llvm.loop !1265
+
+for.end140:                                       ; preds = %for.cond131
   invoke void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEE5closeEv(%"class.std::basic_ifstream"* %training_data_file)
-          to label %invoke.cont118 unwind label %lpad43, !dbg !1230
+          to label %invoke.cont141 unwind label %lpad49, !dbg !1267
 
-invoke.cont118:                                   ; preds = %for.end117
+invoke.cont141:                                   ; preds = %for.end140
   invoke void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEE5closeEv(%"class.std::basic_ifstream"* %test_data_file)
-          to label %invoke.cont119 unwind label %lpad43, !dbg !1231
+          to label %invoke.cont142 unwind label %lpad49, !dbg !1268
 
-invoke.cont119:                                   ; preds = %invoke.cont118
+invoke.cont142:                                   ; preds = %invoke.cont141
   invoke void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEE5closeEv(%"class.std::basic_ifstream"* %expected_file)
-          to label %invoke.cont120 unwind label %lpad43, !dbg !1232
+          to label %invoke.cont143 unwind label %lpad49, !dbg !1269
 
-invoke.cont120:                                   ; preds = %invoke.cont119
-  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %expected_file) #3, !dbg !1097
-  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %test_data_file) #3, !dbg !1097
-  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %training_data_file) #3, !dbg !1097
-  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %expected_filename) #3, !dbg !1097
-  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %test_data_filename) #3, !dbg !1097
-  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %training_data_filename) #3, !dbg !1097
-  ret void, !dbg !1097
+invoke.cont143:                                   ; preds = %invoke.cont142
+  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %training_labels_file) #3, !dbg !1109
+  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %expected_file) #3, !dbg !1109
+  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %test_data_file) #3, !dbg !1109
+  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %training_data_file) #3, !dbg !1109
+  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %expected_filename) #3, !dbg !1109
+  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %training_labels_filename) #3, !dbg !1109
+  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %test_data_filename) #3, !dbg !1109
+  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %training_data_filename) #3, !dbg !1109
+  ret void, !dbg !1109
 
-ehcleanup:                                        ; preds = %lpad43, %lpad41
-  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %test_data_file) #3, !dbg !1097
-  br label %ehcleanup121, !dbg !1097
+ehcleanup:                                        ; preds = %lpad49, %lpad47
+  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %expected_file) #3, !dbg !1109
+  br label %ehcleanup144, !dbg !1109
 
-ehcleanup121:                                     ; preds = %ehcleanup, %lpad38
-  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %training_data_file) #3, !dbg !1097
-  br label %ehcleanup122, !dbg !1097
+ehcleanup144:                                     ; preds = %ehcleanup, %lpad44
+  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %test_data_file) #3, !dbg !1109
+  br label %ehcleanup145, !dbg !1109
 
-ehcleanup122:                                     ; preds = %ehcleanup121, %lpad
-  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %expected_filename) #3, !dbg !1097
-  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %test_data_filename) #3, !dbg !1097
-  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %training_data_filename) #3, !dbg !1097
-  br label %eh.resume, !dbg !1097
+ehcleanup145:                                     ; preds = %ehcleanup144, %lpad41
+  call void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_ifstream"* %training_data_file) #3, !dbg !1109
+  br label %ehcleanup146, !dbg !1109
 
-eh.resume:                                        ; preds = %ehcleanup122
-  %exn = load i8*, i8** %exn.slot, align 8, !dbg !1097
-  %sel = load i32, i32* %ehselector.slot, align 4, !dbg !1097
-  %lpad.val = insertvalue { i8*, i32 } undef, i8* %exn, 0, !dbg !1097
-  %lpad.val125 = insertvalue { i8*, i32 } %lpad.val, i32 %sel, 1, !dbg !1097
-  resume { i8*, i32 } %lpad.val125, !dbg !1097
+ehcleanup146:                                     ; preds = %ehcleanup145, %lpad
+  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %expected_filename) #3, !dbg !1109
+  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %training_labels_filename) #3, !dbg !1109
+  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %test_data_filename) #3, !dbg !1109
+  call void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"* %training_data_filename) #3, !dbg !1109
+  br label %eh.resume, !dbg !1109
+
+eh.resume:                                        ; preds = %ehcleanup146
+  %exn = load i8*, i8** %exn.slot, align 8, !dbg !1109
+  %sel = load i32, i32* %ehselector.slot, align 4, !dbg !1109
+  %lpad.val = insertvalue { i8*, i32 } undef, i8* %exn, 0, !dbg !1109
+  %lpad.val150 = insertvalue { i8*, i32 } %lpad.val, i32 %sel, 1, !dbg !1109
+  resume { i8*, i32 } %lpad.val150, !dbg !1109
 }
 
 ; Function Attrs: nounwind
@@ -657,9 +743,9 @@ declare void @_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(%"class.std::basic_
 declare void @_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev(%"class.std::__cxx11::basic_string"*) unnamed_addr #2
 
 ; Function Attrs: noinline uwtable
-define internal void @_GLOBAL__sub_I_utils.cpp() #0 section ".text.startup" !dbg !1233 {
+define internal void @_GLOBAL__sub_I_utils.cpp() #0 section ".text.startup" !dbg !1270 {
 entry:
-  call void @__cxx_global_var_init(), !dbg !1235
+  call void @__cxx_global_var_init(), !dbg !1272
   ret void
 }
 
@@ -1651,12 +1737,12 @@ attributes #11 = { builtin }
 !968 = !{null, !32}
 !969 = !DILocalVariable(name: "filename", arg: 1, scope: !966, file: !29, line: 18, type: !32)
 !970 = !DILocation(line: 18, column: 24, scope: !966)
-!971 = !DILocation(line: 20, column: 69, scope: !966)
+!971 = !DILocation(line: 20, column: 97, scope: !966)
 !972 = !DILocation(line: 20, column: 5, scope: !966)
 !973 = !DILocation(line: 21, column: 1, scope: !966)
-!974 = distinct !DISubprogram(name: "parse_command_line_args", linkageName: "_Z23parse_command_line_argsiPPcRiS1_PPyS3_PPh", scope: !29, file: !29, line: 23, type: !975, isLocal: false, isDefinition: true, scopeLine: 30, flags: DIFlagPrototyped, isOptimized: false, unit: !28, variables: !30)
+!974 = distinct !DISubprogram(name: "parse_command_line_args", linkageName: "_Z23parse_command_line_argsiPPcRiS1_PPyS3_PPhS5_", scope: !29, file: !29, line: 23, type: !975, isLocal: false, isDefinition: true, scopeLine: 31, flags: DIFlagPrototyped, isOptimized: false, unit: !28, variables: !30)
 !975 = !DISubroutineType(types: !976)
-!976 = !{null, !11, !347, !977, !977, !978, !978, !982}
+!976 = !{null, !11, !347, !977, !977, !978, !978, !982, !982}
 !977 = !DIDerivedType(tag: DW_TAG_reference_type, baseType: !11, size: 64)
 !978 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !979, size: 64)
 !979 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !980, size: 64)
@@ -1677,242 +1763,279 @@ attributes #11 = { builtin }
 !994 = !DILocation(line: 27, column: 15, scope: !974)
 !995 = !DILocalVariable(name: "test_data", arg: 6, scope: !974, file: !29, line: 28, type: !978)
 !996 = !DILocation(line: 28, column: 15, scope: !974)
-!997 = !DILocalVariable(name: "expected", arg: 7, scope: !974, file: !29, line: 29, type: !982)
+!997 = !DILocalVariable(name: "training_labels", arg: 7, scope: !974, file: !29, line: 29, type: !982)
 !998 = !DILocation(line: 29, column: 15, scope: !974)
-!999 = !DILocalVariable(name: "c", scope: !974, file: !29, line: 31, type: !11)
-!1000 = !DILocation(line: 31, column: 7, scope: !974)
-!1001 = !DILocalVariable(name: "training_data_filename", scope: !974, file: !29, line: 32, type: !1002)
-!1002 = !DIDerivedType(tag: DW_TAG_typedef, name: "string", scope: !2, file: !1003, line: 79, baseType: !1004)
-!1003 = !DIFile(filename: "/usr/include/c++/11/bits/stringfwd.h", directory: "/home/gabriel/Documents/UFRGS/RAISE/Approx/benchmarks/rosetta/digit-recognition/approx")
-!1004 = !DICompositeType(tag: DW_TAG_class_type, name: "basic_string<char, std::char_traits<char>, std::allocator<char> >", scope: !1006, file: !1005, line: 1627, size: 256, align: 64, flags: DIFlagFwdDecl, identifier: "_ZTSNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE")
-!1005 = !DIFile(filename: "/usr/include/c++/11/bits/basic_string.tcc", directory: "/home/gabriel/Documents/UFRGS/RAISE/Approx/benchmarks/rosetta/digit-recognition/approx")
-!1006 = !DINamespace(name: "__cxx11", scope: !2, exportSymbols: true)
-!1007 = !DILocation(line: 32, column: 15, scope: !974)
-!1008 = !DILocalVariable(name: "test_data_filename", scope: !974, file: !29, line: 32, type: !1002)
-!1009 = !DILocation(line: 32, column: 39, scope: !974)
-!1010 = !DILocalVariable(name: "expected_filename", scope: !974, file: !29, line: 32, type: !1002)
-!1011 = !DILocation(line: 32, column: 59, scope: !974)
-!1012 = !DILocation(line: 34, column: 3, scope: !974)
-!1013 = !DILocation(line: 34, column: 22, scope: !974)
-!1014 = !DILocation(line: 34, column: 28, scope: !974)
-!1015 = !DILocation(line: 34, column: 15, scope: !974)
-!1016 = !DILocation(line: 34, column: 13, scope: !974)
-!1017 = !DILocation(line: 34, column: 45, scope: !974)
-!1018 = !DILocation(line: 36, column: 13, scope: !1019)
-!1019 = distinct !DILexicalBlock(scope: !974, file: !29, line: 35, column: 3)
-!1020 = !DILocation(line: 36, column: 5, scope: !1019)
-!1021 = !DILocation(line: 39, column: 34, scope: !1022)
-!1022 = distinct !DILexicalBlock(scope: !1019, file: !29, line: 37, column: 5)
-!1023 = !DILocation(line: 39, column: 32, scope: !1022)
-!1024 = !DILocation(line: 40, column: 9, scope: !1022)
-!1025 = !DILocation(line: 122, column: 1, scope: !1022)
-!1026 = !DILocation(line: 42, column: 30, scope: !1022)
-!1027 = !DILocation(line: 42, column: 28, scope: !1022)
-!1028 = !DILocation(line: 43, column: 9, scope: !1022)
-!1029 = !DILocation(line: 45, column: 29, scope: !1022)
-!1030 = !DILocation(line: 45, column: 27, scope: !1022)
-!1031 = !DILocation(line: 46, column: 9, scope: !1022)
-!1032 = !DILocation(line: 48, column: 13, scope: !1033)
-!1033 = distinct !DILexicalBlock(scope: !1022, file: !29, line: 48, column: 13)
-!1034 = !DILocation(line: 48, column: 20, scope: !1033)
-!1035 = !DILocation(line: 48, column: 27, scope: !1033)
-!1036 = !DILocation(line: 48, column: 30, scope: !1033)
-!1037 = !DILocation(line: 48, column: 37, scope: !1033)
-!1038 = !DILocation(line: 48, column: 44, scope: !1033)
-!1039 = !DILocation(line: 48, column: 47, scope: !1033)
-!1040 = !DILocation(line: 48, column: 54, scope: !1033)
-!1041 = !DILocation(line: 48, column: 13, scope: !1022)
-!1042 = !DILocation(line: 49, column: 20, scope: !1033)
-!1043 = !DILocation(line: 49, column: 66, scope: !1033)
-!1044 = !DILocation(line: 49, column: 11, scope: !1033)
-!1045 = !DILocation(line: 50, column: 27, scope: !1046)
-!1046 = distinct !DILexicalBlock(scope: !1033, file: !29, line: 50, column: 18)
-!1047 = !DILocation(line: 50, column: 18, scope: !1046)
-!1048 = !DILocation(line: 50, column: 18, scope: !1033)
-!1049 = !DILocation(line: 51, column: 20, scope: !1046)
-!1050 = !DILocation(line: 51, column: 55, scope: !1046)
-!1051 = !DILocation(line: 51, column: 11, scope: !1046)
-!1052 = !DILocation(line: 53, column: 20, scope: !1046)
-!1053 = !DILocation(line: 53, column: 67, scope: !1046)
-!1054 = !DILocation(line: 53, column: 11, scope: !1046)
-!1055 = !DILocation(line: 54, column: 21, scope: !1022)
-!1056 = !DILocation(line: 54, column: 9, scope: !1022)
-!1057 = !DILocation(line: 55, column: 9, scope: !1022)
-!1058 = !DILocation(line: 57, column: 21, scope: !1022)
-!1059 = !DILocation(line: 57, column: 9, scope: !1022)
-!1060 = !DILocation(line: 58, column: 9, scope: !1022)
-!1061 = distinct !{!1061, !1012, !1062}
-!1062 = !DILocation(line: 60, column: 3, scope: !974)
-!1063 = !DILocation(line: 62, column: 30, scope: !1064)
-!1064 = distinct !DILexicalBlock(scope: !974, file: !29, line: 62, column: 7)
-!1065 = !DILocation(line: 62, column: 38, scope: !1064)
-!1066 = !DILocation(line: 62, column: 60, scope: !1064)
-!1067 = !DILocation(line: 62, column: 68, scope: !1064)
-!1068 = !DILocation(line: 62, column: 89, scope: !1064)
-!1069 = !DILocation(line: 62, column: 7, scope: !974)
-!1070 = !DILocation(line: 64, column: 17, scope: !1071)
-!1071 = distinct !DILexicalBlock(scope: !1064, file: !29, line: 63, column: 3)
-!1072 = !DILocation(line: 64, column: 5, scope: !1071)
-!1073 = !DILocation(line: 65, column: 5, scope: !1071)
-!1074 = !DILocalVariable(name: "training_data_file", scope: !974, file: !29, line: 69, type: !1075)
-!1075 = !DIDerivedType(tag: DW_TAG_typedef, name: "ifstream", scope: !2, file: !1076, line: 162, baseType: !1077)
-!1076 = !DIFile(filename: "/usr/include/c++/11/iosfwd", directory: "/home/gabriel/Documents/UFRGS/RAISE/Approx/benchmarks/rosetta/digit-recognition/approx")
-!1077 = !DICompositeType(tag: DW_TAG_class_type, name: "basic_ifstream<char, std::char_traits<char> >", scope: !2, file: !1078, line: 1087, size: 4160, align: 64, flags: DIFlagFwdDecl, identifier: "_ZTSSt14basic_ifstreamIcSt11char_traitsIcEE")
-!1078 = !DIFile(filename: "/usr/include/c++/11/bits/fstream.tcc", directory: "/home/gabriel/Documents/UFRGS/RAISE/Approx/benchmarks/rosetta/digit-recognition/approx")
-!1079 = !DILocation(line: 69, column: 17, scope: !974)
-!1080 = !DILocation(line: 69, column: 59, scope: !974)
-!1081 = !DILocalVariable(name: "test_data_file", scope: !974, file: !29, line: 70, type: !1075)
-!1082 = !DILocation(line: 70, column: 17, scope: !974)
-!1083 = !DILocation(line: 70, column: 51, scope: !974)
-!1084 = !DILocalVariable(name: "expected_file", scope: !974, file: !29, line: 71, type: !1075)
-!1085 = !DILocation(line: 71, column: 17, scope: !974)
-!1086 = !DILocation(line: 71, column: 49, scope: !974)
-!1087 = !DILocation(line: 73, column: 27, scope: !1088)
-!1088 = distinct !DILexicalBlock(scope: !974, file: !29, line: 73, column: 7)
-!1089 = !DILocation(line: 73, column: 37, scope: !1088)
-!1090 = !DILocation(line: 73, column: 56, scope: !1088)
-!1091 = !DILocation(line: 73, column: 66, scope: !1088)
-!1092 = !DILocation(line: 73, column: 84, scope: !1088)
-!1093 = !DILocation(line: 73, column: 7, scope: !974)
-!1094 = !DILocation(line: 75, column: 5, scope: !1095)
-!1095 = distinct !DILexicalBlock(scope: !1088, file: !29, line: 74, column: 3)
-!1096 = !DILocation(line: 76, column: 5, scope: !1095)
-!1097 = !DILocation(line: 122, column: 1, scope: !974)
-!1098 = !DILocation(line: 122, column: 1, scope: !1088)
-!1099 = !DILocation(line: 80, column: 3, scope: !974)
-!1100 = !DILocation(line: 80, column: 35, scope: !974)
-!1101 = !DILocation(line: 80, column: 27, scope: !974)
-!1102 = !DILocation(line: 80, column: 22, scope: !974)
-!1103 = !DILocation(line: 81, column: 3, scope: !974)
-!1104 = !DILocation(line: 81, column: 31, scope: !974)
-!1105 = !DILocation(line: 81, column: 23, scope: !974)
-!1106 = !DILocation(line: 81, column: 18, scope: !974)
-!1107 = !DILocation(line: 83, column: 7, scope: !1108)
-!1108 = distinct !DILexicalBlock(scope: !974, file: !29, line: 83, column: 7)
-!1109 = !DILocation(line: 83, column: 20, scope: !1108)
-!1110 = !DILocation(line: 83, column: 25, scope: !1108)
-!1111 = !DILocation(line: 83, column: 28, scope: !1108)
-!1112 = !DILocation(line: 83, column: 37, scope: !1108)
-!1113 = !DILocation(line: 83, column: 7, scope: !974)
-!1114 = !DILocation(line: 85, column: 5, scope: !1115)
-!1115 = distinct !DILexicalBlock(scope: !1108, file: !29, line: 84, column: 3)
-!1116 = !DILocation(line: 86, column: 5, scope: !1115)
-!1117 = !DILocation(line: 90, column: 34, scope: !974)
-!1118 = !DILocation(line: 90, column: 47, scope: !974)
-!1119 = !DILocation(line: 90, column: 20, scope: !974)
-!1120 = !DILocation(line: 90, column: 4, scope: !974)
-!1121 = !DILocation(line: 90, column: 18, scope: !974)
-!1122 = !DILocation(line: 91, column: 30, scope: !974)
-!1123 = !DILocation(line: 91, column: 39, scope: !974)
-!1124 = !DILocation(line: 91, column: 16, scope: !974)
-!1125 = !DILocation(line: 91, column: 4, scope: !974)
-!1126 = !DILocation(line: 91, column: 14, scope: !974)
-!1127 = !DILocation(line: 92, column: 29, scope: !974)
-!1128 = !DILocation(line: 92, column: 15, scope: !974)
-!1129 = !DILocation(line: 92, column: 4, scope: !974)
-!1130 = !DILocation(line: 92, column: 13, scope: !974)
-!1131 = !DILocalVariable(name: "i", scope: !1132, file: !29, line: 95, type: !11)
-!1132 = distinct !DILexicalBlock(scope: !974, file: !29, line: 95, column: 3)
-!1133 = !DILocation(line: 95, column: 12, scope: !1132)
-!1134 = !DILocation(line: 95, column: 8, scope: !1132)
-!1135 = !DILocation(line: 95, column: 19, scope: !1136)
-!1136 = distinct !DILexicalBlock(scope: !1132, file: !29, line: 95, column: 3)
-!1137 = !DILocation(line: 95, column: 23, scope: !1136)
-!1138 = !DILocation(line: 95, column: 21, scope: !1136)
-!1139 = !DILocation(line: 95, column: 3, scope: !1132)
-!1140 = !DILocalVariable(name: "j", scope: !1141, file: !29, line: 97, type: !11)
-!1141 = distinct !DILexicalBlock(scope: !1142, file: !29, line: 97, column: 5)
-!1142 = distinct !DILexicalBlock(scope: !1136, file: !29, line: 96, column: 3)
-!1143 = !DILocation(line: 97, column: 14, scope: !1141)
-!1144 = !DILocation(line: 97, column: 10, scope: !1141)
-!1145 = !DILocation(line: 97, column: 21, scope: !1146)
-!1146 = distinct !DILexicalBlock(scope: !1141, file: !29, line: 97, column: 5)
-!1147 = !DILocation(line: 97, column: 23, scope: !1146)
-!1148 = !DILocation(line: 97, column: 5, scope: !1141)
-!1149 = !DILocation(line: 99, column: 7, scope: !1150)
-!1150 = distinct !DILexicalBlock(scope: !1146, file: !29, line: 98, column: 5)
-!1151 = !DILocation(line: 99, column: 41, scope: !1150)
-!1152 = !DILocation(line: 99, column: 40, scope: !1150)
-!1153 = !DILocation(line: 99, column: 56, scope: !1150)
-!1154 = !DILocation(line: 99, column: 58, scope: !1150)
-!1155 = !DILocation(line: 99, column: 74, scope: !1150)
-!1156 = !DILocation(line: 99, column: 72, scope: !1150)
-!1157 = !DILocation(line: 99, column: 39, scope: !1150)
-!1158 = !DILocation(line: 99, column: 31, scope: !1150)
-!1159 = !DILocation(line: 99, column: 26, scope: !1150)
-!1160 = !DILocation(line: 100, column: 5, scope: !1150)
-!1161 = !DILocation(line: 97, column: 39, scope: !1146)
-!1162 = !DILocation(line: 97, column: 5, scope: !1146)
-!1163 = distinct !{!1163, !1148, !1164}
-!1164 = !DILocation(line: 100, column: 5, scope: !1141)
-!1165 = !DILocation(line: 101, column: 3, scope: !1142)
-!1166 = !DILocation(line: 95, column: 38, scope: !1136)
-!1167 = !DILocation(line: 95, column: 3, scope: !1136)
-!1168 = distinct !{!1168, !1139, !1169}
-!1169 = !DILocation(line: 101, column: 3, scope: !1132)
-!1170 = !DILocalVariable(name: "i", scope: !1171, file: !29, line: 104, type: !11)
-!1171 = distinct !DILexicalBlock(scope: !974, file: !29, line: 104, column: 3)
-!1172 = !DILocation(line: 104, column: 12, scope: !1171)
-!1173 = !DILocation(line: 104, column: 8, scope: !1171)
-!1174 = !DILocation(line: 104, column: 19, scope: !1175)
-!1175 = distinct !DILexicalBlock(scope: !1171, file: !29, line: 104, column: 3)
-!1176 = !DILocation(line: 104, column: 23, scope: !1175)
-!1177 = !DILocation(line: 104, column: 21, scope: !1175)
-!1178 = !DILocation(line: 104, column: 3, scope: !1171)
-!1179 = !DILocalVariable(name: "j", scope: !1180, file: !29, line: 106, type: !11)
-!1180 = distinct !DILexicalBlock(scope: !1181, file: !29, line: 106, column: 5)
-!1181 = distinct !DILexicalBlock(scope: !1175, file: !29, line: 105, column: 3)
-!1182 = !DILocation(line: 106, column: 14, scope: !1180)
-!1183 = !DILocation(line: 106, column: 10, scope: !1180)
-!1184 = !DILocation(line: 106, column: 21, scope: !1185)
-!1185 = distinct !DILexicalBlock(scope: !1180, file: !29, line: 106, column: 5)
-!1186 = !DILocation(line: 106, column: 23, scope: !1185)
-!1187 = !DILocation(line: 106, column: 5, scope: !1180)
-!1188 = !DILocation(line: 108, column: 7, scope: !1189)
-!1189 = distinct !DILexicalBlock(scope: !1185, file: !29, line: 107, column: 5)
-!1190 = !DILocation(line: 108, column: 37, scope: !1189)
-!1191 = !DILocation(line: 108, column: 36, scope: !1189)
-!1192 = !DILocation(line: 108, column: 48, scope: !1189)
-!1193 = !DILocation(line: 108, column: 50, scope: !1189)
-!1194 = !DILocation(line: 108, column: 66, scope: !1189)
-!1195 = !DILocation(line: 108, column: 64, scope: !1189)
-!1196 = !DILocation(line: 108, column: 35, scope: !1189)
-!1197 = !DILocation(line: 108, column: 27, scope: !1189)
-!1198 = !DILocation(line: 108, column: 22, scope: !1189)
-!1199 = !DILocation(line: 109, column: 5, scope: !1189)
-!1200 = !DILocation(line: 106, column: 39, scope: !1185)
-!1201 = !DILocation(line: 106, column: 5, scope: !1185)
-!1202 = distinct !{!1202, !1187, !1203}
-!1203 = !DILocation(line: 109, column: 5, scope: !1180)
-!1204 = !DILocation(line: 110, column: 3, scope: !1181)
-!1205 = !DILocation(line: 104, column: 34, scope: !1175)
-!1206 = !DILocation(line: 104, column: 3, scope: !1175)
-!1207 = distinct !{!1207, !1178, !1208}
-!1208 = !DILocation(line: 110, column: 3, scope: !1171)
-!1209 = !DILocalVariable(name: "i", scope: !1210, file: !29, line: 113, type: !11)
-!1210 = distinct !DILexicalBlock(scope: !974, file: !29, line: 113, column: 3)
-!1211 = !DILocation(line: 113, column: 12, scope: !1210)
-!1212 = !DILocation(line: 113, column: 8, scope: !1210)
-!1213 = !DILocation(line: 113, column: 19, scope: !1214)
-!1214 = distinct !DILexicalBlock(scope: !1210, file: !29, line: 113, column: 3)
-!1215 = !DILocation(line: 113, column: 23, scope: !1214)
-!1216 = !DILocation(line: 113, column: 21, scope: !1214)
-!1217 = !DILocation(line: 113, column: 3, scope: !1210)
-!1218 = !DILocation(line: 115, column: 5, scope: !1219)
-!1219 = distinct !DILexicalBlock(scope: !1214, file: !29, line: 114, column: 3)
-!1220 = !DILocation(line: 115, column: 34, scope: !1219)
-!1221 = !DILocation(line: 115, column: 33, scope: !1219)
-!1222 = !DILocation(line: 115, column: 44, scope: !1219)
-!1223 = !DILocation(line: 115, column: 32, scope: !1219)
-!1224 = !DILocation(line: 115, column: 19, scope: !1219)
-!1225 = !DILocation(line: 116, column: 3, scope: !1219)
-!1226 = !DILocation(line: 113, column: 34, scope: !1214)
-!1227 = !DILocation(line: 113, column: 3, scope: !1214)
-!1228 = distinct !{!1228, !1217, !1229}
-!1229 = !DILocation(line: 116, column: 3, scope: !1210)
-!1230 = !DILocation(line: 119, column: 22, scope: !974)
-!1231 = !DILocation(line: 120, column: 18, scope: !974)
-!1232 = !DILocation(line: 121, column: 17, scope: !974)
-!1233 = distinct !DISubprogram(linkageName: "_GLOBAL__sub_I_utils.cpp", scope: !29, file: !29, type: !1234, isLocal: true, isDefinition: true, flags: DIFlagArtificial, isOptimized: false, unit: !28, variables: !30)
-!1234 = !DISubroutineType(types: !30)
-!1235 = !DILocation(line: 0, scope: !1233)
+!999 = !DILocalVariable(name: "expected", arg: 8, scope: !974, file: !29, line: 30, type: !982)
+!1000 = !DILocation(line: 30, column: 15, scope: !974)
+!1001 = !DILocalVariable(name: "c", scope: !974, file: !29, line: 32, type: !11)
+!1002 = !DILocation(line: 32, column: 7, scope: !974)
+!1003 = !DILocalVariable(name: "training_data_filename", scope: !974, file: !29, line: 33, type: !1004)
+!1004 = !DIDerivedType(tag: DW_TAG_typedef, name: "string", scope: !2, file: !1005, line: 79, baseType: !1006)
+!1005 = !DIFile(filename: "/usr/include/c++/11/bits/stringfwd.h", directory: "/home/gabriel/Documents/UFRGS/RAISE/Approx/benchmarks/rosetta/digit-recognition/approx")
+!1006 = !DICompositeType(tag: DW_TAG_class_type, name: "basic_string<char, std::char_traits<char>, std::allocator<char> >", scope: !1008, file: !1007, line: 1627, size: 256, align: 64, flags: DIFlagFwdDecl, identifier: "_ZTSNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE")
+!1007 = !DIFile(filename: "/usr/include/c++/11/bits/basic_string.tcc", directory: "/home/gabriel/Documents/UFRGS/RAISE/Approx/benchmarks/rosetta/digit-recognition/approx")
+!1008 = !DINamespace(name: "__cxx11", scope: !2, exportSymbols: true)
+!1009 = !DILocation(line: 33, column: 15, scope: !974)
+!1010 = !DILocalVariable(name: "test_data_filename", scope: !974, file: !29, line: 33, type: !1004)
+!1011 = !DILocation(line: 33, column: 39, scope: !974)
+!1012 = !DILocalVariable(name: "training_labels_filename", scope: !974, file: !29, line: 33, type: !1004)
+!1013 = !DILocation(line: 33, column: 59, scope: !974)
+!1014 = !DILocalVariable(name: "expected_filename", scope: !974, file: !29, line: 33, type: !1004)
+!1015 = !DILocation(line: 33, column: 85, scope: !974)
+!1016 = !DILocation(line: 35, column: 3, scope: !974)
+!1017 = !DILocation(line: 35, column: 22, scope: !974)
+!1018 = !DILocation(line: 35, column: 28, scope: !974)
+!1019 = !DILocation(line: 35, column: 15, scope: !974)
+!1020 = !DILocation(line: 35, column: 13, scope: !974)
+!1021 = !DILocation(line: 35, column: 47, scope: !974)
+!1022 = !DILocation(line: 37, column: 13, scope: !1023)
+!1023 = distinct !DILexicalBlock(scope: !974, file: !29, line: 36, column: 3)
+!1024 = !DILocation(line: 37, column: 5, scope: !1023)
+!1025 = !DILocation(line: 40, column: 34, scope: !1026)
+!1026 = distinct !DILexicalBlock(scope: !1023, file: !29, line: 38, column: 5)
+!1027 = !DILocation(line: 40, column: 32, scope: !1026)
+!1028 = !DILocation(line: 41, column: 9, scope: !1026)
+!1029 = !DILocation(line: 134, column: 1, scope: !1026)
+!1030 = !DILocation(line: 43, column: 30, scope: !1026)
+!1031 = !DILocation(line: 43, column: 28, scope: !1026)
+!1032 = !DILocation(line: 44, column: 9, scope: !1026)
+!1033 = !DILocation(line: 46, column: 29, scope: !1026)
+!1034 = !DILocation(line: 46, column: 27, scope: !1026)
+!1035 = !DILocation(line: 47, column: 9, scope: !1026)
+!1036 = !DILocation(line: 49, column: 36, scope: !1026)
+!1037 = !DILocation(line: 49, column: 34, scope: !1026)
+!1038 = !DILocation(line: 50, column: 9, scope: !1026)
+!1039 = !DILocation(line: 52, column: 13, scope: !1040)
+!1040 = distinct !DILexicalBlock(scope: !1026, file: !29, line: 52, column: 13)
+!1041 = !DILocation(line: 52, column: 20, scope: !1040)
+!1042 = !DILocation(line: 52, column: 27, scope: !1040)
+!1043 = !DILocation(line: 52, column: 30, scope: !1040)
+!1044 = !DILocation(line: 52, column: 37, scope: !1040)
+!1045 = !DILocation(line: 52, column: 44, scope: !1040)
+!1046 = !DILocation(line: 52, column: 47, scope: !1040)
+!1047 = !DILocation(line: 52, column: 54, scope: !1040)
+!1048 = !DILocation(line: 52, column: 13, scope: !1026)
+!1049 = !DILocation(line: 53, column: 20, scope: !1040)
+!1050 = !DILocation(line: 53, column: 66, scope: !1040)
+!1051 = !DILocation(line: 53, column: 11, scope: !1040)
+!1052 = !DILocation(line: 54, column: 27, scope: !1053)
+!1053 = distinct !DILexicalBlock(scope: !1040, file: !29, line: 54, column: 18)
+!1054 = !DILocation(line: 54, column: 18, scope: !1053)
+!1055 = !DILocation(line: 54, column: 18, scope: !1040)
+!1056 = !DILocation(line: 55, column: 20, scope: !1053)
+!1057 = !DILocation(line: 55, column: 55, scope: !1053)
+!1058 = !DILocation(line: 55, column: 11, scope: !1053)
+!1059 = !DILocation(line: 57, column: 20, scope: !1053)
+!1060 = !DILocation(line: 57, column: 67, scope: !1053)
+!1061 = !DILocation(line: 57, column: 11, scope: !1053)
+!1062 = !DILocation(line: 58, column: 21, scope: !1026)
+!1063 = !DILocation(line: 58, column: 9, scope: !1026)
+!1064 = !DILocation(line: 59, column: 9, scope: !1026)
+!1065 = !DILocation(line: 61, column: 21, scope: !1026)
+!1066 = !DILocation(line: 61, column: 9, scope: !1026)
+!1067 = !DILocation(line: 62, column: 9, scope: !1026)
+!1068 = distinct !{!1068, !1016, !1069}
+!1069 = !DILocation(line: 64, column: 3, scope: !974)
+!1070 = !DILocation(line: 66, column: 30, scope: !1071)
+!1071 = distinct !DILexicalBlock(scope: !974, file: !29, line: 66, column: 7)
+!1072 = !DILocation(line: 66, column: 38, scope: !1071)
+!1073 = !DILocation(line: 66, column: 60, scope: !1071)
+!1074 = !DILocation(line: 66, column: 68, scope: !1071)
+!1075 = !DILocation(line: 66, column: 89, scope: !1071)
+!1076 = !DILocation(line: 66, column: 7, scope: !974)
+!1077 = !DILocation(line: 68, column: 17, scope: !1078)
+!1078 = distinct !DILexicalBlock(scope: !1071, file: !29, line: 67, column: 3)
+!1079 = !DILocation(line: 68, column: 5, scope: !1078)
+!1080 = !DILocation(line: 69, column: 5, scope: !1078)
+!1081 = !DILocalVariable(name: "training_data_file", scope: !974, file: !29, line: 73, type: !1082)
+!1082 = !DIDerivedType(tag: DW_TAG_typedef, name: "ifstream", scope: !2, file: !1083, line: 162, baseType: !1084)
+!1083 = !DIFile(filename: "/usr/include/c++/11/iosfwd", directory: "/home/gabriel/Documents/UFRGS/RAISE/Approx/benchmarks/rosetta/digit-recognition/approx")
+!1084 = !DICompositeType(tag: DW_TAG_class_type, name: "basic_ifstream<char, std::char_traits<char> >", scope: !2, file: !1085, line: 1087, size: 4160, align: 64, flags: DIFlagFwdDecl, identifier: "_ZTSSt14basic_ifstreamIcSt11char_traitsIcEE")
+!1085 = !DIFile(filename: "/usr/include/c++/11/bits/fstream.tcc", directory: "/home/gabriel/Documents/UFRGS/RAISE/Approx/benchmarks/rosetta/digit-recognition/approx")
+!1086 = !DILocation(line: 73, column: 17, scope: !974)
+!1087 = !DILocation(line: 73, column: 59, scope: !974)
+!1088 = !DILocalVariable(name: "test_data_file", scope: !974, file: !29, line: 74, type: !1082)
+!1089 = !DILocation(line: 74, column: 17, scope: !974)
+!1090 = !DILocation(line: 74, column: 51, scope: !974)
+!1091 = !DILocalVariable(name: "expected_file", scope: !974, file: !29, line: 75, type: !1082)
+!1092 = !DILocation(line: 75, column: 17, scope: !974)
+!1093 = !DILocation(line: 75, column: 49, scope: !974)
+!1094 = !DILocalVariable(name: "training_labels_file", scope: !974, file: !29, line: 76, type: !1082)
+!1095 = !DILocation(line: 76, column: 17, scope: !974)
+!1096 = !DILocation(line: 76, column: 63, scope: !974)
+!1097 = !DILocation(line: 78, column: 27, scope: !1098)
+!1098 = distinct !DILexicalBlock(scope: !974, file: !29, line: 78, column: 7)
+!1099 = !DILocation(line: 78, column: 37, scope: !1098)
+!1100 = !DILocation(line: 78, column: 56, scope: !1098)
+!1101 = !DILocation(line: 78, column: 66, scope: !1098)
+!1102 = !DILocation(line: 78, column: 84, scope: !1098)
+!1103 = !DILocation(line: 78, column: 94, scope: !1098)
+!1104 = !DILocation(line: 78, column: 119, scope: !1098)
+!1105 = !DILocation(line: 78, column: 7, scope: !974)
+!1106 = !DILocation(line: 80, column: 5, scope: !1107)
+!1107 = distinct !DILexicalBlock(scope: !1098, file: !29, line: 79, column: 3)
+!1108 = !DILocation(line: 81, column: 5, scope: !1107)
+!1109 = !DILocation(line: 134, column: 1, scope: !974)
+!1110 = !DILocation(line: 134, column: 1, scope: !1098)
+!1111 = !DILocation(line: 85, column: 3, scope: !974)
+!1112 = !DILocation(line: 85, column: 35, scope: !974)
+!1113 = !DILocation(line: 85, column: 27, scope: !974)
+!1114 = !DILocation(line: 85, column: 22, scope: !974)
+!1115 = !DILocation(line: 86, column: 3, scope: !974)
+!1116 = !DILocation(line: 86, column: 31, scope: !974)
+!1117 = !DILocation(line: 86, column: 23, scope: !974)
+!1118 = !DILocation(line: 86, column: 18, scope: !974)
+!1119 = !DILocation(line: 88, column: 7, scope: !1120)
+!1120 = distinct !DILexicalBlock(scope: !974, file: !29, line: 88, column: 7)
+!1121 = !DILocation(line: 88, column: 20, scope: !1120)
+!1122 = !DILocation(line: 88, column: 25, scope: !1120)
+!1123 = !DILocation(line: 88, column: 28, scope: !1120)
+!1124 = !DILocation(line: 88, column: 37, scope: !1120)
+!1125 = !DILocation(line: 88, column: 7, scope: !974)
+!1126 = !DILocation(line: 90, column: 5, scope: !1127)
+!1127 = distinct !DILexicalBlock(scope: !1120, file: !29, line: 89, column: 3)
+!1128 = !DILocation(line: 91, column: 5, scope: !1127)
+!1129 = !DILocation(line: 95, column: 34, scope: !974)
+!1130 = !DILocation(line: 95, column: 47, scope: !974)
+!1131 = !DILocation(line: 95, column: 20, scope: !974)
+!1132 = !DILocation(line: 95, column: 4, scope: !974)
+!1133 = !DILocation(line: 95, column: 18, scope: !974)
+!1134 = !DILocation(line: 96, column: 30, scope: !974)
+!1135 = !DILocation(line: 96, column: 39, scope: !974)
+!1136 = !DILocation(line: 96, column: 16, scope: !974)
+!1137 = !DILocation(line: 96, column: 4, scope: !974)
+!1138 = !DILocation(line: 96, column: 14, scope: !974)
+!1139 = !DILocation(line: 97, column: 36, scope: !974)
+!1140 = !DILocation(line: 97, column: 22, scope: !974)
+!1141 = !DILocation(line: 97, column: 4, scope: !974)
+!1142 = !DILocation(line: 97, column: 20, scope: !974)
+!1143 = !DILocation(line: 98, column: 29, scope: !974)
+!1144 = !DILocation(line: 98, column: 15, scope: !974)
+!1145 = !DILocation(line: 98, column: 4, scope: !974)
+!1146 = !DILocation(line: 98, column: 13, scope: !974)
+!1147 = !DILocalVariable(name: "i", scope: !1148, file: !29, line: 101, type: !11)
+!1148 = distinct !DILexicalBlock(scope: !974, file: !29, line: 101, column: 3)
+!1149 = !DILocation(line: 101, column: 12, scope: !1148)
+!1150 = !DILocation(line: 101, column: 8, scope: !1148)
+!1151 = !DILocation(line: 101, column: 19, scope: !1152)
+!1152 = distinct !DILexicalBlock(scope: !1148, file: !29, line: 101, column: 3)
+!1153 = !DILocation(line: 101, column: 23, scope: !1152)
+!1154 = !DILocation(line: 101, column: 21, scope: !1152)
+!1155 = !DILocation(line: 101, column: 3, scope: !1148)
+!1156 = !DILocalVariable(name: "j", scope: !1157, file: !29, line: 103, type: !11)
+!1157 = distinct !DILexicalBlock(scope: !1158, file: !29, line: 103, column: 5)
+!1158 = distinct !DILexicalBlock(scope: !1152, file: !29, line: 102, column: 3)
+!1159 = !DILocation(line: 103, column: 14, scope: !1157)
+!1160 = !DILocation(line: 103, column: 10, scope: !1157)
+!1161 = !DILocation(line: 103, column: 21, scope: !1162)
+!1162 = distinct !DILexicalBlock(scope: !1157, file: !29, line: 103, column: 5)
+!1163 = !DILocation(line: 103, column: 23, scope: !1162)
+!1164 = !DILocation(line: 103, column: 5, scope: !1157)
+!1165 = !DILocation(line: 105, column: 7, scope: !1166)
+!1166 = distinct !DILexicalBlock(scope: !1162, file: !29, line: 104, column: 5)
+!1167 = !DILocation(line: 105, column: 41, scope: !1166)
+!1168 = !DILocation(line: 105, column: 40, scope: !1166)
+!1169 = !DILocation(line: 105, column: 56, scope: !1166)
+!1170 = !DILocation(line: 105, column: 58, scope: !1166)
+!1171 = !DILocation(line: 105, column: 74, scope: !1166)
+!1172 = !DILocation(line: 105, column: 72, scope: !1166)
+!1173 = !DILocation(line: 105, column: 39, scope: !1166)
+!1174 = !DILocation(line: 105, column: 31, scope: !1166)
+!1175 = !DILocation(line: 105, column: 26, scope: !1166)
+!1176 = !DILocation(line: 106, column: 5, scope: !1166)
+!1177 = !DILocation(line: 103, column: 39, scope: !1162)
+!1178 = !DILocation(line: 103, column: 5, scope: !1162)
+!1179 = distinct !{!1179, !1164, !1180}
+!1180 = !DILocation(line: 106, column: 5, scope: !1157)
+!1181 = !DILocation(line: 107, column: 3, scope: !1158)
+!1182 = !DILocation(line: 101, column: 38, scope: !1152)
+!1183 = !DILocation(line: 101, column: 3, scope: !1152)
+!1184 = distinct !{!1184, !1155, !1185}
+!1185 = !DILocation(line: 107, column: 3, scope: !1148)
+!1186 = !DILocalVariable(name: "i", scope: !1187, file: !29, line: 110, type: !11)
+!1187 = distinct !DILexicalBlock(scope: !974, file: !29, line: 110, column: 3)
+!1188 = !DILocation(line: 110, column: 12, scope: !1187)
+!1189 = !DILocation(line: 110, column: 8, scope: !1187)
+!1190 = !DILocation(line: 110, column: 19, scope: !1191)
+!1191 = distinct !DILexicalBlock(scope: !1187, file: !29, line: 110, column: 3)
+!1192 = !DILocation(line: 110, column: 23, scope: !1191)
+!1193 = !DILocation(line: 110, column: 21, scope: !1191)
+!1194 = !DILocation(line: 110, column: 3, scope: !1187)
+!1195 = !DILocalVariable(name: "j", scope: !1196, file: !29, line: 112, type: !11)
+!1196 = distinct !DILexicalBlock(scope: !1197, file: !29, line: 112, column: 5)
+!1197 = distinct !DILexicalBlock(scope: !1191, file: !29, line: 111, column: 3)
+!1198 = !DILocation(line: 112, column: 14, scope: !1196)
+!1199 = !DILocation(line: 112, column: 10, scope: !1196)
+!1200 = !DILocation(line: 112, column: 21, scope: !1201)
+!1201 = distinct !DILexicalBlock(scope: !1196, file: !29, line: 112, column: 5)
+!1202 = !DILocation(line: 112, column: 23, scope: !1201)
+!1203 = !DILocation(line: 112, column: 5, scope: !1196)
+!1204 = !DILocation(line: 114, column: 7, scope: !1205)
+!1205 = distinct !DILexicalBlock(scope: !1201, file: !29, line: 113, column: 5)
+!1206 = !DILocation(line: 114, column: 37, scope: !1205)
+!1207 = !DILocation(line: 114, column: 36, scope: !1205)
+!1208 = !DILocation(line: 114, column: 48, scope: !1205)
+!1209 = !DILocation(line: 114, column: 50, scope: !1205)
+!1210 = !DILocation(line: 114, column: 66, scope: !1205)
+!1211 = !DILocation(line: 114, column: 64, scope: !1205)
+!1212 = !DILocation(line: 114, column: 35, scope: !1205)
+!1213 = !DILocation(line: 114, column: 27, scope: !1205)
+!1214 = !DILocation(line: 114, column: 22, scope: !1205)
+!1215 = !DILocation(line: 115, column: 5, scope: !1205)
+!1216 = !DILocation(line: 112, column: 39, scope: !1201)
+!1217 = !DILocation(line: 112, column: 5, scope: !1201)
+!1218 = distinct !{!1218, !1203, !1219}
+!1219 = !DILocation(line: 115, column: 5, scope: !1196)
+!1220 = !DILocation(line: 116, column: 3, scope: !1197)
+!1221 = !DILocation(line: 110, column: 34, scope: !1191)
+!1222 = !DILocation(line: 110, column: 3, scope: !1191)
+!1223 = distinct !{!1223, !1194, !1224}
+!1224 = !DILocation(line: 116, column: 3, scope: !1187)
+!1225 = !DILocalVariable(name: "i", scope: !1226, file: !29, line: 119, type: !11)
+!1226 = distinct !DILexicalBlock(scope: !974, file: !29, line: 119, column: 3)
+!1227 = !DILocation(line: 119, column: 12, scope: !1226)
+!1228 = !DILocation(line: 119, column: 8, scope: !1226)
+!1229 = !DILocation(line: 119, column: 19, scope: !1230)
+!1230 = distinct !DILexicalBlock(scope: !1226, file: !29, line: 119, column: 3)
+!1231 = !DILocation(line: 119, column: 23, scope: !1230)
+!1232 = !DILocation(line: 119, column: 21, scope: !1230)
+!1233 = !DILocation(line: 119, column: 3, scope: !1226)
+!1234 = !DILocation(line: 121, column: 5, scope: !1235)
+!1235 = distinct !DILexicalBlock(scope: !1230, file: !29, line: 120, column: 3)
+!1236 = !DILocation(line: 121, column: 41, scope: !1235)
+!1237 = !DILocation(line: 121, column: 40, scope: !1235)
+!1238 = !DILocation(line: 121, column: 58, scope: !1235)
+!1239 = !DILocation(line: 121, column: 39, scope: !1235)
+!1240 = !DILocation(line: 121, column: 26, scope: !1235)
+!1241 = !DILocation(line: 122, column: 3, scope: !1235)
+!1242 = !DILocation(line: 119, column: 38, scope: !1230)
+!1243 = !DILocation(line: 119, column: 3, scope: !1230)
+!1244 = distinct !{!1244, !1233, !1245}
+!1245 = !DILocation(line: 122, column: 3, scope: !1226)
+!1246 = !DILocalVariable(name: "i", scope: !1247, file: !29, line: 125, type: !11)
+!1247 = distinct !DILexicalBlock(scope: !974, file: !29, line: 125, column: 3)
+!1248 = !DILocation(line: 125, column: 12, scope: !1247)
+!1249 = !DILocation(line: 125, column: 8, scope: !1247)
+!1250 = !DILocation(line: 125, column: 19, scope: !1251)
+!1251 = distinct !DILexicalBlock(scope: !1247, file: !29, line: 125, column: 3)
+!1252 = !DILocation(line: 125, column: 23, scope: !1251)
+!1253 = !DILocation(line: 125, column: 21, scope: !1251)
+!1254 = !DILocation(line: 125, column: 3, scope: !1247)
+!1255 = !DILocation(line: 127, column: 5, scope: !1256)
+!1256 = distinct !DILexicalBlock(scope: !1251, file: !29, line: 126, column: 3)
+!1257 = !DILocation(line: 127, column: 34, scope: !1256)
+!1258 = !DILocation(line: 127, column: 33, scope: !1256)
+!1259 = !DILocation(line: 127, column: 44, scope: !1256)
+!1260 = !DILocation(line: 127, column: 32, scope: !1256)
+!1261 = !DILocation(line: 127, column: 19, scope: !1256)
+!1262 = !DILocation(line: 128, column: 3, scope: !1256)
+!1263 = !DILocation(line: 125, column: 34, scope: !1251)
+!1264 = !DILocation(line: 125, column: 3, scope: !1251)
+!1265 = distinct !{!1265, !1254, !1266}
+!1266 = !DILocation(line: 128, column: 3, scope: !1247)
+!1267 = !DILocation(line: 131, column: 22, scope: !974)
+!1268 = !DILocation(line: 132, column: 18, scope: !974)
+!1269 = !DILocation(line: 133, column: 17, scope: !974)
+!1270 = distinct !DISubprogram(linkageName: "_GLOBAL__sub_I_utils.cpp", scope: !29, file: !29, type: !1271, isLocal: true, isDefinition: true, flags: DIFlagArtificial, isOptimized: false, unit: !28, variables: !30)
+!1271 = !DISubroutineType(types: !30)
+!1272 = !DILocation(line: 0, scope: !1270)

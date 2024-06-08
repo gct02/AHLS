@@ -22,6 +22,7 @@ entry:
   %num_training = alloca i32, align 4
   %training_data = alloca i64*, align 8
   %testing_data = alloca i64*, align 8
+  %training_labels = alloca i8*, align 8
   %expected = alloca i8*, align 8
   %result = alloca i8*, align 8
   %elapsed = alloca i64, align 8
@@ -41,90 +42,93 @@ entry:
   store i64* null, i64** %training_data, align 8, !dbg !811
   call void @llvm.dbg.declare(metadata i64** %testing_data, metadata !812, metadata !DIExpression()), !dbg !813
   store i64* null, i64** %testing_data, align 8, !dbg !813
-  call void @llvm.dbg.declare(metadata i8** %expected, metadata !814, metadata !DIExpression()), !dbg !817
-  store i8* null, i8** %expected, align 8, !dbg !817
-  %0 = load i32, i32* %argc.addr, align 4, !dbg !818
-  %1 = load i8**, i8*** %argv.addr, align 8, !dbg !819
-  call void @_Z23parse_command_line_argsiPPcRiS1_PPyS3_PPh(i32 %0, i8** %1, i32* dereferenceable(4) %num_training, i32* dereferenceable(4) %num_test, i64** %training_data, i64** %testing_data, i8** %expected), !dbg !820
-  %2 = load i32, i32* %num_training, align 4, !dbg !821
-  %cmp = icmp sle i32 %2, 0, !dbg !823
-  br i1 %cmp, label %if.then, label %lor.lhs.false, !dbg !824
+  call void @llvm.dbg.declare(metadata i8** %training_labels, metadata !814, metadata !DIExpression()), !dbg !817
+  store i8* null, i8** %training_labels, align 8, !dbg !817
+  call void @llvm.dbg.declare(metadata i8** %expected, metadata !818, metadata !DIExpression()), !dbg !819
+  store i8* null, i8** %expected, align 8, !dbg !819
+  %0 = load i32, i32* %argc.addr, align 4, !dbg !820
+  %1 = load i8**, i8*** %argv.addr, align 8, !dbg !821
+  call void @_Z23parse_command_line_argsiPPcRiS1_PPyS3_PPhS5_(i32 %0, i8** %1, i32* dereferenceable(4) %num_training, i32* dereferenceable(4) %num_test, i64** %training_data, i64** %testing_data, i8** %training_labels, i8** %expected), !dbg !822
+  %2 = load i32, i32* %num_training, align 4, !dbg !823
+  %cmp = icmp sle i32 %2, 0, !dbg !825
+  br i1 %cmp, label %if.then, label %lor.lhs.false, !dbg !826
 
 lor.lhs.false:                                    ; preds = %entry
-  %3 = load i32, i32* %num_test, align 4, !dbg !825
-  %cmp1 = icmp sle i32 %3, 0, !dbg !826
-  br i1 %cmp1, label %if.then, label %lor.lhs.false2, !dbg !827
+  %3 = load i32, i32* %num_test, align 4, !dbg !827
+  %cmp1 = icmp sle i32 %3, 0, !dbg !828
+  br i1 %cmp1, label %if.then, label %lor.lhs.false2, !dbg !829
 
 lor.lhs.false2:                                   ; preds = %lor.lhs.false
-  %4 = load i64*, i64** %training_data, align 8, !dbg !828
-  %cmp3 = icmp eq i64* %4, null, !dbg !829
-  br i1 %cmp3, label %if.then, label %lor.lhs.false4, !dbg !830
+  %4 = load i64*, i64** %training_data, align 8, !dbg !830
+  %cmp3 = icmp eq i64* %4, null, !dbg !831
+  br i1 %cmp3, label %if.then, label %lor.lhs.false4, !dbg !832
 
 lor.lhs.false4:                                   ; preds = %lor.lhs.false2
-  %5 = load i64*, i64** %testing_data, align 8, !dbg !831
-  %cmp5 = icmp eq i64* %5, null, !dbg !832
-  br i1 %cmp5, label %if.then, label %lor.lhs.false6, !dbg !833
+  %5 = load i64*, i64** %testing_data, align 8, !dbg !833
+  %cmp5 = icmp eq i64* %5, null, !dbg !834
+  br i1 %cmp5, label %if.then, label %lor.lhs.false6, !dbg !835
 
 lor.lhs.false6:                                   ; preds = %lor.lhs.false4
-  %6 = load i8*, i8** %expected, align 8, !dbg !834
-  %cmp7 = icmp eq i8* %6, null, !dbg !835
-  br i1 %cmp7, label %if.then, label %if.end, !dbg !836
+  %6 = load i8*, i8** %expected, align 8, !dbg !836
+  %cmp7 = icmp eq i8* %6, null, !dbg !837
+  br i1 %cmp7, label %if.then, label %if.end, !dbg !838
 
 if.then:                                          ; preds = %lor.lhs.false6, %lor.lhs.false4, %lor.lhs.false2, %lor.lhs.false, %entry
-  %call8 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @.str.1, i32 0, i32 0)), !dbg !837
-  store i32 1, i32* %retval, align 4, !dbg !839
-  br label %return, !dbg !839
+  %call8 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @.str.1, i32 0, i32 0)), !dbg !839
+  store i32 1, i32* %retval, align 4, !dbg !841
+  br label %return, !dbg !841
 
 if.end:                                           ; preds = %lor.lhs.false6
-  call void @llvm.dbg.declare(metadata i8** %result, metadata !840, metadata !DIExpression()), !dbg !841
-  %7 = load i32, i32* %num_test, align 4, !dbg !842
-  %conv = sext i32 %7 to i64, !dbg !842
-  %call9 = call i8* @_Znam(i64 %conv) #6, !dbg !843
-  store i8* %call9, i8** %result, align 8, !dbg !841
-  %call10 = call i32 @gettimeofday(%struct.timeval* %start, i8* null) #7, !dbg !844
-  %8 = load i64*, i64** %training_data, align 8, !dbg !845
-  %9 = load i64*, i64** %testing_data, align 8, !dbg !846
-  %10 = load i8*, i8** %result, align 8, !dbg !847
-  %11 = load i32, i32* %num_test, align 4, !dbg !848
-  %12 = load i32, i32* %num_training, align 4, !dbg !849
-  call void @_Z8DigitRecPKyS0_Phii(i64* %8, i64* %9, i8* %10, i32 %11, i32 %12), !dbg !850
-  %call11 = call i32 @gettimeofday(%struct.timeval* %end, i8* null) #7, !dbg !851
-  %call12 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.2, i32 0, i32 0)), !dbg !852
-  %13 = load i8*, i8** %result, align 8, !dbg !853
-  %14 = load i8*, i8** %expected, align 8, !dbg !854
-  %15 = load i32, i32* %num_test, align 4, !dbg !855
-  call void @_Z13check_resultsPhPKhi(i8* %13, i8* %14, i32 %15), !dbg !856
-  call void @llvm.dbg.declare(metadata i64* %elapsed, metadata !857, metadata !DIExpression()), !dbg !858
-  %tv_sec = getelementptr inbounds %struct.timeval, %struct.timeval* %end, i32 0, i32 0, !dbg !859
-  %16 = load i64, i64* %tv_sec, align 8, !dbg !859
-  %tv_sec13 = getelementptr inbounds %struct.timeval, %struct.timeval* %start, i32 0, i32 0, !dbg !860
-  %17 = load i64, i64* %tv_sec13, align 8, !dbg !860
-  %sub = sub nsw i64 %16, %17, !dbg !861
-  %mul = mul nsw i64 %sub, 1000000, !dbg !862
-  %tv_usec = getelementptr inbounds %struct.timeval, %struct.timeval* %end, i32 0, i32 1, !dbg !863
-  %18 = load i64, i64* %tv_usec, align 8, !dbg !863
-  %add = add nsw i64 %mul, %18, !dbg !864
-  %tv_usec14 = getelementptr inbounds %struct.timeval, %struct.timeval* %start, i32 0, i32 1, !dbg !865
-  %19 = load i64, i64* %tv_usec14, align 8, !dbg !865
-  %sub15 = sub nsw i64 %add, %19, !dbg !866
-  store i64 %sub15, i64* %elapsed, align 8, !dbg !858
-  %20 = load i64, i64* %elapsed, align 8, !dbg !867
-  %call16 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([23 x i8], [23 x i8]* @.str.3, i32 0, i32 0), i64 %20), !dbg !868
-  %21 = load i8*, i8** %result, align 8, !dbg !869
-  %isnull = icmp eq i8* %21, null, !dbg !870
-  br i1 %isnull, label %delete.end, label %delete.notnull, !dbg !870
+  call void @llvm.dbg.declare(metadata i8** %result, metadata !842, metadata !DIExpression()), !dbg !843
+  %7 = load i32, i32* %num_test, align 4, !dbg !844
+  %conv = sext i32 %7 to i64, !dbg !844
+  %call9 = call i8* @_Znam(i64 %conv) #6, !dbg !845
+  store i8* %call9, i8** %result, align 8, !dbg !843
+  %call10 = call i32 @gettimeofday(%struct.timeval* %start, i8* null) #7, !dbg !846
+  %8 = load i64*, i64** %training_data, align 8, !dbg !847
+  %9 = load i64*, i64** %testing_data, align 8, !dbg !848
+  %10 = load i8*, i8** %training_labels, align 8, !dbg !849
+  %11 = load i8*, i8** %result, align 8, !dbg !850
+  %12 = load i32, i32* %num_test, align 4, !dbg !851
+  %13 = load i32, i32* %num_training, align 4, !dbg !852
+  call void @_Z8DigitRecPKyS0_PKhPhii(i64* %8, i64* %9, i8* %10, i8* %11, i32 %12, i32 %13), !dbg !853
+  %call11 = call i32 @gettimeofday(%struct.timeval* %end, i8* null) #7, !dbg !854
+  %call12 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.2, i32 0, i32 0)), !dbg !855
+  %14 = load i8*, i8** %result, align 8, !dbg !856
+  %15 = load i8*, i8** %expected, align 8, !dbg !857
+  %16 = load i32, i32* %num_test, align 4, !dbg !858
+  call void @_Z13check_resultsPhPKhi(i8* %14, i8* %15, i32 %16), !dbg !859
+  call void @llvm.dbg.declare(metadata i64* %elapsed, metadata !860, metadata !DIExpression()), !dbg !861
+  %tv_sec = getelementptr inbounds %struct.timeval, %struct.timeval* %end, i32 0, i32 0, !dbg !862
+  %17 = load i64, i64* %tv_sec, align 8, !dbg !862
+  %tv_sec13 = getelementptr inbounds %struct.timeval, %struct.timeval* %start, i32 0, i32 0, !dbg !863
+  %18 = load i64, i64* %tv_sec13, align 8, !dbg !863
+  %sub = sub nsw i64 %17, %18, !dbg !864
+  %mul = mul nsw i64 %sub, 1000000, !dbg !865
+  %tv_usec = getelementptr inbounds %struct.timeval, %struct.timeval* %end, i32 0, i32 1, !dbg !866
+  %19 = load i64, i64* %tv_usec, align 8, !dbg !866
+  %add = add nsw i64 %mul, %19, !dbg !867
+  %tv_usec14 = getelementptr inbounds %struct.timeval, %struct.timeval* %start, i32 0, i32 1, !dbg !868
+  %20 = load i64, i64* %tv_usec14, align 8, !dbg !868
+  %sub15 = sub nsw i64 %add, %20, !dbg !869
+  store i64 %sub15, i64* %elapsed, align 8, !dbg !861
+  %21 = load i64, i64* %elapsed, align 8, !dbg !870
+  %call16 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([23 x i8], [23 x i8]* @.str.3, i32 0, i32 0), i64 %21), !dbg !871
+  %22 = load i8*, i8** %result, align 8, !dbg !872
+  %isnull = icmp eq i8* %22, null, !dbg !873
+  br i1 %isnull, label %delete.end, label %delete.notnull, !dbg !873
 
 delete.notnull:                                   ; preds = %if.end
-  call void @_ZdaPv(i8* %21) #8, !dbg !870
-  br label %delete.end, !dbg !870
+  call void @_ZdaPv(i8* %22) #8, !dbg !873
+  br label %delete.end, !dbg !873
 
 delete.end:                                       ; preds = %delete.notnull, %if.end
-  store i32 0, i32* %retval, align 4, !dbg !871
-  br label %return, !dbg !871
+  store i32 0, i32* %retval, align 4, !dbg !874
+  br label %return, !dbg !874
 
 return:                                           ; preds = %delete.end, %if.then
-  %22 = load i32, i32* %retval, align 4, !dbg !872
-  ret i32 %22, !dbg !872
+  %23 = load i32, i32* %retval, align 4, !dbg !875
+  ret i32 %23, !dbg !875
 }
 
 ; Function Attrs: nounwind readnone speculatable willreturn
@@ -132,7 +136,7 @@ declare void @llvm.dbg.declare(metadata, metadata, metadata) #1
 
 declare i32 @printf(i8*, ...) #2
 
-declare void @_Z23parse_command_line_argsiPPcRiS1_PPyS3_PPh(i32, i8**, i32* dereferenceable(4), i32* dereferenceable(4), i64**, i64**, i8**) #2
+declare void @_Z23parse_command_line_argsiPPcRiS1_PPyS3_PPhS5_(i32, i8**, i32* dereferenceable(4), i32* dereferenceable(4), i64**, i64**, i8**, i8**) #2
 
 ; Function Attrs: nobuiltin
 declare noalias i8* @_Znam(i64) #3
@@ -140,7 +144,7 @@ declare noalias i8* @_Znam(i64) #3
 ; Function Attrs: nounwind
 declare i32 @gettimeofday(%struct.timeval*, i8*) #4
 
-declare void @_Z8DigitRecPKyS0_Phii(i64*, i64*, i8*, i32, i32) #2
+declare void @_Z8DigitRecPKyS0_PKhPhii(i64*, i64*, i8*, i8*, i32, i32) #2
 
 declare void @_Z13check_resultsPhPKhi(i8*, i8*, i32) #2
 
@@ -975,62 +979,65 @@ attributes #8 = { builtin nounwind }
 !811 = !DILocation(line: 32, column: 14, scope: !784)
 !812 = !DILocalVariable(name: "testing_data", scope: !784, file: !1, line: 33, type: !808)
 !813 = !DILocation(line: 33, column: 14, scope: !784)
-!814 = !DILocalVariable(name: "expected", scope: !784, file: !1, line: 34, type: !815)
+!814 = !DILocalVariable(name: "training_labels", scope: !784, file: !1, line: 34, type: !815)
 !815 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !816, size: 64)
 !816 = !DIDerivedType(tag: DW_TAG_typedef, name: "LabelType", file: !810, line: 18, baseType: !700)
 !817 = !DILocation(line: 34, column: 14, scope: !784)
-!818 = !DILocation(line: 37, column: 27, scope: !784)
-!819 = !DILocation(line: 37, column: 33, scope: !784)
-!820 = !DILocation(line: 37, column: 3, scope: !784)
-!821 = !DILocation(line: 39, column: 7, scope: !822)
-!822 = distinct !DILexicalBlock(scope: !784, file: !1, line: 39, column: 7)
-!823 = !DILocation(line: 39, column: 20, scope: !822)
-!824 = !DILocation(line: 39, column: 25, scope: !822)
-!825 = !DILocation(line: 39, column: 28, scope: !822)
-!826 = !DILocation(line: 39, column: 37, scope: !822)
-!827 = !DILocation(line: 39, column: 42, scope: !822)
-!828 = !DILocation(line: 39, column: 45, scope: !822)
-!829 = !DILocation(line: 39, column: 59, scope: !822)
-!830 = !DILocation(line: 39, column: 67, scope: !822)
-!831 = !DILocation(line: 39, column: 70, scope: !822)
-!832 = !DILocation(line: 39, column: 83, scope: !822)
-!833 = !DILocation(line: 39, column: 91, scope: !822)
-!834 = !DILocation(line: 39, column: 94, scope: !822)
-!835 = !DILocation(line: 39, column: 103, scope: !822)
-!836 = !DILocation(line: 39, column: 7, scope: !784)
-!837 = !DILocation(line: 41, column: 5, scope: !838)
-!838 = distinct !DILexicalBlock(scope: !822, file: !1, line: 40, column: 3)
-!839 = !DILocation(line: 42, column: 5, scope: !838)
-!840 = !DILocalVariable(name: "result", scope: !784, file: !1, line: 46, type: !815)
-!841 = !DILocation(line: 46, column: 14, scope: !784)
-!842 = !DILocation(line: 46, column: 37, scope: !784)
-!843 = !DILocation(line: 46, column: 23, scope: !784)
-!844 = !DILocation(line: 49, column: 3, scope: !784)
-!845 = !DILocation(line: 50, column: 12, scope: !784)
-!846 = !DILocation(line: 50, column: 27, scope: !784)
-!847 = !DILocation(line: 50, column: 41, scope: !784)
-!848 = !DILocation(line: 50, column: 49, scope: !784)
-!849 = !DILocation(line: 50, column: 59, scope: !784)
-!850 = !DILocation(line: 50, column: 3, scope: !784)
-!851 = !DILocation(line: 51, column: 3, scope: !784)
-!852 = !DILocation(line: 54, column: 3, scope: !784)
-!853 = !DILocation(line: 55, column: 17, scope: !784)
-!854 = !DILocation(line: 55, column: 25, scope: !784)
-!855 = !DILocation(line: 55, column: 35, scope: !784)
-!856 = !DILocation(line: 55, column: 3, scope: !784)
-!857 = !DILocalVariable(name: "elapsed", scope: !784, file: !1, line: 58, type: !346)
-!858 = !DILocation(line: 58, column: 13, scope: !784)
-!859 = !DILocation(line: 58, column: 28, scope: !784)
-!860 = !DILocation(line: 58, column: 43, scope: !784)
-!861 = !DILocation(line: 58, column: 35, scope: !784)
-!862 = !DILocation(line: 58, column: 51, scope: !784)
-!863 = !DILocation(line: 58, column: 69, scope: !784)
-!864 = !DILocation(line: 58, column: 63, scope: !784)
-!865 = !DILocation(line: 58, column: 85, scope: !784)
-!866 = !DILocation(line: 58, column: 77, scope: !784)
-!867 = !DILocation(line: 59, column: 37, scope: !784)
-!868 = !DILocation(line: 59, column: 3, scope: !784)
-!869 = !DILocation(line: 61, column: 12, scope: !784)
-!870 = !DILocation(line: 61, column: 3, scope: !784)
-!871 = !DILocation(line: 63, column: 3, scope: !784)
-!872 = !DILocation(line: 64, column: 1, scope: !784)
+!818 = !DILocalVariable(name: "expected", scope: !784, file: !1, line: 35, type: !815)
+!819 = !DILocation(line: 35, column: 14, scope: !784)
+!820 = !DILocation(line: 38, column: 27, scope: !784)
+!821 = !DILocation(line: 38, column: 33, scope: !784)
+!822 = !DILocation(line: 38, column: 3, scope: !784)
+!823 = !DILocation(line: 40, column: 7, scope: !824)
+!824 = distinct !DILexicalBlock(scope: !784, file: !1, line: 40, column: 7)
+!825 = !DILocation(line: 40, column: 20, scope: !824)
+!826 = !DILocation(line: 40, column: 25, scope: !824)
+!827 = !DILocation(line: 40, column: 28, scope: !824)
+!828 = !DILocation(line: 40, column: 37, scope: !824)
+!829 = !DILocation(line: 40, column: 42, scope: !824)
+!830 = !DILocation(line: 40, column: 45, scope: !824)
+!831 = !DILocation(line: 40, column: 59, scope: !824)
+!832 = !DILocation(line: 40, column: 67, scope: !824)
+!833 = !DILocation(line: 40, column: 70, scope: !824)
+!834 = !DILocation(line: 40, column: 83, scope: !824)
+!835 = !DILocation(line: 40, column: 91, scope: !824)
+!836 = !DILocation(line: 40, column: 94, scope: !824)
+!837 = !DILocation(line: 40, column: 103, scope: !824)
+!838 = !DILocation(line: 40, column: 7, scope: !784)
+!839 = !DILocation(line: 42, column: 5, scope: !840)
+!840 = distinct !DILexicalBlock(scope: !824, file: !1, line: 41, column: 3)
+!841 = !DILocation(line: 43, column: 5, scope: !840)
+!842 = !DILocalVariable(name: "result", scope: !784, file: !1, line: 47, type: !815)
+!843 = !DILocation(line: 47, column: 14, scope: !784)
+!844 = !DILocation(line: 47, column: 37, scope: !784)
+!845 = !DILocation(line: 47, column: 23, scope: !784)
+!846 = !DILocation(line: 50, column: 3, scope: !784)
+!847 = !DILocation(line: 51, column: 12, scope: !784)
+!848 = !DILocation(line: 51, column: 27, scope: !784)
+!849 = !DILocation(line: 51, column: 41, scope: !784)
+!850 = !DILocation(line: 51, column: 58, scope: !784)
+!851 = !DILocation(line: 51, column: 66, scope: !784)
+!852 = !DILocation(line: 51, column: 76, scope: !784)
+!853 = !DILocation(line: 51, column: 3, scope: !784)
+!854 = !DILocation(line: 52, column: 3, scope: !784)
+!855 = !DILocation(line: 55, column: 3, scope: !784)
+!856 = !DILocation(line: 56, column: 17, scope: !784)
+!857 = !DILocation(line: 56, column: 25, scope: !784)
+!858 = !DILocation(line: 56, column: 35, scope: !784)
+!859 = !DILocation(line: 56, column: 3, scope: !784)
+!860 = !DILocalVariable(name: "elapsed", scope: !784, file: !1, line: 59, type: !346)
+!861 = !DILocation(line: 59, column: 13, scope: !784)
+!862 = !DILocation(line: 59, column: 28, scope: !784)
+!863 = !DILocation(line: 59, column: 43, scope: !784)
+!864 = !DILocation(line: 59, column: 35, scope: !784)
+!865 = !DILocation(line: 59, column: 51, scope: !784)
+!866 = !DILocation(line: 59, column: 69, scope: !784)
+!867 = !DILocation(line: 59, column: 63, scope: !784)
+!868 = !DILocation(line: 59, column: 85, scope: !784)
+!869 = !DILocation(line: 59, column: 77, scope: !784)
+!870 = !DILocation(line: 60, column: 37, scope: !784)
+!871 = !DILocation(line: 60, column: 3, scope: !784)
+!872 = !DILocation(line: 62, column: 12, scope: !784)
+!873 = !DILocation(line: 62, column: 3, scope: !784)
+!874 = !DILocation(line: 64, column: 3, scope: !784)
+!875 = !DILocation(line: 65, column: 1, scope: !784)
