@@ -767,7 +767,7 @@ logsch (int ih, int nbh)
 
 // Top-level function
 void
-adpcm_main (const int* input_samples, int* compressed, int* result, int num_samples)
+adpcm_main (const int input_samples[SIZE], int compressed[SIZE/2], int result[SIZE])
 {
   int i, j;
 
@@ -776,11 +776,11 @@ adpcm_main (const int* input_samples, int* compressed, int* result, int num_samp
 
   j = 10;
 
-  adpcm_main_label12:for (i = 0; i < num_samples; i += 2)
+  adpcm_main_label12:for (i = 0; i < SIZE; i += 2)
     {
       compressed[i / 2] = encode (input_samples[i], input_samples[i + 1]);
     }
-  adpcm_main_label13:for (i = 0; i < num_samples; i += 2)
+  adpcm_main_label13:for (i = 0; i < SIZE; i += 2)
     {
         decode (compressed[i / 2]);
         result[i] = xout1;

@@ -12,11 +12,9 @@
 #include "typedefs.h"
 
 void DigitRec(
-  const DigitType* training_set, 
-  const DigitType* test_set, 
-  const LabelType* training_labels,
-  LabelType* results, 
-  int num_test, 
-  int num_training);
+  const DigitType training_samples[NUM_TRAINING * DIGIT_WIDTH], 
+  const DigitType test_set[NUM_TEST * DIGIT_WIDTH],
+  const LabelType training_labels[NUM_TRAINING],
+  LabelType results[NUM_TEST]);
 
 #endif

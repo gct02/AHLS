@@ -2,10 +2,9 @@ __pycache__/
 *__pycache__/
 .vscode/
 venv/
-raise*/
+vitis_projects/
 *.log
 *.sh
 *.tcl
 config.txt
-passes/update_passes.sh
 

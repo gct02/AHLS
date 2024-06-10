@@ -243,10 +243,7 @@ void coloringFB(int counter, int size_pixels, Pixel pixels[], bit8 frame_buffer[
 }
 
 /*========================TOP FUNCTION===========================*/
-void rendering(
-    Triangle_3D* triangle_3ds,
-    bit8 output[MAX_X][MAX_Y],
-    int num_triangles) 
+void rendering(Triangle_3D triangle_3ds[NUM_3D_TRI], bit8 output[MAX_X][MAX_Y]) 
 {
   // 2D triangle
   Triangle_2D triangle_2ds;
@@ -264,7 +261,7 @@ void rendering(
   Pixel pixels[500];
 
   // processing num_triangles 3D triangles
-  TRIANGLES: for (int i = 0; i < num_triangles; i ++ )
+  TRIANGLES: for (int i = 0; i < NUM_3D_TRI; i ++ )
   {
     // five stages for processing each 3D triangle
     projection( triangle_3ds[i], &triangle_2ds, angle );

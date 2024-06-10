@@ -15,6 +15,8 @@ const int MAX_Y = 256;
 
 // number of values in frame buffer: 32 bits
 const int NUM_FB = MAX_X * MAX_Y / 4;
+// dataset information 
+const int NUM_3D_TRI = 3192;
 
 typedef unsigned char bit8;
 typedef unsigned int bit32;

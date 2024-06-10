@@ -6,60 +6,22 @@
 /*                                                               */
 /*===============================================================*/
 
-// standard C/C++ headers
-#include <cstdio>
-#include <cstdlib>
-#include <getopt.h>
-#include <string>
-#include <time.h>
-#include <sys/time.h>
-
-#include "digitrec.h"
-
 // other headers
-#include "utils.h"
 #include "typedefs.h"
-#include "check_result.h"
+#include "digitrec.h"
+#include "iolib/populate_io.h"
 
 int main(int argc, char ** argv)
 {
-  printf("Digit Recognition Application\n");
+  DigitType training_samples[NUM_TRAINING * DIGIT_WIDTH];
+  DigitType testing_samples[NUM_TEST * DIGIT_WIDTH];
+  LabelType training_labels[NUM_TRAINING];
+  LabelType test_labels[NUM_TEST];
+  LabelType result[NUM_TEST];
 
-  // timers
-  struct timeval start, end;
+  populateInput(argv[1], argv[2], argv[3], argv[4], training_samples, training_labels, testing_samples, test_labels);
+  DigitRec(training_samples, testing_samples, training_labels, result);
+  populateOutput(result, test_labels);
 
-  int num_test = 0, num_training = 0;
-  DigitType* training_data = NULL;
-  DigitType* testing_data = NULL;
-  LabelType* training_labels = NULL;
-  LabelType* expected = NULL;
-
-  // parse command line arguments
-  parse_command_line_args(argc, argv, num_training, num_test, &training_data, &testing_data, &training_labels, &expected);
-
-  if (num_training <= 0 || num_test <= 0 || training_data == NULL || testing_data == NULL || expected == NULL) 
-  {
-    printf("Invalid input data\n");
-    return EXIT_FAILURE;
-  }
-
-  // create space for the result
-  LabelType* result = new LabelType[num_test];
-
-  // software version
-  gettimeofday(&start, NULL);
-  DigitRec(training_data, testing_data, training_labels, result, num_test, num_training);
-  gettimeofday(&end, NULL);
-
-  // check results  
-  printf("Checking results:\n");
-  check_results(result, expected, num_test);
-    
-  // print time
-  long long elapsed = (end.tv_sec - start.tv_sec) * 1000000LL + end.tv_usec - start.tv_usec;   
-  printf("elapsed time: %lld us\n", elapsed);
-
-  delete []result;
-
-  return EXIT_SUCCESS;
+  return 0;
 }

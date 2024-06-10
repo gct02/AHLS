@@ -83,19 +83,17 @@ LabelType knn_vote(int labels[K_CONST])
 
 // sw top function
 void DigitRec(
-  const DigitType* training_set, 
-  const DigitType* test_set,
-  const LabelType* training_labels,
-  LabelType* results, 
-  int num_test, 
-  int num_training)
+  const DigitType training_samples[NUM_TRAINING * DIGIT_WIDTH], 
+  const DigitType test_set[NUM_TEST * DIGIT_WIDTH],
+  const LabelType training_labels[NUM_TRAINING],
+  LabelType results[NUM_TEST])
 {
   // nearest neighbor set
   int dists[K_CONST];
   int labels[K_CONST];
 
   // loop through test set
-  TEST_LOOP: for (int t = 0; t < num_test; ++t) 
+  TEST_LOOP: for (int t = 0; t < NUM_TEST; ++t) 
   {
     // Initialize the neighbor set
     SET_KNN_SET: for ( int i = 0; i < K_CONST; ++i ) 
@@ -106,8 +104,8 @@ void DigitRec(
     }
 
     // for each training instance, compare it with the test instance, and update the nearest neighbor set
-    TRAINING_LOOP : for ( int i = 0; i < num_training; ++i ) 
-      update_knn(&training_set[i * DIGIT_WIDTH], &test_set[t * DIGIT_WIDTH], dists, labels, (int)training_labels[i]);
+    TRAINING_LOOP : for ( int i = 0; i < NUM_TRAINING; ++i ) 
+      update_knn(&training_samples[i * DIGIT_WIDTH], &test_set[t * DIGIT_WIDTH], dists, labels, (int)training_labels[i]);
       
     // Compute the final output
     LabelType max_vote = knn_vote(labels);

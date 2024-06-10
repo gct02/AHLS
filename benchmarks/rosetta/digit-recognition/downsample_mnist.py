@@ -39,10 +39,6 @@ def process_image(image_as_ndarray):
     return np.packbits(downscaled_image.reshape((-1, 64)).astype(np.uint8), bitorder='little').view(np.uint64)[::-1]
 
 if __name__ == '__main__':
-    # Constants
-    NUM_TRAINING_SAMPLES = 60000
-    NUM_TEST_SAMPLES = 10000
-
     # Load the MNIST dataset
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
@@ -52,13 +48,11 @@ if __name__ == '__main__':
     
     # Save the dataset
     with open('data/downsampled_mnist_train.dat', 'wb') as f:
-        f.write(struct.pack('i', NUM_TRAINING_SAMPLES))
         for image in x_train_downscaled:
             for i in range(4):
                 f.write(struct.pack('Q', image[i]))
 
     with open('data/downsampled_mnist_test.dat', 'wb') as f:
-        f.write(struct.pack('i', NUM_TEST_SAMPLES))
         for image in x_test_downscaled:
             for i in range(4):
                 f.write(struct.pack('Q', image[i]))
