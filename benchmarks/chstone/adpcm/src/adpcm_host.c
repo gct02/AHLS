@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 {
   populateInput(test_data, SIZE, argv[1]);
   adpcm_main (test_data, compressed, result);
-  populateOutput(result, SIZE/2, argv[2]);
+  populateOutput(result, SIZE/2);
 
   return 0;
 }

@@ -102,10 +102,11 @@ void populateInput(const char* str_points_filepath, const char* str_labels_filep
 }
 
 void populateOutput(FeatureType* param_vector, DataType* data_points, LabelType* labels) {
-    FILE* ofile;
-    ofile = fopen("output.txt", "w");
-    if (ofile == NULL) {
-        printf("Failed to open output file!\n");
+    FILE* ofile = fopen("output.txt", "w");
+    FILE* rawOutput = fopen("raw_output.txt", "w");
+
+    if (ofile == NULL || rawOutput == NULL) {
+        printf("Failed to open output files!\n");
         exit(1);
     }
 
@@ -155,4 +156,9 @@ void populateOutput(FeatureType* param_vector, DataType* data_points, LabelType*
     fprintf(ofile, "Testing FPR: %f\n", testing_fpr);
     fprintf(ofile, "Testing Error: %f\n", testing_error);
     fclose(ofile);
+
+    fprintf(rawOutput, "%f %f %f %f %f %f\n", 
+            training_tpr, training_fpr, training_error, 
+            testing_tpr, testing_fpr, testing_error);
+    fclose(rawOutput);
 }

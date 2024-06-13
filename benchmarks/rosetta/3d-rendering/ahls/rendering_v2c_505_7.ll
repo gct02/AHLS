@@ -1,4 +1,4 @@
-; ModuleID = 'llvm-link'
+; ModuleID = '<stdin>'
 source_filename = "llvm-link"
 target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
@@ -1165,224 +1165,223 @@ if.end.i103:                                      ; preds = %for.body
   %in0.in2.i.i = select i1 %cmp4.i.i, i8 %spec.select158, i8 %.unpack70, !opID !515, !opSignedness !6
   %20 = icmp ugt i8 %in0.in2.i.i, %spec.select, !opID !516, !opSignedness !6
   %retval.0.i.i = select i1 %20, i8 %in0.in2.i.i, i8 %spec.select, !opID !517, !opSignedness !6
-  %sub.i = sub i8 %retval.0.i46.i, %retval.0.i49.i, !opID !518, !opSignedness !6
-  %21 = sext i8 %sub.i to i64
+  %21 = sext i8 7 to i64
   call void @profOp(i64 505, i8 13, i64 %21, i64 0, double 0.000000e+00, i1 true, i1 false, i32 8)
-  %conv25.i = zext i8 %retval.0.i46.i to i32, !opID !519, !opSignedness !6
-  %conv27.i = zext i8 %retval.0.i49.i to i32, !opID !520, !opSignedness !6
-  %sub28.i = sub nsw i32 %conv25.i, %conv27.i, !opID !521, !opSignedness !6
+  %conv25.i = zext i8 %retval.0.i46.i to i32, !opID !518, !opSignedness !6
+  %conv27.i = zext i8 %retval.0.i49.i to i32, !opID !519, !opSignedness !6
+  %sub28.i = sub nsw i32 %conv25.i, %conv27.i, !opID !520, !opSignedness !6
   %22 = sext i32 %sub28.i to i64
   call void @profOp(i64 508, i8 13, i64 %22, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %conv30.i = zext i8 %retval.0.i.i to i32, !opID !522, !opSignedness !6
-  %conv32.i = zext i8 %retval.0.i43.i to i32, !opID !523, !opSignedness !6
-  %sub33.i = sub nsw i32 %conv30.i, %conv32.i, !opID !524, !opSignedness !6
+  %conv30.i = zext i8 %retval.0.i.i to i32, !opID !521, !opSignedness !6
+  %conv32.i = zext i8 %retval.0.i43.i to i32, !opID !522, !opSignedness !6
+  %sub33.i = sub nsw i32 %conv30.i, %conv32.i, !opID !523, !opSignedness !6
   %23 = sext i32 %sub33.i to i64
   call void @profOp(i64 511, i8 13, i64 %23, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %mul.i = mul nsw i32 %sub33.i, %sub28.i, !opID !525, !opSignedness !6
+  %mul.i = mul nsw i32 %sub33.i, %sub28.i, !opID !524, !opSignedness !6
   %24 = sext i32 %mul.i to i64
   call void @profOp(i64 512, i8 15, i64 %24, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %cmp13.i = icmp sgt i32 %mul.i, 0, !opID !526, !opSignedness !6
-  br i1 %cmp13.i, label %for.body.lr.ph.i, label %_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel.exit, !opID !527, !opSignedness !6
+  %cmp13.i = icmp sgt i32 %mul.i, 0, !opID !525, !opSignedness !6
+  br i1 %cmp13.i, label %for.body.lr.ph.i, label %_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel.exit, !opID !526, !opSignedness !6
 
 for.body.lr.ph.i:                                 ; preds = %if.end.i103
-  %sub22.i.i = sub nsw i32 %conv5.i.i97, %conv2.i.i93, !opID !528, !opSignedness !6
+  %sub22.i.i = sub nsw i32 %conv5.i.i97, %conv2.i.i93, !opID !527, !opSignedness !6
   %25 = sext i32 %sub22.i.i to i64
   call void @profOp(i64 515, i8 13, i64 %25, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %sub31.i.i = sub nsw i32 %conv.i.i90, %conv9.i.i99, !opID !529, !opSignedness !6
+  %sub31.i.i = sub nsw i32 %conv.i.i90, %conv9.i.i99, !opID !528, !opSignedness !6
   %26 = sext i32 %sub31.i.i to i64
   call void @profOp(i64 516, i8 13, i64 %26, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %sub42.i.i = sub nsw i32 %conv3.i.i94, %conv5.i.i97, !opID !530, !opSignedness !6
+  %sub42.i.i = sub nsw i32 %conv3.i.i94, %conv5.i.i97, !opID !529, !opSignedness !6
   %27 = sext i32 %sub42.i.i to i64
   call void @profOp(i64 517, i8 13, i64 %27, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %sub52.i.i = sub nsw i32 %conv1.i.i91, %conv.i.i90, !opID !531, !opSignedness !6
+  %sub52.i.i = sub nsw i32 %conv1.i.i91, %conv.i.i90, !opID !530, !opSignedness !6
   %28 = sext i32 %sub52.i.i to i64
   call void @profOp(i64 518, i8 13, i64 %28, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %conv3.i = zext i8 %sub.i to i32, !opID !532, !opSignedness !6
-  br label %for.body.i, !opID !533, !opSignedness !6
+  %conv3.i = zext i8 7 to i32, !opID !531, !opSignedness !6
+  br label %for.body.i, !opID !532, !opSignedness !6
 
 for.body.i:                                       ; preds = %if.end23.i, %for.body.lr.ph.i
-  %k.015.i = phi i32 [ 0, %for.body.lr.ph.i ], [ %inc24.i, %if.end23.i ], !opID !534, !opSignedness !6
-  %i.014.i = phi i32 [ 0, %for.body.lr.ph.i ], [ %i.1.i, %if.end23.i ], !opID !535, !opSignedness !6
-  %rem.urem.i = urem i32 %k.015.i, %conv3.i, !opID !536, !opSignedness !6
+  %k.015.i = phi i32 [ 0, %for.body.lr.ph.i ], [ %inc24.i, %if.end23.i ], !opID !533, !opSignedness !6
+  %i.014.i = phi i32 [ 0, %for.body.lr.ph.i ], [ %i.1.i, %if.end23.i ], !opID !534, !opSignedness !6
+  %rem.urem.i = urem i32 %k.015.i, %conv3.i, !opID !535, !opSignedness !6
   %29 = zext i32 %rem.urem.i to i64
   call void @profOp(i64 523, i8 20, i64 0, i64 %29, double 0.000000e+00, i1 false, i1 false, i32 32)
-  %30 = trunc i32 %rem.urem.i to i8, !opID !537, !opSignedness !6
-  %conv4.i = add i8 %retval.0.i49.i, %30, !opID !538, !opSignedness !6
+  %30 = trunc i32 %rem.urem.i to i8, !opID !536, !opSignedness !6
+  %conv4.i = add i8 %retval.0.i49.i, %30, !opID !537, !opSignedness !6
   %31 = sext i8 %conv4.i to i64
   call void @profOp(i64 525, i8 11, i64 %31, i64 0, double 0.000000e+00, i1 true, i1 false, i32 8)
-  %div.udiv.i = udiv i32 %k.015.i, %conv3.i, !opID !539, !opSignedness !6
+  %div.udiv.i = udiv i32 %k.015.i, %conv3.i, !opID !538, !opSignedness !6
   %32 = zext i32 %div.udiv.i to i64
   call void @profOp(i64 526, i8 17, i64 0, i64 %32, double 0.000000e+00, i1 false, i1 false, i32 32)
-  %33 = trunc i32 %div.udiv.i to i8, !opID !540, !opSignedness !6
-  %conv10.i = add i8 %retval.0.i43.i, %33, !opID !541, !opSignedness !6
+  %33 = trunc i32 %div.udiv.i to i8, !opID !539, !opSignedness !6
+  %conv10.i = add i8 %retval.0.i43.i, %33, !opID !540, !opSignedness !6
   %34 = sext i8 %conv10.i to i64
   call void @profOp(i64 528, i8 11, i64 %34, i64 0, double 0.000000e+00, i1 true, i1 false, i32 8)
-  %conv.i.i = zext i8 %conv4.i to i32, !opID !542, !opSignedness !6
-  %sub.i.i = sub nsw i32 %conv.i.i, %conv1.i.i91, !opID !543, !opSignedness !6
+  %conv.i.i = zext i8 %conv4.i to i32, !opID !541, !opSignedness !6
+  %sub.i.i = sub nsw i32 %conv.i.i, %conv1.i.i91, !opID !542, !opSignedness !6
   %35 = sext i32 %sub.i.i to i64
   call void @profOp(i64 530, i8 13, i64 %35, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %mul.i.i = mul nsw i32 %sub.i.i, %sub4.i.i95, !opID !544, !opSignedness !6
+  %mul.i.i = mul nsw i32 %sub.i.i, %sub4.i.i95, !opID !543, !opSignedness !6
   %36 = sext i32 %mul.i.i to i64
   call void @profOp(i64 531, i8 15, i64 %36, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %conv5.i.i = zext i8 %conv10.i to i32, !opID !545, !opSignedness !6
-  %sub8.i.i = sub nsw i32 %conv5.i.i, %conv3.i.i94, !opID !546, !opSignedness !6
+  %conv5.i.i = zext i8 %conv10.i to i32, !opID !544, !opSignedness !6
+  %sub8.i.i = sub nsw i32 %conv5.i.i, %conv3.i.i94, !opID !545, !opSignedness !6
   %37 = sext i32 %sub8.i.i to i64
   call void @profOp(i64 533, i8 13, i64 %37, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %mul13.i.i = mul nsw i32 %sub8.i.i, %sub12.i.i100, !opID !547, !opSignedness !6
+  %mul13.i.i = mul nsw i32 %sub8.i.i, %sub12.i.i100, !opID !546, !opSignedness !6
   %38 = sext i32 %mul13.i.i to i64
   call void @profOp(i64 534, i8 15, i64 %38, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %sub18.i.i = sub nsw i32 %conv.i.i, %conv9.i.i99, !opID !548, !opSignedness !6
+  %sub18.i.i = sub nsw i32 %conv.i.i, %conv9.i.i99, !opID !547, !opSignedness !6
   %39 = sext i32 %sub18.i.i to i64
   call void @profOp(i64 535, i8 13, i64 %39, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %mul23.i.i = mul nsw i32 %sub18.i.i, %sub22.i.i, !opID !549, !opSignedness !6
+  %mul23.i.i = mul nsw i32 %sub18.i.i, %sub22.i.i, !opID !548, !opSignedness !6
   %40 = sext i32 %mul23.i.i to i64
   call void @profOp(i64 536, i8 15, i64 %40, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %sub27.i.i = sub nsw i32 %conv5.i.i, %conv2.i.i93, !opID !550, !opSignedness !6
+  %sub27.i.i = sub nsw i32 %conv5.i.i, %conv2.i.i93, !opID !549, !opSignedness !6
   %41 = sext i32 %sub27.i.i to i64
   call void @profOp(i64 537, i8 13, i64 %41, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %mul32.i.i = mul nsw i32 %sub27.i.i, %sub31.i.i, !opID !551, !opSignedness !6
+  %mul32.i.i = mul nsw i32 %sub27.i.i, %sub31.i.i, !opID !550, !opSignedness !6
   %42 = sext i32 %mul32.i.i to i64
   call void @profOp(i64 538, i8 15, i64 %42, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %sub37.i.i = sub nsw i32 %conv.i.i, %conv.i.i90, !opID !552, !opSignedness !6
+  %sub37.i.i = sub nsw i32 %conv.i.i, %conv.i.i90, !opID !551, !opSignedness !6
   %43 = sext i32 %sub37.i.i to i64
   call void @profOp(i64 539, i8 13, i64 %43, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %mul43.i.i = mul nsw i32 %sub37.i.i, %sub42.i.i, !opID !553, !opSignedness !6
+  %mul43.i.i = mul nsw i32 %sub37.i.i, %sub42.i.i, !opID !552, !opSignedness !6
   %44 = sext i32 %mul43.i.i to i64
   call void @profOp(i64 540, i8 15, i64 %44, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %sub47.i.i = sub nsw i32 %conv5.i.i, %conv5.i.i97, !opID !554, !opSignedness !6
+  %sub47.i.i = sub nsw i32 %conv5.i.i, %conv5.i.i97, !opID !553, !opSignedness !6
   %45 = sext i32 %sub47.i.i to i64
   call void @profOp(i64 541, i8 13, i64 %45, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %mul53.i.i = mul nsw i32 %sub47.i.i, %sub52.i.i, !opID !555, !opSignedness !6
+  %mul53.i.i = mul nsw i32 %sub47.i.i, %sub52.i.i, !opID !554, !opSignedness !6
   %46 = sext i32 %mul53.i.i to i64
   call void @profOp(i64 542, i8 15, i64 %46, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %cmp.i.i = icmp sge i32 %mul.i.i, %mul13.i.i, !opID !556, !opSignedness !6
-  %cmp55.i.i = icmp sge i32 %mul23.i.i, %mul32.i.i, !opID !557, !opSignedness !6
-  %or.cond.i.i = and i1 %cmp.i.i, %cmp55.i.i, !opID !558, !opSignedness !6
+  %cmp.i.i = icmp sge i32 %mul.i.i, %mul13.i.i, !opID !555, !opSignedness !6
+  %cmp55.i.i = icmp sge i32 %mul23.i.i, %mul32.i.i, !opID !556, !opSignedness !6
+  %or.cond.i.i = and i1 %cmp.i.i, %cmp55.i.i, !opID !557, !opSignedness !6
   %47 = sext i1 %or.cond.i.i to i64
   call void @profOp(i64 545, i8 26, i64 %47, i64 0, double 0.000000e+00, i1 true, i1 false, i32 1)
-  %cmp56.i.i = icmp sge i32 %mul43.i.i, %mul53.i.i, !opID !559, !opSignedness !6
-  %or.cond.i = and i1 %cmp56.i.i, %or.cond.i.i, !opID !560, !opSignedness !6
+  %cmp56.i.i = icmp sge i32 %mul43.i.i, %mul53.i.i, !opID !558, !opSignedness !6
+  %or.cond.i = and i1 %cmp56.i.i, %or.cond.i.i, !opID !559, !opSignedness !6
   %48 = sext i1 %or.cond.i to i64
   call void @profOp(i64 547, i8 26, i64 %48, i64 0, double 0.000000e+00, i1 true, i1 false, i32 1)
-  br i1 %or.cond.i, label %if.then11.i, label %if.end23.i, !opID !561, !opSignedness !6
+  br i1 %or.cond.i, label %if.then11.i, label %if.end23.i, !opID !560, !opSignedness !6
 
 if.then11.i:                                      ; preds = %for.body.i
-  %idxprom.i = sext i32 %i.014.i to i64, !opID !562, !opSignedness !6
-  %x13.i85 = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %idxprom.i, i32 0, !opID !563, !opSignedness !6
-  store i8 %conv4.i, i8* %x13.i85, align 1, !opID !564, !opSignedness !6
-  %y16.i = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %idxprom.i, i32 1, !opID !565, !opSignedness !6
-  store i8 %conv10.i, i8* %y16.i, align 1, !opID !566, !opSignedness !6
-  %z19.i = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %idxprom.i, i32 2, !opID !567, !opSignedness !6
-  store i8 %add11.i, i8* %z19.i, align 1, !opID !568, !opSignedness !6
-  %color22.i = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %idxprom.i, i32 3, !opID !569, !opSignedness !6
-  store i8 100, i8* %color22.i, align 1, !opID !570, !opSignedness !6
-  %inc.i = add i32 %i.014.i, 1, !opID !571, !opSignedness !6
+  %idxprom.i = sext i32 %i.014.i to i64, !opID !561, !opSignedness !6
+  %x13.i85 = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %idxprom.i, i32 0, !opID !562, !opSignedness !6
+  store i8 %conv4.i, i8* %x13.i85, align 1, !opID !563, !opSignedness !6
+  %y16.i = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %idxprom.i, i32 1, !opID !564, !opSignedness !6
+  store i8 %conv10.i, i8* %y16.i, align 1, !opID !565, !opSignedness !6
+  %z19.i = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %idxprom.i, i32 2, !opID !566, !opSignedness !6
+  store i8 %add11.i, i8* %z19.i, align 1, !opID !567, !opSignedness !6
+  %color22.i = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %idxprom.i, i32 3, !opID !568, !opSignedness !6
+  store i8 100, i8* %color22.i, align 1, !opID !569, !opSignedness !6
+  %inc.i = add i32 %i.014.i, 1, !opID !570, !opSignedness !6
   %49 = sext i32 %inc.i to i64
   call void @profOp(i64 558, i8 11, i64 %49, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  br label %if.end23.i, !opID !572, !opSignedness !6
+  br label %if.end23.i, !opID !571, !opSignedness !6
 
 if.end23.i:                                       ; preds = %if.then11.i, %for.body.i
-  %i.1.i = phi i32 [ %inc.i, %if.then11.i ], [ %i.014.i, %for.body.i ], !opID !573, !opSignedness !6
-  %inc24.i = add nuw nsw i32 %k.015.i, 1, !opID !574, !opSignedness !6
+  %i.1.i = phi i32 [ %inc.i, %if.then11.i ], [ %i.014.i, %for.body.i ], !opID !572, !opSignedness !6
+  %inc24.i = add nuw nsw i32 %k.015.i, 1, !opID !573, !opSignedness !6
   %50 = sext i32 %inc24.i to i64
   call void @profOp(i64 561, i8 11, i64 %50, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  %cmp.i86 = icmp slt i32 %inc24.i, %mul.i, !opID !575, !opSignedness !6
-  br i1 %cmp.i86, label %for.body.i, label %_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel.exit, !llvm.loop !365, !opID !576, !opSignedness !6
+  %cmp.i86 = icmp slt i32 %inc24.i, %mul.i, !opID !574, !opSignedness !6
+  br i1 %cmp.i86, label %for.body.i, label %_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel.exit, !llvm.loop !365, !opID !575, !opSignedness !6
 
 _Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel.exit: ; preds = %if.end23.i, %if.end.i103, %for.body
-  %retval.0.i = phi i32 [ 0, %if.end.i103 ], [ 0, %for.body ], [ %i.1.i, %if.end23.i ], !opID !577, !opSignedness !6
-  %cmp.i74 = icmp eq i64 %indvars.iv, 0, !opID !578, !opSignedness !6
-  br i1 %cmp.i74, label %ZCULLING_INIT_ROW.i, label %if.end.i, !opID !579, !opSignedness !6
+  %retval.0.i = phi i32 [ 0, %if.end.i103 ], [ 0, %for.body ], [ %i.1.i, %if.end23.i ], !opID !576, !opSignedness !6
+  %cmp.i74 = icmp eq i64 %indvars.iv, 0, !opID !577, !opSignedness !6
+  br i1 %cmp.i74, label %ZCULLING_INIT_ROW.i, label %if.end.i, !opID !578, !opSignedness !6
 
 ZCULLING_INIT_ROW.i:                              ; preds = %_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel.exit
-  tail call void @llvm.memset.p0i8.i64(i8* align 1 getelementptr inbounds ([256 x [256 x i8]], [256 x [256 x i8]]* @_ZZ8zcullingiP14CandidatePixeliP5PixelE8z_buffer, i64 0, i64 0, i64 0), i8 -1, i64 65536, i1 false) #18, !opID !580, !opSignedness !6
-  br label %if.end.i, !opID !581, !opSignedness !6
+  tail call void @llvm.memset.p0i8.i64(i8* align 1 getelementptr inbounds ([256 x [256 x i8]], [256 x [256 x i8]]* @_ZZ8zcullingiP14CandidatePixeliP5PixelE8z_buffer, i64 0, i64 0, i64 0), i8 -1, i64 65536, i1 false) #18, !opID !579, !opSignedness !6
+  br label %if.end.i, !opID !580, !opSignedness !6
 
 if.end.i:                                         ; preds = %ZCULLING_INIT_ROW.i, %_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel.exit
-  %cmp121.i = icmp sgt i32 %retval.0.i, 0, !opID !582, !opSignedness !6
-  br i1 %cmp121.i, label %for.body14.lr.ph.i, label %_Z8zcullingiP14CandidatePixeliP5Pixel.exit, !opID !583, !opSignedness !6
+  %cmp121.i = icmp sgt i32 %retval.0.i, 0, !opID !581, !opSignedness !6
+  br i1 %cmp121.i, label %for.body14.lr.ph.i, label %_Z8zcullingiP14CandidatePixeliP5Pixel.exit, !opID !582, !opSignedness !6
 
 for.body14.lr.ph.i:                               ; preds = %if.end.i
-  %wide.trip.count.i75 = zext i32 %retval.0.i to i64, !opID !584, !opSignedness !6
-  br label %for.body14.i, !opID !585, !opSignedness !6
+  %wide.trip.count.i75 = zext i32 %retval.0.i to i64, !opID !583, !opSignedness !6
+  br label %for.body14.i, !opID !584, !opSignedness !6
 
 for.body14.i:                                     ; preds = %for.inc60.i, %for.body14.lr.ph.i
-  %indvars.iv.i76 = phi i64 [ 0, %for.body14.lr.ph.i ], [ %indvars.iv.next.i81, %for.inc60.i ], !opID !586, !opSignedness !6
-  %pixel_cntr.02.i = phi i32 [ 0, %for.body14.lr.ph.i ], [ %pixel_cntr.1.i, %for.inc60.i ], !opID !587, !opSignedness !6
-  %z.i77 = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %indvars.iv.i76, i32 2, !opID !588, !opSignedness !6
-  %51 = load i8, i8* %z.i77, align 1, !opID !589, !opSignedness !6
-  %y.i78 = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %indvars.iv.i76, i32 1, !opID !590, !opSignedness !6
-  %52 = load i8, i8* %y.i78, align 1, !opID !591, !opSignedness !6
-  %idxprom19.i = zext i8 %52 to i64, !opID !592, !opSignedness !6
-  %x.i79 = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %indvars.iv.i76, i32 0, !opID !593, !opSignedness !6
-  %53 = load i8, i8* %x.i79, align 1, !opID !594, !opSignedness !6
-  %idxprom23.i = zext i8 %53 to i64, !opID !595, !opSignedness !6
-  %arrayidx24.i = getelementptr inbounds [256 x [256 x i8]], [256 x [256 x i8]]* @_ZZ8zcullingiP14CandidatePixeliP5PixelE8z_buffer, i64 0, i64 %idxprom19.i, i64 %idxprom23.i, !opID !596, !opSignedness !6
-  %54 = load i8, i8* %arrayidx24.i, align 1, !opID !597, !opSignedness !6
-  %cmp26.i = icmp ult i8 %51, %54, !opID !598, !opSignedness !6
-  br i1 %cmp26.i, label %if.then27.i, label %for.inc60.i, !opID !599, !opSignedness !6
+  %indvars.iv.i76 = phi i64 [ 0, %for.body14.lr.ph.i ], [ %indvars.iv.next.i81, %for.inc60.i ], !opID !585, !opSignedness !6
+  %pixel_cntr.02.i = phi i32 [ 0, %for.body14.lr.ph.i ], [ %pixel_cntr.1.i, %for.inc60.i ], !opID !586, !opSignedness !6
+  %z.i77 = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %indvars.iv.i76, i32 2, !opID !587, !opSignedness !6
+  %51 = load i8, i8* %z.i77, align 1, !opID !588, !opSignedness !6
+  %y.i78 = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %indvars.iv.i76, i32 1, !opID !589, !opSignedness !6
+  %52 = load i8, i8* %y.i78, align 1, !opID !590, !opSignedness !6
+  %idxprom19.i = zext i8 %52 to i64, !opID !591, !opSignedness !6
+  %x.i79 = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %indvars.iv.i76, i32 0, !opID !592, !opSignedness !6
+  %53 = load i8, i8* %x.i79, align 1, !opID !593, !opSignedness !6
+  %idxprom23.i = zext i8 %53 to i64, !opID !594, !opSignedness !6
+  %arrayidx24.i = getelementptr inbounds [256 x [256 x i8]], [256 x [256 x i8]]* @_ZZ8zcullingiP14CandidatePixeliP5PixelE8z_buffer, i64 0, i64 %idxprom19.i, i64 %idxprom23.i, !opID !595, !opSignedness !6
+  %54 = load i8, i8* %arrayidx24.i, align 1, !opID !596, !opSignedness !6
+  %cmp26.i = icmp ult i8 %51, %54, !opID !597, !opSignedness !6
+  br i1 %cmp26.i, label %if.then27.i, label %for.inc60.i, !opID !598, !opSignedness !6
 
 if.then27.i:                                      ; preds = %for.body14.i
-  %idxprom31.i = sext i32 %pixel_cntr.02.i to i64, !opID !600, !opSignedness !6
-  %x33.i = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 %idxprom31.i, i32 0, !opID !601, !opSignedness !6
-  store i8 %53, i8* %x33.i, align 1, !opID !602, !opSignedness !6
-  %y39.i = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 %idxprom31.i, i32 1, !opID !603, !opSignedness !6
-  store i8 %52, i8* %y39.i, align 1, !opID !604, !opSignedness !6
-  %color.i80 = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %indvars.iv.i76, i32 3, !opID !605, !opSignedness !6
-  %55 = load i8, i8* %color.i80, align 1, !opID !606, !opSignedness !6
-  %color44.i = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 %idxprom31.i, i32 2, !opID !607, !opSignedness !6
-  store i8 %55, i8* %color44.i, align 1, !opID !608, !opSignedness !6
-  %inc45.i = add i32 %pixel_cntr.02.i, 1, !opID !609, !opSignedness !6
+  %idxprom31.i = sext i32 %pixel_cntr.02.i to i64, !opID !599, !opSignedness !6
+  %x33.i = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 %idxprom31.i, i32 0, !opID !600, !opSignedness !6
+  store i8 %53, i8* %x33.i, align 1, !opID !601, !opSignedness !6
+  %y39.i = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 %idxprom31.i, i32 1, !opID !602, !opSignedness !6
+  store i8 %52, i8* %y39.i, align 1, !opID !603, !opSignedness !6
+  %color.i80 = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 %indvars.iv.i76, i32 3, !opID !604, !opSignedness !6
+  %55 = load i8, i8* %color.i80, align 1, !opID !605, !opSignedness !6
+  %color44.i = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 %idxprom31.i, i32 2, !opID !606, !opSignedness !6
+  store i8 %55, i8* %color44.i, align 1, !opID !607, !opSignedness !6
+  %inc45.i = add i32 %pixel_cntr.02.i, 1, !opID !608, !opSignedness !6
   %56 = sext i32 %inc45.i to i64
   call void @profOp(i64 596, i8 11, i64 %56, i64 0, double 0.000000e+00, i1 true, i1 false, i32 32)
-  store i8 %51, i8* %arrayidx24.i, align 1, !opID !610, !opSignedness !6
-  br label %for.inc60.i, !opID !611, !opSignedness !6
+  store i8 %51, i8* %arrayidx24.i, align 1, !opID !609, !opSignedness !6
+  br label %for.inc60.i, !opID !610, !opSignedness !6
 
 for.inc60.i:                                      ; preds = %if.then27.i, %for.body14.i
-  %pixel_cntr.1.i = phi i32 [ %inc45.i, %if.then27.i ], [ %pixel_cntr.02.i, %for.body14.i ], !opID !612, !opSignedness !6
-  %indvars.iv.next.i81 = add nuw nsw i64 %indvars.iv.i76, 1, !opID !613, !opSignedness !6
+  %pixel_cntr.1.i = phi i32 [ %inc45.i, %if.then27.i ], [ %pixel_cntr.02.i, %for.body14.i ], !opID !611, !opSignedness !6
+  %indvars.iv.next.i81 = add nuw nsw i64 %indvars.iv.i76, 1, !opID !612, !opSignedness !6
   call void @profOp(i64 600, i8 11, i64 %indvars.iv.next.i81, i64 0, double 0.000000e+00, i1 true, i1 false, i32 64)
-  %exitcond.i82 = icmp eq i64 %indvars.iv.next.i81, %wide.trip.count.i75, !opID !614, !opSignedness !6
-  br i1 %exitcond.i82, label %_Z8zcullingiP14CandidatePixeliP5Pixel.exit, label %for.body14.i, !llvm.loop !416, !opID !615, !opSignedness !6
+  %exitcond.i82 = icmp eq i64 %indvars.iv.next.i81, %wide.trip.count.i75, !opID !613, !opSignedness !6
+  br i1 %exitcond.i82, label %_Z8zcullingiP14CandidatePixeliP5Pixel.exit, label %for.body14.i, !llvm.loop !416, !opID !614, !opSignedness !6
 
 _Z8zcullingiP14CandidatePixeliP5Pixel.exit:       ; preds = %for.inc60.i, %if.end.i
-  %pixel_cntr.0.lcssa.i = phi i32 [ 0, %if.end.i ], [ %pixel_cntr.1.i, %for.inc60.i ], !opID !616, !opSignedness !6
-  br i1 %cmp.i74, label %COLORING_FB_INIT_ROW.i, label %COLORING_FB.i, !opID !617, !opSignedness !6
+  %pixel_cntr.0.lcssa.i = phi i32 [ 0, %if.end.i ], [ %pixel_cntr.1.i, %for.inc60.i ], !opID !615, !opSignedness !6
+  br i1 %cmp.i74, label %COLORING_FB_INIT_ROW.i, label %COLORING_FB.i, !opID !616, !opSignedness !6
 
 COLORING_FB_INIT_ROW.i:                           ; preds = %_Z8zcullingiP14CandidatePixeliP5Pixel.exit
-  tail call void @llvm.memset.p0i8.i64(i8* align 1 %frame_buffer9.i, i8 0, i64 65536, i1 false) #18, !opID !618, !opSignedness !6
-  br label %COLORING_FB.i, !opID !619, !opSignedness !6
+  tail call void @llvm.memset.p0i8.i64(i8* align 1 %frame_buffer9.i, i8 0, i64 65536, i1 false) #18, !opID !617, !opSignedness !6
+  br label %COLORING_FB.i, !opID !618, !opSignedness !6
 
 COLORING_FB.i:                                    ; preds = %COLORING_FB_INIT_ROW.i, %_Z8zcullingiP14CandidatePixeliP5Pixel.exit
-  %cmp131.i = icmp sgt i32 %pixel_cntr.0.lcssa.i, 0, !opID !620, !opSignedness !6
-  br i1 %cmp131.i, label %for.body15.lr.ph.i, label %_Z10coloringFBiiP5PixelPA256_h.exit, !opID !621, !opSignedness !6
+  %cmp131.i = icmp sgt i32 %pixel_cntr.0.lcssa.i, 0, !opID !619, !opSignedness !6
+  br i1 %cmp131.i, label %for.body15.lr.ph.i, label %_Z10coloringFBiiP5PixelPA256_h.exit, !opID !620, !opSignedness !6
 
 for.body15.lr.ph.i:                               ; preds = %COLORING_FB.i
-  %wide.trip.count.i = zext i32 %pixel_cntr.0.lcssa.i to i64, !opID !622, !opSignedness !6
-  br label %for.body15.i, !opID !623, !opSignedness !6
+  %wide.trip.count.i = zext i32 %pixel_cntr.0.lcssa.i to i64, !opID !621, !opSignedness !6
+  br label %for.body15.i, !opID !622, !opSignedness !6
 
 for.body15.i:                                     ; preds = %for.body15.i, %for.body15.lr.ph.i
-  %indvars.iv.i = phi i64 [ 0, %for.body15.lr.ph.i ], [ %indvars.iv.next.i, %for.body15.i ], !opID !624, !opSignedness !6
-  %color.i = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 %indvars.iv.i, i32 2, !opID !625, !opSignedness !6
-  %57 = load i8, i8* %color.i, align 1, !opID !626, !opSignedness !6
-  %x.i = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 %indvars.iv.i, i32 0, !opID !627, !opSignedness !6
-  %58 = load i8, i8* %x.i, align 1, !opID !628, !opSignedness !6
-  %idxprom20.i = zext i8 %58 to i64, !opID !629, !opSignedness !6
-  %y.i = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 %indvars.iv.i, i32 1, !opID !630, !opSignedness !6
-  %59 = load i8, i8* %y.i, align 1, !opID !631, !opSignedness !6
-  %idxprom24.i = zext i8 %59 to i64, !opID !632, !opSignedness !6
-  %arrayidx25.i = getelementptr inbounds [256 x i8], [256 x i8]* %output, i64 %idxprom20.i, i64 %idxprom24.i, !opID !633, !opSignedness !6
-  store i8 %57, i8* %arrayidx25.i, align 1, !opID !634, !opSignedness !6
-  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !opID !635, !opSignedness !6
+  %indvars.iv.i = phi i64 [ 0, %for.body15.lr.ph.i ], [ %indvars.iv.next.i, %for.body15.i ], !opID !623, !opSignedness !6
+  %color.i = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 %indvars.iv.i, i32 2, !opID !624, !opSignedness !6
+  %57 = load i8, i8* %color.i, align 1, !opID !625, !opSignedness !6
+  %x.i = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 %indvars.iv.i, i32 0, !opID !626, !opSignedness !6
+  %58 = load i8, i8* %x.i, align 1, !opID !627, !opSignedness !6
+  %idxprom20.i = zext i8 %58 to i64, !opID !628, !opSignedness !6
+  %y.i = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 %indvars.iv.i, i32 1, !opID !629, !opSignedness !6
+  %59 = load i8, i8* %y.i, align 1, !opID !630, !opSignedness !6
+  %idxprom24.i = zext i8 %59 to i64, !opID !631, !opSignedness !6
+  %arrayidx25.i = getelementptr inbounds [256 x i8], [256 x i8]* %output, i64 %idxprom20.i, i64 %idxprom24.i, !opID !632, !opSignedness !6
+  store i8 %57, i8* %arrayidx25.i, align 1, !opID !633, !opSignedness !6
+  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !opID !634, !opSignedness !6
   call void @profOp(i64 622, i8 11, i64 %indvars.iv.next.i, i64 0, double 0.000000e+00, i1 true, i1 false, i32 64)
-  %exitcond.i = icmp eq i64 %indvars.iv.next.i, %wide.trip.count.i, !opID !636, !opSignedness !6
-  br i1 %exitcond.i, label %_Z10coloringFBiiP5PixelPA256_h.exit, label %for.body15.i, !llvm.loop !442, !opID !637, !opSignedness !6
+  %exitcond.i = icmp eq i64 %indvars.iv.next.i, %wide.trip.count.i, !opID !635, !opSignedness !6
+  br i1 %exitcond.i, label %_Z10coloringFBiiP5PixelPA256_h.exit, label %for.body15.i, !llvm.loop !442, !opID !636, !opSignedness !6
 
 _Z10coloringFBiiP5PixelPA256_h.exit:              ; preds = %for.body15.i, %COLORING_FB.i
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !opID !638, !opSignedness !6
+  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !opID !637, !opSignedness !6
   call void @profOp(i64 625, i8 11, i64 %indvars.iv.next, i64 0, double 0.000000e+00, i1 true, i1 false, i32 64)
-  %exitcond = icmp eq i64 %indvars.iv.next, 3192, !opID !639, !opSignedness !6
-  br i1 %exitcond, label %for.cond.cleanup, label %for.body, !llvm.loop !640, !opID !642, !opSignedness !6
+  %exitcond = icmp eq i64 %indvars.iv.next, 3192, !opID !638, !opSignedness !6
+  br i1 %exitcond, label %for.cond.cleanup, label %for.body, !llvm.loop !639, !opID !641, !opSignedness !6
 }
 
 ; Function Attrs: argmemonly nounwind willreturn
@@ -1394,24 +1393,24 @@ declare void @llvm.lifetime.end.p0i8(i64, i8* nocapture) #11
 ; Function Attrs: noinline norecurse optnone uwtable
 define i32 @main(i32 %argc, i8** %argv) #14 {
 entry:
-  %retval = alloca i32, align 4, !opID !643, !opSignedness !6
-  %argc.addr = alloca i32, align 4, !opID !644, !opSignedness !6
-  %argv.addr = alloca i8**, align 8, !opID !645, !opSignedness !6
-  %triangle_3ds = alloca [3192 x %struct.Triangle_3D], align 16, !opID !646, !opSignedness !6
-  %output = alloca [256 x [256 x i8]], align 16, !opID !647, !opSignedness !6
-  store i32 0, i32* %retval, align 4, !opID !648, !opSignedness !6
-  store i32 %argc, i32* %argc.addr, align 4, !opID !649, !opSignedness !6
-  store i8** %argv, i8*** %argv.addr, align 8, !opID !650, !opSignedness !6
-  %0 = load i8**, i8*** %argv.addr, align 8, !opID !651, !opSignedness !6
-  %arrayidx = getelementptr inbounds i8*, i8** %0, i64 1, !opID !652, !opSignedness !6
-  %1 = load i8*, i8** %arrayidx, align 8, !opID !653, !opSignedness !6
-  %arraydecay = getelementptr inbounds [3192 x %struct.Triangle_3D], [3192 x %struct.Triangle_3D]* %triangle_3ds, i32 0, i32 0, !opID !654, !opSignedness !6
-  call void @populateInput(i8* %1, %struct.Triangle_3D* %arraydecay), !opID !655, !opSignedness !6
-  %arraydecay1 = getelementptr inbounds [3192 x %struct.Triangle_3D], [3192 x %struct.Triangle_3D]* %triangle_3ds, i32 0, i32 0, !opID !656, !opSignedness !6
-  %arraydecay2 = getelementptr inbounds [256 x [256 x i8]], [256 x [256 x i8]]* %output, i32 0, i32 0, !opID !657, !opSignedness !6
-  call void @_Z9renderingP11Triangle_3DPA256_h(%struct.Triangle_3D* %arraydecay1, [256 x i8]* %arraydecay2), !opID !658, !opSignedness !6
-  %arraydecay3 = getelementptr inbounds [256 x [256 x i8]], [256 x [256 x i8]]* %output, i32 0, i32 0, !opID !659, !opSignedness !6
-  call void @populateOutput([256 x i8]* %arraydecay3), !opID !660, !opSignedness !6
+  %retval = alloca i32, align 4, !opID !642, !opSignedness !6
+  %argc.addr = alloca i32, align 4, !opID !643, !opSignedness !6
+  %argv.addr = alloca i8**, align 8, !opID !644, !opSignedness !6
+  %triangle_3ds = alloca [3192 x %struct.Triangle_3D], align 16, !opID !645, !opSignedness !6
+  %output = alloca [256 x [256 x i8]], align 16, !opID !646, !opSignedness !6
+  store i32 0, i32* %retval, align 4, !opID !647, !opSignedness !6
+  store i32 %argc, i32* %argc.addr, align 4, !opID !648, !opSignedness !6
+  store i8** %argv, i8*** %argv.addr, align 8, !opID !649, !opSignedness !6
+  %0 = load i8**, i8*** %argv.addr, align 8, !opID !650, !opSignedness !6
+  %arrayidx = getelementptr inbounds i8*, i8** %0, i64 1, !opID !651, !opSignedness !6
+  %1 = load i8*, i8** %arrayidx, align 8, !opID !652, !opSignedness !6
+  %arraydecay = getelementptr inbounds [3192 x %struct.Triangle_3D], [3192 x %struct.Triangle_3D]* %triangle_3ds, i32 0, i32 0, !opID !653, !opSignedness !6
+  call void @populateInput(i8* %1, %struct.Triangle_3D* %arraydecay), !opID !654, !opSignedness !6
+  %arraydecay1 = getelementptr inbounds [3192 x %struct.Triangle_3D], [3192 x %struct.Triangle_3D]* %triangle_3ds, i32 0, i32 0, !opID !655, !opSignedness !6
+  %arraydecay2 = getelementptr inbounds [256 x [256 x i8]], [256 x [256 x i8]]* %output, i32 0, i32 0, !opID !656, !opSignedness !6
+  call void @_Z9renderingP11Triangle_3DPA256_h(%struct.Triangle_3D* %arraydecay1, [256 x i8]* %arraydecay2), !opID !657, !opSignedness !6
+  %arraydecay3 = getelementptr inbounds [256 x [256 x i8]], [256 x [256 x i8]]* %output, i32 0, i32 0, !opID !658, !opSignedness !6
+  call void @populateOutput([256 x i8]* %arraydecay3), !opID !659, !opSignedness !6
   call void @saveProfile(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @profileFileName, i32 0, i32 0))
   ret i32 0, !opID !1, !opSignedness !6
 }
@@ -2244,146 +2243,145 @@ attributes #19 = { noreturn nounwind }
 !515 = !{i64 502}
 !516 = !{i64 503}
 !517 = !{i64 504}
-!518 = !{i64 505}
-!519 = !{i64 506}
-!520 = !{i64 507}
-!521 = !{i64 508}
-!522 = !{i64 509}
-!523 = !{i64 510}
-!524 = !{i64 511}
-!525 = !{i64 512}
-!526 = !{i64 513}
-!527 = !{i64 514}
-!528 = !{i64 515}
-!529 = !{i64 516}
-!530 = !{i64 517}
-!531 = !{i64 518}
-!532 = !{i64 519}
-!533 = !{i64 520}
-!534 = !{i64 521}
-!535 = !{i64 522}
-!536 = !{i64 523}
-!537 = !{i64 524}
-!538 = !{i64 525}
-!539 = !{i64 526}
-!540 = !{i64 527}
-!541 = !{i64 528}
-!542 = !{i64 529}
-!543 = !{i64 530}
-!544 = !{i64 531}
-!545 = !{i64 532}
-!546 = !{i64 533}
-!547 = !{i64 534}
-!548 = !{i64 535}
-!549 = !{i64 536}
-!550 = !{i64 537}
-!551 = !{i64 538}
-!552 = !{i64 539}
-!553 = !{i64 540}
-!554 = !{i64 541}
-!555 = !{i64 542}
-!556 = !{i64 543}
-!557 = !{i64 544}
-!558 = !{i64 545}
-!559 = !{i64 546}
-!560 = !{i64 547}
-!561 = !{i64 548}
-!562 = !{i64 549}
-!563 = !{i64 550}
-!564 = !{i64 551}
-!565 = !{i64 552}
-!566 = !{i64 553}
-!567 = !{i64 554}
-!568 = !{i64 555}
-!569 = !{i64 556}
-!570 = !{i64 557}
-!571 = !{i64 558}
-!572 = !{i64 559}
-!573 = !{i64 560}
-!574 = !{i64 561}
-!575 = !{i64 562}
-!576 = !{i64 563}
-!577 = !{i64 564}
-!578 = !{i64 565}
-!579 = !{i64 566}
-!580 = !{i64 567}
-!581 = !{i64 568}
-!582 = !{i64 569}
-!583 = !{i64 570}
-!584 = !{i64 571}
-!585 = !{i64 572}
-!586 = !{i64 573}
-!587 = !{i64 574}
-!588 = !{i64 575}
-!589 = !{i64 576}
-!590 = !{i64 577}
-!591 = !{i64 578}
-!592 = !{i64 579}
-!593 = !{i64 580}
-!594 = !{i64 581}
-!595 = !{i64 582}
-!596 = !{i64 583}
-!597 = !{i64 584}
-!598 = !{i64 585}
-!599 = !{i64 586}
-!600 = !{i64 587}
-!601 = !{i64 588}
-!602 = !{i64 589}
-!603 = !{i64 590}
-!604 = !{i64 591}
-!605 = !{i64 592}
-!606 = !{i64 593}
-!607 = !{i64 594}
-!608 = !{i64 595}
-!609 = !{i64 596}
-!610 = !{i64 597}
-!611 = !{i64 598}
-!612 = !{i64 599}
-!613 = !{i64 600}
-!614 = !{i64 601}
-!615 = !{i64 602}
-!616 = !{i64 603}
-!617 = !{i64 604}
-!618 = !{i64 605}
-!619 = !{i64 606}
-!620 = !{i64 607}
-!621 = !{i64 608}
-!622 = !{i64 609}
-!623 = !{i64 610}
-!624 = !{i64 611}
-!625 = !{i64 612}
-!626 = !{i64 613}
-!627 = !{i64 614}
-!628 = !{i64 615}
-!629 = !{i64 616}
-!630 = !{i64 617}
-!631 = !{i64 618}
-!632 = !{i64 619}
-!633 = !{i64 620}
-!634 = !{i64 621}
-!635 = !{i64 622}
-!636 = !{i64 623}
-!637 = !{i64 624}
-!638 = !{i64 625}
-!639 = !{i64 626}
-!640 = distinct !{!640, !641}
-!641 = !{!"llvm.loop.name", !"TRIANGLES"}
-!642 = !{i64 627}
-!643 = !{i64 628}
-!644 = !{i64 629}
-!645 = !{i64 630}
-!646 = !{i64 631}
-!647 = !{i64 632}
-!648 = !{i64 633}
-!649 = !{i64 634}
-!650 = !{i64 635}
-!651 = !{i64 636}
-!652 = !{i64 637}
-!653 = !{i64 638}
-!654 = !{i64 639}
-!655 = !{i64 640}
-!656 = !{i64 641}
-!657 = !{i64 642}
-!658 = !{i64 643}
-!659 = !{i64 644}
-!660 = !{i64 645}
+!518 = !{i64 506}
+!519 = !{i64 507}
+!520 = !{i64 508}
+!521 = !{i64 509}
+!522 = !{i64 510}
+!523 = !{i64 511}
+!524 = !{i64 512}
+!525 = !{i64 513}
+!526 = !{i64 514}
+!527 = !{i64 515}
+!528 = !{i64 516}
+!529 = !{i64 517}
+!530 = !{i64 518}
+!531 = !{i64 519}
+!532 = !{i64 520}
+!533 = !{i64 521}
+!534 = !{i64 522}
+!535 = !{i64 523}
+!536 = !{i64 524}
+!537 = !{i64 525}
+!538 = !{i64 526}
+!539 = !{i64 527}
+!540 = !{i64 528}
+!541 = !{i64 529}
+!542 = !{i64 530}
+!543 = !{i64 531}
+!544 = !{i64 532}
+!545 = !{i64 533}
+!546 = !{i64 534}
+!547 = !{i64 535}
+!548 = !{i64 536}
+!549 = !{i64 537}
+!550 = !{i64 538}
+!551 = !{i64 539}
+!552 = !{i64 540}
+!553 = !{i64 541}
+!554 = !{i64 542}
+!555 = !{i64 543}
+!556 = !{i64 544}
+!557 = !{i64 545}
+!558 = !{i64 546}
+!559 = !{i64 547}
+!560 = !{i64 548}
+!561 = !{i64 549}
+!562 = !{i64 550}
+!563 = !{i64 551}
+!564 = !{i64 552}
+!565 = !{i64 553}
+!566 = !{i64 554}
+!567 = !{i64 555}
+!568 = !{i64 556}
+!569 = !{i64 557}
+!570 = !{i64 558}
+!571 = !{i64 559}
+!572 = !{i64 560}
+!573 = !{i64 561}
+!574 = !{i64 562}
+!575 = !{i64 563}
+!576 = !{i64 564}
+!577 = !{i64 565}
+!578 = !{i64 566}
+!579 = !{i64 567}
+!580 = !{i64 568}
+!581 = !{i64 569}
+!582 = !{i64 570}
+!583 = !{i64 571}
+!584 = !{i64 572}
+!585 = !{i64 573}
+!586 = !{i64 574}
+!587 = !{i64 575}
+!588 = !{i64 576}
+!589 = !{i64 577}
+!590 = !{i64 578}
+!591 = !{i64 579}
+!592 = !{i64 580}
+!593 = !{i64 581}
+!594 = !{i64 582}
+!595 = !{i64 583}
+!596 = !{i64 584}
+!597 = !{i64 585}
+!598 = !{i64 586}
+!599 = !{i64 587}
+!600 = !{i64 588}
+!601 = !{i64 589}
+!602 = !{i64 590}
+!603 = !{i64 591}
+!604 = !{i64 592}
+!605 = !{i64 593}
+!606 = !{i64 594}
+!607 = !{i64 595}
+!608 = !{i64 596}
+!609 = !{i64 597}
+!610 = !{i64 598}
+!611 = !{i64 599}
+!612 = !{i64 600}
+!613 = !{i64 601}
+!614 = !{i64 602}
+!615 = !{i64 603}
+!616 = !{i64 604}
+!617 = !{i64 605}
+!618 = !{i64 606}
+!619 = !{i64 607}
+!620 = !{i64 608}
+!621 = !{i64 609}
+!622 = !{i64 610}
+!623 = !{i64 611}
+!624 = !{i64 612}
+!625 = !{i64 613}
+!626 = !{i64 614}
+!627 = !{i64 615}
+!628 = !{i64 616}
+!629 = !{i64 617}
+!630 = !{i64 618}
+!631 = !{i64 619}
+!632 = !{i64 620}
+!633 = !{i64 621}
+!634 = !{i64 622}
+!635 = !{i64 623}
+!636 = !{i64 624}
+!637 = !{i64 625}
+!638 = !{i64 626}
+!639 = distinct !{!639, !640}
+!640 = !{!"llvm.loop.name", !"TRIANGLES"}
+!641 = !{i64 627}
+!642 = !{i64 628}
+!643 = !{i64 629}
+!644 = !{i64 630}
+!645 = !{i64 631}
+!646 = !{i64 632}
+!647 = !{i64 633}
+!648 = !{i64 634}
+!649 = !{i64 635}
+!650 = !{i64 636}
+!651 = !{i64 637}
+!652 = !{i64 638}
+!653 = !{i64 639}
+!654 = !{i64 640}
+!655 = !{i64 641}
+!656 = !{i64 642}
+!657 = !{i64 643}
+!658 = !{i64 644}
+!659 = !{i64 645}

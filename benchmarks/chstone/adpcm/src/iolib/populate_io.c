@@ -12,9 +12,9 @@ void populateInput (int *inputVector, int numElts, const char *fileName)
     fclose(inputFile);
 }
 
-void populateOutput (int *outputVector, int numElts, const char *fileName)
+void populateOutput (int *outputVector, int numElts)
 {   
-    FILE* outputFile = fopen(fileName, "w");
+    FILE* outputFile = fopen("raw_output.txt", "w");
 
     int i;
     for (i = 0; i < numElts; i++)

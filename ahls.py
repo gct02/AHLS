@@ -1,4 +1,28 @@
-from preprocessing.preprocessor import PreProcessor
+import subprocess, argparse
+from pathlib import Path
+from os import environ
+from sys import argv
+
+from exceptions.ahls_exceptions import UpdateMDError, InstrumentationError
+from preprocessing.preprocessor import AHLSPreProcessor
+from core.passes import *
+from design_eval import ahls_error
+
+try:
+    AHLS_LLVM_LIB = environ['AHLS_LLVM_LIB']
+    OPT = environ['OPT']
+    CLANG = environ['CLANG']
+    LLVM_LINK = environ['LLVM_LINK']
+except KeyError as ahls_error:
+    print(f"Error: environment variable {ahls_error.args[0]} not defined.")
+    raise
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--input", help = "Input design file", required=True)
+    parser.add_argument("-p", "--populate", help = "Populate IO file", required=True)
+    parser.add_argument("-d", "--datastats", help = "Data stats file", required=False)
+    return parser.parse_args()
 
 if __name__ == "__main__":
     ...

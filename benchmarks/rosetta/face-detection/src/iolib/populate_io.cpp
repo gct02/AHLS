@@ -27,6 +27,7 @@ void populateOutput(
     unsigned char Data[IMAGE_HEIGHT][IMAGE_WIDTH])
 {
     FILE* ofile = fopen("output.txt", "w");
+    FILE* rawOutput = fopen("raw_output.txt", "w");
 
     if (ofile == NULL) {
         printf("Error: could not open output file\n");
@@ -47,8 +48,10 @@ void populateOutput(
     for( int i=0 ; i < result_size ; i++ ) {
         fprintf(ofile, "\n [Test Bench (main) ] detected rects: ");
         fprintf(ofile, "%d %d %d %d\n", result[i].x, result[i].y, result[i].width, result[i].height);
+        fprintf(rawOutput, "%d %d %d %d\n", result[i].x, result[i].y, result[i].width, result[i].height);
     }
     fclose(ofile);
+    fclose(rawOutput);
    
     printf("\n-- saving output image [Start] --\r\n"); 
 

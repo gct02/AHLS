@@ -39,14 +39,16 @@ void populateOutput(LabelType result[NUM_TEST], LabelType expected[NUM_TEST])
     int correct_cnt = 0;
 
     FILE* ofile = fopen("output.txt", "w");
-    if (!ofile)
+    FILE* rawOutput = fopen("raw_output.txt", "w");
+    if (!ofile || !rawOutput)
     {
-        printf("Failed to create output file!\n");
+        printf("Failed to create output files!\n");
         exit(-1);
     }
 
     for (int i = 0; i < NUM_TEST; i++)
-    {
+    {   
+        fprintf(rawOutput, "%d\n", result[i]);
         if (result[i] != expected[i])
             fprintf(ofile, "Test %d: expected = %d, result = %d\n", i, expected[i], result[i]);
         else
@@ -55,4 +57,5 @@ void populateOutput(LabelType result[NUM_TEST], LabelType expected[NUM_TEST])
 
     fprintf(ofile, "\n\t %d / %d correct!\n", correct_cnt, NUM_TEST);
     fclose(ofile);
+    fclose(rawOutput);
 }

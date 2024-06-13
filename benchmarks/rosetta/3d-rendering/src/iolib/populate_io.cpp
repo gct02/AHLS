@@ -21,6 +21,7 @@ void populateInput(const char* filename, Triangle_3D triangle_3ds[NUM_3D_TRI])
 void populateOutput(bit8 output[MAX_X][MAX_Y]) 
 {
     // Print result
+    FILE* rawOutput = fopen("raw_output.txt", "w");
     FILE* ofile = fopen("output.txt", "w");
     if (ofile == NULL) {
         printf("Failed to open input file!\n");
@@ -30,6 +31,7 @@ void populateOutput(bit8 output[MAX_X][MAX_Y])
     fprintf(ofile, "Image After Rendering: \n");
     for (int j = MAX_X - 1; j >= 0; j -- ) {
         for (int i = 0; i < MAX_Y; i ++ ) {
+            fprintf(rawOutput, "%d ", output[i][j]);
             int pix = output[i][j];
             if (pix)
                 fprintf(ofile, "1");
@@ -37,5 +39,8 @@ void populateOutput(bit8 output[MAX_X][MAX_Y])
                 fprintf(ofile, "0");
         }
         fprintf(ofile, "\n");
+        fprintf(rawOutput, "\n");
     }
+    fclose(ofile);
+    fclose(rawOutput);
 }

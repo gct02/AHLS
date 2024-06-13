@@ -1,4 +1,4 @@
-; ModuleID = 'llvm-link'
+; ModuleID = '<stdin>'
 source_filename = "llvm-link"
 target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
@@ -42,8 +42,14 @@ entry:
   ret i32 %sub14
 }
 
+; Function Attrs: argmemonly nounwind willreturn
+declare void @llvm.lifetime.start.p0i8(i64, i8* nocapture) #1
+
+; Function Attrs: argmemonly nounwind willreturn
+declare void @llvm.lifetime.end.p0i8(i64, i8* nocapture) #1
+
 ; Function Attrs: argmemonly norecurse nounwind willreturn
-define void @_Z18clockwise_verticesP11Triangle_2D(%struct.Triangle_2D* nocapture %triangle_2d) local_unnamed_addr #1 {
+define void @_Z18clockwise_verticesP11Triangle_2D(%struct.Triangle_2D* nocapture %triangle_2d) local_unnamed_addr #2 {
 entry:
   %x0 = getelementptr inbounds %struct.Triangle_2D, %struct.Triangle_2D* %triangle_2d, i64 0, i32 0
   %0 = load i8, i8* %x0, align 1
@@ -61,7 +67,7 @@ entry:
 }
 
 ; Function Attrs: argmemonly norecurse nounwind readonly willreturn
-define zeroext i1 @_Z17pixel_in_trianglehh11Triangle_2D(i8 zeroext %x, i8 zeroext %y, %struct.Triangle_2D* byval nocapture readonly align 1 %triangle_2d) local_unnamed_addr #2 {
+define zeroext i1 @_Z17pixel_in_trianglehh11Triangle_2D(i8 zeroext %x, i8 zeroext %y, %struct.Triangle_2D* byval nocapture readonly align 1 %triangle_2d) local_unnamed_addr #3 {
 entry:
   %conv = zext i8 %x to i32
   %x0 = getelementptr inbounds %struct.Triangle_2D, %struct.Triangle_2D* %triangle_2d, i64 0, i32 0
@@ -116,7 +122,7 @@ land.end:                                         ; preds = %land.rhs, %entry
 }
 
 ; Function Attrs: argmemonly norecurse nounwind readnone willreturn
-define zeroext i8 @_Z8find_minhhh(i8 zeroext %in0, i8 zeroext %in1, i8 zeroext %in2) local_unnamed_addr #3 {
+define zeroext i8 @_Z8find_minhhh(i8 zeroext %in0, i8 zeroext %in1, i8 zeroext %in2) local_unnamed_addr #4 {
 entry:
   %cmp4 = icmp ult i8 %in0, %in2
   %in0.in2 = select i1 %cmp4, i8 %in0, i8 %in2
@@ -126,7 +132,7 @@ entry:
 }
 
 ; Function Attrs: argmemonly norecurse nounwind readnone willreturn
-define zeroext i8 @_Z8find_maxhhh(i8 zeroext %in0, i8 zeroext %in1, i8 zeroext %in2) local_unnamed_addr #4 {
+define zeroext i8 @_Z8find_maxhhh(i8 zeroext %in0, i8 zeroext %in1, i8 zeroext %in2) local_unnamed_addr #5 {
 entry:
   %cmp4 = icmp ugt i8 %in0, %in2
   %in0.in2 = select i1 %cmp4, i8 %in0, i8 %in2
@@ -136,7 +142,7 @@ entry:
 }
 
 ; Function Attrs: argmemonly norecurse nounwind willreturn
-define void @_Z10projection11Triangle_3DP11Triangle_2Di(%struct.Triangle_3D* byval readonly align 1 %triangle_3d, %struct.Triangle_2D* %triangle_2d, i32 %angle) local_unnamed_addr #5 {
+define void @_Z10projection11Triangle_3DP11Triangle_2Di(%struct.Triangle_3D* byval readonly align 1 %triangle_3d, %struct.Triangle_2D* %triangle_2d, i32 %angle) local_unnamed_addr #6 {
 entry:
   switch i32 %angle, label %if.end69 [
     i32 0, label %if.then
@@ -249,7 +255,7 @@ if.then42:                                        ; preds = %entry
   %x262 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %triangle_3d, i64 0, i32 6
   br label %if.end69.sink.split
 
-if.end69.sink.split:                              ; preds = %if.then42, %if.then14, %if.then
+if.end69.sink.split:                              ; preds = %if.then, %if.then42, %if.then14
   %y234.sink = phi i8* [ %y234, %if.then14 ], [ %x262, %if.then42 ], [ %z2, %if.then ]
   %addconv1.sink = phi i8 [ %addconv1, %if.then14 ], [ %addconv, %if.then42 ], [ %addconv2, %if.then ]
   %30 = load i8, i8* %y234.sink, align 1
@@ -264,7 +270,7 @@ if.end69:                                         ; preds = %if.end69.sink.split
 }
 
 ; Function Attrs: argmemonly norecurse nounwind willreturn
-define zeroext i1 @_Z14rasterization111Triangle_2DPhPi(%struct.Triangle_2D* byval align 1 %triangle_2d, i8* nocapture %max_min, i32* nocapture %max_index) local_unnamed_addr #6 {
+define zeroext i1 @_Z14rasterization111Triangle_2DPhPi(%struct.Triangle_2D* byval align 1 %triangle_2d, i8* nocapture %max_min, i32* nocapture %max_index) local_unnamed_addr #7 {
 entry:
   %.elt = getelementptr inbounds %struct.Triangle_2D, %struct.Triangle_2D* %triangle_2d, i64 0, i32 0
   %.unpack = load i8, i8* %.elt, align 1
@@ -346,13 +352,13 @@ if.end5:                                          ; preds = %if.then4, %if.end
   store i32 %mul, i32* %max_index, align 4
   br label %return
 
-return:                                           ; preds = %if.end5, %entry
+return:                                           ; preds = %entry, %if.end5
   %retval.0 = phi i1 [ false, %if.end5 ], [ true, %entry ]
   ret i1 %retval.0
 }
 
 ; Function Attrs: argmemonly norecurse nounwind
-define i32 @_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel(i1 zeroext %flag, i8* nocapture readonly %max_min, i32* nocapture readonly %max_index, %struct.Triangle_2D* byval nocapture readonly align 1 %triangle_2d, %struct.CandidatePixel* nocapture %fragment) local_unnamed_addr #7 {
+define i32 @_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel(i1 zeroext %flag, i8* nocapture readonly %max_min, i32* nocapture readonly %max_index, %struct.Triangle_2D* byval nocapture readonly align 1 %triangle_2d, %struct.CandidatePixel* nocapture %fragment) local_unnamed_addr #8 {
 entry:
   br i1 %flag, label %return, label %if.end
 
@@ -392,7 +398,7 @@ for.body.lr.ph:                                   ; preds = %if.end
   %1 = load i8, i8* %.elt11, align 1
   br label %for.body
 
-for.body:                                         ; preds = %if.end23, %for.body.lr.ph
+for.body:                                         ; preds = %for.body.lr.ph, %if.end23
   %k.015 = phi i32 [ 0, %for.body.lr.ph ], [ %inc24, %if.end23 ]
   %i.014 = phi i32 [ 0, %for.body.lr.ph ], [ %i.1, %if.end23 ]
   %2 = load i8, i8* %max_min, align 1
@@ -439,7 +445,7 @@ if.then11:                                        ; preds = %for.body
   %inc = add i32 %i.014, 1
   br label %if.end23
 
-if.end23:                                         ; preds = %if.then11, %for.body
+if.end23:                                         ; preds = %for.body, %if.then11
   %i.1 = phi i32 [ %inc, %if.then11 ], [ %i.014, %for.body ]
   %inc24 = add nuw nsw i32 %k.015, 1
   %7 = load i32, i32* %max_index, align 4
@@ -452,7 +458,7 @@ return:                                           ; preds = %if.end23, %if.end, 
 }
 
 ; Function Attrs: norecurse nounwind
-define i32 @_Z8zcullingiP14CandidatePixeliP5Pixel(i32 %counter, %struct.CandidatePixel* nocapture readonly %fragments, i32 %size, %struct.Pixel* nocapture %pixels) local_unnamed_addr #8 {
+define i32 @_Z8zcullingiP14CandidatePixeliP5Pixel(i32 %counter, %struct.CandidatePixel* nocapture readonly %fragments, i32 %size, %struct.Pixel* nocapture %pixels) local_unnamed_addr #9 {
 entry:
   %cmp = icmp eq i32 %counter, 0
   br i1 %cmp, label %ZCULLING_INIT_ROW, label %if.end
@@ -510,15 +516,12 @@ if.then27:                                        ; preds = %for.body14
   store i8 %6, i8* %arrayidx58, align 1
   br label %for.inc60
 
-for.inc60:                                        ; preds = %if.then27, %for.body14
+for.inc60:                                        ; preds = %for.body14, %if.then27
   %pixel_cntr.1 = phi i32 [ %inc45, %if.then27 ], [ %pixel_cntr.02, %for.body14 ]
   %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
   %exitcond = icmp eq i64 %indvars.iv.next, %wide.trip.count
   br i1 %exitcond, label %for.cond.cleanup13, label %for.body14, !llvm.loop !6
 }
-
-; Function Attrs: argmemonly nounwind willreturn
-declare void @llvm.memset.p0i8.i64(i8* nocapture writeonly, i8, i64, i1) #9
 
 ; Function Attrs: argmemonly norecurse nounwind
 define void @_Z10coloringFBiiP5PixelPA256_h(i32 %counter, i32 %size_pixels, %struct.Pixel* nocapture readonly %pixels, [256 x i8]* nocapture "fpga.decayed.dim.hint"="256" %frame_buffer) local_unnamed_addr #10 {
@@ -560,20 +563,20 @@ for.body15:                                       ; preds = %for.body15, %for.bo
 }
 
 ; Function Attrs: nounwind
-define void @_Z9renderingP11Triangle_3DPA256_h(%struct.Triangle_3D* nocapture readonly "fpga.decayed.dim.hint"="3192" %triangle_3ds, [256 x i8]* nocapture "fpga.decayed.dim.hint"="256" %output) #11 !fpga.function.pragma !10 {
+define void @_Z9renderingP11Triangle_3DPA256_h(%struct.Triangle_3D* nocapture readonly "fpga.decayed.dim.hint"="3192" %triangle_3ds, [256 x i8]* nocapture "fpga.decayed.dim.hint"="256" %output) local_unnamed_addr #11 !fpga.function.pragma !10 {
 entry:
   %fragment = alloca [500 x %struct.CandidatePixel], align 1
   %pixels = alloca [500 x %struct.Pixel], align 1
   %0 = getelementptr inbounds [500 x %struct.CandidatePixel], [500 x %struct.CandidatePixel]* %fragment, i64 0, i64 0, i32 0
-  call void @llvm.lifetime.start.p0i8(i64 2000, i8* nonnull %0) #14
+  call void @llvm.lifetime.start.p0i8(i64 2000, i8* nonnull %0) #12
   %1 = getelementptr inbounds [500 x %struct.Pixel], [500 x %struct.Pixel]* %pixels, i64 0, i64 0, i32 0
-  call void @llvm.lifetime.start.p0i8(i64 1500, i8* nonnull %1) #14
+  call void @llvm.lifetime.start.p0i8(i64 1500, i8* nonnull %1) #12
   %frame_buffer9.i = getelementptr inbounds [256 x i8], [256 x i8]* %output, i64 0, i64 0
   br label %for.body
 
 for.cond.cleanup:                                 ; preds = %_Z10coloringFBiiP5PixelPA256_h.exit
-  call void @llvm.lifetime.end.p0i8(i64 1500, i8* nonnull %1) #14
-  call void @llvm.lifetime.end.p0i8(i64 2000, i8* nonnull %0) #14
+  call void @llvm.lifetime.end.p0i8(i64 1500, i8* nonnull %1) #12
+  call void @llvm.lifetime.end.p0i8(i64 2000, i8* nonnull %0) #12
   ret void
 
 for.body:                                         ; preds = %_Z10coloringFBiiP5PixelPA256_h.exit, %entry
@@ -707,13 +710,13 @@ if.end23.i:                                       ; preds = %if.then11.i, %for.b
   %cmp.i86 = icmp slt i32 %inc24.i, %mul.i
   br i1 %cmp.i86, label %for.body.i, label %_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel.exit, !llvm.loop !4
 
-_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel.exit: ; preds = %if.end23.i, %if.end.i103, %for.body
+_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel.exit: ; preds = %if.end23.i, %for.body, %if.end.i103
   %retval.0.i = phi i32 [ 0, %if.end.i103 ], [ 0, %for.body ], [ %i.1.i, %if.end23.i ]
   %cmp.i74 = icmp eq i64 %indvars.iv, 0
   br i1 %cmp.i74, label %ZCULLING_INIT_ROW.i, label %if.end.i
 
 ZCULLING_INIT_ROW.i:                              ; preds = %_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel.exit
-  tail call void @llvm.memset.p0i8.i64(i8* align 1 getelementptr inbounds ([256 x [256 x i8]], [256 x [256 x i8]]* @_ZZ8zcullingiP14CandidatePixeliP5PixelE8z_buffer, i64 0, i64 0, i64 0), i8 -1, i64 65536, i1 false) #14
+  tail call void @llvm.memset.p0i8.i64(i8* align 1 getelementptr inbounds ([256 x [256 x i8]], [256 x [256 x i8]]* @_ZZ8zcullingiP14CandidatePixeliP5PixelE8z_buffer, i64 0, i64 0, i64 0), i8 -1, i64 65536, i1 false) #12
   br label %if.end.i
 
 if.end.i:                                         ; preds = %ZCULLING_INIT_ROW.i, %_Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel.exit
@@ -765,7 +768,7 @@ _Z8zcullingiP14CandidatePixeliP5Pixel.exit:       ; preds = %for.inc60.i, %if.en
   br i1 %cmp.i74, label %COLORING_FB_INIT_ROW.i, label %COLORING_FB.i
 
 COLORING_FB_INIT_ROW.i:                           ; preds = %_Z8zcullingiP14CandidatePixeliP5Pixel.exit
-  tail call void @llvm.memset.p0i8.i64(i8* align 1 %frame_buffer9.i, i8 0, i64 65536, i1 false) #14
+  tail call void @llvm.memset.p0i8.i64(i8* align 1 %frame_buffer9.i, i8 0, i64 65536, i1 false) #12
   br label %COLORING_FB.i
 
 COLORING_FB.i:                                    ; preds = %COLORING_FB_INIT_ROW.i, %_Z8zcullingiP14CandidatePixeliP5Pixel.exit
@@ -799,56 +802,23 @@ _Z10coloringFBiiP5PixelPA256_h.exit:              ; preds = %for.body15.i, %COLO
 }
 
 ; Function Attrs: argmemonly nounwind willreturn
-declare void @llvm.lifetime.start.p0i8(i64, i8* nocapture) #9
-
-; Function Attrs: argmemonly nounwind willreturn
-declare void @llvm.lifetime.end.p0i8(i64, i8* nocapture) #9
-
-; Function Attrs: noinline norecurse optnone uwtable
-define i32 @main(i32 %argc, i8** %argv) #12 {
-entry:
-  %retval = alloca i32, align 4
-  %argc.addr = alloca i32, align 4
-  %argv.addr = alloca i8**, align 8
-  %triangle_3ds = alloca [3192 x %struct.Triangle_3D], align 16
-  %output = alloca [256 x [256 x i8]], align 16
-  store i32 0, i32* %retval, align 4
-  store i32 %argc, i32* %argc.addr, align 4
-  store i8** %argv, i8*** %argv.addr, align 8
-  %0 = load i8**, i8*** %argv.addr, align 8
-  %arrayidx = getelementptr inbounds i8*, i8** %0, i64 1
-  %1 = load i8*, i8** %arrayidx, align 8
-  %arraydecay = getelementptr inbounds [3192 x %struct.Triangle_3D], [3192 x %struct.Triangle_3D]* %triangle_3ds, i32 0, i32 0
-  call void @populateInput(i8* %1, %struct.Triangle_3D* %arraydecay)
-  %arraydecay1 = getelementptr inbounds [3192 x %struct.Triangle_3D], [3192 x %struct.Triangle_3D]* %triangle_3ds, i32 0, i32 0
-  %arraydecay2 = getelementptr inbounds [256 x [256 x i8]], [256 x [256 x i8]]* %output, i32 0, i32 0
-  call void @_Z9renderingP11Triangle_3DPA256_h(%struct.Triangle_3D* %arraydecay1, [256 x i8]* %arraydecay2)
-  %arraydecay3 = getelementptr inbounds [256 x [256 x i8]], [256 x [256 x i8]]* %output, i32 0, i32 0
-  call void @populateOutput([256 x i8]* %arraydecay3)
-  ret i32 0
-}
-
-declare void @populateInput(i8*, %struct.Triangle_3D*) #13
-
-declare void @populateOutput([256 x i8]*) #13
+declare void @llvm.memset.p0i8.i64(i8* nocapture writeonly, i8, i64, i1) #1
 
 attributes #0 = { argmemonly norecurse nounwind readonly willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="check_clockwise" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #1 = { argmemonly norecurse nounwind willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="clockwise_vertices" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #2 = { argmemonly norecurse nounwind readonly willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="pixel_in_triangle" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #3 = { argmemonly norecurse nounwind readnone willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="find_min" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #4 = { argmemonly norecurse nounwind readnone willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="find_max" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #5 = { argmemonly norecurse nounwind willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="projection" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #6 = { argmemonly norecurse nounwind willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="rasterization1" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #7 = { argmemonly norecurse nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="rasterization2" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #8 = { norecurse nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="zculling" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #9 = { argmemonly nounwind willreturn }
+attributes #1 = { argmemonly nounwind willreturn }
+attributes #2 = { argmemonly norecurse nounwind willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="clockwise_vertices" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #3 = { argmemonly norecurse nounwind readonly willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="pixel_in_triangle" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #4 = { argmemonly norecurse nounwind readnone willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="find_min" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #5 = { argmemonly norecurse nounwind readnone willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="find_max" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #6 = { argmemonly norecurse nounwind willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="projection" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #7 = { argmemonly norecurse nounwind willreturn "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="rasterization1" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #8 = { argmemonly norecurse nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="rasterization2" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #9 = { norecurse nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="zculling" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
 attributes #10 = { argmemonly norecurse nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="coloringFB" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
 attributes #11 = { nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "fpga.demangled.name"="rendering" "fpga.top.func"="rendering" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #12 = { noinline norecurse optnone uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #13 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #14 = { nounwind }
+attributes #12 = { nounwind }
 
-!llvm.ident = !{!0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0}
+!llvm.ident = !{!0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0, !0}
 !llvm.module.flags = !{!1, !2, !3}
 
 !0 = !{!"clang version 7.0.0 "}
