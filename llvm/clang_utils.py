@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 from os import environ
 
-from exceptions.ahls_exceptions import UpdateMDError, InstrumentationError
+from llvm.exceptions import ClangException
 
 try:
     CLANG = environ['CLANG']
@@ -18,4 +18,4 @@ def create_executable_from_llvm_ir(ir_path : Path, output_path : Path, include_l
     try:
         subprocess.check_output(compile_cmd, stderr=subprocess.STDOUT, shell=True)
     except subprocess.CalledProcessError as error:
-        raise InstrumentationError(ir_path.as_posix(), error.returncode, error.output)
+        raise ClangException(ir_path.as_posix(), error.returncode, error.output)

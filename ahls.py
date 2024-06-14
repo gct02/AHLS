@@ -3,10 +3,10 @@ from pathlib import Path
 from os import environ
 from sys import argv
 
-from exceptions.ahls_exceptions import UpdateMDError, InstrumentationError
 from preprocessing.preprocessor import AHLSPreProcessor
-from core.passes import *
-from design_eval import ahls_error
+from llvm.opt_utils import *
+from llvm.clang_utils import *
+from design_metrics.error_eval import *
 
 try:
     AHLS_LLVM_LIB = environ['AHLS_LLVM_LIB']
