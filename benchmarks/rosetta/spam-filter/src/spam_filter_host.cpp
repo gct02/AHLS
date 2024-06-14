@@ -30,11 +30,11 @@ int main(int argc, char *argv[])
 
   SgdLR(data_points, labels, param_vector);
 
-  populateOutput(param_vector, data_points, labels);
+  populateOutput(param_vector, data_points, labels, argv[3]);
 
-  delete []data_points;
-  delete []labels;
-  delete []param_vector;
+  delete[] data_points;
+  delete[] labels;
+  delete[] param_vector;
 
   return 0;
 }

@@ -72,36 +72,39 @@ for.end:                                          ; preds = %for.cond
   %16 = load float*, float** %param_vector, align 8
   %17 = load float*, float** %data_points, align 8
   %18 = load i8*, i8** %labels, align 8
-  call void @populateOutput(float* %16, float* %17, i8* %18)
-  %19 = load float*, float** %data_points, align 8
-  %isnull = icmp eq float* %19, null
+  %19 = load i8**, i8*** %argv.addr, align 8
+  %arrayidx5 = getelementptr inbounds i8*, i8** %19, i64 3
+  %20 = load i8*, i8** %arrayidx5, align 8
+  call void @populateOutput(float* %16, float* %17, i8* %18, i8* %20)
+  %21 = load float*, float** %data_points, align 8
+  %isnull = icmp eq float* %21, null
   br i1 %isnull, label %delete.end, label %delete.notnull
 
 delete.notnull:                                   ; preds = %for.end
-  %20 = bitcast float* %19 to i8*
-  call void @_ZdaPv(i8* %20) #7
+  %22 = bitcast float* %21 to i8*
+  call void @_ZdaPv(i8* %22) #7
   br label %delete.end
 
 delete.end:                                       ; preds = %delete.notnull, %for.end
-  %21 = load i8*, i8** %labels, align 8
-  %isnull5 = icmp eq i8* %21, null
-  br i1 %isnull5, label %delete.end7, label %delete.notnull6
+  %23 = load i8*, i8** %labels, align 8
+  %isnull6 = icmp eq i8* %23, null
+  br i1 %isnull6, label %delete.end8, label %delete.notnull7
 
-delete.notnull6:                                  ; preds = %delete.end
-  call void @_ZdaPv(i8* %21) #7
-  br label %delete.end7
-
-delete.end7:                                      ; preds = %delete.notnull6, %delete.end
-  %22 = load float*, float** %param_vector, align 8
-  %isnull8 = icmp eq float* %22, null
-  br i1 %isnull8, label %delete.end10, label %delete.notnull9
-
-delete.notnull9:                                  ; preds = %delete.end7
-  %23 = bitcast float* %22 to i8*
+delete.notnull7:                                  ; preds = %delete.end
   call void @_ZdaPv(i8* %23) #7
-  br label %delete.end10
+  br label %delete.end8
 
-delete.end10:                                     ; preds = %delete.notnull9, %delete.end7
+delete.end8:                                      ; preds = %delete.notnull7, %delete.end
+  %24 = load float*, float** %param_vector, align 8
+  %isnull9 = icmp eq float* %24, null
+  br i1 %isnull9, label %delete.end11, label %delete.notnull10
+
+delete.notnull10:                                 ; preds = %delete.end8
+  %25 = bitcast float* %24 to i8*
+  call void @_ZdaPv(i8* %25) #7
+  br label %delete.end11
+
+delete.end11:                                     ; preds = %delete.notnull10, %delete.end8
   ret i32 0
 }
 
@@ -115,7 +118,7 @@ declare void @populateInput(i8*, i8*, float*, i8*) #3
 
 declare void @_Z5SgdLRPfPhS_(float*, i8*, float*) #3
 
-declare void @populateOutput(float*, float*, i8*) #3
+declare void @populateOutput(float*, float*, i8*, i8*) #3
 
 ; Function Attrs: nobuiltin nounwind
 declare void @_ZdaPv(i8*) #4

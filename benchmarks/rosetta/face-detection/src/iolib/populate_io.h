@@ -14,7 +14,8 @@ void populateOutput(
     int result_y[RESULT_SIZE], 
     int result_w[RESULT_SIZE],  
     int result_h[RESULT_SIZE],
-    unsigned char Data[IMAGE_HEIGHT][IMAGE_WIDTH]);
+    unsigned char Data[IMAGE_HEIGHT][IMAGE_WIDTH],
+    const char* filename);
 
 #ifdef __cplusplus
 }

@@ -1,6 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "populate_io.h"
+
+char* removeExt(const char* filename) {
+    if (filename == NULL) return NULL;
+
+    char *retStr = (char*) malloc(strlen (filename) + 1);
+    if (retStr == NULL) return NULL;
+
+    char *lastExt;
+    
+    strcpy (retStr, filename);
+    lastExt = strrchr (retStr, '.');
+    if (lastExt != NULL)
+        *lastExt = '\0';
+
+    return retStr;
+}
 
 void populateInput(const char* filename, Triangle_3D triangle_3ds[NUM_3D_TRI]) 
 {
@@ -18,13 +35,30 @@ void populateInput(const char* filename, Triangle_3D triangle_3ds[NUM_3D_TRI])
     }
 }
 
-void populateOutput(bit8 output[MAX_X][MAX_Y]) 
+void populateOutput(bit8 output[MAX_X][MAX_Y], const char* filename)
 {
     // Print result
-    FILE* rawOutput = fopen("raw_output.txt", "w");
-    FILE* ofile = fopen("output.txt", "w");
+    FILE* ofile = fopen(filename, "w");
+
     if (ofile == NULL) {
-        printf("Failed to open input file!\n");
+        printf("Failed to open output file!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    char* filenameNoExt = removeExt(filename);
+    const char* ext = strrchr(filename, '.');
+
+    int filenameLen = strlen(filename);
+    char* rawFilename = (char*) malloc(filenameLen + 5);
+
+    strcpy(rawFilename, filenameNoExt);
+    strcat(rawFilename, "_raw");
+    strcat(rawFilename, ext);
+
+    FILE* rawOutput = fopen(rawFilename, "w");
+
+    if (rawOutput == NULL) {
+        printf("Failed to open output file!\n");
         exit(EXIT_FAILURE);
     }
 
@@ -41,6 +75,7 @@ void populateOutput(bit8 output[MAX_X][MAX_Y])
         fprintf(ofile, "\n");
         fprintf(rawOutput, "\n");
     }
+    
     fclose(ofile);
     fclose(rawOutput);
 }

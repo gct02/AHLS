@@ -14,7 +14,7 @@ except KeyError as error:
     raise
 
 def update_md(ir_path : Path):
-    output_path = ir_path.stem() + ".md.bc"
+    output_path = ir_path.parent / Path(ir_path.stem + ".md.bc")
 
     # Update operation metadata (include ID and signedness information)
     update_md_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -update-md < {ir_path} > {output_path}"
@@ -25,7 +25,7 @@ def update_md(ir_path : Path):
         raise UpdateMDError(ir_path.as_posix(), error.returncode, error.output)
     
 def instrument(ir_path : Path, data_stats_file_path : Path, populate_io_path : Path):
-    profiled_ir_path = ir_path.stem() + ".pf.bc"
+    profiled_ir_path = ir_path.parent / Path(Path(ir_path.stem).stem + ".pf.bc")
 
     # Insert calls to profile functions after each binary operation and a call 
     # to a function that writes the profile data to the file in data_stats_file_path
@@ -37,8 +37,8 @@ def instrument(ir_path : Path, data_stats_file_path : Path, populate_io_path : P
         raise InstrumentationError(ir_path.as_posix(), error.returncode, error.output)
 
     # Link the profiled IR with the profiler and the function that populates the input/output data
-    output_path = ir_path.stem() + "_instrumented.bc"
-    profiler_path = Path(__file__).parent / Path("opt_utils/profiler.bc")
+    output_path = ir_path.parent / Path(Path(ir_path.stem).stem + "_instrumented.bc")
+    profiler_path = Path(__file__).parent / Path("profiler/profiler.bc")
     link_cmd = f"{LLVM_LINK} {profiled_ir_path} {profiler_path} {populate_io_path} -o {output_path}"
 
     try:
@@ -46,8 +46,13 @@ def instrument(ir_path : Path, data_stats_file_path : Path, populate_io_path : P
     except subprocess.CalledProcessError as error:
         raise InstrumentationError(ir_path.as_posix(), error.returncode, error.output)
     
+def update_md_and_instrument(ir_path : Path, data_stats_file_path : Path, populate_io_path : Path):
+    update_md(ir_path)
+    ir_md_updated_path = ir_path.parent / Path(ir_path.stem + ".md.bc")
+    instrument(ir_md_updated_path, data_stats_file_path, populate_io_path)
+    
 def apply_v2c(ir_path : Path, op_to_prune : int, const : int | float):
-    output_path = ir_path.stem() + f"_v2c_{op_to_prune}_{const}.bc"
+    output_path = ir_path.parent / Path(ir_path.stem + f"_v2c_{op_to_prune}_{const}.bc")
     
     # Apply the v2c transformation to the IR
     v2c_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -v2c -opid {op_to_prune} -const {const} < {ir_path} > {output_path}"
@@ -55,6 +60,6 @@ def apply_v2c(ir_path : Path, op_to_prune : int, const : int | float):
     try:
         subprocess.check_output(v2c_cmd, stderr=subprocess.STDOUT, shell=True)
     except subprocess.CalledProcessError as error:
-        raise InstrumentationError(ir_path.as_posix(), error.returncode, error.output)
+        raise V2CError(ir_path.as_posix(), error.returncode, error.output)
 
 

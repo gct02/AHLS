@@ -36,7 +36,10 @@ entry:
   %arraydecay8 = getelementptr inbounds [100 x i32], [100 x i32]* %result_w, i32 0, i32 0
   %arraydecay9 = getelementptr inbounds [100 x i32], [100 x i32]* %result_h, i32 0, i32 0
   %arraydecay10 = getelementptr inbounds [240 x [320 x i8]], [240 x [320 x i8]]* %input_image, i32 0, i32 0
-  call void @populateOutput(i32 %2, i32* %arraydecay6, i32* %arraydecay7, i32* %arraydecay8, i32* %arraydecay9, [320 x i8]* %arraydecay10)
+  %3 = load i8**, i8*** %argv.addr, align 8
+  %arrayidx11 = getelementptr inbounds i8*, i8** %3, i64 2
+  %4 = load i8*, i8** %arrayidx11, align 8
+  call void @populateOutput(i32 %2, i32* %arraydecay6, i32* %arraydecay7, i32* %arraydecay8, i32* %arraydecay9, [320 x i8]* %arraydecay10, i8* %4)
   ret i32 0
 }
 
@@ -44,7 +47,7 @@ declare void @populateInput(i8*, [320 x i8]*) #1
 
 declare void @_Z11face_detectPA320_hPiS1_S1_S1_S1_([320 x i8]*, i32*, i32*, i32*, i32*, i32*) #1
 
-declare void @populateOutput(i32, i32*, i32*, i32*, i32*, [320 x i8]*) #1
+declare void @populateOutput(i32, i32*, i32*, i32*, i32*, [320 x i8]*, i8*) #1
 
 attributes #0 = { noinline norecurse optnone uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
 attributes #1 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }

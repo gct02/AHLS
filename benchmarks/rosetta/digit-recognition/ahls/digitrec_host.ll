@@ -41,7 +41,10 @@ entry:
   call void @_Z8DigitRecPKyS0_PKhPh(i64* %arraydecay7, i64* %arraydecay8, i8* %arraydecay9, i8* %arraydecay10)
   %arraydecay11 = getelementptr inbounds [2000 x i8], [2000 x i8]* %result, i32 0, i32 0
   %arraydecay12 = getelementptr inbounds [2000 x i8], [2000 x i8]* %test_labels, i32 0, i32 0
-  call void @populateOutput(i8* %arraydecay11, i8* %arraydecay12)
+  %8 = load i8**, i8*** %argv.addr, align 8
+  %arrayidx13 = getelementptr inbounds i8*, i8** %8, i64 5
+  %9 = load i8*, i8** %arrayidx13, align 8
+  call void @populateOutput(i8* %arraydecay11, i8* %arraydecay12, i8* %9)
   ret i32 0
 }
 
@@ -49,7 +52,7 @@ declare void @populateInput(i8*, i8*, i8*, i8*, i64*, i8*, i64*, i8*) #1
 
 declare void @_Z8DigitRecPKyS0_PKhPh(i64*, i64*, i8*, i8*) #1
 
-declare void @populateOutput(i8*, i8*) #1
+declare void @populateOutput(i8*, i8*, i8*) #1
 
 attributes #0 = { noinline norecurse optnone uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
 attributes #1 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }

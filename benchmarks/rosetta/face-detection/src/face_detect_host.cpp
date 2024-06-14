@@ -25,7 +25,7 @@ int main(int argc, char ** argv)
 
   populateInput(argv[1], input_image);
   face_detect(input_image, result_x, result_y, result_w, result_h, &res_size);
-  populateOutput(res_size, result_x, result_y, result_w, result_h, input_image);
+  populateOutput(res_size, result_x, result_y, result_w, result_h, input_image, argv[2]);
 
   return 0;
 }

@@ -21,7 +21,7 @@ int main(int argc, char ** argv)
 
   populateInput(argv[1], argv[2], argv[3], argv[4], training_samples, training_labels, testing_samples, test_labels);
   DigitRec(training_samples, testing_samples, training_labels, result);
-  populateOutput(result, test_labels);
+  populateOutput(result, test_labels, argv[5]);
 
   return 0;
 }

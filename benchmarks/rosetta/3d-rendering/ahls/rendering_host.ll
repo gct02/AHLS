@@ -25,7 +25,10 @@ entry:
   %arraydecay2 = getelementptr inbounds [256 x [256 x i8]], [256 x [256 x i8]]* %output, i32 0, i32 0
   call void @_Z9renderingP11Triangle_3DPA256_h(%struct.Triangle_3D* %arraydecay1, [256 x i8]* %arraydecay2)
   %arraydecay3 = getelementptr inbounds [256 x [256 x i8]], [256 x [256 x i8]]* %output, i32 0, i32 0
-  call void @populateOutput([256 x i8]* %arraydecay3)
+  %2 = load i8**, i8*** %argv.addr, align 8
+  %arrayidx4 = getelementptr inbounds i8*, i8** %2, i64 2
+  %3 = load i8*, i8** %arrayidx4, align 8
+  call void @populateOutput([256 x i8]* %arraydecay3, i8* %3)
   ret i32 0
 }
 
@@ -33,7 +36,7 @@ declare void @populateInput(i8*, %struct.Triangle_3D*) #1
 
 declare void @_Z9renderingP11Triangle_3DPA256_h(%struct.Triangle_3D*, [256 x i8]*) #1
 
-declare void @populateOutput([256 x i8]*) #1
+declare void @populateOutput([256 x i8]*, i8*) #1
 
 attributes #0 = { noinline norecurse optnone uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
 attributes #1 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }

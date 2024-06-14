@@ -8,7 +8,7 @@ extern "C" {
 #endif
 
 void populateInput(const char* str_points_filepath, const char* str_labels_filepath, DataType data_points[DATA_SET_SIZE], LabelType labels[NUM_SAMPLES]);
-void populateOutput(FeatureType* param_vector, DataType* data_points, LabelType* labels);
+void populateOutput(FeatureType* param_vector, DataType* data_points, LabelType* labels, const char* filename);
 
 #ifdef __cplusplus
 }

@@ -3,7 +3,6 @@ from pathlib import Path
 from os import environ
 from sys import argv
 
-from preprocessing.preprocessor import AHLSPreProcessor
 from llvm.opt_utils import *
 from llvm.clang_utils import *
 from design_metrics.error_eval import *
@@ -21,8 +20,15 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input", help = "Input design file", required=True)
     parser.add_argument("-p", "--populate", help = "Populate IO file", required=True)
+    parser.add_argument("-h", "--host", help = "Input design host file", required=False)
     parser.add_argument("-d", "--datastats", help = "Data stats file", required=False)
     return parser.parse_args()
 
 if __name__ == "__main__":
-    ...
+    # Test code
+    ir_path = Path(argv[1])
+
+    ir_dir = ir_path.parent
+    populate_io_path = ir_dir / Path("populate_io.ll")
+
+    update_md_and_instrument(ir_path, "data_stats.txt", populate_io_path)

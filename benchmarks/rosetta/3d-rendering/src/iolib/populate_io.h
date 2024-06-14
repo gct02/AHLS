@@ -8,7 +8,7 @@ extern "C" {
 #endif
 
 void populateInput(const char* filename, Triangle_3D triangle_3ds[NUM_3D_TRI]);
-void populateOutput(bit8 output[MAX_X][MAX_Y]);
+void populateOutput(bit8 output[MAX_X][MAX_Y], const char* filename);
 
 #ifdef __cplusplus
 }
