@@ -1,4 +1,4 @@
-; ModuleID = 'spam_filter_kernel_hls.ll'
+; ModuleID = '<stdin>'
 source_filename = "llvm-link"
 target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
@@ -199,7 +199,7 @@ for.end:                                          ; preds = %for.cond.cleanup
 }
 
 ; Function Attrs: nounwind
-define void @_Z5SgdLRPfPhS_(float* "fpga.decayed.dim.hint"="4608000" %data, i8* "fpga.decayed.dim.hint"="4500" %label, float* "fpga.decayed.dim.hint"="1024" %theta) #6 !fpga.function.pragma !10 {
+define void @_Z5SgdLRPfPhS_(float* "fpga.decayed.dim.hint"="81920" %data, i8* "fpga.decayed.dim.hint"="80" %label, float* "fpga.decayed.dim.hint"="1024" %theta) #6 !fpga.function.pragma !10 {
 entry:
   %data.addr = alloca float*, align 8
   %label.addr = alloca i8*, align 8
@@ -245,7 +245,7 @@ TRAINING_INST:                                    ; preds = %for.body
 
 for.cond1:                                        ; preds = %for.inc, %TRAINING_INST
   %5 = load i32, i32* %training_id, align 4
-  %cmp2 = icmp slt i32 %5, 4500
+  %cmp2 = icmp slt i32 %5, 80
   br i1 %cmp2, label %for.body4, label %for.cond.cleanup3
 
 for.cond.cleanup3:                                ; preds = %for.cond1

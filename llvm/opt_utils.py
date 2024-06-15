@@ -13,7 +13,7 @@ except KeyError as error:
     print(f"Error: environment variable {error.args[0]} not defined.")
     raise
 
-def update_md(ir_path : Path):
+def update_md(ir_path : Path) -> Path:
     output_path = ir_path.parent / Path(ir_path.stem + ".md.bc")
 
     # Update operation metadata (include ID and signedness information)
@@ -21,10 +21,11 @@ def update_md(ir_path : Path):
 
     try: 
         subprocess.check_output(update_md_cmd, stderr=subprocess.STDOUT, shell=True)
+        return output_path
     except subprocess.CalledProcessError as error:
         raise UpdateMDError(ir_path.as_posix(), error.returncode, error.output)
     
-def instrument(ir_path : Path, data_stats_file_path : Path, populate_io_path : Path):
+def instrument(ir_path : Path, data_stats_file_path : Path, populate_io_path : Path) -> Path:
     profiled_ir_path = ir_path.parent / Path(Path(ir_path.stem).stem + ".pf.bc")
 
     # Insert calls to profile functions after each binary operation and a call 
@@ -43,15 +44,15 @@ def instrument(ir_path : Path, data_stats_file_path : Path, populate_io_path : P
 
     try:
         subprocess.check_output(link_cmd, stderr=subprocess.STDOUT, shell=True)
+        return output_path
     except subprocess.CalledProcessError as error:
         raise InstrumentationError(ir_path.as_posix(), error.returncode, error.output)
     
-def update_md_and_instrument(ir_path : Path, data_stats_file_path : Path, populate_io_path : Path):
-    update_md(ir_path)
-    ir_md_updated_path = ir_path.parent / Path(ir_path.stem + ".md.bc")
-    instrument(ir_md_updated_path, data_stats_file_path, populate_io_path)
+def update_md_and_instrument(ir_path : Path, data_stats_file_path : Path, populate_io_path : Path) -> Path:
+    ir_md_updated_path = update_md(ir_path)
+    return instrument(ir_md_updated_path, data_stats_file_path, populate_io_path)
     
-def apply_v2c(ir_path : Path, op_to_prune : int, const : int | float):
+def apply_v2c(ir_path : Path, op_to_prune : int, const : int | float) -> Path:
     output_path = ir_path.parent / Path(ir_path.stem + f"_v2c_{op_to_prune}_{const}.bc")
     
     # Apply the v2c transformation to the IR
@@ -59,6 +60,7 @@ def apply_v2c(ir_path : Path, op_to_prune : int, const : int | float):
     
     try:
         subprocess.check_output(v2c_cmd, stderr=subprocess.STDOUT, shell=True)
+        return output_path
     except subprocess.CalledProcessError as error:
         raise V2CError(ir_path.as_posix(), error.returncode, error.output)
 

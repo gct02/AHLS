@@ -366,7 +366,7 @@ if.end:                                           ; preds = %entry
 
 for.cond:                                         ; preds = %for.inc, %if.end
   %3 = load i32, i32* %i, align 4
-  %cmp = icmp slt i32 %3, 5120000
+  %cmp = icmp slt i32 %3, 102400
   br i1 %cmp, label %for.body, label %for.end
 
 for.body:                                         ; preds = %for.cond
@@ -408,7 +408,7 @@ if.end8:                                          ; preds = %for.end
 
 for.cond10:                                       ; preds = %for.inc17, %if.end8
   %13 = load i32, i32* %i9, align 4
-  %cmp11 = icmp slt i32 %13, 5000
+  %cmp11 = icmp slt i32 %13, 100
   br i1 %cmp11, label %for.body12, label %for.end19
 
 for.body12:                                       ; preds = %for.cond10
@@ -567,7 +567,7 @@ for.end:                                          ; preds = %for.cond
   %labels21 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %training_set, i32 0, i32 1
   store i8* %23, i8** %labels21, align 8
   %num_data_points = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %training_set, i32 0, i32 3
-  store i64 4500, i64* %num_data_points, align 8
+  store i64 80, i64* %num_data_points, align 8
   %num_features = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %training_set, i32 0, i32 4
   store i64 1024, i64* %num_features, align 8
   %24 = load float*, float** %param_vector.addr, align 8
@@ -578,15 +578,15 @@ for.end:                                          ; preds = %for.cond
   call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 8 %25, i8* align 8 %26, i64 40, i1 false)
   %call22 = call double @_Z16computeErrorRate9DataSet_sRdS0_S0_(%struct.DataSet_s* byval align 8 %agg.tmp, double* dereferenceable(8) %training_tpr, double* dereferenceable(8) %training_fpr, double* dereferenceable(8) %training_error)
   %27 = load float*, float** %data_points.addr, align 8
-  %arrayidx23 = getelementptr inbounds float, float* %27, i64 4608000
+  %arrayidx23 = getelementptr inbounds float, float* %27, i64 81920
   %data_points24 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 0
   store float* %arrayidx23, float** %data_points24, align 8
   %28 = load i8*, i8** %labels.addr, align 8
-  %arrayidx25 = getelementptr inbounds i8, i8* %28, i64 4500
+  %arrayidx25 = getelementptr inbounds i8, i8* %28, i64 80
   %labels26 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 1
   store i8* %arrayidx25, i8** %labels26, align 8
   %num_data_points27 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 3
-  store i64 500, i64* %num_data_points27, align 8
+  store i64 10, i64* %num_data_points27, align 8
   %num_features28 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 4
   store i64 1024, i64* %num_features28, align 8
   %29 = load float*, float** %param_vector.addr, align 8

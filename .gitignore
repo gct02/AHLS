@@ -1,10 +1,12 @@
 __pycache__/
 *__pycache__/
 .vscode/
-venv/
+.venv/
 vitis_projects/
 *.log
 *.sh
 *.tcl
 config.txt
-
+benchmarks/*/*/scripts/
+benchmarks/*/*/original_dataset/
+benchmarks/*/*/downsampled_dataset/

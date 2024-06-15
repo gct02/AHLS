@@ -10,8 +10,8 @@
 #define __TYPEDEFS_H__
 
 // dataset information
-#define NUM_TRAINING 18000
-#define NUM_TEST 2000
+#define NUM_TRAINING 3000
+#define NUM_TEST 500
 #define NUM_CLASSES 10
 #define DIGIT_WIDTH 4
 

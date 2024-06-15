@@ -26,10 +26,10 @@ entry:
   store i8** %argv, i8*** %argv.addr, align 8
   %0 = load %struct._IO_FILE*, %struct._IO_FILE** @stdout, align 8
   call void @setbuf(%struct._IO_FILE* %0, i8* null) #12
-  %call = call i8* @_Znam(i64 20480000) #13
+  %call = call i8* @_Znam(i64 409600) #13
   %1 = bitcast i8* %call to float*
   store float* %1, float** %data_points, align 8
-  %call1 = call i8* @_Znam(i64 5000) #13
+  %call1 = call i8* @_Znam(i64 100) #13
   store i8* %call1, i8** %labels, align 8
   %call2 = call i8* @_Znam(i64 4096) #13
   %2 = bitcast i8* %call2 to float*
@@ -313,7 +313,7 @@ for.end:                                          ; preds = %for.cond.cleanup
 }
 
 ; Function Attrs: nounwind
-define void @_Z5SgdLRPfPhS_(float* "fpga.decayed.dim.hint"="4608000" %data, i8* "fpga.decayed.dim.hint"="4500" %label, float* "fpga.decayed.dim.hint"="1024" %theta) #11 !fpga.function.pragma !10 {
+define void @_Z5SgdLRPfPhS_(float* "fpga.decayed.dim.hint"="81920" %data, i8* "fpga.decayed.dim.hint"="80" %label, float* "fpga.decayed.dim.hint"="1024" %theta) #11 !fpga.function.pragma !10 {
 entry:
   %data.addr = alloca float*, align 8
   %label.addr = alloca i8*, align 8
@@ -359,7 +359,7 @@ TRAINING_INST:                                    ; preds = %for.body
 
 for.cond1:                                        ; preds = %for.inc, %TRAINING_INST
   %5 = load i32, i32* %training_id, align 4
-  %cmp2 = icmp slt i32 %5, 4500
+  %cmp2 = icmp slt i32 %5, 80
   br i1 %cmp2, label %for.body4, label %for.cond.cleanup3
 
 for.cond.cleanup3:                                ; preds = %for.cond1

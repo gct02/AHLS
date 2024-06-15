@@ -25,10 +25,10 @@ entry:
   store i8** %argv, i8*** %argv.addr, align 8
   %0 = load %struct._IO_FILE*, %struct._IO_FILE** @stdout, align 8
   call void @setbuf(%struct._IO_FILE* %0, i8* null) #5
-  %call = call i8* @_Znam(i64 20480000) #6
+  %call = call i8* @_Znam(i64 409600) #6
   %1 = bitcast i8* %call to float*
   store float* %1, float** %data_points, align 8
-  %call1 = call i8* @_Znam(i64 5000) #6
+  %call1 = call i8* @_Znam(i64 100) #6
   store i8* %call1, i8** %labels, align 8
   %call2 = call i8* @_Znam(i64 4096) #6
   %2 = bitcast i8* %call2 to float*

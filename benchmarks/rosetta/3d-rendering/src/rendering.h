@@ -11,6 +11,6 @@
 
 #include "typedefs.h"
 
-void rendering(Triangle_3D triangle_3ds[NUM_3D_TRI], bit8 output[MAX_X][MAX_Y]);
+void rendering(Triangle_3D* triangle_3ds, bit8 output[MAX_X][MAX_Y], int num_3d_tri);
 
 #endif

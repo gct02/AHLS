@@ -10,7 +10,7 @@ except KeyError as error:
     print(f"Error: environment variable {error.args[0]} not defined.")
     raise
 
-def create_executable_from_llvm_ir(ir_path : Path, output_path : Path, include_libraries : list=None):
+def create_executable_from_llvm_ir(ir_path : Path, output_path : Path, include_libraries : list=None) -> None:
     include_str = "" if include_libraries is None else " ".join([f"-I{lib}" for lib in include_libraries])
 
     compile_cmd = f"{CLANG} {include_str} -lm {ir_path} -o {output_path} -lstdc++"

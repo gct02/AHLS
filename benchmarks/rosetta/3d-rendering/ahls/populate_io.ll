@@ -11,15 +11,16 @@ target triple = "x86_64-unknown-linux-gnu"
 
 @.str = private unnamed_addr constant [2 x i8] c"r\00", align 1
 @.str.1 = private unnamed_addr constant [28 x i8] c"Failed to open input file!\0A\00", align 1
-@.str.2 = private unnamed_addr constant [46 x i8] c"%hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu\0A\00", align 1
-@.str.3 = private unnamed_addr constant [2 x i8] c"w\00", align 1
-@.str.4 = private unnamed_addr constant [29 x i8] c"Failed to open output file!\0A\00", align 1
-@.str.5 = private unnamed_addr constant [5 x i8] c"_raw\00", align 1
-@.str.6 = private unnamed_addr constant [25 x i8] c"Image After Rendering: \0A\00", align 1
-@.str.7 = private unnamed_addr constant [4 x i8] c"%d \00", align 1
-@.str.8 = private unnamed_addr constant [2 x i8] c"1\00", align 1
-@.str.9 = private unnamed_addr constant [2 x i8] c"0\00", align 1
-@.str.10 = private unnamed_addr constant [2 x i8] c"\0A\00", align 1
+@.str.2 = private unnamed_addr constant [45 x i8] c"Failed to allocate memory for triangle_3ds!\0A\00", align 1
+@.str.3 = private unnamed_addr constant [46 x i8] c"%hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu\0A\00", align 1
+@.str.4 = private unnamed_addr constant [2 x i8] c"w\00", align 1
+@.str.5 = private unnamed_addr constant [29 x i8] c"Failed to open output file!\0A\00", align 1
+@.str.6 = private unnamed_addr constant [5 x i8] c"_raw\00", align 1
+@.str.7 = private unnamed_addr constant [25 x i8] c"Image After Rendering: \0A\00", align 1
+@.str.8 = private unnamed_addr constant [4 x i8] c"%d \00", align 1
+@.str.9 = private unnamed_addr constant [2 x i8] c"1\00", align 1
+@.str.10 = private unnamed_addr constant [2 x i8] c"0\00", align 1
+@.str.11 = private unnamed_addr constant [2 x i8] c"\0A\00", align 1
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define i8* @_Z9removeExtPKc(i8* %filename) #0 {
@@ -90,14 +91,16 @@ declare i8* @strcpy(i8*, i8*) #1
 declare i8* @strrchr(i8*, i32) #2
 
 ; Function Attrs: noinline optnone uwtable
-define void @populateInput(i8* %filename, %struct.Triangle_3D* %triangle_3ds) #3 {
+define void @populateInput(i8* %filename, %struct.Triangle_3D** %triangle_3ds, i32 %num_3d_tri) #3 {
 entry:
   %filename.addr = alloca i8*, align 8
-  %triangle_3ds.addr = alloca %struct.Triangle_3D*, align 8
+  %triangle_3ds.addr = alloca %struct.Triangle_3D**, align 8
+  %num_3d_tri.addr = alloca i32, align 4
   %file = alloca %struct._IO_FILE*, align 8
   %i = alloca i32, align 4
   store i8* %filename, i8** %filename.addr, align 8
-  store %struct.Triangle_3D* %triangle_3ds, %struct.Triangle_3D** %triangle_3ds.addr, align 8
+  store %struct.Triangle_3D** %triangle_3ds, %struct.Triangle_3D*** %triangle_3ds.addr, align 8
+  store i32 %num_3d_tri, i32* %num_3d_tri.addr, align 4
   %0 = load i8*, i8** %filename.addr, align 8
   %call = call noalias %struct._IO_FILE* @fopen(i8* %0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i32 0, i32 0))
   store %struct._IO_FILE* %call, %struct._IO_FILE** %file, align 8
@@ -111,67 +114,95 @@ if.then:                                          ; preds = %entry
   unreachable
 
 if.end:                                           ; preds = %entry
+  %2 = load i32, i32* %num_3d_tri.addr, align 4
+  %conv = sext i32 %2 to i64
+  %mul = mul i64 %conv, 9
+  %call2 = call noalias i8* @malloc(i64 %mul) #7
+  %3 = bitcast i8* %call2 to %struct.Triangle_3D*
+  %4 = load %struct.Triangle_3D**, %struct.Triangle_3D*** %triangle_3ds.addr, align 8
+  store %struct.Triangle_3D* %3, %struct.Triangle_3D** %4, align 8
+  %5 = load %struct.Triangle_3D**, %struct.Triangle_3D*** %triangle_3ds.addr, align 8
+  %6 = load %struct.Triangle_3D*, %struct.Triangle_3D** %5, align 8
+  %cmp3 = icmp eq %struct.Triangle_3D* %6, null
+  br i1 %cmp3, label %if.then4, label %if.end6
+
+if.then4:                                         ; preds = %if.end
+  %call5 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([45 x i8], [45 x i8]* @.str.2, i32 0, i32 0))
+  call void @exit(i32 1) #8
+  unreachable
+
+if.end6:                                          ; preds = %if.end
   store i32 0, i32* %i, align 4
   br label %for.cond
 
-for.cond:                                         ; preds = %for.inc, %if.end
-  %2 = load i32, i32* %i, align 4
-  %cmp2 = icmp slt i32 %2, 3192
-  br i1 %cmp2, label %for.body, label %for.end
+for.cond:                                         ; preds = %for.inc, %if.end6
+  %7 = load i32, i32* %i, align 4
+  %8 = load i32, i32* %num_3d_tri.addr, align 4
+  %cmp7 = icmp slt i32 %7, %8
+  br i1 %cmp7, label %for.body, label %for.end
 
 for.body:                                         ; preds = %for.cond
-  %3 = load %struct._IO_FILE*, %struct._IO_FILE** %file, align 8
-  %4 = load %struct.Triangle_3D*, %struct.Triangle_3D** %triangle_3ds.addr, align 8
-  %5 = load i32, i32* %i, align 4
-  %idxprom = sext i32 %5 to i64
-  %arrayidx = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %4, i64 %idxprom
+  %9 = load %struct._IO_FILE*, %struct._IO_FILE** %file, align 8
+  %10 = load %struct.Triangle_3D**, %struct.Triangle_3D*** %triangle_3ds.addr, align 8
+  %11 = load %struct.Triangle_3D*, %struct.Triangle_3D** %10, align 8
+  %12 = load i32, i32* %i, align 4
+  %idxprom = sext i32 %12 to i64
+  %arrayidx = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %11, i64 %idxprom
   %x0 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx, i32 0, i32 0
-  %6 = load %struct.Triangle_3D*, %struct.Triangle_3D** %triangle_3ds.addr, align 8
-  %7 = load i32, i32* %i, align 4
-  %idxprom3 = sext i32 %7 to i64
-  %arrayidx4 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %6, i64 %idxprom3
-  %y0 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx4, i32 0, i32 1
-  %8 = load %struct.Triangle_3D*, %struct.Triangle_3D** %triangle_3ds.addr, align 8
-  %9 = load i32, i32* %i, align 4
-  %idxprom5 = sext i32 %9 to i64
-  %arrayidx6 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %8, i64 %idxprom5
-  %z0 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx6, i32 0, i32 2
-  %10 = load %struct.Triangle_3D*, %struct.Triangle_3D** %triangle_3ds.addr, align 8
-  %11 = load i32, i32* %i, align 4
-  %idxprom7 = sext i32 %11 to i64
-  %arrayidx8 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %10, i64 %idxprom7
-  %x1 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx8, i32 0, i32 3
-  %12 = load %struct.Triangle_3D*, %struct.Triangle_3D** %triangle_3ds.addr, align 8
-  %13 = load i32, i32* %i, align 4
-  %idxprom9 = sext i32 %13 to i64
-  %arrayidx10 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %12, i64 %idxprom9
-  %y1 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx10, i32 0, i32 4
-  %14 = load %struct.Triangle_3D*, %struct.Triangle_3D** %triangle_3ds.addr, align 8
+  %13 = load %struct.Triangle_3D**, %struct.Triangle_3D*** %triangle_3ds.addr, align 8
+  %14 = load %struct.Triangle_3D*, %struct.Triangle_3D** %13, align 8
   %15 = load i32, i32* %i, align 4
-  %idxprom11 = sext i32 %15 to i64
-  %arrayidx12 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %14, i64 %idxprom11
-  %z1 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx12, i32 0, i32 5
-  %16 = load %struct.Triangle_3D*, %struct.Triangle_3D** %triangle_3ds.addr, align 8
-  %17 = load i32, i32* %i, align 4
-  %idxprom13 = sext i32 %17 to i64
-  %arrayidx14 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %16, i64 %idxprom13
-  %x2 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx14, i32 0, i32 6
-  %18 = load %struct.Triangle_3D*, %struct.Triangle_3D** %triangle_3ds.addr, align 8
-  %19 = load i32, i32* %i, align 4
-  %idxprom15 = sext i32 %19 to i64
-  %arrayidx16 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %18, i64 %idxprom15
-  %y2 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx16, i32 0, i32 7
-  %20 = load %struct.Triangle_3D*, %struct.Triangle_3D** %triangle_3ds.addr, align 8
+  %idxprom8 = sext i32 %15 to i64
+  %arrayidx9 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %14, i64 %idxprom8
+  %y0 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx9, i32 0, i32 1
+  %16 = load %struct.Triangle_3D**, %struct.Triangle_3D*** %triangle_3ds.addr, align 8
+  %17 = load %struct.Triangle_3D*, %struct.Triangle_3D** %16, align 8
+  %18 = load i32, i32* %i, align 4
+  %idxprom10 = sext i32 %18 to i64
+  %arrayidx11 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %17, i64 %idxprom10
+  %z0 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx11, i32 0, i32 2
+  %19 = load %struct.Triangle_3D**, %struct.Triangle_3D*** %triangle_3ds.addr, align 8
+  %20 = load %struct.Triangle_3D*, %struct.Triangle_3D** %19, align 8
   %21 = load i32, i32* %i, align 4
-  %idxprom17 = sext i32 %21 to i64
-  %arrayidx18 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %20, i64 %idxprom17
-  %z2 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx18, i32 0, i32 8
-  %call19 = call i32 (%struct._IO_FILE*, i8*, ...) @__isoc99_fscanf(%struct._IO_FILE* %3, i8* getelementptr inbounds ([46 x i8], [46 x i8]* @.str.2, i32 0, i32 0), i8* %x0, i8* %y0, i8* %z0, i8* %x1, i8* %y1, i8* %z1, i8* %x2, i8* %y2, i8* %z2)
+  %idxprom12 = sext i32 %21 to i64
+  %arrayidx13 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %20, i64 %idxprom12
+  %x1 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx13, i32 0, i32 3
+  %22 = load %struct.Triangle_3D**, %struct.Triangle_3D*** %triangle_3ds.addr, align 8
+  %23 = load %struct.Triangle_3D*, %struct.Triangle_3D** %22, align 8
+  %24 = load i32, i32* %i, align 4
+  %idxprom14 = sext i32 %24 to i64
+  %arrayidx15 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %23, i64 %idxprom14
+  %y1 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx15, i32 0, i32 4
+  %25 = load %struct.Triangle_3D**, %struct.Triangle_3D*** %triangle_3ds.addr, align 8
+  %26 = load %struct.Triangle_3D*, %struct.Triangle_3D** %25, align 8
+  %27 = load i32, i32* %i, align 4
+  %idxprom16 = sext i32 %27 to i64
+  %arrayidx17 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %26, i64 %idxprom16
+  %z1 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx17, i32 0, i32 5
+  %28 = load %struct.Triangle_3D**, %struct.Triangle_3D*** %triangle_3ds.addr, align 8
+  %29 = load %struct.Triangle_3D*, %struct.Triangle_3D** %28, align 8
+  %30 = load i32, i32* %i, align 4
+  %idxprom18 = sext i32 %30 to i64
+  %arrayidx19 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %29, i64 %idxprom18
+  %x2 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx19, i32 0, i32 6
+  %31 = load %struct.Triangle_3D**, %struct.Triangle_3D*** %triangle_3ds.addr, align 8
+  %32 = load %struct.Triangle_3D*, %struct.Triangle_3D** %31, align 8
+  %33 = load i32, i32* %i, align 4
+  %idxprom20 = sext i32 %33 to i64
+  %arrayidx21 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %32, i64 %idxprom20
+  %y2 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx21, i32 0, i32 7
+  %34 = load %struct.Triangle_3D**, %struct.Triangle_3D*** %triangle_3ds.addr, align 8
+  %35 = load %struct.Triangle_3D*, %struct.Triangle_3D** %34, align 8
+  %36 = load i32, i32* %i, align 4
+  %idxprom22 = sext i32 %36 to i64
+  %arrayidx23 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %35, i64 %idxprom22
+  %z2 = getelementptr inbounds %struct.Triangle_3D, %struct.Triangle_3D* %arrayidx23, i32 0, i32 8
+  %call24 = call i32 (%struct._IO_FILE*, i8*, ...) @__isoc99_fscanf(%struct._IO_FILE* %9, i8* getelementptr inbounds ([46 x i8], [46 x i8]* @.str.3, i32 0, i32 0), i8* %x0, i8* %y0, i8* %z0, i8* %x1, i8* %y1, i8* %z1, i8* %x2, i8* %y2, i8* %z2)
   br label %for.inc
 
 for.inc:                                          ; preds = %for.body
-  %22 = load i32, i32* %i, align 4
-  %inc = add nsw i32 %22, 1
+  %37 = load i32, i32* %i, align 4
+  %inc = add nsw i32 %37, 1
   store i32 %inc, i32* %i, align 4
   br label %for.cond
 
@@ -205,14 +236,14 @@ entry:
   store [256 x i8]* %output, [256 x i8]** %output.addr, align 8
   store i8* %filename, i8** %filename.addr, align 8
   %0 = load i8*, i8** %filename.addr, align 8
-  %call = call noalias %struct._IO_FILE* @fopen(i8* %0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.3, i32 0, i32 0))
+  %call = call noalias %struct._IO_FILE* @fopen(i8* %0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.4, i32 0, i32 0))
   store %struct._IO_FILE* %call, %struct._IO_FILE** %ofile, align 8
   %1 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
   %cmp = icmp eq %struct._IO_FILE* %1, null
   br i1 %cmp, label %if.then, label %if.end
 
 if.then:                                          ; preds = %entry
-  %call1 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([29 x i8], [29 x i8]* @.str.4, i32 0, i32 0))
+  %call1 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([29 x i8], [29 x i8]* @.str.5, i32 0, i32 0))
   call void @exit(i32 1) #8
   unreachable
 
@@ -236,25 +267,25 @@ if.end:                                           ; preds = %entry
   %7 = load i8*, i8** %filenameNoExt, align 8
   %call7 = call i8* @strcpy(i8* %6, i8* %7) #7
   %8 = load i8*, i8** %rawFilename, align 8
-  %call8 = call i8* @strcat(i8* %8, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str.5, i32 0, i32 0)) #7
+  %call8 = call i8* @strcat(i8* %8, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str.6, i32 0, i32 0)) #7
   %9 = load i8*, i8** %rawFilename, align 8
   %10 = load i8*, i8** %ext, align 8
   %call9 = call i8* @strcat(i8* %9, i8* %10) #7
   %11 = load i8*, i8** %rawFilename, align 8
-  %call10 = call noalias %struct._IO_FILE* @fopen(i8* %11, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.3, i32 0, i32 0))
+  %call10 = call noalias %struct._IO_FILE* @fopen(i8* %11, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.4, i32 0, i32 0))
   store %struct._IO_FILE* %call10, %struct._IO_FILE** %rawOutput, align 8
   %12 = load %struct._IO_FILE*, %struct._IO_FILE** %rawOutput, align 8
   %cmp11 = icmp eq %struct._IO_FILE* %12, null
   br i1 %cmp11, label %if.then12, label %if.end14
 
 if.then12:                                        ; preds = %if.end
-  %call13 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([29 x i8], [29 x i8]* @.str.4, i32 0, i32 0))
+  %call13 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([29 x i8], [29 x i8]* @.str.5, i32 0, i32 0))
   call void @exit(i32 1) #8
   unreachable
 
 if.end14:                                         ; preds = %if.end
   %13 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %call15 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %13, i8* getelementptr inbounds ([25 x i8], [25 x i8]* @.str.6, i32 0, i32 0))
+  %call15 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %13, i8* getelementptr inbounds ([25 x i8], [25 x i8]* @.str.7, i32 0, i32 0))
   store i32 255, i32* %j, align 4
   br label %for.cond
 
@@ -283,7 +314,7 @@ for.body19:                                       ; preds = %for.cond17
   %arrayidx21 = getelementptr inbounds [256 x i8], [256 x i8]* %arrayidx, i64 0, i64 %idxprom20
   %20 = load i8, i8* %arrayidx21, align 1
   %conv22 = zext i8 %20 to i32
-  %call23 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %16, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str.7, i32 0, i32 0), i32 %conv22)
+  %call23 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %16, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str.8, i32 0, i32 0), i32 %conv22)
   %21 = load [256 x i8]*, [256 x i8]** %output.addr, align 8
   %22 = load i32, i32* %i, align 4
   %idxprom24 = sext i32 %22 to i64
@@ -300,12 +331,12 @@ for.body19:                                       ; preds = %for.cond17
 
 if.then29:                                        ; preds = %for.body19
   %26 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %call30 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %26, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.8, i32 0, i32 0))
+  %call30 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %26, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.9, i32 0, i32 0))
   br label %if.end32
 
 if.else:                                          ; preds = %for.body19
   %27 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %call31 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %27, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.9, i32 0, i32 0))
+  %call31 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %27, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.10, i32 0, i32 0))
   br label %if.end32
 
 if.end32:                                         ; preds = %if.else, %if.then29
@@ -319,9 +350,9 @@ for.inc:                                          ; preds = %if.end32
 
 for.end:                                          ; preds = %for.cond17
   %29 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %call33 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %29, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.10, i32 0, i32 0))
+  %call33 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %29, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.11, i32 0, i32 0))
   %30 = load %struct._IO_FILE*, %struct._IO_FILE** %rawOutput, align 8
-  %call34 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %30, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.10, i32 0, i32 0))
+  %call34 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %30, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.11, i32 0, i32 0))
   br label %for.inc35
 
 for.inc35:                                        ; preds = %for.end

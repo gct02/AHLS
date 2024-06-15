@@ -766,8 +766,7 @@ logsch (int ih, int nbh)
 }
 
 // Top-level function
-void
-adpcm_main (const int input_samples[SIZE], int compressed[SIZE/2], int result[SIZE])
+void adpcm_main (const int input_samples[SIZE], int compressed[SIZE/2], int result[SIZE])
 {
   int i, j;
 

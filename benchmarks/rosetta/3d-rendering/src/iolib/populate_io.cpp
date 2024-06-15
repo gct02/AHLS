@@ -19,7 +19,7 @@ char* removeExt(const char* filename) {
     return retStr;
 }
 
-void populateInput(const char* filename, Triangle_3D triangle_3ds[NUM_3D_TRI]) 
+void populateInput(const char* filename, Triangle_3D** triangle_3ds, int num_3d_tri) 
 {
     FILE* file = fopen(filename, "r");
     if (file == NULL) {
@@ -27,11 +27,17 @@ void populateInput(const char* filename, Triangle_3D triangle_3ds[NUM_3D_TRI])
         exit(EXIT_FAILURE);
     }
 
-    for (int i = 0; i < NUM_3D_TRI; i++) {
+    *triangle_3ds = (Triangle_3D*)malloc(num_3d_tri * sizeof(Triangle_3D));
+    if (*triangle_3ds == NULL) {
+        printf("Failed to allocate memory for triangle_3ds!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < num_3d_tri; i++) {
         fscanf(file, "%hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu\n", 
-               &triangle_3ds[i].x0, &triangle_3ds[i].y0, &triangle_3ds[i].z0, 
-               &triangle_3ds[i].x1, &triangle_3ds[i].y1, &triangle_3ds[i].z1, 
-               &triangle_3ds[i].x2, &triangle_3ds[i].y2, &triangle_3ds[i].z2);
+               &((*triangle_3ds)[i].x0), &((*triangle_3ds)[i].y0), &((*triangle_3ds)[i].z0), 
+               &((*triangle_3ds)[i].x1), &((*triangle_3ds)[i].y1), &((*triangle_3ds)[i].z1), 
+               &((*triangle_3ds)[i].x2), &((*triangle_3ds)[i].y2), &((*triangle_3ds)[i].z2));
     }
 }
 
