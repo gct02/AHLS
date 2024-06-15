@@ -53,7 +53,7 @@ def update_md_and_instrument(ir_path : Path, data_stats_file_path : Path, popula
     return instrument(ir_md_updated_path, data_stats_file_path, populate_io_path)
     
 def apply_v2c(ir_path : Path, op_to_prune : int, const : int | float) -> Path:
-    output_path = ir_path.parent / Path(ir_path.stem + f"_v2c_{op_to_prune}_{const}.bc")
+    output_path = ir_path.parent / Path("approx" + ir_path.stem + f"_v2c_{op_to_prune}_{const}.bc")
     
     # Apply the v2c transformation to the IR
     v2c_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -v2c -opid {op_to_prune} -const {const} < {ir_path} > {output_path}"
@@ -63,5 +63,17 @@ def apply_v2c(ir_path : Path, op_to_prune : int, const : int | float) -> Path:
         return output_path
     except subprocess.CalledProcessError as error:
         raise V2CError(ir_path.as_posix(), error.returncode, error.output)
+    
+def apply_act(ir_path : Path, act : str, *args) -> Path:
+    output_path = ir_path.parent / Path("approx" + ir_path.stem + f"_{act}_{'_'.join(args)}.bc")
+    
+    # Apply the ACT transformation to the IR
+    act_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -{act} {' '.join(args)} < {ir_path} > {output_path}"
+    
+    try:
+        subprocess.check_output(act_cmd, stderr=subprocess.STDOUT, shell=True)
+        return output_path
+    except subprocess.CalledProcessError as error:
+        raise ACTError(act, ir_path.as_posix(), error.returncode, error.output)
 
 

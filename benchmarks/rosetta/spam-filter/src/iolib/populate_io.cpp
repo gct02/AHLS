@@ -131,21 +131,29 @@ void populateOutput(FeatureType* param_vector, DataType* data_points, LabelType*
 
     int filenameLen = strlen(filename);
     char* rawFilename = (char*) malloc(filenameLen + 5);
+    char* rawMetricsFilename = (char*) malloc(filenameLen + 12);
 
     strcpy(rawFilename, filenameNoExt);
     strcat(rawFilename, "_raw");
     strcat(rawFilename, ext);
 
-    FILE* rawOutput = fopen(rawFilename, "w");
+    strcpy(rawMetricsFilename, filenameNoExt);
+    strcat(rawMetricsFilename, "_raw_metrics");
+    strcat(rawMetricsFilename, ext);
 
-    if (rawOutput == NULL) {
+    FILE* rawOutput = fopen(rawFilename, "w");
+    FILE* rawMetricsOutput = fopen(rawMetricsFilename, "w");
+
+    if (rawOutput == NULL || rawMetricsOutput == NULL) {
         printf("Failed to open output file!\n");
         exit(EXIT_FAILURE);
     }
 
     fprintf(ofile, "\nmain parameter vector: \n");
-    for(int i = 0; i < 30; i++)
+    for(int i = 0; i < 30; i++) {
       fprintf(ofile, "m[%d]: %f | ", i, param_vector[i]);
+      fprintf(rawMetricsOutput, "%f ", param_vector[i]);
+    }
 
     fprintf(ofile, "\n\n");
 

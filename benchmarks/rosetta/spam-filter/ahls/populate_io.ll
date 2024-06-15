@@ -17,16 +17,18 @@ target triple = "x86_64-unknown-linux-gnu"
 @.str.5 = private unnamed_addr constant [2 x i8] c"w\00", align 1
 @.str.6 = private unnamed_addr constant [29 x i8] c"Failed to open output file!\0A\00", align 1
 @.str.7 = private unnamed_addr constant [5 x i8] c"_raw\00", align 1
-@.str.8 = private unnamed_addr constant [26 x i8] c"\0Amain parameter vector: \0A\00", align 1
-@.str.9 = private unnamed_addr constant [13 x i8] c"m[%d]: %f | \00", align 1
-@.str.10 = private unnamed_addr constant [3 x i8] c"\0A\0A\00", align 1
-@.str.11 = private unnamed_addr constant [18 x i8] c"Training TPR: %f\0A\00", align 1
-@.str.12 = private unnamed_addr constant [18 x i8] c"Training FPR: %f\0A\00", align 1
-@.str.13 = private unnamed_addr constant [20 x i8] c"Training Error: %f\0A\00", align 1
-@.str.14 = private unnamed_addr constant [17 x i8] c"Testing TPR: %f\0A\00", align 1
-@.str.15 = private unnamed_addr constant [17 x i8] c"Testing FPR: %f\0A\00", align 1
-@.str.16 = private unnamed_addr constant [19 x i8] c"Testing Error: %f\0A\00", align 1
-@.str.17 = private unnamed_addr constant [19 x i8] c"%f %f %f %f %f %f\0A\00", align 1
+@.str.8 = private unnamed_addr constant [13 x i8] c"_raw_metrics\00", align 1
+@.str.9 = private unnamed_addr constant [26 x i8] c"\0Amain parameter vector: \0A\00", align 1
+@.str.10 = private unnamed_addr constant [13 x i8] c"m[%d]: %f | \00", align 1
+@.str.11 = private unnamed_addr constant [4 x i8] c"%f \00", align 1
+@.str.12 = private unnamed_addr constant [3 x i8] c"\0A\0A\00", align 1
+@.str.13 = private unnamed_addr constant [18 x i8] c"Training TPR: %f\0A\00", align 1
+@.str.14 = private unnamed_addr constant [18 x i8] c"Training FPR: %f\0A\00", align 1
+@.str.15 = private unnamed_addr constant [20 x i8] c"Training Error: %f\0A\00", align 1
+@.str.16 = private unnamed_addr constant [17 x i8] c"Testing TPR: %f\0A\00", align 1
+@.str.17 = private unnamed_addr constant [17 x i8] c"Testing FPR: %f\0A\00", align 1
+@.str.18 = private unnamed_addr constant [19 x i8] c"Testing Error: %f\0A\00", align 1
+@.str.19 = private unnamed_addr constant [19 x i8] c"%f %f %f %f %f %f\0A\00", align 1
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define i8* @_Z9removeExtPKc(i8* %filename) #0 {
@@ -458,7 +460,9 @@ entry:
   %ext = alloca i8*, align 8
   %filenameLen = alloca i32, align 4
   %rawFilename = alloca i8*, align 8
+  %rawMetricsFilename = alloca i8*, align 8
   %rawOutput = alloca %struct._IO_FILE*, align 8
+  %rawMetricsOutput = alloca %struct._IO_FILE*, align 8
   %i = alloca i32, align 4
   %training_tpr = alloca double, align 8
   %training_fpr = alloca double, align 8
@@ -469,7 +473,7 @@ entry:
   %training_set = alloca %struct.DataSet_s, align 8
   %agg.tmp = alloca %struct.DataSet_s, align 8
   %testing_set = alloca %struct.DataSet_s, align 8
-  %agg.tmp30 = alloca %struct.DataSet_s, align 8
+  %agg.tmp42 = alloca %struct.DataSet_s, align 8
   store float* %param_vector, float** %param_vector.addr, align 8
   store float* %data_points, float** %data_points.addr, align 8
   store i8* %labels, i8** %labels.addr, align 8
@@ -502,148 +506,177 @@ if.end:                                           ; preds = %entry
   %conv5 = sext i32 %add to i64
   %call6 = call noalias i8* @malloc(i64 %conv5) #8
   store i8* %call6, i8** %rawFilename, align 8
-  %6 = load i8*, i8** %rawFilename, align 8
-  %7 = load i8*, i8** %filenameNoExt, align 8
-  %call7 = call i8* @strcpy(i8* %6, i8* %7) #8
-  %8 = load i8*, i8** %rawFilename, align 8
-  %call8 = call i8* @strcat(i8* %8, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str.7, i32 0, i32 0)) #8
+  %6 = load i32, i32* %filenameLen, align 4
+  %add7 = add nsw i32 %6, 12
+  %conv8 = sext i32 %add7 to i64
+  %call9 = call noalias i8* @malloc(i64 %conv8) #8
+  store i8* %call9, i8** %rawMetricsFilename, align 8
+  %7 = load i8*, i8** %rawFilename, align 8
+  %8 = load i8*, i8** %filenameNoExt, align 8
+  %call10 = call i8* @strcpy(i8* %7, i8* %8) #8
   %9 = load i8*, i8** %rawFilename, align 8
-  %10 = load i8*, i8** %ext, align 8
-  %call9 = call i8* @strcat(i8* %9, i8* %10) #8
-  %11 = load i8*, i8** %rawFilename, align 8
-  %call10 = call noalias %struct._IO_FILE* @fopen(i8* %11, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.5, i32 0, i32 0))
-  store %struct._IO_FILE* %call10, %struct._IO_FILE** %rawOutput, align 8
-  %12 = load %struct._IO_FILE*, %struct._IO_FILE** %rawOutput, align 8
-  %cmp11 = icmp eq %struct._IO_FILE* %12, null
-  br i1 %cmp11, label %if.then12, label %if.end14
+  %call11 = call i8* @strcat(i8* %9, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str.7, i32 0, i32 0)) #8
+  %10 = load i8*, i8** %rawFilename, align 8
+  %11 = load i8*, i8** %ext, align 8
+  %call12 = call i8* @strcat(i8* %10, i8* %11) #8
+  %12 = load i8*, i8** %rawMetricsFilename, align 8
+  %13 = load i8*, i8** %filenameNoExt, align 8
+  %call13 = call i8* @strcpy(i8* %12, i8* %13) #8
+  %14 = load i8*, i8** %rawMetricsFilename, align 8
+  %call14 = call i8* @strcat(i8* %14, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @.str.8, i32 0, i32 0)) #8
+  %15 = load i8*, i8** %rawMetricsFilename, align 8
+  %16 = load i8*, i8** %ext, align 8
+  %call15 = call i8* @strcat(i8* %15, i8* %16) #8
+  %17 = load i8*, i8** %rawFilename, align 8
+  %call16 = call noalias %struct._IO_FILE* @fopen(i8* %17, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.5, i32 0, i32 0))
+  store %struct._IO_FILE* %call16, %struct._IO_FILE** %rawOutput, align 8
+  %18 = load i8*, i8** %rawMetricsFilename, align 8
+  %call17 = call noalias %struct._IO_FILE* @fopen(i8* %18, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.5, i32 0, i32 0))
+  store %struct._IO_FILE* %call17, %struct._IO_FILE** %rawMetricsOutput, align 8
+  %19 = load %struct._IO_FILE*, %struct._IO_FILE** %rawOutput, align 8
+  %cmp18 = icmp eq %struct._IO_FILE* %19, null
+  br i1 %cmp18, label %if.then20, label %lor.lhs.false
 
-if.then12:                                        ; preds = %if.end
-  %call13 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([29 x i8], [29 x i8]* @.str.6, i32 0, i32 0))
+lor.lhs.false:                                    ; preds = %if.end
+  %20 = load %struct._IO_FILE*, %struct._IO_FILE** %rawMetricsOutput, align 8
+  %cmp19 = icmp eq %struct._IO_FILE* %20, null
+  br i1 %cmp19, label %if.then20, label %if.end22
+
+if.then20:                                        ; preds = %lor.lhs.false, %if.end
+  %call21 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([29 x i8], [29 x i8]* @.str.6, i32 0, i32 0))
   call void @exit(i32 1) #9
   unreachable
 
-if.end14:                                         ; preds = %if.end
-  %13 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %call15 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %13, i8* getelementptr inbounds ([26 x i8], [26 x i8]* @.str.8, i32 0, i32 0))
+if.end22:                                         ; preds = %lor.lhs.false
+  %21 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
+  %call23 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %21, i8* getelementptr inbounds ([26 x i8], [26 x i8]* @.str.9, i32 0, i32 0))
   store i32 0, i32* %i, align 4
   br label %for.cond
 
-for.cond:                                         ; preds = %for.inc, %if.end14
-  %14 = load i32, i32* %i, align 4
-  %cmp16 = icmp slt i32 %14, 30
-  br i1 %cmp16, label %for.body, label %for.end
+for.cond:                                         ; preds = %for.inc, %if.end22
+  %22 = load i32, i32* %i, align 4
+  %cmp24 = icmp slt i32 %22, 30
+  br i1 %cmp24, label %for.body, label %for.end
 
 for.body:                                         ; preds = %for.cond
-  %15 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %16 = load i32, i32* %i, align 4
-  %17 = load float*, float** %param_vector.addr, align 8
-  %18 = load i32, i32* %i, align 4
-  %idxprom = sext i32 %18 to i64
-  %arrayidx = getelementptr inbounds float, float* %17, i64 %idxprom
-  %19 = load float, float* %arrayidx, align 4
-  %conv17 = fpext float %19 to double
-  %call18 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %15, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @.str.9, i32 0, i32 0), i32 %16, double %conv17)
+  %23 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
+  %24 = load i32, i32* %i, align 4
+  %25 = load float*, float** %param_vector.addr, align 8
+  %26 = load i32, i32* %i, align 4
+  %idxprom = sext i32 %26 to i64
+  %arrayidx = getelementptr inbounds float, float* %25, i64 %idxprom
+  %27 = load float, float* %arrayidx, align 4
+  %conv25 = fpext float %27 to double
+  %call26 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %23, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @.str.10, i32 0, i32 0), i32 %24, double %conv25)
+  %28 = load %struct._IO_FILE*, %struct._IO_FILE** %rawMetricsOutput, align 8
+  %29 = load float*, float** %param_vector.addr, align 8
+  %30 = load i32, i32* %i, align 4
+  %idxprom27 = sext i32 %30 to i64
+  %arrayidx28 = getelementptr inbounds float, float* %29, i64 %idxprom27
+  %31 = load float, float* %arrayidx28, align 4
+  %conv29 = fpext float %31 to double
+  %call30 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %28, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str.11, i32 0, i32 0), double %conv29)
   br label %for.inc
 
 for.inc:                                          ; preds = %for.body
-  %20 = load i32, i32* %i, align 4
-  %inc = add nsw i32 %20, 1
+  %32 = load i32, i32* %i, align 4
+  %inc = add nsw i32 %32, 1
   store i32 %inc, i32* %i, align 4
   br label %for.cond
 
 for.end:                                          ; preds = %for.cond
-  %21 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %call19 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %21, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.10, i32 0, i32 0))
+  %33 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
+  %call31 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %33, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.12, i32 0, i32 0))
   store double 0.000000e+00, double* %training_tpr, align 8
   store double 0.000000e+00, double* %training_fpr, align 8
   store double 0.000000e+00, double* %training_error, align 8
   store double 0.000000e+00, double* %testing_tpr, align 8
   store double 0.000000e+00, double* %testing_fpr, align 8
   store double 0.000000e+00, double* %testing_error, align 8
-  %22 = load float*, float** %data_points.addr, align 8
-  %data_points20 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %training_set, i32 0, i32 0
-  store float* %22, float** %data_points20, align 8
-  %23 = load i8*, i8** %labels.addr, align 8
-  %labels21 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %training_set, i32 0, i32 1
-  store i8* %23, i8** %labels21, align 8
+  %34 = load float*, float** %data_points.addr, align 8
+  %data_points32 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %training_set, i32 0, i32 0
+  store float* %34, float** %data_points32, align 8
+  %35 = load i8*, i8** %labels.addr, align 8
+  %labels33 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %training_set, i32 0, i32 1
+  store i8* %35, i8** %labels33, align 8
   %num_data_points = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %training_set, i32 0, i32 3
   store i64 80, i64* %num_data_points, align 8
   %num_features = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %training_set, i32 0, i32 4
   store i64 1024, i64* %num_features, align 8
-  %24 = load float*, float** %param_vector.addr, align 8
+  %36 = load float*, float** %param_vector.addr, align 8
   %parameter_vector = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %training_set, i32 0, i32 2
-  store float* %24, float** %parameter_vector, align 8
-  %25 = bitcast %struct.DataSet_s* %agg.tmp to i8*
-  %26 = bitcast %struct.DataSet_s* %training_set to i8*
-  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 8 %25, i8* align 8 %26, i64 40, i1 false)
-  %call22 = call double @_Z16computeErrorRate9DataSet_sRdS0_S0_(%struct.DataSet_s* byval align 8 %agg.tmp, double* dereferenceable(8) %training_tpr, double* dereferenceable(8) %training_fpr, double* dereferenceable(8) %training_error)
-  %27 = load float*, float** %data_points.addr, align 8
-  %arrayidx23 = getelementptr inbounds float, float* %27, i64 81920
-  %data_points24 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 0
-  store float* %arrayidx23, float** %data_points24, align 8
-  %28 = load i8*, i8** %labels.addr, align 8
-  %arrayidx25 = getelementptr inbounds i8, i8* %28, i64 80
-  %labels26 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 1
-  store i8* %arrayidx25, i8** %labels26, align 8
-  %num_data_points27 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 3
-  store i64 10, i64* %num_data_points27, align 8
-  %num_features28 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 4
-  store i64 1024, i64* %num_features28, align 8
-  %29 = load float*, float** %param_vector.addr, align 8
-  %parameter_vector29 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 2
-  store float* %29, float** %parameter_vector29, align 8
-  %30 = bitcast %struct.DataSet_s* %agg.tmp30 to i8*
-  %31 = bitcast %struct.DataSet_s* %testing_set to i8*
-  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 8 %30, i8* align 8 %31, i64 40, i1 false)
-  %call31 = call double @_Z16computeErrorRate9DataSet_sRdS0_S0_(%struct.DataSet_s* byval align 8 %agg.tmp30, double* dereferenceable(8) %testing_tpr, double* dereferenceable(8) %testing_fpr, double* dereferenceable(8) %testing_error)
-  %32 = load double, double* %training_tpr, align 8
-  %mul = fmul double %32, 1.000000e+02
+  store float* %36, float** %parameter_vector, align 8
+  %37 = bitcast %struct.DataSet_s* %agg.tmp to i8*
+  %38 = bitcast %struct.DataSet_s* %training_set to i8*
+  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 8 %37, i8* align 8 %38, i64 40, i1 false)
+  %call34 = call double @_Z16computeErrorRate9DataSet_sRdS0_S0_(%struct.DataSet_s* byval align 8 %agg.tmp, double* dereferenceable(8) %training_tpr, double* dereferenceable(8) %training_fpr, double* dereferenceable(8) %training_error)
+  %39 = load float*, float** %data_points.addr, align 8
+  %arrayidx35 = getelementptr inbounds float, float* %39, i64 81920
+  %data_points36 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 0
+  store float* %arrayidx35, float** %data_points36, align 8
+  %40 = load i8*, i8** %labels.addr, align 8
+  %arrayidx37 = getelementptr inbounds i8, i8* %40, i64 80
+  %labels38 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 1
+  store i8* %arrayidx37, i8** %labels38, align 8
+  %num_data_points39 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 3
+  store i64 10, i64* %num_data_points39, align 8
+  %num_features40 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 4
+  store i64 1024, i64* %num_features40, align 8
+  %41 = load float*, float** %param_vector.addr, align 8
+  %parameter_vector41 = getelementptr inbounds %struct.DataSet_s, %struct.DataSet_s* %testing_set, i32 0, i32 2
+  store float* %41, float** %parameter_vector41, align 8
+  %42 = bitcast %struct.DataSet_s* %agg.tmp42 to i8*
+  %43 = bitcast %struct.DataSet_s* %testing_set to i8*
+  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 8 %42, i8* align 8 %43, i64 40, i1 false)
+  %call43 = call double @_Z16computeErrorRate9DataSet_sRdS0_S0_(%struct.DataSet_s* byval align 8 %agg.tmp42, double* dereferenceable(8) %testing_tpr, double* dereferenceable(8) %testing_fpr, double* dereferenceable(8) %testing_error)
+  %44 = load double, double* %training_tpr, align 8
+  %mul = fmul double %44, 1.000000e+02
   store double %mul, double* %training_tpr, align 8
-  %33 = load double, double* %training_fpr, align 8
-  %mul32 = fmul double %33, 1.000000e+02
-  store double %mul32, double* %training_fpr, align 8
-  %34 = load double, double* %training_error, align 8
-  %mul33 = fmul double %34, 1.000000e+02
-  store double %mul33, double* %training_error, align 8
-  %35 = load double, double* %testing_tpr, align 8
-  %mul34 = fmul double %35, 1.000000e+02
-  store double %mul34, double* %testing_tpr, align 8
-  %36 = load double, double* %testing_fpr, align 8
-  %mul35 = fmul double %36, 1.000000e+02
-  store double %mul35, double* %testing_fpr, align 8
-  %37 = load double, double* %testing_error, align 8
-  %mul36 = fmul double %37, 1.000000e+02
-  store double %mul36, double* %testing_error, align 8
-  %38 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %39 = load double, double* %training_tpr, align 8
-  %call37 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %38, i8* getelementptr inbounds ([18 x i8], [18 x i8]* @.str.11, i32 0, i32 0), double %39)
-  %40 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %41 = load double, double* %training_fpr, align 8
-  %call38 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %40, i8* getelementptr inbounds ([18 x i8], [18 x i8]* @.str.12, i32 0, i32 0), double %41)
-  %42 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %43 = load double, double* %training_error, align 8
-  %call39 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %42, i8* getelementptr inbounds ([20 x i8], [20 x i8]* @.str.13, i32 0, i32 0), double %43)
-  %44 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %45 = load double, double* %testing_tpr, align 8
-  %call40 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %44, i8* getelementptr inbounds ([17 x i8], [17 x i8]* @.str.14, i32 0, i32 0), double %45)
-  %46 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %47 = load double, double* %testing_fpr, align 8
-  %call41 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %46, i8* getelementptr inbounds ([17 x i8], [17 x i8]* @.str.15, i32 0, i32 0), double %47)
-  %48 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
+  %45 = load double, double* %training_fpr, align 8
+  %mul44 = fmul double %45, 1.000000e+02
+  store double %mul44, double* %training_fpr, align 8
+  %46 = load double, double* %training_error, align 8
+  %mul45 = fmul double %46, 1.000000e+02
+  store double %mul45, double* %training_error, align 8
+  %47 = load double, double* %testing_tpr, align 8
+  %mul46 = fmul double %47, 1.000000e+02
+  store double %mul46, double* %testing_tpr, align 8
+  %48 = load double, double* %testing_fpr, align 8
+  %mul47 = fmul double %48, 1.000000e+02
+  store double %mul47, double* %testing_fpr, align 8
   %49 = load double, double* %testing_error, align 8
-  %call42 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %48, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.16, i32 0, i32 0), double %49)
+  %mul48 = fmul double %49, 1.000000e+02
+  store double %mul48, double* %testing_error, align 8
   %50 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
-  %call43 = call i32 @fclose(%struct._IO_FILE* %50)
-  %51 = load %struct._IO_FILE*, %struct._IO_FILE** %rawOutput, align 8
-  %52 = load double, double* %training_tpr, align 8
+  %51 = load double, double* %training_tpr, align 8
+  %call49 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %50, i8* getelementptr inbounds ([18 x i8], [18 x i8]* @.str.13, i32 0, i32 0), double %51)
+  %52 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
   %53 = load double, double* %training_fpr, align 8
-  %54 = load double, double* %training_error, align 8
-  %55 = load double, double* %testing_tpr, align 8
-  %56 = load double, double* %testing_fpr, align 8
-  %57 = load double, double* %testing_error, align 8
-  %call44 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %51, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.17, i32 0, i32 0), double %52, double %53, double %54, double %55, double %56, double %57)
-  %58 = load %struct._IO_FILE*, %struct._IO_FILE** %rawOutput, align 8
-  %call45 = call i32 @fclose(%struct._IO_FILE* %58)
+  %call50 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %52, i8* getelementptr inbounds ([18 x i8], [18 x i8]* @.str.14, i32 0, i32 0), double %53)
+  %54 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
+  %55 = load double, double* %training_error, align 8
+  %call51 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %54, i8* getelementptr inbounds ([20 x i8], [20 x i8]* @.str.15, i32 0, i32 0), double %55)
+  %56 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
+  %57 = load double, double* %testing_tpr, align 8
+  %call52 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %56, i8* getelementptr inbounds ([17 x i8], [17 x i8]* @.str.16, i32 0, i32 0), double %57)
+  %58 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
+  %59 = load double, double* %testing_fpr, align 8
+  %call53 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %58, i8* getelementptr inbounds ([17 x i8], [17 x i8]* @.str.17, i32 0, i32 0), double %59)
+  %60 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
+  %61 = load double, double* %testing_error, align 8
+  %call54 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %60, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.18, i32 0, i32 0), double %61)
+  %62 = load %struct._IO_FILE*, %struct._IO_FILE** %ofile, align 8
+  %call55 = call i32 @fclose(%struct._IO_FILE* %62)
+  %63 = load %struct._IO_FILE*, %struct._IO_FILE** %rawOutput, align 8
+  %64 = load double, double* %training_tpr, align 8
+  %65 = load double, double* %training_fpr, align 8
+  %66 = load double, double* %training_error, align 8
+  %67 = load double, double* %testing_tpr, align 8
+  %68 = load double, double* %testing_fpr, align 8
+  %69 = load double, double* %testing_error, align 8
+  %call56 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %63, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.19, i32 0, i32 0), double %64, double %65, double %66, double %67, double %68, double %69)
+  %70 = load %struct._IO_FILE*, %struct._IO_FILE** %rawOutput, align 8
+  %call57 = call i32 @fclose(%struct._IO_FILE* %70)
   ret void
 }
 

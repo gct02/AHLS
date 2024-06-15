@@ -2,7 +2,6 @@ import subprocess, argparse
 import numpy as np
 from pathlib import Path
 from os import environ
-from sys import argv
 
 from llvm.opt_utils import *
 from llvm.clang_utils import *
@@ -24,8 +23,8 @@ def parse_args():
     parser.add_argument("-x", "--approx", help = "Path to the file containing the AC transformations to apply on the input design", required=True)
     parser.add_argument("-p", "--populate-io", help = "Path to the populate_io.ll file", required=True)
     parser.add_argument("-o", "--output", help = "Directory to store outputs from the execution of both the exact and approximate design", required=True)
-    parser.add_argument("-e", "--error", help = "Error metric to use for evaluation", required=False, choices=["MSE", "RMSE", "accuracy", "errorrate"], default="MSE")
-    parser.add_argument("-d", "--datastats", help = "Data stats file name", required=False, default="data_stats.txt")
+    parser.add_argument("-d", "--datastats", help = "Data stats path", required=True)
+    parser.add_argument("-e", "--error", help = "Error metric to use for evaluation", choices=["MSE", "RMSE", "accuracy", "errorrate"], required=True)
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -36,9 +35,11 @@ if __name__ == "__main__":
     output_dir = Path(args.output)
     populate_io_path = Path(args.populate_io)
     error_metric = args.error
-    data_stats_file = args.datastats
+    data_stats_path = Path(args.datastats)
 
     input_ir_dir = input_ir_path.parent
+
+    data_stats_file = data_stats_path / Path("data_stats.txt")
 
     instrumented_ir_path = update_md_and_instrument(input_ir_path, data_stats_file, populate_io_path)
     instrumented_executable_path = input_ir_dir / Path(instrumented_ir_path.stem)
@@ -67,12 +68,26 @@ if __name__ == "__main__":
     exact_output_path = output_dir / Path("output.txt")
     approx_output_path = output_dir / Path(f"output{transforms_str}.txt")
 
-    # Run the instrumented executable
+    # Make separate directories for exact and approximate data stats
+    mkdir_exact_stats_cmd = f"mkdir -p {data_stats_path.as_posix()}/exact"
+    mkdir_approx_stats_cmd = f"mkdir -p {data_stats_path.as_posix()}/approx"
+    subprocess.run(mkdir_exact_stats_cmd, stderr=subprocess.STDOUT, shell=True)
+    subprocess.run(mkdir_approx_stats_cmd, stderr=subprocess.STDOUT, shell=True)
+
+    # Commands to run the original and approximate designs
     run_exact_design_cmd = f"{instrumented_executable_path} {input_args} {exact_output_path}"
     run_approx_design_cmd = f"{approx_executable_path} {input_args} {approx_output_path}"
 
+    # Commands to move the data stats file to the appropriate directory
+    move_exact_stats_cmd = f"mv {data_stats_file.as_posix()} {data_stats_path.as_posix()}/exact"
+    move_approx_stats_cmd = f"mv {data_stats_file.as_posix()} {data_stats_path.as_posix()}/approx"
+
+    # Run the instrumented executable of the original and approximated design 
+    # and move the data stats file to the appropriate directory
     subprocess.run(run_exact_design_cmd, stderr=subprocess.STDOUT, shell=True)
+    subprocess.run(move_exact_stats_cmd, stderr=subprocess.STDOUT, shell=True)
     subprocess.run(run_approx_design_cmd, stderr=subprocess.STDOUT, shell=True)
+    subprocess.run(move_exact_stats_cmd, stderr=subprocess.STDOUT, shell=True)
 
     exact_raw_output_path = exact_output_path.parent / Path(exact_output_path.stem + "_raw" + exact_output_path.suffix)
     approx_raw_output_path = approx_output_path.parent / Path(approx_output_path.stem + "_raw" + approx_output_path.suffix)
