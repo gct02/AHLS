@@ -5,7 +5,8 @@
 #include <math.h>
 #include <stdbool.h>
 
-typedef struct BinOpInfo {
+typedef struct BinOpInfo 
+{
   uint32_t opID; 
   uint32_t opCode;
   bool isSignedValue;
@@ -21,9 +22,11 @@ typedef struct BinOpInfo {
 
 BinOpInfo* ops = NULL;
 
-void profOp(uint64_t instID, uint8_t instOpcode, int64_t signedIntValue, uint64_t unsignedIntValue, 
-            double fpValue, bool isSignedValue, bool isFpValue, uint32_t bitwidth) {
-
+void profOp(
+    uint64_t instID, uint8_t instOpcode, int64_t signedIntValue, 
+    uint64_t unsignedIntValue, double fpValue, bool isSignedValue, 
+    bool isFpValue, uint32_t bitwidth)
+{
     bool isNewOp = true;
     BinOpInfo* currentOp = ops;
 
@@ -91,7 +94,8 @@ void profOp(uint64_t instID, uint8_t instOpcode, int64_t signedIntValue, uint64_
     } 
 }
 
-void saveProfile(const char *fileName) {
+void saveProfile(const char *fileName) 
+{
      int count = 0;
      BinOpInfo* nextOp;
      FILE* outputFile = fopen(fileName, "w");

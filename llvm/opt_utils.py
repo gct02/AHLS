@@ -17,7 +17,7 @@ def update_md(ir_path : Path) -> Path:
     output_path = ir_path.parent / Path(ir_path.stem + ".md.bc")
 
     # Update operation metadata (include ID and signedness information)
-    update_md_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -update-md < {ir_path} > {output_path}"
+    update_md_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -update-md < {ir_path.as_posix()} > {output_path.as_posix()}"
 
     try: 
         subprocess.check_output(update_md_cmd, stderr=subprocess.STDOUT, shell=True)
@@ -30,7 +30,7 @@ def instrument(ir_path : Path, data_stats_file_path : Path, populate_io_path : P
 
     # Insert calls to profile functions after each binary operation and a call 
     # to a function that writes the profile data to the file in data_stats_file_path
-    profile_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -profile -pf {data_stats_file_path} < {ir_path} > {profiled_ir_path}"
+    profile_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -profile -pf {data_stats_file_path.as_posix()} < {ir_path.as_posix()} > {profiled_ir_path.as_posix()}"
 
     try:
         subprocess.check_output(profile_cmd, stderr=subprocess.STDOUT, shell=True)
@@ -40,7 +40,7 @@ def instrument(ir_path : Path, data_stats_file_path : Path, populate_io_path : P
     # Link the profiled IR with the profiler and the function that populates the input/output data
     output_path = ir_path.parent / Path(Path(ir_path.stem).stem + "_instrumented.bc")
     profiler_path = Path(__file__).parent / Path("profiler/profiler.bc")
-    link_cmd = f"{LLVM_LINK} {profiled_ir_path} {profiler_path} {populate_io_path} -o {output_path}"
+    link_cmd = f"{LLVM_LINK} {profiled_ir_path.as_posix()} {profiler_path.as_posix()} {populate_io_path.as_posix()} -o {output_path.as_posix()}"
 
     try:
         subprocess.check_output(link_cmd, stderr=subprocess.STDOUT, shell=True)
@@ -53,10 +53,10 @@ def update_md_and_instrument(ir_path : Path, data_stats_file_path : Path, popula
     return instrument(ir_md_updated_path, data_stats_file_path, populate_io_path)
     
 def apply_v2c(ir_path : Path, op_to_prune : int, const : int | float) -> Path:
-    output_path = ir_path.parent / Path("approx" + ir_path.stem + f"_v2c_{op_to_prune}_{const}.bc")
+    output_path = ir_path.parent / Path(ir_path.stem + f"_v2c_{op_to_prune}_{const}.bc")
     
     # Apply the v2c transformation to the IR
-    v2c_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -v2c -opid {op_to_prune} -const {const} < {ir_path} > {output_path}"
+    v2c_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -v2c -opid {op_to_prune} -const {const} < {ir_path.as_posix()} > {output_path.as_posix()}"
     
     try:
         subprocess.check_output(v2c_cmd, stderr=subprocess.STDOUT, shell=True)
@@ -65,15 +65,23 @@ def apply_v2c(ir_path : Path, op_to_prune : int, const : int | float) -> Path:
         raise V2CError(ir_path.as_posix(), error.returncode, error.output)
     
 def apply_act(ir_path : Path, act : str, *args) -> Path:
-    output_path = ir_path.parent / Path("approx" + ir_path.stem + f"_{act}_{'_'.join(args)}.bc")
+    output_path = ir_path.parent / \
+                  Path(ir_path.stem + f"_{act}_{'_'.join(list(filter(lambda x : x[0] != '-', args)))}.bc")
     
     # Apply the ACT transformation to the IR
-    act_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -{act} {' '.join(args)} < {ir_path} > {output_path}"
+    act_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -{act} {' '.join(args)} < {ir_path.as_posix()} > {output_path.as_posix()}"
     
     try:
         subprocess.check_output(act_cmd, stderr=subprocess.STDOUT, shell=True)
         return output_path
     except subprocess.CalledProcessError as error:
         raise ACTError(act, ir_path.as_posix(), error.returncode, error.output)
-
-
+    
+def apply_act(ir_path : Path, act_with_args : str, output_path : Path) -> None:
+    # Apply the ACT transformation to the IR
+    act_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -{act_with_args} < {ir_path.as_posix()} > {output_path.as_posix()}"
+    
+    try:
+        subprocess.check_output(act_cmd, stderr=subprocess.STDOUT, shell=True)
+    except subprocess.CalledProcessError as error:
+        raise ACTError(act_with_args, ir_path.as_posix(), error.returncode, error.output)

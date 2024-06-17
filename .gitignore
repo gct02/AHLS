@@ -7,7 +7,6 @@ vitis_projects/
 *.sh
 *.tcl
 config.txt
-benchmarks/*/*/scripts/
-benchmarks/*/*/original_dataset*/
-benchmarks/*/*/downsampled_dataset*/
-benchmarks/*/*/inputs*/
+benchmarks/*/*/*scripts*/
+benchmarks/*/*/*dataset*/
+benchmarks/*/*/*inputs*/
