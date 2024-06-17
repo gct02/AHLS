@@ -1,0 +1,110 @@
+
+result_size = 54
+
+ [Test Bench (main) ] detected rects: 153 66 50 50
+
+ [Test Bench (main) ] detected rects: 153 66 50 50
+
+ [Test Bench (main) ] detected rects: 156 66 50 50
+
+ [Test Bench (main) ] detected rects: 153 66 50 50
+
+ [Test Bench (main) ] detected rects: 156 66 50 50
+
+ [Test Bench (main) ] detected rects: 151 66 50 50
+
+ [Test Bench (main) ] detected rects: 102 66 60 60
+
+ [Test Bench (main) ] detected rects: 100 66 60 60
+
+ [Test Bench (main) ] detected rects: 102 66 60 60
+
+ [Test Bench (main) ] detected rects: 105 66 60 60
+
+ [Test Bench (main) ] detected rects: 107 66 60 60
+
+ [Test Bench (main) ] detected rects: 100 66 60 60
+
+ [Test Bench (main) ] detected rects: 102 66 60 60
+
+ [Test Bench (main) ] detected rects: 105 66 60 60
+
+ [Test Bench (main) ] detected rects: 107 66 60 60
+
+ [Test Bench (main) ] detected rects: 100 66 60 60
+
+ [Test Bench (main) ] detected rects: 102 66 60 60
+
+ [Test Bench (main) ] detected rects: 105 66 60 60
+
+ [Test Bench (main) ] detected rects: 147 66 60 60
+
+ [Test Bench (main) ] detected rects: 149 66 60 60
+
+ [Test Bench (main) ] detected rects: 147 66 60 60
+
+ [Test Bench (main) ] detected rects: 149 66 60 60
+
+ [Test Bench (main) ] detected rects: 152 66 60 60
+
+ [Test Bench (main) ] detected rects: 154 66 60 60
+
+ [Test Bench (main) ] detected rects: 144 66 60 60
+
+ [Test Bench (main) ] detected rects: 147 66 60 60
+
+ [Test Bench (main) ] detected rects: 149 66 60 60
+
+ [Test Bench (main) ] detected rects: 152 66 60 60
+
+ [Test Bench (main) ] detected rects: 154 66 60 60
+
+ [Test Bench (main) ] detected rects: 149 66 60 60
+
+ [Test Bench (main) ] detected rects: 93 66 72 72
+
+ [Test Bench (main) ] detected rects: 96 66 72 72
+
+ [Test Bench (main) ] detected rects: 99 66 72 72
+
+ [Test Bench (main) ] detected rects: 102 66 72 72
+
+ [Test Bench (main) ] detected rects: 90 66 72 72
+
+ [Test Bench (main) ] detected rects: 93 66 72 72
+
+ [Test Bench (main) ] detected rects: 96 66 72 72
+
+ [Test Bench (main) ] detected rects: 99 66 72 72
+
+ [Test Bench (main) ] detected rects: 102 66 72 72
+
+ [Test Bench (main) ] detected rects: 96 66 72 72
+
+ [Test Bench (main) ] detected rects: 99 66 72 72
+
+ [Test Bench (main) ] detected rects: 102 66 72 72
+
+ [Test Bench (main) ] detected rects: 143 66 72 72
+
+ [Test Bench (main) ] detected rects: 143 66 72 72
+
+ [Test Bench (main) ] detected rects: 146 66 72 72
+
+ [Test Bench (main) ] detected rects: 140 66 72 72
+
+ [Test Bench (main) ] detected rects: 143 66 72 72
+
+ [Test Bench (main) ] detected rects: 146 66 72 72
+
+ [Test Bench (main) ] detected rects: 149 66 72 72
+
+ [Test Bench (main) ] detected rects: 143 66 72 72
+
+ [Test Bench (main) ] detected rects: 146 66 72 72
+
+ [Test Bench (main) ] detected rects: 86 66 86 86
+
+ [Test Bench (main) ] detected rects: 90 66 86 86
+
+ [Test Bench (main) ] detected rects: 90 66 86 86

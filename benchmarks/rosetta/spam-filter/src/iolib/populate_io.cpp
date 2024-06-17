@@ -137,14 +137,9 @@ void populateOutput(FeatureType* param_vector, DataType* data_points, LabelType*
     strcat(rawFilename, "_raw");
     strcat(rawFilename, ext);
 
-    strcpy(rawMetricsFilename, filenameNoExt);
-    strcat(rawMetricsFilename, "_raw_metrics");
-    strcat(rawMetricsFilename, ext);
-
     FILE* rawOutput = fopen(rawFilename, "w");
-    FILE* rawMetricsOutput = fopen(rawMetricsFilename, "w");
 
-    if (rawOutput == NULL || rawMetricsOutput == NULL) {
+    if (rawOutput == NULL) {
         printf("Failed to open output file!\n");
         exit(EXIT_FAILURE);
     }
@@ -152,7 +147,7 @@ void populateOutput(FeatureType* param_vector, DataType* data_points, LabelType*
     fprintf(ofile, "\nmain parameter vector: \n");
     for(int i = 0; i < 30; i++) {
       fprintf(ofile, "m[%d]: %f | ", i, param_vector[i]);
-      fprintf(rawMetricsOutput, "%f ", param_vector[i]);
+      fprintf(rawOutput, "%f ", param_vector[i]);
     }
 
     fprintf(ofile, "\n\n");
@@ -197,9 +192,5 @@ void populateOutput(FeatureType* param_vector, DataType* data_points, LabelType*
     fprintf(ofile, "Testing FPR: %f\n", testing_fpr);
     fprintf(ofile, "Testing Error: %f\n", testing_error);
     fclose(ofile);
-
-    fprintf(rawOutput, "%f %f %f %f %f %f\n", 
-            training_tpr, training_fpr, training_error, 
-            testing_tpr, testing_fpr, testing_error);
     fclose(rawOutput);
 }
