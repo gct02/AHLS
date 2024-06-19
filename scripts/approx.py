@@ -1,4 +1,4 @@
-import subprocess, argparse
+import subprocess, argparse, time, psutil, struct
 import numpy as np
 from pathlib import Path
 from os import environ
@@ -33,14 +33,82 @@ except KeyError as ahls_error:
     print(f"Error: environment variable {ahls_error.args[0]} not defined.")
     raise
 
+def run_with_timeout(run_cmd, max_execution_time, transformed_executable_path : Path, transformed_output_dir : Path):
+    """Runs a subprocess with a timeout and handles process termination."""
+    timeout_exceeded = False
+    try:
+        process = subprocess.Popen(run_cmd, shell=True)
+        start_time = time.time()
+
+        while True:
+            if time.time() - start_time > max_execution_time:
+                # Process exceeded timeout, terminate it
+                for proc in psutil.process_iter():
+                    if proc.name() == transformed_executable_path:
+                        proc.terminate()
+                        print(f"Error: Transformed design took more than {max_execution_time} seconds to execute.")
+                        timeout_exceeded = True
+                        break
+                break
+            # Check if process has finished naturally
+            if process.poll() is not None:
+                break
+            time.sleep(1)  # Check every second
+
+        # Clean up output directory if process failed or timed out
+        if timeout_exceeded:
+            if transformed_output_dir.exists():
+                transformed_output_dir.unlink()
+            if Path("data_stats.txt").exists():
+                Path("data_stats.txt").unlink()
+            exit(1)
+
+    except Exception as e:
+        print(f"Error while executing transformed design: {e}")
+        if transformed_output_dir.exists():
+            transformed_output_dir.unlink()
+        if Path("data_stats.txt").exists():
+            Path("data_stats.txt").unlink()
+        exit(1)
+
 def parse_args():
     parser = argparse.ArgumentParser(prog="ahls", description="AHLS: Approximate HLS")
     parser.add_argument("-w", "--dir", help = "The working directory", required=True)
-    parser.add_argument("-d", "--design", help = "Design name", required=True)
-    parser.add_argument("-A", "--args", help = "Arguments to the design executable (excluding the output file path, i.e. the last argument)", nargs="*", required=False, default=[])
-    parser.add_argument("-a", "--approx", help = "Path to the file containing the AC trainsformations to apply on the input design", required=True)
+    parser.add_argument("-d", "--design", help = "Design's exact executable name", required=True)
+    parser.add_argument("-A", "--args", help = "Arguments to the design's executable (excluding the output file path, i.e., the last argument)", \
+                        nargs="*", required=False, default=[])
+    parser.add_argument("-a", "--approx", help = "Path to the file containing the AC trainsformations", required=True)
     parser.add_argument("-e", "--error", help = "Error metric to use for evaluation", choices=["MSE", "RMSE", "accuracy", "errorrate"], required=True)
+    parser.add_argument("-t", "--outtype", help = "Output type of the design", choices=["int", "float", "double"], required=True)
+    parser.add_argument("-x", "--hex", help = "Sinalize that the output is in hex format", action="store_true")
     return parser.parse_args()
+
+def str_to_float(s, hex):
+    if hex:
+        if '0x' in s:
+            return struct.unpack('f', bytes.fromhex(s[2:]))[0]
+        return struct.unpack('f', bytes.fromhex(s))[0]
+    return float(s)
+
+def str_to_double(s, hex):
+    if hex:
+        if '0x' in s:
+            return struct.unpack('d', bytes.fromhex(s[2:]))[0]
+        return struct.unpack('d', bytes.fromhex(s))[0]
+    return float(s)
+
+def str_to_int(s, hex):
+    if hex:
+        return int(s, 16)
+    return int(s)
+
+def str_to_num(s, outtype, hex):
+    if outtype == "float":
+        return str_to_float(s, hex)
+    elif outtype == "int":
+        return str_to_int(s, hex)
+    else:
+        return str_to_double(s, hex)
 
 if __name__ == "__main__":
     args = parse_args()
@@ -49,6 +117,8 @@ if __name__ == "__main__":
     input_args = " ".join(args.args)
     ac_transforms_path = Path(args.approx)
     error_metric = args.error
+    output_type = args.outtype
+    hex_output = args.hex
 
     # Make a string describing the input arguments for the design executable
     # For instance, if the arguments are "-i input.txt -n 2", this string will be "_input.txt_2"
@@ -77,7 +147,20 @@ if __name__ == "__main__":
     # Execute the original design
     original_output_dir = working_dir / Path(f"outputs/output{original_files_suffix}.txt")
     run_cmd = f"{(working_dir / Path(design_name)).as_posix()} {input_args} {original_output_dir.as_posix()}"
-    subprocess.run(run_cmd, shell=True)
+
+    start = time.time()
+    try:
+        subprocess.run(run_cmd, shell=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error while executing original design: {e}")
+        if original_output_dir.exists():
+            original_output_dir.unlink()
+        if Path("data_stats.txt").exists():
+            Path("data_stats.txt").unlink()
+        exit(1)
+    end = time.time()
+
+    original_execution_time = end - start
 
     # Rename and move the data stats file of the original design
     original_data_stats_name = f"data_stats{original_files_suffix}.txt"
@@ -91,12 +174,12 @@ if __name__ == "__main__":
     temp_ir_path = working_dir / Path(f"ir/temp.bc")
 
     # Copy the original IR file to a temporary file
-    copy_cmd = f"cp {original_ir_path} {temp_ir_path}"
+    copy_cmd = f"cp {original_ir_path.as_posix()} {temp_ir_path.as_posix()}"
     subprocess.run(copy_cmd, shell=True)
 
     for ac_transform in approx_args:
         apply_act(temp_ir_path, ac_transform, transformed_ir_path)
-        copy_cmd = f"cp {transformed_ir_path} {temp_ir_path}"
+        copy_cmd = f"cp {transformed_ir_path.as_posix()} {temp_ir_path.as_posix()}"
         subprocess.run(copy_cmd, shell=True)
 
     # Delete the temporary IR file
@@ -110,7 +193,10 @@ if __name__ == "__main__":
     # Execute the transformed design
     transformed_output_dir = working_dir / Path(f"outputs/output{approx_files_suffix}.txt")
     run_cmd = f"{transformed_executable_path} {input_args} {transformed_output_dir.as_posix()}"
-    subprocess.run(run_cmd, shell=True)
+    
+    # Is this the correct way to stops the execution of a subprocess started by subprocess.run after a certain time?
+    max_execution_time = original_execution_time * 2
+    run_with_timeout(run_cmd, max_execution_time, transformed_executable_path, transformed_output_dir)
 
     # Rename and move the data stats file of the transformed design
     transformed_data_stats_name = f"data_stats{approx_files_suffix}.txt"
@@ -121,10 +207,10 @@ if __name__ == "__main__":
     transformed_raw_output_path = transformed_output_dir.parent / Path(transformed_output_dir.stem + "_raw.txt")
 
     with open(original_raw_output_path, 'r') as f:
-        original_output = np.array(list(map(float, f.read().split())), dtype=np.float32)
+        original_output = np.array(list(map(lambda x: str_to_num(x, output_type, hex_output), f.read().split())), dtype=np.float64)
 
     with open(transformed_raw_output_path, 'r') as f:
-        approx_output = np.array(list(map(float, f.read().split())), dtype=np.float32)
+        approx_output = np.array(list(map(lambda x: str_to_num(x, output_type, hex_output), f.read().split())), dtype=np.float64)
 
     match error_metric:
         case 'MSE':

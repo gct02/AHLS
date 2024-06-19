@@ -6,7 +6,4 @@ vitis_projects/
 *.log
 *.sh
 *.tcl
-config.txt
-benchmarks/*/*/*scripts*/
-benchmarks/*/*/*dataset*/
-benchmarks/*/*/*inputs*/
+benchmarks/*/*/scripts/

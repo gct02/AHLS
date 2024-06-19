@@ -3,7 +3,6 @@
 #include <string.h>
 #include "populate_io.h"
 
-
 char* removeExt(const char* filename) {
     if (filename == NULL) return NULL;
 
