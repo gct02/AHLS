@@ -5,7 +5,7 @@ from os import environ
 
 from llvm.opt_utils import *
 from llvm.clang_utils import *
-from design_metrics.error_eval import *
+from design_metrics.error_measure import *
 
 '''
 This script assumes that the input design IR file is already instrumented and linked with the populate_io IR file.
@@ -194,7 +194,6 @@ if __name__ == "__main__":
     transformed_output_dir = working_dir / Path(f"outputs/output{approx_files_suffix}.txt")
     run_cmd = f"{transformed_executable_path} {input_args} {transformed_output_dir.as_posix()}"
     
-    # Is this the correct way to stops the execution of a subprocess started by subprocess.run after a certain time?
     max_execution_time = original_execution_time * 2
     run_with_timeout(run_cmd, max_execution_time, transformed_executable_path, transformed_output_dir)
 
