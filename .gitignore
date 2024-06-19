@@ -6,4 +6,3 @@ vitis_projects/
 *.log
 *.sh
 *.tcl
-benchmarks/*/*/scripts/
