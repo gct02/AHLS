@@ -182,6 +182,14 @@ if __name__ == "__main__":
         copy_cmd = f"cp {transformed_ir_path.as_posix()} {temp_ir_path.as_posix()}"
         subprocess.run(copy_cmd, shell=True)
 
+    # Apply LLVM optimizations on the transformed IR file
+    mem2reg_cmd = f"{OPT} -mem2reg {temp_ir_path.as_posix()} -o {transformed_ir_path.as_posix()}"
+    subprocess.run(mem2reg_cmd, shell=True)
+    copy_cmd = f"cp {transformed_ir_path.as_posix()} {temp_ir_path.as_posix()}"
+    subprocess.run(copy_cmd, shell=True)
+    opt_cmd = f"{OPT} -sccp -dce -O3 {temp_ir_path.as_posix()} -o {transformed_ir_path.as_posix()}"
+    subprocess.run(opt_cmd, shell=True)
+
     # Delete the temporary IR file
     delete_cmd = f"rm {temp_ir_path}"
     subprocess.run(delete_cmd, shell=True)
