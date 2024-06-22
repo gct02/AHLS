@@ -2,10 +2,6 @@ from pathlib import Path
 from sys import argv
 import xml.etree.ElementTree as ET
 
-'''
-TODO: Get FF values from the report files
-'''
-
 def parse_reports(solution_syn_dir: Path):
     reports_folder = solution_syn_dir / "report"
     verilog_folder = solution_syn_dir / "verilog"
@@ -145,10 +141,7 @@ def parse_reports(solution_syn_dir: Path):
                     break
             if found:
                 break
-    
-    # For the operations whose bitwidth wasn't extracted from the verilog file
-    # we will search in the vhdl files
-
+            
     return operation_reports
             
             
