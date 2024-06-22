@@ -35,33 +35,75 @@ def parse_reports(solution_syn_dir: Path):
         with open(function_rpt_file, "r") as f:
             lines = f.readlines()
             n_lines = len(lines)
-            op_rpt_lines = 0
+
+            instance_start = 0
+            instance_end = 0
+            expression_start = 0
+            expression_end = 0
+
             i = 0
-            while i < n_lines:
-                if "* Expression:" in lines[i]:
-                    i += 4
-                    while '+-' not in lines[i + op_rpt_lines]:
-                        op_rpt_lines += 1
-                    break
+            while "== Utilization Estimates" not in lines[i] and i < n_lines:
                 i += 1
 
-            if op_rpt_lines == 0:
+            if i == n_lines:
                 continue
+            i += 2
 
-            op_rpt_table = [line.split('|') for line in lines[i:i + op_rpt_lines]]
-            op_rpt_table = [[col.strip() for col in row][1:8] for row in op_rpt_table]
+            while i < n_lines:
+                if "+ Detail:" not in lines[i]:
+                    i += 1
+                    continue
+                i += 1
 
-            for row in op_rpt_table:
-                if row[0] not in operation_reports:
-                    operation_reports[row[0]] = ["", 0, 0, 0, 0, 0, 0]
-                    if row[1] == "+":
-                        operation_reports[row[0]][0] = "add"
-                    elif row[1] == "-":
-                        operation_reports[row[0]][0] = "sub"
-                    else:
-                        operation_reports[row[0]][0] = row[1]
-                # Assign LUT value
-                operation_reports[row[0]][3] = int(row[4])
+                while "* Instance:" not in lines[i]:
+                    i += 1
+                i += 1
+
+                if "N/A" not in lines[i]:
+                    i += 3
+                    instance_start = i
+                    while "+-" not in lines[i]:
+                        i += 1
+                    instance_end = i
+                i += 2
+
+                while "* Expression:" not in lines[i]:
+                    i += 1
+                i += 1
+
+                if "N/A" not in lines[i]:
+                    i += 3
+                    expression_start = i
+                    while "+-" not in lines[i]:
+                        i += 1
+                    expression_end = i
+                break
+            
+            if instance_start != 0 and instance_end != 0:
+                instance_table = [line.split("|") for line in lines[instance_start:instance_end]]
+                instance_table = [[col.strip() for col in row][1:7] for row in instance_table]
+
+                for row in instance_table:
+                    if row[0] in operation_reports:
+                        # Assign LUT and FF value
+                        operation_reports[row[0]][3] = int(row[5]) # LUT
+                        operation_reports[row[0]][6] = int(row[4]) # FF
+            
+            if expression_start != 0 and expression_end != 0:
+                expression_table = [line.split("|") for line in lines[expression_start:expression_end]]
+                expression_table = [[col.strip() for col in row][1:7] for row in expression_table]
+
+                for row in expression_table:
+                    if row[0] not in operation_reports:
+                        operation_reports[row[0]] = ["", 0, 0, 0, 0, 0, 0]
+                        if row[1] == "+":
+                            operation_reports[row[0]][0] = "add"
+                        elif row[1] == "-":
+                            operation_reports[row[0]][0] = "sub"
+                        else:
+                            operation_reports[row[0]][0] = row[1]
+                    # Assign LUT value
+                    operation_reports[row[0]][3] = int(row[5]) # LUT
                 
     for op_name in operation_reports.keys():
         # Search for teh declaration of this variable in the verilog file
@@ -69,8 +111,10 @@ def parse_reports(solution_syn_dir: Path):
         found = False
         for f in verilog_folder.glob("*.v"):
             lines = f.read_text().split("\n")
-            for line in lines:
+            regs_and_wires = []
+            for i, line in enumerate(lines):
                 if ("reg" in line) | ("wire" in line) | ("input" in line) | ("output" in line):
+                    regs_and_wires.append(line)
                     if op_name in line:
                         if "signed" in line:
                             operation_reports[op_name][1] = 1
@@ -83,9 +127,27 @@ def parse_reports(solution_syn_dir: Path):
                         else:
                             operation_reports[op_name][2] = 1
                         found = True
-                        break
+                elif op_name in line and "(" in line:
+                    dout_width_line = lines[i - 1]
+                    operation_reports[op_name][2] = int(dout_width_line.split('( ')[1].split(' )')[0])
+
+                    dout_line = lines[i + 3]
+                    dout = dout_line.split("(")[1].split(")")[0]
+                    for reg_wire in regs_and_wires:
+                        if dout in reg_wire:
+                            if "signed" in reg_wire:
+                                operation_reports[op_name][1] = 1
+                            else:
+                                operation_reports[op_name][1] = 0
+                            break
+                    found = True
+                if found:
+                    break
             if found:
                 break
+    
+    # For the operations whose bitwidth wasn't extracted from the verilog file
+    # we will search in the vhdl files
 
     return operation_reports
             
