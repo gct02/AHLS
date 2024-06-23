@@ -1,6 +1,0 @@
-<VitisHLS:BurstInfo>
-    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="benchmarks/chstone/dfsin/src/dfsin.c:56:20" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="benchmarks/chstone/dfsin/src/dfsin.c:56:20" LoopName="VITIS_LOOP_56_1" ParentFunc="local_sin"/>
-    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="benchmarks/chstone/dfsin/src/softfloat-macros:224:21" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="benchmarks/chstone/dfsin/src/softfloat-macros:224:21" LoopName="VITIS_LOOP_224_1" ParentFunc="float64_div"/>
-    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="benchmarks/chstone/dfsin/src/softfloat.c:602:25" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="benchmarks/chstone/dfsin/src/softfloat.c:602:25" LoopName="VITIS_LOOP_602_1" ParentFunc="float64_div"/>
-</VitisHLS:BurstInfo>
-

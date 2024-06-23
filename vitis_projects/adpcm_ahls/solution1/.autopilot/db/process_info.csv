@@ -1,9 +1,0 @@
-,AESL_inst_adpcm_main,,module_status1.csv
-,grp_adpcm_main_Pipeline_reset_label4_fu_148,,module_status2.csv
-,grp_adpcm_main_Pipeline_reset_label5_fu_160,,module_status3.csv
-,grp_adpcm_main_Pipeline_reset_label6_fu_172,,module_status4.csv
-,grp_adpcm_main_Pipeline_reset_label7_fu_178,,module_status5.csv
-,grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186,,module_status6.csv
-grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186,grp_encode_fu_138,,module_status7.csv
-,grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248,,module_status8.csv
-grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248,grp_decode_fu_142,,module_status9.csv
