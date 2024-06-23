@@ -1,0 +1,235 @@
+
+
+================================================================
+== Vitis HLS Report for 'huff_make_dhuff_tb_1'
+================================================================
+* Date:           Tue Jun 18 12:24:23 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        jpeg_ahls
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcvu35p-fsvh2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.597 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +-----------------------------------------------------------+------------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
+        |                                                           |                                                |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+        |                          Instance                         |                     Module                     |   min   |   max   |    min    |    max    | min | max |   Type  |
+        +-----------------------------------------------------------+------------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
+        |grp_huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_638_2_fu_189  |huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_638_2  |        2|      257|  10.000 ns|   1.285 us|    2|  257|       no|
+        |grp_huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_650_4_fu_197  |huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_650_4  |        ?|        ?|          ?|          ?|    ?|    ?|       no|
+        |grp_huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_657_5_fu_209  |huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_657_5  |        ?|        ?|          ?|          ?|    ?|    ?|       no|
+        |grp_huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_664_6_fu_217  |huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_664_6  |       19|       19|  95.000 ns|  95.000 ns|   19|   19|       no|
+        +-----------------------------------------------------------+------------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_637_1  |       48|     4160|   3 ~ 260|          -|          -|    16|        no|
+        |- VITIS_LOOP_649_3  |        ?|        ?|         ?|          -|          -|     ?|        no|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        0|     202|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        -|     -|      315|     646|    -|
+|Memory               |        3|     -|        0|       0|    0|
+|Multiplexer          |        -|     -|        -|     338|    -|
+|Register             |        -|     -|      223|       -|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        3|     0|      538|    1186|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |       ~0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |       ~0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +-----------------------------------------------------------+------------------------------------------------+---------+----+-----+-----+-----+
+    |                          Instance                         |                     Module                     | BRAM_18K| DSP|  FF | LUT | URAM|
+    +-----------------------------------------------------------+------------------------------------------------+---------+----+-----+-----+-----+
+    |grp_huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_638_2_fu_189  |huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_638_2  |        0|   0|   45|  110|    0|
+    |grp_huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_650_4_fu_197  |huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_650_4  |        0|   0|  133|  194|    0|
+    |grp_huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_657_5_fu_209  |huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_657_5  |        0|   0|   71|  116|    0|
+    |grp_huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_664_6_fu_217  |huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_664_6  |        0|   0|   66|  226|    0|
+    +-----------------------------------------------------------+------------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                      |                                                |        0|   0|  315|  646|    0|
+    +-----------------------------------------------------------+------------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +------------+---------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |   Memory   |                    Module                   | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +------------+---------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |huffcode_U  |huff_make_dhuff_tb_1_huffcode_RAM_AUTO_1R1W  |        2|  0|   0|    0|   257|   32|     1|         8224|
+    |huffsize_U  |huff_make_dhuff_tb_1_huffsize_RAM_AUTO_1R1W  |        1|  0|   0|    0|   257|    5|     1|         1285|
+    +------------+---------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total       |                                             |        3|  0|   0|    0|   514|   37|     2|         9509|
+    +------------+---------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |          Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |add_ln637_2_fu_369_p2            |         +|   0|  0|  12|           5|           1|
+    |add_ln637_fu_358_p2              |         +|   0|  0|  39|          32|          32|
+    |add_ln638_fu_351_p2              |         +|   0|  0|  16|           9|           1|
+    |add_ln676_1_fu_430_p2            |         +|   0|  0|  14|           7|           7|
+    |add_ln676_fu_440_p2              |         +|   0|  0|  39|          32|           1|
+    |empty_fu_302_p2                  |         +|   0|  0|  17|          10|          10|
+    |ap_block_state4_on_subcall_done  |       and|   0|  0|   2|           1|           1|
+    |icmp_ln637_fu_284_p2             |      icmp|   0|  0|  12|           5|           5|
+    |icmp_ln638_fu_345_p2             |      icmp|   0|  0|  15|           8|           1|
+    |icmp_ln654_fu_407_p2             |      icmp|   0|  0|  12|           5|           1|
+    |select_ln668_fu_239_p3           |    select|   0|  0|   6|           1|           6|
+    |select_ln669_fu_247_p3           |    select|   0|  0|   6|           1|           6|
+    |select_ln671_cast_fu_263_p3      |    select|   0|  0|   6|           1|           6|
+    |select_ln671_fu_255_p3           |    select|   0|  0|   6|           1|           6|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |Total                            |          |   0|  0| 202|         118|          84|
+    +---------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------------+----+-----------+-----+-----------+
+    |                Name                | LUT| Input Size| Bits| Total Bits|
+    +------------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                           |  65|         15|    1|         15|
+    |code_fu_110                         |   9|          2|   32|         64|
+    |huffcode_address0                   |  14|          3|    9|         27|
+    |huffcode_ce0                        |  14|          3|    1|          3|
+    |huffcode_ce1                        |   9|          2|    1|          2|
+    |huffcode_we0                        |   9|          2|    1|          2|
+    |huffsize_address0                   |  26|          5|    9|         45|
+    |huffsize_ce0                        |  20|          4|    1|          4|
+    |huffsize_d0                         |  14|          3|    5|         15|
+    |huffsize_we0                        |  14|          3|    1|          3|
+    |i_fu_74                             |   9|          2|    5|         10|
+    |p_2_fu_114                          |   9|          2|   32|         64|
+    |p_dhtbl_maxcode_address0            |  20|          4|    7|         28|
+    |p_dhtbl_maxcode_ce0                 |  14|          3|    1|          3|
+    |p_dhtbl_maxcode_ce1                 |   9|          2|    1|          2|
+    |p_dhtbl_maxcode_d0                  |  14|          3|   32|         96|
+    |p_dhtbl_maxcode_we0                 |  14|          3|    1|          3|
+    |p_dhtbl_maxcode_we1                 |   9|          2|    1|          2|
+    |p_fu_78                             |   9|          2|   32|         64|
+    |p_jinfo_dc_xhuff_tbl_bits_address0  |  14|          3|    8|         24|
+    |p_jinfo_dc_xhuff_tbl_bits_ce0       |  14|          3|    1|          3|
+    |size_4_fu_106                       |   9|          2|    5|         10|
+    +------------------------------------+----+-----------+-----+-----------+
+    |Total                               | 338|         73|  187|        489|
+    +------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                  Name                                  | FF | LUT| Bits| Const Bits|
+    +------------------------------------------------------------------------+----+----+-----+-----------+
+    |add_ln638_reg_551                                                       |   9|   0|    9|          0|
+    |ap_CS_fsm                                                               |  14|   0|   14|          0|
+    |code_fu_110                                                             |  32|   0|   32|          0|
+    |grp_huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_638_2_fu_189_ap_start_reg  |   1|   0|    1|          0|
+    |grp_huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_650_4_fu_197_ap_start_reg  |   1|   0|    1|          0|
+    |grp_huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_657_5_fu_209_ap_start_reg  |   1|   0|    1|          0|
+    |grp_huff_make_dhuff_tb_1_Pipeline_VITIS_LOOP_664_6_fu_217_ap_start_reg  |   1|   0|    1|          0|
+    |huffsize_load_loc_fu_86                                                 |   5|   0|    5|          0|
+    |i_fu_74                                                                 |   5|   0|    5|          0|
+    |icmp_ln638_reg_542                                                      |   1|   0|    1|          0|
+    |p_2_fu_114                                                              |  32|   0|   32|          0|
+    |p_dhtbl_maxcode_addr_reg_584                                            |   7|   0|    7|          0|
+    |p_dhtbl_maxcode_load_reg_589                                            |  32|   0|   32|          0|
+    |p_fu_78                                                                 |  32|   0|   32|          0|
+    |p_load_2_reg_546                                                        |  32|   0|   32|          0|
+    |select_ln668_reg_490                                                    |   2|   0|    6|          4|
+    |select_ln669_reg_495                                                    |   2|   0|    6|          4|
+    |select_ln671_cast_reg_505                                               |   2|   0|    7|          5|
+    |select_ln671_reg_500                                                    |   2|   0|    6|          4|
+    |size_4_fu_106                                                           |   5|   0|    5|          0|
+    |size_5_reg_561                                                          |   5|   0|    5|          0|
+    +------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                   | 223|   0|  240|         17|
+    +------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------------------+-----+-----+------------+---------------------------+--------------+
+|              RTL Ports             | Dir | Bits|  Protocol  |       Source Object       |    C Type    |
++------------------------------------+-----+-----+------------+---------------------------+--------------+
+|ap_clk                              |   in|    1|  ap_ctrl_hs|       huff_make_dhuff_tb.1|  return value|
+|ap_rst                              |   in|    1|  ap_ctrl_hs|       huff_make_dhuff_tb.1|  return value|
+|ap_start                            |   in|    1|  ap_ctrl_hs|       huff_make_dhuff_tb.1|  return value|
+|ap_done                             |  out|    1|  ap_ctrl_hs|       huff_make_dhuff_tb.1|  return value|
+|ap_idle                             |  out|    1|  ap_ctrl_hs|       huff_make_dhuff_tb.1|  return value|
+|ap_ready                            |  out|    1|  ap_ctrl_hs|       huff_make_dhuff_tb.1|  return value|
+|ap_return                           |  out|   32|  ap_ctrl_hs|       huff_make_dhuff_tb.1|  return value|
+|p_xhtbl_bits_offset                 |   in|   10|     ap_none|        p_xhtbl_bits_offset|        scalar|
+|p_dhtbl_maxcode_address0            |  out|    7|   ap_memory|            p_dhtbl_maxcode|         array|
+|p_dhtbl_maxcode_ce0                 |  out|    1|   ap_memory|            p_dhtbl_maxcode|         array|
+|p_dhtbl_maxcode_we0                 |  out|    1|   ap_memory|            p_dhtbl_maxcode|         array|
+|p_dhtbl_maxcode_d0                  |  out|   32|   ap_memory|            p_dhtbl_maxcode|         array|
+|p_dhtbl_maxcode_q0                  |   in|   32|   ap_memory|            p_dhtbl_maxcode|         array|
+|p_dhtbl_maxcode_address1            |  out|    7|   ap_memory|            p_dhtbl_maxcode|         array|
+|p_dhtbl_maxcode_ce1                 |  out|    1|   ap_memory|            p_dhtbl_maxcode|         array|
+|p_dhtbl_maxcode_we1                 |  out|    1|   ap_memory|            p_dhtbl_maxcode|         array|
+|p_dhtbl_maxcode_d1                  |  out|   32|   ap_memory|            p_dhtbl_maxcode|         array|
+|p_dhtbl_maxcode_offset              |   in|    1|     ap_none|     p_dhtbl_maxcode_offset|        scalar|
+|p_dhtbl_mincode_address0            |  out|    7|   ap_memory|            p_dhtbl_mincode|         array|
+|p_dhtbl_mincode_ce0                 |  out|    1|   ap_memory|            p_dhtbl_mincode|         array|
+|p_dhtbl_mincode_we0                 |  out|    1|   ap_memory|            p_dhtbl_mincode|         array|
+|p_dhtbl_mincode_d0                  |  out|   11|   ap_memory|            p_dhtbl_mincode|         array|
+|p_dhtbl_mincode_offset              |   in|    1|     ap_none|     p_dhtbl_mincode_offset|        scalar|
+|p_dhtbl_valptr_address0             |  out|    7|   ap_memory|             p_dhtbl_valptr|         array|
+|p_dhtbl_valptr_ce0                  |  out|    1|   ap_memory|             p_dhtbl_valptr|         array|
+|p_dhtbl_valptr_we0                  |  out|    1|   ap_memory|             p_dhtbl_valptr|         array|
+|p_dhtbl_valptr_d0                   |  out|   11|   ap_memory|             p_dhtbl_valptr|         array|
+|p_dhtbl_valptr_offset               |   in|    1|     ap_none|      p_dhtbl_valptr_offset|        scalar|
+|p_jinfo_dc_xhuff_tbl_bits_address0  |  out|    8|   ap_memory|  p_jinfo_dc_xhuff_tbl_bits|         array|
+|p_jinfo_dc_xhuff_tbl_bits_ce0       |  out|    1|   ap_memory|  p_jinfo_dc_xhuff_tbl_bits|         array|
+|p_jinfo_dc_xhuff_tbl_bits_q0        |   in|    8|   ap_memory|  p_jinfo_dc_xhuff_tbl_bits|         array|
++------------------------------------+-----+-----+------------+---------------------------+--------------+
+

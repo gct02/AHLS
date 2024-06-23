@@ -1,0 +1,1120 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                   Line: 112, Column: 0 }
+Function:        propagateFloat64NaN
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float64_is_signaling_nan
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 98, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          propagateFloat64NaN
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 112, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                   Line: 112, Column: 0 }
+Function:        propagateFloat64NaN
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float64_is_nan
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 85, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          propagateFloat64NaN
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 112, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                   Line: 112, Column: 0 }
+Function:        propagateFloat64NaN
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float_raise
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 68, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          propagateFloat64NaN
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 112, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                   Line: 287, Column: 0 }
+Function:        countLeadingZeros64
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          countLeadingZeros32
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 243, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          countLeadingZeros64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 287, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 122, 
+                   Column: 0 }
+Function:        normalizeFloat64Subnormal
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          countLeadingZeros64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 287, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          normalizeFloat64Subnormal
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 122, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 174, 
+                   Column: 0 }
+Function:        roundAndPackFloat64
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float_raise
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 68, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          roundAndPackFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 174, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 174, 
+                   Column: 0 }
+Function:        roundAndPackFloat64
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          packFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 144, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          roundAndPackFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 174, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 174, 
+                   Column: 0 }
+Function:        roundAndPackFloat64
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          shift64RightJamming
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 64, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          roundAndPackFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 174, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 469, 
+                   Column: 0 }
+Function:        float64_mul
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Frac
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 83, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_mul
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 469, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 469, 
+                   Column: 0 }
+Function:        float64_mul
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Exp
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 95, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_mul
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 469, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 469, 
+                   Column: 0 }
+Function:        float64_mul
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Sign
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 107, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_mul
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 469, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 469, 
+                   Column: 0 }
+Function:        float64_mul
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          propagateFloat64NaN
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 112, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_mul
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 469, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 469, 
+                   Column: 0 }
+Function:        float64_mul
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float_raise
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 68, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_mul
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 469, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 469, 
+                   Column: 0 }
+Function:        float64_mul
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          packFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 144, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_mul
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 469, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 469, 
+                   Column: 0 }
+Function:        float64_mul
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          normalizeFloat64Subnormal
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 122, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_mul
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 469, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 469, 
+                   Column: 0 }
+Function:        float64_mul
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          mul64To128
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 180, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_mul
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 469, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 469, 
+                   Column: 0 }
+Function:        float64_mul
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          roundAndPackFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 174, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_mul
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 469, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 261, 
+                   Column: 0 }
+Function:        int32_to_float64
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          countLeadingZeros32
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 243, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          int32_to_float64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 261, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 261, 
+                   Column: 0 }
+Function:        int32_to_float64
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          packFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 144, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          int32_to_float64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 261, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                   Line: 213, Column: 0 }
+Function:        estimateDiv128To64
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          mul64To128
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 180, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          estimateDiv128To64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 213, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                   Line: 213, Column: 0 }
+Function:        estimateDiv128To64
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          sub128
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 165, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          estimateDiv128To64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 213, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                   Line: 213, Column: 0 }
+Function:        estimateDiv128To64
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          add128
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 145, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          estimateDiv128To64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 213, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 537, 
+                   Column: 0 }
+Function:        float64_div
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Frac
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 83, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 537, 
+                   Column: 0 }
+Function:        float64_div
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Exp
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 95, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 537, 
+                   Column: 0 }
+Function:        float64_div
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Sign
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 107, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 537, 
+                   Column: 0 }
+Function:        float64_div
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          propagateFloat64NaN
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 112, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 537, 
+                   Column: 0 }
+Function:        float64_div
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float_raise
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 68, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 537, 
+                   Column: 0 }
+Function:        float64_div
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          packFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 144, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 537, 
+                   Column: 0 }
+Function:        float64_div
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          normalizeFloat64Subnormal
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 122, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 537, 
+                   Column: 0 }
+Function:        float64_div
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          estimateDiv128To64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 213, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 537, 
+                   Column: 0 }
+Function:        float64_div
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          mul64To128
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 180, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 537, 
+                   Column: 0 }
+Function:        float64_div
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          sub128
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 165, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 537, 
+                   Column: 0 }
+Function:        float64_div
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          add128
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 145, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 537, 
+                   Column: 0 }
+Function:        float64_div
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          roundAndPackFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 174, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 287, 
+                   Column: 0 }
+Function:        addFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Frac
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 83, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          addFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 287, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 287, 
+                   Column: 0 }
+Function:        addFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Exp
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 95, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          addFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 287, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 287, 
+                   Column: 0 }
+Function:        addFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          propagateFloat64NaN
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 112, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          addFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 287, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 287, 
+                   Column: 0 }
+Function:        addFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          shift64RightJamming
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 64, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          addFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 287, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 287, 
+                   Column: 0 }
+Function:        addFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          packFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 144, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          addFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 287, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 287, 
+                   Column: 0 }
+Function:        addFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          roundAndPackFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 174, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          addFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 287, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 245, 
+                   Column: 0 }
+Function:        normalizeRoundAndPackFloat64
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          countLeadingZeros64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 287, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          normalizeRoundAndPackFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 245, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 245, 
+                   Column: 0 }
+Function:        normalizeRoundAndPackFloat64
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          roundAndPackFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 174, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          normalizeRoundAndPackFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 245, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 368, 
+                   Column: 0 }
+Function:        subFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Frac
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 83, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          subFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 368, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 368, 
+                   Column: 0 }
+Function:        subFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Exp
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 95, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          subFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 368, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 368, 
+                   Column: 0 }
+Function:        subFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          propagateFloat64NaN
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 112, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          subFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 368, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 368, 
+                   Column: 0 }
+Function:        subFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float_raise
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 68, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          subFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 368, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 368, 
+                   Column: 0 }
+Function:        subFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          packFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 144, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          subFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 368, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 368, 
+                   Column: 0 }
+Function:        subFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          shift64RightJamming
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                       Line: 64, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          subFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 368, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 368, 
+                   Column: 0 }
+Function:        subFloat64Sigs
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          normalizeRoundAndPackFloat64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 245, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          subFloat64Sigs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 368, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 449, 
+                   Column: 0 }
+Function:        float64_add
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Sign
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 107, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_add
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 449, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 622, 
+                   Column: 0 }
+Function:        float64_le
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Exp
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 95, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_le
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 622, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 622, 
+                   Column: 0 }
+Function:        float64_le
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Frac
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 83, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_le
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 622, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 622, 
+                   Column: 0 }
+Function:        float64_le
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float_raise
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-specialize, 
+                       Line: 68, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_le
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 622, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 622, 
+                   Column: 0 }
+Function:        float64_le
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          extractFloat64Sign
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 107, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_le
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 622, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 641, 
+                   Column: 0 }
+Function:        float64_ge
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float64_le
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 622, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          float64_ge
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 641, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 47, 
+                   Column: 0 }
+Function:        local_sin
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float64_neg
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 648, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          local_sin
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 47, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 47, 
+                   Column: 0 }
+Function:        local_sin
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          int32_to_float64
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 261, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          local_sin
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 47, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 47, 
+                   Column: 0 }
+Function:        local_sin
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float64_add
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 449, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          local_sin
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 47, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 47, 
+                   Column: 0 }
+Function:        local_sin
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float64_abs
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 41, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          local_sin
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 47, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 47, 
+                   Column: 0 }
+Function:        local_sin
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          float64_ge
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 641, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          local_sin
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 47, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 56, 
+                   Column: 20 }
+Function:        local_sin
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        VITIS_LOOP_56_1
+  - String:          ' '
+  - LoopLoc:         'benchmarks/chstone/dfsin/src/dfsin.c:56:20'
+  - String:          ' '
+  - Function:        local_sin
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/dfsin.c, Line: 47, 
+                       Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                   Line: 224, Column: 21 }
+Function:        float64_div
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        VITIS_LOOP_224_1
+  - String:          ' '
+  - LoopLoc:         'benchmarks/chstone/dfsin/src/softfloat-macros:224:21'
+  - String:          ' '
+  - Function:        float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 602, 
+                   Column: 25 }
+Function:        float64_div
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        VITIS_LOOP_602_1
+  - String:          ' '
+  - LoopLoc:         'benchmarks/chstone/dfsin/src/softfloat.c:602:25'
+  - String:          ' '
+  - Function:        float64_div
+    DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, 
+                       Line: 537, Column: 0 }
+  - String:          ' '
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat.c, Line: 602, 
+                   Column: 25 }
+Function:        float64_div
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_602_1
+  - String:          '''('
+  - LoopLoc:         'benchmarks/chstone/dfsin/src/softfloat.c:602:25'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: benchmarks/chstone/dfsin/src/softfloat-macros, 
+                   Line: 224, Column: 21 }
+Function:        float64_div
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_224_1
+  - String:          '''('
+  - LoopLoc:         'benchmarks/chstone/dfsin/src/softfloat-macros:224:21'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_224_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/chstone/dfsin/src/softfloat-macros:224:21'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_602_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/chstone/dfsin/src/softfloat.c:602:25'
+  - String:          ' '
+...

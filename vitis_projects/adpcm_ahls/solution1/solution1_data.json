@@ -1,0 +1,1082 @@
+{
+  "Top": "adpcm_main",
+  "RtlTop": "adpcm_main",
+  "RtlPrefix": "",
+  "RtlSubPrefix": "adpcm_main_",
+  "SourceLanguage": "c",
+  "HostMachineBits": "64",
+  "FunctionProtocol": "ap_ctrl_hs",
+  "ResetStyle": "control",
+  "Target": {
+    "Family": "virtexuplushbm",
+    "Device": "xcvu35p",
+    "Package": "-fsvh2104",
+    "Speed": "-1-e",
+    "Triple": "fpga64-xilinx-none"
+  },
+  "Args": {
+    "input_samples": {
+      "index": "0",
+      "direction": "in",
+      "srcType": "int const *",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "port",
+          "interface": "input_samples_address0",
+          "name": "input_samples_address0",
+          "usage": "address",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "input_samples_ce0",
+          "name": "input_samples_ce0",
+          "usage": "control",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "input_samples_q0",
+          "name": "input_samples_q0",
+          "usage": "data",
+          "direction": "in"
+        },
+        {
+          "type": "port",
+          "interface": "input_samples_address1",
+          "name": "input_samples_address1",
+          "usage": "address",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "input_samples_ce1",
+          "name": "input_samples_ce1",
+          "usage": "control",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "input_samples_q1",
+          "name": "input_samples_q1",
+          "usage": "data",
+          "direction": "in"
+        }
+      ]
+    },
+    "compressed": {
+      "index": "1",
+      "direction": "inout",
+      "srcType": "int*",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "port",
+          "interface": "compressed_address0",
+          "name": "compressed_address0",
+          "usage": "address",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "compressed_ce0",
+          "name": "compressed_ce0",
+          "usage": "control",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "compressed_we0",
+          "name": "compressed_we0",
+          "usage": "control",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "compressed_d0",
+          "name": "compressed_d0",
+          "usage": "data",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "compressed_q0",
+          "name": "compressed_q0",
+          "usage": "data",
+          "direction": "in"
+        }
+      ]
+    },
+    "result": {
+      "index": "2",
+      "direction": "out",
+      "srcType": "int*",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "port",
+          "interface": "result_address0",
+          "name": "result_address0",
+          "usage": "address",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "result_ce0",
+          "name": "result_ce0",
+          "usage": "control",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "result_we0",
+          "name": "result_we0",
+          "usage": "control",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "result_d0",
+          "name": "result_d0",
+          "usage": "data",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "result_address1",
+          "name": "result_address1",
+          "usage": "address",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "result_ce1",
+          "name": "result_ce1",
+          "usage": "control",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "result_we1",
+          "name": "result_we1",
+          "usage": "control",
+          "direction": "out"
+        },
+        {
+          "type": "port",
+          "interface": "result_d1",
+          "name": "result_d1",
+          "usage": "data",
+          "direction": "out"
+        }
+      ]
+    }
+  },
+  "HlsSolution": {
+    "FlowTarget": "vivado",
+    "DirectiveTcl": ["set_directive_top adpcm_main -name adpcm_main"],
+    "ProfileOption": "0",
+    "ProfileType": "none",
+    "KernelName": "adpcm_main"
+  },
+  "ClockInfo": {
+    "ClockName": "ap_clk",
+    "ClockPeriod": "5",
+    "Uncertainty": "1.35",
+    "IsCombinational": "0",
+    "II": "148039",
+    "Latency": "148038"
+  },
+  "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 5.000 [get_ports ap_clk]"]},
+  "Ipx": {
+    "Vendor": "xilinx.com",
+    "Library": "hls",
+    "Name": "adpcm_main",
+    "Version": "1.0",
+    "DisplayName": "Adpcm_main",
+    "Revision": "2113609506",
+    "Description": "An IP generated by Vitis HLS",
+    "Taxonomy": "\/VITIS_HLS_IP",
+    "AutoFamilySupport": "",
+    "ZipFile": "xilinx_com_hls_adpcm_main_1_0.zip"
+  },
+  "Files": {
+    "CSource": [
+      "..\/..\/..\/.\/benchmarks\/chstone\/adpcm\/src\/adpcm.c",
+      "..\/..\/..\/benchmarks\/chstone\/adpcm\/src\/adpcm.c"
+    ],
+    "Vhdl": [
+      "impl\/vhdl\/adpcm_main_accumc_RAM_AUTO_1R1W.vhd",
+      "impl\/vhdl\/adpcm_main_adpcm_main_Pipeline_adpcm_main_label12.vhd",
+      "impl\/vhdl\/adpcm_main_adpcm_main_Pipeline_adpcm_main_label13.vhd",
+      "impl\/vhdl\/adpcm_main_adpcm_main_Pipeline_reset_label4.vhd",
+      "impl\/vhdl\/adpcm_main_adpcm_main_Pipeline_reset_label5.vhd",
+      "impl\/vhdl\/adpcm_main_adpcm_main_Pipeline_reset_label6.vhd",
+      "impl\/vhdl\/adpcm_main_adpcm_main_Pipeline_reset_label7.vhd",
+      "impl\/vhdl\/adpcm_main_decode.vhd",
+      "impl\/vhdl\/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.vhd",
+      "impl\/vhdl\/adpcm_main_delay_bpl_RAM_AUTO_1R1W.vhd",
+      "impl\/vhdl\/adpcm_main_delay_dhx_RAM_AUTO_1R1W.vhd",
+      "impl\/vhdl\/adpcm_main_delay_dltx_RAM_AUTO_1R1W.vhd",
+      "impl\/vhdl\/adpcm_main_encode.vhd",
+      "impl\/vhdl\/adpcm_main_encode_ilb_table_ROM_AUTO_1R.vhd",
+      "impl\/vhdl\/adpcm_main_encode_qq4_code4_table_ROM_AUTO_1R.vhd",
+      "impl\/vhdl\/adpcm_main_encode_quant26bt_neg_ROM_AUTO_1R.vhd",
+      "impl\/vhdl\/adpcm_main_encode_quant26bt_pos_ROM_AUTO_1R.vhd",
+      "impl\/vhdl\/adpcm_main_encode_wl_code_table_ROM_AUTO_1R.vhd",
+      "impl\/vhdl\/adpcm_main_flow_control_loop_pipe_sequential_init.vhd",
+      "impl\/vhdl\/adpcm_main_mul_14s_14s_28_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_14s_15ns_29_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_14s_32s_46_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_15ns_10ns_24_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_15ns_11ns_25_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_15ns_12ns_26_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_15ns_13ns_27_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_15ns_14ns_28_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_15ns_15ns_29_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_15ns_16ns_30_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_15s_32s_47_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_16s_15ns_31_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_16s_16s_32_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_16s_32s_46_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_16s_32s_47_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_32s_9ns_41_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_32s_11s_42_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_32s_11s_43_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_32s_12ns_44_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_32s_13ns_45_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_32s_13s_44_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_32s_13s_45_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_32s_15ns_46_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_32s_15ns_47_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_32s_32s_64_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_33s_7s_39_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mul_33s_7s_40_2_1.vhd",
+      "impl\/vhdl\/adpcm_main_mux_4_2_11_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_mux_4_2_14_1_1.vhd",
+      "impl\/vhdl\/adpcm_main_tqmf_RAM_AUTO_1R1W.vhd",
+      "impl\/vhdl\/adpcm_main.vhd"
+    ],
+    "Verilog": [
+      "impl\/verilog\/adpcm_main_accumc_RAM_AUTO_1R1W.dat",
+      "impl\/verilog\/adpcm_main_accumc_RAM_AUTO_1R1W.v",
+      "impl\/verilog\/adpcm_main_adpcm_main_Pipeline_adpcm_main_label12.v",
+      "impl\/verilog\/adpcm_main_adpcm_main_Pipeline_adpcm_main_label13.v",
+      "impl\/verilog\/adpcm_main_adpcm_main_Pipeline_reset_label4.v",
+      "impl\/verilog\/adpcm_main_adpcm_main_Pipeline_reset_label5.v",
+      "impl\/verilog\/adpcm_main_adpcm_main_Pipeline_reset_label6.v",
+      "impl\/verilog\/adpcm_main_adpcm_main_Pipeline_reset_label7.v",
+      "impl\/verilog\/adpcm_main_decode.v",
+      "impl\/verilog\/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.dat",
+      "impl\/verilog\/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.v",
+      "impl\/verilog\/adpcm_main_delay_bpl_RAM_AUTO_1R1W.dat",
+      "impl\/verilog\/adpcm_main_delay_bpl_RAM_AUTO_1R1W.v",
+      "impl\/verilog\/adpcm_main_delay_dhx_RAM_AUTO_1R1W.dat",
+      "impl\/verilog\/adpcm_main_delay_dhx_RAM_AUTO_1R1W.v",
+      "impl\/verilog\/adpcm_main_delay_dltx_RAM_AUTO_1R1W.dat",
+      "impl\/verilog\/adpcm_main_delay_dltx_RAM_AUTO_1R1W.v",
+      "impl\/verilog\/adpcm_main_encode.v",
+      "impl\/verilog\/adpcm_main_encode_ilb_table_ROM_AUTO_1R.dat",
+      "impl\/verilog\/adpcm_main_encode_ilb_table_ROM_AUTO_1R.v",
+      "impl\/verilog\/adpcm_main_encode_qq4_code4_table_ROM_AUTO_1R.dat",
+      "impl\/verilog\/adpcm_main_encode_qq4_code4_table_ROM_AUTO_1R.v",
+      "impl\/verilog\/adpcm_main_encode_quant26bt_neg_ROM_AUTO_1R.dat",
+      "impl\/verilog\/adpcm_main_encode_quant26bt_neg_ROM_AUTO_1R.v",
+      "impl\/verilog\/adpcm_main_encode_quant26bt_pos_ROM_AUTO_1R.dat",
+      "impl\/verilog\/adpcm_main_encode_quant26bt_pos_ROM_AUTO_1R.v",
+      "impl\/verilog\/adpcm_main_encode_wl_code_table_ROM_AUTO_1R.dat",
+      "impl\/verilog\/adpcm_main_encode_wl_code_table_ROM_AUTO_1R.v",
+      "impl\/verilog\/adpcm_main_flow_control_loop_pipe_sequential_init.v",
+      "impl\/verilog\/adpcm_main_mul_14s_14s_28_1_1.v",
+      "impl\/verilog\/adpcm_main_mul_14s_15ns_29_1_1.v",
+      "impl\/verilog\/adpcm_main_mul_14s_32s_46_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_15ns_10ns_24_1_1.v",
+      "impl\/verilog\/adpcm_main_mul_15ns_11ns_25_1_1.v",
+      "impl\/verilog\/adpcm_main_mul_15ns_12ns_26_1_1.v",
+      "impl\/verilog\/adpcm_main_mul_15ns_13ns_27_1_1.v",
+      "impl\/verilog\/adpcm_main_mul_15ns_14ns_28_1_1.v",
+      "impl\/verilog\/adpcm_main_mul_15ns_15ns_29_1_1.v",
+      "impl\/verilog\/adpcm_main_mul_15ns_16ns_30_1_1.v",
+      "impl\/verilog\/adpcm_main_mul_15s_32s_47_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_16s_15ns_31_1_1.v",
+      "impl\/verilog\/adpcm_main_mul_16s_16s_32_1_1.v",
+      "impl\/verilog\/adpcm_main_mul_16s_32s_46_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_16s_32s_47_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_32s_9ns_41_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_32s_11s_42_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_32s_11s_43_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_32s_12ns_44_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_32s_13ns_45_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_32s_13s_44_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_32s_13s_45_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_32s_15ns_46_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_32s_15ns_47_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_32s_32s_64_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_33s_7s_39_2_1.v",
+      "impl\/verilog\/adpcm_main_mul_33s_7s_40_2_1.v",
+      "impl\/verilog\/adpcm_main_mux_4_2_11_1_1.v",
+      "impl\/verilog\/adpcm_main_mux_4_2_14_1_1.v",
+      "impl\/verilog\/adpcm_main_tqmf_RAM_AUTO_1R1W.dat",
+      "impl\/verilog\/adpcm_main_tqmf_RAM_AUTO_1R1W.v",
+      "impl\/verilog\/adpcm_main.v"
+    ],
+    "IpMisc": ["impl\/misc\/logo.png"],
+    "CsynthXml": "syn\/report\/csynth.xml",
+    "DebugDir": ".debug",
+    "KernelXml": ".autopilot\/db\/kernel.internal.xml",
+    "Xo": "",
+    "XoHlsDir": "",
+    "ProtoInst": [".debug\/adpcm_main.protoinst"]
+  },
+  "SubcoreInfo": {
+    "HasXpmMemory": false,
+    "HasClockedDsp": false,
+    "Ip": []
+  },
+  "Interfaces": {
+    "ap_clk": {
+      "type": "clock",
+      "busTypeName": "clock",
+      "mode": "slave",
+      "busParams": {"ASSOCIATED_RESET": "ap_rst"},
+      "portMap": {"ap_clk": "CLK"},
+      "ports": ["ap_clk"]
+    },
+    "ap_rst": {
+      "type": "reset",
+      "busTypeName": "reset",
+      "mode": "slave",
+      "busParams": {"POLARITY": "ACTIVE_HIGH"},
+      "portMap": {"ap_rst": "RST"},
+      "ports": ["ap_rst"]
+    },
+    "ap_ctrl": {
+      "type": "ap_ctrl",
+      "busTypeName": "acc_handshake",
+      "mode": "slave",
+      "portMap": {
+        "ap_start": "start",
+        "ap_done": "done",
+        "ap_idle": "idle",
+        "ap_ready": "ready"
+      },
+      "ports": [
+        "ap_done",
+        "ap_idle",
+        "ap_ready",
+        "ap_start"
+      ]
+    },
+    "input_samples_address0": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_memory",
+      "mode": "master",
+      "dataWidth": "13",
+      "portMap": {"input_samples_address0": "DATA"},
+      "ports": ["input_samples_address0"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_memory",
+          "register_option": "0",
+          "argName": "input_samples"
+        }]
+    },
+    "input_samples_q0": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_memory",
+      "mode": "slave",
+      "dataWidth": "32",
+      "portMap": {"input_samples_q0": "DATA"},
+      "ports": ["input_samples_q0"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_memory",
+          "register_option": "0",
+          "argName": "input_samples"
+        }]
+    },
+    "input_samples_address1": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_memory",
+      "mode": "master",
+      "dataWidth": "13",
+      "portMap": {"input_samples_address1": "DATA"},
+      "ports": ["input_samples_address1"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_memory",
+          "register_option": "0",
+          "argName": "input_samples"
+        }]
+    },
+    "input_samples_q1": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_memory",
+      "mode": "slave",
+      "dataWidth": "32",
+      "portMap": {"input_samples_q1": "DATA"},
+      "ports": ["input_samples_q1"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_memory",
+          "register_option": "0",
+          "argName": "input_samples"
+        }]
+    },
+    "compressed_address0": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_memory",
+      "mode": "master",
+      "dataWidth": "12",
+      "portMap": {"compressed_address0": "DATA"},
+      "ports": ["compressed_address0"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_memory",
+          "register_option": "0",
+          "argName": "compressed"
+        }]
+    },
+    "compressed_d0": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_memory",
+      "mode": "master",
+      "dataWidth": "32",
+      "portMap": {"compressed_d0": "DATA"},
+      "ports": ["compressed_d0"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_memory",
+          "register_option": "0",
+          "argName": "compressed"
+        }]
+    },
+    "compressed_q0": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_memory",
+      "mode": "slave",
+      "dataWidth": "32",
+      "portMap": {"compressed_q0": "DATA"},
+      "ports": ["compressed_q0"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_memory",
+          "register_option": "0",
+          "argName": "compressed"
+        }]
+    },
+    "result_address0": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_memory",
+      "mode": "master",
+      "dataWidth": "13",
+      "portMap": {"result_address0": "DATA"},
+      "ports": ["result_address0"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_memory",
+          "register_option": "0",
+          "argName": "result"
+        }]
+    },
+    "result_d0": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_memory",
+      "mode": "master",
+      "dataWidth": "32",
+      "portMap": {"result_d0": "DATA"},
+      "ports": ["result_d0"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_memory",
+          "register_option": "0",
+          "argName": "result"
+        }]
+    },
+    "result_address1": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_memory",
+      "mode": "master",
+      "dataWidth": "13",
+      "portMap": {"result_address1": "DATA"},
+      "ports": ["result_address1"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_memory",
+          "register_option": "0",
+          "argName": "result"
+        }]
+    },
+    "result_d1": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_memory",
+      "mode": "master",
+      "dataWidth": "32",
+      "portMap": {"result_d1": "DATA"},
+      "ports": ["result_d1"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_memory",
+          "register_option": "0",
+          "argName": "result"
+        }]
+    }
+  },
+  "RtlPorts": {
+    "ap_clk": {
+      "dir": "in",
+      "width": "1"
+    },
+    "ap_rst": {
+      "dir": "in",
+      "width": "1"
+    },
+    "ap_start": {
+      "dir": "in",
+      "width": "1"
+    },
+    "ap_done": {
+      "dir": "out",
+      "width": "1"
+    },
+    "ap_idle": {
+      "dir": "out",
+      "width": "1"
+    },
+    "ap_ready": {
+      "dir": "out",
+      "width": "1"
+    },
+    "input_samples_address0": {
+      "dir": "out",
+      "width": "13"
+    },
+    "input_samples_ce0": {
+      "dir": "out",
+      "width": "1"
+    },
+    "input_samples_q0": {
+      "dir": "in",
+      "width": "32"
+    },
+    "input_samples_address1": {
+      "dir": "out",
+      "width": "13"
+    },
+    "input_samples_ce1": {
+      "dir": "out",
+      "width": "1"
+    },
+    "input_samples_q1": {
+      "dir": "in",
+      "width": "32"
+    },
+    "compressed_address0": {
+      "dir": "out",
+      "width": "12"
+    },
+    "compressed_ce0": {
+      "dir": "out",
+      "width": "1"
+    },
+    "compressed_we0": {
+      "dir": "out",
+      "width": "1"
+    },
+    "compressed_d0": {
+      "dir": "out",
+      "width": "32"
+    },
+    "compressed_q0": {
+      "dir": "in",
+      "width": "32"
+    },
+    "result_address0": {
+      "dir": "out",
+      "width": "13"
+    },
+    "result_ce0": {
+      "dir": "out",
+      "width": "1"
+    },
+    "result_we0": {
+      "dir": "out",
+      "width": "1"
+    },
+    "result_d0": {
+      "dir": "out",
+      "width": "32"
+    },
+    "result_address1": {
+      "dir": "out",
+      "width": "13"
+    },
+    "result_ce1": {
+      "dir": "out",
+      "width": "1"
+    },
+    "result_we1": {
+      "dir": "out",
+      "width": "1"
+    },
+    "result_d1": {
+      "dir": "out",
+      "width": "32"
+    }
+  },
+  "ModuleInfo": {
+    "Hierarchy": {
+      "ModuleName": "adpcm_main",
+      "Instances": [
+        {
+          "ModuleName": "adpcm_main_Pipeline_reset_label4",
+          "InstanceName": "grp_adpcm_main_Pipeline_reset_label4_fu_148"
+        },
+        {
+          "ModuleName": "adpcm_main_Pipeline_reset_label5",
+          "InstanceName": "grp_adpcm_main_Pipeline_reset_label5_fu_160"
+        },
+        {
+          "ModuleName": "adpcm_main_Pipeline_reset_label6",
+          "InstanceName": "grp_adpcm_main_Pipeline_reset_label6_fu_172"
+        },
+        {
+          "ModuleName": "adpcm_main_Pipeline_reset_label7",
+          "InstanceName": "grp_adpcm_main_Pipeline_reset_label7_fu_178"
+        },
+        {
+          "ModuleName": "adpcm_main_Pipeline_adpcm_main_label12",
+          "InstanceName": "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186",
+          "Instances": [{
+              "ModuleName": "encode",
+              "InstanceName": "grp_encode_fu_138"
+            }]
+        },
+        {
+          "ModuleName": "adpcm_main_Pipeline_adpcm_main_label13",
+          "InstanceName": "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248",
+          "Instances": [{
+              "ModuleName": "decode",
+              "InstanceName": "grp_decode_fu_142"
+            }]
+        }
+      ]
+    },
+    "Info": {
+      "adpcm_main_Pipeline_reset_label4": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "adpcm_main_Pipeline_reset_label5": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "adpcm_main_Pipeline_reset_label6": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "adpcm_main_Pipeline_reset_label7": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "encode": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "adpcm_main_Pipeline_adpcm_main_label12": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "decode": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "adpcm_main_Pipeline_adpcm_main_label13": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "adpcm_main": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      }
+    },
+    "Metrics": {
+      "adpcm_main_Pipeline_reset_label4": {
+        "Latency": {
+          "LatencyBest": "8",
+          "LatencyAvg": "8",
+          "LatencyWorst": "8",
+          "PipelineII": "8",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "5.00",
+          "Uncertainty": "1.35",
+          "Estimate": "1.905"
+        },
+        "Loops": [{
+            "Name": "reset_label4",
+            "TripCount": "6",
+            "Latency": "6",
+            "PipelineII": "1",
+            "PipelineDepth": "1"
+          }],
+        "Area": {
+          "FF": "5",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "47",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "adpcm_main_Pipeline_reset_label5": {
+        "Latency": {
+          "LatencyBest": "8",
+          "LatencyAvg": "8",
+          "LatencyWorst": "8",
+          "PipelineII": "8",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "5.00",
+          "Uncertainty": "1.35",
+          "Estimate": "1.905"
+        },
+        "Loops": [{
+            "Name": "reset_label5",
+            "TripCount": "6",
+            "Latency": "6",
+            "PipelineII": "1",
+            "PipelineDepth": "1"
+          }],
+        "Area": {
+          "FF": "5",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "47",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "adpcm_main_Pipeline_reset_label6": {
+        "Latency": {
+          "LatencyBest": "26",
+          "LatencyAvg": "26",
+          "LatencyWorst": "26",
+          "PipelineII": "26",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "5.00",
+          "Uncertainty": "1.35",
+          "Estimate": "2.014"
+        },
+        "Loops": [{
+            "Name": "reset_label6",
+            "TripCount": "24",
+            "Latency": "24",
+            "PipelineII": "1",
+            "PipelineDepth": "1"
+          }],
+        "Area": {
+          "FF": "7",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "51",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "adpcm_main_Pipeline_reset_label7": {
+        "Latency": {
+          "LatencyBest": "13",
+          "LatencyAvg": "13",
+          "LatencyWorst": "13",
+          "PipelineII": "13",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "5.00",
+          "Uncertainty": "1.35",
+          "Estimate": "1.999"
+        },
+        "Loops": [{
+            "Name": "reset_label7",
+            "TripCount": "11",
+            "Latency": "11",
+            "PipelineII": "1",
+            "PipelineDepth": "1"
+          }],
+        "Area": {
+          "FF": "6",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "51",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "encode": {
+        "Latency": {
+          "LatencyBest": "26",
+          "LatencyAvg": "26",
+          "LatencyWorst": "26",
+          "PipelineII": "25",
+          "PipelineDepth": "27",
+          "PipelineType": "yes"
+        },
+        "Timing": {
+          "Target": "5.00",
+          "Uncertainty": "1.35",
+          "Estimate": "3.794"
+        },
+        "Area": {
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "84",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "1",
+          "FF": "7194",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "8679",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "adpcm_main_Pipeline_adpcm_main_label12": {
+        "Latency": {
+          "LatencyBest": "100004",
+          "LatencyAvg": "100004",
+          "LatencyWorst": "100004",
+          "PipelineII": "100004",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "5.00",
+          "Uncertainty": "1.35",
+          "Estimate": "3.794"
+        },
+        "Loops": [{
+            "Name": "adpcm_main_label12",
+            "TripCount": "4000",
+            "Latency": "100002",
+            "PipelineII": "25",
+            "PipelineDepth": "28"
+          }],
+        "Area": {
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "84",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "1",
+          "FF": "7262",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "9055",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "1",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "decode": {
+        "Latency": {
+          "LatencyBest": "10",
+          "LatencyAvg": "10",
+          "LatencyWorst": "10",
+          "PipelineII": "9",
+          "PipelineDepth": "11",
+          "PipelineType": "yes"
+        },
+        "Timing": {
+          "Target": "5.00",
+          "Uncertainty": "1.35",
+          "Estimate": "3.623"
+        },
+        "Area": {
+          "BRAM_18K": "1",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "~0",
+          "DSP": "69",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "1",
+          "FF": "7558",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "6880",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "adpcm_main_Pipeline_adpcm_main_label13": {
+        "Latency": {
+          "LatencyBest": "48003",
+          "LatencyAvg": "48003",
+          "LatencyWorst": "48003",
+          "PipelineII": "48003",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "5.00",
+          "Uncertainty": "1.35",
+          "Estimate": "3.623"
+        },
+        "Loops": [{
+            "Name": "adpcm_main_label13",
+            "TripCount": "4000",
+            "Latency": "48001",
+            "PipelineII": "12",
+            "PipelineDepth": "14"
+          }],
+        "Area": {
+          "BRAM_18K": "1",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "~0",
+          "DSP": "69",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "1",
+          "FF": "7686",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "7198",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "adpcm_main": {
+        "Latency": {
+          "LatencyBest": "148038",
+          "LatencyAvg": "148038",
+          "LatencyWorst": "148038",
+          "PipelineII": "148039",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "5.00",
+          "Uncertainty": "1.35",
+          "Estimate": "3.794"
+        },
+        "Area": {
+          "BRAM_18K": "1",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "~0",
+          "DSP": "153",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "2",
+          "FF": "16305",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "17671",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "2",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      }
+    }
+  },
+  "GenerateBdFiles": "0",
+  "GenData": {
+    "DataVersion": "0.2",
+    "Time": "2024-06-19 19:06:31 -03",
+    "ToolName": "vitis_hls",
+    "ToolVersion": "2023.2"
+  }
+}

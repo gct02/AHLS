@@ -1,0 +1,159 @@
+{
+  "0": {
+    "basicblocks": 1,
+    "calls": "6 8 8 2 8 1",
+    "file": "jpeg2bmp.c",
+    "fileloc": 5,
+    "instructions": 42,
+    "loads": {
+      "G": 2
+    },
+    "name": "jpeg2bmp",
+    "stores": {
+      "G": 6,
+      "L": 2
+    },
+    "total_instructions": 2495
+  },
+  "1": {
+    "basicblocks": 23,
+    "calls": "3",
+    "file": "jpeg_decode.c",
+    "fileloc": 789,
+    "instructions": 155,
+    "loads": {
+      "G": 8,
+      "L": 6
+    },
+    "name": "decode",
+    "stores": {
+      "G": 4,
+      "L": 7
+    },
+    "total_instructions": 856
+  },
+  "2": {
+    "basicblocks": 19,
+    "calls": "",
+    "file": "jpeg_decode.c",
+    "fileloc": 626,
+    "instructions": 103,
+    "loads": {
+      "G": 3,
+      "L": 4
+    },
+    "name": "huff_make_dhuff_tb",
+    "stores": {
+      "G": 5,
+      "L": 3
+    },
+    "total_instructions": 103
+  },
+  "3": {
+    "basicblocks": 34,
+    "calls": "7 9 5 9 4",
+    "file": "jpeg_decode.c",
+    "fileloc": 769,
+    "instructions": 140,
+    "loads": {
+      "G": 8,
+      "L": 5
+    },
+    "name": "decode_block",
+    "stores": {
+      "L": 9
+    },
+    "total_instructions": 701
+  },
+  "4": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "jpeg_decode.c",
+    "fileloc": 169,
+    "instructions": 298,
+    "loads": {
+      "L": 17
+    },
+    "name": "ChenIDct",
+    "stores": {
+      "L": 17
+    },
+    "total_instructions": 298
+  },
+  "5": {
+    "basicblocks": 10,
+    "calls": "",
+    "file": "jpeg_decode.c",
+    "fileloc": 680,
+    "instructions": 75,
+    "loads": {
+      "G": 13
+    },
+    "name": "DecodeHuffman",
+    "stores": {
+      "G": 8
+    },
+    "total_instructions": 75
+  },
+  "6": {
+    "basicblocks": 42,
+    "calls": "",
+    "file": "jpeg_decode.c",
+    "fileloc": 1161,
+    "instructions": 1167,
+    "loads": {
+      "G": 4
+    },
+    "name": "read_markers",
+    "stores": {
+      "G": 73
+    },
+    "total_instructions": 1167
+  },
+  "7": {
+    "basicblocks": 10,
+    "calls": "",
+    "file": "jpeg_decode.c",
+    "fileloc": 680,
+    "instructions": 72,
+    "loads": {
+      "G": 13
+    },
+    "name": "DecodeHuffman",
+    "stores": {
+      "G": 8
+    },
+    "total_instructions": 72
+  },
+  "8": {
+    "basicblocks": 19,
+    "calls": "",
+    "file": "jpeg_decode.c",
+    "fileloc": 626,
+    "instructions": 109,
+    "loads": {
+      "G": 2,
+      "L": 5
+    },
+    "name": "huff_make_dhuff_tb",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 109
+  },
+  "9": {
+    "basicblocks": 10,
+    "calls": "",
+    "file": "jpeg_decode.c",
+    "fileloc": 589,
+    "instructions": 58,
+    "loads": {
+      "G": 6
+    },
+    "name": "buf_getv",
+    "stores": {
+      "G": 8
+    },
+    "total_instructions": 58
+  }
+}

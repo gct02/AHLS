@@ -1,0 +1,257 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'adpcm_main_Pipeline_adpcm_main_label12'" level="0">
+<item name = "Date">Wed Jun 19 19:06:30 2024
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">adpcm_ahls</item>
+<item name = "Solution">solution1 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 3.794 ns, 1.35 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">100004, 100004, 0.500 ms, 0.500 ms, 100004, 100004, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_encode_fu_138">encode, 26, 26, 0.130 us, 0.130 us, 25, 25, yes</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- adpcm_main_label12">100002, 100002, 28, 25, 1, 4000, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 55, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">0, 84, 7194, 8679, -</column>
+<column name="Memory">-, -, -, -, -</column>
+<column name="Multiplexer">-, -, -, 321, -</column>
+<column name="Register">-, -, 68, -, -</column>
+<specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
+<specialColumn name="Utilization SLR (%)">0, 2, ~0, 2, 0</specialColumn>
+<specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
+<specialColumn name="Utilization (%)">0, 1, ~0, 1, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="grp_encode_fu_138">encode, 0, 84, 7194, 8679, 0</column>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="add_ln778_fu_239_p2">+, 0, 0, 20, 13, 2</column>
+<column name="icmp_ln778_fu_208_p2">icmp, 0, 0, 20, 13, 9</column>
+<column name="or_ln780_fu_219_p2">or, 0, 0, 13, 13, 1</column>
+<column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ah1_o">9, 2, 16, 32</column>
+<column name="ah2_o">9, 2, 15, 30</column>
+<column name="al1_o">9, 2, 16, 32</column>
+<column name="al2_o">9, 2, 15, 30</column>
+<column name="ap_NS_fsm">123, 26, 1, 26</column>
+<column name="ap_done_int">9, 2, 1, 2</column>
+<column name="ap_enable_reg_pp0_iter0">9, 2, 1, 2</column>
+<column name="ap_enable_reg_pp0_iter0_reg">9, 2, 1, 2</column>
+<column name="ap_enable_reg_pp0_iter1">9, 2, 1, 2</column>
+<column name="ap_sig_allocacmp_i">9, 2, 13, 26</column>
+<column name="deth_o">9, 2, 15, 30</column>
+<column name="detl_o">9, 2, 15, 30</column>
+<column name="i_4_fu_96">9, 2, 13, 26</column>
+<column name="nbh_o">9, 2, 15, 30</column>
+<column name="nbl_o">9, 2, 15, 30</column>
+<column name="ph1_o">9, 2, 32, 64</column>
+<column name="ph2_o">9, 2, 32, 64</column>
+<column name="plt1_o">9, 2, 32, 64</column>
+<column name="plt2_o">9, 2, 32, 64</column>
+<column name="rh1_o">9, 2, 31, 62</column>
+<column name="rh2_o">9, 2, 31, 62</column>
+<column name="rlt1_o">9, 2, 31, 62</column>
+<column name="rlt2_o">9, 2, 31, 62</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">25, 0, 25, 0</column>
+<column name="ap_done_reg">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter0_reg">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter1">1, 0, 1, 0</column>
+<column name="grp_encode_fu_138_ap_start_reg">1, 0, 1, 0</column>
+<column name="i_4_fu_96">13, 0, 13, 0</column>
+<column name="i_reg_265">13, 0, 13, 0</column>
+<column name="icmp_ln778_reg_271">1, 0, 1, 0</column>
+<column name="tmp_s_reg_290">12, 0, 12, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, adpcm_main_Pipeline_adpcm_main_label12, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, adpcm_main_Pipeline_adpcm_main_label12, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, adpcm_main_Pipeline_adpcm_main_label12, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, adpcm_main_Pipeline_adpcm_main_label12, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, adpcm_main_Pipeline_adpcm_main_label12, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, adpcm_main_Pipeline_adpcm_main_label12, return value</column>
+<column name="input_samples_address0">out, 13, ap_memory, input_samples, array</column>
+<column name="input_samples_ce0">out, 1, ap_memory, input_samples, array</column>
+<column name="input_samples_q0">in, 32, ap_memory, input_samples, array</column>
+<column name="input_samples_address1">out, 13, ap_memory, input_samples, array</column>
+<column name="input_samples_ce1">out, 1, ap_memory, input_samples, array</column>
+<column name="input_samples_q1">in, 32, ap_memory, input_samples, array</column>
+<column name="compressed_address0">out, 12, ap_memory, compressed, array</column>
+<column name="compressed_ce0">out, 1, ap_memory, compressed, array</column>
+<column name="compressed_we0">out, 1, ap_memory, compressed, array</column>
+<column name="compressed_d0">out, 32, ap_memory, compressed, array</column>
+<column name="rlt1_i">in, 31, ap_ovld, rlt1, pointer</column>
+<column name="rlt1_o">out, 31, ap_ovld, rlt1, pointer</column>
+<column name="rlt1_o_ap_vld">out, 1, ap_ovld, rlt1, pointer</column>
+<column name="al1_i">in, 16, ap_ovld, al1, pointer</column>
+<column name="al1_o">out, 16, ap_ovld, al1, pointer</column>
+<column name="al1_o_ap_vld">out, 1, ap_ovld, al1, pointer</column>
+<column name="rlt2_i">in, 31, ap_ovld, rlt2, pointer</column>
+<column name="rlt2_o">out, 31, ap_ovld, rlt2, pointer</column>
+<column name="rlt2_o_ap_vld">out, 1, ap_ovld, rlt2, pointer</column>
+<column name="al2_i">in, 15, ap_ovld, al2, pointer</column>
+<column name="al2_o">out, 15, ap_ovld, al2, pointer</column>
+<column name="al2_o_ap_vld">out, 1, ap_ovld, al2, pointer</column>
+<column name="detl_i">in, 15, ap_ovld, detl, pointer</column>
+<column name="detl_o">out, 15, ap_ovld, detl, pointer</column>
+<column name="detl_o_ap_vld">out, 1, ap_ovld, detl, pointer</column>
+<column name="il">out, 6, ap_vld, il, pointer</column>
+<column name="il_ap_vld">out, 1, ap_vld, il, pointer</column>
+<column name="nbl_i">in, 15, ap_ovld, nbl, pointer</column>
+<column name="nbl_o">out, 15, ap_ovld, nbl, pointer</column>
+<column name="nbl_o_ap_vld">out, 1, ap_ovld, nbl, pointer</column>
+<column name="plt1_i">in, 32, ap_ovld, plt1, pointer</column>
+<column name="plt1_o">out, 32, ap_ovld, plt1, pointer</column>
+<column name="plt1_o_ap_vld">out, 1, ap_ovld, plt1, pointer</column>
+<column name="plt2_i">in, 32, ap_ovld, plt2, pointer</column>
+<column name="plt2_o">out, 32, ap_ovld, plt2, pointer</column>
+<column name="plt2_o_ap_vld">out, 1, ap_ovld, plt2, pointer</column>
+<column name="rh1_i">in, 31, ap_ovld, rh1, pointer</column>
+<column name="rh1_o">out, 31, ap_ovld, rh1, pointer</column>
+<column name="rh1_o_ap_vld">out, 1, ap_ovld, rh1, pointer</column>
+<column name="ah1_i">in, 16, ap_ovld, ah1, pointer</column>
+<column name="ah1_o">out, 16, ap_ovld, ah1, pointer</column>
+<column name="ah1_o_ap_vld">out, 1, ap_ovld, ah1, pointer</column>
+<column name="rh2_i">in, 31, ap_ovld, rh2, pointer</column>
+<column name="rh2_o">out, 31, ap_ovld, rh2, pointer</column>
+<column name="rh2_o_ap_vld">out, 1, ap_ovld, rh2, pointer</column>
+<column name="ah2_i">in, 15, ap_ovld, ah2, pointer</column>
+<column name="ah2_o">out, 15, ap_ovld, ah2, pointer</column>
+<column name="ah2_o_ap_vld">out, 1, ap_ovld, ah2, pointer</column>
+<column name="deth_i">in, 15, ap_ovld, deth, pointer</column>
+<column name="deth_o">out, 15, ap_ovld, deth, pointer</column>
+<column name="deth_o_ap_vld">out, 1, ap_ovld, deth, pointer</column>
+<column name="nbh_i">in, 15, ap_ovld, nbh, pointer</column>
+<column name="nbh_o">out, 15, ap_ovld, nbh, pointer</column>
+<column name="nbh_o_ap_vld">out, 1, ap_ovld, nbh, pointer</column>
+<column name="ph1_i">in, 32, ap_ovld, ph1, pointer</column>
+<column name="ph1_o">out, 32, ap_ovld, ph1, pointer</column>
+<column name="ph1_o_ap_vld">out, 1, ap_ovld, ph1, pointer</column>
+<column name="ph2_i">in, 32, ap_ovld, ph2, pointer</column>
+<column name="ph2_o">out, 32, ap_ovld, ph2, pointer</column>
+<column name="ph2_o_ap_vld">out, 1, ap_ovld, ph2, pointer</column>
+<column name="tqmf_address0">out, 5, ap_memory, tqmf, array</column>
+<column name="tqmf_ce0">out, 1, ap_memory, tqmf, array</column>
+<column name="tqmf_we0">out, 1, ap_memory, tqmf, array</column>
+<column name="tqmf_d0">out, 32, ap_memory, tqmf, array</column>
+<column name="tqmf_q0">in, 32, ap_memory, tqmf, array</column>
+<column name="tqmf_address1">out, 5, ap_memory, tqmf, array</column>
+<column name="tqmf_ce1">out, 1, ap_memory, tqmf, array</column>
+<column name="tqmf_we1">out, 1, ap_memory, tqmf, array</column>
+<column name="tqmf_d1">out, 32, ap_memory, tqmf, array</column>
+<column name="tqmf_q1">in, 32, ap_memory, tqmf, array</column>
+<column name="delay_bpl_address0">out, 3, ap_memory, delay_bpl, array</column>
+<column name="delay_bpl_ce0">out, 1, ap_memory, delay_bpl, array</column>
+<column name="delay_bpl_we0">out, 1, ap_memory, delay_bpl, array</column>
+<column name="delay_bpl_d0">out, 32, ap_memory, delay_bpl, array</column>
+<column name="delay_bpl_q0">in, 32, ap_memory, delay_bpl, array</column>
+<column name="delay_bpl_address1">out, 3, ap_memory, delay_bpl, array</column>
+<column name="delay_bpl_ce1">out, 1, ap_memory, delay_bpl, array</column>
+<column name="delay_bpl_we1">out, 1, ap_memory, delay_bpl, array</column>
+<column name="delay_bpl_d1">out, 32, ap_memory, delay_bpl, array</column>
+<column name="delay_bpl_q1">in, 32, ap_memory, delay_bpl, array</column>
+<column name="delay_dltx_address0">out, 3, ap_memory, delay_dltx, array</column>
+<column name="delay_dltx_ce0">out, 1, ap_memory, delay_dltx, array</column>
+<column name="delay_dltx_we0">out, 1, ap_memory, delay_dltx, array</column>
+<column name="delay_dltx_d0">out, 16, ap_memory, delay_dltx, array</column>
+<column name="delay_dltx_q0">in, 16, ap_memory, delay_dltx, array</column>
+<column name="delay_dltx_address1">out, 3, ap_memory, delay_dltx, array</column>
+<column name="delay_dltx_ce1">out, 1, ap_memory, delay_dltx, array</column>
+<column name="delay_dltx_we1">out, 1, ap_memory, delay_dltx, array</column>
+<column name="delay_dltx_d1">out, 16, ap_memory, delay_dltx, array</column>
+<column name="delay_dltx_q1">in, 16, ap_memory, delay_dltx, array</column>
+<column name="delay_bph_address0">out, 3, ap_memory, delay_bph, array</column>
+<column name="delay_bph_ce0">out, 1, ap_memory, delay_bph, array</column>
+<column name="delay_bph_we0">out, 1, ap_memory, delay_bph, array</column>
+<column name="delay_bph_d0">out, 32, ap_memory, delay_bph, array</column>
+<column name="delay_bph_q0">in, 32, ap_memory, delay_bph, array</column>
+<column name="delay_bph_address1">out, 3, ap_memory, delay_bph, array</column>
+<column name="delay_bph_ce1">out, 1, ap_memory, delay_bph, array</column>
+<column name="delay_bph_we1">out, 1, ap_memory, delay_bph, array</column>
+<column name="delay_bph_d1">out, 32, ap_memory, delay_bph, array</column>
+<column name="delay_bph_q1">in, 32, ap_memory, delay_bph, array</column>
+<column name="delay_dhx_address0">out, 3, ap_memory, delay_dhx, array</column>
+<column name="delay_dhx_ce0">out, 1, ap_memory, delay_dhx, array</column>
+<column name="delay_dhx_we0">out, 1, ap_memory, delay_dhx, array</column>
+<column name="delay_dhx_d0">out, 14, ap_memory, delay_dhx, array</column>
+<column name="delay_dhx_q0">in, 14, ap_memory, delay_dhx, array</column>
+<column name="delay_dhx_address1">out, 3, ap_memory, delay_dhx, array</column>
+<column name="delay_dhx_ce1">out, 1, ap_memory, delay_dhx, array</column>
+<column name="delay_dhx_we1">out, 1, ap_memory, delay_dhx, array</column>
+<column name="delay_dhx_d1">out, 14, ap_memory, delay_dhx, array</column>
+<column name="delay_dhx_q1">in, 14, ap_memory, delay_dhx, array</column>
+</table>
+</item>
+</section>
+</profile>

@@ -1,0 +1,51 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'adpcm_main'" level="0">
+<item name = "Date">Wed Jun 19 19:06:29 2024
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">adpcm_ahls</item>
+<item name = "Solution">solution1 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 3.794 ns, 1.35 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">148038, 148038, 0.740 ms, 0.740 ms, 148039, 148039, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_adpcm_main_Pipeline_reset_label4_fu_148">adpcm_main_Pipeline_reset_label4, 8, 8, 40.000 ns, 40.000 ns, 8, 8, no</column>
+<column name="grp_adpcm_main_Pipeline_reset_label5_fu_160">adpcm_main_Pipeline_reset_label5, 8, 8, 40.000 ns, 40.000 ns, 8, 8, no</column>
+<column name="grp_adpcm_main_Pipeline_reset_label6_fu_172">adpcm_main_Pipeline_reset_label6, 26, 26, 0.130 us, 0.130 us, 26, 26, no</column>
+<column name="grp_adpcm_main_Pipeline_reset_label7_fu_178">adpcm_main_Pipeline_reset_label7, 13, 13, 65.000 ns, 65.000 ns, 13, 13, no</column>
+<column name="grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186">adpcm_main_Pipeline_adpcm_main_label12, 100004, 100004, 0.500 ms, 0.500 ms, 100004, 100004, no</column>
+<column name="grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248">adpcm_main_Pipeline_adpcm_main_label13, 48003, 48003, 0.240 ms, 0.240 ms, 48003, 48003, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

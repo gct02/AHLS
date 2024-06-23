@@ -1,0 +1,182 @@
+
+
+================================================================
+== Vitis HLS Report for 'decode_1_Pipeline_VITIS_LOOP_383_2'
+================================================================
+* Date:           Tue Jun 18 12:24:21 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        jpeg_ahls
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcvu35p-fsvh2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  2.659 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        2|       10|  10.000 ns|  50.000 ns|    2|   10|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |- VITIS_LOOP_383_2  |        0|        8|         2|          1|          1|  0 ~ 8|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+-------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 3, States = { 1 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.46>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%idx = alloca i32 1"   --->   Operation 5 'alloca' 'idx' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%e = alloca i32 1" [benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 6 'alloca' 'e' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%sext_ln379_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %sext_ln379"   --->   Operation 7 'read' 'sext_ln379_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%store_assign_1_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %store_assign_1"   --->   Operation 8 'read' 'store_assign_1_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%zext_ln385_3_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %zext_ln385_3"   --->   Operation 9 'read' 'zext_ln385_3_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%mul_ln376_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %mul_ln376"   --->   Operation 10 'read' 'mul_ln376_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%add3_i_i_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %add3_i_i"   --->   Operation 11 'read' 'add3_i_i_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%hoffs_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %hoffs"   --->   Operation 12 'read' 'hoffs_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%sext_ln379_cast = sext i16 %sext_ln379_read"   --->   Operation 13 'sext' 'sext_ln379_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %outputVector, void @empty_9, i32 0, i32 0, void @empty_17, i32 4294967295, i32 0, void @empty_17, void @empty_17, void @empty_17, i32 0, i32 0, i32 0, i32 0, void @empty_17, void @empty_17, i32 4294967295, i32 0"   --->   Operation 14 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.46ns)   --->   "%store_ln376 = store i32 %hoffs_read, i32 %e" [benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 15 'store' 'store_ln376' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 16 [1/1] (0.46ns)   --->   "%store_ln0 = store i32 0, i32 %idx"   --->   Operation 16 'store' 'store_ln0' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.body5.i.i"   --->   Operation 17 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 2.65>
+ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%idx_load = load i32 %idx" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 18 'load' 'idx_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%e_1 = load i32 %e" [benchmarks/chstone/jpeg/src/jpeg_decode.c:383->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 19 'load' 'e_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (1.14ns)   --->   "%icmp_ln383 = icmp_slt  i32 %e_1, i32 %add3_i_i_read" [benchmarks/chstone/jpeg/src/jpeg_decode.c:383->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 20 'icmp' 'icmp_ln383' <Predicate = true> <Delay = 1.14> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 21 [1/1] (1.14ns)   --->   "%add_ln385 = add i32 %idx_load, i32 1" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 21 'add' 'add_ln385' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 22 [1/1] (0.00ns)   --->   "%br_ln383 = br i1 %icmp_ln383, void %for.inc10.i.i.split.loop.exit.exitStub, void %for.body5.i.i.split" [benchmarks/chstone/jpeg/src/jpeg_decode.c:383->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 22 'br' 'br_ln383' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%trunc_ln383 = trunc i32 %e_1" [benchmarks/chstone/jpeg/src/jpeg_decode.c:383->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 23 'trunc' 'trunc_ln383' <Predicate = (icmp_ln383)> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%specpipeline_ln376 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_17" [benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 24 'specpipeline' 'specpipeline_ln376' <Predicate = (icmp_ln383)> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%speclooptripcount_ln376 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 0, i64 8, i64 4" [benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 25 'speclooptripcount' 'speclooptripcount_ln376' <Predicate = (icmp_ln383)> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%specloopname_ln383 = specloopname void @_ssdm_op_SpecLoopName, void @empty_27" [benchmarks/chstone/jpeg/src/jpeg_decode.c:383->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 26 'specloopname' 'specloopname_ln383' <Predicate = (icmp_ln383)> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%shl_ln = bitconcatenate i34 @_ssdm_op_BitConcatenate.i34.i32.i2, i32 %idx_load, i2 0" [benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 27 'bitconcatenate' 'shl_ln' <Predicate = (icmp_ln383)> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%zext_ln376 = zext i34 %shl_ln" [benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 28 'zext' 'zext_ln376' <Predicate = (icmp_ln383)> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (1.36ns)   --->   "%add_ln376 = add i64 %zext_ln376, i64 %store_assign_1_read" [benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 29 'add' 'add_ln376' <Predicate = (icmp_ln383)> <Delay = 1.36> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.36> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 30 [1/1] (1.14ns)   --->   "%icmp_ln384 = icmp_slt  i32 %e_1, i32 %sext_ln379_cast" [benchmarks/chstone/jpeg/src/jpeg_decode.c:384->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 30 'icmp' 'icmp_ln384' <Predicate = (icmp_ln383)> <Delay = 1.14> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%br_ln384 = br i1 %icmp_ln384, void %for.inc10.i.i.loopexit.exitStub, void %for.inc.i.i" [benchmarks/chstone/jpeg/src/jpeg_decode.c:384->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 31 'br' 'br_ln384' <Predicate = (icmp_ln383)> <Delay = 0.00>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%lshr_ln = partselect i10 @_ssdm_op_PartSelect.i10.i64.i32.i32, i64 %add_ln376, i32 2, i32 11" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 32 'partselect' 'lshr_ln' <Predicate = (icmp_ln383 & icmp_ln384)> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (0.00ns)   --->   "%zext_ln385 = zext i10 %lshr_ln" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 33 'zext' 'zext_ln385' <Predicate = (icmp_ln383 & icmp_ln384)> <Delay = 0.00>
+ST_2 : Operation 34 [1/1] (0.00ns)   --->   "%rgb_buf_addr = getelementptr i8 %rgb_buf, i64 0, i64 %zext_ln385" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 34 'getelementptr' 'rgb_buf_addr' <Predicate = (icmp_ln383 & icmp_ln384)> <Delay = 0.00>
+ST_2 : Operation 35 [2/2] (1.29ns)   --->   "%rgb_buf_load = load i10 %rgb_buf_addr" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 35 'load' 'rgb_buf_load' <Predicate = (icmp_ln383 & icmp_ln384)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 768> <RAM>
+ST_2 : Operation 36 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln385_1 = add i16 %trunc_ln383, i16 %mul_ln376_read" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 36 'add' 'add_ln385_1' <Predicate = (icmp_ln383 & icmp_ln384)> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.41> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 37 [1/1] (0.83ns) (root node of TernaryAdder)   --->   "%add_ln385_2 = add i16 %zext_ln385_3_read, i16 %add_ln385_1" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 37 'add' 'add_ln385_2' <Predicate = (icmp_ln383 & icmp_ln384)> <Delay = 0.83> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.41> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 38 [1/1] (1.14ns)   --->   "%add_ln383 = add i32 %e_1, i32 1" [benchmarks/chstone/jpeg/src/jpeg_decode.c:383->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 38 'add' 'add_ln383' <Predicate = (icmp_ln383 & icmp_ln384)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 39 [1/1] (0.46ns)   --->   "%store_ln376 = store i32 %add_ln383, i32 %e" [benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 39 'store' 'store_ln376' <Predicate = (icmp_ln383 & icmp_ln384)> <Delay = 0.46>
+ST_2 : Operation 40 [1/1] (0.46ns)   --->   "%store_ln385 = store i32 %add_ln385, i32 %idx" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 40 'store' 'store_ln385' <Predicate = (icmp_ln383 & icmp_ln384)> <Delay = 0.46>
+ST_2 : Operation 46 [1/1] (0.00ns)   --->   "%write_ln385 = write void @_ssdm_op_Write.ap_auto.i32P0A, i32 %idx_out, i32 %idx_load" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 46 'write' 'write_ln385' <Predicate = (icmp_ln383 & !icmp_ln384)> <Delay = 0.00>
+ST_2 : Operation 47 [1/1] (0.00ns)   --->   "%write_ln376 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %add_ln376_out, i64 %add_ln376" [benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 47 'write' 'write_ln376' <Predicate = (icmp_ln383 & !icmp_ln384)> <Delay = 0.00>
+ST_2 : Operation 48 [1/1] (0.46ns)   --->   "%br_ln0 = br void %UnifiedReturnBlock"   --->   Operation 48 'br' 'br_ln0' <Predicate = (icmp_ln383 & !icmp_ln384)> <Delay = 0.46>
+ST_2 : Operation 49 [1/1] (0.00ns)   --->   "%write_ln385 = write void @_ssdm_op_Write.ap_auto.i32P0A, i32 %idx_out, i32 %idx_load" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 49 'write' 'write_ln385' <Predicate = (!icmp_ln383)> <Delay = 0.00>
+ST_2 : Operation 50 [1/1] (0.46ns)   --->   "%br_ln0 = br void %UnifiedReturnBlock"   --->   Operation 50 'br' 'br_ln0' <Predicate = (!icmp_ln383)> <Delay = 0.46>
+ST_2 : Operation 51 [1/1] (0.00ns)   --->   "%UnifiedRetVal = phi i1 1, void %for.inc10.i.i.split.loop.exit.exitStub, i1 0, void %for.inc10.i.i.loopexit.exitStub"   --->   Operation 51 'phi' 'UnifiedRetVal' <Predicate = (!icmp_ln384) | (!icmp_ln383)> <Delay = 0.00>
+ST_2 : Operation 52 [1/1] (0.00ns)   --->   "%ret_ln0 = ret i1 %UnifiedRetVal"   --->   Operation 52 'ret' 'ret_ln0' <Predicate = (!icmp_ln384) | (!icmp_ln383)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 2.59>
+ST_3 : Operation 41 [1/2] (1.29ns)   --->   "%rgb_buf_load = load i10 %rgb_buf_addr" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 41 'load' 'rgb_buf_load' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 768> <RAM>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "%zext_ln385_1 = zext i16 %add_ln385_2" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 42 'zext' 'zext_ln385_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 43 [1/1] (0.00ns)   --->   "%outputVector_addr = getelementptr i8 %outputVector, i64 0, i64 %zext_ln385_1" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 43 'getelementptr' 'outputVector_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 44 [1/1] (1.29ns)   --->   "%store_ln385 = store i8 %rgb_buf_load, i16 %outputVector_addr" [benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 44 'store' 'store_ln385' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 49152> <RAM>
+ST_3 : Operation 45 [1/1] (0.00ns)   --->   "%br_ln383 = br void %for.body5.i.i" [benchmarks/chstone/jpeg/src/jpeg_decode.c:383->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833]   --->   Operation 45 'br' 'br_ln383' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 0.460ns
+The critical path consists of the following:
+	'alloca' operation 32 bit ('e', benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833) [12]  (0.000 ns)
+	'store' operation 0 bit ('store_ln376', benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833) of variable 'hoffs_read' on local variable 'e', benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833 [21]  (0.460 ns)
+
+ <State 2>: 2.659ns
+The critical path consists of the following:
+	'load' operation 32 bit ('idx_load', benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833) on local variable 'idx' [25]  (0.000 ns)
+	'add' operation 64 bit ('store', benchmarks/chstone/jpeg/src/jpeg_decode.c:376->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833) [37]  (1.362 ns)
+	'getelementptr' operation 10 bit ('rgb_buf_addr', benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833) [43]  (0.000 ns)
+	'load' operation 8 bit ('rgb_buf_load', benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833) on array 'rgb_buf' [44]  (1.297 ns)
+
+ <State 3>: 2.594ns
+The critical path consists of the following:
+	'load' operation 8 bit ('rgb_buf_load', benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833) on array 'rgb_buf' [44]  (1.297 ns)
+	'store' operation 0 bit ('store_ln385', benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833) of variable 'rgb_buf_load', benchmarks/chstone/jpeg/src/jpeg_decode.c:385->benchmarks/chstone/jpeg/src/jpeg_decode.c:406->benchmarks/chstone/jpeg/src/jpeg_decode.c:833 on array 'outputVector' [49]  (1.297 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

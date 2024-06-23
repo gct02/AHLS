@@ -1,0 +1,27 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/run_hls.tcl:70:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="DigitRec" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=DigitRec" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:30:0" msg_body="Inlining function 'popcount(unsigned long long)' into 'update_knn(unsigned long long const*, unsigned long long const*, int*, int*, int)'">
+        <args Callee="popcount(unsigned long long)" Callee-DebugLoc="File benchmarks/rosetta/digit-recognition/src/digitrec.cpp Line 19 Column 0" Caller="update_knn(unsigned long long const*, unsigned long long const*, int*, int*, int)" Caller-DebugLoc="File benchmarks/rosetta/digit-recognition/src/digitrec.cpp Line 30 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:90:0" msg_body="Inlining function 'update_knn(unsigned long long const*, unsigned long long const*, int*, int*, int)' into 'DigitRec(unsigned long long const*, unsigned long long const*, unsigned char const*, unsigned char*)'">
+        <args Callee="update_knn(unsigned long long const*, unsigned long long const*, int*, int*, int)" Callee-DebugLoc="File benchmarks/rosetta/digit-recognition/src/digitrec.cpp Line 30 Column 0" Caller="DigitRec(unsigned long long const*, unsigned long long const*, unsigned char const*, unsigned char*)" Caller-DebugLoc="File benchmarks/rosetta/digit-recognition/src/digitrec.cpp Line 90 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:90:0" msg_body="Inlining function 'knn_vote(int*)' into 'DigitRec(unsigned long long const*, unsigned long long const*, unsigned char const*, unsigned char*)'">
+        <args Callee="knn_vote(int*)" Callee-DebugLoc="File benchmarks/rosetta/digit-recognition/src/digitrec.cpp Line 63 Column 0" Caller="DigitRec(unsigned long long const*, unsigned long long const*, unsigned char const*, unsigned char*)" Caller-DebugLoc="File benchmarks/rosetta/digit-recognition/src/digitrec.cpp Line 90 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:33:20" msg_body="Loop 'VITIS_LOOP_33_1' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_33_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:43:18" msg_body="Loop 'FIND_MAX_DIST' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="FIND_MAX_DIST"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:90:0" msg_body="Unrolling loop 'VITIS_LOOP_33_1' (benchmarks/rosetta/digit-recognition/src/digitrec.cpp:33:20) in function 'DigitRec' completely with a factor of 4">
+        <args Factor="4" LoopLoc="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:33:20" LoopName="VITIS_LOOP_33_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:90:0" msg_body="Unrolling loop 'FIND_MAX_DIST' (benchmarks/rosetta/digit-recognition/src/digitrec.cpp:43:18) in function 'DigitRec' completely with a factor of 3">
+        <args Factor="3" LoopLoc="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:43:18" LoopName="FIND_MAX_DIST"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+

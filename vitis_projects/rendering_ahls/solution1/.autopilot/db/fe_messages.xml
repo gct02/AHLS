@@ -1,0 +1,36 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/run_hls.tcl:70:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="rendering" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=rendering" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/3d-rendering/src/rendering.cpp:142:0" msg_body="Inlining function 'check_clockwise(Triangle_2D)' into 'rasterization1(Triangle_2D, unsigned char*, int*)'">
+        <args Callee="check_clockwise(Triangle_2D)" Callee-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 19 Column 0" Caller="rasterization1(Triangle_2D, unsigned char*, int*)" Caller-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 142 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/3d-rendering/src/rendering.cpp:142:0" msg_body="Inlining function 'clockwise_vertices(Triangle_2D*)' into 'rasterization1(Triangle_2D, unsigned char*, int*)'">
+        <args Callee="clockwise_vertices(Triangle_2D*)" Callee-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 31 Column 0" Caller="rasterization1(Triangle_2D, unsigned char*, int*)" Caller-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 142 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/3d-rendering/src/rendering.cpp:142:0" msg_body="Inlining function 'find_min(unsigned char, unsigned char, unsigned char)' into 'rasterization1(Triangle_2D, unsigned char*, int*)'">
+        <args Callee="find_min(unsigned char, unsigned char, unsigned char)" Callee-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 61 Column 0" Caller="rasterization1(Triangle_2D, unsigned char*, int*)" Caller-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 142 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/3d-rendering/src/rendering.cpp:142:0" msg_body="Inlining function 'find_max(unsigned char, unsigned char, unsigned char)' into 'rasterization1(Triangle_2D, unsigned char*, int*)'">
+        <args Callee="find_max(unsigned char, unsigned char, unsigned char)" Callee-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 80 Column 0" Caller="rasterization1(Triangle_2D, unsigned char*, int*)" Caller-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 142 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/3d-rendering/src/rendering.cpp:164:0" msg_body="Inlining function 'pixel_in_triangle(unsigned char, unsigned char, Triangle_2D)' into 'rasterization2(bool, unsigned char*, int*, Triangle_2D, CandidatePixel*)'">
+        <args Callee="pixel_in_triangle(unsigned char, unsigned char, Triangle_2D)" Callee-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 49 Column 0" Caller="rasterization2(bool, unsigned char*, int*, Triangle_2D, CandidatePixel*)" Caller-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 164 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/3d-rendering/src/rendering.cpp:247:0" msg_body="Inlining function 'projection(Triangle_3D, Triangle_2D*, int)' into 'rendering(Triangle_3D*, unsigned char (*) [256], int)'">
+        <args Callee="projection(Triangle_3D, Triangle_2D*, int)" Callee-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 101 Column 0" Caller="rendering(Triangle_3D*, unsigned char (*) [256], int)" Caller-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 247 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/3d-rendering/src/rendering.cpp:247:0" msg_body="Inlining function 'rasterization2(bool, unsigned char*, int*, Triangle_2D, CandidatePixel*)' into 'rendering(Triangle_3D*, unsigned char (*) [256], int)'">
+        <args Callee="rasterization2(bool, unsigned char*, int*, Triangle_2D, CandidatePixel*)" Callee-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 164 Column 0" Caller="rendering(Triangle_3D*, unsigned char (*) [256], int)" Caller-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 247 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/3d-rendering/src/rendering.cpp:247:0" msg_body="Inlining function 'zculling(int, CandidatePixel*, int, Pixel*)' into 'rendering(Triangle_3D*, unsigned char (*) [256], int)'">
+        <args Callee="zculling(int, CandidatePixel*, int, Pixel*)" Callee-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 194 Column 0" Caller="rendering(Triangle_3D*, unsigned char (*) [256], int)" Caller-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 247 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/3d-rendering/src/rendering.cpp:247:0" msg_body="Inlining function 'coloringFB(int, int, Pixel*, unsigned char (*) [256])' into 'rendering(Triangle_3D*, unsigned char (*) [256], int)'">
+        <args Callee="coloringFB(int, int, Pixel*, unsigned char (*) [256])" Callee-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 229 Column 0" Caller="rendering(Triangle_3D*, unsigned char (*) [256], int)" Caller-DebugLoc="File benchmarks/rosetta/3d-rendering/src/rendering.cpp Line 247 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_AGGREGATE" msg_id="214-241" msg_severity="INFO" msg_loc="benchmarks/rosetta/3d-rendering/src/rendering.cpp:247:0" msg_body="Aggregating scalar variable 'triangle_3ds' with compact=bit mode in 72-bits">
+        <args AggregateTypeName="compact=bit" Bitwidth="72" HwTyName="scalar" Name="triangle_3ds"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+

@@ -1,0 +1,18 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/run_hls.tcl:70:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="SgdLR" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=SgdLR" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/spam-filter/src/sgd.cpp:54:0" msg_body="Inlining function 'dotProduct(float*, float*)' into 'SgdLR(float*, unsigned char*, float*)'">
+        <args Callee="dotProduct(float*, float*)" Callee-DebugLoc="File benchmarks/rosetta/spam-filter/src/sgd.cpp Line 17 Column 0" Caller="SgdLR(float*, unsigned char*, float*)" Caller-DebugLoc="File benchmarks/rosetta/spam-filter/src/sgd.cpp Line 54 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/spam-filter/src/sgd.cpp:54:0" msg_body="Inlining function 'Sigmoid(float)' into 'SgdLR(float*, unsigned char*, float*)'">
+        <args Callee="Sigmoid(float)" Callee-DebugLoc="File benchmarks/rosetta/spam-filter/src/sgd.cpp Line 25 Column 0" Caller="SgdLR(float*, unsigned char*, float*)" Caller-DebugLoc="File benchmarks/rosetta/spam-filter/src/sgd.cpp Line 54 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/spam-filter/src/sgd.cpp:54:0" msg_body="Inlining function 'computeGradient(float*, float*, float)' into 'SgdLR(float*, unsigned char*, float*)'">
+        <args Callee="computeGradient(float*, float*, float)" Callee-DebugLoc="File benchmarks/rosetta/spam-filter/src/sgd.cpp Line 34 Column 0" Caller="SgdLR(float*, unsigned char*, float*)" Caller-DebugLoc="File benchmarks/rosetta/spam-filter/src/sgd.cpp Line 54 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/rosetta/spam-filter/src/sgd.cpp:54:0" msg_body="Inlining function 'updateParameter(float*, float*, float)' into 'SgdLR(float*, unsigned char*, float*)'">
+        <args Callee="updateParameter(float*, float*, float)" Callee-DebugLoc="File benchmarks/rosetta/spam-filter/src/sgd.cpp Line 44 Column 0" Caller="SgdLR(float*, unsigned char*, float*)" Caller-DebugLoc="File benchmarks/rosetta/spam-filter/src/sgd.cpp Line 54 Column 0"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+

@@ -1,0 +1,326 @@
+{
+  "0": {
+    "basicblocks": 5,
+    "calls": "3 7 3 28 12 25 17 1",
+    "file": "dfsin.c",
+    "fileloc": 46,
+    "instructions": 22,
+    "name": "local_sin",
+    "total_instructions": 3165
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "27",
+    "file": "softfloat.c",
+    "fileloc": 640,
+    "instructions": 2,
+    "name": "float64_ge",
+    "total_instructions": 63
+  },
+  "10": {
+    "basicblocks": 4,
+    "calls": "22",
+    "file": "softfloat-macros",
+    "fileloc": 286,
+    "instructions": 12,
+    "name": "countLeadingZeros64",
+    "total_instructions": 32
+  },
+  "11": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "softfloat.c",
+    "fileloc": 94,
+    "instructions": 4,
+    "name": "extractFloat64Exp",
+    "total_instructions": 4
+  },
+  "12": {
+    "basicblocks": 32,
+    "calls": "4 11 14 4 11 14 16 16 6 13 16 13 6 6 13 26 13 26 5 23 19 9 2",
+    "file": "softfloat.c",
+    "fileloc": 536,
+    "instructions": 170,
+    "loads": {
+      "L": 33
+    },
+    "name": "float64_div",
+    "stores": {
+      "L": 7
+    },
+    "total_instructions": 794
+  },
+  "13": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "softfloat.c",
+    "fileloc": 143,
+    "instructions": 7,
+    "name": "packFloat64",
+    "total_instructions": 7
+  },
+  "14": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "softfloat.c",
+    "fileloc": 106,
+    "instructions": 3,
+    "name": "extractFloat64Sign",
+    "total_instructions": 3
+  },
+  "15": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "softfloat-specialize",
+    "fileloc": 84,
+    "instructions": 4,
+    "name": "float64_is_nan",
+    "total_instructions": 4
+  },
+  "16": {
+    "basicblocks": 12,
+    "calls": "15 8 15 8 6",
+    "file": "softfloat-specialize",
+    "fileloc": 111,
+    "instructions": 27,
+    "name": "propagateFloat64NaN",
+    "total_instructions": 59
+  },
+  "17": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "dfsin.c",
+    "fileloc": 40,
+    "instructions": 2,
+    "name": "float64_abs",
+    "total_instructions": 2
+  },
+  "18": {
+    "basicblocks": 1,
+    "calls": "10 2",
+    "file": "softfloat.c",
+    "fileloc": 244,
+    "instructions": 7,
+    "name": "normalizeRoundAndPackFloat64",
+    "total_instructions": 183
+  },
+  "19": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "softfloat-macros",
+    "fileloc": 163,
+    "instructions": 8,
+    "name": "sub128",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 8
+  },
+  "2": {
+    "basicblocks": 29,
+    "calls": "6 13 21 6 13",
+    "file": "softfloat.c",
+    "fileloc": 173,
+    "instructions": 99,
+    "loads": {
+      "G": 2,
+      "L": 8
+    },
+    "name": "roundAndPackFloat64",
+    "stores": {
+      "G": 1,
+      "L": 3
+    },
+    "total_instructions": 144
+  },
+  "20": {
+    "basicblocks": 31,
+    "calls": "4 11 4 11 16 21 16 13 21 16 13 2",
+    "file": "softfloat.c",
+    "fileloc": 286,
+    "instructions": 118,
+    "loads": {
+      "L": 19
+    },
+    "name": "addFloat64Sigs",
+    "stores": {
+      "L": 7
+    },
+    "total_instructions": 511
+  },
+  "21": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "softfloat-macros",
+    "fileloc": 63,
+    "instructions": 23,
+    "name": "shift64RightJamming",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 23
+  },
+  "22": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "softfloat-macros",
+    "fileloc": 242,
+    "instructions": 20,
+    "loads": {
+      "G": 1
+    },
+    "name": "countLeadingZeros32",
+    "total_instructions": 20
+  },
+  "23": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "softfloat-macros",
+    "fileloc": 179,
+    "instructions": 33,
+    "name": "mul64To128",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 33
+  },
+  "24": {
+    "basicblocks": 35,
+    "calls": "4 11 4 11 16 6 13 16 13 21 16 21 18",
+    "file": "softfloat.c",
+    "fileloc": 367,
+    "instructions": 128,
+    "loads": {
+      "G": 1,
+      "L": 20
+    },
+    "name": "subFloat64Sigs",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 564
+  },
+  "25": {
+    "basicblocks": 4,
+    "calls": "14 14 20 24",
+    "file": "softfloat.c",
+    "fileloc": 448,
+    "instructions": 10,
+    "name": "float64_add",
+    "total_instructions": 1091
+  },
+  "26": {
+    "basicblocks": 1,
+    "calls": "10",
+    "file": "softfloat.c",
+    "fileloc": 121,
+    "instructions": 8,
+    "name": "normalizeFloat64Subnormal",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 40
+  },
+  "27": {
+    "basicblocks": 13,
+    "calls": "11 4 11 4 6 14 14",
+    "file": "softfloat.c",
+    "fileloc": 621,
+    "instructions": 39,
+    "name": "float64_le",
+    "total_instructions": 61
+  },
+  "28": {
+    "basicblocks": 7,
+    "calls": "22 13",
+    "file": "softfloat.c",
+    "fileloc": 260,
+    "instructions": 21,
+    "name": "int32_to_float64",
+    "total_instructions": 48
+  },
+  "3": {
+    "basicblocks": 26,
+    "calls": "4 11 14 4 11 14 16 6 13 16 6 13 13 26 13 26 23 2",
+    "file": "softfloat.c",
+    "fileloc": 468,
+    "instructions": 141,
+    "loads": {
+      "L": 27
+    },
+    "name": "float64_mul",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 570
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "softfloat.c",
+    "fileloc": 82,
+    "instructions": 2,
+    "name": "extractFloat64Frac",
+    "total_instructions": 2
+  },
+  "5": {
+    "basicblocks": 14,
+    "calls": "23 19 9",
+    "file": "softfloat-macros",
+    "fileloc": 212,
+    "instructions": 67,
+    "loads": {
+      "L": 9
+    },
+    "name": "estimateDiv128To64",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 116
+  },
+  "6": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "softfloat-specialize",
+    "fileloc": 67,
+    "instructions": 4,
+    "loads": {
+      "G": 1
+    },
+    "name": "float_raise",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 4
+  },
+  "7": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "softfloat.c",
+    "fileloc": 647,
+    "instructions": 5,
+    "name": "float64_neg",
+    "total_instructions": 5
+  },
+  "8": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "softfloat-specialize",
+    "fileloc": 97,
+    "instructions": 10,
+    "name": "float64_is_signaling_nan",
+    "total_instructions": 10
+  },
+  "9": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "softfloat-macros",
+    "fileloc": 143,
+    "instructions": 8,
+    "name": "add128",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 8
+  }
+}

@@ -1,0 +1,811 @@
+<profile>
+    <ReportVersion>
+        <Version>2023.2</Version>
+    </ReportVersion>
+    <UserAssignments>
+        <unit>ns</unit>
+        <ProductFamily>virtexuplusHBM</ProductFamily>
+        <Part>xcvu35p-fsvh2104-1-e</Part>
+        <TopModelName>local_sin</TopModelName>
+        <TargetClockPeriod>5.00</TargetClockPeriod>
+        <ClockUncertainty>1.35</ClockUncertainty>
+        <FlowTarget>vivado</FlowTarget>
+    </UserAssignments>
+    <PerformanceEstimates>
+        <PipelineType>no</PipelineType>
+        <SummaryOfTimingAnalysis>
+            <unit>ns</unit>
+            <EstimatedClockPeriod>3.519</EstimatedClockPeriod>
+        </SummaryOfTimingAnalysis>
+        <SummaryOfOverallLatency>
+            <unit>clock cycles</unit>
+            <Best-caseLatency>undef</Best-caseLatency>
+            <Average-caseLatency>undef</Average-caseLatency>
+            <Worst-caseLatency>undef</Worst-caseLatency>
+            <Best-caseRealTimeLatency>undef</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>undef</Worst-caseRealTimeLatency>
+            <Interval-min>undef</Interval-min>
+            <Interval-max>undef</Interval-max>
+        </SummaryOfOverallLatency>
+        <SummaryOfLoopLatency>
+            <VITIS_LOOP_56_1>
+                <Slack>3.65</Slack>
+                <TripCount>undef</TripCount>
+                <Latency>undef</Latency>
+                <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
+                <IterationLatency>undef</IterationLatency>
+                <InstanceList/>
+            </VITIS_LOOP_56_1>
+        </SummaryOfLoopLatency>
+        <SummaryOfViolations>
+            <IssueType>-</IssueType>
+            <ViolationType>-</ViolationType>
+            <SourceLocation>benchmarks/chstone/dfsin/src/softfloat.c:106~benchmarks/chstone/dfsin/src/softfloat.c:452~benchmarks/chstone/dfsin/src/dfsin.c:60</SourceLocation>
+            <SummaryOfLoopViolations>
+                <VITIS_LOOP_56_1>
+                    <Name>VITIS_LOOP_56_1</Name>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/dfsin/src/softfloat.c:450~benchmarks/chstone/dfsin/src/dfsin.c:60</SourceLocation>
+                </VITIS_LOOP_56_1>
+            </SummaryOfLoopViolations>
+        </SummaryOfViolations>
+    </PerformanceEstimates>
+    <AreaEstimates>
+        <Resources>
+            <BRAM_18K>4</BRAM_18K>
+            <DSP>35</DSP>
+            <FF>11875</FF>
+            <LUT>26744</LUT>
+            <URAM>0</URAM>
+        </Resources>
+        <AvailableResources>
+            <BRAM_18K>2688</BRAM_18K>
+            <DSP>5952</DSP>
+            <FF>1743360</FF>
+            <LUT>871680</LUT>
+            <URAM>640</URAM>
+        </AvailableResources>
+    </AreaEstimates>
+    <InterfaceSummary>
+        <RtlPorts>
+            <name>ap_clk</name>
+            <Object>local_sin</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_rst</name>
+            <Object>local_sin</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_start</name>
+            <Object>local_sin</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_done</name>
+            <Object>local_sin</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_idle</name>
+            <Object>local_sin</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_ready</name>
+            <Object>local_sin</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_return</name>
+            <Object>local_sin</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>rad</name>
+            <Object>rad</Object>
+            <Type>scalar</Type>
+            <Scope/>
+            <IOProtocol>ap_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+    </InterfaceSummary>
+    <RTLDesignHierarchy>
+        <TopModule MAX_DEPTH="4">
+            <ModuleName>local_sin</ModuleName>
+            <InstancesList>
+                <Instance>
+                    <InstName>grp_float64_mul_fu_137</InstName>
+                    <ModuleName>float64_mul</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>137</ID>
+                    <BindInstances>shiftCount_11_fu_836_p2 shiftCount_12_fu_842_p2 aExp_4_fu_866_p2 shiftCount_16_fu_1015_p2 shiftCount_17_fu_1021_p2 bExp_4_fu_1044_p2 mul_32ns_32ns_64_2_1_U1 mul_32ns_32ns_64_2_1_U2 mul_32ns_32ns_64_2_1_U3 mul_32ns_32ns_64_2_1_U4 zMiddleA_1_fu_1134_p2 z1_2_fu_1159_p2 add_ln520_fu_1270_p2 add_ln520_1_fu_1287_p2 zExp_fu_1292_p2 add_ln207_fu_1320_p2 sub_ln217_fu_1347_p2 add_ln226_fu_1463_p2 add_ln146_fu_1568_p2 countLeadingZerosHigh_U</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_float64_div_fu_149</InstName>
+                    <ModuleName>float64_div</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>149</ID>
+                    <InstancesList>
+                        <Instance>
+                            <InstName>grp_float64_div_Pipeline_VITIS_LOOP_224_1_fu_509</InstName>
+                            <ModuleName>float64_div_Pipeline_VITIS_LOOP_224_1</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>509</ID>
+                            <BindInstances>z_14_fu_149_p2 z1_fu_155_p2 add_ln150_fu_179_p2 rem0_4_fu_188_p2</BindInstances>
+                        </Instance>
+                        <Instance>
+                            <InstName>grp_float64_div_Pipeline_VITIS_LOOP_602_1_fu_522</InstName>
+                            <ModuleName>float64_div_Pipeline_VITIS_LOOP_602_1</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>522</ID>
+                            <BindInstances>zSig_4_fu_118_p2 z1_fu_124_p2 rem0_1_fu_148_p2</BindInstances>
+                        </Instance>
+                    </InstancesList>
+                    <BindInstances>shiftCount_22_fu_893_p2 shiftCount_23_fu_899_p2 bExp_6_fu_923_p2 shiftCount_27_fu_1172_p2 shiftCount_28_fu_1178_p2 aExp_6_fu_1201_p2 mul_32ns_32ns_64_2_1_U24 mul_32ns_32ns_64_2_1_U25 rem1_fu_1392_p2 z0_7_fu_1413_p2 mul_32ns_32ns_64_2_1_U24 mul_32ns_32ns_64_2_1_U25 mul_32ns_32ns_64_2_1_U26 mul_32ns_32ns_64_2_1_U27 zMiddleA_5_fu_1537_p2 z1_5_fu_1563_p2 rem1_4_fu_1587_p2 z0_8_fu_1569_p2 add_ln168_fu_1619_p2 add_ln207_fu_1695_p2 sub_ln217_fu_1722_p2 add_ln226_fu_1847_p2 add_ln146_fu_1952_p2 countLeadingZerosHigh_U</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_addFloat64Sigs_fu_159</InstName>
+                    <ModuleName>addFloat64Sigs</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>159</ID>
+                    <BindInstances>expDiff_fu_499_p2 add_ln340_fu_559_p2 zSig_fu_791_p2 expDiff_7_fu_599_p2 sub_ln328_fu_799_p2 expDiff_5_fu_653_p2 sub_ln73_fu_1012_p2 zSig_7_fu_1069_p2 zExp_6_fu_1081_p2 add_ln207_fu_1137_p2 sub_ln217_fu_1165_p2 add_ln226_fu_1286_p2 add_ln146_fu_1391_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_subFloat64Sigs_fu_168</InstName>
+                    <ModuleName>subFloat64Sigs</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>168</ID>
+                    <BindInstances>expDiff_fu_599_p2 expDiff_3_fu_719_p2 sub_ln412_fu_888_p2 zSig_1_fu_990_p2 expDiff_1_fu_773_p2 sub_ln73_fu_1217_p2 zSig_fu_1278_p2 zExp_fu_1288_p2 sub_ln249_fu_1362_p2 add_ln207_fu_1404_p2 sub_ln217_fu_1430_p2 add_ln226_fu_1550_p2 add_ln146_fu_1656_p2 countLeadingZerosHigh_U</BindInstances>
+                </Instance>
+            </InstancesList>
+            <BindInstances>mul_31s_31s_31_2_1_U42 shiftCount_6_fu_353_p2 shiftCount_7_fu_359_p2 sub_ln146_fu_380_p2 add_ln146_fu_398_p2 add_ln61_fu_443_p2 countLeadingZerosHigh_U</BindInstances>
+        </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+        <Module>
+            <Name>float64_mul</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.517</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>1</Best-caseLatency>
+                    <Average-caseLatency>8</Average-caseLatency>
+                    <Worst-caseLatency>14</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>5.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>40.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>70.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>1 ~ 14</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/dfsin/src/softfloat.c:468</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>1</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>~0</UTIL_BRAM>
+                    <DSP>16</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>2109</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>4878</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="shiftCount_11_fu_836_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:299" STORAGESUBTYPE="" URAM="0" VARIABLE="shiftCount_11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="shiftCount_12_fu_842_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:125" STORAGESUBTYPE="" URAM="0" VARIABLE="shiftCount_12"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="aExp_4_fu_866_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:127" STORAGESUBTYPE="" URAM="0" VARIABLE="aExp_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="shiftCount_16_fu_1015_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:299" STORAGESUBTYPE="" URAM="0" VARIABLE="shiftCount_16"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="shiftCount_17_fu_1021_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:125" STORAGESUBTYPE="" URAM="0" VARIABLE="shiftCount_17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="bExp_4_fu_1044_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:127" STORAGESUBTYPE="" URAM="0" VARIABLE="bExp_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32ns_32ns_64_2_1_U1" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:188" STORAGESUBTYPE="" URAM="0" VARIABLE="z1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32ns_32ns_64_2_1_U2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:189" STORAGESUBTYPE="" URAM="0" VARIABLE="zMiddleA"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32ns_32ns_64_2_1_U3" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:190" STORAGESUBTYPE="" URAM="0" VARIABLE="zMiddleB"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32ns_32ns_64_2_1_U4" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:191" STORAGESUBTYPE="" URAM="0" VARIABLE="z0"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="zMiddleA_1_fu_1134_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:192" STORAGESUBTYPE="" URAM="0" VARIABLE="zMiddleA_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="z1_2_fu_1159_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:195" STORAGESUBTYPE="" URAM="0" VARIABLE="z1_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln520_fu_1270_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:520" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln520"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln520_1_fu_1287_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:520" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln520_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="zExp_fu_1292_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:520" STORAGESUBTYPE="" URAM="0" VARIABLE="zExp"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln207_fu_1320_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:207" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln207"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln217_fu_1347_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:217" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln217"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln226_fu_1463_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:226" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln226"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln146_fu_1568_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:146" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln146"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="countLeadingZerosHigh_U" SOURCE="" STORAGESIZE="4 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="countLeadingZerosHigh"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>float64_div_Pipeline_VITIS_LOOP_224_1</Name>
+            <Loops>
+                <VITIS_LOOP_224_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.964</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>undef</Best-caseLatency>
+                    <Average-caseLatency>undef</Average-caseLatency>
+                    <Worst-caseLatency>undef</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>undef</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>undef</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>undef</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_224_1>
+                        <Name>VITIS_LOOP_224_1</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>undef</TripCount>
+                        <Latency>undef</Latency>
+                        <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>2</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_224_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/dfsin/src/softfloat-macros:216~benchmarks/chstone/dfsin/src/softfloat.c:597</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_224_1>
+                            <Name>VITIS_LOOP_224_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/chstone/dfsin/src/softfloat-macros:224~benchmarks/chstone/dfsin/src/softfloat.c:597</SourceLocation>
+                        </VITIS_LOOP_224_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>293</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>389</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_224_1" OPTYPE="add" PRAGMA="" RTLNAME="z_14_fu_149_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:226" STORAGESUBTYPE="" URAM="0" VARIABLE="z_14"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_224_1" OPTYPE="add" PRAGMA="" RTLNAME="z1_fu_155_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:148" STORAGESUBTYPE="" URAM="0" VARIABLE="z1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_224_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln150_fu_179_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln150"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_224_1" OPTYPE="add" PRAGMA="" RTLNAME="rem0_4_fu_188_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:150" STORAGESUBTYPE="" URAM="0" VARIABLE="rem0_4"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>float64_div_Pipeline_VITIS_LOOP_602_1</Name>
+            <Loops>
+                <VITIS_LOOP_602_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.724</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>undef</Best-caseLatency>
+                    <Average-caseLatency>undef</Average-caseLatency>
+                    <Worst-caseLatency>undef</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>undef</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>undef</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>undef</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_602_1>
+                        <Name>VITIS_LOOP_602_1</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>undef</TripCount>
+                        <Latency>undef</Latency>
+                        <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>2</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_602_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/dfsin/src/softfloat.c:540</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_602_1>
+                            <Name>VITIS_LOOP_602_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/chstone/dfsin/src/softfloat-macros:150~benchmarks/chstone/dfsin/src/softfloat.c:605</SourceLocation>
+                        </VITIS_LOOP_602_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>261</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>349</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_602_1" OPTYPE="add" PRAGMA="" RTLNAME="zSig_4_fu_118_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:604" STORAGESUBTYPE="" URAM="0" VARIABLE="zSig_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_602_1" OPTYPE="add" PRAGMA="" RTLNAME="z1_fu_124_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:148" STORAGESUBTYPE="" URAM="0" VARIABLE="z1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_602_1" OPTYPE="add" PRAGMA="" RTLNAME="rem0_1_fu_148_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:150" STORAGESUBTYPE="" URAM="0" VARIABLE="rem0_1"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>float64_div</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.517</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>undef</Best-caseLatency>
+                    <Average-caseLatency>undef</Average-caseLatency>
+                    <Worst-caseLatency>undef</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>undef</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>undef</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>undef</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/dfsin/src/softfloat.c:536</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>1</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>~0</UTIL_BRAM>
+                    <DSP>16</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>5699</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>10370</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>1</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="shiftCount_22_fu_893_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:299" STORAGESUBTYPE="" URAM="0" VARIABLE="shiftCount_22"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="shiftCount_23_fu_899_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:125" STORAGESUBTYPE="" URAM="0" VARIABLE="shiftCount_23"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="bExp_6_fu_923_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:127" STORAGESUBTYPE="" URAM="0" VARIABLE="bExp_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="shiftCount_27_fu_1172_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:299" STORAGESUBTYPE="" URAM="0" VARIABLE="shiftCount_27"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="shiftCount_28_fu_1178_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:125" STORAGESUBTYPE="" URAM="0" VARIABLE="shiftCount_28"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="aExp_6_fu_1201_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:127" STORAGESUBTYPE="" URAM="0" VARIABLE="aExp_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32ns_32ns_64_2_1_U24" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:189" STORAGESUBTYPE="" URAM="0" VARIABLE="zMiddleA"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32ns_32ns_64_2_1_U25" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:191" STORAGESUBTYPE="" URAM="0" VARIABLE="z0"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="rem1_fu_1392_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:167" STORAGESUBTYPE="" URAM="0" VARIABLE="rem1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="z0_7_fu_1413_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:193" STORAGESUBTYPE="" URAM="0" VARIABLE="z0_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32ns_32ns_64_2_1_U24" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:188" STORAGESUBTYPE="" URAM="0" VARIABLE="z1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32ns_32ns_64_2_1_U25" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:189" STORAGESUBTYPE="" URAM="0" VARIABLE="zMiddleA_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32ns_32ns_64_2_1_U26" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:190" STORAGESUBTYPE="" URAM="0" VARIABLE="zMiddleB"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32ns_32ns_64_2_1_U27" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:191" STORAGESUBTYPE="" URAM="0" VARIABLE="z0_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="zMiddleA_5_fu_1537_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:192" STORAGESUBTYPE="" URAM="0" VARIABLE="zMiddleA_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="z1_5_fu_1563_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:195" STORAGESUBTYPE="" URAM="0" VARIABLE="z1_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="rem1_4_fu_1587_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:167" STORAGESUBTYPE="" URAM="0" VARIABLE="rem1_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="z0_8_fu_1569_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:193" STORAGESUBTYPE="" URAM="0" VARIABLE="z0_8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln168_fu_1619_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:168" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln168"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln207_fu_1695_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:207" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln207"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln217_fu_1722_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:217" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln217"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln226_fu_1847_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:226" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln226"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln146_fu_1952_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:146" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln146"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="countLeadingZerosHigh_U" SOURCE="" STORAGESIZE="4 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="countLeadingZerosHigh"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>addFloat64Sigs</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.519</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>1</Best-caseLatency>
+                    <Average-caseLatency>4</Average-caseLatency>
+                    <Worst-caseLatency>5</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>5.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>20.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>25.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>1 ~ 5</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/dfsin/src/softfloat.c:97~benchmarks/chstone/dfsin/src/softfloat.c:293</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>1136</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>4995</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="expDiff_fu_499_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:296" STORAGESUBTYPE="" URAM="0" VARIABLE="expDiff"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln340_fu_559_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:340" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln340"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="zSig_fu_791_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:341" STORAGESUBTYPE="" URAM="0" VARIABLE="zSig"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="expDiff_7_fu_599_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:323" STORAGESUBTYPE="" URAM="0" VARIABLE="expDiff_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln328_fu_799_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:328" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln328"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="expDiff_5_fu_653_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:308" STORAGESUBTYPE="" URAM="0" VARIABLE="expDiff_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln73_fu_1012_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:73" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln73"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="zSig_7_fu_1069_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:346" STORAGESUBTYPE="" URAM="0" VARIABLE="zSig_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="zExp_6_fu_1081_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:347" STORAGESUBTYPE="" URAM="0" VARIABLE="zExp_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln207_fu_1137_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:207" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln207"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln217_fu_1165_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:217" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln217"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln226_fu_1286_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:226" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln226"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln146_fu_1391_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:146" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln146"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>subFloat64Sigs</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.514</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>1</Best-caseLatency>
+                    <Average-caseLatency>6</Average-caseLatency>
+                    <Worst-caseLatency>8</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>5.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>30.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>40.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>1 ~ 8</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/dfsin/src/softfloat.c:97~benchmarks/chstone/dfsin/src/softfloat.c:374</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>1</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>~0</UTIL_BRAM>
+                    <FF>1852</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>5488</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="expDiff_fu_599_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:377" STORAGESUBTYPE="" URAM="0" VARIABLE="expDiff"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="expDiff_3_fu_719_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:409" STORAGESUBTYPE="" URAM="0" VARIABLE="expDiff_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln412_fu_888_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:412" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln412"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="zSig_1_fu_990_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:415" STORAGESUBTYPE="" URAM="0" VARIABLE="zSig_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="expDiff_1_fu_773_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:427" STORAGESUBTYPE="" URAM="0" VARIABLE="expDiff_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln73_fu_1217_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:73" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln73"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="zSig_fu_1278_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:433" STORAGESUBTYPE="" URAM="0" VARIABLE="zSig"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="zExp_fu_1288_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:436" STORAGESUBTYPE="" URAM="0" VARIABLE="zExp"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln249_fu_1362_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:249" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln249"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln207_fu_1404_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:207" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln207"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln217_fu_1430_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:217" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln217"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln226_fu_1550_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:226" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln226"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln146_fu_1656_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:146" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln146"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="countLeadingZerosHigh_U" SOURCE="" STORAGESIZE="4 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="countLeadingZerosHigh"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>local_sin</Name>
+            <Loops>
+                <VITIS_LOOP_56_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.519</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>undef</Best-caseLatency>
+                    <Average-caseLatency>undef</Average-caseLatency>
+                    <Worst-caseLatency>undef</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>undef</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>undef</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>undef</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_56_1>
+                        <Name>VITIS_LOOP_56_1</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>undef</TripCount>
+                        <Latency>undef</Latency>
+                        <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
+                        <IterationLatency>undef</IterationLatency>
+                        <PipelineDepth>undef</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList>
+                            <Instance>grp_float64_div_fu_149</Instance>
+                            <Instance>grp_addFloat64Sigs_fu_159</Instance>
+                            <Instance>grp_subFloat64Sigs_fu_168</Instance>
+                        </InstanceList>
+                    </VITIS_LOOP_56_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/dfsin/src/softfloat.c:106~benchmarks/chstone/dfsin/src/softfloat.c:452~benchmarks/chstone/dfsin/src/dfsin.c:60</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_56_1>
+                            <Name>VITIS_LOOP_56_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/chstone/dfsin/src/softfloat.c:450~benchmarks/chstone/dfsin/src/dfsin.c:60</SourceLocation>
+                        </VITIS_LOOP_56_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>4</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>~0</UTIL_BRAM>
+                    <DSP>35</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>11875</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>26744</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>3</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="3" ID="" IMPL="auto" LATENCY="1" LOOP="VITIS_LOOP_56_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_31s_31s_31_2_1_U42" SOURCE="benchmarks/chstone/dfsin/src/dfsin.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln59"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_56_1" OPTYPE="add" PRAGMA="" RTLNAME="shiftCount_6_fu_353_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat-macros:275" STORAGESUBTYPE="" URAM="0" VARIABLE="shiftCount_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_56_1" OPTYPE="add" PRAGMA="" RTLNAME="shiftCount_7_fu_359_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="shiftCount_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_56_1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln146_fu_380_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:146" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln146"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_56_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln146_fu_398_p2" SOURCE="benchmarks/chstone/dfsin/src/softfloat.c:146" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln146"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_56_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln61_fu_443_p2" SOURCE="benchmarks/chstone/dfsin/src/dfsin.c:61" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln61"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="countLeadingZerosHigh_U" SOURCE="" STORAGESIZE="4 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="countLeadingZerosHigh"/>
+            </BindNodes>
+        </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+    <UserConfigCommands/>
+    <Args>
+        <Arg ArgName="rad" index="0" direction="in" srcType="long long unsigned int" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="rad" name="rad" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+    </Args>
+    <ReturnValue ReturnValueName="srcType">long long unsigned int</ReturnValue>
+    <ReturnValue ReturnValueName="srcSize">64</ReturnValue>
+    <ReturnValue ReturnValueName="hwRefs" type="port" interface="ap_return" name="ap_return" usage="data" direction="out"/>
+    <Interfaces>
+        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
+            <busParams>
+                <busParam busParamName="ASSOCIATED_RESET">ap_rst</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_clk">CLK</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_clk</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_HIGH</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_ctrl" type="ap_ctrl" busTypeName="acc_handshake" mode="slave">
+            <portMaps>
+                <portMap portMapName="ap_start">start</portMap>
+                <portMap portMapName="ap_done">done</portMap>
+                <portMap portMapName="ap_idle">idle</portMap>
+                <portMap portMapName="ap_ready">ready</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_done</port>
+                <port>ap_idle</port>
+                <port>ap_ready</port>
+                <port>ap_start</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_return" type="data" busTypeName="data" protocol="ap_ctrl_hs" mode="master" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="ap_return">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_return</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="rad" type="data" busTypeName="data" protocol="ap_none" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="rad">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>rad</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="rad"/>
+            </constraints>
+        </Interface>
+    </Interfaces>
+    <ReportHWInterface>
+        <section name="HW Interfaces" level="0">
+            <item name="Other Ports">
+                <table>
+                    <keys size="4">Port, Mode, Direction, Bitwidth</keys>
+                    <column name="ap_return">, out, 64</column>
+                    <column name="rad">ap_none, in, 64</column>
+                </table>
+            </item>
+            <item name="TOP LEVEL CONTROL">
+                <table>
+                    <keys size="3">Interface, Type, Ports</keys>
+                    <column name="ap_clk">clock, ap_clk</column>
+                    <column name="ap_rst">reset, ap_rst</column>
+                    <column name="ap_ctrl">ap_ctrl_hs, ap_done ap_idle ap_ready ap_start</column>
+                </table>
+            </item>
+        </section>
+    </ReportHWInterface>
+    <ReportSWInterface>
+        <section name="SW I/O Information" level="0">
+            <item name="Top Function Arguments">
+                <table>
+                    <keys size="3">Argument, Direction, Datatype</keys>
+                    <column name="rad">in, long long unsigned int</column>
+                    <column name="return">out, long long unsigned int</column>
+                </table>
+            </item>
+            <item name="SW-to-HW Mapping">
+                <table>
+                    <keys size="3">Argument, HW Interface, HW Type</keys>
+                    <column name="rad">rad, port</column>
+                    <column name="return">ap_return, port</column>
+                </table>
+            </item>
+        </section>
+    </ReportSWInterface>
+    <ResolutionUrl key="ZZZ">docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
+    <ReportBurst>
+        <section name="M_AXI Burst Information" level="0" HEADER_NOTE="Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings."/>
+    </ReportBurst>
+    <PragmaReport/>
+</profile>
+

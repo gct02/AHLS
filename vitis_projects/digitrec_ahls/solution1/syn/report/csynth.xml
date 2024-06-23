@@ -1,0 +1,1152 @@
+<profile>
+    <ReportVersion>
+        <Version>2023.2</Version>
+    </ReportVersion>
+    <UserAssignments>
+        <unit>ns</unit>
+        <ProductFamily>virtexuplusHBM</ProductFamily>
+        <Part>xcvu35p-fsvh2104-1-e</Part>
+        <TopModelName>DigitRec</TopModelName>
+        <TargetClockPeriod>5.00</TargetClockPeriod>
+        <ClockUncertainty>1.35</ClockUncertainty>
+        <FlowTarget>vivado</FlowTarget>
+    </UserAssignments>
+    <PerformanceEstimates>
+        <PipelineType>no</PipelineType>
+        <SummaryOfTimingAnalysis>
+            <unit>ns</unit>
+            <EstimatedClockPeriod>3.615</EstimatedClockPeriod>
+        </SummaryOfTimingAnalysis>
+        <SummaryOfOverallLatency>
+            <unit>clock cycles</unit>
+            <Best-caseLatency>3023001</Best-caseLatency>
+            <Average-caseLatency>3023001</Average-caseLatency>
+            <Worst-caseLatency>3023001</Worst-caseLatency>
+            <Best-caseRealTimeLatency>15.115 ms</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>15.115 ms</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>15.115 ms</Worst-caseRealTimeLatency>
+            <Interval-min>3023002</Interval-min>
+            <Interval-max>3023002</Interval-max>
+        </SummaryOfOverallLatency>
+        <SummaryOfLoopLatency>
+            <TEST_LOOP>
+                <Slack>3.65</Slack>
+                <TripCount>500</TripCount>
+                <Latency>3023000</Latency>
+                <AbsoluteTimeLatency>15115000</AbsoluteTimeLatency>
+                <IterationLatency>6046</IterationLatency>
+                <InstanceList/>
+            </TEST_LOOP>
+        </SummaryOfLoopLatency>
+        <SummaryOfViolations>
+            <IssueType>-</IssueType>
+            <ViolationType>-</ViolationType>
+            <SourceLocation>benchmarks/rosetta/digit-recognition/src/digitrec.cpp:96</SourceLocation>
+            <SummaryOfLoopViolations>
+                <TEST_LOOP>
+                    <Name>TEST_LOOP</Name>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/digit-recognition/src/digitrec.cpp:96</SourceLocation>
+                </TEST_LOOP>
+            </SummaryOfLoopViolations>
+        </SummaryOfViolations>
+    </PerformanceEstimates>
+    <AreaEstimates>
+        <Resources>
+            <BRAM_18K>0</BRAM_18K>
+            <FF>1329</FF>
+            <LUT>3666</LUT>
+            <URAM>0</URAM>
+            <DSP>0</DSP>
+        </Resources>
+        <AvailableResources>
+            <BRAM_18K>2688</BRAM_18K>
+            <DSP>5952</DSP>
+            <FF>1743360</FF>
+            <LUT>871680</LUT>
+            <URAM>640</URAM>
+        </AvailableResources>
+    </AreaEstimates>
+    <InterfaceSummary>
+        <RtlPorts>
+            <name>ap_clk</name>
+            <Object>DigitRec</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_rst</name>
+            <Object>DigitRec</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_start</name>
+            <Object>DigitRec</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_done</name>
+            <Object>DigitRec</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_idle</name>
+            <Object>DigitRec</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_ready</name>
+            <Object>DigitRec</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_samples_address0</name>
+            <Object>training_samples</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>14</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_samples_ce0</name>
+            <Object>training_samples</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_samples_q0</name>
+            <Object>training_samples</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_samples_address1</name>
+            <Object>training_samples</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>14</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_samples_ce1</name>
+            <Object>training_samples</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_samples_q1</name>
+            <Object>training_samples</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>test_set_address0</name>
+            <Object>test_set</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>11</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>test_set_ce0</name>
+            <Object>test_set</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>test_set_q0</name>
+            <Object>test_set</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>test_set_address1</name>
+            <Object>test_set</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>11</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>test_set_ce1</name>
+            <Object>test_set</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>test_set_q1</name>
+            <Object>test_set</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_labels_address0</name>
+            <Object>training_labels</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>12</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_labels_ce0</name>
+            <Object>training_labels</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_labels_q0</name>
+            <Object>training_labels</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>8</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>results_address0</name>
+            <Object>results</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>9</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>results_ce0</name>
+            <Object>results</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>results_we0</name>
+            <Object>results</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>results_d0</name>
+            <Object>results</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>8</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+    </InterfaceSummary>
+    <RTLDesignHierarchy>
+        <TopModule MAX_DEPTH="3">
+            <ModuleName>DigitRec</ModuleName>
+            <InstancesList>
+                <Instance>
+                    <InstName>grp_DigitRec_Pipeline_SET_KNN_SET_fu_156</InstName>
+                    <ModuleName>DigitRec_Pipeline_SET_KNN_SET</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>156</ID>
+                    <BindInstances>add_ln99_fu_204_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_DigitRec_Pipeline_3_fu_172</InstName>
+                    <ModuleName>DigitRec_Pipeline_3</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>172</ID>
+                    <BindInstances>empty_568_fu_56_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177</InstName>
+                    <ModuleName>DigitRec_Pipeline_TRAINING_LOOP</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>177</ID>
+                    <BindInstances>add_ln107_fu_461_p2 sub_ln20_fu_913_p2 add_ln21_1_fu_2185_p2 add_ln23_4_fu_4092_p2 add_ln23_fu_4098_p2 add_ln24_fu_4122_p2 dist_fu_4142_p2 sub_ln20_1_fu_1629_p2 add_ln21_fu_2503_p2 add_ln23_5_fu_4206_p2 add_ln23_1_fu_4212_p2 add_ln24_1_fu_4236_p2 add_ln26_fu_4256_p2 sub_ln20_2_fu_2998_p2 add_ln21_2_fu_4474_p2 add_ln23_6_fu_4960_p2 add_ln23_2_fu_4966_p2 add_ln24_2_fu_4990_p2 add_ln26_1_fu_5010_p2 sub_ln20_3_fu_3714_p2 add_ln21_3_fu_4786_p2 add_ln23_7_fu_5074_p2 add_ln23_3_fu_5080_p2 add_ln24_3_fu_5104_p2 add_ln26_2_fu_5124_p2 add_ln36_fu_5179_p2 add_ln36_1_fu_5189_p2 dists_0_fu_5199_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_DigitRec_Pipeline_VITIS_LOOP_69_1_fu_201</InstName>
+                    <ModuleName>DigitRec_Pipeline_VITIS_LOOP_69_1</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>201</ID>
+                    <BindInstances>add_ln69_fu_87_p2 votes_d0</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_DigitRec_Pipeline_VITIS_LOOP_72_2_fu_209</InstName>
+                    <ModuleName>DigitRec_Pipeline_VITIS_LOOP_72_2</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>209</ID>
+                    <BindInstances>i_2_fu_90_p2</BindInstances>
+                </Instance>
+            </InstancesList>
+            <BindInstances>votes_U add_ln96_fu_229_p2</BindInstances>
+        </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+        <Module>
+            <Name>DigitRec_Pipeline_SET_KNN_SET</Name>
+            <Loops>
+                <SET_KNN_SET/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>1.802</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>5</Best-caseLatency>
+                    <Average-caseLatency>5</Average-caseLatency>
+                    <Worst-caseLatency>5</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>25.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>25.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>25.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>5</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <SET_KNN_SET>
+                        <Name>SET_KNN_SET</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>3</TripCount>
+                        <Latency>3</Latency>
+                        <AbsoluteTimeLatency>15.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </SET_KNN_SET>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/digit-recognition/src/digitrec.cpp:99</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <SET_KNN_SET>
+                            <Name>SET_KNN_SET</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/digit-recognition/src/digitrec.cpp:99</SourceLocation>
+                        </SET_KNN_SET>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>196</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>101</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="SET_KNN_SET" OPTYPE="add" PRAGMA="" RTLNAME="add_ln99_fu_204_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln99"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>DigitRec_Pipeline_TRAINING_LOOP</Name>
+            <Loops>
+                <TRAINING_LOOP/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.615</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>6005</Best-caseLatency>
+                    <Average-caseLatency>6005</Average-caseLatency>
+                    <Worst-caseLatency>6005</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>30.025 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>30.025 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>30.025 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>6005</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <TRAINING_LOOP>
+                        <Name>TRAINING_LOOP</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>3000</TripCount>
+                        <Latency>6003</Latency>
+                        <AbsoluteTimeLatency>30.015 us</AbsoluteTimeLatency>
+                        <PipelineII>2</PipelineII>
+                        <PipelineDepth>6</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </TRAINING_LOOP>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/digit-recognition/src/digitrec.cpp:107</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <TRAINING_LOOP>
+                            <Name>TRAINING_LOOP</Name>
+                            <IssueType>II Violation</IssueType>
+                            <ViolationType>Resource Limitation</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/digit-recognition/src/digitrec.cpp:107</SourceLocation>
+                        </TRAINING_LOOP>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>725</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>3017</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln107_fu_461_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:107" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln107"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln20_fu_913_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:20" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln21_1_fu_2185_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:21" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln21_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln23_4_fu_4092_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:23" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln23_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln23_fu_4098_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:23" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln23"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln24_fu_4122_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:24" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln24"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="dist_fu_4142_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:26" STORAGESUBTYPE="" URAM="0" VARIABLE="dist"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln20_1_fu_1629_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:20" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln20_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln21_fu_2503_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:21" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln21"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln23_5_fu_4206_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:23" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln23_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln23_1_fu_4212_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:23" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln23_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln24_1_fu_4236_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:24" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln24_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln26_fu_4256_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:26" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln26"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln20_2_fu_2998_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:20" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln20_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln21_2_fu_4474_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:21" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln21_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln23_6_fu_4960_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:23" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln23_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln23_2_fu_4966_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:23" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln23_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln24_2_fu_4990_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:24" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln24_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln26_1_fu_5010_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:26" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln26_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln20_3_fu_3714_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:20" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln20_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln21_3_fu_4786_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:21" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln21_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln23_7_fu_5074_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:23" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln23_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln23_3_fu_5080_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:23" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln23_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln24_3_fu_5104_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:24" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln24_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln26_2_fu_5124_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:26" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln26_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_fu_5179_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_1_fu_5189_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TRAINING_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="dists_0_fu_5199_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:36" STORAGESUBTYPE="" URAM="0" VARIABLE="dists_0"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>DigitRec_Pipeline_3</Name>
+            <Loops>
+                <Loop1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>1.999</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12</Best-caseLatency>
+                    <Average-caseLatency>12</Average-caseLatency>
+                    <Worst-caseLatency>12</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>60.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>60.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>60.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <Loop1>
+                        <Name>Loop 1</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>10</TripCount>
+                        <Latency>10</Latency>
+                        <AbsoluteTimeLatency>50.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </Loop1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>-</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <Loop1>
+                            <Name>Loop 1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>-</SourceLocation>
+                        </Loop1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>6</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>51</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Loop 1" OPTYPE="add" PRAGMA="" RTLNAME="empty_568_fu_56_p2" SOURCE="" STORAGESUBTYPE="" URAM="0" VARIABLE="empty_568"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>DigitRec_Pipeline_VITIS_LOOP_69_1</Name>
+            <Loops>
+                <VITIS_LOOP_69_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.602</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>8</Best-caseLatency>
+                    <Average-caseLatency>8</Average-caseLatency>
+                    <Worst-caseLatency>8</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>40.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>40.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>40.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>8</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_69_1>
+                        <Name>VITIS_LOOP_69_1</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>3</TripCount>
+                        <Latency>6</Latency>
+                        <AbsoluteTimeLatency>30.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>2</PipelineII>
+                        <PipelineDepth>2</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_69_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/digit-recognition/src/digitrec.cpp:69~benchmarks/rosetta/digit-recognition/src/digitrec.cpp:111</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_69_1>
+                            <Name>VITIS_LOOP_69_1</Name>
+                            <IssueType>II Violation</IssueType>
+                            <ViolationType>Memory Dependency</ViolationType>
+                            <IterationDistance>1</IterationDistance>
+                            <SourceLocation>benchmarks/rosetta/digit-recognition/src/digitrec.cpp:69~benchmarks/rosetta/digit-recognition/src/digitrec.cpp:111</SourceLocation>
+                        </VITIS_LOOP_69_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>9</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>126</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_69_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln69_fu_87_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:69" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln69"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_69_1" OPTYPE="add" PRAGMA="" RTLNAME="votes_d0" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:70" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln70"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>DigitRec_Pipeline_VITIS_LOOP_72_2</Name>
+            <Loops>
+                <VITIS_LOOP_72_2/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.732</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12</Best-caseLatency>
+                    <Average-caseLatency>12</Average-caseLatency>
+                    <Worst-caseLatency>12</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>60.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>60.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>60.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_72_2>
+                        <Name>VITIS_LOOP_72_2</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>10</TripCount>
+                        <Latency>10</Latency>
+                        <AbsoluteTimeLatency>50.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>2</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_72_2>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/digit-recognition/src/digitrec.cpp:65~benchmarks/rosetta/digit-recognition/src/digitrec.cpp:111</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_72_2>
+                            <Name>VITIS_LOOP_72_2</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/digit-recognition/src/digitrec.cpp:72~benchmarks/rosetta/digit-recognition/src/digitrec.cpp:111</SourceLocation>
+                        </VITIS_LOOP_72_2>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>51</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>159</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_72_2" OPTYPE="add" PRAGMA="" RTLNAME="i_2_fu_90_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:72" STORAGESUBTYPE="" URAM="0" VARIABLE="i_2"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>DigitRec</Name>
+            <Loops>
+                <TEST_LOOP/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.615</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>3023001</Best-caseLatency>
+                    <Average-caseLatency>3023001</Average-caseLatency>
+                    <Worst-caseLatency>3023001</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>15.115 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>15.115 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>15.115 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>3023002</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <TEST_LOOP>
+                        <Name>TEST_LOOP</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>500</TripCount>
+                        <Latency>3023000</Latency>
+                        <AbsoluteTimeLatency>15.115 ms</AbsoluteTimeLatency>
+                        <IterationLatency>6046</IterationLatency>
+                        <PipelineDepth>6046</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList>
+                            <Instance>grp_DigitRec_Pipeline_SET_KNN_SET_fu_156</Instance>
+                            <Instance>grp_DigitRec_Pipeline_3_fu_172</Instance>
+                            <Instance>grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177</Instance>
+                            <Instance>grp_DigitRec_Pipeline_VITIS_LOOP_69_1_fu_201</Instance>
+                            <Instance>grp_DigitRec_Pipeline_VITIS_LOOP_72_2_fu_209</Instance>
+                        </InstanceList>
+                    </TEST_LOOP>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/digit-recognition/src/digitrec.cpp:96</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <TEST_LOOP>
+                            <Name>TEST_LOOP</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/digit-recognition/src/digitrec.cpp:96</SourceLocation>
+                        </TEST_LOOP>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <FF>1329</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>3666</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="votes_U" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:67" STORAGESIZE="32 10 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="votes"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="TEST_LOOP" OPTYPE="add" PRAGMA="" RTLNAME="add_ln96_fu_229_p2" SOURCE="benchmarks/rosetta/digit-recognition/src/digitrec.cpp:96" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln96"/>
+            </BindNodes>
+        </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+    <UserConfigCommands/>
+    <Args>
+        <Arg ArgName="training_samples" index="0" direction="in" srcType="long long unsigned int const *" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="training_samples_address0" name="training_samples_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="training_samples_ce0" name="training_samples_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="training_samples_q0" name="training_samples_q0" usage="data" direction="in"/>
+                <hwRef type="port" interface="training_samples_address1" name="training_samples_address1" usage="address" direction="out"/>
+                <hwRef type="port" interface="training_samples_ce1" name="training_samples_ce1" usage="control" direction="out"/>
+                <hwRef type="port" interface="training_samples_q1" name="training_samples_q1" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="test_set" index="1" direction="in" srcType="long long unsigned int const *" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="test_set_address0" name="test_set_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="test_set_ce0" name="test_set_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="test_set_q0" name="test_set_q0" usage="data" direction="in"/>
+                <hwRef type="port" interface="test_set_address1" name="test_set_address1" usage="address" direction="out"/>
+                <hwRef type="port" interface="test_set_ce1" name="test_set_ce1" usage="control" direction="out"/>
+                <hwRef type="port" interface="test_set_q1" name="test_set_q1" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="training_labels" index="2" direction="in" srcType="unsigned char const *" srcSize="8">
+            <hwRefs>
+                <hwRef type="port" interface="training_labels_address0" name="training_labels_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="training_labels_ce0" name="training_labels_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="training_labels_q0" name="training_labels_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="results" index="3" direction="out" srcType="unsigned char*" srcSize="8">
+            <hwRefs>
+                <hwRef type="port" interface="results_address0" name="results_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="results_ce0" name="results_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="results_we0" name="results_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="results_d0" name="results_d0" usage="data" direction="out"/>
+            </hwRefs>
+        </Arg>
+    </Args>
+    <Interfaces>
+        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
+            <busParams>
+                <busParam busParamName="ASSOCIATED_RESET">ap_rst</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_clk">CLK</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_clk</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_HIGH</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_ctrl" type="ap_ctrl" busTypeName="acc_handshake" mode="slave">
+            <portMaps>
+                <portMap portMapName="ap_start">start</portMap>
+                <portMap portMapName="ap_done">done</portMap>
+                <portMap portMapName="ap_idle">idle</portMap>
+                <portMap portMapName="ap_ready">ready</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_done</port>
+                <port>ap_idle</port>
+                <port>ap_ready</port>
+                <port>ap_start</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="training_samples_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="14">
+            <portMaps>
+                <portMap portMapName="training_samples_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>training_samples_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="training_samples"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="training_samples_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="training_samples_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>training_samples_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="training_samples"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="training_samples_address1" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="14">
+            <portMaps>
+                <portMap portMapName="training_samples_address1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>training_samples_address1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="training_samples"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="training_samples_q1" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="training_samples_q1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>training_samples_q1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="training_samples"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="test_set_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="11">
+            <portMaps>
+                <portMap portMapName="test_set_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>test_set_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="test_set"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="test_set_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="test_set_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>test_set_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="test_set"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="test_set_address1" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="11">
+            <portMaps>
+                <portMap portMapName="test_set_address1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>test_set_address1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="test_set"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="test_set_q1" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="test_set_q1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>test_set_q1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="test_set"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="training_labels_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="12">
+            <portMaps>
+                <portMap portMapName="training_labels_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>training_labels_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="training_labels"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="training_labels_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="8">
+            <portMaps>
+                <portMap portMapName="training_labels_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>training_labels_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="training_labels"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="results_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="9">
+            <portMaps>
+                <portMap portMapName="results_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>results_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="results"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="results_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="8">
+            <portMaps>
+                <portMap portMapName="results_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>results_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="results"/>
+            </constraints>
+        </Interface>
+    </Interfaces>
+    <ReportHWInterface>
+        <section name="HW Interfaces" level="0">
+            <item name="AP_MEMORY">
+                <table>
+                    <keys size="3">Port, Direction, Bitwidth</keys>
+                    <column name="results_address0">out, 9</column>
+                    <column name="results_d0">out, 8</column>
+                    <column name="test_set_address0">out, 11</column>
+                    <column name="test_set_address1">out, 11</column>
+                    <column name="test_set_q0">in, 64</column>
+                    <column name="test_set_q1">in, 64</column>
+                    <column name="training_labels_address0">out, 12</column>
+                    <column name="training_labels_q0">in, 8</column>
+                    <column name="training_samples_address0">out, 14</column>
+                    <column name="training_samples_address1">out, 14</column>
+                    <column name="training_samples_q0">in, 64</column>
+                    <column name="training_samples_q1">in, 64</column>
+                </table>
+            </item>
+            <item name="TOP LEVEL CONTROL">
+                <table>
+                    <keys size="3">Interface, Type, Ports</keys>
+                    <column name="ap_clk">clock, ap_clk</column>
+                    <column name="ap_rst">reset, ap_rst</column>
+                    <column name="ap_ctrl">ap_ctrl_hs, ap_done ap_idle ap_ready ap_start</column>
+                </table>
+            </item>
+        </section>
+    </ReportHWInterface>
+    <ReportSWInterface>
+        <section name="SW I/O Information" level="0">
+            <item name="Top Function Arguments">
+                <table>
+                    <keys size="3">Argument, Direction, Datatype</keys>
+                    <column name="training_samples">in, long long unsigned int const *</column>
+                    <column name="test_set">in, long long unsigned int const *</column>
+                    <column name="training_labels">in, unsigned char const *</column>
+                    <column name="results">out, unsigned char*</column>
+                </table>
+            </item>
+            <item name="SW-to-HW Mapping">
+                <table>
+                    <keys size="4">Argument, HW Interface, HW Type, HW Usage</keys>
+                    <column name="training_samples">training_samples_address0, port, offset</column>
+                    <column name="training_samples">training_samples_ce0, port, </column>
+                    <column name="training_samples">training_samples_q0, port, </column>
+                    <column name="training_samples">training_samples_address1, port, offset</column>
+                    <column name="training_samples">training_samples_ce1, port, </column>
+                    <column name="training_samples">training_samples_q1, port, </column>
+                    <column name="test_set">test_set_address0, port, offset</column>
+                    <column name="test_set">test_set_ce0, port, </column>
+                    <column name="test_set">test_set_q0, port, </column>
+                    <column name="test_set">test_set_address1, port, offset</column>
+                    <column name="test_set">test_set_ce1, port, </column>
+                    <column name="test_set">test_set_q1, port, </column>
+                    <column name="training_labels">training_labels_address0, port, offset</column>
+                    <column name="training_labels">training_labels_ce0, port, </column>
+                    <column name="training_labels">training_labels_q0, port, </column>
+                    <column name="results">results_address0, port, offset</column>
+                    <column name="results">results_ce0, port, </column>
+                    <column name="results">results_we0, port, </column>
+                    <column name="results">results_d0, port, </column>
+                </table>
+            </item>
+        </section>
+    </ReportSWInterface>
+    <ResolutionUrl key="ZZZ">docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
+    <PragmaReport/>
+</profile>
+

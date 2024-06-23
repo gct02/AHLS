@@ -1,0 +1,293 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'adpcm_main'" level="0">
+<item name = "Date">Wed Jun 19 19:06:30 2024
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">adpcm_ahls</item>
+<item name = "Solution">solution1 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 3.794 ns, 1.35 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">148038, 148038, 0.740 ms, 0.740 ms, 148039, 148039, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_adpcm_main_Pipeline_reset_label4_fu_148">adpcm_main_Pipeline_reset_label4, 8, 8, 40.000 ns, 40.000 ns, 8, 8, no</column>
+<column name="grp_adpcm_main_Pipeline_reset_label5_fu_160">adpcm_main_Pipeline_reset_label5, 8, 8, 40.000 ns, 40.000 ns, 8, 8, no</column>
+<column name="grp_adpcm_main_Pipeline_reset_label6_fu_172">adpcm_main_Pipeline_reset_label6, 26, 26, 0.130 us, 0.130 us, 26, 26, no</column>
+<column name="grp_adpcm_main_Pipeline_reset_label7_fu_178">adpcm_main_Pipeline_reset_label7, 13, 13, 65.000 ns, 65.000 ns, 13, 13, no</column>
+<column name="grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186">adpcm_main_Pipeline_adpcm_main_label12, 100004, 100004, 0.500 ms, 0.500 ms, 100004, 100004, no</column>
+<column name="grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248">adpcm_main_Pipeline_adpcm_main_label13, 48003, 48003, 0.240 ms, 0.240 ms, 48003, 48003, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 2, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">1, 153, 14971, 16449, -</column>
+<column name="Memory">0, -, 568, 44, 0</column>
+<column name="Multiplexer">-, -, -, 1176, -</column>
+<column name="Register">-, -, 766, -, -</column>
+<specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
+<specialColumn name="Utilization SLR (%)">~0, 5, 1, 4, 0</specialColumn>
+<specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
+<specialColumn name="Utilization (%)">~0, 2, ~0, 2, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186">adpcm_main_Pipeline_adpcm_main_label12, 0, 84, 7262, 9055, 0</column>
+<column name="grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248">adpcm_main_Pipeline_adpcm_main_label13, 1, 69, 7686, 7198, 0</column>
+<column name="grp_adpcm_main_Pipeline_reset_label4_fu_148">adpcm_main_Pipeline_reset_label4, 0, 0, 5, 47, 0</column>
+<column name="grp_adpcm_main_Pipeline_reset_label5_fu_160">adpcm_main_Pipeline_reset_label5, 0, 0, 5, 47, 0</column>
+<column name="grp_adpcm_main_Pipeline_reset_label6_fu_172">adpcm_main_Pipeline_reset_label6, 0, 0, 7, 51, 0</column>
+<column name="grp_adpcm_main_Pipeline_reset_label7_fu_178">adpcm_main_Pipeline_reset_label7, 0, 0, 6, 51, 0</column>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+<column name="accumc_U">accumc_RAM_AUTO_1R1W, 0, 64, 6, 0, 11, 32, 1, 352</column>
+<column name="accumd_U">accumc_RAM_AUTO_1R1W, 0, 64, 6, 0, 11, 32, 1, 352</column>
+<column name="delay_bpl_U">delay_bpl_RAM_AUTO_1R1W, 0, 64, 3, 0, 6, 32, 1, 192</column>
+<column name="delay_bph_U">delay_bpl_RAM_AUTO_1R1W, 0, 64, 3, 0, 6, 32, 1, 192</column>
+<column name="dec_del_bpl_U">delay_bpl_RAM_AUTO_1R1W, 0, 64, 3, 0, 6, 32, 1, 192</column>
+<column name="dec_del_bph_U">delay_bpl_RAM_AUTO_1R1W, 0, 64, 3, 0, 6, 32, 1, 192</column>
+<column name="delay_dhx_U">delay_dhx_RAM_AUTO_1R1W, 0, 28, 2, 0, 6, 14, 1, 84</column>
+<column name="dec_del_dhx_U">delay_dhx_RAM_AUTO_1R1W, 0, 28, 2, 0, 6, 14, 1, 84</column>
+<column name="delay_dltx_U">delay_dltx_RAM_AUTO_1R1W, 0, 32, 2, 0, 6, 16, 1, 96</column>
+<column name="dec_del_dltx_U">delay_dltx_RAM_AUTO_1R1W, 0, 32, 2, 0, 6, 16, 1, 96</column>
+<column name="tqmf_U">tqmf_RAM_AUTO_1R1W, 0, 64, 12, 0, 24, 32, 1, 768</column>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="ap_block_state2_on_subcall_done">or, 0, 0, 2, 1, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="accumc_address0">14, 3, 4, 12</column>
+<column name="accumc_ce0">14, 3, 1, 3</column>
+<column name="accumc_ce1">9, 2, 1, 2</column>
+<column name="accumc_d0">14, 3, 32, 96</column>
+<column name="accumc_we0">14, 3, 1, 3</column>
+<column name="accumc_we1">9, 2, 1, 2</column>
+<column name="accumd_address0">14, 3, 4, 12</column>
+<column name="accumd_ce0">14, 3, 1, 3</column>
+<column name="accumd_ce1">9, 2, 1, 2</column>
+<column name="accumd_d0">14, 3, 32, 96</column>
+<column name="accumd_we0">14, 3, 1, 3</column>
+<column name="accumd_we1">9, 2, 1, 2</column>
+<column name="ah1">9, 2, 16, 32</column>
+<column name="ah2">9, 2, 15, 30</column>
+<column name="al1">9, 2, 16, 32</column>
+<column name="al2">9, 2, 15, 30</column>
+<column name="ap_NS_fsm">37, 7, 1, 7</column>
+<column name="compressed_address0">14, 3, 12, 36</column>
+<column name="compressed_ce0">14, 3, 1, 3</column>
+<column name="compressed_we0">9, 2, 1, 2</column>
+<column name="dec_ah1">9, 2, 16, 32</column>
+<column name="dec_ah2">9, 2, 15, 30</column>
+<column name="dec_al1">9, 2, 16, 32</column>
+<column name="dec_al2">9, 2, 15, 30</column>
+<column name="dec_del_bph_address0">14, 3, 3, 9</column>
+<column name="dec_del_bph_ce0">14, 3, 1, 3</column>
+<column name="dec_del_bph_ce1">9, 2, 1, 2</column>
+<column name="dec_del_bph_d0">14, 3, 32, 96</column>
+<column name="dec_del_bph_we0">14, 3, 1, 3</column>
+<column name="dec_del_bph_we1">9, 2, 1, 2</column>
+<column name="dec_del_bpl_address0">14, 3, 3, 9</column>
+<column name="dec_del_bpl_ce0">14, 3, 1, 3</column>
+<column name="dec_del_bpl_ce1">9, 2, 1, 2</column>
+<column name="dec_del_bpl_d0">14, 3, 32, 96</column>
+<column name="dec_del_bpl_we0">14, 3, 1, 3</column>
+<column name="dec_del_bpl_we1">9, 2, 1, 2</column>
+<column name="dec_del_dhx_address0">14, 3, 3, 9</column>
+<column name="dec_del_dhx_ce0">14, 3, 1, 3</column>
+<column name="dec_del_dhx_ce1">9, 2, 1, 2</column>
+<column name="dec_del_dhx_d0">14, 3, 14, 42</column>
+<column name="dec_del_dhx_we0">14, 3, 1, 3</column>
+<column name="dec_del_dhx_we1">9, 2, 1, 2</column>
+<column name="dec_del_dltx_address0">14, 3, 3, 9</column>
+<column name="dec_del_dltx_ce0">14, 3, 1, 3</column>
+<column name="dec_del_dltx_ce1">9, 2, 1, 2</column>
+<column name="dec_del_dltx_d0">14, 3, 16, 48</column>
+<column name="dec_del_dltx_we0">14, 3, 1, 3</column>
+<column name="dec_del_dltx_we1">9, 2, 1, 2</column>
+<column name="dec_deth">9, 2, 15, 30</column>
+<column name="dec_detl">9, 2, 15, 30</column>
+<column name="dec_nbh">9, 2, 15, 30</column>
+<column name="dec_nbl">9, 2, 15, 30</column>
+<column name="dec_ph1">9, 2, 32, 64</column>
+<column name="dec_ph2">9, 2, 32, 64</column>
+<column name="dec_plt1">9, 2, 32, 64</column>
+<column name="dec_plt2">9, 2, 32, 64</column>
+<column name="dec_rh1">9, 2, 31, 62</column>
+<column name="dec_rh2">9, 2, 31, 62</column>
+<column name="dec_rlt1">9, 2, 31, 62</column>
+<column name="dec_rlt2">9, 2, 31, 62</column>
+<column name="delay_bph_address0">14, 3, 3, 9</column>
+<column name="delay_bph_ce0">14, 3, 1, 3</column>
+<column name="delay_bph_ce1">9, 2, 1, 2</column>
+<column name="delay_bph_d0">14, 3, 32, 96</column>
+<column name="delay_bph_we0">14, 3, 1, 3</column>
+<column name="delay_bph_we1">9, 2, 1, 2</column>
+<column name="delay_bpl_address0">14, 3, 3, 9</column>
+<column name="delay_bpl_ce0">14, 3, 1, 3</column>
+<column name="delay_bpl_ce1">9, 2, 1, 2</column>
+<column name="delay_bpl_d0">14, 3, 32, 96</column>
+<column name="delay_bpl_we0">14, 3, 1, 3</column>
+<column name="delay_bpl_we1">9, 2, 1, 2</column>
+<column name="delay_dhx_address0">14, 3, 3, 9</column>
+<column name="delay_dhx_ce0">14, 3, 1, 3</column>
+<column name="delay_dhx_ce1">9, 2, 1, 2</column>
+<column name="delay_dhx_d0">14, 3, 14, 42</column>
+<column name="delay_dhx_we0">14, 3, 1, 3</column>
+<column name="delay_dhx_we1">9, 2, 1, 2</column>
+<column name="delay_dltx_address0">14, 3, 3, 9</column>
+<column name="delay_dltx_ce0">14, 3, 1, 3</column>
+<column name="delay_dltx_ce1">9, 2, 1, 2</column>
+<column name="delay_dltx_d0">14, 3, 16, 48</column>
+<column name="delay_dltx_we0">14, 3, 1, 3</column>
+<column name="delay_dltx_we1">9, 2, 1, 2</column>
+<column name="deth">9, 2, 15, 30</column>
+<column name="detl">9, 2, 15, 30</column>
+<column name="nbh">9, 2, 15, 30</column>
+<column name="nbl">9, 2, 15, 30</column>
+<column name="ph1">9, 2, 32, 64</column>
+<column name="ph2">9, 2, 32, 64</column>
+<column name="plt1">9, 2, 32, 64</column>
+<column name="plt2">9, 2, 32, 64</column>
+<column name="rh1">9, 2, 31, 62</column>
+<column name="rh2">9, 2, 31, 62</column>
+<column name="rlt1">9, 2, 31, 62</column>
+<column name="rlt2">9, 2, 31, 62</column>
+<column name="tqmf_address0">14, 3, 5, 15</column>
+<column name="tqmf_ce0">14, 3, 1, 3</column>
+<column name="tqmf_ce1">9, 2, 1, 2</column>
+<column name="tqmf_d0">14, 3, 32, 96</column>
+<column name="tqmf_we0">14, 3, 1, 3</column>
+<column name="tqmf_we1">9, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ah1">16, 0, 16, 0</column>
+<column name="ah2">15, 0, 15, 0</column>
+<column name="al1">16, 0, 16, 0</column>
+<column name="al2">15, 0, 15, 0</column>
+<column name="ap_CS_fsm">6, 0, 6, 0</column>
+<column name="dec_ah1">16, 0, 16, 0</column>
+<column name="dec_ah2">15, 0, 15, 0</column>
+<column name="dec_al1">16, 0, 16, 0</column>
+<column name="dec_al2">15, 0, 15, 0</column>
+<column name="dec_deth">15, 0, 15, 0</column>
+<column name="dec_detl">15, 0, 15, 0</column>
+<column name="dec_nbh">15, 0, 15, 0</column>
+<column name="dec_nbl">15, 0, 15, 0</column>
+<column name="dec_ph1">32, 0, 32, 0</column>
+<column name="dec_ph2">32, 0, 32, 0</column>
+<column name="dec_plt1">32, 0, 32, 0</column>
+<column name="dec_plt2">32, 0, 32, 0</column>
+<column name="dec_rh1">31, 0, 31, 0</column>
+<column name="dec_rh2">31, 0, 31, 0</column>
+<column name="dec_rlt1">31, 0, 31, 0</column>
+<column name="dec_rlt2">31, 0, 31, 0</column>
+<column name="deth">15, 0, 15, 0</column>
+<column name="detl">15, 0, 15, 0</column>
+<column name="grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_adpcm_main_Pipeline_reset_label4_fu_148_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_adpcm_main_Pipeline_reset_label5_fu_160_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_adpcm_main_Pipeline_reset_label6_fu_172_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_adpcm_main_Pipeline_reset_label7_fu_178_ap_start_reg">1, 0, 1, 0</column>
+<column name="il">6, 0, 6, 0</column>
+<column name="nbh">15, 0, 15, 0</column>
+<column name="nbl">15, 0, 15, 0</column>
+<column name="ph1">32, 0, 32, 0</column>
+<column name="ph2">32, 0, 32, 0</column>
+<column name="plt1">32, 0, 32, 0</column>
+<column name="plt2">32, 0, 32, 0</column>
+<column name="rh1">31, 0, 31, 0</column>
+<column name="rh2">31, 0, 31, 0</column>
+<column name="rlt1">31, 0, 31, 0</column>
+<column name="rlt2">31, 0, 31, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, adpcm_main, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, adpcm_main, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, adpcm_main, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, adpcm_main, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, adpcm_main, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, adpcm_main, return value</column>
+<column name="input_samples_address0">out, 13, ap_memory, input_samples, array</column>
+<column name="input_samples_ce0">out, 1, ap_memory, input_samples, array</column>
+<column name="input_samples_q0">in, 32, ap_memory, input_samples, array</column>
+<column name="input_samples_address1">out, 13, ap_memory, input_samples, array</column>
+<column name="input_samples_ce1">out, 1, ap_memory, input_samples, array</column>
+<column name="input_samples_q1">in, 32, ap_memory, input_samples, array</column>
+<column name="compressed_address0">out, 12, ap_memory, compressed, array</column>
+<column name="compressed_ce0">out, 1, ap_memory, compressed, array</column>
+<column name="compressed_we0">out, 1, ap_memory, compressed, array</column>
+<column name="compressed_d0">out, 32, ap_memory, compressed, array</column>
+<column name="compressed_q0">in, 32, ap_memory, compressed, array</column>
+<column name="result_address0">out, 13, ap_memory, result, array</column>
+<column name="result_ce0">out, 1, ap_memory, result, array</column>
+<column name="result_we0">out, 1, ap_memory, result, array</column>
+<column name="result_d0">out, 32, ap_memory, result, array</column>
+<column name="result_address1">out, 13, ap_memory, result, array</column>
+<column name="result_ce1">out, 1, ap_memory, result, array</column>
+<column name="result_we1">out, 1, ap_memory, result, array</column>
+<column name="result_d1">out, 32, ap_memory, result, array</column>
+</table>
+</item>
+</section>
+</profile>

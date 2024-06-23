@@ -1,0 +1,55 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'decode_block_1'" level="0">
+<item name = "Date">Tue Jun 18 12:24:21 2024
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">jpeg_ahls</item>
+<item name = "Solution">solution1 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 3.615 ns, 1.35 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">?, ?, ?, ?, ?, ?, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_DecodeHuffman_1_fu_185">DecodeHuffman_1, ?, ?, ?, ?, ?, ?, no</column>
+<column name="grp_buf_getv_fu_206">buf_getv, 3, 268435463, 15.000 ns, 1.342 sec, 3, 268435463, no</column>
+<column name="grp_decode_block_1_Pipeline_VITIS_LOOP_736_1_fu_219">decode_block_1_Pipeline_VITIS_LOOP_736_1, 65, 65, 0.325 us, 0.325 us, 65, 65, no</column>
+<column name="grp_DecodeHuffman_2_fu_226">DecodeHuffman_2, ?, ?, ?, ?, ?, ?, no</column>
+<column name="grp_decode_block_1_Pipeline_VITIS_LOOP_322_1_fu_247">decode_block_1_Pipeline_VITIS_LOOP_322_1, 67, 67, 0.335 us, 0.335 us, 67, 67, no</column>
+<column name="grp_decode_block_1_Pipeline_VITIS_LOOP_334_1_fu_257">decode_block_1_Pipeline_VITIS_LOOP_334_1, 69, 69, 0.345 us, 0.345 us, 69, 69, no</column>
+<column name="grp_ChenIDct_1_fu_264">ChenIDct_1, 333, 333, 1.665 us, 1.665 us, 333, 333, no</column>
+<column name="grp_decode_block_1_Pipeline_VITIS_LOOP_347_1_fu_272">decode_block_1_Pipeline_VITIS_LOOP_347_1, 130, 130, 0.650 us, 0.650 us, 130, 130, no</column>
+<column name="grp_decode_block_1_Pipeline_VITIS_LOOP_360_1_fu_279">decode_block_1_Pipeline_VITIS_LOOP_360_1, 194, 194, 0.970 us, 0.970 us, 194, 194, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- VITIS_LOOP_740_2">?, ?, ?, -, -, ?, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

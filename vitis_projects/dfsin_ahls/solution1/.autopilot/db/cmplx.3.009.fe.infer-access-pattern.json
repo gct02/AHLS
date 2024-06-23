@@ -1,0 +1,77 @@
+{
+  "0": {
+    "basicblocks": 9,
+    "calls": "1 1 2 3 4",
+    "file": "dfsin.c",
+    "fileloc": 46,
+    "instructions": 69,
+    "loads": {
+      "G": 2
+    },
+    "name": "local_sin",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 1562
+  },
+  "1": {
+    "basicblocks": 43,
+    "calls": "",
+    "file": "softfloat.c",
+    "fileloc": 468,
+    "instructions": 285,
+    "loads": {
+      "G": 9
+    },
+    "name": "float64_mul",
+    "stores": {
+      "G": 7
+    },
+    "total_instructions": 285
+  },
+  "2": {
+    "basicblocks": 60,
+    "calls": "",
+    "file": "softfloat.c",
+    "fileloc": 536,
+    "instructions": 386,
+    "loads": {
+      "G": 10
+    },
+    "name": "float64_div",
+    "stores": {
+      "G": 9
+    },
+    "total_instructions": 386
+  },
+  "3": {
+    "basicblocks": 48,
+    "calls": "",
+    "file": "softfloat.c",
+    "fileloc": 286,
+    "instructions": 251,
+    "loads": {
+      "G": 6
+    },
+    "name": "addFloat64Sigs",
+    "stores": {
+      "G": 6
+    },
+    "total_instructions": 251
+  },
+  "4": {
+    "basicblocks": 53,
+    "calls": "",
+    "file": "softfloat.c",
+    "fileloc": 367,
+    "instructions": 286,
+    "loads": {
+      "G": 8
+    },
+    "name": "subFloat64Sigs",
+    "stores": {
+      "G": 7
+    },
+    "total_instructions": 286
+  }
+}

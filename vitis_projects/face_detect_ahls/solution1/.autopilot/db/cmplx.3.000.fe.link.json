@@ -1,0 +1,261 @@
+{
+  "0": {
+    "basicblocks": 7,
+    "calls": "14 14 4 4 13 12",
+    "file": "face_detect.cpp",
+    "fileloc": 65,
+    "instructions": 72,
+    "loads": {
+      "L": 5
+    },
+    "name": "face_detect",
+    "stores": {
+      "L": 7,
+      "T": 1
+    },
+    "total_instructions": 13453
+  },
+  "1": {
+    "basicblocks": 16,
+    "calls": "21 19 17 17 16 16",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 12,
+    "instructions": 133,
+    "loads": {
+      "L": 1
+    },
+    "name": "generic_cast_IEEE754<int, AP_TRN_ZERO, float>",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 2090
+  },
+  "10": {
+    "basicblocks": 1,
+    "calls": "7",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<int, double>",
+    "total_instructions": 2098
+  },
+  "11": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 512,
+    "instructions": 4,
+    "name": "__signbit",
+    "total_instructions": 9
+  },
+  "12": {
+    "basicblocks": 13,
+    "calls": "18 6 14 14",
+    "file": "face_detect.cpp",
+    "fileloc": 109,
+    "instructions": 106,
+    "loads": {
+      "L": 14
+    },
+    "name": "processImage",
+    "stores": {
+      "L": 12
+    },
+    "total_instructions": 4937
+  },
+  "13": {
+    "basicblocks": 14,
+    "calls": "",
+    "file": "face_detect.cpp",
+    "fileloc": 336,
+    "instructions": 42,
+    "loads": {
+      "L": 1
+    },
+    "name": "imageScaler",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 42
+  },
+  "14": {
+    "basicblocks": 1,
+    "calls": "9",
+    "file": "face_detect.cpp",
+    "fileloc": 59,
+    "instructions": 7,
+    "name": "myRound",
+    "total_instructions": 2107
+  },
+  "15": {
+    "basicblocks": 4,
+    "calls": "",
+    "file": "face_detect.cpp",
+    "fileloc": 264,
+    "instructions": 63,
+    "loads": {
+      "G": 6,
+      "L": 12
+    },
+    "name": "weakClassifier",
+    "total_instructions": 63
+  },
+  "16": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 349,
+    "instructions": 4,
+    "name": "__signbit",
+    "total_instructions": 9
+  },
+  "17": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 316,
+    "instructions": 8,
+    "name": "expv",
+    "total_instructions": 109
+  },
+  "18": {
+    "basicblocks": 13,
+    "calls": "",
+    "file": "face_detect.cpp",
+    "fileloc": 297,
+    "instructions": 59,
+    "loads": {
+      "L": 3
+    },
+    "name": "integralImages",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 59
+  },
+  "19": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 340,
+    "instructions": 24,
+    "name": "mantissa",
+    "total_instructions": 174
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 503,
+    "instructions": 24,
+    "name": "mantissa",
+    "total_instructions": 179
+  },
+  "20": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 485,
+    "instructions": 8,
+    "name": "expv",
+    "total_instructions": 109
+  },
+  "21": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 283,
+    "instructions": 55,
+    "loads": {
+      "L": 1
+    },
+    "name": "fp_struct",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 311
+  },
+  "3": {
+    "basicblocks": 8,
+    "calls": "",
+    "file": "face_detect.cpp",
+    "fileloc": 374,
+    "instructions": 26,
+    "name": "int_sqrt",
+    "total_instructions": 26
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "5",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 51,
+    "instructions": 2,
+    "name": "__hls_fptosi_float_i32",
+    "total_instructions": 2094
+  },
+  "5": {
+    "basicblocks": 1,
+    "calls": "1",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<int, float>",
+    "total_instructions": 2092
+  },
+  "6": {
+    "basicblocks": 27,
+    "calls": "3 15",
+    "file": "face_detect.cpp",
+    "fileloc": 151,
+    "instructions": 469,
+    "loads": {
+      "G": 14,
+      "L": 90
+    },
+    "name": "cascadeClassifier",
+    "stores": {
+      "G": 16,
+      "L": 16
+    },
+    "total_instructions": 558
+  },
+  "7": {
+    "basicblocks": 16,
+    "calls": "8 2 20 20 11 11",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 12,
+    "instructions": 133,
+    "loads": {
+      "L": 1
+    },
+    "name": "generic_cast_IEEE754<int, AP_TRN_ZERO, double>",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 2096
+  },
+  "8": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 456,
+    "instructions": 55,
+    "loads": {
+      "L": 1
+    },
+    "name": "fp_struct",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 312
+  },
+  "9": {
+    "basicblocks": 1,
+    "calls": "10",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 55,
+    "instructions": 2,
+    "name": "__hls_fptosi_double_i32",
+    "total_instructions": 2100
+  }
+}

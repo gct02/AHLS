@@ -1,0 +1,100 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/run_hls.tcl:84:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="jpeg2bmp" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=jpeg2bmp" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:904:0" msg_body="Inlining function 'read_byte' into 'first_marker'">
+        <args Callee="read_byte" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 877 Column 0" Caller="first_marker" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 904 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:921:0" msg_body="Inlining function 'read_byte' into 'next_marker'">
+        <args Callee="read_byte" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 877 Column 0" Caller="next_marker" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 921 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:943:0" msg_body="Inlining function 'read_word' into 'get_sof'">
+        <args Callee="read_word" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 882 Column 0" Caller="get_sof" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 943 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:943:0" msg_body="Inlining function 'read_byte' into 'get_sof'">
+        <args Callee="read_byte" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 877 Column 0" Caller="get_sof" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 943 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1008:0" msg_body="Inlining function 'read_word' into 'get_sos'">
+        <args Callee="read_word" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 882 Column 0" Caller="get_sos" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1008 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1008:0" msg_body="Inlining function 'read_byte' into 'get_sos'">
+        <args Callee="read_byte" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 877 Column 0" Caller="get_sos" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1008 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1075:0" msg_body="Inlining function 'read_word' into 'get_dht'">
+        <args Callee="read_word" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 882 Column 0" Caller="get_dht" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1075 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1075:0" msg_body="Inlining function 'read_byte' into 'get_dht'">
+        <args Callee="read_byte" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 877 Column 0" Caller="get_dht" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1075 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1124:0" msg_body="Inlining function 'read_word' into 'get_dqt'">
+        <args Callee="read_word" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 882 Column 0" Caller="get_dqt" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1124 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1124:0" msg_body="Inlining function 'read_byte' into 'get_dqt'">
+        <args Callee="read_byte" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 877 Column 0" Caller="get_dqt" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1124 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1162:0" msg_body="Inlining function 'first_marker' into 'read_markers'">
+        <args Callee="first_marker" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 904 Column 0" Caller="read_markers" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1162 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1162:0" msg_body="Inlining function 'next_marker' into 'read_markers'">
+        <args Callee="next_marker" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 921 Column 0" Caller="read_markers" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1162 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1162:0" msg_body="Inlining function 'get_sof' into 'read_markers'">
+        <args Callee="get_sof" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 943 Column 0" Caller="read_markers" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1162 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1162:0" msg_body="Inlining function 'get_sos' into 'read_markers'">
+        <args Callee="get_sos" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1008 Column 0" Caller="read_markers" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1162 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1162:0" msg_body="Inlining function 'get_dht' into 'read_markers'">
+        <args Callee="get_dht" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1075 Column 0" Caller="read_markers" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1162 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1162:0" msg_body="Inlining function 'get_dqt' into 'read_markers'">
+        <args Callee="get_dqt" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1124 Column 0" Caller="read_markers" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1162 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:571:0" msg_body="Inlining function 'pgetc' into 'buf_getb'">
+        <args Callee="pgetc" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 552 Column 0" Caller="buf_getb" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 571 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:684:0" msg_body="Inlining function 'buf_getb' into 'DecodeHuffman'">
+        <args Callee="buf_getb" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 571 Column 0" Caller="DecodeHuffman" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 684 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:589:0" msg_body="Inlining function 'pgetc' into 'buf_getv'">
+        <args Callee="pgetc" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 552 Column 0" Caller="buf_getv" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 589 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:770:0" msg_body="Inlining function 'DecodeHuffMCU' into 'decode_block'">
+        <args Callee="DecodeHuffMCU" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 707 Column 0" Caller="decode_block" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 770 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:770:0" msg_body="Inlining function 'IZigzagMatrix' into 'decode_block'">
+        <args Callee="IZigzagMatrix" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 321 Column 0" Caller="decode_block" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 770 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:770:0" msg_body="Inlining function 'IQuantize' into 'decode_block'">
+        <args Callee="IQuantize" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 332 Column 0" Caller="decode_block" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 770 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:770:0" msg_body="Inlining function 'PostshiftIDctMatrix' into 'decode_block'">
+        <args Callee="PostshiftIDctMatrix" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 345 Column 0" Caller="decode_block" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 770 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:770:0" msg_body="Inlining function 'BoundIDctMatrix' into 'decode_block'">
+        <args Callee="BoundIDctMatrix" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 358 Column 0" Caller="decode_block" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 770 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:398:0" msg_body="Inlining function 'WriteOneBlock' into 'WriteBlock'">
+        <args Callee="WriteOneBlock" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 375 Column 0" Caller="WriteBlock" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 398 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:795:0" msg_body="Inlining function 'YuvToRgb' into 'decode'">
+        <args Callee="YuvToRgb" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 477 Column 0" Caller="decode" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 795 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:795:0" msg_body="Inlining function 'WriteBlock' into 'decode'">
+        <args Callee="WriteBlock" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 398 Column 0" Caller="decode" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 795 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1241:0" msg_body="Inlining function 'jpeg_init_decompress' into 'jpeg_decode'">
+        <args Callee="jpeg_init_decompress" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1203 Column 0" Caller="jpeg_decode" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1241 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg2bmp.c:9:0" msg_body="Inlining function 'jpeg_decode' into 'jpeg2bmp'">
+        <args Callee="jpeg_decode" Callee-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg_decode.c Line 1241 Column 0" Caller="jpeg2bmp" Caller-DebugLoc="File benchmarks/chstone/jpeg/src/jpeg2bmp.c Line 9 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-167" msg_severity="WARNING" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1105:20" msg_body="The program may have out of bound array access"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1148:28" msg_body="Loop 'VITIS_LOOP_1148_2' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_1148_2"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1162:0" msg_body="Unrolling loop 'VITIS_LOOP_1148_2' (benchmarks/chstone/jpeg/src/jpeg_decode.c:1148:28) in function 'read_markers' completely with a factor of 64">
+        <args Factor="64" LoopLoc="benchmarks/chstone/jpeg/src/jpeg_decode.c:1148:28" LoopName="VITIS_LOOP_1148_2"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+

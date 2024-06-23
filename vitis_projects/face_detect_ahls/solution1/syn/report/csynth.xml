@@ -1,0 +1,1397 @@
+<profile>
+    <ReportVersion>
+        <Version>2023.2</Version>
+    </ReportVersion>
+    <UserAssignments>
+        <unit>ns</unit>
+        <ProductFamily>virtexuplusHBM</ProductFamily>
+        <Part>xcvu35p-fsvh2104-1-e</Part>
+        <TopModelName>face_detect</TopModelName>
+        <TargetClockPeriod>5.00</TargetClockPeriod>
+        <ClockUncertainty>1.35</ClockUncertainty>
+        <FlowTarget>vivado</FlowTarget>
+    </UserAssignments>
+    <PerformanceEstimates>
+        <PipelineType>no</PipelineType>
+        <SummaryOfTimingAnalysis>
+            <unit>ns</unit>
+            <EstimatedClockPeriod>3.644</EstimatedClockPeriod>
+        </SummaryOfTimingAnalysis>
+        <SummaryOfOverallLatency>
+            <unit>clock cycles</unit>
+            <Best-caseLatency>undef</Best-caseLatency>
+            <Average-caseLatency>undef</Average-caseLatency>
+            <Worst-caseLatency>undef</Worst-caseLatency>
+            <Best-caseRealTimeLatency>undef</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>undef</Worst-caseRealTimeLatency>
+            <Interval-min>undef</Interval-min>
+            <Interval-max>undef</Interval-max>
+        </SummaryOfOverallLatency>
+        <SummaryOfLoopLatency>
+            <L1>
+                <Slack>3.65</Slack>
+                <TripCount>12</TripCount>
+                <Latency>undef</Latency>
+                <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
+                <IterationLatency>undef</IterationLatency>
+                <InstanceList/>
+            </L1>
+        </SummaryOfLoopLatency>
+        <SummaryOfViolations>
+            <IssueType>-</IssueType>
+            <ViolationType>-</ViolationType>
+            <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:80</SourceLocation>
+            <SummaryOfLoopViolations>
+                <L1>
+                    <Name>L1</Name>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:105</SourceLocation>
+                </L1>
+            </SummaryOfLoopViolations>
+        </SummaryOfViolations>
+    </PerformanceEstimates>
+    <AreaEstimates>
+        <Resources>
+            <BRAM_18K>1766</BRAM_18K>
+            <DSP>30</DSP>
+            <FF>6914</FF>
+            <LUT>12662</LUT>
+            <URAM>0</URAM>
+        </Resources>
+        <AvailableResources>
+            <BRAM_18K>2688</BRAM_18K>
+            <DSP>5952</DSP>
+            <FF>1743360</FF>
+            <LUT>871680</LUT>
+            <URAM>640</URAM>
+        </AvailableResources>
+    </AreaEstimates>
+    <InterfaceSummary>
+        <RtlPorts>
+            <name>ap_clk</name>
+            <Object>face_detect</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_rst</name>
+            <Object>face_detect</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_start</name>
+            <Object>face_detect</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_done</name>
+            <Object>face_detect</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_idle</name>
+            <Object>face_detect</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_ready</name>
+            <Object>face_detect</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>Data_address0</name>
+            <Object>Data</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>17</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>Data_ce0</name>
+            <Object>Data</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>Data_q0</name>
+            <Object>Data</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>8</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_x_address0</name>
+            <Object>result_x</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>7</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_x_ce0</name>
+            <Object>result_x</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_x_we0</name>
+            <Object>result_x</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_x_d0</name>
+            <Object>result_x</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_y_address0</name>
+            <Object>result_y</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>7</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_y_ce0</name>
+            <Object>result_y</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_y_we0</name>
+            <Object>result_y</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_y_d0</name>
+            <Object>result_y</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_w_address0</name>
+            <Object>result_w</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>7</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_w_ce0</name>
+            <Object>result_w</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_w_we0</name>
+            <Object>result_w</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_w_d0</name>
+            <Object>result_w</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_h_address0</name>
+            <Object>result_h</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>7</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_h_ce0</name>
+            <Object>result_h</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_h_we0</name>
+            <Object>result_h</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_h_d0</name>
+            <Object>result_h</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_size</name>
+            <Object>result_size</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>ap_vld</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_size_ap_vld</name>
+            <Object>result_size</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>ap_vld</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+    </InterfaceSummary>
+    <RTLDesignHierarchy>
+        <TopModule MAX_DEPTH="5">
+            <ModuleName>face_detect</ModuleName>
+            <InstancesList>
+                <Instance>
+                    <InstName>grp_face_detect_Pipeline_nearestNeighborL1_nearestNeighborL1_1_fu_202</InstName>
+                    <ModuleName>face_detect_Pipeline_nearestNeighborL1_nearestNeighborL1_1</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>202</ID>
+                    <BindInstances>add_ln361_1_fu_170_p2 add_ln361_fu_182_p2 mul_8ns_24s_24_1_1_U2 add_ln368_1_fu_344_p2 mul_9ns_28s_32_1_1_U1 add_ln368_3_fu_367_p2 add_ln364_fu_219_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_processImage_fu_213</InstName>
+                    <ModuleName>processImage</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>213</ID>
+                    <InstancesList>
+                        <Instance>
+                            <InstName>grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259</InstName>
+                            <ModuleName>processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>259</ID>
+                            <BindInstances>add_ln306_1_fu_228_p2 add_ln306_fu_237_p2 empty_fu_314_p2 t_fu_386_p2 mac_muladd_8ns_8ns_32ns_32_4_1_U11 mac_muladd_8ns_8ns_32ns_32_4_1_U11 t_1_fu_411_p2 tq_1_fu_474_p2 add_ln311_fu_363_p2</BindInstances>
+                        </Instance>
+                        <Instance>
+                            <InstName>grp_cascadeClassifier_fu_269</InstName>
+                            <ModuleName>cascadeClassifier</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>269</ID>
+                            <InstancesList>
+                                <Instance>
+                                    <InstName>grp_cascadeClassifier_Pipeline_VITIS_LOOP_379_1_fu_281</InstName>
+                                    <ModuleName>cascadeClassifier_Pipeline_VITIS_LOOP_379_1</ModuleName>
+                                    <IsCompInst>true</IsCompInst>
+                                    <ID>281</ID>
+                                    <BindInstances>i_2_fu_110_p2 c_2_fu_209_p2</BindInstances>
+                                </Instance>
+                                <Instance>
+                                    <InstName>grp_cascadeClassifier_Pipeline_Filters_fu_287</InstName>
+                                    <ModuleName>cascadeClassifier_Pipeline_Filters</ModuleName>
+                                    <IsCompInst>true</IsCompInst>
+                                    <ID>287</ID>
+                                    <BindInstances>j_2_fu_1255_p2 tr0_fu_639_p2 tr0_2_fu_648_p2 tr1_fu_661_p2 tr1_2_fu_670_p2 add_ln223_fu_838_p2 add_ln223_1_fu_844_p2 add_ln224_fu_854_p2 add_ln224_1_fu_859_p2 add_ln225_fu_691_p2 add_ln225_1_fu_892_p2 add_ln225_2_fu_898_p2 add_ln226_fu_908_p2 add_ln228_fu_941_p2 add_ln228_1_fu_947_p2 add_ln229_fu_957_p2 add_ln229_1_fu_962_p2 add_ln230_fu_697_p2 add_ln230_1_fu_995_p2 add_ln230_2_fu_1001_p2 add_ln231_fu_1011_p2 add_ln235_fu_791_p2 add_ln235_2_fu_1044_p2 add_ln235_1_fu_796_p2 add_ln235_3_fu_1050_p2 add_ln236_fu_1060_p2 add_ln236_1_fu_1065_p2 add_ln237_fu_801_p2 add_ln237_1_fu_1098_p2 add_ln237_2_fu_1104_p2 add_ln238_fu_1114_p2 mul_13s_32s_32_2_1_U20 sub_ln279_fu_1170_p2 sub_ln280_fu_1182_p2 add_ln281_fu_1218_p2 mul_14ns_32s_32_2_1_U22 mul_13s_32s_32_2_1_U21 mul_14ns_32s_32_2_1_U23 stage_sum_3_fu_1305_p2 add_ln251_fu_624_p2 tree_thresh_array_U weights_array0_U weights_array1_U weights_array2_U alpha1_array_U alpha2_array_U rectangles_array0_U rectangles_array2_U rectangles_array1_U rectangles_array3_U rectangles_array4_U rectangles_array6_U rectangles_array5_U rectangles_array7_U rectangles_array8_U rectangles_array10_U rectangles_array9_U rectangles_array11_U</BindInstances>
+                                </Instance>
+                            </InstancesList>
+                            <BindInstances>add_ln180_fu_389_p2 add_ln180_1_fu_395_p2 add_ln176_fu_407_p2 add_ln181_fu_413_p2 sub_ln176_fu_431_p2 add_ln177_fu_425_p2 add_ln182_fu_459_p2 add_ln182_1_fu_465_p2 add_ln183_fu_476_p2 sub_ln181_fu_487_p2 stddev_1_fu_542_p2 stddev_2_fu_551_p2 add_ln199_fu_595_p2 add_ln200_fu_629_p2 haar_counter_2_fu_636_p2 dmul_64ns_64ns_64_6_max_dsp_1_U52 sub_ln257_fu_752_p2 stages_array_U stages_thresh_array_U</BindInstances>
+                        </Instance>
+                    </InstancesList>
+                    <BindInstances>SUM1_data_U SQSUM1_data_U mul_32s_32s_64_2_1_U70 add_ln132_fu_385_p2 add_ln132_1_fu_390_p2 y_fu_408_p2 x_fu_487_p2 add_ln486_fu_719_p2 sub_ln18_fu_733_p2 result_2_fu_799_p2 add_ln486_1_fu_537_p2 sub_ln18_1_fu_551_p2 result_5_fu_617_p2 add_ln145_fu_819_p2</BindInstances>
+                </Instance>
+            </InstancesList>
+            <BindInstances>IMG1_data_U fdiv_32ns_32ns_32_10_no_dsp_1_U86 fdiv_32ns_32ns_32_10_no_dsp_1_U87 fmul_32ns_32ns_32_4_max_dsp_1_U85 dadd_64ns_64ns_64_5_full_dsp_1_U91 add_ln486_fu_721_p2 fmul_32ns_32ns_32_4_max_dsp_1_U85 dadd_64ns_64ns_64_5_full_dsp_1_U91 sub_ln18_2_fu_455_p2 result_12_fu_773_p2 add_ln317_1_fu_545_p2 sub_ln18_3_fu_559_p2 result_15_fu_785_p2 sub_ln357_fu_800_p2 x_ratio_fu_817_p2 sub_ln358_fu_827_p2 y_ratio_fu_840_p2 result_fu_883_p2 fmul_32ns_32ns_32_4_max_dsp_1_U85</BindInstances>
+        </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+        <Module>
+            <Name>face_detect_Pipeline_nearestNeighborL1_nearestNeighborL1_1</Name>
+            <Loops>
+                <nearestNeighborL1_nearestNeighborL1_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.540</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>76804</Best-caseLatency>
+                    <Average-caseLatency>76804</Average-caseLatency>
+                    <Worst-caseLatency>76804</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.384 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.384 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.384 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>76804</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <nearestNeighborL1_nearestNeighborL1_1>
+                        <Name>nearestNeighborL1_nearestNeighborL1_1</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>76800</TripCount>
+                        <Latency>76802</Latency>
+                        <AbsoluteTimeLatency>0.384 ms</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>4</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </nearestNeighborL1_nearestNeighborL1_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:345~benchmarks/rosetta/face-detection/src/face_detect.cpp:103</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <nearestNeighborL1_nearestNeighborL1_1>
+                            <Name>nearestNeighborL1_nearestNeighborL1_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:361~benchmarks/rosetta/face-detection/src/face_detect.cpp:103</SourceLocation>
+                        </nearestNeighborL1_nearestNeighborL1_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <DSP>3</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>152</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>413</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="nearestNeighborL1_nearestNeighborL1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln361_1_fu_170_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:361" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln361_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="nearestNeighborL1_nearestNeighborL1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln361_fu_182_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:361" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln361"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="nearestNeighborL1_nearestNeighborL1_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8ns_24s_24_1_1_U2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:361" STORAGESUBTYPE="" URAM="0" VARIABLE="empty"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="nearestNeighborL1_nearestNeighborL1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln368_1_fu_344_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:368" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln368_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="nearestNeighborL1_nearestNeighborL1_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_9ns_28s_32_1_1_U1" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:368" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln368"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="nearestNeighborL1_nearestNeighborL1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln368_3_fu_367_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:368" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln368_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="nearestNeighborL1_nearestNeighborL1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln364_fu_219_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:364" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln364"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2</Name>
+            <Loops>
+                <VITIS_LOOP_306_1_VITIS_LOOP_311_2/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.603</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>undef</Best-caseLatency>
+                    <Average-caseLatency>undef</Average-caseLatency>
+                    <Worst-caseLatency>undef</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>undef</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>undef</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>undef</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_306_1_VITIS_LOOP_311_2>
+                        <Name>VITIS_LOOP_306_1_VITIS_LOOP_311_2</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>undef</TripCount>
+                        <Latency>undef</Latency>
+                        <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
+                        <PipelineII>2</PipelineII>
+                        <PipelineDepth>6</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_306_1_VITIS_LOOP_311_2>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:303~benchmarks/rosetta/face-detection/src/face_detect.cpp:130</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_306_1_VITIS_LOOP_311_2>
+                            <Name>VITIS_LOOP_306_1_VITIS_LOOP_311_2</Name>
+                            <IssueType>II Violation</IssueType>
+                            <ViolationType>Memory Dependency</ViolationType>
+                            <IterationDistance>2</IterationDistance>
+                            <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:311~benchmarks/rosetta/face-detection/src/face_detect.cpp:130</SourceLocation>
+                        </VITIS_LOOP_306_1_VITIS_LOOP_311_2>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <DSP>1</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>704</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>1060</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_306_1_VITIS_LOOP_311_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln306_1_fu_228_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:306" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln306_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_306_1_VITIS_LOOP_311_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln306_fu_237_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:306" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln306"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_306_1_VITIS_LOOP_311_2" OPTYPE="add" PRAGMA="" RTLNAME="empty_fu_314_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:306" STORAGESUBTYPE="" URAM="0" VARIABLE="empty"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_306_1_VITIS_LOOP_311_2" OPTYPE="add" PRAGMA="" RTLNAME="t_fu_386_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:315" STORAGESUBTYPE="" URAM="0" VARIABLE="t"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_306_1_VITIS_LOOP_311_2" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8ns_32ns_32_4_1_U11" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:316" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln316"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_306_1_VITIS_LOOP_311_2" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8ns_32ns_32_4_1_U11" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:316" STORAGESUBTYPE="" URAM="0" VARIABLE="tq"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_306_1_VITIS_LOOP_311_2" OPTYPE="add" PRAGMA="" RTLNAME="t_1_fu_411_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:322" STORAGESUBTYPE="" URAM="0" VARIABLE="t_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_306_1_VITIS_LOOP_311_2" OPTYPE="add" PRAGMA="" RTLNAME="tq_1_fu_474_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:323" STORAGESUBTYPE="" URAM="0" VARIABLE="tq_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_306_1_VITIS_LOOP_311_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln311_fu_363_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:311" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln311"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>cascadeClassifier_Pipeline_VITIS_LOOP_379_1</Name>
+            <Loops>
+                <VITIS_LOOP_379_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.090</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>18</Best-caseLatency>
+                    <Average-caseLatency>18</Average-caseLatency>
+                    <Worst-caseLatency>18</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>90.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>90.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>90.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>18</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_379_1>
+                        <Name>VITIS_LOOP_379_1</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>16</TripCount>
+                        <Latency>16</Latency>
+                        <AbsoluteTimeLatency>80.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_379_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:377~benchmarks/rosetta/face-detection/src/face_detect.cpp:189</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_379_1>
+                            <Name>VITIS_LOOP_379_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:379~benchmarks/rosetta/face-detection/src/face_detect.cpp:189</SourceLocation>
+                        </VITIS_LOOP_379_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>102</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>315</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_379_1" OPTYPE="add" PRAGMA="" RTLNAME="i_2_fu_110_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:379" STORAGESUBTYPE="" URAM="0" VARIABLE="i_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_379_1" OPTYPE="sub" PRAGMA="" RTLNAME="c_2_fu_209_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:390" STORAGESUBTYPE="" URAM="0" VARIABLE="c_2"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>cascadeClassifier_Pipeline_Filters</Name>
+            <Loops>
+                <Filters/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.542</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>18</Best-caseLatency>
+                    <Average-caseLatency>undef</Average-caseLatency>
+                    <Worst-caseLatency>220</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>90.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>1.100 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>18 ~ 220</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <Filters>
+                        <Name>Filters</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>
+                            <range>
+                                <min>9</min>
+                                <max>211</max>
+                            </range>
+                        </TripCount>
+                        <Latency>16 ~ 218</Latency>
+                        <AbsoluteTimeLatency>80.000 ns ~ 1.090 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>9</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </Filters>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:163</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <Filters>
+                            <Name>Filters</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:200</SourceLocation>
+                        </Filters>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>46</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>1</UTIL_BRAM>
+                    <DSP>8</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>1922</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>1884</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="j_2_fu_1255_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:200" STORAGESUBTYPE="" URAM="0" VARIABLE="j_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="tr0_fu_639_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:208" STORAGESUBTYPE="" URAM="0" VARIABLE="tr0"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="tr0_2_fu_648_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:210" STORAGESUBTYPE="" URAM="0" VARIABLE="tr0_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="tr1_fu_661_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:213" STORAGESUBTYPE="" URAM="0" VARIABLE="tr1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="tr1_2_fu_670_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:215" STORAGESUBTYPE="" URAM="0" VARIABLE="tr1_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln223_fu_838_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:223" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln223"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln223_1_fu_844_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:223" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln223_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln224_fu_854_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:224" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln224"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln224_1_fu_859_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:224" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln224_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln225_fu_691_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:225" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln225"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln225_1_fu_892_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:225" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln225_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln225_2_fu_898_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:225" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln225_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln226_fu_908_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:226" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln226"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln228_fu_941_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:228" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln228"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln228_1_fu_947_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:228" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln228_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln229_fu_957_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:229" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln229"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln229_1_fu_962_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:229" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln229_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln230_fu_697_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:230" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln230"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln230_1_fu_995_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:230" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln230_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln230_2_fu_1001_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:230" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln230_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln231_fu_1011_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:231" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln231"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln235_fu_791_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:235" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln235"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln235_2_fu_1044_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:235" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln235_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln235_1_fu_796_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:235" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln235_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln235_3_fu_1050_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:235" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln235_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln236_fu_1060_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:236" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln236"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln236_1_fu_1065_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:236" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln236_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln237_fu_801_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:237" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln237"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln237_1_fu_1098_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:237" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln237_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln237_2_fu_1104_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:237" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln237_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln238_fu_1114_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:238" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln238"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="Filters" OPTYPE="mul" PRAGMA="" RTLNAME="mul_13s_32s_32_2_1_U20" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:271" STORAGESUBTYPE="" URAM="0" VARIABLE="t"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln279_fu_1170_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:279" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln279"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln280_fu_1182_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:280" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln280"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln281_fu_1218_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:281" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln281"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="Filters" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14ns_32s_32_2_1_U22" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:281" STORAGESUBTYPE="" URAM="0" VARIABLE="sum2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="Filters" OPTYPE="mul" PRAGMA="" RTLNAME="mul_13s_32s_32_2_1_U21" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:282" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln282"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="Filters" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14ns_32s_32_2_1_U23" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:282" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln282_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="stage_sum_3_fu_1305_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:250" STORAGESUBTYPE="" URAM="0" VARIABLE="stage_sum_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Filters" OPTYPE="add" PRAGMA="" RTLNAME="add_ln251_fu_624_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:251" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln251"/>
+                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="tree_thresh_array_U" SOURCE="" STORAGESIZE="13 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="tree_thresh_array"/>
+                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="weights_array0_U" SOURCE="" STORAGESIZE="13 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="weights_array0"/>
+                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="weights_array1_U" SOURCE="" STORAGESIZE="14 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="weights_array1"/>
+                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="weights_array2_U" SOURCE="" STORAGESIZE="14 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="weights_array2"/>
+                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="alpha1_array_U" SOURCE="" STORAGESIZE="14 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="alpha1_array"/>
+                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="alpha2_array_U" SOURCE="" STORAGESIZE="14 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="alpha2_array"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="rectangles_array0_U" SOURCE="" STORAGESIZE="5 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="rectangles_array0"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="rectangles_array2_U" SOURCE="" STORAGESIZE="5 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="rectangles_array2"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="rectangles_array1_U" SOURCE="" STORAGESIZE="5 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="rectangles_array1"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="rectangles_array3_U" SOURCE="" STORAGESIZE="5 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="rectangles_array3"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="rectangles_array4_U" SOURCE="" STORAGESIZE="5 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="rectangles_array4"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="rectangles_array6_U" SOURCE="" STORAGESIZE="5 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="rectangles_array6"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="rectangles_array5_U" SOURCE="" STORAGESIZE="5 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="rectangles_array5"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="rectangles_array7_U" SOURCE="" STORAGESIZE="5 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="rectangles_array7"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="rectangles_array8_U" SOURCE="" STORAGESIZE="5 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="rectangles_array8"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="rectangles_array10_U" SOURCE="" STORAGESIZE="4 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="rectangles_array10"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="rectangles_array9_U" SOURCE="" STORAGESIZE="5 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="rectangles_array9"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="rectangles_array11_U" SOURCE="" STORAGESIZE="4 2913 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="rectangles_array11"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>cascadeClassifier</Name>
+            <Loops>
+                <Stages/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.542</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>7</Best-caseLatency>
+                    <Average-caseLatency>undef</Average-caseLatency>
+                    <Worst-caseLatency>5890</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>35.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>29.450 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>7 ~ 5890</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <Stages>
+                        <Name>Stages</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>
+                            <range>
+                                <min>0</min>
+                                <max>25</max>
+                            </range>
+                        </TripCount>
+                        <Latency>0 ~ 5863</Latency>
+                        <AbsoluteTimeLatency>0 ns ~ 29.315 us</AbsoluteTimeLatency>
+                        <IterationLatency>
+                            <range>
+                                <min>32</min>
+                                <max>234</max>
+                            </range>
+                        </IterationLatency>
+                        <PipelineDepth>32 ~ 234</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList>
+                            <Instance>grp_cascadeClassifier_Pipeline_Filters_fu_287</Instance>
+                        </InstanceList>
+                    </Stages>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:180</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <Stages>
+                            <Name>Stages</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:199</SourceLocation>
+                        </Stages>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>46</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>1</UTIL_BRAM>
+                    <DSP>16</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>3062</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>3584</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln180_fu_389_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:180" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln180"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln180_1_fu_395_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:180" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln180_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln176_fu_407_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:176" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln176"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln181_fu_413_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:181" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln181"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln176_fu_431_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:176" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln176"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln177_fu_425_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:177" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln177"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln182_fu_459_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:182" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln182"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln182_1_fu_465_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:182" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln182_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln183_fu_476_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:183" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln183"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln181_fu_487_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:181" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln181"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="stddev_1_fu_542_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:185" STORAGESUBTYPE="" URAM="0" VARIABLE="stddev_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="stddev_2_fu_551_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:186" STORAGESUBTYPE="" URAM="0" VARIABLE="stddev_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Stages" OPTYPE="add" PRAGMA="" RTLNAME="add_ln199_fu_595_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:199" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln199"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Stages" OPTYPE="add" PRAGMA="" RTLNAME="add_ln200_fu_629_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:200" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln200"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Stages" OPTYPE="add" PRAGMA="" RTLNAME="haar_counter_2_fu_636_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:256" STORAGESUBTYPE="" URAM="0" VARIABLE="haar_counter_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="5" LOOP="Stages" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_6_max_dsp_1_U52" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:256" STORAGESUBTYPE="" URAM="0" VARIABLE="mul"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln257_fu_752_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:257" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln257"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="stages_array_U" SOURCE="" STORAGESIZE="8 25 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="stages_array"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="stages_thresh_array_U" SOURCE="" STORAGESIZE="12 25 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="stages_thresh_array"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>processImage</Name>
+            <Loops>
+                <Pixely>
+                    <Pixelx/>
+                </Pixely>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.614</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>undef</Best-caseLatency>
+                    <Average-caseLatency>undef</Average-caseLatency>
+                    <Worst-caseLatency>undef</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>undef</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>undef</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>undef</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <Pixely>
+                        <Name>Pixely</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>undef</TripCount>
+                        <Latency>undef</Latency>
+                        <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
+                        <IterationLatency>undef</IterationLatency>
+                        <PipelineDepth>undef</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                        <Pixelx>
+                            <Name>Pixelx</Name>
+                            <Slack>3.65</Slack>
+                            <TripCount>undef</TripCount>
+                            <Latency>undef</Latency>
+                            <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
+                            <IterationLatency>
+                                <range>
+                                    <min>11</min>
+                                    <max>5909</max>
+                                </range>
+                            </IterationLatency>
+                            <PipelineDepth>11 ~ 5909</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList>
+                                <Instance>grp_cascadeClassifier_fu_269</Instance>
+                            </InstanceList>
+                        </Pixelx>
+                    </Pixely>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:121</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <Pixely>
+                            <Name>Pixely</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:132</SourceLocation>
+                            <Pixelx>
+                                <Name>Pixelx</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:133</SourceLocation>
+                            </Pixelx>
+                        </Pixely>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>1726</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>64</UTIL_BRAM>
+                    <DSP>21</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>4672</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>7813</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="storage" BRAM="140" BUNDLEDNAME="" DISPNAME="bind_storage rom_np" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_np" PRAGMA="" RTLNAME="SUM1_data_U" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:128" STORAGESIZE="32 76800 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_np array" URAM="0" VARIABLE="SUM1_data"/>
+                <BindNode BINDTYPE="storage" BRAM="140" BUNDLEDNAME="" DISPNAME="bind_storage ram_s2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_s2p" PRAGMA="" RTLNAME="SQSUM1_data_U" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:128" STORAGESIZE="32 76800 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_s2p array" URAM="0" VARIABLE="SQSUM1_data"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_2_1_U70" SOURCE="" STORAGESUBTYPE="" URAM="0" VARIABLE="bound"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln132_fu_385_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:132" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln132"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln132_1_fu_390_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:132" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln132_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Pixely" OPTYPE="add" PRAGMA="" RTLNAME="y_fu_408_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:132" STORAGESUBTYPE="" URAM="0" VARIABLE="y"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Pixelx" OPTYPE="add" PRAGMA="" RTLNAME="x_fu_487_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:133" STORAGESUBTYPE="" URAM="0" VARIABLE="x"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Pixelx" OPTYPE="add" PRAGMA="" RTLNAME="add_ln486_fu_719_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:486" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln486"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Pixelx" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln18_fu_733_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:18" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Pixelx" OPTYPE="sub" PRAGMA="" RTLNAME="result_2_fu_799_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:59" STORAGESUBTYPE="" URAM="0" VARIABLE="result_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Pixelx" OPTYPE="add" PRAGMA="" RTLNAME="add_ln486_1_fu_537_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:486" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln486_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Pixelx" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln18_1_fu_551_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:18" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln18_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Pixelx" OPTYPE="sub" PRAGMA="" RTLNAME="result_5_fu_617_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:59" STORAGESUBTYPE="" URAM="0" VARIABLE="result_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Pixelx" OPTYPE="add" PRAGMA="" RTLNAME="add_ln145_fu_819_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:145" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln145"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>face_detect</Name>
+            <Loops>
+                <L1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.644</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>undef</Best-caseLatency>
+                    <Average-caseLatency>undef</Average-caseLatency>
+                    <Worst-caseLatency>undef</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>undef</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>undef</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>undef</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <L1>
+                        <Name>L1</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>12</TripCount>
+                        <Latency>undef</Latency>
+                        <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
+                        <IterationLatency>undef</IterationLatency>
+                        <PipelineDepth>undef</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList>
+                            <Instance>grp_face_detect_Pipeline_nearestNeighborL1_nearestNeighborL1_1_fu_202</Instance>
+                            <Instance>grp_processImage_fu_213</Instance>
+                        </InstanceList>
+                    </L1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:80</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <L1>
+                            <Name>L1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/face-detection/src/face_detect.cpp:105</SourceLocation>
+                        </L1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>1766</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>65</UTIL_BRAM>
+                    <DSP>30</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>6914</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>12662</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>1</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="storage" BRAM="40" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="IMG1_data_U" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:78" STORAGESIZE="8 76800 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="IMG1_data"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fdiv" DSP="0" ID="" IMPL="fabric" LATENCY="9" LOOP="L1" OPTYPE="fdiv" PRAGMA="" RTLNAME="fdiv_32ns_32ns_32_10_no_dsp_1_U86" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:92" STORAGESUBTYPE="" URAM="0" VARIABLE="dc_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fdiv" DSP="0" ID="" IMPL="fabric" LATENCY="9" LOOP="L1" OPTYPE="fdiv" PRAGMA="" RTLNAME="fdiv_32ns_32ns_32_10_no_dsp_1_U87" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:92" STORAGESUBTYPE="" URAM="0" VARIABLE="dc_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="L1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U85" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:95" STORAGESUBTYPE="" URAM="0" VARIABLE="value_assign"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="L1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U91" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:61" STORAGESUBTYPE="" URAM="0" VARIABLE="dc"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln486_fu_721_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:486" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln486"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="sub" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U85" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:18" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="add" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U91" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:317" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln317"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln18_2_fu_455_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:18" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln18_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="sub" PRAGMA="" RTLNAME="result_12_fu_773_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:59" STORAGESUBTYPE="" URAM="0" VARIABLE="result_12"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln317_1_fu_545_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:317" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln317_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln18_3_fu_559_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:18" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln18_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="sub" PRAGMA="" RTLNAME="result_15_fu_785_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:59" STORAGESUBTYPE="" URAM="0" VARIABLE="result_15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln357_fu_800_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:357" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln357"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="add" PRAGMA="" RTLNAME="x_ratio_fu_817_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:357" STORAGESUBTYPE="" URAM="0" VARIABLE="x_ratio"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln358_fu_827_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:358" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln358"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="add" PRAGMA="" RTLNAME="y_ratio_fu_840_p2" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:358" STORAGESUBTYPE="" URAM="0" VARIABLE="y_ratio"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="L1" OPTYPE="sub" PRAGMA="" RTLNAME="result_fu_883_p2" SOURCE="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:59" STORAGESUBTYPE="" URAM="0" VARIABLE="result"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="L1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U85" SOURCE="benchmarks/rosetta/face-detection/src/face_detect.cpp:105" STORAGESUBTYPE="" URAM="0" VARIABLE="factor_1"/>
+            </BindNodes>
+        </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+    <UserConfigCommands/>
+    <Args>
+        <Arg ArgName="Data" index="0" direction="in" srcType="unsigned char*" srcSize="8">
+            <hwRefs>
+                <hwRef type="port" interface="Data_address0" name="Data_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="Data_ce0" name="Data_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="Data_q0" name="Data_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="result_x" index="1" direction="out" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="result_x_address0" name="result_x_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="result_x_ce0" name="result_x_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="result_x_we0" name="result_x_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="result_x_d0" name="result_x_d0" usage="data" direction="out"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="result_y" index="2" direction="out" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="result_y_address0" name="result_y_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="result_y_ce0" name="result_y_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="result_y_we0" name="result_y_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="result_y_d0" name="result_y_d0" usage="data" direction="out"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="result_w" index="3" direction="out" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="result_w_address0" name="result_w_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="result_w_ce0" name="result_w_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="result_w_we0" name="result_w_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="result_w_d0" name="result_w_d0" usage="data" direction="out"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="result_h" index="4" direction="out" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="result_h_address0" name="result_h_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="result_h_ce0" name="result_h_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="result_h_we0" name="result_h_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="result_h_d0" name="result_h_d0" usage="data" direction="out"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="result_size" index="5" direction="inout" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="result_size" name="result_size" usage="data" direction="out"/>
+                <hwRef type="port" interface="result_size_ap_vld" name="result_size_ap_vld" usage="control" direction="out"/>
+            </hwRefs>
+        </Arg>
+    </Args>
+    <Interfaces>
+        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
+            <busParams>
+                <busParam busParamName="ASSOCIATED_RESET">ap_rst</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_clk">CLK</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_clk</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_HIGH</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_ctrl" type="ap_ctrl" busTypeName="acc_handshake" mode="slave">
+            <portMaps>
+                <portMap portMapName="ap_start">start</portMap>
+                <portMap portMapName="ap_done">done</portMap>
+                <portMap portMapName="ap_idle">idle</portMap>
+                <portMap portMapName="ap_ready">ready</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_done</port>
+                <port>ap_idle</port>
+                <port>ap_ready</port>
+                <port>ap_start</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="Data_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="17">
+            <portMaps>
+                <portMap portMapName="Data_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>Data_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="Data"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="Data_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="8">
+            <portMaps>
+                <portMap portMapName="Data_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>Data_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="Data"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_x_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="7">
+            <portMaps>
+                <portMap portMapName="result_x_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_x_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="result_x"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_x_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="result_x_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_x_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="result_x"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_y_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="7">
+            <portMaps>
+                <portMap portMapName="result_y_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_y_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="result_y"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_y_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="result_y_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_y_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="result_y"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_w_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="7">
+            <portMaps>
+                <portMap portMapName="result_w_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_w_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="result_w"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_w_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="result_w_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_w_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="result_w"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_h_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="7">
+            <portMaps>
+                <portMap portMapName="result_h_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_h_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="result_h"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_h_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="result_h_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_h_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="result_h"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_size" type="data" busTypeName="data" protocol="ap_vld" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="result_size">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_size</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="result_size"/>
+            </constraints>
+        </Interface>
+    </Interfaces>
+    <ReportHWInterface>
+        <section name="HW Interfaces" level="0">
+            <item name="AP_MEMORY">
+                <table>
+                    <keys size="3">Port, Direction, Bitwidth</keys>
+                    <column name="Data_address0">out, 17</column>
+                    <column name="Data_q0">in, 8</column>
+                    <column name="result_h_address0">out, 7</column>
+                    <column name="result_h_d0">out, 32</column>
+                    <column name="result_w_address0">out, 7</column>
+                    <column name="result_w_d0">out, 32</column>
+                    <column name="result_x_address0">out, 7</column>
+                    <column name="result_x_d0">out, 32</column>
+                    <column name="result_y_address0">out, 7</column>
+                    <column name="result_y_d0">out, 32</column>
+                </table>
+            </item>
+            <item name="Other Ports">
+                <table>
+                    <keys size="4">Port, Mode, Direction, Bitwidth</keys>
+                    <column name="result_size">ap_vld, out, 32</column>
+                </table>
+            </item>
+            <item name="TOP LEVEL CONTROL">
+                <table>
+                    <keys size="3">Interface, Type, Ports</keys>
+                    <column name="ap_clk">clock, ap_clk</column>
+                    <column name="ap_rst">reset, ap_rst</column>
+                    <column name="ap_ctrl">ap_ctrl_hs, ap_done ap_idle ap_ready ap_start</column>
+                </table>
+            </item>
+        </section>
+    </ReportHWInterface>
+    <ReportSWInterface>
+        <section name="SW I/O Information" level="0">
+            <item name="Top Function Arguments">
+                <table>
+                    <keys size="3">Argument, Direction, Datatype</keys>
+                    <column name="Data">in, unsigned char*</column>
+                    <column name="result_x">out, int*</column>
+                    <column name="result_y">out, int*</column>
+                    <column name="result_w">out, int*</column>
+                    <column name="result_h">out, int*</column>
+                    <column name="result_size">inout, int*</column>
+                </table>
+            </item>
+            <item name="SW-to-HW Mapping">
+                <table>
+                    <keys size="4">Argument, HW Interface, HW Type, HW Usage</keys>
+                    <column name="Data">Data_address0, port, offset</column>
+                    <column name="Data">Data_ce0, port, </column>
+                    <column name="Data">Data_q0, port, </column>
+                    <column name="result_x">result_x_address0, port, offset</column>
+                    <column name="result_x">result_x_ce0, port, </column>
+                    <column name="result_x">result_x_we0, port, </column>
+                    <column name="result_x">result_x_d0, port, </column>
+                    <column name="result_y">result_y_address0, port, offset</column>
+                    <column name="result_y">result_y_ce0, port, </column>
+                    <column name="result_y">result_y_we0, port, </column>
+                    <column name="result_y">result_y_d0, port, </column>
+                    <column name="result_w">result_w_address0, port, offset</column>
+                    <column name="result_w">result_w_ce0, port, </column>
+                    <column name="result_w">result_w_we0, port, </column>
+                    <column name="result_w">result_w_d0, port, </column>
+                    <column name="result_h">result_h_address0, port, offset</column>
+                    <column name="result_h">result_h_ce0, port, </column>
+                    <column name="result_h">result_h_we0, port, </column>
+                    <column name="result_h">result_h_d0, port, </column>
+                    <column name="result_size">result_size, port, </column>
+                    <column name="result_size">result_size_ap_vld, port, </column>
+                </table>
+            </item>
+        </section>
+    </ReportSWInterface>
+    <ResolutionUrl key="ZZZ">docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
+    <PragmaReport/>
+</profile>
+

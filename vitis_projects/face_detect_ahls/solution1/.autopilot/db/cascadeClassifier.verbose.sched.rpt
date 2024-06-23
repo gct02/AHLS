@@ -1,0 +1,440 @@
+
+
+================================================================
+== Vitis HLS Report for 'cascadeClassifier'
+================================================================
+* Date:           Mon Jun 17 16:50:00 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        face_detect_ahls
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcvu35p-fsvh2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.542 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    | min |  max |   Type  |
+    +---------+---------+-----------+-----------+-----+------+---------+
+    |        7|     5890|  35.000 ns|  29.450 us|    7|  5890|       no|
+    +---------+---------+-----------+-----------+-----+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+--------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip  |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  |  Count | Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+--------+----------+
+        |- Stages  |        0|     5863|  32 ~ 234|          -|          -|  0 ~ 25|        no|
+        +----------+---------+---------+----------+-----------+-----------+--------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 22
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 8 
+7 --> 8 
+8 --> 9 
+9 --> 10 22 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 9 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.54>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%pt_y_val_read = read i8 @_ssdm_op_Read.ap_auto.i8, i8 %pt_y_val"   --->   Operation 23 'read' 'pt_y_val_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%pt_x_val_read = read i17 @_ssdm_op_Read.ap_auto.i17, i17 %pt_x_val"   --->   Operation 24 'read' 'pt_x_val_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%stage_sum_1_loc = alloca i64 1"   --->   Operation 25 'alloca' 'stage_sum_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%a_loc = alloca i64 1"   --->   Operation 26 'alloca' 'a_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%tmp_26 = bitconcatenate i16 @_ssdm_op_BitConcatenate.i16.i8.i8, i8 %pt_y_val_read, i8 0" [benchmarks/rosetta/face-detection/src/face_detect.cpp:180]   --->   Operation 27 'bitconcatenate' 'tmp_26' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%zext_ln180 = zext i16 %tmp_26" [benchmarks/rosetta/face-detection/src/face_detect.cpp:180]   --->   Operation 28 'zext' 'zext_ln180' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%tmp_27 = bitconcatenate i14 @_ssdm_op_BitConcatenate.i14.i8.i6, i8 %pt_y_val_read, i6 0" [benchmarks/rosetta/face-detection/src/face_detect.cpp:180]   --->   Operation 29 'bitconcatenate' 'tmp_27' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%zext_ln180_1 = zext i14 %tmp_27" [benchmarks/rosetta/face-detection/src/face_detect.cpp:180]   --->   Operation 30 'zext' 'zext_ln180_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (1.12ns)   --->   "%add_ln180 = add i17 %zext_ln180, i17 %zext_ln180_1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:180]   --->   Operation 31 'add' 'add_ln180' <Predicate = true> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.12> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 32 [1/1] (1.12ns)   --->   "%add_ln180_1 = add i17 %add_ln180, i17 %pt_x_val_read" [benchmarks/rosetta/face-detection/src/face_detect.cpp:180]   --->   Operation 32 'add' 'add_ln180_1' <Predicate = true> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.12> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%zext_ln180_2 = zext i17 %add_ln180_1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:180]   --->   Operation 33 'zext' 'zext_ln180_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%SUM1_data_addr = getelementptr i32 %SUM1_data, i64 0, i64 %zext_ln180_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:180]   --->   Operation 34 'getelementptr' 'SUM1_data_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%SQSUM1_data_addr = getelementptr i32 %SQSUM1_data, i64 0, i64 %zext_ln180_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:175]   --->   Operation 35 'getelementptr' 'SQSUM1_data_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 36 [2/2] (1.29ns)   --->   "%SQSUM1_data_load = load i17 %SQSUM1_data_addr" [benchmarks/rosetta/face-detection/src/face_detect.cpp:175]   --->   Operation 36 'load' 'SQSUM1_data_load' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 76800> <RAM>
+ST_1 : Operation 37 [1/1] (1.12ns)   --->   "%add_ln176 = add i17 %pt_x_val_read, i17 24" [benchmarks/rosetta/face-detection/src/face_detect.cpp:176]   --->   Operation 37 'add' 'add_ln176' <Predicate = true> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.12> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 38 [1/1] (1.12ns)   --->   "%add_ln181 = add i17 %add_ln180, i17 %add_ln176" [benchmarks/rosetta/face-detection/src/face_detect.cpp:181]   --->   Operation 38 'add' 'add_ln181' <Predicate = true> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.12> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%zext_ln181 = zext i17 %add_ln181" [benchmarks/rosetta/face-detection/src/face_detect.cpp:181]   --->   Operation 39 'zext' 'zext_ln181' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%SUM1_data_addr_2 = getelementptr i32 %SUM1_data, i64 0, i64 %zext_ln181" [benchmarks/rosetta/face-detection/src/face_detect.cpp:181]   --->   Operation 40 'getelementptr' 'SUM1_data_addr_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%SQSUM1_data_addr_2 = getelementptr i32 %SQSUM1_data, i64 0, i64 %zext_ln181" [benchmarks/rosetta/face-detection/src/face_detect.cpp:176]   --->   Operation 41 'getelementptr' 'SQSUM1_data_addr_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 42 [2/2] (1.29ns)   --->   "%SQSUM1_data_load_1 = load i17 %SQSUM1_data_addr_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:176]   --->   Operation 42 'load' 'SQSUM1_data_load_1' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 76800> <RAM>
+ST_1 : Operation 43 [1/1] (0.87ns)   --->   "%add_ln177 = add i8 %pt_y_val_read, i8 24" [benchmarks/rosetta/face-detection/src/face_detect.cpp:177]   --->   Operation 43 'add' 'add_ln177' <Predicate = true> <Delay = 0.87> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 44 [2/2] (1.29ns)   --->   "%SUM1_data_load = load i17 %SUM1_data_addr" [benchmarks/rosetta/face-detection/src/face_detect.cpp:180]   --->   Operation 44 'load' 'SUM1_data_load' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM_1WnR">   --->   Core 84 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 76800> <RAM>
+ST_1 : Operation 45 [2/2] (1.29ns)   --->   "%SUM1_data_load_1 = load i17 %SUM1_data_addr_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:181]   --->   Operation 45 'load' 'SUM1_data_load_1' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM_1WnR">   --->   Core 84 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 76800> <RAM>
+
+State 2 <SV = 1> <Delay = 3.54>
+ST_2 : Operation 46 [1/2] (1.29ns)   --->   "%SQSUM1_data_load = load i17 %SQSUM1_data_addr" [benchmarks/rosetta/face-detection/src/face_detect.cpp:175]   --->   Operation 46 'load' 'SQSUM1_data_load' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 76800> <RAM>
+ST_2 : Operation 47 [1/2] (1.29ns)   --->   "%SQSUM1_data_load_1 = load i17 %SQSUM1_data_addr_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:176]   --->   Operation 47 'load' 'SQSUM1_data_load_1' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 76800> <RAM>
+ST_2 : Operation 48 [1/1] (1.14ns)   --->   "%sub_ln176 = sub i32 %SQSUM1_data_load, i32 %SQSUM1_data_load_1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:176]   --->   Operation 48 'sub' 'sub_ln176' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 49 [1/1] (0.00ns)   --->   "%tmp_28 = bitconcatenate i16 @_ssdm_op_BitConcatenate.i16.i8.i8, i8 %add_ln177, i8 0" [benchmarks/rosetta/face-detection/src/face_detect.cpp:182]   --->   Operation 49 'bitconcatenate' 'tmp_28' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 50 [1/1] (0.00ns)   --->   "%zext_ln182 = zext i16 %tmp_28" [benchmarks/rosetta/face-detection/src/face_detect.cpp:182]   --->   Operation 50 'zext' 'zext_ln182' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 51 [1/1] (0.00ns)   --->   "%tmp_29 = bitconcatenate i14 @_ssdm_op_BitConcatenate.i14.i8.i6, i8 %add_ln177, i6 0" [benchmarks/rosetta/face-detection/src/face_detect.cpp:182]   --->   Operation 51 'bitconcatenate' 'tmp_29' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 52 [1/1] (0.00ns)   --->   "%zext_ln182_1 = zext i14 %tmp_29" [benchmarks/rosetta/face-detection/src/face_detect.cpp:182]   --->   Operation 52 'zext' 'zext_ln182_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 53 [1/1] (1.12ns)   --->   "%add_ln182 = add i17 %zext_ln182, i17 %zext_ln182_1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:182]   --->   Operation 53 'add' 'add_ln182' <Predicate = true> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.12> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 54 [1/1] (1.12ns)   --->   "%add_ln182_1 = add i17 %add_ln182, i17 %pt_x_val_read" [benchmarks/rosetta/face-detection/src/face_detect.cpp:182]   --->   Operation 54 'add' 'add_ln182_1' <Predicate = true> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.12> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 55 [1/1] (0.00ns)   --->   "%zext_ln182_2 = zext i17 %add_ln182_1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:182]   --->   Operation 55 'zext' 'zext_ln182_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 56 [1/1] (0.00ns)   --->   "%SUM1_data_addr_3 = getelementptr i32 %SUM1_data, i64 0, i64 %zext_ln182_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:182]   --->   Operation 56 'getelementptr' 'SUM1_data_addr_3' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 57 [1/1] (1.12ns)   --->   "%add_ln183 = add i17 %add_ln182, i17 %add_ln176" [benchmarks/rosetta/face-detection/src/face_detect.cpp:183]   --->   Operation 57 'add' 'add_ln183' <Predicate = true> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.12> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 58 [1/1] (0.00ns)   --->   "%zext_ln183 = zext i17 %add_ln183" [benchmarks/rosetta/face-detection/src/face_detect.cpp:183]   --->   Operation 58 'zext' 'zext_ln183' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 59 [1/1] (0.00ns)   --->   "%SUM1_data_addr_4 = getelementptr i32 %SUM1_data, i64 0, i64 %zext_ln183" [benchmarks/rosetta/face-detection/src/face_detect.cpp:183]   --->   Operation 59 'getelementptr' 'SUM1_data_addr_4' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 60 [1/1] (0.00ns)   --->   "%SQSUM1_data_addr_3 = getelementptr i32 %SQSUM1_data, i64 0, i64 %zext_ln182_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:177]   --->   Operation 60 'getelementptr' 'SQSUM1_data_addr_3' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 61 [1/1] (0.00ns)   --->   "%SQSUM1_data_addr_4 = getelementptr i32 %SQSUM1_data, i64 0, i64 %zext_ln183" [benchmarks/rosetta/face-detection/src/face_detect.cpp:178]   --->   Operation 61 'getelementptr' 'SQSUM1_data_addr_4' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 62 [2/2] (1.29ns)   --->   "%SQSUM1_data_load_2 = load i17 %SQSUM1_data_addr_3" [benchmarks/rosetta/face-detection/src/face_detect.cpp:177]   --->   Operation 62 'load' 'SQSUM1_data_load_2' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 76800> <RAM>
+ST_2 : Operation 63 [2/2] (1.29ns)   --->   "%SQSUM1_data_load_3 = load i17 %SQSUM1_data_addr_4" [benchmarks/rosetta/face-detection/src/face_detect.cpp:178]   --->   Operation 63 'load' 'SQSUM1_data_load_3' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 76800> <RAM>
+ST_2 : Operation 64 [1/2] (1.29ns)   --->   "%SUM1_data_load = load i17 %SUM1_data_addr" [benchmarks/rosetta/face-detection/src/face_detect.cpp:180]   --->   Operation 64 'load' 'SUM1_data_load' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM_1WnR">   --->   Core 84 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 76800> <RAM>
+ST_2 : Operation 65 [1/2] (1.29ns)   --->   "%SUM1_data_load_1 = load i17 %SUM1_data_addr_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:181]   --->   Operation 65 'load' 'SUM1_data_load_1' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM_1WnR">   --->   Core 84 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 76800> <RAM>
+ST_2 : Operation 66 [1/1] (1.14ns)   --->   "%sub_ln181 = sub i32 %SUM1_data_load, i32 %SUM1_data_load_1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:181]   --->   Operation 66 'sub' 'sub_ln181' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 67 [2/2] (1.29ns)   --->   "%SUM1_data_load_2 = load i17 %SUM1_data_addr_3" [benchmarks/rosetta/face-detection/src/face_detect.cpp:182]   --->   Operation 67 'load' 'SUM1_data_load_2' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM_1WnR">   --->   Core 84 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 76800> <RAM>
+ST_2 : Operation 68 [2/2] (1.29ns)   --->   "%SUM1_data_load_3 = load i17 %SUM1_data_addr_4" [benchmarks/rosetta/face-detection/src/face_detect.cpp:183]   --->   Operation 68 'load' 'SUM1_data_load_3' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM_1WnR">   --->   Core 84 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 76800> <RAM>
+
+State 3 <SV = 2> <Delay = 2.20>
+ST_3 : Operation 69 [1/2] (1.29ns)   --->   "%SQSUM1_data_load_2 = load i17 %SQSUM1_data_addr_3" [benchmarks/rosetta/face-detection/src/face_detect.cpp:177]   --->   Operation 69 'load' 'SQSUM1_data_load_2' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 76800> <RAM>
+ST_3 : Operation 70 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%sub_ln177 = sub i32 %sub_ln176, i32 %SQSUM1_data_load_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:177]   --->   Operation 70 'sub' 'sub_ln177' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.45> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 71 [1/2] (1.29ns)   --->   "%SQSUM1_data_load_3 = load i17 %SQSUM1_data_addr_4" [benchmarks/rosetta/face-detection/src/face_detect.cpp:178]   --->   Operation 71 'load' 'SQSUM1_data_load_3' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 76800> <RAM>
+ST_3 : Operation 72 [1/1] (0.90ns) (root node of TernaryAdder)   --->   "%stddev = add i32 %SQSUM1_data_load_3, i32 %sub_ln177" [benchmarks/rosetta/face-detection/src/face_detect.cpp:178]   --->   Operation 72 'add' 'stddev' <Predicate = true> <Delay = 0.90> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.45> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 73 [1/2] (1.29ns)   --->   "%SUM1_data_load_2 = load i17 %SUM1_data_addr_3" [benchmarks/rosetta/face-detection/src/face_detect.cpp:182]   --->   Operation 73 'load' 'SUM1_data_load_2' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM_1WnR">   --->   Core 84 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 76800> <RAM>
+ST_3 : Operation 74 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%sub_ln182 = sub i32 %sub_ln181, i32 %SUM1_data_load_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:182]   --->   Operation 74 'sub' 'sub_ln182' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.45> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 75 [1/2] (1.29ns)   --->   "%SUM1_data_load_3 = load i17 %SUM1_data_addr_4" [benchmarks/rosetta/face-detection/src/face_detect.cpp:183]   --->   Operation 75 'load' 'SUM1_data_load_3' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM_1WnR">   --->   Core 84 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 76800> <RAM>
+ST_3 : Operation 76 [1/1] (0.90ns) (root node of TernaryAdder)   --->   "%mean = add i32 %SUM1_data_load_3, i32 %sub_ln182" [benchmarks/rosetta/face-detection/src/face_detect.cpp:183]   --->   Operation 76 'add' 'mean' <Predicate = true> <Delay = 0.90> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.45> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+
+State 4 <SV = 3> <Delay = 2.89>
+ST_4 : Operation 77 [1/1] (0.00ns)   --->   "%sext_ln180 = sext i32 %mean" [benchmarks/rosetta/face-detection/src/face_detect.cpp:180]   --->   Operation 77 'sext' 'sext_ln180' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 78 [2/2] (2.89ns)   --->   "%mul_ln186 = mul i64 %sext_ln180, i64 %sext_ln180" [benchmarks/rosetta/face-detection/src/face_detect.cpp:186]   --->   Operation 78 'mul' 'mul_ln186' <Predicate = true> <Delay = 2.89> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 2.89> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 2.89>
+ST_5 : Operation 79 [1/1] (0.00ns)   --->   "%shl_ln = bitconcatenate i41 @_ssdm_op_BitConcatenate.i41.i32.i9, i32 %stddev, i9 0" [benchmarks/rosetta/face-detection/src/face_detect.cpp:185]   --->   Operation 79 'bitconcatenate' 'shl_ln' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 80 [1/1] (0.00ns)   --->   "%sext_ln185 = sext i41 %shl_ln" [benchmarks/rosetta/face-detection/src/face_detect.cpp:185]   --->   Operation 80 'sext' 'sext_ln185' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 81 [1/1] (0.00ns)   --->   "%shl_ln185_1 = bitconcatenate i38 @_ssdm_op_BitConcatenate.i38.i32.i6, i32 %stddev, i6 0" [benchmarks/rosetta/face-detection/src/face_detect.cpp:185]   --->   Operation 81 'bitconcatenate' 'shl_ln185_1' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 82 [1/1] (0.00ns)   --->   "%sext_ln185_1 = sext i38 %shl_ln185_1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:185]   --->   Operation 82 'sext' 'sext_ln185_1' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 83 [1/1] (1.19ns)   --->   "%stddev_1 = add i42 %sext_ln185, i42 %sext_ln185_1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:185]   --->   Operation 83 'add' 'stddev_1' <Predicate = true> <Delay = 1.19> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.19> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 84 [1/2] (2.89ns)   --->   "%mul_ln186 = mul i64 %sext_ln180, i64 %sext_ln180" [benchmarks/rosetta/face-detection/src/face_detect.cpp:186]   --->   Operation 84 'mul' 'mul_ln186' <Predicate = true> <Delay = 2.89> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 2.89> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 3.18>
+ST_6 : Operation 85 [1/1] (0.00ns)   --->   "%sext_ln159 = sext i42 %stddev_1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:159]   --->   Operation 85 'sext' 'sext_ln159' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 86 [1/1] (1.36ns)   --->   "%stddev_2 = sub i64 %sext_ln159, i64 %mul_ln186" [benchmarks/rosetta/face-detection/src/face_detect.cpp:186]   --->   Operation 86 'sub' 'stddev_2' <Predicate = true> <Delay = 1.36> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.36> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 87 [1/1] (1.36ns)   --->   "%icmp_ln188 = icmp_sgt  i64 %stddev_2, i64 0" [benchmarks/rosetta/face-detection/src/face_detect.cpp:188]   --->   Operation 87 'icmp' 'icmp_ln188' <Predicate = true> <Delay = 1.36> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.36> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 88 [1/1] (0.46ns)   --->   "%br_ln188 = br i1 %icmp_ln188, void %Stages, void %if.then" [benchmarks/rosetta/face-detection/src/face_detect.cpp:188]   --->   Operation 88 'br' 'br_ln188' <Predicate = true> <Delay = 0.46>
+ST_6 : Operation 89 [1/1] (0.00ns)   --->   "%trunc_ln189 = trunc i64 %stddev_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:189]   --->   Operation 89 'trunc' 'trunc_ln189' <Predicate = (icmp_ln188)> <Delay = 0.00>
+ST_6 : Operation 90 [2/2] (0.46ns)   --->   "%call_ln189 = call void @cascadeClassifier_Pipeline_VITIS_LOOP_379_1, i32 %trunc_ln189, i32 %a_loc" [benchmarks/rosetta/face-detection/src/face_detect.cpp:189]   --->   Operation 90 'call' 'call_ln189' <Predicate = (icmp_ln188)> <Delay = 0.46> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 7 <SV = 6> <Delay = 0.82>
+ST_7 : Operation 91 [1/2] (0.82ns)   --->   "%call_ln189 = call void @cascadeClassifier_Pipeline_VITIS_LOOP_379_1, i32 %trunc_ln189, i32 %a_loc" [benchmarks/rosetta/face-detection/src/face_detect.cpp:189]   --->   Operation 91 'call' 'call_ln189' <Predicate = true> <Delay = 0.82> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 8 <SV = 7> <Delay = 0.46>
+ST_8 : Operation 92 [1/1] (0.00ns)   --->   "%a_loc_load = load i32 %a_loc"   --->   Operation 92 'load' 'a_loc_load' <Predicate = (icmp_ln188)> <Delay = 0.00>
+ST_8 : Operation 93 [1/1] (0.46ns)   --->   "%br_ln0 = br void %Stages"   --->   Operation 93 'br' 'br_ln0' <Predicate = (icmp_ln188)> <Delay = 0.46>
+ST_8 : Operation 94 [1/1] (0.00ns)   --->   "%stddev_0 = phi i32 %a_loc_load, void %if.then, i32 1, void %entry"   --->   Operation 94 'phi' 'stddev_0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 95 [1/1] (0.00ns)   --->   "%haar_counter = alloca i32 1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:160]   --->   Operation 95 'alloca' 'haar_counter' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 96 [1/1] (0.00ns)   --->   "%stage_sum = alloca i32 1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:163]   --->   Operation 96 'alloca' 'stage_sum' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 97 [1/1] (0.00ns)   --->   "%i_2 = alloca i32 1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:156]   --->   Operation 97 'alloca' 'i_2' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 98 [1/1] (0.46ns)   --->   "%store_ln156 = store i5 0, i5 %i_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:156]   --->   Operation 98 'store' 'store_ln156' <Predicate = true> <Delay = 0.46>
+ST_8 : Operation 99 [1/1] (0.46ns)   --->   "%store_ln163 = store i64 0, i64 %stage_sum" [benchmarks/rosetta/face-detection/src/face_detect.cpp:163]   --->   Operation 99 'store' 'store_ln163' <Predicate = true> <Delay = 0.46>
+ST_8 : Operation 100 [1/1] (0.46ns)   --->   "%store_ln160 = store i32 0, i32 %haar_counter" [benchmarks/rosetta/face-detection/src/face_detect.cpp:160]   --->   Operation 100 'store' 'store_ln160' <Predicate = true> <Delay = 0.46>
+ST_8 : Operation 101 [1/1] (0.00ns)   --->   "%br_ln199 = br void %Filters" [benchmarks/rosetta/face-detection/src/face_detect.cpp:199]   --->   Operation 101 'br' 'br_ln199' <Predicate = true> <Delay = 0.00>
+
+State 9 <SV = 8> <Delay = 0.82>
+ST_9 : Operation 102 [1/1] (0.00ns)   --->   "%i = load i5 %i_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:199]   --->   Operation 102 'load' 'i' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 103 [1/1] (0.82ns)   --->   "%icmp_ln199 = icmp_ult  i5 %i, i5 25" [benchmarks/rosetta/face-detection/src/face_detect.cpp:199]   --->   Operation 103 'icmp' 'icmp_ln199' <Predicate = true> <Delay = 0.82> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.82> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 104 [1/1] (0.82ns)   --->   "%add_ln199 = add i5 %i, i5 1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:199]   --->   Operation 104 'add' 'add_ln199' <Predicate = true> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 105 [1/1] (0.00ns)   --->   "%br_ln199 = br i1 %icmp_ln199, void %cleanup.loopexit, void %Filters.split" [benchmarks/rosetta/face-detection/src/face_detect.cpp:199]   --->   Operation 105 'br' 'br_ln199' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 106 [1/1] (0.00ns)   --->   "%zext_ln199 = zext i5 %i" [benchmarks/rosetta/face-detection/src/face_detect.cpp:199]   --->   Operation 106 'zext' 'zext_ln199' <Predicate = (icmp_ln199)> <Delay = 0.00>
+ST_9 : Operation 107 [1/1] (0.00ns)   --->   "%stages_array_addr = getelementptr i8 %stages_array, i64 0, i64 %zext_ln199" [benchmarks/rosetta/face-detection/src/face_detect.cpp:199]   --->   Operation 107 'getelementptr' 'stages_array_addr' <Predicate = (icmp_ln199)> <Delay = 0.00>
+ST_9 : Operation 108 [2/2] (0.73ns)   --->   "%stages_array_load = load i5 %stages_array_addr" [benchmarks/rosetta/face-detection/src/face_detect.cpp:199]   --->   Operation 108 'load' 'stages_array_load' <Predicate = (icmp_ln199)> <Delay = 0.73> <CoreInst = "ROM">   --->   Core 101 'ROM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 25> <ROM>
+ST_9 : Operation 109 [1/1] (0.00ns)   --->   "%stages_thresh_array_addr = getelementptr i12 %stages_thresh_array, i64 0, i64 %zext_ln199" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 109 'getelementptr' 'stages_thresh_array_addr' <Predicate = (icmp_ln199)> <Delay = 0.00>
+ST_9 : Operation 110 [2/2] (0.73ns)   --->   "%stages_thresh_array_load = load i5 %stages_thresh_array_addr" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 110 'load' 'stages_thresh_array_load' <Predicate = (icmp_ln199)> <Delay = 0.73> <CoreInst = "ROM">   --->   Core 101 'ROM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 12> <Depth = 25> <ROM>
+ST_9 : Operation 111 [1/1] (0.46ns)   --->   "%br_ln0 = br void %cleanup"   --->   Operation 111 'br' 'br_ln0' <Predicate = (!icmp_ln199)> <Delay = 0.46>
+
+State 10 <SV = 9> <Delay = 2.15>
+ST_10 : Operation 112 [1/1] (0.00ns)   --->   "%haar_counter_load = load i32 %haar_counter"   --->   Operation 112 'load' 'haar_counter_load' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 113 [1/1] (0.00ns)   --->   "%stage_sum_load = load i64 %stage_sum"   --->   Operation 113 'load' 'stage_sum_load' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 114 [1/2] (0.73ns)   --->   "%stages_array_load = load i5 %stages_array_addr" [benchmarks/rosetta/face-detection/src/face_detect.cpp:199]   --->   Operation 114 'load' 'stages_array_load' <Predicate = true> <Delay = 0.73> <CoreInst = "ROM">   --->   Core 101 'ROM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 25> <ROM>
+ST_10 : Operation 115 [1/1] (0.00ns)   --->   "%zext_ln200 = zext i8 %stages_array_load" [benchmarks/rosetta/face-detection/src/face_detect.cpp:200]   --->   Operation 115 'zext' 'zext_ln200' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 116 [1/1] (0.87ns)   --->   "%icmp_ln200 = icmp_ne  i8 %stages_array_load, i8 0" [benchmarks/rosetta/face-detection/src/face_detect.cpp:200]   --->   Operation 116 'icmp' 'icmp_ln200' <Predicate = true> <Delay = 0.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 117 [1/1] (0.00ns)   --->   "%empty = trunc i32 %haar_counter_load"   --->   Operation 117 'trunc' 'empty' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 118 [1/1] (0.87ns)   --->   "%add_ln200 = add i8 %stages_array_load, i8 %empty" [benchmarks/rosetta/face-detection/src/face_detect.cpp:200]   --->   Operation 118 'add' 'add_ln200' <Predicate = true> <Delay = 0.87> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 119 [2/2] (0.46ns)   --->   "%call_ln200 = call void @cascadeClassifier_Pipeline_Filters, i32 %haar_counter_load, i64 %stage_sum_load, i8 %add_ln200, i32 %stddev_0, i8 %pt_y_val_read, i17 %pt_x_val_read, i32 %SUM1_data, i64 %stage_sum_1_loc, i13 %tree_thresh_array, i13 %weights_array0, i14 %weights_array1, i32 %coord_8, i32 %coord_9, i32 %coord_10, i14 %weights_array2, i14 %alpha1_array, i14 %alpha2_array, i5 %rectangles_array0, i5 %rectangles_array2, i5 %rectangles_array1, i5 %rectangles_array3, i5 %rectangles_array4, i5 %rectangles_array6, i5 %rectangles_array5, i5 %rectangles_array7, i5 %rectangles_array8, i4 %rectangles_array10, i5 %rectangles_array9, i4 %rectangles_array11" [benchmarks/rosetta/face-detection/src/face_detect.cpp:200]   --->   Operation 119 'call' 'call_ln200' <Predicate = true> <Delay = 0.46> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_10 : Operation 120 [1/1] (1.14ns)   --->   "%haar_counter_2 = add i32 %zext_ln200, i32 %haar_counter_load" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 120 'add' 'haar_counter_2' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 121 [1/1] (0.28ns)   --->   "%select_ln256 = select i1 %icmp_ln200, i32 %haar_counter_2, i32 %haar_counter_load" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 121 'select' 'select_ln256' <Predicate = true> <Delay = 0.28> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_10 : Operation 122 [1/2] (0.73ns)   --->   "%stages_thresh_array_load = load i5 %stages_thresh_array_addr" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 122 'load' 'stages_thresh_array_load' <Predicate = true> <Delay = 0.73> <CoreInst = "ROM">   --->   Core 101 'ROM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 12> <Depth = 25> <ROM>
+
+State 11 <SV = 10> <Delay = 3.15>
+ST_11 : Operation 123 [1/2] (0.00ns)   --->   "%call_ln200 = call void @cascadeClassifier_Pipeline_Filters, i32 %haar_counter_load, i64 %stage_sum_load, i8 %add_ln200, i32 %stddev_0, i8 %pt_y_val_read, i17 %pt_x_val_read, i32 %SUM1_data, i64 %stage_sum_1_loc, i13 %tree_thresh_array, i13 %weights_array0, i14 %weights_array1, i32 %coord_8, i32 %coord_9, i32 %coord_10, i14 %weights_array2, i14 %alpha1_array, i14 %alpha2_array, i5 %rectangles_array0, i5 %rectangles_array2, i5 %rectangles_array1, i5 %rectangles_array3, i5 %rectangles_array4, i5 %rectangles_array6, i5 %rectangles_array5, i5 %rectangles_array7, i5 %rectangles_array8, i4 %rectangles_array10, i5 %rectangles_array9, i4 %rectangles_array11" [benchmarks/rosetta/face-detection/src/face_detect.cpp:200]   --->   Operation 123 'call' 'call_ln200' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_11 : Operation 124 [1/1] (0.00ns)   --->   "%sext_ln256 = sext i12 %stages_thresh_array_load" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 124 'sext' 'sext_ln256' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 125 [4/4] (3.15ns)   --->   "%conv2 = sitodp i32 %sext_ln256" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 125 'sitodp' 'conv2' <Predicate = true> <Delay = 3.15> <CoreInst = "Int2Double">   --->   Core 66 'Int2Double' <Latency = 3> <II = 1> <Delay = 3.15> <FuncUnit> <Opcode : 'uitodp' 'sitodp'> <InPorts = 1> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 3.15>
+ST_12 : Operation 126 [3/4] (3.15ns)   --->   "%conv2 = sitodp i32 %sext_ln256" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 126 'sitodp' 'conv2' <Predicate = true> <Delay = 3.15> <CoreInst = "Int2Double">   --->   Core 66 'Int2Double' <Latency = 3> <II = 1> <Delay = 3.15> <FuncUnit> <Opcode : 'uitodp' 'sitodp'> <InPorts = 1> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 3.15>
+ST_13 : Operation 127 [2/4] (3.15ns)   --->   "%conv2 = sitodp i32 %sext_ln256" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 127 'sitodp' 'conv2' <Predicate = true> <Delay = 3.15> <CoreInst = "Int2Double">   --->   Core 66 'Int2Double' <Latency = 3> <II = 1> <Delay = 3.15> <FuncUnit> <Opcode : 'uitodp' 'sitodp'> <InPorts = 1> <OutPorts = 1>
+
+State 14 <SV = 13> <Delay = 3.15>
+ST_14 : Operation 128 [1/4] (3.15ns)   --->   "%conv2 = sitodp i32 %sext_ln256" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 128 'sitodp' 'conv2' <Predicate = true> <Delay = 3.15> <CoreInst = "Int2Double">   --->   Core 66 'Int2Double' <Latency = 3> <II = 1> <Delay = 3.15> <FuncUnit> <Opcode : 'uitodp' 'sitodp'> <InPorts = 1> <OutPorts = 1>
+
+State 15 <SV = 14> <Delay = 3.33>
+ST_15 : Operation 129 [6/6] (3.33ns)   --->   "%mul = dmul i64 %conv2, i64 0.4" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 129 'dmul' 'mul' <Predicate = true> <Delay = 3.33> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 5> <II = 1> <Delay = 3.33> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 16 <SV = 15> <Delay = 3.33>
+ST_16 : Operation 130 [5/6] (3.33ns)   --->   "%mul = dmul i64 %conv2, i64 0.4" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 130 'dmul' 'mul' <Predicate = true> <Delay = 3.33> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 5> <II = 1> <Delay = 3.33> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 17 <SV = 16> <Delay = 3.33>
+ST_17 : Operation 131 [1/1] (0.00ns)   --->   "%stage_sum_1_loc_load = load i64 %stage_sum_1_loc"   --->   Operation 131 'load' 'stage_sum_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 132 [4/4] (3.15ns)   --->   "%conv = sitodp i64 %stage_sum_1_loc_load" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 132 'sitodp' 'conv' <Predicate = true> <Delay = 3.15> <CoreInst = "Int2Double">   --->   Core 66 'Int2Double' <Latency = 3> <II = 1> <Delay = 3.15> <FuncUnit> <Opcode : 'uitodp' 'sitodp'> <InPorts = 1> <OutPorts = 1>
+ST_17 : Operation 133 [4/6] (3.33ns)   --->   "%mul = dmul i64 %conv2, i64 0.4" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 133 'dmul' 'mul' <Predicate = true> <Delay = 3.33> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 5> <II = 1> <Delay = 3.33> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 18 <SV = 17> <Delay = 3.33>
+ST_18 : Operation 134 [3/4] (3.15ns)   --->   "%conv = sitodp i64 %stage_sum_1_loc_load" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 134 'sitodp' 'conv' <Predicate = true> <Delay = 3.15> <CoreInst = "Int2Double">   --->   Core 66 'Int2Double' <Latency = 3> <II = 1> <Delay = 3.15> <FuncUnit> <Opcode : 'uitodp' 'sitodp'> <InPorts = 1> <OutPorts = 1>
+ST_18 : Operation 135 [3/6] (3.33ns)   --->   "%mul = dmul i64 %conv2, i64 0.4" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 135 'dmul' 'mul' <Predicate = true> <Delay = 3.33> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 5> <II = 1> <Delay = 3.33> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 19 <SV = 18> <Delay = 3.33>
+ST_19 : Operation 136 [2/4] (3.15ns)   --->   "%conv = sitodp i64 %stage_sum_1_loc_load" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 136 'sitodp' 'conv' <Predicate = true> <Delay = 3.15> <CoreInst = "Int2Double">   --->   Core 66 'Int2Double' <Latency = 3> <II = 1> <Delay = 3.15> <FuncUnit> <Opcode : 'uitodp' 'sitodp'> <InPorts = 1> <OutPorts = 1>
+ST_19 : Operation 137 [2/6] (3.33ns)   --->   "%mul = dmul i64 %conv2, i64 0.4" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 137 'dmul' 'mul' <Predicate = true> <Delay = 3.33> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 5> <II = 1> <Delay = 3.33> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 20 <SV = 19> <Delay = 3.33>
+ST_20 : Operation 138 [1/4] (3.15ns)   --->   "%conv = sitodp i64 %stage_sum_1_loc_load" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 138 'sitodp' 'conv' <Predicate = true> <Delay = 3.15> <CoreInst = "Int2Double">   --->   Core 66 'Int2Double' <Latency = 3> <II = 1> <Delay = 3.15> <FuncUnit> <Opcode : 'uitodp' 'sitodp'> <InPorts = 1> <OutPorts = 1>
+ST_20 : Operation 139 [1/6] (3.33ns)   --->   "%mul = dmul i64 %conv2, i64 0.4" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 139 'dmul' 'mul' <Predicate = true> <Delay = 3.33> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 5> <II = 1> <Delay = 3.33> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 21 <SV = 20> <Delay = 2.05>
+ST_21 : Operation 140 [1/1] (0.00ns)   --->   "%bitcast_ln256 = bitcast i64 %conv" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 140 'bitcast' 'bitcast_ln256' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 141 [1/1] (0.00ns)   --->   "%tmp_s = partselect i11 @_ssdm_op_PartSelect.i11.i64.i32.i32, i64 %bitcast_ln256, i32 52, i32 62" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 141 'partselect' 'tmp_s' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 142 [1/1] (0.00ns)   --->   "%trunc_ln256 = trunc i64 %bitcast_ln256" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 142 'trunc' 'trunc_ln256' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 143 [1/1] (0.00ns)   --->   "%bitcast_ln256_1 = bitcast i64 %mul" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 143 'bitcast' 'bitcast_ln256_1' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 144 [1/1] (0.00ns)   --->   "%tmp_3 = partselect i11 @_ssdm_op_PartSelect.i11.i64.i32.i32, i64 %bitcast_ln256_1, i32 52, i32 62" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 144 'partselect' 'tmp_3' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 145 [1/1] (0.00ns)   --->   "%trunc_ln256_1 = trunc i64 %bitcast_ln256_1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 145 'trunc' 'trunc_ln256_1' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 146 [1/1] (0.96ns)   --->   "%icmp_ln256 = icmp_ne  i11 %tmp_s, i11 2047" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 146 'icmp' 'icmp_ln256' <Predicate = true> <Delay = 0.96> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.96> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 147 [1/1] (1.31ns)   --->   "%icmp_ln256_1 = icmp_eq  i52 %trunc_ln256, i52 0" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 147 'icmp' 'icmp_ln256_1' <Predicate = true> <Delay = 1.31> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.31> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 148 [1/1] (0.96ns)   --->   "%icmp_ln256_2 = icmp_ne  i11 %tmp_3, i11 2047" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 148 'icmp' 'icmp_ln256_2' <Predicate = true> <Delay = 0.96> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.96> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 149 [1/1] (1.31ns)   --->   "%icmp_ln256_3 = icmp_eq  i52 %trunc_ln256_1, i52 0" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 149 'icmp' 'icmp_ln256_3' <Predicate = true> <Delay = 1.31> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.31> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 150 [2/2] (2.05ns)   --->   "%tmp_4 = fcmp_olt  i64 %conv, i64 %mul" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 150 'dcmp' 'tmp_4' <Predicate = true> <Delay = 2.05> <CoreInst = "DCompare">   --->   Core 38 'DCompare' <Latency = 1> <II = 1> <Delay = 2.05> <FuncUnit> <Opcode : 'dcmp'> <InPorts = 2> <OutPorts = 1>
+
+State 22 <SV = 21> <Delay = 2.66>
+ST_22 : Operation 151 [1/1] (0.00ns)   --->   "%speclooptripcount_ln160 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 0, i64 25, i64 12" [benchmarks/rosetta/face-detection/src/face_detect.cpp:160]   --->   Operation 151 'speclooptripcount' 'speclooptripcount_ln160' <Predicate = (icmp_ln199)> <Delay = 0.00>
+ST_22 : Operation 152 [1/1] (0.00ns)   --->   "%specloopname_ln199 = specloopname void @_ssdm_op_SpecLoopName, void @empty_8" [benchmarks/rosetta/face-detection/src/face_detect.cpp:199]   --->   Operation 152 'specloopname' 'specloopname_ln199' <Predicate = (icmp_ln199)> <Delay = 0.00>
+ST_22 : Operation 153 [1/1] (0.00ns) (grouped into LUT with out node and_ln256_1)   --->   "%or_ln256 = or i1 %icmp_ln256_1, i1 %icmp_ln256" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 153 'or' 'or_ln256' <Predicate = (icmp_ln199)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 154 [1/1] (0.00ns) (grouped into LUT with out node and_ln256_1)   --->   "%or_ln256_1 = or i1 %icmp_ln256_3, i1 %icmp_ln256_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 154 'or' 'or_ln256_1' <Predicate = (icmp_ln199)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 155 [1/1] (0.00ns) (grouped into LUT with out node and_ln256_1)   --->   "%and_ln256 = and i1 %or_ln256, i1 %or_ln256_1" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 155 'and' 'and_ln256' <Predicate = (icmp_ln199)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 156 [1/2] (2.05ns)   --->   "%tmp_4 = fcmp_olt  i64 %conv, i64 %mul" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 156 'dcmp' 'tmp_4' <Predicate = (icmp_ln199)> <Delay = 2.05> <CoreInst = "DCompare">   --->   Core 38 'DCompare' <Latency = 1> <II = 1> <Delay = 2.05> <FuncUnit> <Opcode : 'dcmp'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 157 [1/1] (0.14ns) (out node of the LUT)   --->   "%and_ln256_1 = and i1 %and_ln256, i1 %tmp_4" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 157 'and' 'and_ln256_1' <Predicate = (icmp_ln199)> <Delay = 0.14> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 158 [1/1] (0.00ns)   --->   "%br_ln256 = br i1 %and_ln256_1, void %for.inc273, void %if.then270" [benchmarks/rosetta/face-detection/src/face_detect.cpp:256]   --->   Operation 158 'br' 'br_ln256' <Predicate = (icmp_ln199)> <Delay = 0.00>
+ST_22 : Operation 159 [1/1] (0.46ns)   --->   "%store_ln156 = store i5 %add_ln199, i5 %i_2" [benchmarks/rosetta/face-detection/src/face_detect.cpp:156]   --->   Operation 159 'store' 'store_ln156' <Predicate = (icmp_ln199 & !and_ln256_1)> <Delay = 0.46>
+ST_22 : Operation 160 [1/1] (0.46ns)   --->   "%store_ln163 = store i64 %stage_sum_1_loc_load, i64 %stage_sum" [benchmarks/rosetta/face-detection/src/face_detect.cpp:163]   --->   Operation 160 'store' 'store_ln163' <Predicate = (icmp_ln199 & !and_ln256_1)> <Delay = 0.46>
+ST_22 : Operation 161 [1/1] (0.46ns)   --->   "%store_ln160 = store i32 %select_ln256, i32 %haar_counter" [benchmarks/rosetta/face-detection/src/face_detect.cpp:160]   --->   Operation 161 'store' 'store_ln160' <Predicate = (icmp_ln199 & !and_ln256_1)> <Delay = 0.46>
+ST_22 : Operation 162 [1/1] (0.00ns)   --->   "%br_ln199 = br void %Filters" [benchmarks/rosetta/face-detection/src/face_detect.cpp:199]   --->   Operation 162 'br' 'br_ln199' <Predicate = (icmp_ln199 & !and_ln256_1)> <Delay = 0.00>
+ST_22 : Operation 163 [1/1] (0.00ns)   --->   "%zext_ln257 = zext i5 %i" [benchmarks/rosetta/face-detection/src/face_detect.cpp:257]   --->   Operation 163 'zext' 'zext_ln257' <Predicate = (icmp_ln199 & and_ln256_1)> <Delay = 0.00>
+ST_22 : Operation 164 [1/1] (0.82ns)   --->   "%sub_ln257 = sub i6 0, i6 %zext_ln257" [benchmarks/rosetta/face-detection/src/face_detect.cpp:257]   --->   Operation 164 'sub' 'sub_ln257' <Predicate = (icmp_ln199 & and_ln256_1)> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 165 [1/1] (0.46ns)   --->   "%br_ln257 = br void %cleanup" [benchmarks/rosetta/face-detection/src/face_detect.cpp:257]   --->   Operation 165 'br' 'br_ln257' <Predicate = (icmp_ln199 & and_ln256_1)> <Delay = 0.46>
+ST_22 : Operation 166 [1/1] (0.00ns)   --->   "%retval_0 = phi i6 %sub_ln257, void %if.then270, i6 1, void %cleanup.loopexit" [benchmarks/rosetta/face-detection/src/face_detect.cpp:257]   --->   Operation 166 'phi' 'retval_0' <Predicate = (and_ln256_1) | (!icmp_ln199)> <Delay = 0.00>
+ST_22 : Operation 167 [1/1] (0.00ns)   --->   "%ret_ln262 = ret i6 %retval_0" [benchmarks/rosetta/face-detection/src/face_detect.cpp:262]   --->   Operation 167 'ret' 'ret_ln262' <Predicate = (and_ln256_1) | (!icmp_ln199)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 3.542ns
+The critical path consists of the following:
+	wire read operation ('pt_x_val_read') on port 'pt_x_val' [29]  (0.000 ns)
+	'add' operation 17 bit ('add_ln176', benchmarks/rosetta/face-detection/src/face_detect.cpp:176) [42]  (1.122 ns)
+	'add' operation 17 bit ('add_ln181', benchmarks/rosetta/face-detection/src/face_detect.cpp:181) [43]  (1.122 ns)
+	'getelementptr' operation 17 bit ('SQSUM1_data_addr_2', benchmarks/rosetta/face-detection/src/face_detect.cpp:176) [46]  (0.000 ns)
+	'load' operation 32 bit ('SQSUM1_data_load_1', benchmarks/rosetta/face-detection/src/face_detect.cpp:176) on array 'SQSUM1_data' [47]  (1.297 ns)
+
+ <State 2>: 3.540ns
+The critical path consists of the following:
+	'add' operation 17 bit ('add_ln182', benchmarks/rosetta/face-detection/src/face_detect.cpp:182) [54]  (1.121 ns)
+	'add' operation 17 bit ('add_ln182_1', benchmarks/rosetta/face-detection/src/face_detect.cpp:182) [55]  (1.122 ns)
+	'getelementptr' operation 17 bit ('SQSUM1_data_addr_3', benchmarks/rosetta/face-detection/src/face_detect.cpp:177) [61]  (0.000 ns)
+	'load' operation 32 bit ('SQSUM1_data_load_2', benchmarks/rosetta/face-detection/src/face_detect.cpp:177) on array 'SQSUM1_data' [63]  (1.297 ns)
+
+ <State 3>: 2.204ns
+The critical path consists of the following:
+	'load' operation 32 bit ('SQSUM1_data_load_2', benchmarks/rosetta/face-detection/src/face_detect.cpp:177) on array 'SQSUM1_data' [63]  (1.297 ns)
+	'sub' operation 32 bit ('sub_ln177', benchmarks/rosetta/face-detection/src/face_detect.cpp:177) [64]  (0.000 ns)
+	'add' operation 32 bit ('stddev', benchmarks/rosetta/face-detection/src/face_detect.cpp:178) [66]  (0.907 ns)
+
+ <State 4>: 2.893ns
+The critical path consists of the following:
+	'mul' operation 64 bit ('mul_ln186', benchmarks/rosetta/face-detection/src/face_detect.cpp:186) [81]  (2.893 ns)
+
+ <State 5>: 2.893ns
+The critical path consists of the following:
+	'mul' operation 64 bit ('mul_ln186', benchmarks/rosetta/face-detection/src/face_detect.cpp:186) [81]  (2.893 ns)
+
+ <State 6>: 3.184ns
+The critical path consists of the following:
+	'sub' operation 64 bit ('stddev', benchmarks/rosetta/face-detection/src/face_detect.cpp:186) [82]  (1.362 ns)
+	'icmp' operation 1 bit ('icmp_ln188', benchmarks/rosetta/face-detection/src/face_detect.cpp:188) [83]  (1.362 ns)
+	'call' operation 0 bit ('call_ln189', benchmarks/rosetta/face-detection/src/face_detect.cpp:189) to 'cascadeClassifier_Pipeline_VITIS_LOOP_379_1' [87]  (0.460 ns)
+
+ <State 7>: 0.825ns
+The critical path consists of the following:
+	'call' operation 0 bit ('call_ln189', benchmarks/rosetta/face-detection/src/face_detect.cpp:189) to 'cascadeClassifier_Pipeline_VITIS_LOOP_379_1' [87]  (0.825 ns)
+
+ <State 8>: 0.460ns
+The critical path consists of the following:
+	'load' operation 32 bit ('a_loc_load') on local variable 'a_loc' [88]  (0.000 ns)
+	multiplexor before 'phi' operation 32 bit ('stddev_0') with incoming values : ('a_loc_load') [91]  (0.460 ns)
+	'phi' operation 32 bit ('stddev_0') with incoming values : ('a_loc_load') [91]  (0.000 ns)
+
+ <State 9>: 0.825ns
+The critical path consists of the following:
+	'load' operation 5 bit ('i', benchmarks/rosetta/face-detection/src/face_detect.cpp:199) on local variable 'i', benchmarks/rosetta/face-detection/src/face_detect.cpp:156 [100]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln199', benchmarks/rosetta/face-detection/src/face_detect.cpp:199) [101]  (0.825 ns)
+
+ <State 10>: 2.158ns
+The critical path consists of the following:
+	'load' operation 8 bit ('stages_array_load', benchmarks/rosetta/face-detection/src/face_detect.cpp:199) on array 'stages_array' [111]  (0.730 ns)
+	'add' operation 32 bit ('haar_counter', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [118]  (1.142 ns)
+	'select' operation 32 bit ('select_ln256', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [119]  (0.286 ns)
+
+ <State 11>: 3.156ns
+The critical path consists of the following:
+	'sitodp' operation 64 bit ('conv2', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [124]  (3.156 ns)
+
+ <State 12>: 3.156ns
+The critical path consists of the following:
+	'sitodp' operation 64 bit ('conv2', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [124]  (3.156 ns)
+
+ <State 13>: 3.156ns
+The critical path consists of the following:
+	'sitodp' operation 64 bit ('conv2', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [124]  (3.156 ns)
+
+ <State 14>: 3.156ns
+The critical path consists of the following:
+	'sitodp' operation 64 bit ('conv2', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [124]  (3.156 ns)
+
+ <State 15>: 3.338ns
+The critical path consists of the following:
+	'dmul' operation 64 bit ('mul', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [125]  (3.338 ns)
+
+ <State 16>: 3.338ns
+The critical path consists of the following:
+	'dmul' operation 64 bit ('mul', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [125]  (3.338 ns)
+
+ <State 17>: 3.338ns
+The critical path consists of the following:
+	'dmul' operation 64 bit ('mul', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [125]  (3.338 ns)
+
+ <State 18>: 3.338ns
+The critical path consists of the following:
+	'dmul' operation 64 bit ('mul', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [125]  (3.338 ns)
+
+ <State 19>: 3.338ns
+The critical path consists of the following:
+	'dmul' operation 64 bit ('mul', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [125]  (3.338 ns)
+
+ <State 20>: 3.338ns
+The critical path consists of the following:
+	'dmul' operation 64 bit ('mul', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [125]  (3.338 ns)
+
+ <State 21>: 2.057ns
+The critical path consists of the following:
+	'dcmp' operation 1 bit ('tmp_4', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [139]  (2.057 ns)
+
+ <State 22>: 2.665ns
+The critical path consists of the following:
+	'dcmp' operation 1 bit ('tmp_4', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [139]  (2.057 ns)
+	'and' operation 1 bit ('and_ln256_1', benchmarks/rosetta/face-detection/src/face_detect.cpp:256) [140]  (0.148 ns)
+	blocking operation 0.46 ns on control path)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

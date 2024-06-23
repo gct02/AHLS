@@ -1,0 +1,1544 @@
+<profile>
+    <ReportVersion>
+        <Version>2023.2</Version>
+    </ReportVersion>
+    <UserAssignments>
+        <unit>ns</unit>
+        <ProductFamily>virtexuplusHBM</ProductFamily>
+        <Part>xcvu35p-fsvh2104-1-e</Part>
+        <TopModelName>adpcm_main</TopModelName>
+        <TargetClockPeriod>5.00</TargetClockPeriod>
+        <ClockUncertainty>1.35</ClockUncertainty>
+        <FlowTarget>vivado</FlowTarget>
+    </UserAssignments>
+    <PerformanceEstimates>
+        <PipelineType>no</PipelineType>
+        <SummaryOfTimingAnalysis>
+            <unit>ns</unit>
+            <EstimatedClockPeriod>3.794</EstimatedClockPeriod>
+        </SummaryOfTimingAnalysis>
+        <SummaryOfOverallLatency>
+            <unit>clock cycles</unit>
+            <Best-caseLatency>148038</Best-caseLatency>
+            <Average-caseLatency>148038</Average-caseLatency>
+            <Worst-caseLatency>148038</Worst-caseLatency>
+            <Best-caseRealTimeLatency>0.740 ms</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0.740 ms</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>0.740 ms</Worst-caseRealTimeLatency>
+            <Interval-min>148039</Interval-min>
+            <Interval-max>148039</Interval-max>
+        </SummaryOfOverallLatency>
+        <SummaryOfViolations>
+            <IssueType>-</IssueType>
+            <ViolationType>-</ViolationType>
+            <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:769</SourceLocation>
+        </SummaryOfViolations>
+    </PerformanceEstimates>
+    <AreaEstimates>
+        <Resources>
+            <BRAM_18K>1</BRAM_18K>
+            <DSP>153</DSP>
+            <FF>16305</FF>
+            <LUT>17671</LUT>
+            <URAM>0</URAM>
+        </Resources>
+        <AvailableResources>
+            <BRAM_18K>2688</BRAM_18K>
+            <DSP>5952</DSP>
+            <FF>1743360</FF>
+            <LUT>871680</LUT>
+            <URAM>640</URAM>
+        </AvailableResources>
+    </AreaEstimates>
+    <InterfaceSummary>
+        <RtlPorts>
+            <name>ap_clk</name>
+            <Object>adpcm_main</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_rst</name>
+            <Object>adpcm_main</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_start</name>
+            <Object>adpcm_main</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_done</name>
+            <Object>adpcm_main</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_idle</name>
+            <Object>adpcm_main</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_ready</name>
+            <Object>adpcm_main</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>input_samples_address0</name>
+            <Object>input_samples</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>13</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>input_samples_ce0</name>
+            <Object>input_samples</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>input_samples_q0</name>
+            <Object>input_samples</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>input_samples_address1</name>
+            <Object>input_samples</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>13</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>input_samples_ce1</name>
+            <Object>input_samples</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>input_samples_q1</name>
+            <Object>input_samples</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>compressed_address0</name>
+            <Object>compressed</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>12</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>compressed_ce0</name>
+            <Object>compressed</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>compressed_we0</name>
+            <Object>compressed</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>compressed_d0</name>
+            <Object>compressed</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>compressed_q0</name>
+            <Object>compressed</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_address0</name>
+            <Object>result</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>13</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_ce0</name>
+            <Object>result</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_we0</name>
+            <Object>result</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_d0</name>
+            <Object>result</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_address1</name>
+            <Object>result</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>13</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_ce1</name>
+            <Object>result</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_we1</name>
+            <Object>result</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_d1</name>
+            <Object>result</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+    </InterfaceSummary>
+    <RTLDesignHierarchy>
+        <TopModule MAX_DEPTH="4">
+            <ModuleName>adpcm_main</ModuleName>
+            <InstancesList>
+                <Instance>
+                    <InstName>grp_adpcm_main_Pipeline_reset_label4_fu_148</InstName>
+                    <ModuleName>adpcm_main_Pipeline_reset_label4</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>148</ID>
+                    <BindInstances>add_ln553_fu_112_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_adpcm_main_Pipeline_reset_label5_fu_160</InstName>
+                    <ModuleName>adpcm_main_Pipeline_reset_label5</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>160</ID>
+                    <BindInstances>add_ln561_fu_108_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_adpcm_main_Pipeline_reset_label6_fu_172</InstName>
+                    <ModuleName>adpcm_main_Pipeline_reset_label6</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>172</ID>
+                    <BindInstances>add_ln569_fu_60_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_adpcm_main_Pipeline_reset_label7_fu_178</InstName>
+                    <ModuleName>adpcm_main_Pipeline_reset_label7</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>178</ID>
+                    <BindInstances>add_ln572_fu_76_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186</InstName>
+                    <ModuleName>adpcm_main_Pipeline_adpcm_main_label12</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>186</ID>
+                    <InstancesList>
+                        <Instance>
+                            <InstName>grp_encode_fu_138</InstName>
+                            <ModuleName>encode</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>138</ID>
+                            <BindInstances>xa_fu_1698_p2 mul_32s_9ns_41_2_1_U20 sub_ln266_fu_1726_p2 mul_32s_11s_43_2_1_U26 mul_32s_12ns_44_2_1_U21 mul_32s_11s_42_2_1_U25 mul_32s_13s_44_2_1_U27 mul_32s_13ns_45_2_1_U22 mul_32s_15ns_47_2_1_U23 mul_32s_15ns_47_2_1_U24 mul_32s_13ns_45_2_1_U22 mul_32s_13s_45_2_1_U28 mul_32s_11s_43_2_1_U26 mul_32s_12ns_44_2_1_U21 mul_32s_11s_42_2_1_U25 sub_ln267_fu_1756_p2 mul_32s_9ns_41_2_1_U20 tmp_fu_1282_p2 mul_33s_7s_40_2_1_U29 tmp34_fu_1292_p2 mul_33s_7s_40_2_1_U30 add_ln270_fu_1770_p2 add_ln270_6_fu_1599_p2 mul_16s_32s_46_2_1_U15 mul_16s_32s_46_2_1_U15 mul_16s_32s_46_2_1_U16 mul_16s_32s_46_2_1_U15 mul_16s_32s_46_2_1_U16 mul_16s_32s_46_2_1_U16 add_ln589_fu_1464_p2 sub_ln271_fu_1800_p2 add_ln271_fu_1810_p2 add_ln271_1_fu_1669_p2 add_ln271_6_fu_1815_p2 add_ln271_7_fu_1922_p2 add_ln281_fu_1939_p2 sub_ln282_fu_1943_p2 mul_16s_32s_47_2_1_U17 mul_15s_32s_47_2_1_U14 grp_fu_1036_p2 add_ln295_fu_1967_p2 sub_ln296_fu_1975_p2 m_fu_2017_p2 mul_15ns_10ns_24_1_1_U31 add_ln620_fu_2077_p2 mul_15ns_11ns_25_1_1_U33 mul_15ns_12ns_26_1_1_U34 mul_15ns_12ns_26_1_1_U35 mul_15ns_12ns_26_1_1_U36 mul_15ns_13ns_27_1_1_U37 mul_15ns_13ns_27_1_1_U38 mul_15ns_13ns_27_1_1_U39 mul_15ns_13ns_27_1_1_U40 mul_15ns_13ns_27_1_1_U41 mul_15ns_14ns_28_1_1_U42 mul_15ns_14ns_28_1_1_U43 mul_15ns_14ns_28_1_1_U44 mul_15ns_14ns_28_1_1_U45 mul_15ns_14ns_28_1_1_U46 mul_15ns_14ns_28_1_1_U47 mul_15ns_14ns_28_1_1_U48 sub_ln620_fu_2541_p2 mul_15ns_15ns_29_1_1_U49 mul_15ns_15ns_29_1_1_U50 mul_15ns_15ns_29_1_1_U51 mul_15ns_15ns_29_1_1_U52 mul_15ns_15ns_29_1_1_U53 mul_15ns_15ns_29_1_1_U54 mul_15ns_15ns_29_1_1_U55 mul_15ns_16ns_30_1_1_U56 mul_15ns_16ns_30_1_1_U59 mul_15ns_16ns_30_1_1_U61 sub_ln620_1_fu_3274_p2 mul_16s_15ns_31_1_1_U68 sub_ln639_fu_3690_p2 add_ln640_fu_3714_p2 sub_ln656_fu_3983_p2 add_ln313_fu_3869_p2 sub_ln672_fu_3886_p2 sub_ln672_1_fu_3910_p2 sub_ln672_2_fu_4019_p2 sub_ln672_3_fu_4043_p2 sub_ln672_4_fu_4252_p2 sub_ln672_5_fu_4067_p2 mul_16s_16s_32_1_1_U69 add_ln684_fu_4102_p2 mul_16s_16s_32_1_1_U70 add_ln684_1_fu_4127_p2 mul_16s_16s_32_1_1_U71 add_ln684_2_fu_4152_p2 mul_16s_16s_32_1_1_U72 add_ln684_3_fu_4177_p2 mul_16s_16s_32_1_1_U73 add_ln684_4_fu_4288_p2 mul_16s_16s_32_1_1_U74 add_ln684_5_fu_4202_p2 mul_32s_32s_64_2_1_U18 sub_ln706_fu_4308_p2 mul_32s_32s_64_2_1_U19 sub_ln716_fu_4359_p2 sub_ln734_fu_4448_p2 apl1_fu_4475_p2 wd3_7_fu_4481_p2 apl1_2_fu_4509_p2 add_ln330_fu_3963_p2 mul_14s_32s_46_2_1_U12 mul_14s_32s_46_2_1_U12 mul_14s_32s_46_2_1_U13 mul_14s_32s_46_2_1_U12 mul_14s_32s_46_2_1_U13 mul_14s_32s_46_2_1_U13 add_ln589_5_fu_1490_p2 mul_16s_32s_47_2_1_U17 mul_15s_32s_47_2_1_U14 grp_fu_1036_p2 add_ln345_fu_1989_p2 sub_ln347_fu_1997_p2 mul_15ns_11ns_25_1_1_U32 m_2_fu_2011_p2 add_ln364_fu_2804_p2 mul_14s_15ns_29_1_1_U60 sub_ln759_fu_2844_p2 add_ln760_fu_2882_p2 sub_ln656_1_fu_3075_p2 add_ln373_fu_3009_p2 sub_ln672_6_fu_1230_p2 sub_ln672_7_fu_3111_p2 sub_ln672_8_fu_1254_p2 sub_ln672_9_fu_1386_p2 sub_ln672_10_fu_1410_p2 sub_ln672_11_fu_3317_p2 mul_14s_14s_28_1_1_U62 add_ln684_6_fu_3157_p2 mul_14s_14s_28_1_1_U63 add_ln684_7_fu_3188_p2 mul_14s_14s_28_1_1_U64 add_ln684_8_fu_3352_p2 mul_14s_14s_28_1_1_U65 add_ln684_9_fu_3376_p2 mul_14s_14s_28_1_1_U66 add_ln684_10_fu_3434_p2 mul_14s_14s_28_1_1_U67 add_ln684_11_fu_3400_p2 mul_32s_32s_64_2_1_U18 sub_ln706_1_fu_3450_p2 mul_32s_32s_64_2_1_U19 sub_ln716_1_fu_3501_p2 sub_ln734_1_fu_3612_p2 apl1_4_fu_3639_p2 wd3_15_fu_3645_p2 apl1_6_fu_3742_p2 add_ln388_fu_3020_p2 quant26bt_pos_U quant26bt_neg_U qq4_code4_table_U wl_code_table_U ilb_table_U</BindInstances>
+                        </Instance>
+                    </InstancesList>
+                    <BindInstances>add_ln778_fu_239_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248</InstName>
+                    <ModuleName>adpcm_main_Pipeline_adpcm_main_label13</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>248</ID>
+                    <InstancesList>
+                        <Instance>
+                            <InstName>grp_decode_fu_142</InstName>
+                            <ModuleName>decode</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>142</ID>
+                            <BindInstances>mul_16s_32s_46_2_1_U159 mul_16s_32s_46_2_1_U160 mul_16s_32s_46_2_1_U159 mul_16s_32s_46_2_1_U160 mul_16s_32s_46_2_1_U159 mul_16s_32s_46_2_1_U160 add_ln589_fu_1650_p2 mul_16s_32s_47_2_1_U161 mul_15s_32s_47_2_1_U157 pl_4_fu_1655_p2 add_ln422_fu_1936_p2 mul_16s_15ns_31_1_1_U181 mul_16s_15ns_31_1_1_U183 add_ln430_fu_2212_p2 sub_ln639_fu_957_p2 add_ln640_fu_981_p2 sub_ln656_fu_1508_p2 add_ln440_fu_1948_p2 sub_ln672_fu_995_p2 sub_ln672_12_fu_1019_p2 sub_ln672_13_fu_1351_p2 sub_ln672_14_fu_1375_p2 sub_ln672_15_fu_1961_p2 sub_ln672_16_fu_1985_p2 mul_16s_16s_32_1_1_U187 add_ln684_fu_2236_p2 mul_16s_16s_32_1_1_U188 add_ln684_12_fu_2261_p2 mul_16s_16s_32_1_1_U189 add_ln684_13_fu_2286_p2 mul_16s_16s_32_1_1_U190 add_ln684_14_fu_2310_p2 mul_16s_16s_32_1_1_U191 add_ln684_15_fu_2334_p2 mul_16s_16s_32_1_1_U192 add_ln684_16_fu_2358_p2 mul_32s_32s_64_2_1_U163 sub_ln706_fu_2741_p2 mul_32s_32s_64_2_1_U164 sub_ln716_fu_2792_p2 sub_ln734_fu_3021_p2 apl1_fu_3048_p2 wd3_20_fu_3054_p2 apl1_9_fu_3234_p2 add_ln452_fu_2386_p2 mul_14s_32s_46_2_1_U155 mul_14s_32s_46_2_1_U156 mul_14s_32s_46_2_1_U155 mul_14s_32s_46_2_1_U156 mul_14s_32s_46_2_1_U155 mul_14s_32s_46_2_1_U156 add_ln589_14_fu_1684_p2 mul_16s_32s_47_2_1_U162 mul_15s_32s_47_2_1_U158 pl_6_fu_1689_p2 mul_14s_15ns_29_1_1_U179 sub_ln759_fu_811_p2 add_ln760_fu_849_p2 sub_ln656_2_fu_1443_p2 add_ln481_fu_2083_p2 sub_ln672_17_fu_1569_p2 sub_ln672_18_fu_1169_p2 sub_ln672_19_fu_1710_p2 sub_ln672_20_fu_1734_p2 sub_ln672_21_fu_2097_p2 sub_ln672_22_fu_2121_p2 mul_14s_14s_28_1_1_U182 add_ln684_17_fu_1605_p2 mul_14s_14s_28_1_1_U184 add_ln684_18_fu_1776_p2 mul_14s_14s_28_1_1_U185 add_ln684_19_fu_1806_p2 mul_14s_14s_28_1_1_U186 add_ln684_20_fu_1837_p2 mul_14s_14s_28_1_1_U193 add_ln684_21_fu_2162_p2 mul_14s_14s_28_1_1_U194 add_ln684_22_fu_2427_p2 mul_32s_32s_64_2_1_U165 sub_ln706_2_fu_2851_p2 mul_32s_32s_64_2_1_U166 sub_ln716_2_fu_2902_p2 sub_ln734_2_fu_3104_p2 apl1_11_fu_3131_p2 wd3_28_fu_3137_p2 apl1_13_fu_3286_p2 add_ln493_fu_2455_p2 sub_ln504_fu_2480_p2 add_ln505_fu_2486_p2 xa1_fu_2516_p2 mul_32s_9ns_41_2_1_U167 mul_32s_11s_42_2_1_U172 mul_32s_12ns_44_2_1_U168 mul_32s_11s_43_2_1_U174 mul_32s_13s_45_2_1_U175 mul_32s_13ns_45_2_1_U169 mul_32s_15ns_46_2_1_U170 mul_32s_15ns_46_2_1_U171 mul_32s_13ns_45_2_1_U169 mul_32s_13s_45_2_1_U175 mul_32s_11s_42_2_1_U172 mul_32s_12ns_44_2_1_U168 mul_32s_11s_42_2_1_U173 sub_ln517_fu_3165_p2 mul_32s_9ns_41_2_1_U167 tmp_fu_1644_p2 mul_33s_7s_40_2_1_U177 add_ln520_1_fu_2189_p2 add_ln520_4_fu_2545_p2 add_ln520_5_fu_2555_p2 add_ln520_6_fu_2677_p2 add_ln520_7_fu_2687_p2 sub_ln521_fu_2971_p2 tmp35_fu_2560_p2 mul_33s_7s_39_2_1_U176 add_ln521_fu_1876_p2 add_ln521_4_fu_2566_p2 add_ln521_6_fu_3187_p2 add_ln521_7_fu_3196_p2 qq4_code4_table_U qq6_code6_table_U wl_code_table_U ilb_table_U</BindInstances>
+                        </Instance>
+                    </InstancesList>
+                    <BindInstances>add_ln782_fu_238_p2</BindInstances>
+                </Instance>
+            </InstancesList>
+            <BindInstances>delay_dltx_U delay_dhx_U dec_del_dltx_U dec_del_dhx_U delay_bpl_U delay_bph_U dec_del_bpl_U dec_del_bph_U tqmf_U accumc_U accumd_U</BindInstances>
+        </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+        <Module>
+            <Name>adpcm_main_Pipeline_reset_label4</Name>
+            <Loops>
+                <reset_label4/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>1.905</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>8</Best-caseLatency>
+                    <Average-caseLatency>8</Average-caseLatency>
+                    <Worst-caseLatency>8</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>40.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>40.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>40.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>8</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <reset_label4>
+                        <Name>reset_label4</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>6</TripCount>
+                        <Latency>6</Latency>
+                        <AbsoluteTimeLatency>30.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </reset_label4>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:544~benchmarks/chstone/adpcm/src/adpcm.c:774</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <reset_label4>
+                            <Name>reset_label4</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:553~benchmarks/chstone/adpcm/src/adpcm.c:774</SourceLocation>
+                        </reset_label4>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>5</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>47</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="reset_label4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln553_fu_112_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:553" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln553"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>adpcm_main_Pipeline_reset_label5</Name>
+            <Loops>
+                <reset_label5/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>1.905</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>8</Best-caseLatency>
+                    <Average-caseLatency>8</Average-caseLatency>
+                    <Worst-caseLatency>8</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>40.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>40.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>40.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>8</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <reset_label5>
+                        <Name>reset_label5</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>6</TripCount>
+                        <Latency>6</Latency>
+                        <AbsoluteTimeLatency>30.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </reset_label5>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:544~benchmarks/chstone/adpcm/src/adpcm.c:774</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <reset_label5>
+                            <Name>reset_label5</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:561~benchmarks/chstone/adpcm/src/adpcm.c:774</SourceLocation>
+                        </reset_label5>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>5</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>47</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="reset_label5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln561_fu_108_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:561" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln561"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>adpcm_main_Pipeline_reset_label6</Name>
+            <Loops>
+                <reset_label6/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.014</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>26</Best-caseLatency>
+                    <Average-caseLatency>26</Average-caseLatency>
+                    <Worst-caseLatency>26</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.130 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.130 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.130 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>26</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <reset_label6>
+                        <Name>reset_label6</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>24</TripCount>
+                        <Latency>24</Latency>
+                        <AbsoluteTimeLatency>0.120 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </reset_label6>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:544~benchmarks/chstone/adpcm/src/adpcm.c:774</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <reset_label6>
+                            <Name>reset_label6</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:569~benchmarks/chstone/adpcm/src/adpcm.c:774</SourceLocation>
+                        </reset_label6>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>7</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>51</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="reset_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln569_fu_60_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:569" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln569"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>adpcm_main_Pipeline_reset_label7</Name>
+            <Loops>
+                <reset_label7/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>1.999</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>13</Best-caseLatency>
+                    <Average-caseLatency>13</Average-caseLatency>
+                    <Worst-caseLatency>13</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>65.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>65.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>65.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>13</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <reset_label7>
+                        <Name>reset_label7</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>11</TripCount>
+                        <Latency>11</Latency>
+                        <AbsoluteTimeLatency>55.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </reset_label7>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:544~benchmarks/chstone/adpcm/src/adpcm.c:774</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <reset_label7>
+                            <Name>reset_label7</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:572~benchmarks/chstone/adpcm/src/adpcm.c:774</SourceLocation>
+                        </reset_label7>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>6</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>51</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="reset_label7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln572_fu_76_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln572"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>encode</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <TargetInitiationInterval>4294967295</TargetInitiationInterval>
+                    <EstimatedClockPeriod>3.794</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>26</Best-caseLatency>
+                    <Average-caseLatency>26</Average-caseLatency>
+                    <Worst-caseLatency>26</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.130 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.130 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.130 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>25</PipelineInitiationInterval>
+                    <PipelineDepth>27</PipelineDepth>
+                    <PipelineType>yes</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>Timing Violation</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:250</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>84</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>1</UTIL_DSP>
+                    <FF>7194</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>8679</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="xa_fu_1698_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:261" STORAGESUBTYPE="" URAM="0" VARIABLE="xa"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_9ns_41_2_1_U20" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln267"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln266_fu_1726_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:266" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln266"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_11s_43_2_1_U26" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln267_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_12ns_44_2_1_U21" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln267_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_11s_42_2_1_U25" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln267_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_13s_44_2_1_U27" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:266" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln266"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_13ns_45_2_1_U22" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:266" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln266_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_15ns_47_2_1_U23" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln267_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_15ns_47_2_1_U24" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:266" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln266_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_13ns_45_2_1_U22" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln267_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_13s_45_2_1_U28" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:266" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln266_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_11s_43_2_1_U26" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln267_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_12ns_44_2_1_U21" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:266" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln266_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_11s_42_2_1_U25" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln267_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln267_fu_1756_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln267"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_9ns_41_2_1_U20" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:266" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln266_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="tmp_fu_1282_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_33s_7s_40_2_1_U29" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp33"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="tmp34_fu_1292_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:270" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp34"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_33s_7s_40_2_1_U30" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:270" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp35"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln270_fu_1770_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:270" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln270"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln270_6_fu_1599_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:270" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln270_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_46_2_1_U15" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:587" STORAGESUBTYPE="" URAM="0" VARIABLE="zl"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_46_2_1_U15" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_46_2_1_U16" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_46_2_1_U15" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_46_2_1_U16" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_46_2_1_U16" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln589_fu_1464_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln589"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln271_fu_1800_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln271"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln271_fu_1810_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln271"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln271_1_fu_1669_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln271_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln271_6_fu_1815_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln271_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln271_7_fu_1922_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln271_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln281_fu_1939_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:281" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln281"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln282_fu_1943_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:282" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln282"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_2_1_U17" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:600" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln600"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_2_1_U14" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:604" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln604"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_1036_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:604" STORAGESUBTYPE="" URAM="0" VARIABLE="pl_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln295_fu_1967_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:295" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln295"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln296_fu_1975_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:296" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln296"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="m_fu_2017_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:245" STORAGESUBTYPE="" URAM="0" VARIABLE="m"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_10ns_24_1_1_U31" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln620_fu_2077_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln620"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_11ns_25_1_1_U33" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_12ns_26_1_1_U34" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_12ns_26_1_1_U35" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_12ns_26_1_1_U36" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_13ns_27_1_1_U37" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_13ns_27_1_1_U38" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_13ns_27_1_1_U39" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_13ns_27_1_1_U40" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_13ns_27_1_1_U41" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_14ns_28_1_1_U42" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_10"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_14ns_28_1_1_U43" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_14ns_28_1_1_U44" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_12"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_14ns_28_1_1_U45" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_14ns_28_1_1_U46" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_14"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_14ns_28_1_1_U47" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_14ns_28_1_1_U48" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_16"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln620_fu_2541_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln620"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_15ns_29_1_1_U49" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_15ns_29_1_1_U50" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_15ns_29_1_1_U51" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_15ns_29_1_1_U52" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_15ns_29_1_1_U53" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_21"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_15ns_29_1_1_U54" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_22"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_15ns_29_1_1_U55" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_23"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_16ns_30_1_1_U56" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_24"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_16ns_30_1_1_U59" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_25"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_16ns_30_1_1_U61" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln620_26"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln620_1_fu_3274_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln620_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U68" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:303" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln303"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln639_fu_3690_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:639" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln639"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln640_fu_3714_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:640" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln640"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln656_fu_3983_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:656" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln656"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln313_fu_3869_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:313" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln313"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_fu_3886_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_1_fu_3910_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_2_fu_4019_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_3_fu_4043_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_4_fu_4252_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_5_fu_4067_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U69" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_fu_4102_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U70" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_1_fu_4127_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U71" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_2_fu_4152_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U72" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_3_fu_4177_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U73" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_4_fu_4288_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U74" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_5_fu_4202_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_2_1_U18" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:705" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln705"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln706_fu_4308_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:706" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln706"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_2_1_U19" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:708" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln708"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln716_fu_4359_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:716" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln716"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln734_fu_4448_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:734" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln734"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="apl1_fu_4475_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:735" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="wd3_7_fu_4481_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:744" STORAGESUBTYPE="" URAM="0" VARIABLE="wd3_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="apl1_2_fu_4509_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:747" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln330_fu_3963_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:330" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln330"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_2_1_U12" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:587" STORAGESUBTYPE="" URAM="0" VARIABLE="zl_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_2_1_U12" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_2_1_U13" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_2_1_U12" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_2_1_U13" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_2_1_U13" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln589_5_fu_1490_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln589_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_2_1_U17" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:600" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln600_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_2_1_U14" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:604" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln604_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_1036_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:604" STORAGESUBTYPE="" URAM="0" VARIABLE="pl_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln345_fu_1989_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:345" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln345"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln347_fu_1997_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:347" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln347"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_11ns_25_1_1_U32" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:359" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln359"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="m_2_fu_2011_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:245" STORAGESUBTYPE="" URAM="0" VARIABLE="m_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln364_fu_2804_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:364" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln364"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_15ns_29_1_1_U60" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:364" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln364"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln759_fu_2844_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:759" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln759"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln760_fu_2882_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:760" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln760"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln656_1_fu_3075_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:656" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln656_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln373_fu_3009_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:373" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln373"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_6_fu_1230_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_7_fu_3111_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_8_fu_1254_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_9_fu_1386_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_10_fu_1410_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_10"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_11_fu_3317_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U62" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_6_fu_3157_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U63" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_7_fu_3188_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U64" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_8_fu_3352_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U65" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_9_fu_3376_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U66" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_10"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_10_fu_3434_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_10"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U67" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_11_fu_3400_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_2_1_U18" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:705" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln705_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln706_1_fu_3450_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:706" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln706_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_2_1_U19" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:708" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln708_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln716_1_fu_3501_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:716" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln716_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln734_1_fu_3612_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:734" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln734_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="apl1_4_fu_3639_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:735" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="wd3_15_fu_3645_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:744" STORAGESUBTYPE="" URAM="0" VARIABLE="wd3_15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="apl1_6_fu_3742_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:747" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln388_fu_3020_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:388" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln388"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="quant26bt_pos_U" SOURCE="" STORAGESIZE="6 31 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="quant26bt_pos"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="quant26bt_neg_U" SOURCE="" STORAGESIZE="6 31 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="quant26bt_neg"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="qq4_code4_table_U" SOURCE="" STORAGESIZE="16 16 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="qq4_code4_table"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="wl_code_table_U" SOURCE="" STORAGESIZE="13 16 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="wl_code_table"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="ilb_table_U" SOURCE="" STORAGESIZE="12 32 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="ilb_table"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>adpcm_main_Pipeline_adpcm_main_label12</Name>
+            <Loops>
+                <adpcm_main_label12/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.794</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>100004</Best-caseLatency>
+                    <Average-caseLatency>100004</Average-caseLatency>
+                    <Worst-caseLatency>100004</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.500 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.500 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.500 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>100004</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <adpcm_main_label12>
+                        <Name>adpcm_main_label12</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>4000</TripCount>
+                        <Latency>100002</Latency>
+                        <AbsoluteTimeLatency>0.500 ms</AbsoluteTimeLatency>
+                        <PipelineII>25</PipelineII>
+                        <PipelineDepth>28</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList>
+                            <Instance>grp_encode_fu_138</Instance>
+                        </InstanceList>
+                    </adpcm_main_label12>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>Timing Violation</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:771</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <adpcm_main_label12>
+                            <Name>adpcm_main_label12</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:778</SourceLocation>
+                        </adpcm_main_label12>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>84</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>1</UTIL_DSP>
+                    <FF>7262</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>9055</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>1</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="adpcm_main_label12" OPTYPE="add" PRAGMA="" RTLNAME="add_ln778_fu_239_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:778" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln778"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>decode</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <TargetInitiationInterval>4294967295</TargetInitiationInterval>
+                    <EstimatedClockPeriod>3.623</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>10</Best-caseLatency>
+                    <Average-caseLatency>10</Average-caseLatency>
+                    <Worst-caseLatency>10</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>50.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>50.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>50.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>9</PipelineInitiationInterval>
+                    <PipelineDepth>11</PipelineDepth>
+                    <PipelineType>yes</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:403</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>1</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>~0</UTIL_BRAM>
+                    <DSP>69</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>1</UTIL_DSP>
+                    <FF>7558</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>6880</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_46_2_1_U159" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:587" STORAGESUBTYPE="" URAM="0" VARIABLE="zl"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_46_2_1_U160" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_46_2_1_U159" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_10"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_46_2_1_U160" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_46_2_1_U159" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_12"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_46_2_1_U160" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln589_fu_1650_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln589"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_2_1_U161" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:600" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln600"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_2_1_U157" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:604" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln604"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="pl_4_fu_1655_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:604" STORAGESUBTYPE="" URAM="0" VARIABLE="pl_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln422_fu_1936_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:422" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln422"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U181" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:425" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln425"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U183" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:428" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln428"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln430_fu_2212_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:430" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln430"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln639_fu_957_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:639" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln639"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln640_fu_981_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:640" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln640"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln656_fu_1508_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:656" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln656"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln440_fu_1948_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:440" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln440"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_fu_995_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_12_fu_1019_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_12"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_13_fu_1351_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_14_fu_1375_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_14"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_15_fu_1961_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_16_fu_1985_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_16"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U187" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_fu_2236_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U188" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_12"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_12_fu_2261_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_12"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U189" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_13_fu_2286_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U190" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_14"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_14_fu_2310_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_14"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U191" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_15_fu_2334_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U192" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_16"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_16_fu_2358_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_16"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_2_1_U163" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:705" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln705"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln706_fu_2741_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:706" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln706"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_2_1_U164" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:708" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln708"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln716_fu_2792_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:716" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln716"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln734_fu_3021_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:734" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln734"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="apl1_fu_3048_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:735" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="wd3_20_fu_3054_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:744" STORAGESUBTYPE="" URAM="0" VARIABLE="wd3_20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="apl1_9_fu_3234_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:747" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln452_fu_2386_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:452" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln452"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_2_1_U155" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:587" STORAGESUBTYPE="" URAM="0" VARIABLE="zl_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_2_1_U156" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_14"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_2_1_U155" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_2_1_U156" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_16"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_2_1_U155" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_2_1_U156" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln589_18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln589_14_fu_1684_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:589" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln589_14"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_2_1_U162" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:600" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln600_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_2_1_U158" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:604" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln604_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="pl_6_fu_1689_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:604" STORAGESUBTYPE="" URAM="0" VARIABLE="pl_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_15ns_29_1_1_U179" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:472" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln472"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln759_fu_811_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:759" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln759"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln760_fu_849_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:760" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln760"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln656_2_fu_1443_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:656" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln656_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln481_fu_2083_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:481" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln481"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_17_fu_1569_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_18_fu_1169_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_19_fu_1710_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_20_fu_1734_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_21_fu_2097_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_21"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln672_22_fu_2121_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:672" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln672_22"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U182" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_17_fu_1605_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U184" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_18_fu_1776_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U185" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_19_fu_1806_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U186" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_20_fu_1837_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U193" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_21"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_21_fu_2162_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_21"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U194" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:679" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln679_22"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln684_22_fu_2427_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:684" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln684_22"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_2_1_U165" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:705" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln705_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln706_2_fu_2851_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:706" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln706_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_2_1_U166" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:708" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln708_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln716_2_fu_2902_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:716" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln716_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln734_2_fu_3104_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:734" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln734_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="apl1_11_fu_3131_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:735" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="wd3_28_fu_3137_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:744" STORAGESUBTYPE="" URAM="0" VARIABLE="wd3_28"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="apl1_13_fu_3286_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:747" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln493_fu_2455_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:493" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln493"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln504_fu_2480_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:504" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln504"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln505_fu_2486_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:505" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln505"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="xa1_fu_2516_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:511" STORAGESUBTYPE="" URAM="0" VARIABLE="xa1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_9ns_41_2_1_U167" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:517" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln517"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_11s_42_2_1_U172" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:516" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln516_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_12ns_44_2_1_U168" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:517" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln517_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_11s_43_2_1_U174" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:516" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln516"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_13s_45_2_1_U175" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:517" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln517_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_13ns_45_2_1_U169" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:516" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln516_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_15ns_46_2_1_U170" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:516" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln516_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_15ns_46_2_1_U171" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:517" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln517_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_13ns_45_2_1_U169" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:517" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln517_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_13s_45_2_1_U175" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:516" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln516_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_11s_42_2_1_U172" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:516" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln516_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_12ns_44_2_1_U168" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:516" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln516_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_11s_42_2_1_U173" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:517" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln517_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln517_fu_3165_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:517" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln517"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_9ns_41_2_1_U167" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:516" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln516_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="tmp_fu_1644_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:520" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_33s_7s_40_2_1_U177" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:520" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp34"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln520_1_fu_2189_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:520" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln520_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln520_4_fu_2545_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:520" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln520_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln520_5_fu_2555_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:520" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln520_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln520_6_fu_2677_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:520" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln520_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln520_7_fu_2687_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:520" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln520_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln521_fu_2971_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:521" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln521"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="tmp35_fu_2560_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:520" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp35"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_33s_7s_39_2_1_U176" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:521" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln521"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln521_fu_1876_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:521" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln521"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln521_4_fu_2566_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:521" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln521_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln521_6_fu_3187_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:521" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln521_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln521_7_fu_3196_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:521" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln521_7"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="qq4_code4_table_U" SOURCE="" STORAGESIZE="16 16 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="qq4_code4_table"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="qq6_code6_table_U" SOURCE="" STORAGESIZE="16 64 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="qq6_code6_table"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="wl_code_table_U" SOURCE="" STORAGESIZE="13 16 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="wl_code_table"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="ilb_table_U" SOURCE="" STORAGESIZE="12 32 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="ilb_table"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>adpcm_main_Pipeline_adpcm_main_label13</Name>
+            <Loops>
+                <adpcm_main_label13/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.623</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>48003</Best-caseLatency>
+                    <Average-caseLatency>48003</Average-caseLatency>
+                    <Worst-caseLatency>48003</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.240 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.240 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.240 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>48003</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <adpcm_main_label13>
+                        <Name>adpcm_main_label13</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>4000</TripCount>
+                        <Latency>48001</Latency>
+                        <AbsoluteTimeLatency>0.240 ms</AbsoluteTimeLatency>
+                        <PipelineII>12</PipelineII>
+                        <PipelineDepth>14</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList>
+                            <Instance>grp_decode_fu_142</Instance>
+                        </InstanceList>
+                    </adpcm_main_label13>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:771</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <adpcm_main_label13>
+                            <Name>adpcm_main_label13</Name>
+                            <IssueType>II Violation</IssueType>
+                            <ViolationType>Memory Dependency</ViolationType>
+                            <IterationDistance>1</IterationDistance>
+                            <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:782</SourceLocation>
+                        </adpcm_main_label13>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>1</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>~0</UTIL_BRAM>
+                    <DSP>69</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>1</UTIL_DSP>
+                    <FF>7686</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>7198</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="adpcm_main_label13" OPTYPE="add" PRAGMA="" RTLNAME="add_ln782_fu_238_p2" SOURCE="benchmarks/chstone/adpcm/src/adpcm.c:782" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln782"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>adpcm_main</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.794</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>148038</Best-caseLatency>
+                    <Average-caseLatency>148038</Average-caseLatency>
+                    <Worst-caseLatency>148038</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.740 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.740 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.740 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>148039</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/chstone/adpcm/src/adpcm.c:769</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>1</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>~0</UTIL_BRAM>
+                    <DSP>153</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>2</UTIL_DSP>
+                    <FF>16305</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>17671</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>2</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="delay_dltx_U" SOURCE="" STORAGESIZE="16 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="delay_dltx"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="delay_dhx_U" SOURCE="" STORAGESIZE="14 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="delay_dhx"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="dec_del_dltx_U" SOURCE="" STORAGESIZE="16 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="dec_del_dltx"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="dec_del_dhx_U" SOURCE="" STORAGESIZE="14 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="dec_del_dhx"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="delay_bpl_U" SOURCE="" STORAGESIZE="32 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="delay_bpl"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="delay_bph_U" SOURCE="" STORAGESIZE="32 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="delay_bph"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="dec_del_bpl_U" SOURCE="" STORAGESIZE="32 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="dec_del_bpl"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="dec_del_bph_U" SOURCE="" STORAGESIZE="32 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="dec_del_bph"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="tqmf_U" SOURCE="" STORAGESIZE="32 24 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="tqmf"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="accumc_U" SOURCE="" STORAGESIZE="32 11 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="accumc"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="accumd_U" SOURCE="" STORAGESIZE="32 11 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="accumd"/>
+            </BindNodes>
+        </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+    <UserConfigCommands/>
+    <Args>
+        <Arg ArgName="input_samples" index="0" direction="in" srcType="int const *" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="input_samples_address0" name="input_samples_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="input_samples_ce0" name="input_samples_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="input_samples_q0" name="input_samples_q0" usage="data" direction="in"/>
+                <hwRef type="port" interface="input_samples_address1" name="input_samples_address1" usage="address" direction="out"/>
+                <hwRef type="port" interface="input_samples_ce1" name="input_samples_ce1" usage="control" direction="out"/>
+                <hwRef type="port" interface="input_samples_q1" name="input_samples_q1" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="compressed" index="1" direction="inout" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="compressed_address0" name="compressed_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="compressed_ce0" name="compressed_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="compressed_we0" name="compressed_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="compressed_d0" name="compressed_d0" usage="data" direction="out"/>
+                <hwRef type="port" interface="compressed_q0" name="compressed_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="result" index="2" direction="out" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="result_address0" name="result_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="result_ce0" name="result_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="result_we0" name="result_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="result_d0" name="result_d0" usage="data" direction="out"/>
+                <hwRef type="port" interface="result_address1" name="result_address1" usage="address" direction="out"/>
+                <hwRef type="port" interface="result_ce1" name="result_ce1" usage="control" direction="out"/>
+                <hwRef type="port" interface="result_we1" name="result_we1" usage="control" direction="out"/>
+                <hwRef type="port" interface="result_d1" name="result_d1" usage="data" direction="out"/>
+            </hwRefs>
+        </Arg>
+    </Args>
+    <Interfaces>
+        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
+            <busParams>
+                <busParam busParamName="ASSOCIATED_RESET">ap_rst</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_clk">CLK</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_clk</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_HIGH</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_ctrl" type="ap_ctrl" busTypeName="acc_handshake" mode="slave">
+            <portMaps>
+                <portMap portMapName="ap_start">start</portMap>
+                <portMap portMapName="ap_done">done</portMap>
+                <portMap portMapName="ap_idle">idle</portMap>
+                <portMap portMapName="ap_ready">ready</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_done</port>
+                <port>ap_idle</port>
+                <port>ap_ready</port>
+                <port>ap_start</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="input_samples_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="13">
+            <portMaps>
+                <portMap portMapName="input_samples_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>input_samples_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="input_samples"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="input_samples_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="input_samples_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>input_samples_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="input_samples"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="input_samples_address1" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="13">
+            <portMaps>
+                <portMap portMapName="input_samples_address1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>input_samples_address1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="input_samples"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="input_samples_q1" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="input_samples_q1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>input_samples_q1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="input_samples"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="compressed_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="12">
+            <portMaps>
+                <portMap portMapName="compressed_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>compressed_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="compressed"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="compressed_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="compressed_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>compressed_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="compressed"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="compressed_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="compressed_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>compressed_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="compressed"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="13">
+            <portMaps>
+                <portMap portMapName="result_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="result"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="result_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="result"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_address1" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="13">
+            <portMaps>
+                <portMap portMapName="result_address1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_address1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="result"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result_d1" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="result_d1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result_d1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="result"/>
+            </constraints>
+        </Interface>
+    </Interfaces>
+    <ReportHWInterface>
+        <section name="HW Interfaces" level="0">
+            <item name="AP_MEMORY">
+                <table>
+                    <keys size="3">Port, Direction, Bitwidth</keys>
+                    <column name="compressed_address0">out, 12</column>
+                    <column name="compressed_d0">out, 32</column>
+                    <column name="compressed_q0">in, 32</column>
+                    <column name="input_samples_address0">out, 13</column>
+                    <column name="input_samples_address1">out, 13</column>
+                    <column name="input_samples_q0">in, 32</column>
+                    <column name="input_samples_q1">in, 32</column>
+                    <column name="result_address0">out, 13</column>
+                    <column name="result_address1">out, 13</column>
+                    <column name="result_d0">out, 32</column>
+                    <column name="result_d1">out, 32</column>
+                </table>
+            </item>
+            <item name="TOP LEVEL CONTROL">
+                <table>
+                    <keys size="3">Interface, Type, Ports</keys>
+                    <column name="ap_clk">clock, ap_clk</column>
+                    <column name="ap_rst">reset, ap_rst</column>
+                    <column name="ap_ctrl">ap_ctrl_hs, ap_done ap_idle ap_ready ap_start</column>
+                </table>
+            </item>
+        </section>
+    </ReportHWInterface>
+    <ReportSWInterface>
+        <section name="SW I/O Information" level="0">
+            <item name="Top Function Arguments">
+                <table>
+                    <keys size="3">Argument, Direction, Datatype</keys>
+                    <column name="input_samples">in, int const *</column>
+                    <column name="compressed">inout, int*</column>
+                    <column name="result">out, int*</column>
+                </table>
+            </item>
+            <item name="SW-to-HW Mapping">
+                <table>
+                    <keys size="4">Argument, HW Interface, HW Type, HW Usage</keys>
+                    <column name="input_samples">input_samples_address0, port, offset</column>
+                    <column name="input_samples">input_samples_ce0, port, </column>
+                    <column name="input_samples">input_samples_q0, port, </column>
+                    <column name="input_samples">input_samples_address1, port, offset</column>
+                    <column name="input_samples">input_samples_ce1, port, </column>
+                    <column name="input_samples">input_samples_q1, port, </column>
+                    <column name="compressed">compressed_address0, port, offset</column>
+                    <column name="compressed">compressed_ce0, port, </column>
+                    <column name="compressed">compressed_we0, port, </column>
+                    <column name="compressed">compressed_d0, port, </column>
+                    <column name="compressed">compressed_q0, port, </column>
+                    <column name="result">result_address0, port, offset</column>
+                    <column name="result">result_ce0, port, </column>
+                    <column name="result">result_we0, port, </column>
+                    <column name="result">result_d0, port, </column>
+                    <column name="result">result_address1, port, offset</column>
+                    <column name="result">result_ce1, port, </column>
+                    <column name="result">result_we1, port, </column>
+                    <column name="result">result_d1, port, </column>
+                </table>
+            </item>
+        </section>
+    </ReportSWInterface>
+    <ResolutionUrl key="ZZZ">docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
+    <PragmaReport/>
+</profile>
+

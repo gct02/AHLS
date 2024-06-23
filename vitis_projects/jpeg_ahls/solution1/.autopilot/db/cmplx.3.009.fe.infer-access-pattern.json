@@ -1,0 +1,127 @@
+{
+  "0": {
+    "basicblocks": 1,
+    "calls": "3 2 2 2 2 1",
+    "file": "jpeg2bmp.c",
+    "fileloc": 5,
+    "instructions": 36,
+    "loads": {
+      "G": 2
+    },
+    "name": "jpeg2bmp",
+    "stores": {
+      "G": 6,
+      "L": 2
+    },
+    "total_instructions": 1538
+  },
+  "1": {
+    "basicblocks": 24,
+    "calls": "5",
+    "file": "jpeg_decode.c",
+    "fileloc": 789,
+    "instructions": 149,
+    "loads": {
+      "G": 8,
+      "L": 6
+    },
+    "name": "decode",
+    "stores": {
+      "G": 4,
+      "L": 7
+    },
+    "total_instructions": 823
+  },
+  "2": {
+    "basicblocks": 19,
+    "calls": "",
+    "file": "jpeg_decode.c",
+    "fileloc": 626,
+    "instructions": 110,
+    "loads": {
+      "L": 7
+    },
+    "name": "huff_make_dhuff_tb",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 110
+  },
+  "3": {
+    "basicblocks": 50,
+    "calls": "",
+    "file": "jpeg_decode.c",
+    "fileloc": 1161,
+    "instructions": 239,
+    "loads": {
+      "G": 5
+    },
+    "name": "read_markers",
+    "stores": {
+      "G": 10
+    },
+    "total_instructions": 239
+  },
+  "4": {
+    "basicblocks": 10,
+    "calls": "",
+    "file": "jpeg_decode.c",
+    "fileloc": 589,
+    "instructions": 64,
+    "loads": {
+      "G": 6
+    },
+    "name": "buf_getv",
+    "stores": {
+      "G": 8
+    },
+    "total_instructions": 64
+  },
+  "5": {
+    "basicblocks": 34,
+    "calls": "6 4 6 4 7",
+    "file": "jpeg_decode.c",
+    "fileloc": 769,
+    "instructions": 149,
+    "loads": {
+      "G": 8,
+      "L": 5
+    },
+    "name": "decode_block",
+    "stores": {
+      "L": 9
+    },
+    "total_instructions": 674
+  },
+  "6": {
+    "basicblocks": 10,
+    "calls": "",
+    "file": "jpeg_decode.c",
+    "fileloc": 680,
+    "instructions": 74,
+    "loads": {
+      "G": 8,
+      "L": 5
+    },
+    "name": "DecodeHuffman",
+    "stores": {
+      "G": 8
+    },
+    "total_instructions": 74
+  },
+  "7": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "jpeg_decode.c",
+    "fileloc": 169,
+    "instructions": 249,
+    "loads": {
+      "L": 17
+    },
+    "name": "ChenIDct",
+    "stores": {
+      "L": 17
+    },
+    "total_instructions": 249
+  }
+}

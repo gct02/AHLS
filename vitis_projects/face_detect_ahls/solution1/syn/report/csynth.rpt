@@ -1,0 +1,281 @@
+
+
+================================================================
+== Synthesis Summary Report of 'face_detect'
+================================================================
++ General Information: 
+    * Date:           Mon Jun 17 16:50:02 2024
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        face_detect_ahls
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtexuplusHBM
+    * Target device:  xcvu35p-fsvh2104-1-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +----------------------------------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------------+----------+------------+------------+-----+
+    |                             Modules                            | Issue|      | Latency |  Latency  | Iteration|         |  Trip |          |            |          |            |            |     |
+    |                             & Loops                            | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count | Pipelined|    BRAM    |    DSP   |     FF     |     LUT    | URAM|
+    +----------------------------------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------------+----------+------------+------------+-----+
+    |+ face_detect                                                   |     -|  0.01|        -|          -|         -|        -|      -|        no|  1766 (65%)|  30 (~0%)|  6914 (~0%)|  12662 (1%)|    -|
+    | o L1                                                           |     -|  3.65|        -|          -|         -|        -|      -|        no|           -|         -|           -|           -|    -|
+    |  + face_detect_Pipeline_nearestNeighborL1_nearestNeighborL1_1  |     -|  0.11|    76804|  3.840e+05|         -|    76804|      -|        no|           -|   3 (~0%)|   152 (~0%)|   413 (~0%)|    -|
+    |   o nearestNeighborL1_nearestNeighborL1_1                      |     -|  3.65|    76802|  3.840e+05|         4|        1|  76800|       yes|           -|         -|           -|           -|    -|
+    |  + processImage                                                |     -|  0.04|        -|          -|         -|        -|      -|        no|  1726 (64%)|  21 (~0%)|  4672 (~0%)|  7813 (~0%)|    -|
+    |   + processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2    |     -|  0.05|        -|          -|         -|        -|      -|        no|           -|   1 (~0%)|   704 (~0%)|  1060 (~0%)|    -|
+    |    o VITIS_LOOP_306_1_VITIS_LOOP_311_2                         |    II|  3.65|        -|          -|         6|        2|      -|       yes|           -|         -|           -|           -|    -|
+    |   o Pixely                                                     |     -|  3.65|        -|          -|         -|        -|      -|        no|           -|         -|           -|           -|    -|
+    |    o Pixelx                                                    |     -|  3.65|        -|          -|      5909|        -|      -|        no|           -|         -|           -|           -|    -|
+    |     + cascadeClassifier                                        |     -|  0.11|     5890|  2.945e+04|         -|     5890|      -|        no|     46 (1%)|  16 (~0%)|  3062 (~0%)|  3584 (~0%)|    -|
+    |      + cascadeClassifier_Pipeline_VITIS_LOOP_379_1             |     -|  1.56|       18|     90.000|         -|       18|      -|        no|           -|         -|   102 (~0%)|   315 (~0%)|    -|
+    |       o VITIS_LOOP_379_1                                       |     -|  3.65|       16|     80.000|         1|        1|     16|       yes|           -|         -|           -|           -|    -|
+    |      o Stages                                                  |     -|  3.65|     5863|  2.932e+04|       234|        -|     25|        no|           -|         -|           -|           -|    -|
+    |       + cascadeClassifier_Pipeline_Filters                     |     -|  0.11|      220|  1.100e+03|         -|      220|      -|        no|     46 (1%)|   8 (~0%)|  1922 (~0%)|  1884 (~0%)|    -|
+    |        o Filters                                               |     -|  3.65|      218|  1.090e+03|         9|        1|    211|       yes|           -|         -|           -|           -|    -|
+    +----------------------------------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------------+----------+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++-------------------+-----------+----------+
+| Port              | Direction | Bitwidth |
++-------------------+-----------+----------+
+| Data_address0     | out       | 17       |
+| Data_q0           | in        | 8        |
+| result_h_address0 | out       | 7        |
+| result_h_d0       | out       | 32       |
+| result_w_address0 | out       | 7        |
+| result_w_d0       | out       | 32       |
+| result_x_address0 | out       | 7        |
+| result_x_d0       | out       | 32       |
+| result_y_address0 | out       | 7        |
+| result_y_d0       | out       | 32       |
++-------------------+-----------+----------+
+
+* Other Ports
++-------------+--------+-----------+----------+
+| Port        | Mode   | Direction | Bitwidth |
++-------------+--------+-----------+----------+
+| result_size | ap_vld | out       | 32       |
++-------------+--------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++-------------+-----------+----------------+
+| Argument    | Direction | Datatype       |
++-------------+-----------+----------------+
+| Data        | in        | unsigned char* |
+| result_x    | out       | int*           |
+| result_y    | out       | int*           |
+| result_w    | out       | int*           |
+| result_h    | out       | int*           |
+| result_size | inout     | int*           |
++-------------+-----------+----------------+
+
+* SW-to-HW Mapping
++-------------+--------------------+---------+----------+
+| Argument    | HW Interface       | HW Type | HW Usage |
++-------------+--------------------+---------+----------+
+| Data        | Data_address0      | port    | offset   |
+| Data        | Data_ce0           | port    |          |
+| Data        | Data_q0            | port    |          |
+| result_x    | result_x_address0  | port    | offset   |
+| result_x    | result_x_ce0       | port    |          |
+| result_x    | result_x_we0       | port    |          |
+| result_x    | result_x_d0        | port    |          |
+| result_y    | result_y_address0  | port    | offset   |
+| result_y    | result_y_ce0       | port    |          |
+| result_y    | result_y_we0       | port    |          |
+| result_y    | result_y_d0        | port    |          |
+| result_w    | result_w_address0  | port    | offset   |
+| result_w    | result_w_ce0       | port    |          |
+| result_w    | result_w_we0       | port    |          |
+| result_w    | result_w_d0        | port    |          |
+| result_h    | result_h_address0  | port    | offset   |
+| result_h    | result_h_ce0       | port    |          |
+| result_h    | result_h_we0       | port    |          |
+| result_h    | result_h_d0        | port    |          |
+| result_size | result_size        | port    |          |
+| result_size | result_size_ap_vld | port    |          |
++-------------+--------------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++---------------------------------------------------------------+-----+--------+----------------+------+-----------+---------+
+| Name                                                          | DSP | Pragma | Variable       | Op   | Impl      | Latency |
++---------------------------------------------------------------+-----+--------+----------------+------+-----------+---------+
+| + face_detect                                                 | 30  |        |                |      |           |         |
+|   fdiv_32ns_32ns_32_10_no_dsp_1_U86                           |     |        | dc_2           | fdiv | fabric    | 9       |
+|   fdiv_32ns_32ns_32_10_no_dsp_1_U87                           |     |        | dc_3           | fdiv | fabric    | 9       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U85                           | 3   |        | value_assign   | fmul | maxdsp    | 3       |
+|   dadd_64ns_64ns_64_5_full_dsp_1_U91                          | 3   |        | dc             | dadd | fulldsp   | 4       |
+|   add_ln486_fu_721_p2                                         |     |        | add_ln486      | add  | fabric    | 0       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U85                           |     |        | sub_ln18       | sub  | fabric    | 0       |
+|   dadd_64ns_64ns_64_5_full_dsp_1_U91                          |     |        | add_ln317      | add  | fabric    | 0       |
+|   sub_ln18_2_fu_455_p2                                        |     |        | sub_ln18_2     | sub  | fabric    | 0       |
+|   result_12_fu_773_p2                                         |     |        | result_12      | sub  | fabric    | 0       |
+|   add_ln317_1_fu_545_p2                                       |     |        | add_ln317_1    | add  | fabric    | 0       |
+|   sub_ln18_3_fu_559_p2                                        |     |        | sub_ln18_3     | sub  | fabric    | 0       |
+|   result_15_fu_785_p2                                         |     |        | result_15      | sub  | fabric    | 0       |
+|   sub_ln357_fu_800_p2                                         |     |        | sub_ln357      | sub  | fabric    | 0       |
+|   x_ratio_fu_817_p2                                           |     |        | x_ratio        | add  | fabric    | 0       |
+|   sub_ln358_fu_827_p2                                         |     |        | sub_ln358      | sub  | fabric    | 0       |
+|   y_ratio_fu_840_p2                                           |     |        | y_ratio        | add  | fabric    | 0       |
+|   result_fu_883_p2                                            |     |        | result         | sub  | fabric    | 0       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U85                           | 3   |        | factor_1       | fmul | maxdsp    | 3       |
+|  + face_detect_Pipeline_nearestNeighborL1_nearestNeighborL1_1 | 3   |        |                |      |           |         |
+|    add_ln361_1_fu_170_p2                                      |     |        | add_ln361_1    | add  | fabric    | 0       |
+|    add_ln361_fu_182_p2                                        |     |        | add_ln361      | add  | fabric    | 0       |
+|    mul_8ns_24s_24_1_1_U2                                      | 1   |        | empty          | mul  | auto      | 0       |
+|    add_ln368_1_fu_344_p2                                      |     |        | add_ln368_1    | add  | fabric    | 0       |
+|    mul_9ns_28s_32_1_1_U1                                      | 2   |        | mul_ln368      | mul  | auto      | 0       |
+|    add_ln368_3_fu_367_p2                                      |     |        | add_ln368_3    | add  | fabric    | 0       |
+|    add_ln364_fu_219_p2                                        |     |        | add_ln364      | add  | fabric    | 0       |
+|  + processImage                                               | 21  |        |                |      |           |         |
+|    mul_32s_32s_64_2_1_U70                                     | 4   |        | bound          | mul  | auto      | 1       |
+|    add_ln132_fu_385_p2                                        |     |        | add_ln132      | add  | fabric    | 0       |
+|    add_ln132_1_fu_390_p2                                      |     |        | add_ln132_1    | add  | fabric    | 0       |
+|    y_fu_408_p2                                                |     |        | y              | add  | fabric    | 0       |
+|    x_fu_487_p2                                                |     |        | x              | add  | fabric    | 0       |
+|    add_ln486_fu_719_p2                                        |     |        | add_ln486      | add  | fabric    | 0       |
+|    sub_ln18_fu_733_p2                                         |     |        | sub_ln18       | sub  | fabric    | 0       |
+|    result_2_fu_799_p2                                         |     |        | result_2       | sub  | fabric    | 0       |
+|    add_ln486_1_fu_537_p2                                      |     |        | add_ln486_1    | add  | fabric    | 0       |
+|    sub_ln18_1_fu_551_p2                                       |     |        | sub_ln18_1     | sub  | fabric    | 0       |
+|    result_5_fu_617_p2                                         |     |        | result_5       | sub  | fabric    | 0       |
+|    add_ln145_fu_819_p2                                        |     |        | add_ln145      | add  | fabric    | 0       |
+|   + processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2   | 1   |        |                |      |           |         |
+|     add_ln306_1_fu_228_p2                                     |     |        | add_ln306_1    | add  | fabric    | 0       |
+|     add_ln306_fu_237_p2                                       |     |        | add_ln306      | add  | fabric    | 0       |
+|     empty_fu_314_p2                                           |     |        | empty          | add  | fabric    | 0       |
+|     t_fu_386_p2                                               |     |        | t              | add  | fabric    | 0       |
+|     mac_muladd_8ns_8ns_32ns_32_4_1_U11                        | 1   |        | mul_ln316      | mul  | dsp_slice | 3       |
+|     mac_muladd_8ns_8ns_32ns_32_4_1_U11                        | 1   |        | tq             | add  | dsp_slice | 3       |
+|     t_1_fu_411_p2                                             |     |        | t_1            | add  | fabric    | 0       |
+|     tq_1_fu_474_p2                                            |     |        | tq_1           | add  | fabric    | 0       |
+|     add_ln311_fu_363_p2                                       |     |        | add_ln311      | add  | fabric    | 0       |
+|   + cascadeClassifier                                         | 16  |        |                |      |           |         |
+|     add_ln180_fu_389_p2                                       |     |        | add_ln180      | add  | fabric    | 0       |
+|     add_ln180_1_fu_395_p2                                     |     |        | add_ln180_1    | add  | fabric    | 0       |
+|     add_ln176_fu_407_p2                                       |     |        | add_ln176      | add  | fabric    | 0       |
+|     add_ln181_fu_413_p2                                       |     |        | add_ln181      | add  | fabric    | 0       |
+|     sub_ln176_fu_431_p2                                       |     |        | sub_ln176      | sub  | fabric    | 0       |
+|     add_ln177_fu_425_p2                                       |     |        | add_ln177      | add  | fabric    | 0       |
+|     add_ln182_fu_459_p2                                       |     |        | add_ln182      | add  | fabric    | 0       |
+|     add_ln182_1_fu_465_p2                                     |     |        | add_ln182_1    | add  | fabric    | 0       |
+|     add_ln183_fu_476_p2                                       |     |        | add_ln183      | add  | fabric    | 0       |
+|     sub_ln181_fu_487_p2                                       |     |        | sub_ln181      | sub  | fabric    | 0       |
+|     stddev_1_fu_542_p2                                        |     |        | stddev_1       | add  | fabric    | 0       |
+|     stddev_2_fu_551_p2                                        |     |        | stddev_2       | sub  | fabric    | 0       |
+|     add_ln199_fu_595_p2                                       |     |        | add_ln199      | add  | fabric    | 0       |
+|     add_ln200_fu_629_p2                                       |     |        | add_ln200      | add  | fabric    | 0       |
+|     haar_counter_2_fu_636_p2                                  |     |        | haar_counter_2 | add  | fabric    | 0       |
+|     dmul_64ns_64ns_64_6_max_dsp_1_U52                         | 8   |        | mul            | dmul | maxdsp    | 5       |
+|     sub_ln257_fu_752_p2                                       |     |        | sub_ln257      | sub  | fabric    | 0       |
+|    + cascadeClassifier_Pipeline_VITIS_LOOP_379_1              | 0   |        |                |      |           |         |
+|      i_2_fu_110_p2                                            |     |        | i_2            | add  | fabric    | 0       |
+|      c_2_fu_209_p2                                            |     |        | c_2            | sub  | fabric    | 0       |
+|    + cascadeClassifier_Pipeline_Filters                       | 8   |        |                |      |           |         |
+|      j_2_fu_1255_p2                                           |     |        | j_2            | add  | fabric    | 0       |
+|      tr0_fu_639_p2                                            |     |        | tr0            | add  | fabric    | 0       |
+|      tr0_2_fu_648_p2                                          |     |        | tr0_2          | add  | fabric    | 0       |
+|      tr1_fu_661_p2                                            |     |        | tr1            | add  | fabric    | 0       |
+|      tr1_2_fu_670_p2                                          |     |        | tr1_2          | add  | fabric    | 0       |
+|      add_ln223_fu_838_p2                                      |     |        | add_ln223      | add  | fabric    | 0       |
+|      add_ln223_1_fu_844_p2                                    |     |        | add_ln223_1    | add  | fabric    | 0       |
+|      add_ln224_fu_854_p2                                      |     |        | add_ln224      | add  | fabric    | 0       |
+|      add_ln224_1_fu_859_p2                                    |     |        | add_ln224_1    | add  | fabric    | 0       |
+|      add_ln225_fu_691_p2                                      |     |        | add_ln225      | add  | fabric    | 0       |
+|      add_ln225_1_fu_892_p2                                    |     |        | add_ln225_1    | add  | fabric    | 0       |
+|      add_ln225_2_fu_898_p2                                    |     |        | add_ln225_2    | add  | fabric    | 0       |
+|      add_ln226_fu_908_p2                                      |     |        | add_ln226      | add  | fabric    | 0       |
+|      add_ln228_fu_941_p2                                      |     |        | add_ln228      | add  | fabric    | 0       |
+|      add_ln228_1_fu_947_p2                                    |     |        | add_ln228_1    | add  | fabric    | 0       |
+|      add_ln229_fu_957_p2                                      |     |        | add_ln229      | add  | fabric    | 0       |
+|      add_ln229_1_fu_962_p2                                    |     |        | add_ln229_1    | add  | fabric    | 0       |
+|      add_ln230_fu_697_p2                                      |     |        | add_ln230      | add  | fabric    | 0       |
+|      add_ln230_1_fu_995_p2                                    |     |        | add_ln230_1    | add  | fabric    | 0       |
+|      add_ln230_2_fu_1001_p2                                   |     |        | add_ln230_2    | add  | fabric    | 0       |
+|      add_ln231_fu_1011_p2                                     |     |        | add_ln231      | add  | fabric    | 0       |
+|      add_ln235_fu_791_p2                                      |     |        | add_ln235      | add  | fabric    | 0       |
+|      add_ln235_2_fu_1044_p2                                   |     |        | add_ln235_2    | add  | fabric    | 0       |
+|      add_ln235_1_fu_796_p2                                    |     |        | add_ln235_1    | add  | fabric    | 0       |
+|      add_ln235_3_fu_1050_p2                                   |     |        | add_ln235_3    | add  | fabric    | 0       |
+|      add_ln236_fu_1060_p2                                     |     |        | add_ln236      | add  | fabric    | 0       |
+|      add_ln236_1_fu_1065_p2                                   |     |        | add_ln236_1    | add  | fabric    | 0       |
+|      add_ln237_fu_801_p2                                      |     |        | add_ln237      | add  | fabric    | 0       |
+|      add_ln237_1_fu_1098_p2                                   |     |        | add_ln237_1    | add  | fabric    | 0       |
+|      add_ln237_2_fu_1104_p2                                   |     |        | add_ln237_2    | add  | fabric    | 0       |
+|      add_ln238_fu_1114_p2                                     |     |        | add_ln238      | add  | fabric    | 0       |
+|      mul_13s_32s_32_2_1_U20                                   | 2   |        | t              | mul  | auto      | 1       |
+|      sub_ln279_fu_1170_p2                                     |     |        | sub_ln279      | sub  | fabric    | 0       |
+|      sub_ln280_fu_1182_p2                                     |     |        | sub_ln280      | sub  | fabric    | 0       |
+|      add_ln281_fu_1218_p2                                     |     |        | add_ln281      | add  | fabric    | 0       |
+|      mul_14ns_32s_32_2_1_U22                                  | 2   |        | sum2           | mul  | auto      | 1       |
+|      mul_13s_32s_32_2_1_U21                                   | 2   |        | mul_ln282      | mul  | auto      | 1       |
+|      mul_14ns_32s_32_2_1_U23                                  | 2   |        | mul_ln282_1    | mul  | auto      | 1       |
+|      stage_sum_3_fu_1305_p2                                   |     |        | stage_sum_3    | add  | fabric    | 0       |
+|      add_ln251_fu_624_p2                                      |     |        | add_ln251      | add  | fabric    | 0       |
++---------------------------------------------------------------+-----+--------+----------------+------+-----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-----------------------------------------+---------------+------+------+------+--------+---------------------+------+---------+------------------+
+| Name                                    | Usage         | Type | BRAM | URAM | Pragma | Variable            | Impl | Latency | Bitwidth, Depth, |
+|                                         |               |      |      |      |        |                     |      |         | Banks            |
++-----------------------------------------+---------------+------+------+------+--------+---------------------+------+---------+------------------+
+| + face_detect                           |               |      | 1766 | 0    |        |                     |      |         |                  |
+|   IMG1_data_U                           | ram_1p array  |      | 40   |      |        | IMG1_data           | auto | 1       | 8, 76800, 1      |
+|  + processImage                         |               |      | 1726 | 0    |        |                     |      |         |                  |
+|    SUM1_data_U                          | rom_np array  |      | 140  |      |        | SUM1_data           | auto | 1       | 32, 76800, 1     |
+|    SQSUM1_data_U                        | ram_s2p array |      | 140  |      |        | SQSUM1_data         | auto | 1       | 32, 76800, 1     |
+|   + cascadeClassifier                   |               |      | 46   | 0    |        |                     |      |         |                  |
+|     stages_array_U                      | rom_1p        |      |      |      |        | stages_array        | auto | 1       | 8, 25, 1         |
+|     stages_thresh_array_U               | rom_1p        |      |      |      |        | stages_thresh_array | auto | 1       | 12, 25, 1        |
+|    + cascadeClassifier_Pipeline_Filters |               |      | 46   | 0    |        |                     |      |         |                  |
+|      tree_thresh_array_U                | rom_1p        |      | 4    |      |        | tree_thresh_array   | auto | 1       | 13, 2913, 1      |
+|      weights_array0_U                   | rom_1p        |      | 4    |      |        | weights_array0      | auto | 1       | 13, 2913, 1      |
+|      weights_array1_U                   | rom_1p        |      | 4    |      |        | weights_array1      | auto | 1       | 14, 2913, 1      |
+|      weights_array2_U                   | rom_1p        |      | 4    |      |        | weights_array2      | auto | 1       | 14, 2913, 1      |
+|      alpha1_array_U                     | rom_1p        |      | 4    |      |        | alpha1_array        | auto | 1       | 14, 2913, 1      |
+|      alpha2_array_U                     | rom_1p        |      | 4    |      |        | alpha2_array        | auto | 1       | 14, 2913, 1      |
+|      rectangles_array0_U                | rom_1p        |      | 2    |      |        | rectangles_array0   | auto | 1       | 5, 2913, 1       |
+|      rectangles_array2_U                | rom_1p        |      | 2    |      |        | rectangles_array2   | auto | 1       | 5, 2913, 1       |
+|      rectangles_array1_U                | rom_1p        |      | 2    |      |        | rectangles_array1   | auto | 1       | 5, 2913, 1       |
+|      rectangles_array3_U                | rom_1p        |      | 2    |      |        | rectangles_array3   | auto | 1       | 5, 2913, 1       |
+|      rectangles_array4_U                | rom_1p        |      | 2    |      |        | rectangles_array4   | auto | 1       | 5, 2913, 1       |
+|      rectangles_array6_U                | rom_1p        |      | 2    |      |        | rectangles_array6   | auto | 1       | 5, 2913, 1       |
+|      rectangles_array5_U                | rom_1p        |      | 2    |      |        | rectangles_array5   | auto | 1       | 5, 2913, 1       |
+|      rectangles_array7_U                | rom_1p        |      | 2    |      |        | rectangles_array7   | auto | 1       | 5, 2913, 1       |
+|      rectangles_array8_U                | rom_1p        |      | 2    |      |        | rectangles_array8   | auto | 1       | 5, 2913, 1       |
+|      rectangles_array10_U               | rom_1p        |      | 1    |      |        | rectangles_array10  | auto | 1       | 4, 2913, 1       |
+|      rectangles_array9_U                | rom_1p        |      | 2    |      |        | rectangles_array9   | auto | 1       | 5, 2913, 1       |
+|      rectangles_array11_U               | rom_1p        |      | 1    |      |        | rectangles_array11  | auto | 1       | 4, 2913, 1       |
++-----------------------------------------+---------------+------+------+------+--------+---------------------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+  No pragmas found
+

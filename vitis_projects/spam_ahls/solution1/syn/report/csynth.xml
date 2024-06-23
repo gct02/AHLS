@@ -1,0 +1,862 @@
+<profile>
+    <ReportVersion>
+        <Version>2023.2</Version>
+    </ReportVersion>
+    <UserAssignments>
+        <unit>ns</unit>
+        <ProductFamily>virtexuplusHBM</ProductFamily>
+        <Part>xcvu35p-fsvh2104-1-e</Part>
+        <TopModelName>SgdLR</TopModelName>
+        <TargetClockPeriod>5.00</TargetClockPeriod>
+        <ClockUncertainty>1.35</ClockUncertainty>
+        <FlowTarget>vivado</FlowTarget>
+    </UserAssignments>
+    <PerformanceEstimates>
+        <PipelineType>no</PipelineType>
+        <SummaryOfTimingAnalysis>
+            <unit>ns</unit>
+            <EstimatedClockPeriod>3.647</EstimatedClockPeriod>
+        </SummaryOfTimingAnalysis>
+        <SummaryOfOverallLatency>
+            <unit>clock cycles</unit>
+            <Best-caseLatency>2893201</Best-caseLatency>
+            <Average-caseLatency>2893201</Average-caseLatency>
+            <Worst-caseLatency>2893201</Worst-caseLatency>
+            <Best-caseRealTimeLatency>14.466 ms</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>14.466 ms</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>14.466 ms</Worst-caseRealTimeLatency>
+            <Interval-min>2893202</Interval-min>
+            <Interval-max>2893202</Interval-max>
+        </SummaryOfOverallLatency>
+        <SummaryOfLoopLatency>
+            <EPOCH_TRAINING_INST>
+                <Slack>3.65</Slack>
+                <TripCount>400</TripCount>
+                <Latency>2893200</Latency>
+                <AbsoluteTimeLatency>14466000</AbsoluteTimeLatency>
+                <IterationLatency>7233</IterationLatency>
+                <InstanceList/>
+            </EPOCH_TRAINING_INST>
+        </SummaryOfLoopLatency>
+        <SummaryOfViolations>
+            <IssueType>-</IssueType>
+            <ViolationType>-</ViolationType>
+            <SourceLocation>benchmarks/rosetta/spam-filter/src/sgd.cpp:63</SourceLocation>
+            <SummaryOfLoopViolations>
+                <EPOCH_TRAINING_INST>
+                    <Name>EPOCH_TRAINING_INST</Name>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/spam-filter/src/sgd.cpp:60</SourceLocation>
+                </EPOCH_TRAINING_INST>
+            </SummaryOfLoopViolations>
+        </SummaryOfViolations>
+    </PerformanceEstimates>
+    <AreaEstimates>
+        <Resources>
+            <BRAM_18K>2</BRAM_18K>
+            <DSP>12</DSP>
+            <FF>1443</FF>
+            <LUT>1964</LUT>
+            <URAM>0</URAM>
+        </Resources>
+        <AvailableResources>
+            <BRAM_18K>2688</BRAM_18K>
+            <DSP>5952</DSP>
+            <FF>1743360</FF>
+            <LUT>871680</LUT>
+            <URAM>640</URAM>
+        </AvailableResources>
+    </AreaEstimates>
+    <InterfaceSummary>
+        <RtlPorts>
+            <name>ap_clk</name>
+            <Object>SgdLR</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_rst</name>
+            <Object>SgdLR</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_start</name>
+            <Object>SgdLR</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_done</name>
+            <Object>SgdLR</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_idle</name>
+            <Object>SgdLR</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_ready</name>
+            <Object>SgdLR</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>data_address0</name>
+            <Object>data</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>17</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>data_ce0</name>
+            <Object>data</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>data_q0</name>
+            <Object>data</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>label_r_address0</name>
+            <Object>label_r</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>7</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>label_r_ce0</name>
+            <Object>label_r</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>label_r_q0</name>
+            <Object>label_r</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>8</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>theta_address0</name>
+            <Object>theta</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>10</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>theta_ce0</name>
+            <Object>theta</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>theta_we0</name>
+            <Object>theta</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>theta_d0</name>
+            <Object>theta</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>theta_q0</name>
+            <Object>theta</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>theta_address1</name>
+            <Object>theta</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>10</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>theta_ce1</name>
+            <Object>theta</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>theta_q1</name>
+            <Object>theta</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+    </InterfaceSummary>
+    <RTLDesignHierarchy>
+        <TopModule MAX_DEPTH="3">
+            <ModuleName>SgdLR</ModuleName>
+            <InstancesList>
+                <Instance>
+                    <InstName>grp_SgdLR_Pipeline_DOT_fu_93</InstName>
+                    <ModuleName>SgdLR_Pipeline_DOT</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>93</ID>
+                    <BindInstances>add_ln19_fu_118_p2 add_ln20_fu_133_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_SgdLR_Pipeline_GRAD_fu_103</InstName>
+                    <ModuleName>SgdLR_Pipeline_GRAD</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>103</ID>
+                    <BindInstances>add_ln35_fu_102_p2 add_ln36_fu_112_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_SgdLR_Pipeline_UPDATE_fu_112</InstName>
+                    <ModuleName>SgdLR_Pipeline_UPDATE</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>112</ID>
+                    <BindInstances>add_ln45_fu_92_p2</BindInstances>
+                </Instance>
+            </InstancesList>
+            <BindInstances>gradient_U add_ln60_fu_162_p2 fexp_32ns_32ns_32_10_full_dsp_1_U19 faddfsub_32ns_32ns_32_5_full_dsp_1_U16 fdiv_32ns_32ns_32_10_no_dsp_1_U17 faddfsub_32ns_32ns_32_5_full_dsp_1_U16 add_ln63_fu_185_p2</BindInstances>
+        </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+        <Module>
+            <Name>SgdLR_Pipeline_DOT</Name>
+            <Loops>
+                <DOT/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.579</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>5128</Best-caseLatency>
+                    <Average-caseLatency>5128</Average-caseLatency>
+                    <Worst-caseLatency>5128</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>25.640 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>25.640 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>25.640 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>5128</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <DOT>
+                        <Name>DOT</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>1024</TripCount>
+                        <Latency>5126</Latency>
+                        <AbsoluteTimeLatency>25.630 us</AbsoluteTimeLatency>
+                        <PipelineII>5</PipelineII>
+                        <PipelineDepth>12</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </DOT>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/spam-filter/src/sgd.cpp:18~benchmarks/rosetta/spam-filter/src/sgd.cpp:66</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <DOT>
+                            <Name>DOT</Name>
+                            <IssueType>II Violation</IssueType>
+                            <ViolationType>Memory Dependency</ViolationType>
+                            <IterationDistance>1</IterationDistance>
+                            <SourceLocation>benchmarks/rosetta/spam-filter/src/sgd.cpp:19~benchmarks/rosetta/spam-filter/src/sgd.cpp:66</SourceLocation>
+                        </DOT>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>183</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>175</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="DOT" OPTYPE="add" PRAGMA="" RTLNAME="add_ln19_fu_118_p2" SOURCE="benchmarks/rosetta/spam-filter/src/sgd.cpp:19" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="DOT" OPTYPE="add" PRAGMA="" RTLNAME="add_ln20_fu_133_p2" SOURCE="benchmarks/rosetta/spam-filter/src/sgd.cpp:20" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln20"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>SgdLR_Pipeline_GRAD</Name>
+            <Loops>
+                <GRAD/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.879</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>1031</Best-caseLatency>
+                    <Average-caseLatency>1031</Average-caseLatency>
+                    <Worst-caseLatency>1031</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>5.155 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>5.155 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>5.155 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>1031</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <GRAD>
+                        <Name>GRAD</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>1024</TripCount>
+                        <Latency>1029</Latency>
+                        <AbsoluteTimeLatency>5.145 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>7</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </GRAD>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/spam-filter/src/sgd.cpp:35~benchmarks/rosetta/spam-filter/src/sgd.cpp:70</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <GRAD>
+                            <Name>GRAD</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/spam-filter/src/sgd.cpp:35~benchmarks/rosetta/spam-filter/src/sgd.cpp:70</SourceLocation>
+                        </GRAD>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>163</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>131</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="GRAD" OPTYPE="add" PRAGMA="" RTLNAME="add_ln35_fu_102_p2" SOURCE="benchmarks/rosetta/spam-filter/src/sgd.cpp:35" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln35"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="GRAD" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_fu_112_p2" SOURCE="benchmarks/rosetta/spam-filter/src/sgd.cpp:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>SgdLR_Pipeline_UPDATE</Name>
+            <Loops>
+                <UPDATE/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.579</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>1036</Best-caseLatency>
+                    <Average-caseLatency>1036</Average-caseLatency>
+                    <Worst-caseLatency>1036</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>5.180 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>5.180 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>5.180 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>1036</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <UPDATE>
+                        <Name>UPDATE</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>1024</TripCount>
+                        <Latency>1034</Latency>
+                        <AbsoluteTimeLatency>5.170 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>12</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </UPDATE>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/spam-filter/src/sgd.cpp:45~benchmarks/rosetta/spam-filter/src/sgd.cpp:72</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <UPDATE>
+                            <Name>UPDATE</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/spam-filter/src/sgd.cpp:45~benchmarks/rosetta/spam-filter/src/sgd.cpp:72</SourceLocation>
+                        </UPDATE>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>236</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>107</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="UPDATE" OPTYPE="add" PRAGMA="" RTLNAME="add_ln45_fu_92_p2" SOURCE="benchmarks/rosetta/spam-filter/src/sgd.cpp:45" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln45"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>SgdLR</Name>
+            <Loops>
+                <EPOCH_TRAINING_INST/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.647</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>2893201</Best-caseLatency>
+                    <Average-caseLatency>2893201</Average-caseLatency>
+                    <Worst-caseLatency>2893201</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>14.466 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>14.466 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>14.466 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>2893202</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <EPOCH_TRAINING_INST>
+                        <Name>EPOCH_TRAINING_INST</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>400</TripCount>
+                        <Latency>2893200</Latency>
+                        <AbsoluteTimeLatency>14.466 ms</AbsoluteTimeLatency>
+                        <IterationLatency>7233</IterationLatency>
+                        <PipelineDepth>7233</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList>
+                            <Instance>grp_SgdLR_Pipeline_DOT_fu_93</Instance>
+                            <Instance>grp_SgdLR_Pipeline_GRAD_fu_103</Instance>
+                            <Instance>grp_SgdLR_Pipeline_UPDATE_fu_112</Instance>
+                        </InstanceList>
+                    </EPOCH_TRAINING_INST>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/rosetta/spam-filter/src/sgd.cpp:63</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <EPOCH_TRAINING_INST>
+                            <Name>EPOCH_TRAINING_INST</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/rosetta/spam-filter/src/sgd.cpp:60</SourceLocation>
+                        </EPOCH_TRAINING_INST>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>2</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>~0</UTIL_BRAM>
+                    <DSP>12</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>1443</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>1964</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="gradient_U" SOURCE="benchmarks/rosetta/spam-filter/src/sgd.cpp:56" STORAGESIZE="32 1024 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="gradient"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="EPOCH_TRAINING_INST" OPTYPE="add" PRAGMA="" RTLNAME="add_ln60_fu_162_p2" SOURCE="benchmarks/rosetta/spam-filter/src/sgd.cpp:60" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln60"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fexp" DSP="7" ID="" IMPL="fulldsp" LATENCY="9" LOOP="EPOCH_TRAINING_INST" OPTYPE="fexp" PRAGMA="" RTLNAME="fexp_32ns_32ns_32_10_full_dsp_1_U19" SOURCE="benchmarks/rosetta/spam-filter/src/sgd.cpp:26" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="EPOCH_TRAINING_INST" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U16" SOURCE="benchmarks/rosetta/spam-filter/src/sgd.cpp:26" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fdiv" DSP="0" ID="" IMPL="fabric" LATENCY="9" LOOP="EPOCH_TRAINING_INST" OPTYPE="fdiv" PRAGMA="" RTLNAME="fdiv_32ns_32ns_32_10_no_dsp_1_U17" SOURCE="benchmarks/rosetta/spam-filter/src/sgd.cpp:26" STORAGESUBTYPE="" URAM="0" VARIABLE="prob"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="EPOCH_TRAINING_INST" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U16" SOURCE="benchmarks/rosetta/spam-filter/src/sgd.cpp:70" STORAGESUBTYPE="" URAM="0" VARIABLE="scale_assign"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="EPOCH_TRAINING_INST" OPTYPE="add" PRAGMA="" RTLNAME="add_ln63_fu_185_p2" SOURCE="benchmarks/rosetta/spam-filter/src/sgd.cpp:63" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln63"/>
+            </BindNodes>
+        </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+    <UserConfigCommands/>
+    <Args>
+        <Arg ArgName="data" index="0" direction="in" srcType="float*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="data_address0" name="data_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="data_ce0" name="data_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="data_q0" name="data_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="label" index="1" direction="in" srcType="unsigned char*" srcSize="8">
+            <hwRefs>
+                <hwRef type="port" interface="label_r_address0" name="label_r_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="label_r_ce0" name="label_r_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="label_r_q0" name="label_r_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="theta" index="2" direction="inout" srcType="float*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="theta_address0" name="theta_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="theta_ce0" name="theta_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="theta_we0" name="theta_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="theta_d0" name="theta_d0" usage="data" direction="out"/>
+                <hwRef type="port" interface="theta_q0" name="theta_q0" usage="data" direction="in"/>
+                <hwRef type="port" interface="theta_address1" name="theta_address1" usage="address" direction="out"/>
+                <hwRef type="port" interface="theta_ce1" name="theta_ce1" usage="control" direction="out"/>
+                <hwRef type="port" interface="theta_q1" name="theta_q1" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+    </Args>
+    <Interfaces>
+        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
+            <busParams>
+                <busParam busParamName="ASSOCIATED_RESET">ap_rst</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_clk">CLK</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_clk</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_HIGH</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_ctrl" type="ap_ctrl" busTypeName="acc_handshake" mode="slave">
+            <portMaps>
+                <portMap portMapName="ap_start">start</portMap>
+                <portMap portMapName="ap_done">done</portMap>
+                <portMap portMapName="ap_idle">idle</portMap>
+                <portMap portMapName="ap_ready">ready</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_done</port>
+                <port>ap_idle</port>
+                <port>ap_ready</port>
+                <port>ap_start</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="data_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="17">
+            <portMaps>
+                <portMap portMapName="data_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>data_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="data"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="data_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="data_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>data_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="data"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="label_r_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="7">
+            <portMaps>
+                <portMap portMapName="label_r_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>label_r_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="label"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="label_r_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="8">
+            <portMaps>
+                <portMap portMapName="label_r_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>label_r_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="label"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="theta_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="10">
+            <portMaps>
+                <portMap portMapName="theta_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>theta_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="theta"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="theta_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="theta_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>theta_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="theta"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="theta_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="theta_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>theta_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="theta"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="theta_address1" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="10">
+            <portMaps>
+                <portMap portMapName="theta_address1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>theta_address1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="theta"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="theta_q1" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="theta_q1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>theta_q1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="theta"/>
+            </constraints>
+        </Interface>
+    </Interfaces>
+    <ReportHWInterface>
+        <section name="HW Interfaces" level="0">
+            <item name="AP_MEMORY">
+                <table>
+                    <keys size="3">Port, Direction, Bitwidth</keys>
+                    <column name="data_address0">out, 17</column>
+                    <column name="data_q0">in, 32</column>
+                    <column name="label_r_address0">out, 7</column>
+                    <column name="label_r_q0">in, 8</column>
+                    <column name="theta_address0">out, 10</column>
+                    <column name="theta_address1">out, 10</column>
+                    <column name="theta_d0">out, 32</column>
+                    <column name="theta_q0">in, 32</column>
+                    <column name="theta_q1">in, 32</column>
+                </table>
+            </item>
+            <item name="TOP LEVEL CONTROL">
+                <table>
+                    <keys size="3">Interface, Type, Ports</keys>
+                    <column name="ap_clk">clock, ap_clk</column>
+                    <column name="ap_rst">reset, ap_rst</column>
+                    <column name="ap_ctrl">ap_ctrl_hs, ap_done ap_idle ap_ready ap_start</column>
+                </table>
+            </item>
+        </section>
+    </ReportHWInterface>
+    <ReportSWInterface>
+        <section name="SW I/O Information" level="0">
+            <item name="Top Function Arguments">
+                <table>
+                    <keys size="3">Argument, Direction, Datatype</keys>
+                    <column name="data">in, float*</column>
+                    <column name="label">in, unsigned char*</column>
+                    <column name="theta">inout, float*</column>
+                </table>
+            </item>
+            <item name="SW-to-HW Mapping">
+                <table>
+                    <keys size="4">Argument, HW Interface, HW Type, HW Usage</keys>
+                    <column name="data">data_address0, port, offset</column>
+                    <column name="data">data_ce0, port, </column>
+                    <column name="data">data_q0, port, </column>
+                    <column name="label">label_r_address0, port, offset</column>
+                    <column name="label">label_r_ce0, port, </column>
+                    <column name="label">label_r_q0, port, </column>
+                    <column name="theta">theta_address0, port, offset</column>
+                    <column name="theta">theta_ce0, port, </column>
+                    <column name="theta">theta_we0, port, </column>
+                    <column name="theta">theta_d0, port, </column>
+                    <column name="theta">theta_q0, port, </column>
+                    <column name="theta">theta_address1, port, offset</column>
+                    <column name="theta">theta_ce1, port, </column>
+                    <column name="theta">theta_q1, port, </column>
+                </table>
+            </item>
+        </section>
+    </ReportSWInterface>
+    <ResolutionUrl key="ZZZ">docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
+    <PragmaReport/>
+</profile>
+

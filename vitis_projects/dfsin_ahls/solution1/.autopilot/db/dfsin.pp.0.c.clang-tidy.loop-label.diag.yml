@@ -1,0 +1,13 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/dfsin_ahls/solution1/.autopilot/db/dfsin.pp.0.c
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_56_1:  '
+    FileOffset:      56
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/benchmarks/chstone/dfsin/src/dfsin.c
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/dfsin_ahls/solution1/.autopilot/db/dfsin.pp.0.c
+        Offset:          8177
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_56_1: '
+...
