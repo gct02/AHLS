@@ -1,0 +1,3 @@
+opcode,signed,bitwidth,lut,dsp,ff,latency
+12,0,32,193,2,362,9
+19,0,32,773,0,1412,29
