@@ -5,6 +5,22 @@ from os import environ
 from llvm.opt_utils import *
 from llvm.clang_utils import *
 
+'''
+The output directory will have the following structure:
+    .
+    ├── approx
+    ├── data_stats
+    ├── ir
+    |   ├── <input_ir_stem>.(bc|ll)
+    |   ├── <input_ir_stem>.md.bc
+    |   ├── <input_ir_stem>.pf.bc
+    |   ├── <input_ir_stem>_instrumented.bc
+    |   ├── <populate_io_stem>.(bc|ll)
+    |   └── <populate_io_stem>.md.bc
+    ├── outputs
+    └── <input_ir_stem>
+'''
+
 try:
     AHLS_LLVM_LIB = environ['AHLS_LLVM_LIB']
     OPT = environ['OPT']
@@ -22,21 +38,6 @@ def parse_args():
     return parser.parse_args()
 
 if __name__ == "__main__":
-    '''
-    The output directory will have the following structure:
-        .
-        ├── approx
-        ├── data_stats
-        ├── ir
-        |   ├── <input_ir_stem>.(bc|ll)
-        |   ├── <input_ir_stem>.md.bc
-        |   ├── <input_ir_stem>.pf.bc
-        |   ├── <input_ir_stem>_instrumented.bc
-        |   ├── <populate_io_stem>.(bc|ll)
-        |   └── <populate_io_stem>.md.bc
-        ├── outputs
-        └── <input_ir_stem>
-    '''
     args = parse_args()
     input_ir_path = Path(args.input)
     populate_io_path = Path(args.populate_io)

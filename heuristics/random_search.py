@@ -1,15 +1,15 @@
 import random
-from heuristic import Heuristic
+from heuristics.heuristic import Heuristic
 
-class ACTransformsRS(Heuristic):
+class RandACT(Heuristic):
     def __init__(self, ac_transforms, n_iter=100):
         '''
         Parameters
         ----------
         * ac_transforms : List
-            List of available AC transformations (i.e., AC techniques applied to design constructs).
+            List of available AC transformations (i.e., ACTs applied to design constructs).
         * n_iter : int, optional
-            Number of iterations to run the random search. If not provided, is assumed to be 100.
+            Number of iterations to run the random search. If not provided, it is settled to 100.
         '''
         self.n_iter = n_iter
         self.ac_transforms = ac_transforms
