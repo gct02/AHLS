@@ -9,7 +9,7 @@ from design_metrics.error_measure import *
 
 '''
 This script assumes that the input design IR file is already instrumented and linked with the populate_io IR file.
-The working directory should be structured as follows:
+The project's working directory should be structured as follows:
     .
     ├── approx
     ├── data_stats
@@ -33,8 +33,10 @@ except KeyError as ahls_error:
     print(f"Error: environment variable {ahls_error.args[0]} not defined.")
     raise
 
-def run_with_timeout(run_cmd, max_execution_time, transformed_executable_path : Path, transformed_output_dir : Path):
-    """Runs a subprocess with a timeout and handles process termination."""
+def run_with_timeout(run_cmd, max_execution_time, transformed_executable_path: Path, transformed_output_dir: Path):
+    """
+    Runs a subprocess with a timeout and handles process termination.
+    """
     timeout_exceeded = False
     try:
         process = subprocess.Popen(run_cmd, shell=True)
@@ -53,7 +55,7 @@ def run_with_timeout(run_cmd, max_execution_time, transformed_executable_path : 
             # Check if process has finished naturally
             if process.poll() is not None:
                 break
-            time.sleep(1)  # Check every second
+            time.sleep(1) # Check every second
 
         # Clean up output directory if process failed or timed out
         if timeout_exceeded:
@@ -73,11 +75,11 @@ def run_with_timeout(run_cmd, max_execution_time, transformed_executable_path : 
 
 def parse_args():
     parser = argparse.ArgumentParser(prog="ahls", description="AHLS: Approximate HLS")
-    parser.add_argument("-w", "--dir", help = "The working directory", required=True)
+    parser.add_argument("-w", "--dir", help = "The project's working directory", required=True)
     parser.add_argument("-d", "--design", help = "Design's exact executable name", required=True)
     parser.add_argument("-A", "--args", help = "Arguments to the design's executable (excluding the output file path, i.e., the last argument)", \
                         nargs="*", required=False, default=[])
-    parser.add_argument("-a", "--approx", help = "Path to the file containing the AC trainsformations", required=True)
+    parser.add_argument("-a", "--approx", help = "Path to the file containing the AC transformations", required=True)
     parser.add_argument("-e", "--error", help = "Error metric to use for evaluation", choices=["MSE", "RMSE", "accuracy", "errorrate"], required=True)
     parser.add_argument("-t", "--outtype", help = "Output type of the design", choices=["int", "float", "double"], required=True)
     parser.add_argument("-x", "--hex", help = "Sinalize that the output is in hex format", action="store_true")
