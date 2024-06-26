@@ -2,7 +2,19 @@ from pathlib import Path
 from sys import argv
 import xml.etree.ElementTree as ET
 
-def get_resource_usage(solution_impl_dir: Path):
+def get_resource_usage(proj_export_rpt: Path) -> dict:
+    rpt = {}
+    with open(proj_export_rpt, 'r') as f:
+        lines = f.readlines()
+        rpt_start = 9
+        rpt_end = 18
+        rpt_lines = lines[rpt_start:rpt_end]
+        for rpt_line in rpt_lines:
+            rpt_line_split = rpt_line.split(':')
+            rpt[rpt_line_split[0]] = int(rpt_line_split[1].strip())
+    return rpt
+
+def get_resource_usage_per_op(solution_impl_dir: Path):
     reports_folder = solution_impl_dir / "report/verilog"
     verilog_folder = solution_impl_dir / "verilog"
 
@@ -41,7 +53,6 @@ def get_resource_usage(solution_impl_dir: Path):
         while "+-" not in lines[i]:
             i += 1
         rtl_resources_end = i
-
         rtl_resources_table = [line.split("|")[1:5] for line in lines[rtl_resources_start:rtl_resources_end]]
         rtl_resources_table = [[col.strip() for col in row] for row in rtl_resources_table]
 
@@ -61,16 +72,10 @@ def get_resource_usage(solution_impl_dir: Path):
                 if ("reg" in line) | ("wire" in line) | ("input" in line) | ("output" in line):
                     regs_and_wires.append(line)
                     if op_name in line:
-                        if "signed" in line:
-                            op_rpts[op_name][1] = 1
-                        else:
-                            op_rpts[op_name][1] = 0
-                        
+                        # Get signedness
+                        op_rpts[op_name][1] = 1 if "signed" in line else 0
                         # Get bitwidth
-                        if '[' in line:
-                            op_rpts[op_name][2] = int(line.split("[")[1].split(":")[0])
-                        else:
-                            op_rpts[op_name][2] = 1
+                        op_rpts[op_name][2] = int(line.split("[")[1].split(":")[0]) if '[' in line else 1
                         found = True
                 elif op_name in line and "(" in line:
                     dout_width_line = lines[i - 1]
@@ -79,10 +84,7 @@ def get_resource_usage(solution_impl_dir: Path):
                     dout = dout_line.split("(")[1].split(")")[0]
                     for reg_wire in regs_and_wires:
                         if dout in reg_wire:
-                            if "signed" in reg_wire:
-                                op_rpts[op_name][1] = 1
-                            else:
-                                op_rpts[op_name][1] = 0
+                            op_rpts[op_name][1] = 1 if "signed" in reg_wire else 0
                             break
                     found = True
                 if found:
@@ -114,7 +116,7 @@ def parse_rpt(solution_syn_dir: Path, output_file: Path):
         'xor': 28
     }
 
-    op_rpts = get_resource_usage(solution_syn_dir)
+    op_rpts = get_resource_usage_per_op(solution_syn_dir)
 
     # Remove non-binary operations
     bin_op_rpts = {}

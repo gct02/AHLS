@@ -32,7 +32,7 @@ struct ProfilingPass : public ModulePass {
 
         // Create a new function named "profOp", which will be used to profile the operations.
         std::vector<Type*> paramTypesProfOp = {Type::getInt64Ty(ctx), Type::getInt8Ty(ctx), Type::getInt64Ty(ctx), Type::getInt64Ty(ctx), 
-                                             Type::getDoubleTy(ctx), Type::getInt1Ty(ctx), Type::getInt1Ty(ctx), Type::getInt32Ty(ctx)};
+                                               Type::getDoubleTy(ctx), Type::getInt1Ty(ctx), Type::getInt1Ty(ctx), Type::getInt32Ty(ctx)};
         FunctionType *profOpType = FunctionType::get(Type::getVoidTy(ctx), paramTypesProfOp, false);
         Function *profOp = Function::Create(profOpType, Function::ExternalLinkage, "profOp", &M);
 

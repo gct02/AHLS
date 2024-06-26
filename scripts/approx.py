@@ -48,7 +48,7 @@ def run_with_timeout(run_cmd, max_execution_time, transformed_executable_path: P
                 for proc in psutil.process_iter():
                     if proc.name() == transformed_executable_path:
                         proc.terminate()
-                        print(f"Error: Transformed design took more than {max_execution_time} seconds to execute.")
+                        timeout_error_msg = f"Error: Transformed design took more than {max_execution_time} seconds to execute."
                         timeout_exceeded = True
                         break
                 break
@@ -63,15 +63,26 @@ def run_with_timeout(run_cmd, max_execution_time, transformed_executable_path: P
                 transformed_output_dir.unlink()
             if Path("data_stats.txt").exists():
                 Path("data_stats.txt").unlink()
-            exit(1)
+            raise TimeoutError(timeout_error_msg)
 
     except Exception as e:
-        print(f"Error while executing transformed design: {e}")
         if transformed_output_dir.exists():
             transformed_output_dir.unlink()
         if Path("data_stats.txt").exists():
             Path("data_stats.txt").unlink()
-        exit(1)
+        raise Exception(f"Error while executing transformed design: {e}")
+
+def create_approx_design(input_ir: Path, act_with_args: str) -> Path:
+    approx_suffix = ""
+    act_tokens = act_with_args.split()
+    for token in act_tokens:
+        if token[0] != "-":
+            approx_suffix += "_" + token[(token.rfind("/") + 1):] if "/" in token else "_" + token
+
+    approx_ir_path = input_ir.parent / Path(input_ir.stem + approx_suffix + ".bc")
+    apply_act(input_ir, act_with_args, approx_ir_path)
+
+    return approx_ir_path
 
 def parse_args():
     parser = argparse.ArgumentParser(prog="ahls", description="AHLS: Approximate HLS")
