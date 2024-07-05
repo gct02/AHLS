@@ -26,7 +26,7 @@ BinOpInfo* ops = NULL;
 void profOp(
     uint64_t instID, uint8_t instOpcode, int64_t signedIntValue, 
     uint64_t unsignedIntValue, double fpValue, bool isSignedValue, 
-    bool isFpValue, uint32_t bitwidth, uint32_t numUses, bool isBinaryOp)
+    bool isFpValue, uint32_t bitwidth, uint32_t numUses)
 {
     bool isNewOp = true;
     BinOpInfo* currentOp = ops;
@@ -36,39 +36,37 @@ void profOp(
             currentOp = currentOp->next;
             continue;
         }
-        if (isBinaryOp) { // Binary operation
-            double oldNumOccurs = currentOp->numOccurs;
-            double oldMean = currentOp->mean;
-            double oldVariance = currentOp->variance;
-            double newNumOccurs = oldNumOccurs + 1;
-            double squaredValue;
-            double newMean;
-            double newVariance;
-            
-            if (isFpValue) {
-                squaredValue = pow(fpValue, 2);
-                newMean = oldMean + (fpValue - oldMean) / newNumOccurs;
-                newVariance = (oldNumOccurs/newNumOccurs) * oldVariance
-                            + ((fpValue - oldMean) / newNumOccurs) * (fpValue- newMean);
-            } else if (isSignedValue) {
-                squaredValue = pow(signedIntValue, 2);
-                newMean = oldMean + (signedIntValue - oldMean) / newNumOccurs; 
-                newVariance = (oldVariance / newNumOccurs) * oldNumOccurs
-                            + ((newMean - signedIntValue) / newNumOccurs) * (newMean - signedIntValue);
-            } else {
-                squaredValue = pow(unsignedIntValue, 2);
-                newMean = oldMean + (unsignedIntValue - oldMean) / newNumOccurs;
-                newVariance = (oldVariance / newNumOccurs) * oldNumOccurs
-                            + ((newMean - unsignedIntValue) / newNumOccurs) * (newMean - unsignedIntValue);
-            }     
-            currentOp->numOccurs = newNumOccurs; 
-            currentOp->mean = newMean;
-            currentOp->variance = newVariance;
-            currentOp->standardDev = sqrt(newVariance);
-            currentOp->sumOfSquares += squaredValue;
+
+        double oldNumOccurs = currentOp->numOccurs;
+        double oldMean = currentOp->mean;
+        double oldVariance = currentOp->variance;
+        double newNumOccurs = oldNumOccurs + 1;
+        double squaredValue;
+        double newMean;
+        double newVariance;
+        
+        if (isFpValue) {
+            squaredValue = pow(fpValue, 2);
+            newMean = oldMean + (fpValue - oldMean) / newNumOccurs;
+            newVariance = (oldNumOccurs/newNumOccurs) * oldVariance
+                        + ((fpValue - oldMean) / newNumOccurs) * (fpValue- newMean);
+        } else if (isSignedValue) {
+            squaredValue = pow(signedIntValue, 2);
+            newMean = oldMean + (signedIntValue - oldMean) / newNumOccurs; 
+            newVariance = (oldVariance / newNumOccurs) * oldNumOccurs
+                        + ((newMean - signedIntValue) / newNumOccurs) * (newMean - signedIntValue);
         } else {
-            currentOp->numOccurs += 1;
-        }
+            squaredValue = pow(unsignedIntValue, 2);
+            newMean = oldMean + (unsignedIntValue - oldMean) / newNumOccurs;
+            newVariance = (oldVariance / newNumOccurs) * oldNumOccurs
+                        + ((newMean - unsignedIntValue) / newNumOccurs) * (newMean - unsignedIntValue);
+        }     
+        currentOp->numOccurs = newNumOccurs; 
+        currentOp->mean = newMean;
+        currentOp->variance = newVariance;
+        currentOp->standardDev = sqrt(newVariance);
+        currentOp->sumOfSquares += squaredValue;
+        
         isNewOp = false;
         break;  
     }
@@ -79,27 +77,22 @@ void profOp(
         newOp->opCode = instOpcode;
         newOp->numOccurs = 1;
         
-        if (isBinaryOp) {
-            if (isFpValue) {
-                newOp->mean = fpValue;
-                newOp->sumOfSquares = pow(fpValue, 2);
-            } else if (isSignedValue) { 
-                newOp->mean = signedIntValue;
-                newOp->sumOfSquares = pow(signedIntValue, 2);
-            } else {
-                newOp->mean = unsignedIntValue;
-                newOp->sumOfSquares = pow(unsignedIntValue, 2);
-            }
+        if (isFpValue) {
+            newOp->mean = fpValue;
+            newOp->sumOfSquares = pow(fpValue, 2);
+        } else if (isSignedValue) { 
+            newOp->mean = signedIntValue;
+            newOp->sumOfSquares = pow(signedIntValue, 2);
         } else {
-            newOp->mean = 0;
-            newOp->sumOfSquares = 0;
+            newOp->mean = unsignedIntValue;
+            newOp->sumOfSquares = pow(unsignedIntValue, 2);
         }
+        newOp->numUses = numUses;
         newOp->isSignedValue = isSignedValue;
         newOp->isFpValue = isFpValue; 
         newOp->bitwidth = bitwidth;
         newOp->variance = 0;
         newOp->standardDev = 0;
-        newOp->numUses = numUses;
         newOp->next = ops;
         ops = newOp;   
     }
