@@ -1,0 +1,515 @@
+================================================================
+== Vivado RTL Synthesis Results
+================================================================
++ General Information:
+    * Date:            Sun Jun 23 22:43:13 -03 2024
+    * Version:         2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:         rand1
+    * Solution:        solution1 (Vivado IP Flow Target)
+    * Product family:  zynq
+    * Target device:   xc7z020-clg400-1
+
+
+================================================================
+== Run Constraints & Options
+================================================================
++ Design Constraints & Options:
+    * RTL Synthesis target clock:  5 ns
+    * C-Synthesis target clock:    5 ns
+    * C-Synthesis uncertainty:     27%
+
++ RTL Synthesis Options:
+    * config_export -vivado_synth_strategy:     default
+    * config_export -vivado_synth_design_args:  -directive sdx_optimization_effort_high
+
++ Reporting Options:
+    * config_export -vivado_report_level:      2
+    * config_export -vivado_max_timing_paths:  10
+
+
+================================================================
+== RTL Synthesis Resource Summary
+================================================================
+LUT:              135702
+FF:               131641
+DSP:              96
+BRAM:             0
+URAM:             0
+SRL:              2767
+
+
+================================================================
+== RTL Synthesis Timing Summary
+================================================================
+* Timing was NOT met
++----------------+-------------+
+| Timing         | Period (ns) |
++----------------+-------------+
+| Target         | 5.000       |
+| Post-Synthesis | 7.971       |
++----------------+-------------+
+
+
+================================================================
+== RTL Synthesis Resources
+================================================================
++------------------------------------------------+--------+--------+-----+------+------+-----+--------+------+---------+----------+--------+
+| Name                                           | LUT    | FF     | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable | Source |
++------------------------------------------------+--------+--------+-----+------+------+-----+--------+------+---------+----------+--------+
+| inst                                           | 135702 | 131641 | 96  |      |      |     |        |      |         |          |        |
+|   (inst)                                       | 2086   | 6719   | 2   |      |      |     |        |      |         |          |        |
+|   dadddsub_64ns_64ns_64_16_full_dsp_1_U176     | 871    | 1000   | 3   |      |      |     |        |      |         |          |        |
+|   ddiv_64ns_64ns_64_59_no_dsp_1_U178           | 3249   | 6162   |     |      |      |     |        |      |         |          |        |
+|   dmul_64ns_64ns_64_14_full_dsp_1_U177         | 255    | 539    | 10  |      |      |     |        |      |         |          |        |
+|   faddfsub_32ns_32ns_32_10_full_dsp_1_U170     | 421    | 363    | 2   |      |      |     |        |      |         |          |        |
+|   faddfsub_32ns_32ns_32_10_full_dsp_1_U245     | 193    | 330    | 2   |      |      |     |        |      |         |          |        |
+|     (faddfsub_32ns_32ns_32_10_full_dsp_1_U245) |        | 65     |     |      |      |     |        |      |         |          |        |
+|   fdiv_32ns_32ns_32_30_no_dsp_1_U171           | 800    | 1444   |     |      |      |     |        |      |         |          |        |
+|   fmul_32ns_32ns_32_8_max_dsp_1_U246           | 83     | 191    | 3   |      |      |     |        |      |         |          |        |
+|   fpext_32ns_64_4_no_dsp_1_U175                | 32     | 130    |     |      |      |     |        |      |         |          |        |
+|     (fpext_32ns_64_4_no_dsp_1_U175)            | 16     | 32     |     |      |      |     |        |      |         |          |        |
+|   grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492     | 16362  | 14005  | 9   |      |      |     |        |      |         |          |        |
+|     (grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492) | 251    | 672    | 1   |      |      |     |        |      |         |          |        |
+|     mul_64s_18s_64_5_1_U2                      | 8      | 68     | 4   |      |      |     |        |      |         |          |        |
+|     mul_64s_8s_64_5_1_U1                       | 37     | 68     | 4   |      |      |     |        |      |         |          |        |
+|     sdiv_33s_34ns_34_37_1_U5                   | 1791   | 2305   |     |      |      |     |        |      |         |          |        |
+|       (sdiv_33s_34ns_34_37_1_U5)               | 1      | 59     |     |      |      |     |        |      |         |          |        |
+|     srem_64ns_18s_18_68_1_U3                   | 5402   | 4705   |     |      |      |     |        |      |         |          |        |
+|       (srem_64ns_18s_18_68_1_U3)               |        | 100    |     |      |      |     |        |      |         |          |        |
+|     udiv_64ns_64s_8_68_1_U8                    | 8011   | 5206   |     |      |      |     |        |      |         |          |        |
+|       (udiv_64ns_64s_8_68_1_U8)                | 7      | 20     |     |      |      |     |        |      |         |          |        |
+|     urem_16ns_17ns_17_20_1_U7                  | 409    | 563    |     |      |      |     |        |      |         |          |        |
+|       (urem_16ns_17ns_17_20_1_U7)              |        | 34     |     |      |      |     |        |      |         |          |        |
+|     urem_5ns_64ns_17_9_1_U6                    | 345    | 416    |     |      |      |     |        |      |         |          |        |
+|       (urem_5ns_64ns_17_9_1_U6)                |        | 70     |     |      |      |     |        |      |         |          |        |
+|   grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512     | 7028   | 5022   |     |      |      |     |        |      |         |          |        |
+|     (grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512) | 85     | 290    |     |      |      |     |        |      |         |          |        |
+|     flow_control_loop_pipe_sequential_init_U   | 53     | 2      |     |      |      |     |        |      |         |          |        |
+|     udiv_64ns_18ns_56_68_1_U33                 | 6829   | 4606   |     |      |      |     |        |      |         |          |        |
+|       (udiv_64ns_18ns_56_68_1_U33)             | 55     | 20     |     |      |      |     |        |      |         |          |        |
+|     urem_1ns_58ns_1_5_seq_1_U34                | 61     | 124    |     |      |      |     |        |      |         |          |        |
+|       (urem_1ns_58ns_1_5_seq_1_U34)            | 1      | 61     |     |      |      |     |        |      |         |          |        |
+|   grp_fn1_Pipeline_VITIS_LOOP_302_4_fu_523     | 13975  | 14781  | 3   |      |      |     |        |      |         |          |        |
+|     (grp_fn1_Pipeline_VITIS_LOOP_302_4_fu_523) | 526    | 1067   | 1   |      |      |     |        |      |         |          |        |
+|     flow_control_loop_pipe_sequential_init_U   | 136    | 2      |     |      |      |     |        |      |         |          |        |
+|     lshr_121ns_32ns_121_7_1_U52                | 21     | 24     |     |      |      |     |        |      |         |          |        |
+|     mul_32s_9s_32_5_1_U47                      |        | 17     | 2   |      |      |     |        |      |         |          |        |
+|     sdiv_33ns_64ns_64_37_1_U51                 | 3292   | 3312   |     |      |      |     |        |      |         |          |        |
+|       (sdiv_33ns_64ns_64_37_1_U51)             | 144    | 128    |     |      |      |     |        |      |         |          |        |
+|     shl_121ns_32ns_121_7_1_U53                 | 218    | 228    |     |      |      |     |        |      |         |          |        |
+|     sitodp_32ns_64_7_no_dsp_1_U46              | 174    | 276    |     |      |      |     |        |      |         |          |        |
+|       (sitodp_32ns_64_7_no_dsp_1_U46)          |        | 32     |     |      |      |     |        |      |         |          |        |
+|     udiv_17ns_64ns_64_21_1_U50                 | 1338   | 1417   |     |      |      |     |        |      |         |          |        |
+|       (udiv_17ns_64ns_64_21_1_U50)             | 16     | 65     |     |      |      |     |        |      |         |          |        |
+|     urem_16ns_10ns_16_20_1_U49                 | 140    | 116    |     |      |      |     |        |      |         |          |        |
+|       (urem_16ns_10ns_16_20_1_U49)             |        | 8      |     |      |      |     |        |      |         |          |        |
+|     urem_64s_64ns_64_68_1_U48                  | 8130   | 8322   |     |      |      |     |        |      |         |          |        |
+|       (urem_64s_64ns_64_68_1_U48)              |        | 129    |     |      |      |     |        |      |         |          |        |
+|   grp_fn1_Pipeline_VITIS_LOOP_334_5_fu_547     | 23383  | 18588  |     |      |      |     |        |      |         |          |        |
+|     (grp_fn1_Pipeline_VITIS_LOOP_334_5_fu_547) | 268    | 852    |     |      |      |     |        |      |         |          |        |
+|     flow_control_loop_pipe_sequential_init_U   | 119    | 2      |     |      |      |     |        |      |         |          |        |
+|     lshr_169ns_32ns_169_7_1_U86                | 1      | 1      |     |      |      |     |        |      |         |          |        |
+|     shl_169ns_32ns_169_7_1_U87                 | 391    | 276    |     |      |      |     |        |      |         |          |        |
+|     udiv_13ns_17ns_13_17_1_U91                 | 313    | 409    |     |      |      |     |        |      |         |          |        |
+|       (udiv_13ns_17ns_13_17_1_U91)             | 12     | 19     |     |      |      |     |        |      |         |          |        |
+|     udiv_16ns_64ns_17_20_1_U90                 | 1266   | 1332   |     |      |      |     |        |      |         |          |        |
+|       (udiv_16ns_64ns_17_20_1_U90)             | 15     | 66     |     |      |      |     |        |      |         |          |        |
+|     udiv_64s_9ns_62_68_1_U89                   | 6448   | 3851   |     |      |      |     |        |      |         |          |        |
+|       (udiv_64s_9ns_62_68_1_U89)               | 61     | 10     |     |      |      |     |        |      |         |          |        |
+|     uitodp_64ns_64_7_no_dsp_1_x_U85            | 219    | 379    |     |      |      |     |        |      |         |          |        |
+|       (uitodp_64ns_64_7_no_dsp_1_x_U85)        |        | 33     |     |      |      |     |        |      |         |          |        |
+|     urem_62ns_33ns_33_66_1_U92                 | 6961   | 5601   |     |      |      |     |        |      |         |          |        |
+|       (urem_62ns_33ns_33_66_1_U92)             |        | 67     |     |      |      |     |        |      |         |          |        |
+|     urem_64ns_33ns_33_68_1_U88                 | 7397   | 5885   |     |      |      |     |        |      |         |          |        |
+|       (urem_64ns_33ns_33_68_1_U88)             |        | 67     |     |      |      |     |        |      |         |          |        |
+|   grp_fn1_Pipeline_VITIS_LOOP_387_7_fu_562     | 17147  | 19759  | 7   |      |      |     |        |      |         |          |        |
+|     (grp_fn1_Pipeline_VITIS_LOOP_387_7_fu_562) | 526    | 1226   |     |      |      |     |        |      |         |          |        |
+|     flow_control_loop_pipe_sequential_init_U   | 140    | 2      |     |      |      |     |        |      |         |          |        |
+|     lshr_111ns_32ns_111_2_1_U124               | 2      | 8      |     |      |      |     |        |      |         |          |        |
+|     mul_64s_32ns_64_5_1_U118                   | 31     | 98     | 7   |      |      |     |        |      |         |          |        |
+|     sdiv_17s_17ns_17_21_1_U122                 | 521    | 647    |     |      |      |     |        |      |         |          |        |
+|       (sdiv_17s_17ns_17_21_1_U122)             |        | 50     |     |      |      |     |        |      |         |          |        |
+|     sdiv_64ns_64ns_64_68_1_U120                | 6609   | 8388   |     |      |      |     |        |      |         |          |        |
+|       (sdiv_64ns_64ns_64_68_1_U120)            |        | 192    |     |      |      |     |        |      |         |          |        |
+|     shl_111ns_32ns_111_2_1_U125                | 194    | 32     |     |      |      |     |        |      |         |          |        |
+|     sitodp_64ns_64_7_no_dsp_1_U116             | 317    | 446    |     |      |      |     |        |      |         |          |        |
+|       (sitodp_64ns_64_7_no_dsp_1_U116)         |        | 64     |     |      |      |     |        |      |         |          |        |
+|     sitofp_32s_32_7_no_dsp_1_U115              | 127    | 183    |     |      |      |     |        |      |         |          |        |
+|       (sitofp_32s_32_7_no_dsp_1_U115)          |        | 1      |     |      |      |     |        |      |         |          |        |
+|     urem_32ns_17ns_32_36_1_U123                | 695    | 472    |     |      |      |     |        |      |         |          |        |
+|       (urem_32ns_17ns_32_36_1_U123)            |        | 32     |     |      |      |     |        |      |         |          |        |
+|     urem_64s_64ns_64_68_1_U121                 | 7985   | 8257   |     |      |      |     |        |      |         |          |        |
+|       (urem_64s_64ns_64_68_1_U121)             |        | 128    |     |      |      |     |        |      |         |          |        |
+|   grp_fn1_Pipeline_VITIS_LOOP_445_8_fu_580     | 6329   | 5577   |     |      |      |     |        |      |         |          |        |
+|     (grp_fn1_Pipeline_VITIS_LOOP_445_8_fu_580) | 341    | 646    |     |      |      |     |        |      |         |          |        |
+|     fcmp_32ns_32ns_1_4_no_dsp_1_U152           | 47     | 73     |     |      |      |     |        |      |         |          |        |
+|       (fcmp_32ns_32ns_1_4_no_dsp_1_U152)       |        | 64     |     |      |      |     |        |      |         |          |        |
+|     flow_control_loop_pipe_sequential_init_U   | 77     | 2      |     |      |      |     |        |      |         |          |        |
+|     shl_111ns_32ns_111_2_1_U156                | 194    | 32     |     |      |      |     |        |      |         |          |        |
+|     sitofp_32s_32_7_no_dsp_1_U151              | 143    | 200    |     |      |      |     |        |      |         |          |        |
+|       (sitofp_32s_32_7_no_dsp_1_U151)          |        | 18     |     |      |      |     |        |      |         |          |        |
+|     srem_64ns_18ns_18_68_1_U154                | 5527   | 4624   |     |      |      |     |        |      |         |          |        |
+|       (srem_64ns_18ns_18_68_1_U154)            | 114    | 99     |     |      |      |     |        |      |         |          |        |
+|   icmp_71ns_71ns_1_2_1_U218                    | 101    | 64     |     |      |      |     |        |      |         |          |        |
+|   lshr_111ns_32ns_111_2_1_U200                 |        | 1      |     |      |      |     |        |      |         |          |        |
+|   lshr_111ns_32ns_111_2_1_U238                 |        | 1      |     |      |      |     |        |      |         |          |        |
+|   lshr_113ns_32ns_113_7_1_U222                 | 4      | 4      |     |      |      |     |        |      |         |          |        |
+|   lshr_121ns_32ns_121_7_1_U241                 | 4      | 4      |     |      |      |     |        |      |         |          |        |
+|   lshr_137ns_32ns_137_7_1_U226                 | 4      | 4      |     |      |      |     |        |      |         |          |        |
+|   lshr_169ns_32ns_169_7_1_U207                 | 1      | 1      |     |      |      |     |        |      |         |          |        |
+|   lshr_169ns_32ns_169_7_1_U209                 | 1      | 1      |     |      |      |     |        |      |         |          |        |
+|   lshr_169ns_32ns_169_7_1_U216                 | 1      | 1      |     |      |      |     |        |      |         |          |        |
+|   lshr_32ns_5ns_32_2_1_U219                    | 10     | 6      |     |      |      |     |        |      |         |          |        |
+|   lshr_64ns_6ns_64_7_1_U215                    | 198    | 396    |     |      |      |     |        |      |         |          |        |
+|   mul_16ns_18ns_33_2_1_U212                    |        |        | 1   |      |      |     |        |      |         |          |        |
+|   mul_32ns_17ns_48_5_1_U184                    |        | 17     | 2   |      |      |     |        |      |         |          |        |
+|   mul_32ns_34ns_56_5_1_U185                    |        |        | 4   |      |      |     |        |      |         |          |        |
+|   mul_32ns_34ns_65_5_1_U186                    |        |        | 4   |      |      |     |        |      |         |          |        |
+|   mul_32s_14ns_32_5_1_U188                     | 33     | 17     | 2   |      |      |     |        |      |         |          |        |
+|   mul_32s_16ns_32_5_1_U187                     | 17     | 17     | 2   |      |      |     |        |      |         |          |        |
+|   mul_39s_31s_39_5_1_U189                      |        | 51     | 4   |      |      |     |        |      |         |          |        |
+|   mul_64ns_8ns_71_5_1_U190                     | 10     | 68     | 4   |      |      |     |        |      |         |          |        |
+|   mul_64s_16ns_64_5_1_U191                     | 16     | 68     | 4   |      |      |     |        |      |         |          |        |
+|   mul_64s_16ns_64_5_1_x_U193                   | 1      | 68     | 4   |      |      |     |        |      |         |          |        |
+|   mul_64s_18s_64_5_1_U192                      | 17     | 68     | 4   |      |      |     |        |      |         |          |        |
+|   mul_64s_66ns_129_5_1_U194                    | 319    | 180    | 16  |      |      |     |        |      |         |          |        |
+|   mul_8s_29ns_32_4_1_U182                      |        | 17     | 2   |      |      |     |        |      |         |          |        |
+|   mul_8s_31s_39_5_1_U183                       |        | 17     | 2   |      |      |     |        |      |         |          |        |
+|   sdiv_32s_11ns_24_36_1_U205                   | 1029   | 664    |     |      |      |     |        |      |         |          |        |
+|     (sdiv_32s_11ns_24_36_1_U205)               | 85     | 56     |     |      |      |     |        |      |         |          |        |
+|   shl_111ns_32ns_111_2_1_U201                  | 203    | 32     |     |      |      |     |        |      |         |          |        |
+|   shl_111ns_32ns_111_2_1_U229                  | 195    | 32     |     |      |      |     |        |      |         |          |        |
+|   shl_111ns_32ns_111_2_1_U239                  | 66     | 9      |     |      |      |     |        |      |         |          |        |
+|   shl_113ns_32ns_113_7_1_U223                  | 195    | 220    |     |      |      |     |        |      |         |          |        |
+|   shl_121ns_32ns_121_7_1_U242                  | 219    | 228    |     |      |      |     |        |      |         |          |        |
+|   shl_137ns_32ns_137_7_1_U227                  | 279    | 244    |     |      |      |     |        |      |         |          |        |
+|   shl_169ns_32ns_169_7_1_U208                  | 389    | 274    |     |      |      |     |        |      |         |          |        |
+|   shl_169ns_32ns_169_7_1_U210                  | 195    | 220    |     |      |      |     |        |      |         |          |        |
+|   shl_169ns_32ns_169_7_1_U217                  | 391    | 277    |     |      |      |     |        |      |         |          |        |
+|   shl_17ns_1ns_17_2_1_U235                     | 9      | 17     |     |      |      |     |        |      |         |          |        |
+|   shl_55ns_32ns_55_2_1_U199                    | 50     | 31     |     |      |      |     |        |      |         |          |        |
+|   shl_55ns_32ns_55_2_1_U233                    | 35     | 31     |     |      |      |     |        |      |         |          |        |
+|   shl_55ns_32ns_55_2_1_U237                    | 35     | 31     |     |      |      |     |        |      |         |          |        |
+|   shl_63ns_32ns_63_2_1_U197                    | 29     |        |     |      |      |     |        |      |         |          |        |
+|   shl_63ns_32ns_63_2_1_U221                    | 59     | 32     |     |      |      |     |        |      |         |          |        |
+|   sitodp_64ns_64_7_no_dsp_1_U181               | 437    | 511    |     |      |      |     |        |      |         |          |        |
+|     (sitodp_64ns_64_7_no_dsp_1_U181)           | 118    | 129    |     |      |      |     |        |      |         |          |        |
+|   sitofp_64ns_32_7_no_dsp_1_U174               | 383    | 379    |     |      |      |     |        |      |         |          |        |
+|     (sitofp_64ns_32_7_no_dsp_1_U174)           | 96     | 64     |     |      |      |     |        |      |         |          |        |
+|   srem_16s_16ns_16_20_seq_1_U195               | 89     | 102    |     |      |      |     |        |      |         |          |        |
+|     (srem_16s_16ns_16_20_seq_1_U195)           | 1      | 33     |     |      |      |     |        |      |         |          |        |
+|   srem_18s_33ns_33_22_1_U231                   | 861    | 934    |     |      |      |     |        |      |         |          |        |
+|     (srem_18s_33ns_33_22_1_U231)               | 1      | 51     |     |      |      |     |        |      |         |          |        |
+|   srem_64ns_64ns_64_68_1_U203                  | 8270   | 8321   |     |      |      |     |        |      |         |          |        |
+|     (srem_64ns_64ns_64_68_1_U203)              |        | 128    |     |      |      |     |        |      |         |          |        |
+|   srem_9s_64ns_39_13_1_U206                    | 791    | 742    |     |      |      |     |        |      |         |          |        |
+|     (srem_9s_64ns_39_13_1_U206)                | 15     | 83     |     |      |      |     |        |      |         |          |        |
+|   sub_129ns_129ns_129_2_1_U240                 | 129    | 66     |     |      |      |     |        |      |         |          |        |
+|   udiv_16ns_17s_17_20_1_U230                   | 414    | 426    |     |      |      |     |        |      |         |          |        |
+|     (udiv_16ns_17s_17_20_1_U230)               |        | 10     |     |      |      |     |        |      |         |          |        |
+|   udiv_64ns_64ns_64_68_1_U211                  | 8231   | 8196   |     |      |      |     |        |      |         |          |        |
+|     (udiv_64ns_64ns_64_68_1_U211)              | 63     | 66     |     |      |      |     |        |      |         |          |        |
+|   udiv_64ns_7ns_32_68_1_U244                   | 6328   | 3431   |     |      |      |     |        |      |         |          |        |
+|     (udiv_64ns_7ns_32_68_1_U244)               | 31     | 4      |     |      |      |     |        |      |         |          |        |
+|   uitodp_32ns_64_7_no_dsp_1_U180               | 115    | 253    |     |      |      |     |        |      |         |          |        |
+|     (uitodp_32ns_64_7_no_dsp_1_U180)           |        | 16     |     |      |      |     |        |      |         |          |        |
+|   uitodp_64ns_64_7_no_dsp_1_U179               | 257    | 410    |     |      |      |     |        |      |         |          |        |
+|     (uitodp_64ns_64_7_no_dsp_1_U179)           |        | 64     |     |      |      |     |        |      |         |          |        |
+|   uitofp_64ns_32_7_no_dsp_1_U173               | 246    | 299    |     |      |      |     |        |      |         |          |        |
+|     (uitofp_64ns_32_7_no_dsp_1_U173)           | 16     | 97     |     |      |      |     |        |      |         |          |        |
+|   uitofp_64s_32_7_no_dsp_1_U172                | 322    | 299    |     |      |      |     |        |      |         |          |        |
+|     (uitofp_64s_32_7_no_dsp_1_U172)            | 92     | 97     |     |      |      |     |        |      |         |          |        |
+|   urem_16ns_17ns_17_20_1_U225                  | 409    | 563    |     |      |      |     |        |      |         |          |        |
+|     (urem_16ns_17ns_17_20_1_U225)              |        | 34     |     |      |      |     |        |      |         |          |        |
+|   urem_1ns_16ns_7_5_seq_1_U243                 | 19     | 40     |     |      |      |     |        |      |         |          |        |
+|     (urem_1ns_16ns_7_5_seq_1_U243)             | 1      | 19     |     |      |      |     |        |      |         |          |        |
+|   urem_32s_32ns_8_36_1_U214                    | 1951   | 2033   |     |      |      |     |        |      |         |          |        |
+|     (urem_32s_32ns_8_36_1_U214)                |        | 40     |     |      |      |     |        |      |         |          |        |
+|   urem_48ns_49s_48_52_1_U213                   | 4627   | 3530   |     |      |      |     |        |      |         |          |        |
+|     (urem_48ns_49s_48_52_1_U213)               |        | 73     |     |      |      |     |        |      |         |          |        |
+|   urem_64ns_27ns_8_68_1_U204                   | 5473   | 3041   |     |      |      |     |        |      |         |          |        |
+|     (urem_64ns_27ns_8_68_1_U204)               |        | 8      |     |      |      |     |        |      |         |          |        |
+|   urem_8ns_7ns_7_12_seq_1_U224                 | 21     | 42     |     |      |      |     |        |      |         |          |        |
+|     (urem_8ns_7ns_7_12_seq_1_U224)             |        | 16     |     |      |      |     |        |      |         |          |        |
++------------------------------------------------+--------+--------+-----+------+------+-----+--------+------+---------+----------+--------+
+
+
+================================================================
+== RTL Synthesis Fail Fast
+================================================================
++-----------------------------------------------------------+-----------+---------+--------+
+| Criteria                                                  | Guideline | Actual  | Status |
++-----------------------------------------------------------+-----------+---------+--------+
+| LUT                                                       | 70%       | 255.08% | REVIEW |
+| FD                                                        | 50%       | 123.72% | REVIEW |
+| LUTRAM+SRL                                                | 25%       | 15.90%  | OK     |
+| MUXF7                                                     | 15%       | 0.42%   | OK     |
+| LUT Combining                                             | 20%       | 12.28%  | OK     |
+| DSP                                                       | 80%       | 43.64%  | OK     |
+| RAMB/FIFO                                                 | 80%       | 0.00%   | OK     |
+| DSP+RAMB+URAM (Avg)                                       | 70%       | 43.64%  | OK     |
+| BUFGCE* + BUFGCTRL                                        | 24        | 0       | OK     |
+| DONT_TOUCH (cells/nets)                                   | 0         | 0       | OK     |
+| MARK_DEBUG (nets)                                         | 0         | 0       | OK     |
+| Control Sets                                              | 998       | 372     | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 1.81    | OK     |
+| Max Average Fanout for modules > 100k cells               | 4         | 1.81    | OK     |
+| Non-FD high fanout nets > 10k loads                       | 0         | 0       | OK     |
++-----------------------------------------------------------+-----------+---------+--------+
+| TIMING-6 (No common primary clock between related clocks) | 0         | 0       | OK     |
+| TIMING-7 (No common node between related clocks)          | 0         | 0       | OK     |
+| TIMING-8 (No common period between related clocks)        | 0         | 0       | OK     |
+| TIMING-14 (LUT on the clock tree)                         | 0         | 0       | OK     |
+| TIMING-35 (No common node in paths with the same clock)   | 0         | 0       | OK     |
++-----------------------------------------------------------+-----------+---------+--------+
+| Number of paths above max LUT budgeting (0.575ns)         | 0         | 0       | OK     |
+| Number of paths above max Net budgeting (0.403ns)         | 0         | 100     | REVIEW |
++-----------------------------------------------------------+-----------+---------+--------+
+
+
+================================================================
+== RTL Synthesis Timing Paths
+================================================================
+* Timing was NOT met
++--------+--------+----------------------+------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path   |  SLACK | STARTPOINT PIN       | ENDPOINT PIN                                                                                   | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
+|        |        |                      |                                                                                                |              |            |                |          DELAY |        DELAY |
++--------+--------+----------------------+------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path1  | -2.971 | or_reg_4320_reg[1]/C | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][10]/R |           14 |       8389 |          7.363 |          2.852 |        4.511 |
+| Path2  | -2.971 | or_reg_4320_reg[1]/C | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][11]/R |           14 |       8389 |          7.363 |          2.852 |        4.511 |
+| Path3  | -2.971 | or_reg_4320_reg[1]/C | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][12]/R |           14 |       8389 |          7.363 |          2.852 |        4.511 |
+| Path4  | -2.971 | or_reg_4320_reg[1]/C | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][13]/R |           14 |       8389 |          7.363 |          2.852 |        4.511 |
+| Path5  | -2.971 | or_reg_4320_reg[1]/C | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][14]/R |           14 |       8389 |          7.363 |          2.852 |        4.511 |
+| Path6  | -2.971 | or_reg_4320_reg[1]/C | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][15]/R |           14 |       8389 |          7.363 |          2.852 |        4.511 |
+| Path7  | -2.971 | or_reg_4320_reg[1]/C | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][16]/R |           14 |       8389 |          7.363 |          2.852 |        4.511 |
+| Path8  | -2.971 | or_reg_4320_reg[1]/C | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][17]/R |           14 |       8389 |          7.363 |          2.852 |        4.511 |
+| Path9  | -2.971 | or_reg_4320_reg[1]/C | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][18]/R |           14 |       8389 |          7.363 |          2.852 |        4.511 |
+| Path10 | -2.971 | or_reg_4320_reg[1]/C | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][19]/R |           14 |       8389 |          7.363 |          2.852 |        4.511 |
++--------+--------+----------------------+------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path1 Cells                                                                                                      | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | or_reg_4320_reg[1]                                                                                               | FLOP_LATCH.flop.FDRE |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579[0]_i_68     | LUT.others.LUT4      |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_56 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_47 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_38 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_29 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_20 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_11 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_2  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_1  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm[98]_i_2              | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_12    | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_4     | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_1__19 | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][62]_i_1__4 | LUT.others.LUT2      |
+    | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][10]                     | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path2 Cells                                                                                                      | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | or_reg_4320_reg[1]                                                                                               | FLOP_LATCH.flop.FDRE |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579[0]_i_68     | LUT.others.LUT4      |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_56 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_47 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_38 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_29 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_20 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_11 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_2  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_1  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm[98]_i_2              | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_12    | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_4     | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_1__19 | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][62]_i_1__4 | LUT.others.LUT2      |
+    | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][11]                     | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path3 Cells                                                                                                      | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | or_reg_4320_reg[1]                                                                                               | FLOP_LATCH.flop.FDRE |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579[0]_i_68     | LUT.others.LUT4      |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_56 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_47 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_38 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_29 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_20 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_11 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_2  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_1  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm[98]_i_2              | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_12    | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_4     | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_1__19 | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][62]_i_1__4 | LUT.others.LUT2      |
+    | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][12]                     | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path4 Cells                                                                                                      | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | or_reg_4320_reg[1]                                                                                               | FLOP_LATCH.flop.FDRE |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579[0]_i_68     | LUT.others.LUT4      |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_56 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_47 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_38 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_29 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_20 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_11 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_2  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_1  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm[98]_i_2              | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_12    | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_4     | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_1__19 | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][62]_i_1__4 | LUT.others.LUT2      |
+    | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][13]                     | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path5 Cells                                                                                                      | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | or_reg_4320_reg[1]                                                                                               | FLOP_LATCH.flop.FDRE |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579[0]_i_68     | LUT.others.LUT4      |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_56 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_47 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_38 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_29 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_20 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_11 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_2  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_1  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm[98]_i_2              | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_12    | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_4     | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_1__19 | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][62]_i_1__4 | LUT.others.LUT2      |
+    | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][14]                     | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path6 Cells                                                                                                      | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | or_reg_4320_reg[1]                                                                                               | FLOP_LATCH.flop.FDRE |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579[0]_i_68     | LUT.others.LUT4      |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_56 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_47 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_38 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_29 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_20 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_11 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_2  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_1  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm[98]_i_2              | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_12    | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_4     | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_1__19 | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][62]_i_1__4 | LUT.others.LUT2      |
+    | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][15]                     | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path7 Cells                                                                                                      | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | or_reg_4320_reg[1]                                                                                               | FLOP_LATCH.flop.FDRE |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579[0]_i_68     | LUT.others.LUT4      |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_56 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_47 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_38 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_29 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_20 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_11 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_2  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_1  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm[98]_i_2              | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_12    | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_4     | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_1__19 | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][62]_i_1__4 | LUT.others.LUT2      |
+    | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][16]                     | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path8 Cells                                                                                                      | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | or_reg_4320_reg[1]                                                                                               | FLOP_LATCH.flop.FDRE |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579[0]_i_68     | LUT.others.LUT4      |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_56 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_47 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_38 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_29 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_20 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_11 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_2  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_1  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm[98]_i_2              | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_12    | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_4     | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_1__19 | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][62]_i_1__4 | LUT.others.LUT2      |
+    | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][17]                     | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path9 Cells                                                                                                      | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | or_reg_4320_reg[1]                                                                                               | FLOP_LATCH.flop.FDRE |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579[0]_i_68     | LUT.others.LUT4      |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_56 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_47 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_38 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_29 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_20 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_11 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_2  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_1  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm[98]_i_2              | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_12    | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_4     | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_1__19 | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][62]_i_1__4 | LUT.others.LUT2      |
+    | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][18]                     | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path10 Cells                                                                                                     | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+    | or_reg_4320_reg[1]                                                                                               | FLOP_LATCH.flop.FDRE |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579[0]_i_68     | LUT.others.LUT4      |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_56 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_47 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_38 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_29 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_20 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_11 | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_2  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/icmp_ln265_reg_579_reg[0]_i_1  | CARRY.others.CARRY4  |
+    | grp_fn1_Pipeline_VITIS_LOOP_264_2_fu_492/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm[98]_i_2              | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_12    | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_4     | LUT.others.LUT5      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][0]_i_1__19 | LUT.others.LUT6      |
+    | grp_fn1_Pipeline_VITIS_LOOP_287_3_fu_512/flow_control_loop_pipe_sequential_init_U/loop[0].remd_tmp[1][62]_i_1__4 | LUT.others.LUT2      |
+    | udiv_64ns_64ns_64_68_1_U211/fn1_udiv_64ns_64ns_64_68_1_divider_u/loop[0].remd_tmp_reg[1][19]                     | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------+----------------------+
+
+
+================================================================
+== RTL Synthesis Vivado Reports
+================================================================
++--------------------------+------------------------------------------------------------+
+| Report Type              | Report Location                                            |
++--------------------------+------------------------------------------------------------+
+| design_analysis          | impl/verilog/report/fn1_design_analysis_synth.rpt          |
+| failfast                 | impl/verilog/report/fn1_failfast_synth.rpt                 |
+| timing                   | impl/verilog/report/fn1_timing_synth.rpt                   |
+| timing_paths             | impl/verilog/report/fn1_timing_paths_synth.rpt             |
+| utilization              | impl/verilog/report/fn1_utilization_synth.rpt              |
+| utilization_hierarchical | impl/verilog/report/fn1_utilization_hierarchical_synth.rpt |
++--------------------------+------------------------------------------------------------+
+
+

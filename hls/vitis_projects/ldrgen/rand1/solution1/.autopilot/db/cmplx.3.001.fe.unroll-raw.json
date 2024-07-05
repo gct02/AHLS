@@ -1,0 +1,536 @@
+{
+  "0": {
+    "basicblocks": 62,
+    "calls": "50 27 3 43 17 36 50 50 50 7 8 15 7 50 50 50 49 3 45 45 45 3 28 49 7 50 7 49 49 50 3 9 8 29 3 43 43 7 15 28 3 43 3 7",
+    "file": "rand1.c",
+    "fileloc": 5,
+    "instructions": 1117,
+    "loads": {
+      "T": 21
+    },
+    "name": "fn1",
+    "total_instructions": 8179
+  },
+  "1": {
+    "basicblocks": 49,
+    "calls": "14 21 33 33 44",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 65,
+    "instructions": 104,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<unsigned int, AP_TRN_ZERO, double>",
+    "total_instructions": 147
+  },
+  "10": {
+    "basicblocks": 1,
+    "calls": "1",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<unsigned int, double>",
+    "total_instructions": 149
+  },
+  "11": {
+    "basicblocks": 1,
+    "calls": "41",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<int, float>",
+    "total_instructions": 167
+  },
+  "12": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 316,
+    "instructions": 6,
+    "loads": {
+      "L": 1
+    },
+    "name": "expv",
+    "total_instructions": 6
+  },
+  "13": {
+    "basicblocks": 49,
+    "calls": "18 16 12 12 26",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 65,
+    "instructions": 106,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<unsigned short, AP_TRN_ZERO, float>",
+    "total_instructions": 148
+  },
+  "14": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 456,
+    "instructions": 15,
+    "name": "fp_struct",
+    "stores": {
+      "L": 3
+    },
+    "total_instructions": 15
+  },
+  "15": {
+    "basicblocks": 1,
+    "calls": "10",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 69,
+    "instructions": 2,
+    "name": "__hls_fptoui_double_i32",
+    "total_instructions": 151
+  },
+  "16": {
+    "basicblocks": 4,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 340,
+    "instructions": 12,
+    "loads": {
+      "L": 1
+    },
+    "name": "mantissa",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 12
+  },
+  "17": {
+    "basicblocks": 1,
+    "calls": "11",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 51,
+    "instructions": 2,
+    "name": "__hls_fptosi_float_i32",
+    "total_instructions": 169
+  },
+  "18": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 283,
+    "instructions": 15,
+    "name": "fp_struct",
+    "stores": {
+      "L": 3
+    },
+    "total_instructions": 15
+  },
+  "19": {
+    "basicblocks": 58,
+    "calls": "18 16 12 12 26",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 12,
+    "instructions": 127,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<short, AP_TRN_ZERO, float>",
+    "total_instructions": 169
+  },
+  "2": {
+    "basicblocks": 58,
+    "calls": "14 21 33 33 44",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 12,
+    "instructions": 127,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<short, AP_TRN_ZERO, double>",
+    "total_instructions": 170
+  },
+  "20": {
+    "basicblocks": 1,
+    "calls": "48",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<unsigned int, float>",
+    "total_instructions": 148
+  },
+  "21": {
+    "basicblocks": 4,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 503,
+    "instructions": 13,
+    "loads": {
+      "L": 1
+    },
+    "name": "mantissa",
+    "stores": {
+      "L": 5
+    },
+    "total_instructions": 13
+  },
+  "22": {
+    "basicblocks": 1,
+    "calls": "19",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<short, float>",
+    "total_instructions": 171
+  },
+  "23": {
+    "basicblocks": 1,
+    "calls": "24",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<unsigned long, double>",
+    "total_instructions": 149
+  },
+  "24": {
+    "basicblocks": 49,
+    "calls": "14 21 33 33 44",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 65,
+    "instructions": 104,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<unsigned long, AP_TRN_ZERO, double>",
+    "total_instructions": 147
+  },
+  "25": {
+    "basicblocks": 58,
+    "calls": "18 16 12 12 26",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 12,
+    "instructions": 127,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<signed char, AP_TRN_ZERO, float>",
+    "total_instructions": 169
+  },
+  "26": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 349,
+    "instructions": 3,
+    "loads": {
+      "L": 1
+    },
+    "name": "__signbit",
+    "total_instructions": 3
+  },
+  "27": {
+    "basicblocks": 1,
+    "calls": "22",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 50,
+    "instructions": 2,
+    "name": "__hls_fptosi_float_i16",
+    "total_instructions": 173
+  },
+  "28": {
+    "basicblocks": 1,
+    "calls": "20",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 65,
+    "instructions": 2,
+    "name": "__hls_fptoui_float_i32",
+    "total_instructions": 150
+  },
+  "29": {
+    "basicblocks": 1,
+    "calls": "40",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 67,
+    "instructions": 2,
+    "name": "__hls_fptoui_double_i8",
+    "total_instructions": 157
+  },
+  "3": {
+    "basicblocks": 1,
+    "calls": "32",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 66,
+    "instructions": 2,
+    "name": "__hls_fptoui_float_i64",
+    "total_instructions": 150
+  },
+  "30": {
+    "basicblocks": 58,
+    "calls": "14 21 33 33 44",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 12,
+    "instructions": 123,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<int, AP_TRN_ZERO, double>",
+    "total_instructions": 166
+  },
+  "31": {
+    "basicblocks": 1,
+    "calls": "4",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<long, double>",
+    "total_instructions": 168
+  },
+  "32": {
+    "basicblocks": 1,
+    "calls": "38",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<unsigned long, float>",
+    "total_instructions": 148
+  },
+  "33": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 485,
+    "instructions": 6,
+    "loads": {
+      "L": 1
+    },
+    "name": "expv",
+    "total_instructions": 6
+  },
+  "34": {
+    "basicblocks": 49,
+    "calls": "14 21 33 33 44",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 65,
+    "instructions": 110,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<unsigned char, AP_TRN_ZERO, double>",
+    "total_instructions": 153
+  },
+  "35": {
+    "basicblocks": 1,
+    "calls": "2",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<short, double>",
+    "total_instructions": 172
+  },
+  "36": {
+    "basicblocks": 1,
+    "calls": "35",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 54,
+    "instructions": 2,
+    "name": "__hls_fptosi_double_i16",
+    "total_instructions": 174
+  },
+  "37": {
+    "basicblocks": 1,
+    "calls": "47",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<long, float>",
+    "total_instructions": 167
+  },
+  "38": {
+    "basicblocks": 49,
+    "calls": "18 16 12 12 26",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 65,
+    "instructions": 104,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<unsigned long, AP_TRN_ZERO, float>",
+    "total_instructions": 146
+  },
+  "39": {
+    "basicblocks": 1,
+    "calls": "25",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<signed char, float>",
+    "total_instructions": 171
+  },
+  "4": {
+    "basicblocks": 58,
+    "calls": "14 21 33 33 44",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 12,
+    "instructions": 123,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<long, AP_TRN_ZERO, double>",
+    "total_instructions": 166
+  },
+  "40": {
+    "basicblocks": 1,
+    "calls": "34",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<unsigned char, double>",
+    "total_instructions": 155
+  },
+  "41": {
+    "basicblocks": 58,
+    "calls": "18 16 12 12 26",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 12,
+    "instructions": 123,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<int, AP_TRN_ZERO, float>",
+    "total_instructions": 165
+  },
+  "42": {
+    "basicblocks": 49,
+    "calls": "14 21 33 33 44",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 65,
+    "instructions": 106,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<unsigned short, AP_TRN_ZERO, double>",
+    "total_instructions": 149
+  },
+  "43": {
+    "basicblocks": 1,
+    "calls": "39",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 49,
+    "instructions": 2,
+    "name": "__hls_fptosi_float_i8",
+    "total_instructions": 173
+  },
+  "44": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 512,
+    "instructions": 3,
+    "loads": {
+      "L": 1
+    },
+    "name": "__signbit",
+    "total_instructions": 3
+  },
+  "45": {
+    "basicblocks": 1,
+    "calls": "31",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 56,
+    "instructions": 2,
+    "name": "__hls_fptosi_double_i64",
+    "total_instructions": 170
+  },
+  "46": {
+    "basicblocks": 1,
+    "calls": "42",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<unsigned short, double>",
+    "total_instructions": 151
+  },
+  "47": {
+    "basicblocks": 58,
+    "calls": "18 16 12 12 26",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 12,
+    "instructions": 123,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<long, AP_TRN_ZERO, float>",
+    "total_instructions": 165
+  },
+  "48": {
+    "basicblocks": 49,
+    "calls": "18 16 12 12 26",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 65,
+    "instructions": 104,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_cast_IEEE754<unsigned int, AP_TRN_ZERO, float>",
+    "total_instructions": 146
+  },
+  "49": {
+    "basicblocks": 1,
+    "calls": "23",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 70,
+    "instructions": 2,
+    "name": "__hls_fptoui_double_i64",
+    "total_instructions": 151
+  },
+  "5": {
+    "basicblocks": 1,
+    "calls": "30",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<int, double>",
+    "total_instructions": 168
+  },
+  "50": {
+    "basicblocks": 1,
+    "calls": "37",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 52,
+    "instructions": 2,
+    "name": "__hls_fptosi_float_i64",
+    "total_instructions": 169
+  },
+  "6": {
+    "basicblocks": 1,
+    "calls": "13",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<unsigned short, float>",
+    "total_instructions": 150
+  },
+  "7": {
+    "basicblocks": 1,
+    "calls": "46",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 68,
+    "instructions": 2,
+    "name": "__hls_fptoui_double_i16",
+    "total_instructions": 153
+  },
+  "8": {
+    "basicblocks": 1,
+    "calls": "5",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 55,
+    "instructions": 2,
+    "name": "__hls_fptosi_double_i32",
+    "total_instructions": 170
+  },
+  "9": {
+    "basicblocks": 1,
+    "calls": "6",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 64,
+    "instructions": 2,
+    "name": "__hls_fptoui_float_i16",
+    "total_instructions": 152
+  }
+}

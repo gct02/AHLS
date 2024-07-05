@@ -1,0 +1,812 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
+| Date         : Sun Jun 23 07:13:07 2024
+| Host         : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.4 LTS
+| Command      : report_timing -max_paths 10 -file ./report/face_detect_timing_paths_synth.rpt
+| Design       : bd_0_wrapper
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -0.803ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[9]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        5.828ns  (logic 4.198ns (72.032%)  route 1.630ns (27.968%))
+  Logic Levels:           18  (CARRY4=17 LUT3=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 5.924 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.973     0.973    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/aclk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/Q
+                         net (fo=2, unplaced)         0.994     2.485    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/lopt_3
+                         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.671     3.156 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.009     3.165    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.282 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[1].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.282    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[4].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.399 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[5].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.399    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[8].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.516 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[9].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.516    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[12].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.633 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[13].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.633    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[16].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.750 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[17].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.750    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[20].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.867 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[21].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.867    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[24].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.984 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[25].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.984    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[2].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.101 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[3].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.101    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[6].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.218 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[7].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.218    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[10].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.335 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[11].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.335    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[14].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.452 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[15].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.452    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[18].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.569 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[19].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.569    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[22].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.331     4.900 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[23].C_MUX.CARRY_MUX_CARRY4/O[3]
+                         net (fo=1, unplaced)         0.618     5.518    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_0[0]
+                         LUT3 (Prop_lut3_I1_O)        0.307     5.825 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6/O
+                         net (fo=1, unplaced)         0.000     5.825    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6_n_3
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     6.338 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.009     6.347    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/CO[0]
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.464 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000     6.464    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1_n_3
+                         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.337     6.801 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[10]_i_1/O[1]
+                         net (fo=1, unplaced)         0.000     6.801    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/EXP[9]
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[9]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     5.000     5.000 r  
+                                                      0.000     5.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.924     5.924    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/aclk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[9]/C
+                         clock pessimism              0.000     5.924    
+                         clock uncertainty           -0.035     5.889    
+                         FDRE (Setup_fdre_C_D)        0.109     5.998    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[9]
+  -------------------------------------------------------------------
+                         required time                          5.998    
+                         arrival time                          -6.801    
+  -------------------------------------------------------------------
+                         slack                                 -0.803    
+
+Slack (VIOLATED) :        -0.722ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[10]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        5.747ns  (logic 4.117ns (71.637%)  route 1.630ns (28.363%))
+  Logic Levels:           18  (CARRY4=17 LUT3=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 5.924 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.973     0.973    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/aclk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/Q
+                         net (fo=2, unplaced)         0.994     2.485    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/lopt_3
+                         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.671     3.156 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.009     3.165    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.282 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[1].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.282    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[4].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.399 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[5].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.399    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[8].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.516 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[9].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.516    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[12].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.633 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[13].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.633    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[16].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.750 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[17].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.750    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[20].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.867 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[21].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.867    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[24].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.984 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[25].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.984    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[2].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.101 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[3].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.101    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[6].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.218 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[7].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.218    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[10].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.335 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[11].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.335    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[14].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.452 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[15].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.452    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[18].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.569 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[19].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.569    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[22].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.331     4.900 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[23].C_MUX.CARRY_MUX_CARRY4/O[3]
+                         net (fo=1, unplaced)         0.618     5.518    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_0[0]
+                         LUT3 (Prop_lut3_I1_O)        0.307     5.825 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6/O
+                         net (fo=1, unplaced)         0.000     5.825    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6_n_3
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     6.338 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.009     6.347    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/CO[0]
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.464 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000     6.464    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1_n_3
+                         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.256     6.720 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[10]_i_1/O[2]
+                         net (fo=1, unplaced)         0.000     6.720    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/EXP[10]
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[10]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     5.000     5.000 r  
+                                                      0.000     5.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.924     5.924    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/aclk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[10]/C
+                         clock pessimism              0.000     5.924    
+                         clock uncertainty           -0.035     5.889    
+                         FDRE (Setup_fdre_C_D)        0.109     5.998    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[10]
+  -------------------------------------------------------------------
+                         required time                          5.998    
+                         arrival time                          -6.720    
+  -------------------------------------------------------------------
+                         slack                                 -0.722    
+
+Slack (VIOLATED) :        -0.698ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[8]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        5.723ns  (logic 4.093ns (71.518%)  route 1.630ns (28.482%))
+  Logic Levels:           18  (CARRY4=17 LUT3=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 5.924 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.973     0.973    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/aclk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/Q
+                         net (fo=2, unplaced)         0.994     2.485    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/lopt_3
+                         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.671     3.156 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.009     3.165    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.282 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[1].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.282    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[4].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.399 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[5].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.399    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[8].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.516 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[9].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.516    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[12].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.633 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[13].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.633    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[16].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.750 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[17].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.750    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[20].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.867 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[21].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.867    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[24].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.984 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[25].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.984    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[2].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.101 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[3].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.101    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[6].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.218 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[7].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.218    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[10].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.335 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[11].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.335    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[14].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.452 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[15].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.452    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[18].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.569 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[19].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.569    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[22].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.331     4.900 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[23].C_MUX.CARRY_MUX_CARRY4/O[3]
+                         net (fo=1, unplaced)         0.618     5.518    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_0[0]
+                         LUT3 (Prop_lut3_I1_O)        0.307     5.825 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6/O
+                         net (fo=1, unplaced)         0.000     5.825    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6_n_3
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     6.338 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.009     6.347    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/CO[0]
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.464 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000     6.464    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1_n_3
+                         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.232     6.696 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[10]_i_1/O[0]
+                         net (fo=1, unplaced)         0.000     6.696    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/EXP[8]
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[8]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     5.000     5.000 r  
+                                                      0.000     5.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.924     5.924    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/aclk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[8]/C
+                         clock pessimism              0.000     5.924    
+                         clock uncertainty           -0.035     5.889    
+                         FDRE (Setup_fdre_C_D)        0.109     5.998    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[8]
+  -------------------------------------------------------------------
+                         required time                          5.998    
+                         arrival time                          -6.696    
+  -------------------------------------------------------------------
+                         slack                                 -0.698    
+
+Slack (VIOLATED) :        -0.686ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[5]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        5.711ns  (logic 4.081ns (71.459%)  route 1.630ns (28.541%))
+  Logic Levels:           17  (CARRY4=16 LUT3=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 5.924 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.973     0.973    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/aclk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/Q
+                         net (fo=2, unplaced)         0.994     2.485    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/lopt_3
+                         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.671     3.156 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.009     3.165    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.282 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[1].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.282    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[4].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.399 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[5].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.399    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[8].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.516 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[9].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.516    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[12].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.633 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[13].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.633    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[16].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.750 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[17].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.750    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[20].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.867 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[21].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.867    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[24].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.984 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[25].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.984    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[2].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.101 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[3].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.101    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[6].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.218 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[7].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.218    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[10].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.335 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[11].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.335    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[14].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.452 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[15].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.452    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[18].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.569 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[19].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.569    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[22].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.331     4.900 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[23].C_MUX.CARRY_MUX_CARRY4/O[3]
+                         net (fo=1, unplaced)         0.618     5.518    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_0[0]
+                         LUT3 (Prop_lut3_I1_O)        0.307     5.825 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6/O
+                         net (fo=1, unplaced)         0.000     5.825    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6_n_3
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     6.338 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.009     6.347    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/CO[0]
+                         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.337     6.684 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1/O[1]
+                         net (fo=1, unplaced)         0.000     6.684    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/EXP[5]
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[5]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     5.000     5.000 r  
+                                                      0.000     5.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.924     5.924    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/aclk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[5]/C
+                         clock pessimism              0.000     5.924    
+                         clock uncertainty           -0.035     5.889    
+                         FDRE (Setup_fdre_C_D)        0.109     5.998    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[5]
+  -------------------------------------------------------------------
+                         required time                          5.998    
+                         arrival time                          -6.684    
+  -------------------------------------------------------------------
+                         slack                                 -0.686    
+
+Slack (VIOLATED) :        -0.680ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[7]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        5.705ns  (logic 4.075ns (71.429%)  route 1.630ns (28.571%))
+  Logic Levels:           17  (CARRY4=16 LUT3=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 5.924 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.973     0.973    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/aclk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/Q
+                         net (fo=2, unplaced)         0.994     2.485    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/lopt_3
+                         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.671     3.156 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.009     3.165    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.282 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[1].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.282    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[4].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.399 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[5].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.399    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[8].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.516 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[9].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.516    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[12].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.633 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[13].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.633    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[16].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.750 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[17].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.750    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[20].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.867 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[21].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.867    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[24].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.984 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[25].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.984    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[2].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.101 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[3].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.101    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[6].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.218 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[7].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.218    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[10].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.335 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[11].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.335    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[14].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.452 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[15].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.452    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[18].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.569 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[19].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.569    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[22].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.331     4.900 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[23].C_MUX.CARRY_MUX_CARRY4/O[3]
+                         net (fo=1, unplaced)         0.618     5.518    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_0[0]
+                         LUT3 (Prop_lut3_I1_O)        0.307     5.825 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6/O
+                         net (fo=1, unplaced)         0.000     5.825    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6_n_3
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     6.338 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.009     6.347    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/CO[0]
+                         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.331     6.678 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1/O[3]
+                         net (fo=1, unplaced)         0.000     6.678    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/EXP[7]
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     5.000     5.000 r  
+                                                      0.000     5.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.924     5.924    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/aclk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[7]/C
+                         clock pessimism              0.000     5.924    
+                         clock uncertainty           -0.035     5.889    
+                         FDRE (Setup_fdre_C_D)        0.109     5.998    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[7]
+  -------------------------------------------------------------------
+                         required time                          5.998    
+                         arrival time                          -6.678    
+  -------------------------------------------------------------------
+                         slack                                 -0.680    
+
+Slack (VIOLATED) :        -0.674ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/din0_buf1_reg[63]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/CHAIN_GEN[7].CARRYS_DEL.NEED_DEL.CARRYS_FD/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        5.440ns  (logic 4.252ns (78.162%)  route 1.188ns (21.838%))
+  Logic Levels:           20  (CARRY4=18 LUT2=1 LUT4=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 5.924 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.973     0.973    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/din0_buf1_reg[63]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/din0_buf1_reg[63]/Q
+                         net (fo=65, unplaced)        0.559     2.050    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/s_axis_a_tdata[63]
+                         LUT2 (Prop_lut2_I0_O)        0.295     2.345 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/CHAIN_GEN[1].C_MUX.CARRY_MUX_i_1/O
+                         net (fo=1, unplaced)         0.000     2.345    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/A[1]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     2.878 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.009     2.887    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[3].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.004 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[4].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.004    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[7].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.121 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.121    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[11].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.238 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[12].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.238    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[15].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.355 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.355    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[19].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.472 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[20].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.472    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[23].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.589 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.589    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[27].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.706 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[28].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.706    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[31].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.823 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.823    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[35].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     3.940 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[36].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     3.940    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[39].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.057 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.057    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[43].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.174 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[44].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.174    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[47].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.291 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.291    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[51].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.408 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[52].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.408    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[55].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.525 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[56].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     4.525    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[59].C_MUX.CARRY_MUX_n_3
+                         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.331     4.856 f  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[60].C_MUX.CARRY_MUX_CARRY4/O[3]
+                         net (fo=2, unplaced)         0.611     5.467    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/CHAIN_GEN[0].C_MUX.CARRY_MUX[63]
+                         LUT4 (Prop_lut4_I1_O)        0.307     5.774 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1/O
+                         net (fo=1, unplaced)         0.000     5.774    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/A[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     6.287 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=2, unplaced)         0.009     6.296    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/carry[4]
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.413 r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/CHAIN_GEN[4].C_MUX.CARRY_MUX_CARRY4/CO[3]
+                         net (fo=1, unplaced)         0.000     6.413    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/carry[8]
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/CHAIN_GEN[7].CARRYS_DEL.NEED_DEL.CARRYS_FD/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     5.000     5.000 r  
+                                                      0.000     5.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.924     5.924    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/aclk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/CHAIN_GEN[7].CARRYS_DEL.NEED_DEL.CARRYS_FD/C
+                         clock pessimism              0.000     5.924    
+                         clock uncertainty           -0.035     5.889    
+                         FDRE (Setup_fdre_C_D)       -0.150     5.739    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/face_detect_sitodp_64s_64_7_no_dsp_1_ip_u/inst/i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/CHAIN_GEN[7].CARRYS_DEL.NEED_DEL.CARRYS_FD
+  -------------------------------------------------------------------
+                         required time                          5.739    
+                         arrival time                          -6.413    
+  -------------------------------------------------------------------
+                         slack                                 -0.674    
+
+Slack (VIOLATED) :        -0.619ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/B[0]
+                            (rising edge-triggered cell DSP48E1 clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        5.085ns  (logic 3.421ns (67.271%)  route 1.664ns (32.729%))
+  Logic Levels:           2  (LUT4=1 RAMB36E1=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 5.924 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.973     0.973    bd_0_i/hls_inst/inst/IMG1_data_U/ap_clk
+                         RAMB36E1                                     r  bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_CASCADEOUTA)
+                                                      2.872     3.845 r  bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_0/CASCADEOUTA
+                         net (fo=1, unplaced)         0.065     3.910    bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_0_n_3
+                         RAMB36E1 (Prop_ramb36e1_CASCADEINA_DOADO[0])
+                                                      0.425     4.335 r  bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_1_0/DOADO[0]
+                         net (fo=1, unplaced)         0.800     5.135    bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_1_0_n_38
+                         LUT4 (Prop_lut4_I3_O)        0.124     5.259 r  bd_0_i/hls_inst/inst/IMG1_data_U/it_reg_651[0]_i_1/O
+                         net (fo=3, unplaced)         0.800     6.058    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/IMG1_data_q0[0]
+                         DSP48E1                                      r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/B[0]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     5.000     5.000 r  
+                                                      0.000     5.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.924     5.924    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/ap_clk
+                         DSP48E1                                      r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/CLK
+                         clock pessimism              0.000     5.924    
+                         clock uncertainty           -0.035     5.889    
+                         DSP48E1 (Setup_dsp48e1_CLK_B[0])
+                                                     -0.450     5.439    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg
+  -------------------------------------------------------------------
+                         required time                          5.439    
+                         arrival time                          -6.058    
+  -------------------------------------------------------------------
+                         slack                                 -0.619    
+
+Slack (VIOLATED) :        -0.619ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_1/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/B[1]
+                            (rising edge-triggered cell DSP48E1 clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        5.085ns  (logic 3.421ns (67.271%)  route 1.664ns (32.729%))
+  Logic Levels:           2  (LUT4=1 RAMB36E1=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 5.924 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.973     0.973    bd_0_i/hls_inst/inst/IMG1_data_U/ap_clk
+                         RAMB36E1                                     r  bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_1/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_CASCADEOUTA)
+                                                      2.872     3.845 r  bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_1/CASCADEOUTA
+                         net (fo=1, unplaced)         0.065     3.910    bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_1_n_3
+                         RAMB36E1 (Prop_ramb36e1_CASCADEINA_DOADO[0])
+                                                      0.425     4.335 r  bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_1_1/DOADO[0]
+                         net (fo=1, unplaced)         0.800     5.135    bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_1_1_n_38
+                         LUT4 (Prop_lut4_I3_O)        0.124     5.259 r  bd_0_i/hls_inst/inst/IMG1_data_U/it_reg_651[1]_i_1/O
+                         net (fo=3, unplaced)         0.800     6.058    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/IMG1_data_q0[1]
+                         DSP48E1                                      r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/B[1]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     5.000     5.000 r  
+                                                      0.000     5.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.924     5.924    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/ap_clk
+                         DSP48E1                                      r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/CLK
+                         clock pessimism              0.000     5.924    
+                         clock uncertainty           -0.035     5.889    
+                         DSP48E1 (Setup_dsp48e1_CLK_B[1])
+                                                     -0.450     5.439    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg
+  -------------------------------------------------------------------
+                         required time                          5.439    
+                         arrival time                          -6.058    
+  -------------------------------------------------------------------
+                         slack                                 -0.619    
+
+Slack (VIOLATED) :        -0.619ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_2/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/B[2]
+                            (rising edge-triggered cell DSP48E1 clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        5.085ns  (logic 3.421ns (67.271%)  route 1.664ns (32.729%))
+  Logic Levels:           2  (LUT4=1 RAMB36E1=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 5.924 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.973     0.973    bd_0_i/hls_inst/inst/IMG1_data_U/ap_clk
+                         RAMB36E1                                     r  bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_2/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_CASCADEOUTA)
+                                                      2.872     3.845 r  bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_2/CASCADEOUTA
+                         net (fo=1, unplaced)         0.065     3.910    bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_2_n_3
+                         RAMB36E1 (Prop_ramb36e1_CASCADEINA_DOADO[0])
+                                                      0.425     4.335 r  bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_1_2/DOADO[0]
+                         net (fo=1, unplaced)         0.800     5.135    bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_1_2_n_38
+                         LUT4 (Prop_lut4_I3_O)        0.124     5.259 r  bd_0_i/hls_inst/inst/IMG1_data_U/it_reg_651[2]_i_1/O
+                         net (fo=3, unplaced)         0.800     6.058    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/IMG1_data_q0[2]
+                         DSP48E1                                      r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/B[2]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     5.000     5.000 r  
+                                                      0.000     5.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.924     5.924    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/ap_clk
+                         DSP48E1                                      r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/CLK
+                         clock pessimism              0.000     5.924    
+                         clock uncertainty           -0.035     5.889    
+                         DSP48E1 (Setup_dsp48e1_CLK_B[2])
+                                                     -0.450     5.439    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg
+  -------------------------------------------------------------------
+                         required time                          5.439    
+                         arrival time                          -6.058    
+  -------------------------------------------------------------------
+                         slack                                 -0.619    
+
+Slack (VIOLATED) :        -0.619ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_3/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/B[3]
+                            (rising edge-triggered cell DSP48E1 clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        5.085ns  (logic 3.421ns (67.271%)  route 1.664ns (32.729%))
+  Logic Levels:           2  (LUT4=1 RAMB36E1=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 5.924 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.973     0.973    bd_0_i/hls_inst/inst/IMG1_data_U/ap_clk
+                         RAMB36E1                                     r  bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_3/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_CASCADEOUTA)
+                                                      2.872     3.845 r  bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_3/CASCADEOUTA
+                         net (fo=1, unplaced)         0.065     3.910    bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_0_3_n_3
+                         RAMB36E1 (Prop_ramb36e1_CASCADEINA_DOADO[0])
+                                                      0.425     4.335 r  bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_1_3/DOADO[0]
+                         net (fo=1, unplaced)         0.800     5.135    bd_0_i/hls_inst/inst/IMG1_data_U/ram_reg_1_3_n_38
+                         LUT4 (Prop_lut4_I3_O)        0.124     5.259 r  bd_0_i/hls_inst/inst/IMG1_data_U/it_reg_651[3]_i_1/O
+                         net (fo=3, unplaced)         0.800     6.058    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/IMG1_data_q0[3]
+                         DSP48E1                                      r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/B[3]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     5.000     5.000 r  
+                                                      0.000     5.000 r  ap_clk (IN)
+                         net (fo=17800, unset)        0.924     5.924    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/ap_clk
+                         DSP48E1                                      r  bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/CLK
+                         clock pessimism              0.000     5.924    
+                         clock uncertainty           -0.035     5.889    
+                         DSP48E1 (Setup_dsp48e1_CLK_B[3])
+                                                     -0.450     5.439    bd_0_i/hls_inst/inst/grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg
+  -------------------------------------------------------------------
+                         required time                          5.439    
+                         arrival time                          -6.058    
+  -------------------------------------------------------------------
+                         slack                                 -0.619    
+
+
+
+

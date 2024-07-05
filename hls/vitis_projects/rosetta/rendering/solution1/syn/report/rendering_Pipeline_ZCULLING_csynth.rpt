@@ -1,0 +1,188 @@
+
+
+================================================================
+== Vitis HLS Report for 'rendering_Pipeline_ZCULLING'
+================================================================
+* Date:           Sun Jun 23 07:16:12 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        rendering
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  4.842 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+        |            |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |  Loop Name |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- ZCULLING  |        ?|        ?|         7|          4|          1|     ?|       yes|
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|    133|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|    102|    -|
+|Register         |        -|    -|     252|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|     252|    235|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +------------------------+----------+----+---+----+------------+------------+
+    |      Variable Name     | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +------------------------+----------+----+---+----+------------+------------+
+    |add_ln212_fu_194_p2     |         +|   0|  0|  38|          31|           1|
+    |pixel_cntr_1_fu_235_p2  |         +|   0|  0|  39|          32|           1|
+    |icmp_ln212_fu_188_p2    |      icmp|   0|  0|  39|          32|          32|
+    |icmp_ln214_fu_222_p2    |      icmp|   0|  0|  15|           8|           8|
+    |ap_enable_pp0           |       xor|   0|  0|   2|           1|           2|
+    +------------------------+----------+----+---+----+------------+------------+
+    |Total                   |          |   0|  0| 133|         104|          44|
+    +------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------------------+----+-----------+-----+-----------+
+    |             Name            | LUT| Input Size| Bits| Total Bits|
+    +-----------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                    |  25|          5|    1|          5|
+    |ap_done_int                  |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter0      |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter0_reg  |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1      |   9|          2|    1|          2|
+    |ap_sig_allocacmp_n_1         |   9|          2|   31|         62|
+    |n_fu_46                      |   9|          2|   31|         62|
+    |pixel_cntr_fu_50             |   9|          2|   32|         64|
+    |z_buffer_address0            |  14|          3|   16|         48|
+    +-----------------------------+----+-----------+-----+-----------+
+    |Total                        | 102|         22|  115|        249|
+    +-----------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------+----+----+-----+-----------+
+    |             Name            | FF | LUT| Bits| Const Bits|
+    +-----------------------------+----+----+-----+-----------+
+    |add_ln212_reg_268            |  31|   0|   31|          0|
+    |ap_CS_fsm                    |   4|   0|    4|          0|
+    |ap_done_reg                  |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter0_reg  |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1      |   1|   0|    1|          0|
+    |fragment_color_load_reg_335  |   6|   0|    6|          0|
+    |fragment_x_load_reg_305      |   8|   0|    8|          0|
+    |fragment_y_load_reg_299      |   8|   0|    8|          0|
+    |fragment_z_load_reg_293      |   8|   0|    8|          0|
+    |icmp_ln212_reg_264           |   1|   0|    1|          0|
+    |icmp_ln214_reg_321           |   1|   0|    1|          0|
+    |n_fu_46                      |  31|   0|   31|          0|
+    |pixel_cntr_1_reg_340         |  32|   0|   32|          0|
+    |pixel_cntr_fu_50             |  32|   0|   32|          0|
+    |z_buffer_addr_reg_311        |  16|   0|   16|          0|
+    |z_buffer_load_reg_316        |   8|   0|    8|          0|
+    |zext_ln212_reg_273           |  31|   0|   64|         33|
+    |zext_ln216_reg_330           |  32|   0|   64|         32|
+    +-----------------------------+----+----+-----+-----------+
+    |Total                        | 252|   0|  317|         65|
+    +-----------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------+-----+-----+------------+-----------------------------+--------------+
+|        RTL Ports        | Dir | Bits|  Protocol  |        Source Object        |    C Type    |
++-------------------------+-----+-----+------------+-----------------------------+--------------+
+|ap_clk                   |   in|    1|  ap_ctrl_hs|  rendering_Pipeline_ZCULLING|  return value|
+|ap_rst                   |   in|    1|  ap_ctrl_hs|  rendering_Pipeline_ZCULLING|  return value|
+|ap_start                 |   in|    1|  ap_ctrl_hs|  rendering_Pipeline_ZCULLING|  return value|
+|ap_done                  |  out|    1|  ap_ctrl_hs|  rendering_Pipeline_ZCULLING|  return value|
+|ap_idle                  |  out|    1|  ap_ctrl_hs|  rendering_Pipeline_ZCULLING|  return value|
+|ap_ready                 |  out|    1|  ap_ctrl_hs|  rendering_Pipeline_ZCULLING|  return value|
+|size_fragment            |   in|   32|     ap_none|                size_fragment|        scalar|
+|fragment_z_address0      |  out|    9|   ap_memory|                   fragment_z|         array|
+|fragment_z_ce0           |  out|    1|   ap_memory|                   fragment_z|         array|
+|fragment_z_q0            |   in|    8|   ap_memory|                   fragment_z|         array|
+|fragment_y_address0      |  out|    9|   ap_memory|                   fragment_y|         array|
+|fragment_y_ce0           |  out|    1|   ap_memory|                   fragment_y|         array|
+|fragment_y_q0            |   in|    8|   ap_memory|                   fragment_y|         array|
+|fragment_x_address0      |  out|    9|   ap_memory|                   fragment_x|         array|
+|fragment_x_ce0           |  out|    1|   ap_memory|                   fragment_x|         array|
+|fragment_x_q0            |   in|    8|   ap_memory|                   fragment_x|         array|
+|pixels_x_address0        |  out|    9|   ap_memory|                     pixels_x|         array|
+|pixels_x_ce0             |  out|    1|   ap_memory|                     pixels_x|         array|
+|pixels_x_we0             |  out|    1|   ap_memory|                     pixels_x|         array|
+|pixels_x_d0              |  out|    8|   ap_memory|                     pixels_x|         array|
+|pixels_y_address0        |  out|    9|   ap_memory|                     pixels_y|         array|
+|pixels_y_ce0             |  out|    1|   ap_memory|                     pixels_y|         array|
+|pixels_y_we0             |  out|    1|   ap_memory|                     pixels_y|         array|
+|pixels_y_d0              |  out|    8|   ap_memory|                     pixels_y|         array|
+|fragment_color_address0  |  out|    9|   ap_memory|               fragment_color|         array|
+|fragment_color_ce0       |  out|    1|   ap_memory|               fragment_color|         array|
+|fragment_color_q0        |   in|    6|   ap_memory|               fragment_color|         array|
+|pixels_color_address0    |  out|    9|   ap_memory|                 pixels_color|         array|
+|pixels_color_ce0         |  out|    1|   ap_memory|                 pixels_color|         array|
+|pixels_color_we0         |  out|    1|   ap_memory|                 pixels_color|         array|
+|pixels_color_d0          |  out|    6|   ap_memory|                 pixels_color|         array|
+|pixel_cntr_out           |  out|   32|      ap_vld|               pixel_cntr_out|       pointer|
+|pixel_cntr_out_ap_vld    |  out|    1|      ap_vld|               pixel_cntr_out|       pointer|
+|z_buffer_address0        |  out|   16|   ap_memory|                     z_buffer|         array|
+|z_buffer_ce0             |  out|    1|   ap_memory|                     z_buffer|         array|
+|z_buffer_we0             |  out|    1|   ap_memory|                     z_buffer|         array|
+|z_buffer_d0              |  out|    8|   ap_memory|                     z_buffer|         array|
+|z_buffer_q0              |   in|    8|   ap_memory|                     z_buffer|         array|
++-------------------------+-----+-----+------------+-----------------------------+--------------+
+

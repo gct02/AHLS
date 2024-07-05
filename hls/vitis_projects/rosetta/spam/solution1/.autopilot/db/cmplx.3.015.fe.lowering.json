@@ -1,0 +1,19 @@
+{
+  "0": {
+    "basicblocks": 11,
+    "calls": "",
+    "file": "sgd.cpp",
+    "fileloc": 50,
+    "instructions": 69,
+    "loads": {
+      "L": 1,
+      "T": 5
+    },
+    "name": "SgdLR",
+    "stores": {
+      "L": 1,
+      "T": 1
+    },
+    "total_instructions": 69
+  }
+}

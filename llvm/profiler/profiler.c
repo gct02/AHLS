@@ -12,6 +12,7 @@ typedef struct BinOpInfo
   bool isSignedValue;
   bool isFpValue;
   uint32_t bitwidth;
+  uint32_t numUses;
   double numOccurs;
   double mean;
   double variance;
@@ -25,7 +26,7 @@ BinOpInfo* ops = NULL;
 void profOp(
     uint64_t instID, uint8_t instOpcode, int64_t signedIntValue, 
     uint64_t unsignedIntValue, double fpValue, bool isSignedValue, 
-    bool isFpValue, uint32_t bitwidth)
+    bool isFpValue, uint32_t bitwidth, uint32_t numUses, bool isBinaryOp)
 {
     bool isNewOp = true;
     BinOpInfo* currentOp = ops;
@@ -35,35 +36,39 @@ void profOp(
             currentOp = currentOp->next;
             continue;
         }
-        double oldNumOccurs = currentOp->numOccurs;
-        double oldMean = currentOp->mean;
-        double oldVariance = currentOp->variance;
-        double newNumOccurs = oldNumOccurs + 1;
-        double squaredValue;
-        double newMean;
-        double newVariance;
-        
-        if (isFpValue) {
-            squaredValue = pow(fpValue, 2);
-            newMean = oldMean + ((fpValue - oldMean) / newNumOccurs);
-            newVariance = ((oldNumOccurs/newNumOccurs) * oldVariance) + 
-                            (((fpValue - oldMean) / newNumOccurs) * (fpValue- newMean));
-        } else if(isSignedValue) {
-            squaredValue = pow(signedIntValue, 2);
-            newMean = oldMean + ((signedIntValue - oldMean) / newNumOccurs); 
-            newVariance = ((oldVariance / newNumOccurs) * oldNumOccurs) + 
-                            (((newMean - signedIntValue) / newNumOccurs) * (newMean - signedIntValue));
+        if (isBinaryOp) { // Binary operation
+            double oldNumOccurs = currentOp->numOccurs;
+            double oldMean = currentOp->mean;
+            double oldVariance = currentOp->variance;
+            double newNumOccurs = oldNumOccurs + 1;
+            double squaredValue;
+            double newMean;
+            double newVariance;
+            
+            if (isFpValue) {
+                squaredValue = pow(fpValue, 2);
+                newMean = oldMean + (fpValue - oldMean) / newNumOccurs;
+                newVariance = (oldNumOccurs/newNumOccurs) * oldVariance
+                            + ((fpValue - oldMean) / newNumOccurs) * (fpValue- newMean);
+            } else if (isSignedValue) {
+                squaredValue = pow(signedIntValue, 2);
+                newMean = oldMean + (signedIntValue - oldMean) / newNumOccurs; 
+                newVariance = (oldVariance / newNumOccurs) * oldNumOccurs
+                            + ((newMean - signedIntValue) / newNumOccurs) * (newMean - signedIntValue);
+            } else {
+                squaredValue = pow(unsignedIntValue, 2);
+                newMean = oldMean + (unsignedIntValue - oldMean) / newNumOccurs;
+                newVariance = (oldVariance / newNumOccurs) * oldNumOccurs
+                            + ((newMean - unsignedIntValue) / newNumOccurs) * (newMean - unsignedIntValue);
+            }     
+            currentOp->numOccurs = newNumOccurs; 
+            currentOp->mean = newMean;
+            currentOp->variance = newVariance;
+            currentOp->standardDev = sqrt(newVariance);
+            currentOp->sumOfSquares += squaredValue;
         } else {
-            squaredValue = pow(unsignedIntValue, 2);
-            newMean = oldMean + ((unsignedIntValue - oldMean) / newNumOccurs);
-            newVariance = ((oldVariance / newNumOccurs) * oldNumOccurs) + 
-                            (((newMean - unsignedIntValue) / newNumOccurs) * (newMean - unsignedIntValue));
-        }     
-        currentOp->numOccurs = newNumOccurs; 
-        currentOp->mean = newMean;
-        currentOp->variance = newVariance;
-        currentOp->standardDev = sqrt(newVariance);
-        currentOp->sumOfSquares += squaredValue;
+            currentOp->numOccurs += 1;
+        }
         isNewOp = false;
         break;  
     }
@@ -73,46 +78,52 @@ void profOp(
         newOp->opID = (uint32_t)instID;
         newOp->opCode = instOpcode;
         newOp->numOccurs = 1;
-
-        if (isFpValue) {
-            newOp->mean = fpValue;
-            newOp->sumOfSquares = pow(fpValue, 2);
-        } else if(isSignedValue) { 
-            newOp->mean = signedIntValue;
-            newOp->sumOfSquares = pow(signedIntValue, 2);
+        
+        if (isBinaryOp) {
+            if (isFpValue) {
+                newOp->mean = fpValue;
+                newOp->sumOfSquares = pow(fpValue, 2);
+            } else if (isSignedValue) { 
+                newOp->mean = signedIntValue;
+                newOp->sumOfSquares = pow(signedIntValue, 2);
+            } else {
+                newOp->mean = unsignedIntValue;
+                newOp->sumOfSquares = pow(unsignedIntValue, 2);
+            }
         } else {
-            newOp->mean = unsignedIntValue;
-            newOp->sumOfSquares = pow(unsignedIntValue, 2);
+            newOp->mean = 0;
+            newOp->sumOfSquares = 0;
         }
         newOp->isSignedValue = isSignedValue;
         newOp->isFpValue = isFpValue; 
         newOp->bitwidth = bitwidth;
         newOp->variance = 0;
         newOp->standardDev = 0;
+        newOp->numUses = numUses;
         newOp->next = ops;
         ops = newOp;   
-    } 
+    }
 }
 
 void saveProfile(const char *fileName) 
 {
-     int count = 0;
-     BinOpInfo* nextOp;
-     FILE* outputFile = fopen(fileName, "w");
+    int count = 0;
+    BinOpInfo* nextOp;
+    FILE* outputFile = fopen(fileName, "w");
 
-     if (outputFile) {
-         while (ops != NULL) { 
-             fprintf (outputFile, "%"PRIu32"|%"PRIu32"|%"PRIu32"|%"PRIu32"|%"PRIu32"|%"PRIu32"|%lf|%lf|%lf|%lf|\n", 
-                      ops->opID, ops->opCode, (uint32_t)ops->isSignedValue, (uint32_t)ops->isFpValue, 
-                      ops->bitwidth, (uint32_t)ops->numOccurs, ops->mean, ops->variance, ops->standardDev, ops->sumOfSquares); 
-             
-             nextOp = ops->next;
-             free(ops);
-             ops = nextOp;
-             count++;
-         }
-         fclose(outputFile);  
-     } else {
-         printf("Unable to open %s\n", fileName);
-     }
+    if (outputFile == NULL) {
+        printf("Unable to open %s\n", fileName);
+        return;
+    }
+    while (ops != NULL) { 
+        fprintf(outputFile, "%"PRIu32"|%"PRIu32"|%"PRIu32"|%"PRIu32"|%"PRIu32"|%"PRIu32"|%"PRIu32"|%lf|%lf|%lf|%lf\n", 
+                ops->opID, ops->opCode, (uint32_t)ops->isSignedValue, (uint32_t)ops->isFpValue, 
+                ops->bitwidth, (uint32_t)ops->numOccurs, ops->numUses, ops->mean, ops->variance,
+                ops->standardDev, ops->sumOfSquares);
+        nextOp = ops->next;
+        free(ops);
+        ops = nextOp;
+        count++;
+    }
+    fclose(outputFile); 
 }

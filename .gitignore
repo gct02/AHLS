@@ -2,8 +2,7 @@ __pycache__/
 *__pycache__/
 .vscode/
 .venv/
-hls/
-hls_override_opt/
 *.log
 *.sh
 *.tcl
+third_party/

@@ -13,7 +13,6 @@
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
 #include <string>
 #include <vector>
-#include <list>
 #include <cstdint>
 
 using namespace llvm;
@@ -31,7 +30,7 @@ struct UpdateMDPass : public ModulePass {
 		uint64_t opID;
 
 		// Get the instruction counter metadata from the module. If it doesn't exist, create it.
-		NamedMDNode* counterNamedMDNode = M.getOrInsertNamedMetadata("opIDCounter");
+		NamedMDNode* counterNamedMDNode = M.getOrInsertNamedMetadata("opCounter");
 		if (counterNamedMDNode->getNumOperands() != 0) {
 			opID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(counterNamedMDNode->getOperand(0)->getOperand(0))->getValue())->getZExtValue();
 			counterNamedMDNode->dropAllReferences();
@@ -39,58 +38,153 @@ struct UpdateMDPass : public ModulePass {
 			opID = 0;
 		}
 
-		bool modified = false;
-
-		// Iterate over all instructions in the module and assign an opID and signedness info to each one.
 		for (Function& F : M) {
 			for (BasicBlock& BB : F) {
 				for (Instruction& I : BB) {
-					// If the instruction already has signedness info, propagate its signedness info to its users and operands.
-					if (MDNode* signednessMDNode = I.getMetadata("opSignedness")) {
-						DEBUG(dbgs() << "Instruction already has signedness info: " << *signednessMDNode << "\n");
-						for(auto user : I.users()){  
-							if (auto destination = dyn_cast<Instruction>(user)) {
-								// Destination instruction uses I.
-								DEBUG(dbgs() << "Propagating signedness info to destination: " << *destination << "\n");
-								destination->setMetadata("opSignedness", signednessMDNode);
-								modified = true;
-							}
-						}
-						for (auto operandIterator = I.op_begin(); operandIterator != I.op_end(); ++operandIterator) {
-							if (auto source = dyn_cast<Instruction>(*operandIterator)) {
-								// Source instruction is used by I.
-								DEBUG(dbgs() << "Propagating signedness info to source: " << *source << "\n");
-								source->setMetadata("opSignedness", signednessMDNode);
-								modified = true;
-							}
-						}
-					}
-
-					// Skip instructions that already have an opID.
-					if (MDNode* opIDNode = I.getMetadata("opID")) {
-						uint64_t existingOpID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(opIDNode->getOperand(0))->getValue())->getZExtValue();
-						DEBUG(dbgs() << "Instruction already has opID: " << existingOpID << "\n");
+					if (MDNode* opIDMDNode = I.getMetadata("opID")) {
+						DEBUG(dbgs() << "Instruction " << opIDMDNode << " already has attributes\n");
 						continue;
 					}
-					
-					// Set the instruction's opID.
+					// Set the instruction's attributes (opID, opCode, isSignedValue, isFpValue, bitwidth, numUses).
 					opID++;
-					DEBUG(dbgs() << "Setting opID " << opID << " for instruction: " << I << "\n");
-					MDNode* opIDNode = MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt64Ty(ctx), opID))});
-					I.setMetadata("opID", opIDNode);
-					modified = true;
+					DEBUG(dbgs() << "Setting attributes for instruction: " << I << " (opID = " << opID << ")\n");
 
-					// If the instruction has no signedness info, set it to "unknownSignedness".
-					if (MDNode* signednessMDNode = I.getMetadata("opSignedness"))
-						continue;
-					I.setMetadata("opSignedness", MDNode::get(ctx, MDString::get(ctx, "unknownSignedness")));
+					MDNode* opIDMDNode = MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt64Ty(ctx), opID))});
+					I.setMetadata("opID", opIDMDNode);
+					MDNode* opCodeMDNode = MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt8Ty(ctx), I.getOpcode()))});
+					I.setMetadata("opCode", opCodeMDNode);
+					MDNode* bitwidthMDNode = MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), I.getType()->getPrimitiveSizeInBits()))});
+					I.setMetadata("bitwidth", bitwidthMDNode);
+					MDNode* numUsesMDNode = MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), I.getNumUses()))});
+					I.setMetadata("numUses", numUsesMDNode);
+
+					switch (I.getOpcode()) {
+						// Floating-point operations
+						case Instruction::FAdd:
+						case Instruction::FSub:
+						case Instruction::FMul:
+						case Instruction::FDiv:
+						case Instruction::FRem:
+							DEBUG(dbgs() << "Floating-point operation: " << I << "\n");
+							MDNode* isFpValue = MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt1Ty(ctx), 1))});
+							I.setMetadata("isFpValue", isFpValue);
+							MDNode* signednessMDNode = MDNode::get(ctx, {MDString::get(ctx, "signed")});
+							I.setMetadata("signedness", signednessMDNode);
+							break;
+						// Logical, arithmetic, and shift operations on integers
+						case Instruction::Add:
+						case Instruction::Sub:
+						case Instruction::Mul:
+						case Instruction::Or:
+						case Instruction::And:
+						case Instruction::Xor:
+						case Instruction::Shl:
+						case Instruction::LShr:
+						case Instruction::AShr:
+							DEBUG(dbgs() << "Integer operation: " << I << "\n");
+							MDNode* isFpValue = MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt1Ty(ctx), 0))});
+							I.setMetadata("isFpValue", isFpValue);
+							MDNode* signednessMDNode = MDNode::get(ctx, {MDString::get(ctx, "unknown")});
+							I.setMetadata("signedness", signednessMDNode);
+							break;
+						// Division and remainder operations on unsigned integers
+						case Instruction::UDiv:
+						case Instruction::URem:
+							DEBUG(dbgs() << "Unsigned division or remainder: " << I << "\n");
+							MDNode* isFpValue = MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt1Ty(ctx), 0))});
+							I.setMetadata("isFpValue", isFpValue);
+							MDNode* signednessMDNode = MDNode::get(ctx, {MDString::get(ctx, "unsigned")});
+							I.setMetadata("signedness", signednessMDNode);
+							break;
+						// Division and remainder operations on signed integers
+						case Instruction::SDiv:
+						case Instruction::SRem:
+							DEBUG(dbgs() << "Signed division or remainder: " << I << "\n");
+							MDNode* isFpValue = MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt1Ty(ctx), 0))});
+							I.setMetadata("isFpValue", isFpValue);
+							MDNode* signednessMDNode = MDNode::get(ctx, {MDString::get(ctx, "signed")});
+							I.setMetadata("signedness", signednessMDNode);
+							break;
+						// Not a binary operation
+						default:
+							MDNode* isFpValue = MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt1Ty(ctx), 0))});
+							I.setMetadata("isFpValue", isFpValue);
+							MDNode* signednessMDNode = MDNode::get(ctx, {MDString::get(ctx, "unknown")});
+							I.setMetadata("signedness", signednessMDNode);
+							break;
+                    }
 				}
 			}
 		}
+
+		// Propagate known signedness information
+		for (Function& F : M) {
+			for (BasicBlock& BB : F) {
+				for (Instruction& I : BB) {
+					if (MDNode* signednessMDNode = I.getMetadata("signedness")) {
+						StringRef signedness = cast<MDString>(signednessMDNode->getOperand(0))->getString();
+						if (signedness == "unknown") {
+							continue;
+						}
+						DEBUG(dbgs() << "Propagating signedness information for instruction: " << I << "\n");
+						for (User* U : I.users()) {
+							if (Instruction* userI = dyn_cast<Instruction>(U)) {
+								if (MDNode* userSignednessMDNode = userI->getMetadata("signedness")) {
+									StringRef userSignedness = cast<MDString>(userSignednessMDNode->getOperand(0))->getString();
+									if (userSignedness == "unknown") {
+										DEBUG(dbgs() << "Propagating signedness information to instruction: " << *userI << "\n");
+										MDNode* signednessMDNodeCopy = MDNode::get(ctx, {MDString::get(ctx, signedness)});
+										userI->setMetadata("signedness", signednessMDNodeCopy);
+									}
+								} else {
+									MDNode* signednessMDNodeCopy = MDNode::get(ctx, {MDString::get(ctx, cast<MDString>(signednessMDNode->getOperand(0))->getString())});
+									userI->setMetadata("signedness", signednessMDNodeCopy);
+								}
+							}
+						}
+						for (auto operandIter = I.op_begin(); operandIter != I.op_end(); operandIter++) {
+							if (Instruction* operandI = dyn_cast<Instruction>(operandIter->get())) {
+								if (MDNode* operandSignednessMDNode = operandI->getMetadata("signedness")) {
+									StringRef operandSignedness = cast<MDString>(operandSignednessMDNode->getOperand(0))->getString();
+									if (operandSignedness == "unknown") {
+										DEBUG(dbgs() << "Propagating signedness information to instruction: " << *operandI << "\n");
+										MDNode* signednessMDNodeCopy = MDNode::get(ctx, {MDString::get(ctx, signedness)});
+										operandI->setMetadata("signedness", signednessMDNodeCopy);
+									}
+								} else {
+									MDNode* signednessMDNodeCopy = MDNode::get(ctx, {MDString::get(ctx, cast<MDString>(signednessMDNode->getOperand(0))->getString())});
+									operandI->setMetadata("signedness", signednessMDNodeCopy);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		for (Function& F : M) {
+			for (BasicBlock& BB : F) {
+				for (Instruction& I : BB) {
+					if (MDNode* signednessMDNode = I.getMetadata("signedness")) {
+						StringRef signedness = cast<MDString>(signednessMDNode->getOperand(0))->getString();
+						if (signedness == "unknown") {
+							if (I.isBinaryOp()) {
+								MDNode* signednessMDNode = MDNode::get(ctx, {MDString::get(ctx, "signed")});
+								I.setMetadata("signedness", signednessMDNode);
+							} else {
+								MDNode* signednessMDNode = MDNode::get(ctx, {MDString::get(ctx, "unsigned")});
+								I.setMetadata("signedness", signednessMDNode);
+							}
+						}
+					}
+				}
+			}
+		}
+
 		// Update the instruction counter metadata in the module.
 		counterNamedMDNode->addOperand(MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt64Ty(ctx), opID))}));
 
-		return modified;
+		return true;
 	}
 };
 

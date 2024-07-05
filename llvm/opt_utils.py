@@ -65,11 +65,12 @@ def update_md_and_instrument(ir_path: Path, data_stats_file_path: Path, populate
     ir_md_updated_path = update_md(ir_path)
     return instrument(ir_md_updated_path, data_stats_file_path, populate_io_path)
 
-def apply_v2c(ir_path: Path, op_to_prune, const) -> Path:
+def apply_v2c(ir_path: Path, op_to_prune, const, output_path=None) -> Path:
     """
     Apply the variable-to-constant (v2c) transformation to the IR file at ir_path and return the path to the transformed IR file.
     """
-    output_path = ir_path.parent / Path(ir_path.stem + f"_v2c_{op_to_prune}_{const}.bc")
+    if output_path is None:
+        output_path = ir_path.parent / Path(ir_path.stem + f"_v2c_{op_to_prune}_{const}.bc")
     
     # Apply the v2c transformation to the IR
     v2c_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -v2c -opid {op_to_prune} -const {const} < {ir_path.as_posix()} > {output_path.as_posix()}"

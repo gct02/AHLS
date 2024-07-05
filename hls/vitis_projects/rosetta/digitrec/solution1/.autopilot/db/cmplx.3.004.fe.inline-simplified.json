@@ -1,0 +1,19 @@
+{
+  "0": {
+    "basicblocks": 19,
+    "calls": "",
+    "file": "digitrec.cpp",
+    "fileloc": 85,
+    "instructions": 120,
+    "loads": {
+      "L": 4,
+      "T": 3
+    },
+    "name": "DigitRec",
+    "stores": {
+      "L": 6,
+      "T": 1
+    },
+    "total_instructions": 120
+  }
+}
