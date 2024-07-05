@@ -59,86 +59,86 @@ struct ProfilingPass : public ModulePass {
             
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
-                    if (I.isBinaryOp()) {
-                        if (MDNode* opIDNode = I.getMetadata("opID")) {
-                            // Insert call to the profOp function after the instruction.
-                            IRBuilder<NoFolder> builder(&I);
-                            builder.SetInsertPoint(&BB, ++builder.GetInsertPoint());
-                            
-                            ConstantInt* opID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(opIDNode->getOperand(0))->getValue());
-                            ConstantInt* opCode = ConstantInt::get(Type::getInt8Ty(ctx), I.getOpcode());
-                            StringRef opSignedness = cast<MDString>(I.getMetadata("signedness")->getOperand(0))->getString();
-                            ConstantInt* bitwidth = ConstantInt::get(Type::getInt32Ty(ctx), I.getType()->getPrimitiveSizeInBits());
-                            ConstantInt* numUses = ConstantInt::get(Type::getInt32Ty(ctx), I.getNumUses());
+                    if (!I.isBinaryOp())
+                        continue;
+                    if (MDNode* opIDNode = I.getMetadata("opID")) {
+                        // Insert call to the profOp function after the instruction.
+                        IRBuilder<NoFolder> builder(&I);
+                        builder.SetInsertPoint(&BB, ++builder.GetInsertPoint());
+                        
+                        ConstantInt* opID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(opIDNode->getOperand(0))->getValue());
+                        ConstantInt* opCode = ConstantInt::get(Type::getInt8Ty(ctx), I.getOpcode());
+                        StringRef opSignedness = cast<MDString>(I.getMetadata("signedness")->getOperand(0))->getString();
+                        ConstantInt* bitwidth = ConstantInt::get(Type::getInt32Ty(ctx), I.getType()->getPrimitiveSizeInBits());
+                        ConstantInt* numUses = ConstantInt::get(Type::getInt32Ty(ctx), I.getNumUses());
 
-                            args[0] = opID;
-                            args[1] = opCode;
-                            args[7] = bitwidth;
-                            args[8] = numUses;
+                        args[0] = opID;
+                        args[1] = opCode;
+                        args[7] = bitwidth;
+                        args[8] = numUses;
 
-                            switch (I.getOpcode()) {
-                                // Floating-point operations
-                                case Instruction::FAdd:
-                                case Instruction::FSub:
-                                case Instruction::FMul:
-                                case Instruction::FDiv:
-                                case Instruction::FRem:
-                                    DEBUG(dbgs() << "Floating-point operation: " << I << "\n");
+                        switch (I.getOpcode()) {
+                            // Floating-point operations
+                            case Instruction::FAdd:
+                            case Instruction::FSub:
+                            case Instruction::FMul:
+                            case Instruction::FDiv:
+                            case Instruction::FRem:
+                                DEBUG(dbgs() << "Floating-point operation: " << I << "\n");
+                                args[2] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
+                                args[3] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
+                                args[4] = builder.CreateFPExt(&I, Type::getDoubleTy(ctx));
+                                args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
+                                args[6] = ConstantInt::get(Type::getInt1Ty(ctx), 1);
+                                break;
+                            // Logical, arithmetic, and shift operations on integers
+                            case Instruction::Add:
+                            case Instruction::Sub:
+                            case Instruction::Mul:
+                            case Instruction::Or:
+                            case Instruction::And:
+                            case Instruction::Xor:
+                            case Instruction::Shl:
+                            case Instruction::LShr:
+                            case Instruction::AShr:
+                                DEBUG(dbgs() << "Integer operation: " << I << "\n");
+                                args[4] = ConstantFP::get(Type::getDoubleTy(ctx), 0);
+                                args[6] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
+                                if (opSignedness == "unsigned") {
                                     args[2] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
-                                    args[3] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
-                                    args[4] = builder.CreateFPExt(&I, Type::getDoubleTy(ctx));
+                                    args[3] = builder.CreateZExt(&I, Type::getInt64Ty(ctx));
                                     args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
-                                    args[6] = ConstantInt::get(Type::getInt1Ty(ctx), 1);
-                                    break;
-                                // Logical, arithmetic, and shift operations on integers
-                                case Instruction::Add:
-                                case Instruction::Sub:
-                                case Instruction::Mul:
-                                case Instruction::Or:
-                                case Instruction::And:
-                                case Instruction::Xor:
-                                case Instruction::Shl:
-                                case Instruction::LShr:
-                                case Instruction::AShr:
-                                    DEBUG(dbgs() << "Integer operation: " << I << "\n");
-                                    args[4] = ConstantFP::get(Type::getDoubleTy(ctx), 0);
-                                    args[6] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
-                                    if (opSignedness == "unsigned") {
-                                        args[2] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
-                                        args[3] = builder.CreateZExt(&I, Type::getInt64Ty(ctx));
-                                        args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
-                                    } else {
-                                        args[2] = builder.CreateSExt(&I, Type::getInt64Ty(ctx));
-                                        args[3] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
-                                        args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 1);
-                                    }
-                                    break;
-                                // Division and remainder operations on unsigned integers
-                                case Instruction::UDiv:
-                                case Instruction::URem:
-                                    DEBUG(dbgs() << "Unsigned division or remainder: " << I << "\n");
-                                    args[2] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
-                                    args[3] = builder.CreateZExt(&I, Type::getInt64Ty(ctx)); 
-                                    args[4] = ConstantFP::get(Type::getDoubleTy(ctx), 0); 
-                                    args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 0); 
-                                    args[6] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
-                                    break;
-                                // Division and remainder operations on signed integers
-                                case Instruction::SDiv:
-                                case Instruction::SRem:
-                                    DEBUG(dbgs() << "Signed division or remainder: " << I << "\n");
-                                    args[2] = builder.CreateSExt(&I, Type::getInt64Ty(ctx)); 
+                                } else {
+                                    args[2] = builder.CreateSExt(&I, Type::getInt64Ty(ctx));
                                     args[3] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
-                                    args[4] = ConstantFP::get(Type::getDoubleTy(ctx), 0); 
-                                    args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 1); 
-                                    args[6] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
-                                    break;
-                                // Not a binary operation
-                                default: break;
-                            }
-                            builder.CreateCall(profOp, args);
-                            modified = true;
+                                    args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 1);
+                                }
+                                break;
+                            // Division and remainder operations on unsigned integers
+                            case Instruction::UDiv:
+                            case Instruction::URem:
+                                DEBUG(dbgs() << "Unsigned division or remainder: " << I << "\n");
+                                args[2] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
+                                args[3] = builder.CreateZExt(&I, Type::getInt64Ty(ctx)); 
+                                args[4] = ConstantFP::get(Type::getDoubleTy(ctx), 0); 
+                                args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 0); 
+                                args[6] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
+                                break;
+                            // Division and remainder operations on signed integers
+                            case Instruction::SDiv:
+                            case Instruction::SRem:
+                                DEBUG(dbgs() << "Signed division or remainder: " << I << "\n");
+                                args[2] = builder.CreateSExt(&I, Type::getInt64Ty(ctx)); 
+                                args[3] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
+                                args[4] = ConstantFP::get(Type::getDoubleTy(ctx), 0); 
+                                args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 1); 
+                                args[6] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
+                                break;
+                            // Not a binary operation
+                            default: break;
                         }
+                        builder.CreateCall(profOp, args);
+                        modified = true;
                     }
                 }
             }

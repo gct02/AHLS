@@ -1,9 +1,0 @@
-<VitisHLS:BurstInfo>
-    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="ldrgen/rand_c/rand1.c:264:23" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="ldrgen/rand_c/rand1.c:264:23" LoopName="VITIS_LOOP_264_2" ParentFunc="fn1"/>
-    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="ldrgen/rand_c/rand1.c:287:23" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="ldrgen/rand_c/rand1.c:287:23" LoopName="VITIS_LOOP_287_3" ParentFunc="fn1"/>
-    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="ldrgen/rand_c/rand1.c:302:23" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="ldrgen/rand_c/rand1.c:302:23" LoopName="VITIS_LOOP_302_4" ParentFunc="fn1"/>
-    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="ldrgen/rand_c/rand1.c:334:23" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="ldrgen/rand_c/rand1.c:334:23" LoopName="VITIS_LOOP_334_5" ParentFunc="fn1"/>
-    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="ldrgen/rand_c/rand1.c:387:23" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="ldrgen/rand_c/rand1.c:387:23" LoopName="VITIS_LOOP_387_7" ParentFunc="fn1"/>
-    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="ldrgen/rand_c/rand1.c:445:23" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="ldrgen/rand_c/rand1.c:445:23" LoopName="VITIS_LOOP_445_8" ParentFunc="fn1"/>
-</VitisHLS:BurstInfo>
-
