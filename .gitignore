@@ -7,4 +7,4 @@ __pycache__/
 *.tcl
 hls/
 hls_override_opt/
-temp*
+metrics/scripts/

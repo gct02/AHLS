@@ -9,14 +9,16 @@ from llvm.clang_utils import *
 The output directory will have the following structure:
     .
     ├── approx
+    ├── attrs
+    |   ├── op_attrs.txt
+    |   └── op_uses.txt
     ├── data_stats
     ├── ir
     |   ├── <input_ir_stem>.(bc|ll)
     |   ├── <input_ir_stem>.md.bc
     |   ├── <input_ir_stem>.pf.bc
     |   ├── <input_ir_stem>_instrumented.bc
-    |   ├── <populate_io_stem>.(bc|ll)
-    |   └── <populate_io_stem>.md.bc
+    |   └── <populate_io_stem>.(bc|ll)
     ├── outputs
     └── <input_ir_stem>
 '''
@@ -45,6 +47,7 @@ if __name__ == "__main__":
 
     approx_folder = output_dir / "approx"
     data_stats_folder = output_dir / "data_stats"
+    attrs_folder = output_dir / "attrs"
     ir_folder = output_dir / "ir"
     outputs_folder = output_dir / "outputs"
 
@@ -67,6 +70,13 @@ if __name__ == "__main__":
 
     # Instrument the input IR file
     instrumented_ir_path = update_md_and_instrument(input_ir_path, Path("data_stats.txt"), populate_io_path)
+
+    md_ir_path = ir_folder / f"{input_ir_path.stem}.md.bc"
+    op_attrs_path = attrs_folder / f"op_attrs.txt"
+    op_uses_path = attrs_folder / f"op_uses.txt"
+
+    # Extract the operation attributes and uses
+    extract_op_attrs_and_uses(md_ir_path, op_attrs_path, op_uses_path)
 
     executable_path = output_dir / input_ir_path.stem
     create_executable_from_llvm_ir(instrumented_ir_path, executable_path)

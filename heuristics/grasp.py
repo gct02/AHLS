@@ -1,7 +1,7 @@
 from heuristics.heuristic import Heuristic
 from heuristics.random_search import RandACT
 from estimators.rf_regressor import RFRegressor
-from design_metrics import error_measure, resource_savings
+from metrics import error_measure, resource_savings
 from scripts.approx import create_approx_design, run_with_timeout
 from llvm.clang_utils import create_executable_from_llvm_ir
 from pathlib import Path

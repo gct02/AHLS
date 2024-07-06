@@ -12,6 +12,7 @@ This script assumes that the input design IR file is already instrumented and li
 The project's working directory should be structured as follows:
     .
     ├── approx
+    ├── attrs
     ├── data_stats
     ├── ir
     │   ├── <design_name>_instrumented.bc

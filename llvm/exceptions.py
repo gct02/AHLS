@@ -35,3 +35,17 @@ class V2CError(ACTError):
         self.error_code = error_code
         self.output = output
         super().__init__("v2c", bytecode, error_code, output)
+
+class ExtractOpAttrsError(AHLSPassException):
+    def __init__(self, bytecode, error_code, output):
+        self.bytecode = bytecode
+        self.error_code = error_code
+        self.output = output
+        super().__init__(f"Failed to extract op attributes from {bytecode}. Error code: {error_code}. stderr: {output}.")
+
+class ExtractOpUsesError(AHLSPassException):
+    def __init__(self, bytecode, error_code, output):
+        self.bytecode = bytecode
+        self.error_code = error_code
+        self.output = output
+        super().__init__(f"Failed to extract op uses from {bytecode}. Error code: {error_code}. stderr: {output}.")
