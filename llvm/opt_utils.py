@@ -18,7 +18,7 @@ def update_md(ir_path: Path) -> Path:
     Apply the update-md pass to the IR file at ir_path and return the path to the updated IR file.
     The update-md pass updates the metadata of the operations in the IR to include the operation ID and signedness information.
     """
-    output_path = ir_path.parent / Path(ir_path.stem + ".md.bc")
+    output_path = ir_path.parent / (ir_path.stem + ".md.bc")
 
     # Update operation metadata (include ID and signedness information)
     update_md_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -update-md < {ir_path.as_posix()} > {output_path.as_posix()}"
@@ -36,7 +36,7 @@ def instrument(ir_path: Path, data_stats_file_path: Path, populate_io_path: Path
     The instrumented IR file contains calls to profile functions after each binary operation and a call to a function
     that writes the profile data to the file in data_stats_file_path.
     """
-    profiled_ir_path = ir_path.parent / Path(Path(ir_path.stem).stem + ".pf.bc")
+    profiled_ir_path = ir_path.parent / (Path(ir_path.stem).stem + ".pf.bc")
 
     # Instrument the IR with profiling functions
     profile_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -profile -pf {data_stats_file_path.as_posix()} < {ir_path.as_posix()} > {profiled_ir_path.as_posix()}"
@@ -48,7 +48,7 @@ def instrument(ir_path: Path, data_stats_file_path: Path, populate_io_path: Path
 
     # Link the profiled IR with the profiler and the function that populates the input/output data
     output_path = ir_path.parent / Path(Path(ir_path.stem).stem + "_instrumented.bc")
-    profiler_path = Path(__file__).parent / Path("profiler/profiler.bc")
+    profiler_path = Path(__file__).parent / "profiler/profiler.bc"
     link_cmd = f"{LLVM_LINK} {profiled_ir_path.as_posix()} {profiler_path.as_posix()} {populate_io_path.as_posix()} -o {output_path.as_posix()}"
 
     try:
@@ -70,7 +70,7 @@ def apply_v2c(ir_path: Path, op_to_prune, const, output_path=None) -> Path:
     Apply the variable-to-constant (v2c) transformation to the IR file at ir_path and return the path to the transformed IR file.
     """
     if output_path is None:
-        output_path = ir_path.parent / Path(ir_path.stem + f"_v2c_{op_to_prune}_{const}.bc")
+        output_path = ir_path.parent / (ir_path.stem + f"_v2c_{op_to_prune}_{const}.bc")
     
     # Apply the v2c transformation to the IR
     v2c_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -v2c -opid {op_to_prune} -const {const} < {ir_path.as_posix()} > {output_path.as_posix()}"
@@ -86,7 +86,7 @@ def apply_act(ir_path: Path, act: str, *args) -> Path:
     Apply the ACT to the IR file at ir_path and return the path to the transformed IR file.
     """
     output_path = ir_path.parent / \
-                  Path(ir_path.stem + f"_{act}_{'_'.join(list(filter(lambda x : x[0] != '-', args)))}.bc")
+                  (ir_path.stem + f"_{act}_{'_'.join(list(filter(lambda x : x[0] != '-', args)))}.bc")
     
     # Apply the ACT transformation to the IR
     act_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -{act} {' '.join(args)} < {ir_path.as_posix()} > {output_path.as_posix()}"

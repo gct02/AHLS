@@ -30,7 +30,7 @@ struct GetOpUsesPass : public ModulePass {
 
         LLVMContext &ctx = M.getContext();
 
-        NamedMDNode* counterNamedMDNode = M.getOrInsertNamedMetadata("opIDCounter");
+        NamedMDNode* counterNamedMDNode = M.getOrInsertNamedMetadata("opCounter");
         if (counterNamedMDNode->getNumOperands() == 0) {
             errs() << "Error: IR without opID metadata\n";
             return false;
@@ -40,9 +40,8 @@ struct GetOpUsesPass : public ModulePass {
 
         for (Function& F : M) {
             // Skip "part_select" and "part_set" functions (implementations of "llvm.legacy.part.*" intrinsics)
-            if (F.getName().startswith("part_select") || F.getName().startswith("part_set"))
-                continue;
-            
+            // if (F.getName().startswith("part_select") || F.getName().startswith("part_set"))
+            //    continue;
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
                     if (MDNode* opIDNode = I.getMetadata("opID")) {
@@ -51,7 +50,7 @@ struct GetOpUsesPass : public ModulePass {
                             if (Instruction* op = dyn_cast<Instruction>(U.getUser())) {
                                 if (MDNode* otherOpIDNode = op->getMetadata("opID")) {
                                     uint64_t otherOpID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue())->getZExtValue();
-                                    adjList[opID].push_back(otherOpID);
+                                    adjList[opID - 1].push_back(otherOpID);
                                 }
                             }
                         }
@@ -67,7 +66,7 @@ struct GetOpUsesPass : public ModulePass {
             return false;
         }
         for (uint64_t i = 0; i < numOps; i++) {
-            outputFile << i << ":";
+            outputFile << i + 1 << ":";
             for (uint64_t j : adjList[i]) {
                 outputFile << " " << j;
             }

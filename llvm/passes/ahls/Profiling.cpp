@@ -12,7 +12,6 @@
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 #include <string>
 #include <vector>
-#include <list>
 #include <cstdint>
 
 using namespace llvm;
@@ -31,9 +30,9 @@ struct ProfilingPass : public ModulePass {
         LLVMContext &ctx = M.getContext();
 
         // Create a new function named "profOp", which will be used to profile the operations.
-        std::vector<Type*> paramTypesProfOp = {Type::getInt64Ty(ctx), Type::getInt8Ty(ctx), Type::getInt64Ty(ctx), Type::getInt64Ty(ctx), 
-                                               Type::getDoubleTy(ctx), Type::getInt1Ty(ctx), Type::getInt1Ty(ctx), Type::getInt32Ty(ctx),
-                                               Type::getInt32Ty(ctx), Type::getInt1Ty(ctx)};
+        // The protorype of the function is:
+        // void profOp(uint64_t opID, uint8_t opCode, double value, uint32_t bitwidth)
+        std::vector<Type*> paramTypesProfOp = {Type::getInt64Ty(ctx), Type::getInt8Ty(ctx), Type::getDoubleTy(ctx), Type::getInt32Ty(ctx)};
         FunctionType *profOpType = FunctionType::get(Type::getVoidTy(ctx), paramTypesProfOp, false);
         Function *profOp = Function::Create(profOpType, Function::ExternalLinkage, "profOp", &M);
 
@@ -42,21 +41,21 @@ struct ProfilingPass : public ModulePass {
         FunctionType *saveProfileType = FunctionType::get(Type::getVoidTy(ctx), paramTypesSaveProfile, false);
         Function *saveProfile = Function::Create(saveProfileType, Function::ExternalLinkage, "saveProfile", &M);
 
-        GlobalVariable* profileFileName = new GlobalVariable(M, ArrayType::get(Type::getInt8Ty(ctx), outputFileName.length() + 1), true, GlobalValue::PrivateLinkage, 
-                                                             ConstantDataArray::getString(ctx, outputFileName, true), "profileFileName");
+        GlobalVariable* profileFileName = new GlobalVariable(M, ArrayType::get(Type::getInt8Ty(ctx), outputFileName.length() + 1), true, 
+                                                             GlobalValue::PrivateLinkage, ConstantDataArray::getString(ctx, outputFileName, true), 
+                                                             "profileFileName");
         Constant* zero = ConstantInt::get(Type::getInt32Ty(ctx), 0);
         Constant* index[] = { zero, zero };
         Constant* profileFileNameRef = ConstantExpr::getInBoundsGetElementPtr(profileFileName->getValueType(), profileFileName, index); 
-        Value* args[10]; // Arguments for the "profOp" function
+        Value* args[4]; // Arguments for the "profOp" function
 
         bool modified = false;
 
-        // Iterate over all instructions in the module and insert calls to the "profOp" function after each instruction.
+        // Iterate over all instructions in the module and insert calls to the "profOp" function after each binary instruction.
         for (Function& F : M) {
             // Skip "part_select" and "part_set" functions (implementations of "llvm.legacy.part.*" intrinsics)
-            // if (F.getName().startswith("part_select") || F.getName().startswith("part_set"))
-            //    continue;
-            
+            if (F.getName().startswith("part_select") || F.getName().startswith("part_set"))
+                continue;
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
                     if (!I.isBinaryOp())
@@ -66,16 +65,9 @@ struct ProfilingPass : public ModulePass {
                         IRBuilder<NoFolder> builder(&I);
                         builder.SetInsertPoint(&BB, ++builder.GetInsertPoint());
                         
-                        ConstantInt* opID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(opIDNode->getOperand(0))->getValue());
-                        ConstantInt* opCode = ConstantInt::get(Type::getInt8Ty(ctx), I.getOpcode());
-                        StringRef opSignedness = cast<MDString>(I.getMetadata("signedness")->getOperand(0))->getString();
-                        ConstantInt* bitwidth = ConstantInt::get(Type::getInt32Ty(ctx), I.getType()->getPrimitiveSizeInBits());
-                        ConstantInt* numUses = ConstantInt::get(Type::getInt32Ty(ctx), I.getNumUses());
-
-                        args[0] = opID;
-                        args[1] = opCode;
-                        args[7] = bitwidth;
-                        args[8] = numUses;
+                        args[0] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(opIDNode->getOperand(0))->getValue());
+                        args[1] = ConstantInt::get(Type::getInt8Ty(ctx), I.getOpcode());
+                        args[3] = ConstantInt::get(Type::getInt32Ty(ctx), I.getType()->getPrimitiveSizeInBits());
 
                         switch (I.getOpcode()) {
                             // Floating-point operations
@@ -85,57 +77,19 @@ struct ProfilingPass : public ModulePass {
                             case Instruction::FDiv:
                             case Instruction::FRem:
                                 DEBUG(dbgs() << "Floating-point operation: " << I << "\n");
-                                args[2] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
-                                args[3] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
-                                args[4] = builder.CreateFPExt(&I, Type::getDoubleTy(ctx));
-                                args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
-                                args[6] = ConstantInt::get(Type::getInt1Ty(ctx), 1);
+                                args[2] = builder.CreateFPExt(&I, Type::getDoubleTy(ctx));
                                 break;
-                            // Logical, arithmetic, and shift operations on integers
-                            case Instruction::Add:
-                            case Instruction::Sub:
-                            case Instruction::Mul:
-                            case Instruction::Or:
-                            case Instruction::And:
-                            case Instruction::Xor:
-                            case Instruction::Shl:
-                            case Instruction::LShr:
-                            case Instruction::AShr:
-                                DEBUG(dbgs() << "Integer operation: " << I << "\n");
-                                args[4] = ConstantFP::get(Type::getDoubleTy(ctx), 0);
-                                args[6] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
-                                if (opSignedness == "unsigned") {
-                                    args[2] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
-                                    args[3] = builder.CreateZExt(&I, Type::getInt64Ty(ctx));
-                                    args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
-                                } else {
-                                    args[2] = builder.CreateSExt(&I, Type::getInt64Ty(ctx));
-                                    args[3] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
-                                    args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 1);
-                                }
-                                break;
-                            // Division and remainder operations on unsigned integers
+                            // Unsigned integer operations
                             case Instruction::UDiv:
                             case Instruction::URem:
                                 DEBUG(dbgs() << "Unsigned division or remainder: " << I << "\n");
-                                args[2] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
-                                args[3] = builder.CreateZExt(&I, Type::getInt64Ty(ctx)); 
-                                args[4] = ConstantFP::get(Type::getDoubleTy(ctx), 0); 
-                                args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 0); 
-                                args[6] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
+                                args[2] = builder.CreateUIToFP(&I, Type::getDoubleTy(ctx));
                                 break;
-                            // Division and remainder operations on signed integers
-                            case Instruction::SDiv:
-                            case Instruction::SRem:
-                                DEBUG(dbgs() << "Signed division or remainder: " << I << "\n");
-                                args[2] = builder.CreateSExt(&I, Type::getInt64Ty(ctx)); 
-                                args[3] = ConstantInt::get(Type::getInt64Ty(ctx), 0);
-                                args[4] = ConstantFP::get(Type::getDoubleTy(ctx), 0); 
-                                args[5] = ConstantInt::get(Type::getInt1Ty(ctx), 1); 
-                                args[6] = ConstantInt::get(Type::getInt1Ty(ctx), 0);
+                            // Other binary operations
+                            default:
+                                DEBUG(dbgs() << "Binary operation: " << I << "\n");
+                                args[2] = builder.CreateSIToFP(&I, Type::getDoubleTy(ctx));
                                 break;
-                            // Not a binary operation
-                            default: break;
                         }
                         builder.CreateCall(profOp, args);
                         modified = true;

@@ -1,8 +1,0 @@
-
-result_size = 3
-
- [Test Bench (main) ] detected rects: 271 64 29 29
-
- [Test Bench (main) ] detected rects: 272 64 29 29
-
- [Test Bench (main) ] detected rects: 271 65 29 29

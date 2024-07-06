@@ -5,7 +5,7 @@ from os import environ
 
 from llvm.opt_utils import *
 from llvm.clang_utils import *
-from design_metrics.error_measure import *
+from metrics.error_measure import *
 
 '''
 This script assumes that the input design IR file is already instrumented and linked with the populate_io IR file.
@@ -232,16 +232,17 @@ if __name__ == "__main__":
     with open(transformed_raw_output_path, 'r') as f:
         approx_output = np.array(list(map(lambda x: str_to_num(x, output_type, hex_output), f.read().split())), dtype=np.float64)
 
-    match error_metric:
-        case 'MSE':
-            error = MSE(original_output, approx_output)
-        case 'RMSE':
-            error = RMSE(original_output, approx_output)
-        case 'accuracy':
-            error = accuracy(original_output, approx_output)
-        case 'errorrate':
-            error = error_rate(original_output, approx_output)
-        case _:
-            print(f"Error: Unknown error metric `{error_metric}'")
-    
-    print(f"{error_metric}: {error}")
+    if error_metric == 'MSE':
+        error = MSE(original_output, approx_output)
+        print(f"{error_metric}: {error}")
+    elif error_metric == 'RMSE':
+        error = RMSE(original_output, approx_output)
+        print(f"{error_metric}: {error}")
+    elif error_metric == 'accuracy':
+        error = accuracy(original_output, approx_output)
+        print(f"{error_metric}: {error}")
+    elif error_metric == 'errorrate':
+        error = error_rate(original_output, approx_output)
+        print(f"{error_metric}: {error}")
+    else:
+        print(f"Error: Unknown error metric `{error_metric}'")

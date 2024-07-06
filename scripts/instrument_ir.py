@@ -43,10 +43,10 @@ if __name__ == "__main__":
     populate_io_path = Path(args.populate_io)
     output_dir = Path(args.output)
 
-    approx_folder = output_dir / Path("approx")
-    data_stats_folder = output_dir / Path("data_stats")
-    ir_folder = output_dir / Path("ir")
-    outputs_folder = output_dir / Path("outputs")
+    approx_folder = output_dir / "approx"
+    data_stats_folder = output_dir / "data_stats"
+    ir_folder = output_dir / "ir"
+    outputs_folder = output_dir / "outputs"
 
     # Create the output directories
     output_dir.mkdir(parents=True, exist_ok=True)
