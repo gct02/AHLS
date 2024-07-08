@@ -36,16 +36,16 @@ class V2CError(ACTError):
         self.output = output
         super().__init__("v2c", bytecode, error_code, output)
 
-class ExtractOpAttrsError(AHLSPassException):
+class GetDFGNodesError(AHLSPassException):
     def __init__(self, bytecode, error_code, output):
         self.bytecode = bytecode
         self.error_code = error_code
         self.output = output
-        super().__init__(f"Failed to extract op attributes from {bytecode}. Error code: {error_code}. stderr: {output}.")
+        super().__init__(f"Failed to extract DFG nodes from {bytecode}. Error code: {error_code}. stderr: {output}.")
 
-class ExtractOpUsesError(AHLSPassException):
+class GetDFGEdgesError(AHLSPassException):
     def __init__(self, bytecode, error_code, output):
         self.bytecode = bytecode
         self.error_code = error_code
         self.output = output
-        super().__init__(f"Failed to extract op uses from {bytecode}. Error code: {error_code}. stderr: {output}.")
+        super().__init__(f"Failed to extract DFG edges from {bytecode}. Error code: {error_code}. stderr: {output}.")

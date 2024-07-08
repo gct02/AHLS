@@ -11,23 +11,22 @@ from sys import argv
 
 import pickle
 
-def create_ir_graph(op_attrs_file: Path, op_uses_file: Path, dtype='int32') -> StellarGraph:
-    op_attrs = parse_op_attrs_file(op_attrs_file)
-    op_uses = parse_op_uses_file(op_uses_file)
+def create_ir_graph(dfg_nodes_file: Path, dfg_edges_file: Path, dtype='int32') -> StellarGraph:
+    dfg_nodes = parse_dfg_nodes_file(dfg_nodes_file)
+    dfg_edges = parse_dfg_edges_file(dfg_edges_file)
 
     index_array = []
     feature_array = []
     sources = []
     targets = []
 
-    for opid, attrs in op_attrs.items():
+    for opid, attrs in dfg_nodes.items():
         index_array.append(opid)
         feature_array.append(np.array(attrs, dtype='int32'))
 
-        uses = op_uses[opid]
-        for use in uses:
-            sources.append(opid)
-            targets.append(use)
+    for edge in dfg_edges:
+        sources.append(edge[0])
+        targets.append(edge[1])
     
     feature_array = np.array(feature_array, dtype='int32')
     index_array = np.array(index_array, dtype='int32')
@@ -39,8 +38,8 @@ def create_ir_graph(op_attrs_file: Path, op_uses_file: Path, dtype='int32') -> S
     return StellarGraph(nodes=nodes, edges=edges, is_directed=True, dtype=dtype)
         
 if __name__ == '__main__':
-    op_attrs_file = Path(argv[1])
-    op_uses_file = Path(argv[2])
+    dfg_nodes_file = Path(argv[1])
+    dfg_edges_file = Path(argv[2])
     output_file = Path(argv[3])
-    ir_graph = create_ir_graph(op_attrs_file, op_uses_file)
+    ir_graph = create_ir_graph(dfg_nodes_file, dfg_edges_file)
     pickle.dump(ir_graph, open(output_file, 'wb'))

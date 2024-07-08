@@ -108,20 +108,20 @@ def apply_act(ir_path: Path, act_with_args: str, output_path: Path) -> None:
     except subprocess.CalledProcessError as error:
         raise ACTError(act_with_args, ir_path.as_posix(), error.returncode, error.output)
 
-def extract_op_attrs_and_uses(md_ir_path: Path, op_attrs_path: Path, op_uses_path: Path):
+def extract_dfg_info(md_ir_path: Path, dfg_nodes_path: Path, dfg_edges_path: Path):
     """
     Extract the operation attributes and uses from the IR file at md_ir_path and write them to op_attrs_path and op_uses_path respectively.
     """
     # Extract operation attributes
-    op_attrs_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -get-attrs -attr {op_attrs_path.as_posix()} < {md_ir_path.as_posix()}"
+    get_nodes_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -get-nodes -nf {dfg_nodes_path.as_posix()} < {md_ir_path.as_posix()}"
     try:
-        subprocess.check_output(op_attrs_cmd, stderr=subprocess.STDOUT, shell=True)
+        subprocess.check_output(get_nodes_cmd, stderr=subprocess.STDOUT, shell=True)
     except subprocess.CalledProcessError as error:
-        raise ExtractOpAttrsError(md_ir_path.as_posix(), error.returncode, error.output)
+        raise GetDFGNodesError(md_ir_path.as_posix(), error.returncode, error.output)
 
     # Extract operation uses
-    op_uses_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -get-uses -u {op_uses_path.as_posix()} < {md_ir_path.as_posix()}"
+    get_edges_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -get-edges -ef {dfg_edges_path.as_posix()} < {md_ir_path.as_posix()}"
     try:
-        subprocess.check_output(op_uses_cmd, stderr=subprocess.STDOUT, shell=True)
+        subprocess.check_output(get_edges_cmd, stderr=subprocess.STDOUT, shell=True)
     except subprocess.CalledProcessError as error:
-        raise ExtractOpUsesError(md_ir_path.as_posix(), error.returncode, error.output)
+        raise GetDFGEdgesError(md_ir_path.as_posix(), error.returncode, error.output)

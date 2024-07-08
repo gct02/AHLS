@@ -9,26 +9,25 @@ def parse_data_stats_file(data_stats_file):
                            float(stats_str[4]), float(stats_str[5]), float(stats_str[6]), float(stats_str[7])]
     return stats
 
-def parse_op_attrs_file(op_attrs_file):
-    with open(op_attrs_file, 'r') as f:
-        attrs = {}
+def parse_dfg_nodes_file(dfg_nodes_file):
+    with open(dfg_nodes_file, 'r') as f:
+        dfg_nodes = {}
         lines = f.readlines()
         for line in lines:
-            attrs_str = line.strip().split(',')
-            # attrs[opID] = (opCode, bitwidth)
-            opid = int(attrs_str[0])
-            attrs[opid] = [int(attrs_str[1]), int(attrs_str[2])]
-    return attrs
+            node_str = line.strip().split(',')
+            # node[opID] = (opCode, bitwidth)
+            opid = int(node_str[0])
+            dfg_nodes[opid] = [int(node_str[1]), int(node_str[2])]
+    return dfg_nodes
 
-def parse_op_uses_file(op_uses_file):
-    with open(op_uses_file, 'r') as f:
-        op_uses = {}
+def parse_dfg_edges_file(dfg_edges_file):
+    with open(dfg_edges_file, 'r') as f:
+        dfg_edges = []
         lines = f.readlines()
         for line in lines:
-            opid, uses = line.split(':')
-            uses = uses.split()[1:]
-            op_uses[int(opid)] = [int(use) for use in uses]
-    return op_uses
+            edge_str = line.strip().split(',')
+            dfg_edges.append([int(edge_str[0]), int(edge_str[1])])
+    return dfg_edges
 
 def get_transformed_ops_stats(data_stats: dict, transformed_data_stats: dict):
     """

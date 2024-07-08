@@ -17,16 +17,16 @@
 
 using namespace llvm;
 
-static cl::opt<std::string> outputFileName("attr", cl::desc("Specify output filename for writing attributes of the module's operationr"), cl::value_desc("filename"));
+static cl::opt<std::string> outputFileName("nf", cl::desc("Specify output filename for writing the node features of the module's DFG"), cl::value_desc("filename"));
 
 namespace {
 
-struct GetOpAttributesPass : public ModulePass {
+struct GetDFGNodesPass : public ModulePass {
     static char ID;
-    GetOpAttributesPass() : ModulePass(ID) {}
+    GetDFGNodesPass() : ModulePass(ID) {}
     
     bool runOnModule(Module &M) override {
-        #define DEBUG_TYPE "get-attrs"
+        #define DEBUG_TYPE "get-nodes"
 
         LLVMContext &ctx = M.getContext();
 
@@ -63,5 +63,5 @@ struct GetOpAttributesPass : public ModulePass {
 
 }
 
-char GetOpAttributesPass::ID = 0;
-static RegisterPass<GetOpAttributesPass> X("get-attrs", "Get attributes (opID, opCode, bitwidth) from the module's operations", false, false);
+char GetDFGNodesPass::ID = 0;
+static RegisterPass<GetDFGNodesPass> X("get-nodes", "Get features (opID, opCode, bitwidth) from the module's DFG nodes", false, false);

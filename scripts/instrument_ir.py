@@ -9,9 +9,9 @@ from llvm.clang_utils import *
 The output directory will have the following structure:
     .
     ├── approx
-    ├── attrs
-    |   ├── op_attrs.txt
-    |   └── op_uses.txt
+    ├── dfg
+    |   ├── dfg_edges.txt
+    |   └── dfg_nodes.txt
     ├── data_stats
     ├── ir
     |   ├── <input_ir_stem>.(bc|ll)
@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
     approx_folder = output_dir / "approx"
     data_stats_folder = output_dir / "data_stats"
-    attrs_folder = output_dir / "attrs"
+    dfg_folder = output_dir / "dfg"
     ir_folder = output_dir / "ir"
     outputs_folder = output_dir / "outputs"
 
@@ -55,6 +55,7 @@ if __name__ == "__main__":
     output_dir.mkdir(parents=True, exist_ok=True)
     approx_folder.mkdir(parents=True, exist_ok=True)
     data_stats_folder.mkdir(parents=True, exist_ok=True)
+    dfg_folder.mkdir(parents=True, exist_ok=True)
     ir_folder.mkdir(parents=True, exist_ok=True)
     outputs_folder.mkdir(parents=True, exist_ok=True)
 
@@ -72,11 +73,11 @@ if __name__ == "__main__":
     instrumented_ir_path = update_md_and_instrument(input_ir_path, Path("data_stats.txt"), populate_io_path)
 
     md_ir_path = ir_folder / f"{input_ir_path.stem}.md.bc"
-    op_attrs_path = attrs_folder / f"op_attrs.txt"
-    op_uses_path = attrs_folder / f"op_uses.txt"
+    dfg_nodes_path = dfg_folder / f"dfg_nodes.txt"
+    dfg_edges_path = dfg_folder / f"dfg_edges.txt"
 
-    # Extract the operation attributes and uses
-    extract_op_attrs_and_uses(md_ir_path, op_attrs_path, op_uses_path)
+    # Extract the DFG nodes and edges (module's operations attributes and uses, respectively)
+    extract_dfg_info(md_ir_path, dfg_nodes_path, dfg_edges_path)
 
     executable_path = output_dir / input_ir_path.stem
     create_executable_from_llvm_ir(instrumented_ir_path, executable_path)
