@@ -1,0 +1,49 @@
+{
+  "0": {
+    "basicblocks": 10,
+    "calls": "2",
+    "file": "face_detect.cpp",
+    "fileloc": 65,
+    "instructions": 144,
+    "loads": {
+      "T": 1
+    },
+    "name": "face_detect",
+    "stores": {
+      "L": 3,
+      "T": 1
+    },
+    "total_instructions": 542
+  },
+  "1": {
+    "basicblocks": 19,
+    "calls": "",
+    "file": "face_detect.cpp",
+    "fileloc": 151,
+    "instructions": 245,
+    "loads": {
+      "G": 24,
+      "L": 22
+    },
+    "name": "cascadeClassifier",
+    "stores": {
+      "G": 16
+    },
+    "total_instructions": 245
+  },
+  "2": {
+    "basicblocks": 17,
+    "calls": "1",
+    "file": "face_detect.cpp",
+    "fileloc": 109,
+    "instructions": 153,
+    "loads": {
+      "L": 6
+    },
+    "name": "processImage",
+    "stores": {
+      "L": 9
+    },
+    "total_instructions": 398
+  }
+}

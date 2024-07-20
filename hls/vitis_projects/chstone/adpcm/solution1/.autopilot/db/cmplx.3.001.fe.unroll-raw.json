@@ -1,0 +1,171 @@
+{
+  "0": {
+    "basicblocks": 7,
+    "calls": "11 13 6",
+    "file": "adpcm.c",
+    "fileloc": 769,
+    "instructions": 40,
+    "loads": {
+      "G": 2,
+      "T": 3
+    },
+    "name": "adpcm_main",
+    "stores": {
+      "T": 3
+    },
+    "total_instructions": 1369
+  },
+  "1": {
+    "basicblocks": 8,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 730,
+    "instructions": 27,
+    "name": "uppol1",
+    "total_instructions": 27
+  },
+  "10": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 598,
+    "instructions": 12,
+    "name": "filtep",
+    "total_instructions": 12
+  },
+  "11": {
+    "basicblocks": 13,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 542,
+    "instructions": 90,
+    "name": "reset",
+    "stores": {
+      "G": 43
+    },
+    "total_instructions": 90
+  },
+  "12": {
+    "basicblocks": 10,
+    "calls": "5",
+    "file": "adpcm.c",
+    "fileloc": 610,
+    "instructions": 34,
+    "loads": {
+      "G": 3
+    },
+    "name": "quantl",
+    "total_instructions": 41
+  },
+  "13": {
+    "basicblocks": 12,
+    "calls": "9 10 12 8 4 7 3 1 9 10 5 2 4 7 3 1",
+    "file": "adpcm.c",
+    "fileloc": 250,
+    "instructions": 199,
+    "loads": {
+      "G": 47
+    },
+    "name": "encode",
+    "stores": {
+      "G": 39
+    },
+    "total_instructions": 646
+  },
+  "2": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 756,
+    "instructions": 17,
+    "loads": {
+      "G": 1
+    },
+    "name": "logsch",
+    "total_instructions": 17
+  },
+  "3": {
+    "basicblocks": 10,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 700,
+    "instructions": 35,
+    "name": "uppol2",
+    "total_instructions": 35
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 651,
+    "instructions": 11,
+    "loads": {
+      "G": 1
+    },
+    "name": "scalel",
+    "total_instructions": 11
+  },
+  "5": {
+    "basicblocks": 4,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 238,
+    "instructions": 7,
+    "name": "abs",
+    "total_instructions": 7
+  },
+  "6": {
+    "basicblocks": 7,
+    "calls": "9 10 8 4 7 3 1 9 10 2 4 7 3 1",
+    "file": "adpcm.c",
+    "fileloc": 403,
+    "instructions": 194,
+    "loads": {
+      "G": 43
+    },
+    "name": "decode",
+    "stores": {
+      "G": 40
+    },
+    "total_instructions": 593
+  },
+  "7": {
+    "basicblocks": 13,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 664,
+    "instructions": 69,
+    "loads": {
+      "L": 8
+    },
+    "name": "upzero",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 69
+  },
+  "8": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 636,
+    "instructions": 18,
+    "loads": {
+      "G": 1
+    },
+    "name": "logscl",
+    "total_instructions": 18
+  },
+  "9": {
+    "basicblocks": 4,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 583,
+    "instructions": 28,
+    "loads": {
+      "L": 4
+    },
+    "name": "filtez",
+    "total_instructions": 28
+  }
+}

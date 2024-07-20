@@ -2,9 +2,6 @@ __pycache__/
 *__pycache__/
 .vscode/
 .venv/
+*ldrgen/
+*jianyicheng/
 *.log
-*.sh
-*.tcl
-hls/
-hls_override_opt/
-metrics/scripts/

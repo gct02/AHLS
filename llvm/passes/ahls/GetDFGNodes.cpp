@@ -50,7 +50,48 @@ struct GetDFGNodesPass : public ModulePass {
                         uint64_t opID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(opIDNode->getOperand(0))->getValue())->getZExtValue();
                         uint8_t opCode = I.getOpcode();
                         uint32_t bitwidth = I.getType()->getScalarSizeInBits();
-                        outputFile << opID << "," << (int)opCode << "," << bitwidth << "\n";
+
+                        MDTuple* arrayPartitionMDTuple = dyn_cast<MDTuple>(I.getMetadata("array_partition"));
+                        MDTuple* loopMergeMDTuple = dyn_cast<MDTuple>(I.getMetadata("loop_merge"));
+                        MDTuple* pipelineMDTuple = dyn_cast<MDTuple>(I.getMetadata("pipeline"));
+                        MDTuple* unrollMDTuple = dyn_cast<MDTuple>(I.getMetadata("unroll"));
+
+                        outputFile << opID << "," << (int)opCode << "," << bitwidth;
+
+                        if (arrayPartitionMDTuple) {
+                            uint32_t arrayPartition = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(0))->getValue())->getZExtValue();
+                            uint32_t arrayPartitionType = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(1))->getValue())->getZExtValue();
+                            uint32_t arrayPartitionFactor = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(2))->getValue())->getZExtValue();
+                            uint32_t arrayPartitionDim = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(3))->getValue())->getZExtValue();
+                            outputFile << "," << arrayPartition << "," << arrayPartitionType << "," << arrayPartitionFactor << "," << arrayPartitionDim;
+                        } else {
+                            outputFile << ",0,0,0,0";
+                        }
+
+                        if (loopMergeMDTuple) {
+                            uint32_t loopMerge = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopMergeMDTuple->getOperand(0))->getValue())->getZExtValue();
+                            outputFile << "," << loopMerge;
+                        } else {
+                            outputFile << ",0";
+                        }
+
+                        if (pipelineMDTuple) {
+                            uint32_t pipeline = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMDTuple->getOperand(0))->getValue())->getZExtValue();
+                            uint32_t pipelineII = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMDTuple->getOperand(1))->getValue())->getZExtValue();
+                            outputFile << "," << pipeline << "," << pipelineII;
+                        } else {
+                            outputFile << ",0,0";
+                        }
+
+                        if (unrollMDTuple) {
+                            uint32_t unroll = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMDTuple->getOperand(0))->getValue())->getZExtValue();
+                            uint32_t unrollFactor = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMDTuple->getOperand(1))->getValue())->getZExtValue();
+                            outputFile << "," << unrollFactor;
+                        } else {
+                            outputFile << ",0,0";
+                        }
+                        
+                        outputFile << "\n";
                     }
                 }
             }

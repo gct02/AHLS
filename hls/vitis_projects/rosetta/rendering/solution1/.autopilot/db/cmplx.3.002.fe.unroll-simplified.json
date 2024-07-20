@@ -1,0 +1,152 @@
+{
+  "0": {
+    "basicblocks": 4,
+    "calls": "8 5 10 3 2",
+    "file": "rendering.cpp",
+    "fileloc": 246,
+    "instructions": 114,
+    "loads": {
+      "L": 7,
+      "T": 9
+    },
+    "name": "rendering",
+    "stores": {
+      "L": 23
+    },
+    "total_instructions": 480
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "rendering.cpp",
+    "fileloc": 18,
+    "instructions": 20,
+    "loads": {
+      "L": 6
+    },
+    "name": "check_clockwise",
+    "total_instructions": 20
+  },
+  "10": {
+    "basicblocks": 7,
+    "calls": "4",
+    "file": "rendering.cpp",
+    "fileloc": 163,
+    "instructions": 61,
+    "loads": {
+      "L": 11
+    },
+    "name": "rasterization2",
+    "stores": {
+      "L": 11
+    },
+    "total_instructions": 104
+  },
+  "2": {
+    "basicblocks": 9,
+    "calls": "",
+    "file": "rendering.cpp",
+    "fileloc": 228,
+    "instructions": 35,
+    "loads": {
+      "L": 3
+    },
+    "name": "coloringFB",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 35
+  },
+  "3": {
+    "basicblocks": 11,
+    "calls": "",
+    "file": "rendering.cpp",
+    "fileloc": 193,
+    "instructions": 52,
+    "loads": {
+      "G": 1,
+      "L": 4
+    },
+    "name": "zculling",
+    "stores": {
+      "G": 2,
+      "L": 3
+    },
+    "total_instructions": 52
+  },
+  "4": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "rendering.cpp",
+    "fileloc": 48,
+    "instructions": 43,
+    "loads": {
+      "L": 6
+    },
+    "name": "pixel_in_triangle",
+    "total_instructions": 43
+  },
+  "5": {
+    "basicblocks": 5,
+    "calls": "1 1 9 6 7 6 7",
+    "file": "rendering.cpp",
+    "fileloc": 141,
+    "instructions": 72,
+    "loads": {
+      "L": 11
+    },
+    "name": "rasterization1",
+    "stores": {
+      "L": 20
+    },
+    "total_instructions": 149
+  },
+  "6": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "rendering.cpp",
+    "fileloc": 60,
+    "instructions": 7,
+    "name": "find_min",
+    "total_instructions": 7
+  },
+  "7": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "rendering.cpp",
+    "fileloc": 79,
+    "instructions": 7,
+    "name": "find_max",
+    "total_instructions": 7
+  },
+  "8": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "rendering.cpp",
+    "fileloc": 100,
+    "instructions": 26,
+    "loads": {
+      "L": 9
+    },
+    "name": "projection",
+    "stores": {
+      "L": 7
+    },
+    "total_instructions": 26
+  },
+  "9": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "rendering.cpp",
+    "fileloc": 30,
+    "instructions": 9,
+    "loads": {
+      "L": 4
+    },
+    "name": "clockwise_vertices",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 9
+  }
+}

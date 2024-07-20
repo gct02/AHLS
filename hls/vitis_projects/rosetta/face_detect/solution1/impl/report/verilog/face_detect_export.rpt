@@ -1,0 +1,23 @@
+
+
+Implementation tool: Xilinx Vivado v.2023.2
+Project:             face_detect
+Solution:            solution1
+Device target:       xc7z020-clg400-1
+Report date:         Sun Jun 23 07:13:16 -03 2024
+
+#=== Post-Synthesis Resource usage ===
+SLICE:            0
+LUT:          17980
+FF:           16033
+DSP:             31
+BRAM:          1200
+URAM:             0
+LATCH:            0
+SRL:            561
+CLB:              0
+
+#=== Final timing ===
+CP required:                     5.000
+CP achieved post-synthesis:      5.803
+Timing not met

@@ -1,0 +1,296 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 142, Column: 0 }
+Function:        _Z14rasterization111Triangle_2DPhPi
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'check_clockwise(Triangle_2D)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 19, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'rasterization1(Triangle_2D, unsigned char*, int*)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 142, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 142, Column: 0 }
+Function:        _Z14rasterization111Triangle_2DPhPi
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'clockwise_vertices(Triangle_2D*)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 31, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'rasterization1(Triangle_2D, unsigned char*, int*)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 142, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 142, Column: 0 }
+Function:        _Z14rasterization111Triangle_2DPhPi
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'find_min(unsigned char, unsigned char, unsigned char)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 61, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'rasterization1(Triangle_2D, unsigned char*, int*)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 142, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 142, Column: 0 }
+Function:        _Z14rasterization111Triangle_2DPhPi
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'find_max(unsigned char, unsigned char, unsigned char)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 80, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'rasterization1(Triangle_2D, unsigned char*, int*)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 142, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 164, Column: 0 }
+Function:        _Z14rasterization2bPhPi11Triangle_2DP14CandidatePixel
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'pixel_in_triangle(unsigned char, unsigned char, Triangle_2D)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 49, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'rasterization2(bool, unsigned char*, int*, Triangle_2D, CandidatePixel*)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 164, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 247, Column: 0 }
+Function:        _Z9renderingP11Triangle_3DPA256_hi
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'projection(Triangle_3D, Triangle_2D*, int)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 101, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'rendering(Triangle_3D*, unsigned char (*) [256], int)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 247, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 247, Column: 0 }
+Function:        _Z9renderingP11Triangle_3DPA256_hi
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'rasterization2(bool, unsigned char*, int*, Triangle_2D, CandidatePixel*)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 164, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'rendering(Triangle_3D*, unsigned char (*) [256], int)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 247, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 247, Column: 0 }
+Function:        _Z9renderingP11Triangle_3DPA256_hi
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'zculling(int, CandidatePixel*, int, Pixel*)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 194, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'rendering(Triangle_3D*, unsigned char (*) [256], int)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 247, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 247, Column: 0 }
+Function:        _Z9renderingP11Triangle_3DPA256_hi
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'coloringFB(int, int, Pixel*, unsigned char (*) [256])'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 229, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'rendering(Triangle_3D*, unsigned char (*) [256], int)'
+    DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                       Line: 247, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 258, Column: 18 }
+Function:        _Z9renderingP11Triangle_3DPA256_hi
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          fragment.x
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 258, Column: 18 }
+Function:        _Z9renderingP11Triangle_3DPA256_hi
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          fragment.y
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 258, Column: 18 }
+Function:        _Z9renderingP11Triangle_3DPA256_hi
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          fragment.z
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 258, Column: 18 }
+Function:        _Z9renderingP11Triangle_3DPA256_hi
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          fragment.color
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-aggr
+Name:            AggrSucc
+DebugLoc:        { File: benchmarks/rosetta/3d-rendering/src/rendering.cpp, 
+                   Line: 247, Column: 0 }
+Function:        _Z9renderingP11Triangle_3DPA256_hi
+Args:            
+  - String:          'Aggregating '
+  - HwTyName:        scalar
+  - String:          ' variable '''
+  - Name:            triangle_3ds
+  - String:          ''' with '
+  - AggregateTypeName: 'compact=bit'
+  - String:          ' mode in '
+  - Bitwidth:        '72'
+  - String:          '-bits'
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        COLORING_FB
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/rosetta/3d-rendering/src/rendering.cpp:241:16'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        COLORING_FB_INIT_COL
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/rosetta/3d-rendering/src/rendering.cpp:235:29'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        ZCULLING
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/rosetta/3d-rendering/src/rendering.cpp:212:13'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        ZCULLING_INIT_COL
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/rosetta/3d-rendering/src/rendering.cpp:201:26'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        RAST2
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/rosetta/3d-rendering/src/rendering.cpp:174:10'
+  - String:          ' '
+...

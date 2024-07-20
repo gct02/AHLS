@@ -1,0 +1,903 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 611, 
+                   Column: 0 }
+Function:        quantl
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          abs
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 239, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          quantl
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 611, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          filtez
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 584, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          filtep
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 599, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          quantl
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 611, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          logscl
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 637, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          scalel
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 652, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          upzero
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 665, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          uppol2
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 701, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          uppol1
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 731, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          abs
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 239, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          logsch
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 757, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          filtez
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 584, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          filtep
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 599, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          logscl
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 637, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          scalel
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 652, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          upzero
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 665, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          uppol2
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 701, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          uppol1
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 731, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          logsch
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 757, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 770, 
+                   Column: 0 }
+Function:        adpcm_main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          reset
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 543, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          adpcm_main
+    DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 770, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Failure
+Pass:            reflow-syncheck
+Name:            WarningOutOfBoundArrayAccess
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 267, 
+                   Column: 21 }
+Function:        encode
+Args:            
+  - String:          The program may have out of bound array access
+...
+--- !Failure
+Pass:            reflow-syncheck
+Name:            WarningOutOfBoundArrayAccess
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 267, 
+                   Column: 37 }
+Function:        encode
+Args:            
+  - String:          The program may have out of bound array access
+...
+--- !Failure
+Pass:            reflow-syncheck
+Name:            WarningOutOfBoundArrayAccess
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 517, 
+                   Column: 36 }
+Function:        decode
+Args:            
+  - String:          The program may have out of bound array access
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        adpcm_main_label13
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:782:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        adpcm_main_label12
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:778:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        reset_label4
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:553:16'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        reset_label5
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:561:16'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        reset_label6
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:569:16'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        reset_label7
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:572:16'
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 530, 
+                   Column: 17 }
+Function:        decode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        decode_label3
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 514, 
+                   Column: 17 }
+Function:        decode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        decode_label2
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 670, 
+                   Column: 22 }
+Function:        decode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        upzero_label10
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 677, 
+                   Column: 22 }
+Function:        decode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        upzero_label11
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 588, 
+                   Column: 17 }
+Function:        decode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        filtez_label8
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 670, 
+                   Column: 22 }
+Function:        decode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        upzero_label10
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 677, 
+                   Column: 22 }
+Function:        decode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        upzero_label11
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 588, 
+                   Column: 17 }
+Function:        decode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        filtez_label8
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 670, 
+                   Column: 22 }
+Function:        encode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        upzero_label10
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 677, 
+                   Column: 22 }
+Function:        encode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        upzero_label11
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 588, 
+                   Column: 17 }
+Function:        encode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        filtez_label8
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 670, 
+                   Column: 22 }
+Function:        encode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        upzero_label10
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 677, 
+                   Column: 22 }
+Function:        encode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        upzero_label11
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 618, 
+                   Column: 17 }
+Function:        encode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        quantl_label9
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 588, 
+                   Column: 17 }
+Function:        encode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        filtez_label8
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 275, 
+                   Column: 17 }
+Function:        encode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        encode_label1
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 264, 
+                   Column: 17 }
+Function:        encode
+Args:            
+  - String:          'Loop '''
+  - LoopName:        encode_label0
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        decode_label3
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:530:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          decode
+  - String:          ''' completely with a factor of '
+  - Factor:          '10'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        decode_label2
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:514:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          decode
+  - String:          ''' completely with a factor of '
+  - Factor:          '10'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        upzero_label10
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:670:22'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          decode
+  - String:          ''' completely with a factor of '
+  - Factor:          '6'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        upzero_label11
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:677:22'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          decode
+  - String:          ''' completely with a factor of '
+  - Factor:          '6'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        filtez_label8
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:588:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          decode
+  - String:          ''' completely with a factor of '
+  - Factor:          '5'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        upzero_label10
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:670:22'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          decode
+  - String:          ''' completely with a factor of '
+  - Factor:          '6'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        upzero_label11
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:677:22'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          decode
+  - String:          ''' completely with a factor of '
+  - Factor:          '6'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 404, 
+                   Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        filtez_label8
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:588:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          decode
+  - String:          ''' completely with a factor of '
+  - Factor:          '5'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        upzero_label10
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:670:22'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          encode
+  - String:          ''' completely with a factor of '
+  - Factor:          '6'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        upzero_label11
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:677:22'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          encode
+  - String:          ''' completely with a factor of '
+  - Factor:          '6'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        filtez_label8
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:588:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          encode
+  - String:          ''' completely with a factor of '
+  - Factor:          '5'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        upzero_label10
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:670:22'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          encode
+  - String:          ''' completely with a factor of '
+  - Factor:          '6'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        upzero_label11
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:677:22'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          encode
+  - String:          ''' completely with a factor of '
+  - Factor:          '6'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        quantl_label9
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:618:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          encode
+  - String:          ''' completely with a factor of '
+  - Factor:          '30'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        filtez_label8
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:588:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          encode
+  - String:          ''' completely with a factor of '
+  - Factor:          '5'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        encode_label1
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:275:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          encode
+  - String:          ''' completely with a factor of '
+  - Factor:          '22'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/chstone/adpcm/src/adpcm.c, Line: 251, 
+                   Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        encode_label0
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/chstone/adpcm/src/adpcm.c:264:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          encode
+  - String:          ''' completely with a factor of '
+  - Factor:          '10'
+...

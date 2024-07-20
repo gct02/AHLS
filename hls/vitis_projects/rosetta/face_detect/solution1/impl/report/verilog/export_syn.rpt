@@ -1,0 +1,391 @@
+================================================================
+== Vivado RTL Synthesis Results
+================================================================
++ General Information:
+    * Date:            Sun Jun 23 07:13:19 -03 2024
+    * Version:         2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:         face_detect
+    * Solution:        solution1 (Vivado IP Flow Target)
+    * Product family:  zynq
+    * Target device:   xc7z020-clg400-1
+
+
+================================================================
+== Run Constraints & Options
+================================================================
++ Design Constraints & Options:
+    * RTL Synthesis target clock:  5 ns
+    * C-Synthesis target clock:    5 ns
+    * C-Synthesis uncertainty:     27%
+
++ RTL Synthesis Options:
+    * config_export -vivado_synth_strategy:     default
+    * config_export -vivado_synth_design_args:  -directive sdx_optimization_effort_high
+
++ Reporting Options:
+    * config_export -vivado_report_level:      2
+    * config_export -vivado_max_timing_paths:  10
+
+
+================================================================
+== RTL Synthesis Resource Summary
+================================================================
+LUT:              17980
+FF:               16033
+DSP:              31
+BRAM:             1200
+URAM:             0
+SRL:              561
+
+
+================================================================
+== RTL Synthesis Timing Summary
+================================================================
+* Timing was NOT met
++----------------+-------------+
+| Timing         | Period (ns) |
++----------------+-------------+
+| Target         | 5.000       |
+| Post-Synthesis | 5.803       |
++----------------+-------------+
+
+
+================================================================
+== RTL Synthesis Resources
+================================================================
++-----------------------------------------------------------------------------+-------+-------+-----+------+------+-----+--------+------+---------+----------+--------+
+| Name                                                                        | LUT   | FF    | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable | Source |
++-----------------------------------------------------------------------------+-------+-------+-----+------+------+-----+--------+------+---------+----------+--------+
+| inst                                                                        | 17980 | 16033 | 31  | 1200 |      |     |        |      |         |          |        |
+|   (inst)                                                                    | 311   | 1053  |     |      |      |     |        |      |         |          |        |
+|   IMG1_data_U                                                               | 8     | 2     |     | 48   |      |     |        |      |         |          |        |
+|   dadd_64ns_64ns_64_16_full_dsp_1_U96                                       | 645   | 880   | 3   |      |      |     |        |      |         |          |        |
+|   fcmp_32ns_32ns_1_4_no_dsp_1_U94                                           | 42    | 43    |     |      |      |     |        |      |         |          |        |
+|     (fcmp_32ns_32ns_1_4_no_dsp_1_U94)                                       | 1     | 34    |     |      |      |     |        |      |         |          |        |
+|   fcmp_32ns_32ns_1_4_no_dsp_1_U95                                           | 26    | 39    |     |      |      |     |        |      |         |          |        |
+|     (fcmp_32ns_32ns_1_4_no_dsp_1_U95)                                       |       | 32    |     |      |      |     |        |      |         |          |        |
+|   fdiv_32ns_32ns_32_30_no_dsp_1_U91                                         | 772   | 1412  |     |      |      |     |        |      |         |          |        |
+|   fdiv_32ns_32ns_32_30_no_dsp_1_U92                                         | 768   | 1380  |     |      |      |     |        |      |         |          |        |
+|   fmul_32ns_32ns_32_8_max_dsp_1_U89                                         | 85    | 191   | 3   |      |      |     |        |      |         |          |        |
+|   fmul_32ns_32ns_32_8_max_dsp_1_U90                                         | 73    | 127   | 3   |      |      |     |        |      |         |          |        |
+|   fpext_32ns_64_4_no_dsp_1_U93                                              | 16    | 130   |     |      |      |     |        |      |         |          |        |
+|     (fpext_32ns_64_4_no_dsp_1_U93)                                          |       | 32    |     |      |      |     |        |      |         |          |        |
+|   grp_face_detect_Pipeline_nearestNeighborL1_nearestNeighborL1_1_fu_202     | 138   | 197   | 3   |      |      |     |        |      |         |          |        |
+|     (grp_face_detect_Pipeline_nearestNeighborL1_nearestNeighborL1_1_fu_202) | 115   | 185   |     |      |      |     |        |      |         |          |        |
+|     mul_8ns_24s_24_5_1_U2                                                   |       |       | 1   |      |      |     |        |      |         |          |        |
+|     mul_9ns_28s_32_4_1_U1                                                   | 19    | 10    | 2   |      |      |     |        |      |         |          |        |
+|   grp_processImage_fu_213                                                   | 11445 | 7092  | 19  | 1152 |      |     |        |      |         |          |        |
+|     (grp_processImage_fu_213)                                               | 562   | 1050  |     |      |      |     |        |      |         |          |        |
+|     SQSUM1_data_U                                                           | 99    | 4     |     | 192  |      |     |        |      |         |          |        |
+|     SUM1_data_U                                                             | 288   | 12    |     | 960  |      |     |        |      |         |          |        |
+|     grp_cascadeClassifier_fu_269                                            | 8490  | 4393  | 14  |      |      |     |        |      |         |          |        |
+|       (grp_cascadeClassifier_fu_269)                                        | 1250  | 982   |     |      |      |     |        |      |         |          |        |
+|       dmul_64ns_64ns_64_14_full_dsp_1_U50                                   | 184   | 388   | 10  |      |      |     |        |      |         |          |        |
+|       grp_cascadeClassifier_Pipeline_Filters_fu_287                         | 6558  | 2158  | 4   |      |      |     |        |      |         |          |        |
+|         (grp_cascadeClassifier_Pipeline_Filters_fu_287)                     | 6259  | 2020  |     |      |      |     |        |      |         |          |        |
+|         alpha1_array_U                                                      |       | 13    |     |      |      |     |        |      |         |          |        |
+|         alpha2_array_U                                                      | 1     | 14    |     |      |      |     |        |      |         |          |        |
+|         flow_control_loop_pipe_sequential_init_U                            | 216   | 2     |     |      |      |     |        |      |         |          |        |
+|         mul_13s_32s_32_5_1_U20                                              | 45    | 17    | 2   |      |      |     |        |      |         |          |        |
+|         mul_14ns_32s_32_5_1_U21                                             | 33    | 17    | 2   |      |      |     |        |      |         |          |        |
+|         rectangles_array0_U                                                 |       | 5     |     |      |      |     |        |      |         |          |        |
+|         rectangles_array10_U                                                |       | 4     |     |      |      |     |        |      |         |          |        |
+|         rectangles_array11_U                                                |       | 4     |     |      |      |     |        |      |         |          |        |
+|         rectangles_array1_U                                                 |       | 5     |     |      |      |     |        |      |         |          |        |
+|         rectangles_array2_U                                                 |       | 5     |     |      |      |     |        |      |         |          |        |
+|         rectangles_array3_U                                                 |       | 5     |     |      |      |     |        |      |         |          |        |
+|         rectangles_array4_U                                                 |       | 5     |     |      |      |     |        |      |         |          |        |
+|         rectangles_array5_U                                                 |       | 5     |     |      |      |     |        |      |         |          |        |
+|         rectangles_array6_U                                                 |       | 5     |     |      |      |     |        |      |         |          |        |
+|         rectangles_array7_U                                                 |       | 5     |     |      |      |     |        |      |         |          |        |
+|         rectangles_array8_U                                                 |       | 5     |     |      |      |     |        |      |         |          |        |
+|         rectangles_array9_U                                                 |       | 5     |     |      |      |     |        |      |         |          |        |
+|         tree_thresh_array_U                                                 | 1     | 13    |     |      |      |     |        |      |         |          |        |
+|         weights_array0_U                                                    |       | 1     |     |      |      |     |        |      |         |          |        |
+|         weights_array1_U                                                    | 3     | 2     |     |      |      |     |        |      |         |          |        |
+|         weights_array2_U                                                    |       | 1     |     |      |      |     |        |      |         |          |        |
+|       grp_cascadeClassifier_Pipeline_VITIS_LOOP_379_1_fu_281                | 60    | 197   |     |      |      |     |        |      |         |          |        |
+|         (grp_cascadeClassifier_Pipeline_VITIS_LOOP_379_1_fu_281)            | 23    | 195   |     |      |      |     |        |      |         |          |        |
+|         flow_control_loop_pipe_sequential_init_U                            | 37    | 2     |     |      |      |     |        |      |         |          |        |
+|       sitodp_64s_64_7_no_dsp_1_U52                                          | 354   | 511   |     |      |      |     |        |      |         |          |        |
+|         (sitodp_64s_64_7_no_dsp_1_U52)                                      | 35    | 129   |     |      |      |     |        |      |         |          |        |
+|       stages_array_U                                                        |       | 8     |     |      |      |     |        |      |         |          |        |
+|       stages_thresh_array_U                                                 |       | 12    |     |      |      |     |        |      |         |          |        |
+|     grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259      | 1299  | 874   | 1   |      |      |     |        |      |         |          |        |
+|       (grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259)  | 1263  | 872   |     |      |      |     |        |      |         |          |        |
+|       flow_control_loop_pipe_sequential_init_U                              | 4     | 2     |     |      |      |     |        |      |         |          |        |
+|       mac_muladd_8ns_8ns_32ns_32_4_1_U11                                    | 32    |       | 1   |      |      |     |        |      |         |          |        |
+|     lshr_137ns_32ns_137_7_1_U69                                             | 4     | 4     |     |      |      |     |        |      |         |          |        |
+|     lshr_137ns_32ns_137_7_1_U71                                             | 4     | 4     |     |      |      |     |        |      |         |          |        |
+|     mul_32s_32s_64_5_1_U68                                                  |       | 51    | 4   |      |      |     |        |      |         |          |        |
+|     shl_137ns_32ns_137_7_1_U70                                              | 279   | 244   |     |      |      |     |        |      |         |          |        |
+|     shl_137ns_32ns_137_7_1_U72                                              | 279   | 244   |     |      |      |     |        |      |         |          |        |
+|     sitofp_32ns_32_7_no_dsp_1_U64                                           | 141   | 212   |     |      |      |     |        |      |         |          |        |
+|       (sitofp_32ns_32_7_no_dsp_1_U64)                                       | 16    | 31    |     |      |      |     |        |      |         |          |        |
+|   lshr_137ns_32ns_137_7_1_U103                                              | 4     | 4     |     |      |      |     |        |      |         |          |        |
+|   lshr_79ns_32ns_79_2_1_U97                                                 |       | 1     |     |      |      |     |        |      |         |          |        |
+|   lshr_79ns_32ns_79_2_1_U99                                                 |       | 1     |     |      |      |     |        |      |         |          |        |
+|   sdiv_26ns_32ns_24_30_1_U102                                               | 1538  | 1543  |     |      |      |     |        |      |         |          |        |
+|     (sdiv_26ns_32ns_24_30_1_U102)                                           |       | 56    |     |      |      |     |        |      |         |          |        |
+|   sdiv_27ns_32ns_27_31_1_U101                                               | 1628  | 1630  |     |      |      |     |        |      |         |          |        |
+|     (sdiv_27ns_32ns_27_31_1_U101)                                           |       | 59    |     |      |      |     |        |      |         |          |        |
+|   shl_137ns_32ns_137_7_1_U104                                               | 279   | 244   |     |      |      |     |        |      |         |          |        |
+|   shl_79ns_32ns_79_2_1_U100                                                 | 101   | 32    |     |      |      |     |        |      |         |          |        |
+|   shl_79ns_32ns_79_2_1_U98                                                  | 101   | 32    |     |      |      |     |        |      |         |          |        |
++-----------------------------------------------------------------------------+-------+-------+-----+------+------+-----+--------+------+---------+----------+--------+
+
+
+================================================================
+== RTL Synthesis Fail Fast
+================================================================
++-----------------------------------------------------------+-----------+---------+--------+
+| Criteria                                                  | Guideline | Actual  | Status |
++-----------------------------------------------------------+-----------+---------+--------+
+| LUT                                                       | 70%       | 33.80%  | OK     |
+| FD                                                        | 50%       | 15.07%  | OK     |
+| LUTRAM+SRL                                                | 25%       | 3.22%   | OK     |
+| MUXF7                                                     | 15%       | 7.53%   | OK     |
+| DSP                                                       | 80%       | 14.09%  | OK     |
+| RAMB/FIFO                                                 | 80%       | 428.57% | REVIEW |
+| DSP+RAMB+URAM (Avg)                                       | 70%       | 221.33% | REVIEW |
+| BUFGCE* + BUFGCTRL                                        | 24        | 0       | OK     |
+| DONT_TOUCH (cells/nets)                                   | 0         | 0       | OK     |
+| MARK_DEBUG (nets)                                         | 0         | 0       | OK     |
+| Control Sets                                              | 998       | 132     | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 3.07    | OK     |
+| Max Average Fanout for modules > 100k cells               | 4         | 0       | OK     |
+| Non-FD high fanout nets > 10k loads                       | 0         | 0       | OK     |
++-----------------------------------------------------------+-----------+---------+--------+
+| TIMING-6 (No common primary clock between related clocks) | 0         | 0       | OK     |
+| TIMING-7 (No common node between related clocks)          | 0         | 0       | OK     |
+| TIMING-8 (No common period between related clocks)        | 0         | 0       | OK     |
+| TIMING-14 (LUT on the clock tree)                         | 0         | 0       | OK     |
+| TIMING-35 (No common node in paths with the same clock)   | 0         | 0       | OK     |
++-----------------------------------------------------------+-----------+---------+--------+
+| Number of paths above max LUT budgeting (0.575ns)         | 0         | 0       | OK     |
+| Number of paths above max Net budgeting (0.403ns)         | 0         | 4       | REVIEW |
++-----------------------------------------------------------+-----------+---------+--------+
+
+
+================================================================
+== RTL Synthesis Timing Paths
+================================================================
+* Timing was NOT met
++--------+--------+-------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path   |  SLACK | STARTPOINT PIN                                                                                        | ENDPOINT PIN                                                                                                                                                                                      | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
+|        |        |                                                                                                       |                                                                                                                                                                                                   |              |            |                |          DELAY |        DELAY |
++--------+--------+-------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path1  | -0.803 | i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C   | i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[9]/D                                                                                                                                 |           18 |          2 |          5.828 |          4.198 |        1.630 |
+| Path2  | -0.722 | i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C   | i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[10]/D                                                                                                                                |           18 |          2 |          5.747 |          4.117 |        1.630 |
+| Path3  | -0.698 | i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C   | i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[8]/D                                                                                                                                 |           18 |          2 |          5.723 |          4.093 |        1.630 |
+| Path4  | -0.686 | i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C   | i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[5]/D                                                                                                                                 |           17 |          2 |          5.711 |          4.081 |        1.630 |
+| Path5  | -0.680 | i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]/C   | i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[7]/D                                                                                                                                 |           17 |          2 |          5.705 |          4.075 |        1.630 |
+| Path6  | -0.674 | grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/din0_buf1_reg[63]/C | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/CHAIN_GEN[7].CARRYS_DEL.NEED_DEL.CARRYS_FD/D                                                                                                       |           20 |         65 |          5.440 |          4.252 |        1.188 |
+| Path7  | -0.619 | IMG1_data_U/ram_reg_0_0/CLKARDCLK                                                                     | grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/B[0] |            2 |          3 |          5.085 |          3.421 |        1.664 |
+| Path8  | -0.619 | IMG1_data_U/ram_reg_0_1/CLKARDCLK                                                                     | grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/B[1] |            2 |          3 |          5.085 |          3.421 |        1.664 |
+| Path9  | -0.619 | IMG1_data_U/ram_reg_0_2/CLKARDCLK                                                                     | grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/B[2] |            2 |          3 |          5.085 |          3.421 |        1.664 |
+| Path10 | -0.619 | IMG1_data_U/ram_reg_0_3/CLKARDCLK                                                                     | grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg/B[3] |            2 |          3 |          5.085 |          3.421 |        1.664 |
++--------+--------+-------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path1 Cells                                                                                                            | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]                      | FLOP_LATCH.flop.FDRE |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4 | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[1].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[5].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[9].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[13].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[17].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[21].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[25].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[3].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[7].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[11].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[15].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[19].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[23].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6                                   | LUT.others.LUT3      |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_i_1                               | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1                         | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[10]_i_1                        | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[9]                                                        | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path2 Cells                                                                                                            | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]                      | FLOP_LATCH.flop.FDRE |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4 | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[1].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[5].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[9].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[13].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[17].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[21].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[25].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[3].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[7].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[11].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[15].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[19].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[23].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6                                   | LUT.others.LUT3      |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_i_1                               | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1                         | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[10]_i_1                        | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[10]                                                       | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path3 Cells                                                                                                            | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]                      | FLOP_LATCH.flop.FDRE |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4 | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[1].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[5].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[9].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[13].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[17].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[21].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[25].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[3].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[7].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[11].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[15].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[19].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[23].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6                                   | LUT.others.LUT3      |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_i_1                               | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1                         | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[10]_i_1                        | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[8]                                                        | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path4 Cells                                                                                                            | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]                      | FLOP_LATCH.flop.FDRE |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4 | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[1].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[5].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[9].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[13].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[17].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[21].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[25].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[3].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[7].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[11].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[15].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[19].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[23].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6                                   | LUT.others.LUT3      |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_i_1                               | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1                         | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[5]                                                        | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path5 Cells                                                                                                            | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/NORM_SHIFT/MUX_LOOP[2].DEL_SHIFT/i_pipe/opt_has_pipe.first_q_reg[52]                      | FLOP_LATCH.flop.FDRE |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4 | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[1].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[5].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[9].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[13].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[17].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[21].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND1/CHAIN_GEN[25].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[3].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[7].C_MUX.CARRY_MUX_CARRY4                                      | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[11].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[15].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[19].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/ROUND/LOGIC.RND2/CHAIN_GEN[23].C_MUX.CARRY_MUX_CARRY4                                     | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op[3]_i_6                                   | LUT.others.LUT3      |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/TWO.DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[3]_i_1                               | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ENCODE[0].DIST_DEL/i_pipe/RESULT_REG.NORMAL.exp_op_reg[7]_i_1                         | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op_reg[7]                                                        | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +-----------------------------------------------------------------------------------------------------+----------------------+
+    | Path6 Cells                                                                                         | Primitive Type       |
+    +-----------------------------------------------------------------------------------------------------+----------------------+
+    | grp_processImage_fu_213/grp_cascadeClassifier_fu_269/sitodp_64s_64_7_no_dsp_1_U52/din0_buf1_reg[63] | FLOP_LATCH.flop.FDRE |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/CHAIN_GEN[1].C_MUX.CARRY_MUX_i_1                                       | LUT.others.LUT2      |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4            | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[4].C_MUX.CARRY_MUX_CARRY4            | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4            | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[12].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[20].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[28].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[36].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[44].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[52].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[56].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/FIXED_DATA_SIGNED.M_ABS/CHAIN_GEN[60].C_MUX.CARRY_MUX_CARRY4           | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1                                   | LUT.others.LUT4      |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4                  | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/CHAIN_GEN[4].C_MUX.CARRY_MUX_CARRY4                  | CARRY.others.CARRY4  |
+    | i_synth/FIX_TO_FLT_OP.SPD.OP/LZE/ZERO_DET_CC_1/CHAIN_GEN[7].CARRYS_DEL.NEED_DEL.CARRYS_FD           | FLOP_LATCH.flop.FDRE |
+    +-----------------------------------------------------------------------------------------------------+----------------------+
+
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+    | Path7 Cells                                                                                                                                                                                  | Primitive Type     |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+    | IMG1_data_U/ram_reg_0_0                                                                                                                                                                      | BMEM.bram.RAMB36E1 |
+    | IMG1_data_U/ram_reg_1_0                                                                                                                                                                      | BMEM.bram.RAMB36E1 |
+    | IMG1_data_U/it_reg_651[0]_i_1                                                                                                                                                                | LUT.others.LUT4    |
+    | grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg | MULT.dsp.DSP48E1   |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+    | Path8 Cells                                                                                                                                                                                  | Primitive Type     |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+    | IMG1_data_U/ram_reg_0_1                                                                                                                                                                      | BMEM.bram.RAMB36E1 |
+    | IMG1_data_U/ram_reg_1_1                                                                                                                                                                      | BMEM.bram.RAMB36E1 |
+    | IMG1_data_U/it_reg_651[1]_i_1                                                                                                                                                                | LUT.others.LUT4    |
+    | grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg | MULT.dsp.DSP48E1   |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+    | Path9 Cells                                                                                                                                                                                  | Primitive Type     |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+    | IMG1_data_U/ram_reg_0_2                                                                                                                                                                      | BMEM.bram.RAMB36E1 |
+    | IMG1_data_U/ram_reg_1_2                                                                                                                                                                      | BMEM.bram.RAMB36E1 |
+    | IMG1_data_U/it_reg_651[2]_i_1                                                                                                                                                                | LUT.others.LUT4    |
+    | grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg | MULT.dsp.DSP48E1   |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+    | Path10 Cells                                                                                                                                                                                 | Primitive Type     |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+    | IMG1_data_U/ram_reg_0_3                                                                                                                                                                      | BMEM.bram.RAMB36E1 |
+    | IMG1_data_U/ram_reg_1_3                                                                                                                                                                      | BMEM.bram.RAMB36E1 |
+    | IMG1_data_U/it_reg_651[3]_i_1                                                                                                                                                                | LUT.others.LUT4    |
+    | grp_processImage_fu_213/grp_processImage_Pipeline_VITIS_LOOP_306_1_VITIS_LOOP_311_2_fu_259/mac_muladd_8ns_8ns_32ns_32_4_1_U11/face_detect_mac_muladd_8ns_8ns_32ns_32_4_1_DSP48_0_U/p_reg_reg | MULT.dsp.DSP48E1   |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+
+
+================================================================
+== RTL Synthesis Vivado Reports
+================================================================
++--------------------------+--------------------------------------------------------------------+
+| Report Type              | Report Location                                                    |
++--------------------------+--------------------------------------------------------------------+
+| design_analysis          | impl/verilog/report/face_detect_design_analysis_synth.rpt          |
+| failfast                 | impl/verilog/report/face_detect_failfast_synth.rpt                 |
+| timing                   | impl/verilog/report/face_detect_timing_synth.rpt                   |
+| timing_paths             | impl/verilog/report/face_detect_timing_paths_synth.rpt             |
+| utilization              | impl/verilog/report/face_detect_utilization_synth.rpt              |
+| utilization_hierarchical | impl/verilog/report/face_detect_utilization_hierarchical_synth.rpt |
++--------------------------+--------------------------------------------------------------------+
+
+

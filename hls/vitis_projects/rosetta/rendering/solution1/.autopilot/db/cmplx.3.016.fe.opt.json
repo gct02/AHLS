@@ -1,0 +1,36 @@
+{
+  "0": {
+    "basicblocks": 536,
+    "calls": "1",
+    "file": "rendering.cpp",
+    "fileloc": 246,
+    "instructions": 8224,
+    "loads": {
+      "G": 1,
+      "L": 7,
+      "T": 1
+    },
+    "name": "rendering",
+    "stores": {
+      "G": 2,
+      "L": 7,
+      "T": 2
+    },
+    "total_instructions": 8300
+  },
+  "1": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "rendering.cpp",
+    "fileloc": 141,
+    "instructions": 76,
+    "loads": {
+      "L": 4
+    },
+    "name": "rasterization1",
+    "stores": {
+      "L": 10
+    },
+    "total_instructions": 76
+  }
+}

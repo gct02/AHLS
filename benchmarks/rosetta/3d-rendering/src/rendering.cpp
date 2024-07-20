@@ -256,6 +256,7 @@ void rendering(Triangle_3D* triangle_3ds, bit8 output[MAX_X][MAX_Y], int num_3d_
 
   // fragments
   CandidatePixel fragment[500];
+  #pragma HLS array_partition variable=fragment type=complete
 
   // pixel buffer
   Pixel pixels[500];

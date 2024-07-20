@@ -1,0 +1,3 @@
+<pragmas>
+<pragma file="benchmarks/rosetta/3d-rendering/src/rendering.cpp" line="259" pragmaType="array_partition" parentfunction="rendering" dim="1" factor="0" mode="complete" dynamic="0" variable="fragment"/>
+</pragmas>

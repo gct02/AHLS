@@ -29,7 +29,7 @@ def update_md(ir_path: Path) -> Path:
     except subprocess.CalledProcessError as error:
         raise UpdateMDError(ir_path.as_posix(), error.returncode, error.output)
     
-def instrument(ir_path: Path, data_stats_file_path: Path, populate_io_path: Path) -> Path:
+def instrument(ir_path: Path, data_stats_file_path: Path, populate_io_path: Path=None) -> Path:
     """
     Instrument the IR file at ir_path with profiling functions, link the instrumented IR with the populate_io IR
     and return the path to the instrumented IR file.
@@ -49,7 +49,10 @@ def instrument(ir_path: Path, data_stats_file_path: Path, populate_io_path: Path
     # Link the profiled IR with the profiler and the function that populates the input/output data
     output_path = ir_path.parent / Path(Path(ir_path.stem).stem + "_instrumented.bc")
     profiler_path = Path(__file__).parent / "profiler/profiler.bc"
-    link_cmd = f"{LLVM_LINK} {profiled_ir_path.as_posix()} {profiler_path.as_posix()} {populate_io_path.as_posix()} -o {output_path.as_posix()}"
+    if populate_io_path is not None:
+        link_cmd = f"{LLVM_LINK} {profiled_ir_path.as_posix()} {profiler_path.as_posix()} {populate_io_path.as_posix()} -o {output_path.as_posix()}"
+    else:
+        link_cmd = f"{LLVM_LINK} {profiled_ir_path.as_posix()} {profiler_path.as_posix()} -o {output_path.as_posix()}"
 
     try:
         subprocess.check_output(link_cmd, stderr=subprocess.STDOUT, shell=True)
@@ -57,7 +60,7 @@ def instrument(ir_path: Path, data_stats_file_path: Path, populate_io_path: Path
     except subprocess.CalledProcessError as error:
         raise InstrumentationError(ir_path.as_posix(), error.returncode, error.output)
     
-def update_md_and_instrument(ir_path: Path, data_stats_file_path: Path, populate_io_path: Path) -> Path:
+def update_md_and_instrument(ir_path: Path, data_stats_file_path: Path, populate_io_path: Path=None) -> Path:
     """
     Update the metadata of the IR file at ir_path and instrument it with profiling functions.
     Return the path to the instrumented IR file.

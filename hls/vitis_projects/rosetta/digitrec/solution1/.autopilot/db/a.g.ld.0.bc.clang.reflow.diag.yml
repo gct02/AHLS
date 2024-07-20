@@ -1,0 +1,157 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                   Line: 30, Column: 0 }
+Function:        _Z10update_knnPKyS0_PiS1_i
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'popcount(unsigned long long)'
+    DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                       Line: 19, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'update_knn(unsigned long long const*, unsigned long long const*, int*, int*, int)'
+    DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                       Line: 30, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                   Line: 90, Column: 0 }
+Function:        _Z8DigitRecPKyS0_PKhPh
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'update_knn(unsigned long long const*, unsigned long long const*, int*, int*, int)'
+    DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                       Line: 30, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'DigitRec(unsigned long long const*, unsigned long long const*, unsigned char const*, unsigned char*)'
+    DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                       Line: 90, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                   Line: 90, Column: 0 }
+Function:        _Z8DigitRecPKyS0_PKhPh
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'knn_vote(int*)'
+    DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                       Line: 63, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'DigitRec(unsigned long long const*, unsigned long long const*, unsigned char const*, unsigned char*)'
+    DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                       Line: 90, Column: 0 }
+  - String:          ''''
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        TRAINING_LOOP
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/rosetta/digit-recognition/src/digitrec.cpp:107:21'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        SET_KNN_SET
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/rosetta/digit-recognition/src/digitrec.cpp:99:18'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        unknown
+  - String:          '> at '
+  - LoopLoc:         ''
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_69_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/rosetta/digit-recognition/src/digitrec.cpp:69:20'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_72_2
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/rosetta/digit-recognition/src/digitrec.cpp:72:20'
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                   Line: 33, Column: 20 }
+Function:        _Z8DigitRecPKyS0_PKhPh
+Args:            
+  - String:          'Loop '''
+  - LoopName:        VITIS_LOOP_33_1
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                   Line: 43, Column: 18 }
+Function:        _Z8DigitRecPKyS0_PKhPh
+Args:            
+  - String:          'Loop '''
+  - LoopName:        FIND_MAX_DIST
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                   Line: 90, Column: 0 }
+Function:        _Z8DigitRecPKyS0_PKhPh
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_33_1
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/rosetta/digit-recognition/src/digitrec.cpp:33:20'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          DigitRec
+  - String:          ''' completely with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: benchmarks/rosetta/digit-recognition/src/digitrec.cpp, 
+                   Line: 90, Column: 0 }
+Function:        _Z8DigitRecPKyS0_PKhPh
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        FIND_MAX_DIST
+  - String:          ''' ('
+  - LoopLoc:         'benchmarks/rosetta/digit-recognition/src/digitrec.cpp:43:18'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          DigitRec
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...

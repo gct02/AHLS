@@ -11,7 +11,7 @@ from sys import argv
 
 import pickle
 
-def create_ir_graph(dfg_nodes_file: Path, dfg_edges_file: Path, dtype='int32') -> StellarGraph:
+def create_ir_graph(dfg_nodes_file: Path, dfg_edges_file: Path, dtype='int32', directives_tcl_file: Path=None) -> StellarGraph:
     dfg_nodes = parse_dfg_nodes_file(dfg_nodes_file)
     dfg_edges = parse_dfg_edges_file(dfg_edges_file)
 
@@ -22,7 +22,12 @@ def create_ir_graph(dfg_nodes_file: Path, dfg_edges_file: Path, dtype='int32') -
 
     for opid, attrs in dfg_nodes.items():
         index_array.append(opid)
-        feature_array.append(np.array(attrs, dtype='int32'))
+        # features: (opCode, bitwidth, pipeline_II, unroll_factor, array_partition_type, 
+        #            array_partition_factor, array_partition_dim, loop_merge)
+        features = [attrs[0], attrs[1], 0, 0, 0, 0, 0, 0]
+        if directives_tcl_file is not None:
+            ...
+        feature_array.append(np.array(features, dtype='int32'))
 
     for edge in dfg_edges:
         sources.append(edge[0])
@@ -43,3 +48,4 @@ if __name__ == '__main__':
     output_file = Path(argv[3])
     ir_graph = create_ir_graph(dfg_nodes_file, dfg_edges_file)
     pickle.dump(ir_graph, open(output_file, 'wb'))
+    

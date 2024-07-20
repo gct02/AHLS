@@ -1,0 +1,472 @@
+<profile>
+<RunData>
+  <RUN_TYPE>synth</RUN_TYPE>
+  <VIVADO_VERSION>v.2023.2</VIVADO_VERSION>
+  <ROOT_MODULE_CELL>bd_0_i/hls_inst</ROOT_MODULE_CELL>
+</RunData>
+<TimingReport>
+  <TargetClockPeriod>5.000</TargetClockPeriod>
+  <AchievedClockPeriod>6.279</AchievedClockPeriod>
+  <CLOCK_NAME>ap_clk</CLOCK_NAME>
+  <CP_FINAL>6.279</CP_FINAL>
+  <CP_ROUTE>NA</CP_ROUTE>
+  <CP_SYNTH>6.279</CP_SYNTH>
+  <CP_TARGET>5.000</CP_TARGET>
+  <SLACK_FINAL>-1.279</SLACK_FINAL>
+  <SLACK_ROUTE></SLACK_ROUTE>
+  <SLACK_SYNTH>-1.279</SLACK_SYNTH>
+  <TIMING_MET>FALSE</TIMING_MET>
+  <TNS_FINAL>-55.369</TNS_FINAL>
+  <TNS_ROUTE>NA</TNS_ROUTE>
+  <TNS_SYNTH>-55.369</TNS_SYNTH>
+  <WNS_FINAL>-1.279</WNS_FINAL>
+  <WNS_ROUTE>NA</WNS_ROUTE>
+  <WNS_SYNTH>-1.279</WNS_SYNTH>
+</TimingReport>
+<AreaReport>
+  <Resources>
+    <BRAM>18</BRAM>
+    <CLB>0</CLB>
+    <DSP>139</DSP>
+    <FF>13256</FF>
+    <LATCH>0</LATCH>
+    <LUT>10432</LUT>
+    <SRL>0</SRL>
+    <URAM>0</URAM>
+  </Resources>
+  <AvailableResources>
+    <BRAM>280</BRAM>
+    <CLB>0</CLB>
+    <DSP>220</DSP>
+    <FF>106400</FF>
+    <LUT>53200</LUT>
+    <URAM>0</URAM>
+  </AvailableResources>
+</AreaReport>
+<RtlModules>
+  <RtlModule CELL="inst" DEPTH="0" FILE_NAME="bd_0_hls_inst_0.v" ORIG_REF_NAME="adpcm_main" TOP_CELL="bd_0_i/hls_inst/inst">
+    <SubModules count="17">accumc_U accumd_U dec_del_bph_U dec_del_bpl_U dec_del_dhx_U dec_del_dltx_U delay_bph_U delay_bpl_U delay_dhx_U delay_dltx_U grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186 grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248 grp_adpcm_main_Pipeline_reset_label4_fu_148 grp_adpcm_main_Pipeline_reset_label5_fu_160 grp_adpcm_main_Pipeline_reset_label6_fu_172 grp_adpcm_main_Pipeline_reset_label7_fu_178 tqmf_U</SubModules>
+    <Resources BRAM="18" DSP="139" FF="13256" LUT="10432" LogicLUT="10432" RAMB18="4" RAMB36="7"/>
+    <LocalResources FF="768" LUT="1" LogicLUT="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/accumc_U" BINDMODULE="adpcm_main_accumc_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_accumc_RAM_AUTO_1R1W">
+    <Resources BRAM="2" RAMB36="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/accumd_U" BINDMODULE="adpcm_main_accumc_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_accumc_RAM_AUTO_1R1W">
+    <Resources BRAM="2" RAMB36="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dec_del_bph_U" BINDMODULE="adpcm_main_delay_bpl_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_delay_bpl_RAM_AUTO_1R1W">
+    <Resources BRAM="2" LUT="32" LogicLUT="32" RAMB36="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dec_del_bpl_U" BINDMODULE="adpcm_main_delay_bpl_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_delay_bpl_RAM_AUTO_1R1W">
+    <Resources BRAM="2" RAMB36="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dec_del_dhx_U" BINDMODULE="adpcm_main_delay_dhx_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_delay_dhx_RAM_AUTO_1R1W">
+    <Resources BRAM="1" LUT="28" LogicLUT="28" RAMB18="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dec_del_dltx_U" BINDMODULE="adpcm_main_delay_dltx_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_delay_dltx_RAM_AUTO_1R1W">
+    <Resources BRAM="1" RAMB18="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/delay_bph_U" BINDMODULE="adpcm_main_delay_bpl_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_delay_bpl_RAM_AUTO_1R1W">
+    <Resources BRAM="2" RAMB36="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/delay_bpl_U" BINDMODULE="adpcm_main_delay_bpl_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_delay_bpl_RAM_AUTO_1R1W">
+    <Resources BRAM="2" RAMB36="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/delay_dhx_U" BINDMODULE="adpcm_main_delay_dhx_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_delay_dhx_RAM_AUTO_1R1W">
+    <Resources BRAM="1" RAMB18="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/delay_dltx_U" BINDMODULE="adpcm_main_delay_dltx_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_delay_dltx_RAM_AUTO_1R1W">
+    <Resources BRAM="1" RAMB18="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_adpcm_main_Pipeline_adpcm_main_label12">
+    <SubModules count="2">flow_control_loop_pipe_sequential_init_U grp_encode_fu_138</SubModules>
+    <Resources DSP="82" FF="5859" LUT="5744" LogicLUT="5744"/>
+    <LocalResources FF="191" LUT="69" LogicLUT="69"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/flow_control_loop_pipe_sequential_init_U" BINDMODULE="adpcm_main_flow_control_loop_pipe_sequential_init" DEPTH="2" FILE_NAME="adpcm_main_adpcm_main_Pipeline_adpcm_main_label12.v" ORIG_REF_NAME="adpcm_main_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="13" LogicLUT="13"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138" DEPTH="2" FILE_NAME="adpcm_main_adpcm_main_Pipeline_adpcm_main_label12.v" ORIG_REF_NAME="adpcm_main_encode">
+    <SubModules count="52">ilb_table_U mul_14s_15ns_29_2_1_U35 mul_14s_32s_46_5_1_U12 mul_14s_32s_46_5_1_U13 mul_15ns_10ns_24_2_1_U31 mul_15ns_11ns_25_2_1_U32 mul_15ns_12ns_26_2_1_U36 mul_15ns_12ns_26_2_1_U43 mul_15ns_12ns_26_2_1_U44 mul_15ns_13ns_27_2_1_U45 mul_15ns_13ns_27_2_1_U46 mul_15ns_13ns_27_2_1_U47 mul_15ns_13ns_27_2_1_U48 mul_15ns_13ns_27_2_1_U49 mul_15ns_14ns_28_2_1_U50 mul_15ns_14ns_28_2_1_U51 mul_15ns_14ns_28_2_1_U52 mul_15ns_14ns_28_2_1_U53 mul_15ns_14ns_28_2_1_U54 mul_15ns_14ns_28_2_1_U55 mul_15ns_14ns_28_2_1_U56 mul_15ns_15ns_29_2_1_U57 mul_15ns_15ns_29_2_1_U58 mul_15ns_15ns_29_2_1_U59 mul_15ns_15ns_29_2_1_U60 mul_15ns_15ns_29_2_1_U61 mul_15ns_15ns_29_2_1_U62 mul_15ns_15ns_29_2_1_U63 mul_15ns_16ns_30_2_1_U64 mul_15ns_16ns_30_2_1_U65 mul_15ns_16ns_30_2_1_U66 mul_15s_32s_47_5_1_U14 mul_16s_15ns_31_2_1_U67 mul_16s_32s_46_5_1_U15 mul_16s_32s_46_5_1_U16 mul_16s_32s_47_5_1_U17 mul_32s_11s_42_5_1_U25 mul_32s_11s_43_5_1_U26 mul_32s_12ns_44_5_1_U22 mul_32s_13ns_45_5_1_U23 mul_32s_13s_44_5_1_U27 mul_32s_13s_45_5_1_U28 mul_32s_15ns_47_5_1_U24 mul_32s_32s_64_5_1_U18 mul_32s_32s_64_5_1_U19 mul_32s_9ns_41_5_1_U20 mul_32s_9ns_41_5_1_U21 mul_33s_7s_40_5_1_U29 qq4_code4_table_U quant26bt_neg_U quant26bt_pos_U wl_code_table_U</SubModules>
+    <Resources DSP="82" FF="5666" LUT="5662" LogicLUT="5662"/>
+    <LocalResources DSP="13" FF="5361" LUT="4776" LogicLUT="4776"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ilb_table_U" BINDMODULE="adpcm_main_encode_ilb_table_ROM_AUTO_1R" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_encode_ilb_table_ROM_AUTO_1R">
+    <Resources FF="11" LUT="6" LogicLUT="6"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_14s_15ns_29_2_1_U35" BINDMODULE="adpcm_main_mul_14s_15ns_29_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_14s_15ns_29_2_1">
+    <Resources DSP="1" LUT="3" LogicLUT="3"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_14s_32s_46_5_1_U12" BINDMODULE="adpcm_main_mul_14s_32s_46_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_14s_32s_46_5_1">
+    <Resources DSP="2" FF="17" LUT="46" LogicLUT="46"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_14s_32s_46_5_1_U13" BINDMODULE="adpcm_main_mul_14s_32s_46_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_14s_32s_46_5_1">
+    <Resources DSP="2" FF="17" LUT="46" LogicLUT="46"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_10ns_24_2_1_U31" BINDMODULE="adpcm_main_mul_15ns_10ns_24_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_10ns_24_2_1">
+    <Resources DSP="1" LUT="5" LogicLUT="5"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_11ns_25_2_1_U32" BINDMODULE="adpcm_main_mul_15ns_11ns_25_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_11ns_25_2_1">
+    <Resources DSP="1" LUT="5" LogicLUT="5"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_12ns_26_2_1_U36" BINDMODULE="adpcm_main_mul_15ns_12ns_26_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_12ns_26_2_1">
+    <Resources DSP="1" LUT="6" LogicLUT="6"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_12ns_26_2_1_U43" BINDMODULE="adpcm_main_mul_15ns_12ns_26_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_12ns_26_2_1">
+    <Resources DSP="1" LUT="6" LogicLUT="6"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_12ns_26_2_1_U44" BINDMODULE="adpcm_main_mul_15ns_12ns_26_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_12ns_26_2_1">
+    <Resources DSP="1" LUT="6" LogicLUT="6"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_13ns_27_2_1_U45" BINDMODULE="adpcm_main_mul_15ns_13ns_27_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_13ns_27_2_1">
+    <Resources DSP="1" LUT="6" LogicLUT="6"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_13ns_27_2_1_U46" BINDMODULE="adpcm_main_mul_15ns_13ns_27_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_13ns_27_2_1">
+    <Resources DSP="1" LUT="6" LogicLUT="6"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_13ns_27_2_1_U47" BINDMODULE="adpcm_main_mul_15ns_13ns_27_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_13ns_27_2_1">
+    <Resources DSP="1" LUT="6" LogicLUT="6"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_13ns_27_2_1_U48" BINDMODULE="adpcm_main_mul_15ns_13ns_27_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_13ns_27_2_1">
+    <Resources DSP="1" LUT="7" LogicLUT="7"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_13ns_27_2_1_U49" BINDMODULE="adpcm_main_mul_15ns_13ns_27_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_13ns_27_2_1">
+    <Resources DSP="1" LUT="7" LogicLUT="7"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_14ns_28_2_1_U50" BINDMODULE="adpcm_main_mul_15ns_14ns_28_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_14ns_28_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_14ns_28_2_1_U51" BINDMODULE="adpcm_main_mul_15ns_14ns_28_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_14ns_28_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_14ns_28_2_1_U52" BINDMODULE="adpcm_main_mul_15ns_14ns_28_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_14ns_28_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_14ns_28_2_1_U53" BINDMODULE="adpcm_main_mul_15ns_14ns_28_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_14ns_28_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_14ns_28_2_1_U54" BINDMODULE="adpcm_main_mul_15ns_14ns_28_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_14ns_28_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_14ns_28_2_1_U55" BINDMODULE="adpcm_main_mul_15ns_14ns_28_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_14ns_28_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_14ns_28_2_1_U56" BINDMODULE="adpcm_main_mul_15ns_14ns_28_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_14ns_28_2_1">
+    <Resources DSP="1" LUT="7" LogicLUT="7"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_15ns_29_2_1_U57" BINDMODULE="adpcm_main_mul_15ns_15ns_29_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_15ns_29_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_15ns_29_2_1_U58" BINDMODULE="adpcm_main_mul_15ns_15ns_29_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_15ns_29_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_15ns_29_2_1_U59" BINDMODULE="adpcm_main_mul_15ns_15ns_29_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_15ns_29_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_15ns_29_2_1_U60" BINDMODULE="adpcm_main_mul_15ns_15ns_29_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_15ns_29_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_15ns_29_2_1_U61" BINDMODULE="adpcm_main_mul_15ns_15ns_29_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_15ns_29_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_15ns_29_2_1_U62" BINDMODULE="adpcm_main_mul_15ns_15ns_29_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_15ns_29_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_15ns_29_2_1_U63" BINDMODULE="adpcm_main_mul_15ns_15ns_29_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_15ns_29_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_16ns_30_2_1_U64" BINDMODULE="adpcm_main_mul_15ns_16ns_30_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_16ns_30_2_1">
+    <Resources DSP="1" LUT="9" LogicLUT="9"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_16ns_30_2_1_U65" BINDMODULE="adpcm_main_mul_15ns_16ns_30_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_16ns_30_2_1">
+    <Resources DSP="1" LUT="9" LogicLUT="9"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15ns_16ns_30_2_1_U66" BINDMODULE="adpcm_main_mul_15ns_16ns_30_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15ns_16ns_30_2_1">
+    <Resources DSP="1" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_15s_32s_47_5_1_U14" BINDMODULE="adpcm_main_mul_15s_32s_47_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_15s_32s_47_5_1">
+    <Resources DSP="2" FF="17" LUT="46" LogicLUT="46"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_16s_15ns_31_2_1_U67" BINDMODULE="adpcm_main_mul_16s_15ns_31_2_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_16s_15ns_31_2_1">
+    <Resources DSP="1" LUT="1" LogicLUT="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_16s_32s_46_5_1_U15" BINDMODULE="adpcm_main_mul_16s_32s_46_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_16s_32s_46_5_1">
+    <Resources DSP="2" FF="17" LUT="96" LogicLUT="96"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_16s_32s_46_5_1_U16" BINDMODULE="adpcm_main_mul_16s_32s_46_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_16s_32s_46_5_1">
+    <Resources DSP="2" FF="17" LUT="48" LogicLUT="48"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_16s_32s_47_5_1_U17" BINDMODULE="adpcm_main_mul_16s_32s_47_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_16s_32s_47_5_1">
+    <Resources DSP="2" FF="17" LUT="72" LogicLUT="72"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_32s_11s_42_5_1_U25" BINDMODULE="adpcm_main_mul_32s_11s_42_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_32s_11s_42_5_1">
+    <Resources DSP="2" FF="17" LUT="33" LogicLUT="33"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_32s_11s_43_5_1_U26" BINDMODULE="adpcm_main_mul_32s_11s_43_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_32s_11s_43_5_1">
+    <Resources DSP="2" FF="17" LUT="33" LogicLUT="33"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_32s_12ns_44_5_1_U22" BINDMODULE="adpcm_main_mul_32s_12ns_44_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_32s_12ns_44_5_1">
+    <Resources DSP="2" FF="17" LUT="32" LogicLUT="32"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_32s_13ns_45_5_1_U23" BINDMODULE="adpcm_main_mul_32s_13ns_45_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_32s_13ns_45_5_1">
+    <Resources DSP="2" FF="17" LUT="32" LogicLUT="32"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_32s_13s_44_5_1_U27" BINDMODULE="adpcm_main_mul_32s_13s_44_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_32s_13s_44_5_1">
+    <Resources DSP="2" FF="17" LUT="1" LogicLUT="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_32s_13s_45_5_1_U28" BINDMODULE="adpcm_main_mul_32s_13s_45_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_32s_13s_45_5_1">
+    <Resources DSP="2" FF="17" LUT="1" LogicLUT="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_32s_15ns_47_5_1_U24" BINDMODULE="adpcm_main_mul_32s_15ns_47_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_32s_15ns_47_5_1">
+    <Resources DSP="2" FF="17" LUT="32" LogicLUT="32"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_32s_32s_64_5_1_U18" BINDMODULE="adpcm_main_mul_32s_32s_64_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_32s_32s_64_5_1">
+    <Resources DSP="4" LUT="34" LogicLUT="34"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_32s_32s_64_5_1_U19" BINDMODULE="adpcm_main_mul_32s_32s_64_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_32s_32s_64_5_1">
+    <Resources DSP="4" LUT="65" LogicLUT="65"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_32s_9ns_41_5_1_U20" BINDMODULE="adpcm_main_mul_32s_9ns_41_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_32s_9ns_41_5_1">
+    <Resources DSP="2" FF="17" LUT="1" LogicLUT="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_32s_9ns_41_5_1_U21" BINDMODULE="adpcm_main_mul_32s_9ns_41_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_32s_9ns_41_5_1">
+    <Resources DSP="2" FF="17" LUT="2" LogicLUT="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_33s_7s_40_5_1_U29" BINDMODULE="adpcm_main_mul_33s_7s_40_5_1" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_mul_33s_7s_40_5_1">
+    <Resources DSP="2" FF="17" LUT="33" LogicLUT="33"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/qq4_code4_table_U" BINDMODULE="adpcm_main_encode_qq4_code4_table_ROM_AUTO_1R" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_encode_qq4_code4_table_ROM_AUTO_1R">
+    <Resources LUT="12" LogicLUT="12"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/quant26bt_neg_U" BINDMODULE="adpcm_main_encode_quant26bt_neg_ROM_AUTO_1R" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_encode_quant26bt_neg_ROM_AUTO_1R">
+    <Resources FF="6" LUT="4" LogicLUT="4"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/quant26bt_pos_U" BINDMODULE="adpcm_main_encode_quant26bt_pos_ROM_AUTO_1R" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_encode_quant26bt_pos_ROM_AUTO_1R">
+    <Resources FF="5" LUT="3" LogicLUT="3"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/wl_code_table_U" BINDMODULE="adpcm_main_encode_wl_code_table_ROM_AUTO_1R" DEPTH="3" FILE_NAME="adpcm_main_encode.v" ORIG_REF_NAME="adpcm_main_encode_wl_code_table_ROM_AUTO_1R">
+    <Resources FF="11" LUT="7" LogicLUT="7"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_adpcm_main_Pipeline_adpcm_main_label13">
+    <SubModules count="2">flow_control_loop_pipe_sequential_init_U grp_decode_fu_142</SubModules>
+    <Resources DSP="57" FF="6587" LUT="4492" LogicLUT="4492"/>
+    <LocalResources FF="149" LUT="16" LogicLUT="16"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/flow_control_loop_pipe_sequential_init_U" BINDMODULE="adpcm_main_flow_control_loop_pipe_sequential_init" DEPTH="2" FILE_NAME="adpcm_main_adpcm_main_Pipeline_adpcm_main_label13.v" ORIG_REF_NAME="adpcm_main_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="21" LogicLUT="21"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142" DEPTH="2" FILE_NAME="adpcm_main_adpcm_main_Pipeline_adpcm_main_label13.v" ORIG_REF_NAME="adpcm_main_decode">
+    <SubModules count="25">ilb_table_U mul_14s_15ns_29_2_1_U174 mul_14s_32s_46_5_1_U154 mul_14s_32s_46_5_1_U155 mul_15s_32s_47_5_1_U156 mul_16s_15ns_31_2_1_U176 mul_16s_15ns_31_2_1_U177 mul_16s_32s_46_5_1_U157 mul_16s_32s_46_5_1_U158 mul_16s_32s_47_5_1_U159 mul_32s_11s_42_5_1_U167 mul_32s_11s_43_5_1_U168 mul_32s_12ns_44_5_1_U163 mul_32s_12ns_44_5_1_U164 mul_32s_13ns_45_5_1_U165 mul_32s_13s_45_5_1_U169 mul_32s_13s_45_5_1_U170 mul_32s_15ns_46_5_1_U166 mul_32s_32s_64_5_1_U160 mul_32s_32s_64_5_1_U161 mul_32s_9ns_41_5_1_U162 mul_33s_7s_39_5_1_U171 mul_33s_7s_40_5_1_U172 mux_4_2_14_1_1_U173 wl_code_table_U</SubModules>
+    <Resources DSP="57" FF="6436" LUT="4455" LogicLUT="4455"/>
+    <LocalResources DSP="12" FF="6125" LUT="3938" LogicLUT="3938"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/ilb_table_U" BINDMODULE="adpcm_main_encode_ilb_table_ROM_AUTO_1R" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_encode_ilb_table_ROM_AUTO_1R">
+    <Resources FF="11" LUT="4" LogicLUT="4"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_14s_15ns_29_2_1_U174" BINDMODULE="adpcm_main_mul_14s_15ns_29_2_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_14s_15ns_29_2_1">
+    <Resources DSP="1" LUT="1" LogicLUT="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_14s_32s_46_5_1_U154" BINDMODULE="adpcm_main_mul_14s_32s_46_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_14s_32s_46_5_1">
+    <Resources DSP="2" FF="17" LUT="46" LogicLUT="46"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_14s_32s_46_5_1_U155" BINDMODULE="adpcm_main_mul_14s_32s_46_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_14s_32s_46_5_1">
+    <Resources DSP="2" FF="17" LUT="46" LogicLUT="46"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_15s_32s_47_5_1_U156" BINDMODULE="adpcm_main_mul_15s_32s_47_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_15s_32s_47_5_1">
+    <Resources DSP="2" FF="17" LUT="46" LogicLUT="46"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_16s_15ns_31_2_1_U176" BINDMODULE="adpcm_main_mul_16s_15ns_31_2_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_16s_15ns_31_2_1">
+    <Resources DSP="1" LUT="13" LogicLUT="13"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_16s_15ns_31_2_1_U177" BINDMODULE="adpcm_main_mul_16s_15ns_31_2_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_16s_15ns_31_2_1">
+    <Resources DSP="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_16s_32s_46_5_1_U157" BINDMODULE="adpcm_main_mul_16s_32s_46_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_16s_32s_46_5_1">
+    <Resources DSP="2" FF="17" LUT="20" LogicLUT="20"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_16s_32s_46_5_1_U158" BINDMODULE="adpcm_main_mul_16s_32s_46_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_16s_32s_46_5_1">
+    <Resources DSP="2" FF="17" LUT="16" LogicLUT="16"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_16s_32s_47_5_1_U159" BINDMODULE="adpcm_main_mul_16s_32s_47_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_16s_32s_47_5_1">
+    <Resources DSP="2" FF="17" LUT="47" LogicLUT="47"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_32s_11s_42_5_1_U167" BINDMODULE="adpcm_main_mul_32s_11s_42_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_32s_11s_42_5_1">
+    <Resources DSP="2" FF="17" LUT="34" LogicLUT="34"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_32s_11s_43_5_1_U168" BINDMODULE="adpcm_main_mul_32s_11s_43_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_32s_11s_43_5_1">
+    <Resources DSP="2" FF="17"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_32s_12ns_44_5_1_U163" BINDMODULE="adpcm_main_mul_32s_12ns_44_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_32s_12ns_44_5_1">
+    <Resources DSP="2" FF="17"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_32s_12ns_44_5_1_U164" BINDMODULE="adpcm_main_mul_32s_12ns_44_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_32s_12ns_44_5_1">
+    <Resources DSP="2" FF="17"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_32s_13ns_45_5_1_U165" BINDMODULE="adpcm_main_mul_32s_13ns_45_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_32s_13ns_45_5_1">
+    <Resources DSP="2" FF="17" LUT="32" LogicLUT="32"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_32s_13s_45_5_1_U169" BINDMODULE="adpcm_main_mul_32s_13s_45_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_32s_13s_45_5_1">
+    <Resources DSP="2" FF="17"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_32s_13s_45_5_1_U170" BINDMODULE="adpcm_main_mul_32s_13s_45_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_32s_13s_45_5_1">
+    <Resources DSP="2" FF="17"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_32s_15ns_46_5_1_U166" BINDMODULE="adpcm_main_mul_32s_15ns_46_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_32s_15ns_46_5_1">
+    <Resources DSP="2" FF="17" LUT="32" LogicLUT="32"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_32s_32s_64_5_1_U160" BINDMODULE="adpcm_main_mul_32s_32s_64_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_32s_32s_64_5_1">
+    <Resources DSP="4" LUT="66" LogicLUT="66"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_32s_32s_64_5_1_U161" BINDMODULE="adpcm_main_mul_32s_32s_64_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_32s_32s_64_5_1">
+    <Resources DSP="4" LUT="33" LogicLUT="33"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_32s_9ns_41_5_1_U162" BINDMODULE="adpcm_main_mul_32s_9ns_41_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_32s_9ns_41_5_1">
+    <Resources DSP="2" FF="17" LUT="32" LogicLUT="32"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_33s_7s_39_5_1_U171" BINDMODULE="adpcm_main_mul_33s_7s_39_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_33s_7s_39_5_1">
+    <Resources DSP="2" FF="17" LUT="20" LogicLUT="20"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mul_33s_7s_40_5_1_U172" BINDMODULE="adpcm_main_mul_33s_7s_40_5_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mul_33s_7s_40_5_1">
+    <Resources DSP="2" FF="17" LUT="20" LogicLUT="20"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/mux_4_2_14_1_1_U173" BINDMODULE="adpcm_main_mux_4_2_14_1_1" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_mux_4_2_14_1_1">
+    <Resources LUT="2" LogicLUT="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248/grp_decode_fu_142/wl_code_table_U" BINDMODULE="adpcm_main_encode_wl_code_table_ROM_AUTO_1R" DEPTH="3" FILE_NAME="adpcm_main_decode.v" ORIG_REF_NAME="adpcm_main_encode_wl_code_table_ROM_AUTO_1R">
+    <Resources FF="11" LUT="7" LogicLUT="7"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_reset_label4_fu_148" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_adpcm_main_Pipeline_reset_label4">
+    <SubModules count="1">flow_control_loop_pipe_sequential_init_U</SubModules>
+    <Resources FF="9" LUT="8" LogicLUT="8"/>
+    <LocalResources FF="7" LUT="2" LogicLUT="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_reset_label4_fu_148/flow_control_loop_pipe_sequential_init_U" BINDMODULE="adpcm_main_flow_control_loop_pipe_sequential_init" DEPTH="2" FILE_NAME="adpcm_main_adpcm_main_Pipeline_reset_label4.v" ORIG_REF_NAME="adpcm_main_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="6" LogicLUT="6"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_reset_label5_fu_160" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_adpcm_main_Pipeline_reset_label5">
+    <SubModules count="1">flow_control_loop_pipe_sequential_init_U</SubModules>
+    <Resources FF="9" LUT="11" LogicLUT="11"/>
+    <LocalResources FF="7" LUT="3" LogicLUT="3"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_reset_label5_fu_160/flow_control_loop_pipe_sequential_init_U" BINDMODULE="adpcm_main_flow_control_loop_pipe_sequential_init" DEPTH="2" FILE_NAME="adpcm_main_adpcm_main_Pipeline_reset_label5.v" ORIG_REF_NAME="adpcm_main_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_reset_label6_fu_172" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_adpcm_main_Pipeline_reset_label6">
+    <SubModules count="1">flow_control_loop_pipe_sequential_init_U</SubModules>
+    <Resources FF="13" LUT="11" LogicLUT="11"/>
+    <LocalResources FF="11"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_reset_label6_fu_172/flow_control_loop_pipe_sequential_init_U" BINDMODULE="adpcm_main_flow_control_loop_pipe_sequential_init" DEPTH="2" FILE_NAME="adpcm_main_adpcm_main_Pipeline_reset_label6.v" ORIG_REF_NAME="adpcm_main_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="11" LogicLUT="11"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_reset_label7_fu_178" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_adpcm_main_Pipeline_reset_label7">
+    <SubModules count="1">flow_control_loop_pipe_sequential_init_U</SubModules>
+    <Resources FF="11" LUT="9" LogicLUT="9"/>
+    <LocalResources FF="9"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_adpcm_main_Pipeline_reset_label7_fu_178/flow_control_loop_pipe_sequential_init_U" BINDMODULE="adpcm_main_flow_control_loop_pipe_sequential_init" DEPTH="2" FILE_NAME="adpcm_main_adpcm_main_Pipeline_reset_label7.v" ORIG_REF_NAME="adpcm_main_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="9" LogicLUT="9"/>
+  </RtlModule>
+  <RtlModule CELL="inst/tqmf_U" BINDMODULE="adpcm_main_tqmf_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="adpcm_main.v" ORIG_REF_NAME="adpcm_main_tqmf_RAM_AUTO_1R1W">
+    <Resources BRAM="2" LUT="96" LogicLUT="96" RAMB36="1"/>
+  </RtlModule>
+</RtlModules>
+<TimingPaths>
+  <TPATH DATAPATH_DELAY="6.026" DATAPATH_LOGIC_DELAY="1.309" DATAPATH_NET_DELAY="4.717" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719_reg[0]/CE" LOGIC_LEVELS="5" MAX_FANOUT="10" SLACK="-1.279" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/icmp_ln621_5_reg_5517_reg[0]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/icmp_ln621_5_reg_5517_reg[0]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="3502"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_predicate_pred1990_state78_i_8" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_32" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_9" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_2" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_1" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719_reg[0]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="2761"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="6.026" DATAPATH_LOGIC_DELAY="1.309" DATAPATH_NET_DELAY="4.717" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719_reg[1]/CE" LOGIC_LEVELS="5" MAX_FANOUT="10" SLACK="-1.279" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/icmp_ln621_5_reg_5517_reg[0]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/icmp_ln621_5_reg_5517_reg[0]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="3502"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_predicate_pred1990_state78_i_8" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_32" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_9" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_2" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_1" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719_reg[1]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="2761"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="6.026" DATAPATH_LOGIC_DELAY="1.309" DATAPATH_NET_DELAY="4.717" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719_reg[2]/CE" LOGIC_LEVELS="5" MAX_FANOUT="10" SLACK="-1.279" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/icmp_ln621_5_reg_5517_reg[0]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/icmp_ln621_5_reg_5517_reg[0]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="3502"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_predicate_pred1990_state78_i_8" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_32" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_9" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_2" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_1" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719_reg[2]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="2761"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="6.026" DATAPATH_LOGIC_DELAY="1.309" DATAPATH_NET_DELAY="4.717" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719_reg[3]/CE" LOGIC_LEVELS="5" MAX_FANOUT="10" SLACK="-1.279" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/icmp_ln621_5_reg_5517_reg[0]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/icmp_ln621_5_reg_5517_reg[0]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="3502"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_predicate_pred1990_state78_i_8" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_32" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_9" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_2" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_1" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719_reg[3]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="2761"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="6.026" DATAPATH_LOGIC_DELAY="1.309" DATAPATH_NET_DELAY="4.717" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719_reg[4]/CE" LOGIC_LEVELS="5" MAX_FANOUT="10" SLACK="-1.279" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/icmp_ln621_5_reg_5517_reg[0]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/icmp_ln621_5_reg_5517_reg[0]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="3502"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_predicate_pred1990_state78_i_8" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_32" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_9" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_2" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719[4]_i_1" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_phi_reg_pp0_iter0_mil_02_i_reg_719_reg[4]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="2761"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="5.328" DATAPATH_LOGIC_DELAY="1.309" DATAPATH_NET_DELAY="4.019" ENDPOINT_PIN="bd_0_i/hls_inst/inst/tqmf_U/ram_reg/ADDRBWRADDR[6]" LOGIC_LEVELS="5" MAX_FANOUT="213" SLACK="-0.978" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_enable_reg_pp0_iter0_reg_reg/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_enable_reg_pp0_iter0_reg_reg" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="2738"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/mul_32s_9ns_41_5_1_U21/mul_ln267_3_reg_4824[41]_i_1" PRIMITIVE_TYPE="LUT.others.LUT4" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_234" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_81__0" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_97__0" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_11__1" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="139"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/tqmf_U/ram_reg" PRIMITIVE_TYPE="BMEM.bram.RAMB36E1" LINE_NUMBER="38"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="4.961" DATAPATH_LOGIC_DELAY="1.309" DATAPATH_NET_DELAY="3.652" ENDPOINT_PIN="bd_0_i/hls_inst/inst/tqmf_U/ram_reg/ADDRBWRADDR[7]" LOGIC_LEVELS="5" MAX_FANOUT="201" SLACK="-0.611" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_enable_reg_pp0_iter0_reg_reg/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_enable_reg_pp0_iter0_reg_reg" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="2738"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/add_ln589_7_reg_4819[45]_i_1" PRIMITIVE_TYPE="LUT.others.LUT4" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/reg_998[45]_i_1" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_240" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_95__0" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_10__1" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="139"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/tqmf_U/ram_reg" PRIMITIVE_TYPE="BMEM.bram.RAMB36E1" LINE_NUMBER="38"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="4.914" DATAPATH_LOGIC_DELAY="1.185" DATAPATH_NET_DELAY="3.729" ENDPOINT_PIN="bd_0_i/hls_inst/inst/tqmf_U/ram_reg/ADDRBWRADDR[5]" LOGIC_LEVELS="4" MAX_FANOUT="177" SLACK="-0.564" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_CS_fsm_reg[13]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_CS_fsm_reg[13]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="2730"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_345" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_241" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="2740"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_99__5" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="38"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_12__1" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="139"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/tqmf_U/ram_reg" PRIMITIVE_TYPE="BMEM.bram.RAMB36E1" LINE_NUMBER="38"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="5.207" DATAPATH_LOGIC_DELAY="1.185" DATAPATH_NET_DELAY="4.022" ENDPOINT_PIN="bd_0_i/hls_inst/inst/tqmf_U/ram_reg/DIADI[0]" LOGIC_LEVELS="4" MAX_FANOUT="200" SLACK="-0.532" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_CS_fsm_reg[16]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_CS_fsm_reg[16]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="2730"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_133__0" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="1936"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_242" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="1936"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_131__0" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="1936"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_44__5" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="1936"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/tqmf_U/ram_reg" PRIMITIVE_TYPE="BMEM.bram.RAMB36E1" LINE_NUMBER="38"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="5.207" DATAPATH_LOGIC_DELAY="1.185" DATAPATH_NET_DELAY="4.022" ENDPOINT_PIN="bd_0_i/hls_inst/inst/tqmf_U/ram_reg/DIADI[10]" LOGIC_LEVELS="4" MAX_FANOUT="200" SLACK="-0.532" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_CS_fsm_reg[16]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ap_CS_fsm_reg[16]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="2730"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_133__0" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="1936"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_242" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="1936"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_121__0" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="1936"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186/grp_encode_fu_138/ram_reg_i_34__4" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="1936"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/tqmf_U/ram_reg" PRIMITIVE_TYPE="BMEM.bram.RAMB36E1" LINE_NUMBER="38"/>
+  </TPATH>
+</TimingPaths>
+<VivadoReportFiles>
+  <ReportFile TYPE="design_analysis" PATH="verilog/report/adpcm_main_design_analysis_synth.rpt"/>
+  <ReportFile TYPE="failfast" PATH="verilog/report/adpcm_main_failfast_synth.rpt"/>
+  <ReportFile TYPE="timing" PATH="verilog/report/adpcm_main_timing_synth.rpt"/>
+  <ReportFile TYPE="timing_paths" PATH="verilog/report/adpcm_main_timing_paths_synth.rpt"/>
+  <ReportFile TYPE="utilization" PATH="verilog/report/adpcm_main_utilization_synth.rpt"/>
+  <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/adpcm_main_utilization_hierarchical_synth.rpt"/>
+</VivadoReportFiles>
+</profile>
