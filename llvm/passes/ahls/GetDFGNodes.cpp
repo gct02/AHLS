@@ -58,6 +58,14 @@ struct GetDFGNodesPass : public ModulePass {
 
                         outputFile << opID << "," << (int)opCode << "," << bitwidth;
 
+                        if (unrollMDTuple) {
+                            uint32_t unroll = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMDTuple->getOperand(0))->getValue())->getZExtValue();
+                            uint32_t unrollFactor = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMDTuple->getOperand(1))->getValue())->getZExtValue();
+                            outputFile << "," << unroll << "," << unrollFactor;
+                        } else {
+                            outputFile << ",0,0";
+                        }
+
                         if (arrayPartitionMDTuple) {
                             uint32_t arrayPartition = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(0))->getValue())->getZExtValue();
                             uint32_t arrayPartitionType = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(1))->getValue())->getZExtValue();
@@ -68,13 +76,6 @@ struct GetDFGNodesPass : public ModulePass {
                             outputFile << ",0,0,0,0";
                         }
 
-                        if (loopMergeMDTuple) {
-                            uint32_t loopMerge = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopMergeMDTuple->getOperand(0))->getValue())->getZExtValue();
-                            outputFile << "," << loopMerge;
-                        } else {
-                            outputFile << ",0";
-                        }
-
                         if (pipelineMDTuple) {
                             uint32_t pipeline = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMDTuple->getOperand(0))->getValue())->getZExtValue();
                             uint32_t pipelineII = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMDTuple->getOperand(1))->getValue())->getZExtValue();
@@ -83,12 +84,11 @@ struct GetDFGNodesPass : public ModulePass {
                             outputFile << ",0,0";
                         }
 
-                        if (unrollMDTuple) {
-                            uint32_t unroll = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMDTuple->getOperand(0))->getValue())->getZExtValue();
-                            uint32_t unrollFactor = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMDTuple->getOperand(1))->getValue())->getZExtValue();
-                            outputFile << "," << unrollFactor;
+                        if (loopMergeMDTuple) {
+                            uint32_t loopMerge = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopMergeMDTuple->getOperand(0))->getValue())->getZExtValue();
+                            outputFile << "," << loopMerge;
                         } else {
-                            outputFile << ",0,0";
+                            outputFile << ",0";
                         }
                         
                         outputFile << "\n";
@@ -105,4 +105,4 @@ struct GetDFGNodesPass : public ModulePass {
 }
 
 char GetDFGNodesPass::ID = 0;
-static RegisterPass<GetDFGNodesPass> X("get-nodes", "Get features (opID, opCode, bitwidth) from the module's DFG nodes", false, false);
+static RegisterPass<GetDFGNodesPass> X("get-nodes", "Get operations metadata as features for the DFG nodes", false, false);
