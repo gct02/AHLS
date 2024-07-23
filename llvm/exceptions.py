@@ -7,6 +7,13 @@ class ClangException(Exception):
 class AHLSPassException(Exception):
     pass
 
+class PreprocessVitisHLSError(AHLSPassException):
+    def __init__(self, bytecode, error_code, output):
+        self.bytecode = bytecode
+        self.error_code = error_code
+        self.output = output
+        super().__init__(f"Failed to preprocess {bytecode}. Error code: {error_code}. stderr: {output}.")
+
 class UpdateMDError(AHLSPassException):
     def __init__(self, bytecode, error_code, output):
         self.bytecode = bytecode

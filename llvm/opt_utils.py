@@ -29,6 +29,34 @@ def update_md(ir_path: Path) -> Path:
     except subprocess.CalledProcessError as error:
         raise UpdateMDError(ir_path.as_posix(), error.returncode, error.output)
     
+def update_md(ir_path: Path, output_path: Path) -> None:
+    """
+    Apply the update-md pass to the IR file at ir_path and write the updated IR to output_path.
+    The update-md pass updates the metadata of the operations in the IR to include the operation ID and signedness information.
+    """
+    update_md_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -update-md < {ir_path.as_posix()} > {output_path.as_posix()}"
+    
+    try:
+        subprocess.check_output(update_md_cmd, stderr=subprocess.STDOUT, shell=True)
+    except subprocess.CalledProcessError as error:
+        raise UpdateMDError(ir_path.as_posix(), error.returncode, error.output)
+    
+def preprocess_vitis_hls_ir(ir_path: Path, output_path: Path) -> None:
+    """
+    Preprocess the Vitis HLS IR file at ir_path and write the preprocessed IR to output_path.
+    """
+    temp_path = ir_path.parent / (ir_path.stem + "_temp.bc")
+    remove_dbg_md = f"{OPT} -strip-debug < {ir_path.as_posix()} > {temp_path.as_posix()}"
+    preprocess_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -preprocess-vitis-ir < {temp_path.as_posix()} > {output_path.as_posix()}"
+    
+    try:
+        subprocess.check_output(remove_dbg_md, stderr=subprocess.STDOUT, shell=True)
+        subprocess.check_output(preprocess_cmd, stderr=subprocess.STDOUT, shell=True)
+        temp_path.unlink()
+    except subprocess.CalledProcessError as error:
+        temp_path.unlink()
+        raise PreprocessVitisHLSError(ir_path.as_posix(), error.returncode, error.output)
+    
 def instrument(ir_path: Path, data_stats_file_path: Path, populate_io_path: Path=None) -> Path:
     """
     Instrument the IR file at ir_path with profiling functions, link the instrumented IR with the populate_io IR
@@ -115,7 +143,7 @@ def extract_dfg_info(md_ir_path: Path, dfg_nodes_path: Path, dfg_edges_path: Pat
     """
     Extract the operation attributes and uses from the IR file at md_ir_path and write them to op_attrs_path and op_uses_path respectively.
     """
-    # Extract operation attributes
+    # Extract operation attributes and directives metadata
     get_nodes_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -get-nodes -nf {dfg_nodes_path.as_posix()} < {md_ir_path.as_posix()}"
     try:
         subprocess.check_output(get_nodes_cmd, stderr=subprocess.STDOUT, shell=True)

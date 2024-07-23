@@ -15,9 +15,10 @@ def parse_dfg_nodes_file(dfg_nodes_file):
         lines = f.readlines()
         for line in lines:
             node_str = line.strip().split(',')
-            # node[opID] = (opCode, bitwidth)
+            # node[opID]: (opCode, bitwidth, unroll, unroll_factor, array_partition_type, 
+            #            array_partition_factor, array_partition_dim, pipeline, pipeline_II, loop_merge)
             opid = int(node_str[0])
-            dfg_nodes[opid] = [int(node_str[1]), int(node_str[2])]
+            dfg_nodes[opid] = [int(node_str[i]) for i in range(1, len(node_str))]
     return dfg_nodes
 
 def parse_dfg_edges_file(dfg_edges_file):

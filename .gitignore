@@ -5,4 +5,4 @@ __pycache__/
 *ldrgen/
 *jianyicheng/
 *.log
-gnn/
+estimators/gnn/dfg/test/
