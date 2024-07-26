@@ -42,7 +42,35 @@ def one_hot_opcode(opcode: int) -> list:
     (terminator, arithmetic, logical, memory, conversion, vector, other),
     while the next 13 bits are a one-hot encoding of the specific instruction.
     '''
-    pass
+    one_hot_optype = [0] * 7
+    one_hot_opcode = [0] * 13
+
+    if opcode <= 10: # Terminator
+        one_hot_optype[0] = 1
+        one_hot_opcode[opcode - 1] = 1
+    elif opcode <= 22: # Arithmetic
+        one_hot_optype[1] = 1
+        one_hot_opcode[opcode - 11] = 1
+    elif opcode <= 28: # Logical
+        one_hot_optype[2] = 1
+        one_hot_opcode[opcode - 23] = 1
+    elif opcode <= 35: # Memory
+        one_hot_optype[3] = 1
+        one_hot_opcode[opcode - 29] = 1
+    elif opcode <= 48: # Conversion
+        one_hot_optype[4] = 1
+        one_hot_opcode[opcode - 36] = 1
+    elif opcode >= 59 and opcode != 64: # Vector
+        one_hot_optype[5] = 1
+        one_hot_opcode[opcode - 59] = 1
+    else: # Other
+        one_hot_optype[6] = 1
+        if opcode == 64: # LandingPad
+            one_hot_opcode[9] = 1
+        else: # Other
+            one_hot_opcode[opcode - 49] = 1
+    
+    return one_hot_optype + one_hot_opcode
 
 def build_dfg(dfg_nodes_file: Path, dfg_edges_file: Path, dtype='int32') -> StellarGraph:
     dfg_nodes = parse_dfg_nodes_file(dfg_nodes_file)
