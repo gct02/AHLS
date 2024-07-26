@@ -1,30 +1,21 @@
 import pandas as pd
 import numpy as np
-
+import tensorflow as tf
 import stellargraph as sg
+
 from stellargraph.mapper import PaddedGraphGenerator
 from stellargraph.layer import GCNSupervisedGraphClassification
 from stellargraph import StellarGraph
 
 from sklearn import model_selection
+from numpy.random import seed
 
 from keras import Model
 from keras.optimizers import Adam
 from keras.layers import Dense, LeakyReLU, Dropout, Input
-import tensorflow as tf
-
-from numpy.random import seed
 
 import argparse
-
 import pickle
-fp = open('graphs_dataset','rb')
-graphs = pickle.load(fp)
-
-graph_labels_lut = pd.read_csv('graph_target_dsp.csv')
-graph_labels_lut = pd.get_dummies(graph_labels_lut, drop_first=True)
-
-generator = PaddedGraphGenerator(graphs=graphs)
 
 def create_graph_model(generator):
     gc_model = GCNSupervisedGraphClassification(
@@ -68,7 +59,7 @@ def train_fold(model, train_gen, test_gen, epochs):
     return history, test_mae
 
 
-def get_generators(train_index, test_index, graph_labels, batch_size):
+def get_generators(generator, train_index, test_index, graph_labels, batch_size):
     train_gen = generator.flow(train_index, targets=graph_labels.iloc[train_index].values, batch_size=batch_size)
     test_gen = generator.flow(test_index, targets=graph_labels.iloc[test_index].values, batch_size=batch_size)
 
@@ -81,13 +72,24 @@ def main(args):
     batch_size = int(args['batch_size'])
     seed(int(args['random_seed']))
 
+    graphs_dataset_file = args['graphs']
+    target_dsp_file = args['dsp']
+
+    fp = open(graphs_dataset_file,'rb')
+    graphs = pickle.load(fp)
+
+    graph_labels_dsp = pd.read_csv(target_dsp_file)
+    graph_labels_dsp = pd.get_dummies(graph_labels_dsp, drop_first=True)
+
+    generator = PaddedGraphGenerator(graphs=graphs)
+
     model, model0 = create_graph_model(generator)
     test_mae = []
 
     for i in range(folds):
         print(f"Training and evaluating on fold {i+1} out of {folds}...")
-        train, test = model_selection.train_test_split(graph_labels_lut, train_size=0.9, test_size=None)
-        train_gen, test_gen = get_generators(np.array(train.index), np.array(test.index), graph_labels_lut, batch_size=batch_size)
+        train, test = model_selection.train_test_split(graph_labels_dsp, train_size=0.9, test_size=None)
+        train_gen, test_gen = get_generators(generator, np.array(train.index), np.array(test.index), graph_labels_dsp, batch_size=batch_size)
         history, mae = train_fold(model, train_gen, test_gen, epochs)
         test_mae.append(mae)
 
@@ -102,6 +104,8 @@ if __name__ == '__main__':
     parser.add_argument('--fold', help='the number of folds', default=10)
     parser.add_argument('--batch-size', help='the size of batch', default=32)
     parser.add_argument('--random-seed', help='random seed for repeatability', default=42)
+    parser.add_argument('--graphs', help='path to the graphs dataset', required=True)
+    parser.add_argument('--dsp', help='path to the file containing the target DSPs', required=True)
 
     args = vars(parser.parse_args())
 

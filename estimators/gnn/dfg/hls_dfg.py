@@ -32,7 +32,17 @@ def create_directives_tcl_from_script(tcl_script_path: Path, output_path: Path):
         for line in script:
             if line.startswith("set_directive"):
                 line = line.split("#")[0] # Remove comments
-                output_file.write(line + "\n")
+                output_file.write(line)
+
+def one_hot_opcode(opcode: int) -> list:
+    '''
+    TODO: Implement one-hot encoding for opcode
+
+    The first 7 bits are a one-hot encoding of the instruction type
+    (terminator, arithmetic, logical, memory, conversion, vector, other),
+    while the next 13 bits are a one-hot encoding of the specific instruction.
+    '''
+    pass
 
 def build_dfg(dfg_nodes_file: Path, dfg_edges_file: Path, dtype='int32') -> StellarGraph:
     dfg_nodes = parse_dfg_nodes_file(dfg_nodes_file)
@@ -45,9 +55,23 @@ def build_dfg(dfg_nodes_file: Path, dfg_edges_file: Path, dtype='int32') -> Stel
 
     for opid, attrs in dfg_nodes.items():
         index_array.append(opid)
-        # features: (opCode, bitwidth, unroll, unroll_factor, array_partition_type, 
-        #            array_partition_factor, array_partition_dim, pipeline, pipeline_II, loop_merge)
-        feature_array.append(np.array(attrs, dtype='int32'))
+        opcode = attrs[0]
+        one_hot_opcode = one_hot_opcode(opcode)
+        array_partition_type = attrs[4]
+        if array_partition_type == 0: # None
+            one_hot_array_partition_type = [0, 0, 0]
+        elif array_partition_type == 1: # Complete 
+            one_hot_array_partition_type = [0, 0, 1]
+        elif array_partition_type == 2: # Block
+            one_hot_array_partition_type = [0, 1, 0]
+        else: # Cyclic
+            one_hot_array_partition_type = [1, 0, 0]
+        # features = (one_hot(opcode), bitwidth, unroll, unroll_factor, one_hot(array_partition_type), 
+        #             array_partition_factor, array_partition_dim, pipeline, pipeline_II, loop_merge)
+        features = one_hot_opcode + [attrs[1], attrs[2], attrs[3]] \
+                   + one_hot_array_partition_type \
+                   + [attrs[5], attrs[6], attrs[7], attrs[8], attrs[9]]
+        feature_array.append(np.array(features, dtype='int32'))
 
     for edge in dfg_edges:
         sources.append(edge[0])
@@ -76,7 +100,9 @@ if __name__ == '__main__':
         directives_tcl_file = input_ir.parent / (input_ir.stem + "_directives.tcl")
         create_directives_tcl_from_script(tcl_script_path, directives_tcl_file)
         ir_with_directives_md_path = input_ir.parent / (input_ir.stem + ".md.dir.bc")
-        subprocess.run(f"{OPT} -load {AHLS_LLVM_LIB} -add-directives-md -tcl {directives_tcl_file} < {ir_with_md_path} > {ir_with_directives_md_path}", shell=True)
+        add_directive_md_opt_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -add-directives-md -tcl"\
+                                   + f"{directives_tcl_file} < {ir_with_md_path} > {ir_with_directives_md_path}"
+        subprocess.run(add_directive_md_opt_cmd, shell=True)
         ir_with_md_path = ir_with_directives_md_path
 
     dfg_nodes_file = input_ir.parent / (input_ir.stem + "_dfg_nodes.txt")
@@ -87,3 +113,5 @@ if __name__ == '__main__':
 
     dfg = build_dfg(dfg_nodes_file, dfg_edges_file)
     pickle.dump(dfg, open(dfg_file, 'wb'))
+
+    print(dfg.node_features())
