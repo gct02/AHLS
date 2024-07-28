@@ -22,7 +22,7 @@ def create_graph_model(generator):
         layer_sizes=[64,64],
         activations=["elu","elu"],
         generator=generator,
-        attn_heads=8,
+        attn_heads=[8,8],
         in_dropout=0.5,
         attn_dropout=0.5
     )
@@ -91,8 +91,8 @@ def main(args):
         history, mae = train_fold(model, train_gen, test_gen, epochs)
         test_mae.append(mae)
 
-    model.save('model_proxy_lut')
-    model0.save('model_embedding_lut')
+    model.save('model_proxy_lut.h5')
+    model0.save('model_embedding_lut.h5')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='provide arguments for the graph embedding model with LUT predictions')
