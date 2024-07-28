@@ -17,6 +17,8 @@ from metrics.error_measure import *
 import subprocess
 import pickle
 
+np.set_printoptions(threshold=np.inf)
+
 try:
     AHLS_LLVM_LIB = environ['AHLS_LLVM_LIB']
     OPT = environ['OPT']
@@ -34,10 +36,8 @@ def create_directives_tcl_from_script(tcl_script_path: Path, output_path: Path):
                 line = line.split("#")[0] # Remove comments
                 output_file.write(line)
 
-def one_hot_opcode(opcode: int) -> list:
+def get_one_hot_opcode(opcode: int) -> list:
     '''
-    TODO: Implement one-hot encoding for opcode
-
     The first 7 bits are a one-hot encoding of the instruction type
     (terminator, arithmetic, logical, memory, conversion, vector, other),
     while the next 13 bits are a one-hot encoding of the specific instruction.
@@ -84,7 +84,7 @@ def build_dfg(dfg_nodes_file: Path, dfg_edges_file: Path, dtype='int32') -> Stel
     for opid, attrs in dfg_nodes.items():
         index_array.append(opid)
         opcode = attrs[0]
-        one_hot_opcode = one_hot_opcode(opcode)
+        one_hot_opcode = get_one_hot_opcode(opcode)
         array_partition_type = attrs[4]
         if array_partition_type == 0: # None
             one_hot_array_partition_type = [0, 0, 0]

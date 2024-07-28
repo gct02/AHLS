@@ -3,8 +3,8 @@ import numpy as np
 import tensorflow as tf
 import stellargraph as sg
 
-from stellargraph.mapper import PaddedGraphGenerator
-from stellargraph.layer import GCNSupervisedGraphClassification
+from stellargraph.mapper import FullBatchNodeGenerator
+from stellargraph.layer import GAT
 from stellargraph import StellarGraph
 
 from sklearn import model_selection
@@ -12,47 +12,45 @@ from numpy.random import seed
 
 from keras import Model
 from keras.optimizers import Adam
-from keras.layers import Dense, LeakyReLU, Dropout, Input
+from keras.layers import Dense, LeakyReLU, Dropout
 
 import argparse
 import pickle
 
 def create_graph_model(generator):
-    gc_model = GCNSupervisedGraphClassification(
-        layer_sizes=[64,128],
-        activations=["relu","relu"],
+    gc_model = GAT(
+        layer_sizes=[64,64],
+        activations=["elu","elu"],
         generator=generator,
-        dropout=0.1
+        attn_heads=8,
+        in_dropout=0.5,
+        attn_dropout=0.5
     )
     x_inp, x_out = gc_model.in_out_tensors()
 
-    predictions1 = Dense(units=64, kernel_initializer=tf.keras.initializers.Constant(value=0.5))(x_out)
-    predictions1 = Dropout(0.1)(predictions1)
-    predictions1 = LeakyReLU(alpha=0.2)(predictions1)
-
-    predictions1 = Dense(units=64, kernel_initializer=tf.keras.initializers.Constant(value=0.5))(x_out)
+    predictions1 = Dense(units=64, kernel_initializer=tf.keras.initializers.Constant(value=0.05))(x_out)
     predictions1 = Dropout(0.1)(predictions1)
     predictions1 = LeakyReLU(alpha=0.1)(predictions1)
 
-    predictions2 = Dense(units=64, kernel_initializer=tf.keras.initializers.Constant(value=0.25))(predictions1)
+    predictions2 = Dense(units=16, kernel_initializer=tf.keras.initializers.Constant(value=0.05))(predictions1)
     predictions2 = Dropout(0.1)(predictions2)
     predictions2 = LeakyReLU(alpha=0.1)(predictions2)
 
-    predictions = Dense(units=1,activation='relu')(predictions2)
+    predictions = Dense(units=1, activation='relu')(predictions2)
 
     # Let's create the Keras model and prepare it for training
     model = Model(inputs=x_inp, outputs=predictions)
     model0 = Model(inputs=x_inp, outputs=predictions2)
-    lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(initial_learning_rate=0.02,decay_steps=100000,decay_rate=0.9)
+    lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(initial_learning_rate=0.02, decay_steps=100000, decay_rate=0.9)
     opt = Adam(learning_rate=lr_schedule)
-    model.compile(optimizer=opt, loss=tf.keras.losses.MeanAbsoluteError(),metrics=["mae"])
+    model.compile(optimizer=opt, loss=tf.keras.losses.MeanAbsoluteError(), metrics=["mae"])
 
     return model,model0
 
 
 def train_fold(model, train_gen, test_gen, epochs):
     history = model.fit(train_gen, epochs=epochs, validation_data=test_gen,verbose=1, shuffle=True)
-    # calculate performance on the test data and return along with history
+    # Calculate performance on the test data and return along with history
     test_metrics = model.evaluate(test_gen, verbose=1)
     test_mae = test_metrics[model.metrics_names.index("mae")]
 
@@ -67,35 +65,34 @@ def get_generators(generator, train_index, test_index, graph_labels, batch_size)
 
 
 def main(args):
-    epochs = int(args['epoch']) # maximum number of training epochs
+    epochs = int(args['epoch']) # Maximum number of training epochs
     folds = int(args['fold'])
     batch_size = int(args['batch_size'])
     seed(int(args['random_seed']))
 
     graphs_dataset_file = args['graphs']
-    target_dsp_file = args['dsp']
+    target_cp_file = args['cp']
 
     fp = open(graphs_dataset_file,'rb')
     graphs = pickle.load(fp)
 
-    graph_labels_dsp = pd.read_csv(target_dsp_file)
-    graph_labels_dsp = pd.get_dummies(graph_labels_dsp, drop_first=True)
+    graph_labels_cp = pd.read_csv(target_cp_file)
+    # graph_labels_cp = pd.get_dummies(graph_labels_cp, drop_first=True)
 
-    generator = PaddedGraphGenerator(graphs=graphs)
+    generator = FullBatchNodeGenerator(graphs, method="gat")
 
     model, model0 = create_graph_model(generator)
     test_mae = []
 
     for i in range(folds):
         print(f"Training and evaluating on fold {i+1} out of {folds}...")
-        train, test = model_selection.train_test_split(graph_labels_dsp, train_size=0.9, test_size=None)
-        train_gen, test_gen = get_generators(generator, np.array(train.index), np.array(test.index), graph_labels_dsp, batch_size=batch_size)
+        train, test = model_selection.train_test_split(graph_labels_cp, train_size=0.9, test_size=0.1)
+        train_gen, test_gen = get_generators(generator, np.array(train.index), np.array(test.index), graph_labels_cp, batch_size=batch_size)
         history, mae = train_fold(model, train_gen, test_gen, epochs)
         test_mae.append(mae)
 
-    model.save('model_proxy_dsp.h5')
-    model0.save('model_embedding_dsp.h5')
-
+    model.save('model_proxy_cp')
+    model0.save('model_embedding_cp')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='provide arguments for the graph embedding model with LUT predictions')
@@ -105,7 +102,7 @@ if __name__ == '__main__':
     parser.add_argument('--batch-size', help='the size of batch', default=32)
     parser.add_argument('--random-seed', help='random seed for repeatability', default=42)
     parser.add_argument('--graphs', help='path to the graphs dataset', required=True)
-    parser.add_argument('--dsp', help='path to the file containing the target DSPs', required=True)
+    parser.add_argument('--cp', help='path to the file containing the target CPs', required=True)
 
     args = vars(parser.parse_args())
 
