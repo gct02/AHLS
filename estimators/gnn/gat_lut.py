@@ -67,8 +67,10 @@ def save_model(model, target_dir, model_name):
 
 
 def train_model(model, loss_func, optimizer, graphs, labels, epochs):
-    train_graphs, test_graphs = model_selection.train_test_split(graphs, train_size=0.9)
-    train_labels, test_labels = model_selection.train_test_split(labels, train_size=0.9)
+    dataset = list(zip(graphs, labels))
+    train_dataset, test_dataset = model_selection.train_test_split(dataset, train_size=0.9)
+    train_graphs, train_labels = zip(*train_dataset)
+    test_graphs, test_labels = zip(*test_dataset)
 
     for epoch in range(epochs):
         train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
@@ -80,10 +82,11 @@ def train_model(model, loss_func, optimizer, graphs, labels, epochs):
 
 
 def main(args):
-    epochs = int(args['epoch']) # Maximum number of training epochs
-    folds = int(args['fold'])
-    batch_size = int(args['batch_size'])
-    np.seed(int(args['random_seed']))
+    epochs = int(args['epoch'])
+    seed = int(args['seed'])
+
+    np.random.seed(seed=seed)
+    torch.manual_seed(seed)
 
     graphs_dir = os.fsencode(args['graphs'])
     target_lut_file = args['lut']
@@ -110,12 +113,10 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='provide arguments for the graph embedding model with LUT predictions')
 
-    parser.add_argument('--epoch', help='the number of epochs per fold', default=50)
-    parser.add_argument('--fold', help='the number of folds', default=10)
-    parser.add_argument('--batch-size', help='the size of batch', default=32)
-    parser.add_argument('--random-seed', help='random seed for repeatability', default=42)
-    parser.add_argument('--graphs', help='path to the graphs dataset', required=True)
-    parser.add_argument('--lut', help='path to the file containing the target LUTs', required=True)
+    parser.add_argument('--epoch', help='The number of training epochs', default=50)
+    parser.add_argument('--seed', help='Random seed for repeatability', default=42)
+    parser.add_argument('--graphs', help='Path to the graphs dataset', required=True)
+    parser.add_argument('--lut', help='Path to the file containing the target LUTs', required=True)
 
     args = vars(parser.parse_args())
 

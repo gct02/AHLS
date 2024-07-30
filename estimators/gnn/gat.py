@@ -8,12 +8,6 @@ dtype = torch.float
 device = "cuda" if torch.cuda.is_available() else "cpu"
 torch.set_default_device(device)
 
-SEED = 1234
-
-# Set seed for reproducibility
-np.random.seed(seed=SEED)
-torch.manual_seed(SEED)
-
 class GAT(nn.Module):
     def __init__(self, num_node_features, out_size, attn_heads=8):
         super(GAT, self).__init__()
@@ -24,7 +18,7 @@ class GAT(nn.Module):
         self.W1 = nn.Parameter(torch.randn((attn_heads, 128, num_node_features), dtype=dtype), requires_grad=True)
         self.a1 = nn.Parameter(torch.randn((attn_heads, 256), dtype=dtype), requires_grad=True)
 
-        # Second graph attntional layers parameters
+        # Second graph attentional layers parameters
         self.W2 = nn.Parameter(torch.randn((attn_heads, 128, 128), dtype=dtype), requires_grad=True)
         self.a2 = nn.Parameter(torch.randn((attn_heads, 256), dtype=dtype), requires_grad=True)
 
@@ -41,17 +35,12 @@ class GAT(nn.Module):
         )
 
     def graph_attentional_layer(self, nodes, neighbours, W, a, attn_heads=8):
-        # nodes is a n_nodesx32 matrix
-        # Get the number of nodes
         n_nodes = nodes.size(0)
         embeddings = torch.zeros(n_nodes, 128, dtype=dtype)
 
-        # neighbours[i] contains a Nx32 matrix, where N is the number of neighbours of node i
         for i in range(n_nodes):
             attn_sum = 0
             for k in range(attn_heads):
-                # W[k] is 128x32
-                # a[k] is 256x1
                 h_i = W[k] * nodes[i] # 128x32 * 32x1 = 128x1
                 attn_sum_i = 0
                 n_neighbours = neighbours[i].size(0)

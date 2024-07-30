@@ -104,6 +104,6 @@ csynth_design
 # cosim_design -argv "/home/gabriel/Documents/UFRGS/RAISE/AHLS/benchmarks/chstone/adpcm/inputs/test/inputVec1.txt output.txt"
 
 # Run RTL implementation
-# export_design -evaluate verilog -format ip_catalog
+export_design -evaluate verilog -format ip_catalog
 
 exit
