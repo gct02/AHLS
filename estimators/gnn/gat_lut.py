@@ -1,99 +1,112 @@
-import pandas as pd
-import numpy as np
-import tensorflow as tf
-import stellargraph as sg
-
-from stellargraph.mapper import FullBatchNodeGenerator
-from stellargraph.layer import GAT
-from stellargraph import StellarGraph
-
-from sklearn import model_selection
-from numpy.random import seed
-
-from keras import Model
-from keras.optimizers import Adam
-from keras.layers import Dense, LeakyReLU, Dropout
-
 import argparse
-import pickle
+import numpy as np
+import pandas as pd
+import torch
+import os
 
-def create_graph_model(generator):
-    gc_model = GAT(
-        layer_sizes=[64,64],
-        activations=["elu","elu"],
-        generator=generator,
-        attn_heads=[8,8],
-        in_dropout=0.5,
-        attn_dropout=0.5
-    )
-    x_inp, x_out = gc_model.in_out_tensors()
+import torch.nn as nn
+import torch.nn.functional as F
 
-    predictions1 = Dense(units=64, kernel_initializer=tf.keras.initializers.Constant(value=0.05))(x_out)
-    predictions1 = Dropout(0.1)(predictions1)
-    predictions1 = LeakyReLU(alpha=0.1)(predictions1)
+from estimators.gnn.gat import GAT
+from estimators.gnn.dfg.hls_dfg import build_dfg
+from sklearn import model_selection
+from pathlib import Path
 
-    predictions2 = Dense(units=16, kernel_initializer=tf.keras.initializers.Constant(value=0.05))(predictions1)
-    predictions2 = Dropout(0.1)(predictions2)
-    predictions2 = LeakyReLU(alpha=0.1)(predictions2)
+def train_step(model, loss_func, optimizer, graphs, labels):
+    train_loss = 0
 
-    predictions = Dense(units=1, activation='relu')(predictions2)
+    model.train()
 
-    # Let's create the Keras model and prepare it for training
-    model = Model(inputs=x_inp, outputs=predictions)
-    model0 = Model(inputs=x_inp, outputs=predictions2)
-    lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(initial_learning_rate=0.02, decay_steps=100000, decay_rate=0.9)
-    opt = Adam(learning_rate=lr_schedule)
-    model.compile(optimizer=opt, loss=tf.keras.losses.MeanAbsoluteError(), metrics=["mae"])
+    for graph, label in zip(graphs, labels):
+        node_features = graph[0]
+        adj_lists = graph[1]
+        label_pred = model(node_features, adj_lists)
 
-    return model,model0
+        loss = loss_func(label_pred, label)
+        train_loss += loss.item()
 
+        optimizer.zero_grad()
 
-def train_fold(model, train_gen, test_gen, epochs):
-    history = model.fit(train_gen, epochs=epochs, validation_data=test_gen,verbose=1, shuffle=True)
-    # Calculate performance on the test data and return along with history
-    test_metrics = model.evaluate(test_gen, verbose=1)
-    test_mae = test_metrics[model.metrics_names.index("mae")]
+        loss.backward()
+        optimizer.step
 
-    return history, test_mae
+    train_loss = train_loss / len(graphs)
+    return train_loss
 
 
-def get_generators(generator, train_index, test_index, graph_labels, batch_size):
-    train_gen = generator.flow(train_index, targets=graph_labels.iloc[train_index].values, batch_size=batch_size)
-    test_gen = generator.flow(test_index, targets=graph_labels.iloc[test_index].values, batch_size=batch_size)
+def test_step(model, loss_func, graphs, labels):
+    test_loss = 0
 
-    return train_gen, test_gen
+    model.eval()
+
+    with torch.inference_mode():
+        for graph, label in zip(graphs, labels):
+            node_features = graph[0]
+            adj_lists = graph[1]
+            label_pred = model(node_features, adj_lists)
+
+            loss = loss_func(label_pred, label)
+            test_loss += loss.item()
+
+    test_loss = test_loss / len(graphs)
+    return test_loss
+
+
+def save_model(model, target_dir, model_name):
+    # Create target directory
+    target_dir_path = Path(target_dir)
+    target_dir_path.mkdir(parents=True, exist_ok=True)
+
+    # Create model save path
+    assert model_name.endswith(".pth") or model_name.endswith(".pt"), "model_name should end with '.pt' or '.pth'"
+    model_save_path = target_dir_path / model_name
+
+    # Save the model state_dict()
+    print(f"[INFO] Saving model to: {model_save_path}")
+    torch.save(obj=model.state_dict(), f=model_save_path)
+
+
+def train_model(model, loss_func, optimizer, graphs, labels, epochs):
+    train_graphs, test_graphs = model_selection.train_test_split(graphs, train_size=0.9)
+    train_labels, test_labels = model_selection.train_test_split(labels, train_size=0.9)
+
+    for epoch in range(epochs):
+        train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
+        test_loss = test_step(model, loss_func, test_graphs, test_labels)
+
+        print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}, Test loss: {test_loss}")
+    
+    return train_loss, test_loss
 
 
 def main(args):
     epochs = int(args['epoch']) # Maximum number of training epochs
     folds = int(args['fold'])
     batch_size = int(args['batch_size'])
-    seed(int(args['random_seed']))
+    np.seed(int(args['random_seed']))
 
-    graphs_dataset_file = args['graphs']
+    graphs_dir = os.fsencode(args['graphs'])
     target_lut_file = args['lut']
 
-    fp = open(graphs_dataset_file,'rb')
-    graphs = pickle.load(fp)
+    graphs = []
+    for graph_file in os.listdir(graphs_dir):
+        graph_file_path = os.fsdecode(graph_file)
+        node_features, adj_lists = build_dfg(graph_file_path)
+        node_features = torch.FloatTensor(np.array(node_features, dtype=np.float32))
+        graphs.append((node_features, adj_lists))
 
     graph_labels_lut = pd.read_csv(target_lut_file)
-    # graph_labels_lut = pd.get_dummies(graph_labels_lut, drop_first=True)
 
-    generator = FullBatchNodeGenerator(graphs, method="gat")
+    model = GAT(32, 1, 8)
 
-    model, model0 = create_graph_model(generator)
-    test_mae = []
+    loss_func = nn.MSELoss(reduction='sum')
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-6)
 
-    for i in range(folds):
-        print(f"Training and evaluating on fold {i+1} out of {folds}...")
-        train, test = model_selection.train_test_split(graph_labels_lut, train_size=0.9, test_size=0.1)
-        train_gen, test_gen = get_generators(generator, np.array(train.index), np.array(test.index), graph_labels_lut, batch_size=batch_size)
-        history, mae = train_fold(model, train_gen, test_gen, epochs)
-        test_mae.append(mae)
+    train_model(model, loss_func, optimizer, graphs, graph_labels_lut, epochs)
 
-    model.save('model_proxy_lut.h5')
-    model0.save('model_embedding_lut.h5')
-
+    save_model(model, "models", "gat_lut.pth")
+    
+    
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='provide arguments for the graph embedding model with LUT predictions')
 

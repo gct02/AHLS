@@ -1,23 +1,15 @@
 import numpy as np
-import pandas as pd
-
-import stellargraph as sg
-from stellargraph import StellarGraph
-from stellargraph import IndexedArray
 
 from pathlib import Path
-from metrics.data_stats import *
 from sys import argv
 from os import environ
 
 from llvm.opt_utils import *
 from llvm.clang_utils import *
 from metrics.error_measure import *
+from metrics.data_stats import *
 
 import subprocess
-import pickle
-
-np.set_printoptions(threshold=np.inf)
 
 try:
     AHLS_LLVM_LIB = environ['AHLS_LLVM_LIB']
@@ -28,6 +20,7 @@ except KeyError as ahls_error:
     print(f"Error: environment variable {ahls_error.args[0]} not defined.")
     raise
 
+
 def create_directives_tcl_from_script(tcl_script_path: Path, output_path: Path):
     with open(tcl_script_path, "r") as tcl_script, open(output_path, "w") as output_file:
         script = tcl_script.readlines()
@@ -35,6 +28,7 @@ def create_directives_tcl_from_script(tcl_script_path: Path, output_path: Path):
             if line.startswith("set_directive"):
                 line = line.split("#")[0] # Remove comments
                 output_file.write(line)
+
 
 def get_one_hot_opcode(opcode: int) -> list:
     '''
@@ -63,7 +57,7 @@ def get_one_hot_opcode(opcode: int) -> list:
     elif opcode >= 59 and opcode != 64: # Vector
         one_hot_optype[5] = 1
         one_hot_opcode[opcode - 59] = 1
-    else: # Other
+    else:
         one_hot_optype[6] = 1
         if opcode == 64: # LandingPad
             one_hot_opcode[9] = 1
@@ -72,47 +66,93 @@ def get_one_hot_opcode(opcode: int) -> list:
     
     return one_hot_optype + one_hot_opcode
 
-def build_dfg(dfg_nodes_file: Path, dfg_edges_file: Path, dtype='int32') -> StellarGraph:
-    dfg_nodes = parse_dfg_nodes_file(dfg_nodes_file)
-    dfg_edges = parse_dfg_edges_file(dfg_edges_file)
 
-    index_array = []
-    feature_array = []
-    sources = []
-    targets = []
+def parse_dfg_file(dfg_file: Path) -> tuple:
+    with open(dfg_file, 'r') as f:
+        lines = f.readlines()
+        num_nodes = int(lines[0])
+        nodes = []
+        for i in range(1, num_nodes + 1):
+            node_str = lines[i].strip().split(',')
+            nodes.append([int(node_str[i]) for i in range(1, len(node_str))])
+        
+        num_edges = int(lines[num_nodes + 1])
+        edges = []
+        for i in range(num_nodes + 2, num_nodes + num_edges + 2):
+            edge_str = lines[i].strip().split(',')
+            edges.append([int(edge_str[i]) for i in range(0, len(edge_str))])
 
-    for opid, attrs in dfg_nodes.items():
-        index_array.append(opid)
-        opcode = attrs[0]
-        one_hot_opcode = get_one_hot_opcode(opcode)
-        array_partition_type = attrs[4]
-        if array_partition_type == 0: # None
-            one_hot_array_partition_type = [0, 0, 0]
-        elif array_partition_type == 1: # Complete 
-            one_hot_array_partition_type = [0, 0, 1]
-        elif array_partition_type == 2: # Block
-            one_hot_array_partition_type = [0, 1, 0]
-        else: # Cyclic
-            one_hot_array_partition_type = [1, 0, 0]
-        # features = (one_hot(opcode), bitwidth, unroll, unroll_factor, one_hot(array_partition_type), 
-        #             array_partition_factor, array_partition_dim, pipeline, pipeline_II, loop_merge)
-        features = one_hot_opcode + [attrs[1], attrs[2], attrs[3]] \
-                   + one_hot_array_partition_type \
-                   + [attrs[5], attrs[6], attrs[7], attrs[8], attrs[9]]
-        feature_array.append(np.array(features, dtype='int32'))
+    return nodes, edges
 
-    for edge in dfg_edges:
-        sources.append(edge[0])
-        targets.append(edge[1])
+
+def rescale_node_ids(nodes: list, edges: list) -> tuple:
+    node_id_map = {}
+    new_nodes = []
+    new_edges = []
+
+    for i, node in enumerate(nodes):
+        node_id_map[node[0]] = i
+        node[0] = i
+        new_nodes.append(node)
     
-    feature_array = np.array(feature_array, dtype='int32')
-    index_array = np.array(index_array, dtype='int32')
-    sources = np.array(sources, dtype='int32')
-    targets = np.array(targets, dtype='int32')
+    for edge in edges:
+        src, dest = edge
+        new_edges.append([node_id_map[src], node_id_map[dest]])
+    
+    return new_nodes, new_edges
 
-    nodes = IndexedArray(feature_array, index=index_array)
-    edges = pd.DataFrame({'source': sources, 'target': targets})
-    return StellarGraph(nodes=nodes, edges=edges, is_directed=True, dtype=dtype)
+
+def make_adjacency_lists(nodes: list, edges: list):
+    adj_lists = [[] for _ in range(len(nodes))]
+
+    for edge in edges:
+        src, dest = edge
+        adj_lists[src].append(dest)
+    
+    return adj_lists
+
+
+def build_dfg(dfg_file: Path, dtype='int32'):
+    nodes, edges = parse_dfg_file(dfg_file)
+    nodes, edges = rescale_node_ids(nodes, edges)
+    adj_lists = make_adjacency_lists(nodes, edges)
+
+    node_features_array = []
+
+    for node_features in nodes:
+        opcode = node_features[0]
+        one_hot_opcode = get_one_hot_opcode(opcode)
+        array_partition_type = node_features[4]
+        if array_partition_type == 0: 
+            # None
+            has_partition = 0
+            one_hot_array_partition_type = [0, 0, 0]
+        elif array_partition_type == 1: 
+            # Complete 
+            has_partition = 1
+            one_hot_array_partition_type = [0, 0, 1]
+        elif array_partition_type == 2: 
+            # Block
+            has_partition = 1
+            one_hot_array_partition_type = [0, 1, 0]
+        else: 
+            # Cyclic
+            has_partition = 1
+            one_hot_array_partition_type = [1, 0, 0]
+
+        '''
+        features = (one_hot_opcode, bitwidth,unroll, unroll_factor, array_partition, 
+                    one_hot_partition_type, partition_factor, partition_dim, pipeline, 
+                    pipeline_II, loop_merge)
+        '''
+        features = one_hot_opcode + [node_features[1], node_features[2], node_features[3]] \
+                   + [has_partition] + one_hot_array_partition_type \
+                   + [node_features[5], node_features[6], node_features[7], node_features[8], node_features[9]]
+        
+        node_features_array.append(np.array(features, dtype=dtype))
+    
+    return node_features_array, adj_lists
+
         
 if __name__ == '__main__':
     input_ir = Path(argv[1])
@@ -139,7 +179,5 @@ if __name__ == '__main__':
 
     extract_dfg_info(ir_with_md_path, dfg_nodes_file, dfg_edges_file)
 
-    dfg = build_dfg(dfg_nodes_file, dfg_edges_file)
-    pickle.dump(dfg, open(dfg_file, 'wb'))
-
-    print(dfg.node_features())
+    # dfg = build_dfg(dfg_nodes_file, dfg_edges_file)
+    # pickle.dump(dfg, open(dfg_file, 'wb'))
