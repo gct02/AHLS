@@ -2192,8 +2192,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Face_detect</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2113614546</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-06-23T10:06:54Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2113668265</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2024-07-30T17:25:29Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>

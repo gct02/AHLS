@@ -247,7 +247,7 @@
     "components": {
       "hls_inst": {
         "vlnv": "xilinx.com:hls:face_detect:1.0",
-        "ip_revision": "2113614546",
+        "ip_revision": "2113668265",
         "xci_name": "bd_0_hls_inst_0",
         "xci_path": "ip/bd_0_hls_inst_0/bd_0_hls_inst_0.xci",
         "inst_hier_path": "hls_inst"

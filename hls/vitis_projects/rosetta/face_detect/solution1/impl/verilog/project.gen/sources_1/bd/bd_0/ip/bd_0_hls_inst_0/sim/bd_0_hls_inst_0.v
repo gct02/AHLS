@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:hls:face_detect:1.0
-// IP Revision: 2113614546
+// IP Revision: 2113668265
 
 `timescale 1ns/1ps
 

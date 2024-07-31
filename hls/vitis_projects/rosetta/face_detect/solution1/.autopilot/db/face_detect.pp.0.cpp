@@ -286,7 +286,7 @@ __attribute__((sdx_kernel("face_detect", 0))) void face_detect(
   int result_h[RESULT_SIZE],
   int *result_size)
 {
-#line 101 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/run_hls.tcl"
+#line 101 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/run_hls.tcl"
 #pragma HLSDIRECTIVE TOP name=face_detect
 # 72 "benchmarks/rosetta/face-detection/src/face_detect.cpp"
 

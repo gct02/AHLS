@@ -21,7 +21,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/face_detect/solution1/impl/verilog/project.runs/synth_1'
+HD_PWD='/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/face_detect/solution1/impl/verilog/project.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

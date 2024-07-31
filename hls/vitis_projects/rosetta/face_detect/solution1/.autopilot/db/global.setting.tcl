@@ -42,10 +42,10 @@ set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xc7z020:-clg400:-1
-set SourceFiles {sc {} c ../../../../benchmarks/rosetta/face-detection/src/face_detect.cpp}
+set SourceFiles {sc {} c ../../../../../benchmarks/rosetta/face-detection/src/face_detect.cpp}
 set SourceFlags {sc {} c {{}}}
 set DirectiveFile {}
-set TBFiles {verilog {../../../../benchmarks/rosetta/face-detection/src/face_detect_host.cpp ../../../../benchmarks/rosetta/face-detection/src/iolib/populate_io.cpp ../../../../benchmarks/rosetta/face-detection/src/image.cpp} bc {../../../../benchmarks/rosetta/face-detection/src/face_detect_host.cpp ../../../../benchmarks/rosetta/face-detection/src/iolib/populate_io.cpp ../../../../benchmarks/rosetta/face-detection/src/image.cpp} vhdl {../../../../benchmarks/rosetta/face-detection/src/face_detect_host.cpp ../../../../benchmarks/rosetta/face-detection/src/iolib/populate_io.cpp ../../../../benchmarks/rosetta/face-detection/src/image.cpp} sc {../../../../benchmarks/rosetta/face-detection/src/face_detect_host.cpp ../../../../benchmarks/rosetta/face-detection/src/iolib/populate_io.cpp ../../../../benchmarks/rosetta/face-detection/src/image.cpp} cas {../../../../benchmarks/rosetta/face-detection/src/face_detect_host.cpp ../../../../benchmarks/rosetta/face-detection/src/iolib/populate_io.cpp ../../../../benchmarks/rosetta/face-detection/src/image.cpp} c {}}
+set TBFiles {verilog {../../../../../benchmarks/rosetta/face-detection/src/face_detect_host.cpp ../../../../../benchmarks/rosetta/face-detection/src/iolib/populate_io.cpp ../../../../../benchmarks/rosetta/face-detection/src/image.cpp} bc {../../../../../benchmarks/rosetta/face-detection/src/face_detect_host.cpp ../../../../../benchmarks/rosetta/face-detection/src/iolib/populate_io.cpp ../../../../../benchmarks/rosetta/face-detection/src/image.cpp} vhdl {../../../../../benchmarks/rosetta/face-detection/src/face_detect_host.cpp ../../../../../benchmarks/rosetta/face-detection/src/iolib/populate_io.cpp ../../../../../benchmarks/rosetta/face-detection/src/image.cpp} sc {../../../../../benchmarks/rosetta/face-detection/src/face_detect_host.cpp ../../../../../benchmarks/rosetta/face-detection/src/iolib/populate_io.cpp ../../../../../benchmarks/rosetta/face-detection/src/image.cpp} cas {../../../../../benchmarks/rosetta/face-detection/src/face_detect_host.cpp ../../../../../benchmarks/rosetta/face-detection/src/iolib/populate_io.cpp ../../../../../benchmarks/rosetta/face-detection/src/image.cpp} c {}}
 set SpecLanguage C
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
@@ -56,7 +56,7 @@ set ExtraGlobalOptions {"area_timing" 1 "clock_gate" 1 "impl_flow" map "power_ga
 set TBTVFileNotFound {}
 set AppFile ../hls.app
 set ApsFile solution1.aps
-set AvePath ../../../../.
+set AvePath ../../../../../.
 set DefaultPlatform DefaultPlatform
 set multiClockList {}
 set SCPortClockMap {}

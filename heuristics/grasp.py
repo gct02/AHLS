@@ -1,16 +1,19 @@
+from pathlib import Path
+import random, subprocess
+import torch
+
 from heuristics.heuristic import Heuristic
 from heuristics.random_search import RandACT
-from estimators.rf.rfregressor import RFRegressor
+from estimators.gnn.gat import GAT
 from metrics import error_measure, resource_savings
 from scripts.approx import create_approx_design, run_with_timeout
 from llvm.clang_utils import create_executable_from_llvm_ir
-from pathlib import Path
-import random, subprocess
 
 class GRASP(Heuristic):
     def __init__(self, trained_estimator_path: Path, n_iter=100):
         self.n_iter = n_iter
-        self.estimator = RFRegressor(trained_estimator_path)
+        with open(trained_estimator_path, "rb") as f:
+            self.estimator = torch.load(f)
 
     # Randomized Greedy Construction
     def RGC(self, design_ir, ac_transforms):

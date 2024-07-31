@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:hls:face_detect:1.0
-// IP Revision: 2113614546
+// IP Revision: 2113668265
 
 (* X_CORE_INFO = "face_detect,Vivado 2023.2" *)
 (* CHECK_LICENSE_TYPE = "bd_0_hls_inst_0,face_detect,{}" *)
-(* CORE_GENERATION_INFO = "bd_0_hls_inst_0,face_detect,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=face_detect,x_ipVersion=1.0,x_ipCoreRevision=2113614546,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "bd_0_hls_inst_0,face_detect,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=face_detect,x_ipVersion=1.0,x_ipCoreRevision=2113668265,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* IP_DEFINITION_SOURCE = "HLS" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module bd_0_hls_inst_0 (

@@ -28,6 +28,20 @@ class InstrumentationError(AHLSPassException):
         self.output = output
         super().__init__(f"Failed to instrument {bytecode}. Error code: {error_code}. stderr: {output}.")
 
+class AddDirectivesMDError(AHLSPassException):
+    def __init__(self, bytecode, error_code, output):
+        self.bytecode = bytecode
+        self.error_code = error_code
+        self.output = output
+        super().__init__(f"Failed to add directives metadata to {bytecode}. Error code: {error_code}. stderr: {output}.")
+
+class GetDFGError(AHLSPassException):
+    def __init__(self, bytecode, error_code, output):
+        self.bytecode = bytecode
+        self.error_code = error_code
+        self.output = output
+        super().__init__(f"Failed to extract DFG from {bytecode}. Error code: {error_code}. stderr: {output}.")
+
 class ACTError(AHLSPassException):
     def __init__(self, act, bytecode, error_code, output):
         self.act = act
@@ -42,17 +56,3 @@ class V2CError(ACTError):
         self.error_code = error_code
         self.output = output
         super().__init__("v2c", bytecode, error_code, output)
-
-class GetDFGNodesError(AHLSPassException):
-    def __init__(self, bytecode, error_code, output):
-        self.bytecode = bytecode
-        self.error_code = error_code
-        self.output = output
-        super().__init__(f"Failed to extract DFG nodes from {bytecode}. Error code: {error_code}. stderr: {output}.")
-
-class GetDFGEdgesError(AHLSPassException):
-    def __init__(self, bytecode, error_code, output):
-        self.bytecode = bytecode
-        self.error_code = error_code
-        self.output = output
-        super().__init__(f"Failed to extract DFG edges from {bytecode}. Error code: {error_code}. stderr: {output}.")

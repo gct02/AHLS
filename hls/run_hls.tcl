@@ -1,5 +1,5 @@
 # Set variable to select which benchmark to execute
-set bench_exec 3
+set bench_exec 1
 
 if { $bench_exec == 1 } { # Face detection
 	# Create a project

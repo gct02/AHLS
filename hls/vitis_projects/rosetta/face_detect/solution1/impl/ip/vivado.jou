@@ -3,12 +3,12 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Sun Jun 23 07:06:28 2024
-# Process ID: 141143
-# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/face_detect/solution1/impl/ip
+# Start of session at: Tue Jul 30 14:25:05 2024
+# Process ID: 7715
+# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/face_detect/solution1/impl/ip
 # Command line: vivado -notrace -mode batch -source run_ippack.tcl
-# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/face_detect/solution1/impl/ip/vivado.log
-# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/face_detect/solution1/impl/ip/vivado.jou
-# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 2638.109 MHz, CPU Physical cores: 4, Host memory: 16483 MB
+# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/face_detect/solution1/impl/ip/vivado.log
+# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/face_detect/solution1/impl/ip/vivado.jou
+# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 4100.000 MHz, CPU Physical cores: 4, Host memory: 16483 MB
 #-----------------------------------------------------------
 source run_ippack.tcl -notrace

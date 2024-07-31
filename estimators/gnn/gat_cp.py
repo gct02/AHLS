@@ -1,16 +1,17 @@
-import argparse
+import argparse, os
+
 import numpy as np
 import pandas as pd
 import torch
-import os
 
 import torch.nn as nn
 import torch.nn.functional as F
 
-from estimators.gnn.gat import GAT
-from estimators.gnn.dfg.hls_dfg import build_dfg
 from sklearn import model_selection
 from pathlib import Path
+
+from estimators.gnn.gat import GAT
+from dfg.hls_dfg import build_dfg
 
 def train_step(model, loss_func, optimizer, graphs, labels):
     train_loss = 0
@@ -109,7 +110,7 @@ def main(args):
     
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='provide arguments for the graph embedding model with CP predictions')
+    parser = argparse.ArgumentParser(description='Provide arguments for the graph embedding model with CP predictions')
 
     parser.add_argument('--epoch', help='The number of training epochs', default=50)
     parser.add_argument('--seed', help='Random seed for repeatability', default=42)

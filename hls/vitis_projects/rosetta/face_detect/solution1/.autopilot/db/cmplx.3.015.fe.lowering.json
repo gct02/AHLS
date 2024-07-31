@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 10,
-    "calls": "1",
+    "calls": "2",
     "file": "face_detect.cpp",
     "fileloc": 65,
     "instructions": 152,
@@ -16,21 +16,6 @@
     "total_instructions": 542
   },
   "1": {
-    "basicblocks": 17,
-    "calls": "2",
-    "file": "face_detect.cpp",
-    "fileloc": 109,
-    "instructions": 147,
-    "loads": {
-      "L": 4
-    },
-    "name": "processImage",
-    "stores": {
-      "L": 7
-    },
-    "total_instructions": 390
-  },
-  "2": {
     "basicblocks": 19,
     "calls": "",
     "file": "face_detect.cpp",
@@ -45,5 +30,20 @@
       "G": 16
     },
     "total_instructions": 243
+  },
+  "2": {
+    "basicblocks": 17,
+    "calls": "1",
+    "file": "face_detect.cpp",
+    "fileloc": 109,
+    "instructions": 147,
+    "loads": {
+      "L": 4
+    },
+    "name": "processImage",
+    "stores": {
+      "L": 7
+    },
+    "total_instructions": 390
   }
 }
