@@ -195,7 +195,7 @@
     <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/DigitRec_utilization_hierarchical_synth.rpt"/>
   </VivadoReportFiles>
   <GeneralInfo NAME="General Information">
-    <item NAME="Date" VALUE="Sun Jun 23 07:15:49 -03 2024"/>
+    <item NAME="Date" VALUE="Fri Aug 02 01:46:46 -03 2024"/>
     <item NAME="Version" VALUE="2023.2 (Build 4023990 on Oct 11 2023)"/>
     <item NAME="Project" VALUE="digitrec"/>
     <item NAME="Solution" VALUE="solution1 (Vivado IP Flow Target)"/>

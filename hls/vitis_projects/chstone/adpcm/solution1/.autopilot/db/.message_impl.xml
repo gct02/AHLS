@@ -2,7 +2,4 @@
 <Messages>
 	<Message severity="INFO" prefix="[IMPL 213-8]" key="IMPL_8_1776" tag="" content="Exporting RTL as a Vivado IP." resolution=""/>
 	<Message severity="INFO" prefix="[IMPL 213-8]" key="IMPL_8_1773" tag="" content="Starting RTL evaluation using Vivado ..." resolution=""/>
-	<Message severity="INFO" prefix="[HLS 200-802]" key="HLS 200-802" tag="" content="Generated output file vitis_projects/chstone/adpcm/solution1/impl/export.dcp" resolution=""/>
-	<Message severity="INFO" prefix="[HLS 200-802]" key="HLS 200-802" tag="" content="Generated output file vitis_projects/chstone/adpcm/solution1/impl/export.veo" resolution=""/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished Command export_design CPU user time: 195.88 seconds. CPU system time: 6.52 seconds. Elapsed time: 188.52 seconds; current allocated memory: 8.473 MB." resolution=""/>
 </Messages>

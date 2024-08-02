@@ -34,7 +34,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>639657324</coreId>
+						<coreId>1869635878</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -70,7 +70,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>639657324</coreId>
+						<coreId>1869635878</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>17</bitwidth>
@@ -106,7 +106,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>639657324</coreId>
+						<coreId>1869635878</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -142,7 +142,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>3902772240</coreId>
+						<coreId>543515987</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -166,7 +166,7 @@
 						<id>5</id>
 						<name>result</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>18</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -174,7 +174,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item class_id="10" tracking_level="0" version="0">
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second class_id="11" tracking_level="0" version="0">
 									<count>2</count>
 									<item_version>0</item_version>
@@ -229,7 +229,7 @@
 						<id>6</id>
 						<name>i</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>19</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -237,7 +237,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -266,7 +266,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>32</coreId>
+						<coreId>448</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>11</bitwidth>
@@ -308,7 +308,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>4105195668</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>17</bitwidth>
@@ -335,7 +335,7 @@
 						<id>10</id>
 						<name>i_write_ln19</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>19</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -343,7 +343,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -372,7 +372,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>4007566496</coreId>
+						<coreId>544424224</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -399,7 +399,7 @@
 						<id>11</id>
 						<name>result_write_ln18</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>18</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -407,7 +407,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -436,7 +436,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1814916470</coreId>
+						<coreId>544424224</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -479,7 +479,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>544424224</coreId>
+						<coreId>1701605485</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -505,7 +505,7 @@
 						<id>14</id>
 						<name>i_2</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>19</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -513,7 +513,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -542,7 +542,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1701605485</coreId>
+						<coreId>1768976244</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>11</bitwidth>
@@ -569,7 +569,7 @@
 						<id>15</id>
 						<name>icmp_ln19</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>19</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -577,7 +577,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -606,7 +606,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>808464957</coreId>
+						<coreId>997420912</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>1</bitwidth>
@@ -633,7 +633,7 @@
 						<id>16</id>
 						<name>add_ln19</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>19</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -641,7 +641,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -670,7 +670,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>539113014</coreId>
+						<coreId>1663071333</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>11</bitwidth>
@@ -697,7 +697,7 @@
 						<id>17</id>
 						<name>br_ln19</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>19</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -705,7 +705,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -734,7 +734,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1528970616</coreId>
+						<coreId>1629888624</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -762,7 +762,7 @@
 						<id>19</id>
 						<name>result_load</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>20</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -770,7 +770,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -799,7 +799,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>942750320</coreId>
+						<coreId>1668179298</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -826,7 +826,7 @@
 						<id>20</id>
 						<name>zext_ln19</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>19</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -834,7 +834,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -863,7 +863,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1031365995</coreId>
+						<coreId>796026228</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -889,7 +889,7 @@
 						<id>21</id>
 						<name>zext_ln19_1</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>19</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -897,7 +897,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -926,7 +926,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1886413614</coreId>
+						<coreId>541673768</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>17</bitwidth>
@@ -952,7 +952,7 @@
 						<id>25</id>
 						<name>theta_addr</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>20</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -960,7 +960,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -989,7 +989,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1952805743</coreId>
+						<coreId>942485552</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>10</bitwidth>
@@ -1017,7 +1017,7 @@
 						<id>26</id>
 						<name>theta_load</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>20</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -1025,70 +1025,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>benchmarks/rosetta/spam-filter/src/sgd.cpp</first>
-											<second>SgdLR</second>
-										</first>
-										<second>66</second>
-									</item>
-									<item>
-										<first>
-											<first>benchmarks/rosetta/spam-filter/src/sgd.cpp</first>
-											<second>dotProduct</second>
-										</first>
-										<second>20</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>1936683567</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>1</count>
-					<item_version>0</item_version>
-					<item>78</item>
-				</oprand_edges>
-				<opcode>load</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>1</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>3.25</m_delay>
-				<m_topoIndex>14</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_20">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>27</id>
-						<name>bitcast_ln20</name>
-						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
-						<lineNumber>20</lineNumber>
-						<contextFuncName>dotProduct</contextFuncName>
-						<contextNormFuncName>dotProduct</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1125,25 +1062,25 @@
 				<oprand_edges>
 					<count>1</count>
 					<item_version>0</item_version>
-					<item>79</item>
+					<item>78</item>
 				</oprand_edges>
-				<opcode>bitcast</opcode>
+				<opcode>load</opcode>
 				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isOnCriticalPath>1</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
-				<m_topoIndex>20</m_topoIndex>
+				<m_delay>3.25</m_delay>
+				<m_topoIndex>14</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
-			<item class_id_reference="9" object_id="_21">
+			<item class_id_reference="9" object_id="_20">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>28</id>
-						<name>add_ln20</name>
+						<id>27</id>
+						<name>bitcast_ln20</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>20</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -1151,7 +1088,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1180,7 +1117,70 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>540489760</coreId>
+						<coreId>1702305893</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>79</item>
+				</oprand_edges>
+				<opcode>bitcast</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.00</m_delay>
+				<m_topoIndex>20</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_21">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>28</id>
+						<name>add_ln20</name>
+						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
+						<lineNumber>20</lineNumber>
+						<contextFuncName>dotProduct</contextFuncName>
+						<contextNormFuncName>dotProduct</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>benchmarks/rosetta/spam-filter/src/sgd.cpp</first>
+											<second>SgdLR</second>
+										</first>
+										<second>66</second>
+									</item>
+									<item>
+										<first>
+											<first>benchmarks/rosetta/spam-filter/src/sgd.cpp</first>
+											<second>dotProduct</second>
+										</first>
+										<second>20</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>829321065</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>17</bitwidth>
@@ -1207,7 +1207,7 @@
 						<id>29</id>
 						<name>zext_ln20</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>20</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -1215,7 +1215,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1244,7 +1244,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1886531173</coreId>
+						<coreId>1881155369</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1270,7 +1270,7 @@
 						<id>30</id>
 						<name>data_addr</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>20</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -1278,7 +1278,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1307,7 +1307,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1919903264</coreId>
+						<coreId>1701273971</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>17</bitwidth>
@@ -1335,7 +1335,7 @@
 						<id>31</id>
 						<name>data_load</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>20</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -1343,7 +1343,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1372,7 +1372,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1701474162</coreId>
+						<coreId>1634152293</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -1398,7 +1398,7 @@
 						<id>32</id>
 						<name>bitcast_ln20_1</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>20</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -1406,7 +1406,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1435,7 +1435,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>808464928</coreId>
+						<coreId>796095587</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -1461,7 +1461,7 @@
 						<id>33</id>
 						<name>mul_i</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>20</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -1469,7 +1469,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1498,7 +1498,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>690648161</coreId>
+						<coreId>1634560099</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -1525,7 +1525,7 @@
 						<id>34</id>
 						<name>result_1</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>20</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -1533,7 +1533,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1562,7 +1562,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1701998624</coreId>
+						<coreId>1885432901</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -1589,7 +1589,7 @@
 						<id>35</id>
 						<name>i_write_ln19</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>19</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -1597,7 +1597,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1626,7 +1626,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1937055829</coreId>
+						<coreId>7955819</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1655,7 +1655,7 @@
 						<id>36</id>
 						<name>result_write_ln18</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>18</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -1663,7 +1663,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1692,7 +1692,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1702065440</coreId>
+						<coreId>1734439795</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1722,7 +1722,7 @@
 						<id>37</id>
 						<name>br_ln19</name>
 						<fileName>benchmarks/rosetta/spam-filter/src/sgd.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>19</lineNumber>
 						<contextFuncName>dotProduct</contextFuncName>
 						<contextNormFuncName>dotProduct</contextNormFuncName>
@@ -1730,7 +1730,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1759,7 +1759,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>151666223</coreId>
+						<coreId>1932484980</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1801,7 +1801,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>778332019</coreId>
+						<coreId>841888562</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -1844,7 +1844,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>875652981</coreId>
+						<coreId>1886413614</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1888,7 +1888,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1650551154</coreId>
+						<coreId>758658100</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1933,7 +1933,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1920298867</coreId>
+						<coreId>543517794</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -1964,7 +1964,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>794915956</coreId>
+						<coreId>1768976244</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>11</bitwidth>
@@ -1995,7 +1995,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1952981504</coreId>
+						<coreId>1751346789</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -2026,7 +2026,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1702128745</coreId>
+						<coreId>1648063591</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>11</bitwidth>
@@ -2057,7 +2057,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1835557742</coreId>
+						<coreId>1702063986</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>11</bitwidth>
@@ -2088,7 +2088,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1936683567</coreId>
+						<coreId>1802658157</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2238,7 +2238,7 @@
 					<coreName></coreName>
 					<isStorage>0</isStorage>
 					<storageDepth>0</storageDepth>
-					<coreId>1634956133</coreId>
+					<coreId>1768303981</coreId>
 					<rtlModuleName></rtlModuleName>
 				</Obj>
 				<node_objs>

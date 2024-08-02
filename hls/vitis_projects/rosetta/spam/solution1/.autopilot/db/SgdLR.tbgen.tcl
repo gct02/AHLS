@@ -94,8 +94,8 @@ set RtlHierarchyInfo {[
 			{"Name" : "label_r", "Type" : "Memory", "Direction" : "I"},
 			{"Name" : "theta", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "2", "SubInstance" : "grp_SgdLR_Pipeline_DOT_fu_93", "Port" : "theta", "Inst_start_state" : "3", "Inst_end_state" : "4"},
-					{"ID" : "6", "SubInstance" : "grp_SgdLR_Pipeline_UPDATE_fu_112", "Port" : "theta", "Inst_start_state" : "89", "Inst_end_state" : "90"}]}],
+					{"ID" : "6", "SubInstance" : "grp_SgdLR_Pipeline_UPDATE_fu_112", "Port" : "theta", "Inst_start_state" : "89", "Inst_end_state" : "90"},
+					{"ID" : "2", "SubInstance" : "grp_SgdLR_Pipeline_DOT_fu_93", "Port" : "theta", "Inst_start_state" : "3", "Inst_end_state" : "4"}]}],
 		"Loop" : [
 			{"Name" : "EPOCH_TRAINING_INST", "PipelineType" : "no",
 				"LoopDec" : {"FSMBitwidth" : "90", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state90"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},

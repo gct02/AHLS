@@ -1030,8 +1030,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Digitrec</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2113614553</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-06-23T10:14:08Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2113671824</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2024-08-02T04:44:19Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>

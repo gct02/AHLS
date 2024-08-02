@@ -14,11 +14,11 @@ This script assumes that the input design IR file is already instrumented and li
 The project's working directory should be structured as follows:
     .
     ├── approx
-    ├── attrs
+    ├── dfg
     ├── data_stats
     ├── ir
     |   ...
-    │   ├── <design_name>_instrumented.bc
+    │   ├── <design_name>.inst.bc
     |   ...
     ├── outputs
     ├── <design_name>
@@ -195,7 +195,7 @@ if __name__ == "__main__":
 
     # Apply the AC transformations on the input design
     transformed_design_name = f"{design_name}{approx_args_str}"
-    original_ir_path = working_dir / Path(f"ir/{design_name}_instrumented.bc")
+    original_ir_path = working_dir / Path(f"ir/{design_name}.inst.bc")
     transformed_ir_path = working_dir / Path(f"ir/{transformed_design_name}.bc")
     temp_ir_path = working_dir / Path(f"ir/temp.bc")
 

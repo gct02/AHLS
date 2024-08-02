@@ -259,7 +259,7 @@ __attribute__((sdx_kernel("DigitRec", 0))) void DigitRec(
   const LabelType training_labels[3000],
   LabelType results[500])
 {
-#line 101 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/run_hls.tcl"
+#line 101 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/run_hls.tcl"
 #pragma HLSDIRECTIVE TOP name=DigitRec
 # 90 "benchmarks/rosetta/digit-recognition/src/digitrec.cpp"
 

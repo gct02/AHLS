@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'adpcm_main_Pipeline_reset_label7'
 ================================================================
-* Date:           Sun Jun 23 07:23:03 2024
+* Date:           Fri Aug  2 16:09:45 2024
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        adpcm
@@ -116,7 +116,7 @@ Target clock period: 5.000ns, clock uncertainty: 1.350ns.
 The critical path consists of the following:
 	'store' operation 0 bit ('store_ln544', benchmarks/chstone/adpcm/src/adpcm.c:544->benchmarks/chstone/adpcm/src/adpcm.c:774) of constant 0 on local variable 'i', benchmarks/chstone/adpcm/src/adpcm.c:544->benchmarks/chstone/adpcm/src/adpcm.c:774 [4]  (1.588 ns)
 	'load' operation 4 bit ('i', benchmarks/chstone/adpcm/src/adpcm.c:572->benchmarks/chstone/adpcm/src/adpcm.c:774) on local variable 'i', benchmarks/chstone/adpcm/src/adpcm.c:544->benchmarks/chstone/adpcm/src/adpcm.c:774 [7]  (0.000 ns)
-	'add' operation 4 bit ('add_ln572', benchmarks/chstone/adpcm/src/adpcm.c:572->benchmarks/chstone/adpcm/src/adpcm.c:774) [9]  (1.735 ns)
+	'icmp' operation 1 bit ('icmp_ln572', benchmarks/chstone/adpcm/src/adpcm.c:572->benchmarks/chstone/adpcm/src/adpcm.c:774) [8]  (1.735 ns)
 	'store' operation 0 bit ('store_ln544', benchmarks/chstone/adpcm/src/adpcm.c:544->benchmarks/chstone/adpcm/src/adpcm.c:774) of variable 'add_ln572', benchmarks/chstone/adpcm/src/adpcm.c:572->benchmarks/chstone/adpcm/src/adpcm.c:774 on local variable 'i', benchmarks/chstone/adpcm/src/adpcm.c:544->benchmarks/chstone/adpcm/src/adpcm.c:774 [20]  (1.588 ns)
 
  <State 2>: 2.322ns

@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'DigitRec_Pipeline_3'
 ================================================================
-* Date:           Sun Jun 23 07:13:57 2024
+* Date:           Fri Aug  2 01:44:09 2024
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        digitrec
@@ -113,7 +113,7 @@ Target clock period: 5.000ns, clock uncertainty: 1.350ns.
 The critical path consists of the following:
 	'store' operation 0 bit ('store_ln0') of constant 0 on local variable 'empty' [3]  (1.588 ns)
 	'load' operation 4 bit ('p_load') on local variable 'empty' [6]  (0.000 ns)
-	'add' operation 4 bit ('empty_568') [8]  (1.735 ns)
+	'icmp' operation 1 bit ('exitcond9_i123') [7]  (1.735 ns)
 	'store' operation 0 bit ('store_ln0') of variable 'empty_568' on local variable 'empty' [16]  (1.588 ns)
 
  <State 2>: 2.322ns

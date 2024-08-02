@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'SgdLR_Pipeline_GRAD'
 ================================================================
-* Date:           Sun Jun 23 07:18:42 2024
+* Date:           Fri Aug  2 16:01:20 2024
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        spam
@@ -162,7 +162,7 @@ Target clock period: 5.000ns, clock uncertainty: 1.350ns.
 The critical path consists of the following:
 	'store' operation 0 bit ('store_ln35', benchmarks/rosetta/spam-filter/src/sgd.cpp:35->benchmarks/rosetta/spam-filter/src/sgd.cpp:70) of constant 0 on local variable 'i', benchmarks/rosetta/spam-filter/src/sgd.cpp:35->benchmarks/rosetta/spam-filter/src/sgd.cpp:70 [9]  (1.588 ns)
 	'load' operation 11 bit ('i', benchmarks/rosetta/spam-filter/src/sgd.cpp:35->benchmarks/rosetta/spam-filter/src/sgd.cpp:70) on local variable 'i', benchmarks/rosetta/spam-filter/src/sgd.cpp:35->benchmarks/rosetta/spam-filter/src/sgd.cpp:70 [12]  (0.000 ns)
-	'icmp' operation 1 bit ('icmp_ln35', benchmarks/rosetta/spam-filter/src/sgd.cpp:35->benchmarks/rosetta/spam-filter/src/sgd.cpp:70) [13]  (1.639 ns)
+	'add' operation 11 bit ('add_ln35', benchmarks/rosetta/spam-filter/src/sgd.cpp:35->benchmarks/rosetta/spam-filter/src/sgd.cpp:70) [14]  (1.639 ns)
 	'store' operation 0 bit ('store_ln35', benchmarks/rosetta/spam-filter/src/sgd.cpp:35->benchmarks/rosetta/spam-filter/src/sgd.cpp:70) of variable 'add_ln35', benchmarks/rosetta/spam-filter/src/sgd.cpp:35->benchmarks/rosetta/spam-filter/src/sgd.cpp:70 on local variable 'i', benchmarks/rosetta/spam-filter/src/sgd.cpp:35->benchmarks/rosetta/spam-filter/src/sgd.cpp:70 [30]  (1.588 ns)
 
  <State 2>: 3.254ns

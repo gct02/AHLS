@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 7,
-    "calls": "10 1 2 6 4",
+    "calls": "5 8 10 7 6",
     "file": "rendering.cpp",
     "fileloc": 246,
     "instructions": 60,
@@ -16,21 +16,66 @@
     "total_instructions": 734
   },
   "1": {
-    "basicblocks": 6,
-    "calls": "3 3 9 7 8 7 8",
+    "basicblocks": 4,
+    "calls": "",
     "file": "rendering.cpp",
-    "fileloc": 141,
-    "instructions": 81,
+    "fileloc": 48,
+    "instructions": 89,
     "loads": {
-      "L": 20
+      "L": 18
     },
-    "name": "rasterization1",
-    "stores": {
-      "L": 8
-    },
-    "total_instructions": 234
+    "name": "pixel_in_triangle",
+    "total_instructions": 89
   },
   "10": {
+    "basicblocks": 12,
+    "calls": "1",
+    "file": "rendering.cpp",
+    "fileloc": 163,
+    "instructions": 61,
+    "loads": {
+      "L": 7
+    },
+    "name": "rasterization2",
+    "stores": {
+      "L": 5
+    },
+    "total_instructions": 150
+  },
+  "2": {
+    "basicblocks": 8,
+    "calls": "",
+    "file": "rendering.cpp",
+    "fileloc": 79,
+    "instructions": 18,
+    "name": "find_max",
+    "total_instructions": 18
+  },
+  "3": {
+    "basicblocks": 8,
+    "calls": "",
+    "file": "rendering.cpp",
+    "fileloc": 60,
+    "instructions": 18,
+    "name": "find_min",
+    "total_instructions": 18
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "rendering.cpp",
+    "fileloc": 30,
+    "instructions": 17,
+    "loads": {
+      "L": 4
+    },
+    "name": "clockwise_vertices",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 17
+  },
+  "5": {
     "basicblocks": 9,
     "calls": "",
     "file": "rendering.cpp",
@@ -45,34 +90,7 @@
     },
     "total_instructions": 135
   },
-  "2": {
-    "basicblocks": 12,
-    "calls": "5",
-    "file": "rendering.cpp",
-    "fileloc": 163,
-    "instructions": 61,
-    "loads": {
-      "L": 7
-    },
-    "name": "rasterization2",
-    "stores": {
-      "L": 5
-    },
-    "total_instructions": 150
-  },
-  "3": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "rendering.cpp",
-    "fileloc": 18,
-    "instructions": 32,
-    "loads": {
-      "L": 8
-    },
-    "name": "check_clockwise",
-    "total_instructions": 32
-  },
-  "4": {
+  "6": {
     "basicblocks": 21,
     "calls": "",
     "file": "rendering.cpp",
@@ -87,19 +105,7 @@
     },
     "total_instructions": 53
   },
-  "5": {
-    "basicblocks": 4,
-    "calls": "",
-    "file": "rendering.cpp",
-    "fileloc": 48,
-    "instructions": 89,
-    "loads": {
-      "L": 18
-    },
-    "name": "pixel_in_triangle",
-    "total_instructions": 89
-  },
-  "6": {
+  "7": {
     "basicblocks": 23,
     "calls": "",
     "file": "rendering.cpp",
@@ -116,37 +122,31 @@
     },
     "total_instructions": 102
   },
-  "7": {
-    "basicblocks": 8,
-    "calls": "",
-    "file": "rendering.cpp",
-    "fileloc": 60,
-    "instructions": 18,
-    "name": "find_min",
-    "total_instructions": 18
-  },
   "8": {
-    "basicblocks": 8,
-    "calls": "",
+    "basicblocks": 6,
+    "calls": "9 9 4 3 2 3 2",
     "file": "rendering.cpp",
-    "fileloc": 79,
-    "instructions": 18,
-    "name": "find_max",
-    "total_instructions": 18
+    "fileloc": 141,
+    "instructions": 81,
+    "loads": {
+      "L": 20
+    },
+    "name": "rasterization1",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 234
   },
   "9": {
     "basicblocks": 1,
     "calls": "",
     "file": "rendering.cpp",
-    "fileloc": 30,
-    "instructions": 17,
+    "fileloc": 18,
+    "instructions": 32,
     "loads": {
-      "L": 4
+      "L": 8
     },
-    "name": "clockwise_vertices",
-    "stores": {
-      "L": 4
-    },
-    "total_instructions": 17
+    "name": "check_clockwise",
+    "total_instructions": 32
   }
 }

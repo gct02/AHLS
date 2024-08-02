@@ -34,7 +34,7 @@
 						<coreName>RAM</coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1869635878</coreId>
+						<coreId>639657324</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -94,7 +94,7 @@
 						<id>3</id>
 						<name>max_label</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>65</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -102,7 +102,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item class_id="10" tracking_level="0" version="0">
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second class_id="11" tracking_level="0" version="0">
 									<count>2</count>
 									<item_version>0</item_version>
@@ -131,7 +131,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
+						<coreId>53</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -157,7 +157,7 @@
 						<id>4</id>
 						<name>max_vote_1</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>64</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -165,7 +165,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -194,7 +194,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>53</coreId>
+						<coreId>1769234802</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -220,7 +220,7 @@
 						<id>5</id>
 						<name>i</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>72</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -228,7 +228,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -257,7 +257,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1852140917</coreId>
+						<coreId>1735353189</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>4</bitwidth>
@@ -283,7 +283,7 @@
 						<id>6</id>
 						<name>i_write_ln72</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>72</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -291,7 +291,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -320,7 +320,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1769234802</coreId>
+						<coreId>1852795252</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -347,7 +347,7 @@
 						<id>7</id>
 						<name>max_vote_1_write_ln64</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>64</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -355,7 +355,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -384,7 +384,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1648241977</coreId>
+						<coreId>1768173409</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -411,7 +411,7 @@
 						<id>8</id>
 						<name>max_label_write_ln65</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>65</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -419,7 +419,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -448,7 +448,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1852795252</coreId>
+						<coreId>1768384868</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -491,7 +491,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1344</coreId>
+						<coreId>1864397684</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -517,7 +517,7 @@
 						<id>11</id>
 						<name>i_1</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>72</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -525,7 +525,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -554,7 +554,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1634300513</coreId>
+						<coreId>1918987624</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>4</bitwidth>
@@ -581,7 +581,7 @@
 						<id>12</id>
 						<name>icmp_ln72</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>72</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -589,7 +589,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -645,7 +645,7 @@
 						<id>13</id>
 						<name>i_2</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>72</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -653,7 +653,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -709,7 +709,7 @@
 						<id>14</id>
 						<name>br_ln72</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>72</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -717,7 +717,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -746,7 +746,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>778265970</coreId>
+						<coreId>544040308</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -774,7 +774,7 @@
 						<id>16</id>
 						<name>max_label_load_1</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>74</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -782,7 +782,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -811,7 +811,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>539570464</coreId>
+						<coreId>1819042080</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -838,7 +838,7 @@
 						<id>17</id>
 						<name>max_vote_1_load</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>74</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -846,134 +846,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</first>
-											<second>DigitRec</second>
-										</first>
-										<second>111</second>
-									</item>
-									<item>
-										<first>
-											<first>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</first>
-											<second>knn_vote</second>
-										</first>
-										<second>74</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>544040308</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>67</item>
-					<item>118</item>
-				</oprand_edges>
-				<opcode>load</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
-				<m_topoIndex>16</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_16">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>18</id>
-						<name>zext_ln72</name>
-						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
-						<lineNumber>72</lineNumber>
-						<contextFuncName>knn_vote</contextFuncName>
-						<contextNormFuncName>knn_vote</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</first>
-											<second>DigitRec</second>
-										</first>
-										<second>111</second>
-									</item>
-									<item>
-										<first>
-											<first>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</first>
-											<second>knn_vote</second>
-										</first>
-										<second>72</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>1819042080</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>64</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>1</count>
-					<item_version>0</item_version>
-					<item>68</item>
-				</oprand_edges>
-				<opcode>zext</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
-				<m_topoIndex>12</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_17">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>22</id>
-						<name>votes_addr</name>
-						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
-						<lineNumber>74</lineNumber>
-						<contextFuncName>knn_vote</contextFuncName>
-						<contextNormFuncName>knn_vote</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1005,6 +878,133 @@
 						<coreId>1229529204</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>67</item>
+					<item>118</item>
+				</oprand_edges>
+				<opcode>load</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.00</m_delay>
+				<m_topoIndex>16</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_16">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>18</id>
+						<name>zext_ln72</name>
+						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
+						<lineNumber>72</lineNumber>
+						<contextFuncName>knn_vote</contextFuncName>
+						<contextNormFuncName>knn_vote</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</first>
+											<second>DigitRec</second>
+										</first>
+										<second>111</second>
+									</item>
+									<item>
+										<first>
+											<first>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</first>
+											<second>knn_vote</second>
+										</first>
+										<second>72</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>1869635878</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>64</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>68</item>
+				</oprand_edges>
+				<opcode>zext</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.00</m_delay>
+				<m_topoIndex>12</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_17">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>22</id>
+						<name>votes_addr</name>
+						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
+						<lineNumber>74</lineNumber>
+						<contextFuncName>knn_vote</contextFuncName>
+						<contextNormFuncName>knn_vote</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</first>
+											<second>DigitRec</second>
+										</first>
+										<second>111</second>
+									</item>
+									<item>
+										<first>
+											<first>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</first>
+											<second>knn_vote</second>
+										</first>
+										<second>74</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>1734439795</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
 					<bitwidth>4</bitwidth>
 				</Value>
 				<oprand_edges>
@@ -1030,7 +1030,7 @@
 						<id>23</id>
 						<name>votes_load</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>74</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -1038,7 +1038,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1093,7 +1093,7 @@
 						<id>24</id>
 						<name>icmp_ln74</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>74</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -1101,7 +1101,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1157,7 +1157,7 @@
 						<id>25</id>
 						<name>zext_ln77</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>77</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -1165,7 +1165,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1194,7 +1194,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1179535650</coreId>
+						<coreId>796093298</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -1220,7 +1220,7 @@
 						<id>26</id>
 						<name>max_label_1</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>74</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -1228,7 +1228,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1285,7 +1285,7 @@
 						<id>27</id>
 						<name>max_vote</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>74</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -1293,7 +1293,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1350,7 +1350,7 @@
 						<id>28</id>
 						<name>i_write_ln72</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>72</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -1358,7 +1358,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1387,7 +1387,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>976827904</coreId>
+						<coreId>1634559841</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1416,7 +1416,7 @@
 						<id>29</id>
 						<name>max_vote_1_write_ln64</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>64</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -1424,7 +1424,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1453,7 +1453,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1667592820</coreId>
+						<coreId>1701519360</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1482,7 +1482,7 @@
 						<id>30</id>
 						<name>max_label_write_ln65</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>65</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -1490,7 +1490,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1519,7 +1519,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>570455150</coreId>
+						<coreId>1936028272</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1548,7 +1548,7 @@
 						<id>31</id>
 						<name>br_ln72</name>
 						<fileName>benchmarks/rosetta/digit-recognition/src/digitrec.cpp</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>72</lineNumber>
 						<contextFuncName>knn_vote</contextFuncName>
 						<contextNormFuncName>knn_vote</contextNormFuncName>
@@ -1556,7 +1556,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>2</count>
 									<item_version>0</item_version>
@@ -1585,7 +1585,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1414750030</coreId>
+						<coreId>842280240</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1627,7 +1627,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1667593321</coreId>
+						<coreId>1869833586</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -1670,7 +1670,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>151666223</coreId>
+						<coreId>1768173411</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1714,7 +1714,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>774329413</coreId>
+						<coreId>1920233071</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1759,7 +1759,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>4005076256</coreId>
+						<coreId>825046320</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -1790,7 +1790,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>644379497</coreId>
+						<coreId>892351008</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>4</bitwidth>
@@ -1821,7 +1821,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1768843119</coreId>
+						<coreId>1953067621</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -1852,7 +1852,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1919250543</coreId>
+						<coreId>1599296852</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -1883,7 +1883,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1162692948</coreId>
+						<coreId>1768173411</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>4</bitwidth>
@@ -1914,7 +1914,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>926496351</coreId>
+						<coreId>1735736684</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>4</bitwidth>
@@ -1945,7 +1945,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1702125923</coreId>
+						<coreId>1701601889</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2016,7 +2016,7 @@
 					<coreName></coreName>
 					<isStorage>0</isStorage>
 					<storageDepth>0</storageDepth>
-					<coreId>2</coreId>
+					<coreId>4294967294</coreId>
 					<rtlModuleName></rtlModuleName>
 				</Obj>
 				<node_objs>
@@ -2050,7 +2050,7 @@
 					<coreName></coreName>
 					<isStorage>0</isStorage>
 					<storageDepth>0</storageDepth>
-					<coreId>4294967294</coreId>
+					<coreId>0</coreId>
 					<rtlModuleName></rtlModuleName>
 				</Obj>
 				<node_objs>
@@ -2093,7 +2093,7 @@
 					<coreName></coreName>
 					<isStorage>0</isStorage>
 					<storageDepth>0</storageDepth>
-					<coreId>0</coreId>
+					<coreId>108</coreId>
 					<rtlModuleName></rtlModuleName>
 				</Obj>
 				<node_objs>

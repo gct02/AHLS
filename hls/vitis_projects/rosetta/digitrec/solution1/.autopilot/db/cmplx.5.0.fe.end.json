@@ -1,17 +1,18 @@
 {
     "1": {
-        "name": "DigitRec_Pipeline_VITIS_LOOP_69_1",
+        "name": "DigitRec_Pipeline_TRAINING_LOOP",
         "file": "benchmarks\/rosetta\/digit-recognition\/src\/digitrec.cpp",
-        "fileloc": "111",
-        "instructions": "22",
-        "total_instructions": "22",
+        "fileloc": "107",
+        "instructions": "520",
+        "total_instructions": "520",
         "calls": "",
         "basicblocks": "4",
         "loads": {
-            "L": "2"
+            "L": "10",
+            "T": "8"
         },
         "stores": {
-            "L": "3"
+            "L": "14"
         },
         "loops": {
             "L": "1"
@@ -35,6 +36,26 @@
             "L": "1"
         }
     },
+    "0": {
+        "name": "DigitRec",
+        "file": "digitrec.cpp",
+        "fileloc": "85",
+        "instructions": "72",
+        "total_instructions": "712",
+        "calls": "2 1 3 4 5",
+        "basicblocks": "4",
+        "loads": {
+            "L": "17",
+            "T": "1"
+        },
+        "stores": {
+            "L": "5",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
     "3": {
         "name": "DigitRec_Pipeline_3",
         "file": "digitrec.cpp",
@@ -53,40 +74,19 @@
             "L": "1"
         }
     },
-    "0": {
-        "name": "DigitRec",
-        "file": "digitrec.cpp",
-        "fileloc": "85",
-        "instructions": "72",
-        "total_instructions": "712",
-        "calls": "2 4 3 1 5",
-        "basicblocks": "4",
-        "loads": {
-            "L": "17",
-            "T": "1"
-        },
-        "stores": {
-            "L": "5",
-            "T": "1"
-        },
-        "loops": {
-            "L": "1"
-        }
-    },
     "4": {
-        "name": "DigitRec_Pipeline_TRAINING_LOOP",
+        "name": "DigitRec_Pipeline_VITIS_LOOP_69_1",
         "file": "benchmarks\/rosetta\/digit-recognition\/src\/digitrec.cpp",
-        "fileloc": "107",
-        "instructions": "520",
-        "total_instructions": "520",
+        "fileloc": "111",
+        "instructions": "22",
+        "total_instructions": "22",
         "calls": "",
         "basicblocks": "4",
         "loads": {
-            "L": "10",
-            "T": "8"
+            "L": "2"
         },
         "stores": {
-            "L": "14"
+            "L": "3"
         },
         "loops": {
             "L": "1"

@@ -144,7 +144,7 @@
     <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/SgdLR_utilization_hierarchical_synth.rpt"/>
   </VivadoReportFiles>
   <GeneralInfo NAME="General Information">
-    <item NAME="Date" VALUE="Sun Jun 23 07:21:03 -03 2024"/>
+    <item NAME="Date" VALUE="Fri Aug 02 16:04:34 -03 2024"/>
     <item NAME="Version" VALUE="2023.2 (Build 4023990 on Oct 11 2023)"/>
     <item NAME="Project" VALUE="spam"/>
     <item NAME="Solution" VALUE="solution1 (Vivado IP Flow Target)"/>

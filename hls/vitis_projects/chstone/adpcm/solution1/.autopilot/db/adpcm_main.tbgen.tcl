@@ -102,8 +102,8 @@ set RtlHierarchyInfo {[
 					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "input_samples", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
 			{"Name" : "compressed", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "compressed", "Inst_start_state" : "5", "Inst_end_state" : "6"},
-					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "compressed", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "compressed", "Inst_start_state" : "3", "Inst_end_state" : "4"},
+					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "compressed", "Inst_start_state" : "5", "Inst_end_state" : "6"}]},
 			{"Name" : "result", "Type" : "Memory", "Direction" : "O",
 				"SubConnect" : [
 					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "result", "Inst_start_state" : "5", "Inst_end_state" : "6"}]},
@@ -205,12 +205,12 @@ set RtlHierarchyInfo {[
 					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "dec_nbh", "Inst_start_state" : "5", "Inst_end_state" : "6"}]},
 			{"Name" : "delay_dltx", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "12", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label4_fu_148", "Port" : "delay_dltx", "Inst_start_state" : "1", "Inst_end_state" : "2"},
-					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "delay_dltx", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "delay_dltx", "Inst_start_state" : "3", "Inst_end_state" : "4"},
+					{"ID" : "12", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label4_fu_148", "Port" : "delay_dltx", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "delay_dhx", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "12", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label4_fu_148", "Port" : "delay_dhx", "Inst_start_state" : "1", "Inst_end_state" : "2"},
-					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "delay_dhx", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "delay_dhx", "Inst_start_state" : "3", "Inst_end_state" : "4"},
+					{"ID" : "12", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label4_fu_148", "Port" : "delay_dhx", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "dec_del_dltx", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
 					{"ID" : "12", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label4_fu_148", "Port" : "dec_del_dltx", "Inst_start_state" : "1", "Inst_end_state" : "2"},
@@ -221,12 +221,12 @@ set RtlHierarchyInfo {[
 					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "dec_del_dhx", "Inst_start_state" : "5", "Inst_end_state" : "6"}]},
 			{"Name" : "delay_bpl", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "14", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label5_fu_160", "Port" : "delay_bpl", "Inst_start_state" : "1", "Inst_end_state" : "2"},
-					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "delay_bpl", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "delay_bpl", "Inst_start_state" : "3", "Inst_end_state" : "4"},
+					{"ID" : "14", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label5_fu_160", "Port" : "delay_bpl", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "delay_bph", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "14", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label5_fu_160", "Port" : "delay_bph", "Inst_start_state" : "1", "Inst_end_state" : "2"},
-					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "delay_bph", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "delay_bph", "Inst_start_state" : "3", "Inst_end_state" : "4"},
+					{"ID" : "14", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label5_fu_160", "Port" : "delay_bph", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "dec_del_bpl", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
 					{"ID" : "14", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label5_fu_160", "Port" : "dec_del_bpl", "Inst_start_state" : "1", "Inst_end_state" : "2"},
@@ -237,8 +237,8 @@ set RtlHierarchyInfo {[
 					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "dec_del_bph", "Inst_start_state" : "5", "Inst_end_state" : "6"}]},
 			{"Name" : "tqmf", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "16", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label6_fu_172", "Port" : "tqmf", "Inst_start_state" : "1", "Inst_end_state" : "2"},
-					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "tqmf", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "tqmf", "Inst_start_state" : "3", "Inst_end_state" : "4"},
+					{"ID" : "16", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label6_fu_172", "Port" : "tqmf", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "accumc", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
 					{"ID" : "18", "SubInstance" : "grp_adpcm_main_Pipeline_reset_label7_fu_178", "Port" : "accumc", "Inst_start_state" : "1", "Inst_end_state" : "2"},
@@ -255,20 +255,20 @@ set RtlHierarchyInfo {[
 					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "quant26bt_neg", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
 			{"Name" : "il", "Type" : "OVld", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "il", "Inst_start_state" : "5", "Inst_end_state" : "6"},
-					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "il", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "il", "Inst_start_state" : "3", "Inst_end_state" : "4"},
+					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "il", "Inst_start_state" : "5", "Inst_end_state" : "6"}]},
 			{"Name" : "qq4_code4_table", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "qq4_code4_table", "Inst_start_state" : "5", "Inst_end_state" : "6"},
-					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "qq4_code4_table", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "qq4_code4_table", "Inst_start_state" : "3", "Inst_end_state" : "4"},
+					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "qq4_code4_table", "Inst_start_state" : "5", "Inst_end_state" : "6"}]},
 			{"Name" : "wl_code_table", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "wl_code_table", "Inst_start_state" : "5", "Inst_end_state" : "6"},
-					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "wl_code_table", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "wl_code_table", "Inst_start_state" : "3", "Inst_end_state" : "4"},
+					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "wl_code_table", "Inst_start_state" : "5", "Inst_end_state" : "6"}]},
 			{"Name" : "ilb_table", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "ilb_table", "Inst_start_state" : "5", "Inst_end_state" : "6"},
-					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "ilb_table", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "20", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label12_fu_186", "Port" : "ilb_table", "Inst_start_state" : "3", "Inst_end_state" : "4"},
+					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "ilb_table", "Inst_start_state" : "5", "Inst_end_state" : "6"}]},
 			{"Name" : "qq6_code6_table", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
 					{"ID" : "90", "SubInstance" : "grp_adpcm_main_Pipeline_adpcm_main_label13_fu_248", "Port" : "qq6_code6_table", "Inst_start_state" : "5", "Inst_end_state" : "6"}]},

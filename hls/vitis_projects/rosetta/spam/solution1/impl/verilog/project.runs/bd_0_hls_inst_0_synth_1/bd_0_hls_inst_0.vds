@@ -3,17 +3,17 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Sun Jun 23 07:19:22 2024
-# Process ID: 150004
-# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1
+# Start of session at: Fri Aug  2 16:02:01 2024
+# Process ID: 9304
+# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1
 # Command line: vivado -log bd_0_hls_inst_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_0_hls_inst_0.tcl
-# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.vds
-# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/vivado.jou
-# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 3788.399 MHz, CPU Physical cores: 4, Host memory: 16483 MB
+# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.vds
+# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/vivado.jou
+# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 3872.576 MHz, CPU Physical cores: 4, Host memory: 16483 MB
 #-----------------------------------------------------------
 source bd_0_hls_inst_0.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/ip'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/ip'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
 INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: bd_0_hls_inst_0
 Command: synth_design -top bd_0_hls_inst_0 -part xc7z020clg400-1 -directive sdx_optimization_effort_high -incremental_mode off -mode out_of_context
@@ -23,56 +23,56 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg400-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 150085
+INFO: [Synth 8-7075] Helper process launched with PID 9397
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2082.102 ; gain = 403.715 ; free physical = 201 ; free virtual = 2992
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2079.227 ; gain = 403.715 ; free physical = 266 ; free virtual = 8104
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_gradient_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_gradient_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_gradient_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_gradient_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_SgdLR_Pipeline_DOT' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_DOT.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_flow_control_loop_pipe_sequential_init' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_flow_control_loop_pipe_sequential_init.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_flow_control_loop_pipe_sequential_init' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_flow_control_loop_pipe_sequential_init.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_SgdLR_Pipeline_DOT' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_DOT.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_SgdLR_Pipeline_GRAD' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_SgdLR_Pipeline_GRAD' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_SgdLR_Pipeline_UPDATE' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_UPDATE.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_SgdLR_Pipeline_UPDATE' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_UPDATE.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/ip/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_gradient_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_gradient_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_gradient_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_gradient_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_SgdLR_Pipeline_DOT' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_DOT.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_flow_control_loop_pipe_sequential_init' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_flow_control_loop_pipe_sequential_init' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_SgdLR_Pipeline_DOT' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_DOT.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_SgdLR_Pipeline_GRAD' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_SgdLR_Pipeline_GRAD' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_SgdLR_Pipeline_UPDATE' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_UPDATE.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_SgdLR_Pipeline_UPDATE' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_UPDATE.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/ip/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip.v:53]
 INFO: [Synth 8-6157] synthesizing module 'LUT1' [/tools/Xilinx/Vivado/2023.2/scripts/rt/data/unisim_comp.v:81293]
 INFO: [Synth 8-6155] done synthesizing module 'LUT1' (0#1) [/tools/Xilinx/Vivado/2023.2/scripts/rt/data/unisim_comp.v:81293]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/ip/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/ip/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/ip/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_sitofp_32ns_32_7_no_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_sitofp_32ns_32_7_no_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_sitofp_32ns_32_7_no_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/ip/SgdLR_sitofp_32ns_32_7_no_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_sitofp_32ns_32_7_no_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/ip/SgdLR_sitofp_32ns_32_7_no_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_sitofp_32ns_32_7_no_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_sitofp_32ns_32_7_no_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_fexp_32ns_32ns_32_31_full_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_fexp_32ns_32ns_32_31_full_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/ip/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/ip/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/ip/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/ip/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_sitofp_32ns_32_7_no_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_sitofp_32ns_32_7_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_sitofp_32ns_32_7_no_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/ip/SgdLR_sitofp_32ns_32_7_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_sitofp_32ns_32_7_no_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/ip/SgdLR_sitofp_32ns_32_7_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_sitofp_32ns_32_7_no_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_sitofp_32ns_32_7_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_fexp_32ns_32ns_32_31_full_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_fexp_32ns_32ns_32_31_full_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/ip/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1_ip.v:53]
 WARNING: [Synth 8-5974] attribute "use_dsp48" has been deprecated, please use "use_dsp" instead 
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_fexp_32ns_32ns_32_31_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/ip/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_fexp_32ns_32ns_32_31_full_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_fmul_32ns_32ns_32_8_max_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'SgdLR_fmul_32ns_32ns_32_8_max_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/ip/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_fmul_32ns_32ns_32_8_max_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/ip/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR_fmul_32ns_32ns_32_8_max_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'SgdLR' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
-WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter10_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:317]
-WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter9_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:317]
-WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter8_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:324]
-WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter7_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:323]
-WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter6_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:322]
-WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter5_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:321]
-WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter4_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:320]
-WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter3_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:319]
-WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter2_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:318]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_fexp_32ns_32ns_32_31_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/ip/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_fexp_32ns_32ns_32_31_full_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_fmul_32ns_32ns_32_8_max_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SgdLR_fmul_32ns_32ns_32_8_max_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/ip/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_fmul_32ns_32ns_32_8_max_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/ip/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR_fmul_32ns_32ns_32_8_max_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SgdLR' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter10_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:317]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter9_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:317]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter8_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:324]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter7_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:323]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter6_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:322]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter5_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:321]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter4_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:320]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter3_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:319]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter2_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:318]
 WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
@@ -175,61 +175,61 @@ WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized1
 WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized185 is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2312.039 ; gain = 633.652 ; free physical = 248 ; free virtual = 2727
+Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2310.164 ; gain = 634.652 ; free physical = 233 ; free virtual = 7877
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2320.945 ; gain = 642.559 ; free physical = 250 ; free virtual = 2722
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2313.133 ; gain = 637.621 ; free physical = 233 ; free virtual = 7878
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2320.945 ; gain = 642.559 ; free physical = 250 ; free virtual = 2722
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2313.133 ; gain = 637.621 ; free physical = 233 ; free virtual = 7878
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.12 ; elapsed = 00:00:00.11 . Memory (MB): peak = 2323.914 ; gain = 0.000 ; free physical = 229 ; free virtual = 2717
+Netlist sorting complete. Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.11 . Memory (MB): peak = 2316.102 ; gain = 0.000 ; free physical = 245 ; free virtual = 7879
 INFO: [Netlist 29-17] Analyzing 1750 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/SgdLR_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/SgdLR_ooc.xdc] for cell 'inst'
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/SgdLR_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/SgdLR_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2422.758 ; gain = 0.000 ; free physical = 229 ; free virtual = 2708
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2407.945 ; gain = 0.000 ; free physical = 207 ; free virtual = 7856
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 41 instances were transformed.
   FDE => FDRE: 41 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.15 ; elapsed = 00:00:00.07 . Memory (MB): peak = 2422.793 ; gain = 0.000 ; free physical = 227 ; free virtual = 2706
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.16 ; elapsed = 00:00:00.07 . Memory (MB): peak = 2407.980 ; gain = 0.000 ; free physical = 207 ; free virtual = 7856
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 280 ; free virtual = 2756
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 194 ; free virtual = 7849
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 280 ; free virtual = 2756
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 194 ; free virtual = 7849
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 280 ; free virtual = 2756
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 194 ; free virtual = 7849
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
-WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter1_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:302]
-WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:301]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_pp0_iter1_reg_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:302]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_reg_147_reg' and it is trimmed from '11' to '10' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v:301]
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 279 ; free virtual = 2766
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 236 ; free virtual = 7883
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'inst/faddfsub_32ns_32ns_32_10_full_dsp_1_U16/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/faddfsub_32ns_32ns_32_10_full_dsp_1_U16/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_OVERFLOW'
 INFO: [Synth 8-223] decloning instance 'inst/faddfsub_32ns_32ns_32_10_full_dsp_1_U16/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/faddfsub_32ns_32ns_32_10_full_dsp_1_U16/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
@@ -271,25 +271,25 @@ INFO: [Synth 8-3332] Sequential element (ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.NO
 INFO: [Synth 8-3332] Sequential element (ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.NORM_RND/FULL_USAGE_DSP.LOD/dist_norm_reg[0]) is unused and will be removed from module floating_point_v7_1_16_viv.
 INFO: [Synth 8-3332] Sequential element (EXP_OP.i_sp_or_dp.OP/i_shift_to_fixed/COND_DET/MANT_CARRY.MANT_ALL_ZERO_DET/CARRY_ZERO_DET/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_FD) is unused and will be removed from module floating_point_v7_1_16_viv__parameterized5.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 245 ; free virtual = 2735
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 166 ; free virtual = 7827
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 208 ; free virtual = 2720
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 165 ; free virtual = 7833
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:33 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 204 ; free virtual = 2716
+Finished Timing Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 191 ; free virtual = 7850
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 288 ; free virtual = 2722
+Finished Technology Mapping : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 192 ; free virtual = 7847
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -307,37 +307,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 291 ; free virtual = 2710
+Finished IO Insertion : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 181 ; free virtual = 7845
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 291 ; free virtual = 2710
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 181 ; free virtual = 7845
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 290 ; free virtual = 2709
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 187 ; free virtual = 7843
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 290 ; free virtual = 2709
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 187 ; free virtual = 7843
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 289 ; free virtual = 2708
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 187 ; free virtual = 7843
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 289 ; free virtual = 2708
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 187 ; free virtual = 7843
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -392,18 +392,18 @@ Report Cell Usage:
 |25    |FDSE     |    19|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 289 ; free virtual = 2708
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 187 ; free virtual = 7843
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 335 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 2422.793 ; gain = 642.559 ; free physical = 289 ; free virtual = 2708
-Synthesis Optimization Complete : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 2422.793 ; gain = 744.406 ; free physical = 289 ; free virtual = 2708
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 2407.980 ; gain = 637.621 ; free physical = 187 ; free virtual = 7843
+Synthesis Optimization Complete : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2407.980 ; gain = 732.469 ; free physical = 187 ; free virtual = 7843
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.07 . Memory (MB): peak = 2422.793 ; gain = 0.000 ; free physical = 579 ; free virtual = 2987
+Netlist sorting complete. Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.07 . Memory (MB): peak = 2407.980 ; gain = 0.000 ; free physical = 474 ; free virtual = 8130
 INFO: [Netlist 29-17] Analyzing 1908 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2422.793 ; gain = 0.000 ; free physical = 577 ; free virtual = 2988
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2407.980 ; gain = 0.000 ; free physical = 474 ; free virtual = 8130
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 292 instances were transformed.
   (MUXCY,XORCY) => CARRY4: 252 instances
@@ -413,14 +413,14 @@ Synth Design complete | Checksum: 631785d1
 INFO: [Common 17-83] Releasing license: Synthesis
 81 Infos, 113 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:00:42 . Memory (MB): peak = 2422.793 ; gain = 1083.000 ; free physical = 577 ; free virtual = 2988
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2018.629; main = 1691.533; forked = 377.328
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3379.965; main = 2422.762; forked = 989.219
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2446.770 ; gain = 0.000 ; free physical = 576 ; free virtual = 2988
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:00:42 . Memory (MB): peak = 2407.980 ; gain = 1070.938 ; free physical = 474 ; free virtual = 8130
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2024.590; main = 1698.570; forked = 377.188
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3357.441; main = 2407.949; forked = 981.508
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00 . Memory (MB): peak = 2431.957 ; gain = 0.000 ; free physical = 474 ; free virtual = 8130
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
 INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = 75fdb94346cd84bc
 INFO: [Coretcl 2-1174] Renamed 585 cell refs.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2446.770 ; gain = 0.000 ; free physical = 550 ; free virtual = 2977
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00 . Memory (MB): peak = 2431.957 ; gain = 0.000 ; free physical = 473 ; free virtual = 8137
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file bd_0_hls_inst_0_utilization_synth.rpt -pb bd_0_hls_inst_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Jun 23 07:20:14 2024...
+INFO: [Common 17-206] Exiting Vivado at Fri Aug  2 16:02:53 2024...

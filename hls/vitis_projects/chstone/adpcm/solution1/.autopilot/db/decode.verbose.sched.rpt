@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'decode'
 ================================================================
-* Date:           Sun Jun 23 07:23:07 2024
+* Date:           Fri Aug  2 16:09:50 2024
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        adpcm
@@ -1083,11 +1083,11 @@ The critical path consists of the following:
 
  <State 16>: 3.871ns
 The critical path consists of the following:
-	'mul' operation 64 bit ('mul_ln705', benchmarks/chstone/adpcm/src/adpcm.c:705->benchmarks/chstone/adpcm/src/adpcm.c:446) [221]  (3.871 ns)
+	'mul' operation 64 bit ('mul_ln705_2', benchmarks/chstone/adpcm/src/adpcm.c:705->benchmarks/chstone/adpcm/src/adpcm.c:487) [448]  (3.871 ns)
 
  <State 17>: 3.871ns
 The critical path consists of the following:
-	'mul' operation 64 bit ('mul_ln705', benchmarks/chstone/adpcm/src/adpcm.c:705->benchmarks/chstone/adpcm/src/adpcm.c:446) [221]  (3.871 ns)
+	'mul' operation 64 bit ('mul_ln705_2', benchmarks/chstone/adpcm/src/adpcm.c:705->benchmarks/chstone/adpcm/src/adpcm.c:487) [448]  (3.871 ns)
 
  <State 18>: 3.871ns
 The critical path consists of the following:

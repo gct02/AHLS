@@ -53,8 +53,8 @@ struct GetDFGPass : public ModulePass {
             return false;
         }
 
-        uint64_t numNodes = 0, numEdges = 0;
-        std::vector<int[12]> nodeFeatures;
+        int numNodes = 0, numEdges = 0;
+        std::vector<std::vector<int>> nodeFeatures;
         std::vector<std::pair<int, int>> edges;
 
         for(Function& F : M) {
@@ -67,7 +67,7 @@ struct GetDFGPass : public ModulePass {
                         uint8_t opCode = I.getOpcode();
                         uint32_t bitwidth = I.getType()->getScalarSizeInBits();
 
-                        int features[12] = {opID,opCode,bitwidth,0,0,0,0,0,0,0,0,0};
+                        std::vector<int> features({(int)opID,(int)opCode,(int)bitwidth,0,0,0,0,0,0,0,0,0});
 
                         MDTuple* arrayPartitionMDTuple = dyn_cast<MDTuple>(I.getMetadata("array_partition"));
                         MDTuple* loopMergeMDTuple = dyn_cast<MDTuple>(I.getMetadata("loop_merge"));
@@ -75,33 +75,24 @@ struct GetDFGPass : public ModulePass {
                         MDTuple* unrollMDTuple = dyn_cast<MDTuple>(I.getMetadata("unroll"));
 
                         if (unrollMDTuple) {
-                            uint32_t unroll = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMDTuple->getOperand(0))->getValue())->getZExtValue();
-                            uint32_t unrollFactor = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMDTuple->getOperand(1))->getValue())->getZExtValue();
-                            features[3] = unroll;
-                            features[4] = unrollFactor;
+                            features[3] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMDTuple->getOperand(0))->getValue())->getZExtValue();
+                            features[4] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMDTuple->getOperand(1))->getValue())->getZExtValue();
                         }
 
                         if (arrayPartitionMDTuple) {
-                            uint32_t arrayPartition = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(0))->getValue())->getZExtValue();
-                            uint32_t arrayPartitionType = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(1))->getValue())->getZExtValue();
-                            uint32_t arrayPartitionFactor = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(2))->getValue())->getZExtValue();
-                            uint32_t arrayPartitionDim = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(3))->getValue())->getZExtValue();
-                            features[5] = arrayPartition;
-                            features[6] = arrayPartitionType;
-                            features[7] = arrayPartitionFactor;
-                            features[8] = arrayPartitionDim;
+                            features[5] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(0))->getValue())->getZExtValue();
+                            features[6] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(1))->getValue())->getZExtValue();
+                            features[7] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(2))->getValue())->getZExtValue();
+                            features[8] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(3))->getValue())->getZExtValue();
                         }
 
                         if (pipelineMDTuple) {
-                            uint32_t pipeline = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMDTuple->getOperand(0))->getValue())->getZExtValue();
-                            uint32_t pipelineII = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMDTuple->getOperand(1))->getValue())->getZExtValue();
-                            features[9] = pipeline;
-                            features[10] = pipelineII;
+                            features[9] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMDTuple->getOperand(0))->getValue())->getZExtValue();
+                            features[10] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMDTuple->getOperand(1))->getValue())->getZExtValue();
                         }
 
                         if (loopMergeMDTuple) {
-                            uint32_t loopMerge = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopMergeMDTuple->getOperand(0))->getValue())->getZExtValue();
-                            features[11] = loopMerge;
+                            features[11] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopMergeMDTuple->getOperand(0))->getValue())->getZExtValue();
                         }
 
                         nodeFeatures.push_back(features);

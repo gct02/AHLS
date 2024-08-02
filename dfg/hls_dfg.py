@@ -1,4 +1,5 @@
 import numpy as np
+import torch
 
 import subprocess
 from pathlib import Path
@@ -70,14 +71,13 @@ def parse_dfg_file(dfg_file: Path) -> tuple:
         num_nodes = int(lines[0])
         nodes = []
         for i in range(1, num_nodes + 1):
-            node_str = lines[i].strip().split(',')
-            nodes.append([int(node_str[i]) for i in range(1, len(node_str))])
+            nodes.append([int(feature) for feature in lines[i].strip().split(',')])
         
         num_edges = int(lines[num_nodes + 1])
         edges = []
         for i in range(num_nodes + 2, num_nodes + num_edges + 2):
-            edge_str = lines[i].strip().split(',')
-            edges.append([int(edge_str[i]) for i in range(0, len(edge_str))])
+            edge = lines[i].strip().split(',')
+            edges.append((int(edge[0]), int(edge[1])))
 
     return nodes, edges
 
@@ -109,7 +109,7 @@ def make_adjacency_lists(nodes: list, edges: list):
     return adj_lists
 
 
-def build_dfg(dfg_file: Path, dtype='int32'):
+def build_dfg(dfg_file: Path):
     nodes, edges = parse_dfg_file(dfg_file)
     nodes, edges = rescale_node_ids(nodes, edges)
     adj_lists = make_adjacency_lists(nodes, edges)
@@ -117,37 +117,31 @@ def build_dfg(dfg_file: Path, dtype='int32'):
     node_features_array = []
 
     for node_features in nodes:
-        opcode = node_features[0]
+        opcode = node_features[1]
         one_hot_opcode = get_one_hot_opcode(opcode)
-        array_partition_type = node_features[4]
-        if array_partition_type == 0: 
-            # None
-            has_partition = 0
-            one_hot_array_partition_type = [0, 0, 0]
-        elif array_partition_type == 1: 
-            # Complete 
-            has_partition = 1
-            one_hot_array_partition_type = [0, 0, 1]
-        elif array_partition_type == 2: 
-            # Block
-            has_partition = 1
-            one_hot_array_partition_type = [0, 1, 0]
-        else: 
-            # Cyclic
-            has_partition = 1
-            one_hot_array_partition_type = [1, 0, 0]
 
+        array_partition_type = node_features[6]
+        
+        if array_partition_type == 0: # None
+            one_hot_partition_type = [0, 0, 0]
+        elif array_partition_type == 1: # Complete 
+            one_hot_partition_type = [0, 0, 1]
+        elif array_partition_type == 2: # Block
+            one_hot_partition_type = [0, 1, 0]
+        else: # Cyclic
+            one_hot_partition_type = [1, 0, 0]
         '''
-        features = (one_hot_opcode, bitwidth,unroll, unroll_factor, array_partition, 
+        features = (one_hot_opcode, bitwidth, unroll, unroll_factor, array_partition, 
                     one_hot_partition_type, partition_factor, partition_dim, pipeline, 
                     pipeline_II, loop_merge)
         '''
-        features = one_hot_opcode + [node_features[1], node_features[2], node_features[3]] \
-                   + [has_partition] + one_hot_array_partition_type \
-                   + [node_features[5], node_features[6], node_features[7], node_features[8], node_features[9]]
+        features = one_hot_opcode + [node_features[2], node_features[3], node_features[4], node_features[5]] \
+                   + one_hot_partition_type \
+                   + [node_features[7], node_features[8], node_features[9], node_features[10], node_features[11]]
         
-        node_features_array.append(np.array(features, dtype=dtype))
-    
+        node_features_array.append(torch.FloatTensor(features))
+
+    node_features_array = torch.stack(node_features_array)
     return node_features_array, adj_lists
 
         

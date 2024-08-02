@@ -1836,8 +1836,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Adpcm_main</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2113614563</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-06-23T10:23:20Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2113672689</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2024-08-02T19:10:01Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>

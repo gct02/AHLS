@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:hls:DigitRec:1.0
-// IP Revision: 2113614553
+// IP Revision: 2113671824
 
 (* X_CORE_INFO = "DigitRec,Vivado 2023.2" *)
 (* CHECK_LICENSE_TYPE = "bd_0_hls_inst_0,DigitRec,{}" *)
-(* CORE_GENERATION_INFO = "bd_0_hls_inst_0,DigitRec,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=DigitRec,x_ipVersion=1.0,x_ipCoreRevision=2113614553,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "bd_0_hls_inst_0,DigitRec,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=DigitRec,x_ipVersion=1.0,x_ipCoreRevision=2113671824,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* IP_DEFINITION_SOURCE = "HLS" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module bd_0_hls_inst_0 (

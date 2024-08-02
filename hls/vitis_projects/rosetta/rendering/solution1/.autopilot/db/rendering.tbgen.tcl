@@ -74,8 +74,8 @@ set RtlHierarchyInfo {[
 			{"Name" : "triangle_3ds", "Type" : "None", "Direction" : "I"},
 			{"Name" : "output_r", "Type" : "Memory", "Direction" : "O",
 				"SubConnect" : [
-					{"ID" : "25", "SubInstance" : "grp_rendering_Pipeline_COLORING_FB_fu_9208", "Port" : "output_r", "Inst_start_state" : "21", "Inst_end_state" : "22"},
-					{"ID" : "23", "SubInstance" : "grp_rendering_Pipeline_COLORING_FB_INIT_ROW_COLORING_FB_INIT_COL_fu_9202", "Port" : "output_r", "Inst_start_state" : "19", "Inst_end_state" : "20"}]},
+					{"ID" : "23", "SubInstance" : "grp_rendering_Pipeline_COLORING_FB_INIT_ROW_COLORING_FB_INIT_COL_fu_9202", "Port" : "output_r", "Inst_start_state" : "19", "Inst_end_state" : "20"},
+					{"ID" : "25", "SubInstance" : "grp_rendering_Pipeline_COLORING_FB_fu_9208", "Port" : "output_r", "Inst_start_state" : "21", "Inst_end_state" : "22"}]},
 			{"Name" : "num_3d_tri", "Type" : "None", "Direction" : "I"},
 			{"Name" : "z_buffer", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [

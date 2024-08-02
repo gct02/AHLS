@@ -34,7 +34,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1869635878</coreId>
+						<coreId>639657324</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -70,7 +70,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1869635878</coreId>
+						<coreId>639657324</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -106,7 +106,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>872715296</coreId>
+						<coreId>2216546992</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>31</bitwidth>
@@ -142,7 +142,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1852140917</coreId>
+						<coreId>2219527024</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>16</bitwidth>
@@ -178,7 +178,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1802658157</coreId>
+						<coreId>1701670760</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>31</bitwidth>
@@ -214,7 +214,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>979578477</coreId>
+						<coreId>1802658157</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>15</bitwidth>
@@ -250,7 +250,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>796093298</coreId>
+						<coreId>979578477</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>15</bitwidth>
@@ -286,7 +286,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1864381495</coreId>
+						<coreId>796093298</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>6</bitwidth>
@@ -322,7 +322,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>796093298</coreId>
+						<coreId>544108320</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>15</bitwidth>
@@ -358,7 +358,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>544108320</coreId>
+						<coreId>796093298</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -394,7 +394,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>796093298</coreId>
+						<coreId>1864381495</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -430,7 +430,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>540292919</coreId>
+						<coreId>796093298</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>31</bitwidth>
@@ -466,7 +466,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>796093298</coreId>
+						<coreId>1852776500</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>16</bitwidth>
@@ -502,7 +502,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>544108320</coreId>
+						<coreId>796093298</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>31</bitwidth>
@@ -538,7 +538,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1751346789</coreId>
+						<coreId>1864381495</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>15</bitwidth>
@@ -574,7 +574,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>893018926</coreId>
+						<coreId>1751346789</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>15</bitwidth>
@@ -610,7 +610,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1025526089</coreId>
+						<coreId>1663987043</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>15</bitwidth>
@@ -646,7 +646,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>808464928</coreId>
+						<coreId>1025526089</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -682,7 +682,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>808598894</coreId>
+						<coreId>808464928</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -718,7 +718,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>539113010</coreId>
+						<coreId>808598894</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -754,7 +754,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>892483935</coreId>
+						<coreId>539113010</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -790,7 +790,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1397508187</coreId>
+						<coreId>892483935</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>16</bitwidth>
@@ -826,7 +826,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1852793632</coreId>
+						<coreId>808591443</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -862,7 +862,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1702259060</coreId>
+						<coreId>1852142702</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>14</bitwidth>
@@ -886,7 +886,7 @@
 						<id>30</id>
 						<name>i_4</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>771</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -894,7 +894,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item class_id="10" tracking_level="0" version="0">
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second class_id="11" tracking_level="0" version="0">
 									<count>1</count>
 									<item_version>0</item_version>
@@ -916,7 +916,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>876935408</coreId>
+						<coreId>2213973072</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>13</bitwidth>
@@ -942,7 +942,7 @@
 						<id>33</id>
 						<name>i_4_write_ln771</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>771</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -950,7 +950,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -972,7 +972,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>876935408</coreId>
+						<coreId>2213973072</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1015,7 +1015,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>875796688</coreId>
+						<coreId>2212569504</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1041,7 +1041,7 @@
 						<id>36</id>
 						<name>i</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>778</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1049,7 +1049,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1071,7 +1071,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>874254736</coreId>
+						<coreId>2212741600</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>13</bitwidth>
@@ -1098,7 +1098,7 @@
 						<id>37</id>
 						<name>icmp_ln778</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>778</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1106,7 +1106,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1128,7 +1128,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>876328592</coreId>
+						<coreId>2220715056</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>1</bitwidth>
@@ -1155,7 +1155,7 @@
 						<id>38</id>
 						<name>br_ln778</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>778</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1163,7 +1163,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1185,7 +1185,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>3991719232</coreId>
+						<coreId>2215648880</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1213,7 +1213,7 @@
 						<id>40</id>
 						<name>zext_ln778</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>778</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1221,7 +1221,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1243,7 +1243,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>870711920</coreId>
+						<coreId>2215040880</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1269,7 +1269,7 @@
 						<id>44</id>
 						<name>input_samples_addr</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>780</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1277,7 +1277,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1299,7 +1299,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1634956133</coreId>
+						<coreId>796093298</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>13</bitwidth>
@@ -1327,7 +1327,7 @@
 						<id>45</id>
 						<name>input_samples_load</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>780</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1335,7 +1335,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1357,7 +1357,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1701067635</coreId>
+						<coreId>1701015141</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -1383,7 +1383,7 @@
 						<id>46</id>
 						<name>or_ln780</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>780</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1391,7 +1391,120 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>benchmarks/chstone/adpcm/src/adpcm.c</first>
+											<second>adpcm_main</second>
+										</first>
+										<second>780</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>1279795773</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>13</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>81</item>
+					<item>83</item>
+				</oprand_edges>
+				<opcode>or</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.00</m_delay>
+				<m_topoIndex>10</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_35">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>47</id>
+						<name>zext_ln780</name>
+						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
+						<lineNumber>780</lineNumber>
+						<contextFuncName>adpcm_main</contextFuncName>
+						<contextNormFuncName>adpcm_main</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>benchmarks/chstone/adpcm/src/adpcm.c</first>
+											<second>adpcm_main</second>
+										</first>
+										<second>780</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>1768173427</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>64</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>84</item>
+				</oprand_edges>
+				<opcode>zext</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.00</m_delay>
+				<m_topoIndex>11</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_36">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>48</id>
+						<name>input_samples_addr_1</name>
+						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
+						<lineNumber>780</lineNumber>
+						<contextFuncName>adpcm_main</contextFuncName>
+						<contextNormFuncName>adpcm_main</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1419,119 +1532,6 @@
 					<bitwidth>13</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>81</item>
-					<item>83</item>
-				</oprand_edges>
-				<opcode>or</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
-				<m_topoIndex>10</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_35">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>47</id>
-						<name>zext_ln780</name>
-						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
-						<lineNumber>780</lineNumber>
-						<contextFuncName>adpcm_main</contextFuncName>
-						<contextNormFuncName>adpcm_main</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>benchmarks/chstone/adpcm/src/adpcm.c</first>
-											<second>adpcm_main</second>
-										</first>
-										<second>780</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>997420912</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>64</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>1</count>
-					<item_version>0</item_version>
-					<item>84</item>
-				</oprand_edges>
-				<opcode>zext</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
-				<m_topoIndex>11</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_36">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>48</id>
-						<name>input_samples_addr_1</name>
-						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
-						<lineNumber>780</lineNumber>
-						<contextFuncName>adpcm_main</contextFuncName>
-						<contextNormFuncName>adpcm_main</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>benchmarks/chstone/adpcm/src/adpcm.c</first>
-											<second>adpcm_main</second>
-										</first>
-										<second>780</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>1630495602</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>13</bitwidth>
-				</Value>
-				<oprand_edges>
 					<count>3</count>
 					<item_version>0</item_version>
 					<item>85</item>
@@ -1554,7 +1554,7 @@
 						<id>49</id>
 						<name>input_samples_load_1</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>780</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1562,7 +1562,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1584,7 +1584,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1797268061</coreId>
+						<coreId>544500066</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -1610,7 +1610,7 @@
 						<id>50</id>
 						<name>tmp</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>780</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1618,7 +1618,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1640,7 +1640,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>544239471</coreId>
+						<coreId>2221133936</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -1695,7 +1695,7 @@
 						<id>51</id>
 						<name>tmp_cast</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>780</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1703,7 +1703,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1725,7 +1725,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1885626671</coreId>
+						<coreId>2221134688</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -1751,7 +1751,7 @@
 						<id>52</id>
 						<name>tmp_s</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>778</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1759,7 +1759,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1781,7 +1781,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1751346789</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>12</bitwidth>
@@ -1810,7 +1810,7 @@
 						<id>53</id>
 						<name>zext_ln780_1</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>780</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1818,7 +1818,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1840,7 +1840,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1701999988</coreId>
+						<coreId>1936028255</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1866,7 +1866,7 @@
 						<id>54</id>
 						<name>compressed_addr</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>780</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1874,7 +1874,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1896,7 +1896,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1397508130</coreId>
+						<coreId>893018926</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>12</bitwidth>
@@ -1924,7 +1924,7 @@
 						<id>55</id>
 						<name>compressed_addr_write_ln780</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>780</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1932,7 +1932,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -1954,7 +1954,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1411398176</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1981,7 +1981,7 @@
 						<id>56</id>
 						<name>add_ln778</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>778</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -1989,7 +1989,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -2011,7 +2011,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1851880563</coreId>
+						<coreId>2727060574</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>13</bitwidth>
@@ -2038,7 +2038,7 @@
 						<id>57</id>
 						<name>i_4_write_ln771</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>771</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -2046,7 +2046,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -2068,7 +2068,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>65552</coreId>
+						<coreId>2221128016</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -2097,7 +2097,7 @@
 						<id>58</id>
 						<name>br_ln778</name>
 						<fileName>benchmarks/chstone/adpcm/src/adpcm.c</fileName>
-						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS</fileDirectory>
+						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>778</lineNumber>
 						<contextFuncName>adpcm_main</contextFuncName>
 						<contextNormFuncName>adpcm_main</contextNormFuncName>
@@ -2105,7 +2105,7 @@
 							<count>1</count>
 							<item_version>0</item_version>
 							<item>
-								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS</first>
+								<first>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</first>
 								<second>
 									<count>1</count>
 									<item_version>0</item_version>
@@ -2127,7 +2127,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>912208176</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -2169,7 +2169,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>3990573143</coreId>
+						<coreId>2221141632</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -2214,7 +2214,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>176</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -2276,7 +2276,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>3990571351</coreId>
+						<coreId>2727064511</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>13</bitwidth>
@@ -2307,7 +2307,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1668310113</coreId>
+						<coreId>2221143792</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2369,7 +2369,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>870874528</coreId>
+						<coreId>2221144912</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -2400,7 +2400,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>3990569735</coreId>
+						<coreId>1885626624</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -2431,7 +2431,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>870876904</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>13</bitwidth>
@@ -2465,7 +2465,7 @@
 					<coreName></coreName>
 					<isStorage>0</isStorage>
 					<storageDepth>0</storageDepth>
-					<coreId>876935408</coreId>
+					<coreId>2213973072</coreId>
 					<rtlModuleName></rtlModuleName>
 				</Obj>
 				<node_objs>
@@ -2498,7 +2498,7 @@
 					<coreName></coreName>
 					<isStorage>0</isStorage>
 					<storageDepth>0</storageDepth>
-					<coreId>876935408</coreId>
+					<coreId>2213973072</coreId>
 					<rtlModuleName></rtlModuleName>
 				</Obj>
 				<node_objs>

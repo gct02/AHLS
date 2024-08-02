@@ -13,6 +13,14 @@ from pathlib import Path
 from estimators.gnn.gat import GAT
 from dfg.hls_dfg import build_dfg
 
+dtype = torch.float
+device = "cuda" if torch.cuda.is_available() else "cpu"
+torch.set_default_device(device)
+
+# Change numpy print options
+np.set_printoptions(threshold=np.inf)
+torch.set_printoptions(profile="full")
+
 def train_step(model, loss_func, optimizer, graphs, labels):
     train_loss = 0
 
@@ -22,6 +30,8 @@ def train_step(model, loss_func, optimizer, graphs, labels):
         node_features = graph[0]
         adj_lists = graph[1]
         label_pred = model(node_features, adj_lists)
+
+        print(f"Label: {label.item()}, Prediction: {label_pred.item()}")
 
         loss = loss_func(label_pred, label)
         train_loss += loss.item()
@@ -68,16 +78,19 @@ def save_model(model, target_dir, model_name):
 
 
 def train_model(model, loss_func, optimizer, graphs, labels, epochs):
-    train_graphs, test_graphs = model_selection.train_test_split(graphs, train_size=0.9)
-    train_labels, test_labels = model_selection.train_test_split(labels, train_size=0.9)
+    #train_graphs, test_graphs = model_selection.train_test_split(graphs, train_size=0.5)
+    #train_labels, test_labels = model_selection.train_test_split(labels, train_size=0.5)
 
     for epoch in range(epochs):
-        train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
-        test_loss = test_step(model, loss_func, test_graphs, test_labels)
+        #train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
+        #test_loss = test_step(model, loss_func, test_graphs, test_labels)
+        train_loss = train_step(model, loss_func, optimizer, graphs, labels)
 
-        print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}, Test loss: {test_loss}")
+        #print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}, Test loss: {test_loss}")
+        print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}")
     
-    return train_loss, test_loss
+    #return train_loss, test_loss
+    return train_loss
 
 
 def main(args):
@@ -92,25 +105,27 @@ def main(args):
 
     graphs = []
     for graph_file in os.listdir(graphs_dir):
-        graph_file_path = os.fsdecode(graph_file)
+        graph_file_path = os.fsdecode(os.path.join(graphs_dir, graph_file))
         node_features, adj_lists = build_dfg(graph_file_path)
-        node_features = torch.FloatTensor(np.array(node_features, dtype=np.float32))
         graphs.append((node_features, adj_lists))
 
-    graph_labels_dsp = pd.read_csv(target_dsp_file)
+    with open(target_dsp_file, 'r') as f:
+        graph_labels_dsp = [[float(label)] for label in f.readlines()]
+
+    graph_labels_dsp = torch.FloatTensor(graph_labels_dsp)
 
     model = GAT(32, 1, 8)
 
     loss_func = nn.MSELoss(reduction='sum')
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-6)
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-2)
 
     train_model(model, loss_func, optimizer, graphs, graph_labels_dsp, epochs)
 
-    save_model(model, "models", "gat_dsp.pth")
+    save_model(model, "estimators/gnn/models", "gat_dsp.pth")
     
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='provide arguments for the graph embedding model with DSP predictions')
+    parser = argparse.ArgumentParser(description='Provide arguments for the graph embedding model with dsp predictions')
 
     parser.add_argument('--epoch', help='The number of training epochs', default=50)
     parser.add_argument('--seed', help='Random seed for repeatability', default=42)

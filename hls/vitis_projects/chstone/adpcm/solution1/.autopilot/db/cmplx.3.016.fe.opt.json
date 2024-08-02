@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 19,
-    "calls": "1 2",
+    "calls": "2 1",
     "file": "adpcm.c",
     "fileloc": 769,
     "instructions": 136,
@@ -17,21 +17,6 @@
     "total_instructions": 1325
   },
   "1": {
-    "basicblocks": 41,
-    "calls": "",
-    "file": "adpcm.c",
-    "fileloc": 250,
-    "instructions": 666,
-    "loads": {
-      "G": 72
-    },
-    "name": "encode",
-    "stores": {
-      "G": 77
-    },
-    "total_instructions": 666
-  },
-  "2": {
     "basicblocks": 7,
     "calls": "",
     "file": "adpcm.c",
@@ -45,5 +30,20 @@
       "G": 76
     },
     "total_instructions": 523
+  },
+  "2": {
+    "basicblocks": 41,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 250,
+    "instructions": 666,
+    "loads": {
+      "G": 72
+    },
+    "name": "encode",
+    "stores": {
+      "G": 77
+    },
+    "total_instructions": 666
   }
 }

@@ -498,11 +498,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 23 10:15:03 UTC 2024</spirit:value>
+            <spirit:value>Fri Aug 02 04:45:11 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:d30cc719</spirit:value>
+            <spirit:value>9:6c6c7c98</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -513,7 +513,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:d30cc719</spirit:value>
+            <spirit:value>9:6c6c7c98</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -529,11 +529,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 23 10:14:24 UTC 2024</spirit:value>
+            <spirit:value>Fri Aug 02 04:44:35 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:619c12b0</spirit:value>
+            <spirit:value>9:defca931</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -549,11 +549,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 23 10:14:24 UTC 2024</spirit:value>
+            <spirit:value>Fri Aug 02 04:44:35 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:619c12b0</spirit:value>
+            <spirit:value>9:defca931</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -569,11 +569,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 23 10:14:24 UTC 2024</spirit:value>
+            <spirit:value>Fri Aug 02 04:44:35 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:d30cc719</spirit:value>
+            <spirit:value>9:6c6c7c98</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -589,11 +589,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 23 10:14:24 UTC 2024</spirit:value>
+            <spirit:value>Fri Aug 02 04:44:35 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:d30cc719</spirit:value>
+            <spirit:value>9:6c6c7c98</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1014,47 +1014,47 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_3.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_3.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_SET_KNN_SET.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_SET_KNN_SET.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_TRAINING_LOOP.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_TRAINING_LOOP.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_69_1.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_69_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_72_2.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_72_2.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_flow_control_loop_pipe_sequential_init.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_flow_control_loop_pipe_sequential_init.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_mux_3_2_4_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_mux_3_2_4_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_votes_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_votes_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1075,39 +1075,39 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_3.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_3.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_SET_KNN_SET.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_SET_KNN_SET.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_TRAINING_LOOP.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_TRAINING_LOOP.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_69_1.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_69_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_72_2.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_72_2.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_flow_control_loop_pipe_sequential_init.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_flow_control_loop_pipe_sequential_init.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_mux_3_2_4_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_mux_3_2_4_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec_votes_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec_votes_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/dd90/hdl/verilog/DigitRec.v</spirit:name>
+        <spirit:name>../../ipshared/a3dc/hdl/verilog/DigitRec.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -1186,7 +1186,7 @@
     <xilinx:coreExtensions>
       <xilinx:displayName>Digitrec</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2113614553</xilinx:coreRevision>
+      <xilinx:coreRevision>2113671824</xilinx:coreRevision>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>

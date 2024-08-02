@@ -33,7 +33,7 @@ def update_md(ir_path: Path, output_path: Path=None) -> Path:
         raise UpdateMDError(ir_path.as_posix(), error.returncode, error.output)
     
     
-def preprocess_vitis_hls_ir(ir_path: Path, output_path: Path) -> None:
+def preprocess_vitis_hls_ir(ir_path: Path, output_path: Path) -> Path:
     """
     Preprocess the Vitis HLS IR file at ir_path and write the preprocessed IR to output_path.
     """
@@ -46,6 +46,7 @@ def preprocess_vitis_hls_ir(ir_path: Path, output_path: Path) -> None:
         subprocess.check_output(strip_dbg_cmd, stderr=subprocess.STDOUT, shell=True)
         subprocess.check_output(preprocess_cmd, stderr=subprocess.STDOUT, shell=True)
         temp_path.unlink()
+        return output_path
     except subprocess.CalledProcessError as error:
         temp_path.unlink()
         raise PreprocessVitisHLSError(ir_path.as_posix(), error.returncode, error.output)
@@ -58,7 +59,7 @@ def instrument(ir_path: Path, data_stats_file_path: Path, populate_io_path: Path
     The instrumented IR file contains calls to profile functions after each binary operation and a call to a function
     that writes the profile data to the file in data_stats_file_path.
     """
-    profiled_ir_path = ir_path.parent / (Path(ir_path.stem).stem + ".pf.bc")
+    profiled_ir_path = ir_path.parent / (Path(ir_path.stem).stem + ".inst.temp.bc")
 
     profile_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -profile -pf {data_stats_file_path.as_posix()} < {ir_path.as_posix()} > {profiled_ir_path.as_posix()}"
 
@@ -69,7 +70,7 @@ def instrument(ir_path: Path, data_stats_file_path: Path, populate_io_path: Path
         raise InstrumentationError(ir_path.as_posix(), error.returncode, error.output)
 
     if output_path is None:
-        output_path = ir_path.parent / Path(Path(ir_path.stem).stem + "_instrumented.bc")
+        output_path = ir_path.parent / Path(ir_path.stem + ".inst.bc")
     profiler_path = Path(__file__).parent / "profiler/profiler.bc"
 
     # Link the profiled IR with the profiler and, if necessary, 

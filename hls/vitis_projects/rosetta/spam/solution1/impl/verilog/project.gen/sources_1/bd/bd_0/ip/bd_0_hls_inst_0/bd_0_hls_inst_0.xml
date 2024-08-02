@@ -417,11 +417,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 23 10:20:14 UTC 2024</spirit:value>
+            <spirit:value>Fri Aug 02 19:02:53 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:f7062b3b</spirit:value>
+            <spirit:value>9:d401515b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -432,7 +432,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:f7062b3b</spirit:value>
+            <spirit:value>9:d401515b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -475,11 +475,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 23 10:19:17 UTC 2024</spirit:value>
+            <spirit:value>Fri Aug 02 19:01:56 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:ddb0a953</spirit:value>
+            <spirit:value>9:feb7d333</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -495,11 +495,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 23 10:19:17 UTC 2024</spirit:value>
+            <spirit:value>Fri Aug 02 19:01:56 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:ddb0a953</spirit:value>
+            <spirit:value>9:feb7d333</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -542,11 +542,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 23 10:19:17 UTC 2024</spirit:value>
+            <spirit:value>Fri Aug 02 19:01:56 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:f7062b3b</spirit:value>
+            <spirit:value>9:d401515b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -562,11 +562,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 23 10:19:17 UTC 2024</spirit:value>
+            <spirit:value>Fri Aug 02 19:01:56 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:f7062b3b</spirit:value>
+            <spirit:value>9:d401515b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1060,82 +1060,82 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_flow_control_loop_pipe_sequential_init.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_flow_control_loop_pipe_sequential_init.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_gradient_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_gradient_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_DOT.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_DOT.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_UPDATE.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_UPDATE.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_sitofp_32ns_32_7_no_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_sitofp_32ns_32_7_no_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/ip/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/ip/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/ip/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/ip/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/ip/SgdLR_sitofp_32ns_32_7_no_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/ip/SgdLR_sitofp_32ns_32_7_no_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/ip/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/ip/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/ip/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/ip/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1291,23 +1291,23 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogsynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/ip/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/ip/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/ip/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/ip/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/ip/SgdLR_sitofp_32ns_32_7_no_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/ip/SgdLR_sitofp_32ns_32_7_no_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/ip/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/ip/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/ip/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/ip/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1316,47 +1316,47 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_faddfsub_32ns_32ns_32_10_full_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_fdiv_32ns_32ns_32_30_no_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_fexp_32ns_32ns_32_31_full_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_flow_control_loop_pipe_sequential_init.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_flow_control_loop_pipe_sequential_init.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_fmul_32ns_32ns_32_8_max_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_gradient_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_gradient_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_DOT.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_DOT.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_GRAD.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_SgdLR_Pipeline_UPDATE.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_SgdLR_Pipeline_UPDATE.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR_sitofp_32ns_32_7_no_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR_sitofp_32ns_32_7_no_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a32d/hdl/verilog/SgdLR.v</spirit:name>
+        <spirit:name>../../ipshared/e4cd/hdl/verilog/SgdLR.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -1435,7 +1435,7 @@
     <xilinx:coreExtensions>
       <xilinx:displayName>Sgdlr</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2113614558</xilinx:coreRevision>
+      <xilinx:coreRevision>2113672681</xilinx:coreRevision>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>

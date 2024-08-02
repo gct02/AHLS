@@ -33,30 +33,30 @@
             <header size="7" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Array/Struct" col5="Performance" col6="HW Transforms"/>
             <rows>
                 <row id="0" col0="adpcm_main" col1="adpcm.c:769" col2="1495" col3="931" col4="945" col5="1294" col6="1325">
-                    <row id="3" col0="reset" col1="adpcm.c:542" col2="98" col3="" col4="" col5="" col6=""/>
-                    <row id="5" col0="encode" col1="adpcm.c:250" col2="702" col3="426" col4="434" col5="666" col6="666">
-                        <row id="13" col0="filtez" col1="adpcm.c:583" col2="58" col2_disp="  58 (2 calls)" col3="" col4="" col5="" col6=""/>
-                        <row id="2" col0="filtep" col1="adpcm.c:598" col2="24" col2_disp="  24 (2 calls)" col3="" col4="" col5="" col6=""/>
-                        <row id="4" col0="quantl" col1="adpcm.c:610" col2="39" col3="" col4="" col5="" col6="">
-                            <row id="9" col0="abs" col1="adpcm.c:238" col2="7" col3="" col4="" col5="" col6=""/>
+                    <row id="10" col0="reset" col1="adpcm.c:542" col2="98" col3="" col4="" col5="" col6=""/>
+                    <row id="6" col0="encode" col1="adpcm.c:250" col2="702" col3="426" col4="434" col5="666" col6="666">
+                        <row id="9" col0="filtez" col1="adpcm.c:583" col2="58" col2_disp="  58 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        <row id="7" col0="filtep" col1="adpcm.c:598" col2="24" col2_disp="  24 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        <row id="8" col0="quantl" col1="adpcm.c:610" col2="39" col3="" col4="" col5="" col6="">
+                            <row id="11" col0="abs" col1="adpcm.c:238" col2="7" col3="" col4="" col5="" col6=""/>
                         </row>
-                        <row id="12" col0="logscl" col1="adpcm.c:636" col2="18" col3="" col4="" col5="" col6=""/>
-                        <row id="8" col0="scalel" col1="adpcm.c:651" col2="22" col2_disp="  22 (2 calls)" col3="" col4="" col5="" col6=""/>
-                        <row id="11" col0="upzero" col1="adpcm.c:664" col2="150" col2_disp=" 150 (2 calls)" col3="" col4="" col5="" col6=""/>
-                        <row id="7" col0="uppol2" col1="adpcm.c:700" col2="70" col2_disp="  70 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        <row id="2" col0="logscl" col1="adpcm.c:636" col2="18" col3="" col4="" col5="" col6=""/>
+                        <row id="12" col0="scalel" col1="adpcm.c:651" col2="22" col2_disp="  22 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        <row id="13" col0="upzero" col1="adpcm.c:664" col2="150" col2_disp=" 150 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        <row id="3" col0="uppol2" col1="adpcm.c:700" col2="70" col2_disp="  70 (2 calls)" col3="" col4="" col5="" col6=""/>
                         <row id="1" col0="uppol1" col1="adpcm.c:730" col2="54" col2_disp="  54 (2 calls)" col3="" col4="" col5="" col6=""/>
-                        <row id="9" col0="abs" col1="adpcm.c:238" col2="7" col3="" col4="" col5="" col6=""/>
-                        <row id="6" col0="logsch" col1="adpcm.c:756" col2="17" col3="" col4="" col5="" col6=""/>
+                        <row id="11" col0="abs" col1="adpcm.c:238" col2="7" col3="" col4="" col5="" col6=""/>
+                        <row id="5" col0="logsch" col1="adpcm.c:756" col2="17" col3="" col4="" col5="" col6=""/>
                     </row>
-                    <row id="10" col0="decode" col1="adpcm.c:403" col2="651" col3="400" col4="406" col5="523" col6="523">
-                        <row id="13" col0="filtez" col1="adpcm.c:583" col2="58" col2_disp="  58 (2 calls)" col3="" col4="" col5="" col6=""/>
-                        <row id="2" col0="filtep" col1="adpcm.c:598" col2="24" col2_disp="  24 (2 calls)" col3="" col4="" col5="" col6=""/>
-                        <row id="12" col0="logscl" col1="adpcm.c:636" col2="18" col3="" col4="" col5="" col6=""/>
-                        <row id="8" col0="scalel" col1="adpcm.c:651" col2="22" col2_disp="  22 (2 calls)" col3="" col4="" col5="" col6=""/>
-                        <row id="11" col0="upzero" col1="adpcm.c:664" col2="150" col2_disp=" 150 (2 calls)" col3="" col4="" col5="" col6=""/>
-                        <row id="7" col0="uppol2" col1="adpcm.c:700" col2="70" col2_disp="  70 (2 calls)" col3="" col4="" col5="" col6=""/>
+                    <row id="4" col0="decode" col1="adpcm.c:403" col2="651" col3="400" col4="406" col5="523" col6="523">
+                        <row id="9" col0="filtez" col1="adpcm.c:583" col2="58" col2_disp="  58 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        <row id="7" col0="filtep" col1="adpcm.c:598" col2="24" col2_disp="  24 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        <row id="2" col0="logscl" col1="adpcm.c:636" col2="18" col3="" col4="" col5="" col6=""/>
+                        <row id="12" col0="scalel" col1="adpcm.c:651" col2="22" col2_disp="  22 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        <row id="13" col0="upzero" col1="adpcm.c:664" col2="150" col2_disp=" 150 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        <row id="3" col0="uppol2" col1="adpcm.c:700" col2="70" col2_disp="  70 (2 calls)" col3="" col4="" col5="" col6=""/>
                         <row id="1" col0="uppol1" col1="adpcm.c:730" col2="54" col2_disp="  54 (2 calls)" col3="" col4="" col5="" col6=""/>
-                        <row id="6" col0="logsch" col1="adpcm.c:756" col2="17" col3="" col4="" col5="" col6=""/>
+                        <row id="5" col0="logsch" col1="adpcm.c:756" col2="17" col3="" col4="" col5="" col6=""/>
                     </row>
                 </row>
             </rows>

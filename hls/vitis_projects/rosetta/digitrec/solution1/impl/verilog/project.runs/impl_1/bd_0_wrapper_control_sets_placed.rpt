@@ -1,0 +1,113 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
+| Date         : Fri Aug  2 01:46:15 2024
+| Host         : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.4 LTS
+| Command      : report_control_sets -verbose -file bd_0_wrapper_control_sets_placed.rpt
+| Design       : bd_0_wrapper
+| Device       : xc7z020
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    35 |
+|    Minimum number of control sets                        |    35 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   101 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    35 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     8 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     3 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     4 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    19 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              88 |           32 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              33 |           14 |
+| Yes          | No                    | No                     |            1606 |          461 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             116 |           42 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+| Clock Signal |                                                                    Enable Signal                                                                    |                                                                           Set/Reset Signal                                                                           | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_VITIS_LOOP_69_1_fu_201/ap_CS_fsm_pp0_stage1                                                              |                                                                                                                                                                      |                1 |              4 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_VITIS_LOOP_69_1_fu_201/ap_CS_fsm_pp0_stage0                                                              |                                                                                                                                                                      |                1 |              4 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm_reg[1][0]                        |                                                                                                                                                                      |                1 |              4 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/flow_control_loop_pipe_sequential_init_U/E[0]                                       |                                                                                                                                                                      |                2 |              4 |         2.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_3_fu_172/flow_control_loop_pipe_sequential_init_U/empty_fu_240                                           |                                                                                                                                                                      |                1 |              4 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_VITIS_LOOP_72_2_fu_209/max_label_fu_34                                                                   | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_VITIS_LOOP_72_2_fu_209/flow_control_loop_pipe_sequential_init_U/ap_loop_init                                              |                1 |              4 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_VITIS_LOOP_72_2_fu_209/flow_control_loop_pipe_sequential_init_U/i_fu_420                                 |                                                                                                                                                                      |                1 |              4 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm_reg[1]_0[0]                      |                                                                                                                                                                      |                1 |              4 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/Q[0]                                                                                | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/max_dist_reg_6842[8]_i_1_n_4                                                                         |                3 |              9 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/ap_CS_fsm_state2                                                                                                               |                                                                                                                                                                      |                4 |              9 |         2.25 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_SET_KNN_SET_fu_156/flow_control_loop_pipe_sequential_init_U/grp_DigitRec_Pipeline_3_fu_172_ap_start_reg0 | bd_0_i/hls_inst/inst/t_fu_58[8]_i_1_n_4                                                                                                                              |                3 |              9 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/ap_CS_fsm_pp0_stage0                                                                | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/flow_control_loop_pipe_sequential_init_U/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177_ap_start_reg_reg |                3 |             11 |         3.67 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/i_1_fu_2420                                                                         | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/flow_control_loop_pipe_sequential_init_U/i_1_fu_24204_out                                            |                4 |             12 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_SET_KNN_SET_fu_156/flow_control_loop_pipe_sequential_init_U/E[0]                                         | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_SET_KNN_SET_fu_156/flow_control_loop_pipe_sequential_init_U/SR[0]                                                         |                5 |             13 |         2.60 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_SET_KNN_SET_fu_156/flow_control_loop_pipe_sequential_init_U/E[0]                                         | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_SET_KNN_SET_fu_156/flow_control_loop_pipe_sequential_init_U/i_fu_54_reg[0][0]                                             |                6 |             13 |         2.17 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_SET_KNN_SET_fu_156/flow_control_loop_pipe_sequential_init_U/E[0]                                         | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_SET_KNN_SET_fu_156/flow_control_loop_pipe_sequential_init_U/i_fu_54_reg[1][0]                                             |                3 |             13 |         4.33 |
+|  ap_clk      | bd_0_i/hls_inst/inst/ap_CS_fsm_state6                                                                                                               |                                                                                                                                                                      |                6 |             24 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/flow_control_loop_pipe_sequential_init_U/ap_CS_fsm_reg[1]_3[0]                      |                                                                                                                                                                      |               10 |             27 |         2.70 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_VITIS_LOOP_69_1_fu_201/ap_CS_fsm_pp0_stage3                                                              |                                                                                                                                                                      |                9 |             32 |         3.56 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_VITIS_LOOP_69_1_fu_201/p_0_in                                                                            |                                                                                                                                                                      |                8 |             32 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_VITIS_LOOP_69_1_fu_201/votes_load_reg_1400                                                               |                                                                                                                                                                      |                6 |             32 |         5.33 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_VITIS_LOOP_69_1_fu_201/E[0]                                                                              |                                                                                                                                                                      |                8 |             32 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_VITIS_LOOP_72_2_fu_209/ap_enable_reg_pp0_iter3                                                           | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_VITIS_LOOP_72_2_fu_209/flow_control_loop_pipe_sequential_init_U/ap_loop_init                                              |               14 |             32 |         2.29 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/ap_ready_int                                                                        |                                                                                                                                                                      |                5 |             32 |         6.40 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/reg_4141                                                                            |                                                                                                                                                                      |                6 |             32 |         5.33 |
+|  ap_clk      |                                                                                                                                                     | ap_rst                                                                                                                                                               |               14 |             33 |         2.36 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/reg_6890                                                                            |                                                                                                                                                                      |               17 |             64 |         3.76 |
+|  ap_clk      | bd_0_i/hls_inst/inst/ap_CS_fsm_state3                                                                                                               |                                                                                                                                                                      |               17 |             64 |         3.76 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/reg_41413_out                                                                       |                                                                                                                                                                      |               18 |             64 |         3.56 |
+|  ap_clk      |                                                                                                                                                     |                                                                                                                                                                      |               33 |             92 |         2.79 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/Q[0]                                                                                |                                                                                                                                                                      |               57 |            187 |         3.28 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/reg_4140                                                                            |                                                                                                                                                                      |               45 |            192 |         4.27 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/ap_CS_fsm_pp0_stage2                                                                |                                                                                                                                                                      |               64 |            203 |         3.17 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/ap_CS_fsm_pp0_stage3                                                                |                                                                                                                                                                      |               89 |            276 |         3.10 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_DigitRec_Pipeline_TRAINING_LOOP_fu_177/ap_CS_fsm_pp0_stage0                                                                |                                                                                                                                                                      |               92 |            308 |         3.35 |
++--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+
+

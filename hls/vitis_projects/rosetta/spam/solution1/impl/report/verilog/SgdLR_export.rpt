@@ -4,20 +4,21 @@ Implementation tool: Xilinx Vivado v.2023.2
 Project:             spam
 Solution:            solution1
 Device target:       xc7z020-clg400-1
-Report date:         Sun Jun 23 07:21:00 -03 2024
+Report date:         Fri Aug 02 16:04:31 -03 2024
 
-#=== Post-Synthesis Resource usage ===
-SLICE:            0
-LUT:           2220
-FF:            3508
+#=== Post-Implementation Resource usage ===
+SLICE:          865
+LUT:           2106
+FF:            3404
 DSP:             12
 BRAM:             2
 URAM:             0
 LATCH:            0
-SRL:            124
+SRL:             98
 CLB:              0
 
 #=== Final timing ===
 CP required:                     5.000
 CP achieved post-synthesis:      3.936
+CP achieved post-implementation: 4.436
 Timing met

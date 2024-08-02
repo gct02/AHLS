@@ -250,7 +250,7 @@
     "components": {
       "hls_inst": {
         "vlnv": "xilinx.com:hls:DigitRec:1.0",
-        "ip_revision": "2113614553",
+        "ip_revision": "2113671824",
         "xci_name": "bd_0_hls_inst_0",
         "xci_path": "ip/bd_0_hls_inst_0/bd_0_hls_inst_0.xci",
         "inst_hier_path": "hls_inst"

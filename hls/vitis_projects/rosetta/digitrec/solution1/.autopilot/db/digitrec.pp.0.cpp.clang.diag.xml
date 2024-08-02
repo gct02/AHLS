@@ -1,13 +1,13 @@
 <dict>
   <key>main-file</key>
-  <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/.autopilot/db/digitrec.pp.0.cpp</string>
+  <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/.autopilot/db/digitrec.pp.0.cpp</string>
   <key>diagnostics</key>
   <array>
     <dict>
       <key>level</key>
       <string>warning</string>
       <key>filename</key>
-      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/run_hls.tcl</string>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/run_hls.tcl</string>
       <key>line</key>
       <integer>101</integer>
       <key>column</key>

@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 9,
-    "calls": "1 3",
+    "calls": "3 1",
     "file": "digitrec.cpp",
     "fileloc": 85,
     "instructions": 44,
@@ -16,30 +16,6 @@
     "total_instructions": 161
   },
   "1": {
-    "basicblocks": 13,
-    "calls": "2",
-    "file": "digitrec.cpp",
-    "fileloc": 29,
-    "instructions": 50,
-    "loads": {
-      "L": 4
-    },
-    "name": "update_knn",
-    "stores": {
-      "L": 2
-    },
-    "total_instructions": 69
-  },
-  "2": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "digitrec.cpp",
-    "fileloc": 18,
-    "instructions": 19,
-    "name": "popcount",
-    "total_instructions": 19
-  },
-  "3": {
     "basicblocks": 15,
     "calls": "",
     "file": "digitrec.cpp",
@@ -53,5 +29,29 @@
       "L": 2
     },
     "total_instructions": 48
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "digitrec.cpp",
+    "fileloc": 18,
+    "instructions": 19,
+    "name": "popcount",
+    "total_instructions": 19
+  },
+  "3": {
+    "basicblocks": 13,
+    "calls": "2",
+    "file": "digitrec.cpp",
+    "fileloc": 29,
+    "instructions": 50,
+    "loads": {
+      "L": 4
+    },
+    "name": "update_knn",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 69
   }
 }

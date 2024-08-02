@@ -3,17 +3,17 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Sun Jun 23 07:14:29 2024
-# Process ID: 145619
-# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1
+# Start of session at: Fri Aug  2 01:44:40 2024
+# Process ID: 34093
+# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1
 # Command line: vivado -log bd_0_hls_inst_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_0_hls_inst_0.tcl
-# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.vds
-# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/vivado.jou
-# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 2174.533 MHz, CPU Physical cores: 4, Host memory: 16483 MB
+# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.vds
+# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/vivado.jou
+# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 2003.009 MHz, CPU Physical cores: 4, Host memory: 16483 MB
 #-----------------------------------------------------------
 source bd_0_hls_inst_0.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/ip'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/ip'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
 INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: bd_0_hls_inst_0
 Command: synth_design -top bd_0_hls_inst_0 -part xc7z020clg400-1 -directive sdx_optimization_effort_high -incremental_mode off -mode out_of_context
@@ -23,82 +23,82 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg400-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 145713
+INFO: [Synth 8-7075] Helper process launched with PID 34214
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2080.875 ; gain = 403.629 ; free physical = 153 ; free virtual = 3230
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2078.508 ; gain = 403.629 ; free physical = 180 ; free virtual = 8001
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
-INFO: [Synth 8-6157] synthesizing module 'DigitRec' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec.v:9]
-INFO: [Synth 8-6157] synthesizing module 'DigitRec_votes_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_votes_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'DigitRec_votes_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_votes_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6157] synthesizing module 'DigitRec_DigitRec_Pipeline_SET_KNN_SET' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_SET_KNN_SET.v:9]
-INFO: [Synth 8-6157] synthesizing module 'DigitRec_flow_control_loop_pipe_sequential_init' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_flow_control_loop_pipe_sequential_init.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'DigitRec_flow_control_loop_pipe_sequential_init' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_flow_control_loop_pipe_sequential_init.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'DigitRec_DigitRec_Pipeline_SET_KNN_SET' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_SET_KNN_SET.v:9]
-INFO: [Synth 8-6157] synthesizing module 'DigitRec_DigitRec_Pipeline_3' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_3.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'DigitRec_DigitRec_Pipeline_3' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_3.v:9]
-INFO: [Synth 8-6157] synthesizing module 'DigitRec_DigitRec_Pipeline_TRAINING_LOOP' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_TRAINING_LOOP.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'DigitRec_DigitRec_Pipeline_TRAINING_LOOP' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_TRAINING_LOOP.v:9]
-INFO: [Synth 8-6157] synthesizing module 'DigitRec_DigitRec_Pipeline_VITIS_LOOP_69_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_69_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'DigitRec_mux_3_2_4_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_mux_3_2_4_1_1.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'DigitRec_mux_3_2_4_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_mux_3_2_4_1_1.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'DigitRec_DigitRec_Pipeline_VITIS_LOOP_69_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_69_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'DigitRec_DigitRec_Pipeline_VITIS_LOOP_72_2' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_72_2.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'DigitRec_DigitRec_Pipeline_VITIS_LOOP_72_2' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_72_2.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'DigitRec' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dd90/hdl/verilog/DigitRec.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'DigitRec' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec.v:9]
+INFO: [Synth 8-6157] synthesizing module 'DigitRec_votes_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_votes_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'DigitRec_votes_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_votes_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'DigitRec_DigitRec_Pipeline_SET_KNN_SET' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_SET_KNN_SET.v:9]
+INFO: [Synth 8-6157] synthesizing module 'DigitRec_flow_control_loop_pipe_sequential_init' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'DigitRec_flow_control_loop_pipe_sequential_init' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'DigitRec_DigitRec_Pipeline_SET_KNN_SET' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_SET_KNN_SET.v:9]
+INFO: [Synth 8-6157] synthesizing module 'DigitRec_DigitRec_Pipeline_3' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_3.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'DigitRec_DigitRec_Pipeline_3' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_3.v:9]
+INFO: [Synth 8-6157] synthesizing module 'DigitRec_DigitRec_Pipeline_TRAINING_LOOP' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_TRAINING_LOOP.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'DigitRec_DigitRec_Pipeline_TRAINING_LOOP' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_TRAINING_LOOP.v:9]
+INFO: [Synth 8-6157] synthesizing module 'DigitRec_DigitRec_Pipeline_VITIS_LOOP_69_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_69_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'DigitRec_mux_3_2_4_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_mux_3_2_4_1_1.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'DigitRec_mux_3_2_4_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_mux_3_2_4_1_1.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'DigitRec_DigitRec_Pipeline_VITIS_LOOP_69_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_69_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'DigitRec_DigitRec_Pipeline_VITIS_LOOP_72_2' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_72_2.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'DigitRec_DigitRec_Pipeline_VITIS_LOOP_72_2' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec_DigitRec_Pipeline_VITIS_LOOP_72_2.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'DigitRec' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/a3dc/hdl/verilog/DigitRec.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
 WARNING: [Synth 8-7129] Port reset in module DigitRec_votes_RAM_AUTO_1R1W is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2183.844 ; gain = 506.598 ; free physical = 234 ; free virtual = 3109
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2181.477 ; gain = 506.598 ; free physical = 260 ; free virtual = 7883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2198.688 ; gain = 521.441 ; free physical = 232 ; free virtual = 3102
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2199.289 ; gain = 524.410 ; free physical = 260 ; free virtual = 7883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2198.688 ; gain = 521.441 ; free physical = 232 ; free virtual = 3102
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2199.289 ; gain = 524.410 ; free physical = 260 ; free virtual = 7883
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2198.688 ; gain = 0.000 ; free physical = 232 ; free virtual = 3102
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2199.289 ; gain = 0.000 ; free physical = 259 ; free virtual = 7882
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/DigitRec_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/DigitRec_ooc.xdc] for cell 'inst'
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/DigitRec_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/DigitRec_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2349.438 ; gain = 0.000 ; free physical = 209 ; free virtual = 3079
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2347.039 ; gain = 0.000 ; free physical = 229 ; free virtual = 7866
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2349.473 ; gain = 0.000 ; free physical = 209 ; free virtual = 3079
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2347.074 ; gain = 0.000 ; free physical = 228 ; free virtual = 7865
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 202 ; free virtual = 3074
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 224 ; free virtual = 7793
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 202 ; free virtual = 3074
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 224 ; free virtual = 7793
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 202 ; free virtual = 3073
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 224 ; free virtual = 7793
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 186 ; free virtual = 3076
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 230 ; free virtual = 7792
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -172,7 +172,7 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 192 ; free virtual = 3037
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 218 ; free virtual = 7763
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -193,13 +193,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 275 ; free virtual = 3017
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 184 ; free virtual = 7735
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 213 ; free virtual = 2992
+Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 185 ; free virtual = 7735
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -219,7 +219,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 208 ; free virtual = 2990
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 185 ; free virtual = 7736
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -237,37 +237,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 230 ; free virtual = 2982
+Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 257 ; free virtual = 7715
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 230 ; free virtual = 2982
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 257 ; free virtual = 7715
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 229 ; free virtual = 2982
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 257 ; free virtual = 7715
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 229 ; free virtual = 2982
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 257 ; free virtual = 7715
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 229 ; free virtual = 2982
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 257 ; free virtual = 7715
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 229 ; free virtual = 2982
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 257 ; free virtual = 7715
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -310,18 +310,18 @@ Report Cell Usage:
 |11    |FDSE     |     6|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 229 ; free virtual = 2982
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 257 ; free virtual = 7715
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2349.473 ; gain = 521.441 ; free physical = 229 ; free virtual = 2981
-Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2349.473 ; gain = 672.227 ; free physical = 229 ; free virtual = 2981
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 2347.074 ; gain = 524.410 ; free physical = 256 ; free virtual = 7715
+Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2347.074 ; gain = 672.195 ; free physical = 256 ; free virtual = 7715
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2349.473 ; gain = 0.000 ; free physical = 513 ; free virtual = 3265
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2347.074 ; gain = 0.000 ; free physical = 536 ; free virtual = 8002
 INFO: [Netlist 29-17] Analyzing 286 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2349.473 ; gain = 0.000 ; free physical = 520 ; free virtual = 3263
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2347.074 ; gain = 0.000 ; free physical = 532 ; free virtual = 8000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 32 instances were transformed.
   RAM16X1S => RAM32X1S (RAMS32): 32 instances
@@ -330,14 +330,14 @@ Synth Design complete | Checksum: 1c1da690
 INFO: [Common 17-83] Releasing license: Synthesis
 42 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:28 ; elapsed = 00:00:25 . Memory (MB): peak = 2349.473 ; gain = 1010.727 ; free physical = 520 ; free virtual = 3263
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1919.678; main = 1590.578; forked = 377.337
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3306.766; main = 2349.441; forked = 989.340
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2373.449 ; gain = 0.000 ; free physical = 520 ; free virtual = 3264
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:23 . Memory (MB): peak = 2347.074 ; gain = 1021.727 ; free physical = 527 ; free virtual = 7995
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1930.324; main = 1601.962; forked = 377.141
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3296.539; main = 2347.043; forked = 981.512
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2371.051 ; gain = 0.000 ; free physical = 527 ; free virtual = 7995
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
 INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = f3132e1ef6b0680b
 INFO: [Coretcl 2-1174] Renamed 12 cell refs.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2373.449 ; gain = 0.000 ; free physical = 524 ; free virtual = 3269
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2371.051 ; gain = 0.000 ; free physical = 529 ; free virtual = 8001
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/digitrec/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file bd_0_hls_inst_0_utilization_synth.rpt -pb bd_0_hls_inst_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Jun 23 07:15:03 2024...
+INFO: [Common 17-206] Exiting Vivado at Fri Aug  2 01:45:11 2024...

@@ -3,12 +3,12 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Sun Jun 23 07:19:05 2024
-# Process ID: 149659
-# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog
-# Command line: vivado -mode batch -source run_vivadosyn.tcl
-# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/vivado.log
-# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/vitis_projects/rosetta/spam/solution1/impl/verilog/vivado.jou
-# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 4266.678 MHz, CPU Physical cores: 4, Host memory: 16483 MB
+# Start of session at: Fri Aug  2 16:01:44 2024
+# Process ID: 8957
+# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog
+# Command line: vivado -mode batch -source run_vivado.tcl
+# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/vivado.log
+# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/rosetta/spam/solution1/impl/verilog/vivado.jou
+# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 3241.910 MHz, CPU Physical cores: 4, Host memory: 16483 MB
 #-----------------------------------------------------------
-source run_vivadosyn.tcl
+source run_vivado.tcl

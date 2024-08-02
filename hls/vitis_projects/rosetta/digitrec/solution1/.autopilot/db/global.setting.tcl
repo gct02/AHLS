@@ -42,10 +42,10 @@ set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xc7z020:-clg400:-1
-set SourceFiles {sc {} c ../../../../benchmarks/rosetta/digit-recognition/src/digitrec.cpp}
+set SourceFiles {sc {} c ../../../../../benchmarks/rosetta/digit-recognition/src/digitrec.cpp}
 set SourceFlags {sc {} c {{}}}
 set DirectiveFile {}
-set TBFiles {verilog {../../../../benchmarks/rosetta/digit-recognition/src/digitrec_host.cpp ../../../../benchmarks/rosetta/digit-recognition/src/iolib/populate_io.cpp} bc {../../../../benchmarks/rosetta/digit-recognition/src/digitrec_host.cpp ../../../../benchmarks/rosetta/digit-recognition/src/iolib/populate_io.cpp} sc {../../../../benchmarks/rosetta/digit-recognition/src/digitrec_host.cpp ../../../../benchmarks/rosetta/digit-recognition/src/iolib/populate_io.cpp} vhdl {../../../../benchmarks/rosetta/digit-recognition/src/digitrec_host.cpp ../../../../benchmarks/rosetta/digit-recognition/src/iolib/populate_io.cpp} c {} cas {../../../../benchmarks/rosetta/digit-recognition/src/digitrec_host.cpp ../../../../benchmarks/rosetta/digit-recognition/src/iolib/populate_io.cpp}}
+set TBFiles {verilog {../../../../../benchmarks/rosetta/digit-recognition/src/digitrec_host.cpp ../../../../../benchmarks/rosetta/digit-recognition/src/iolib/populate_io.cpp} bc {../../../../../benchmarks/rosetta/digit-recognition/src/digitrec_host.cpp ../../../../../benchmarks/rosetta/digit-recognition/src/iolib/populate_io.cpp} sc {../../../../../benchmarks/rosetta/digit-recognition/src/digitrec_host.cpp ../../../../../benchmarks/rosetta/digit-recognition/src/iolib/populate_io.cpp} vhdl {../../../../../benchmarks/rosetta/digit-recognition/src/digitrec_host.cpp ../../../../../benchmarks/rosetta/digit-recognition/src/iolib/populate_io.cpp} c {} cas {../../../../../benchmarks/rosetta/digit-recognition/src/digitrec_host.cpp ../../../../../benchmarks/rosetta/digit-recognition/src/iolib/populate_io.cpp}}
 set SpecLanguage C
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
@@ -56,7 +56,7 @@ set ExtraGlobalOptions {"area_timing" 1 "clock_gate" 1 "impl_flow" map "power_ga
 set TBTVFileNotFound {}
 set AppFile ../hls.app
 set ApsFile solution1.aps
-set AvePath ../../../../.
+set AvePath ../../../../../.
 set DefaultPlatform DefaultPlatform
 set multiClockList {}
 set SCPortClockMap {}

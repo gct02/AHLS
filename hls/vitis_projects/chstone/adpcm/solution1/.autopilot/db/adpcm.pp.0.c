@@ -2645,7 +2645,7 @@ logsch (int ih, int nbh)
 
 __attribute__((sdx_kernel("adpcm_main", 0))) void adpcm_main (const int input_samples[8000], int compressed[8000/2], int result[8000])
 {
-#line 101 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/run_hls.tcl"
+#line 101 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/run_hls.tcl"
 #pragma HLSDIRECTIVE TOP name=adpcm_main
 # 770 "benchmarks/chstone/adpcm/src/adpcm.c"
 
