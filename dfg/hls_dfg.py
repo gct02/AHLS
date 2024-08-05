@@ -100,7 +100,7 @@ def rescale_node_ids(nodes: list, edges: list) -> tuple:
 
 
 def make_adjacency_lists(nodes: list, edges: list):
-    adj_lists = [[] for _ in range(len(nodes))]
+    adj_lists = [[i] for i in range(len(nodes))]
 
     for edge in edges:
         src, dest = edge

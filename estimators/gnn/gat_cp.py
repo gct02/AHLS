@@ -17,14 +17,11 @@ dtype = torch.float
 device = "cuda" if torch.cuda.is_available() else "cpu"
 torch.set_default_device(device)
 
-# Change numpy print options
-np.set_printoptions(threshold=np.inf)
-torch.set_printoptions(profile="full")
-
-def train_step(model, loss_func, optimizer, graphs, labels):
+def train_step(model, loss_func, optimizer, scheduler, graphs, labels):
     train_loss = 0
 
     model.train()
+    loss = 0
 
     for graph, label in zip(graphs, labels):
         node_features = graph[0]
@@ -39,7 +36,8 @@ def train_step(model, loss_func, optimizer, graphs, labels):
         optimizer.zero_grad()
 
         loss.backward()
-        optimizer.step
+        optimizer.step()
+        scheduler.step(loss)
 
     train_loss = train_loss / len(graphs)
     return train_loss
@@ -54,6 +52,7 @@ def test_step(model, loss_func, graphs, labels):
         for graph, label in zip(graphs, labels):
             node_features = graph[0]
             adj_lists = graph[1]
+
             label_pred = model(node_features, adj_lists)
 
             loss = loss_func(label_pred, label)
@@ -77,14 +76,14 @@ def save_model(model, target_dir, model_name):
     torch.save(obj=model.state_dict(), f=model_save_path)
 
 
-def train_model(model, loss_func, optimizer, graphs, labels, epochs):
+def train_model(model, loss_func, optimizer, scheduler, graphs, labels, epochs):
     #train_graphs, test_graphs = model_selection.train_test_split(graphs, train_size=0.5)
     #train_labels, test_labels = model_selection.train_test_split(labels, train_size=0.5)
 
     for epoch in range(epochs):
         #train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
         #test_loss = test_step(model, loss_func, test_graphs, test_labels)
-        train_loss = train_step(model, loss_func, optimizer, graphs, labels)
+        train_loss = train_step(model, loss_func, optimizer, scheduler, graphs, labels)
 
         #print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}, Test loss: {test_loss}")
         print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}")
@@ -116,10 +115,11 @@ def main(args):
 
     model = GAT(32, 1, 8)
 
-    loss_func = nn.MSELoss(reduction='sum')
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-2)
+    loss_func = nn.L1Loss(reduction='mean')
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-2, weight_decay=5e-6)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=10, verbose=True)
 
-    train_model(model, loss_func, optimizer, graphs, graph_labels_cp, epochs)
+    train_model(model, loss_func, optimizer, scheduler, graphs, graph_labels_cp, epochs)
 
     save_model(model, "estimators/gnn/models", "gat_cp.pth")
     
@@ -128,7 +128,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Provide arguments for the graph embedding model with CP predictions')
 
     parser.add_argument('--epoch', help='The number of training epochs', default=50)
-    parser.add_argument('--seed', help='Random seed for repeatability', default=42)
+    parser.add_argument('--seed', help='Random seed for repeatability', default=1234)
     parser.add_argument('--graphs', help='Path to the graphs dataset', required=True)
     parser.add_argument('--cp', help='Path to the file containing the target CPs', required=True)
 
