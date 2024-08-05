@@ -99,28 +99,29 @@ def rescale_node_ids(nodes: list, edges: list) -> tuple:
     return new_nodes, new_edges
 
 
-def make_adjacency_lists(nodes: list, edges: list):
-    adj_lists = [[i] for i in range(len(nodes))]
+def get_adj_mat(nodes, edges):
+    n_nodes = len(nodes)
+    adj = torch.zeros(n_nodes, n_nodes)
+    adj.fill_diagonal_(1)
 
     for edge in edges:
         src, dest = edge
-        adj_lists[src].append(dest)
+        adj[src][dest] = 1
     
-    return adj_lists
+    return adj
 
 
 def build_dfg(dfg_file: Path):
     nodes, edges = parse_dfg_file(dfg_file)
     nodes, edges = rescale_node_ids(nodes, edges)
-    adj_lists = make_adjacency_lists(nodes, edges)
+    adj = get_adj_mat(nodes, edges)
 
-    node_features_array = []
+    node_features = []
 
-    for node_features in nodes:
-        opcode = node_features[1]
+    for node in nodes:
+        opcode = node[1]
         one_hot_opcode = get_one_hot_opcode(opcode)
-
-        array_partition_type = node_features[6]
+        array_partition_type = node[6]
         
         if array_partition_type == 0: # None
             one_hot_partition_type = [0, 0, 0]
@@ -135,14 +136,14 @@ def build_dfg(dfg_file: Path):
                     one_hot_partition_type, partition_factor, partition_dim, pipeline, 
                     pipeline_II, loop_merge)
         '''
-        features = one_hot_opcode + [node_features[2], node_features[3], node_features[4], node_features[5]] \
+        features = one_hot_opcode + [node[2], node[3], node[4], node[5]] \
                    + one_hot_partition_type \
-                   + [node_features[7], node_features[8], node_features[9], node_features[10], node_features[11]]
+                   + [node[7], node[8], node[9], node[10], node[11]]
         
-        node_features_array.append(torch.FloatTensor(features))
+        node_features.append(torch.FloatTensor(features))
 
-    node_features_array = torch.stack(node_features_array)
-    return node_features_array, adj_lists
+    node_features = torch.stack(node_features)
+    return node_features, adj
 
         
 if __name__ == '__main__':

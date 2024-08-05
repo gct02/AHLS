@@ -10,23 +10,21 @@ import torch.nn.functional as F
 from sklearn import model_selection
 from pathlib import Path
 
-from estimators.gnn.gat import GAT
+from estimators.gat.models import GAT
 from dfg.hls_dfg import build_dfg
 
 dtype = torch.float
 device = "cuda" if torch.cuda.is_available() else "cpu"
 torch.set_default_device(device)
 
-def train_step(model, loss_func, optimizer, scheduler, graphs, labels):
+def train_step(model, loss_func, optimizer, graphs, labels):
     train_loss = 0
-
     model.train()
-    loss = 0
 
     for graph, label in zip(graphs, labels):
         node_features = graph[0]
-        adj_lists = graph[1]
-        label_pred = model(node_features, adj_lists)
+        adj = graph[1]
+        label_pred = model(node_features, adj)
 
         print(f"Label: {label.item()}, Prediction: {label_pred.item()}")
 
@@ -37,7 +35,6 @@ def train_step(model, loss_func, optimizer, scheduler, graphs, labels):
 
         loss.backward()
         optimizer.step()
-        scheduler.step(loss)
 
     train_loss = train_loss / len(graphs)
     return train_loss
@@ -76,14 +73,18 @@ def save_model(model, target_dir, model_name):
     torch.save(obj=model.state_dict(), f=model_save_path)
 
 
-def train_model(model, loss_func, optimizer, scheduler, graphs, labels, epochs):
+def train_model(model, loss_func, optimizer, graphs, labels, epochs, scheduler=None):
     #train_graphs, test_graphs = model_selection.train_test_split(graphs, train_size=0.5)
     #train_labels, test_labels = model_selection.train_test_split(labels, train_size=0.5)
 
     for epoch in range(epochs):
         #train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
         #test_loss = test_step(model, loss_func, test_graphs, test_labels)
-        train_loss = train_step(model, loss_func, optimizer, scheduler, graphs, labels)
+        train_loss = train_step(model, loss_func, optimizer, graphs, labels)
+
+        if scheduler is not None:
+            if epoch % scheduler.step_size == 0:
+                scheduler.step()
 
         #print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}, Test loss: {test_loss}")
         print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}")
@@ -105,21 +106,21 @@ def main(args):
     graphs = []
     for graph_file in os.listdir(graphs_dir):
         graph_file_path = os.fsdecode(os.path.join(graphs_dir, graph_file))
-        node_features, adj_lists = build_dfg(graph_file_path)
-        graphs.append((node_features, adj_lists))
+        node_features, adj = build_dfg(graph_file_path)
+        graphs.append((node_features, adj))
 
     with open(target_lut_file, 'r') as f:
         graph_labels_lut = [[float(label)] for label in f.readlines()]
 
     graph_labels_lut = torch.FloatTensor(graph_labels_lut)
 
-    model = GAT(32, 1, 8)
+    model = GAT(32, 128, 32, 8, 8, 1, True, 0.4, 0.2)
 
-    loss_func = nn.L1Loss(reduction='mean')
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-2, weight_decay=5e-6)
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=10, verbose=True)
+    loss_func = nn.MSELoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=5e-2, weight_decay=5e-6)
+    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.5, verbose=True)
 
-    train_model(model, loss_func, optimizer, scheduler, graphs, graph_labels_lut, epochs)
+    train_model(model, loss_func, optimizer, graphs, graph_labels_lut, epochs, scheduler)
 
     save_model(model, "estimators/gnn/models", "gat_lut.pth")
     
