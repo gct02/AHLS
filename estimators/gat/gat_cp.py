@@ -1,30 +1,25 @@
-import argparse, os
-
-import numpy as np
-import pandas as pd
 import torch
-
 import torch.nn as nn
-import torch.nn.functional as F
 
 from sklearn import model_selection
 from pathlib import Path
+import argparse, os
 
 from estimators.gat.models import GAT
 from dfg.hls_dfg import build_dfg
 
-dtype = torch.float
 device = "cuda" if torch.cuda.is_available() else "cpu"
 torch.set_default_device(device)
 
 def train_step(model, loss_func, optimizer, graphs, labels):
     train_loss = 0
+    
     model.train()
 
     for graph, label in zip(graphs, labels):
         node_features = graph[0]
-        adj = graph[1]
-        label_pred = model(node_features, adj)
+        adj_mat = graph[1]
+        label_pred = model(node_features, adj_mat)
 
         print(f"Label: {label.item()}, Prediction: {label_pred.item()}")
 
@@ -39,7 +34,6 @@ def train_step(model, loss_func, optimizer, graphs, labels):
     train_loss = train_loss / len(graphs)
     return train_loss
 
-
 def test_step(model, loss_func, graphs, labels):
     test_loss = 0
 
@@ -48,16 +42,15 @@ def test_step(model, loss_func, graphs, labels):
     with torch.inference_mode():
         for graph, label in zip(graphs, labels):
             node_features = graph[0]
-            adj_lists = graph[1]
+            adj_mat = graph[1]
 
-            label_pred = model(node_features, adj_lists)
+            label_pred = model(node_features, adj_mat)
 
             loss = loss_func(label_pred, label)
             test_loss += loss.item()
 
     test_loss = test_loss / len(graphs)
     return test_loss
-
 
 def save_model(model, target_dir, model_name):
     # Create target directory
@@ -72,32 +65,25 @@ def save_model(model, target_dir, model_name):
     print(f"[INFO] Saving model to: {model_save_path}")
     torch.save(obj=model.state_dict(), f=model_save_path)
 
-
 def train_model(model, loss_func, optimizer, graphs, labels, epochs, scheduler=None):
-    #train_graphs, test_graphs = model_selection.train_test_split(graphs, train_size=0.5)
-    #train_labels, test_labels = model_selection.train_test_split(labels, train_size=0.5)
+    train_graphs, test_graphs = model_selection.train_test_split(graphs, train_size=14/17)
+    train_labels, test_labels = model_selection.train_test_split(labels, train_size=14/17)
 
     for epoch in range(epochs):
-        #train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
-        #test_loss = test_step(model, loss_func, test_graphs, test_labels)
-        train_loss = train_step(model, loss_func, optimizer, graphs, labels)
-
+        train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
+        test_loss = test_step(model, loss_func, test_graphs, test_labels)
+        
         if scheduler is not None:
-            if epoch % scheduler.step_size == 0:
-                scheduler.step()
+            scheduler.step()
 
-        #print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}, Test loss: {test_loss}")
-        print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}")
+        print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}, Test loss: {test_loss}")
     
-    #return train_loss, test_loss
-    return train_loss
-
+    return train_loss, test_loss
 
 def main(args):
     epochs = int(args['epoch'])
     seed = int(args['seed'])
 
-    np.random.seed(seed=seed)
     torch.manual_seed(seed)
 
     graphs_dir = os.fsencode(args['graphs'])
@@ -114,24 +100,23 @@ def main(args):
 
     graph_labels_cp = torch.FloatTensor(graph_labels_cp)
 
-    model = GAT(32, 128, 32, 8, 8, 1, True, 0.4, 0.2)
+    model = GAT(32, 1)
 
     loss_func = nn.MSELoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=5e-2, weight_decay=5e-6)
-    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.5, verbose=True)
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-1, weight_decay=5e-4)
+    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=epochs/5, gamma=0.1, verbose=True)
 
     train_model(model, loss_func, optimizer, graphs, graph_labels_cp, epochs, scheduler)
 
-    save_model(model, "estimators/gnn/models", "gat_cp.pth")
+    save_model(model, "estimators/gat/models", "gat_cp.pth")
     
-
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Provide arguments for the graph embedding model with cp predictions')
+    parser = argparse.ArgumentParser(description='Provide arguments for the graph embedding model with CP predictions')
 
-    parser.add_argument('--epoch', help='The number of training epochs', default=50)
-    parser.add_argument('--seed', help='Random seed for repeatability', default=1234)
-    parser.add_argument('--graphs', help='Path to the graphs dataset', required=True)
-    parser.add_argument('--cp', help='Path to the file containing the target cps', required=True)
+    parser.add_argument('--epoch', help='The number of training epochs', default=500)
+    parser.add_argument('--seed', help='Random seed for repeatability', default=42)
+    parser.add_argument('--graphs', help='Path to the directory containing the DFGs', required=True)
+    parser.add_argument('--cp', help='Path to the file containing the target CPs', required=True)
 
     args = vars(parser.parse_args())
 

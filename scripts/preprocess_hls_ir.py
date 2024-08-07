@@ -41,6 +41,8 @@ def parse_args():
     parser.add_argument("-io", "--populate-io", help="Path to the populate_io IR file", default=None, required=False)
     parser.add_argument("-tcl", "--tcl", help="Path to the TCL script file", default=None, required=False)
     parser.add_argument("-inst", "--instrument", help="Instrument the IR file", action="store_true")
+    parser.add_argument("-e", "--executable", help="Create an executable from the IR file", action="store_true")
+    parser.add_argument("-dfg", "--dfg", help="Path to the file where the DFG of the IR should be written", default=None, required=False)
     return parser.parse_args()
 
 
@@ -92,11 +94,16 @@ if __name__ == "__main__":
 
     get_dfg(input_ir_path, dfg_folder / "dfg.txt")
 
+    if args.dfg is not None:
+        # Move the DFG file to the specified path
+        subprocess.run(f"mv {dfg_folder / 'dfg.txt'} {args.dfg}", stderr=subprocess.STDOUT, shell=True)
+
     if instrument_ir:
         # Instrument the input IR file
         if populate_io_path is not None:
             populate_io_path = Path(populate_io_path)
         input_ir_path = instrument(input_ir_path, data_stats_folder / "data_stats.txt", populate_io_path=populate_io_path)
 
-    executable_path = output_dir / project_name
-    create_executable_from_llvm_ir(input_ir_path, executable_path)
+    if args.executable:
+        executable_path = output_dir / project_name
+        create_executable_from_llvm_ir(input_ir_path, executable_path)

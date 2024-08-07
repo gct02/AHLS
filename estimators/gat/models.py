@@ -4,36 +4,32 @@ import torch.nn.functional as F
 
 from estimators.gat.layers import GraphAttentionalLayer
 
+# Change torch print options to print all elements
+torch.set_printoptions(profile="full")
+
+
 class GAT(nn.Module):
-    def __init__(self, in_features:int, n_hidden_1:int, n_hidden_2:int, n_heads_1:int, n_heads_2:int, out_size:int, concat:bool=False, dropout:float=0.4, leaky_relu_slope:float=0.2):
+    def __init__(self, in_features:int, out_size:int):
         super(GAT, self).__init__()
+        self.gat1 = GraphAttentionalLayer(in_features, 128, 8, True, 0.1, dropout=0.4)
+        self.gat2 = GraphAttentionalLayer(128, 64, 8, True, 0.1, dropout=0.4)
+        self.gat3 = GraphAttentionalLayer(64, 32, 4, True, 0.1, dropout=0.4)
+        self.gat4 = GraphAttentionalLayer(32, 16, 1, True, 0.1, dropout=0.4)
+        self.gat5 = GraphAttentionalLayer(16, 8, 1, False, 0.1, dropout=0.1)
+        self.fc = nn.Linear(8, out_size)
+        nn.init.xavier_normal(self.fc.weight, gain=1.414)
+        nn.init.zeros_(self.fc.bias)
 
-        self.gat1 = GraphAttentionalLayer(
-            in_features=in_features, out_features=n_hidden_1, n_heads=n_heads_1,
-            concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope)
-        
-        self.gat2 = GraphAttentionalLayer(
-            in_features=n_hidden_1, out_features=n_hidden_2, n_heads=n_heads_2,
-            concat=False, dropout=dropout, leaky_relu_slope=leaky_relu_slope)
-
-        self.mlp = nn.Sequential(
-            nn.Linear(n_hidden_2, 8, bias=False),
-            nn.SELU(),
-            nn.Linear(8, out_size),
-            nn.ReLU()
-        )
-        self.mlp.apply(self._init_weights)
-
-    def _init_weights(self, m):
-        if isinstance(m, nn.Linear):
-            nn.init.xavier_uniform_(m.weight)
-            if m.bias is not None:
-                nn.init.zeros_(m.bias)
-
-    def forward(self, node_features:torch.Tensor, adj:torch.Tensor):
-        x = self.gat1(node_features, adj)
-        x = F.selu(x)
-        x = self.gat2(x, adj)
-        x = F.selu(x)
-        x = x.mean(dim=0)
-        return self.mlp(x)
+    def forward(self, node_features:torch.Tensor, adj_mat:torch.Tensor):
+        x = node_features
+        x = ((x.T - x.mean(dim=1)) / (x.std(dim=1) + 1e-6)).T
+        x = self.gat1(node_features, adj_mat)
+        x = F.elu(x)
+        x = self.gat2(x, adj_mat)
+        x = F.elu(x)
+        x = self.gat3(x, adj_mat)
+        x = F.elu(x)
+        x = self.gat4(x, adj_mat)
+        x = self.gat5(x, adj_mat)
+        return self.fc(torch.mean(x, dim=0))
+    

@@ -3,9 +3,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class GraphAttentionalLayer(nn.Module):
-    def __init__(self, in_features:int, out_features:int, n_heads:int=4, concat:bool=False, dropout:float=0.4, leaky_relu_slope:float=0.2):
+    def __init__(self, in_features:int, out_features:int, n_heads:int, concat:bool=False, leaky_relu_slope:float=0.01, dropout:float=None):
         super(GraphAttentionalLayer, self).__init__()
-
         self.n_heads = n_heads
         self.concat = concat
         self.dropout = dropout
@@ -22,7 +21,6 @@ class GraphAttentionalLayer(nn.Module):
         self.a = nn.Parameter(torch.empty(size=(n_heads, 2 * self.n_hidden, 1)))
 
         self.leaky_relu = nn.LeakyReLU(self.leaky_relu_slope)
-        self.softmax = nn.Softmax(dim=1)
 
         self.reset_parameters()
 
@@ -36,19 +34,19 @@ class GraphAttentionalLayer(nn.Module):
         e = source_scores + target_scores.mT
         return self.leaky_relu(e)
 
-    def forward(self, h:torch.Tensor, adj:torch.Tensor):
+    def forward(self, h:torch.Tensor, adj_mat:torch.Tensor):
         n_nodes = h.shape[0]
 
         h_transformed = torch.mm(h, self.W)
-        h_transformed = F.dropout(h_transformed, self.dropout, training=self.training)
         h_transformed = h_transformed.view(n_nodes, self.n_heads, self.n_hidden).permute(1, 0, 2)
+        if self.dropout is not None:
+            h_transformed = F.dropout(h_transformed, self.dropout, training=self.training)
 
         e = self._get_attn_scores(h_transformed)
         connectivity_mask = -9e15 * torch.ones_like(e)
-        e = torch.where(adj > 0, e, connectivity_mask)
+        e = torch.where(adj_mat > 0, e, connectivity_mask)
 
         attn = F.softmax(e, dim=-1)
-        attn = F.dropout(attn, self.dropout, training=self.training)
 
         h_prime = torch.matmul(attn, h_transformed)
 
