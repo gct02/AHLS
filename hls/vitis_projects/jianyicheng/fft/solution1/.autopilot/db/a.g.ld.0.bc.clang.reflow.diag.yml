@@ -1,0 +1,80 @@
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_30_2
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:30:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_49_4
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:49:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_68_6
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:68:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_87_8
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:87:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_106_10
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:106:26'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_125_12
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:125:26'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_144_14
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:144:26'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_163_16
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:163:26'
+  - String:          ' '
+...

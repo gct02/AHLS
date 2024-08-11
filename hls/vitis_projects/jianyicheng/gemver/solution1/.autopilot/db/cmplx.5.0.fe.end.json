@@ -1,0 +1,71 @@
+{
+    "0": {
+        "name": "gemver",
+        "file": "gemver.cpp",
+        "fileloc": "8",
+        "instructions": "23",
+        "total_instructions": "230",
+        "calls": "2 3 1",
+        "basicblocks": "1"
+    },
+    "1": {
+        "name": "gemver_Pipeline_VITIS_LOOP_35_3_loop_4",
+        "file": "HLS-benchmarks\/C-Slow\/gemver\/gemver.cpp",
+        "fileloc": "34",
+        "instructions": "69",
+        "total_instructions": "69",
+        "calls": "",
+        "basicblocks": "8",
+        "loads": {
+            "L": "6",
+            "T": "3"
+        },
+        "stores": {
+            "L": "11",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "gemver_Pipeline_VITIS_LOOP_14_1_loop_2",
+        "file": "HLS-benchmarks\/C-Slow\/gemver\/gemver.cpp",
+        "fileloc": "13",
+        "instructions": "67",
+        "total_instructions": "67",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "5",
+            "T": "5"
+        },
+        "stores": {
+            "L": "9",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "gemver_Pipeline_VITIS_LOOP_23_2_loop_3",
+        "file": "HLS-benchmarks\/C-Slow\/gemver\/gemver.cpp",
+        "fileloc": "23",
+        "instructions": "71",
+        "total_instructions": "71",
+        "calls": "",
+        "basicblocks": "8",
+        "loads": {
+            "L": "5",
+            "T": "4"
+        },
+        "stores": {
+            "L": "10",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

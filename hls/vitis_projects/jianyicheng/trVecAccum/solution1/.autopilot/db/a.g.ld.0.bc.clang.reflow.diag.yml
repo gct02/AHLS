@@ -1,0 +1,10 @@
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_1
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/C-Slow/trVecAccum/trVecAccum.cpp:15:5'
+  - String:          ' '
+...

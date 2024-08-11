@@ -1,0 +1,112 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_14_1:  '
+    FileOffset:      14
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gemver/gemver.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+        Offset:          53848
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_14_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_23_2:  '
+    FileOffset:      23
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gemver/gemver.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+        Offset:          54038
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_23_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_35_3:  '
+    FileOffset:      35
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gemver/gemver.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+        Offset:          54259
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_35_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_56_1:  '
+    FileOffset:      56
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gemver/gemver.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+        Offset:          54692
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_56_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_67_2:  '
+    FileOffset:      67
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gemver/gemver.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+        Offset:          54917
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_67_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_76_3:  '
+    FileOffset:      76
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gemver/gemver.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+        Offset:          55084
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_76_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_77_4:  '
+    FileOffset:      77
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gemver/gemver.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+        Offset:          55122
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_77_4: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_82_5:  '
+    FileOffset:      82
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gemver/gemver.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+        Offset:          55233
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_82_5: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_85_6:  '
+    FileOffset:      85
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gemver/gemver.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+        Offset:          55314
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_85_6: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_93_7:  '
+    FileOffset:      93
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gemver/gemver.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+        Offset:          55467
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_93_7: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_95_8:  '
+    FileOffset:      95
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gemver/gemver.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+        Offset:          55530
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_95_8: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_105_9:  '
+    FileOffset:      105
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gemver/gemver.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gemver/solution1/.autopilot/db/gemver.pp.0.cpp
+        Offset:          55714
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_105_9: '
+...

@@ -1,0 +1,17 @@
+{
+  "0": {
+    "basicblocks": 37,
+    "calls": "",
+    "file": "covariance.cpp",
+    "fileloc": 8,
+    "instructions": 92,
+    "loads": {
+      "T": 4
+    },
+    "name": "covariance",
+    "stores": {
+      "T": 3
+    },
+    "total_instructions": 92
+  }
+}

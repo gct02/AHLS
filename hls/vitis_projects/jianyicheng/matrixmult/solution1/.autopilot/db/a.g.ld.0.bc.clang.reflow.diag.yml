@@ -1,0 +1,640 @@
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_85_8
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:85:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_77_7
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:77:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_69_6
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:69:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_61_5
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:61:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_53_4
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:53:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_45_3
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:45:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_37_2
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:37:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_29_1
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:29:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_153_16
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:153:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_145_15
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:145:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_137_14
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:137:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_129_13
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:129:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_121_12
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:121:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_113_11
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:113:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_105_10
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:105:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_97_9
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:97:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_221_24
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:221:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_213_23
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:213:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_205_22
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_197_21
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:197:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_189_20
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:189:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_181_19
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:181:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_173_18
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:173:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_165_17
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:165:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_289_32
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:289:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_281_31
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:281:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_273_30
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:273:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_265_29
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:265:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_257_28
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:257:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_249_27
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:249:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_241_26
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:241:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_233_25
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:233:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_357_40
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:357:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_349_39
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:349:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_341_38
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:341:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_333_37
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:333:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_325_36
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:325:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_317_35
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:317:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_309_34
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:309:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_301_33
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:301:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_425_48
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:425:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_417_47
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:417:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_409_46
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:409:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_401_45
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:401:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_393_44
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:393:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_385_43
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:385:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_377_42
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:377:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_369_41
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:369:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_493_56
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:493:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_485_55
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:485:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_477_54
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:477:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_469_53
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:469:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_461_52
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:461:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_453_51
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:453:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_445_50
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:445:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_437_49
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:437:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_561_64
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:561:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_553_63
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:553:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_545_62
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:545:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_537_61
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:537:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_529_60
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:529:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_521_59
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:521:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_513_58
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:513:24'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_505_57
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:505:24'
+  - String:          ' '
+...

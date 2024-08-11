@@ -1,0 +1,14 @@
+{
+  "0": {
+    "basicblocks": 70,
+    "calls": "",
+    "file": "substring.cpp",
+    "fileloc": 14,
+    "instructions": 305,
+    "loads": {
+      "T": 15
+    },
+    "name": "substring",
+    "total_instructions": 305
+  }
+}

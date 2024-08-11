@@ -1,0 +1,47 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'doitgenTriple'" level="0">
+<item name = "Date">Sun Jun 23 03:28:49 2024
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">doitgenTriple</item>
+<item name = "Solution">solution1 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 3.579 ns, 1.35 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">394530, 394530, 1.973 ms, 1.973 ms, 394531, 394531, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_doitgenTriple_Pipeline_loop_0_loop_1_fu_42">doitgenTriple_Pipeline_loop_0_loop_1, 393233, 393233, 1.966 ms, 1.966 ms, 393233, 393233, no</column>
+<column name="grp_doitgenTriple_Pipeline_loop_2_fu_52">doitgenTriple_Pipeline_loop_2, 1292, 1292, 6.460 us, 6.460 us, 1292, 1292, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

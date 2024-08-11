@@ -1,0 +1,86 @@
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_42_4
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_40_3
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_36_2
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:36:22'
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp, 
+                   Line: 44, Column: 24 }
+Function:        _Z11gramSchmidtPfS_S_
+Args:            
+  - String:          'Loop '''
+  - LoopName:        VITIS_LOOP_44_5
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp, 
+                   Line: 46, Column: 24 }
+Function:        _Z11gramSchmidtPfS_S_
+Args:            
+  - String:          'Loop '''
+  - LoopName:        VITIS_LOOP_46_6
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp, 
+                   Line: 31, Column: 0 }
+Function:        _Z11gramSchmidtPfS_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_44_5
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:44:24'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          gramSchmidt
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp, 
+                   Line: 31, Column: 0 }
+Function:        _Z11gramSchmidtPfS_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_46_6
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:46:24'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          gramSchmidt
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...

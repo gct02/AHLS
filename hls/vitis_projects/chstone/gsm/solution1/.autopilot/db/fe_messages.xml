@@ -1,0 +1,27 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="benchmarks/chstone/gsm/src/lpc.c:200:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=1 max=8" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="benchmarks/chstone/gsm/src/lpc.c:207:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=1 max=8" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="benchmarks/chstone/gsm/src/lpc.c:226:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=1 max=7" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="" msg_id="207-4680" msg_severity="WARNING" msg_loc="benchmarks/chstone/gsm/src/gsm.c:101:33" msg_body="too many arguments in call to 'Gsm_LPC_Analysis'">
+        <args/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="benchmarks/chstone/gsm/src/lpc.c:200:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=1 max=8" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="benchmarks/chstone/gsm/src/lpc.c:207:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=1 max=8" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="benchmarks/chstone/gsm/src/lpc.c:226:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=1 max=7" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/run_hls.tcl:112:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="main" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=main" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+

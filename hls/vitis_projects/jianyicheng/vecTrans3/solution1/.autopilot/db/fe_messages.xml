@@ -1,0 +1,12 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl:19:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="vecTrans3" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=vecTrans3" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INVALID" msg_id="207-1017" msg_severity="WARNING" msg_loc="HLS-benchmarks/PNAnalyser/vecTrans3/src/g.cpp:4:9" msg_body="unknown pragma ignored">
+        <args ClangWarningOption="invalid-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="HLS-benchmarks/PNAnalyser/vecTrans3/src/vecTrans3.cpp:3:0" msg_body="Inlining function 'g(float)' into 'vecTrans3(float*, int*, int*)'">
+        <args Callee="g(float)" Callee-DebugLoc="File HLS-benchmarks/PNAnalyser/vecTrans3/src/g.cpp Line 3 Column 0" Caller="vecTrans3(float*, int*, int*)" Caller-DebugLoc="File HLS-benchmarks/PNAnalyser/vecTrans3/src/vecTrans3.cpp Line 3 Column 0"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+

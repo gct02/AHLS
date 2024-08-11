@@ -1,0 +1,157 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_25_1:  '
+    FileOffset:      25
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          55130
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_25_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_48_2:  '
+    FileOffset:      48
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          55552
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_48_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_71_3:  '
+    FileOffset:      71
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          56074
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_71_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_94_4:  '
+    FileOffset:      94
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          56496
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_94_4: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_118_5:  '
+    FileOffset:      118
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          57019
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_118_5: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_141_6:  '
+    FileOffset:      141
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          57441
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_141_6: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_165_7:  '
+    FileOffset:      165
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          57964
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_165_7: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_188_8:  '
+    FileOffset:      188
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          58386
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_188_8: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_212_9:  '
+    FileOffset:      212
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          58909
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_212_9: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_235_10:  '
+    FileOffset:      235
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          59331
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_235_10: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_259_11:  '
+    FileOffset:      259
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          59854
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_259_11: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_282_12:  '
+    FileOffset:      282
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          60276
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_282_12: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_306_13:  '
+    FileOffset:      306
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          60799
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_306_13: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_329_14:  '
+    FileOffset:      329
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          61221
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_329_14: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_353_15:  '
+    FileOffset:      353
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          61744
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_353_15: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_376_16:  '
+    FileOffset:      376
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          62166
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_376_16: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_407_1:  '
+    FileOffset:      407
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/los/los.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/los/solution1/.autopilot/db/los.pp.0.cpp
+        Offset:          62974
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_407_1: '
+...

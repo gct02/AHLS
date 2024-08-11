@@ -1,0 +1,209 @@
+
+
+================================================================
+== Vitis HLS Report for 'getTanh'
+================================================================
+* Date:           Sun Jun 23 03:38:33 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        getTanh
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcvu35p-fsvh2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.353 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    46011|    46011|  0.230 ms|  0.230 ms|  46012|  46012|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 8
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.73>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%atanh_addr = getelementptr i32 %atanh, i64 0, i64 0" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 9 'getelementptr' 'atanh_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [2/2] (0.73ns)   --->   "%atanh_load = load i4 %atanh_addr" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 10 'load' 'atanh_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+
+State 2 <SV = 1> <Delay = 0.73>
+ST_2 : Operation 11 [1/2] (0.73ns)   --->   "%atanh_load = load i4 %atanh_addr" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 11 'load' 'atanh_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%atanh_addr_1 = getelementptr i32 %atanh, i64 0, i64 1" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 12 'getelementptr' 'atanh_addr_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 13 [2/2] (0.73ns)   --->   "%atanh_load_1 = load i4 %atanh_addr_1" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 13 'load' 'atanh_load_1' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%atanh_addr_2 = getelementptr i32 %atanh, i64 0, i64 2" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 14 'getelementptr' 'atanh_addr_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [2/2] (0.73ns)   --->   "%atanh_load_2 = load i4 %atanh_addr_2" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 15 'load' 'atanh_load_2' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+
+State 3 <SV = 2> <Delay = 0.73>
+ST_3 : Operation 16 [1/2] (0.73ns)   --->   "%atanh_load_1 = load i4 %atanh_addr_1" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 16 'load' 'atanh_load_1' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_3 : Operation 17 [1/2] (0.73ns)   --->   "%atanh_load_2 = load i4 %atanh_addr_2" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 17 'load' 'atanh_load_2' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_3 : Operation 18 [1/1] (0.00ns)   --->   "%atanh_addr_3 = getelementptr i32 %atanh, i64 0, i64 3" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 18 'getelementptr' 'atanh_addr_3' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 19 [2/2] (0.73ns)   --->   "%atanh_load_3 = load i4 %atanh_addr_3" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 19 'load' 'atanh_load_3' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_3 : Operation 20 [1/1] (0.00ns)   --->   "%atanh_addr_4 = getelementptr i32 %atanh, i64 0, i64 4" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 20 'getelementptr' 'atanh_addr_4' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 21 [2/2] (0.73ns)   --->   "%atanh_load_4 = load i4 %atanh_addr_4" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 21 'load' 'atanh_load_4' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+
+State 4 <SV = 3> <Delay = 0.73>
+ST_4 : Operation 22 [1/2] (0.73ns)   --->   "%atanh_load_3 = load i4 %atanh_addr_3" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 22 'load' 'atanh_load_3' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_4 : Operation 23 [1/2] (0.73ns)   --->   "%atanh_load_4 = load i4 %atanh_addr_4" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 23 'load' 'atanh_load_4' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_4 : Operation 24 [1/1] (0.00ns)   --->   "%atanh_addr_5 = getelementptr i32 %atanh, i64 0, i64 5" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 24 'getelementptr' 'atanh_addr_5' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 25 [2/2] (0.73ns)   --->   "%atanh_load_5 = load i4 %atanh_addr_5" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 25 'load' 'atanh_load_5' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_4 : Operation 26 [1/1] (0.00ns)   --->   "%atanh_addr_6 = getelementptr i32 %atanh, i64 0, i64 6" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 26 'getelementptr' 'atanh_addr_6' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 27 [2/2] (0.73ns)   --->   "%atanh_load_6 = load i4 %atanh_addr_6" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 27 'load' 'atanh_load_6' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+
+State 5 <SV = 4> <Delay = 0.73>
+ST_5 : Operation 28 [1/2] (0.73ns)   --->   "%atanh_load_5 = load i4 %atanh_addr_5" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 28 'load' 'atanh_load_5' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_5 : Operation 29 [1/2] (0.73ns)   --->   "%atanh_load_6 = load i4 %atanh_addr_6" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 29 'load' 'atanh_load_6' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_5 : Operation 30 [1/1] (0.00ns)   --->   "%atanh_addr_7 = getelementptr i32 %atanh, i64 0, i64 7" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 30 'getelementptr' 'atanh_addr_7' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 31 [2/2] (0.73ns)   --->   "%atanh_load_7 = load i4 %atanh_addr_7" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 31 'load' 'atanh_load_7' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_5 : Operation 32 [1/1] (0.00ns)   --->   "%atanh_addr_8 = getelementptr i32 %atanh, i64 0, i64 8" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 32 'getelementptr' 'atanh_addr_8' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 33 [2/2] (0.73ns)   --->   "%atanh_load_8 = load i4 %atanh_addr_8" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 33 'load' 'atanh_load_8' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+
+State 6 <SV = 5> <Delay = 0.73>
+ST_6 : Operation 34 [1/2] (0.73ns)   --->   "%atanh_load_7 = load i4 %atanh_addr_7" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 34 'load' 'atanh_load_7' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_6 : Operation 35 [1/2] (0.73ns)   --->   "%atanh_load_8 = load i4 %atanh_addr_8" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 35 'load' 'atanh_load_8' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_6 : Operation 36 [1/1] (0.00ns)   --->   "%atanh_addr_9 = getelementptr i32 %atanh, i64 0, i64 9" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 36 'getelementptr' 'atanh_addr_9' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 37 [2/2] (0.73ns)   --->   "%atanh_load_9 = load i4 %atanh_addr_9" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 37 'load' 'atanh_load_9' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_6 : Operation 38 [1/1] (0.00ns)   --->   "%atanh_addr_10 = getelementptr i32 %atanh, i64 0, i64 10" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 38 'getelementptr' 'atanh_addr_10' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 39 [2/2] (0.73ns)   --->   "%atanh_load_10 = load i4 %atanh_addr_10" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 39 'load' 'atanh_load_10' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+
+State 7 <SV = 6> <Delay = 0.73>
+ST_7 : Operation 40 [1/2] (0.73ns)   --->   "%atanh_load_9 = load i4 %atanh_addr_9" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 40 'load' 'atanh_load_9' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_7 : Operation 41 [1/2] (0.73ns)   --->   "%atanh_load_10 = load i4 %atanh_addr_10" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 41 'load' 'atanh_load_10' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 12> <RAM>
+ST_7 : Operation 42 [2/2] (0.00ns)   --->   "%call_ln62 = call void @getTanh_Pipeline_VITIS_LOOP_27_1, i32 %addr_out, i32 %A, i32 %addr_in, i32 %atanh_load, i32 %atanh_load_1, i32 %atanh_load_2, i32 %atanh_load_3, i32 %atanh_load_4, i32 %atanh_load_5, i32 %atanh_load_6, i32 %atanh_load_7, i32 %atanh_load_8, i32 %atanh_load_9, i32 %atanh_load_10, i32 %sinh, i32 %cosh" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 42 'call' 'call_ln62' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 8 <SV = 7> <Delay = 0.00>
+ST_8 : Operation 43 [1/1] (0.00ns)   --->   "%spectopmodule_ln12 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_1" [HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:12]   --->   Operation 43 'spectopmodule' 'spectopmodule_ln12' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 44 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %A, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 44 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 45 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %A"   --->   Operation 45 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 46 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %addr_in, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 46 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 47 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %addr_in"   --->   Operation 47 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 48 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %addr_out, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 48 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 49 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %addr_out"   --->   Operation 49 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 50 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %atanh, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 50 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 51 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %atanh"   --->   Operation 51 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 52 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %sinh, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 52 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 53 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %sinh"   --->   Operation 53 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 54 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %cosh, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 54 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 55 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %cosh"   --->   Operation 55 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 56 [1/2] (0.00ns)   --->   "%call_ln62 = call void @getTanh_Pipeline_VITIS_LOOP_27_1, i32 %addr_out, i32 %A, i32 %addr_in, i32 %atanh_load, i32 %atanh_load_1, i32 %atanh_load_2, i32 %atanh_load_3, i32 %atanh_load_4, i32 %atanh_load_5, i32 %atanh_load_6, i32 %atanh_load_7, i32 %atanh_load_8, i32 %atanh_load_9, i32 %atanh_load_10, i32 %sinh, i32 %cosh" [HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37]   --->   Operation 56 'call' 'call_ln62' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_8 : Operation 57 [1/1] (0.00ns)   --->   "%ret_ln44 = ret" [HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:44]   --->   Operation 57 'ret' 'ret_ln44' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 0.730ns
+The critical path consists of the following:
+	'getelementptr' operation 4 bit ('atanh_addr', HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37) [20]  (0.000 ns)
+	'load' operation 32 bit ('atanh_load', HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37) on array 'atanh' [21]  (0.730 ns)
+
+ <State 2>: 0.730ns
+The critical path consists of the following:
+	'load' operation 32 bit ('atanh_load', HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37) on array 'atanh' [21]  (0.730 ns)
+
+ <State 3>: 0.730ns
+The critical path consists of the following:
+	'load' operation 32 bit ('atanh_load_1', HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37) on array 'atanh' [23]  (0.730 ns)
+
+ <State 4>: 0.730ns
+The critical path consists of the following:
+	'load' operation 32 bit ('atanh_load_3', HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37) on array 'atanh' [27]  (0.730 ns)
+
+ <State 5>: 0.730ns
+The critical path consists of the following:
+	'load' operation 32 bit ('atanh_load_5', HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37) on array 'atanh' [31]  (0.730 ns)
+
+ <State 6>: 0.730ns
+The critical path consists of the following:
+	'load' operation 32 bit ('atanh_load_7', HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37) on array 'atanh' [35]  (0.730 ns)
+
+ <State 7>: 0.730ns
+The critical path consists of the following:
+	'load' operation 32 bit ('atanh_load_9', HLS-benchmarks/DSS/getTanh/src/g.cpp:62->HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:37) on array 'atanh' [39]  (0.730 ns)
+
+ <State 8>: 0.000ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

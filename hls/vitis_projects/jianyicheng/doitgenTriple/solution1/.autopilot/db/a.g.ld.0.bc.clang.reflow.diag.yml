@@ -1,0 +1,20 @@
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_1
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.cpp:22:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_2
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.cpp:36:3'
+  - String:          ' '
+...

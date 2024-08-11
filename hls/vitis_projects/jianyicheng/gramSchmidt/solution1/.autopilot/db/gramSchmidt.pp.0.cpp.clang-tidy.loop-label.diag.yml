@@ -1,0 +1,148 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_34_1:  '
+    FileOffset:      34
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          68438
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_34_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_36_2:  '
+    FileOffset:      36
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          68495
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_36_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_40_3:  '
+    FileOffset:      40
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          68655
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_40_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_42_4:  '
+    FileOffset:      42
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          68736
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_42_4: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_44_5:  '
+    FileOffset:      44
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          68801
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_44_5: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_46_6:  '
+    FileOffset:      46
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          68887
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_46_6: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_59_1:  '
+    FileOffset:      59
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          69114
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_59_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_60_2:  '
+    FileOffset:      60
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          69149
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_60_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_72_3:  '
+    FileOffset:      72
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          69449
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_72_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_74_4:  '
+    FileOffset:      74
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          69510
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_74_4: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_78_5:  '
+    FileOffset:      78
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          69678
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_78_5: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_80_6:  '
+    FileOffset:      80
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          69763
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_80_6: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_82_7:  '
+    FileOffset:      82
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          69832
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_82_7: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_84_8:  '
+    FileOffset:      84
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          69922
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_84_8: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_94_9:  '
+    FileOffset:      94
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          70094
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_94_9: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_95_10:  '
+    FileOffset:      95
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gramSchmidt/solution1/.autopilot/db/gramSchmidt.pp.0.cpp
+        Offset:          70127
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_95_10: '
+...

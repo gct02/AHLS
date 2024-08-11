@@ -1,0 +1,13 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/vecTrans/solution1/.autopilot/db/vecTrans.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_4_1:  '
+    FileOffset:      4
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/PNAnalyser/vecTrans/src/vecTrans.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/vecTrans/solution1/.autopilot/db/vecTrans.pp.0.cpp
+        Offset:          10193
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_4_1: '
+...

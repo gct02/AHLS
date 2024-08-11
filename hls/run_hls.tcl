@@ -1,5 +1,5 @@
 # Set variable to select which benchmark to execute
-set bench_exec 5
+set bench_exec 8
 
 if { $bench_exec == 1 } { # Face detection
 	# Create a project
@@ -83,6 +83,17 @@ if { $bench_exec == 1 } { # Face detection
 		benchmarks/chstone/dfsin/src/iolib/populate_io.c }
 
 	set_top local_sin
+} elseif { $bench_exec == 8 } { # GSM
+	# Create a project
+	open_project hls/vitis_projects/chstone/gsm -reset
+
+	add_files { 
+		benchmarks/chstone/gsm/src/gsm.c
+		benchmarks/chstone/gsm/src/add.c 
+		benchmarks/chstone/gsm/src/lpc.c 
+		benchmarks/chstone/gsm/src/private.h }
+	
+	set_top main
 } else {
 	exit
 }
@@ -95,13 +106,13 @@ set_part { xc7z020clg400-1 }
 create_clock -period 5 -name default
 
 # Compile and runs pre-synthesis C simulation using the provided C test bench
-# csim_design -argv "/home/gabriel/Documents/UFRGS/RAISE/AHLS/benchmarks/chstone/adpcm/inputs/test/inputVec1.txt output.txt"
+# csim_design
 
 # Run Synthesis
 csynth_design
 
 # Run RTL Simulation
-# cosim_design -argv "/home/gabriel/Documents/UFRGS/RAISE/AHLS/benchmarks/chstone/adpcm/inputs/test/inputVec1.txt output.txt"
+# cosim_design 
 
 # Run RTL implementation
 export_design -evaluate verilog -format ip_catalog

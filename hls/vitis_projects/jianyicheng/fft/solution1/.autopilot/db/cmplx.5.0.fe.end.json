@@ -1,0 +1,180 @@
+{
+    "0": {
+        "name": "fft",
+        "file": "fft.cpp",
+        "fileloc": "15",
+        "instructions": "278",
+        "total_instructions": "838",
+        "calls": "3 2 8 7 4 5 6 1",
+        "basicblocks": "25",
+        "loads": {
+            "L": "24"
+        },
+        "stores": {
+            "L": "48"
+        },
+        "loops": {
+            "L": "8"
+        }
+    },
+    "1": {
+        "name": "fft_Pipeline_VITIS_LOOP_163_16",
+        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
+        "fileloc": "163",
+        "instructions": "70",
+        "total_instructions": "70",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "8"
+        },
+        "stores": {
+            "L": "2",
+            "T": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "fft_Pipeline_VITIS_LOOP_49_4",
+        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
+        "fileloc": "49",
+        "instructions": "70",
+        "total_instructions": "70",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "8"
+        },
+        "stores": {
+            "L": "2",
+            "T": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "fft_Pipeline_VITIS_LOOP_30_2",
+        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
+        "fileloc": "30",
+        "instructions": "70",
+        "total_instructions": "70",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "8"
+        },
+        "stores": {
+            "L": "2",
+            "T": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "4": {
+        "name": "fft_Pipeline_VITIS_LOOP_106_10",
+        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
+        "fileloc": "106",
+        "instructions": "70",
+        "total_instructions": "70",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "8"
+        },
+        "stores": {
+            "L": "2",
+            "T": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "5": {
+        "name": "fft_Pipeline_VITIS_LOOP_125_12",
+        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
+        "fileloc": "125",
+        "instructions": "70",
+        "total_instructions": "70",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "8"
+        },
+        "stores": {
+            "L": "2",
+            "T": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "6": {
+        "name": "fft_Pipeline_VITIS_LOOP_144_14",
+        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
+        "fileloc": "144",
+        "instructions": "70",
+        "total_instructions": "70",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "8"
+        },
+        "stores": {
+            "L": "2",
+            "T": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "7": {
+        "name": "fft_Pipeline_VITIS_LOOP_87_8",
+        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
+        "fileloc": "87",
+        "instructions": "70",
+        "total_instructions": "70",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "8"
+        },
+        "stores": {
+            "L": "2",
+            "T": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "8": {
+        "name": "fft_Pipeline_VITIS_LOOP_68_6",
+        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
+        "fileloc": "68",
+        "instructions": "70",
+        "total_instructions": "70",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "8"
+        },
+        "stores": {
+            "L": "2",
+            "T": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

@@ -5,6 +5,7 @@ from os import environ
 from llvm.opt_utils import *
 from llvm.clang_utils import *
 
+from metrics.data_stats import parse_data_stats_file
 
 '''
 The output directory will have the following structure:
@@ -21,7 +22,6 @@ The output directory will have the following structure:
     └── <project_name>
 '''
 
-
 try:
     AHLS_LLVM_LIB = environ['AHLS_LLVM_LIB']
     OPT = environ['OPT']
@@ -31,7 +31,6 @@ except KeyError as ahls_error:
     print(f"Error: environment variable {ahls_error.args[0]} not defined.")
     raise
 
-
 def parse_args():
     parser = argparse.ArgumentParser(prog="preprocess_hls_ir", description="Preprocess an IR from Vitis HLS")
     parser.add_argument("-ir", "--hls-ir", help="HLS kernel IR file path", required=True)
@@ -39,12 +38,12 @@ def parse_args():
     parser.add_argument("-o", "--output-dir", help="Output directory", required=True)
     parser.add_argument("-host", "--host-ir", help="Host IR file path (i.e. the IR with a main function that calls the HLS top function)", default=None, required=False)
     parser.add_argument("-io", "--populate-io", help="Path to the populate_io IR file", default=None, required=False)
+    parser.add_argument("-inputs", "--inputs", help="Path to folder with inputs", default=None, required=False)
     parser.add_argument("-tcl", "--tcl", help="Path to the TCL script file", default=None, required=False)
     parser.add_argument("-inst", "--instrument", help="Instrument the IR file", action="store_true")
     parser.add_argument("-e", "--executable", help="Create an executable from the IR file", action="store_true")
     parser.add_argument("-dfg", "--dfg", help="Path to the file where the DFG of the IR should be written", default=None, required=False)
     return parser.parse_args()
-
 
 if __name__ == "__main__":
     args = parse_args()
@@ -54,7 +53,7 @@ if __name__ == "__main__":
     host_ir_path = args.host_ir
     populate_io_path = args.populate_io
     tcl_path = args.tcl
-    instrument_ir = args.instrument
+    inputs_folder = args.inputs
 
     approx_folder = output_dir / "approx"
     data_stats_folder = output_dir / "data_stats"
@@ -98,7 +97,7 @@ if __name__ == "__main__":
         # Move the DFG file to the specified path
         subprocess.run(f"mv {dfg_folder / 'dfg.txt'} {args.dfg}", stderr=subprocess.STDOUT, shell=True)
 
-    if instrument_ir:
+    if args.instrument:
         # Instrument the input IR file
         if populate_io_path is not None:
             populate_io_path = Path(populate_io_path)
@@ -107,3 +106,21 @@ if __name__ == "__main__":
     if args.executable:
         executable_path = output_dir / project_name
         create_executable_from_llvm_ir(input_ir_path, executable_path)
+    '''
+    if args.instrument and args.executable:
+        # Execute the instrumented executable with the inputs (if any), producing the data stats files
+        if inputs_folder is not None:
+            inputs_folder = Path(inputs_folder)
+            i = 1
+            for input_file in inputs_folder.iterdir():
+                output_path = outputs_folder / f"output_{i}.txt"
+                subprocess.run(f"{executable_path.as_posix()} {input_file.as_posix()} {output_path.as_posix()}", stderr=subprocess.STDOUT, shell=True)
+                data_stats_file = data_stats_folder / f"data_stats_{i}.txt"
+                subprocess.run(f"mv data_stats.txt {data_stats_file.as_posix()}", stderr=subprocess.STDOUT, shell=True)
+                i += 1
+        else:
+            subprocess.run(executable_path.as_posix(), stderr=subprocess.STDOUT, shell=True)
+            data_stats_file = data_stats_folder / "data_stats_1.txt"
+            subprocess.run(f"mv data_stats.txt {data_stats_file.as_posix()}", stderr=subprocess.STDOUT, shell=True)
+    '''
+        

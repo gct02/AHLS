@@ -1,0 +1,29 @@
+{
+  "0": {
+    "basicblocks": 7,
+    "calls": "1",
+    "file": "histogram.cpp",
+    "fileloc": 12,
+    "instructions": 21,
+    "loads": {
+      "T": 3
+    },
+    "name": "histogram",
+    "total_instructions": 29
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "g.cpp",
+    "fileloc": 13,
+    "instructions": 8,
+    "loads": {
+      "L": 1
+    },
+    "name": "g",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 8
+  }
+}

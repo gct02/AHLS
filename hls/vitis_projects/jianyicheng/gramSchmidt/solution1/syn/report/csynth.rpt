@@ -1,0 +1,267 @@
+
+
+================================================================
+== Synthesis Summary Report of 'gramSchmidt'
+================================================================
++ General Information: 
+    * Date:           Sun Jun 23 03:32:26 2024
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        gramSchmidt
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtexuplusHBM
+    * Target device:  xcvu35p-fsvh2104-1-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----------+-------------+------------+-----+
+    |                  Modules                 |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |      |          |             |            |     |
+    |                  & Loops                 |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM |    DSP   |      FF     |     LUT    | URAM|
+    +------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----------+-------------+------------+-----+
+    |+ gramSchmidt                             |  Timing|  -0.26|   191233|  9.562e+05|         -|   191234|     -|        no|     -|  160 (2%)|   17765 (1%)|  13081 (1%)|    -|
+    | o VITIS_LOOP_34_1                        |       -|   3.65|   191232|  9.562e+05|      5976|        -|    32|        no|     -|         -|            -|           -|    -|
+    |  + gramSchmidt_Pipeline_VITIS_LOOP_36_2  |       -|   0.07|      168|    840.000|         -|      168|     -|        no|     -|         -|    151 (~0%)|   137 (~0%)|    -|
+    |   o VITIS_LOOP_36_2                      |      II|   3.65|      166|    830.000|        12|        5|    32|       yes|     -|         -|            -|           -|    -|
+    |  + gramSchmidt_Pipeline_VITIS_LOOP_40_3  |       -|   0.01|       45|    225.000|         -|       45|     -|        no|     -|         -|    174 (~0%)|    93 (~0%)|    -|
+    |   o VITIS_LOOP_40_3                      |       -|   3.65|       43|    215.000|        13|        1|    32|       yes|     -|         -|            -|           -|    -|
+    |  + gramSchmidt_Pipeline_VITIS_LOOP_42_4  |  Timing|  -0.26|     5728|  2.864e+04|         -|     5728|     -|        no|     -|  155 (2%)|  16875 (~0%)|  11949 (1%)|    -|
+    |   o VITIS_LOOP_42_4                      |      II|   3.65|     5726|  2.863e+04|       207|      184|    31|       yes|     -|         -|            -|           -|    -|
+    +------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----------+-------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++------------+-----------+----------+
+| Port       | Direction | Bitwidth |
++------------+-----------+----------+
+| a_address0 | out       | 10       |
+| a_address1 | out       | 10       |
+| a_d0       | out       | 32       |
+| a_d1       | out       | 32       |
+| a_q0       | in        | 32       |
+| a_q1       | in        | 32       |
+| q_address0 | out       | 10       |
+| q_address1 | out       | 10       |
+| q_d0       | out       | 32       |
+| q_q0       | in        | 32       |
+| q_q1       | in        | 32       |
+| r_address0 | out       | 10       |
+| r_d0       | out       | 32       |
++------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| a        | inout     | float*   |
+| r        | out       | float*   |
+| q        | inout     | float*   |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+--------------+---------+----------+
+| Argument | HW Interface | HW Type | HW Usage |
++----------+--------------+---------+----------+
+| a        | a_address0   | port    | offset   |
+| a        | a_ce0        | port    |          |
+| a        | a_we0        | port    |          |
+| a        | a_d0         | port    |          |
+| a        | a_q0         | port    |          |
+| a        | a_address1   | port    | offset   |
+| a        | a_ce1        | port    |          |
+| a        | a_we1        | port    |          |
+| a        | a_d1         | port    |          |
+| a        | a_q1         | port    |          |
+| r        | r_address0   | port    | offset   |
+| r        | r_ce0        | port    |          |
+| r        | r_we0        | port    |          |
+| r        | r_d0         | port    |          |
+| q        | q_address0   | port    | offset   |
+| q        | q_ce0        | port    |          |
+| q        | q_we0        | port    |          |
+| q        | q_d0         | port    |          |
+| q        | q_q0         | port    |          |
+| q        | q_address1   | port    | offset   |
+| q        | q_ce1        | port    |          |
+| q        | q_q1         | port    |          |
++----------+--------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++------------------------------------------+-----+--------+-------------+------+---------+---------+
+| Name                                     | DSP | Pragma | Variable    | Op   | Impl    | Latency |
++------------------------------------------+-----+--------+-------------+------+---------+---------+
+| + gramSchmidt                            | 160 |        |             |      |         |         |
+|   add_ln42_fu_190_p2                     |     |        | add_ln42    | add  | fabric  | 0       |
+|   faddfsub_32ns_32ns_32_5_full_dsp_1_U87 | 2   |        | sub         | fadd | fulldsp | 4       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U88      | 3   |        | mul1        | fmul | maxdsp  | 3       |
+|   faddfsub_32ns_32ns_32_5_full_dsp_1_U87 | 2   |        | add         | fadd | fulldsp | 4       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U88      | 3   |        | mul2        | fmul | maxdsp  | 3       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U88      | 3   |        | mul3        | fmul | maxdsp  | 3       |
+|   faddfsub_32ns_32ns_32_5_full_dsp_1_U87 | 2   |        | nrm         | fadd | fulldsp | 4       |
+|   add_ln39_fu_215_p2                     |     |        | add_ln39    | add  | fabric  | 0       |
+|   add_ln49_fu_231_p2                     |     |        | add_ln49    | add  | fabric  | 0       |
+|   add_ln34_fu_254_p2                     |     |        | add_ln34    | add  | fabric  | 0       |
+|  + gramSchmidt_Pipeline_VITIS_LOOP_36_2  | 0   |        |             |      |         |         |
+|    add_ln36_fu_148_p2                    |     |        | add_ln36    | add  | fabric  | 0       |
+|  + gramSchmidt_Pipeline_VITIS_LOOP_40_3  | 0   |        |             |      |         |         |
+|    fdiv_32ns_32ns_32_10_no_dsp_1_U6      |     |        | div         | fdiv | fabric  | 9       |
+|    add_ln40_fu_147_p2                    |     |        | add_ln40    | add  | fabric  | 0       |
+|  + gramSchmidt_Pipeline_VITIS_LOOP_42_4  | 155 |        |             |      |         |         |
+|    add_ln43_fu_2045_p2                   |     |        | add_ln43    | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul4        | fmul | maxdsp  | 3       |
+|    add_ln45_fu_1180_p2                   |     |        | add_ln45    | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_1     | fmul | maxdsp  | 3       |
+|    add_ln45_1_fu_1339_p2                 |     |        | add_ln45_1  | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_2     | fmul | maxdsp  | 3       |
+|    add_ln45_2_fu_1369_p2                 |     |        | add_ln45_2  | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_3     | fmul | maxdsp  | 3       |
+|    add_ln45_3_fu_1379_p2                 |     |        | add_ln45_3  | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_4     | fmul | maxdsp  | 3       |
+|    add_ln45_4_fu_1423_p2                 |     |        | add_ln45_4  | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_5     | fmul | maxdsp  | 3       |
+|    add_ln45_5_fu_1433_p2                 |     |        | add_ln45_5  | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_6     | fmul | maxdsp  | 3       |
+|    add_ln45_6_fu_1487_p2                 |     |        | add_ln45_6  | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_7     | fmul | maxdsp  | 3       |
+|    add_ln45_7_fu_1497_p2                 |     |        | add_ln45_7  | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_8     | fmul | maxdsp  | 3       |
+|    add_ln45_9_fu_1551_p2                 |     |        | add_ln45_9  | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_9     | fmul | maxdsp  | 3       |
+|    add_ln45_10_fu_1561_p2                |     |        | add_ln45_10 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_s     | fmul | maxdsp  | 3       |
+|    add_ln45_12_fu_1611_p2                |     |        | add_ln45_12 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_10    | fmul | maxdsp  | 3       |
+|    add_ln45_13_fu_1621_p2                |     |        | add_ln45_13 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_11    | fmul | maxdsp  | 3       |
+|    add_ln45_14_fu_1667_p2                |     |        | add_ln45_14 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_12    | fmul | maxdsp  | 3       |
+|    add_ln45_15_fu_1677_p2                |     |        | add_ln45_15 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_13    | fmul | maxdsp  | 3       |
+|    add_ln45_16_fu_1723_p2                |     |        | add_ln45_16 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_14    | fmul | maxdsp  | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_15    | fmul | maxdsp  | 3       |
+|    add_ln45_18_fu_1779_p2                |     |        | add_ln45_18 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_16    | fmul | maxdsp  | 3       |
+|    add_ln45_19_fu_1789_p2                |     |        | add_ln45_19 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_17    | fmul | maxdsp  | 3       |
+|    add_ln45_21_fu_1826_p2                |     |        | add_ln45_21 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_18    | fmul | maxdsp  | 3       |
+|    add_ln45_22_fu_1836_p2                |     |        | add_ln45_22 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_19    | fmul | maxdsp  | 3       |
+|    add_ln45_24_fu_1865_p2                |     |        | add_ln45_24 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_20    | fmul | maxdsp  | 3       |
+|    add_ln45_25_fu_1875_p2                |     |        | add_ln45_25 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_21    | fmul | maxdsp  | 3       |
+|    add_ln45_27_fu_1905_p2                |     |        | add_ln45_27 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_22    | fmul | maxdsp  | 3       |
+|    add_ln45_28_fu_1915_p2                |     |        | add_ln45_28 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_23    | fmul | maxdsp  | 3       |
+|    add_ln45_29_fu_1945_p2                |     |        | add_ln45_29 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_24    | fmul | maxdsp  | 3       |
+|    add_ln45_30_fu_1955_p2                |     |        | add_ln45_30 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_25    | fmul | maxdsp  | 3       |
+|    add_ln45_31_fu_1985_p2                |     |        | add_ln45_31 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_26    | fmul | maxdsp  | 3       |
+|    add_ln45_32_fu_1995_p2                |     |        | add_ln45_32 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_27    | fmul | maxdsp  | 3       |
+|    add_ln45_33_fu_2025_p2                |     |        | add_ln45_33 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_28    | fmul | maxdsp  | 3       |
+|    add_ln45_34_fu_2035_p2                |     |        | add_ln45_34 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul54_29    | fmul | maxdsp  | 3       |
+|    add_ln45_35_fu_2069_p2                |     |        | add_ln45_35 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul54_30    | fmul | maxdsp  | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U44     | 3   |        | mul5        | fmul | maxdsp  | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U45     | 3   |        | mul76_1     | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U13    | 2   |        | sub77_1     | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U46     | 3   |        | mul76_2     | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U14    | 2   |        | sub77_2     | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U47     | 3   |        | mul76_3     | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U15    | 2   |        | sub77_3     | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U48     | 3   |        | mul76_4     | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U16    | 2   |        | sub77_4     | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U49     | 3   |        | mul76_5     | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U17    | 2   |        | sub77_5     | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U50     | 3   |        | mul76_6     | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U18    | 2   |        | sub77_6     | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U51     | 3   |        | mul76_7     | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U19    | 2   |        | sub77_7     | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U52     | 3   |        | mul76_8     | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U20    | 2   |        | sub77_8     | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U53     | 3   |        | mul76_9     | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U21    | 2   |        | sub77_9     | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U54     | 3   |        | mul76_s     | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U22    | 2   |        | sub77_s     | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U55     | 3   |        | mul76_10    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U23    | 2   |        | sub77_10    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U56     | 3   |        | mul76_11    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U24    | 2   |        | sub77_11    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U57     | 3   |        | mul76_12    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U25    | 2   |        | sub77_12    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U58     | 3   |        | mul76_13    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U26    | 2   |        | sub77_13    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U59     | 3   |        | mul76_14    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U27    | 2   |        | sub77_14    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U60     | 3   |        | mul76_15    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U28    | 2   |        | sub77_15    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U61     | 3   |        | mul76_16    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U29    | 2   |        | sub77_16    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U62     | 3   |        | mul76_17    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U30    | 2   |        | sub77_17    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U63     | 3   |        | mul76_18    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U31    | 2   |        | sub77_18    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U64     | 3   |        | mul76_19    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U32    | 2   |        | sub77_19    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U65     | 3   |        | mul76_20    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U33    | 2   |        | sub77_20    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U66     | 3   |        | mul76_21    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U34    | 2   |        | sub77_21    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U67     | 3   |        | mul76_22    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U35    | 2   |        | sub77_22    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U68     | 3   |        | mul76_23    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U36    | 2   |        | sub77_23    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U69     | 3   |        | mul76_24    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U37    | 2   |        | sub77_24    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U70     | 3   |        | mul76_25    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U38    | 2   |        | sub77_25    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U71     | 3   |        | mul76_26    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U39    | 2   |        | sub77_26    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U72     | 3   |        | mul76_27    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U40    | 2   |        | sub77_27    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U73     | 3   |        | mul76_28    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U41    | 2   |        | sub77_28    | fsub | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U74     | 3   |        | mul76_29    | fmul | maxdsp  | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U42    | 2   |        | sub77_29    | fsub | fulldsp | 4       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U43    | 2   |        | sub77_30    | fsub | fulldsp | 4       |
+|    add_ln42_fu_2190_p2                   |     |        | add_ln42    | add  | fabric  | 0       |
++------------------------------------------+-----+--------+-------------+------+---------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
+  No bind storage info in design
+
+================================================================
+== Pragma Report
+================================================================
+  No pragmas found
+

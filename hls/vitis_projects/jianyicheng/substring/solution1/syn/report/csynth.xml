@@ -1,0 +1,1510 @@
+<profile>
+    <ReportVersion>
+        <Version>2023.2</Version>
+    </ReportVersion>
+    <UserAssignments>
+        <unit>ns</unit>
+        <ProductFamily>virtexuplusHBM</ProductFamily>
+        <Part>xcvu35p-fsvh2104-1-e</Part>
+        <TopModelName>substring</TopModelName>
+        <TargetClockPeriod>5.00</TargetClockPeriod>
+        <ClockUncertainty>1.35</ClockUncertainty>
+        <FlowTarget>vivado</FlowTarget>
+    </UserAssignments>
+    <PerformanceEstimates>
+        <PipelineType>no</PipelineType>
+        <SummaryOfTimingAnalysis>
+            <unit>ns</unit>
+            <EstimatedClockPeriod>2.956</EstimatedClockPeriod>
+        </SummaryOfTimingAnalysis>
+        <SummaryOfOverallLatency>
+            <unit>clock cycles</unit>
+            <Best-caseLatency>98343</Best-caseLatency>
+            <Average-caseLatency>98343</Average-caseLatency>
+            <Worst-caseLatency>98343</Worst-caseLatency>
+            <Best-caseRealTimeLatency>0.492 ms</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0.492 ms</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>0.492 ms</Worst-caseRealTimeLatency>
+            <Interval-min>98344</Interval-min>
+            <Interval-max>98344</Interval-max>
+        </SummaryOfOverallLatency>
+        <SummaryOfViolations>
+            <IssueType>-</IssueType>
+            <ViolationType>-</ViolationType>
+            <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:14</SourceLocation>
+        </SummaryOfViolations>
+    </PerformanceEstimates>
+    <AreaEstimates>
+        <Resources>
+            <FF>1959</FF>
+            <LUT>4431</LUT>
+            <BRAM_18K>0</BRAM_18K>
+            <DSP>0</DSP>
+            <URAM>0</URAM>
+        </Resources>
+        <AvailableResources>
+            <BRAM_18K>2688</BRAM_18K>
+            <DSP>5952</DSP>
+            <FF>1743360</FF>
+            <LUT>871680</LUT>
+            <URAM>640</URAM>
+        </AvailableResources>
+    </AreaEstimates>
+    <InterfaceSummary>
+        <RtlPorts>
+            <name>ap_clk</name>
+            <Object>substring</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_rst</name>
+            <Object>substring</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_start</name>
+            <Object>substring</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_done</name>
+            <Object>substring</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_idle</name>
+            <Object>substring</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_ready</name>
+            <Object>substring</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_return</name>
+            <Object>substring</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_0_address0</name>
+            <Object>str_0</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>12</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_0_ce0</name>
+            <Object>str_0</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_0_q0</name>
+            <Object>str_0</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_1_address0</name>
+            <Object>str_1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>12</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_1_ce0</name>
+            <Object>str_1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_1_q0</name>
+            <Object>str_1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_2_address0</name>
+            <Object>str_2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>12</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_2_ce0</name>
+            <Object>str_2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_2_q0</name>
+            <Object>str_2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_3_address0</name>
+            <Object>str_3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>12</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_3_ce0</name>
+            <Object>str_3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_3_q0</name>
+            <Object>str_3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_4_address0</name>
+            <Object>str_4</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>12</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_4_ce0</name>
+            <Object>str_4</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_4_q0</name>
+            <Object>str_4</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_5_address0</name>
+            <Object>str_5</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>12</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_5_ce0</name>
+            <Object>str_5</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_5_q0</name>
+            <Object>str_5</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_6_address0</name>
+            <Object>str_6</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>12</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_6_ce0</name>
+            <Object>str_6</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_6_q0</name>
+            <Object>str_6</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_7_address0</name>
+            <Object>str_7</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>12</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_7_ce0</name>
+            <Object>str_7</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>str_7_q0</name>
+            <Object>str_7</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+    </InterfaceSummary>
+    <RTLDesignHierarchy>
+        <TopModule MAX_DEPTH="3">
+            <ModuleName>substring</ModuleName>
+            <InstancesList>
+                <Instance>
+                    <InstName>grp_substring_Pipeline_loop_0_VITIS_LOOP_31_1_fu_82</InstName>
+                    <ModuleName>substring_Pipeline_loop_0_VITIS_LOOP_31_1</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>82</ID>
+                    <BindInstances>add_ln28_fu_143_p2 add_ln28_1_fu_169_p2 add_ln32_fu_207_p2 add_ln38_fu_183_p2 add_ln42_fu_291_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_substring_Pipeline_loop_1_VITIS_LOOP_49_2_fu_91</InstName>
+                    <ModuleName>substring_Pipeline_loop_1_VITIS_LOOP_49_2</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>91</ID>
+                    <BindInstances>add_ln46_fu_143_p2 add_ln46_1_fu_169_p2 add_ln50_fu_207_p2 add_ln56_fu_183_p2 add_ln60_fu_291_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_substring_Pipeline_loop_2_VITIS_LOOP_67_3_fu_100</InstName>
+                    <ModuleName>substring_Pipeline_loop_2_VITIS_LOOP_67_3</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>100</ID>
+                    <BindInstances>add_ln64_fu_143_p2 add_ln64_1_fu_169_p2 add_ln68_fu_207_p2 add_ln74_fu_183_p2 add_ln78_fu_291_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_substring_Pipeline_loop_3_VITIS_LOOP_85_4_fu_109</InstName>
+                    <ModuleName>substring_Pipeline_loop_3_VITIS_LOOP_85_4</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>109</ID>
+                    <BindInstances>add_ln82_fu_143_p2 add_ln82_1_fu_169_p2 add_ln86_fu_207_p2 add_ln92_fu_183_p2 add_ln96_fu_291_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_substring_Pipeline_loop_4_VITIS_LOOP_103_5_fu_118</InstName>
+                    <ModuleName>substring_Pipeline_loop_4_VITIS_LOOP_103_5</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>118</ID>
+                    <BindInstances>add_ln100_fu_143_p2 add_ln100_1_fu_169_p2 add_ln104_fu_207_p2 add_ln110_fu_183_p2 add_ln114_fu_291_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_substring_Pipeline_loop_5_VITIS_LOOP_121_6_fu_127</InstName>
+                    <ModuleName>substring_Pipeline_loop_5_VITIS_LOOP_121_6</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>127</ID>
+                    <BindInstances>add_ln118_fu_143_p2 add_ln118_1_fu_169_p2 add_ln122_fu_207_p2 add_ln128_fu_183_p2 add_ln132_fu_291_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_substring_Pipeline_loop_6_VITIS_LOOP_139_7_fu_136</InstName>
+                    <ModuleName>substring_Pipeline_loop_6_VITIS_LOOP_139_7</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>136</ID>
+                    <BindInstances>add_ln136_fu_143_p2 add_ln136_1_fu_169_p2 add_ln140_fu_207_p2 add_ln146_fu_183_p2 add_ln150_fu_291_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_substring_Pipeline_loop_7_VITIS_LOOP_157_8_fu_145</InstName>
+                    <ModuleName>substring_Pipeline_loop_7_VITIS_LOOP_157_8</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>145</ID>
+                    <BindInstances>add_ln154_fu_124_p2 add_ln154_1_fu_150_p2 add_ln158_fu_188_p2 add_ln161_fu_164_p2 add_ln165_fu_249_p2</BindInstances>
+                </Instance>
+            </InstancesList>
+            <BindInstances>add_ln168_fu_176_p2 add_ln168_1_fu_182_p2 add_ln168_4_fu_200_p2</BindInstances>
+        </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+        <Module>
+            <Name>substring_Pipeline_loop_0_VITIS_LOOP_31_1</Name>
+            <Loops>
+                <loop_0_VITIS_LOOP_31_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.507</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12292</Best-caseLatency>
+                    <Average-caseLatency>12292</Average-caseLatency>
+                    <Worst-caseLatency>12292</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>61.460 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>61.460 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>61.460 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12292</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <loop_0_VITIS_LOOP_31_1>
+                        <Name>loop_0_VITIS_LOOP_31_1</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>12288</TripCount>
+                        <Latency>12290</Latency>
+                        <AbsoluteTimeLatency>61.450 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>4</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </loop_0_VITIS_LOOP_31_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:30</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <loop_0_VITIS_LOOP_31_1>
+                            <Name>loop_0_VITIS_LOOP_31_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:28</SourceLocation>
+                        </loop_0_VITIS_LOOP_31_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>232</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>488</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_0_VITIS_LOOP_31_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln28_fu_143_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:28" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln28"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_0_VITIS_LOOP_31_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln28_1_fu_169_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:28" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln28_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_0_VITIS_LOOP_31_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln32_fu_207_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:32" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln32"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_0_VITIS_LOOP_31_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln38_fu_183_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:38" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln38"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_0_VITIS_LOOP_31_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln42_fu_291_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:42" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln42"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>substring_Pipeline_loop_1_VITIS_LOOP_49_2</Name>
+            <Loops>
+                <loop_1_VITIS_LOOP_49_2/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.507</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12292</Best-caseLatency>
+                    <Average-caseLatency>12292</Average-caseLatency>
+                    <Worst-caseLatency>12292</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>61.460 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>61.460 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>61.460 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12292</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <loop_1_VITIS_LOOP_49_2>
+                        <Name>loop_1_VITIS_LOOP_49_2</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>12288</TripCount>
+                        <Latency>12290</Latency>
+                        <AbsoluteTimeLatency>61.450 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>4</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </loop_1_VITIS_LOOP_49_2>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:48</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <loop_1_VITIS_LOOP_49_2>
+                            <Name>loop_1_VITIS_LOOP_49_2</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:46</SourceLocation>
+                        </loop_1_VITIS_LOOP_49_2>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>232</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>488</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_1_VITIS_LOOP_49_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln46_fu_143_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:46" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln46"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_1_VITIS_LOOP_49_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln46_1_fu_169_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:46" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln46_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_1_VITIS_LOOP_49_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln50_fu_207_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:50" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln50"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_1_VITIS_LOOP_49_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln56_fu_183_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:56" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln56"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_1_VITIS_LOOP_49_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln60_fu_291_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:60" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln60"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>substring_Pipeline_loop_2_VITIS_LOOP_67_3</Name>
+            <Loops>
+                <loop_2_VITIS_LOOP_67_3/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.507</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12292</Best-caseLatency>
+                    <Average-caseLatency>12292</Average-caseLatency>
+                    <Worst-caseLatency>12292</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>61.460 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>61.460 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>61.460 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12292</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <loop_2_VITIS_LOOP_67_3>
+                        <Name>loop_2_VITIS_LOOP_67_3</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>12288</TripCount>
+                        <Latency>12290</Latency>
+                        <AbsoluteTimeLatency>61.450 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>4</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </loop_2_VITIS_LOOP_67_3>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:66</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <loop_2_VITIS_LOOP_67_3>
+                            <Name>loop_2_VITIS_LOOP_67_3</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:64</SourceLocation>
+                        </loop_2_VITIS_LOOP_67_3>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>232</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>488</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_2_VITIS_LOOP_67_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln64_fu_143_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:64" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln64"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_2_VITIS_LOOP_67_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln64_1_fu_169_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:64" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln64_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_2_VITIS_LOOP_67_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln68_fu_207_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:68" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln68"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_2_VITIS_LOOP_67_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln74_fu_183_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:74" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln74"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_2_VITIS_LOOP_67_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln78_fu_291_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:78" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln78"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>substring_Pipeline_loop_3_VITIS_LOOP_85_4</Name>
+            <Loops>
+                <loop_3_VITIS_LOOP_85_4/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.507</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12292</Best-caseLatency>
+                    <Average-caseLatency>12292</Average-caseLatency>
+                    <Worst-caseLatency>12292</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>61.460 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>61.460 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>61.460 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12292</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <loop_3_VITIS_LOOP_85_4>
+                        <Name>loop_3_VITIS_LOOP_85_4</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>12288</TripCount>
+                        <Latency>12290</Latency>
+                        <AbsoluteTimeLatency>61.450 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>4</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </loop_3_VITIS_LOOP_85_4>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:84</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <loop_3_VITIS_LOOP_85_4>
+                            <Name>loop_3_VITIS_LOOP_85_4</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:82</SourceLocation>
+                        </loop_3_VITIS_LOOP_85_4>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>232</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>488</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_3_VITIS_LOOP_85_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln82_fu_143_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:82" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln82"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_3_VITIS_LOOP_85_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln82_1_fu_169_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:82" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln82_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_3_VITIS_LOOP_85_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln86_fu_207_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:86" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln86"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_3_VITIS_LOOP_85_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln92_fu_183_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:92" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln92"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_3_VITIS_LOOP_85_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln96_fu_291_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:96" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln96"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>substring_Pipeline_loop_4_VITIS_LOOP_103_5</Name>
+            <Loops>
+                <loop_4_VITIS_LOOP_103_5/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.507</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12292</Best-caseLatency>
+                    <Average-caseLatency>12292</Average-caseLatency>
+                    <Worst-caseLatency>12292</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>61.460 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>61.460 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>61.460 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12292</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <loop_4_VITIS_LOOP_103_5>
+                        <Name>loop_4_VITIS_LOOP_103_5</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>12288</TripCount>
+                        <Latency>12290</Latency>
+                        <AbsoluteTimeLatency>61.450 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>4</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </loop_4_VITIS_LOOP_103_5>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:102</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <loop_4_VITIS_LOOP_103_5>
+                            <Name>loop_4_VITIS_LOOP_103_5</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:100</SourceLocation>
+                        </loop_4_VITIS_LOOP_103_5>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>232</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>488</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_4_VITIS_LOOP_103_5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln100_fu_143_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:100" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln100"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_4_VITIS_LOOP_103_5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln100_1_fu_169_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:100" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln100_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_4_VITIS_LOOP_103_5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln104_fu_207_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:104" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln104"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_4_VITIS_LOOP_103_5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln110_fu_183_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:110" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln110"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_4_VITIS_LOOP_103_5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln114_fu_291_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:114" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln114"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>substring_Pipeline_loop_5_VITIS_LOOP_121_6</Name>
+            <Loops>
+                <loop_5_VITIS_LOOP_121_6/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.507</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12292</Best-caseLatency>
+                    <Average-caseLatency>12292</Average-caseLatency>
+                    <Worst-caseLatency>12292</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>61.460 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>61.460 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>61.460 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12292</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <loop_5_VITIS_LOOP_121_6>
+                        <Name>loop_5_VITIS_LOOP_121_6</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>12288</TripCount>
+                        <Latency>12290</Latency>
+                        <AbsoluteTimeLatency>61.450 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>4</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </loop_5_VITIS_LOOP_121_6>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:120</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <loop_5_VITIS_LOOP_121_6>
+                            <Name>loop_5_VITIS_LOOP_121_6</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:118</SourceLocation>
+                        </loop_5_VITIS_LOOP_121_6>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>232</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>488</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_5_VITIS_LOOP_121_6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln118_fu_143_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:118" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln118"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_5_VITIS_LOOP_121_6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln118_1_fu_169_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:118" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln118_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_5_VITIS_LOOP_121_6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln122_fu_207_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:122" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln122"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_5_VITIS_LOOP_121_6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln128_fu_183_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:128" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln128"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_5_VITIS_LOOP_121_6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln132_fu_291_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:132" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln132"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>substring_Pipeline_loop_6_VITIS_LOOP_139_7</Name>
+            <Loops>
+                <loop_6_VITIS_LOOP_139_7/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.507</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12292</Best-caseLatency>
+                    <Average-caseLatency>12292</Average-caseLatency>
+                    <Worst-caseLatency>12292</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>61.460 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>61.460 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>61.460 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12292</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <loop_6_VITIS_LOOP_139_7>
+                        <Name>loop_6_VITIS_LOOP_139_7</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>12288</TripCount>
+                        <Latency>12290</Latency>
+                        <AbsoluteTimeLatency>61.450 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>4</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </loop_6_VITIS_LOOP_139_7>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:138</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <loop_6_VITIS_LOOP_139_7>
+                            <Name>loop_6_VITIS_LOOP_139_7</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:136</SourceLocation>
+                        </loop_6_VITIS_LOOP_139_7>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>232</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>488</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_6_VITIS_LOOP_139_7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln136_fu_143_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:136" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln136"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_6_VITIS_LOOP_139_7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln136_1_fu_169_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:136" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln136_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_6_VITIS_LOOP_139_7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln140_fu_207_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:140" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln140"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_6_VITIS_LOOP_139_7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln146_fu_183_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:146" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln146"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_6_VITIS_LOOP_139_7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln150_fu_291_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln150"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>substring_Pipeline_loop_7_VITIS_LOOP_157_8</Name>
+            <Loops>
+                <loop_7_VITIS_LOOP_157_8/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.915</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12283</Best-caseLatency>
+                    <Average-caseLatency>12283</Average-caseLatency>
+                    <Worst-caseLatency>12283</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>61.415 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>61.415 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>61.415 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12283</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <loop_7_VITIS_LOOP_157_8>
+                        <Name>loop_7_VITIS_LOOP_157_8</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>12279</TripCount>
+                        <Latency>12281</Latency>
+                        <AbsoluteTimeLatency>61.405 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>4</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </loop_7_VITIS_LOOP_157_8>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:156</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <loop_7_VITIS_LOOP_157_8>
+                            <Name>loop_7_VITIS_LOOP_157_8</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:154</SourceLocation>
+                        </loop_7_VITIS_LOOP_157_8>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>310</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>485</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_7_VITIS_LOOP_157_8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln154_fu_124_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:154" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln154"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_7_VITIS_LOOP_157_8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln154_1_fu_150_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:154" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln154_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_7_VITIS_LOOP_157_8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln158_fu_188_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:158" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln158"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_7_VITIS_LOOP_157_8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln161_fu_164_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:161" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln161"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_7_VITIS_LOOP_157_8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln165_fu_249_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:165" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln165"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>substring</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>2.956</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>98343</Best-caseLatency>
+                    <Average-caseLatency>98343</Average-caseLatency>
+                    <Worst-caseLatency>98343</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.492 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.492 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.492 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>98344</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>HLS-benchmarks/Inter-Block/substring/substring.cpp:14</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>1959</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>4431</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln168_fu_176_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:168" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln168"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln168_1_fu_182_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:168" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln168_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln168_4_fu_200_p2" SOURCE="HLS-benchmarks/Inter-Block/substring/substring.cpp:168" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln168_4"/>
+            </BindNodes>
+        </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+    <UserConfigCommands/>
+    <Args>
+        <Arg ArgName="str_0" index="0" direction="in" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="str_0_address0" name="str_0_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="str_0_ce0" name="str_0_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="str_0_q0" name="str_0_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="str_1" index="1" direction="in" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="str_1_address0" name="str_1_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="str_1_ce0" name="str_1_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="str_1_q0" name="str_1_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="str_2" index="2" direction="in" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="str_2_address0" name="str_2_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="str_2_ce0" name="str_2_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="str_2_q0" name="str_2_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="str_3" index="3" direction="in" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="str_3_address0" name="str_3_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="str_3_ce0" name="str_3_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="str_3_q0" name="str_3_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="str_4" index="4" direction="in" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="str_4_address0" name="str_4_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="str_4_ce0" name="str_4_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="str_4_q0" name="str_4_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="str_5" index="5" direction="in" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="str_5_address0" name="str_5_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="str_5_ce0" name="str_5_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="str_5_q0" name="str_5_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="str_6" index="6" direction="in" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="str_6_address0" name="str_6_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="str_6_ce0" name="str_6_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="str_6_q0" name="str_6_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="str_7" index="7" direction="in" srcType="int*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="str_7_address0" name="str_7_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="str_7_ce0" name="str_7_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="str_7_q0" name="str_7_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+    </Args>
+    <ReturnValue ReturnValueName="srcType">int</ReturnValue>
+    <ReturnValue ReturnValueName="srcSize">32</ReturnValue>
+    <ReturnValue ReturnValueName="hwRefs" type="port" interface="ap_return" name="ap_return" usage="data" direction="out"/>
+    <Interfaces>
+        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
+            <busParams>
+                <busParam busParamName="ASSOCIATED_RESET">ap_rst</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_clk">CLK</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_clk</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_HIGH</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_ctrl" type="ap_ctrl" busTypeName="acc_handshake" mode="slave">
+            <portMaps>
+                <portMap portMapName="ap_start">start</portMap>
+                <portMap portMapName="ap_done">done</portMap>
+                <portMap portMapName="ap_idle">idle</portMap>
+                <portMap portMapName="ap_ready">ready</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_done</port>
+                <port>ap_idle</port>
+                <port>ap_ready</port>
+                <port>ap_start</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_return" type="data" busTypeName="data" protocol="ap_ctrl_hs" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="ap_return">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_return</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="str_0_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="12">
+            <portMaps>
+                <portMap portMapName="str_0_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_0_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_0"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_0_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="str_0_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_0_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_0"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_1_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="12">
+            <portMaps>
+                <portMap portMapName="str_1_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_1_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_1"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_1_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="str_1_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_1_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_1"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_2_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="12">
+            <portMaps>
+                <portMap portMapName="str_2_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_2_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_2"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_2_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="str_2_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_2_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_2"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_3_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="12">
+            <portMaps>
+                <portMap portMapName="str_3_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_3_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_3"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_3_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="str_3_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_3_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_3"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_4_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="12">
+            <portMaps>
+                <portMap portMapName="str_4_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_4_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_4"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_4_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="str_4_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_4_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_4"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_5_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="12">
+            <portMaps>
+                <portMap portMapName="str_5_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_5_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_5"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_5_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="str_5_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_5_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_5"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_6_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="12">
+            <portMaps>
+                <portMap portMapName="str_6_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_6_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_6"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_6_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="str_6_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_6_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_6"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_7_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="12">
+            <portMaps>
+                <portMap portMapName="str_7_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_7_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_7"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="str_7_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="str_7_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>str_7_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="str_7"/>
+            </constraints>
+        </Interface>
+    </Interfaces>
+    <ReportHWInterface>
+        <section name="HW Interfaces" level="0">
+            <item name="AP_MEMORY">
+                <table>
+                    <keys size="3">Port, Direction, Bitwidth</keys>
+                    <column name="str_0_address0">out, 12</column>
+                    <column name="str_0_q0">in, 32</column>
+                    <column name="str_1_address0">out, 12</column>
+                    <column name="str_1_q0">in, 32</column>
+                    <column name="str_2_address0">out, 12</column>
+                    <column name="str_2_q0">in, 32</column>
+                    <column name="str_3_address0">out, 12</column>
+                    <column name="str_3_q0">in, 32</column>
+                    <column name="str_4_address0">out, 12</column>
+                    <column name="str_4_q0">in, 32</column>
+                    <column name="str_5_address0">out, 12</column>
+                    <column name="str_5_q0">in, 32</column>
+                    <column name="str_6_address0">out, 12</column>
+                    <column name="str_6_q0">in, 32</column>
+                    <column name="str_7_address0">out, 12</column>
+                    <column name="str_7_q0">in, 32</column>
+                </table>
+            </item>
+            <item name="Other Ports">
+                <table>
+                    <keys size="3">Port, Direction, Bitwidth</keys>
+                    <column name="ap_return">out, 32</column>
+                </table>
+            </item>
+            <item name="TOP LEVEL CONTROL">
+                <table>
+                    <keys size="3">Interface, Type, Ports</keys>
+                    <column name="ap_clk">clock, ap_clk</column>
+                    <column name="ap_rst">reset, ap_rst</column>
+                    <column name="ap_ctrl">ap_ctrl_hs, ap_done ap_idle ap_ready ap_start</column>
+                </table>
+            </item>
+        </section>
+    </ReportHWInterface>
+    <ReportSWInterface>
+        <section name="SW I/O Information" level="0">
+            <item name="Top Function Arguments">
+                <table>
+                    <keys size="3">Argument, Direction, Datatype</keys>
+                    <column name="str_0">in, int*</column>
+                    <column name="str_1">in, int*</column>
+                    <column name="str_2">in, int*</column>
+                    <column name="str_3">in, int*</column>
+                    <column name="str_4">in, int*</column>
+                    <column name="str_5">in, int*</column>
+                    <column name="str_6">in, int*</column>
+                    <column name="str_7">in, int*</column>
+                    <column name="return">out, int</column>
+                </table>
+            </item>
+            <item name="SW-to-HW Mapping">
+                <table>
+                    <keys size="4">Argument, HW Interface, HW Type, HW Usage</keys>
+                    <column name="str_0">str_0_address0, port, offset</column>
+                    <column name="str_0">str_0_ce0, port, </column>
+                    <column name="str_0">str_0_q0, port, </column>
+                    <column name="str_1">str_1_address0, port, offset</column>
+                    <column name="str_1">str_1_ce0, port, </column>
+                    <column name="str_1">str_1_q0, port, </column>
+                    <column name="str_2">str_2_address0, port, offset</column>
+                    <column name="str_2">str_2_ce0, port, </column>
+                    <column name="str_2">str_2_q0, port, </column>
+                    <column name="str_3">str_3_address0, port, offset</column>
+                    <column name="str_3">str_3_ce0, port, </column>
+                    <column name="str_3">str_3_q0, port, </column>
+                    <column name="str_4">str_4_address0, port, offset</column>
+                    <column name="str_4">str_4_ce0, port, </column>
+                    <column name="str_4">str_4_q0, port, </column>
+                    <column name="str_5">str_5_address0, port, offset</column>
+                    <column name="str_5">str_5_ce0, port, </column>
+                    <column name="str_5">str_5_q0, port, </column>
+                    <column name="str_6">str_6_address0, port, offset</column>
+                    <column name="str_6">str_6_ce0, port, </column>
+                    <column name="str_6">str_6_q0, port, </column>
+                    <column name="str_7">str_7_address0, port, offset</column>
+                    <column name="str_7">str_7_ce0, port, </column>
+                    <column name="str_7">str_7_q0, port, </column>
+                    <column name="return">ap_return, port, </column>
+                </table>
+            </item>
+        </section>
+    </ReportSWInterface>
+    <ResolutionUrl key="ZZZ">docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
+    <PragmaReport/>
+</profile>
+

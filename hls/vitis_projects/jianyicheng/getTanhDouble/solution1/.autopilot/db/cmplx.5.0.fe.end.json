@@ -1,0 +1,22 @@
+{
+    "0": {
+        "name": "getTanhDouble",
+        "file": "getTanhDouble.cpp",
+        "fileloc": "12",
+        "instructions": "57",
+        "total_instructions": "57",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "3",
+            "T": "3"
+        },
+        "stores": {
+            "L": "6",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

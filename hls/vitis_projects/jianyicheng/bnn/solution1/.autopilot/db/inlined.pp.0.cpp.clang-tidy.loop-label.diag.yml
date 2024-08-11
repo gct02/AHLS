@@ -1,0 +1,31 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/bnn/solution1/.autopilot/db/inlined.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_15_1:  '
+    FileOffset:      15
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/DSS/BNNKernel/src/inlined.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/bnn/solution1/.autopilot/db/inlined.pp.0.cpp
+        Offset:          10478
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_15_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_16_2:  '
+    FileOffset:      16
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/DSS/BNNKernel/src/inlined.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/bnn/solution1/.autopilot/db/inlined.pp.0.cpp
+        Offset:          10502
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_16_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_23_3:  '
+    FileOffset:      23
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/DSS/BNNKernel/src/inlined.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/bnn/solution1/.autopilot/db/inlined.pp.0.cpp
+        Offset:          10601
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_23_3: '
+...

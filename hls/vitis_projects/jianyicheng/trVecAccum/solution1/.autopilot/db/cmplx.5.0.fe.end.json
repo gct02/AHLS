@@ -1,0 +1,41 @@
+{
+    "1": {
+        "name": "trVecAccum_Pipeline_loop_1",
+        "file": "HLS-benchmarks\/C-Slow\/trVecAccum\/trVecAccum.cpp",
+        "fileloc": "13",
+        "instructions": "30",
+        "total_instructions": "30",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "3",
+            "T": "1"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "0": {
+        "name": "trVecAccum",
+        "file": "trVecAccum.cpp",
+        "fileloc": "8",
+        "instructions": "38",
+        "total_instructions": "68",
+        "calls": "1",
+        "basicblocks": "4",
+        "loads": {
+            "L": "3",
+            "T": "1"
+        },
+        "stores": {
+            "L": "4",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

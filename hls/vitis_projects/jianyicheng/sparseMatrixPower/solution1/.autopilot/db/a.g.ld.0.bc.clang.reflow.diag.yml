@@ -1,0 +1,27 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: HLS-benchmarks/DSS/sparseMatrixPower/src/smm.cpp, 
+                   Line: 12, Column: 0 }
+Function:        _Z3smmPiS_S_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'g(int*, int, int*)'
+    DebugLoc:        { File: HLS-benchmarks/DSS/sparseMatrixPower/src/g.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'smm(int*, int*, int*)'
+    DebugLoc:        { File: HLS-benchmarks/DSS/sparseMatrixPower/src/smm.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_15_1
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/DSS/sparseMatrixPower/src/g.cpp:15:20'
+  - String:          ' '
+...

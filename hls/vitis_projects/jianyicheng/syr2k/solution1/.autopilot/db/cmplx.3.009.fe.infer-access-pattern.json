@@ -1,0 +1,17 @@
+{
+  "0": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "syr2k.cpp",
+    "fileloc": 8,
+    "instructions": 43,
+    "loads": {
+      "T": 5
+    },
+    "name": "syr2k",
+    "stores": {
+      "T": 1
+    },
+    "total_instructions": 43
+  }
+}

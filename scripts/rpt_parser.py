@@ -3,10 +3,8 @@ from sys import argv
 import xml.etree.ElementTree as ET
 import os
 
-
 OPCODE_DICT = {'add':11,'fadd':12,'sub':13,'fsub':14,'mul':15,'fmul':16,'udiv':17,'sdiv':18,'fdiv':19,
                'urem':20,'srem':21,'frem':22,'shl':23,'lshr':24,'ashr':25,'and':26,'or':27,'xor':28}
-
 
 def get_resource_usage(proj_export_rpt: Path) -> dict:
     rpt = {}
@@ -19,7 +17,6 @@ def get_resource_usage(proj_export_rpt: Path) -> dict:
             rpt_line_split = rpt_line.split(':')
             rpt[rpt_line_split[0]] = int(rpt_line_split[1].strip())
     return rpt
-
 
 def get_resource_usage_per_op(solution_impl_dir: Path):
     reports_folder = solution_impl_dir / "report/verilog"
@@ -101,7 +98,6 @@ def get_resource_usage_per_op(solution_impl_dir: Path):
 
     return op_rpts
 
-
 def parse_rpt(solution_syn_dir: Path, output_file: Path):
     op_rpts = get_resource_usage_per_op(solution_syn_dir)
 
@@ -117,7 +113,6 @@ def parse_rpt(solution_syn_dir: Path, output_file: Path):
         for op_rpt in bin_op_rpts.values():
             f.write(f"{op_rpt[0]},{op_rpt[1]},{op_rpt[2]},{op_rpt[3]},{op_rpt[4]},{op_rpt[5]},{op_rpt[6]}\n")
 
-
 def parse_rpts_in_folder(project_folder, output_folder):
     directory = os.fsencode(project_folder)
     for folder in os.listdir(directory):
@@ -125,7 +120,6 @@ def parse_rpts_in_folder(project_folder, output_folder):
         solution_impl_dir = Path(str(project_folder, 'utf-8')) / "solution1/impl"
         output_file = Path(output_folder) / (Path(str(project_folder, 'utf-8')).stem + ".csv")
         parse_rpt(solution_impl_dir, output_file)
-
    
 if __name__ == "__main__":
     project_folder = argv[1]

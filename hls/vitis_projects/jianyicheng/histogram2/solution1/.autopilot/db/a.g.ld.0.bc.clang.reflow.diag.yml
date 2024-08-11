@@ -1,0 +1,90 @@
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_0
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:26:3'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_1
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:42:3'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_2
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:58:3'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_3
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:74:3'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_4
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:90:3'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_5
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:106:3'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_6
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:122:3'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_7
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:138:3'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_8
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154:3'
+  - String:          ' '
+...

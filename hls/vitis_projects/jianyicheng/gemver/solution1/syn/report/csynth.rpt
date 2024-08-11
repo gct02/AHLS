@@ -1,0 +1,174 @@
+
+
+================================================================
+== Synthesis Summary Report of 'gemver'
+================================================================
++ General Information: 
+    * Date:           Sun Jun 23 03:30:06 2024
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        gemver
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtexuplusHBM
+    * Target device:  xcvu35p-fsvh2104-1-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------+----------+------------+------------+-----+
+    |                  Modules                  | Issue|      | Latency |  Latency  | Iteration|         |  Trip |          |      |          |            |            |     |
+    |                  & Loops                  | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count | Pipelined| BRAM |    DSP   |     FF     |     LUT    | URAM|
+    +-------------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------+----------+------------+------------+-----+
+    |+ gemver                                   |     -|  0.07|   852019|  4.260e+06|         -|   852020|      -|        no|     -|  10 (~0%)|  2385 (~0%)|  2121 (~0%)|    -|
+    | + gemver_Pipeline_VITIS_LOOP_14_1_loop_2  |     -|  0.07|    65553|  3.278e+05|         -|    65553|      -|        no|     -|   5 (~0%)|   957 (~0%)|   638 (~0%)|    -|
+    |  o VITIS_LOOP_14_1_loop_2                 |     -|  3.65|    65551|  3.278e+05|        17|        1|  65536|       yes|     -|         -|           -|           -|    -|
+    | + gemver_Pipeline_VITIS_LOOP_23_2_loop_3  |     -|  0.07|   393233|  1.966e+06|         -|   393233|      -|        no|     -|         -|   638 (~0%)|   512 (~0%)|    -|
+    |  o VITIS_LOOP_23_2_loop_3                 |    II|  3.65|   393231|  1.966e+06|        22|        6|  65536|       yes|     -|         -|           -|           -|    -|
+    | + gemver_Pipeline_VITIS_LOOP_35_3_loop_4  |     -|  0.07|   393228|  1.966e+06|         -|   393228|      -|        no|     -|         -|   433 (~0%)|   422 (~0%)|    -|
+    |  o VITIS_LOOP_35_3_loop_4                 |    II|  3.65|   393226|  1.966e+06|        17|        6|  65536|       yes|     -|         -|           -|           -|    -|
+    +-------------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------+----------+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++-------------+-----------+----------+
+| Port        | Direction | Bitwidth |
++-------------+-----------+----------+
+| A_address0  | out       | 16       |
+| A_address1  | out       | 16       |
+| A_d0        | out       | 32       |
+| A_q0        | in        | 32       |
+| A_q1        | in        | 32       |
+| u1_address0 | out       | 8        |
+| u1_q0       | in        | 32       |
+| u2_address0 | out       | 8        |
+| u2_q0       | in        | 32       |
+| v1_address0 | out       | 8        |
+| v1_q0       | in        | 32       |
+| v2_address0 | out       | 8        |
+| v2_q0       | in        | 32       |
+| w_address0  | out       | 8        |
+| w_d0        | out       | 32       |
+| w_q0        | in        | 32       |
+| x_address0  | out       | 8        |
+| x_d0        | out       | 32       |
+| x_q0        | in        | 32       |
+| y_address0  | out       | 8        |
+| y_q0        | in        | 32       |
+| z_address0  | out       | 8        |
+| z_q0        | in        | 32       |
++-------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| A        | inout     | float*   |
+| u1       | in        | float*   |
+| v1       | in        | float*   |
+| u2       | in        | float*   |
+| v2       | in        | float*   |
+| w        | inout     | float*   |
+| x        | inout     | float*   |
+| y        | in        | float*   |
+| z        | in        | float*   |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+--------------+---------+----------+
+| Argument | HW Interface | HW Type | HW Usage |
++----------+--------------+---------+----------+
+| A        | A_address0   | port    | offset   |
+| A        | A_ce0        | port    |          |
+| A        | A_we0        | port    |          |
+| A        | A_d0         | port    |          |
+| A        | A_q0         | port    |          |
+| A        | A_address1   | port    | offset   |
+| A        | A_ce1        | port    |          |
+| A        | A_q1         | port    |          |
+| u1       | u1_address0  | port    | offset   |
+| u1       | u1_ce0       | port    |          |
+| u1       | u1_q0        | port    |          |
+| v1       | v1_address0  | port    | offset   |
+| v1       | v1_ce0       | port    |          |
+| v1       | v1_q0        | port    |          |
+| u2       | u2_address0  | port    | offset   |
+| u2       | u2_ce0       | port    |          |
+| u2       | u2_q0        | port    |          |
+| v2       | v2_address0  | port    | offset   |
+| v2       | v2_ce0       | port    |          |
+| v2       | v2_q0        | port    |          |
+| w        | w_address0   | port    | offset   |
+| w        | w_ce0        | port    |          |
+| w        | w_we0        | port    |          |
+| w        | w_d0         | port    |          |
+| w        | w_q0         | port    |          |
+| x        | x_address0   | port    | offset   |
+| x        | x_ce0        | port    |          |
+| x        | x_we0        | port    |          |
+| x        | x_d0         | port    |          |
+| x        | x_q0         | port    |          |
+| y        | y_address0   | port    | offset   |
+| y        | y_ce0        | port    |          |
+| y        | y_q0         | port    |          |
+| z        | z_address0   | port    | offset   |
+| z        | z_ce0        | port    |          |
+| z        | z_q0         | port    |          |
++----------+--------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-------------------------------------------+-----+--------+------------+------+---------+---------+
+| Name                                      | DSP | Pragma | Variable   | Op   | Impl    | Latency |
++-------------------------------------------+-----+--------+------------+------+---------+---------+
+| + gemver                                  | 10  |        |            |      |         |         |
+|  + gemver_Pipeline_VITIS_LOOP_14_1_loop_2 | 5   |        |            |      |         |         |
+|    add_ln14_fu_182_p2                     |     |        | add_ln14   | add  | fabric  | 0       |
+|    add_ln14_1_fu_208_p2                   |     |        | add_ln14_1 | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U4       | 3   |        | mul1       | fmul | maxdsp  | 3       |
+|    add_ln19_fu_291_p2                     |     |        | add_ln19   | add  | fabric  | 0       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U2      | 2   |        | add1       | fadd | fulldsp | 4       |
+|    add_ln18_fu_234_p2                     |     |        | add_ln18   | add  | fabric  | 0       |
+|    add_ln20_fu_302_p2                     |     |        | add_ln20   | add  | fabric  | 0       |
+|  + gemver_Pipeline_VITIS_LOOP_23_2_loop_3 | 0   |        |            |      |         |         |
+|    add_ln23_fu_175_p2                     |     |        | add_ln23   | add  | fabric  | 0       |
+|    add_ln23_1_fu_207_p2                   |     |        | add_ln23_1 | add  | fabric  | 0       |
+|    add_ln28_fu_241_p2                     |     |        | add_ln28   | add  | fabric  | 0       |
+|    add_ln29_fu_284_p2                     |     |        | add_ln29   | add  | fabric  | 0       |
+|    add_ln27_fu_256_p2                     |     |        | add_ln27   | add  | fabric  | 0       |
+|  + gemver_Pipeline_VITIS_LOOP_35_3_loop_4 | 0   |        |            |      |         |         |
+|    add_ln35_fu_163_p2                     |     |        | add_ln35   | add  | fabric  | 0       |
+|    add_ln35_1_fu_259_p2                   |     |        | add_ln35_1 | add  | fabric  | 0       |
+|    add_ln39_fu_217_p2                     |     |        | add_ln39   | add  | fabric  | 0       |
+|    add_ln38_fu_232_p2                     |     |        | add_ln38   | add  | fabric  | 0       |
+|    add_ln41_fu_277_p2                     |     |        | add_ln41   | add  | fabric  | 0       |
++-------------------------------------------+-----+--------+------------+------+---------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
+  No bind storage info in design
+
+================================================================
+== Pragma Report
+================================================================
+  No pragmas found
+

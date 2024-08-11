@@ -1,0 +1,22 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/trVecAccum/solution1/.autopilot/db/trVecAccum.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_24_1:  '
+    FileOffset:      24
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/trVecAccum/trVecAccum.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/trVecAccum/solution1/.autopilot/db/trVecAccum.pp.0.cpp
+        Offset:          53779
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_24_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_46_2:  '
+    FileOffset:      46
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/trVecAccum/trVecAccum.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/trVecAccum/solution1/.autopilot/db/trVecAccum.pp.0.cpp
+        Offset:          54178
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_46_2: '
+...

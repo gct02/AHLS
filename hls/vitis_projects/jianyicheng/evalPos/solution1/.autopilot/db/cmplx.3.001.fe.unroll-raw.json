@@ -1,0 +1,26 @@
+{
+  "0": {
+    "basicblocks": 7,
+    "calls": "1",
+    "file": "evalPos.cpp",
+    "fileloc": 4,
+    "instructions": 31,
+    "loads": {
+      "T": 4
+    },
+    "name": "evalPos",
+    "stores": {
+      "T": 1
+    },
+    "total_instructions": 59
+  },
+  "1": {
+    "basicblocks": 10,
+    "calls": "",
+    "file": "g.cpp",
+    "fileloc": 3,
+    "instructions": 28,
+    "name": "g",
+    "total_instructions": 28
+  }
+}

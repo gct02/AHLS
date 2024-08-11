@@ -1,0 +1,109 @@
+
+
+================================================================
+== Synthesis Summary Report of 'getTanhDouble'
+================================================================
++ General Information: 
+    * Date:           Sun Jun 23 03:39:51 2024
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        getTanhDouble
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtexuplusHBM
+    * Target device:  xcvu35p-fsvh2104-1-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +--------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
+    |       Modules      | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |      |          |            |            |     |
+    |       & Loops      | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM |    DSP   |     FF     |     LUT    | URAM|
+    +--------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
+    |+ getTanhDouble     |     -|  0.31|    35004|  1.750e+05|         -|    35005|     -|        no|     -|  11 (~0%)|  1340 (~0%)|  1444 (~0%)|    -|
+    | o VITIS_LOOP_17_1  |    II|  3.65|    35002|  1.750e+05|        38|       35|  1000|       yes|     -|         -|           -|           -|    -|
+    +--------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++-------------------+-----------+----------+
+| Port              | Direction | Bitwidth |
++-------------------+-----------+----------+
+| A_address0        | out       | 10       |
+| A_d0              | out       | 64       |
+| A_q0              | in        | 64       |
+| addr_in_address0  | out       | 10       |
+| addr_in_q0        | in        | 32       |
+| addr_out_address0 | out       | 10       |
+| addr_out_q0       | in        | 32       |
++-------------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| A        | inout     | double*  |
+| addr_in  | in        | int*     |
+| addr_out | in        | int*     |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+-------------------+---------+----------+
+| Argument | HW Interface      | HW Type | HW Usage |
++----------+-------------------+---------+----------+
+| A        | A_address0        | port    | offset   |
+| A        | A_ce0             | port    |          |
+| A        | A_we0             | port    |          |
+| A        | A_d0              | port    |          |
+| A        | A_q0              | port    |          |
+| addr_in  | addr_in_address0  | port    | offset   |
+| addr_in  | addr_in_ce0       | port    |          |
+| addr_in  | addr_in_q0        | port    |          |
+| addr_out | addr_out_address0 | port    | offset   |
+| addr_out | addr_out_ce0      | port    |          |
+| addr_out | addr_out_q0       | port    |          |
++----------+-------------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-------------------------------------+-----+--------+----------+------+---------+---------+
+| Name                                | DSP | Pragma | Variable | Op   | Impl    | Latency |
++-------------------------------------+-----+--------+----------+------+---------+---------+
+| + getTanhDouble                     | 11  |        |          |      |         |         |
+|   add_ln17_fu_171_p2                |     |        | add_ln17 | add  | fabric  | 0       |
+|   dmul_64ns_64ns_64_6_max_dsp_1_U2  | 8   |        | mul_i    | dmul | maxdsp  | 5       |
+|   dadd_64ns_64ns_64_5_full_dsp_1_U1 | 3   |        | add_i    | dadd | fulldsp | 4       |
+|   dmul_64ns_64ns_64_6_max_dsp_1_U2  | 8   |        | mul1_i   | dmul | maxdsp  | 5       |
+|   dmul_64ns_64ns_64_6_max_dsp_1_U2  | 8   |        | mul2_i   | dmul | maxdsp  | 5       |
+|   dadd_64ns_64ns_64_5_full_dsp_1_U1 | 3   |        | add3_i   | dadd | fulldsp | 4       |
+|   dmul_64ns_64ns_64_6_max_dsp_1_U2  | 8   |        | result   | dmul | maxdsp  | 5       |
++-------------------------------------+-----+--------+----------+------+---------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
+  No bind storage info in design
+
+================================================================
+== Pragma Report
+================================================================
+  No pragmas found
+

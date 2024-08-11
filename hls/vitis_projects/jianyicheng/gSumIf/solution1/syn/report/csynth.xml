@@ -1,0 +1,493 @@
+<profile>
+    <ReportVersion>
+        <Version>2023.2</Version>
+    </ReportVersion>
+    <UserAssignments>
+        <unit>ns</unit>
+        <ProductFamily>virtexuplusHBM</ProductFamily>
+        <Part>xcvu35p-fsvh2104-1-e</Part>
+        <TopModelName>gSumIf</TopModelName>
+        <TargetClockPeriod>5.00</TargetClockPeriod>
+        <ClockUncertainty>1.35</ClockUncertainty>
+        <FlowTarget>vivado</FlowTarget>
+    </UserAssignments>
+    <PerformanceEstimates>
+        <PipelineType>no</PipelineType>
+        <SummaryOfTimingAnalysis>
+            <unit>ns</unit>
+            <EstimatedClockPeriod>3.690</EstimatedClockPeriod>
+        </SummaryOfTimingAnalysis>
+        <SummaryOfOverallLatency>
+            <unit>clock cycles</unit>
+            <Best-caseLatency>5072</Best-caseLatency>
+            <Average-caseLatency>5072</Average-caseLatency>
+            <Worst-caseLatency>5072</Worst-caseLatency>
+            <Best-caseRealTimeLatency>25.360 us</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>25.360 us</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>25.360 us</Worst-caseRealTimeLatency>
+            <Interval-min>5073</Interval-min>
+            <Interval-max>5073</Interval-max>
+        </SummaryOfOverallLatency>
+        <SummaryOfLoopLatency>
+            <VITIS_LOOP_17_1>
+                <Slack>3.65</Slack>
+                <TripCount>1000</TripCount>
+                <Latency>5070</Latency>
+                <AbsoluteTimeLatency>25350</AbsoluteTimeLatency>
+                <PipelineII>5</PipelineII>
+                <PipelineDepth>76</PipelineDepth>
+                <InstanceList/>
+            </VITIS_LOOP_17_1>
+        </SummaryOfLoopLatency>
+        <SummaryOfViolations>
+            <IssueType>-</IssueType>
+            <ViolationType>-</ViolationType>
+            <SourceLocation>HLS-benchmarks/DSS/gSumIf/src/gSumIf.cpp:14</SourceLocation>
+            <SummaryOfLoopViolations>
+                <VITIS_LOOP_17_1>
+                    <Name>VITIS_LOOP_17_1</Name>
+                    <IssueType>II Violation</IssueType>
+                    <ViolationType>Memory Dependency</ViolationType>
+                    <IterationDistance>1</IterationDistance>
+                    <SourceLocation>HLS-benchmarks/DSS/gSumIf/src/gSumIf.cpp:17</SourceLocation>
+                </VITIS_LOOP_17_1>
+            </SummaryOfLoopViolations>
+        </SummaryOfViolations>
+    </PerformanceEstimates>
+    <AreaEstimates>
+        <Resources>
+            <DSP>25</DSP>
+            <FF>4279</FF>
+            <LUT>3310</LUT>
+            <BRAM_18K>0</BRAM_18K>
+            <URAM>0</URAM>
+        </Resources>
+        <AvailableResources>
+            <BRAM_18K>2688</BRAM_18K>
+            <DSP>5952</DSP>
+            <FF>1743360</FF>
+            <LUT>871680</LUT>
+            <URAM>640</URAM>
+        </AvailableResources>
+    </AreaEstimates>
+    <InterfaceSummary>
+        <RtlPorts>
+            <name>ap_clk</name>
+            <Object>gSumIf</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_rst</name>
+            <Object>gSumIf</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_start</name>
+            <Object>gSumIf</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_done</name>
+            <Object>gSumIf</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_idle</name>
+            <Object>gSumIf</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_ready</name>
+            <Object>gSumIf</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_return</name>
+            <Object>gSumIf</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>A_address0</name>
+            <Object>A</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>10</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>A_ce0</name>
+            <Object>A</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>A_q0</name>
+            <Object>A</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>B_address0</name>
+            <Object>B</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>10</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>B_ce0</name>
+            <Object>B</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>B_q0</name>
+            <Object>B</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+    </InterfaceSummary>
+    <RTLDesignHierarchy>
+        <TopModule MAX_DEPTH="2">
+            <ModuleName>gSumIf</ModuleName>
+            <BindInstances>add_ln17_fu_157_p2 dadd_64ns_64ns_64_5_full_dsp_1_U1 dadd_64ns_64ns_64_5_full_dsp_1_U2 dmul_64ns_64ns_64_6_max_dsp_1_U4 dadd_64ns_64ns_64_5_full_dsp_1_U1 dmul_64ns_64ns_64_6_max_dsp_1_U4 dadd_64ns_64ns_64_5_full_dsp_1_U1 dmul_64ns_64ns_64_6_max_dsp_1_U4 dadd_64ns_64ns_64_5_full_dsp_1_U1 dmul_64ns_64ns_64_6_max_dsp_1_U4 dadd_64ns_64ns_64_5_full_dsp_1_U1 dmul_64ns_64ns_64_6_max_dsp_1_U4 dadd_64ns_64ns_64_5_full_dsp_1_U3 dadd_64ns_64ns_64_5_full_dsp_1_U3 dmul_64ns_64ns_64_6_max_dsp_1_U5 dadd_64ns_64ns_64_5_full_dsp_1_U2 dmul_64ns_64ns_64_6_max_dsp_1_U5 dadd_64ns_64ns_64_5_full_dsp_1_U2 dmul_64ns_64ns_64_6_max_dsp_1_U5 dadd_64ns_64ns_64_5_full_dsp_1_U2 dmul_64ns_64ns_64_6_max_dsp_1_U5 dadd_64ns_64ns_64_5_full_dsp_1_U2 dmul_64ns_64ns_64_6_max_dsp_1_U5 dadd_64ns_64ns_64_5_full_dsp_1_U3 dadd_64ns_64ns_64_5_full_dsp_1_U3</BindInstances>
+        </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+        <Module>
+            <Name>gSumIf</Name>
+            <Loops>
+                <VITIS_LOOP_17_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>3.690</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>5072</Best-caseLatency>
+                    <Average-caseLatency>5072</Average-caseLatency>
+                    <Worst-caseLatency>5072</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>25.360 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>25.360 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>25.360 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>5073</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_17_1>
+                        <Name>VITIS_LOOP_17_1</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>1000</TripCount>
+                        <Latency>5070</Latency>
+                        <AbsoluteTimeLatency>25.350 us</AbsoluteTimeLatency>
+                        <PipelineII>5</PipelineII>
+                        <PipelineDepth>76</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_17_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>HLS-benchmarks/DSS/gSumIf/src/gSumIf.cpp:14</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_17_1>
+                            <Name>VITIS_LOOP_17_1</Name>
+                            <IssueType>II Violation</IssueType>
+                            <ViolationType>Memory Dependency</ViolationType>
+                            <IterationDistance>1</IterationDistance>
+                            <SourceLocation>HLS-benchmarks/DSS/gSumIf/src/gSumIf.cpp:17</SourceLocation>
+                        </VITIS_LOOP_17_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <DSP>25</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>4279</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>3310</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_17_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln17_fu_157_p2" SOURCE="HLS-benchmarks/DSS/gSumIf/src/gSumIf.cpp:17" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U1" SOURCE="HLS-benchmarks/DSS/gSumIf/src/gSumIf.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="d"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U2" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="5" LOOP="VITIS_LOOP_17_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_6_max_dsp_1_U4" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U1" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="add1_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="5" LOOP="VITIS_LOOP_17_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_6_max_dsp_1_U4" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="mul2_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U1" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="add3_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="5" LOOP="VITIS_LOOP_17_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_6_max_dsp_1_U4" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="mul4_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U1" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="add5_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="5" LOOP="VITIS_LOOP_17_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_6_max_dsp_1_U4" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="mul6_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U1" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="add7_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="5" LOOP="VITIS_LOOP_17_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_6_max_dsp_1_U4" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U3" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="add9_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U3" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="add10_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="5" LOOP="VITIS_LOOP_17_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_6_max_dsp_1_U5" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="mul11_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U2" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="add12_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="5" LOOP="VITIS_LOOP_17_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_6_max_dsp_1_U5" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="mul13_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U2" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="add14_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="5" LOOP="VITIS_LOOP_17_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_6_max_dsp_1_U5" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="mul15_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U2" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="add16_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="5" LOOP="VITIS_LOOP_17_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_6_max_dsp_1_U5" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="mul17_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U2" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="add18_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="5" LOOP="VITIS_LOOP_17_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_6_max_dsp_1_U5" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="mul19_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U3" SOURCE="HLS-benchmarks/DSS/gSumIf/src/g.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="add20_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_17_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_5_full_dsp_1_U3" SOURCE="HLS-benchmarks/DSS/gSumIf/src/gSumIf.cpp:23" STORAGESUBTYPE="" URAM="0" VARIABLE="s_1"/>
+            </BindNodes>
+        </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+    <UserConfigCommands/>
+    <Args>
+        <Arg ArgName="A" index="0" direction="in" srcType="double*" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="A_address0" name="A_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="A_ce0" name="A_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="A_q0" name="A_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="B" index="1" direction="in" srcType="double*" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="B_address0" name="B_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="B_ce0" name="B_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="B_q0" name="B_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+    </Args>
+    <ReturnValue ReturnValueName="srcType">double</ReturnValue>
+    <ReturnValue ReturnValueName="srcSize">64</ReturnValue>
+    <ReturnValue ReturnValueName="hwRefs" type="port" interface="ap_return" name="ap_return" usage="data" direction="out"/>
+    <Interfaces>
+        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
+            <busParams>
+                <busParam busParamName="ASSOCIATED_RESET">ap_rst</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_clk">CLK</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_clk</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_HIGH</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_ctrl" type="ap_ctrl" busTypeName="acc_handshake" mode="slave">
+            <portMaps>
+                <portMap portMapName="ap_start">start</portMap>
+                <portMap portMapName="ap_done">done</portMap>
+                <portMap portMapName="ap_idle">idle</portMap>
+                <portMap portMapName="ap_ready">ready</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_done</port>
+                <port>ap_idle</port>
+                <port>ap_ready</port>
+                <port>ap_start</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_return" type="data" busTypeName="data" protocol="ap_ctrl_hs" mode="master" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="ap_return">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_return</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="A_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="10">
+            <portMaps>
+                <portMap portMapName="A_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>A_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="A"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="A_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="A_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>A_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="A"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="B_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="10">
+            <portMaps>
+                <portMap portMapName="B_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>B_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="B"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="B_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="B_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>B_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="B"/>
+            </constraints>
+        </Interface>
+    </Interfaces>
+    <ReportHWInterface>
+        <section name="HW Interfaces" level="0">
+            <item name="AP_MEMORY">
+                <table>
+                    <keys size="3">Port, Direction, Bitwidth</keys>
+                    <column name="A_address0">out, 10</column>
+                    <column name="A_q0">in, 64</column>
+                    <column name="B_address0">out, 10</column>
+                    <column name="B_q0">in, 64</column>
+                </table>
+            </item>
+            <item name="Other Ports">
+                <table>
+                    <keys size="3">Port, Direction, Bitwidth</keys>
+                    <column name="ap_return">out, 64</column>
+                </table>
+            </item>
+            <item name="TOP LEVEL CONTROL">
+                <table>
+                    <keys size="3">Interface, Type, Ports</keys>
+                    <column name="ap_clk">clock, ap_clk</column>
+                    <column name="ap_rst">reset, ap_rst</column>
+                    <column name="ap_ctrl">ap_ctrl_hs, ap_done ap_idle ap_ready ap_start</column>
+                </table>
+            </item>
+        </section>
+    </ReportHWInterface>
+    <ReportSWInterface>
+        <section name="SW I/O Information" level="0">
+            <item name="Top Function Arguments">
+                <table>
+                    <keys size="3">Argument, Direction, Datatype</keys>
+                    <column name="A">in, double*</column>
+                    <column name="B">in, double*</column>
+                    <column name="return">out, double</column>
+                </table>
+            </item>
+            <item name="SW-to-HW Mapping">
+                <table>
+                    <keys size="4">Argument, HW Interface, HW Type, HW Usage</keys>
+                    <column name="A">A_address0, port, offset</column>
+                    <column name="A">A_ce0, port, </column>
+                    <column name="A">A_q0, port, </column>
+                    <column name="B">B_address0, port, offset</column>
+                    <column name="B">B_ce0, port, </column>
+                    <column name="B">B_q0, port, </column>
+                    <column name="return">ap_return, port, </column>
+                </table>
+            </item>
+        </section>
+    </ReportSWInterface>
+    <ResolutionUrl key="ZZZ">docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
+    <PragmaReport/>
+</profile>
+

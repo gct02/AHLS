@@ -1,0 +1,27 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: HLS-benchmarks/DSS/gSumIf/src/gSumIf.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z6gSumIfPdS_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'g(double)'
+    DebugLoc:        { File: HLS-benchmarks/DSS/gSumIf/src/g.cpp, Line: 12, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'gSumIf(double*, double*)'
+    DebugLoc:        { File: HLS-benchmarks/DSS/gSumIf/src/gSumIf.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_17_1
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/DSS/gSumIf/src/gSumIf.cpp:17:22'
+  - String:          ' '
+...

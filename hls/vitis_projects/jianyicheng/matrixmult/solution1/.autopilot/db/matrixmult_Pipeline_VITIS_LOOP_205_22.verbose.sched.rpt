@@ -1,0 +1,269 @@
+
+
+================================================================
+== Vitis HLS Report for 'matrixmult_Pipeline_VITIS_LOOP_205_22'
+================================================================
+* Date:           Sun Jun 23 03:45:06 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        matrixmult
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcvu35p-fsvh2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.579 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    49159|    49159|  0.246 ms|  0.246 ms|  49159|  49159|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                     |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name      |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_205_22  |    49157|    49157|        12|          6|          1|  8192|       yes|
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 6, depth = 12
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 12
+* Pipeline : 1
+  Pipeline-0 : II = 6, D = 12, States = { 1 2 3 4 5 6 7 8 9 10 11 12 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.78>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%s_5_6 = alloca i32 1" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:204]   --->   Operation 15 'alloca' 's_5_6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%j_33 = alloca i32 1" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205]   --->   Operation 16 'alloca' 'j_33' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%zext_ln165_1_read = read i5 @_ssdm_op_Read.ap_auto.i5, i5 %zext_ln165_1"   --->   Operation 17 'read' 'zext_ln165_1_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%zext_ln165_1_cast = zext i5 %zext_ln165_1_read"   --->   Operation 18 'zext' 'zext_ln165_1_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %B_2, void @empty_16, i32 0, i32 0, void @empty_7, i32 4294967295, i32 0, void @empty_7, void @empty_7, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_7, i32 4294967295, i32 0"   --->   Operation 19 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %A_5, void @empty_16, i32 0, i32 0, void @empty_7, i32 4294967295, i32 0, void @empty_7, void @empty_7, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_7, i32 4294967295, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.46ns)   --->   "%store_ln205 = store i14 0, i14 %j_33" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205]   --->   Operation 21 'store' 'store_ln205' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 22 [1/1] (0.46ns)   --->   "%store_ln204 = store i32 0.1, i32 %s_5_6" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:204]   --->   Operation 22 'store' 'store_ln204' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.body631"   --->   Operation 23 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%j = load i14 %j_33" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205]   --->   Operation 24 'load' 'j' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (1.05ns)   --->   "%icmp_ln205 = icmp_eq  i14 %j, i14 8192" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205]   --->   Operation 25 'icmp' 'icmp_ln205' <Predicate = true> <Delay = 1.05> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.05> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 26 [1/1] (1.05ns)   --->   "%add_ln205 = add i14 %j, i14 1" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205]   --->   Operation 26 'add' 'add_ln205' <Predicate = true> <Delay = 1.05> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.05> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%br_ln205 = br i1 %icmp_ln205, void %for.body631.split, void %VITIS_LOOP_213_23.exitStub" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205]   --->   Operation 27 'br' 'br_ln205' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%trunc_ln205 = trunc i14 %j" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205]   --->   Operation 28 'trunc' 'trunc_ln205' <Predicate = (!icmp_ln205)> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (1.02ns)   --->   "%add_ln206 = add i13 %trunc_ln205, i13 %zext_ln165_1_cast" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:206]   --->   Operation 29 'add' 'add_ln206' <Predicate = (!icmp_ln205)> <Delay = 1.02> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.02> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%zext_ln206 = zext i13 %add_ln206" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:206]   --->   Operation 30 'zext' 'zext_ln206' <Predicate = (!icmp_ln205)> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%A_5_addr = getelementptr i32 %A_5, i64 0, i64 %zext_ln206" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:206]   --->   Operation 31 'getelementptr' 'A_5_addr' <Predicate = (!icmp_ln205)> <Delay = 0.00>
+ST_1 : Operation 32 [2/2] (1.29ns)   --->   "%A_5_load = load i13 %A_5_addr" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:206]   --->   Operation 32 'load' 'A_5_load' <Predicate = (!icmp_ln205)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8192> <RAM>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%B_2_addr = getelementptr i32 %B_2, i64 0, i64 %zext_ln206" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:207]   --->   Operation 33 'getelementptr' 'B_2_addr' <Predicate = (!icmp_ln205)> <Delay = 0.00>
+ST_1 : Operation 34 [2/2] (1.29ns)   --->   "%B_2_load = load i13 %B_2_addr" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:207]   --->   Operation 34 'load' 'B_2_load' <Predicate = (!icmp_ln205)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8192> <RAM>
+ST_1 : Operation 35 [1/1] (0.46ns)   --->   "%store_ln205 = store i14 %add_ln205, i14 %j_33" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205]   --->   Operation 35 'store' 'store_ln205' <Predicate = (!icmp_ln205)> <Delay = 0.46>
+
+State 2 <SV = 1> <Delay = 3.21>
+ST_2 : Operation 36 [1/2] (1.29ns)   --->   "%A_5_load = load i13 %A_5_addr" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:206]   --->   Operation 36 'load' 'A_5_load' <Predicate = (!icmp_ln205)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8192> <RAM>
+ST_2 : Operation 37 [1/1] (0.00ns)   --->   "%temp_a = bitcast i32 %A_5_load" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:206]   --->   Operation 37 'bitcast' 'temp_a' <Predicate = (!icmp_ln205)> <Delay = 0.00>
+ST_2 : Operation 38 [1/2] (1.29ns)   --->   "%B_2_load = load i13 %B_2_addr" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:207]   --->   Operation 38 'load' 'B_2_load' <Predicate = (!icmp_ln205)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8192> <RAM>
+ST_2 : Operation 39 [1/1] (0.00ns)   --->   "%tmp_s = partselect i8 @_ssdm_op_PartSelect.i8.i32.i32.i32, i32 %A_5_load, i32 23, i32 30" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 39 'partselect' 'tmp_s' <Predicate = (!icmp_ln205)> <Delay = 0.00>
+ST_2 : Operation 40 [1/1] (0.00ns)   --->   "%trunc_ln208 = trunc i32 %A_5_load" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 40 'trunc' 'trunc_ln208' <Predicate = (!icmp_ln205)> <Delay = 0.00>
+ST_2 : Operation 41 [1/1] (0.87ns)   --->   "%icmp_ln208 = icmp_ne  i8 %tmp_s, i8 255" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 41 'icmp' 'icmp_ln208' <Predicate = (!icmp_ln205)> <Delay = 0.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 42 [1/1] (1.13ns)   --->   "%icmp_ln208_1 = icmp_eq  i23 %trunc_ln208, i23 0" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 42 'icmp' 'icmp_ln208_1' <Predicate = (!icmp_ln205)> <Delay = 1.13> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 43 [2/2] (1.91ns)   --->   "%tmp_118 = fcmp_oeq  i32 %temp_a, i32 0" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 43 'fcmp' 'tmp_118' <Predicate = (!icmp_ln205)> <Delay = 1.91> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 1> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 44 [1/1] (0.00ns)   --->   "%tmp_119 = partselect i8 @_ssdm_op_PartSelect.i8.i32.i32.i32, i32 %B_2_load, i32 23, i32 30" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 44 'partselect' 'tmp_119' <Predicate = (!icmp_ln205)> <Delay = 0.00>
+ST_2 : Operation 45 [1/1] (0.00ns)   --->   "%trunc_ln208_1 = trunc i32 %B_2_load" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 45 'trunc' 'trunc_ln208_1' <Predicate = (!icmp_ln205)> <Delay = 0.00>
+ST_2 : Operation 46 [1/1] (0.87ns)   --->   "%icmp_ln208_2 = icmp_ne  i8 %tmp_119, i8 255" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 46 'icmp' 'icmp_ln208_2' <Predicate = (!icmp_ln205)> <Delay = 0.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 47 [1/1] (1.13ns)   --->   "%icmp_ln208_3 = icmp_eq  i23 %trunc_ln208_1, i23 0" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 47 'icmp' 'icmp_ln208_3' <Predicate = (!icmp_ln205)> <Delay = 1.13> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+
+State 3 <SV = 2> <Delay = 2.78>
+ST_3 : Operation 48 [1/1] (0.00ns)   --->   "%temp_b = bitcast i32 %B_2_load" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:207]   --->   Operation 48 'bitcast' 'temp_b' <Predicate = (!icmp_ln205)> <Delay = 0.00>
+ST_3 : Operation 49 [1/2] (1.91ns)   --->   "%tmp_118 = fcmp_oeq  i32 %temp_a, i32 0" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 49 'fcmp' 'tmp_118' <Predicate = (!icmp_ln205)> <Delay = 1.91> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 1> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 50 [2/2] (1.91ns)   --->   "%tmp_120 = fcmp_oeq  i32 %temp_b, i32 0" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 50 'fcmp' 'tmp_120' <Predicate = (!icmp_ln205)> <Delay = 1.91> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 1> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 51 [4/4] (2.78ns)   --->   "%mul = fmul i32 %temp_a, i32 %temp_b" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209]   --->   Operation 51 'fmul' 'mul' <Predicate = (!icmp_ln205)> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 2.78>
+ST_4 : Operation 52 [1/2] (1.91ns)   --->   "%tmp_120 = fcmp_oeq  i32 %temp_b, i32 0" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 52 'fcmp' 'tmp_120' <Predicate = (!icmp_ln205)> <Delay = 1.91> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 1> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 53 [3/4] (2.78ns)   --->   "%mul = fmul i32 %temp_a, i32 %temp_b" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209]   --->   Operation 53 'fmul' 'mul' <Predicate = (!icmp_ln205)> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 2.78>
+ST_5 : Operation 54 [2/4] (2.78ns)   --->   "%mul = fmul i32 %temp_a, i32 %temp_b" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209]   --->   Operation 54 'fmul' 'mul' <Predicate = (!icmp_ln205)> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 2.78>
+ST_6 : Operation 55 [1/1] (0.00ns) (grouped into LUT with out node or_ln208_2)   --->   "%or_ln208 = or i1 %icmp_ln208_1, i1 %icmp_ln208" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 55 'or' 'or_ln208' <Predicate = (!icmp_ln205)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 56 [1/1] (0.00ns) (grouped into LUT with out node or_ln208_2)   --->   "%and_ln208 = and i1 %or_ln208, i1 %tmp_118" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 56 'and' 'and_ln208' <Predicate = (!icmp_ln205)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 57 [1/1] (0.00ns) (grouped into LUT with out node or_ln208_2)   --->   "%or_ln208_1 = or i1 %icmp_ln208_3, i1 %icmp_ln208_2" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 57 'or' 'or_ln208_1' <Predicate = (!icmp_ln205)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 58 [1/1] (0.00ns) (grouped into LUT with out node or_ln208_2)   --->   "%and_ln208_1 = and i1 %or_ln208_1, i1 %tmp_120" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 58 'and' 'and_ln208_1' <Predicate = (!icmp_ln205)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 59 [1/1] (0.14ns) (out node of the LUT)   --->   "%or_ln208_2 = or i1 %and_ln208, i1 %and_ln208_1" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 59 'or' 'or_ln208_2' <Predicate = (!icmp_ln205)> <Delay = 0.14> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 60 [1/4] (2.78ns)   --->   "%mul = fmul i32 %temp_a, i32 %temp_b" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209]   --->   Operation 60 'fmul' 'mul' <Predicate = (!icmp_ln205)> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 73 [1/1] (0.00ns)   --->   "%s_5_6_load_1 = load i32 %s_5_6"   --->   Operation 73 'load' 's_5_6_load_1' <Predicate = (icmp_ln205)> <Delay = 0.00>
+ST_6 : Operation 74 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.floatP0A, i32 %s_5_6_out, i32 %s_5_6_load_1"   --->   Operation 74 'write' 'write_ln0' <Predicate = (icmp_ln205)> <Delay = 0.00>
+ST_6 : Operation 75 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 75 'ret' 'ret_ln0' <Predicate = (icmp_ln205)> <Delay = 0.00>
+
+State 7 <SV = 6> <Delay = 3.57>
+ST_7 : Operation 61 [1/1] (0.00ns)   --->   "%s_5_6_load = load i32 %s_5_6" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209]   --->   Operation 61 'load' 's_5_6_load' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 62 [5/5] (3.57ns)   --->   "%s_5_7 = fadd i32 %s_5_6_load, i32 %mul" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209]   --->   Operation 62 'fadd' 's_5_7' <Predicate = (!or_ln208_2)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 3.57>
+ST_8 : Operation 63 [4/5] (3.57ns)   --->   "%s_5_7 = fadd i32 %s_5_6_load, i32 %mul" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209]   --->   Operation 63 'fadd' 's_5_7' <Predicate = (!or_ln208_2)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 3.57>
+ST_9 : Operation 64 [3/5] (3.57ns)   --->   "%s_5_7 = fadd i32 %s_5_6_load, i32 %mul" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209]   --->   Operation 64 'fadd' 's_5_7' <Predicate = (!or_ln208_2)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 3.57>
+ST_10 : Operation 65 [2/5] (3.57ns)   --->   "%s_5_7 = fadd i32 %s_5_6_load, i32 %mul" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209]   --->   Operation 65 'fadd' 's_5_7' <Predicate = (!or_ln208_2)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 3.57>
+ST_11 : Operation 66 [1/5] (3.57ns)   --->   "%s_5_7 = fadd i32 %s_5_6_load, i32 %mul" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209]   --->   Operation 66 'fadd' 's_5_7' <Predicate = (!or_ln208_2)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 0.74>
+ST_12 : Operation 67 [1/1] (0.00ns)   --->   "%specpipeline_ln205 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_7" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205]   --->   Operation 67 'specpipeline' 'specpipeline_ln205' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 68 [1/1] (0.00ns)   --->   "%speclooptripcount_ln205 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 8192, i64 8192, i64 8192" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205]   --->   Operation 68 'speclooptripcount' 'speclooptripcount_ln205' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 69 [1/1] (0.00ns)   --->   "%specloopname_ln205 = specloopname void @_ssdm_op_SpecLoopName, void @empty_47" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205]   --->   Operation 69 'specloopname' 'specloopname_ln205' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 70 [1/1] (0.28ns) (out node of the LUT)   --->   "%s_5 = select i1 %or_ln208_2, i32 %s_5_6_load, i32 %s_5_7" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208]   --->   Operation 70 'select' 's_5' <Predicate = true> <Delay = 0.28> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_12 : Operation 71 [1/1] (0.46ns)   --->   "%store_ln204 = store i32 %s_5, i32 %s_5_6" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:204]   --->   Operation 71 'store' 'store_ln204' <Predicate = true> <Delay = 0.46>
+ST_12 : Operation 72 [1/1] (0.00ns)   --->   "%br_ln205 = br void %for.body631" [HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205]   --->   Operation 72 'br' 'br_ln205' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 2.784ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln205', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205) of constant 0 on local variable 'j', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205 [11]  (0.460 ns)
+	'load' operation 14 bit ('j', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205) on local variable 'j', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:205 [15]  (0.000 ns)
+	'add' operation 13 bit ('add_ln206', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:206) [25]  (1.027 ns)
+	'getelementptr' operation 13 bit ('A_5_addr', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:206) [27]  (0.000 ns)
+	'load' operation 32 bit ('A_5_load', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:206) on array 'A_5' [28]  (1.297 ns)
+
+ <State 2>: 3.210ns
+The critical path consists of the following:
+	'load' operation 32 bit ('A_5_load', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:206) on array 'A_5' [28]  (1.297 ns)
+	'fcmp' operation 1 bit ('tmp_118', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208) [38]  (1.913 ns)
+
+ <State 3>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209) [48]  (2.787 ns)
+
+ <State 4>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209) [48]  (2.787 ns)
+
+ <State 5>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209) [48]  (2.787 ns)
+
+ <State 6>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209) [48]  (2.787 ns)
+
+ <State 7>: 3.579ns
+The critical path consists of the following:
+	'load' operation 32 bit ('s_5_6_load', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209) on local variable 's_5', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:204 [20]  (0.000 ns)
+	'fadd' operation 32 bit ('s_5', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209) [49]  (3.579 ns)
+
+ <State 8>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('s_5', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209) [49]  (3.579 ns)
+
+ <State 9>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('s_5', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209) [49]  (3.579 ns)
+
+ <State 10>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('s_5', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209) [49]  (3.579 ns)
+
+ <State 11>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('s_5', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:209) [49]  (3.579 ns)
+
+ <State 12>: 0.746ns
+The critical path consists of the following:
+	'select' operation 32 bit ('s_5', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208) [50]  (0.286 ns)
+	'store' operation 0 bit ('store_ln204', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:204) of variable 's_5', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:208 on local variable 's_5', HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp:204 [52]  (0.460 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

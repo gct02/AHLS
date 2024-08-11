@@ -1,0 +1,30 @@
+{
+  "0": {
+    "basicblocks": 4,
+    "calls": "1",
+    "file": "chaosNCG.cpp",
+    "fileloc": 3,
+    "instructions": 49,
+    "loads": {
+      "L": 4,
+      "T": 4
+    },
+    "name": "chaosNCG",
+    "stores": {
+      "T": 2
+    },
+    "total_instructions": 76
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "g.cpp",
+    "fileloc": 3,
+    "instructions": 27,
+    "name": "g",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 27
+  }
+}

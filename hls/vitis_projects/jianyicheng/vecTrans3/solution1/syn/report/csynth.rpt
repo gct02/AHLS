@@ -1,0 +1,114 @@
+
+
+================================================================
+== Synthesis Summary Report of 'vecTrans3'
+================================================================
++ General Information: 
+    * Date:           Sun Jun 23 03:49:20 2024
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        vecTrans3
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtexuplusHBM
+    * Target device:  xcvu35p-fsvh2104-1-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+---------+-----------+-----------+-----+
+    |      Modules      |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |      |         |           |           |     |
+    |      & Loops      |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM |   DSP   |     FF    |    LUT    | URAM|
+    +-------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+---------+-----------+-----------+-----+
+    |+ vecTrans3        |  Timing|  -0.31|    51004|  2.550e+05|         -|    51005|     -|        no|     -|  5 (~0%)|  711 (~0%)|  798 (~0%)|    -|
+    | o VITIS_LOOP_4_1  |      II|   3.65|    51002|  2.550e+05|        54|       51|  1000|       yes|     -|        -|          -|          -|    -|
+    +-------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+---------+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++----------------+-----------+----------+
+| Port           | Direction | Bitwidth |
++----------------+-----------+----------+
+| A_address0     | out       | 11       |
+| A_d0           | out       | 32       |
+| A_q0           | in        | 32       |
+| in_r_address0  | out       | 10       |
+| in_r_q0        | in        | 32       |
+| out_r_address0 | out       | 10       |
+| out_r_q0       | in        | 32       |
++----------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| A        | inout     | float*   |
+| in       | in        | int*     |
+| out      | in        | int*     |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+----------------+---------+----------+
+| Argument | HW Interface   | HW Type | HW Usage |
++----------+----------------+---------+----------+
+| A        | A_address0     | port    | offset   |
+| A        | A_ce0          | port    |          |
+| A        | A_we0          | port    |          |
+| A        | A_d0           | port    |          |
+| A        | A_q0           | port    |          |
+| in       | in_r_address0  | port    | offset   |
+| in       | in_r_ce0       | port    |          |
+| in       | in_r_q0        | port    |          |
+| out      | out_r_address0 | port    | offset   |
+| out      | out_r_ce0      | port    |          |
+| out      | out_r_q0       | port    |          |
++----------+----------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-------------------------------------+-----+--------+----------+------+---------+---------+
+| Name                                | DSP | Pragma | Variable | Op   | Impl    | Latency |
++-------------------------------------+-----+--------+----------+------+---------+---------+
+| + vecTrans3                         | 5   |        |          |      |         |         |
+|   add_ln4_fu_157_p2                 |     |        | add_ln4  | add  | fabric  | 0       |
+|   fadd_32ns_32ns_32_5_full_dsp_1_U1 | 2   |        | add_i    | fadd | fulldsp | 4       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U2  | 3   |        | mul_i    | fmul | maxdsp  | 3       |
+|   fadd_32ns_32ns_32_5_full_dsp_1_U1 | 2   |        | add1_i   | fadd | fulldsp | 4       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U2  | 3   |        | mul2_i   | fmul | maxdsp  | 3       |
+|   fadd_32ns_32ns_32_5_full_dsp_1_U1 | 2   |        | add3_i   | fadd | fulldsp | 4       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U2  | 3   |        | mul4_i   | fmul | maxdsp  | 3       |
+|   fadd_32ns_32ns_32_5_full_dsp_1_U1 | 2   |        | add5_i   | fadd | fulldsp | 4       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U2  | 3   |        | mul6_i   | fmul | maxdsp  | 3       |
+|   fadd_32ns_32ns_32_5_full_dsp_1_U1 | 2   |        | add7_i   | fadd | fulldsp | 4       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U2  | 3   |        | mul8_i   | fmul | maxdsp  | 3       |
+|   fadd_32ns_32ns_32_5_full_dsp_1_U1 | 2   |        | add9_i   | fadd | fulldsp | 4       |
++-------------------------------------+-----+--------+----------+------+---------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
+  No bind storage info in design
+
+================================================================
+== Pragma Report
+================================================================
+  No pragmas found
+

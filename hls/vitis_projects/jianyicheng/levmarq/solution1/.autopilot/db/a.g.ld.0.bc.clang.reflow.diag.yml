@@ -1,0 +1,44 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp, 
+                   Line: 3, Column: 0 }
+Function:        _Z7levmarqiiPfiS_S_S_S_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'g1(float, float*, float*, float*)'
+    DebugLoc:        { File: HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'levmarq(int, int, float*, int, float*, float*, float*, float*)'
+    DebugLoc:        { File: HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp, 
+                   Line: 3, Column: 0 }
+Function:        _Z7levmarqiiPfiS_S_S_S_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'g2(float, float, float, float)'
+    DebugLoc:        { File: HLS-benchmarks/PNAnalyser/levmarq/src/g2.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'levmarq(int, int, float*, int, float*, float*, float*, float*)'
+    DebugLoc:        { File: HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ''''
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_19_3
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:19:24'
+  - String:          ' '
+...

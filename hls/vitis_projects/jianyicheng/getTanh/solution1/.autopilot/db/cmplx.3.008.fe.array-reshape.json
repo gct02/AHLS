@@ -1,0 +1,17 @@
+{
+  "0": {
+    "basicblocks": 16,
+    "calls": "",
+    "file": "getTanh.cpp",
+    "fileloc": 12,
+    "instructions": 94,
+    "loads": {
+      "T": 6
+    },
+    "name": "getTanh",
+    "stores": {
+      "T": 1
+    },
+    "total_instructions": 94
+  }
+}

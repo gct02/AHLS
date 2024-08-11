@@ -1,0 +1,13 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gSum/solution1/.autopilot/db/gSum_tb.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_17_1:  '
+    FileOffset:      17
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/DSS/gSum/src/gSum_tb.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/gSum/solution1/.autopilot/db/gSum_tb.pp.0.cpp
+        Offset:          770389
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_17_1: '
+...

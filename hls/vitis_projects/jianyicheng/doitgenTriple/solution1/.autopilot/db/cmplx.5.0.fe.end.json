@@ -1,0 +1,54 @@
+{
+    "1": {
+        "name": "doitgenTriple_Pipeline_loop_0_loop_1",
+        "file": "HLS-benchmarks\/C-Slow\/doitgenTriple\/doitgenTriple.cpp",
+        "fileloc": "16",
+        "instructions": "73",
+        "total_instructions": "73",
+        "calls": "",
+        "basicblocks": "6",
+        "loads": {
+            "L": "6",
+            "T": "2"
+        },
+        "stores": {
+            "L": "11",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "doitgenTriple_Pipeline_loop_2",
+        "file": "HLS-benchmarks\/C-Slow\/doitgenTriple\/doitgenTriple.cpp",
+        "fileloc": "36",
+        "instructions": "32",
+        "total_instructions": "32",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2",
+            "T": "1"
+        },
+        "stores": {
+            "L": "4",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "0": {
+        "name": "doitgenTriple",
+        "file": "doitgenTriple.cpp",
+        "fileloc": "14",
+        "instructions": "13",
+        "total_instructions": "118",
+        "calls": "1 2",
+        "basicblocks": "1",
+        "loads": {
+            "T": "1"
+        }
+    }
+}

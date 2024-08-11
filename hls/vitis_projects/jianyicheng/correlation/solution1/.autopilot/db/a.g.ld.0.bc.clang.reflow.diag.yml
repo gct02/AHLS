@@ -1,0 +1,114 @@
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_0
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/C-Slow/correlation/correlation.cpp:17:3'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        loop_3
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/C-Slow/correlation/correlation.cpp:43:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_57_3
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/C-Slow/correlation/correlation.cpp:57:22'
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: HLS-benchmarks/C-Slow/correlation/correlation.cpp, 
+                   Line: 60, Column: 7 }
+Function:        _Z11correlationPfS_S_S_
+Args:            
+  - String:          'Loop '''
+  - LoopName:        loop_4
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: HLS-benchmarks/C-Slow/correlation/correlation.cpp, 
+                   Line: 20, Column: 5 }
+Function:        _Z11correlationPfS_S_S_
+Args:            
+  - String:          'Loop '''
+  - LoopName:        loop_1
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: HLS-benchmarks/C-Slow/correlation/correlation.cpp, 
+                   Line: 27, Column: 5 }
+Function:        _Z11correlationPfS_S_S_
+Args:            
+  - String:          'Loop '''
+  - LoopName:        loop_2
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/C-Slow/correlation/correlation.cpp, 
+                   Line: 13, Column: 0 }
+Function:        _Z11correlationPfS_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        loop_4
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/C-Slow/correlation/correlation.cpp:60:7'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          correlation
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/C-Slow/correlation/correlation.cpp, 
+                   Line: 13, Column: 0 }
+Function:        _Z11correlationPfS_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        loop_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/C-Slow/correlation/correlation.cpp:20:5'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          correlation
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/C-Slow/correlation/correlation.cpp, 
+                   Line: 13, Column: 0 }
+Function:        _Z11correlationPfS_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        loop_2
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/C-Slow/correlation/correlation.cpp:27:5'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          correlation
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...

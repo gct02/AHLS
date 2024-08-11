@@ -1,0 +1,27 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: HLS-benchmarks/PNAnalyser/vecTrans3/src/vecTrans3.cpp, 
+                   Line: 3, Column: 0 }
+Function:        _Z9vecTrans3PfPiS0_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'g(float)'
+    DebugLoc:        { File: HLS-benchmarks/PNAnalyser/vecTrans3/src/g.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'vecTrans3(float*, int*, int*)'
+    DebugLoc:        { File: HLS-benchmarks/PNAnalyser/vecTrans3/src/vecTrans3.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ''''
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_4_1
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/PNAnalyser/vecTrans3/src/vecTrans3.cpp:4:19'
+  - String:          ' '
+...

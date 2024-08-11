@@ -1,0 +1,24 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl:20:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="getTanh" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=getTanh" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INVALID" msg_id="207-1017" msg_severity="WARNING" msg_loc="HLS-benchmarks/DSS/getTanh/src/g.cpp:13:9" msg_body="unknown pragma ignored">
+        <args ClangWarningOption="invalid-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:12:0" msg_body="Inlining function 'g(int, int*, int*, int*)' into 'getTanh(int*, int*, int*, int*, int*, int*)'">
+        <args Callee="g(int, int*, int*, int*)" Callee-DebugLoc="File HLS-benchmarks/DSS/getTanh/src/g.cpp Line 12 Column 0" Caller="getTanh(int*, int*, int*, int*, int*, int*)" Caller-DebugLoc="File HLS-benchmarks/DSS/getTanh/src/getTanh.cpp Line 12 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="HLS-benchmarks/DSS/getTanh/src/g.cpp:39:11" msg_body="Loop 'fp_hyp_cordic' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="fp_hyp_cordic"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32" msg_body="Loop 'VITIS_LOOP_42_1' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_42_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:12:0" msg_body="Unrolling loop 'fp_hyp_cordic' (HLS-benchmarks/DSS/getTanh/src/g.cpp:39:11) in function 'getTanh' completely with a factor of 12">
+        <args Factor="12" LoopLoc="HLS-benchmarks/DSS/getTanh/src/g.cpp:39:11" LoopName="fp_hyp_cordic"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:12:0" msg_body="Unrolling loop 'VITIS_LOOP_42_1' (HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32) in function 'getTanh' completely with a factor of 2">
+        <args Factor="2" LoopLoc="HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32" LoopName="VITIS_LOOP_42_1"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+

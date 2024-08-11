@@ -1,0 +1,49 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'correlation'" level="0">
+<item name = "Date">Sun Jun 23 03:26:53 2024
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">correlation</item>
+<item name = "Solution">solution1 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 4.027 ns, 1.35 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">7334, 37094, 36.670 us, 0.185 ms, 7335, 37095, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_correlation_Pipeline_loop_0_fu_114">correlation_Pipeline_loop_0, 925, 925, 4.625 us, 4.625 us, 925, 925, no</column>
+<column name="grp_correlation_Pipeline_VITIS_LOOP_41_1_loop_3_fu_124">correlation_Pipeline_VITIS_LOOP_41_1_loop_3, 1042, 1042, 5.210 us, 5.210 us, 1042, 1042, no</column>
+<column name="grp_correlation_Pipeline_VITIS_LOOP_57_3_fu_134">correlation_Pipeline_VITIS_LOOP_57_3, 169, 1129, 0.845 us, 5.645 us, 169, 1129, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- VITIS_LOOP_54_2">5363, 35123, 173 ~ 1133, -, -, 31, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

@@ -1,0 +1,17 @@
+{
+  "0": {
+    "basicblocks": 115,
+    "calls": "",
+    "file": "histogram.cpp",
+    "fileloc": 15,
+    "instructions": 473,
+    "loads": {
+      "T": 56
+    },
+    "name": "histogram",
+    "stores": {
+      "T": 41
+    },
+    "total_instructions": 473
+  }
+}

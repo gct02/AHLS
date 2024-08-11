@@ -1,0 +1,473 @@
+
+
+================================================================
+== Vitis HLS Report for 'matrixadd'
+================================================================
+* Date:           Sun Jun 23 03:44:46 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        matrixadd
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcvu35p-fsvh2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.579 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    49191|    49191|  0.246 ms|  0.246 ms|  49192|  49192|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 37
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 23 
+23 --> 24 
+24 --> 25 
+25 --> 26 
+26 --> 27 
+27 --> 28 
+28 --> 29 
+29 --> 30 
+30 --> 31 
+31 --> 32 
+32 --> 33 
+33 --> 34 
+34 --> 35 
+35 --> 36 
+36 --> 37 
+37 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%s_7_loc = alloca i64 1"   --->   Operation 38 'alloca' 's_7_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%s_6_loc = alloca i64 1"   --->   Operation 39 'alloca' 's_6_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%s_4_loc = alloca i64 1"   --->   Operation 40 'alloca' 's_4_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%s_2_loc = alloca i64 1"   --->   Operation 41 'alloca' 's_2_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%s_1_loc = alloca i64 1"   --->   Operation 42 'alloca' 's_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%s_0_loc = alloca i64 1"   --->   Operation 43 'alloca' 's_0_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 44 [2/2] (0.00ns)   --->   "%call_ln0 = call void @matrixadd_Pipeline_loop_0, i32 %array_0, i32 %s_0_loc"   --->   Operation 44 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_1 : Operation 45 [2/2] (0.00ns)   --->   "%call_ln0 = call void @matrixadd_Pipeline_loop_1, i32 %array_1, i32 %s_1_loc"   --->   Operation 45 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_1 : Operation 46 [2/2] (0.00ns)   --->   "%call_ln0 = call void @matrixadd_Pipeline_loop_2, i32 %array_2, i32 %s_2_loc"   --->   Operation 46 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_1 : Operation 47 [2/2] (0.00ns)   --->   "%call_ln0 = call void @matrixadd_Pipeline_loop_3, i32 %array_4, i32 %s_4_loc"   --->   Operation 47 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_1 : Operation 48 [2/2] (0.00ns)   --->   "%call_ln0 = call void @matrixadd_Pipeline_loop_5, i32 %array_6, i32 %s_6_loc"   --->   Operation 48 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_1 : Operation 49 [2/2] (0.00ns)   --->   "%call_ln0 = call void @matrixadd_Pipeline_loop_7, i32 %array_7, i32 %s_7_loc"   --->   Operation 49 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 50 [1/2] (0.00ns)   --->   "%call_ln0 = call void @matrixadd_Pipeline_loop_0, i32 %array_0, i32 %s_0_loc"   --->   Operation 50 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 51 [1/2] (0.00ns)   --->   "%call_ln0 = call void @matrixadd_Pipeline_loop_1, i32 %array_1, i32 %s_1_loc"   --->   Operation 51 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 52 [1/2] (0.00ns)   --->   "%call_ln0 = call void @matrixadd_Pipeline_loop_2, i32 %array_2, i32 %s_2_loc"   --->   Operation 52 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 53 [1/2] (0.00ns)   --->   "%call_ln0 = call void @matrixadd_Pipeline_loop_3, i32 %array_4, i32 %s_4_loc"   --->   Operation 53 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 54 [1/2] (0.00ns)   --->   "%call_ln0 = call void @matrixadd_Pipeline_loop_5, i32 %array_6, i32 %s_6_loc"   --->   Operation 54 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 55 [1/2] (0.00ns)   --->   "%call_ln0 = call void @matrixadd_Pipeline_loop_7, i32 %array_7, i32 %s_7_loc"   --->   Operation 55 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 3.57>
+ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%s_0_loc_load = load i32 %s_0_loc"   --->   Operation 56 'load' 's_0_loc_load' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%s_1_loc_load = load i32 %s_1_loc"   --->   Operation 57 'load' 's_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 58 [5/5] (3.57ns)   --->   "%add = fadd i32 %s_0_loc_load, i32 %s_1_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 58 'fadd' 'add' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 3.57>
+ST_4 : Operation 59 [4/5] (3.57ns)   --->   "%add = fadd i32 %s_0_loc_load, i32 %s_1_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 59 'fadd' 'add' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 3.57>
+ST_5 : Operation 60 [3/5] (3.57ns)   --->   "%add = fadd i32 %s_0_loc_load, i32 %s_1_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 60 'fadd' 'add' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 3.57>
+ST_6 : Operation 61 [2/5] (3.57ns)   --->   "%add = fadd i32 %s_0_loc_load, i32 %s_1_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 61 'fadd' 'add' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 3.57>
+ST_7 : Operation 62 [1/5] (3.57ns)   --->   "%add = fadd i32 %s_0_loc_load, i32 %s_1_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 62 'fadd' 'add' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 3.57>
+ST_8 : Operation 63 [1/1] (0.00ns)   --->   "%s_2_loc_load = load i32 %s_2_loc"   --->   Operation 63 'load' 's_2_loc_load' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 64 [5/5] (3.57ns)   --->   "%add1 = fadd i32 %add, i32 %s_2_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 64 'fadd' 'add1' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 3.57>
+ST_9 : Operation 65 [4/5] (3.57ns)   --->   "%add1 = fadd i32 %add, i32 %s_2_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 65 'fadd' 'add1' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 3.57>
+ST_10 : Operation 66 [3/5] (3.57ns)   --->   "%add1 = fadd i32 %add, i32 %s_2_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 66 'fadd' 'add1' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 3.57>
+ST_11 : Operation 67 [2/5] (3.57ns)   --->   "%add1 = fadd i32 %add, i32 %s_2_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 67 'fadd' 'add1' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 3.57>
+ST_12 : Operation 68 [1/5] (3.57ns)   --->   "%add1 = fadd i32 %add, i32 %s_2_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 68 'fadd' 'add1' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 3.57>
+ST_13 : Operation 69 [5/5] (3.57ns)   --->   "%add2 = fadd i32 %add1, i32 0" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 69 'fadd' 'add2' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 14 <SV = 13> <Delay = 3.57>
+ST_14 : Operation 70 [4/5] (3.57ns)   --->   "%add2 = fadd i32 %add1, i32 0" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 70 'fadd' 'add2' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 15 <SV = 14> <Delay = 3.57>
+ST_15 : Operation 71 [3/5] (3.57ns)   --->   "%add2 = fadd i32 %add1, i32 0" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 71 'fadd' 'add2' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 16 <SV = 15> <Delay = 3.57>
+ST_16 : Operation 72 [2/5] (3.57ns)   --->   "%add2 = fadd i32 %add1, i32 0" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 72 'fadd' 'add2' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 17 <SV = 16> <Delay = 3.57>
+ST_17 : Operation 73 [1/5] (3.57ns)   --->   "%add2 = fadd i32 %add1, i32 0" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 73 'fadd' 'add2' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 18 <SV = 17> <Delay = 3.57>
+ST_18 : Operation 74 [1/1] (0.00ns)   --->   "%s_4_loc_load = load i32 %s_4_loc"   --->   Operation 74 'load' 's_4_loc_load' <Predicate = true> <Delay = 0.00>
+ST_18 : Operation 75 [5/5] (3.57ns)   --->   "%add3 = fadd i32 %add2, i32 %s_4_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 75 'fadd' 'add3' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 19 <SV = 18> <Delay = 3.57>
+ST_19 : Operation 76 [4/5] (3.57ns)   --->   "%add3 = fadd i32 %add2, i32 %s_4_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 76 'fadd' 'add3' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 20 <SV = 19> <Delay = 3.57>
+ST_20 : Operation 77 [3/5] (3.57ns)   --->   "%add3 = fadd i32 %add2, i32 %s_4_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 77 'fadd' 'add3' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 21 <SV = 20> <Delay = 3.57>
+ST_21 : Operation 78 [2/5] (3.57ns)   --->   "%add3 = fadd i32 %add2, i32 %s_4_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 78 'fadd' 'add3' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 22 <SV = 21> <Delay = 3.57>
+ST_22 : Operation 79 [1/5] (3.57ns)   --->   "%add3 = fadd i32 %add2, i32 %s_4_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 79 'fadd' 'add3' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 23 <SV = 22> <Delay = 3.57>
+ST_23 : Operation 80 [5/5] (3.57ns)   --->   "%add4 = fadd i32 %add3, i32 0" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 80 'fadd' 'add4' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 24 <SV = 23> <Delay = 3.57>
+ST_24 : Operation 81 [4/5] (3.57ns)   --->   "%add4 = fadd i32 %add3, i32 0" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 81 'fadd' 'add4' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 25 <SV = 24> <Delay = 3.57>
+ST_25 : Operation 82 [3/5] (3.57ns)   --->   "%add4 = fadd i32 %add3, i32 0" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 82 'fadd' 'add4' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 26 <SV = 25> <Delay = 3.57>
+ST_26 : Operation 83 [2/5] (3.57ns)   --->   "%add4 = fadd i32 %add3, i32 0" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 83 'fadd' 'add4' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 27 <SV = 26> <Delay = 3.57>
+ST_27 : Operation 84 [1/5] (3.57ns)   --->   "%add4 = fadd i32 %add3, i32 0" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 84 'fadd' 'add4' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 28 <SV = 27> <Delay = 3.57>
+ST_28 : Operation 85 [1/1] (0.00ns)   --->   "%s_6_loc_load = load i32 %s_6_loc"   --->   Operation 85 'load' 's_6_loc_load' <Predicate = true> <Delay = 0.00>
+ST_28 : Operation 86 [5/5] (3.57ns)   --->   "%add5 = fadd i32 %add4, i32 %s_6_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 86 'fadd' 'add5' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 29 <SV = 28> <Delay = 3.57>
+ST_29 : Operation 87 [4/5] (3.57ns)   --->   "%add5 = fadd i32 %add4, i32 %s_6_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 87 'fadd' 'add5' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 30 <SV = 29> <Delay = 3.57>
+ST_30 : Operation 88 [3/5] (3.57ns)   --->   "%add5 = fadd i32 %add4, i32 %s_6_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 88 'fadd' 'add5' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 31 <SV = 30> <Delay = 3.57>
+ST_31 : Operation 89 [2/5] (3.57ns)   --->   "%add5 = fadd i32 %add4, i32 %s_6_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 89 'fadd' 'add5' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 32 <SV = 31> <Delay = 3.57>
+ST_32 : Operation 90 [1/5] (3.57ns)   --->   "%add5 = fadd i32 %add4, i32 %s_6_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 90 'fadd' 'add5' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 33 <SV = 32> <Delay = 3.57>
+ST_33 : Operation 91 [1/1] (0.00ns)   --->   "%s_7_loc_load = load i32 %s_7_loc"   --->   Operation 91 'load' 's_7_loc_load' <Predicate = true> <Delay = 0.00>
+ST_33 : Operation 92 [5/5] (3.57ns)   --->   "%add6 = fadd i32 %add5, i32 %s_7_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 92 'fadd' 'add6' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 34 <SV = 33> <Delay = 3.57>
+ST_34 : Operation 93 [4/5] (3.57ns)   --->   "%add6 = fadd i32 %add5, i32 %s_7_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 93 'fadd' 'add6' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 35 <SV = 34> <Delay = 3.57>
+ST_35 : Operation 94 [3/5] (3.57ns)   --->   "%add6 = fadd i32 %add5, i32 %s_7_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 94 'fadd' 'add6' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 36 <SV = 35> <Delay = 3.57>
+ST_36 : Operation 95 [2/5] (3.57ns)   --->   "%add6 = fadd i32 %add5, i32 %s_7_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 95 'fadd' 'add6' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 37 <SV = 36> <Delay = 3.57>
+ST_37 : Operation 96 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 0"   --->   Operation 96 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 97 [1/1] (0.00ns)   --->   "%spectopmodule_ln14 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_1" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:14]   --->   Operation 97 'spectopmodule' 'spectopmodule_ln14' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 98 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %array_0, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 98 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 99 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %array_0"   --->   Operation 99 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 100 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %array_1, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 100 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 101 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %array_1"   --->   Operation 101 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 102 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %array_2, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 102 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 103 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %array_2"   --->   Operation 103 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 104 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %array_3, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 104 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 105 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %array_3"   --->   Operation 105 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 106 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %array_4, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 106 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 107 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %array_4"   --->   Operation 107 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 108 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %array_5, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 108 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 109 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %array_5"   --->   Operation 109 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 110 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %array_6, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 110 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 111 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %array_6"   --->   Operation 111 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 112 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %array_7, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 112 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 113 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %array_7"   --->   Operation 113 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 114 [1/5] (3.57ns)   --->   "%add6 = fadd i32 %add5, i32 %s_7_loc_load" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 114 'fadd' 'add6' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 115 [1/1] (0.00ns)   --->   "%ret_ln69 = ret i32 %add6" [HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69]   --->   Operation 115 'ret' 'ret_ln69' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 0.000ns
+The critical path consists of the following:
+
+ <State 2>: 0.000ns
+The critical path consists of the following:
+
+ <State 3>: 3.579ns
+The critical path consists of the following:
+	'load' operation 32 bit ('s_0_loc_load') on local variable 's_0_loc' [34]  (0.000 ns)
+	'fadd' operation 32 bit ('add', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [45]  (3.579 ns)
+
+ <State 4>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [45]  (3.579 ns)
+
+ <State 5>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [45]  (3.579 ns)
+
+ <State 6>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [45]  (3.579 ns)
+
+ <State 7>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [45]  (3.579 ns)
+
+ <State 8>: 3.579ns
+The critical path consists of the following:
+	'load' operation 32 bit ('s_2_loc_load') on local variable 's_2_loc' [38]  (0.000 ns)
+	'fadd' operation 32 bit ('add1', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [46]  (3.579 ns)
+
+ <State 9>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add1', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [46]  (3.579 ns)
+
+ <State 10>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add1', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [46]  (3.579 ns)
+
+ <State 11>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add1', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [46]  (3.579 ns)
+
+ <State 12>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add1', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [46]  (3.579 ns)
+
+ <State 13>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add2', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [47]  (3.579 ns)
+
+ <State 14>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add2', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [47]  (3.579 ns)
+
+ <State 15>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add2', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [47]  (3.579 ns)
+
+ <State 16>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add2', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [47]  (3.579 ns)
+
+ <State 17>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add2', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [47]  (3.579 ns)
+
+ <State 18>: 3.579ns
+The critical path consists of the following:
+	'load' operation 32 bit ('s_4_loc_load') on local variable 's_4_loc' [40]  (0.000 ns)
+	'fadd' operation 32 bit ('add3', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [48]  (3.579 ns)
+
+ <State 19>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add3', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [48]  (3.579 ns)
+
+ <State 20>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add3', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [48]  (3.579 ns)
+
+ <State 21>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add3', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [48]  (3.579 ns)
+
+ <State 22>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add3', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [48]  (3.579 ns)
+
+ <State 23>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add4', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [49]  (3.579 ns)
+
+ <State 24>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add4', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [49]  (3.579 ns)
+
+ <State 25>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add4', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [49]  (3.579 ns)
+
+ <State 26>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add4', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [49]  (3.579 ns)
+
+ <State 27>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add4', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [49]  (3.579 ns)
+
+ <State 28>: 3.579ns
+The critical path consists of the following:
+	'load' operation 32 bit ('s_6_loc_load') on local variable 's_6_loc' [42]  (0.000 ns)
+	'fadd' operation 32 bit ('add5', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [50]  (3.579 ns)
+
+ <State 29>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add5', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [50]  (3.579 ns)
+
+ <State 30>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add5', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [50]  (3.579 ns)
+
+ <State 31>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add5', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [50]  (3.579 ns)
+
+ <State 32>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add5', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [50]  (3.579 ns)
+
+ <State 33>: 3.579ns
+The critical path consists of the following:
+	'load' operation 32 bit ('s_7_loc_load') on local variable 's_7_loc' [44]  (0.000 ns)
+	'fadd' operation 32 bit ('add6', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [51]  (3.579 ns)
+
+ <State 34>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add6', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [51]  (3.579 ns)
+
+ <State 35>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add6', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [51]  (3.579 ns)
+
+ <State 36>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add6', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [51]  (3.579 ns)
+
+ <State 37>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add6', HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:69) [51]  (3.579 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

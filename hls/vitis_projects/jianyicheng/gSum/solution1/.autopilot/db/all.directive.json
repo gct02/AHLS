@@ -1,0 +1,23 @@
+[
+  {
+    "functionLabel": "",
+    "functionName": "gSum",
+    "id": 0,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "gSum"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl",
+    "sourceLine": 19,
+    "success": true
+  }
+]

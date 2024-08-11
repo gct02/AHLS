@@ -1,0 +1,208 @@
+
+
+================================================================
+== Vitis HLS Report for 'los_Pipeline_VITIS_LOOP_329_14'
+================================================================
+* Date:           Sun Jun 23 03:44:28 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        los
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcvu35p-fsvh2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.316 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                     |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name      |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_329_14  |        ?|        ?|         3|          3|          1|     ?|       yes|
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 3, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 1
+  Pipeline-0 : II = 3, D = 3, States = { 1 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.69>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%err = alloca i32 1" [HLS-benchmarks/Inter-Block/los/los.cpp:327]   --->   Operation 6 'alloca' 'err' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%y0 = alloca i32 1" [HLS-benchmarks/Inter-Block/los/los.cpp:309]   --->   Operation 7 'alloca' 'y0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%x0 = alloca i32 1" [HLS-benchmarks/Inter-Block/los/los.cpp:308]   --->   Operation 8 'alloca' 'x0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%sight_6 = alloca i32 1" [HLS-benchmarks/Inter-Block/los/los.cpp:307]   --->   Operation 9 'alloca' 'sight_6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%sext_ln310_read = read i7 @_ssdm_op_Read.ap_auto.i7, i7 %sext_ln310"   --->   Operation 10 'read' 'sext_ln310_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%select_ln311_read = read i2 @_ssdm_op_Read.ap_auto.i2, i2 %select_ln311"   --->   Operation 11 'read' 'select_ln311_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%zext_ln305_1_read = read i6 @_ssdm_op_Read.ap_auto.i6, i6 %zext_ln305_1"   --->   Operation 12 'read' 'zext_ln305_1_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%sext_ln305_read = read i6 @_ssdm_op_Read.ap_auto.i6, i6 %sext_ln305"   --->   Operation 13 'read' 'sext_ln305_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%sext_ln327_read = read i7 @_ssdm_op_Read.ap_auto.i7, i7 %sext_ln327"   --->   Operation 14 'read' 'sext_ln327_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%zext_ln305_3_read = read i4 @_ssdm_op_Read.ap_auto.i4, i4 %zext_ln305_3"   --->   Operation 15 'read' 'zext_ln305_3_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%zext_ln316_read = read i6 @_ssdm_op_Read.ap_auto.i6, i6 %zext_ln316"   --->   Operation 16 'read' 'zext_ln316_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%sext_ln310_cast = sext i7 %sext_ln310_read"   --->   Operation 17 'sext' 'sext_ln310_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%select_ln311_cast = sext i2 %select_ln311_read"   --->   Operation 18 'sext' 'select_ln311_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%zext_ln305_1_cast = zext i6 %zext_ln305_1_read"   --->   Operation 19 'zext' 'zext_ln305_1_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%sext_ln305_cast = sext i6 %sext_ln305_read"   --->   Operation 20 'sext' 'sext_ln305_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%sext_ln327_cast = sext i7 %sext_ln327_read"   --->   Operation 21 'sext' 'sext_ln327_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%zext_ln305_3_cast = zext i4 %zext_ln305_3_read"   --->   Operation 22 'zext' 'zext_ln305_3_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%zext_ln316_cast = zext i6 %zext_ln316_read"   --->   Operation 23 'zext' 'zext_ln316_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %obstacles_6, void @empty_7, i32 0, i32 0, void @empty_8, i32 4294967295, i32 0, void @empty_8, void @empty_8, void @empty_8, i32 0, i32 0, i32 0, i32 0, void @empty_8, void @empty_8, i32 4294967295, i32 0"   --->   Operation 24 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.46ns)   --->   "%store_ln307 = store i32 1, i32 %sight_6" [HLS-benchmarks/Inter-Block/los/los.cpp:307]   --->   Operation 25 'store' 'store_ln307' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 26 [1/1] (0.46ns)   --->   "%store_ln308 = store i32 %zext_ln316_cast, i32 %x0" [HLS-benchmarks/Inter-Block/los/los.cpp:308]   --->   Operation 26 'store' 'store_ln308' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 27 [1/1] (0.46ns)   --->   "%store_ln309 = store i32 %zext_ln305_3_cast, i32 %y0" [HLS-benchmarks/Inter-Block/los/los.cpp:309]   --->   Operation 27 'store' 'store_ln309' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 28 [1/1] (0.46ns)   --->   "%store_ln327 = store i32 %sext_ln327_cast, i32 %err" [HLS-benchmarks/Inter-Block/los/los.cpp:327]   --->   Operation 28 'store' 'store_ln327' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%br_ln0 = br void %while.body464"   --->   Operation 29 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%y0_9 = load i32 %y0" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 30 'load' 'y0_9' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%x0_10 = load i32 %x0" [HLS-benchmarks/Inter-Block/los/los.cpp:327]   --->   Operation 31 'load' 'x0_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%specpipeline_ln327 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_8" [HLS-benchmarks/Inter-Block/los/los.cpp:327]   --->   Operation 32 'specpipeline' 'specpipeline_ln327' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%specloopname_ln329 = specloopname void @_ssdm_op_SpecLoopName, void @empty_1" [HLS-benchmarks/Inter-Block/los/los.cpp:329]   --->   Operation 33 'specloopname' 'specloopname_ln329' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (1.14ns)   --->   "%icmp_ln330 = icmp_eq  i32 %x0_10, i32 32" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 34 'icmp' 'icmp_ln330' <Predicate = true> <Delay = 1.14> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 35 [1/1] (1.14ns)   --->   "%icmp_ln330_1 = icmp_eq  i32 %y0_9, i32 32" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 35 'icmp' 'icmp_ln330_1' <Predicate = true> <Delay = 1.14> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 36 [1/1] (0.14ns)   --->   "%and_ln330 = and i1 %icmp_ln330, i1 %icmp_ln330_1" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 36 'and' 'and_ln330' <Predicate = true> <Delay = 0.14> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%br_ln330 = br i1 %and_ln330, void %land.lhs.true468, void %if.end475" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 37 'br' 'br_ln330' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%trunc_ln330 = trunc i32 %y0_9" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 38 'trunc' 'trunc_ln330' <Predicate = (!and_ln330)> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%shl_ln6 = bitconcatenate i10 @_ssdm_op_BitConcatenate.i10.i4.i6, i4 %trunc_ln330, i6 0" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 39 'bitconcatenate' 'shl_ln6' <Predicate = (!and_ln330)> <Delay = 0.00>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%trunc_ln327 = trunc i32 %x0_10" [HLS-benchmarks/Inter-Block/los/los.cpp:327]   --->   Operation 40 'trunc' 'trunc_ln327' <Predicate = (!and_ln330)> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.93ns)   --->   "%add_ln330 = add i10 %shl_ln6, i10 %trunc_ln327" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 41 'add' 'add_ln330' <Predicate = (!and_ln330)> <Delay = 0.93> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.93> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%zext_ln330 = zext i10 %add_ln330" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 42 'zext' 'zext_ln330' <Predicate = (!and_ln330)> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%obstacles_6_addr = getelementptr i32 %obstacles_6, i64 0, i64 %zext_ln330" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 43 'getelementptr' 'obstacles_6_addr' <Predicate = (!and_ln330)> <Delay = 0.00>
+ST_1 : Operation 44 [2/2] (1.29ns)   --->   "%obstacles_6_load = load i10 %obstacles_6_addr" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 44 'load' 'obstacles_6_load' <Predicate = (!and_ln330)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+
+State 2 <SV = 1> <Delay = 3.18>
+ST_2 : Operation 45 [1/1] (0.00ns)   --->   "%sight_6_load = load i32 %sight_6" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 45 'load' 'sight_6_load' <Predicate = (!and_ln330)> <Delay = 0.00>
+ST_2 : Operation 46 [1/2] (1.29ns)   --->   "%obstacles_6_load = load i10 %obstacles_6_addr" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 46 'load' 'obstacles_6_load' <Predicate = (!and_ln330)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_2 : Operation 47 [1/1] (1.14ns)   --->   "%icmp_ln330_2 = icmp_eq  i32 %obstacles_6_load, i32 1" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 47 'icmp' 'icmp_ln330_2' <Predicate = (!and_ln330)> <Delay = 1.14> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 48 [1/1] (0.28ns)   --->   "%select_ln330 = select i1 %icmp_ln330_2, i32 0, i32 %sight_6_load" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 48 'select' 'select_ln330' <Predicate = (!and_ln330)> <Delay = 0.28> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 49 [1/1] (0.46ns)   --->   "%store_ln307 = store i32 %select_ln330, i32 %sight_6" [HLS-benchmarks/Inter-Block/los/los.cpp:307]   --->   Operation 49 'store' 'store_ln307' <Predicate = (!and_ln330)> <Delay = 0.46>
+ST_2 : Operation 50 [1/1] (0.00ns)   --->   "%br_ln330 = br void %if.end475" [HLS-benchmarks/Inter-Block/los/los.cpp:330]   --->   Operation 50 'br' 'br_ln330' <Predicate = (!and_ln330)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 3.31>
+ST_3 : Operation 51 [1/1] (0.00ns)   --->   "%sight_6_1 = load i32 %sight_6"   --->   Operation 51 'load' 'sight_6_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 52 [1/1] (1.14ns)   --->   "%icmp_ln332 = icmp_eq  i32 %sight_6_1, i32 0" [HLS-benchmarks/Inter-Block/los/los.cpp:332]   --->   Operation 52 'icmp' 'icmp_ln332' <Predicate = true> <Delay = 1.14> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 53 [1/1] (0.14ns)   --->   "%or_ln332 = or i1 %and_ln330, i1 %icmp_ln332" [HLS-benchmarks/Inter-Block/los/los.cpp:332]   --->   Operation 53 'or' 'or_ln332' <Predicate = true> <Delay = 0.14> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 54 [1/1] (0.00ns)   --->   "%br_ln332 = br i1 %or_ln332, void %if.end482, void %while.end496.exitStub" [HLS-benchmarks/Inter-Block/los/los.cpp:332]   --->   Operation 54 'br' 'br_ln332' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 55 [1/1] (0.00ns)   --->   "%err_load = load i32 %err" [HLS-benchmarks/Inter-Block/los/los.cpp:334]   --->   Operation 55 'load' 'err_load' <Predicate = (!or_ln332)> <Delay = 0.00>
+ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%e2 = shl i32 %err_load, i32 1" [HLS-benchmarks/Inter-Block/los/los.cpp:334]   --->   Operation 56 'shl' 'e2' <Predicate = (!or_ln332)> <Delay = 0.00>
+ST_3 : Operation 57 [1/1] (1.14ns)   --->   "%icmp_ln335 = icmp_sgt  i32 %e2, i32 %sext_ln305_cast" [HLS-benchmarks/Inter-Block/los/los.cpp:335]   --->   Operation 57 'icmp' 'icmp_ln335' <Predicate = (!or_ln332)> <Delay = 1.14> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 58 [1/1] (1.14ns)   --->   "%err_17 = sub i32 %err_load, i32 %zext_ln305_1_cast" [HLS-benchmarks/Inter-Block/los/los.cpp:336]   --->   Operation 58 'sub' 'err_17' <Predicate = (!or_ln332)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 59 [1/1] (1.14ns)   --->   "%x0_11 = add i32 %x0_10, i32 %select_ln311_cast" [HLS-benchmarks/Inter-Block/los/los.cpp:337]   --->   Operation 59 'add' 'x0_11' <Predicate = (!or_ln332)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 60 [1/1] (0.28ns)   --->   "%x0_12 = select i1 %icmp_ln335, i32 %x0_11, i32 %x0_10" [HLS-benchmarks/Inter-Block/los/los.cpp:335]   --->   Operation 60 'select' 'x0_12' <Predicate = (!or_ln332)> <Delay = 0.28> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 61 [1/1] (0.28ns)   --->   "%err_18 = select i1 %icmp_ln335, i32 %err_17, i32 %err_load" [HLS-benchmarks/Inter-Block/los/los.cpp:335]   --->   Operation 61 'select' 'err_18' <Predicate = (!or_ln332)> <Delay = 0.28> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 62 [1/1] (1.14ns)   --->   "%icmp_ln340 = icmp_slt  i32 %e2, i32 %sext_ln310_cast" [HLS-benchmarks/Inter-Block/los/los.cpp:340]   --->   Operation 62 'icmp' 'icmp_ln340' <Predicate = (!or_ln332)> <Delay = 1.14> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 63 [1/1] (1.14ns)   --->   "%err_19 = add i32 %err_18, i32 %sext_ln310_cast" [HLS-benchmarks/Inter-Block/los/los.cpp:341]   --->   Operation 63 'add' 'err_19' <Predicate = (!or_ln332)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 64 [1/1] (1.14ns)   --->   "%y0_10 = add i32 %y0_9, i32 1" [HLS-benchmarks/Inter-Block/los/los.cpp:342]   --->   Operation 64 'add' 'y0_10' <Predicate = (!or_ln332)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 65 [1/1] (0.28ns)   --->   "%y0_11 = select i1 %icmp_ln340, i32 %y0_10, i32 %y0_9" [HLS-benchmarks/Inter-Block/los/los.cpp:340]   --->   Operation 65 'select' 'y0_11' <Predicate = (!or_ln332)> <Delay = 0.28> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 66 [1/1] (0.28ns)   --->   "%err_20 = select i1 %icmp_ln340, i32 %err_19, i32 %err_18" [HLS-benchmarks/Inter-Block/los/los.cpp:340]   --->   Operation 66 'select' 'err_20' <Predicate = (!or_ln332)> <Delay = 0.28> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 67 [1/1] (0.46ns)   --->   "%store_ln308 = store i32 %x0_12, i32 %x0" [HLS-benchmarks/Inter-Block/los/los.cpp:308]   --->   Operation 67 'store' 'store_ln308' <Predicate = (!or_ln332)> <Delay = 0.46>
+ST_3 : Operation 68 [1/1] (0.46ns)   --->   "%store_ln309 = store i32 %y0_11, i32 %y0" [HLS-benchmarks/Inter-Block/los/los.cpp:309]   --->   Operation 68 'store' 'store_ln309' <Predicate = (!or_ln332)> <Delay = 0.46>
+ST_3 : Operation 69 [1/1] (0.46ns)   --->   "%store_ln327 = store i32 %err_20, i32 %err" [HLS-benchmarks/Inter-Block/los/los.cpp:327]   --->   Operation 69 'store' 'store_ln327' <Predicate = (!or_ln332)> <Delay = 0.46>
+ST_3 : Operation 70 [1/1] (0.00ns)   --->   "%br_ln329 = br void %while.body464" [HLS-benchmarks/Inter-Block/los/los.cpp:329]   --->   Operation 70 'br' 'br_ln329' <Predicate = (!or_ln332)> <Delay = 0.00>
+ST_3 : Operation 71 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i32P0A, i32 %sight_6_1_out, i32 %sight_6_1"   --->   Operation 71 'write' 'write_ln0' <Predicate = (or_ln332)> <Delay = 0.00>
+ST_3 : Operation 72 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 72 'ret' 'ret_ln0' <Predicate = (or_ln332)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 2.691ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln308', HLS-benchmarks/Inter-Block/los/los.cpp:308) of variable 'zext_ln316_cast' on local variable 'x0', HLS-benchmarks/Inter-Block/los/los.cpp:308 [30]  (0.460 ns)
+	'load' operation 32 bit ('x0', HLS-benchmarks/Inter-Block/los/los.cpp:327) on local variable 'x0', HLS-benchmarks/Inter-Block/los/los.cpp:308 [36]  (0.000 ns)
+	'add' operation 10 bit ('add_ln330', HLS-benchmarks/Inter-Block/los/los.cpp:330) [48]  (0.933 ns)
+	'getelementptr' operation 10 bit ('obstacles_6_addr', HLS-benchmarks/Inter-Block/los/los.cpp:330) [50]  (0.000 ns)
+	'load' operation 32 bit ('obstacles_6_load', HLS-benchmarks/Inter-Block/los/los.cpp:330) on array 'obstacles_6' [51]  (1.297 ns)
+
+ <State 2>: 3.185ns
+The critical path consists of the following:
+	'load' operation 32 bit ('obstacles_6_load', HLS-benchmarks/Inter-Block/los/los.cpp:330) on array 'obstacles_6' [51]  (1.297 ns)
+	'icmp' operation 1 bit ('icmp_ln330_2', HLS-benchmarks/Inter-Block/los/los.cpp:330) [52]  (1.142 ns)
+	'select' operation 32 bit ('select_ln330', HLS-benchmarks/Inter-Block/los/los.cpp:330) [53]  (0.286 ns)
+	'store' operation 0 bit ('store_ln307', HLS-benchmarks/Inter-Block/los/los.cpp:307) of variable 'select_ln330', HLS-benchmarks/Inter-Block/los/los.cpp:330 on local variable 'sight_6', HLS-benchmarks/Inter-Block/los/los.cpp:307 [54]  (0.460 ns)
+
+ <State 3>: 3.316ns
+The critical path consists of the following:
+	'load' operation 32 bit ('err_load', HLS-benchmarks/Inter-Block/los/los.cpp:334) on local variable 'err', HLS-benchmarks/Inter-Block/los/los.cpp:327 [62]  (0.000 ns)
+	'sub' operation 32 bit ('err', HLS-benchmarks/Inter-Block/los/los.cpp:336) [65]  (1.142 ns)
+	'select' operation 32 bit ('err', HLS-benchmarks/Inter-Block/los/los.cpp:335) [68]  (0.286 ns)
+	'add' operation 32 bit ('err', HLS-benchmarks/Inter-Block/los/los.cpp:341) [70]  (1.142 ns)
+	'select' operation 32 bit ('err', HLS-benchmarks/Inter-Block/los/los.cpp:340) [73]  (0.286 ns)
+	'store' operation 0 bit ('store_ln327', HLS-benchmarks/Inter-Block/los/los.cpp:327) of variable 'err', HLS-benchmarks/Inter-Block/los/los.cpp:340 on local variable 'err', HLS-benchmarks/Inter-Block/los/los.cpp:327 [76]  (0.460 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

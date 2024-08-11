@@ -1,0 +1,145 @@
+
+
+================================================================
+== Synthesis Summary Report of 'chaosNCG'
+================================================================
++ General Information: 
+    * Date:           Sun Jun 23 03:47:04 2024
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        chaosNCG
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtexuplusHBM
+    * Target device:  xcvu35p-fsvh2104-1-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------------+--------+-------+---------+--------+----------+---------+------+----------+------+----+------------+------------+-----+
+    |      Modules      |  Issue |       | Latency | Latency| Iteration|         | Trip |          |      |    |            |            |     |
+    |      & Loops      |  Type  | Slack | (cycles)|  (ns)  |  Latency | Interval| Count| Pipelined| BRAM | DSP|     FF     |     LUT    | URAM|
+    +-------------------+--------+-------+---------+--------+----------+---------+------+----------+------+----+------------+------------+-----+
+    |+ chaosNCG         |  Timing|  -0.04|        -|       -|         -|        -|     -|        no|     -|   -|  5211 (~0%)|  4982 (~0%)|    -|
+    | o VITIS_LOOP_7_1  |      II|   3.65|        -|       -|        76|       75|     -|       yes|     -|   -|           -|           -|    -|
+    +-------------------+--------+-------+---------+--------+----------+---------+------+----------+------+----+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++-------------------+-----------+----------+
+| Port              | Direction | Bitwidth |
++-------------------+-----------+----------+
+| M_address0        | out       | 11       |
+| M_address1        | out       | 11       |
+| M_q0              | in        | 32       |
+| M_q1              | in        | 32       |
+| buffer_r_address0 | out       | 11       |
+| buffer_r_address1 | out       | 11       |
+| buffer_r_d0       | out       | 32       |
+| buffer_r_d1       | out       | 32       |
+| buffer_r_q0       | in        | 32       |
+| buffer_r_q1       | in        | 32       |
++-------------------+-----------+----------+
+
+* Other Ports
++---------+---------+-----------+----------+
+| Port    | Mode    | Direction | Bitwidth |
++---------+---------+-----------+----------+
+| I       | ap_none | in        | 32       |
+| X       | ap_none | in        | 32       |
+| Y       | ap_none | in        | 32       |
+| bo      | ap_none | in        | 32       |
+| params0 | ap_none | in        | 32       |
+| params1 | ap_none | in        | 32       |
++---------+---------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| I        | in        | int      |
+| bo       | in        | int      |
+| M        | in        | int*     |
+| X        | in        | int      |
+| Y        | in        | int      |
+| params0  | in        | int      |
+| params1  | in        | int      |
+| buffer   | inout     | int*     |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+-------------------+---------+----------+
+| Argument | HW Interface      | HW Type | HW Usage |
++----------+-------------------+---------+----------+
+| I        | I                 | port    |          |
+| bo       | bo                | port    |          |
+| M        | M_address0        | port    | offset   |
+| M        | M_ce0             | port    |          |
+| M        | M_q0              | port    |          |
+| M        | M_address1        | port    | offset   |
+| M        | M_ce1             | port    |          |
+| M        | M_q1              | port    |          |
+| X        | X                 | port    |          |
+| Y        | Y                 | port    |          |
+| params0  | params0           | port    |          |
+| params1  | params1           | port    |          |
+| buffer   | buffer_r_address0 | port    | offset   |
+| buffer   | buffer_r_ce0      | port    |          |
+| buffer   | buffer_r_we0      | port    |          |
+| buffer   | buffer_r_d0       | port    |          |
+| buffer   | buffer_r_q0       | port    |          |
+| buffer   | buffer_r_address1 | port    | offset   |
+| buffer   | buffer_r_ce1      | port    |          |
+| buffer   | buffer_r_we1      | port    |          |
+| buffer   | buffer_r_d1       | port    |          |
+| buffer   | buffer_r_q1       | port    |          |
++----------+-------------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-----------------------+-----+--------+-----------+-----+--------+---------+
+| Name                  | DSP | Pragma | Variable  | Op  | Impl   | Latency |
++-----------------------+-----+--------+-----------+-----+--------+---------+
+| + chaosNCG            | 0   |        |           |     |        |         |
+|   add_ln9_fu_200_p2   |     |        | add_ln9   | add | fabric | 0       |
+|   add_ln9_1_fu_206_p2 |     |        | add_ln9_1 | add | fabric | 0       |
+|   add_ln9_2_fu_217_p2 |     |        | add_ln9_2 | add | fabric | 0       |
+|   sub_ln6_fu_262_p2   |     |        | sub_ln6   | sub | fabric | 0       |
+|   grp_fu_311_p0       |     |        | add_ln8   | add | fabric | 0       |
+|   buffer_r_d1         |     |        | out0      | sub | fabric | 0       |
+|   sub_ln10_fu_331_p2  |     |        | sub_ln10  | sub | fabric | 0       |
+|   add_ln10_fu_350_p2  |     |        | add_ln10  | add | fabric | 0       |
+|   p1_1_fu_355_p2      |     |        | p1_1      | add | fabric | 0       |
+|   p0_1_fu_379_p2      |     |        | p0_1      | add | fabric | 0       |
+|   buffer_r_d0         |     |        | out1      | add | fabric | 0       |
+|   add_ln7_fu_360_p2   |     |        | add_ln7   | add | fabric | 0       |
++-----------------------+-----+--------+-----------+-----+--------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
+  No bind storage info in design
+
+================================================================
+== Pragma Report
+================================================================
+  No pragmas found
+

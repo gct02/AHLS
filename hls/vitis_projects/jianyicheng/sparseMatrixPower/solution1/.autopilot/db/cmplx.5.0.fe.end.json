@@ -1,0 +1,41 @@
+{
+    "1": {
+        "name": "smm_Pipeline_VITIS_LOOP_15_1",
+        "file": "HLS-benchmarks\/DSS\/sparseMatrixPower\/src\/smm.cpp",
+        "fileloc": "22",
+        "instructions": "37",
+        "total_instructions": "37",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2",
+            "T": "3"
+        },
+        "stores": {
+            "L": "4",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "0": {
+        "name": "smm",
+        "file": "smm.cpp",
+        "fileloc": "12",
+        "instructions": "26",
+        "total_instructions": "63",
+        "calls": "1",
+        "basicblocks": "6",
+        "loads": {
+            "L": "1",
+            "T": "1"
+        },
+        "stores": {
+            "L": "2"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

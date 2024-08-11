@@ -1,0 +1,13 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/sparseMatrixPower/solution1/.autopilot/db/g.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_15_1:  '
+    FileOffset:      15
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/DSS/sparseMatrixPower/src/g.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/sparseMatrixPower/solution1/.autopilot/db/g.pp.0.cpp
+        Offset:          10089
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_15_1: '
+...

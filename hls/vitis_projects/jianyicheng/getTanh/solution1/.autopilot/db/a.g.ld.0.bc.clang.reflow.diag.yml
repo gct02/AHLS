@@ -1,0 +1,270 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'g(int, int*, int*, int*)'
+    DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/g.cpp, Line: 12, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'getTanh(int*, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_27_1
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/getTanh.cpp:27:20'
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/g.cpp, Line: 39, 
+                   Column: 11 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Loop '''
+  - LoopName:        fp_hyp_cordic
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/g.cpp, Line: 42, 
+                   Column: 32 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        fp_hyp_cordic
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:39:11'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '12'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '2'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '2'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '2'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '2'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '2'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '2'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '2'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '2'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '2'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '2'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '2'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: HLS-benchmarks/DSS/getTanh/src/getTanh.cpp, Line: 12, 
+                   Column: 0 }
+Function:        _Z7getTanhPiS_S_S_S_S_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_42_1
+  - String:          ''' ('
+  - LoopLoc:         'HLS-benchmarks/DSS/getTanh/src/g.cpp:42:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          getTanh
+  - String:          ''' completely with a factor of '
+  - Factor:          '2'
+...

@@ -1,0 +1,157 @@
+
+
+================================================================
+== Vitis HLS Report for 'evalPos'
+================================================================
+* Date:           Sun Jun 23 03:47:31 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        evalPos
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcvu35p-fsvh2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.647 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      423|      423|  2.115 us|  2.115 us|  424|  424|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +--------------------------------------------+----------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                            |                                  |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                  Instance                  |              Module              |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +--------------------------------------------+----------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_evalPos_Pipeline_VITIS_LOOP_12_1_fu_76  |evalPos_Pipeline_VITIS_LOOP_12_1  |      416|      416|  2.080 us|  2.080 us|  416|  416|       no|
+        +--------------------------------------------+----------------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        -|       -|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        -|     5|     1121|    1292|    -|
+|Memory               |        -|     -|        -|       -|    -|
+|Multiplexer          |        -|     -|        -|      72|    -|
+|Register             |        -|     -|       72|       -|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        0|     5|     1193|    1364|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |        0|    ~0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |        0|    ~0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +--------------------------------------------+----------------------------------+---------+----+------+------+-----+
+    |                  Instance                  |              Module              | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +--------------------------------------------+----------------------------------+---------+----+------+------+-----+
+    |grp_evalPos_Pipeline_VITIS_LOOP_12_1_fu_76  |evalPos_Pipeline_VITIS_LOOP_12_1  |        0|   5|  1121|  1292|    0|
+    |sitofp_32ns_32_4_no_dsp_1_U16               |sitofp_32ns_32_4_no_dsp_1         |        0|   0|     0|     0|    0|
+    +--------------------------------------------+----------------------------------+---------+----+------+------+-----+
+    |Total                                       |                                  |        0|   5|  1121|  1292|    0|
+    +--------------------------------------------+----------------------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    +--------------+----+-----------+-----+-----------+
+    |     Name     | LUT| Input Size| Bits| Total Bits|
+    +--------------+----+-----------+-----+-----------+
+    |ap_NS_fsm     |  49|          9|    1|          9|
+    |grp_fu_85_ce  |   9|          2|    1|          2|
+    |grp_fu_85_p0  |  14|          3|   32|         96|
+    +--------------+----+-----------+-----+-----------+
+    |Total         |  72|         14|   34|        107|
+    +--------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +---------------------------------------------------------+----+----+-----+-----------+
+    |                           Name                          | FF | LUT| Bits| Const Bits|
+    +---------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                |   8|   0|    8|          0|
+    |conv16_i_reg_123                                         |  32|   0|   32|          0|
+    |grp_evalPos_Pipeline_VITIS_LOOP_12_1_fu_76_ap_start_reg  |   1|   0|    1|          0|
+    |trunc_ln16_reg_128                                       |  31|   0|   31|          0|
+    +---------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                    |  72|   0|   72|          0|
+    +---------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+--------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  | Source Object|    C Type    |
++-----------------------+-----+-----+------------+--------------+--------------+
+|ap_clk                 |   in|    1|  ap_ctrl_hs|       evalPos|  return value|
+|ap_rst                 |   in|    1|  ap_ctrl_hs|       evalPos|  return value|
+|ap_start               |   in|    1|  ap_ctrl_hs|       evalPos|  return value|
+|ap_done                |  out|    1|  ap_ctrl_hs|       evalPos|  return value|
+|ap_idle                |  out|    1|  ap_ctrl_hs|       evalPos|  return value|
+|ap_ready               |  out|    1|  ap_ctrl_hs|       evalPos|  return value|
+|board_address0         |  out|    6|   ap_memory|         board|         array|
+|board_ce0              |  out|    1|   ap_memory|         board|         array|
+|board_q0               |   in|   32|   ap_memory|         board|         array|
+|color                  |   in|   32|     ap_none|         color|       pointer|
+|profile                |   in|   32|     ap_none|       profile|       pointer|
+|rawMoveCount_address0  |  out|    6|   ap_memory|  rawMoveCount|         array|
+|rawMoveCount_ce0       |  out|    1|   ap_memory|  rawMoveCount|         array|
+|rawMoveCount_we0       |  out|    1|   ap_memory|  rawMoveCount|         array|
+|rawMoveCount_d0        |  out|   32|   ap_memory|  rawMoveCount|         array|
+|rawMoveCount_q0        |   in|   32|   ap_memory|  rawMoveCount|         array|
+|rawMoveCount_address1  |  out|    6|   ap_memory|  rawMoveCount|         array|
+|rawMoveCount_ce1       |  out|    1|   ap_memory|  rawMoveCount|         array|
+|rawMoveCount_we1       |  out|    1|   ap_memory|  rawMoveCount|         array|
+|rawMoveCount_d1        |  out|   32|   ap_memory|  rawMoveCount|         array|
+|rawMoveCount_q1        |   in|   32|   ap_memory|  rawMoveCount|         array|
+|pm_2_address0          |  out|    1|   ap_memory|          pm_2|         array|
+|pm_2_ce0               |  out|    1|   ap_memory|          pm_2|         array|
+|pm_2_q0                |   in|   32|   ap_memory|          pm_2|         array|
+|res                    |  out|   32|      ap_vld|           res|       pointer|
+|res_ap_vld             |  out|    1|      ap_vld|           res|       pointer|
++-----------------------+-----+-----+------------+--------------+--------------+
+

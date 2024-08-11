@@ -1,0 +1,5 @@
+gSum_dadd_64ns_64ns_64_5_full_dsp_1
+gSum_dmul_64ns_64ns_64_6_max_dsp_1
+gSum_dcmp_64ns_64ns_1_2_no_dsp_1
+gSum_flow_control_loop_pipe
+gSum

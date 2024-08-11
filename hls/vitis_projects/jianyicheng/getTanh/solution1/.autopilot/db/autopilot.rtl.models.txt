@@ -1,0 +1,6 @@
+getTanh_mul_32s_27s_32_2_1
+getTanh_mul_32s_28s_32_2_1
+getTanh_sdiv_32ns_20s_32_36_1
+getTanh_flow_control_loop_pipe_sequential_init
+getTanh_Pipeline_VITIS_LOOP_27_1
+getTanh

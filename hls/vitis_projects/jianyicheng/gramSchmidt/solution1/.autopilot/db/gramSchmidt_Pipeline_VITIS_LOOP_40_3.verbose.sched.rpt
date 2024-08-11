@@ -1,0 +1,251 @@
+
+
+================================================================
+== Vitis HLS Report for 'gramSchmidt_Pipeline_VITIS_LOOP_40_3'
+================================================================
+* Date:           Sun Jun 23 03:31:46 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        gramSchmidt
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcvu35p-fsvh2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.644 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       45|       45|  0.225 us|  0.225 us|   45|   45|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_40_3  |       43|       43|        13|          1|          1|    32|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 13
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 13
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 13, States = { 1 2 3 4 5 6 7 8 9 10 11 12 13 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.88>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40]   --->   Operation 16 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%nrm_2_read = read i32 @_ssdm_op_Read.ap_auto.float, i32 %nrm_2"   --->   Operation 17 'read' 'nrm_2_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%zext_ln42_4_read = read i5 @_ssdm_op_Read.ap_auto.i5, i5 %zext_ln42_4"   --->   Operation 18 'read' 'zext_ln42_4_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %q, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 19 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %a, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.46ns)   --->   "%store_ln40 = store i11 0, i11 %i" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40]   --->   Operation 21 'store' 'store_ln40' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc32"   --->   Operation 22 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%i_1 = load i11 %i" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40]   --->   Operation 23 'load' 'i_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i11.i32, i11 %i_1, i32 10" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40]   --->   Operation 24 'bitselect' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%br_ln40 = br i1 %tmp, void %for.inc32.split, void %VITIS_LOOP_42_4.exitStub" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40]   --->   Operation 25 'br' 'br_ln40' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%trunc_ln41 = trunc i11 %i_1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 26 'trunc' 'trunc_ln41' <Predicate = (!tmp)> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.12ns)   --->   "%or_ln41 = or i5 %trunc_ln41, i5 %zext_ln42_4_read" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 27 'or' 'or_ln41' <Predicate = (!tmp)> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%tmp_2 = partselect i5 @_ssdm_op_PartSelect.i5.i11.i32.i32, i11 %i_1, i32 5, i32 9" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 28 'partselect' 'tmp_2' <Predicate = (!tmp)> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%add_ln = bitconcatenate i10 @_ssdm_op_BitConcatenate.i10.i5.i5, i5 %tmp_2, i5 %or_ln41" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 29 'bitconcatenate' 'add_ln' <Predicate = (!tmp)> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%zext_ln41 = zext i10 %add_ln" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 30 'zext' 'zext_ln41' <Predicate = (!tmp)> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%a_addr_1 = getelementptr i32 %a, i64 0, i64 %zext_ln41" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 31 'getelementptr' 'a_addr_1' <Predicate = (!tmp)> <Delay = 0.00>
+ST_1 : Operation 32 [2/2] (1.29ns)   --->   "%a_load_1 = load i10 %a_addr_1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 32 'load' 'a_load_1' <Predicate = (!tmp)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_1 : Operation 33 [1/1] (0.96ns)   --->   "%add_ln40 = add i11 %i_1, i11 32" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40]   --->   Operation 33 'add' 'add_ln40' <Predicate = (!tmp)> <Delay = 0.96> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.96> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 34 [1/1] (0.46ns)   --->   "%store_ln40 = store i11 %add_ln40, i11 %i" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40]   --->   Operation 34 'store' 'store_ln40' <Predicate = (!tmp)> <Delay = 0.46>
+
+State 2 <SV = 1> <Delay = 1.29>
+ST_2 : Operation 35 [1/2] (1.29ns)   --->   "%a_load_1 = load i10 %a_addr_1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 35 'load' 'a_load_1' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+
+State 3 <SV = 2> <Delay = 3.64>
+ST_3 : Operation 36 [1/1] (0.00ns)   --->   "%bitcast_ln41 = bitcast i32 %a_load_1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 36 'bitcast' 'bitcast_ln41' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 37 [10/10] (3.64ns)   --->   "%div = fdiv i32 %bitcast_ln41, i32 %nrm_2_read" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 37 'fdiv' 'div' <Predicate = true> <Delay = 3.64> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 9> <II = 1> <Delay = 3.64> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 3.64>
+ST_4 : Operation 38 [9/10] (3.64ns)   --->   "%div = fdiv i32 %bitcast_ln41, i32 %nrm_2_read" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 38 'fdiv' 'div' <Predicate = true> <Delay = 3.64> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 9> <II = 1> <Delay = 3.64> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 3.64>
+ST_5 : Operation 39 [8/10] (3.64ns)   --->   "%div = fdiv i32 %bitcast_ln41, i32 %nrm_2_read" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 39 'fdiv' 'div' <Predicate = true> <Delay = 3.64> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 9> <II = 1> <Delay = 3.64> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 3.64>
+ST_6 : Operation 40 [7/10] (3.64ns)   --->   "%div = fdiv i32 %bitcast_ln41, i32 %nrm_2_read" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 40 'fdiv' 'div' <Predicate = true> <Delay = 3.64> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 9> <II = 1> <Delay = 3.64> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 3.64>
+ST_7 : Operation 41 [6/10] (3.64ns)   --->   "%div = fdiv i32 %bitcast_ln41, i32 %nrm_2_read" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 41 'fdiv' 'div' <Predicate = true> <Delay = 3.64> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 9> <II = 1> <Delay = 3.64> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 3.64>
+ST_8 : Operation 42 [5/10] (3.64ns)   --->   "%div = fdiv i32 %bitcast_ln41, i32 %nrm_2_read" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 42 'fdiv' 'div' <Predicate = true> <Delay = 3.64> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 9> <II = 1> <Delay = 3.64> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 3.64>
+ST_9 : Operation 43 [4/10] (3.64ns)   --->   "%div = fdiv i32 %bitcast_ln41, i32 %nrm_2_read" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 43 'fdiv' 'div' <Predicate = true> <Delay = 3.64> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 9> <II = 1> <Delay = 3.64> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 3.64>
+ST_10 : Operation 44 [3/10] (3.64ns)   --->   "%div = fdiv i32 %bitcast_ln41, i32 %nrm_2_read" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 44 'fdiv' 'div' <Predicate = true> <Delay = 3.64> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 9> <II = 1> <Delay = 3.64> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 3.64>
+ST_11 : Operation 45 [2/10] (3.64ns)   --->   "%div = fdiv i32 %bitcast_ln41, i32 %nrm_2_read" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 45 'fdiv' 'div' <Predicate = true> <Delay = 3.64> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 9> <II = 1> <Delay = 3.64> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 3.64>
+ST_12 : Operation 46 [1/10] (3.64ns)   --->   "%div = fdiv i32 %bitcast_ln41, i32 %nrm_2_read" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 46 'fdiv' 'div' <Predicate = true> <Delay = 3.64> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 9> <II = 1> <Delay = 3.64> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 54 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 54 'ret' 'ret_ln0' <Predicate = (tmp)> <Delay = 0.00>
+
+State 13 <SV = 12> <Delay = 1.29>
+ST_13 : Operation 47 [1/1] (0.00ns)   --->   "%specpipeline_ln40 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_0" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40]   --->   Operation 47 'specpipeline' 'specpipeline_ln40' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 48 [1/1] (0.00ns)   --->   "%speclooptripcount_ln40 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 32, i64 32, i64 32" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40]   --->   Operation 48 'speclooptripcount' 'speclooptripcount_ln40' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 49 [1/1] (0.00ns)   --->   "%specloopname_ln40 = specloopname void @_ssdm_op_SpecLoopName, void @empty_3" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40]   --->   Operation 49 'specloopname' 'specloopname_ln40' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 50 [1/1] (0.00ns)   --->   "%bitcast_ln41_1 = bitcast i32 %div" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 50 'bitcast' 'bitcast_ln41_1' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 51 [1/1] (0.00ns)   --->   "%q_addr = getelementptr i32 %q, i64 0, i64 %zext_ln41" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 51 'getelementptr' 'q_addr' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 52 [1/1] (1.29ns)   --->   "%store_ln41 = store i32 %bitcast_ln41_1, i10 %q_addr" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41]   --->   Operation 52 'store' 'store_ln41' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_13 : Operation 53 [1/1] (0.00ns)   --->   "%br_ln40 = br void %for.inc32" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40]   --->   Operation 53 'br' 'br_ln40' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 1.885ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln40', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40) of constant 0 on local variable 'i', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40 [10]  (0.460 ns)
+	'load' operation 11 bit ('i', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40) on local variable 'i', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40 [13]  (0.000 ns)
+	'add' operation 11 bit ('add_ln40', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40) [32]  (0.965 ns)
+	'store' operation 0 bit ('store_ln40', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40) of variable 'add_ln40', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40 on local variable 'i', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:40 [33]  (0.460 ns)
+
+ <State 2>: 1.297ns
+The critical path consists of the following:
+	'load' operation 32 bit ('a_load_1', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41) on array 'a' [26]  (1.297 ns)
+
+ <State 3>: 3.644ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41) [28]  (3.644 ns)
+
+ <State 4>: 3.644ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41) [28]  (3.644 ns)
+
+ <State 5>: 3.644ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41) [28]  (3.644 ns)
+
+ <State 6>: 3.644ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41) [28]  (3.644 ns)
+
+ <State 7>: 3.644ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41) [28]  (3.644 ns)
+
+ <State 8>: 3.644ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41) [28]  (3.644 ns)
+
+ <State 9>: 3.644ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41) [28]  (3.644 ns)
+
+ <State 10>: 3.644ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41) [28]  (3.644 ns)
+
+ <State 11>: 3.644ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41) [28]  (3.644 ns)
+
+ <State 12>: 3.644ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41) [28]  (3.644 ns)
+
+ <State 13>: 1.297ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln41', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41) of variable 'bitcast_ln41_1', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:41 on array 'q' [31]  (1.297 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,121 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_10_1:  '
+    FileOffset:      10
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          53545
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_10_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_22_2:  '
+    FileOffset:      22
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          53785
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_22_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_24_3:  '
+    FileOffset:      24
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          53837
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_24_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_43_1:  '
+    FileOffset:      43
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          54196
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_43_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_44_2:  '
+    FileOffset:      44
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          54231
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_44_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_53_3:  '
+    FileOffset:      53
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          54429
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_53_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_55_4:  '
+    FileOffset:      55
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          54488
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_55_4: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_58_5:  '
+    FileOffset:      58
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          54577
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_58_5: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_62_6:  '
+    FileOffset:      62
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          54653
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_62_6: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_63_7:  '
+    FileOffset:      63
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          54688
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_63_7: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_65_8:  '
+    FileOffset:      65
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          54751
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_65_8: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_76_9:  '
+    FileOffset:      76
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          54970
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_76_9: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_77_10:  '
+    FileOffset:      77
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/covariance/covariance.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/covariances/solution1/.autopilot/db/covariance.pp.0.cpp
+        Offset:          55003
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_77_10: '
+...

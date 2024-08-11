@@ -1,0 +1,53 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'fft'" level="0">
+<item name = "Date">Sun Jun 23 03:43:32 2024
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">fft</item>
+<item name = "Solution">solution1 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 3.579 ns, 1.35 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">3848, 410248, 19.240 us, 2.051 ms, 3849, 410249, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- loop_0_VITIS_LOOP_28_1">480, 51280, 30 ~ 3205, -, -, 16, no</column>
+<column name="- loop_1_VITIS_LOOP_47_3">480, 51280, 30 ~ 3205, -, -, 16, no</column>
+<column name="- loop_2_VITIS_LOOP_66_5">480, 51280, 30 ~ 3205, -, -, 16, no</column>
+<column name="- loop_3_VITIS_LOOP_85_7">480, 51280, 30 ~ 3205, -, -, 16, no</column>
+<column name="- loop_4_VITIS_LOOP_104_9">480, 51280, 30 ~ 3205, -, -, 16, no</column>
+<column name="- loop_5_VITIS_LOOP_123_11">480, 51280, 30 ~ 3205, -, -, 16, no</column>
+<column name="- loop_6_VITIS_LOOP_142_13">480, 51280, 30 ~ 3205, -, -, 16, no</column>
+<column name="- loop_7_VITIS_LOOP_161_15">480, 51280, 30 ~ 3205, -, -, 16, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

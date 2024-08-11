@@ -1,0 +1,17 @@
+{
+  "0": {
+    "basicblocks": 9,
+    "calls": "",
+    "file": "smm.cpp",
+    "fileloc": 12,
+    "instructions": 44,
+    "loads": {
+      "T": 4
+    },
+    "name": "smm",
+    "stores": {
+      "T": 1
+    },
+    "total_instructions": 44
+  }
+}

@@ -1,0 +1,139 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_41_1:  '
+    FileOffset:      41
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          68989
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_41_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_54_2:  '
+    FileOffset:      54
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          69215
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_54_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_57_3:  '
+    FileOffset:      57
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          69295
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_57_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_78_1:  '
+    FileOffset:      78
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          69726
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_78_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_79_2:  '
+    FileOffset:      79
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          69761
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_79_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_94_3:  '
+    FileOffset:      94
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          70096
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_94_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_97_4:  '
+    FileOffset:      97
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          70159
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_97_4: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_103_5:  '
+    FileOffset:      103
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          70310
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_103_5: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_119_6:  '
+    FileOffset:      119
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          70687
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_119_6: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_120_7:  '
+    FileOffset:      120
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          70731
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_120_7: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_130_8:  '
+    FileOffset:      130
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          70919
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_130_8: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_133_9:  '
+    FileOffset:      133
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          71006
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_133_9: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_135_10:  '
+    FileOffset:      135
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          71073
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_135_10: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_149_11:  '
+    FileOffset:      149
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          71356
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_149_11: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_150_12:  '
+    FileOffset:      150
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/correlation/correlation.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_project/correlation/solution1/.autopilot/db/correlation.pp.0.cpp
+        Offset:          71391
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_150_12: '
+...

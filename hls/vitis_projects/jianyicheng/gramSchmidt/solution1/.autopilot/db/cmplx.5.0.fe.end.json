@@ -1,0 +1,81 @@
+{
+    "0": {
+        "name": "gramSchmidt",
+        "file": "gramSchmidt.cpp",
+        "fileloc": "30",
+        "instructions": "52",
+        "total_instructions": "650",
+        "calls": "2 1 3",
+        "basicblocks": "4",
+        "loads": {
+            "L": "4",
+            "T": "1"
+        },
+        "stores": {
+            "L": "6",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "1": {
+        "name": "gramSchmidt_Pipeline_VITIS_LOOP_40_3",
+        "file": "HLS-benchmarks\/C-Slow\/gramSchmidt\/gramSchmidt.cpp",
+        "fileloc": "40",
+        "instructions": "29",
+        "total_instructions": "29",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "1"
+        },
+        "stores": {
+            "L": "2",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "gramSchmidt_Pipeline_VITIS_LOOP_36_2",
+        "file": "HLS-benchmarks\/C-Slow\/gramSchmidt\/gramSchmidt.cpp",
+        "fileloc": "35",
+        "instructions": "31",
+        "total_instructions": "31",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "3",
+            "T": "1"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "gramSchmidt_Pipeline_VITIS_LOOP_42_4",
+        "file": "HLS-benchmarks\/C-Slow\/gramSchmidt\/gramSchmidt.cpp",
+        "fileloc": "42",
+        "instructions": "538",
+        "total_instructions": "538",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "63"
+        },
+        "stores": {
+            "L": "2",
+            "T": "33"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

@@ -1,0 +1,191 @@
+{
+    "1": {
+        "name": "histogram_Pipeline_loop_2",
+        "file": "HLS-benchmarks\/Inter-Block\/histogram\/histogram.cpp",
+        "fileloc": "58",
+        "instructions": "62",
+        "total_instructions": "62",
+        "calls": "",
+        "basicblocks": "16",
+        "loads": {
+            "L": "1",
+            "T": "6"
+        },
+        "stores": {
+            "L": "2",
+            "T": "5"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "histogram_Pipeline_loop_4",
+        "file": "HLS-benchmarks\/Inter-Block\/histogram\/histogram.cpp",
+        "fileloc": "90",
+        "instructions": "62",
+        "total_instructions": "62",
+        "calls": "",
+        "basicblocks": "16",
+        "loads": {
+            "L": "1",
+            "T": "6"
+        },
+        "stores": {
+            "L": "2",
+            "T": "5"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "histogram_Pipeline_loop_3",
+        "file": "HLS-benchmarks\/Inter-Block\/histogram\/histogram.cpp",
+        "fileloc": "74",
+        "instructions": "62",
+        "total_instructions": "62",
+        "calls": "",
+        "basicblocks": "16",
+        "loads": {
+            "L": "1",
+            "T": "6"
+        },
+        "stores": {
+            "L": "2",
+            "T": "5"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "4": {
+        "name": "histogram_Pipeline_loop_0",
+        "file": "HLS-benchmarks\/Inter-Block\/histogram\/histogram.cpp",
+        "fileloc": "26",
+        "instructions": "62",
+        "total_instructions": "62",
+        "calls": "",
+        "basicblocks": "16",
+        "loads": {
+            "L": "1",
+            "T": "6"
+        },
+        "stores": {
+            "L": "2",
+            "T": "5"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "5": {
+        "name": "histogram_Pipeline_loop_8",
+        "file": "HLS-benchmarks\/Inter-Block\/histogram\/histogram.cpp",
+        "fileloc": "154",
+        "instructions": "48",
+        "total_instructions": "48",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "8"
+        },
+        "stores": {
+            "L": "2",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "6": {
+        "name": "histogram_Pipeline_loop_1",
+        "file": "HLS-benchmarks\/Inter-Block\/histogram\/histogram.cpp",
+        "fileloc": "42",
+        "instructions": "62",
+        "total_instructions": "62",
+        "calls": "",
+        "basicblocks": "16",
+        "loads": {
+            "L": "1",
+            "T": "6"
+        },
+        "stores": {
+            "L": "2",
+            "T": "5"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "7": {
+        "name": "histogram_Pipeline_loop_7",
+        "file": "HLS-benchmarks\/Inter-Block\/histogram\/histogram.cpp",
+        "fileloc": "138",
+        "instructions": "62",
+        "total_instructions": "62",
+        "calls": "",
+        "basicblocks": "16",
+        "loads": {
+            "L": "1",
+            "T": "6"
+        },
+        "stores": {
+            "L": "2",
+            "T": "5"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "8": {
+        "name": "histogram_Pipeline_loop_6",
+        "file": "HLS-benchmarks\/Inter-Block\/histogram\/histogram.cpp",
+        "fileloc": "122",
+        "instructions": "62",
+        "total_instructions": "62",
+        "calls": "",
+        "basicblocks": "16",
+        "loads": {
+            "L": "1",
+            "T": "6"
+        },
+        "stores": {
+            "L": "2",
+            "T": "5"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "9": {
+        "name": "histogram_Pipeline_loop_5",
+        "file": "HLS-benchmarks\/Inter-Block\/histogram\/histogram.cpp",
+        "fileloc": "106",
+        "instructions": "62",
+        "total_instructions": "62",
+        "calls": "",
+        "basicblocks": "16",
+        "loads": {
+            "L": "1",
+            "T": "6"
+        },
+        "stores": {
+            "L": "2",
+            "T": "5"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "0": {
+        "name": "histogram",
+        "file": "histogram.cpp",
+        "fileloc": "15",
+        "instructions": "45",
+        "total_instructions": "589",
+        "calls": "4 6 1 3 2 9 8 7 5",
+        "basicblocks": "1"
+    }
+}

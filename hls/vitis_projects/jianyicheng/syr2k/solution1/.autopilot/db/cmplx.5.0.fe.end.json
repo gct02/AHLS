@@ -1,0 +1,41 @@
+{
+    "1": {
+        "name": "syr2k_Pipeline_VITIS_LOOP_13_2",
+        "file": "HLS-benchmarks\/C-Slow\/syr2k\/syr2k.cpp",
+        "fileloc": "12",
+        "instructions": "730",
+        "total_instructions": "730",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2",
+            "T": "127"
+        },
+        "stores": {
+            "L": "4",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "0": {
+        "name": "syr2k",
+        "file": "syr2k.cpp",
+        "fileloc": "8",
+        "instructions": "33",
+        "total_instructions": "763",
+        "calls": "1",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2",
+            "T": "2"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

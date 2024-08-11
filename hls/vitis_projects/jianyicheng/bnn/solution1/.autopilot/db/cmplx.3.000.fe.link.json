@@ -1,0 +1,41 @@
+{
+  "0": {
+    "basicblocks": 8,
+    "calls": "1 2",
+    "file": "bnn.cpp",
+    "fileloc": 12,
+    "instructions": 14,
+    "name": "bnn",
+    "total_instructions": 74
+  },
+  "1": {
+    "basicblocks": 6,
+    "calls": "",
+    "file": "g1.cpp",
+    "fileloc": 10,
+    "instructions": 27,
+    "loads": {
+      "L": 4
+    },
+    "name": "g1",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 27
+  },
+  "2": {
+    "basicblocks": 9,
+    "calls": "",
+    "file": "g2.cpp",
+    "fileloc": 10,
+    "instructions": 33,
+    "loads": {
+      "L": 4
+    },
+    "name": "g2",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 33
+  }
+}

@@ -39,11 +39,13 @@ def preprocess_vitis_hls_ir(ir_path: Path, output_path: Path) -> Path:
     """
     temp_path = ir_path.parent / (ir_path.stem + "_temp.bc")
 
-    strip_dbg_cmd = f"{OPT} -strip-debug < {ir_path.as_posix()} > {temp_path.as_posix()}"
+    apply_llvm_passes = f"{OPT} -strip-debug -mem2reg -instcombine -loop-simplify -indvars < {ir_path.as_posix()} > {temp_path.as_posix()}"
+    analyze = f"{OPT} -analyze -scalar-evolution < {temp_path.as_posix()}"
     preprocess_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -preprocess-vitis-ir < {temp_path.as_posix()} > {output_path.as_posix()}"
     
     try:
-        subprocess.check_output(strip_dbg_cmd, stderr=subprocess.STDOUT, shell=True)
+        subprocess.check_output(apply_llvm_passes, stderr=subprocess.STDOUT, shell=True)
+        subprocess.check_output(analyze, stderr=subprocess.STDOUT, shell=True)
         subprocess.check_output(preprocess_cmd, stderr=subprocess.STDOUT, shell=True)
         temp_path.unlink()
         return output_path

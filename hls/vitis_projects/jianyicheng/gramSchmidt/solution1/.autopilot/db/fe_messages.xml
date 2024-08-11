@@ -1,0 +1,18 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl:16:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="gramSchmidt" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=gramSchmidt" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:44:24" msg_body="Loop 'VITIS_LOOP_44_5' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_44_5"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:46:24" msg_body="Loop 'VITIS_LOOP_46_6' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_46_6"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:31:0" msg_body="Unrolling loop 'VITIS_LOOP_44_5' (HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:44:24) in function 'gramSchmidt' completely with a factor of 32">
+        <args Factor="32" LoopLoc="HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:44:24" LoopName="VITIS_LOOP_44_5"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:31:0" msg_body="Unrolling loop 'VITIS_LOOP_46_6' (HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:46:24) in function 'gramSchmidt' completely with a factor of 32">
+        <args Factor="32" LoopLoc="HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:46:24" LoopName="VITIS_LOOP_46_6"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+

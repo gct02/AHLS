@@ -1,0 +1,27 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: HLS-benchmarks/DSS/histogram/src/histogram.cpp, 
+                   Line: 13, Column: 0 }
+Function:        _Z9histogramPiPdS0_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'g(int*, double, int, double*, double)'
+    DebugLoc:        { File: HLS-benchmarks/DSS/histogram/src/g.cpp, Line: 13, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'histogram(int*, double*, double*)'
+    DebugLoc:        { File: HLS-benchmarks/DSS/histogram/src/histogram.cpp, 
+                       Line: 13, Column: 0 }
+  - String:          ''''
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_14_1
+  - String:          '> at '
+  - LoopLoc:         'HLS-benchmarks/DSS/histogram/src/histogram.cpp:14:20'
+  - String:          ' '
+...

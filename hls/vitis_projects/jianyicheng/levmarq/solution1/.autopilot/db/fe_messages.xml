@@ -1,0 +1,18 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl:20:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="levmarq" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=levmarq" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INVALID" msg_id="207-1017" msg_severity="WARNING" msg_loc="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:4:9" msg_body="unknown pragma ignored">
+        <args ClangWarningOption="invalid-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INVALID" msg_id="207-1017" msg_severity="WARNING" msg_loc="HLS-benchmarks/PNAnalyser/levmarq/src/g2.cpp:4:9" msg_body="unknown pragma ignored">
+        <args ClangWarningOption="invalid-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:3:0" msg_body="Inlining function 'g1(float, float*, float*, float*)' into 'levmarq(int, int, float*, int, float*, float*, float*, float*)'">
+        <args Callee="g1(float, float*, float*, float*)" Callee-DebugLoc="File HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp Line 3 Column 0" Caller="levmarq(int, int, float*, int, float*, float*, float*, float*)" Caller-DebugLoc="File HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp Line 3 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:3:0" msg_body="Inlining function 'g2(float, float, float, float)' into 'levmarq(int, int, float*, int, float*, float*, float*, float*)'">
+        <args Callee="g2(float, float, float, float)" Callee-DebugLoc="File HLS-benchmarks/PNAnalyser/levmarq/src/g2.cpp Line 3 Column 0" Caller="levmarq(int, int, float*, int, float*, float*, float*, float*)" Caller-DebugLoc="File HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp Line 3 Column 0"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+

@@ -1,0 +1,166 @@
+{
+    "1": {
+        "name": "substring_Pipeline_loop_4_VITIS_LOOP_103_5",
+        "file": "HLS-benchmarks\/Inter-Block\/substring\/substring.cpp",
+        "fileloc": "22",
+        "instructions": "61",
+        "total_instructions": "61",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "7",
+            "T": "2"
+        },
+        "stores": {
+            "L": "11"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "substring_Pipeline_loop_3_VITIS_LOOP_85_4",
+        "file": "HLS-benchmarks\/Inter-Block\/substring\/substring.cpp",
+        "fileloc": "21",
+        "instructions": "61",
+        "total_instructions": "61",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "7",
+            "T": "2"
+        },
+        "stores": {
+            "L": "11"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "substring_Pipeline_loop_1_VITIS_LOOP_49_2",
+        "file": "HLS-benchmarks\/Inter-Block\/substring\/substring.cpp",
+        "fileloc": "19",
+        "instructions": "61",
+        "total_instructions": "61",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "7",
+            "T": "2"
+        },
+        "stores": {
+            "L": "11"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "0": {
+        "name": "substring",
+        "file": "substring.cpp",
+        "fileloc": "14",
+        "instructions": "50",
+        "total_instructions": "531",
+        "calls": "4 3 5 2 1 6 7 8",
+        "basicblocks": "1",
+        "loads": {
+            "L": "8"
+        }
+    },
+    "4": {
+        "name": "substring_Pipeline_loop_0_VITIS_LOOP_31_1",
+        "file": "HLS-benchmarks\/Inter-Block\/substring\/substring.cpp",
+        "fileloc": "18",
+        "instructions": "61",
+        "total_instructions": "61",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "7",
+            "T": "2"
+        },
+        "stores": {
+            "L": "11"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "5": {
+        "name": "substring_Pipeline_loop_2_VITIS_LOOP_67_3",
+        "file": "HLS-benchmarks\/Inter-Block\/substring\/substring.cpp",
+        "fileloc": "20",
+        "instructions": "61",
+        "total_instructions": "61",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "7",
+            "T": "2"
+        },
+        "stores": {
+            "L": "11"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "6": {
+        "name": "substring_Pipeline_loop_5_VITIS_LOOP_121_6",
+        "file": "HLS-benchmarks\/Inter-Block\/substring\/substring.cpp",
+        "fileloc": "23",
+        "instructions": "61",
+        "total_instructions": "61",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "7",
+            "T": "2"
+        },
+        "stores": {
+            "L": "11"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "7": {
+        "name": "substring_Pipeline_loop_6_VITIS_LOOP_139_7",
+        "file": "HLS-benchmarks\/Inter-Block\/substring\/substring.cpp",
+        "fileloc": "24",
+        "instructions": "61",
+        "total_instructions": "61",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "7",
+            "T": "2"
+        },
+        "stores": {
+            "L": "11"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "8": {
+        "name": "substring_Pipeline_loop_7_VITIS_LOOP_157_8",
+        "file": "HLS-benchmarks\/Inter-Block\/substring\/substring.cpp",
+        "fileloc": "25",
+        "instructions": "54",
+        "total_instructions": "54",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "7",
+            "T": "1"
+        },
+        "stores": {
+            "L": "11"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

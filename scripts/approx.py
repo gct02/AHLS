@@ -8,7 +8,6 @@ from llvm.opt_utils import *
 from llvm.clang_utils import *
 from metrics.error_measure import *
 
-
 '''
 This script assumes that the input design IR file is already instrumented and linked with the populate_io IR file.
 The project's working directory should be structured as follows:
@@ -28,7 +27,6 @@ The script will execute the input design and the transformed design, compare the
 and print the error value.
 '''
 
-
 try:
     AHLS_LLVM_LIB = environ['AHLS_LLVM_LIB']
     OPT = environ['OPT']
@@ -37,7 +35,6 @@ try:
 except KeyError as ahls_error:
     print(f"Error: environment variable {ahls_error.args[0]} not defined.")
     raise
-
 
 def run_with_timeout(run_cmd, max_execution_time, transformed_executable_path: Path, transformed_output_dir: Path):
     """
@@ -78,7 +75,6 @@ def run_with_timeout(run_cmd, max_execution_time, transformed_executable_path: P
             Path("data_stats.txt").unlink()
         raise Exception(f"Error while executing transformed design: {e}")
 
-
 def create_approx_design(input_ir: Path, act_with_args: str) -> Path:
     approx_suffix = ""
     act_tokens = act_with_args.split()
@@ -90,7 +86,6 @@ def create_approx_design(input_ir: Path, act_with_args: str) -> Path:
     apply_act(input_ir, act_with_args, approx_ir_path)
 
     return approx_ir_path
-
 
 def parse_args():
     parser = argparse.ArgumentParser(prog="ahls", description="AHLS: Approximate HLS")
@@ -104,14 +99,12 @@ def parse_args():
     parser.add_argument("-x", "--hex", help = "Sinalize that the output is in hex format", action="store_true")
     return parser.parse_args()
 
-
 def str_to_float(s, hex):
     if hex:
         if '0x' in s:
             return struct.unpack('f', bytes.fromhex(s[2:]))[0]
         return struct.unpack('f', bytes.fromhex(s))[0]
     return float(s)
-
 
 def str_to_double(s, hex):
     if hex:
@@ -120,12 +113,10 @@ def str_to_double(s, hex):
         return struct.unpack('d', bytes.fromhex(s))[0]
     return float(s)
 
-
 def str_to_int(s, hex):
     if hex:
         return int(s, 16)
     return int(s)
-
 
 def str_to_num(s, outtype, hex):
     if outtype == "float":
@@ -133,8 +124,7 @@ def str_to_num(s, outtype, hex):
     elif outtype == "int":
         return str_to_int(s, hex)
     else:
-        return str_to_double(s, hex)
-    
+        return str_to_double(s, hex)   
 
 if __name__ == "__main__":
     args = parse_args()

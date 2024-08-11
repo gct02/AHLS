@@ -1,0 +1,34 @@
+{
+    "1": {
+        "name": "getTanh_Pipeline_VITIS_LOOP_27_1",
+        "file": "HLS-benchmarks\/DSS\/getTanh\/src\/getTanh.cpp",
+        "fileloc": "13",
+        "instructions": "278",
+        "total_instructions": "278",
+        "calls": "",
+        "basicblocks": "6",
+        "loads": {
+            "L": "3",
+            "T": "5"
+        },
+        "stores": {
+            "L": "6",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "0": {
+        "name": "getTanh",
+        "file": "getTanh.cpp",
+        "fileloc": "12",
+        "instructions": "37",
+        "total_instructions": "315",
+        "calls": "1",
+        "basicblocks": "1",
+        "loads": {
+            "T": "11"
+        }
+    }
+}

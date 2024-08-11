@@ -1,7 +1,6 @@
 from pathlib import Path
 from sys import argv
 import xml.etree.ElementTree as ET
-import os
 
 def parse_hls_rpt(rpt_xml_file:Path):
     tree = ET.parse(rpt_xml_file)

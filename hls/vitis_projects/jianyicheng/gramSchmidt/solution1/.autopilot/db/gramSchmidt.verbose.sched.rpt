@@ -1,0 +1,472 @@
+
+
+================================================================
+== Vitis HLS Report for 'gramSchmidt'
+================================================================
+* Date:           Sun Jun 23 03:32:26 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        gramSchmidt
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcvu35p-fsvh2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.906 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+----------+------+--------+---------+
+    |  Latency (cycles) |  Latency (absolute)  |    Interval   | Pipeline|
+    |   min   |   max   |    min    |    max   |  min |   max  |   Type  |
+    +---------+---------+-----------+----------+------+--------+---------+
+    |     8001|   191233|  40.005 us|  0.956 ms|  8002|  191234|       no|
+    +---------+---------+-----------+----------+------+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+------------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) |  Iteration |  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |   Latency  |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+------------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_34_1  |     8000|   191232|  250 ~ 5976|          -|          -|    32|        no|
+        +-------------------+---------+---------+------------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 36
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 23 
+23 --> 24 
+24 --> 25 
+25 --> 26 
+26 --> 27 
+27 --> 28 
+28 --> 29 
+29 --> 30 
+30 --> 31 
+31 --> 32 
+32 --> 33 
+33 --> 34 
+34 --> 35 
+35 --> 36 
+36 --> 2 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.46>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%indvars_iv24 = alloca i32 1"   --->   Operation 37 'alloca' 'indvars_iv24' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%kk = alloca i32 1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:33]   --->   Operation 38 'alloca' 'kk' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%k = alloca i32 1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 39 'alloca' 'k' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%nrm_loc = alloca i64 1"   --->   Operation 40 'alloca' 'nrm_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%spectopmodule_ln30 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:30]   --->   Operation 41 'spectopmodule' 'spectopmodule_ln30' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %a, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 42 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %a"   --->   Operation 43 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %r, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 44 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %r"   --->   Operation 45 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 46 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %q, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 46 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %q"   --->   Operation 47 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 48 [1/1] (0.46ns)   --->   "%store_ln34 = store i6 0, i6 %k" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 48 'store' 'store_ln34' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 49 [1/1] (0.46ns)   --->   "%store_ln33 = store i11 0, i11 %kk" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:33]   --->   Operation 49 'store' 'store_ln33' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 50 [1/1] (0.46ns)   --->   "%store_ln0 = store i6 1, i6 %indvars_iv24"   --->   Operation 50 'store' 'store_ln0' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%br_ln34 = br void %VITIS_LOOP_36_2" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 51 'br' 'br_ln34' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 2.26>
+ST_2 : Operation 52 [1/1] (0.00ns)   --->   "%k_1 = load i6 %k" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42]   --->   Operation 52 'load' 'k_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 53 [1/1] (0.00ns)   --->   "%trunc_ln42 = trunc i6 %k_1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42]   --->   Operation 53 'trunc' 'trunc_ln42' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 54 [1/1] (0.84ns)   --->   "%icmp_ln42 = icmp_eq  i6 %k_1, i6 32" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42]   --->   Operation 54 'icmp' 'icmp_ln42' <Predicate = true> <Delay = 0.84> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.84> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 55 [1/1] (0.84ns)   --->   "%add_ln42 = add i6 %k_1, i6 1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42]   --->   Operation 55 'add' 'add_ln42' <Predicate = true> <Delay = 0.84> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.84> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 56 [1/1] (0.00ns)   --->   "%br_ln34 = br i1 %icmp_ln42, void %VITIS_LOOP_36_2.split, void %for.end89" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 56 'br' 'br_ln34' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 57 [2/2] (1.42ns)   --->   "%call_ln42 = call void @gramSchmidt_Pipeline_VITIS_LOOP_36_2, i5 %trunc_ln42, i32 %a, i32 %nrm_loc" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42]   --->   Operation 57 'call' 'call_ln42' <Predicate = (!icmp_ln42)> <Delay = 1.42> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 58 [1/1] (0.46ns)   --->   "%store_ln34 = store i6 %add_ln42, i6 %k" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 58 'store' 'store_ln34' <Predicate = (!icmp_ln42)> <Delay = 0.46>
+ST_2 : Operation 59 [1/1] (0.00ns)   --->   "%ret_ln51 = ret" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:51]   --->   Operation 59 'ret' 'ret_ln51' <Predicate = (icmp_ln42)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 60 [1/2] (0.00ns)   --->   "%call_ln42 = call void @gramSchmidt_Pipeline_VITIS_LOOP_36_2, i5 %trunc_ln42, i32 %a, i32 %nrm_loc" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42]   --->   Operation 60 'call' 'call_ln42' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 3.57>
+ST_4 : Operation 61 [1/1] (0.00ns)   --->   "%nrm_loc_load = load i32 %nrm_loc"   --->   Operation 61 'load' 'nrm_loc_load' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 62 [5/5] (3.57ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 62 'fadd' 'sub' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 3.57>
+ST_5 : Operation 63 [4/5] (3.57ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 63 'fadd' 'sub' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 3.57>
+ST_6 : Operation 64 [3/5] (3.57ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 64 'fadd' 'sub' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 3.57>
+ST_7 : Operation 65 [2/5] (3.57ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 65 'fadd' 'sub' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 3.57>
+ST_8 : Operation 66 [1/5] (3.57ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 66 'fadd' 'sub' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 2.78>
+ST_9 : Operation 67 [4/4] (2.78ns)   --->   "%mul1 = fmul i32 %sub, i32 %nrm_loc_load" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 67 'fmul' 'mul1' <Predicate = true> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 2.78>
+ST_10 : Operation 68 [3/4] (2.78ns)   --->   "%mul1 = fmul i32 %sub, i32 %nrm_loc_load" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 68 'fmul' 'mul1' <Predicate = true> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 2.78>
+ST_11 : Operation 69 [2/4] (2.78ns)   --->   "%mul1 = fmul i32 %sub, i32 %nrm_loc_load" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 69 'fmul' 'mul1' <Predicate = true> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 2.78>
+ST_12 : Operation 70 [1/4] (2.78ns)   --->   "%mul1 = fmul i32 %sub, i32 %nrm_loc_load" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 70 'fmul' 'mul1' <Predicate = true> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 3.57>
+ST_13 : Operation 71 [5/5] (3.57ns)   --->   "%add = fadd i32 %mul1, i32 16" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 71 'fadd' 'add' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 14 <SV = 13> <Delay = 3.57>
+ST_14 : Operation 72 [4/5] (3.57ns)   --->   "%add = fadd i32 %mul1, i32 16" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 72 'fadd' 'add' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 15 <SV = 14> <Delay = 3.57>
+ST_15 : Operation 73 [3/5] (3.57ns)   --->   "%add = fadd i32 %mul1, i32 16" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 73 'fadd' 'add' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 16 <SV = 15> <Delay = 3.57>
+ST_16 : Operation 74 [2/5] (3.57ns)   --->   "%add = fadd i32 %mul1, i32 16" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 74 'fadd' 'add' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 17 <SV = 16> <Delay = 3.57>
+ST_17 : Operation 75 [1/5] (3.57ns)   --->   "%add = fadd i32 %mul1, i32 16" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 75 'fadd' 'add' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 18 <SV = 17> <Delay = 2.78>
+ST_18 : Operation 76 [4/4] (2.78ns)   --->   "%mul2 = fmul i32 %add, i32 0.0019" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 76 'fmul' 'mul2' <Predicate = true> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 19 <SV = 18> <Delay = 2.78>
+ST_19 : Operation 77 [3/4] (2.78ns)   --->   "%mul2 = fmul i32 %add, i32 0.0019" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 77 'fmul' 'mul2' <Predicate = true> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 20 <SV = 19> <Delay = 2.78>
+ST_20 : Operation 78 [2/4] (2.78ns)   --->   "%mul2 = fmul i32 %add, i32 0.0019" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 78 'fmul' 'mul2' <Predicate = true> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 21 <SV = 20> <Delay = 2.78>
+ST_21 : Operation 79 [1/4] (2.78ns)   --->   "%mul2 = fmul i32 %add, i32 0.0019" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 79 'fmul' 'mul2' <Predicate = true> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 22 <SV = 21> <Delay = 2.78>
+ST_22 : Operation 80 [4/4] (2.78ns)   --->   "%mul3 = fmul i32 %mul2, i32 %nrm_loc_load" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 80 'fmul' 'mul3' <Predicate = true> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 23 <SV = 22> <Delay = 2.78>
+ST_23 : Operation 81 [3/4] (2.78ns)   --->   "%mul3 = fmul i32 %mul2, i32 %nrm_loc_load" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 81 'fmul' 'mul3' <Predicate = true> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 24 <SV = 23> <Delay = 2.78>
+ST_24 : Operation 82 [2/4] (2.78ns)   --->   "%mul3 = fmul i32 %mul2, i32 %nrm_loc_load" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 82 'fmul' 'mul3' <Predicate = true> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 25 <SV = 24> <Delay = 2.78>
+ST_25 : Operation 83 [1/4] (2.78ns)   --->   "%mul3 = fmul i32 %mul2, i32 %nrm_loc_load" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 83 'fmul' 'mul3' <Predicate = true> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 26 <SV = 25> <Delay = 3.57>
+ST_26 : Operation 84 [5/5] (3.57ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 84 'fadd' 'nrm' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 27 <SV = 26> <Delay = 3.57>
+ST_27 : Operation 85 [4/5] (3.57ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 85 'fadd' 'nrm' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 28 <SV = 27> <Delay = 3.57>
+ST_28 : Operation 86 [3/5] (3.57ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 86 'fadd' 'nrm' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 29 <SV = 28> <Delay = 3.57>
+ST_29 : Operation 87 [2/5] (3.57ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 87 'fadd' 'nrm' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 30 <SV = 29> <Delay = 3.57>
+ST_30 : Operation 88 [1/5] (3.57ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38]   --->   Operation 88 'fadd' 'nrm' <Predicate = true> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 31 <SV = 30> <Delay = 2.23>
+ST_31 : Operation 89 [1/1] (0.00ns)   --->   "%kk_load = load i11 %kk" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42]   --->   Operation 89 'load' 'kk_load' <Predicate = true> <Delay = 0.00>
+ST_31 : Operation 90 [1/1] (0.00ns)   --->   "%trunc_ln42_1 = trunc i11 %kk_load" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42]   --->   Operation 90 'trunc' 'trunc_ln42_1' <Predicate = true> <Delay = 0.00>
+ST_31 : Operation 91 [1/1] (0.00ns)   --->   "%zext_ln42_1 = zext i6 %k_1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42]   --->   Operation 91 'zext' 'zext_ln42_1' <Predicate = true> <Delay = 0.00>
+ST_31 : Operation 92 [1/1] (0.93ns)   --->   "%add_ln39 = add i10 %trunc_ln42_1, i10 %zext_ln42_1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:39]   --->   Operation 92 'add' 'add_ln39' <Predicate = true> <Delay = 0.93> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.93> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 93 [1/1] (0.00ns)   --->   "%zext_ln39 = zext i10 %add_ln39" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:39]   --->   Operation 93 'zext' 'zext_ln39' <Predicate = true> <Delay = 0.00>
+ST_31 : Operation 94 [1/1] (0.00ns)   --->   "%bitcast_ln39 = bitcast i32 %nrm" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:39]   --->   Operation 94 'bitcast' 'bitcast_ln39' <Predicate = true> <Delay = 0.00>
+ST_31 : Operation 95 [1/1] (0.00ns)   --->   "%r_addr = getelementptr i32 %r, i64 0, i64 %zext_ln39" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:39]   --->   Operation 95 'getelementptr' 'r_addr' <Predicate = true> <Delay = 0.00>
+ST_31 : Operation 96 [1/1] (1.29ns)   --->   "%store_ln39 = store i32 %bitcast_ln39, i10 %r_addr" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:39]   --->   Operation 96 'store' 'store_ln39' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_31 : Operation 97 [2/2] (1.42ns)   --->   "%call_ln42 = call void @gramSchmidt_Pipeline_VITIS_LOOP_40_3, i5 %trunc_ln42, i32 %a, i32 %nrm, i32 %q" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42]   --->   Operation 97 'call' 'call_ln42' <Predicate = true> <Delay = 1.42> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_31 : Operation 98 [1/1] (0.96ns)   --->   "%add_ln49 = add i11 %kk_load, i11 32" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:49]   --->   Operation 98 'add' 'add_ln49' <Predicate = true> <Delay = 0.96> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.96> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 99 [1/1] (0.46ns)   --->   "%store_ln33 = store i11 %add_ln49, i11 %kk" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:33]   --->   Operation 99 'store' 'store_ln33' <Predicate = true> <Delay = 0.46>
+
+State 32 <SV = 31> <Delay = 0.00>
+ST_32 : Operation 100 [1/2] (0.00ns)   --->   "%call_ln42 = call void @gramSchmidt_Pipeline_VITIS_LOOP_40_3, i5 %trunc_ln42, i32 %a, i32 %nrm, i32 %q" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42]   --->   Operation 100 'call' 'call_ln42' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 33 <SV = 32> <Delay = 1.29>
+ST_33 : Operation 101 [1/1] (0.00ns)   --->   "%zext_ln42 = zext i6 %k_1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42]   --->   Operation 101 'zext' 'zext_ln42' <Predicate = true> <Delay = 0.00>
+ST_33 : Operation 102 [1/1] (0.00ns)   --->   "%q_addr_1 = getelementptr i32 %q, i64 0, i64 %zext_ln42" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:45]   --->   Operation 102 'getelementptr' 'q_addr_1' <Predicate = true> <Delay = 0.00>
+ST_33 : Operation 103 [2/2] (1.29ns)   --->   "%q_load = load i10 %q_addr_1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:45]   --->   Operation 103 'load' 'q_load' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+
+State 34 <SV = 33> <Delay = 1.29>
+ST_34 : Operation 104 [1/2] (1.29ns)   --->   "%q_load = load i10 %q_addr_1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:45]   --->   Operation 104 'load' 'q_load' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+
+State 35 <SV = 34> <Delay = 2.69>
+ST_35 : Operation 105 [1/1] (0.00ns)   --->   "%indvars_iv24_load = load i6 %indvars_iv24" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 105 'load' 'indvars_iv24_load' <Predicate = true> <Delay = 0.00>
+ST_35 : Operation 106 [1/1] (0.00ns)   --->   "%bitcast_ln45 = bitcast i32 %q_load" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:45]   --->   Operation 106 'bitcast' 'bitcast_ln45' <Predicate = true> <Delay = 0.00>
+ST_35 : Operation 107 [2/2] (2.69ns)   --->   "%call_ln34 = call void @gramSchmidt_Pipeline_VITIS_LOOP_42_4, i6 %indvars_iv24_load, i10 %trunc_ln42_1, i32 %a, i32 %bitcast_ln45, i5 %trunc_ln42, i32 %q, i5 %trunc_ln42, i5 %trunc_ln42, i5 %trunc_ln42, i32 %r" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 107 'call' 'call_ln34' <Predicate = true> <Delay = 2.69> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_35 : Operation 108 [1/1] (0.84ns)   --->   "%add_ln34 = add i6 %indvars_iv24_load, i6 1" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 108 'add' 'add_ln34' <Predicate = true> <Delay = 0.84> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.84> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 109 [1/1] (0.46ns)   --->   "%store_ln34 = store i6 %add_ln34, i6 %indvars_iv24" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 109 'store' 'store_ln34' <Predicate = true> <Delay = 0.46>
+
+State 36 <SV = 35> <Delay = 0.00>
+ST_36 : Operation 110 [1/1] (0.00ns)   --->   "%speclooptripcount_ln34 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 32, i64 32, i64 32" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 110 'speclooptripcount' 'speclooptripcount_ln34' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 111 [1/1] (0.00ns)   --->   "%specloopname_ln34 = specloopname void @_ssdm_op_SpecLoopName, void @empty_5" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 111 'specloopname' 'specloopname_ln34' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 112 [1/2] (0.00ns)   --->   "%call_ln34 = call void @gramSchmidt_Pipeline_VITIS_LOOP_42_4, i6 %indvars_iv24_load, i10 %trunc_ln42_1, i32 %a, i32 %bitcast_ln45, i5 %trunc_ln42, i32 %q, i5 %trunc_ln42, i5 %trunc_ln42, i5 %trunc_ln42, i32 %r" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 112 'call' 'call_ln34' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_36 : Operation 113 [1/1] (0.00ns)   --->   "%br_ln34 = br void %VITIS_LOOP_36_2" [HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34]   --->   Operation 113 'br' 'br_ln34' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 0.460ns
+The critical path consists of the following:
+	'alloca' operation 6 bit ('k', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34) [6]  (0.000 ns)
+	'store' operation 0 bit ('store_ln34', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34) of constant 0 on local variable 'k', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34 [15]  (0.460 ns)
+
+ <State 2>: 2.262ns
+The critical path consists of the following:
+	'load' operation 6 bit ('k', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42) on local variable 'k', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34 [20]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln42', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42) [22]  (0.840 ns)
+	'call' operation 0 bit ('call_ln42', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42) to 'gramSchmidt_Pipeline_VITIS_LOOP_36_2' [33]  (1.422 ns)
+
+ <State 3>: 0.000ns
+The critical path consists of the following:
+
+ <State 4>: 3.579ns
+The critical path consists of the following:
+	'load' operation 32 bit ('nrm_loc_load') on local variable 'nrm_loc' [34]  (0.000 ns)
+	'fadd' operation 32 bit ('sub', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [35]  (3.579 ns)
+
+ <State 5>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('sub', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [35]  (3.579 ns)
+
+ <State 6>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('sub', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [35]  (3.579 ns)
+
+ <State 7>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('sub', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [35]  (3.579 ns)
+
+ <State 8>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('sub', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [35]  (3.579 ns)
+
+ <State 9>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul1', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [36]  (2.787 ns)
+
+ <State 10>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul1', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [36]  (2.787 ns)
+
+ <State 11>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul1', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [36]  (2.787 ns)
+
+ <State 12>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul1', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [36]  (2.787 ns)
+
+ <State 13>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [37]  (3.579 ns)
+
+ <State 14>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [37]  (3.579 ns)
+
+ <State 15>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [37]  (3.579 ns)
+
+ <State 16>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [37]  (3.579 ns)
+
+ <State 17>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('add', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [37]  (3.579 ns)
+
+ <State 18>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul2', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [38]  (2.787 ns)
+
+ <State 19>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul2', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [38]  (2.787 ns)
+
+ <State 20>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul2', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [38]  (2.787 ns)
+
+ <State 21>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul2', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [38]  (2.787 ns)
+
+ <State 22>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul3', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [39]  (2.787 ns)
+
+ <State 23>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul3', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [39]  (2.787 ns)
+
+ <State 24>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul3', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [39]  (2.787 ns)
+
+ <State 25>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul3', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [39]  (2.787 ns)
+
+ <State 26>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('nrm', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [40]  (3.579 ns)
+
+ <State 27>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('nrm', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [40]  (3.579 ns)
+
+ <State 28>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('nrm', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [40]  (3.579 ns)
+
+ <State 29>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('nrm', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [40]  (3.579 ns)
+
+ <State 30>: 3.579ns
+The critical path consists of the following:
+	'fadd' operation 32 bit ('nrm', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:38) [40]  (3.579 ns)
+
+ <State 31>: 2.231ns
+The critical path consists of the following:
+	'load' operation 11 bit ('kk_load', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:42) on local variable 'kk', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:33 [27]  (0.000 ns)
+	'add' operation 10 bit ('add_ln39', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:39) [41]  (0.933 ns)
+	'getelementptr' operation 10 bit ('r_addr', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:39) [44]  (0.000 ns)
+	'store' operation 0 bit ('store_ln39', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:39) of variable 'bitcast_ln39', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:39 on array 'r' [45]  (1.297 ns)
+
+ <State 32>: 0.000ns
+The critical path consists of the following:
+
+ <State 33>: 1.297ns
+The critical path consists of the following:
+	'getelementptr' operation 10 bit ('q_addr_1', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:45) [47]  (0.000 ns)
+	'load' operation 32 bit ('q_load', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:45) on array 'q' [48]  (1.297 ns)
+
+ <State 34>: 1.297ns
+The critical path consists of the following:
+	'load' operation 32 bit ('q_load', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:45) on array 'q' [48]  (1.297 ns)
+
+ <State 35>: 2.691ns
+The critical path consists of the following:
+	'load' operation 6 bit ('indvars_iv24_load', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34) on local variable 'indvars_iv24' [26]  (0.000 ns)
+	'call' operation 0 bit ('call_ln34', HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp:34) to 'gramSchmidt_Pipeline_VITIS_LOOP_42_4' [50]  (2.691 ns)
+
+ <State 36>: 0.000ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

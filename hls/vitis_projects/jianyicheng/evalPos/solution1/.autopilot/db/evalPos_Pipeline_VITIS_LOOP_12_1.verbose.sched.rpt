@@ -1,0 +1,537 @@
+
+
+================================================================
+== Vitis HLS Report for 'evalPos_Pipeline_VITIS_LOOP_12_1'
+================================================================
+* Date:           Sun Jun 23 03:47:30 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        evalPos
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcvu35p-fsvh2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.579 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      416|      416|  2.080 us|  2.080 us|  416|  416|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_12_1  |      414|      414|        37|          6|          1|    64|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 6, depth = 37
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 37
+* Pipeline : 1
+  Pipeline-0 : II = 6, D = 37, States = { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 23 
+23 --> 24 
+24 --> 25 
+25 --> 26 
+26 --> 27 
+27 --> 28 
+28 --> 29 
+29 --> 30 
+30 --> 31 
+31 --> 32 
+32 --> 33 
+33 --> 34 
+34 --> 35 
+35 --> 36 
+36 --> 37 
+37 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.15>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%centralityValue = alloca i32 1" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:6]   --->   Operation 40 'alloca' 'centralityValue' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:12]   --->   Operation 41 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %board, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 42 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%conv16_i_read = read i32 @_ssdm_op_Read.ap_auto.float, i32 %conv16_i"   --->   Operation 43 'read' 'conv16_i_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%tmp_8 = read i31 @_ssdm_op_Read.ap_auto.i31, i31 %empty"   --->   Operation 44 'read' 'tmp_8' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 45 [1/1] (0.46ns)   --->   "%store_ln12 = store i7 0, i7 %i" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:12]   --->   Operation 45 'store' 'store_ln12' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 46 [1/1] (0.46ns)   --->   "%store_ln6 = store i32 0, i32 %centralityValue" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:6]   --->   Operation 46 'store' 'store_ln6' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.body"   --->   Operation 47 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 48 [1/1] (0.00ns)   --->   "%i_1 = load i7 %i" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 48 'load' 'i_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 49 [1/1] (0.85ns)   --->   "%icmp_ln12 = icmp_eq  i7 %i_1, i7 64" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:12]   --->   Operation 49 'icmp' 'icmp_ln12' <Predicate = true> <Delay = 0.85> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 50 [1/1] (0.85ns)   --->   "%add_ln12 = add i7 %i_1, i7 1" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:12]   --->   Operation 50 'add' 'add_ln12' <Predicate = true> <Delay = 0.85> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%br_ln12 = br i1 %icmp_ln12, void %for.body.split_ifconv, void %for.end.exitStub" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:12]   --->   Operation 51 'br' 'br_ln12' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%zext_ln12 = zext i7 %i_1" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:12]   --->   Operation 52 'zext' 'zext_ln12' <Predicate = (!icmp_ln12)> <Delay = 0.00>
+ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%board_addr = getelementptr i32 %board, i64 0, i64 %zext_ln12" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:14]   --->   Operation 53 'getelementptr' 'board_addr' <Predicate = (!icmp_ln12)> <Delay = 0.00>
+ST_1 : Operation 54 [2/2] (1.29ns)   --->   "%b = load i6 %board_addr" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:14]   --->   Operation 54 'load' 'b' <Predicate = (!icmp_ln12)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 64> <RAM>
+ST_1 : Operation 55 [1/1] (0.00ns)   --->   "%trunc_ln21 = trunc i7 %i_1" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 55 'trunc' 'trunc_ln21' <Predicate = (!icmp_ln12)> <Delay = 0.00>
+ST_1 : Operation 56 [10/10] (1.23ns)   --->   "%urem_ln5 = urem i6 %trunc_ln21, i6 6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 56 'urem' 'urem_ln5' <Predicate = (!icmp_ln12)> <Delay = 1.23> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 9> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 57 [1/1] (0.00ns)   --->   "%zext_ln7_1 = zext i6 %trunc_ln21" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 57 'zext' 'zext_ln7_1' <Predicate = (!icmp_ln12)> <Delay = 0.00>
+ST_1 : Operation 58 [1/1] (1.69ns)   --->   "%mul_ln7 = mul i13 %zext_ln7_1, i13 86" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 58 'mul' 'mul_ln7' <Predicate = (!icmp_ln12)> <Delay = 1.69> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.69> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 59 [1/1] (0.00ns)   --->   "%tmp_9 = partselect i4 @_ssdm_op_PartSelect.i4.i13.i32.i32, i13 %mul_ln7, i32 9, i32 12" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 59 'partselect' 'tmp_9' <Predicate = (!icmp_ln12)> <Delay = 0.00>
+ST_1 : Operation 60 [1/1] (0.46ns)   --->   "%store_ln12 = store i7 %add_ln12, i7 %i" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:12]   --->   Operation 60 'store' 'store_ln12' <Predicate = (!icmp_ln12)> <Delay = 0.46>
+
+State 2 <SV = 1> <Delay = 2.91>
+ST_2 : Operation 61 [1/2] (1.29ns)   --->   "%b = load i6 %board_addr" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:14]   --->   Operation 61 'load' 'b' <Predicate = (!icmp_ln12)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 64> <RAM>
+ST_2 : Operation 62 [1/1] (0.00ns) (grouped into LUT with out node sub_ln16)   --->   "%trunc_ln16 = trunc i32 %b" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:16]   --->   Operation 62 'trunc' 'trunc_ln16' <Predicate = (!icmp_ln12)> <Delay = 0.00>
+ST_2 : Operation 63 [1/1] (0.00ns) (grouped into LUT with out node sub_ln16)   --->   "%zext_ln16 = zext i1 %trunc_ln16" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:16]   --->   Operation 63 'zext' 'zext_ln16' <Predicate = (!icmp_ln12)> <Delay = 0.00>
+ST_2 : Operation 64 [1/1] (0.00ns) (grouped into LUT with out node sub_ln16)   --->   "%xor_ln16 = xor i31 %zext_ln16, i31 %tmp_8" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:16]   --->   Operation 64 'xor' 'xor_ln16' <Predicate = (!icmp_ln12)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 65 [1/1] (0.00ns) (grouped into LUT with out node sub_ln16)   --->   "%shl_ln = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i31.i1, i31 %xor_ln16, i1 0" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:16]   --->   Operation 65 'bitconcatenate' 'shl_ln' <Predicate = (!icmp_ln12)> <Delay = 0.00>
+ST_2 : Operation 66 [1/1] (1.14ns) (out node of the LUT)   --->   "%sub_ln16 = sub i32 0, i32 %shl_ln" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:16]   --->   Operation 66 'sub' 'sub_ln16' <Predicate = (!icmp_ln12)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 67 [1/1] (0.00ns)   --->   "%tmp_7 = partselect i5 @_ssdm_op_PartSelect.i5.i32.i32.i32, i32 %b, i32 1, i32 5" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:19]   --->   Operation 67 'partselect' 'tmp_7' <Predicate = (!icmp_ln12)> <Delay = 0.00>
+ST_2 : Operation 68 [1/1] (0.00ns)   --->   "%temp = bitconcatenate i6 @_ssdm_op_BitConcatenate.i6.i5.i1, i5 %tmp_7, i1 0" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:19]   --->   Operation 68 'bitconcatenate' 'temp' <Predicate = (!icmp_ln12)> <Delay = 0.00>
+ST_2 : Operation 69 [1/1] (0.84ns)   --->   "%icmp_ln20 = icmp_eq  i6 %temp, i6 18" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:20]   --->   Operation 69 'icmp' 'icmp_ln20' <Predicate = (!icmp_ln12)> <Delay = 0.84> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.84> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 70 [9/10] (1.23ns)   --->   "%urem_ln5 = urem i6 %trunc_ln21, i6 6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 70 'urem' 'urem_ln5' <Predicate = (!icmp_ln12)> <Delay = 1.23> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 9> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 71 [1/1] (0.00ns)   --->   "%zext_ln7 = zext i4 %tmp_9" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 71 'zext' 'zext_ln7' <Predicate = (!icmp_ln12)> <Delay = 0.00>
+ST_2 : Operation 72 [4/4] (2.91ns)   --->   "%conv2_i = sitofp i32 %zext_ln7" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 72 'sitofp' 'conv2_i' <Predicate = (!icmp_ln12)> <Delay = 2.91> <CoreInst = "Int2Float">   --->   Core 62 'Int2Float' <Latency = 3> <II = 1> <Delay = 2.91> <FuncUnit> <Opcode : 'uitofp' 'sitofp'> <InPorts = 1> <OutPorts = 1>
+
+State 3 <SV = 2> <Delay = 2.91>
+ST_3 : Operation 73 [1/1] (0.00ns)   --->   "%benefitMagnitude = or i32 %sub_ln16, i32 1" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:16]   --->   Operation 73 'or' 'benefitMagnitude' <Predicate = (!icmp_ln12 & icmp_ln20)> <Delay = 0.00>
+ST_3 : Operation 74 [8/10] (1.23ns)   --->   "%urem_ln5 = urem i6 %trunc_ln21, i6 6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 74 'urem' 'urem_ln5' <Predicate = (!icmp_ln12)> <Delay = 1.23> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 9> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 75 [3/4] (2.91ns)   --->   "%conv2_i = sitofp i32 %zext_ln7" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 75 'sitofp' 'conv2_i' <Predicate = (!icmp_ln12)> <Delay = 2.91> <CoreInst = "Int2Float">   --->   Core 62 'Int2Float' <Latency = 3> <II = 1> <Delay = 2.91> <FuncUnit> <Opcode : 'uitofp' 'sitofp'> <InPorts = 1> <OutPorts = 1>
+ST_3 : Operation 76 [4/4] (2.91ns)   --->   "%conv15_i = sitofp i32 %benefitMagnitude" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 76 'sitofp' 'conv15_i' <Predicate = (!icmp_ln12 & icmp_ln20)> <Delay = 2.91> <CoreInst = "Int2Float">   --->   Core 62 'Int2Float' <Latency = 3> <II = 1> <Delay = 2.91> <FuncUnit> <Opcode : 'uitofp' 'sitofp'> <InPorts = 1> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 2.91>
+ST_4 : Operation 77 [7/10] (1.23ns)   --->   "%urem_ln5 = urem i6 %trunc_ln21, i6 6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 77 'urem' 'urem_ln5' <Predicate = (!icmp_ln12)> <Delay = 1.23> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 9> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 78 [2/4] (2.91ns)   --->   "%conv2_i = sitofp i32 %zext_ln7" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 78 'sitofp' 'conv2_i' <Predicate = (!icmp_ln12)> <Delay = 2.91> <CoreInst = "Int2Float">   --->   Core 62 'Int2Float' <Latency = 3> <II = 1> <Delay = 2.91> <FuncUnit> <Opcode : 'uitofp' 'sitofp'> <InPorts = 1> <OutPorts = 1>
+ST_4 : Operation 79 [3/4] (2.91ns)   --->   "%conv15_i = sitofp i32 %benefitMagnitude" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 79 'sitofp' 'conv15_i' <Predicate = (!icmp_ln12 & icmp_ln20)> <Delay = 2.91> <CoreInst = "Int2Float">   --->   Core 62 'Int2Float' <Latency = 3> <II = 1> <Delay = 2.91> <FuncUnit> <Opcode : 'uitofp' 'sitofp'> <InPorts = 1> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 2.91>
+ST_5 : Operation 80 [6/10] (1.23ns)   --->   "%urem_ln5 = urem i6 %trunc_ln21, i6 6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 80 'urem' 'urem_ln5' <Predicate = (!icmp_ln12)> <Delay = 1.23> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 9> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 81 [1/4] (2.91ns)   --->   "%conv2_i = sitofp i32 %zext_ln7" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 81 'sitofp' 'conv2_i' <Predicate = (!icmp_ln12)> <Delay = 2.91> <CoreInst = "Int2Float">   --->   Core 62 'Int2Float' <Latency = 3> <II = 1> <Delay = 2.91> <FuncUnit> <Opcode : 'uitofp' 'sitofp'> <InPorts = 1> <OutPorts = 1>
+ST_5 : Operation 82 [2/4] (2.91ns)   --->   "%conv15_i = sitofp i32 %benefitMagnitude" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 82 'sitofp' 'conv15_i' <Predicate = (!icmp_ln12 & icmp_ln20)> <Delay = 2.91> <CoreInst = "Int2Float">   --->   Core 62 'Int2Float' <Latency = 3> <II = 1> <Delay = 2.91> <FuncUnit> <Opcode : 'uitofp' 'sitofp'> <InPorts = 1> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 3.57>
+ST_6 : Operation 83 [5/10] (1.23ns)   --->   "%urem_ln5 = urem i6 %trunc_ln21, i6 6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 83 'urem' 'urem_ln5' <Predicate = (!icmp_ln12)> <Delay = 1.23> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 9> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 84 [5/5] (3.57ns)   --->   "%b_1 = fsub i32 2.5, i32 %conv2_i" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 84 'fsub' 'b_1' <Predicate = (!icmp_ln12 & icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 85 [1/4] (2.91ns)   --->   "%conv15_i = sitofp i32 %benefitMagnitude" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 85 'sitofp' 'conv15_i' <Predicate = (!icmp_ln12 & icmp_ln20)> <Delay = 2.91> <CoreInst = "Int2Float">   --->   Core 62 'Int2Float' <Latency = 3> <II = 1> <Delay = 2.91> <FuncUnit> <Opcode : 'uitofp' 'sitofp'> <InPorts = 1> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 3.57>
+ST_7 : Operation 86 [4/10] (1.23ns)   --->   "%urem_ln5 = urem i6 %trunc_ln21, i6 6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 86 'urem' 'urem_ln5' <Predicate = true> <Delay = 1.23> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 9> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 87 [4/5] (3.57ns)   --->   "%b_1 = fsub i32 2.5, i32 %conv2_i" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 87 'fsub' 'b_1' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 3.57>
+ST_8 : Operation 88 [3/10] (1.23ns)   --->   "%urem_ln5 = urem i6 %trunc_ln21, i6 6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 88 'urem' 'urem_ln5' <Predicate = true> <Delay = 1.23> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 9> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 89 [3/5] (3.57ns)   --->   "%b_1 = fsub i32 2.5, i32 %conv2_i" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 89 'fsub' 'b_1' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 3.57>
+ST_9 : Operation 90 [2/10] (1.23ns)   --->   "%urem_ln5 = urem i6 %trunc_ln21, i6 6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 90 'urem' 'urem_ln5' <Predicate = true> <Delay = 1.23> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 9> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 91 [2/5] (3.57ns)   --->   "%b_1 = fsub i32 2.5, i32 %conv2_i" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 91 'fsub' 'b_1' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 3.57>
+ST_10 : Operation 92 [1/10] (1.23ns)   --->   "%urem_ln5 = urem i6 %trunc_ln21, i6 6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 92 'urem' 'urem_ln5' <Predicate = true> <Delay = 1.23> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 9> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 93 [1/5] (3.57ns)   --->   "%b_1 = fsub i32 2.5, i32 %conv2_i" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 93 'fsub' 'b_1' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 2.91>
+ST_11 : Operation 94 [1/1] (0.00ns)   --->   "%zext_ln5 = zext i6 %urem_ln5" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 94 'zext' 'zext_ln5' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_11 : Operation 95 [4/4] (2.91ns)   --->   "%conv_i = sitofp i32 %zext_ln5" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 95 'sitofp' 'conv_i' <Predicate = (icmp_ln20)> <Delay = 2.91> <CoreInst = "Int2Float">   --->   Core 62 'Int2Float' <Latency = 3> <II = 1> <Delay = 2.91> <FuncUnit> <Opcode : 'uitofp' 'sitofp'> <InPorts = 1> <OutPorts = 1>
+ST_11 : Operation 96 [2/2] (1.91ns)   --->   "%tmp_3 = fcmp_ogt  i32 %b_1, i32 0" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:8->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 96 'fcmp' 'tmp_3' <Predicate = (icmp_ln20)> <Delay = 1.91> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 1> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 2.91>
+ST_12 : Operation 97 [3/4] (2.91ns)   --->   "%conv_i = sitofp i32 %zext_ln5" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 97 'sitofp' 'conv_i' <Predicate = (icmp_ln20)> <Delay = 2.91> <CoreInst = "Int2Float">   --->   Core 62 'Int2Float' <Latency = 3> <II = 1> <Delay = 2.91> <FuncUnit> <Opcode : 'uitofp' 'sitofp'> <InPorts = 1> <OutPorts = 1>
+ST_12 : Operation 98 [1/1] (0.00ns)   --->   "%bitcast_ln8 = bitcast i32 %b_1" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:8->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 98 'bitcast' 'bitcast_ln8' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_12 : Operation 99 [1/1] (0.00ns)   --->   "%tmp_2 = partselect i8 @_ssdm_op_PartSelect.i8.i32.i32.i32, i32 %bitcast_ln8, i32 23, i32 30" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:8->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 99 'partselect' 'tmp_2' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_12 : Operation 100 [1/1] (0.00ns)   --->   "%trunc_ln8 = trunc i32 %bitcast_ln8" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:8->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 100 'trunc' 'trunc_ln8' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_12 : Operation 101 [1/1] (0.87ns)   --->   "%icmp_ln8 = icmp_ne  i8 %tmp_2, i8 255" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:8->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 101 'icmp' 'icmp_ln8' <Predicate = (icmp_ln20)> <Delay = 0.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 102 [1/1] (1.13ns)   --->   "%icmp_ln8_1 = icmp_eq  i23 %trunc_ln8, i23 0" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:8->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 102 'icmp' 'icmp_ln8_1' <Predicate = (icmp_ln20)> <Delay = 1.13> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 103 [1/1] (0.00ns) (grouped into LUT with out node b_2)   --->   "%or_ln8 = or i1 %icmp_ln8_1, i1 %icmp_ln8" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:8->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 103 'or' 'or_ln8' <Predicate = (icmp_ln20)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 104 [1/2] (1.91ns)   --->   "%tmp_3 = fcmp_ogt  i32 %b_1, i32 0" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:8->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 104 'fcmp' 'tmp_3' <Predicate = (icmp_ln20)> <Delay = 1.91> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 1> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 105 [1/1] (0.00ns) (grouped into LUT with out node b_2)   --->   "%and_ln8 = and i1 %or_ln8, i1 %tmp_3" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:8->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 105 'and' 'and_ln8' <Predicate = (icmp_ln20)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 106 [1/1] (0.00ns) (grouped into LUT with out node b_2)   --->   "%xor_ln8 = xor i32 %bitcast_ln8, i32 2147483648" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:8->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 106 'xor' 'xor_ln8' <Predicate = (icmp_ln20)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 107 [1/1] (0.00ns) (grouped into LUT with out node b_2)   --->   "%bitcast_ln8_1 = bitcast i32 %xor_ln8" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:8->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 107 'bitcast' 'bitcast_ln8_1' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_12 : Operation 108 [1/1] (0.28ns) (out node of the LUT)   --->   "%b_2 = select i1 %and_ln8, i32 %b_1, i32 %bitcast_ln8_1" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:8->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 108 'select' 'b_2' <Predicate = (icmp_ln20)> <Delay = 0.28> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 2.91>
+ST_13 : Operation 109 [2/4] (2.91ns)   --->   "%conv_i = sitofp i32 %zext_ln5" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 109 'sitofp' 'conv_i' <Predicate = (icmp_ln20)> <Delay = 2.91> <CoreInst = "Int2Float">   --->   Core 62 'Int2Float' <Latency = 3> <II = 1> <Delay = 2.91> <FuncUnit> <Opcode : 'uitofp' 'sitofp'> <InPorts = 1> <OutPorts = 1>
+
+State 14 <SV = 13> <Delay = 2.91>
+ST_14 : Operation 110 [1/4] (2.91ns)   --->   "%conv_i = sitofp i32 %zext_ln5" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 110 'sitofp' 'conv_i' <Predicate = (icmp_ln20)> <Delay = 2.91> <CoreInst = "Int2Float">   --->   Core 62 'Int2Float' <Latency = 3> <II = 1> <Delay = 2.91> <FuncUnit> <Opcode : 'uitofp' 'sitofp'> <InPorts = 1> <OutPorts = 1>
+
+State 15 <SV = 14> <Delay = 3.57>
+ST_15 : Operation 111 [5/5] (3.57ns)   --->   "%a = fsub i32 2.5, i32 %conv_i" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 111 'fsub' 'a' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 16 <SV = 15> <Delay = 3.57>
+ST_16 : Operation 112 [4/5] (3.57ns)   --->   "%a = fsub i32 2.5, i32 %conv_i" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 112 'fsub' 'a' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 17 <SV = 16> <Delay = 3.57>
+ST_17 : Operation 113 [3/5] (3.57ns)   --->   "%a = fsub i32 2.5, i32 %conv_i" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 113 'fsub' 'a' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 18 <SV = 17> <Delay = 3.57>
+ST_18 : Operation 114 [2/5] (3.57ns)   --->   "%a = fsub i32 2.5, i32 %conv_i" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 114 'fsub' 'a' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 19 <SV = 18> <Delay = 3.57>
+ST_19 : Operation 115 [1/5] (3.57ns)   --->   "%a = fsub i32 2.5, i32 %conv_i" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 115 'fsub' 'a' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 20 <SV = 19> <Delay = 1.91>
+ST_20 : Operation 116 [2/2] (1.91ns)   --->   "%tmp_1 = fcmp_ogt  i32 %a, i32 0" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 116 'fcmp' 'tmp_1' <Predicate = (icmp_ln20)> <Delay = 1.91> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 1> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+
+State 21 <SV = 20> <Delay = 2.20>
+ST_21 : Operation 117 [1/1] (0.00ns)   --->   "%bitcast_ln6 = bitcast i32 %a" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 117 'bitcast' 'bitcast_ln6' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_21 : Operation 118 [1/1] (0.00ns)   --->   "%tmp = partselect i8 @_ssdm_op_PartSelect.i8.i32.i32.i32, i32 %bitcast_ln6, i32 23, i32 30" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 118 'partselect' 'tmp' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_21 : Operation 119 [1/1] (0.00ns)   --->   "%trunc_ln6 = trunc i32 %bitcast_ln6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 119 'trunc' 'trunc_ln6' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_21 : Operation 120 [1/1] (0.87ns)   --->   "%icmp_ln6 = icmp_ne  i8 %tmp, i8 255" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 120 'icmp' 'icmp_ln6' <Predicate = (icmp_ln20)> <Delay = 0.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 121 [1/1] (1.13ns)   --->   "%icmp_ln6_1 = icmp_eq  i23 %trunc_ln6, i23 0" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 121 'icmp' 'icmp_ln6_1' <Predicate = (icmp_ln20)> <Delay = 1.13> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 122 [1/1] (0.00ns) (grouped into LUT with out node a_1)   --->   "%or_ln6 = or i1 %icmp_ln6_1, i1 %icmp_ln6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 122 'or' 'or_ln6' <Predicate = (icmp_ln20)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 123 [1/2] (1.91ns)   --->   "%tmp_1 = fcmp_ogt  i32 %a, i32 0" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 123 'fcmp' 'tmp_1' <Predicate = (icmp_ln20)> <Delay = 1.91> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 1> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 124 [1/1] (0.00ns) (grouped into LUT with out node a_1)   --->   "%and_ln6 = and i1 %or_ln6, i1 %tmp_1" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 124 'and' 'and_ln6' <Predicate = (icmp_ln20)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 125 [1/1] (0.00ns) (grouped into LUT with out node a_1)   --->   "%xor_ln6 = xor i32 %bitcast_ln6, i32 2147483648" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 125 'xor' 'xor_ln6' <Predicate = (icmp_ln20)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 126 [1/1] (0.00ns) (grouped into LUT with out node a_1)   --->   "%bitcast_ln6_1 = bitcast i32 %xor_ln6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 126 'bitcast' 'bitcast_ln6_1' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_21 : Operation 127 [1/1] (0.28ns) (out node of the LUT)   --->   "%a_1 = select i1 %and_ln6, i32 %a, i32 %bitcast_ln6_1" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 127 'select' 'a_1' <Predicate = (icmp_ln20)> <Delay = 0.28> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+
+State 22 <SV = 21> <Delay = 1.91>
+ST_22 : Operation 128 [2/2] (1.91ns)   --->   "%tmp_6 = fcmp_ogt  i32 %a_1, i32 %b_2" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 128 'fcmp' 'tmp_6' <Predicate = (icmp_ln20)> <Delay = 1.91> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 1> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+
+State 23 <SV = 22> <Delay = 2.34>
+ST_23 : Operation 129 [1/1] (0.00ns)   --->   "%bitcast_ln9 = bitcast i32 %a_1" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 129 'bitcast' 'bitcast_ln9' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_23 : Operation 130 [1/1] (0.00ns)   --->   "%tmp_4 = partselect i8 @_ssdm_op_PartSelect.i8.i32.i32.i32, i32 %bitcast_ln9, i32 23, i32 30" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 130 'partselect' 'tmp_4' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_23 : Operation 131 [1/1] (0.00ns)   --->   "%trunc_ln9 = trunc i32 %bitcast_ln9" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 131 'trunc' 'trunc_ln9' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_23 : Operation 132 [1/1] (0.00ns)   --->   "%bitcast_ln9_1 = bitcast i32 %b_2" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 132 'bitcast' 'bitcast_ln9_1' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_23 : Operation 133 [1/1] (0.00ns)   --->   "%tmp_5 = partselect i8 @_ssdm_op_PartSelect.i8.i32.i32.i32, i32 %bitcast_ln9_1, i32 23, i32 30" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 133 'partselect' 'tmp_5' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_23 : Operation 134 [1/1] (0.00ns)   --->   "%trunc_ln9_1 = trunc i32 %bitcast_ln9_1" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 134 'trunc' 'trunc_ln9_1' <Predicate = (icmp_ln20)> <Delay = 0.00>
+ST_23 : Operation 135 [1/1] (0.87ns)   --->   "%icmp_ln9 = icmp_ne  i8 %tmp_4, i8 255" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 135 'icmp' 'icmp_ln9' <Predicate = (icmp_ln20)> <Delay = 0.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 136 [1/1] (1.13ns)   --->   "%icmp_ln9_1 = icmp_eq  i23 %trunc_ln9, i23 0" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 136 'icmp' 'icmp_ln9_1' <Predicate = (icmp_ln20)> <Delay = 1.13> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 137 [1/1] (0.00ns) (grouped into LUT with out node and_ln9_1)   --->   "%or_ln9 = or i1 %icmp_ln9_1, i1 %icmp_ln9" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 137 'or' 'or_ln9' <Predicate = (icmp_ln20)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 138 [1/1] (0.87ns)   --->   "%icmp_ln9_2 = icmp_ne  i8 %tmp_5, i8 255" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 138 'icmp' 'icmp_ln9_2' <Predicate = (icmp_ln20)> <Delay = 0.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 139 [1/1] (1.13ns)   --->   "%icmp_ln9_3 = icmp_eq  i23 %trunc_ln9_1, i23 0" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 139 'icmp' 'icmp_ln9_3' <Predicate = (icmp_ln20)> <Delay = 1.13> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 140 [1/1] (0.00ns) (grouped into LUT with out node and_ln9_1)   --->   "%or_ln9_1 = or i1 %icmp_ln9_3, i1 %icmp_ln9_2" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 140 'or' 'or_ln9_1' <Predicate = (icmp_ln20)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 141 [1/1] (0.00ns) (grouped into LUT with out node and_ln9_1)   --->   "%and_ln9 = and i1 %or_ln9, i1 %or_ln9_1" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 141 'and' 'and_ln9' <Predicate = (icmp_ln20)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 142 [1/2] (1.91ns)   --->   "%tmp_6 = fcmp_ogt  i32 %a_1, i32 %b_2" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 142 'fcmp' 'tmp_6' <Predicate = (icmp_ln20)> <Delay = 1.91> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 1> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 143 [1/1] (0.14ns) (out node of the LUT)   --->   "%and_ln9_1 = and i1 %and_ln9, i1 %tmp_6" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 143 'and' 'and_ln9_1' <Predicate = (icmp_ln20)> <Delay = 0.14> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 144 [1/1] (0.28ns) (out node of the LUT)   --->   "%c = select i1 %and_ln9_1, i32 %a_1, i32 %b_2" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 144 'select' 'c' <Predicate = (icmp_ln20)> <Delay = 0.28> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+
+State 24 <SV = 23> <Delay = 2.78>
+ST_24 : Operation 145 [4/4] (2.78ns)   --->   "%mul_i = fmul i32 %conv15_i, i32 %c" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 145 'fmul' 'mul_i' <Predicate = (icmp_ln20)> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 25 <SV = 24> <Delay = 2.78>
+ST_25 : Operation 146 [3/4] (2.78ns)   --->   "%mul_i = fmul i32 %conv15_i, i32 %c" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 146 'fmul' 'mul_i' <Predicate = (icmp_ln20)> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 26 <SV = 25> <Delay = 2.78>
+ST_26 : Operation 147 [2/4] (2.78ns)   --->   "%mul_i = fmul i32 %conv15_i, i32 %c" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 147 'fmul' 'mul_i' <Predicate = (icmp_ln20)> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 27 <SV = 26> <Delay = 2.78>
+ST_27 : Operation 148 [1/4] (2.78ns)   --->   "%mul_i = fmul i32 %conv15_i, i32 %c" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 148 'fmul' 'mul_i' <Predicate = (icmp_ln20)> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 28 <SV = 27> <Delay = 2.78>
+ST_28 : Operation 149 [4/4] (2.78ns)   --->   "%temp_2 = fmul i32 %mul_i, i32 %conv16_i_read" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 149 'fmul' 'temp_2' <Predicate = (icmp_ln20)> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 29 <SV = 28> <Delay = 2.78>
+ST_29 : Operation 150 [3/4] (2.78ns)   --->   "%temp_2 = fmul i32 %mul_i, i32 %conv16_i_read" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 150 'fmul' 'temp_2' <Predicate = (icmp_ln20)> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 30 <SV = 29> <Delay = 2.78>
+ST_30 : Operation 151 [2/4] (2.78ns)   --->   "%temp_2 = fmul i32 %mul_i, i32 %conv16_i_read" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 151 'fmul' 'temp_2' <Predicate = (icmp_ln20)> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 31 <SV = 30> <Delay = 2.78>
+ST_31 : Operation 152 [1/4] (2.78ns)   --->   "%temp_2 = fmul i32 %mul_i, i32 %conv16_i_read" [HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21]   --->   Operation 152 'fmul' 'temp_2' <Predicate = (icmp_ln20)> <Delay = 2.78> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 3> <II = 1> <Delay = 2.78> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 165 [1/1] (0.00ns)   --->   "%centralityValue_load = load i32 %centralityValue"   --->   Operation 165 'load' 'centralityValue_load' <Predicate = (icmp_ln12)> <Delay = 0.00>
+ST_31 : Operation 166 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.floatP0A, i32 %centralityValue_out, i32 %centralityValue_load"   --->   Operation 166 'write' 'write_ln0' <Predicate = (icmp_ln12)> <Delay = 0.00>
+ST_31 : Operation 167 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 167 'ret' 'ret_ln0' <Predicate = (icmp_ln12)> <Delay = 0.00>
+
+State 32 <SV = 31> <Delay = 3.57>
+ST_32 : Operation 153 [1/1] (0.00ns)   --->   "%centralityValue_load_1 = load i32 %centralityValue" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:20]   --->   Operation 153 'load' 'centralityValue_load_1' <Predicate = true> <Delay = 0.00>
+ST_32 : Operation 154 [5/5] (3.57ns)   --->   "%centralityValue_1 = fsub i32 %centralityValue_load_1, i32 %temp_2" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:22]   --->   Operation 154 'fsub' 'centralityValue_1' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 33 <SV = 32> <Delay = 3.57>
+ST_33 : Operation 155 [4/5] (3.57ns)   --->   "%centralityValue_1 = fsub i32 %centralityValue_load_1, i32 %temp_2" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:22]   --->   Operation 155 'fsub' 'centralityValue_1' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 34 <SV = 33> <Delay = 3.57>
+ST_34 : Operation 156 [3/5] (3.57ns)   --->   "%centralityValue_1 = fsub i32 %centralityValue_load_1, i32 %temp_2" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:22]   --->   Operation 156 'fsub' 'centralityValue_1' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 35 <SV = 34> <Delay = 3.57>
+ST_35 : Operation 157 [2/5] (3.57ns)   --->   "%centralityValue_1 = fsub i32 %centralityValue_load_1, i32 %temp_2" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:22]   --->   Operation 157 'fsub' 'centralityValue_1' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 36 <SV = 35> <Delay = 3.57>
+ST_36 : Operation 158 [1/5] (3.57ns)   --->   "%centralityValue_1 = fsub i32 %centralityValue_load_1, i32 %temp_2" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:22]   --->   Operation 158 'fsub' 'centralityValue_1' <Predicate = (icmp_ln20)> <Delay = 3.57> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 4> <II = 1> <Delay = 3.57> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 37 <SV = 36> <Delay = 0.74>
+ST_37 : Operation 159 [1/1] (0.00ns)   --->   "%specpipeline_ln6 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_0" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:6]   --->   Operation 159 'specpipeline' 'specpipeline_ln6' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 160 [1/1] (0.00ns)   --->   "%speclooptripcount_ln6 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 64, i64 64, i64 64" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:6]   --->   Operation 160 'speclooptripcount' 'speclooptripcount_ln6' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 161 [1/1] (0.00ns)   --->   "%specloopname_ln12 = specloopname void @_ssdm_op_SpecLoopName, void @empty_3" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:12]   --->   Operation 161 'specloopname' 'specloopname_ln12' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 162 [1/1] (0.28ns)   --->   "%centralityValue_2 = select i1 %icmp_ln20, i32 %centralityValue_1, i32 %centralityValue_load_1" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:20]   --->   Operation 162 'select' 'centralityValue_2' <Predicate = true> <Delay = 0.28> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_37 : Operation 163 [1/1] (0.46ns)   --->   "%store_ln6 = store i32 %centralityValue_2, i32 %centralityValue" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:6]   --->   Operation 163 'store' 'store_ln6' <Predicate = true> <Delay = 0.46>
+ST_37 : Operation 164 [1/1] (0.00ns)   --->   "%br_ln12 = br void %for.body" [HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:12]   --->   Operation 164 'br' 'br_ln12' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 2.150ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln12', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:12) of constant 0 on local variable 'i', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:12 [10]  (0.460 ns)
+	'load' operation 7 bit ('i', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) on local variable 'i', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:12 [14]  (0.000 ns)
+	'mul' operation 13 bit ('mul_ln7', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [52]  (1.690 ns)
+
+ <State 2>: 2.917ns
+The critical path consists of the following:
+	'sitofp' operation 32 bit ('conv2_i', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [55]  (2.917 ns)
+
+ <State 3>: 2.917ns
+The critical path consists of the following:
+	'sitofp' operation 32 bit ('conv2_i', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [55]  (2.917 ns)
+
+ <State 4>: 2.917ns
+The critical path consists of the following:
+	'sitofp' operation 32 bit ('conv2_i', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [55]  (2.917 ns)
+
+ <State 5>: 2.917ns
+The critical path consists of the following:
+	'sitofp' operation 32 bit ('conv2_i', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [55]  (2.917 ns)
+
+ <State 6>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('b', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [56]  (3.579 ns)
+
+ <State 7>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('b', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [56]  (3.579 ns)
+
+ <State 8>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('b', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [56]  (3.579 ns)
+
+ <State 9>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('b', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [56]  (3.579 ns)
+
+ <State 10>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('b', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:7->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [56]  (3.579 ns)
+
+ <State 11>: 2.917ns
+The critical path consists of the following:
+	'sitofp' operation 32 bit ('conv_i', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [38]  (2.917 ns)
+
+ <State 12>: 2.917ns
+The critical path consists of the following:
+	'sitofp' operation 32 bit ('conv_i', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [38]  (2.917 ns)
+
+ <State 13>: 2.917ns
+The critical path consists of the following:
+	'sitofp' operation 32 bit ('conv_i', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [38]  (2.917 ns)
+
+ <State 14>: 2.917ns
+The critical path consists of the following:
+	'sitofp' operation 32 bit ('conv_i', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [38]  (2.917 ns)
+
+ <State 15>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('a', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [39]  (3.579 ns)
+
+ <State 16>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('a', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [39]  (3.579 ns)
+
+ <State 17>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('a', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [39]  (3.579 ns)
+
+ <State 18>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('a', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [39]  (3.579 ns)
+
+ <State 19>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('a', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:5->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [39]  (3.579 ns)
+
+ <State 20>: 1.913ns
+The critical path consists of the following:
+	'fcmp' operation 1 bit ('tmp_1', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [46]  (1.913 ns)
+
+ <State 21>: 2.202ns
+The critical path consists of the following:
+	'fcmp' operation 1 bit ('tmp_1', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [46]  (1.913 ns)
+	'and' operation 1 bit ('and_ln6', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [47]  (0.000 ns)
+	'select' operation 32 bit ('a', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:6->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [50]  (0.289 ns)
+
+ <State 22>: 1.913ns
+The critical path consists of the following:
+	'fcmp' operation 1 bit ('tmp_6', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [81]  (1.913 ns)
+
+ <State 23>: 2.347ns
+The critical path consists of the following:
+	'fcmp' operation 1 bit ('tmp_6', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [81]  (1.913 ns)
+	'and' operation 1 bit ('and_ln9_1', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [82]  (0.148 ns)
+	'select' operation 32 bit ('c', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:9->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [83]  (0.286 ns)
+
+ <State 24>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul_i', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [85]  (2.787 ns)
+
+ <State 25>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul_i', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [85]  (2.787 ns)
+
+ <State 26>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul_i', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [85]  (2.787 ns)
+
+ <State 27>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('mul_i', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [85]  (2.787 ns)
+
+ <State 28>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('temp_2', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [86]  (2.787 ns)
+
+ <State 29>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('temp_2', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [86]  (2.787 ns)
+
+ <State 30>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('temp_2', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [86]  (2.787 ns)
+
+ <State 31>: 2.787ns
+The critical path consists of the following:
+	'fmul' operation 32 bit ('temp_2', HLS-benchmarks/PNAnalyser/evalPos/src/g.cpp:10->HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:21) [86]  (2.787 ns)
+
+ <State 32>: 3.579ns
+The critical path consists of the following:
+	'load' operation 32 bit ('centralityValue_load_1', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:20) on local variable 'centralityValue', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:6 [19]  (0.000 ns)
+	'fsub' operation 32 bit ('centralityValue', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:22) [87]  (3.579 ns)
+
+ <State 33>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('centralityValue', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:22) [87]  (3.579 ns)
+
+ <State 34>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('centralityValue', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:22) [87]  (3.579 ns)
+
+ <State 35>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('centralityValue', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:22) [87]  (3.579 ns)
+
+ <State 36>: 3.579ns
+The critical path consists of the following:
+	'fsub' operation 32 bit ('centralityValue', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:22) [87]  (3.579 ns)
+
+ <State 37>: 0.746ns
+The critical path consists of the following:
+	'select' operation 32 bit ('centralityValue', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:20) [88]  (0.286 ns)
+	'store' operation 0 bit ('store_ln6', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:6) of variable 'centralityValue', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:20 on local variable 'centralityValue', HLS-benchmarks/PNAnalyser/evalPos/src/evalPos.cpp:6 [90]  (0.460 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

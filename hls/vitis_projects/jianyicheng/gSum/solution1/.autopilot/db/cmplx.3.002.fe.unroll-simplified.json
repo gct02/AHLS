@@ -1,0 +1,23 @@
+{
+  "0": {
+    "basicblocks": 5,
+    "calls": "1",
+    "file": "gSum.cpp",
+    "fileloc": 12,
+    "instructions": 19,
+    "loads": {
+      "T": 2
+    },
+    "name": "gSum",
+    "total_instructions": 31
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "g.cpp",
+    "fileloc": 12,
+    "instructions": 12,
+    "name": "g",
+    "total_instructions": 12
+  }
+}
