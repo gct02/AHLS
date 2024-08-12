@@ -10,11 +10,11 @@ torch.set_printoptions(profile="full")
 class GAT(nn.Module):
     def __init__(self, in_features:int, out_size:int):
         super(GAT, self).__init__()
-        self.gat1 = GraphAttentionalLayer(in_features, 48, 8, True, 0.2, dropout=0.4)
-        self.gat2 = GraphAttentionalLayer(48, 80, 8, True, 0.2, dropout=0.4)
-        self.gat3 = GraphAttentionalLayer(80, 44, 4, True, 0.2, dropout=0.4)
-        self.gat4 = GraphAttentionalLayer(44, 20, 4, True, 0.2, dropout=0.4)
-        self.gat5 = GraphAttentionalLayer(20, 10, 2, False, 0.2, dropout=0.2)
+        self.gat1 = GraphAttentionalLayer(in_features, 48, 8, True, 0.2)
+        self.gat2 = GraphAttentionalLayer(48, 80, 8, True, 0.2)
+        self.gat3 = GraphAttentionalLayer(80, 44, 4, True, 0.2)
+        self.gat4 = GraphAttentionalLayer(44, 20, 4, True, 0.2)
+        self.gat5 = GraphAttentionalLayer(20, 10, 2, False, 0.2)
         self.fc1 = nn.Linear(10, 5)
         self.fc2 = nn.Linear(5, out_size)
         nn.init.xavier_normal_(self.fc1.weight, gain=1.414)
@@ -33,7 +33,7 @@ class GAT(nn.Module):
         x = self.gat4(x, adj_mat)
         x = F.elu(x)
         x = self.gat5(x, adj_mat)
-        x = F.relu(self.fc1(torch.sum(x, dim=0)))
-        x = F.relu(self.fc2(x))
+        x = self.fc1(torch.sum(x, dim=0))
+        x = F.elu(self.fc2(x))
         return x
     

@@ -131,7 +131,7 @@ def main(args):
     model = GAT(20, 1)
 
     loss_func = MSLELoss
-    optimizer = torch.optim.Adam(model.parameters(), lr=2e-4, betas=(0.63, 0.9999))
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-2, betas=(0.9, 0.99999))
 
     train_losses, test_losses = train_model(model, loss_func, optimizer, graphs, graph_labels_lut, epochs)
 
@@ -139,7 +139,7 @@ def main(args):
     plt.plot(test_losses, label="Test Loss", color="blue")
     plt.legend()
     plt.show()
-    plt.savefig("estimators/gat/gat_lut_learning.png")
+    # plt.savefig("estimators/gat/gat_lut_learning.png")
 
     save_model(model, "estimators/gat/models", "gat_lut.pth")
     
