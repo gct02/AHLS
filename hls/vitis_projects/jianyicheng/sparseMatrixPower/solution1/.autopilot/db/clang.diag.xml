@@ -1,0 +1,51 @@
+<dict>
+  <key>main-file</key>
+  <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/sparseMatrixPower/solution1/.autopilot/db/smm_tb.pp.0.cpp</string>
+  <key>diagnostics</key>
+  <array>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>benchmarks/jianyicheng/sparseMatrixPower/src/smm_tb.cpp</string>
+      <key>line</key>
+      <integer>42</integer>
+      <key>column</key>
+      <integer>11</integer>
+      <key>message</key>
+      <string>using the result of an assignment as a condition without parentheses</string>
+      <key>ID</key>
+      <integer>4709</integer>
+      <key>WarningOption</key>
+      <string>parentheses</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>note</string>
+      <key>filename</key>
+      <string>benchmarks/jianyicheng/sparseMatrixPower/src/smm_tb.cpp</string>
+      <key>line</key>
+      <integer>42</integer>
+      <key>column</key>
+      <integer>11</integer>
+      <key>message</key>
+      <string>place parentheses around the assignment to silence this warning</string>
+      <key>ID</key>
+      <integer>4136</integer>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>note</string>
+      <key>filename</key>
+      <string>benchmarks/jianyicheng/sparseMatrixPower/src/smm_tb.cpp</string>
+      <key>line</key>
+      <integer>42</integer>
+      <key>column</key>
+      <integer>11</integer>
+      <key>message</key>
+      <string>use &apos;==&apos; to turn this assignment into an equality comparison</string>
+      <key>ID</key>
+      <integer>4137</integer>
+    </dict>
+  </array>
+</dict>

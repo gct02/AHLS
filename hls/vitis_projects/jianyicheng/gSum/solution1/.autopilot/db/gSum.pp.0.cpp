@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/DSS/gSum/src/gSum.cpp"
+# 1 "benchmarks/jianyicheng/gSum/src/gSum.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,20 +155,16 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/DSS/gSum/src/gSum.cpp" 2
-# 10 "HLS-benchmarks/DSS/gSum/src/gSum.cpp"
-# 1 "HLS-benchmarks/DSS/gSum/src/gSum.h" 1
-# 10 "HLS-benchmarks/DSS/gSum/src/gSum.h"
-__attribute__((sdx_kernel("gSum", 0))) double gSum(double A[1000], double B[1000]);
+# 1 "benchmarks/jianyicheng/gSum/src/gSum.cpp" 2
+# 10 "benchmarks/jianyicheng/gSum/src/gSum.cpp"
+# 1 "benchmarks/jianyicheng/gSum/src/gSum.h" 1
+# 10 "benchmarks/jianyicheng/gSum/src/gSum.h"
+double gSum(double A[1000], double B[1000]);
 
 double g(double i);
-# 11 "HLS-benchmarks/DSS/gSum/src/gSum.cpp" 2
+# 11 "benchmarks/jianyicheng/gSum/src/gSum.cpp" 2
 
-__attribute__((sdx_kernel("gSum", 0))) double gSum(double A[1000], double B[1000]){
-#line 19 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=gSum
-# 12 "HLS-benchmarks/DSS/gSum/src/gSum.cpp"
-
+double gSum(double A[1000], double B[1000]){
     double d, s = 0.0;
     int i;
 

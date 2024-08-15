@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp"
+# 1 "benchmarks/jianyicheng/levmarq/src/levmarq.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,18 +155,14 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp" 2
-# 1 "HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.h" 1
+# 1 "benchmarks/jianyicheng/levmarq/src/levmarq.cpp" 2
+# 1 "benchmarks/jianyicheng/levmarq/src/levmarq.h" 1
 void g1(float x, float *out0, float *out1, float *out2);
-__attribute__((sdx_kernel("levmarq", 0))) void levmarq(int dummy,int ny, float dysq[1024], int npar, float g[128], float d[128], float y[1024], float h[16384]);
+void levmarq(int dummy,int ny, float dysq[1024], int npar, float g[128], float d[128], float y[1024], float h[16384]);
 float g2(float y, float x, float g, float weight);
-# 2 "HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp" 2
+# 2 "benchmarks/jianyicheng/levmarq/src/levmarq.cpp" 2
 
-__attribute__((sdx_kernel("levmarq", 0))) void levmarq(int dummy, int ny, float dysq[1024], int npar, float g[128], float d[128], float y[1024], float h[16384]){
-#line 20 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=levmarq
-# 3 "HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp"
-
+void levmarq(int dummy, int ny, float dysq[1024], int npar, float g[128], float d[128], float y[1024], float h[16384]){
   VITIS_LOOP_4_1: for (int x=0; x<ny; x++) {
     float weight = dysq[x];
 

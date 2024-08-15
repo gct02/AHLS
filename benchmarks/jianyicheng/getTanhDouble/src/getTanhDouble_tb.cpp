@@ -9,7 +9,19 @@
 
 #include "getTanhDouble.h"
 #include <iostream>
+
+#include <stdlib.h>
+#include <stdio.h>
 #define K 100
+
+unsigned short lfsr = 0xACE1u;
+unsigned bit;
+
+unsigned _rand()
+{
+	bit  = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
+	return lfsr =  (lfsr >> 1) | (bit << 15);
+}
 
 int main(){
 
@@ -17,7 +29,7 @@ int main(){
     int addr_out[1000],addr_in[1000];
 
     for (int i = 0; i < 1000; i++){
-        A[i] = i % K == 0? ((double)rand()/RAND_MAX*2.0-1.0): 1.2;
+        A[i] = i % K == 0? ((double)_rand()/RAND_MAX*2.0-1.0): 1.2;
 		gold[i] = A[i];
 		addr_out[i] = i;
 	  	addr_in[i] = i;

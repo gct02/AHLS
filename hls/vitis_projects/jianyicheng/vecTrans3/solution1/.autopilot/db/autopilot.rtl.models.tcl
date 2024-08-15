@@ -1,9 +1,19 @@
 set SynModuleInfo {
-  {SRCNAME vecTrans3 MODELNAME vecTrans3 RTLNAME vecTrans3 IS_TOP 1
+  {SRCNAME main_Pipeline_VITIS_LOOP_13_2 MODELNAME main_Pipeline_VITIS_LOOP_13_2 RTLNAME main_main_Pipeline_VITIS_LOOP_13_2
     SUBMODULES {
-      {MODELNAME vecTrans3_fadd_32ns_32ns_32_5_full_dsp_1 RTLNAME vecTrans3_fadd_32ns_32ns_32_5_full_dsp_1 BINDTYPE op TYPE fadd IMPL fulldsp LATENCY 4 ALLOW_PRAGMA 1}
-      {MODELNAME vecTrans3_fmul_32ns_32ns_32_4_max_dsp_1 RTLNAME vecTrans3_fmul_32ns_32ns_32_4_max_dsp_1 BINDTYPE op TYPE fmul IMPL maxdsp LATENCY 3 ALLOW_PRAGMA 1}
-      {MODELNAME vecTrans3_flow_control_loop_pipe RTLNAME vecTrans3_flow_control_loop_pipe BINDTYPE interface TYPE internal_upc_flow_control INSTNAME vecTrans3_flow_control_loop_pipe_U}
+      {MODELNAME main_flow_control_loop_pipe_sequential_init RTLNAME main_flow_control_loop_pipe_sequential_init BINDTYPE interface TYPE internal_upc_flow_control INSTNAME main_flow_control_loop_pipe_sequential_init_U}
+    }
+  }
+  {SRCNAME main_Pipeline_VITIS_LOOP_4_1 MODELNAME main_Pipeline_VITIS_LOOP_4_1 RTLNAME main_main_Pipeline_VITIS_LOOP_4_1
+    SUBMODULES {
+      {MODELNAME main_fadd_32ns_32ns_32_10_full_dsp_1 RTLNAME main_fadd_32ns_32ns_32_10_full_dsp_1 BINDTYPE op TYPE fadd IMPL fulldsp LATENCY 9 ALLOW_PRAGMA 1}
+      {MODELNAME main_fmul_32ns_32ns_32_8_max_dsp_1 RTLNAME main_fmul_32ns_32ns_32_8_max_dsp_1 BINDTYPE op TYPE fmul IMPL maxdsp LATENCY 7 ALLOW_PRAGMA 1}
+      {MODELNAME main_main_Pipeline_VITIS_LOOP_4_1_in_r_ROM_AUTO_1R RTLNAME main_main_Pipeline_VITIS_LOOP_4_1_in_r_ROM_AUTO_1R BINDTYPE storage TYPE rom IMPL auto LATENCY 2 ALLOW_PRAGMA 1}
+    }
+  }
+  {SRCNAME main MODELNAME main RTLNAME main IS_TOP 1
+    SUBMODULES {
+      {MODELNAME main_A_RAM_AUTO_1R1W RTLNAME main_A_RAM_AUTO_1R1W BINDTYPE storage TYPE ram IMPL auto LATENCY 2 ALLOW_PRAGMA 1}
     }
   }
 }

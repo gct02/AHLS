@@ -1,10 +1,17 @@
 set SynModuleInfo {
-  {SRCNAME syr2k_Pipeline_VITIS_LOOP_13_2 MODELNAME syr2k_Pipeline_VITIS_LOOP_13_2 RTLNAME syr2k_syr2k_Pipeline_VITIS_LOOP_13_2
+  {SRCNAME main_Pipeline_VITIS_LOOP_31_1_VITIS_LOOP_32_2 MODELNAME main_Pipeline_VITIS_LOOP_31_1_VITIS_LOOP_32_2 RTLNAME main_main_Pipeline_VITIS_LOOP_31_1_VITIS_LOOP_32_2
     SUBMODULES {
-      {MODELNAME syr2k_fadd_32ns_32ns_32_5_full_dsp_1 RTLNAME syr2k_fadd_32ns_32ns_32_5_full_dsp_1 BINDTYPE op TYPE fadd IMPL fulldsp LATENCY 4 ALLOW_PRAGMA 1}
-      {MODELNAME syr2k_fmul_32ns_32ns_32_4_max_dsp_1 RTLNAME syr2k_fmul_32ns_32ns_32_4_max_dsp_1 BINDTYPE op TYPE fmul IMPL maxdsp LATENCY 3 ALLOW_PRAGMA 1}
-      {MODELNAME syr2k_flow_control_loop_pipe_sequential_init RTLNAME syr2k_flow_control_loop_pipe_sequential_init BINDTYPE interface TYPE internal_upc_flow_control INSTNAME syr2k_flow_control_loop_pipe_sequential_init_U}
+      {MODELNAME main_flow_control_loop_pipe_sequential_init RTLNAME main_flow_control_loop_pipe_sequential_init BINDTYPE interface TYPE internal_upc_flow_control INSTNAME main_flow_control_loop_pipe_sequential_init_U}
     }
   }
-  {SRCNAME syr2k MODELNAME syr2k RTLNAME syr2k IS_TOP 1}
+  {SRCNAME main_Pipeline_VITIS_LOOP_47_4 MODELNAME main_Pipeline_VITIS_LOOP_47_4 RTLNAME main_main_Pipeline_VITIS_LOOP_47_4}
+  {SRCNAME main_Pipeline_VITIS_LOOP_13_2 MODELNAME main_Pipeline_VITIS_LOOP_13_2 RTLNAME main_main_Pipeline_VITIS_LOOP_13_2}
+  {SRCNAME main MODELNAME main RTLNAME main IS_TOP 1
+    SUBMODULES {
+      {MODELNAME main_fadd_32ns_32ns_32_10_full_dsp_1 RTLNAME main_fadd_32ns_32ns_32_10_full_dsp_1 BINDTYPE op TYPE fadd IMPL fulldsp LATENCY 9 ALLOW_PRAGMA 1}
+      {MODELNAME main_fmul_32ns_32ns_32_8_max_dsp_1 RTLNAME main_fmul_32ns_32ns_32_8_max_dsp_1 BINDTYPE op TYPE fmul IMPL maxdsp LATENCY 7 ALLOW_PRAGMA 1}
+      {MODELNAME main_C_RAM_AUTO_1R1W RTLNAME main_C_RAM_AUTO_1R1W BINDTYPE storage TYPE ram IMPL auto LATENCY 2 ALLOW_PRAGMA 1}
+      {MODELNAME main_A_RAM_1WNR_AUTO_1R1W RTLNAME main_A_RAM_1WNR_AUTO_1R1W BINDTYPE storage TYPE ram_1wnr IMPL auto LATENCY 2 ALLOW_PRAGMA 1}
+    }
+  }
 }

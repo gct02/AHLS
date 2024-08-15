@@ -6,8 +6,8 @@
 
 <UserAssignments>
 <unit>ns</unit>
-<ProductFamily>virtexuplusHBM</ProductFamily>
-<Part>xcvu35p-fsvh2104-1-e</Part>
+<ProductFamily>zynq</ProductFamily>
+<Part>xc7z020-clg400-1</Part>
 <TopModelName>los</TopModelName>
 <TargetClockPeriod>5.00</TargetClockPeriod>
 <ClockUncertainty>1.35</ClockUncertainty>
@@ -18,7 +18,7 @@
 <PipelineType>no</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>3.546</EstimatedClockPeriod>
+<EstimatedClockPeriod>5.118</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
@@ -32,7 +32,7 @@
 <Interval-max>undef</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
-<loop_0_VITIS_LOOP_25_1>
+<loop_0_VITIS_LOOP_35_1>
 <Slack>3.65</Slack>
 <TripCount>1024</TripCount>
 <Latency>undef</Latency>
@@ -40,8 +40,8 @@
 <IterationLatency>undef</IterationLatency>
 <InstanceList>
 </InstanceList>
-</loop_0_VITIS_LOOP_25_1>
-<loop_1_VITIS_LOOP_71_3>
+</loop_0_VITIS_LOOP_35_1>
+<loop_1_VITIS_LOOP_81_3>
 <Slack>3.65</Slack>
 <TripCount>1024</TripCount>
 <Latency>undef</Latency>
@@ -49,8 +49,8 @@
 <IterationLatency>undef</IterationLatency>
 <InstanceList>
 </InstanceList>
-</loop_1_VITIS_LOOP_71_3>
-<loop_2_VITIS_LOOP_118_5>
+</loop_1_VITIS_LOOP_81_3>
+<loop_2_VITIS_LOOP_128_5>
 <Slack>3.65</Slack>
 <TripCount>1024</TripCount>
 <Latency>undef</Latency>
@@ -58,8 +58,8 @@
 <IterationLatency>undef</IterationLatency>
 <InstanceList>
 </InstanceList>
-</loop_2_VITIS_LOOP_118_5>
-<loop_3_VITIS_LOOP_165_7>
+</loop_2_VITIS_LOOP_128_5>
+<loop_3_VITIS_LOOP_175_7>
 <Slack>3.65</Slack>
 <TripCount>1024</TripCount>
 <Latency>undef</Latency>
@@ -67,8 +67,8 @@
 <IterationLatency>undef</IterationLatency>
 <InstanceList>
 </InstanceList>
-</loop_3_VITIS_LOOP_165_7>
-<loop_4_VITIS_LOOP_212_9>
+</loop_3_VITIS_LOOP_175_7>
+<loop_4_VITIS_LOOP_222_9>
 <Slack>3.65</Slack>
 <TripCount>1024</TripCount>
 <Latency>undef</Latency>
@@ -76,8 +76,8 @@
 <IterationLatency>undef</IterationLatency>
 <InstanceList>
 </InstanceList>
-</loop_4_VITIS_LOOP_212_9>
-<loop_5_VITIS_LOOP_259_11>
+</loop_4_VITIS_LOOP_222_9>
+<loop_5_VITIS_LOOP_269_11>
 <Slack>3.65</Slack>
 <TripCount>1024</TripCount>
 <Latency>undef</Latency>
@@ -85,8 +85,8 @@
 <IterationLatency>undef</IterationLatency>
 <InstanceList>
 </InstanceList>
-</loop_5_VITIS_LOOP_259_11>
-<loop_6_VITIS_LOOP_306_13>
+</loop_5_VITIS_LOOP_269_11>
+<loop_6_VITIS_LOOP_316_13>
 <Slack>3.65</Slack>
 <TripCount>1024</TripCount>
 <Latency>undef</Latency>
@@ -94,8 +94,8 @@
 <IterationLatency>undef</IterationLatency>
 <InstanceList>
 </InstanceList>
-</loop_6_VITIS_LOOP_306_13>
-<loop_7_VITIS_LOOP_353_15>
+</loop_6_VITIS_LOOP_316_13>
+<loop_7_VITIS_LOOP_363_15>
 <Slack>3.65</Slack>
 <TripCount>1024</TripCount>
 <Latency>undef</Latency>
@@ -103,79 +103,79 @@
 <IterationLatency>undef</IterationLatency>
 <InstanceList>
 </InstanceList>
-</loop_7_VITIS_LOOP_353_15>
+</loop_7_VITIS_LOOP_363_15>
 </SummaryOfLoopLatency>
 <SummaryOfViolations>
-<IssueType>-</IssueType>
+<IssueType>Timing Violation</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/Inter-Block/los/los.cpp:25</SourceLocation>
+<SourceLocation>benchmarks/jianyicheng/los/src/los.cpp:35</SourceLocation>
 <SummaryOfLoopViolations>
-<loop_0_VITIS_LOOP_25_1>
-<Name>loop_0_VITIS_LOOP_25_1</Name>
+<loop_0_VITIS_LOOP_35_1>
+<Name>loop_0_VITIS_LOOP_35_1</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/Inter-Block/los/los.cpp:24</SourceLocation>
-</loop_0_VITIS_LOOP_25_1>
-<loop_1_VITIS_LOOP_71_3>
-<Name>loop_1_VITIS_LOOP_71_3</Name>
+<SourceLocation>benchmarks/jianyicheng/los/src/los.cpp:34</SourceLocation>
+</loop_0_VITIS_LOOP_35_1>
+<loop_1_VITIS_LOOP_81_3>
+<Name>loop_1_VITIS_LOOP_81_3</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/Inter-Block/los/los.cpp:70</SourceLocation>
-</loop_1_VITIS_LOOP_71_3>
-<loop_2_VITIS_LOOP_118_5>
-<Name>loop_2_VITIS_LOOP_118_5</Name>
+<SourceLocation>benchmarks/jianyicheng/los/src/los.cpp:80</SourceLocation>
+</loop_1_VITIS_LOOP_81_3>
+<loop_2_VITIS_LOOP_128_5>
+<Name>loop_2_VITIS_LOOP_128_5</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/Inter-Block/los/los.cpp:117</SourceLocation>
-</loop_2_VITIS_LOOP_118_5>
-<loop_3_VITIS_LOOP_165_7>
-<Name>loop_3_VITIS_LOOP_165_7</Name>
+<SourceLocation>benchmarks/jianyicheng/los/src/los.cpp:127</SourceLocation>
+</loop_2_VITIS_LOOP_128_5>
+<loop_3_VITIS_LOOP_175_7>
+<Name>loop_3_VITIS_LOOP_175_7</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/Inter-Block/los/los.cpp:164</SourceLocation>
-</loop_3_VITIS_LOOP_165_7>
-<loop_4_VITIS_LOOP_212_9>
-<Name>loop_4_VITIS_LOOP_212_9</Name>
+<SourceLocation>benchmarks/jianyicheng/los/src/los.cpp:174</SourceLocation>
+</loop_3_VITIS_LOOP_175_7>
+<loop_4_VITIS_LOOP_222_9>
+<Name>loop_4_VITIS_LOOP_222_9</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/Inter-Block/los/los.cpp:211</SourceLocation>
-</loop_4_VITIS_LOOP_212_9>
-<loop_5_VITIS_LOOP_259_11>
-<Name>loop_5_VITIS_LOOP_259_11</Name>
+<SourceLocation>benchmarks/jianyicheng/los/src/los.cpp:221</SourceLocation>
+</loop_4_VITIS_LOOP_222_9>
+<loop_5_VITIS_LOOP_269_11>
+<Name>loop_5_VITIS_LOOP_269_11</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/Inter-Block/los/los.cpp:258</SourceLocation>
-</loop_5_VITIS_LOOP_259_11>
-<loop_6_VITIS_LOOP_306_13>
-<Name>loop_6_VITIS_LOOP_306_13</Name>
+<SourceLocation>benchmarks/jianyicheng/los/src/los.cpp:268</SourceLocation>
+</loop_5_VITIS_LOOP_269_11>
+<loop_6_VITIS_LOOP_316_13>
+<Name>loop_6_VITIS_LOOP_316_13</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/Inter-Block/los/los.cpp:305</SourceLocation>
-</loop_6_VITIS_LOOP_306_13>
-<loop_7_VITIS_LOOP_353_15>
-<Name>loop_7_VITIS_LOOP_353_15</Name>
+<SourceLocation>benchmarks/jianyicheng/los/src/los.cpp:315</SourceLocation>
+</loop_6_VITIS_LOOP_316_13>
+<loop_7_VITIS_LOOP_363_15>
+<Name>loop_7_VITIS_LOOP_363_15</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/Inter-Block/los/los.cpp:352</SourceLocation>
-</loop_7_VITIS_LOOP_353_15>
+<SourceLocation>benchmarks/jianyicheng/los/src/los.cpp:362</SourceLocation>
+</loop_7_VITIS_LOOP_363_15>
 </SummaryOfLoopViolations>
 </SummaryOfViolations>
 </PerformanceEstimates>
 
 <AreaEstimates>
 <Resources>
-<FF>3265</FF>
-<LUT>7455</LUT>
+<FF>4433</FF>
+<LUT>7377</LUT>
 <BRAM_18K>0</BRAM_18K>
 <DSP>0</DSP>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>
-<BRAM_18K>2688</BRAM_18K>
-<DSP>5952</DSP>
-<FF>1743360</FF>
-<LUT>871680</LUT>
-<URAM>640</URAM>
+<BRAM_18K>280</BRAM_18K>
+<DSP>220</DSP>
+<FF>106400</FF>
+<LUT>53200</LUT>
+<URAM>0</URAM>
 </AvailableResources>
 </AreaEstimates>
 
@@ -256,7 +256,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_0_ce0</name>
@@ -268,7 +267,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_0_q0</name>
@@ -278,9 +276,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_1_address0</name>
@@ -292,7 +289,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_1_ce0</name>
@@ -304,7 +300,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_1_q0</name>
@@ -314,9 +309,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_2_address0</name>
@@ -328,7 +322,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_2_ce0</name>
@@ -340,7 +333,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_2_q0</name>
@@ -350,9 +342,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_3_address0</name>
@@ -364,7 +355,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_3_ce0</name>
@@ -376,7 +366,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_3_q0</name>
@@ -386,9 +375,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_4_address0</name>
@@ -400,7 +388,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_4_ce0</name>
@@ -412,7 +399,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_4_q0</name>
@@ -422,9 +408,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_5_address0</name>
@@ -436,7 +421,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_5_ce0</name>
@@ -448,7 +432,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_5_q0</name>
@@ -458,9 +441,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_6_address0</name>
@@ -472,7 +454,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_6_ce0</name>
@@ -484,7 +465,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_6_q0</name>
@@ -494,9 +474,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_7_address0</name>
@@ -508,7 +487,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_7_ce0</name>
@@ -520,7 +498,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>obstacles_7_q0</name>
@@ -530,9 +507,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_0_address0</name>
@@ -544,7 +520,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_0_ce0</name>
@@ -556,7 +531,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_0_we0</name>
@@ -568,7 +542,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_0_d0</name>
@@ -578,9 +551,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>out</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_1_address0</name>
@@ -592,7 +564,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_1_ce0</name>
@@ -604,7 +575,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_1_we0</name>
@@ -616,7 +586,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_1_d0</name>
@@ -626,9 +595,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>out</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_2_address0</name>
@@ -640,7 +608,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_2_ce0</name>
@@ -652,7 +619,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_2_we0</name>
@@ -664,7 +630,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_2_d0</name>
@@ -674,9 +639,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>out</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_3_address0</name>
@@ -688,7 +652,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_3_ce0</name>
@@ -700,7 +663,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_3_we0</name>
@@ -712,7 +674,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_3_d0</name>
@@ -722,9 +683,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>out</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_4_address0</name>
@@ -736,7 +696,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_4_ce0</name>
@@ -748,7 +707,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_4_we0</name>
@@ -760,7 +718,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_4_d0</name>
@@ -770,9 +727,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>out</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_5_address0</name>
@@ -784,7 +740,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_5_ce0</name>
@@ -796,7 +751,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_5_we0</name>
@@ -808,7 +762,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_5_d0</name>
@@ -818,9 +771,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>out</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_6_address0</name>
@@ -832,7 +784,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_6_ce0</name>
@@ -844,7 +795,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_6_we0</name>
@@ -856,7 +806,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_6_d0</name>
@@ -866,9 +815,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>out</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_7_address0</name>
@@ -880,7 +828,6 @@
 <Dir>out</Dir>
 <Bits>10</Bits>
 <Attribute>address</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_7_ce0</name>
@@ -892,7 +839,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_7_we0</name>
@@ -904,7 +850,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>results_7_d0</name>
@@ -914,9 +859,8 @@
 <IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>out</Dir>
-<Bits>32</Bits>
+<Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
 </RtlPorts>
 </InterfaceSummary>
 

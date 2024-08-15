@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/DSS/gSum/src/gSum_tb.cpp"
+# 1 "benchmarks/jianyicheng/gSum/src/gSum_tb.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,8 +155,8 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/DSS/gSum/src/gSum_tb.cpp" 2
-# 10 "HLS-benchmarks/DSS/gSum/src/gSum_tb.cpp"
+# 1 "benchmarks/jianyicheng/gSum/src/gSum_tb.cpp" 2
+# 10 "benchmarks/jianyicheng/gSum/src/gSum_tb.cpp"
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/iostream" 1 3
 # 37 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/iostream" 3
 
@@ -28324,16 +28324,20 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 
 }
-# 11 "HLS-benchmarks/DSS/gSum/src/gSum_tb.cpp" 2
-# 1 "HLS-benchmarks/DSS/gSum/src/gSum.h" 1
-# 10 "HLS-benchmarks/DSS/gSum/src/gSum.h"
+# 11 "benchmarks/jianyicheng/gSum/src/gSum_tb.cpp" 2
+# 1 "benchmarks/jianyicheng/gSum/src/gSum.h" 1
+# 10 "benchmarks/jianyicheng/gSum/src/gSum.h"
 double gSum(double A[1000], double B[1000]);
 
 double g(double i);
-# 12 "HLS-benchmarks/DSS/gSum/src/gSum_tb.cpp" 2
+# 12 "benchmarks/jianyicheng/gSum/src/gSum_tb.cpp" 2
 
 
-int main(){
+__attribute__((sdx_kernel("main", 0))) int main(){
+#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_gSum.tcl"
+#pragma HLSDIRECTIVE TOP name=main
+# 14 "benchmarks/jianyicheng/gSum/src/gSum_tb.cpp"
+
     double A[1000], B[1000], accum = 0.0, res, k, i;
 
     VITIS_LOOP_17_1: for (int j=0; j<1000; j++)

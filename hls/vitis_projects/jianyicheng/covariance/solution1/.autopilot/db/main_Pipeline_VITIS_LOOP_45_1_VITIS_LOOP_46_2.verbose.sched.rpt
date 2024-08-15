@@ -1,0 +1,171 @@
+
+
+================================================================
+== Vitis HLS Report for 'main_Pipeline_VITIS_LOOP_45_1_VITIS_LOOP_46_2'
+================================================================
+* Date:           Mon Aug 12 18:53:23 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        covariance
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  4.815 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
+    +---------+---------+-----------+-----------+------+------+---------+
+    |     2050|     2050|  10.250 us|  10.250 us|  2050|  2050|       no|
+    +---------+---------+-----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |             Loop Name             |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_45_1_VITIS_LOOP_46_2  |     2048|     2048|         3|          2|          1|  1024|       yes|
+        +-----------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 2, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 1
+  Pipeline-0 : II = 2, D = 3, States = { 1 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 4.81>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%j_1 = alloca i32 1" [benchmarks/jianyicheng/covariance/src/covariance.cpp:46]   --->   Operation 6 'alloca' 'j_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 7 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%indvar_flatten = alloca i32 1"   --->   Operation 8 'alloca' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (1.58ns)   --->   "%store_ln0 = store i11 0, i11 %indvar_flatten"   --->   Operation 9 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 10 [1/1] (1.58ns)   --->   "%store_ln45 = store i6 0, i6 %i" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 10 'store' 'store_ln45' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 11 [1/1] (1.58ns)   --->   "%store_ln46 = store i6 0, i6 %j_1" [benchmarks/jianyicheng/covariance/src/covariance.cpp:46]   --->   Operation 11 'store' 'store_ln46' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc"   --->   Operation 12 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%indvar_flatten_load = load i11 %indvar_flatten" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 13 'load' 'indvar_flatten_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (1.63ns)   --->   "%icmp_ln45 = icmp_eq  i11 %indvar_flatten_load, i11 1024" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 14 'icmp' 'icmp_ln45' <Predicate = true> <Delay = 1.63> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 15 [1/1] (1.63ns)   --->   "%add_ln45 = add i11 %indvar_flatten_load, i11 1" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 15 'add' 'add_ln45' <Predicate = true> <Delay = 1.63> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%br_ln45 = br i1 %icmp_ln45, void %for.inc25, void %VITIS_LOOP_57_4.preheader.exitStub" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 16 'br' 'br_ln45' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%j_1_load = load i6 %j_1" [benchmarks/jianyicheng/covariance/src/covariance.cpp:46]   --->   Operation 17 'load' 'j_1_load' <Predicate = (!icmp_ln45)> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%i_load = load i6 %i" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 18 'load' 'i_load' <Predicate = (!icmp_ln45)> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (1.82ns)   --->   "%icmp_ln46 = icmp_eq  i6 %j_1_load, i6 32" [benchmarks/jianyicheng/covariance/src/covariance.cpp:46]   --->   Operation 19 'icmp' 'icmp_ln46' <Predicate = (!icmp_ln45)> <Delay = 1.82> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 20 [1/1] (1.18ns)   --->   "%select_ln45 = select i1 %icmp_ln46, i6 0, i6 %j_1_load" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 20 'select' 'select_ln45' <Predicate = (!icmp_ln45)> <Delay = 1.18> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 1.18> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 21 [1/1] (1.82ns)   --->   "%add_ln45_1 = add i6 %i_load, i6 1" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 21 'add' 'add_ln45_1' <Predicate = (!icmp_ln45)> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 22 [1/1] (1.58ns)   --->   "%store_ln45 = store i11 %add_ln45, i11 %indvar_flatten" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 22 'store' 'store_ln45' <Predicate = (!icmp_ln45)> <Delay = 1.58>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 42 'ret' 'ret_ln0' <Predicate = (icmp_ln45)> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 3.41>
+ST_2 : Operation 23 [1/1] (1.18ns)   --->   "%select_ln45_1 = select i1 %icmp_ln46, i6 %add_ln45_1, i6 %i_load" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 23 'select' 'select_ln45_1' <Predicate = (!icmp_ln45)> <Delay = 1.18> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 1.18> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%empty = trunc i6 %select_ln45_1" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 24 'trunc' 'empty' <Predicate = (!icmp_ln45)> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%tmp_4 = bitconcatenate i10 @_ssdm_op_BitConcatenate.i10.i5.i5, i5 %empty, i5 0" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 25 'bitconcatenate' 'tmp_4' <Predicate = (!icmp_ln45)> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%zext_ln46 = zext i6 %select_ln45" [benchmarks/jianyicheng/covariance/src/covariance.cpp:46]   --->   Operation 26 'zext' 'zext_ln46' <Predicate = (!icmp_ln45)> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (1.73ns)   --->   "%add_ln47 = add i10 %zext_ln46, i10 %tmp_4" [benchmarks/jianyicheng/covariance/src/covariance.cpp:47]   --->   Operation 27 'add' 'add_ln47' <Predicate = (!icmp_ln45)> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 28 [1/1] (1.82ns)   --->   "%add_ln46 = add i6 %select_ln45, i6 1" [benchmarks/jianyicheng/covariance/src/covariance.cpp:46]   --->   Operation 28 'add' 'add_ln46' <Predicate = (!icmp_ln45)> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 29 [1/1] (1.58ns)   --->   "%store_ln45 = store i6 %select_ln45_1, i6 %i" [benchmarks/jianyicheng/covariance/src/covariance.cpp:45]   --->   Operation 29 'store' 'store_ln45' <Predicate = (!icmp_ln45)> <Delay = 1.58>
+ST_2 : Operation 30 [1/1] (1.58ns)   --->   "%store_ln46 = store i6 %add_ln46, i6 %j_1" [benchmarks/jianyicheng/covariance/src/covariance.cpp:46]   --->   Operation 30 'store' 'store_ln46' <Predicate = (!icmp_ln45)> <Delay = 1.58>
+
+State 3 <SV = 2> <Delay = 3.25>
+ST_3 : Operation 31 [1/1] (0.00ns)   --->   "%specloopname_ln0 = specloopname void @_ssdm_op_SpecLoopName, void @VITIS_LOOP_45_1_VITIS_LOOP_46_2_str"   --->   Operation 31 'specloopname' 'specloopname_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 32 [1/1] (0.00ns)   --->   "%speclooptripcount_ln0 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 1024, i64 1024, i64 1024"   --->   Operation 32 'speclooptripcount' 'speclooptripcount_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 33 [1/1] (0.00ns)   --->   "%specpipeline_ln46 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_2" [benchmarks/jianyicheng/covariance/src/covariance.cpp:46]   --->   Operation 33 'specpipeline' 'specpipeline_ln46' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 34 [1/1] (0.00ns)   --->   "%zext_ln47 = zext i10 %add_ln47" [benchmarks/jianyicheng/covariance/src/covariance.cpp:47]   --->   Operation 34 'zext' 'zext_ln47' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 35 [1/1] (0.00ns)   --->   "%data_addr = getelementptr i32 %data, i64 0, i64 %zext_ln47" [benchmarks/jianyicheng/covariance/src/covariance.cpp:47]   --->   Operation 35 'getelementptr' 'data_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 36 [1/1] (3.25ns)   --->   "%store_ln47 = store i32 0.1, i10 %data_addr" [benchmarks/jianyicheng/covariance/src/covariance.cpp:47]   --->   Operation 36 'store' 'store_ln47' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%data_addr_14 = getelementptr i32 %data_s, i64 0, i64 %zext_ln47" [benchmarks/jianyicheng/covariance/src/covariance.cpp:48]   --->   Operation 37 'getelementptr' 'data_addr_14' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 38 [1/1] (3.25ns)   --->   "%store_ln48 = store i32 0.1, i10 %data_addr_14" [benchmarks/jianyicheng/covariance/src/covariance.cpp:48]   --->   Operation 38 'store' 'store_ln48' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 39 [1/1] (0.00ns)   --->   "%cov_addr = getelementptr i32 %cov, i64 0, i64 %zext_ln47" [benchmarks/jianyicheng/covariance/src/covariance.cpp:49]   --->   Operation 39 'getelementptr' 'cov_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 40 [1/1] (3.25ns)   --->   "%store_ln49 = store i32 0, i10 %cov_addr" [benchmarks/jianyicheng/covariance/src/covariance.cpp:49]   --->   Operation 40 'store' 'store_ln49' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%br_ln46 = br void %for.inc" [benchmarks/jianyicheng/covariance/src/covariance.cpp:46]   --->   Operation 41 'br' 'br_ln46' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 4.815ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln0') of constant 0 on local variable 'indvar_flatten' [7]  (1.588 ns)
+	'load' operation 11 bit ('indvar_flatten_load', benchmarks/jianyicheng/covariance/src/covariance.cpp:45) on local variable 'indvar_flatten' [12]  (0.000 ns)
+	'add' operation 11 bit ('add_ln45', benchmarks/jianyicheng/covariance/src/covariance.cpp:45) [14]  (1.639 ns)
+	'store' operation 0 bit ('store_ln45', benchmarks/jianyicheng/covariance/src/covariance.cpp:45) of variable 'add_ln45', benchmarks/jianyicheng/covariance/src/covariance.cpp:45 on local variable 'indvar_flatten' [38]  (1.588 ns)
+
+ <State 2>: 3.413ns
+The critical path consists of the following:
+	'add' operation 6 bit ('add_ln46', benchmarks/jianyicheng/covariance/src/covariance.cpp:46) [37]  (1.825 ns)
+	'store' operation 0 bit ('store_ln46', benchmarks/jianyicheng/covariance/src/covariance.cpp:46) of variable 'add_ln46', benchmarks/jianyicheng/covariance/src/covariance.cpp:46 on local variable 'j', benchmarks/jianyicheng/covariance/src/covariance.cpp:46 [40]  (1.588 ns)
+
+ <State 3>: 3.254ns
+The critical path consists of the following:
+	'getelementptr' operation 10 bit ('data_addr', benchmarks/jianyicheng/covariance/src/covariance.cpp:47) [31]  (0.000 ns)
+	'store' operation 0 bit ('store_ln47', benchmarks/jianyicheng/covariance/src/covariance.cpp:47) of constant 0.1 on array 'data' [32]  (3.254 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

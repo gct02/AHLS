@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/PNAnalyser/chaosNCG/src/chaosNCG.cpp"
+# 1 "benchmarks/jianyicheng/chaosNCG/src/chaosNCG.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,34 +155,22 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/PNAnalyser/chaosNCG/src/chaosNCG.cpp" 2
-# 1 "HLS-benchmarks/PNAnalyser/chaosNCG/src/chaosNCG.h" 1
+# 1 "benchmarks/jianyicheng/chaosNCG/src/chaosNCG.cpp" 2
+# 1 "benchmarks/jianyicheng/chaosNCG/src/chaosNCG.h" 1
 void g(int b0, int b1, int p0, int p1, int X, int Y, int *pp0, int *pp1, int *out0, int *out1);
-__attribute__((sdx_kernel("chaosNCG", 0))) void chaosNCG(int I, int bo, int M[2000], int X, int Y, int params0, int params1, int buffer[2000]);
-# 2 "HLS-benchmarks/PNAnalyser/chaosNCG/src/chaosNCG.cpp" 2
+void chaosNCG(int I, int bo, int M[2000], int X, int Y, int params0, int params1, int buffer[2000]);
+# 2 "benchmarks/jianyicheng/chaosNCG/src/chaosNCG.cpp" 2
 
-__attribute__((sdx_kernel("chaosNCG", 0))) void chaosNCG(int I, int bo, int M[2000], int X, int Y, int params0, int params1, int buffer[2000]){
-#line 19 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=chaosNCG
-# 3 "HLS-benchmarks/PNAnalyser/chaosNCG/src/chaosNCG.cpp"
-
+void chaosNCG(int I, int bo, int M[2000], int X, int Y, int params0, int params1, int buffer[2000]){
  int bound = 2*bo;
  int p0 = params0;
  int p1 = params1;
  VITIS_LOOP_7_1: for (int i = 0; i < bound; i += 2) {
-
    int a = M[I+i-2], b = M[I+i+2];
    int b0 = buffer[a], b1 = buffer[b];
-    int pp0, pp1, out0, out1;
+      int pp0, pp1, out0, out1;
       g(b0, b1, p0, p1, X, Y, &pp0, &pp1, &out0, &out1);
-
-
-
-
    buffer[a] = out0;
-
-
-
       p0 = pp0;
       p1 = pp1;
    buffer[b] = out1;

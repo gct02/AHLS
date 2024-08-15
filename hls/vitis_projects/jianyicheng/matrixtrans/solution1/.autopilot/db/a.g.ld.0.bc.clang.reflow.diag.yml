@@ -1,80 +1,27 @@
---- !HLSReportInfo
-Pass:            auto-loop-pipeline
-Name:            AutoLoopPipeline
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp, 
+                   Line: 66, Column: 0 }
+Function:        main
 Args:            
-  - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        loop_0
-  - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixtrans/matrixtrans.cpp:23:3'
-  - String:          ' '
+  - String:          'Inlining function '''
+  - Callee:          'matrixtrans(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp, 
+                       Line: 31, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp, 
+                       Line: 66, Column: 0 }
+  - String:          ''''
 ...
 --- !HLSReportInfo
 Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        loop_1
+  - LoopName:        VITIS_LOOP_72_1
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixtrans/matrixtrans.cpp:27:3'
-  - String:          ' '
-...
---- !HLSReportInfo
-Pass:            auto-loop-pipeline
-Name:            AutoLoopPipeline
-Args:            
-  - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        loop_2
-  - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixtrans/matrixtrans.cpp:31:3'
-  - String:          ' '
-...
---- !HLSReportInfo
-Pass:            auto-loop-pipeline
-Name:            AutoLoopPipeline
-Args:            
-  - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        loop_3
-  - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixtrans/matrixtrans.cpp:35:3'
-  - String:          ' '
-...
---- !HLSReportInfo
-Pass:            auto-loop-pipeline
-Name:            AutoLoopPipeline
-Args:            
-  - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        loop_4
-  - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixtrans/matrixtrans.cpp:39:3'
-  - String:          ' '
-...
---- !HLSReportInfo
-Pass:            auto-loop-pipeline
-Name:            AutoLoopPipeline
-Args:            
-  - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        loop_5
-  - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixtrans/matrixtrans.cpp:43:3'
-  - String:          ' '
-...
---- !HLSReportInfo
-Pass:            auto-loop-pipeline
-Name:            AutoLoopPipeline
-Args:            
-  - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        loop_6
-  - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixtrans/matrixtrans.cpp:47:3'
-  - String:          ' '
-...
---- !HLSReportInfo
-Pass:            auto-loop-pipeline
-Name:            AutoLoopPipeline
-Args:            
-  - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        loop_7
-  - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/matrixtrans/matrixtrans.cpp:51:3'
+  - LoopLoc:         'benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72:20'
   - String:          ' '
 ...

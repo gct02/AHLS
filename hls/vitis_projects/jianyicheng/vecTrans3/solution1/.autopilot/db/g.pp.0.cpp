@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/PNAnalyser/vecTrans3/src/g.cpp"
+# 1 "benchmarks/jianyicheng/vecTrans3/src/g.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,13 +155,12 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/PNAnalyser/vecTrans3/src/g.cpp" 2
-# 1 "HLS-benchmarks/PNAnalyser/vecTrans3/src/vecTrans3.h" 1
+# 1 "benchmarks/jianyicheng/vecTrans3/src/g.cpp" 2
+# 1 "benchmarks/jianyicheng/vecTrans3/src/vecTrans3.h" 1
 void vecTrans3(float A[2000], int in[1000], int out[1000]);
 float g(float d);
-# 2 "HLS-benchmarks/PNAnalyser/vecTrans3/src/g.cpp" 2
+# 2 "benchmarks/jianyicheng/vecTrans3/src/g.cpp" 2
 
 float g(float d){
-#pragma SS II=1
- return (((((d+0.2f)*d+0.3f)*d+0.6f)*d+0.2f)*d+0.7f)*d+0.2f;
+       return (((((d+0.2f)*d+0.3f)*d+0.6f)*d+0.2f)*d+0.7f)*d+0.2f;
 }

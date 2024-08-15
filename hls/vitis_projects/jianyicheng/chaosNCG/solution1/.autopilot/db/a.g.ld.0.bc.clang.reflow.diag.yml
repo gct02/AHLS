@@ -1,19 +1,63 @@
 --- !Passed
 Pass:            reflow-inliner
 Name:            Inline
-DebugLoc:        { File: HLS-benchmarks/PNAnalyser/chaosNCG/src/chaosNCG.cpp, 
+DebugLoc:        { File: benchmarks/jianyicheng/chaosNCG/src/chaosNCG.cpp, 
                    Line: 3, Column: 0 }
 Function:        _Z8chaosNCGiiPiiiiiS_
 Args:            
   - String:          'Inlining function '''
   - Callee:          'g(int, int, int, int, int, int, int*, int*, int*, int*)'
-    DebugLoc:        { File: HLS-benchmarks/PNAnalyser/chaosNCG/src/g.cpp, 
+    DebugLoc:        { File: benchmarks/jianyicheng/chaosNCG/src/g.cpp, 
                        Line: 3, Column: 0 }
   - String:          ''' into '''
   - Caller:          'chaosNCG(int, int, int*, int, int, int, int, int*)'
-    DebugLoc:        { File: HLS-benchmarks/PNAnalyser/chaosNCG/src/chaosNCG.cpp, 
+    DebugLoc:        { File: benchmarks/jianyicheng/chaosNCG/src/chaosNCG.cpp, 
                        Line: 3, Column: 0 }
   - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/chaosNCG/src/chaosNCG_tb.cpp, 
+                   Line: 14, Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          '_rand()'
+    DebugLoc:        { File: benchmarks/jianyicheng/chaosNCG/src/chaosNCG_tb.cpp, 
+                       Line: 9, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/chaosNCG/src/chaosNCG_tb.cpp, 
+                       Line: 14, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/chaosNCG/src/chaosNCG_tb.cpp, 
+                   Line: 14, Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'chaosNCG(int, int, int*, int, int, int, int, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/chaosNCG/src/chaosNCG.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/chaosNCG/src/chaosNCG_tb.cpp, 
+                       Line: 14, Column: 0 }
+  - String:          ''''
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_18_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/chaosNCG/src/chaosNCG_tb.cpp:18:19'
+  - String:          ' '
 ...
 --- !HLSReportInfo
 Pass:            auto-loop-pipeline
@@ -22,6 +66,6 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        VITIS_LOOP_7_1
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/PNAnalyser/chaosNCG/src/chaosNCG.cpp:7:18'
+  - LoopLoc:         'benchmarks/jianyicheng/chaosNCG/src/chaosNCG.cpp:7:18'
   - String:          ' '
 ...

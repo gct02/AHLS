@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp"
+# 1 "benchmarks/jianyicheng/levmarq/src/g1.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,15 +155,14 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp" 2
-# 1 "HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.h" 1
+# 1 "benchmarks/jianyicheng/levmarq/src/g1.cpp" 2
+# 1 "benchmarks/jianyicheng/levmarq/src/levmarq.h" 1
 void g1(float x, float *out0, float *out1, float *out2);
 void levmarq(int dummy,int ny, float dysq[1024], int npar, float g[128], float d[128], float y[1024], float h[16384]);
 float g2(float y, float x, float g, float weight);
-# 2 "HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp" 2
+# 2 "benchmarks/jianyicheng/levmarq/src/g1.cpp" 2
 
 void g1(float x, float *out0, float *out1, float *out2){
-#pragma SS II = 2
  float d = -0.67f * x;
  float exp_d = (((((d+0.2f)*d+0.3f)*d+0.6f)*d+0.2f)*d+0.7f)*d+0.2f;
  *out0 = 1.0f - exp_d;

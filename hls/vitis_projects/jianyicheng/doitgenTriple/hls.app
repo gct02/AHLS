@@ -1,7 +1,7 @@
-<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" projectType="C/C++" name="doitgenTriple" top="doitgenTriple">
+<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" top="main" name="doitgenTriple">
     <files>
-        <file name="HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
-        <file name="HLS-benchmarks/C-Slow/correlation/doitgenTriple.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
+        <file name="benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.h" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
+        <file name="benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
     </files>
     <solutions>
         <solution name="solution1" status=""/>

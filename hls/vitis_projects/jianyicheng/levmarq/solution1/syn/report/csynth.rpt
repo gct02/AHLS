@@ -1,63 +1,48 @@
 
 
 ================================================================
-== Synthesis Summary Report of 'levmarq'
+== Synthesis Summary Report of 'main'
 ================================================================
 + General Information: 
-    * Date:           Sun Jun 23 03:48:04 2024
+    * Date:           Mon Aug 12 18:55:23 2024
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        levmarq
     * Solution:       solution1 (Vivado IP Flow Target)
-    * Product family: virtexuplusHBM
-    * Target device:  xcvu35p-fsvh2104-1-e
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
     
 
 + Performance & Resource Estimates: 
     
     PS: '+' for module; 'o' for loop; '*' for dataflow
-    +---------------------------------------+--------+-------+------------+-----------+------------+------------+------------+----------+------+----------+------------+------------+-----+
-    |                Modules                |  Issue |       |  Latency   |  Latency  |  Iteration |            |    Trip    |          |      |          |            |            |     |
-    |                & Loops                |  Type  | Slack |  (cycles)  |    (ns)   |   Latency  |  Interval  |    Count   | Pipelined| BRAM |    DSP   |     FF     |     LUT    | URAM|
-    +---------------------------------------+--------+-------+------------+-----------+------------+------------+------------+----------+------+----------+------------+------------+-----+
-    |+ levmarq                              |  Timing|  -0.31|           -|          -|           -|           -|           -|        no|     -|  15 (~0%)|  2295 (~0%)|  2230 (~0%)|    -|
-    | o VITIS_LOOP_4_1                      |       -|   3.65|           -|          -|           -|           -|           -|        no|     -|         -|           -|           -|    -|
-    |  o VITIS_LOOP_14_2                    |       -|   3.65|           -|          -|  2147483685|           -|           -|        no|     -|         -|           -|           -|    -|
-    |   + levmarq_Pipeline_VITIS_LOOP_19_3  |       -|   0.07|  2147483664|  1.074e+10|           -|  2147483664|           -|        no|     -|         -|   386 (~0%)|   223 (~0%)|    -|
-    |    o VITIS_LOOP_19_3                  |       -|   3.65|  2147483662|  1.074e+10|          16|           1|  2147483648|       yes|     -|         -|           -|           -|    -|
-    +---------------------------------------+--------+-------+------------+-----------+------------+------------+------------+----------+------+----------+------------+------------+-----+
+    +----------------------------------------+--------+-------+----------+-----------+----------+----------+-------+----------+----------+---------+-----------+-----------+-----+
+    |                 Modules                |  Issue |       | Latency  |  Latency  | Iteration|          |  Trip |          |          |         |           |           |     |
+    |                 & Loops                |  Type  | Slack | (cycles) |    (ns)   |  Latency | Interval | Count | Pipelined|   BRAM   |   DSP   |     FF    |    LUT    | URAM|
+    +----------------------------------------+--------+-------+----------+-----------+----------+----------+-------+----------+----------+---------+-----------+-----------+-----+
+    |+ main                                  |  Timing|  -2.66|  25836689|  1.631e+08|         -|  25836690|      -|        no|  38 (13%)|  15 (6%)|  3351 (3%)|  4508 (8%)|    -|
+    | + main_Pipeline_VITIS_LOOP_26_1        |  Timing|  -2.66|      1033|  6.520e+03|         -|      1033|      -|        no|         -|        -|  280 (~0%)|  156 (~0%)|    -|
+    |  o VITIS_LOOP_26_1                     |       -|   3.65|      1031|  6.508e+03|         9|         1|   1024|       yes|         -|        -|          -|          -|    -|
+    | + main_Pipeline_VITIS_LOOP_36_3        |  Timing|  -1.47|     16386|  8.390e+04|         -|     16386|      -|        no|         -|        -|   33 (~0%)|   81 (~0%)|    -|
+    |  o VITIS_LOOP_36_3                     |       -|   3.65|     16384|  8.389e+04|         2|         1|  16384|       yes|         -|        -|          -|          -|    -|
+    | + main_Pipeline_VITIS_LOOP_31_2        |  Timing|  -2.66|       137|    864.744|         -|       137|      -|        no|         -|        -|  169 (~0%)|  123 (~0%)|    -|
+    |  o VITIS_LOOP_31_2                     |       -|   3.65|       135|    852.120|         9|         1|    128|       yes|         -|        -|          -|          -|    -|
+    | + levmarq                              |  Timing|  -2.66|  25820161|  1.630e+08|         -|  25820161|      -|        no|         -|  15 (6%)|  2859 (2%)|  3830 (7%)|    -|
+    |  o VITIS_LOOP_4_1                      |       -|   3.65|  25820160|  1.630e+08|     25215|         -|   1024|        no|         -|        -|          -|          -|    -|
+    |   o VITIS_LOOP_14_2                    |       -|   3.65|     25088|  1.584e+05|       196|         -|    128|        no|         -|        -|          -|          -|    -|
+    |    + levmarq_Pipeline_VITIS_LOOP_19_3  |  Timing|  -1.44|       157|    799.287|         -|       157|      -|        no|         -|        -|  381 (~0%)|  149 (~0%)|    -|
+    |     o VITIS_LOOP_19_3                  |       -|   3.65|       155|    789.105|        29|         1|    128|       yes|         -|        -|          -|          -|    -|
+    +----------------------------------------+--------+-------+----------+-----------+----------+----------+-------+----------+----------+---------+-----------+-----------+-----+
 
 
 ================================================================
 == HW Interfaces
 ================================================================
-* AP_MEMORY
-+---------------+-----------+----------+
-| Port          | Direction | Bitwidth |
-+---------------+-----------+----------+
-| d_address0    | out       | 7        |
-| d_d0          | out       | 32       |
-| d_q0          | in        | 32       |
-| dysq_address0 | out       | 10       |
-| dysq_q0       | in        | 32       |
-| g_address0    | out       | 7        |
-| g_d0          | out       | 32       |
-| g_q0          | in        | 32       |
-| h_address0    | out       | 14       |
-| h_address1    | out       | 14       |
-| h_d0          | out       | 32       |
-| h_q1          | in        | 32       |
-| y_address0    | out       | 10       |
-| y_q0          | in        | 32       |
-+---------------+-----------+----------+
-
 * Other Ports
-+-------+---------+-----------+----------+
-| Port  | Mode    | Direction | Bitwidth |
-+-------+---------+-----------+----------+
-| dummy | ap_none | in        | 32       |
-| npar  | ap_none | in        | 32       |
-| ny    | ap_none | in        | 32       |
-+-------+---------+-----------+----------+
++-----------+-----------+----------+
+| Port      | Direction | Bitwidth |
++-----------+-----------+----------+
+| ap_return | out       | 32       |
++-----------+-----------+----------+
 
 * TOP LEVEL CONTROL
 +-----------+------------+-----------------------------------+
@@ -76,128 +61,112 @@
 +----------+-----------+----------+
 | Argument | Direction | Datatype |
 +----------+-----------+----------+
-| dummy    | in        | int      |
-| ny       | in        | int      |
-| dysq     | in        | float*   |
-| npar     | in        | int      |
-| g        | inout     | float*   |
-| d        | inout     | float*   |
-| y        | in        | float*   |
-| h        | inout     | float*   |
+| return   | out       | int      |
 +----------+-----------+----------+
 
 * SW-to-HW Mapping
-+----------+---------------+---------+----------+
-| Argument | HW Interface  | HW Type | HW Usage |
-+----------+---------------+---------+----------+
-| dummy    | dummy         | port    |          |
-| ny       | ny            | port    |          |
-| dysq     | dysq_address0 | port    | offset   |
-| dysq     | dysq_ce0      | port    |          |
-| dysq     | dysq_q0       | port    |          |
-| npar     | npar          | port    |          |
-| g        | g_address0    | port    | offset   |
-| g        | g_ce0         | port    |          |
-| g        | g_we0         | port    |          |
-| g        | g_d0          | port    |          |
-| g        | g_q0          | port    |          |
-| d        | d_address0    | port    | offset   |
-| d        | d_ce0         | port    |          |
-| d        | d_we0         | port    |          |
-| d        | d_d0          | port    |          |
-| d        | d_q0          | port    |          |
-| y        | y_address0    | port    | offset   |
-| y        | y_ce0         | port    |          |
-| y        | y_q0          | port    |          |
-| h        | h_address0    | port    | offset   |
-| h        | h_ce0         | port    |          |
-| h        | h_we0         | port    |          |
-| h        | h_d0          | port    |          |
-| h        | h_address1    | port    | offset   |
-| h        | h_ce1         | port    |          |
-| h        | h_q1          | port    |          |
-+----------+---------------+---------+----------+
++----------+--------------+---------+
+| Argument | HW Interface | HW Type |
++----------+--------------+---------+
+| return   | ap_return    | port    |
++----------+--------------+---------+
 
 
 ================================================================
 == Bind Op Report
 ================================================================
-+------------------------------------------+-----+--------+------------+------+---------+---------+
-| Name                                     | DSP | Pragma | Variable   | Op   | Impl    | Latency |
-+------------------------------------------+-----+--------+------------+------+---------+---------+
-| + levmarq                                | 15  |        |            |      |         |         |
-|   add_ln4_fu_362_p2                      |     |        | add_ln4    | add  | fabric  | 0       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | d_1        | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | add_i      | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul1_i     | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | add2_i     | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul3_i     | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | add4_i     | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul5_i     | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | add6_i     | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul7_i     | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | add8_i     | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul9_i     | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | exp_d      | fadd | fulldsp | 4       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | out0       | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U15      | 3   |        | d_2        | fmul | maxdsp  | 3       |
-|   fadd_32ns_32ns_32_5_full_dsp_1_U12     | 2   |        | add12_i    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U15      | 3   |        | mul13_i    | fmul | maxdsp  | 3       |
-|   fadd_32ns_32ns_32_5_full_dsp_1_U12     | 2   |        | add14_i    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U15      | 3   |        | mul15_i    | fmul | maxdsp  | 3       |
-|   fadd_32ns_32ns_32_5_full_dsp_1_U12     | 2   |        | add16_i    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U15      | 3   |        | mul17_i    | fmul | maxdsp  | 3       |
-|   fadd_32ns_32ns_32_5_full_dsp_1_U12     | 2   |        | add18_i    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U15      | 3   |        | mul19_i    | fmul | maxdsp  | 3       |
-|   fadd_32ns_32ns_32_5_full_dsp_1_U12     | 2   |        | add20_i    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U15      | 3   |        | mul21_i    | fmul | maxdsp  | 3       |
-|   fadd_32ns_32ns_32_5_full_dsp_1_U12     | 2   |        | exp_d_3    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U16      | 3   |        | d_3        | fmul | maxdsp  | 3       |
-|   fadd_32ns_32ns_32_5_full_dsp_1_U13     | 2   |        | add24_i    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U16      | 3   |        | mul25_i    | fmul | maxdsp  | 3       |
-|   fadd_32ns_32ns_32_5_full_dsp_1_U13     | 2   |        | add26_i    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U16      | 3   |        | mul27_i    | fmul | maxdsp  | 3       |
-|   fadd_32ns_32ns_32_5_full_dsp_1_U13     | 2   |        | add28_i    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U16      | 3   |        | mul29_i    | fmul | maxdsp  | 3       |
-|   fadd_32ns_32ns_32_5_full_dsp_1_U13     | 2   |        | add30_i    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U16      | 3   |        | mul31_i    | fmul | maxdsp  | 3       |
-|   fadd_32ns_32ns_32_5_full_dsp_1_U13     | 2   |        | add32_i    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U16      | 3   |        | mul33_i    | fmul | maxdsp  | 3       |
-|   fadd_32ns_32ns_32_5_full_dsp_1_U13     | 2   |        | exp_d_2    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul36_i    | fmul | maxdsp  | 3       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | out2       | fmul | maxdsp  | 3       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | d_4        | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | add_i1     | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul1_i1    | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | add2_i1    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul3_i1    | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | add4_i1    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul5_i1    | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | add6_i1    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul7_i1    | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | add8_i1    | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul9_i1    | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | dout       | fadd | fulldsp | 4       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | sub_i      | fadd | fulldsp | 4       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul11_i    | fmul | maxdsp  | 3       |
-|   add_ln14_fu_404_p2                     |     |        | add_ln14   | add  | fabric  | 0       |
-|   mul_7s_7s_7_1_1_U18                    |     |        | mul_ln15   | mul  | auto    | 0       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul12_i    | fmul | maxdsp  | 3       |
-|   fmul_32ns_32ns_32_4_max_dsp_1_U14      | 3   |        | mul13_i1   | fmul | maxdsp  | 3       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | k          | fadd | fulldsp | 4       |
-|   faddfsub_32ns_32ns_32_5_full_dsp_1_U11 | 2   |        | add        | fadd | fulldsp | 4       |
-|   add_ln14_1_fu_429_p2                   |     |        | add_ln14_1 | add  | fabric  | 0       |
-|  + levmarq_Pipeline_VITIS_LOOP_19_3      | 0   |        |            |      |         |         |
-|    add_ln19_fu_156_p2                    |     |        | add_ln19   | add  | fabric  | 0       |
-|    add_ln20_1_fu_169_p2                  |     |        | add_ln20_1 | add  | fabric  | 0       |
-|    add_ln20_fu_179_p2                    |     |        | add_ln20   | add  | fabric  | 0       |
-+------------------------------------------+-----+--------+------------+------+---------+---------+
++--------------------------------------------+-----+--------+------------+------+---------+---------+
+| Name                                       | DSP | Pragma | Variable   | Op   | Impl    | Latency |
++--------------------------------------------+-----+--------+------------+------+---------+---------+
+| + main                                     | 15  |        |            |      |         |         |
+|  + main_Pipeline_VITIS_LOOP_26_1           | 0   |        |            |      |         |         |
+|    add_ln26_fu_124_p2                      |     |        | add_ln26   | add  | fabric  | 0       |
+|  + main_Pipeline_VITIS_LOOP_36_3           | 0   |        |            |      |         |         |
+|    add_ln36_fu_62_p2                       |     |        | add_ln36   | add  | fabric  | 0       |
+|  + main_Pipeline_VITIS_LOOP_31_2           | 0   |        |            |      |         |         |
+|    add_ln31_fu_113_p2                      |     |        | add_ln31   | add  | fabric  | 0       |
+|  + levmarq                                 | 15  |        |            |      |         |         |
+|    add_ln4_fu_323_p2                       |     |        | add_ln4    | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | d_1        | fmul | maxdsp  | 7       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U25       | 2   |        | add_i      | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U26       | 3   |        | mul1_i     | fmul | maxdsp  | 7       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | add2_i     | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul3_i     | fmul | maxdsp  | 7       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | add4_i     | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul5_i     | fmul | maxdsp  | 7       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | add6_i     | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul7_i     | fmul | maxdsp  | 7       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | add8_i     | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul9_i     | fmul | maxdsp  | 7       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | exp_d      | fadd | fulldsp | 9       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | out0       | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U25       | 3   |        | d_2        | fmul | maxdsp  | 7       |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U22     | 2   |        | add12_i    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U25       | 3   |        | mul13_i    | fmul | maxdsp  | 7       |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U22     | 2   |        | add14_i    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U25       | 3   |        | mul15_i    | fmul | maxdsp  | 7       |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U22     | 2   |        | add16_i    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U25       | 3   |        | mul17_i    | fmul | maxdsp  | 7       |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U22     | 2   |        | add18_i    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U25       | 3   |        | mul19_i    | fmul | maxdsp  | 7       |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U22     | 2   |        | add20_i    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U25       | 3   |        | mul21_i    | fmul | maxdsp  | 7       |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U22     | 2   |        | exp_d_3    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U26       | 3   |        | d_3        | fmul | maxdsp  | 7       |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U23     | 2   |        | add24_i    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U26       | 3   |        | mul25_i    | fmul | maxdsp  | 7       |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U23     | 2   |        | add26_i    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U26       | 3   |        | mul27_i    | fmul | maxdsp  | 7       |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U23     | 2   |        | add28_i    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U26       | 3   |        | mul29_i    | fmul | maxdsp  | 7       |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U23     | 2   |        | add30_i    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U26       | 3   |        | mul31_i    | fmul | maxdsp  | 7       |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U23     | 2   |        | add32_i    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U26       | 3   |        | mul33_i    | fmul | maxdsp  | 7       |
+|    fadd_32ns_32ns_32_10_full_dsp_1_U23     | 2   |        | exp_d_2    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul36_i    | fmul | maxdsp  | 7       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | out2       | fmul | maxdsp  | 7       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | d_4        | fmul | maxdsp  | 7       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | add_i1     | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul1_i1    | fmul | maxdsp  | 7       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | add2_i1    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul3_i1    | fmul | maxdsp  | 7       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | add4_i1    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul5_i1    | fmul | maxdsp  | 7       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | add6_i1    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul7_i1    | fmul | maxdsp  | 7       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | add8_i1    | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul9_i1    | fmul | maxdsp  | 7       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | dout       | fadd | fulldsp | 9       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | sub_i      | fadd | fulldsp | 9       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul11_i    | fmul | maxdsp  | 7       |
+|    add_ln14_fu_349_p2                      |     |        | add_ln14   | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul12_i    | fmul | maxdsp  | 7       |
+|    fmul_32ns_32ns_32_8_max_dsp_1_U24       | 3   |        | mul13_i1   | fmul | maxdsp  | 7       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | k          | fadd | fulldsp | 9       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U21 | 2   |        | add        | fadd | fulldsp | 9       |
+|    add_ln14_1_fu_365_p2                    |     |        | add_ln14_1 | add  | fabric  | 0       |
+|   + levmarq_Pipeline_VITIS_LOOP_19_3       | 0   |        |            |      |         |         |
+|     add_ln19_fu_130_p2                     |     |        | add_ln19   | add  | fabric  | 0       |
+|     add_ln20_fu_145_p2                     |     |        | add_ln20   | add  | fabric  | 0       |
++--------------------------------------------+-----+--------+------------+------+---------+---------+
 
 
 ================================================================
 == Storage Report
 ================================================================
-  No bind storage info in design
++----------+---------------+------+------+------+--------+----------+------+---------+------------------+
+| Name     | Usage         | Type | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|          |               |      |      |      |        |          |      |         | Banks            |
++----------+---------------+------+------+------+--------+----------+------+---------+------------------+
+| + main   |               |      | 38   | 0    |        |          |      |         |                  |
+|   dysq_U | ram_1p array  |      | 2    |      |        | dysq     | auto | 1       | 32, 1024, 1      |
+|   g_U    | ram_1p array  |      | 2    |      |        | g        | auto | 1       | 32, 128, 1       |
+|   d_U    | ram_1p array  |      | 2    |      |        | d        | auto | 1       | 32, 128, 1       |
+|   y_U    | ram_1p array  |      | 2    |      |        | y        | auto | 1       | 32, 1024, 1      |
+|   h_U    | ram_s2p array |      | 32   |      |        | h        | auto | 1       | 32, 16384, 1     |
++----------+---------------+------+------+------+--------+----------+------+---------+------------------+
+
 
 ================================================================
 == Pragma Report

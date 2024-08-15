@@ -1,0 +1,13 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/chaosNCG/solution1/.autopilot/db/chaosNCG_tb.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_18_1:  '
+    FileOffset:      18
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/benchmarks/jianyicheng/chaosNCG/src/chaosNCG_tb.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/chaosNCG/solution1/.autopilot/db/chaosNCG_tb.pp.0.cpp
+        Offset:          68513
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_18_1: '
+...

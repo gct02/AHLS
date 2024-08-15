@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/PNAnalyser/vecTrans2/src/vecTrans2.cpp"
+# 1 "benchmarks/jianyicheng/vecTrans2/src/vecTrans2.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,17 +155,13 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/PNAnalyser/vecTrans2/src/vecTrans2.cpp" 2
-# 1 "HLS-benchmarks/PNAnalyser/vecTrans2/src/vecTrans2.h" 1
-__attribute__((sdx_kernel("vecTrans2", 0))) void vecTrans2(int A[1024], int b[1024]);
+# 1 "benchmarks/jianyicheng/vecTrans2/src/vecTrans2.cpp" 2
+# 1 "benchmarks/jianyicheng/vecTrans2/src/vecTrans2.h" 1
+void vecTrans2(int A[1024], int b[1024]);
 int g(int d);
-# 2 "HLS-benchmarks/PNAnalyser/vecTrans2/src/vecTrans2.cpp" 2
+# 2 "benchmarks/jianyicheng/vecTrans2/src/vecTrans2.cpp" 2
 
-__attribute__((sdx_kernel("vecTrans2", 0))) void vecTrans2(int A[1024], int b[1024]) {
-#line 19 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=vecTrans2
-# 3 "HLS-benchmarks/PNAnalyser/vecTrans2/src/vecTrans2.cpp"
-
+void vecTrans2(int A[1024], int b[1024]) {
   VITIS_LOOP_4_1: for (int i = 0; i < 1000; i++) {
     int d = A[i];
     if (d > 0)

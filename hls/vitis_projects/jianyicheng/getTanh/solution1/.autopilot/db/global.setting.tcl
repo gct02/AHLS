@@ -1,5 +1,5 @@
 
-set TopModule "getTanh"
+set TopModule "main"
 set ClockPeriod 5
 set ClockList ap_clk
 set HasVivadoClockPeriod 0
@@ -23,7 +23,7 @@ set ResetRegisterNum 0
 set FsmEncStyle onehot
 set MaxFanout 0
 set RtlPrefix {}
-set RtlSubPrefix getTanh_
+set RtlSubPrefix main_
 set ExtraCCFlags {}
 set ExtraCLdFlags {}
 set SynCheckOptions {}
@@ -41,9 +41,9 @@ set ExportMCPathFlag 0
 set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
-set TargetInfo xcvu35p:-fsvh2104:-1-e
-set SourceFiles {sc {} c {../../../HLS-benchmarks/DSS/getTanh/src/getTanh.cpp ../../../HLS-benchmarks/DSS/getTanh/src/g.cpp ../../../HLS-benchmarks/DSS/getTanh/src/inlined.cpp}}
-set SourceFlags {sc {} c {{} {} {}}}
+set TargetInfo xc7z020:-clg400:-1
+set SourceFiles {sc {} c {../../../../../benchmarks/jianyicheng/getTanh/src/getTanh.cpp ../../../../../benchmarks/jianyicheng/getTanh/src/g.cpp ../../../../../benchmarks/jianyicheng/getTanh/src/inlined.cpp ../../../../../benchmarks/jianyicheng/getTanh/src/getTanh_tb.cpp}}
+set SourceFlags {sc {} c {{} {} {} {}}}
 set DirectiveFile {}
 set TBFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set SpecLanguage C
@@ -56,10 +56,10 @@ set ExtraGlobalOptions {"area_timing" 1 "clock_gate" 1 "impl_flow" map "power_ga
 set TBTVFileNotFound {}
 set AppFile ../hls.app
 set ApsFile solution1.aps
-set AvePath ../../../.
+set AvePath ../../../../../.
 set DefaultPlatform DefaultPlatform
 set multiClockList {}
 set SCPortClockMap {}
 set intNbAccess 0
-set PlatformFiles {{DefaultPlatform {xilinx/virtexuplus/virtexuplus}}}
+set PlatformFiles {{DefaultPlatform {xilinx/zynq/zynq}}}
 set HPFPO 0

@@ -1,3 +1,0 @@
-v2c -opid 214 -const 2045.5563
-v2c -opid 1476 -const 1
-v2c -opid 1530 -const 16

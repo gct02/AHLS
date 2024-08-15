@@ -1,6 +1,7 @@
-<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" projectType="C/C++" name="matrixtrans" top="matrixtrans">
+<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" top="main" name="matrixtrans">
     <files>
-        <file name="HLS-benchmarks/Inter-Block/matrixtrans/matrixtrans.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
+        <file name="benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
+        <file name="benchmarks/jianyicheng/matrixtrans/src/matrixtrans.h" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
     </files>
     <solutions>
         <solution name="solution1" status=""/>

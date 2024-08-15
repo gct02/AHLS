@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'levmarq_Pipeline_VITIS_LOOP_19_3'" level="0">
-<item name = "Date">Sun Jun 23 03:48:04 2024
+<item name = "Date">Mon Aug 12 18:55:23 2024
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">levmarq</item>
 <item name = "Solution">solution1 (Vivado IP Flow Target)</item>
-<item name = "Product family">virtexuplusHBM</item>
-<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00 ns, 3.579 ns, 1.35 ns</column>
+<column name="ap_clk">5.00 ns, 5.091 ns, 1.35 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">17, 2147483664, 85.000 ns, 10.737 sec, 17, 2147483664, no</column>
+<column name="">30, 157, 0.153 us, 0.799 us, 30, 157, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- VITIS_LOOP_19_3">15, 2147483662, 16, 1, 1, 1 ~ 2147483648, yes</column>
+<column name="- VITIS_LOOP_19_3">28, 155, 29, 1, 1, 1 ~ 128, yes</column>
 </table>
 </item>
 </section>

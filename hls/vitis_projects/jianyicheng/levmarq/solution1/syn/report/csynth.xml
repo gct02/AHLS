@@ -4,9 +4,9 @@
     </ReportVersion>
     <UserAssignments>
         <unit>ns</unit>
-        <ProductFamily>virtexuplusHBM</ProductFamily>
-        <Part>xcvu35p-fsvh2104-1-e</Part>
-        <TopModelName>levmarq</TopModelName>
+        <ProductFamily>zynq</ProductFamily>
+        <Part>xc7z020-clg400-1</Part>
+        <TopModelName>main</TopModelName>
         <TargetClockPeriod>5.00</TargetClockPeriod>
         <ClockUncertainty>1.35</ClockUncertainty>
         <FlowTarget>vivado</FlowTarget>
@@ -15,82 +15,45 @@
         <PipelineType>no</PipelineType>
         <SummaryOfTimingAnalysis>
             <unit>ns</unit>
-            <EstimatedClockPeriod>3.956</EstimatedClockPeriod>
+            <EstimatedClockPeriod>6.312</EstimatedClockPeriod>
         </SummaryOfTimingAnalysis>
         <SummaryOfOverallLatency>
             <unit>clock cycles</unit>
-            <Best-caseLatency>undef</Best-caseLatency>
-            <Average-caseLatency>undef</Average-caseLatency>
-            <Worst-caseLatency>undef</Worst-caseLatency>
-            <Best-caseRealTimeLatency>undef</Best-caseRealTimeLatency>
-            <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
-            <Worst-caseRealTimeLatency>undef</Worst-caseRealTimeLatency>
-            <Interval-min>undef</Interval-min>
-            <Interval-max>undef</Interval-max>
+            <Best-caseLatency>9190545</Best-caseLatency>
+            <Average-caseLatency>17448081</Average-caseLatency>
+            <Worst-caseLatency>25836689</Worst-caseLatency>
+            <Best-caseRealTimeLatency>58.011 ms</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0.110 sec</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>0.163 sec</Worst-caseRealTimeLatency>
+            <Interval-min>9190546</Interval-min>
+            <Interval-max>25836690</Interval-max>
         </SummaryOfOverallLatency>
-        <SummaryOfLoopLatency>
-            <VITIS_LOOP_4_1>
-                <Slack>3.65</Slack>
-                <TripCount>undef</TripCount>
-                <Latency>undef</Latency>
-                <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
-                <IterationLatency>undef</IterationLatency>
-                <InstanceList/>
-                <VITIS_LOOP_14_2>
-                    <Slack>3.65</Slack>
-                    <TripCount>undef</TripCount>
-                    <Latency>undef</Latency>
-                    <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
-                    <IterationLatency>
-                        <range>
-                            <min>38</min>
-                            <max>2147483685</max>
-                        </range>
-                    </IterationLatency>
-                    <InstanceList/>
-                </VITIS_LOOP_14_2>
-            </VITIS_LOOP_4_1>
-        </SummaryOfLoopLatency>
         <SummaryOfViolations>
-            <IssueType>-</IssueType>
+            <IssueType>Timing Violation</IssueType>
             <ViolationType>-</ViolationType>
-            <SourceLocation>HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:4</SourceLocation>
-            <SummaryOfLoopViolations>
-                <VITIS_LOOP_4_1>
-                    <Name>VITIS_LOOP_4_1</Name>
-                    <IssueType>-</IssueType>
-                    <ViolationType>-</ViolationType>
-                    <SourceLocation>HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:4</SourceLocation>
-                    <VITIS_LOOP_14_2>
-                        <Name>VITIS_LOOP_14_2</Name>
-                        <IssueType>-</IssueType>
-                        <ViolationType>-</ViolationType>
-                        <SourceLocation>HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:14</SourceLocation>
-                    </VITIS_LOOP_14_2>
-                </VITIS_LOOP_4_1>
-            </SummaryOfLoopViolations>
+            <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:14</SourceLocation>
         </SummaryOfViolations>
     </PerformanceEstimates>
     <AreaEstimates>
         <Resources>
+            <BRAM_18K>38</BRAM_18K>
             <DSP>15</DSP>
-            <FF>2295</FF>
-            <LUT>2230</LUT>
-            <BRAM_18K>0</BRAM_18K>
+            <FF>3351</FF>
+            <LUT>4508</LUT>
             <URAM>0</URAM>
         </Resources>
         <AvailableResources>
-            <BRAM_18K>2688</BRAM_18K>
-            <DSP>5952</DSP>
-            <FF>1743360</FF>
-            <LUT>871680</LUT>
-            <URAM>640</URAM>
+            <BRAM_18K>280</BRAM_18K>
+            <DSP>220</DSP>
+            <FF>106400</FF>
+            <LUT>53200</LUT>
+            <URAM>0</URAM>
         </AvailableResources>
     </AreaEstimates>
     <InterfaceSummary>
         <RtlPorts>
             <name>ap_clk</name>
-            <Object>levmarq</Object>
+            <Object>main</Object>
             <Type>return value</Type>
             <Scope/>
             <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -101,7 +64,7 @@
         </RtlPorts>
         <RtlPorts>
             <name>ap_rst</name>
-            <Object>levmarq</Object>
+            <Object>main</Object>
             <Type>return value</Type>
             <Scope/>
             <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -112,7 +75,7 @@
         </RtlPorts>
         <RtlPorts>
             <name>ap_start</name>
-            <Object>levmarq</Object>
+            <Object>main</Object>
             <Type>return value</Type>
             <Scope/>
             <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -123,7 +86,7 @@
         </RtlPorts>
         <RtlPorts>
             <name>ap_done</name>
-            <Object>levmarq</Object>
+            <Object>main</Object>
             <Type>return value</Type>
             <Scope/>
             <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -134,7 +97,7 @@
         </RtlPorts>
         <RtlPorts>
             <name>ap_idle</name>
-            <Object>levmarq</Object>
+            <Object>main</Object>
             <Type>return value</Type>
             <Scope/>
             <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -145,7 +108,7 @@
         </RtlPorts>
         <RtlPorts>
             <name>ap_ready</name>
-            <Object>levmarq</Object>
+            <Object>main</Object>
             <Type>return value</Type>
             <Scope/>
             <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -155,334 +118,276 @@
             <Attribute>control</Attribute>
         </RtlPorts>
         <RtlPorts>
-            <name>dummy</name>
-            <Object>dummy</Object>
-            <Type>scalar</Type>
+            <name>ap_return</name>
+            <Object>main</Object>
+            <Type>return value</Type>
             <Scope/>
-            <IOProtocol>ap_none</IOProtocol>
-            <IOConfig/>
-            <Dir>in</Dir>
-            <Bits>32</Bits>
-            <Attribute>data</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>ny</name>
-            <Object>ny</Object>
-            <Type>scalar</Type>
-            <Scope/>
-            <IOProtocol>ap_none</IOProtocol>
-            <IOConfig/>
-            <Dir>in</Dir>
-            <Bits>32</Bits>
-            <Attribute>data</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>dysq_address0</name>
-            <Object>dysq</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>10</Bits>
-            <Attribute>address</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>dysq_ce0</name>
-            <Object>dysq</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>1</Bits>
-            <Attribute>control</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>dysq_q0</name>
-            <Object>dysq</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>in</Dir>
-            <Bits>32</Bits>
-            <Attribute>data</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>npar</name>
-            <Object>npar</Object>
-            <Type>scalar</Type>
-            <Scope/>
-            <IOProtocol>ap_none</IOProtocol>
-            <IOConfig/>
-            <Dir>in</Dir>
-            <Bits>32</Bits>
-            <Attribute>data</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>g_address0</name>
-            <Object>g</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>7</Bits>
-            <Attribute>address</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>g_ce0</name>
-            <Object>g</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>1</Bits>
-            <Attribute>control</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>g_we0</name>
-            <Object>g</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>1</Bits>
-            <Attribute>control</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>g_d0</name>
-            <Object>g</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
             <IOConfig/>
             <Dir>out</Dir>
             <Bits>32</Bits>
             <Attribute>data</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>g_q0</name>
-            <Object>g</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>in</Dir>
-            <Bits>32</Bits>
-            <Attribute>data</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>d_address0</name>
-            <Object>d</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>7</Bits>
-            <Attribute>address</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>d_ce0</name>
-            <Object>d</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>1</Bits>
-            <Attribute>control</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>d_we0</name>
-            <Object>d</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>1</Bits>
-            <Attribute>control</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>d_d0</name>
-            <Object>d</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>32</Bits>
-            <Attribute>data</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>d_q0</name>
-            <Object>d</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>in</Dir>
-            <Bits>32</Bits>
-            <Attribute>data</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>y_address0</name>
-            <Object>y</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>10</Bits>
-            <Attribute>address</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>y_ce0</name>
-            <Object>y</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>1</Bits>
-            <Attribute>control</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>y_q0</name>
-            <Object>y</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>in</Dir>
-            <Bits>32</Bits>
-            <Attribute>data</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>h_address0</name>
-            <Object>h</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>14</Bits>
-            <Attribute>address</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>h_ce0</name>
-            <Object>h</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>1</Bits>
-            <Attribute>control</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>h_we0</name>
-            <Object>h</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>1</Bits>
-            <Attribute>control</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>h_d0</name>
-            <Object>h</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>32</Bits>
-            <Attribute>data</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>h_address1</name>
-            <Object>h</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>14</Bits>
-            <Attribute>address</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>h_ce1</name>
-            <Object>h</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>out</Dir>
-            <Bits>1</Bits>
-            <Attribute>control</Attribute>
-            <CType>int</CType>
-        </RtlPorts>
-        <RtlPorts>
-            <name>h_q1</name>
-            <Object>h</Object>
-            <Type>array</Type>
-            <Scope/>
-            <IOProtocol>ap_memory</IOProtocol>
-            <IOConfig/>
-            <Dir>in</Dir>
-            <Bits>32</Bits>
-            <Attribute>data</Attribute>
-            <CType>int</CType>
         </RtlPorts>
     </InterfaceSummary>
     <RTLDesignHierarchy>
-        <TopModule MAX_DEPTH="3">
-            <ModuleName>levmarq</ModuleName>
+        <TopModule MAX_DEPTH="4">
+            <ModuleName>main</ModuleName>
             <InstancesList>
                 <Instance>
-                    <InstName>grp_levmarq_Pipeline_VITIS_LOOP_19_3_fu_208</InstName>
-                    <ModuleName>levmarq_Pipeline_VITIS_LOOP_19_3</ModuleName>
+                    <InstName>grp_main_Pipeline_VITIS_LOOP_26_1_fu_42</InstName>
+                    <ModuleName>main_Pipeline_VITIS_LOOP_26_1</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>208</ID>
-                    <BindInstances>add_ln19_fu_156_p2 add_ln20_1_fu_169_p2 add_ln20_fu_179_p2</BindInstances>
+                    <ID>42</ID>
+                    <BindInstances>add_ln26_fu_124_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_main_Pipeline_VITIS_LOOP_36_3_fu_51</InstName>
+                    <ModuleName>main_Pipeline_VITIS_LOOP_36_3</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>51</ID>
+                    <BindInstances>add_ln36_fu_62_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_main_Pipeline_VITIS_LOOP_31_2_fu_57</InstName>
+                    <ModuleName>main_Pipeline_VITIS_LOOP_31_2</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>57</ID>
+                    <BindInstances>add_ln31_fu_113_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_levmarq_fu_64</InstName>
+                    <ModuleName>levmarq</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>64</ID>
+                    <InstancesList>
+                        <Instance>
+                            <InstName>grp_levmarq_Pipeline_VITIS_LOOP_19_3_fu_174</InstName>
+                            <ModuleName>levmarq_Pipeline_VITIS_LOOP_19_3</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>174</ID>
+                            <BindInstances>add_ln19_fu_130_p2 add_ln20_fu_145_p2</BindInstances>
+                        </Instance>
+                    </InstancesList>
+                    <BindInstances>add_ln4_fu_323_p2 fmul_32ns_32ns_32_8_max_dsp_1_U24 fmul_32ns_32ns_32_8_max_dsp_1_U25 fmul_32ns_32ns_32_8_max_dsp_1_U26 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 fmul_32ns_32ns_32_8_max_dsp_1_U24 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 fmul_32ns_32ns_32_8_max_dsp_1_U24 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 fmul_32ns_32ns_32_8_max_dsp_1_U24 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 fmul_32ns_32ns_32_8_max_dsp_1_U24 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 fmul_32ns_32ns_32_8_max_dsp_1_U25 fadd_32ns_32ns_32_10_full_dsp_1_U22 fmul_32ns_32ns_32_8_max_dsp_1_U25 fadd_32ns_32ns_32_10_full_dsp_1_U22 fmul_32ns_32ns_32_8_max_dsp_1_U25 fadd_32ns_32ns_32_10_full_dsp_1_U22 fmul_32ns_32ns_32_8_max_dsp_1_U25 fadd_32ns_32ns_32_10_full_dsp_1_U22 fmul_32ns_32ns_32_8_max_dsp_1_U25 fadd_32ns_32ns_32_10_full_dsp_1_U22 fmul_32ns_32ns_32_8_max_dsp_1_U25 fadd_32ns_32ns_32_10_full_dsp_1_U22 fmul_32ns_32ns_32_8_max_dsp_1_U26 fadd_32ns_32ns_32_10_full_dsp_1_U23 fmul_32ns_32ns_32_8_max_dsp_1_U26 fadd_32ns_32ns_32_10_full_dsp_1_U23 fmul_32ns_32ns_32_8_max_dsp_1_U26 fadd_32ns_32ns_32_10_full_dsp_1_U23 fmul_32ns_32ns_32_8_max_dsp_1_U26 fadd_32ns_32ns_32_10_full_dsp_1_U23 fmul_32ns_32ns_32_8_max_dsp_1_U26 fadd_32ns_32ns_32_10_full_dsp_1_U23 fmul_32ns_32ns_32_8_max_dsp_1_U26 fadd_32ns_32ns_32_10_full_dsp_1_U23 fmul_32ns_32ns_32_8_max_dsp_1_U24 fmul_32ns_32ns_32_8_max_dsp_1_U24 fmul_32ns_32ns_32_8_max_dsp_1_U24 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 fmul_32ns_32ns_32_8_max_dsp_1_U24 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 fmul_32ns_32ns_32_8_max_dsp_1_U24 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 fmul_32ns_32ns_32_8_max_dsp_1_U24 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 fmul_32ns_32ns_32_8_max_dsp_1_U24 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 fmul_32ns_32ns_32_8_max_dsp_1_U24 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 fmul_32ns_32ns_32_8_max_dsp_1_U24 add_ln14_fu_349_p2 fmul_32ns_32ns_32_8_max_dsp_1_U24 fmul_32ns_32ns_32_8_max_dsp_1_U24 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 faddfsub_32ns_32ns_32_10_full_dsp_1_U21 add_ln14_1_fu_365_p2</BindInstances>
                 </Instance>
             </InstancesList>
-            <BindInstances>add_ln4_fu_362_p2 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 fmul_32ns_32ns_32_4_max_dsp_1_U15 fadd_32ns_32ns_32_5_full_dsp_1_U12 fmul_32ns_32ns_32_4_max_dsp_1_U15 fadd_32ns_32ns_32_5_full_dsp_1_U12 fmul_32ns_32ns_32_4_max_dsp_1_U15 fadd_32ns_32ns_32_5_full_dsp_1_U12 fmul_32ns_32ns_32_4_max_dsp_1_U15 fadd_32ns_32ns_32_5_full_dsp_1_U12 fmul_32ns_32ns_32_4_max_dsp_1_U15 fadd_32ns_32ns_32_5_full_dsp_1_U12 fmul_32ns_32ns_32_4_max_dsp_1_U15 fadd_32ns_32ns_32_5_full_dsp_1_U12 fmul_32ns_32ns_32_4_max_dsp_1_U16 fadd_32ns_32ns_32_5_full_dsp_1_U13 fmul_32ns_32ns_32_4_max_dsp_1_U16 fadd_32ns_32ns_32_5_full_dsp_1_U13 fmul_32ns_32ns_32_4_max_dsp_1_U16 fadd_32ns_32ns_32_5_full_dsp_1_U13 fmul_32ns_32ns_32_4_max_dsp_1_U16 fadd_32ns_32ns_32_5_full_dsp_1_U13 fmul_32ns_32ns_32_4_max_dsp_1_U16 fadd_32ns_32ns_32_5_full_dsp_1_U13 fmul_32ns_32ns_32_4_max_dsp_1_U16 fadd_32ns_32ns_32_5_full_dsp_1_U13 fmul_32ns_32ns_32_4_max_dsp_1_U14 fmul_32ns_32ns_32_4_max_dsp_1_U14 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 fmul_32ns_32ns_32_4_max_dsp_1_U14 add_ln14_fu_404_p2 mul_7s_7s_7_1_1_U18 fmul_32ns_32ns_32_4_max_dsp_1_U14 fmul_32ns_32ns_32_4_max_dsp_1_U14 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 faddfsub_32ns_32ns_32_5_full_dsp_1_U11 add_ln14_1_fu_429_p2</BindInstances>
+            <BindInstances>dysq_U g_U d_U y_U h_U</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
+        <Module>
+            <Name>main_Pipeline_VITIS_LOOP_26_1</Name>
+            <Loops>
+                <VITIS_LOOP_26_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>6.312</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>1033</Best-caseLatency>
+                    <Average-caseLatency>1033</Average-caseLatency>
+                    <Worst-caseLatency>1033</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>6.520 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>6.520 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>6.520 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>1033</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_26_1>
+                        <Name>VITIS_LOOP_26_1</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>1024</TripCount>
+                        <Latency>1031</Latency>
+                        <AbsoluteTimeLatency>6.508 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>9</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_26_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>Timing Violation</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:26</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_26_1>
+                            <Name>VITIS_LOOP_26_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:26</SourceLocation>
+                        </VITIS_LOOP_26_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>280</FF>
+                    <AVAIL_FF>106400</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>156</LUT>
+                    <AVAIL_LUT>53200</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>280</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>220</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>0</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_26_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln26_fu_124_p2" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:26" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln26"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>main_Pipeline_VITIS_LOOP_31_2</Name>
+            <Loops>
+                <VITIS_LOOP_31_2/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>6.312</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>137</Best-caseLatency>
+                    <Average-caseLatency>137</Average-caseLatency>
+                    <Worst-caseLatency>137</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.865 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.865 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.865 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>137</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_31_2>
+                        <Name>VITIS_LOOP_31_2</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>128</TripCount>
+                        <Latency>135</Latency>
+                        <AbsoluteTimeLatency>0.852 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>9</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_31_2>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>Timing Violation</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:31</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_31_2>
+                            <Name>VITIS_LOOP_31_2</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:31</SourceLocation>
+                        </VITIS_LOOP_31_2>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>169</FF>
+                    <AVAIL_FF>106400</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>123</LUT>
+                    <AVAIL_LUT>53200</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>280</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>220</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>0</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_31_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln31_fu_113_p2" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:31" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln31"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>main_Pipeline_VITIS_LOOP_36_3</Name>
+            <Loops>
+                <VITIS_LOOP_36_3/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>5.120</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>16386</Best-caseLatency>
+                    <Average-caseLatency>16386</Average-caseLatency>
+                    <Worst-caseLatency>16386</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>83.905 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>83.905 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>83.905 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>16386</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_36_3>
+                        <Name>VITIS_LOOP_36_3</Name>
+                        <Slack>3.65</Slack>
+                        <TripCount>16384</TripCount>
+                        <Latency>16384</Latency>
+                        <AbsoluteTimeLatency>83.894 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>2</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_36_3>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>Timing Violation</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:36</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_36_3>
+                            <Name>VITIS_LOOP_36_3</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:36</SourceLocation>
+                        </VITIS_LOOP_36_3>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>33</FF>
+                    <AVAIL_FF>106400</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>81</LUT>
+                    <AVAIL_LUT>53200</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>280</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>220</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>0</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_36_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_fu_62_p2" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36"/>
+            </BindNodes>
+        </Module>
         <Module>
             <Name>levmarq_Pipeline_VITIS_LOOP_19_3</Name>
             <Loops>
@@ -492,16 +397,16 @@
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>5.00</TargetClockPeriod>
                     <ClockUncertainty>1.35</ClockUncertainty>
-                    <EstimatedClockPeriod>3.579</EstimatedClockPeriod>
+                    <EstimatedClockPeriod>5.091</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>17</Best-caseLatency>
-                    <Average-caseLatency>undef</Average-caseLatency>
-                    <Worst-caseLatency>2147483664</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>85.000 ns</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>10.737 sec</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>17 ~ 2147483664</PipelineInitiationInterval>
+                    <Best-caseLatency>30</Best-caseLatency>
+                    <Average-caseLatency>93</Average-caseLatency>
+                    <Worst-caseLatency>157</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.153 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.473 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.799 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>30 ~ 157</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -511,54 +416,53 @@
                         <TripCount>
                             <range>
                                 <min>1</min>
-                                <max>2147483648</max>
+                                <max>128</max>
                             </range>
                         </TripCount>
-                        <Latency>15 ~ 2147483662</Latency>
-                        <AbsoluteTimeLatency>75.000 ns ~ 10.737 sec</AbsoluteTimeLatency>
+                        <Latency>28 ~ 155</Latency>
+                        <AbsoluteTimeLatency>0.143 us ~ 0.789 us</AbsoluteTimeLatency>
                         <PipelineII>1</PipelineII>
-                        <PipelineDepth>16</PipelineDepth>
+                        <PipelineDepth>29</PipelineDepth>
                         <PipelineType>yes</PipelineType>
                         <InstanceList/>
                     </VITIS_LOOP_19_3>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
-                    <IssueType>-</IssueType>
+                    <IssueType>Timing Violation</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:19</SourceLocation>
+                    <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq.cpp:19</SourceLocation>
                     <SummaryOfLoopViolations>
                         <VITIS_LOOP_19_3>
                             <Name>VITIS_LOOP_19_3</Name>
                             <IssueType>-</IssueType>
                             <ViolationType>-</ViolationType>
-                            <SourceLocation>HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:19</SourceLocation>
+                            <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq.cpp:19</SourceLocation>
                         </VITIS_LOOP_19_3>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <FF>386</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <FF>381</FF>
+                    <AVAIL_FF>106400</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>223</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <LUT>149</LUT>
+                    <AVAIL_LUT>53200</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
-                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <AVAIL_BRAM>280</AVAIL_BRAM>
                     <UTIL_BRAM>0</UTIL_BRAM>
                     <DSP>0</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <AVAIL_DSP>220</AVAIL_DSP>
                     <UTIL_DSP>0</UTIL_DSP>
                     <URAM>0</URAM>
-                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <AVAIL_URAM>0</AVAIL_URAM>
                     <UTIL_URAM>0</UTIL_URAM>
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_19_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln19_fu_156_p2" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:19" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln19"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_19_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln20_1_fu_169_p2" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:20" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln20_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_19_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln20_fu_179_p2" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:20" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_19_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln19_fu_130_p2" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:19" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_19_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln20_fu_145_p2" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:20" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln20"/>
             </BindNodes>
         </Module>
         <Module>
@@ -572,64 +476,69 @@
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>5.00</TargetClockPeriod>
                     <ClockUncertainty>1.35</ClockUncertainty>
-                    <EstimatedClockPeriod>3.956</EstimatedClockPeriod>
+                    <EstimatedClockPeriod>6.312</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>undef</Best-caseLatency>
-                    <Average-caseLatency>undef</Average-caseLatency>
-                    <Worst-caseLatency>undef</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>undef</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>undef</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>undef</PipelineInitiationInterval>
+                    <Best-caseLatency>9174017</Best-caseLatency>
+                    <Average-caseLatency>17431553</Average-caseLatency>
+                    <Worst-caseLatency>25820161</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>57.906 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.110 sec</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.163 sec</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>9174017 ~ 25820161</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
                     <VITIS_LOOP_4_1>
                         <Name>VITIS_LOOP_4_1</Name>
                         <Slack>3.65</Slack>
-                        <TripCount>undef</TripCount>
-                        <Latency>undef</Latency>
-                        <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
-                        <IterationLatency>undef</IterationLatency>
-                        <PipelineDepth>undef</PipelineDepth>
+                        <TripCount>1024</TripCount>
+                        <Latency>9174016 ~ 25820160</Latency>
+                        <AbsoluteTimeLatency>57.906 ms ~ 0.163 sec</AbsoluteTimeLatency>
+                        <IterationLatency>
+                            <range>
+                                <min>8959</min>
+                                <max>25215</max>
+                            </range>
+                        </IterationLatency>
+                        <PipelineDepth>8959 ~ 25215</PipelineDepth>
                         <PipelineType>no</PipelineType>
                         <InstanceList/>
                         <VITIS_LOOP_14_2>
                             <Name>VITIS_LOOP_14_2</Name>
                             <Slack>3.65</Slack>
-                            <TripCount>undef</TripCount>
-                            <Latency>undef</Latency>
-                            <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
+                            <TripCount>128</TripCount>
+                            <Latency>8832 ~ 25088</Latency>
+                            <AbsoluteTimeLatency>55.748 us ~ 0.158 ms</AbsoluteTimeLatency>
                             <IterationLatency>
                                 <range>
-                                    <min>38</min>
-                                    <max>2147483685</max>
+                                    <min>69</min>
+                                    <max>196</max>
                                 </range>
                             </IterationLatency>
-                            <PipelineDepth>38 ~ 2147483685</PipelineDepth>
+                            <PipelineDepth>69 ~ 196</PipelineDepth>
                             <PipelineType>no</PipelineType>
                             <InstanceList>
-                                <Instance>grp_levmarq_Pipeline_VITIS_LOOP_19_3_fu_208</Instance>
+                                <Instance>grp_levmarq_Pipeline_VITIS_LOOP_19_3_fu_174</Instance>
                             </InstanceList>
                         </VITIS_LOOP_14_2>
                     </VITIS_LOOP_4_1>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
-                    <IssueType>-</IssueType>
+                    <IssueType>Timing Violation</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:4</SourceLocation>
+                    <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq.cpp:4</SourceLocation>
                     <SummaryOfLoopViolations>
                         <VITIS_LOOP_4_1>
                             <Name>VITIS_LOOP_4_1</Name>
                             <IssueType>-</IssueType>
                             <ViolationType>-</ViolationType>
-                            <SourceLocation>HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:4</SourceLocation>
+                            <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8</SourceLocation>
                             <VITIS_LOOP_14_2>
                                 <Name>VITIS_LOOP_14_2</Name>
                                 <IssueType>-</IssueType>
                                 <ViolationType>-</ViolationType>
-                                <SourceLocation>HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:14</SourceLocation>
+                                <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq.cpp:14</SourceLocation>
                             </VITIS_LOOP_14_2>
                         </VITIS_LOOP_4_1>
                     </SummaryOfLoopViolations>
@@ -638,149 +547,142 @@
             <AreaEstimates>
                 <Resources>
                     <DSP>15</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>2295</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>~0</UTIL_FF>
-                    <LUT>2230</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
+                    <AVAIL_DSP>220</AVAIL_DSP>
+                    <UTIL_DSP>6</UTIL_DSP>
+                    <FF>2859</FF>
+                    <AVAIL_FF>106400</AVAIL_FF>
+                    <UTIL_FF>2</UTIL_FF>
+                    <LUT>3830</LUT>
+                    <AVAIL_LUT>53200</AVAIL_LUT>
+                    <UTIL_LUT>7</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
-                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <AVAIL_BRAM>280</AVAIL_BRAM>
                     <UTIL_BRAM>0</UTIL_BRAM>
                     <URAM>0</URAM>
-                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <AVAIL_URAM>0</AVAIL_URAM>
                     <UTIL_URAM>0</UTIL_URAM>
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_4_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln4_fu_362_p2" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln4"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="d_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:6" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:6" STORAGESUBTYPE="" URAM="0" VARIABLE="mul1_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:6" STORAGESUBTYPE="" URAM="0" VARIABLE="add2_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:6" STORAGESUBTYPE="" URAM="0" VARIABLE="mul3_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:6" STORAGESUBTYPE="" URAM="0" VARIABLE="add4_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:6" STORAGESUBTYPE="" URAM="0" VARIABLE="mul5_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:6" STORAGESUBTYPE="" URAM="0" VARIABLE="add6_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:6" STORAGESUBTYPE="" URAM="0" VARIABLE="mul7_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:6" STORAGESUBTYPE="" URAM="0" VARIABLE="add8_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:6" STORAGESUBTYPE="" URAM="0" VARIABLE="mul9_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:6" STORAGESUBTYPE="" URAM="0" VARIABLE="exp_d"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:7" STORAGESUBTYPE="" URAM="0" VARIABLE="out0"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U15" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="d_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_5_full_dsp_1_U12" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:9" STORAGESUBTYPE="" URAM="0" VARIABLE="add12_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U15" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:9" STORAGESUBTYPE="" URAM="0" VARIABLE="mul13_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_5_full_dsp_1_U12" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:9" STORAGESUBTYPE="" URAM="0" VARIABLE="add14_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U15" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:9" STORAGESUBTYPE="" URAM="0" VARIABLE="mul15_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_5_full_dsp_1_U12" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:9" STORAGESUBTYPE="" URAM="0" VARIABLE="add16_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U15" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:9" STORAGESUBTYPE="" URAM="0" VARIABLE="mul17_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_5_full_dsp_1_U12" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:9" STORAGESUBTYPE="" URAM="0" VARIABLE="add18_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U15" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:9" STORAGESUBTYPE="" URAM="0" VARIABLE="mul19_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_5_full_dsp_1_U12" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:9" STORAGESUBTYPE="" URAM="0" VARIABLE="add20_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U15" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:9" STORAGESUBTYPE="" URAM="0" VARIABLE="mul21_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_5_full_dsp_1_U12" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:9" STORAGESUBTYPE="" URAM="0" VARIABLE="exp_d_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U16" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:11" STORAGESUBTYPE="" URAM="0" VARIABLE="d_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_5_full_dsp_1_U13" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="add24_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U16" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="mul25_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_5_full_dsp_1_U13" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="add26_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U16" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="mul27_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_5_full_dsp_1_U13" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="add28_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U16" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="mul29_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_5_full_dsp_1_U13" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="add30_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U16" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="mul31_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_5_full_dsp_1_U13" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="add32_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U16" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="mul33_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_5_full_dsp_1_U13" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="exp_d_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:13" STORAGESUBTYPE="" URAM="0" VARIABLE="mul36_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g1.cpp:13" STORAGESUBTYPE="" URAM="0" VARIABLE="out2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="d_4"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul1_i1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add2_i1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul3_i1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add4_i1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul5_i1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add6_i1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul7_i1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add8_i1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul9_i1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="dout"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul11_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_14_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln14_fu_404_p2" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:14" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln14"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_14_2" OPTYPE="mul" PRAGMA="" RTLNAME="mul_7s_7s_7_1_1_U18" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:15" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln15"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_14_2" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g2.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul12_i"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="3" LOOP="VITIS_LOOP_14_2" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_4_max_dsp_1_U14" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g2.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul13_i1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_14_2" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/g2.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="k"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="4" LOOP="VITIS_LOOP_14_2" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_5_full_dsp_1_U11" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="add"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_14_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln14_1_fu_429_p2" SOURCE="HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:14" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln14_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_4_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln4_fu_323_p2" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="d_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U25" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U26" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="mul1_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="add2_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="mul3_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="add4_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="mul5_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="add6_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="mul7_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="add8_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="mul9_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="exp_d"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:6" STORAGESUBTYPE="" URAM="0" VARIABLE="out0"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U25" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:7" STORAGESUBTYPE="" URAM="0" VARIABLE="d_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_10_full_dsp_1_U22" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add12_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U25" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul13_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_10_full_dsp_1_U22" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add14_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U25" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul15_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_10_full_dsp_1_U22" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add16_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U25" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul17_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_10_full_dsp_1_U22" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add18_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U25" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul19_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_10_full_dsp_1_U22" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add20_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U25" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul21_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_10_full_dsp_1_U22" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="exp_d_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U26" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:10" STORAGESUBTYPE="" URAM="0" VARIABLE="d_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_10_full_dsp_1_U23" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:11" STORAGESUBTYPE="" URAM="0" VARIABLE="add24_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U26" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:11" STORAGESUBTYPE="" URAM="0" VARIABLE="mul25_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_10_full_dsp_1_U23" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:11" STORAGESUBTYPE="" URAM="0" VARIABLE="add26_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U26" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:11" STORAGESUBTYPE="" URAM="0" VARIABLE="mul27_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_10_full_dsp_1_U23" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:11" STORAGESUBTYPE="" URAM="0" VARIABLE="add28_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U26" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:11" STORAGESUBTYPE="" URAM="0" VARIABLE="mul29_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_10_full_dsp_1_U23" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:11" STORAGESUBTYPE="" URAM="0" VARIABLE="add30_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U26" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:11" STORAGESUBTYPE="" URAM="0" VARIABLE="mul31_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_10_full_dsp_1_U23" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:11" STORAGESUBTYPE="" URAM="0" VARIABLE="add32_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U26" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:11" STORAGESUBTYPE="" URAM="0" VARIABLE="mul33_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="fadd_32ns_32ns_32_10_full_dsp_1_U23" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:11" STORAGESUBTYPE="" URAM="0" VARIABLE="exp_d_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="mul36_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/g1.cpp:12" STORAGESUBTYPE="" URAM="0" VARIABLE="out2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="d_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul1_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add2_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul3_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add4_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul5_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add6_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul7_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="add8_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul9_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="dout"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_4_1" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_4_1" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:8" STORAGESUBTYPE="" URAM="0" VARIABLE="mul11_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_14_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln14_fu_349_p2" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:14" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln14"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_14_2" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/g2.cpp:7" STORAGESUBTYPE="" URAM="0" VARIABLE="mul12_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fmul" DSP="3" ID="" IMPL="maxdsp" LATENCY="7" LOOP="VITIS_LOOP_14_2" OPTYPE="fmul" PRAGMA="" RTLNAME="fmul_32ns_32ns_32_8_max_dsp_1_U24" SOURCE="benchmarks/jianyicheng/levmarq/src/g2.cpp:7" STORAGESUBTYPE="" URAM="0" VARIABLE="mul13_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_14_2" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/g2.cpp:7" STORAGESUBTYPE="" URAM="0" VARIABLE="k"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op fadd" DSP="2" ID="" IMPL="fulldsp" LATENCY="9" LOOP="VITIS_LOOP_14_2" OPTYPE="fadd" PRAGMA="" RTLNAME="faddfsub_32ns_32ns_32_10_full_dsp_1_U21" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="add"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_14_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln14_1_fu_365_p2" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq.cpp:14" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln14_1"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>main</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>5.00</TargetClockPeriod>
+                    <ClockUncertainty>1.35</ClockUncertainty>
+                    <EstimatedClockPeriod>6.312</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>9190545</Best-caseLatency>
+                    <Average-caseLatency>17448081</Average-caseLatency>
+                    <Worst-caseLatency>25836689</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>58.011 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.110 sec</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.163 sec</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>9190546 ~ 25836690</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>Timing Violation</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:14</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>38</BRAM_18K>
+                    <AVAIL_BRAM>280</AVAIL_BRAM>
+                    <UTIL_BRAM>13</UTIL_BRAM>
+                    <DSP>15</DSP>
+                    <AVAIL_DSP>220</AVAIL_DSP>
+                    <UTIL_DSP>6</UTIL_DSP>
+                    <FF>3351</FF>
+                    <AVAIL_FF>106400</AVAIL_FF>
+                    <UTIL_FF>3</UTIL_FF>
+                    <LUT>4508</LUT>
+                    <AVAIL_LUT>53200</AVAIL_LUT>
+                    <UTIL_LUT>8</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>0</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dysq_U" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:16" STORAGESIZE="32 1024 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="dysq"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="g_U" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:18" STORAGESIZE="32 128 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="g"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="d_U" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:20" STORAGESIZE="32 128 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="d"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="y_U" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:21" STORAGESIZE="32 1024 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="y"/>
+                <BindNode BINDTYPE="storage" BRAM="32" BUNDLEDNAME="" DISPNAME="bind_storage ram_s2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_s2p" PRAGMA="" RTLNAME="h_U" SOURCE="benchmarks/jianyicheng/levmarq/src/levmarq_tb.cpp:22" STORAGESIZE="32 16384 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_s2p array" URAM="0" VARIABLE="h"/>
             </BindNodes>
         </Module>
     </ModuleInformation>
     <FIFOInformation/>
     <UserConfigCommands/>
-    <Args>
-        <Arg ArgName="dummy" index="0" direction="in" srcType="int" srcSize="32">
-            <hwRefs>
-                <hwRef type="port" interface="dummy" name="dummy" usage="data" direction="in"/>
-            </hwRefs>
-        </Arg>
-        <Arg ArgName="ny" index="1" direction="in" srcType="int" srcSize="32">
-            <hwRefs>
-                <hwRef type="port" interface="ny" name="ny" usage="data" direction="in"/>
-            </hwRefs>
-        </Arg>
-        <Arg ArgName="dysq" index="2" direction="in" srcType="float*" srcSize="32">
-            <hwRefs>
-                <hwRef type="port" interface="dysq_address0" name="dysq_address0" usage="address" direction="out"/>
-                <hwRef type="port" interface="dysq_ce0" name="dysq_ce0" usage="control" direction="out"/>
-                <hwRef type="port" interface="dysq_q0" name="dysq_q0" usage="data" direction="in"/>
-            </hwRefs>
-        </Arg>
-        <Arg ArgName="npar" index="3" direction="in" srcType="int" srcSize="32">
-            <hwRefs>
-                <hwRef type="port" interface="npar" name="npar" usage="data" direction="in"/>
-            </hwRefs>
-        </Arg>
-        <Arg ArgName="g" index="4" direction="inout" srcType="float*" srcSize="32">
-            <hwRefs>
-                <hwRef type="port" interface="g_address0" name="g_address0" usage="address" direction="out"/>
-                <hwRef type="port" interface="g_ce0" name="g_ce0" usage="control" direction="out"/>
-                <hwRef type="port" interface="g_we0" name="g_we0" usage="control" direction="out"/>
-                <hwRef type="port" interface="g_d0" name="g_d0" usage="data" direction="out"/>
-                <hwRef type="port" interface="g_q0" name="g_q0" usage="data" direction="in"/>
-            </hwRefs>
-        </Arg>
-        <Arg ArgName="d" index="5" direction="inout" srcType="float*" srcSize="32">
-            <hwRefs>
-                <hwRef type="port" interface="d_address0" name="d_address0" usage="address" direction="out"/>
-                <hwRef type="port" interface="d_ce0" name="d_ce0" usage="control" direction="out"/>
-                <hwRef type="port" interface="d_we0" name="d_we0" usage="control" direction="out"/>
-                <hwRef type="port" interface="d_d0" name="d_d0" usage="data" direction="out"/>
-                <hwRef type="port" interface="d_q0" name="d_q0" usage="data" direction="in"/>
-            </hwRefs>
-        </Arg>
-        <Arg ArgName="y" index="6" direction="in" srcType="float*" srcSize="32">
-            <hwRefs>
-                <hwRef type="port" interface="y_address0" name="y_address0" usage="address" direction="out"/>
-                <hwRef type="port" interface="y_ce0" name="y_ce0" usage="control" direction="out"/>
-                <hwRef type="port" interface="y_q0" name="y_q0" usage="data" direction="in"/>
-            </hwRefs>
-        </Arg>
-        <Arg ArgName="h" index="7" direction="inout" srcType="float*" srcSize="32">
-            <hwRefs>
-                <hwRef type="port" interface="h_address0" name="h_address0" usage="address" direction="out"/>
-                <hwRef type="port" interface="h_ce0" name="h_ce0" usage="control" direction="out"/>
-                <hwRef type="port" interface="h_we0" name="h_we0" usage="control" direction="out"/>
-                <hwRef type="port" interface="h_d0" name="h_d0" usage="data" direction="out"/>
-                <hwRef type="port" interface="h_address1" name="h_address1" usage="address" direction="out"/>
-                <hwRef type="port" interface="h_ce1" name="h_ce1" usage="control" direction="out"/>
-                <hwRef type="port" interface="h_q1" name="h_q1" usage="data" direction="in"/>
-            </hwRefs>
-        </Arg>
-    </Args>
+    <ReturnValue ReturnValueName="srcType">int</ReturnValue>
+    <ReturnValue ReturnValueName="srcSize">32</ReturnValue>
+    <ReturnValue ReturnValueName="hwRefs" type="port" interface="ap_return" name="ap_return" usage="data" direction="out"/>
     <Interfaces>
         <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
             <busParams>
@@ -818,221 +720,21 @@
                 <port>ap_start</port>
             </ports>
         </Interface>
-        <Interface InterfaceName="dummy" type="data" busTypeName="data" protocol="ap_none" mode="slave" dataWidth="32">
+        <Interface InterfaceName="ap_return" type="data" busTypeName="data" protocol="ap_ctrl_hs" mode="master" dataWidth="32">
             <portMaps>
-                <portMap portMapName="dummy">DATA</portMap>
+                <portMap portMapName="ap_return">DATA</portMap>
             </portMaps>
             <ports>
-                <port>dummy</port>
+                <port>ap_return</port>
             </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="dummy"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="ny" type="data" busTypeName="data" protocol="ap_none" mode="slave" dataWidth="32">
-            <portMaps>
-                <portMap portMapName="ny">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>ny</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="ny"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="dysq_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="10">
-            <portMaps>
-                <portMap portMapName="dysq_address0">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>dysq_address0</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="dysq"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="dysq_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
-            <portMaps>
-                <portMap portMapName="dysq_q0">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>dysq_q0</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="dysq"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="npar" type="data" busTypeName="data" protocol="ap_none" mode="slave" dataWidth="32">
-            <portMaps>
-                <portMap portMapName="npar">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>npar</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="npar"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="g_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="7">
-            <portMaps>
-                <portMap portMapName="g_address0">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>g_address0</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="g"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="g_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="32">
-            <portMaps>
-                <portMap portMapName="g_d0">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>g_d0</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="g"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="g_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
-            <portMaps>
-                <portMap portMapName="g_q0">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>g_q0</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="g"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="d_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="7">
-            <portMaps>
-                <portMap portMapName="d_address0">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>d_address0</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="d"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="d_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="32">
-            <portMaps>
-                <portMap portMapName="d_d0">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>d_d0</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="d"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="d_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
-            <portMaps>
-                <portMap portMapName="d_q0">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>d_q0</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="d"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="y_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="10">
-            <portMaps>
-                <portMap portMapName="y_address0">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>y_address0</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="y"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="y_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
-            <portMaps>
-                <portMap portMapName="y_q0">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>y_q0</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="y"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="h_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="14">
-            <portMaps>
-                <portMap portMapName="h_address0">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>h_address0</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="h"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="h_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="32">
-            <portMaps>
-                <portMap portMapName="h_d0">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>h_d0</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="h"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="h_address1" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="14">
-            <portMaps>
-                <portMap portMapName="h_address1">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>h_address1</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="h"/>
-            </constraints>
-        </Interface>
-        <Interface InterfaceName="h_q1" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="32">
-            <portMaps>
-                <portMap portMapName="h_q1">DATA</portMap>
-            </portMaps>
-            <ports>
-                <port>h_q1</port>
-            </ports>
-            <constraints>
-                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="h"/>
-            </constraints>
         </Interface>
     </Interfaces>
     <ReportHWInterface>
         <section name="HW Interfaces" level="0">
-            <item name="AP_MEMORY">
-                <table>
-                    <keys size="3">Port, Direction, Bitwidth</keys>
-                    <column name="d_address0">out, 7</column>
-                    <column name="d_d0">out, 32</column>
-                    <column name="d_q0">in, 32</column>
-                    <column name="dysq_address0">out, 10</column>
-                    <column name="dysq_q0">in, 32</column>
-                    <column name="g_address0">out, 7</column>
-                    <column name="g_d0">out, 32</column>
-                    <column name="g_q0">in, 32</column>
-                    <column name="h_address0">out, 14</column>
-                    <column name="h_address1">out, 14</column>
-                    <column name="h_d0">out, 32</column>
-                    <column name="h_q1">in, 32</column>
-                    <column name="y_address0">out, 10</column>
-                    <column name="y_q0">in, 32</column>
-                </table>
-            </item>
             <item name="Other Ports">
                 <table>
-                    <keys size="4">Port, Mode, Direction, Bitwidth</keys>
-                    <column name="dummy">ap_none, in, 32</column>
-                    <column name="npar">ap_none, in, 32</column>
-                    <column name="ny">ap_none, in, 32</column>
+                    <keys size="3">Port, Direction, Bitwidth</keys>
+                    <column name="ap_return">out, 32</column>
                 </table>
             </item>
             <item name="TOP LEVEL CONTROL">
@@ -1050,45 +752,13 @@
             <item name="Top Function Arguments">
                 <table>
                     <keys size="3">Argument, Direction, Datatype</keys>
-                    <column name="dummy">in, int</column>
-                    <column name="ny">in, int</column>
-                    <column name="dysq">in, float*</column>
-                    <column name="npar">in, int</column>
-                    <column name="g">inout, float*</column>
-                    <column name="d">inout, float*</column>
-                    <column name="y">in, float*</column>
-                    <column name="h">inout, float*</column>
+                    <column name="return">out, int</column>
                 </table>
             </item>
             <item name="SW-to-HW Mapping">
                 <table>
-                    <keys size="4">Argument, HW Interface, HW Type, HW Usage</keys>
-                    <column name="dummy">dummy, port, </column>
-                    <column name="ny">ny, port, </column>
-                    <column name="dysq">dysq_address0, port, offset</column>
-                    <column name="dysq">dysq_ce0, port, </column>
-                    <column name="dysq">dysq_q0, port, </column>
-                    <column name="npar">npar, port, </column>
-                    <column name="g">g_address0, port, offset</column>
-                    <column name="g">g_ce0, port, </column>
-                    <column name="g">g_we0, port, </column>
-                    <column name="g">g_d0, port, </column>
-                    <column name="g">g_q0, port, </column>
-                    <column name="d">d_address0, port, offset</column>
-                    <column name="d">d_ce0, port, </column>
-                    <column name="d">d_we0, port, </column>
-                    <column name="d">d_d0, port, </column>
-                    <column name="d">d_q0, port, </column>
-                    <column name="y">y_address0, port, offset</column>
-                    <column name="y">y_ce0, port, </column>
-                    <column name="y">y_q0, port, </column>
-                    <column name="h">h_address0, port, offset</column>
-                    <column name="h">h_ce0, port, </column>
-                    <column name="h">h_we0, port, </column>
-                    <column name="h">h_d0, port, </column>
-                    <column name="h">h_address1, port, offset</column>
-                    <column name="h">h_ce1, port, </column>
-                    <column name="h">h_q1, port, </column>
+                    <keys size="3">Argument, HW Interface, HW Type</keys>
+                    <column name="return">ap_return, port</column>
                 </table>
             </item>
         </section>

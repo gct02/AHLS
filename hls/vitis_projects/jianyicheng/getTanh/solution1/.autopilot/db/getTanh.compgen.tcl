@@ -1,5 +1,11 @@
 # This script segment is generated automatically by AutoPilot
 
+set name main_sdiv_32ns_20s_32_36_1
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {sdiv} IMPL {auto} LATENCY 35 ALLOW_PRAGMA 1
+}
+
+
 # clear list
 if {${::AESL::PGuard_autoexp_gen}} {
     cg_default_interface_gen_dc_begin
@@ -7,12 +13,11 @@ if {${::AESL::PGuard_autoexp_gen}} {
     AESL_LIB_XILADAPTER::native_axis_begin
 }
 
-set axilite_register_dict [dict create]
 # XIL_BRAM:
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 25 \
+    id 11 \
     name A \
     reset_level 1 \
     sync_rst true \
@@ -31,14 +36,14 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 26 \
+    id 12 \
     name addr_in \
     reset_level 1 \
     sync_rst true \
     dir I \
     corename addr_in \
     op interface \
-    ports { addr_in_address0 { O 10 vector } addr_in_ce0 { O 1 bit } addr_in_q0 { I 32 vector } } \
+    ports { addr_in_address0 { O 10 vector } addr_in_ce0 { O 1 bit } addr_in_q0 { I 10 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'addr_in'"
@@ -50,14 +55,14 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 27 \
+    id 13 \
     name addr_out \
     reset_level 1 \
     sync_rst true \
     dir I \
     corename addr_out \
     op interface \
-    ports { addr_out_address0 { O 10 vector } addr_out_ce0 { O 1 bit } addr_out_q0 { I 32 vector } } \
+    ports { addr_out_address0 { O 10 vector } addr_out_ce0 { O 1 bit } addr_out_q0 { I 10 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'addr_out'"
@@ -69,33 +74,14 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 28 \
-    name atanh \
-    reset_level 1 \
-    sync_rst true \
-    dir I \
-    corename atanh \
-    op interface \
-    ports { atanh_address0 { O 4 vector } atanh_ce0 { O 1 bit } atanh_q0 { I 32 vector } atanh_address1 { O 4 vector } atanh_ce1 { O 1 bit } atanh_q1 { I 32 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'atanh'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 29 \
+    id 14 \
     name sinh \
     reset_level 1 \
     sync_rst true \
     dir I \
     corename sinh \
     op interface \
-    ports { sinh_address0 { O 3 vector } sinh_ce0 { O 1 bit } sinh_q0 { I 32 vector } } \
+    ports { sinh_address0 { O 3 vector } sinh_ce0 { O 1 bit } sinh_q0 { I 17 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'sinh'"
@@ -107,14 +93,14 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 30 \
+    id 15 \
     name cosh \
     reset_level 1 \
     sync_rst true \
     dir I \
     corename cosh \
     op interface \
-    ports { cosh_address0 { O 3 vector } cosh_ce0 { O 1 bit } cosh_q0 { I 32 vector } } \
+    ports { cosh_address0 { O 3 vector } cosh_ce0 { O 1 bit } cosh_q0 { I 17 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'cosh'"
@@ -183,6 +169,27 @@ if {${::AESL::PGuard_autoexp_gen}} {
     cg_default_interface_gen_dc_end
     cg_default_interface_gen_bundle_end
     AESL_LIB_XILADAPTER::native_axis_end
+}
+
+
+# flow_control definition:
+set InstName main_flow_control_loop_pipe_sequential_init_U
+set CompName main_flow_control_loop_pipe_sequential_init
+set name flow_control_loop_pipe_sequential_init
+if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
+if {[info proc ::AESL_LIB_VIRTEX::xil_gen_UPC_flow_control] == "::AESL_LIB_VIRTEX::xil_gen_UPC_flow_control"} {
+eval "::AESL_LIB_VIRTEX::xil_gen_UPC_flow_control { \
+    name ${name} \
+    prefix main_ \
+}"
+} else {
+puts "@W \[IMPL-107\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_UPC_flow_control, check your platform lib"
+}
+}
+
+
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler $CompName BINDTYPE interface TYPE internal_upc_flow_control INSTNAME $InstName
 }
 
 

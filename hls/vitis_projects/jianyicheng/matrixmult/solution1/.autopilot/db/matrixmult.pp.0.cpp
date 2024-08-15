@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp"
+# 1 "benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,13 +155,13 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp" 2
-# 1 "HLS-benchmarks/Inter-Block/matrixmult/matrixmult.h" 1
+# 1 "benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp" 2
+# 1 "benchmarks/jianyicheng/matrixmult/src/matrixmult.h" 1
 typedef float in_float_t;
 typedef float out_float_t;
 typedef float inout_float_t;
 
-__attribute__((sdx_kernel("matrixmult", 0))) void matrixmult(in_float_t A_0[8192], in_float_t A_1[8192],
+void matrixmult(in_float_t A_0[8192], in_float_t A_1[8192],
                 in_float_t A_2[8192], in_float_t A_3[8192],
                 in_float_t A_4[8192], in_float_t A_5[8192],
                 in_float_t A_6[8192], in_float_t A_7[8192],
@@ -172,7 +172,7 @@ __attribute__((sdx_kernel("matrixmult", 0))) void matrixmult(in_float_t A_0[8192
                 out_float_t C_1[32], out_float_t C_2[32], out_float_t C_3[32],
                 out_float_t C_4[32], out_float_t C_5[32], out_float_t C_6[32],
                 out_float_t C_7[32]);
-# 2 "HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp" 2
+# 2 "benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp" 2
 
 
 
@@ -180,12 +180,12 @@ __attribute__((sdx_kernel("matrixmult", 0))) void matrixmult(in_float_t A_0[8192
 
 
 
-# 1 "HLS-benchmarks/Inter-Block/matrixmult/matrixmult.h" 1
+# 1 "benchmarks/jianyicheng/matrixmult/src/matrixmult.h" 1
 typedef float in_float_t;
 typedef float out_float_t;
 typedef float inout_float_t;
 
-__attribute__((sdx_kernel("matrixmult", 0))) void matrixmult(in_float_t A_0[8192], in_float_t A_1[8192],
+void matrixmult(in_float_t A_0[8192], in_float_t A_1[8192],
                 in_float_t A_2[8192], in_float_t A_3[8192],
                 in_float_t A_4[8192], in_float_t A_5[8192],
                 in_float_t A_6[8192], in_float_t A_7[8192],
@@ -196,7 +196,7 @@ __attribute__((sdx_kernel("matrixmult", 0))) void matrixmult(in_float_t A_0[8192
                 out_float_t C_1[32], out_float_t C_2[32], out_float_t C_3[32],
                 out_float_t C_4[32], out_float_t C_5[32], out_float_t C_6[32],
                 out_float_t C_7[32]);
-# 10 "HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp" 2
+# 10 "benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp" 2
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 1 3
 # 36 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 3
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cstdlib" 1 3
@@ -1997,11 +1997,709 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 11 "HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp" 2
+# 11 "benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp" 2
+# 1 "/usr/include/stdio.h" 1 3 4
+# 27 "/usr/include/stdio.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
+# 28 "/usr/include/stdio.h" 2 3 4
+
+extern "C" {
 
 
 
-__attribute__((sdx_kernel("matrixmult", 0))) void matrixmult(in_float_t A_0[8192], in_float_t A_1[8192],
+
+# 1 "/tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stddef.h" 1 3 4
+# 34 "/usr/include/stdio.h" 2 3 4
+
+
+# 1 "/tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stdarg.h" 1 3 4
+# 30 "/tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stdarg.h" 3 4
+typedef __builtin_va_list va_list;
+# 48 "/tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stdarg.h" 3 4
+typedef __builtin_va_list __gnuc_va_list;
+# 37 "/usr/include/stdio.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h" 1 3 4
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h" 1 3 4
+# 13 "/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h" 3 4
+typedef struct
+{
+  int __count;
+  union
+  {
+    unsigned int __wch;
+    char __wchb[4];
+  } __value;
+} __mbstate_t;
+# 6 "/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h" 2 3 4
+
+
+
+
+typedef struct _G_fpos_t
+{
+  __off_t __pos;
+  __mbstate_t __state;
+} __fpos_t;
+# 40 "/usr/include/stdio.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h" 3 4
+typedef struct _G_fpos64_t
+{
+  __off64_t __pos;
+  __mbstate_t __state;
+} __fpos64_t;
+# 41 "/usr/include/stdio.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__FILE.h" 1 3 4
+
+
+
+struct _IO_FILE;
+typedef struct _IO_FILE __FILE;
+# 42 "/usr/include/stdio.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/FILE.h" 1 3 4
+
+
+
+struct _IO_FILE;
+
+
+typedef struct _IO_FILE FILE;
+# 43 "/usr/include/stdio.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h" 1 3 4
+# 35 "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h" 3 4
+struct _IO_FILE;
+struct _IO_marker;
+struct _IO_codecvt;
+struct _IO_wide_data;
+
+
+
+
+typedef void _IO_lock_t;
+
+
+
+
+
+struct _IO_FILE
+{
+  int _flags;
+
+
+  char *_IO_read_ptr;
+  char *_IO_read_end;
+  char *_IO_read_base;
+  char *_IO_write_base;
+  char *_IO_write_ptr;
+  char *_IO_write_end;
+  char *_IO_buf_base;
+  char *_IO_buf_end;
+
+
+  char *_IO_save_base;
+  char *_IO_backup_base;
+  char *_IO_save_end;
+
+  struct _IO_marker *_markers;
+
+  struct _IO_FILE *_chain;
+
+  int _fileno;
+  int _flags2;
+  __off_t _old_offset;
+
+
+  unsigned short _cur_column;
+  signed char _vtable_offset;
+  char _shortbuf[1];
+
+  _IO_lock_t *_lock;
+
+
+
+
+
+
+
+  __off64_t _offset;
+
+  struct _IO_codecvt *_codecvt;
+  struct _IO_wide_data *_wide_data;
+  struct _IO_FILE *_freeres_list;
+  void *_freeres_buf;
+  size_t __pad5;
+  int _mode;
+
+  char _unused2[15 * sizeof (int) - 4 * sizeof (void *) - sizeof (size_t)];
+};
+# 44 "/usr/include/stdio.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h" 3 4
+typedef __ssize_t cookie_read_function_t (void *__cookie, char *__buf,
+                                          size_t __nbytes);
+
+
+
+
+
+
+
+typedef __ssize_t cookie_write_function_t (void *__cookie, const char *__buf,
+                                           size_t __nbytes);
+
+
+
+
+
+
+
+typedef int cookie_seek_function_t (void *__cookie, __off64_t *__pos, int __w);
+
+
+typedef int cookie_close_function_t (void *__cookie);
+
+
+
+
+
+
+typedef struct _IO_cookie_io_functions_t
+{
+  cookie_read_function_t *read;
+  cookie_write_function_t *write;
+  cookie_seek_function_t *seek;
+  cookie_close_function_t *close;
+} cookie_io_functions_t;
+# 47 "/usr/include/stdio.h" 2 3 4
+
+
+
+
+
+typedef __gnuc_va_list va_list;
+# 84 "/usr/include/stdio.h" 3 4
+typedef __fpos_t fpos_t;
+
+
+
+
+typedef __fpos64_t fpos64_t;
+# 133 "/usr/include/stdio.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/stdio_lim.h" 1 3 4
+# 134 "/usr/include/stdio.h" 2 3 4
+# 143 "/usr/include/stdio.h" 3 4
+extern FILE *stdin;
+extern FILE *stdout;
+extern FILE *stderr;
+
+
+
+
+
+
+extern int remove (const char *__filename) noexcept (true);
+
+extern int rename (const char *__old, const char *__new) noexcept (true);
+
+
+
+extern int renameat (int __oldfd, const char *__old, int __newfd,
+       const char *__new) noexcept (true);
+# 170 "/usr/include/stdio.h" 3 4
+extern int renameat2 (int __oldfd, const char *__old, int __newfd,
+        const char *__new, unsigned int __flags) noexcept (true);
+
+
+
+
+
+
+extern int fclose (FILE *__stream);
+# 188 "/usr/include/stdio.h" 3 4
+extern FILE *tmpfile (void)
+  __attribute__ ((__malloc__)) ;
+# 200 "/usr/include/stdio.h" 3 4
+extern FILE *tmpfile64 (void)
+   __attribute__ ((__malloc__)) ;
+
+
+
+extern char *tmpnam (char[20]) noexcept (true) ;
+
+
+
+
+extern char *tmpnam_r (char __s[20]) noexcept (true) ;
+# 222 "/usr/include/stdio.h" 3 4
+extern char *tempnam (const char *__dir, const char *__pfx)
+   noexcept (true) __attribute__ ((__malloc__)) ;
+
+
+
+
+
+
+extern int fflush (FILE *__stream);
+# 239 "/usr/include/stdio.h" 3 4
+extern int fflush_unlocked (FILE *__stream);
+# 249 "/usr/include/stdio.h" 3 4
+extern int fcloseall (void);
+# 258 "/usr/include/stdio.h" 3 4
+extern FILE *fopen (const char *__restrict __filename,
+      const char *__restrict __modes)
+  __attribute__ ((__malloc__)) ;
+
+
+
+
+extern FILE *freopen (const char *__restrict __filename,
+        const char *__restrict __modes,
+        FILE *__restrict __stream) ;
+# 283 "/usr/include/stdio.h" 3 4
+extern FILE *fopen64 (const char *__restrict __filename,
+        const char *__restrict __modes)
+  __attribute__ ((__malloc__)) ;
+extern FILE *freopen64 (const char *__restrict __filename,
+   const char *__restrict __modes,
+   FILE *__restrict __stream) ;
+
+
+
+
+extern FILE *fdopen (int __fd, const char *__modes) noexcept (true)
+  __attribute__ ((__malloc__)) ;
+
+
+
+
+
+extern FILE *fopencookie (void *__restrict __magic_cookie,
+     const char *__restrict __modes,
+     cookie_io_functions_t __io_funcs) noexcept (true)
+  __attribute__ ((__malloc__)) ;
+
+
+
+
+extern FILE *fmemopen (void *__s, size_t __len, const char *__modes)
+  noexcept (true) __attribute__ ((__malloc__)) ;
+
+
+
+
+extern FILE *open_memstream (char **__bufloc, size_t *__sizeloc) noexcept (true)
+  __attribute__ ((__malloc__)) ;
+# 328 "/usr/include/stdio.h" 3 4
+extern void setbuf (FILE *__restrict __stream, char *__restrict __buf) noexcept (true);
+
+
+
+extern int setvbuf (FILE *__restrict __stream, char *__restrict __buf,
+      int __modes, size_t __n) noexcept (true);
+
+
+
+
+extern void setbuffer (FILE *__restrict __stream, char *__restrict __buf,
+         size_t __size) noexcept (true);
+
+
+extern void setlinebuf (FILE *__stream) noexcept (true);
+
+
+
+
+
+
+
+extern int fprintf (FILE *__restrict __stream,
+      const char *__restrict __format, ...);
+
+
+
+
+extern int printf (const char *__restrict __format, ...);
+
+extern int sprintf (char *__restrict __s,
+      const char *__restrict __format, ...) noexcept (true);
+
+
+
+
+
+extern int vfprintf (FILE *__restrict __s, const char *__restrict __format,
+       __gnuc_va_list __arg);
+
+
+
+
+extern int vprintf (const char *__restrict __format, __gnuc_va_list __arg);
+
+extern int vsprintf (char *__restrict __s, const char *__restrict __format,
+       __gnuc_va_list __arg) noexcept (true);
+
+
+
+extern int snprintf (char *__restrict __s, size_t __maxlen,
+       const char *__restrict __format, ...)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 3, 4)));
+
+extern int vsnprintf (char *__restrict __s, size_t __maxlen,
+        const char *__restrict __format, __gnuc_va_list __arg)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 3, 0)));
+
+
+
+
+
+extern int vasprintf (char **__restrict __ptr, const char *__restrict __f,
+        __gnuc_va_list __arg)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 2, 0))) ;
+extern int __asprintf (char **__restrict __ptr,
+         const char *__restrict __fmt, ...)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 2, 3))) ;
+extern int asprintf (char **__restrict __ptr,
+       const char *__restrict __fmt, ...)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 2, 3))) ;
+
+
+
+
+extern int vdprintf (int __fd, const char *__restrict __fmt,
+       __gnuc_va_list __arg)
+     __attribute__ ((__format__ (__printf__, 2, 0)));
+extern int dprintf (int __fd, const char *__restrict __fmt, ...)
+     __attribute__ ((__format__ (__printf__, 2, 3)));
+
+
+
+
+
+
+
+extern int fscanf (FILE *__restrict __stream,
+     const char *__restrict __format, ...) ;
+
+
+
+
+extern int scanf (const char *__restrict __format, ...) ;
+
+extern int sscanf (const char *__restrict __s,
+     const char *__restrict __format, ...) noexcept (true);
+# 434 "/usr/include/stdio.h" 3 4
+extern int fscanf (FILE *__restrict __stream, const char *__restrict __format, ...) __asm__ ("" "__isoc99_fscanf") ;
+
+
+extern int scanf (const char *__restrict __format, ...) __asm__ ("" "__isoc99_scanf") ;
+
+extern int sscanf (const char *__restrict __s, const char *__restrict __format, ...) noexcept (true) __asm__ ("" "__isoc99_sscanf");
+# 459 "/usr/include/stdio.h" 3 4
+extern int vfscanf (FILE *__restrict __s, const char *__restrict __format,
+      __gnuc_va_list __arg)
+     __attribute__ ((__format__ (__scanf__, 2, 0))) ;
+
+
+
+
+
+extern int vscanf (const char *__restrict __format, __gnuc_va_list __arg)
+     __attribute__ ((__format__ (__scanf__, 1, 0))) ;
+
+
+extern int vsscanf (const char *__restrict __s,
+      const char *__restrict __format, __gnuc_va_list __arg)
+     noexcept (true) __attribute__ ((__format__ (__scanf__, 2, 0)));
+
+
+
+
+
+extern int vfscanf (FILE *__restrict __s, const char *__restrict __format, __gnuc_va_list __arg) __asm__ ("" "__isoc99_vfscanf")
+
+
+
+     __attribute__ ((__format__ (__scanf__, 2, 0))) ;
+extern int vscanf (const char *__restrict __format, __gnuc_va_list __arg) __asm__ ("" "__isoc99_vscanf")
+
+     __attribute__ ((__format__ (__scanf__, 1, 0))) ;
+extern int vsscanf (const char *__restrict __s, const char *__restrict __format, __gnuc_va_list __arg) noexcept (true) __asm__ ("" "__isoc99_vsscanf")
+
+
+
+     __attribute__ ((__format__ (__scanf__, 2, 0)));
+# 513 "/usr/include/stdio.h" 3 4
+extern int fgetc (FILE *__stream);
+extern int getc (FILE *__stream);
+
+
+
+
+
+extern int getchar (void);
+
+
+
+
+
+
+extern int getc_unlocked (FILE *__stream);
+extern int getchar_unlocked (void);
+# 538 "/usr/include/stdio.h" 3 4
+extern int fgetc_unlocked (FILE *__stream);
+# 549 "/usr/include/stdio.h" 3 4
+extern int fputc (int __c, FILE *__stream);
+extern int putc (int __c, FILE *__stream);
+
+
+
+
+
+extern int putchar (int __c);
+# 565 "/usr/include/stdio.h" 3 4
+extern int fputc_unlocked (int __c, FILE *__stream);
+
+
+
+
+
+
+
+extern int putc_unlocked (int __c, FILE *__stream);
+extern int putchar_unlocked (int __c);
+
+
+
+
+
+
+extern int getw (FILE *__stream);
+
+
+extern int putw (int __w, FILE *__stream);
+
+
+
+
+
+
+
+extern char *fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
+                                                         ;
+# 615 "/usr/include/stdio.h" 3 4
+extern char *fgets_unlocked (char *__restrict __s, int __n,
+        FILE *__restrict __stream)
+                                                  ;
+# 632 "/usr/include/stdio.h" 3 4
+extern __ssize_t __getdelim (char **__restrict __lineptr,
+                             size_t *__restrict __n, int __delimiter,
+                             FILE *__restrict __stream) ;
+extern __ssize_t getdelim (char **__restrict __lineptr,
+                           size_t *__restrict __n, int __delimiter,
+                           FILE *__restrict __stream) ;
+
+
+
+
+
+
+
+extern __ssize_t getline (char **__restrict __lineptr,
+                          size_t *__restrict __n,
+                          FILE *__restrict __stream) ;
+
+
+
+
+
+
+
+extern int fputs (const char *__restrict __s, FILE *__restrict __stream);
+
+
+
+
+
+extern int puts (const char *__s);
+
+
+
+
+
+
+extern int ungetc (int __c, FILE *__stream);
+
+
+
+
+
+
+extern size_t fread (void *__restrict __ptr, size_t __size,
+       size_t __n, FILE *__restrict __stream) ;
+
+
+
+
+extern size_t fwrite (const void *__restrict __ptr, size_t __size,
+        size_t __n, FILE *__restrict __s);
+# 691 "/usr/include/stdio.h" 3 4
+extern int fputs_unlocked (const char *__restrict __s,
+      FILE *__restrict __stream);
+# 702 "/usr/include/stdio.h" 3 4
+extern size_t fread_unlocked (void *__restrict __ptr, size_t __size,
+         size_t __n, FILE *__restrict __stream) ;
+extern size_t fwrite_unlocked (const void *__restrict __ptr, size_t __size,
+          size_t __n, FILE *__restrict __stream);
+
+
+
+
+
+
+
+extern int fseek (FILE *__stream, long int __off, int __whence);
+
+
+
+
+extern long int ftell (FILE *__stream) ;
+
+
+
+
+extern void rewind (FILE *__stream);
+# 736 "/usr/include/stdio.h" 3 4
+extern int fseeko (FILE *__stream, __off_t __off, int __whence);
+
+
+
+
+extern __off_t ftello (FILE *__stream) ;
+# 760 "/usr/include/stdio.h" 3 4
+extern int fgetpos (FILE *__restrict __stream, fpos_t *__restrict __pos);
+
+
+
+
+extern int fsetpos (FILE *__stream, const fpos_t *__pos);
+# 779 "/usr/include/stdio.h" 3 4
+extern int fseeko64 (FILE *__stream, __off64_t __off, int __whence);
+extern __off64_t ftello64 (FILE *__stream) ;
+extern int fgetpos64 (FILE *__restrict __stream, fpos64_t *__restrict __pos);
+extern int fsetpos64 (FILE *__stream, const fpos64_t *__pos);
+
+
+
+extern void clearerr (FILE *__stream) noexcept (true);
+
+extern int feof (FILE *__stream) noexcept (true) ;
+
+extern int ferror (FILE *__stream) noexcept (true) ;
+
+
+
+extern void clearerr_unlocked (FILE *__stream) noexcept (true);
+extern int feof_unlocked (FILE *__stream) noexcept (true) ;
+extern int ferror_unlocked (FILE *__stream) noexcept (true) ;
+
+
+
+
+
+
+
+extern void perror (const char *__s);
+
+
+
+
+extern int fileno (FILE *__stream) noexcept (true) ;
+
+
+
+
+extern int fileno_unlocked (FILE *__stream) noexcept (true) ;
+# 823 "/usr/include/stdio.h" 3 4
+extern int pclose (FILE *__stream);
+
+
+
+
+
+extern FILE *popen (const char *__command, const char *__modes)
+  __attribute__ ((__malloc__)) ;
+
+
+
+
+
+
+extern char *ctermid (char *__s) noexcept (true)
+                                     ;
+
+
+
+
+
+extern char *cuserid (char *__s)
+                                     ;
+
+
+
+
+struct obstack;
+
+
+extern int obstack_printf (struct obstack *__restrict __obstack,
+      const char *__restrict __format, ...)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 2, 3)));
+extern int obstack_vprintf (struct obstack *__restrict __obstack,
+       const char *__restrict __format,
+       __gnuc_va_list __args)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 2, 0)));
+
+
+
+
+
+
+
+extern void flockfile (FILE *__stream) noexcept (true);
+
+
+
+extern int ftrylockfile (FILE *__stream) noexcept (true) ;
+
+
+extern void funlockfile (FILE *__stream) noexcept (true);
+# 885 "/usr/include/stdio.h" 3 4
+extern int __uflow (FILE *);
+extern int __overflow (FILE *, int);
+# 902 "/usr/include/stdio.h" 3 4
+}
+# 12 "benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp" 2
+
+unsigned short lfsr = 0xACE1u;
+unsigned bit;
+
+unsigned _rand()
+{
+ bit = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
+ return lfsr = (lfsr >> 1) | (bit << 15);
+}
+
+
+
+
+void matrixmult(in_float_t A_0[8192], in_float_t A_1[8192],
                 in_float_t A_2[8192], in_float_t A_3[8192],
                 in_float_t A_4[8192], in_float_t A_5[8192],
                 in_float_t A_6[8192], in_float_t A_7[8192],
@@ -2012,15 +2710,11 @@ __attribute__((sdx_kernel("matrixmult", 0))) void matrixmult(in_float_t A_0[8192
                 out_float_t C_1[32], out_float_t C_2[32], out_float_t C_3[32],
                 out_float_t C_4[32], out_float_t C_5[32], out_float_t C_6[32],
                 out_float_t C_7[32]) {
-#line 18 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=matrixmult
-# 24 "HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp"
-
 
 loop_0:
   for (int i = 0; i < 2; i++) {
     float s_0 = 0.0f;
-    VITIS_LOOP_29_1: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_40_1: for (int j = 0; j < 8192; j++) {
       float temp_a = A_0[i * 16 + j];
       float temp_b = B_0[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2028,7 +2722,7 @@ loop_0:
     }
     C_0[i * 16 + 0] = s_0;
     float s_1 = 0.1f;
-    VITIS_LOOP_37_2: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_48_2: for (int j = 0; j < 8192; j++) {
       float temp_a = A_1[i * 16 + j];
       float temp_b = B_0[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2036,7 +2730,7 @@ loop_0:
     }
     C_0[i * 16 + 1] = s_1;
     float s_2 = 0.0f;
-    VITIS_LOOP_45_3: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_56_3: for (int j = 0; j < 8192; j++) {
       float temp_a = A_2[i * 16 + j];
       float temp_b = B_0[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2044,7 +2738,7 @@ loop_0:
     }
     C_0[i * 16 + 2] = s_2;
     float s_3 = 0.1f;
-    VITIS_LOOP_53_4: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_64_4: for (int j = 0; j < 8192; j++) {
       float temp_a = A_3[i * 16 + j];
       float temp_b = B_0[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2052,7 +2746,7 @@ loop_0:
     }
     C_0[i * 16 + 3] = s_3;
     float s_4 = 0.0f;
-    VITIS_LOOP_61_5: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_72_5: for (int j = 0; j < 8192; j++) {
       float temp_a = A_4[i * 16 + j];
       float temp_b = B_0[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2060,7 +2754,7 @@ loop_0:
     }
     C_0[i * 16 + 4] = s_4;
     float s_5 = 0.1f;
-    VITIS_LOOP_69_6: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_80_6: for (int j = 0; j < 8192; j++) {
       float temp_a = A_5[i * 16 + j];
       float temp_b = B_0[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2068,7 +2762,7 @@ loop_0:
     }
     C_0[i * 16 + 5] = s_5;
     float s_6 = 0.0f;
-    VITIS_LOOP_77_7: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_88_7: for (int j = 0; j < 8192; j++) {
       float temp_a = A_6[i * 16 + j];
       float temp_b = B_0[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2076,7 +2770,7 @@ loop_0:
     }
     C_0[i * 16 + 6] = s_6;
     float s_7 = 0.1f;
-    VITIS_LOOP_85_8: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_96_8: for (int j = 0; j < 8192; j++) {
       float temp_a = A_7[i * 16 + j];
       float temp_b = B_0[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2088,7 +2782,7 @@ loop_0:
 loop_1:
   for (int i = 0; i < 2; i++) {
     float s_0 = 0.0f;
-    VITIS_LOOP_97_9: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_108_9: for (int j = 0; j < 8192; j++) {
       float temp_a = A_0[i * 16 + j];
       float temp_b = B_1[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2096,7 +2790,7 @@ loop_1:
     }
     C_1[i * 16 + 0] = s_0;
     float s_1 = 0.1f;
-    VITIS_LOOP_105_10: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_116_10: for (int j = 0; j < 8192; j++) {
       float temp_a = A_1[i * 16 + j];
       float temp_b = B_1[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2104,7 +2798,7 @@ loop_1:
     }
     C_1[i * 16 + 1] = s_1;
     float s_2 = 0.0f;
-    VITIS_LOOP_113_11: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_124_11: for (int j = 0; j < 8192; j++) {
       float temp_a = A_2[i * 16 + j];
       float temp_b = B_1[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2112,7 +2806,7 @@ loop_1:
     }
     C_1[i * 16 + 2] = s_2;
     float s_3 = 0.1f;
-    VITIS_LOOP_121_12: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_132_12: for (int j = 0; j < 8192; j++) {
       float temp_a = A_3[i * 16 + j];
       float temp_b = B_1[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2120,7 +2814,7 @@ loop_1:
     }
     C_1[i * 16 + 3] = s_3;
     float s_4 = 0.0f;
-    VITIS_LOOP_129_13: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_140_13: for (int j = 0; j < 8192; j++) {
       float temp_a = A_4[i * 16 + j];
       float temp_b = B_1[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2128,7 +2822,7 @@ loop_1:
     }
     C_1[i * 16 + 4] = s_4;
     float s_5 = 0.1f;
-    VITIS_LOOP_137_14: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_148_14: for (int j = 0; j < 8192; j++) {
       float temp_a = A_5[i * 16 + j];
       float temp_b = B_1[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2136,7 +2830,7 @@ loop_1:
     }
     C_1[i * 16 + 5] = s_5;
     float s_6 = 0.0f;
-    VITIS_LOOP_145_15: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_156_15: for (int j = 0; j < 8192; j++) {
       float temp_a = A_6[i * 16 + j];
       float temp_b = B_1[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2144,7 +2838,7 @@ loop_1:
     }
     C_1[i * 16 + 6] = s_6;
     float s_7 = 0.1f;
-    VITIS_LOOP_153_16: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_164_16: for (int j = 0; j < 8192; j++) {
       float temp_a = A_7[i * 16 + j];
       float temp_b = B_1[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2156,7 +2850,7 @@ loop_1:
 loop_2:
   for (int i = 0; i < 2; i++) {
     float s_0 = 0.0f;
-    VITIS_LOOP_165_17: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_176_17: for (int j = 0; j < 8192; j++) {
       float temp_a = A_0[i * 16 + j];
       float temp_b = B_2[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2164,7 +2858,7 @@ loop_2:
     }
     C_2[i * 16 + 0] = s_0;
     float s_1 = 0.1f;
-    VITIS_LOOP_173_18: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_184_18: for (int j = 0; j < 8192; j++) {
       float temp_a = A_1[i * 16 + j];
       float temp_b = B_2[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2172,7 +2866,7 @@ loop_2:
     }
     C_2[i * 16 + 1] = s_1;
     float s_2 = 0.0f;
-    VITIS_LOOP_181_19: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_192_19: for (int j = 0; j < 8192; j++) {
       float temp_a = A_2[i * 16 + j];
       float temp_b = B_2[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2180,7 +2874,7 @@ loop_2:
     }
     C_2[i * 16 + 2] = s_2;
     float s_3 = 0.1f;
-    VITIS_LOOP_189_20: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_200_20: for (int j = 0; j < 8192; j++) {
       float temp_a = A_3[i * 16 + j];
       float temp_b = B_2[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2188,7 +2882,7 @@ loop_2:
     }
     C_2[i * 16 + 3] = s_3;
     float s_4 = 0.0f;
-    VITIS_LOOP_197_21: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_208_21: for (int j = 0; j < 8192; j++) {
       float temp_a = A_4[i * 16 + j];
       float temp_b = B_2[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2196,7 +2890,7 @@ loop_2:
     }
     C_2[i * 16 + 4] = s_4;
     float s_5 = 0.1f;
-    VITIS_LOOP_205_22: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_216_22: for (int j = 0; j < 8192; j++) {
       float temp_a = A_5[i * 16 + j];
       float temp_b = B_2[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2204,7 +2898,7 @@ loop_2:
     }
     C_2[i * 16 + 5] = s_5;
     float s_6 = 0.0f;
-    VITIS_LOOP_213_23: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_224_23: for (int j = 0; j < 8192; j++) {
       float temp_a = A_6[i * 16 + j];
       float temp_b = B_2[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2212,7 +2906,7 @@ loop_2:
     }
     C_2[i * 16 + 6] = s_6;
     float s_7 = 0.1f;
-    VITIS_LOOP_221_24: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_232_24: for (int j = 0; j < 8192; j++) {
       float temp_a = A_7[i * 16 + j];
       float temp_b = B_2[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2224,7 +2918,7 @@ loop_2:
 loop_3:
   for (int i = 0; i < 2; i++) {
     float s_0 = 0.0f;
-    VITIS_LOOP_233_25: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_244_25: for (int j = 0; j < 8192; j++) {
       float temp_a = A_0[i * 16 + j];
       float temp_b = B_3[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2232,7 +2926,7 @@ loop_3:
     }
     C_3[i * 16 + 0] = s_0;
     float s_1 = 0.1f;
-    VITIS_LOOP_241_26: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_252_26: for (int j = 0; j < 8192; j++) {
       float temp_a = A_1[i * 16 + j];
       float temp_b = B_3[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2240,7 +2934,7 @@ loop_3:
     }
     C_3[i * 16 + 1] = s_1;
     float s_2 = 0.0f;
-    VITIS_LOOP_249_27: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_260_27: for (int j = 0; j < 8192; j++) {
       float temp_a = A_2[i * 16 + j];
       float temp_b = B_3[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2248,7 +2942,7 @@ loop_3:
     }
     C_3[i * 16 + 2] = s_2;
     float s_3 = 0.1f;
-    VITIS_LOOP_257_28: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_268_28: for (int j = 0; j < 8192; j++) {
       float temp_a = A_3[i * 16 + j];
       float temp_b = B_3[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2256,7 +2950,7 @@ loop_3:
     }
     C_3[i * 16 + 3] = s_3;
     float s_4 = 0.0f;
-    VITIS_LOOP_265_29: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_276_29: for (int j = 0; j < 8192; j++) {
       float temp_a = A_4[i * 16 + j];
       float temp_b = B_3[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2264,7 +2958,7 @@ loop_3:
     }
     C_3[i * 16 + 4] = s_4;
     float s_5 = 0.1f;
-    VITIS_LOOP_273_30: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_284_30: for (int j = 0; j < 8192; j++) {
       float temp_a = A_5[i * 16 + j];
       float temp_b = B_3[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2272,7 +2966,7 @@ loop_3:
     }
     C_3[i * 16 + 5] = s_5;
     float s_6 = 0.0f;
-    VITIS_LOOP_281_31: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_292_31: for (int j = 0; j < 8192; j++) {
       float temp_a = A_6[i * 16 + j];
       float temp_b = B_3[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2280,7 +2974,7 @@ loop_3:
     }
     C_3[i * 16 + 6] = s_6;
     float s_7 = 0.1f;
-    VITIS_LOOP_289_32: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_300_32: for (int j = 0; j < 8192; j++) {
       float temp_a = A_7[i * 16 + j];
       float temp_b = B_3[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2292,7 +2986,7 @@ loop_3:
 loop_4:
   for (int i = 0; i < 2; i++) {
     float s_0 = 0.0f;
-    VITIS_LOOP_301_33: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_312_33: for (int j = 0; j < 8192; j++) {
       float temp_a = A_0[i * 16 + j];
       float temp_b = B_4[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2300,7 +2994,7 @@ loop_4:
     }
     C_4[i * 16 + 0] = s_0;
     float s_1 = 0.1f;
-    VITIS_LOOP_309_34: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_320_34: for (int j = 0; j < 8192; j++) {
       float temp_a = A_1[i * 16 + j];
       float temp_b = B_4[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2308,7 +3002,7 @@ loop_4:
     }
     C_4[i * 16 + 1] = s_1;
     float s_2 = 0.0f;
-    VITIS_LOOP_317_35: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_328_35: for (int j = 0; j < 8192; j++) {
       float temp_a = A_2[i * 16 + j];
       float temp_b = B_4[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2316,7 +3010,7 @@ loop_4:
     }
     C_4[i * 16 + 2] = s_2;
     float s_3 = 0.1f;
-    VITIS_LOOP_325_36: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_336_36: for (int j = 0; j < 8192; j++) {
       float temp_a = A_3[i * 16 + j];
       float temp_b = B_4[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2324,7 +3018,7 @@ loop_4:
     }
     C_4[i * 16 + 3] = s_3;
     float s_4 = 0.0f;
-    VITIS_LOOP_333_37: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_344_37: for (int j = 0; j < 8192; j++) {
       float temp_a = A_4[i * 16 + j];
       float temp_b = B_4[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2332,7 +3026,7 @@ loop_4:
     }
     C_4[i * 16 + 4] = s_4;
     float s_5 = 0.1f;
-    VITIS_LOOP_341_38: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_352_38: for (int j = 0; j < 8192; j++) {
       float temp_a = A_5[i * 16 + j];
       float temp_b = B_4[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2340,7 +3034,7 @@ loop_4:
     }
     C_4[i * 16 + 5] = s_5;
     float s_6 = 0.0f;
-    VITIS_LOOP_349_39: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_360_39: for (int j = 0; j < 8192; j++) {
       float temp_a = A_6[i * 16 + j];
       float temp_b = B_4[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2348,7 +3042,7 @@ loop_4:
     }
     C_4[i * 16 + 6] = s_6;
     float s_7 = 0.1f;
-    VITIS_LOOP_357_40: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_368_40: for (int j = 0; j < 8192; j++) {
       float temp_a = A_7[i * 16 + j];
       float temp_b = B_4[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2360,7 +3054,7 @@ loop_4:
 loop_5:
   for (int i = 0; i < 2; i++) {
     float s_0 = 0.0f;
-    VITIS_LOOP_369_41: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_380_41: for (int j = 0; j < 8192; j++) {
       float temp_a = A_0[i * 16 + j];
       float temp_b = B_5[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2368,7 +3062,7 @@ loop_5:
     }
     C_5[i * 16 + 0] = s_0;
     float s_1 = 0.1f;
-    VITIS_LOOP_377_42: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_388_42: for (int j = 0; j < 8192; j++) {
       float temp_a = A_1[i * 16 + j];
       float temp_b = B_5[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2376,7 +3070,7 @@ loop_5:
     }
     C_5[i * 16 + 1] = s_1;
     float s_2 = 0.0f;
-    VITIS_LOOP_385_43: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_396_43: for (int j = 0; j < 8192; j++) {
       float temp_a = A_2[i * 16 + j];
       float temp_b = B_5[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2384,7 +3078,7 @@ loop_5:
     }
     C_5[i * 16 + 2] = s_2;
     float s_3 = 0.1f;
-    VITIS_LOOP_393_44: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_404_44: for (int j = 0; j < 8192; j++) {
       float temp_a = A_3[i * 16 + j];
       float temp_b = B_5[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2392,7 +3086,7 @@ loop_5:
     }
     C_5[i * 16 + 3] = s_3;
     float s_4 = 0.0f;
-    VITIS_LOOP_401_45: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_412_45: for (int j = 0; j < 8192; j++) {
       float temp_a = A_4[i * 16 + j];
       float temp_b = B_5[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2400,7 +3094,7 @@ loop_5:
     }
     C_5[i * 16 + 4] = s_4;
     float s_5 = 0.1f;
-    VITIS_LOOP_409_46: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_420_46: for (int j = 0; j < 8192; j++) {
       float temp_a = A_5[i * 16 + j];
       float temp_b = B_5[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2408,7 +3102,7 @@ loop_5:
     }
     C_5[i * 16 + 5] = s_5;
     float s_6 = 0.0f;
-    VITIS_LOOP_417_47: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_428_47: for (int j = 0; j < 8192; j++) {
       float temp_a = A_6[i * 16 + j];
       float temp_b = B_5[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2416,7 +3110,7 @@ loop_5:
     }
     C_5[i * 16 + 6] = s_6;
     float s_7 = 0.1f;
-    VITIS_LOOP_425_48: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_436_48: for (int j = 0; j < 8192; j++) {
       float temp_a = A_7[i * 16 + j];
       float temp_b = B_5[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2428,7 +3122,7 @@ loop_5:
 loop_6:
   for (int i = 0; i < 2; i++) {
     float s_0 = 0.0f;
-    VITIS_LOOP_437_49: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_448_49: for (int j = 0; j < 8192; j++) {
       float temp_a = A_0[i * 16 + j];
       float temp_b = B_6[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2436,7 +3130,7 @@ loop_6:
     }
     C_6[i * 16 + 0] = s_0;
     float s_1 = 0.1f;
-    VITIS_LOOP_445_50: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_456_50: for (int j = 0; j < 8192; j++) {
       float temp_a = A_1[i * 16 + j];
       float temp_b = B_6[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2444,7 +3138,7 @@ loop_6:
     }
     C_6[i * 16 + 1] = s_1;
     float s_2 = 0.0f;
-    VITIS_LOOP_453_51: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_464_51: for (int j = 0; j < 8192; j++) {
       float temp_a = A_2[i * 16 + j];
       float temp_b = B_6[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2452,7 +3146,7 @@ loop_6:
     }
     C_6[i * 16 + 2] = s_2;
     float s_3 = 0.1f;
-    VITIS_LOOP_461_52: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_472_52: for (int j = 0; j < 8192; j++) {
       float temp_a = A_3[i * 16 + j];
       float temp_b = B_6[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2460,7 +3154,7 @@ loop_6:
     }
     C_6[i * 16 + 3] = s_3;
     float s_4 = 0.0f;
-    VITIS_LOOP_469_53: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_480_53: for (int j = 0; j < 8192; j++) {
       float temp_a = A_4[i * 16 + j];
       float temp_b = B_6[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2468,7 +3162,7 @@ loop_6:
     }
     C_6[i * 16 + 4] = s_4;
     float s_5 = 0.1f;
-    VITIS_LOOP_477_54: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_488_54: for (int j = 0; j < 8192; j++) {
       float temp_a = A_5[i * 16 + j];
       float temp_b = B_6[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2476,7 +3170,7 @@ loop_6:
     }
     C_6[i * 16 + 5] = s_5;
     float s_6 = 0.0f;
-    VITIS_LOOP_485_55: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_496_55: for (int j = 0; j < 8192; j++) {
       float temp_a = A_6[i * 16 + j];
       float temp_b = B_6[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2484,7 +3178,7 @@ loop_6:
     }
     C_6[i * 16 + 6] = s_6;
     float s_7 = 0.1f;
-    VITIS_LOOP_493_56: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_504_56: for (int j = 0; j < 8192; j++) {
       float temp_a = A_7[i * 16 + j];
       float temp_b = B_6[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2496,7 +3190,7 @@ loop_6:
 loop_7:
   for (int i = 0; i < 2; i++) {
     float s_0 = 0.0f;
-    VITIS_LOOP_505_57: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_516_57: for (int j = 0; j < 8192; j++) {
       float temp_a = A_0[i * 16 + j];
       float temp_b = B_7[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2504,7 +3198,7 @@ loop_7:
     }
     C_7[i * 16 + 0] = s_0;
     float s_1 = 0.1f;
-    VITIS_LOOP_513_58: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_524_58: for (int j = 0; j < 8192; j++) {
       float temp_a = A_1[i * 16 + j];
       float temp_b = B_7[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2512,7 +3206,7 @@ loop_7:
     }
     C_7[i * 16 + 1] = s_1;
     float s_2 = 0.0f;
-    VITIS_LOOP_521_59: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_532_59: for (int j = 0; j < 8192; j++) {
       float temp_a = A_2[i * 16 + j];
       float temp_b = B_7[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2520,7 +3214,7 @@ loop_7:
     }
     C_7[i * 16 + 2] = s_2;
     float s_3 = 0.1f;
-    VITIS_LOOP_529_60: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_540_60: for (int j = 0; j < 8192; j++) {
       float temp_a = A_3[i * 16 + j];
       float temp_b = B_7[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2528,7 +3222,7 @@ loop_7:
     }
     C_7[i * 16 + 3] = s_3;
     float s_4 = 0.0f;
-    VITIS_LOOP_537_61: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_548_61: for (int j = 0; j < 8192; j++) {
       float temp_a = A_4[i * 16 + j];
       float temp_b = B_7[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2536,7 +3230,7 @@ loop_7:
     }
     C_7[i * 16 + 4] = s_4;
     float s_5 = 0.1f;
-    VITIS_LOOP_545_62: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_556_62: for (int j = 0; j < 8192; j++) {
       float temp_a = A_5[i * 16 + j];
       float temp_b = B_7[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2544,7 +3238,7 @@ loop_7:
     }
     C_7[i * 16 + 5] = s_5;
     float s_6 = 0.0f;
-    VITIS_LOOP_553_63: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_564_63: for (int j = 0; j < 8192; j++) {
       float temp_a = A_6[i * 16 + j];
       float temp_b = B_7[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2552,7 +3246,7 @@ loop_7:
     }
     C_7[i * 16 + 6] = s_6;
     float s_7 = 0.1f;
-    VITIS_LOOP_561_64: for (int j = 0; j < 8192; j++) {
+    VITIS_LOOP_572_64: for (int j = 0; j < 8192; j++) {
       float temp_a = A_7[i * 16 + j];
       float temp_b = B_7[i * 16 + j];
       if (temp_a != 0.0f && temp_b != 0.0f)
@@ -2562,35 +3256,39 @@ loop_7:
   }
 }
 
-int main() {
+__attribute__((sdx_kernel("main", 0))) int main() {
+#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_matrixmult.tcl"
+#pragma HLSDIRECTIVE TOP name=main
+# 582 "benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp"
+
   float A_0[8192], A_1[8192], A_2[8192], A_3[8192], A_4[8192], A_5[8192],
       A_6[8192], A_7[8192];
   float B_0[8192], B_1[8192], B_2[8192], B_3[8192], B_4[8192], B_5[8192],
       B_6[8192], B_7[8192];
   float C_0[32], C_1[32], C_2[32], C_3[32], C_4[32], C_5[32], C_6[32], C_7[32];
 
-  srand(9);
-  VITIS_LOOP_579_1: for (int i = 0; i < 8192; i++) {
-    A_0[i] = rand();
-    A_1[i] = rand();
-    A_2[i] = rand();
-    A_3[i] = rand();
-    A_4[i] = rand();
-    A_5[i] = rand();
-    A_6[i] = rand();
-    A_7[i] = rand();
+  (9);
+  VITIS_LOOP_590_1: for (int i = 0; i < 8192; i++) {
+    A_0[i] = _rand();
+    A_1[i] = _rand();
+    A_2[i] = _rand();
+    A_3[i] = _rand();
+    A_4[i] = _rand();
+    A_5[i] = _rand();
+    A_6[i] = _rand();
+    A_7[i] = _rand();
 
-    B_0[i] = rand();
-    B_1[i] = rand();
-    B_2[i] = rand();
-    B_3[i] = rand();
-    B_4[i] = rand();
-    B_5[i] = rand();
-    B_6[i] = rand();
-    B_7[i] = rand();
+    B_0[i] = _rand();
+    B_1[i] = _rand();
+    B_2[i] = _rand();
+    B_3[i] = _rand();
+    B_4[i] = _rand();
+    B_5[i] = _rand();
+    B_6[i] = _rand();
+    B_7[i] = _rand();
   }
 
-  VITIS_LOOP_599_2: for (int i = 0; i < 32; i++) {
+  VITIS_LOOP_610_2: for (int i = 0; i < 32; i++) {
     C_0[i] = 0.0f;
     C_1[i] = 0.0f;
     C_2[i] = 0.0f;

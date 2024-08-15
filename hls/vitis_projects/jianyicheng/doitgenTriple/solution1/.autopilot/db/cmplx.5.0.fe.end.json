@@ -1,54 +1,122 @@
 {
     "1": {
-        "name": "doitgenTriple_Pipeline_loop_0_loop_1",
-        "file": "HLS-benchmarks\/C-Slow\/doitgenTriple\/doitgenTriple.cpp",
-        "fileloc": "16",
-        "instructions": "73",
-        "total_instructions": "73",
+        "name": "main_Pipeline_VITIS_LOOP_50_1_VITIS_LOOP_53_2",
+        "file": "benchmarks\/jianyicheng\/doitgenTriple\/src\/doitgenTriple.cpp",
+        "fileloc": "50",
+        "instructions": "51",
+        "total_instructions": "51",
         "calls": "",
-        "basicblocks": "6",
+        "basicblocks": "8",
         "loads": {
-            "L": "6",
-            "T": "2"
+            "L": "3"
         },
         "stores": {
-            "L": "11",
-            "T": "1"
+            "L": "11"
         },
         "loops": {
             "L": "1"
         }
     },
     "2": {
-        "name": "doitgenTriple_Pipeline_loop_2",
-        "file": "HLS-benchmarks\/C-Slow\/doitgenTriple\/doitgenTriple.cpp",
-        "fileloc": "36",
-        "instructions": "32",
-        "total_instructions": "32",
+        "name": "main_Pipeline_loop_2",
+        "file": "benchmarks\/jianyicheng\/doitgenTriple\/src\/doitgenTriple.cpp",
+        "fileloc": "75",
+        "instructions": "27",
+        "total_instructions": "27",
         "calls": "",
         "basicblocks": "4",
         "loads": {
-            "L": "2",
-            "T": "1"
+            "L": "3"
         },
         "stores": {
-            "L": "4",
-            "T": "1"
+            "L": "5"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "main_Pipeline_VITIS_LOOP_83_3",
+        "file": "benchmarks\/jianyicheng\/doitgenTriple\/src\/doitgenTriple.cpp",
+        "fileloc": "82",
+        "instructions": "41",
+        "total_instructions": "41",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "5"
+        },
+        "stores": {
+            "L": "4"
         },
         "loops": {
             "L": "1"
         }
     },
     "0": {
-        "name": "doitgenTriple",
+        "name": "main",
         "file": "doitgenTriple.cpp",
-        "fileloc": "14",
-        "instructions": "13",
-        "total_instructions": "118",
-        "calls": "1 2",
+        "fileloc": "47",
+        "instructions": "22",
+        "total_instructions": "305",
+        "calls": "1 4 2 5 6 3",
         "basicblocks": "1",
         "loads": {
-            "T": "1"
+            "L": "3"
+        }
+    },
+    "4": {
+        "name": "main_Pipeline_loop_0_loop_1",
+        "file": "benchmarks\/jianyicheng\/doitgenTriple\/src\/doitgenTriple.cpp",
+        "fileloc": "59",
+        "instructions": "68",
+        "total_instructions": "68",
+        "calls": "",
+        "basicblocks": "6",
+        "loads": {
+            "L": "8"
+        },
+        "stores": {
+            "L": "12"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "5": {
+        "name": "main_Pipeline_loop_0_loop_11",
+        "file": "benchmarks\/jianyicheng\/doitgenTriple\/src\/doitgenTriple.cpp",
+        "fileloc": "80",
+        "instructions": "68",
+        "total_instructions": "68",
+        "calls": "",
+        "basicblocks": "6",
+        "loads": {
+            "L": "8"
+        },
+        "stores": {
+            "L": "12"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "6": {
+        "name": "main_Pipeline_loop_22",
+        "file": "benchmarks\/jianyicheng\/doitgenTriple\/src\/doitgenTriple.cpp",
+        "fileloc": "80",
+        "instructions": "28",
+        "total_instructions": "28",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "3"
+        },
+        "stores": {
+            "L": "5"
+        },
+        "loops": {
+            "L": "1"
         }
     }
 }

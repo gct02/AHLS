@@ -10,7 +10,6 @@
 #include "getTanh.h"
 
 int g(int beta, int atanh[12], int sinh[5], int cosh[5]){
-#pragma SS II=1 
 
     int x = 0x1351;
     int y = 0;

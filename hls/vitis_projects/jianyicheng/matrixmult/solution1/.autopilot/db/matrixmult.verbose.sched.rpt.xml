@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'matrixmult'" level="0">
-<item name = "Date">Sun Jun 23 03:45:13 2024
+<item name = "Date">Mon Aug 12 18:56:09 2024
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">matrixmult</item>
 <item name = "Solution">solution1 (Vivado IP Flow Target)</item>
-<item name = "Product family">virtexuplusHBM</item>
-<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00 ns, 3.579 ns, 1.35 ns</column>
+<column name="ap_clk">5.00 ns, 4.988 ns, 1.35 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">6292632, 6292632, 31.463 ms, 31.463 ms, 6292633, 6292633, no</column>
+<column name="">11536152, 11536152, 57.681 ms, 57.681 ms, 11536152, 11536152, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,14 +35,14 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- loop_0">786578, 786578, 393289, -, -, 2, no</column>
-<column name="- loop_1">786578, 786578, 393289, -, -, 2, no</column>
-<column name="- loop_2">786578, 786578, 393289, -, -, 2, no</column>
-<column name="- loop_3">786578, 786578, 393289, -, -, 2, no</column>
-<column name="- loop_4">786578, 786578, 393289, -, -, 2, no</column>
-<column name="- loop_5">786578, 786578, 393289, -, -, 2, no</column>
-<column name="- loop_6">786578, 786578, 393289, -, -, 2, no</column>
-<column name="- loop_7">786578, 786578, 393289, -, -, 2, no</column>
+<column name="- loop_0">1442018, 1442018, 721009, -, -, 2, no</column>
+<column name="- loop_1">1442018, 1442018, 721009, -, -, 2, no</column>
+<column name="- loop_2">1442018, 1442018, 721009, -, -, 2, no</column>
+<column name="- loop_3">1442018, 1442018, 721009, -, -, 2, no</column>
+<column name="- loop_4">1442018, 1442018, 721009, -, -, 2, no</column>
+<column name="- loop_5">1442018, 1442018, 721009, -, -, 2, no</column>
+<column name="- loop_6">1442018, 1442018, 721009, -, -, 2, no</column>
+<column name="- loop_7">1442018, 1442018, 721009, -, -, 2, no</column>
 </table>
 </item>
 </section>

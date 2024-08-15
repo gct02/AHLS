@@ -1,22 +1,47 @@
 {
-    "0": {
-        "name": "vecTrans2",
-        "file": "vecTrans2.cpp",
-        "fileloc": "3",
-        "instructions": "44",
-        "total_instructions": "44",
+    "1": {
+        "name": "main_Pipeline_VITIS_LOOP_4_1",
+        "file": "benchmarks\/jianyicheng\/vecTrans2\/src\/vecTrans2_tb.cpp",
+        "fileloc": "23",
+        "instructions": "39",
+        "total_instructions": "39",
         "calls": "",
         "basicblocks": "6",
         "loads": {
-            "L": "1",
-            "T": "2"
+            "L": "3"
         },
         "stores": {
-            "L": "2",
-            "T": "1"
+            "L": "3"
         },
         "loops": {
             "L": "1"
         }
+    },
+    "2": {
+        "name": "main_Pipeline_VITIS_LOOP_18_1",
+        "file": "benchmarks\/jianyicheng\/vecTrans2\/src\/vecTrans2_tb.cpp",
+        "fileloc": "18",
+        "instructions": "37",
+        "total_instructions": "37",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2"
+        },
+        "stores": {
+            "L": "6"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "0": {
+        "name": "main",
+        "file": "vecTrans2_tb.cpp",
+        "fileloc": "15",
+        "instructions": "7",
+        "total_instructions": "83",
+        "calls": "2 1",
+        "basicblocks": "1"
     }
 }

@@ -1,17 +1,17 @@
 {
   "0": {
-    "basicblocks": 7,
+    "basicblocks": 33,
     "calls": "",
     "file": "covariance.cpp",
-    "fileloc": 8,
-    "instructions": 606,
+    "fileloc": 40,
+    "instructions": 166,
     "loads": {
-      "T": 96
+      "L": 10
     },
-    "name": "covariance",
+    "name": "main",
     "stores": {
-      "T": 34
+      "L": 9
     },
-    "total_instructions": 606
+    "total_instructions": 166
   }
 }

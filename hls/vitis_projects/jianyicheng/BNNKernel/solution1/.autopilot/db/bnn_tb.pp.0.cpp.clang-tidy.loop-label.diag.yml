@@ -1,0 +1,22 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/BNNKernel/solution1/.autopilot/db/bnn_tb.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_16_1:  '
+    FileOffset:      16
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/BNNKernel/solution1/.autopilot/db/bnn_tb.pp.0.cpp
+        Offset:          10664
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_16_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_32_2:  '
+    FileOffset:      32
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/BNNKernel/solution1/.autopilot/db/bnn_tb.pp.0.cpp
+        Offset:          10941
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_32_2: '
+...

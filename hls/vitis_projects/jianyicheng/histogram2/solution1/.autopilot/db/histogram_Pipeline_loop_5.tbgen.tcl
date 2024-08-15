@@ -16,13 +16,13 @@ set C_modelName {histogram_Pipeline_loop_5}
 set C_modelType { void 0 }
 set C_modelArgList {
 	{ results_5 int 32 regular {array 5 { 2 3 } 1 1 }  }
-	{ array_5 int 32 regular {array 4096 { 1 3 } 1 1 }  }
+	{ array_5 int 7 regular {array 4096 { 1 3 } 1 1 }  }
 }
 set hasAXIMCache 0
 set AXIMCacheInstList { }
 set C_modelArgMapList {[ 
 	{ "Name" : "results_5", "interface" : "memory", "bitwidth" : 32, "direction" : "READWRITE"} , 
- 	{ "Name" : "array_5", "interface" : "memory", "bitwidth" : 32, "direction" : "READONLY"} ]}
+ 	{ "Name" : "array_5", "interface" : "memory", "bitwidth" : 7, "direction" : "READONLY"} ]}
 # RTL Port declarations: 
 set portNum 14
 set portList { 
@@ -39,7 +39,7 @@ set portList {
 	{ results_5_q0 sc_in sc_lv 32 signal 0 } 
 	{ array_5_address0 sc_out sc_lv 12 signal 1 } 
 	{ array_5_ce0 sc_out sc_logic 1 signal 1 } 
-	{ array_5_q0 sc_in sc_lv 32 signal 1 } 
+	{ array_5_q0 sc_in sc_lv 7 signal 1 } 
 }
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
@@ -55,7 +55,7 @@ set NewPortList {[
  	{ "name": "results_5_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "results_5", "role": "q0" }} , 
  	{ "name": "array_5_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "array_5", "role": "address0" }} , 
  	{ "name": "array_5_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "array_5", "role": "ce0" }} , 
- 	{ "name": "array_5_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "array_5", "role": "q0" }}  ]}
+ 	{ "name": "array_5_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":7, "type": "signal", "bundle":{"name": "array_5", "role": "q0" }}  ]}
 
 set RtlHierarchyInfo {[
 	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1"],
@@ -64,7 +64,7 @@ set RtlHierarchyInfo {[
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
 		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "8194", "EstimateLatencyMax" : "8194",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "16387", "EstimateLatencyMax" : "16387",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -77,20 +77,20 @@ set RtlHierarchyInfo {[
 			{"Name" : "array_5", "Type" : "Memory", "Direction" : "I"}],
 		"Loop" : [
 			{"Name" : "loop_5", "PipelineType" : "UPC",
-				"LoopDec" : {"FSMBitwidth" : "2", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter1", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter1", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+				"LoopDec" : {"FSMBitwidth" : "4", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage1", "LastStateIter" : "ap_enable_reg_pp0_iter1", "LastStateBlock" : "ap_block_pp0_stage1_subdone", "QuitState" : "ap_ST_fsm_pp0_stage1", "QuitStateIter" : "ap_enable_reg_pp0_iter1", "QuitStateBlock" : "ap_block_pp0_stage1_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
 	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.flow_control_loop_pipe_sequential_init_U", "Parent" : "0"}]}
 
 
 set ArgLastReadFirstWriteLatency {
 	histogram_Pipeline_loop_5 {
-		results_5 {Type IO LastRead 2 FirstWrite 2}
+		results_5 {Type IO LastRead 3 FirstWrite 5}
 		array_5 {Type I LastRead 0 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "8194", "Max" : "8194"}
-	, {"Name" : "Interval", "Min" : "8194", "Max" : "8194"}
+	{"Name" : "Latency", "Min" : "16387", "Max" : "16387"}
+	, {"Name" : "Interval", "Min" : "16387", "Max" : "16387"}
 ]}
 
 set PipelineEnableSignalInfo {[
@@ -98,6 +98,6 @@ set PipelineEnableSignalInfo {[
 ]}
 
 set Spec2ImplPortList { 
-	results_5 { ap_memory {  { results_5_address0 mem_address 1 3 }  { results_5_ce0 mem_ce 1 1 }  { results_5_we0 mem_we 1 1 }  { results_5_d0 mem_din 1 32 }  { results_5_q0 in_data 0 32 } } }
-	array_5 { ap_memory {  { array_5_address0 mem_address 1 12 }  { array_5_ce0 mem_ce 1 1 }  { array_5_q0 in_data 0 32 } } }
+	results_5 { ap_memory {  { results_5_address0 mem_address 1 3 }  { results_5_ce0 mem_ce 1 1 }  { results_5_we0 mem_we 1 1 }  { results_5_d0 mem_din 1 32 }  { results_5_q0 mem_dout 0 32 } } }
+	array_5 { ap_memory {  { array_5_address0 mem_address 1 12 }  { array_5_ce0 mem_ce 1 1 }  { array_5_q0 mem_dout 0 7 } } }
 }

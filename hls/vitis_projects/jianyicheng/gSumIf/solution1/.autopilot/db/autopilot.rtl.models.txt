@@ -1,5 +1,0 @@
-gSumIf_dadd_64ns_64ns_64_5_full_dsp_1
-gSumIf_dmul_64ns_64ns_64_6_max_dsp_1
-gSumIf_dcmp_64ns_64ns_1_2_no_dsp_1
-gSumIf_flow_control_loop_pipe
-gSumIf

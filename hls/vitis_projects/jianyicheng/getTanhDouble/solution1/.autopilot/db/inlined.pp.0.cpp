@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/DSS/getTanhDouble/src/inlined.cpp"
+# 1 "benchmarks/jianyicheng/getTanhDouble/src/inlined.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,14 +155,14 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/DSS/getTanhDouble/src/inlined.cpp" 2
-# 10 "HLS-benchmarks/DSS/getTanhDouble/src/inlined.cpp"
-# 1 "HLS-benchmarks/DSS/getTanhDouble/src/getTanhDouble.h" 1
-# 10 "HLS-benchmarks/DSS/getTanhDouble/src/getTanhDouble.h"
+# 1 "benchmarks/jianyicheng/getTanhDouble/src/inlined.cpp" 2
+# 10 "benchmarks/jianyicheng/getTanhDouble/src/inlined.cpp"
+# 1 "benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble.h" 1
+# 10 "benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble.h"
 double g(double beta);
 void getTanhDouble(double A[1000], int addr_in[1000], int addr_out[1000]);
 void inlined(double A[1000], int addr_in[1000], int addr_out[1000]);
-# 11 "HLS-benchmarks/DSS/getTanhDouble/src/inlined.cpp" 2
+# 11 "benchmarks/jianyicheng/getTanhDouble/src/inlined.cpp" 2
 
 void inlined(double A[1000], int addr_in[1000], int addr_out[1000]){
   int i;

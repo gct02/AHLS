@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'fft'" level="0">
-<item name = "Date">Sun Jun 23 03:43:32 2024
+<item name = "Date">Mon Aug 12 18:53:48 2024
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">fft</item>
 <item name = "Solution">solution1 (Vivado IP Flow Target)</item>
-<item name = "Product family">virtexuplusHBM</item>
-<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00 ns, 3.579 ns, 1.35 ns</column>
+<column name="ap_clk">5.00 ns, 4.633 ns, 1.35 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">3848, 410248, 19.240 us, 2.051 ms, 3849, 410249, no</column>
+<column name="">6664, 721928, 33.320 us, 3.610 ms, 6664, 721928, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,14 +35,14 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- loop_0_VITIS_LOOP_28_1">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_1_VITIS_LOOP_47_3">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_2_VITIS_LOOP_66_5">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_3_VITIS_LOOP_85_7">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_4_VITIS_LOOP_104_9">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_5_VITIS_LOOP_123_11">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_6_VITIS_LOOP_142_13">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_7_VITIS_LOOP_161_15">480, 51280, 30 ~ 3205, -, -, 16, no</column>
+<column name="- loop_0_VITIS_LOOP_39_1">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_1_VITIS_LOOP_58_3">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_2_VITIS_LOOP_77_5">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_3_VITIS_LOOP_96_7">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_4_VITIS_LOOP_115_9">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_5_VITIS_LOOP_134_11">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_6_VITIS_LOOP_153_13">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_7_VITIS_LOOP_172_15">832, 90240, 52 ~ 5640, -, -, 16, no</column>
 </table>
 </item>
 </section>

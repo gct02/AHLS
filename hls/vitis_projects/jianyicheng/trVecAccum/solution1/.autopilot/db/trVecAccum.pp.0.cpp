@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/C-Slow/trVecAccum/trVecAccum.cpp"
+# 1 "benchmarks/jianyicheng/trVecAccum/src/trVecAccum.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,18 +155,18 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/C-Slow/trVecAccum/trVecAccum.cpp" 2
+# 1 "benchmarks/jianyicheng/trVecAccum/src/trVecAccum.cpp" 2
 
 
 
 
-# 1 "HLS-benchmarks/C-Slow/trVecAccum/trVecAccum.h" 1
+# 1 "benchmarks/jianyicheng/trVecAccum/src/trVecAccum.h" 1
 typedef float in_float_t;
 typedef float out_float_t;
 typedef float inout_float_t;
 
-__attribute__((sdx_kernel("trVecAccum", 0))) void trVecAccum(in_float_t a[65536], inout_float_t r[65536]);
-# 6 "HLS-benchmarks/C-Slow/trVecAccum/trVecAccum.cpp" 2
+void trVecAccum(in_float_t a[65536], inout_float_t r[65536]);
+# 6 "benchmarks/jianyicheng/trVecAccum/src/trVecAccum.cpp" 2
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 1 3
 # 36 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 3
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cstdlib" 1 3
@@ -1967,13 +1967,9 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 7 "HLS-benchmarks/C-Slow/trVecAccum/trVecAccum.cpp" 2
+# 7 "benchmarks/jianyicheng/trVecAccum/src/trVecAccum.cpp" 2
 
-__attribute__((sdx_kernel("trVecAccum", 0))) void trVecAccum(in_float_t a[65536], inout_float_t r[65536]) {
-#line 16 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=trVecAccum
-# 8 "HLS-benchmarks/C-Slow/trVecAccum/trVecAccum.cpp"
-
+void trVecAccum(in_float_t a[65536], inout_float_t r[65536]) {
 
   int ii = 0;
 loop_0:
@@ -1987,7 +1983,11 @@ loop_0:
   }
 }
 
-int main() {
+__attribute__((sdx_kernel("main", 0))) int main() {
+#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_trVecAccum.tcl"
+#pragma HLSDIRECTIVE TOP name=main
+# 22 "benchmarks/jianyicheng/trVecAccum/src/trVecAccum.cpp"
+
   float array[65536], result[65536], gold[65536];
   VITIS_LOOP_24_1: for (int i = 0; i < 65536; i++) {
     array[i] = 1.0f;

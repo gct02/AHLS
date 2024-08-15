@@ -1,6 +1,7 @@
-<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" projectType="C/C++" name="matrixmult" top="matrixmult">
+<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" top="main" name="matrixmult">
     <files>
-        <file name="HLS-benchmarks/Inter-Block/matrixmult/matrixmult.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
+        <file name="benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
+        <file name="benchmarks/jianyicheng/matrixmult/src/matrixmult.h" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
     </files>
     <solutions>
         <solution name="solution1" status=""/>

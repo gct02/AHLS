@@ -2,38 +2,41 @@
     <item name="Total Instructions per Compilation Phase">
         <table>
             <keys size="4">Phase, Step, Instructions, Description</keys>
-            <column name="Compile/Link">, 89, After all functions are compiled and linked into a single design</column>
+            <column name="Compile/Link">, 185, After all functions are compiled and linked into a single design</column>
             <column name="">, , </column>
             <column name="Unroll/Inline">, , After user unroll and inline pragmas are applied</column>
-            <column name="">(1) unroll, 92, user unroll pragmas are applied</column>
-            <column name="">(2) simplification, 76, simplification of applied user unroll pragmas</column>
-            <column name="">(3) inline, 75, user inline pragmas are applied</column>
-            <column name="">(4) simplification, 51, simplification of applied user inline pragmas</column>
+            <column name="">(1) unroll, 155, user unroll pragmas are applied</column>
+            <column name="">(2) simplification, 124, simplification of applied user unroll pragmas</column>
+            <column name="">(3) inline, 113, user inline pragmas are applied</column>
+            <column name="">(4) simplification,  85, simplification of applied user inline pragmas</column>
             <column name="">, , </column>
             <column name="Array/Struct">, , After user array partition and struct aggregate/disaggregate pragmas are applied</column>
-            <column name="">(1) array partition, 50, user array partition pragmas are applied</column>
-            <column name="">(2) simplification, 50, simplification of applied user array partition &amp; struct aggregate/disaggregate pragmas</column>
-            <column name="">(3) aggregate/disaggregate , 50, user struct aggregate/disaggregate pragmas are applied</column>
-            <column name="">(4) array reshape, 50, apply array reshape pragmas</column>
-            <column name="">(5) access patterns, 51, array access pattern optmizations</column>
+            <column name="">(1) array partition,  85, user array partition pragmas are applied</column>
+            <column name="">(2) simplification,  85, simplification of applied user array partition &amp; struct aggregate/disaggregate pragmas</column>
+            <column name="">(3) aggregate/disaggregate ,  85, user struct aggregate/disaggregate pragmas are applied</column>
+            <column name="">(4) array reshape,  85, apply array reshape pragmas</column>
+            <column name="">(5) access patterns,  87, array access pattern optmizations</column>
             <column name="">, , </column>
             <column name="Performance">, , After transformations are applied to meet performance pragma targets</column>
-            <column name="">(1) loop simplification, 51, loop and instruction simplification</column>
-            <column name="">(2) parallelization, 50, loops are unrolled or pipelined to meet performance targets</column>
-            <column name="">(3) array partition, 50, arrays are partitioned to meet performance targets</column>
-            <column name="">(4) simplification, 50, simplification of design after performance transformations</column>
+            <column name="">(1) loop simplification,  85, loop and instruction simplification</column>
+            <column name="">(2) parallelization,  85, loops are unrolled or pipelined to meet performance targets</column>
+            <column name="">(3) array partition,  85, arrays are partitioned to meet performance targets</column>
+            <column name="">(4) simplification,  85, simplification of design after performance transformations</column>
             <column name="">, , </column>
             <column name="HW Transforms">, , After hardware transfomations</column>
-            <column name="">(1) lowering, 66, initial conversion to HW specific instructions</column>
-            <column name="">(2) optimizations, 68, high level synthesis optimizations</column>
+            <column name="">(1) lowering,  85, initial conversion to HW specific instructions</column>
+            <column name="">(2) optimizations,  94, high level synthesis optimizations</column>
         </table>
     </item>
     <item name="Instructions per Function for each Compilation Phase">
         <hiertable>
             <header size="7" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Array/Struct" col5="Performance" col6="HW Transforms"/>
             <rows>
-                <row id="0" col0="chaosNCG" col1="chaosNCG.cpp:3" col2="89" col3="51" col4="51" col5="50" col6="68">
-                    <row id="1" col0="g" col1="g.cpp:3" col2="29" col3="" col4="" col5="" col6=""/>
+                <row id="0" col0="main" col1="chaosNCG_tb.cpp:14" col2="185" col3="85" col4="87" col5="85" col6="94">
+                    <row id="1" col0="_rand" col1="chaosNCG_tb.cpp:8" col2="54" col2_disp=" 54 (2 calls)" col3="" col4="" col5="" col6=""/>
+                    <row id="2" col0="chaosNCG" col1="chaosNCG.cpp:3" col2="89" col3="" col4="" col5="" col6="">
+                        <row id="3" col0="g" col1="g.cpp:3" col2="29" col3="" col4="" col5="" col6=""/>
+                    </row>
                 </row>
             </rows>
             <notes/>

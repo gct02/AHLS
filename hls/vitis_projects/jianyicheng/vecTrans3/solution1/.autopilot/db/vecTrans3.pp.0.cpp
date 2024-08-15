@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/PNAnalyser/vecTrans3/src/vecTrans3.cpp"
+# 1 "benchmarks/jianyicheng/vecTrans3/src/vecTrans3.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,17 +155,13 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/PNAnalyser/vecTrans3/src/vecTrans3.cpp" 2
-# 1 "HLS-benchmarks/PNAnalyser/vecTrans3/src/vecTrans3.h" 1
-__attribute__((sdx_kernel("vecTrans3", 0))) void vecTrans3(float A[2000], int in[1000], int out[1000]);
+# 1 "benchmarks/jianyicheng/vecTrans3/src/vecTrans3.cpp" 2
+# 1 "benchmarks/jianyicheng/vecTrans3/src/vecTrans3.h" 1
+void vecTrans3(float A[2000], int in[1000], int out[1000]);
 float g(float d);
-# 2 "HLS-benchmarks/PNAnalyser/vecTrans3/src/vecTrans3.cpp" 2
+# 2 "benchmarks/jianyicheng/vecTrans3/src/vecTrans3.cpp" 2
 
-__attribute__((sdx_kernel("vecTrans3", 0))) void vecTrans3(float A[2000], int in[1000], int out[1000]){
-#line 19 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=vecTrans3
-# 3 "HLS-benchmarks/PNAnalyser/vecTrans3/src/vecTrans3.cpp"
-
+void vecTrans3(float A[2000], int in[1000], int out[1000]){
   VITIS_LOOP_4_1: for (int i = 0; i <1000; i++)
   {
     float d = A[in[i]];

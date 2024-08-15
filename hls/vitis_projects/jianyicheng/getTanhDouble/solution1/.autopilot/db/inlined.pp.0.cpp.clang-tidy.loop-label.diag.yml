@@ -1,13 +1,13 @@
 ---
-MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/getTanhDouble/solution1/.autopilot/db/inlined.pp.0.cpp
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/getTanhDouble/solution1/.autopilot/db/inlined.pp.0.cpp
 Diagnostics:     
   - DiagnosticName:  xilinx-label-all-loops
     Message:         'Added loop label VITIS_LOOP_16_1:  '
     FileOffset:      16
-    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/DSS/getTanhDouble/src/inlined.cpp
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/benchmarks/jianyicheng/getTanhDouble/src/inlined.cpp
     Replacements:    
-      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/getTanhDouble/solution1/.autopilot/db/inlined.pp.0.cpp
-        Offset:          10216
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/getTanhDouble/solution1/.autopilot/db/inlined.pp.0.cpp
+        Offset:          10240
         Length:          0
         ReplacementText: 'VITIS_LOOP_16_1: '
 ...

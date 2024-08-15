@@ -1,0 +1,333 @@
+
+
+================================================================
+== Vitis HLS Report for 'main'
+================================================================
+* Date:           Mon Aug 12 18:58:00 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        vecTrans3
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  4.907 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+--------+--------+---------+
+    |  Latency (cycles) |  Latency (absolute) |     Interval    | Pipeline|
+    |   min   |   max   |    min   |    max   |   min  |   max  |   Type  |
+    +---------+---------+----------+----------+--------+--------+---------+
+    |   103011|   103011|  0.515 ms|  0.515 ms|  103012|  103012|       no|
+    +---------+---------+----------+----------+--------+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        +-----------------------------------------+-------------------------------+---------+---------+-----------+-----------+--------+--------+---------+
+        |                                         |                               |  Latency (cycles) |   Latency (absolute)  |     Interval    | Pipeline|
+        |                 Instance                |             Module            |   min   |   max   |    min    |    max    |   min  |   max  |   Type  |
+        +-----------------------------------------+-------------------------------+---------+---------+-----------+-----------+--------+--------+---------+
+        |grp_main_Pipeline_VITIS_LOOP_13_2_fu_22  |main_Pipeline_VITIS_LOOP_13_2  |     2002|     2002|  10.010 us|  10.010 us|    2002|    2002|       no|
+        |grp_main_Pipeline_VITIS_LOOP_4_1_fu_28   |main_Pipeline_VITIS_LOOP_4_1   |   101006|   101006|   0.505 ms|   0.505 ms|  101006|  101006|       no|
+        +-----------------------------------------+-------------------------------+---------+---------+-----------+-----------+--------+--------+---------+
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.25>
+ST_1 : Operation 5 [1/1] (3.25ns)   --->   "%A = alloca i64 1" [benchmarks/jianyicheng/vecTrans3/src/vecTrans3_tb.cpp:5]   --->   Operation 5 'alloca' 'A' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 6 [2/2] (0.00ns)   --->   "%call_ln0 = call void @main_Pipeline_VITIS_LOOP_13_2, i32 %A"   --->   Operation 6 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 7 [1/2] (0.00ns)   --->   "%call_ln0 = call void @main_Pipeline_VITIS_LOOP_13_2, i32 %A"   --->   Operation 7 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 8 [2/2] (0.00ns)   --->   "%call_ln0 = call void @main_Pipeline_VITIS_LOOP_4_1, i32 %A, i10 %in_r, i10 %out_r"   --->   Operation 8 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 9 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 0"   --->   Operation 9 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 10 [1/1] (0.00ns)   --->   "%spectopmodule_ln3 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty" [benchmarks/jianyicheng/vecTrans3/src/vecTrans3_tb.cpp:3]   --->   Operation 10 'spectopmodule' 'spectopmodule_ln3' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 11 [1/2] (0.00ns)   --->   "%call_ln0 = call void @main_Pipeline_VITIS_LOOP_4_1, i32 %A, i10 %in_r, i10 %out_r"   --->   Operation 11 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 12 [1/1] (0.00ns)   --->   "%ret_ln19 = ret i32 0" [benchmarks/jianyicheng/vecTrans3/src/vecTrans3_tb.cpp:19]   --->   Operation 12 'ret' 'ret_ln19' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 1
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+Port [ in_r]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=0; MemPort=[1]; IO mode=ap_memory:ce=0
+Port [ out_r]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=0; MemPort=[1]; IO mode=ap_memory:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+A                 (alloca       ) [ 00111]
+call_ln0          (call         ) [ 00000]
+specbitsmap_ln0   (specbitsmap  ) [ 00000]
+spectopmodule_ln3 (spectopmodule) [ 00000]
+call_ln0          (call         ) [ 00000]
+ret_ln19          (ret          ) [ 00000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="in_r">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="in_r"/><MemPortTyVec>1 </MemPortTyVec>
+</StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="out_r">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="out_r"/><MemPortTyVec>1 </MemPortTyVec>
+</StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1001" name="const_4">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1001" name="const_6">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="main_Pipeline_VITIS_LOOP_13_2"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1001" name="const_8">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="main_Pipeline_VITIS_LOOP_4_1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1001" name="const_10">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecBitsMap"/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1001" name="const_12">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1001" name="const_14">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecTopModule"/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1001" name="const_16">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty"/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1004" name="A_alloca_fu_18">
+<pin_list>
+<pin id="19" dir="0" index="0" bw="1" slack="0"/>
+<pin id="20" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="A/1 "/>
+</bind>
+</comp>
+
+<comp id="22" class="1004" name="grp_main_Pipeline_VITIS_LOOP_13_2_fu_22">
+<pin_list>
+<pin id="23" dir="0" index="0" bw="0" slack="0"/>
+<pin id="24" dir="0" index="1" bw="32" slack="0"/>
+<pin id="25" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="28" class="1004" name="grp_main_Pipeline_VITIS_LOOP_4_1_fu_28">
+<pin_list>
+<pin id="29" dir="0" index="0" bw="0" slack="0"/>
+<pin id="30" dir="0" index="1" bw="32" slack="2147483647"/>
+<pin id="31" dir="0" index="2" bw="10" slack="0"/>
+<pin id="32" dir="0" index="3" bw="10" slack="0"/>
+<pin id="33" dir="1" index="4" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln0/3 "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="21"><net_src comp="4" pin="0"/><net_sink comp="18" pin=0"/></net>
+
+<net id="26"><net_src comp="6" pin="0"/><net_sink comp="22" pin=0"/></net>
+
+<net id="27"><net_src comp="18" pin="1"/><net_sink comp="22" pin=1"/></net>
+
+<net id="34"><net_src comp="8" pin="0"/><net_sink comp="28" pin=0"/></net>
+
+<net id="35"><net_src comp="0" pin="0"/><net_sink comp="28" pin=2"/></net>
+
+<net id="36"><net_src comp="2" pin="0"/><net_sink comp="28" pin=3"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+	Port: main : in_r | {3 4 }
+	Port: main : out_r | {3 4 }
+  - Chain level:
+	State 1
+		call_ln0 : 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|-----------------------------------------|---------|---------|---------|---------|
+| Operation|             Functional Unit             |   DSP   |  Delay  |    FF   |   LUT   |
+|----------|-----------------------------------------|---------|---------|---------|---------|
+|   call   | grp_main_Pipeline_VITIS_LOOP_13_2_fu_22 |    0    |    0    |    22   |    24   |
+|          |  grp_main_Pipeline_VITIS_LOOP_4_1_fu_28 |    5    |  8.2979 |   1043  |   924   |
+|----------|-----------------------------------------|---------|---------|---------|---------|
+|   Total  |                                         |    5    |  8.2979 |   1065  |   948   |
+|----------|-----------------------------------------|---------|---------|---------|---------|
+
+Memories:
++-----+--------+--------+--------+--------+
+|     |  BRAM  |   FF   |   LUT  |  URAM  |
++-----+--------+--------+--------+--------+
+|  A  |    4   |    0   |    0   |    0   |
+| in_r|    1   |    0   |    0   |    -   |
+|out_r|    1   |    0   |    0   |    -   |
++-----+--------+--------+--------+--------+
+|Total|    6   |    0   |    0   |    0   |
++-----+--------+--------+--------+--------+
+
+* Register list:
+N/A
+
+* Multiplexer (MUX) list: 
+|--------|------|------|------|--------|
+|  Comp  |  Pin | Size |  BW  | S x BW |
+|--------|------|------|------|--------|
+|  Total |      |      |      |    0   |
+|--------|------|------|------|--------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+--------+--------+--------+
+|           |  BRAM  |   DSP  |  Delay |   FF   |   LUT  |  URAM  |
++-----------+--------+--------+--------+--------+--------+--------+
+|  Function |    -   |    5   |    8   |  1065  |   948  |    -   |
+|   Memory  |    6   |    -   |    -   |    0   |    0   |    0   |
+|Multiplexer|    -   |    -   |    -   |    -   |    -   |    -   |
+|  Register |    -   |    -   |    -   |    -   |    -   |    -   |
++-----------+--------+--------+--------+--------+--------+--------+
+|   Total   |    6   |    5   |    8   |  1065  |   948  |    0   |
++-----------+--------+--------+--------+--------+--------+--------+

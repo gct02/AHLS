@@ -1,0 +1,22 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/vecTrans3/solution1/.autopilot/db/vecTrans3_tb.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_8_1:  '
+    FileOffset:      8
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/benchmarks/jianyicheng/vecTrans3/src/vecTrans3_tb.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/vecTrans3/solution1/.autopilot/db/vecTrans3_tb.pp.0.cpp
+        Offset:          10186
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_8_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_13_2:  '
+    FileOffset:      13
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/benchmarks/jianyicheng/vecTrans3/src/vecTrans3_tb.cpp
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/vecTrans3/solution1/.autopilot/db/vecTrans3_tb.pp.0.cpp
+        Offset:          10256
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_13_2: '
+...

@@ -1,41 +1,74 @@
 {
     "1": {
-        "name": "syr2k_Pipeline_VITIS_LOOP_13_2",
-        "file": "HLS-benchmarks\/C-Slow\/syr2k\/syr2k.cpp",
-        "fileloc": "12",
-        "instructions": "730",
-        "total_instructions": "730",
+        "name": "main_Pipeline_VITIS_LOOP_13_2",
+        "file": "benchmarks\/jianyicheng\/syr2k\/src\/syr2k.cpp",
+        "fileloc": "59",
+        "instructions": "599",
+        "total_instructions": "599",
         "calls": "",
         "basicblocks": "4",
         "loads": {
-            "L": "2",
-            "T": "127"
+            "L": "129"
         },
         "stores": {
-            "L": "4",
-            "T": "1"
+            "L": "5"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "main_Pipeline_VITIS_LOOP_31_1_VITIS_LOOP_32_2",
+        "file": "benchmarks\/jianyicheng\/syr2k\/src\/syr2k.cpp",
+        "fileloc": "31",
+        "instructions": "43",
+        "total_instructions": "43",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "3"
+        },
+        "stores": {
+            "L": "12"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "main_Pipeline_VITIS_LOOP_47_4",
+        "file": "benchmarks\/jianyicheng\/syr2k\/src\/syr2k.cpp",
+        "fileloc": "46",
+        "instructions": "599",
+        "total_instructions": "599",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "129"
+        },
+        "stores": {
+            "L": "5"
         },
         "loops": {
             "L": "1"
         }
     },
     "0": {
-        "name": "syr2k",
+        "name": "main",
         "file": "syr2k.cpp",
-        "fileloc": "8",
-        "instructions": "33",
-        "total_instructions": "763",
-        "calls": "1",
-        "basicblocks": "4",
+        "fileloc": "26",
+        "instructions": "56",
+        "total_instructions": "1297",
+        "calls": "2 3 1",
+        "basicblocks": "7",
         "loads": {
-            "L": "2",
-            "T": "2"
+            "L": "8"
         },
         "stores": {
-            "L": "4"
+            "L": "8"
         },
         "loops": {
-            "L": "1"
+            "L": "2"
         }
     }
 }

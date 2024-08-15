@@ -1,17 +1,17 @@
 {
   "0": {
-    "basicblocks": 7,
+    "basicblocks": 17,
     "calls": "",
     "file": "trVecAccum.cpp",
-    "fileloc": 8,
-    "instructions": 28,
+    "fileloc": 22,
+    "instructions": 86,
     "loads": {
-      "T": 2
+      "L": 6
     },
-    "name": "trVecAccum",
+    "name": "main",
     "stores": {
-      "T": 1
+      "L": 5
     },
-    "total_instructions": 28
+    "total_instructions": 86
   }
 }

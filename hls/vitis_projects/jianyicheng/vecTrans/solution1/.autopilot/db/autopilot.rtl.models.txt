@@ -1,3 +1,9 @@
-vecTrans_mul_32s_32s_32_2_1
-vecTrans_flow_control_loop_pipe
-vecTrans
+main_urem_10ns_7ns_6_14_1
+main_flow_control_loop_pipe_sequential_init
+main_mul_32s_32s_32_5_1
+main_flow_control_loop_pipe_sequential_init
+main_A_RAM_AUTO_1R1W
+main_b_RAM_AUTO_1R1W
+main_Pipeline_VITIS_LOOP_18_1
+main_Pipeline_VITIS_LOOP_4_1
+main

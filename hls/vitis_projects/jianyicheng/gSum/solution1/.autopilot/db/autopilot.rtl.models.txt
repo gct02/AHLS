@@ -1,5 +1,6 @@
-gSum_dadd_64ns_64ns_64_5_full_dsp_1
-gSum_dmul_64ns_64ns_64_6_max_dsp_1
-gSum_dcmp_64ns_64ns_1_2_no_dsp_1
-gSum_flow_control_loop_pipe
-gSum
+main_dadd_64ns_64ns_64_16_full_dsp_1
+main_dmul_64ns_64ns_64_14_full_dsp_1
+main_dcmp_64ns_64ns_1_4_no_dsp_1
+main_A_ROM_AUTO_1R
+main_B_ROM_AUTO_1R
+main

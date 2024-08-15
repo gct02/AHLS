@@ -1,353 +1,24 @@
 {
-  "Top": "matrixadd",
-  "RtlTop": "matrixadd",
+  "Top": "main",
+  "RtlTop": "main",
   "RtlPrefix": "",
-  "RtlSubPrefix": "matrixadd_",
+  "RtlSubPrefix": "main_",
   "SourceLanguage": "cpp",
   "HostMachineBits": "64",
   "FunctionProtocol": "ap_ctrl_hs",
   "ResetStyle": "control",
   "Target": {
-    "Family": "virtexuplushbm",
-    "Device": "xcvu35p",
-    "Package": "-fsvh2104",
-    "Speed": "-1-e",
+    "Family": "zynq",
+    "Device": "xc7z020",
+    "Package": "-clg400",
+    "Speed": "-1",
     "Triple": "fpga64-xilinx-none"
   },
   "Args": {
-    "array_0": {
-      "index": "0",
-      "direction": "in",
-      "srcType": "float*",
-      "srcSize": "32",
-      "hwRefs": [
-        {
-          "type": "port",
-          "interface": "array_0_address0",
-          "name": "array_0_address0",
-          "usage": "address",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_0_ce0",
-          "name": "array_0_ce0",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_0_q0",
-          "name": "array_0_q0",
-          "usage": "data",
-          "direction": "in"
-        }
-      ]
-    },
-    "array_1": {
-      "index": "1",
-      "direction": "in",
-      "srcType": "float*",
-      "srcSize": "32",
-      "hwRefs": [
-        {
-          "type": "port",
-          "interface": "array_1_address0",
-          "name": "array_1_address0",
-          "usage": "address",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_1_ce0",
-          "name": "array_1_ce0",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_1_q0",
-          "name": "array_1_q0",
-          "usage": "data",
-          "direction": "in"
-        }
-      ]
-    },
-    "array_2": {
-      "index": "2",
-      "direction": "in",
-      "srcType": "float*",
-      "srcSize": "32",
-      "hwRefs": [
-        {
-          "type": "port",
-          "interface": "array_2_address0",
-          "name": "array_2_address0",
-          "usage": "address",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_2_ce0",
-          "name": "array_2_ce0",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_2_q0",
-          "name": "array_2_q0",
-          "usage": "data",
-          "direction": "in"
-        }
-      ]
-    },
-    "array_3": {
-      "index": "3",
-      "direction": "unused",
-      "srcType": "float*",
-      "srcSize": "32",
-      "hwRefs": [
-        {
-          "type": "port",
-          "interface": "array_3_address0",
-          "name": "array_3_address0",
-          "usage": "address",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_3_ce0",
-          "name": "array_3_ce0",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_3_we0",
-          "name": "array_3_we0",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_3_d0",
-          "name": "array_3_d0",
-          "usage": "data",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_3_q0",
-          "name": "array_3_q0",
-          "usage": "data",
-          "direction": "in"
-        },
-        {
-          "type": "port",
-          "interface": "array_3_address1",
-          "name": "array_3_address1",
-          "usage": "address",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_3_ce1",
-          "name": "array_3_ce1",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_3_we1",
-          "name": "array_3_we1",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_3_d1",
-          "name": "array_3_d1",
-          "usage": "data",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_3_q1",
-          "name": "array_3_q1",
-          "usage": "data",
-          "direction": "in"
-        }
-      ]
-    },
-    "array_4": {
-      "index": "4",
-      "direction": "in",
-      "srcType": "float*",
-      "srcSize": "32",
-      "hwRefs": [
-        {
-          "type": "port",
-          "interface": "array_4_address0",
-          "name": "array_4_address0",
-          "usage": "address",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_4_ce0",
-          "name": "array_4_ce0",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_4_q0",
-          "name": "array_4_q0",
-          "usage": "data",
-          "direction": "in"
-        }
-      ]
-    },
-    "array_5": {
-      "index": "5",
-      "direction": "unused",
-      "srcType": "float*",
-      "srcSize": "32",
-      "hwRefs": [
-        {
-          "type": "port",
-          "interface": "array_5_address0",
-          "name": "array_5_address0",
-          "usage": "address",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_5_ce0",
-          "name": "array_5_ce0",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_5_we0",
-          "name": "array_5_we0",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_5_d0",
-          "name": "array_5_d0",
-          "usage": "data",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_5_q0",
-          "name": "array_5_q0",
-          "usage": "data",
-          "direction": "in"
-        },
-        {
-          "type": "port",
-          "interface": "array_5_address1",
-          "name": "array_5_address1",
-          "usage": "address",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_5_ce1",
-          "name": "array_5_ce1",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_5_we1",
-          "name": "array_5_we1",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_5_d1",
-          "name": "array_5_d1",
-          "usage": "data",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_5_q1",
-          "name": "array_5_q1",
-          "usage": "data",
-          "direction": "in"
-        }
-      ]
-    },
-    "array_6": {
-      "index": "6",
-      "direction": "in",
-      "srcType": "float*",
-      "srcSize": "32",
-      "hwRefs": [
-        {
-          "type": "port",
-          "interface": "array_6_address0",
-          "name": "array_6_address0",
-          "usage": "address",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_6_ce0",
-          "name": "array_6_ce0",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_6_q0",
-          "name": "array_6_q0",
-          "usage": "data",
-          "direction": "in"
-        }
-      ]
-    },
-    "array_7": {
-      "index": "7",
-      "direction": "in",
-      "srcType": "float*",
-      "srcSize": "32",
-      "hwRefs": [
-        {
-          "type": "port",
-          "interface": "array_7_address0",
-          "name": "array_7_address0",
-          "usage": "address",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_7_ce0",
-          "name": "array_7_ce0",
-          "usage": "control",
-          "direction": "out"
-        },
-        {
-          "type": "port",
-          "interface": "array_7_q0",
-          "name": "array_7_q0",
-          "usage": "data",
-          "direction": "in"
-        }
-      ]
-    }
+    
   },
   "ReturnValue": {
-    "srcType": "float",
+    "srcType": "int",
     "srcSize": "32",
     "hwRefs": [{
         "type": "port",
@@ -359,85 +30,54 @@
   },
   "HlsSolution": {
     "FlowTarget": "vivado",
-    "DirectiveTcl": ["set_directive_top matrixadd -name matrixadd"],
+    "DirectiveTcl": ["set_directive_top main -name main"],
     "ProfileOption": "0",
     "ProfileType": "none",
-    "KernelName": "matrixadd"
+    "KernelName": "main"
   },
   "ClockInfo": {
     "ClockName": "ap_clk",
     "ClockPeriod": "5",
     "Uncertainty": "1.35",
     "IsCombinational": "0",
-    "II": "49192",
-    "Latency": "49191"
+    "II": "8195",
+    "Latency": "8194"
   },
   "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 5.000 [get_ports ap_clk]"]},
   "Ipx": {
     "Vendor": "xilinx.com",
     "Library": "hls",
-    "Name": "matrixadd",
+    "Name": "main",
     "Version": "1.0",
-    "DisplayName": "Matrixadd",
-    "Revision": "2113614344",
+    "DisplayName": "Main",
+    "Revision": "2113687255",
     "Description": "An IP generated by Vitis HLS",
     "Taxonomy": "\/VITIS_HLS_IP",
     "AutoFamilySupport": "",
-    "ZipFile": "xilinx_com_hls_matrixadd_1_0.zip"
+    "ZipFile": "xilinx_com_hls_main_1_0.zip"
   },
   "Files": {
-    "CSource": ["..\/..\/..\/HLS-benchmarks\/Inter-Block\/matrixadd\/matrixadd.cpp"],
+    "CSource": ["..\/..\/..\/..\/..\/benchmarks\/jianyicheng\/matrixadd\/src\/matrixadd.cpp"],
     "Vhdl": [
-      "impl\/vhdl\/matrixadd_fadd_32ns_32ns_32_5_full_dsp_1.vhd",
-      "impl\/vhdl\/matrixadd_fcmp_32ns_32ns_1_2_no_dsp_1.vhd",
-      "impl\/vhdl\/matrixadd_flow_control_loop_pipe_sequential_init.vhd",
-      "impl\/vhdl\/matrixadd_matrixadd_Pipeline_loop_0.vhd",
-      "impl\/vhdl\/matrixadd_matrixadd_Pipeline_loop_1.vhd",
-      "impl\/vhdl\/matrixadd_matrixadd_Pipeline_loop_2.vhd",
-      "impl\/vhdl\/matrixadd_matrixadd_Pipeline_loop_3.vhd",
-      "impl\/vhdl\/matrixadd_matrixadd_Pipeline_loop_5.vhd",
-      "impl\/vhdl\/matrixadd_matrixadd_Pipeline_loop_7.vhd",
-      "impl\/vhdl\/matrixadd.vhd"
+      "impl\/vhdl\/main_flow_control_loop_pipe.vhd",
+      "impl\/vhdl\/main.vhd"
     ],
     "Verilog": [
-      "impl\/verilog\/matrixadd_fadd_32ns_32ns_32_5_full_dsp_1.v",
-      "impl\/verilog\/matrixadd_fcmp_32ns_32ns_1_2_no_dsp_1.v",
-      "impl\/verilog\/matrixadd_flow_control_loop_pipe_sequential_init.v",
-      "impl\/verilog\/matrixadd_matrixadd_Pipeline_loop_0.v",
-      "impl\/verilog\/matrixadd_matrixadd_Pipeline_loop_1.v",
-      "impl\/verilog\/matrixadd_matrixadd_Pipeline_loop_2.v",
-      "impl\/verilog\/matrixadd_matrixadd_Pipeline_loop_3.v",
-      "impl\/verilog\/matrixadd_matrixadd_Pipeline_loop_5.v",
-      "impl\/verilog\/matrixadd_matrixadd_Pipeline_loop_7.v",
-      "impl\/verilog\/matrixadd.v"
+      "impl\/verilog\/main_flow_control_loop_pipe.v",
+      "impl\/verilog\/main.v"
     ],
     "IpMisc": ["impl\/misc\/logo.png"],
-    "Subcore": [
-      "impl\/misc\/matrixadd_fadd_32ns_32ns_32_5_full_dsp_1_ip.tcl",
-      "impl\/misc\/matrixadd_fcmp_32ns_32ns_1_2_no_dsp_1_ip.tcl"
-    ],
     "CsynthXml": "syn\/report\/csynth.xml",
     "DebugDir": ".debug",
     "KernelXml": ".autopilot\/db\/kernel.internal.xml",
     "Xo": "",
     "XoHlsDir": "",
-    "ProtoInst": [".debug\/matrixadd.protoinst"]
+    "ProtoInst": [".debug\/main.protoinst"]
   },
   "SubcoreInfo": {
     "HasXpmMemory": false,
     "HasClockedDsp": false,
-    "Ip": [
-      {
-        "Name": "matrixadd_fadd_32ns_32ns_32_5_full_dsp_1_ip",
-        "Vlnv": "xilinx.com:ip:floating_point:7.1",
-        "Params": "CONFIG.a_precision_type Single CONFIG.a_tuser_width 1 CONFIG.add_sub_value Add CONFIG.b_tuser_width 1 CONFIG.c_a_exponent_width 8 CONFIG.c_a_fraction_width 24 CONFIG.c_compare_operation Programmable CONFIG.c_has_divide_by_zero false CONFIG.c_has_invalid_op false CONFIG.c_has_overflow false CONFIG.c_has_underflow false CONFIG.c_latency 3 CONFIG.c_mult_usage Full_Usage CONFIG.c_optimization Speed_Optimized CONFIG.c_rate 1 CONFIG.c_result_exponent_width 8 CONFIG.c_result_fraction_width 24 CONFIG.component_name matrixadd_fadd_32ns_32ns_32_5_full_dsp_1_ip CONFIG.flow_control NonBlocking CONFIG.has_a_tlast false CONFIG.has_a_tuser false CONFIG.has_aclken true CONFIG.has_aresetn false CONFIG.has_b_tlast false CONFIG.has_b_tuser false CONFIG.has_operation_tlast false CONFIG.has_operation_tuser false CONFIG.has_result_tready false CONFIG.maximum_latency false CONFIG.operation_tuser_width 1 CONFIG.operation_type Add_Subtract CONFIG.result_precision_type Single CONFIG.result_tlast_behv Null"
-      },
-      {
-        "Name": "matrixadd_fcmp_32ns_32ns_1_2_no_dsp_1_ip",
-        "Vlnv": "xilinx.com:ip:floating_point:7.1",
-        "Params": "CONFIG.a_precision_type Single CONFIG.a_tuser_width 1 CONFIG.add_sub_value Both CONFIG.b_tuser_width 1 CONFIG.c_a_exponent_width 8 CONFIG.c_a_fraction_width 24 CONFIG.c_compare_operation Programmable CONFIG.c_has_divide_by_zero false CONFIG.c_has_invalid_op false CONFIG.c_has_overflow false CONFIG.c_has_underflow false CONFIG.c_latency 0 CONFIG.c_mult_usage No_Usage CONFIG.c_optimization Speed_Optimized CONFIG.c_rate 1 CONFIG.c_result_exponent_width 1 CONFIG.c_result_fraction_width 0 CONFIG.component_name matrixadd_fcmp_32ns_32ns_1_2_no_dsp_1_ip CONFIG.flow_control NonBlocking CONFIG.has_a_tlast false CONFIG.has_a_tuser false CONFIG.has_aclken false CONFIG.has_aresetn false CONFIG.has_b_tlast false CONFIG.has_b_tuser false CONFIG.has_operation_tlast false CONFIG.has_operation_tuser false CONFIG.has_result_tready false CONFIG.maximum_latency false CONFIG.operation_tuser_width 1 CONFIG.operation_type Compare CONFIG.result_precision_type Single CONFIG.result_tlast_behv Null"
-      }
-    ]
+    "Ip": []
   },
   "Interfaces": {
     "ap_clk": {
@@ -481,366 +121,6 @@
       "dataWidth": "32",
       "portMap": {"ap_return": "DATA"},
       "ports": ["ap_return"]
-    },
-    "array_0_address0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "13",
-      "portMap": {"array_0_address0": "DATA"},
-      "ports": ["array_0_address0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_0"
-        }]
-    },
-    "array_0_q0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "slave",
-      "dataWidth": "32",
-      "portMap": {"array_0_q0": "DATA"},
-      "ports": ["array_0_q0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_0"
-        }]
-    },
-    "array_1_address0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "13",
-      "portMap": {"array_1_address0": "DATA"},
-      "ports": ["array_1_address0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_1"
-        }]
-    },
-    "array_1_q0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "slave",
-      "dataWidth": "32",
-      "portMap": {"array_1_q0": "DATA"},
-      "ports": ["array_1_q0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_1"
-        }]
-    },
-    "array_2_address0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "13",
-      "portMap": {"array_2_address0": "DATA"},
-      "ports": ["array_2_address0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_2"
-        }]
-    },
-    "array_2_q0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "slave",
-      "dataWidth": "32",
-      "portMap": {"array_2_q0": "DATA"},
-      "ports": ["array_2_q0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_2"
-        }]
-    },
-    "array_3_address0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "13",
-      "portMap": {"array_3_address0": "DATA"},
-      "ports": ["array_3_address0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_3"
-        }]
-    },
-    "array_3_d0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "32",
-      "portMap": {"array_3_d0": "DATA"},
-      "ports": ["array_3_d0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_3"
-        }]
-    },
-    "array_3_q0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "slave",
-      "dataWidth": "32",
-      "portMap": {"array_3_q0": "DATA"},
-      "ports": ["array_3_q0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_3"
-        }]
-    },
-    "array_3_address1": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "13",
-      "portMap": {"array_3_address1": "DATA"},
-      "ports": ["array_3_address1"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_3"
-        }]
-    },
-    "array_3_d1": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "32",
-      "portMap": {"array_3_d1": "DATA"},
-      "ports": ["array_3_d1"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_3"
-        }]
-    },
-    "array_3_q1": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "slave",
-      "dataWidth": "32",
-      "portMap": {"array_3_q1": "DATA"},
-      "ports": ["array_3_q1"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_3"
-        }]
-    },
-    "array_4_address0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "13",
-      "portMap": {"array_4_address0": "DATA"},
-      "ports": ["array_4_address0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_4"
-        }]
-    },
-    "array_4_q0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "slave",
-      "dataWidth": "32",
-      "portMap": {"array_4_q0": "DATA"},
-      "ports": ["array_4_q0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_4"
-        }]
-    },
-    "array_5_address0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "13",
-      "portMap": {"array_5_address0": "DATA"},
-      "ports": ["array_5_address0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_5"
-        }]
-    },
-    "array_5_d0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "32",
-      "portMap": {"array_5_d0": "DATA"},
-      "ports": ["array_5_d0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_5"
-        }]
-    },
-    "array_5_q0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "slave",
-      "dataWidth": "32",
-      "portMap": {"array_5_q0": "DATA"},
-      "ports": ["array_5_q0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_5"
-        }]
-    },
-    "array_5_address1": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "13",
-      "portMap": {"array_5_address1": "DATA"},
-      "ports": ["array_5_address1"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_5"
-        }]
-    },
-    "array_5_d1": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "32",
-      "portMap": {"array_5_d1": "DATA"},
-      "ports": ["array_5_d1"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_5"
-        }]
-    },
-    "array_5_q1": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "slave",
-      "dataWidth": "32",
-      "portMap": {"array_5_q1": "DATA"},
-      "ports": ["array_5_q1"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_5"
-        }]
-    },
-    "array_6_address0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "13",
-      "portMap": {"array_6_address0": "DATA"},
-      "ports": ["array_6_address0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_6"
-        }]
-    },
-    "array_6_q0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "slave",
-      "dataWidth": "32",
-      "portMap": {"array_6_q0": "DATA"},
-      "ports": ["array_6_q0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_6"
-        }]
-    },
-    "array_7_address0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "master",
-      "dataWidth": "13",
-      "portMap": {"array_7_address0": "DATA"},
-      "ports": ["array_7_address0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_7"
-        }]
-    },
-    "array_7_q0": {
-      "type": "data",
-      "busTypeName": "data",
-      "protocol": "ap_memory",
-      "mode": "slave",
-      "dataWidth": "32",
-      "portMap": {"array_7_q0": "DATA"},
-      "ports": ["array_7_q0"],
-      "constraints": [{
-          "constraint_type": "pragma interface",
-          "mode": "ap_memory",
-          "register_option": "0",
-          "argName": "array_7"
-        }]
     }
   },
   "RtlPorts": {
@@ -871,514 +151,61 @@
     "ap_return": {
       "dir": "out",
       "width": "32"
-    },
-    "array_0_address0": {
-      "dir": "out",
-      "width": "13"
-    },
-    "array_0_ce0": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_0_q0": {
-      "dir": "in",
-      "width": "32"
-    },
-    "array_1_address0": {
-      "dir": "out",
-      "width": "13"
-    },
-    "array_1_ce0": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_1_q0": {
-      "dir": "in",
-      "width": "32"
-    },
-    "array_2_address0": {
-      "dir": "out",
-      "width": "13"
-    },
-    "array_2_ce0": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_2_q0": {
-      "dir": "in",
-      "width": "32"
-    },
-    "array_3_address0": {
-      "dir": "out",
-      "width": "13"
-    },
-    "array_3_ce0": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_3_we0": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_3_d0": {
-      "dir": "out",
-      "width": "32"
-    },
-    "array_3_q0": {
-      "dir": "in",
-      "width": "32"
-    },
-    "array_3_address1": {
-      "dir": "out",
-      "width": "13"
-    },
-    "array_3_ce1": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_3_we1": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_3_d1": {
-      "dir": "out",
-      "width": "32"
-    },
-    "array_3_q1": {
-      "dir": "in",
-      "width": "32"
-    },
-    "array_4_address0": {
-      "dir": "out",
-      "width": "13"
-    },
-    "array_4_ce0": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_4_q0": {
-      "dir": "in",
-      "width": "32"
-    },
-    "array_5_address0": {
-      "dir": "out",
-      "width": "13"
-    },
-    "array_5_ce0": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_5_we0": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_5_d0": {
-      "dir": "out",
-      "width": "32"
-    },
-    "array_5_q0": {
-      "dir": "in",
-      "width": "32"
-    },
-    "array_5_address1": {
-      "dir": "out",
-      "width": "13"
-    },
-    "array_5_ce1": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_5_we1": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_5_d1": {
-      "dir": "out",
-      "width": "32"
-    },
-    "array_5_q1": {
-      "dir": "in",
-      "width": "32"
-    },
-    "array_6_address0": {
-      "dir": "out",
-      "width": "13"
-    },
-    "array_6_ce0": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_6_q0": {
-      "dir": "in",
-      "width": "32"
-    },
-    "array_7_address0": {
-      "dir": "out",
-      "width": "13"
-    },
-    "array_7_ce0": {
-      "dir": "out",
-      "width": "1"
-    },
-    "array_7_q0": {
-      "dir": "in",
-      "width": "32"
     }
   },
   "ModuleInfo": {
-    "Hierarchy": {
-      "ModuleName": "matrixadd",
-      "Instances": [
-        {
-          "ModuleName": "matrixadd_Pipeline_loop_0",
-          "InstanceName": "grp_matrixadd_Pipeline_loop_0_fu_72"
-        },
-        {
-          "ModuleName": "matrixadd_Pipeline_loop_1",
-          "InstanceName": "grp_matrixadd_Pipeline_loop_1_fu_79"
-        },
-        {
-          "ModuleName": "matrixadd_Pipeline_loop_2",
-          "InstanceName": "grp_matrixadd_Pipeline_loop_2_fu_86"
-        },
-        {
-          "ModuleName": "matrixadd_Pipeline_loop_3",
-          "InstanceName": "grp_matrixadd_Pipeline_loop_3_fu_93"
-        },
-        {
-          "ModuleName": "matrixadd_Pipeline_loop_5",
-          "InstanceName": "grp_matrixadd_Pipeline_loop_5_fu_100"
-        },
-        {
-          "ModuleName": "matrixadd_Pipeline_loop_7",
-          "InstanceName": "grp_matrixadd_Pipeline_loop_7_fu_107"
-        }
-      ]
-    },
-    "Info": {
-      "matrixadd_Pipeline_loop_0": {
-        "FunctionProtocol": "ap_ctrl_hs",
-        "isTaskLevelControl": "0",
-        "isPipelined": "1",
-        "isCombinational": "0",
-        "isOneStateSeq": "0"
-      },
-      "matrixadd_Pipeline_loop_1": {
-        "FunctionProtocol": "ap_ctrl_hs",
-        "isTaskLevelControl": "0",
-        "isPipelined": "1",
-        "isCombinational": "0",
-        "isOneStateSeq": "0"
-      },
-      "matrixadd_Pipeline_loop_2": {
-        "FunctionProtocol": "ap_ctrl_hs",
-        "isTaskLevelControl": "0",
-        "isPipelined": "1",
-        "isCombinational": "0",
-        "isOneStateSeq": "0"
-      },
-      "matrixadd_Pipeline_loop_3": {
-        "FunctionProtocol": "ap_ctrl_hs",
-        "isTaskLevelControl": "0",
-        "isPipelined": "1",
-        "isCombinational": "0",
-        "isOneStateSeq": "0"
-      },
-      "matrixadd_Pipeline_loop_5": {
-        "FunctionProtocol": "ap_ctrl_hs",
-        "isTaskLevelControl": "0",
-        "isPipelined": "1",
-        "isCombinational": "0",
-        "isOneStateSeq": "0"
-      },
-      "matrixadd_Pipeline_loop_7": {
-        "FunctionProtocol": "ap_ctrl_hs",
-        "isTaskLevelControl": "0",
-        "isPipelined": "1",
-        "isCombinational": "0",
-        "isOneStateSeq": "0"
-      },
-      "matrixadd": {
+    "Hierarchy": {"ModuleName": "main"},
+    "Info": {"main": {
         "FunctionProtocol": "ap_ctrl_hs",
         "isTaskLevelControl": "0",
         "isPipelined": "0",
         "isCombinational": "0",
         "isOneStateSeq": "0"
-      }
-    },
-    "Metrics": {
-      "matrixadd_Pipeline_loop_0": {
+      }},
+    "Metrics": {"main": {
         "Latency": {
-          "LatencyBest": "49155",
-          "LatencyAvg": "49155",
-          "LatencyWorst": "49155",
-          "PipelineII": "49155",
+          "LatencyBest": "8194",
+          "LatencyAvg": "8194",
+          "LatencyWorst": "8194",
+          "PipelineII": "8195",
           "PipelineDepth": "",
           "PipelineType": "no"
         },
         "Timing": {
           "Target": "5.00",
           "Uncertainty": "1.35",
-          "Estimate": "3.579"
+          "Estimate": "4.988"
         },
         "Loops": [{
-            "Name": "loop_0",
+            "Name": "VITIS_LOOP_88_1",
             "TripCount": "8192",
-            "Latency": "49153",
-            "PipelineII": "6",
-            "PipelineDepth": "8"
+            "Latency": "8192",
+            "PipelineII": "1",
+            "PipelineDepth": "1"
           }],
         "Area": {
-          "FF": "155",
-          "AVAIL_FF": "1743360",
+          "FF": "16",
+          "AVAIL_FF": "106400",
           "UTIL_FF": "~0",
-          "LUT": "226",
-          "AVAIL_LUT": "871680",
+          "LUT": "64",
+          "AVAIL_LUT": "53200",
           "UTIL_LUT": "~0",
           "BRAM_18K": "0",
-          "AVAIL_BRAM": "2688",
+          "AVAIL_BRAM": "280",
           "UTIL_BRAM": "0",
           "DSP": "0",
-          "AVAIL_DSP": "5952",
+          "AVAIL_DSP": "220",
           "UTIL_DSP": "0",
           "URAM": "0",
-          "AVAIL_URAM": "640",
+          "AVAIL_URAM": "0",
           "UTIL_URAM": "0"
         }
-      },
-      "matrixadd_Pipeline_loop_1": {
-        "Latency": {
-          "LatencyBest": "49155",
-          "LatencyAvg": "49155",
-          "LatencyWorst": "49155",
-          "PipelineII": "49155",
-          "PipelineDepth": "",
-          "PipelineType": "no"
-        },
-        "Timing": {
-          "Target": "5.00",
-          "Uncertainty": "1.35",
-          "Estimate": "3.579"
-        },
-        "Loops": [{
-            "Name": "loop_1",
-            "TripCount": "8192",
-            "Latency": "49153",
-            "PipelineII": "6",
-            "PipelineDepth": "8"
-          }],
-        "Area": {
-          "DSP": "2",
-          "AVAIL_DSP": "5952",
-          "UTIL_DSP": "~0",
-          "FF": "360",
-          "AVAIL_FF": "1743360",
-          "UTIL_FF": "~0",
-          "LUT": "445",
-          "AVAIL_LUT": "871680",
-          "UTIL_LUT": "~0",
-          "BRAM_18K": "0",
-          "AVAIL_BRAM": "2688",
-          "UTIL_BRAM": "0",
-          "URAM": "0",
-          "AVAIL_URAM": "640",
-          "UTIL_URAM": "0"
-        }
-      },
-      "matrixadd_Pipeline_loop_2": {
-        "Latency": {
-          "LatencyBest": "49155",
-          "LatencyAvg": "49155",
-          "LatencyWorst": "49155",
-          "PipelineII": "49155",
-          "PipelineDepth": "",
-          "PipelineType": "no"
-        },
-        "Timing": {
-          "Target": "5.00",
-          "Uncertainty": "1.35",
-          "Estimate": "3.579"
-        },
-        "Loops": [{
-            "Name": "loop_2",
-            "TripCount": "8192",
-            "Latency": "49153",
-            "PipelineII": "6",
-            "PipelineDepth": "8"
-          }],
-        "Area": {
-          "DSP": "2",
-          "AVAIL_DSP": "5952",
-          "UTIL_DSP": "~0",
-          "FF": "360",
-          "AVAIL_FF": "1743360",
-          "UTIL_FF": "~0",
-          "LUT": "445",
-          "AVAIL_LUT": "871680",
-          "UTIL_LUT": "~0",
-          "BRAM_18K": "0",
-          "AVAIL_BRAM": "2688",
-          "UTIL_BRAM": "0",
-          "URAM": "0",
-          "AVAIL_URAM": "640",
-          "UTIL_URAM": "0"
-        }
-      },
-      "matrixadd_Pipeline_loop_3": {
-        "Latency": {
-          "LatencyBest": "49155",
-          "LatencyAvg": "49155",
-          "LatencyWorst": "49155",
-          "PipelineII": "49155",
-          "PipelineDepth": "",
-          "PipelineType": "no"
-        },
-        "Timing": {
-          "Target": "5.00",
-          "Uncertainty": "1.35",
-          "Estimate": "3.579"
-        },
-        "Loops": [{
-            "Name": "loop_3",
-            "TripCount": "8192",
-            "Latency": "49153",
-            "PipelineII": "6",
-            "PipelineDepth": "8"
-          }],
-        "Area": {
-          "DSP": "2",
-          "AVAIL_DSP": "5952",
-          "UTIL_DSP": "~0",
-          "FF": "360",
-          "AVAIL_FF": "1743360",
-          "UTIL_FF": "~0",
-          "LUT": "445",
-          "AVAIL_LUT": "871680",
-          "UTIL_LUT": "~0",
-          "BRAM_18K": "0",
-          "AVAIL_BRAM": "2688",
-          "UTIL_BRAM": "0",
-          "URAM": "0",
-          "AVAIL_URAM": "640",
-          "UTIL_URAM": "0"
-        }
-      },
-      "matrixadd_Pipeline_loop_5": {
-        "Latency": {
-          "LatencyBest": "49155",
-          "LatencyAvg": "49155",
-          "LatencyWorst": "49155",
-          "PipelineII": "49155",
-          "PipelineDepth": "",
-          "PipelineType": "no"
-        },
-        "Timing": {
-          "Target": "5.00",
-          "Uncertainty": "1.35",
-          "Estimate": "3.579"
-        },
-        "Loops": [{
-            "Name": "loop_5",
-            "TripCount": "8192",
-            "Latency": "49153",
-            "PipelineII": "6",
-            "PipelineDepth": "8"
-          }],
-        "Area": {
-          "DSP": "2",
-          "AVAIL_DSP": "5952",
-          "UTIL_DSP": "~0",
-          "FF": "360",
-          "AVAIL_FF": "1743360",
-          "UTIL_FF": "~0",
-          "LUT": "445",
-          "AVAIL_LUT": "871680",
-          "UTIL_LUT": "~0",
-          "BRAM_18K": "0",
-          "AVAIL_BRAM": "2688",
-          "UTIL_BRAM": "0",
-          "URAM": "0",
-          "AVAIL_URAM": "640",
-          "UTIL_URAM": "0"
-        }
-      },
-      "matrixadd_Pipeline_loop_7": {
-        "Latency": {
-          "LatencyBest": "49155",
-          "LatencyAvg": "49155",
-          "LatencyWorst": "49155",
-          "PipelineII": "49155",
-          "PipelineDepth": "",
-          "PipelineType": "no"
-        },
-        "Timing": {
-          "Target": "5.00",
-          "Uncertainty": "1.35",
-          "Estimate": "3.579"
-        },
-        "Loops": [{
-            "Name": "loop_7",
-            "TripCount": "8192",
-            "Latency": "49153",
-            "PipelineII": "6",
-            "PipelineDepth": "8"
-          }],
-        "Area": {
-          "DSP": "2",
-          "AVAIL_DSP": "5952",
-          "UTIL_DSP": "~0",
-          "FF": "360",
-          "AVAIL_FF": "1743360",
-          "UTIL_FF": "~0",
-          "LUT": "445",
-          "AVAIL_LUT": "871680",
-          "UTIL_LUT": "~0",
-          "BRAM_18K": "0",
-          "AVAIL_BRAM": "2688",
-          "UTIL_BRAM": "0",
-          "URAM": "0",
-          "AVAIL_URAM": "640",
-          "UTIL_URAM": "0"
-        }
-      },
-      "matrixadd": {
-        "Latency": {
-          "LatencyBest": "49191",
-          "LatencyAvg": "49191",
-          "LatencyWorst": "49191",
-          "PipelineII": "49192",
-          "PipelineDepth": "",
-          "PipelineType": "no"
-        },
-        "Timing": {
-          "Target": "5.00",
-          "Uncertainty": "1.35",
-          "Estimate": "3.981"
-        },
-        "Area": {
-          "DSP": "12",
-          "AVAIL_DSP": "5952",
-          "UTIL_DSP": "~0",
-          "FF": "2235",
-          "AVAIL_FF": "1743360",
-          "UTIL_FF": "~0",
-          "LUT": "2913",
-          "AVAIL_LUT": "871680",
-          "UTIL_LUT": "~0",
-          "BRAM_18K": "0",
-          "AVAIL_BRAM": "2688",
-          "UTIL_BRAM": "0",
-          "URAM": "0",
-          "AVAIL_URAM": "640",
-          "UTIL_URAM": "0"
-        }
-      }
-    }
+      }}
   },
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2024-06-23 03:44:46 -03",
+    "Time": "2024-08-12 18:55:46 -03",
     "ToolName": "vitis_hls",
     "ToolVersion": "2023.2"
   }

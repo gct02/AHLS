@@ -113,8 +113,7 @@ def build_dfg(dfg_file:Path):
 
 def build_dfg_dsp(dfg_file:Path, data_stats_folder:Path=None):
     nodes, edges = parse_dfg_file(dfg_file)
-    opcodes_to_keep = list(range(1, 29)) + [53, 54, 55]
-    nodes, edges = strip_nodes(nodes, edges, opcodes_to_keep)
+    nodes, edges = strip_nodes(nodes, edges, list(range(1, 22)) + [53])
     nodes, edges = rescale_node_ids(nodes, edges)
     adj_mat = get_adj_mat(nodes, edges)
     '''
@@ -127,16 +126,14 @@ def build_dfg_dsp(dfg_file:Path, data_stats_folder:Path=None):
     for node in nodes:
         opcode = node[1]
 
-        if opcode <= 10 or opcode >= 53: # ret, br, switch, phi, call, select
-            one_hot_opcode = [0, 0, 0, 0, 1]
-        elif opcode <= 14: # add, sub
-            one_hot_opcode = [0, 0, 0, 1, 0]
+        if opcode == 53: # phi
+            one_hot_opcode = [0, 0, 0]
+        if opcode <= 14: # add, sub
+            one_hot_opcode = [0, 0, 1]
         elif opcode <= 16: # mul
-            one_hot_opcode = [0, 0, 1, 0, 0]
-        elif opcode <= 22: # div, rem
-            one_hot_opcode = [0, 1, 0, 0, 0]
-        else: # logical
-            one_hot_opcode = [1, 0, 0, 0, 0]
+            one_hot_opcode = [0, 1, 0]
+        else: # div, rem
+            one_hot_opcode = [1, 0, 0]
 
         #avg_num_occurs = np.mean([data_stats[i][node[0]][2] for i in range(len(data_stats))])
 
@@ -148,8 +145,7 @@ def build_dfg_dsp(dfg_file:Path, data_stats_folder:Path=None):
 
 def build_dfg_lut(dfg_file:Path):
     nodes, edges = parse_dfg_file(dfg_file)
-    opcodes_to_keep = list(range(1, 29)) + list(range(36, 45)) + [47, 51, 52, 53, 54, 55]
-    nodes, edges = strip_nodes(nodes, edges, opcodes_to_keep)
+    nodes, edges = strip_nodes(nodes, edges, list(range(1, 29)) + [53])
     nodes, edges = rescale_node_ids(nodes, edges)
     adj_mat = get_adj_mat(nodes, edges)
 
@@ -158,22 +154,19 @@ def build_dfg_lut(dfg_file:Path):
     for node in nodes:
         opcode = node[1]
 
-        if opcode <= 10 or opcode >= 53: # ret, br, switch, phi, call, select
-            one_hot_opcode = [0, 0, 0, 0, 0, 0, 1]
-        elif opcode <= 14: # add, sub
-            one_hot_opcode = [0, 0, 0, 0, 0, 1, 0]
+        if opcode == 53: # phi
+            one_hot_opcode = [0, 0, 0, 0]
+        elif opcode <= 14 or opcode in [23, 24, 25]: # add, sub
+            one_hot_opcode = [0, 0, 0, 1]
         elif opcode <= 16: # mul
-            one_hot_opcode = [0, 0, 0, 0, 1, 0, 0]
+            one_hot_opcode = [0, 0, 1, 0]
         elif opcode <= 22: # div, rem
-            one_hot_opcode = [0, 0, 0, 1, 0, 0, 0]
-        elif opcode <= 28: # logical
-            one_hot_opcode = [0, 0, 1, 0, 0, 0, 0]
-        elif opcode <= 47: # cast
-            one_hot_opcode = [0, 1, 0, 0, 0, 0, 0]
-        else: # cmp
-            one_hot_opcode = [1, 0, 0, 0, 0, 0, 0]
+            one_hot_opcode = [0, 1, 0, 0]
+        else: # logical
+            one_hot_opcode = [1, 0, 0, 0]
 
-        node_features = one_hot_opcode + node[2:5] + get_directives_features(node[5:])
+        # node_features = one_hot_opcode + node[2:5] + get_directives_features(node[5:])
+        node_features = one_hot_opcode + node[2:5]
         features.append(torch.FloatTensor(node_features))
 
     features = torch.stack(features)

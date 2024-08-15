@@ -6,8 +6,8 @@
 
 <UserAssignments>
 <unit>ns</unit>
-<ProductFamily>virtexuplusHBM</ProductFamily>
-<Part>xcvu35p-fsvh2104-1-e</Part>
+<ProductFamily>zynq</ProductFamily>
+<Part>xc7z020-clg400-1</Part>
 <TopModelName>histogram_Pipeline_loop_8</TopModelName>
 <TargetClockPeriod>5.00</TargetClockPeriod>
 <ClockUncertainty>1.35</ClockUncertainty>
@@ -18,41 +18,41 @@
 <PipelineType>no</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>3.509</EstimatedClockPeriod>
+<EstimatedClockPeriod>4.826</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>8</Best-caseLatency>
-<Average-caseLatency>8</Average-caseLatency>
-<Worst-caseLatency>8</Worst-caseLatency>
-<Best-caseRealTimeLatency>40.000 ns</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>40.000 ns</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>40.000 ns</Worst-caseRealTimeLatency>
-<Interval-min>8</Interval-min>
-<Interval-max>8</Interval-max>
+<Best-caseLatency>11</Best-caseLatency>
+<Average-caseLatency>11</Average-caseLatency>
+<Worst-caseLatency>11</Worst-caseLatency>
+<Best-caseRealTimeLatency>55.000 ns</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>55.000 ns</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>55.000 ns</Worst-caseRealTimeLatency>
+<Interval-min>11</Interval-min>
+<Interval-max>11</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
 <loop_8>
 <Slack>3.65</Slack>
 <TripCount>5</TripCount>
-<Latency>6</Latency>
-<AbsoluteTimeLatency>30</AbsoluteTimeLatency>
+<Latency>9</Latency>
+<AbsoluteTimeLatency>45</AbsoluteTimeLatency>
 <PipelineII>1</PipelineII>
-<PipelineDepth>3</PipelineDepth>
+<PipelineDepth>6</PipelineDepth>
 <InstanceList>
 </InstanceList>
 </loop_8>
 </SummaryOfLoopLatency>
 <SummaryOfViolations>
-<IssueType>-</IssueType>
+<IssueType>Timing Violation</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154</SourceLocation>
+<SourceLocation>benchmarks/jianyicheng/histogram2/src/histogram.cpp:165</SourceLocation>
 <SummaryOfLoopViolations>
 <loop_8>
 <Name>loop_8</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154</SourceLocation>
+<SourceLocation>benchmarks/jianyicheng/histogram2/src/histogram.cpp:165</SourceLocation>
 </loop_8>
 </SummaryOfLoopViolations>
 </SummaryOfViolations>
@@ -60,18 +60,18 @@
 
 <AreaEstimates>
 <Resources>
-<FF>46</FF>
-<LUT>303</LUT>
+<FF>561</FF>
+<LUT>365</LUT>
 <BRAM_18K>0</BRAM_18K>
 <DSP>0</DSP>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>
-<BRAM_18K>2688</BRAM_18K>
-<DSP>5952</DSP>
-<FF>1743360</FF>
-<LUT>871680</LUT>
-<URAM>640</URAM>
+<BRAM_18K>280</BRAM_18K>
+<DSP>220</DSP>
+<FF>106400</FF>
+<LUT>53200</LUT>
+<URAM>0</URAM>
 </AvailableResources>
 </AreaEstimates>
 

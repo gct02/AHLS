@@ -1,13 +1,13 @@
 ---
-MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/matrixadd/solution1/.autopilot/db/matrixadd.pp.0.cpp
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/matrixadd/solution1/.autopilot/db/matrixadd.pp.0.cpp
 Diagnostics:     
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_77_1:  '
-    FileOffset:      77
-    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp
+    Message:         'Added loop label VITIS_LOOP_88_1:  '
+    FileOffset:      88
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/benchmarks/jianyicheng/matrixadd/src/matrixadd.cpp
     Replacements:    
-      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/matrixadd/solution1/.autopilot/db/matrixadd.pp.0.cpp
-        Offset:          55652
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/matrixadd/solution1/.autopilot/db/matrixadd.pp.0.cpp
+        Offset:          70601
         Length:          0
-        ReplacementText: 'VITIS_LOOP_77_1: '
+        ReplacementText: 'VITIS_LOOP_88_1: '
 ...

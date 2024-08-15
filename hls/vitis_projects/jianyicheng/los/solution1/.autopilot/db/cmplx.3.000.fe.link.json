@@ -1,17 +1,44 @@
 {
   "0": {
+    "basicblocks": 7,
+    "calls": "2 2 2 2 2 2 2 2 1",
+    "file": "los.cpp",
+    "fileloc": 409,
+    "instructions": 147,
+    "name": "main",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 1060
+  },
+  "1": {
     "basicblocks": 289,
     "calls": "",
     "file": "los.cpp",
-    "fileloc": 14,
+    "fileloc": 24,
     "instructions": 697,
     "loads": {
-      "T": 8
+      "L": 8
     },
     "name": "los",
     "stores": {
-      "T": 8
+      "L": 8
     },
     "total_instructions": 697
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "los.cpp",
+    "fileloc": 16,
+    "instructions": 27,
+    "loads": {
+      "G": 6
+    },
+    "name": "_rand",
+    "stores": {
+      "G": 2
+    },
+    "total_instructions": 27
   }
 }

@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/Inter-Block/los/los.cpp"
+# 1 "benchmarks/jianyicheng/los/src/los.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,13 +155,13 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/Inter-Block/los/los.cpp" 2
-# 1 "HLS-benchmarks/Inter-Block/los/los.h" 1
+# 1 "benchmarks/jianyicheng/los/src/los.cpp" 2
+# 1 "benchmarks/jianyicheng/los/src/los.h" 1
 typedef int in_int_t;
 typedef int out_int_t;
 typedef int inout_int_t;
 
-__attribute__((sdx_kernel("los", 0))) void los(in_int_t obstacles_0[1024], in_int_t obstacles_1[1024],
+void los(in_int_t obstacles_0[1024], in_int_t obstacles_1[1024],
          in_int_t obstacles_2[1024], in_int_t obstacles_3[1024],
          in_int_t obstacles_4[1024], in_int_t obstacles_5[1024],
          in_int_t obstacles_6[1024], in_int_t obstacles_7[1024],
@@ -169,7 +169,7 @@ __attribute__((sdx_kernel("los", 0))) void los(in_int_t obstacles_0[1024], in_in
          out_int_t results_2[1024], out_int_t results_3[1024],
          out_int_t results_4[1024], out_int_t results_5[1024],
          out_int_t results_6[1024], out_int_t results_7[1024]);
-# 2 "HLS-benchmarks/Inter-Block/los/los.cpp" 2
+# 2 "benchmarks/jianyicheng/los/src/los.cpp" 2
 
 
 
@@ -177,12 +177,12 @@ __attribute__((sdx_kernel("los", 0))) void los(in_int_t obstacles_0[1024], in_in
 
 
 
-# 1 "HLS-benchmarks/Inter-Block/los/los.h" 1
+# 1 "benchmarks/jianyicheng/los/src/los.h" 1
 typedef int in_int_t;
 typedef int out_int_t;
 typedef int inout_int_t;
 
-__attribute__((sdx_kernel("los", 0))) void los(in_int_t obstacles_0[1024], in_int_t obstacles_1[1024],
+void los(in_int_t obstacles_0[1024], in_int_t obstacles_1[1024],
          in_int_t obstacles_2[1024], in_int_t obstacles_3[1024],
          in_int_t obstacles_4[1024], in_int_t obstacles_5[1024],
          in_int_t obstacles_6[1024], in_int_t obstacles_7[1024],
@@ -190,7 +190,7 @@ __attribute__((sdx_kernel("los", 0))) void los(in_int_t obstacles_0[1024], in_in
          out_int_t results_2[1024], out_int_t results_3[1024],
          out_int_t results_4[1024], out_int_t results_5[1024],
          out_int_t results_6[1024], out_int_t results_7[1024]);
-# 10 "HLS-benchmarks/Inter-Block/los/los.cpp" 2
+# 10 "benchmarks/jianyicheng/los/src/los.cpp" 2
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 1 3
 # 36 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 3
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cstdlib" 1 3
@@ -1991,11 +1991,708 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 11 "HLS-benchmarks/Inter-Block/los/los.cpp" 2
+# 11 "benchmarks/jianyicheng/los/src/los.cpp" 2
+# 1 "/usr/include/stdio.h" 1 3 4
+# 27 "/usr/include/stdio.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
+# 28 "/usr/include/stdio.h" 2 3 4
+
+extern "C" {
 
 
 
-__attribute__((sdx_kernel("los", 0))) void los(in_int_t obstacles_0[1024], in_int_t obstacles_1[1024],
+
+# 1 "/tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stddef.h" 1 3 4
+# 34 "/usr/include/stdio.h" 2 3 4
+
+
+# 1 "/tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stdarg.h" 1 3 4
+# 30 "/tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stdarg.h" 3 4
+typedef __builtin_va_list va_list;
+# 48 "/tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stdarg.h" 3 4
+typedef __builtin_va_list __gnuc_va_list;
+# 37 "/usr/include/stdio.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h" 1 3 4
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h" 1 3 4
+# 13 "/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h" 3 4
+typedef struct
+{
+  int __count;
+  union
+  {
+    unsigned int __wch;
+    char __wchb[4];
+  } __value;
+} __mbstate_t;
+# 6 "/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h" 2 3 4
+
+
+
+
+typedef struct _G_fpos_t
+{
+  __off_t __pos;
+  __mbstate_t __state;
+} __fpos_t;
+# 40 "/usr/include/stdio.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h" 3 4
+typedef struct _G_fpos64_t
+{
+  __off64_t __pos;
+  __mbstate_t __state;
+} __fpos64_t;
+# 41 "/usr/include/stdio.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__FILE.h" 1 3 4
+
+
+
+struct _IO_FILE;
+typedef struct _IO_FILE __FILE;
+# 42 "/usr/include/stdio.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/FILE.h" 1 3 4
+
+
+
+struct _IO_FILE;
+
+
+typedef struct _IO_FILE FILE;
+# 43 "/usr/include/stdio.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h" 1 3 4
+# 35 "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h" 3 4
+struct _IO_FILE;
+struct _IO_marker;
+struct _IO_codecvt;
+struct _IO_wide_data;
+
+
+
+
+typedef void _IO_lock_t;
+
+
+
+
+
+struct _IO_FILE
+{
+  int _flags;
+
+
+  char *_IO_read_ptr;
+  char *_IO_read_end;
+  char *_IO_read_base;
+  char *_IO_write_base;
+  char *_IO_write_ptr;
+  char *_IO_write_end;
+  char *_IO_buf_base;
+  char *_IO_buf_end;
+
+
+  char *_IO_save_base;
+  char *_IO_backup_base;
+  char *_IO_save_end;
+
+  struct _IO_marker *_markers;
+
+  struct _IO_FILE *_chain;
+
+  int _fileno;
+  int _flags2;
+  __off_t _old_offset;
+
+
+  unsigned short _cur_column;
+  signed char _vtable_offset;
+  char _shortbuf[1];
+
+  _IO_lock_t *_lock;
+
+
+
+
+
+
+
+  __off64_t _offset;
+
+  struct _IO_codecvt *_codecvt;
+  struct _IO_wide_data *_wide_data;
+  struct _IO_FILE *_freeres_list;
+  void *_freeres_buf;
+  size_t __pad5;
+  int _mode;
+
+  char _unused2[15 * sizeof (int) - 4 * sizeof (void *) - sizeof (size_t)];
+};
+# 44 "/usr/include/stdio.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h" 3 4
+typedef __ssize_t cookie_read_function_t (void *__cookie, char *__buf,
+                                          size_t __nbytes);
+
+
+
+
+
+
+
+typedef __ssize_t cookie_write_function_t (void *__cookie, const char *__buf,
+                                           size_t __nbytes);
+
+
+
+
+
+
+
+typedef int cookie_seek_function_t (void *__cookie, __off64_t *__pos, int __w);
+
+
+typedef int cookie_close_function_t (void *__cookie);
+
+
+
+
+
+
+typedef struct _IO_cookie_io_functions_t
+{
+  cookie_read_function_t *read;
+  cookie_write_function_t *write;
+  cookie_seek_function_t *seek;
+  cookie_close_function_t *close;
+} cookie_io_functions_t;
+# 47 "/usr/include/stdio.h" 2 3 4
+
+
+
+
+
+typedef __gnuc_va_list va_list;
+# 84 "/usr/include/stdio.h" 3 4
+typedef __fpos_t fpos_t;
+
+
+
+
+typedef __fpos64_t fpos64_t;
+# 133 "/usr/include/stdio.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/stdio_lim.h" 1 3 4
+# 134 "/usr/include/stdio.h" 2 3 4
+# 143 "/usr/include/stdio.h" 3 4
+extern FILE *stdin;
+extern FILE *stdout;
+extern FILE *stderr;
+
+
+
+
+
+
+extern int remove (const char *__filename) noexcept (true);
+
+extern int rename (const char *__old, const char *__new) noexcept (true);
+
+
+
+extern int renameat (int __oldfd, const char *__old, int __newfd,
+       const char *__new) noexcept (true);
+# 170 "/usr/include/stdio.h" 3 4
+extern int renameat2 (int __oldfd, const char *__old, int __newfd,
+        const char *__new, unsigned int __flags) noexcept (true);
+
+
+
+
+
+
+extern int fclose (FILE *__stream);
+# 188 "/usr/include/stdio.h" 3 4
+extern FILE *tmpfile (void)
+  __attribute__ ((__malloc__)) ;
+# 200 "/usr/include/stdio.h" 3 4
+extern FILE *tmpfile64 (void)
+   __attribute__ ((__malloc__)) ;
+
+
+
+extern char *tmpnam (char[20]) noexcept (true) ;
+
+
+
+
+extern char *tmpnam_r (char __s[20]) noexcept (true) ;
+# 222 "/usr/include/stdio.h" 3 4
+extern char *tempnam (const char *__dir, const char *__pfx)
+   noexcept (true) __attribute__ ((__malloc__)) ;
+
+
+
+
+
+
+extern int fflush (FILE *__stream);
+# 239 "/usr/include/stdio.h" 3 4
+extern int fflush_unlocked (FILE *__stream);
+# 249 "/usr/include/stdio.h" 3 4
+extern int fcloseall (void);
+# 258 "/usr/include/stdio.h" 3 4
+extern FILE *fopen (const char *__restrict __filename,
+      const char *__restrict __modes)
+  __attribute__ ((__malloc__)) ;
+
+
+
+
+extern FILE *freopen (const char *__restrict __filename,
+        const char *__restrict __modes,
+        FILE *__restrict __stream) ;
+# 283 "/usr/include/stdio.h" 3 4
+extern FILE *fopen64 (const char *__restrict __filename,
+        const char *__restrict __modes)
+  __attribute__ ((__malloc__)) ;
+extern FILE *freopen64 (const char *__restrict __filename,
+   const char *__restrict __modes,
+   FILE *__restrict __stream) ;
+
+
+
+
+extern FILE *fdopen (int __fd, const char *__modes) noexcept (true)
+  __attribute__ ((__malloc__)) ;
+
+
+
+
+
+extern FILE *fopencookie (void *__restrict __magic_cookie,
+     const char *__restrict __modes,
+     cookie_io_functions_t __io_funcs) noexcept (true)
+  __attribute__ ((__malloc__)) ;
+
+
+
+
+extern FILE *fmemopen (void *__s, size_t __len, const char *__modes)
+  noexcept (true) __attribute__ ((__malloc__)) ;
+
+
+
+
+extern FILE *open_memstream (char **__bufloc, size_t *__sizeloc) noexcept (true)
+  __attribute__ ((__malloc__)) ;
+# 328 "/usr/include/stdio.h" 3 4
+extern void setbuf (FILE *__restrict __stream, char *__restrict __buf) noexcept (true);
+
+
+
+extern int setvbuf (FILE *__restrict __stream, char *__restrict __buf,
+      int __modes, size_t __n) noexcept (true);
+
+
+
+
+extern void setbuffer (FILE *__restrict __stream, char *__restrict __buf,
+         size_t __size) noexcept (true);
+
+
+extern void setlinebuf (FILE *__stream) noexcept (true);
+
+
+
+
+
+
+
+extern int fprintf (FILE *__restrict __stream,
+      const char *__restrict __format, ...);
+
+
+
+
+extern int printf (const char *__restrict __format, ...);
+
+extern int sprintf (char *__restrict __s,
+      const char *__restrict __format, ...) noexcept (true);
+
+
+
+
+
+extern int vfprintf (FILE *__restrict __s, const char *__restrict __format,
+       __gnuc_va_list __arg);
+
+
+
+
+extern int vprintf (const char *__restrict __format, __gnuc_va_list __arg);
+
+extern int vsprintf (char *__restrict __s, const char *__restrict __format,
+       __gnuc_va_list __arg) noexcept (true);
+
+
+
+extern int snprintf (char *__restrict __s, size_t __maxlen,
+       const char *__restrict __format, ...)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 3, 4)));
+
+extern int vsnprintf (char *__restrict __s, size_t __maxlen,
+        const char *__restrict __format, __gnuc_va_list __arg)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 3, 0)));
+
+
+
+
+
+extern int vasprintf (char **__restrict __ptr, const char *__restrict __f,
+        __gnuc_va_list __arg)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 2, 0))) ;
+extern int __asprintf (char **__restrict __ptr,
+         const char *__restrict __fmt, ...)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 2, 3))) ;
+extern int asprintf (char **__restrict __ptr,
+       const char *__restrict __fmt, ...)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 2, 3))) ;
+
+
+
+
+extern int vdprintf (int __fd, const char *__restrict __fmt,
+       __gnuc_va_list __arg)
+     __attribute__ ((__format__ (__printf__, 2, 0)));
+extern int dprintf (int __fd, const char *__restrict __fmt, ...)
+     __attribute__ ((__format__ (__printf__, 2, 3)));
+
+
+
+
+
+
+
+extern int fscanf (FILE *__restrict __stream,
+     const char *__restrict __format, ...) ;
+
+
+
+
+extern int scanf (const char *__restrict __format, ...) ;
+
+extern int sscanf (const char *__restrict __s,
+     const char *__restrict __format, ...) noexcept (true);
+# 434 "/usr/include/stdio.h" 3 4
+extern int fscanf (FILE *__restrict __stream, const char *__restrict __format, ...) __asm__ ("" "__isoc99_fscanf") ;
+
+
+extern int scanf (const char *__restrict __format, ...) __asm__ ("" "__isoc99_scanf") ;
+
+extern int sscanf (const char *__restrict __s, const char *__restrict __format, ...) noexcept (true) __asm__ ("" "__isoc99_sscanf");
+# 459 "/usr/include/stdio.h" 3 4
+extern int vfscanf (FILE *__restrict __s, const char *__restrict __format,
+      __gnuc_va_list __arg)
+     __attribute__ ((__format__ (__scanf__, 2, 0))) ;
+
+
+
+
+
+extern int vscanf (const char *__restrict __format, __gnuc_va_list __arg)
+     __attribute__ ((__format__ (__scanf__, 1, 0))) ;
+
+
+extern int vsscanf (const char *__restrict __s,
+      const char *__restrict __format, __gnuc_va_list __arg)
+     noexcept (true) __attribute__ ((__format__ (__scanf__, 2, 0)));
+
+
+
+
+
+extern int vfscanf (FILE *__restrict __s, const char *__restrict __format, __gnuc_va_list __arg) __asm__ ("" "__isoc99_vfscanf")
+
+
+
+     __attribute__ ((__format__ (__scanf__, 2, 0))) ;
+extern int vscanf (const char *__restrict __format, __gnuc_va_list __arg) __asm__ ("" "__isoc99_vscanf")
+
+     __attribute__ ((__format__ (__scanf__, 1, 0))) ;
+extern int vsscanf (const char *__restrict __s, const char *__restrict __format, __gnuc_va_list __arg) noexcept (true) __asm__ ("" "__isoc99_vsscanf")
+
+
+
+     __attribute__ ((__format__ (__scanf__, 2, 0)));
+# 513 "/usr/include/stdio.h" 3 4
+extern int fgetc (FILE *__stream);
+extern int getc (FILE *__stream);
+
+
+
+
+
+extern int getchar (void);
+
+
+
+
+
+
+extern int getc_unlocked (FILE *__stream);
+extern int getchar_unlocked (void);
+# 538 "/usr/include/stdio.h" 3 4
+extern int fgetc_unlocked (FILE *__stream);
+# 549 "/usr/include/stdio.h" 3 4
+extern int fputc (int __c, FILE *__stream);
+extern int putc (int __c, FILE *__stream);
+
+
+
+
+
+extern int putchar (int __c);
+# 565 "/usr/include/stdio.h" 3 4
+extern int fputc_unlocked (int __c, FILE *__stream);
+
+
+
+
+
+
+
+extern int putc_unlocked (int __c, FILE *__stream);
+extern int putchar_unlocked (int __c);
+
+
+
+
+
+
+extern int getw (FILE *__stream);
+
+
+extern int putw (int __w, FILE *__stream);
+
+
+
+
+
+
+
+extern char *fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
+                                                         ;
+# 615 "/usr/include/stdio.h" 3 4
+extern char *fgets_unlocked (char *__restrict __s, int __n,
+        FILE *__restrict __stream)
+                                                  ;
+# 632 "/usr/include/stdio.h" 3 4
+extern __ssize_t __getdelim (char **__restrict __lineptr,
+                             size_t *__restrict __n, int __delimiter,
+                             FILE *__restrict __stream) ;
+extern __ssize_t getdelim (char **__restrict __lineptr,
+                           size_t *__restrict __n, int __delimiter,
+                           FILE *__restrict __stream) ;
+
+
+
+
+
+
+
+extern __ssize_t getline (char **__restrict __lineptr,
+                          size_t *__restrict __n,
+                          FILE *__restrict __stream) ;
+
+
+
+
+
+
+
+extern int fputs (const char *__restrict __s, FILE *__restrict __stream);
+
+
+
+
+
+extern int puts (const char *__s);
+
+
+
+
+
+
+extern int ungetc (int __c, FILE *__stream);
+
+
+
+
+
+
+extern size_t fread (void *__restrict __ptr, size_t __size,
+       size_t __n, FILE *__restrict __stream) ;
+
+
+
+
+extern size_t fwrite (const void *__restrict __ptr, size_t __size,
+        size_t __n, FILE *__restrict __s);
+# 691 "/usr/include/stdio.h" 3 4
+extern int fputs_unlocked (const char *__restrict __s,
+      FILE *__restrict __stream);
+# 702 "/usr/include/stdio.h" 3 4
+extern size_t fread_unlocked (void *__restrict __ptr, size_t __size,
+         size_t __n, FILE *__restrict __stream) ;
+extern size_t fwrite_unlocked (const void *__restrict __ptr, size_t __size,
+          size_t __n, FILE *__restrict __stream);
+
+
+
+
+
+
+
+extern int fseek (FILE *__stream, long int __off, int __whence);
+
+
+
+
+extern long int ftell (FILE *__stream) ;
+
+
+
+
+extern void rewind (FILE *__stream);
+# 736 "/usr/include/stdio.h" 3 4
+extern int fseeko (FILE *__stream, __off_t __off, int __whence);
+
+
+
+
+extern __off_t ftello (FILE *__stream) ;
+# 760 "/usr/include/stdio.h" 3 4
+extern int fgetpos (FILE *__restrict __stream, fpos_t *__restrict __pos);
+
+
+
+
+extern int fsetpos (FILE *__stream, const fpos_t *__pos);
+# 779 "/usr/include/stdio.h" 3 4
+extern int fseeko64 (FILE *__stream, __off64_t __off, int __whence);
+extern __off64_t ftello64 (FILE *__stream) ;
+extern int fgetpos64 (FILE *__restrict __stream, fpos64_t *__restrict __pos);
+extern int fsetpos64 (FILE *__stream, const fpos64_t *__pos);
+
+
+
+extern void clearerr (FILE *__stream) noexcept (true);
+
+extern int feof (FILE *__stream) noexcept (true) ;
+
+extern int ferror (FILE *__stream) noexcept (true) ;
+
+
+
+extern void clearerr_unlocked (FILE *__stream) noexcept (true);
+extern int feof_unlocked (FILE *__stream) noexcept (true) ;
+extern int ferror_unlocked (FILE *__stream) noexcept (true) ;
+
+
+
+
+
+
+
+extern void perror (const char *__s);
+
+
+
+
+extern int fileno (FILE *__stream) noexcept (true) ;
+
+
+
+
+extern int fileno_unlocked (FILE *__stream) noexcept (true) ;
+# 823 "/usr/include/stdio.h" 3 4
+extern int pclose (FILE *__stream);
+
+
+
+
+
+extern FILE *popen (const char *__command, const char *__modes)
+  __attribute__ ((__malloc__)) ;
+
+
+
+
+
+
+extern char *ctermid (char *__s) noexcept (true)
+                                     ;
+
+
+
+
+
+extern char *cuserid (char *__s)
+                                     ;
+
+
+
+
+struct obstack;
+
+
+extern int obstack_printf (struct obstack *__restrict __obstack,
+      const char *__restrict __format, ...)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 2, 3)));
+extern int obstack_vprintf (struct obstack *__restrict __obstack,
+       const char *__restrict __format,
+       __gnuc_va_list __args)
+     noexcept (true) __attribute__ ((__format__ (__printf__, 2, 0)));
+
+
+
+
+
+
+
+extern void flockfile (FILE *__stream) noexcept (true);
+
+
+
+extern int ftrylockfile (FILE *__stream) noexcept (true) ;
+
+
+extern void funlockfile (FILE *__stream) noexcept (true);
+# 885 "/usr/include/stdio.h" 3 4
+extern int __uflow (FILE *);
+extern int __overflow (FILE *, int);
+# 902 "/usr/include/stdio.h" 3 4
+}
+# 12 "benchmarks/jianyicheng/los/src/los.cpp" 2
+
+unsigned short lfsr = 0xACE1u;
+unsigned bit;
+
+unsigned _rand()
+{
+ bit = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
+ return lfsr = (lfsr >> 1) | (bit << 15);
+}
+
+
+
+void los(in_int_t obstacles_0[1024], in_int_t obstacles_1[1024],
          in_int_t obstacles_2[1024], in_int_t obstacles_3[1024],
          in_int_t obstacles_4[1024], in_int_t obstacles_5[1024],
          in_int_t obstacles_6[1024], in_int_t obstacles_7[1024],
@@ -2003,14 +2700,10 @@ __attribute__((sdx_kernel("los", 0))) void los(in_int_t obstacles_0[1024], in_in
          out_int_t results_2[1024], out_int_t results_3[1024],
          out_int_t results_4[1024], out_int_t results_5[1024],
          out_int_t results_6[1024], out_int_t results_7[1024]) {
-#line 18 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=los
-# 21 "HLS-benchmarks/Inter-Block/los/los.cpp"
-
 
 loop_0:
   for (int y_pixel = 0; y_pixel < 16; y_pixel++) {
-    VITIS_LOOP_25_1: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
+    VITIS_LOOP_35_1: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
       int sight_0 = 1;
       int x0 = x_pixel;
       int y0 = y_pixel;
@@ -2033,7 +2726,7 @@ loop_0:
 
       int err = dx - dy;
 
-      VITIS_LOOP_48_2: while (1) {
+      VITIS_LOOP_58_2: while (1) {
         if (!(x0 == 32 && y0 == 32) && obstacles_0[y0 * 64 + x0] == 1)
           sight_0 = 0;
         if ((x0 == 32 && y0 == 32) || sight_0 == 0)
@@ -2056,7 +2749,7 @@ loop_0:
 
 loop_1:
   for (int y_pixel = 0; y_pixel < 16; y_pixel++) {
-    VITIS_LOOP_71_3: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
+    VITIS_LOOP_81_3: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
       int sight_1 = 1;
       int x0 = x_pixel;
       int y0 = y_pixel;
@@ -2079,7 +2772,7 @@ loop_1:
 
       int err = dx - dy;
 
-      VITIS_LOOP_94_4: while (1) {
+      VITIS_LOOP_104_4: while (1) {
         if (!(x0 == 32 && y0 == 32) && obstacles_1[y0 * 64 + x0] == 1)
           sight_1 = 0;
         if ((x0 == 32 && y0 == 32) || sight_1 == 0)
@@ -2103,7 +2796,7 @@ loop_1:
 
 loop_2:
   for (int y_pixel = 0; y_pixel < 16; y_pixel++) {
-    VITIS_LOOP_118_5: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
+    VITIS_LOOP_128_5: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
       int sight_2 = 1;
       int x0 = x_pixel;
       int y0 = y_pixel;
@@ -2126,7 +2819,7 @@ loop_2:
 
       int err = dx - dy;
 
-      VITIS_LOOP_141_6: while (1) {
+      VITIS_LOOP_151_6: while (1) {
         if (!(x0 == 32 && y0 == 32) && obstacles_2[y0 * 64 + x0] == 1)
           sight_2 = 0;
         if ((x0 == 32 && y0 == 32) || sight_2 == 0)
@@ -2150,7 +2843,7 @@ loop_2:
 
 loop_3:
   for (int y_pixel = 0; y_pixel < 16; y_pixel++) {
-    VITIS_LOOP_165_7: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
+    VITIS_LOOP_175_7: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
       int sight_3 = 1;
       int x0 = x_pixel;
       int y0 = y_pixel;
@@ -2173,7 +2866,7 @@ loop_3:
 
       int err = dx - dy;
 
-      VITIS_LOOP_188_8: while (1) {
+      VITIS_LOOP_198_8: while (1) {
         if (!(x0 == 32 && y0 == 32) && obstacles_3[y0 * 64 + x0] == 1)
           sight_3 = 0;
         if ((x0 == 32 && y0 == 32) || sight_3 == 0)
@@ -2197,7 +2890,7 @@ loop_3:
 
 loop_4:
   for (int y_pixel = 0; y_pixel < 16; y_pixel++) {
-    VITIS_LOOP_212_9: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
+    VITIS_LOOP_222_9: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
       int sight_4 = 1;
       int x0 = x_pixel;
       int y0 = y_pixel;
@@ -2220,7 +2913,7 @@ loop_4:
 
       int err = dx - dy;
 
-      VITIS_LOOP_235_10: while (1) {
+      VITIS_LOOP_245_10: while (1) {
         if (!(x0 == 32 && y0 == 32) && obstacles_4[y0 * 64 + x0] == 1)
           sight_4 = 0;
         if ((x0 == 32 && y0 == 32) || sight_4 == 0)
@@ -2244,7 +2937,7 @@ loop_4:
 
 loop_5:
   for (int y_pixel = 0; y_pixel < 16; y_pixel++) {
-    VITIS_LOOP_259_11: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
+    VITIS_LOOP_269_11: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
       int sight_5 = 1;
       int x0 = x_pixel;
       int y0 = y_pixel;
@@ -2267,7 +2960,7 @@ loop_5:
 
       int err = dx - dy;
 
-      VITIS_LOOP_282_12: while (1) {
+      VITIS_LOOP_292_12: while (1) {
         if (!(x0 == 32 && y0 == 32) && obstacles_5[y0 * 64 + x0] == 1)
           sight_5 = 0;
         if ((x0 == 32 && y0 == 32) || sight_5 == 0)
@@ -2291,7 +2984,7 @@ loop_5:
 
 loop_6:
   for (int y_pixel = 0; y_pixel < 16; y_pixel++) {
-    VITIS_LOOP_306_13: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
+    VITIS_LOOP_316_13: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
       int sight_6 = 1;
       int x0 = x_pixel;
       int y0 = y_pixel;
@@ -2314,7 +3007,7 @@ loop_6:
 
       int err = dx - dy;
 
-      VITIS_LOOP_329_14: while (1) {
+      VITIS_LOOP_339_14: while (1) {
         if (!(x0 == 32 && y0 == 32) && obstacles_6[y0 * 64 + x0] == 1)
           sight_6 = 0;
         if ((x0 == 32 && y0 == 32) || sight_6 == 0)
@@ -2338,7 +3031,7 @@ loop_6:
 
 loop_7:
   for (int y_pixel = 0; y_pixel < 16; y_pixel++) {
-    VITIS_LOOP_353_15: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
+    VITIS_LOOP_363_15: for (int x_pixel = 0; x_pixel < 64; x_pixel++) {
       int sight_7 = 1;
       int x0 = x_pixel;
       int y0 = y_pixel;
@@ -2361,7 +3054,7 @@ loop_7:
 
       int err = dx - dy;
 
-      VITIS_LOOP_376_16: while (1) {
+      VITIS_LOOP_386_16: while (1) {
         if (!(x0 == 32 && y0 == 32) && obstacles_7[y0 * 64 + x0] == 1)
           sight_7 = 0;
         if ((x0 == 32 && y0 == 32) || sight_7 == 0)
@@ -2384,23 +3077,27 @@ loop_7:
   }
 }
 
-int main() {
+__attribute__((sdx_kernel("main", 0))) int main() {
+#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_los.tcl"
+#pragma HLSDIRECTIVE TOP name=main
+# 409 "benchmarks/jianyicheng/los/src/los.cpp"
+
   int obstacles_0[1024], obstacles_1[1024], obstacles_2[1024],
       obstacles_3[1024], obstacles_4[1024], obstacles_5[1024],
       obstacles_6[1024], obstacles_7[1024];
   int results_0[1024], results_1[1024], results_2[1024], results_3[1024],
       results_4[1024], results_5[1024], results_6[1024], results_7[1024];
 
-  srand(9);
-  VITIS_LOOP_407_1: for (int i = 0; i < 1024; i++) {
-    obstacles_0[i] = rand() % 2;
-    obstacles_1[i] = rand() % 2;
-    obstacles_2[i] = rand() % 2;
-    obstacles_3[i] = rand() % 2;
-    obstacles_4[i] = rand() % 2;
-    obstacles_5[i] = rand() % 2;
-    obstacles_6[i] = rand() % 2;
-    obstacles_7[i] = rand() % 2;
+  (9);
+  VITIS_LOOP_417_1: for (int i = 0; i < 1024; i++) {
+    obstacles_0[i] = _rand() % 2;
+    obstacles_1[i] = _rand() % 2;
+    obstacles_2[i] = _rand() % 2;
+    obstacles_3[i] = _rand() % 2;
+    obstacles_4[i] = _rand() % 2;
+    obstacles_5[i] = _rand() % 2;
+    obstacles_6[i] = _rand() % 2;
+    obstacles_7[i] = _rand() % 2;
   }
 
   los(obstacles_0, obstacles_1, obstacles_2, obstacles_3, obstacles_4,

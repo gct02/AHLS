@@ -8,7 +8,6 @@
 */
 
 void g1(int alpha, int in[10000], int i, int w[10000], int addr_in[10000], int data[10000]){
-#pragma SS II=1
 	
 	int j, x, lut;
 

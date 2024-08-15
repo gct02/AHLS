@@ -1,6 +1,9 @@
 <xilinx:hls_fe_msgs>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl:16:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="doitgenTriple" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=doitgenTriple" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_doitgenTriple.tcl:7:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="main" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=main" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:47:0" msg_body="Inlining function 'doitgenTriple(float*, float*, float*)' into 'main'">
+        <args Callee="doitgenTriple(float*, float*, float*)" Callee-DebugLoc="File benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp Line 15 Column 0" Caller="main" Caller-DebugLoc="File benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp Line 47 Column 0"/>
     </msg>
 </xilinx:hls_fe_msgs>
 

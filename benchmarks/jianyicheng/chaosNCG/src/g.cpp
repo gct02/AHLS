@@ -1,7 +1,6 @@
 #include "chaosNCG.h"
 
-void g(int b0, int b1, int p0, int p1, int X, int Y, int *pp0, int *pp1, int *out0, int *out1){
-#pragma SS II=2
+void g(int b0, int b1, int p0, int p1, int X, int Y, int *pp0, int *pp1, int *out0, int *out1) {
   p0 ^= b0, p1 ^= b1;
   p1 ^= (Y << (p0 % 17) | Y >> (16 - p0 % 17));
   p0 ^= p1;

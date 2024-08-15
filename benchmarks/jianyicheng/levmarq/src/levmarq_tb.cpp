@@ -1,5 +1,15 @@
 #include "levmarq.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+unsigned short lfsr = 0xACE1u;
+unsigned bit;
+
+unsigned _rand()
+{
+	bit  = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
+	return lfsr =  (lfsr >> 1) | (bit << 15);
+}
 
 int main(){
 	int ny;
@@ -14,12 +24,12 @@ int main(){
 	ny = 1024;
 	npar = 128;
 	for (int i = 0; i < 1024; i++){
-		dysq[i] = rand();
-		y[i] = rand();
+		dysq[i] = _rand();
+		y[i] = _rand();
 	}
 
 	for (int i = 0; i < 128; i++){
-		g[i] = rand();
+		g[i] = _rand();
 		d[i] = 0.0f;
 	}
 

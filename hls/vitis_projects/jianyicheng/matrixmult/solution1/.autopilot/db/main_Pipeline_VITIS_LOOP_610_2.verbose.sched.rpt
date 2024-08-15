@@ -1,0 +1,155 @@
+
+
+================================================================
+== Vitis HLS Report for 'main_Pipeline_VITIS_LOOP_610_2'
+================================================================
+* Date:           Mon Aug 12 18:55:57 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        matrixmult
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  5.001 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       34|       34|  0.170 us|  0.170 us|   34|   34|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_610_2  |       32|       32|         2|          1|          1|    32|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 2
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 5.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%i_8 = alloca i32 1" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610]   --->   Operation 5 'alloca' 'i_8' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (1.58ns)   --->   "%store_ln610 = store i6 0, i6 %i_8" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610]   --->   Operation 6 'store' 'store_ln610' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc82"   --->   Operation 7 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%i = load i6 %i_8" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610]   --->   Operation 8 'load' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (1.82ns)   --->   "%icmp_ln610 = icmp_eq  i6 %i, i6 32" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610]   --->   Operation 9 'icmp' 'icmp_ln610' <Predicate = true> <Delay = 1.82> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 10 [1/1] (1.82ns)   --->   "%add_ln610 = add i6 %i, i6 1" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610]   --->   Operation 10 'add' 'add_ln610' <Predicate = true> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%br_ln610 = br i1 %icmp_ln610, void %for.inc82.split, void %for.end84.exitStub" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610]   --->   Operation 11 'br' 'br_ln610' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (1.58ns)   --->   "%store_ln610 = store i6 %add_ln610, i6 %i_8" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610]   --->   Operation 12 'store' 'store_ln610' <Predicate = (!icmp_ln610)> <Delay = 1.58>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 34 'ret' 'ret_ln0' <Predicate = (icmp_ln610)> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 3.25>
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%zext_ln610 = zext i6 %i" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610]   --->   Operation 13 'zext' 'zext_ln610' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%specpipeline_ln610 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_18" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610]   --->   Operation 14 'specpipeline' 'specpipeline_ln610' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%speclooptripcount_ln610 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 32, i64 32, i64 32" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610]   --->   Operation 15 'speclooptripcount' 'speclooptripcount_ln610' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%specloopname_ln610 = specloopname void @_ssdm_op_SpecLoopName, void @empty_19" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610]   --->   Operation 16 'specloopname' 'specloopname_ln610' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%C_0_addr = getelementptr i32 %C_0, i64 0, i64 %zext_ln610" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:611]   --->   Operation 17 'getelementptr' 'C_0_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 18 [1/1] (3.25ns)   --->   "%store_ln611 = store i32 0, i5 %C_0_addr" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:611]   --->   Operation 18 'store' 'store_ln611' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%C_1_addr = getelementptr i32 %C_1, i64 0, i64 %zext_ln610" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:612]   --->   Operation 19 'getelementptr' 'C_1_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (3.25ns)   --->   "%store_ln612 = store i32 0, i5 %C_1_addr" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:612]   --->   Operation 20 'store' 'store_ln612' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%C_2_addr = getelementptr i32 %C_2, i64 0, i64 %zext_ln610" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:613]   --->   Operation 21 'getelementptr' 'C_2_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 22 [1/1] (3.25ns)   --->   "%store_ln613 = store i32 0, i5 %C_2_addr" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:613]   --->   Operation 22 'store' 'store_ln613' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%C_3_addr = getelementptr i32 %C_3, i64 0, i64 %zext_ln610" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:614]   --->   Operation 23 'getelementptr' 'C_3_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (3.25ns)   --->   "%store_ln614 = store i32 0, i5 %C_3_addr" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:614]   --->   Operation 24 'store' 'store_ln614' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%C_4_addr = getelementptr i32 %C_4, i64 0, i64 %zext_ln610" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:615]   --->   Operation 25 'getelementptr' 'C_4_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (3.25ns)   --->   "%store_ln615 = store i32 0, i5 %C_4_addr" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:615]   --->   Operation 26 'store' 'store_ln615' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%C_5_addr = getelementptr i32 %C_5, i64 0, i64 %zext_ln610" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:616]   --->   Operation 27 'getelementptr' 'C_5_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (3.25ns)   --->   "%store_ln616 = store i32 0, i5 %C_5_addr" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:616]   --->   Operation 28 'store' 'store_ln616' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%C_6_addr = getelementptr i32 %C_6, i64 0, i64 %zext_ln610" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:617]   --->   Operation 29 'getelementptr' 'C_6_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (3.25ns)   --->   "%store_ln617 = store i32 0, i5 %C_6_addr" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:617]   --->   Operation 30 'store' 'store_ln617' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%C_7_addr = getelementptr i32 %C_7, i64 0, i64 %zext_ln610" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:618]   --->   Operation 31 'getelementptr' 'C_7_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 32 [1/1] (3.25ns)   --->   "%store_ln618 = store i32 0, i5 %C_7_addr" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:618]   --->   Operation 32 'store' 'store_ln618' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
+ST_2 : Operation 33 [1/1] (0.00ns)   --->   "%br_ln610 = br void %for.inc82" [benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610]   --->   Operation 33 'br' 'br_ln610' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 5.001ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln610', benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610) of constant 0 on local variable 'i', benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610 [10]  (1.588 ns)
+	'load' operation 6 bit ('i', benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610) on local variable 'i', benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610 [13]  (0.000 ns)
+	'add' operation 6 bit ('add_ln610', benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610) [15]  (1.825 ns)
+	'store' operation 0 bit ('store_ln610', benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610) of variable 'add_ln610', benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610 on local variable 'i', benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:610 [38]  (1.588 ns)
+
+ <State 2>: 3.254ns
+The critical path consists of the following:
+	'getelementptr' operation 5 bit ('C_0_addr', benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:611) [22]  (0.000 ns)
+	'store' operation 0 bit ('store_ln611', benchmarks/jianyicheng/matrixmult/src/matrixmult.cpp:611) of constant 0 on array 'C_0' [23]  (3.254 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

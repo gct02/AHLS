@@ -1,0 +1,49 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'main'" level="0">
+<item name = "Date">Mon Aug 12 18:56:46 2024
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">sparseMatrixPower</item>
+<item name = "Solution">solution1 (Vivado IP Flow Target)</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 4.888 ns, 1.35 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">100619, 121519, 0.503 ms, 0.608 ms, 100620, 121520, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_main_Pipeline_VITIS_LOOP_17_1_fu_70">main_Pipeline_VITIS_LOOP_17_1, 204, 204, 1.020 us, 1.020 us, 204, 204, no</column>
+<column name="grp_main_Pipeline_VITIS_LOOP_15_1_VITIS_LOOP_14_1_fu_82">main_Pipeline_VITIS_LOOP_15_1_VITIS_LOOP_14_1, 100011, 100011, 0.500 ms, 0.500 ms, 100011, 100011, no</column>
+<column name="grp_main_Pipeline_VITIS_LOOP_32_4_fu_91">main_Pipeline_VITIS_LOOP_32_4, 209, 209, 1.045 us, 1.045 us, 209, 209, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- VITIS_LOOP_29_3">400, 21300, 4 ~ 213, -, -, 100, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

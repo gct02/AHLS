@@ -17,16 +17,15 @@ if __name__ == "__main__":
     output_lut_file = Path(argv[4])
 
     with open(output_cp_file, 'w') as cp_file, open(output_dsp_file, 'w') as dsp_file, open(output_lut_file, 'w') as lut_file:
-        for bench_suite_dir in vitis_projects_dir.iterdir():
-            if not bench_suite_dir.is_dir():
-                continue
-            for project_dir in bench_suite_dir.iterdir():
-                if not project_dir.is_dir():
-                    continue
+        bench_suites = sorted(list(vitis_projects_dir.iterdir()))
+        for bench_suite_dir in bench_suites:
+            benchs = sorted(list(bench_suite_dir.iterdir()))
+            for project_dir in benchs:
                 rpt_xml_file = project_dir / "solution1/syn/report/csynth.xml"
                 if not rpt_xml_file.exists():
                     continue
                 dsp, lut, cp = parse_hls_rpt(rpt_xml_file)
+                print(f"{project_dir.name}: DSP={dsp}, LUT={lut}, CP={cp}")
                 cp_file.write(f"{cp}\n")
                 dsp_file.write(f"{dsp}\n")
                 lut_file.write(f"{lut}\n")

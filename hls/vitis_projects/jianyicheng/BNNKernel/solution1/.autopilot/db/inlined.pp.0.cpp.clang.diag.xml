@@ -1,0 +1,39 @@
+<dict>
+  <key>main-file</key>
+  <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/BNNKernel/solution1/.autopilot/db/inlined.pp.0.cpp</string>
+  <key>diagnostics</key>
+  <array>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>benchmarks/jianyicheng/BNNKernel/src/inlined.cpp</string>
+      <key>line</key>
+      <integer>12</integer>
+      <key>column</key>
+      <integer>18</integer>
+      <key>message</key>
+      <string>unused parameter &apos;addr_in&apos;</string>
+      <key>ID</key>
+      <integer>5292</integer>
+      <key>WarningOption</key>
+      <string>unused-parameter</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>benchmarks/jianyicheng/BNNKernel/src/inlined.cpp</string>
+      <key>line</key>
+      <integer>12</integer>
+      <key>column</key>
+      <integer>63</integer>
+      <key>message</key>
+      <string>unused parameter &apos;addr_out&apos;</string>
+      <key>ID</key>
+      <integer>5292</integer>
+      <key>WarningOption</key>
+      <string>unused-parameter</string>
+    </dict>
+  </array>
+</dict>

@@ -1,0 +1,23 @@
+<dict>
+  <key>main-file</key>
+  <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/fft/solution1/.autopilot/db/fft.pp.0.cpp</string>
+  <key>diagnostics</key>
+  <array>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>benchmarks/jianyicheng/fft/src/fft.cpp</string>
+      <key>line</key>
+      <integer>372</integer>
+      <key>column</key>
+      <integer>4</integer>
+      <key>message</key>
+      <string>expression result unused</string>
+      <key>ID</key>
+      <integer>5286</integer>
+      <key>WarningOption</key>
+      <string>unused-value</string>
+    </dict>
+  </array>
+</dict>

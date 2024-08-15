@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/DSS/getTanh/src/getTanh.cpp"
+# 1 "benchmarks/jianyicheng/getTanh/src/getTanh.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,20 +155,16 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/DSS/getTanh/src/getTanh.cpp" 2
-# 10 "HLS-benchmarks/DSS/getTanh/src/getTanh.cpp"
-# 1 "HLS-benchmarks/DSS/getTanh/src/getTanh.h" 1
-# 10 "HLS-benchmarks/DSS/getTanh/src/getTanh.h"
+# 1 "benchmarks/jianyicheng/getTanh/src/getTanh.cpp" 2
+# 10 "benchmarks/jianyicheng/getTanh/src/getTanh.cpp"
+# 1 "benchmarks/jianyicheng/getTanh/src/getTanh.h" 1
+# 10 "benchmarks/jianyicheng/getTanh/src/getTanh.h"
 int g(int beta, int atanh[12], int sinh[5], int cosh[5]);
-__attribute__((sdx_kernel("getTanh", 0))) void getTanh(int A[1000], int addr_in[1000], int addr_out[1000], int atanh[12], int sinh[5], int cosh[5]);
+void getTanh(int A[1000], int addr_in[1000], int addr_out[1000], int atanh[12], int sinh[5], int cosh[5]);
 void inlined(int A[1000], int addr_in[1000], int addr_out[1000], int atanh[12], int sinh[5], int cosh[5]);
-# 11 "HLS-benchmarks/DSS/getTanh/src/getTanh.cpp" 2
+# 11 "benchmarks/jianyicheng/getTanh/src/getTanh.cpp" 2
 
-__attribute__((sdx_kernel("getTanh", 0))) void getTanh(int A[1000], int addr_in[1000], int addr_out[1000], int atanh[12], int sinh[5], int cosh[5]){
-#line 20 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=getTanh
-# 12 "HLS-benchmarks/DSS/getTanh/src/getTanh.cpp"
-
+void getTanh(int A[1000], int addr_in[1000], int addr_out[1000], int atanh[12], int sinh[5], int cosh[5]){
     int i;
 
 

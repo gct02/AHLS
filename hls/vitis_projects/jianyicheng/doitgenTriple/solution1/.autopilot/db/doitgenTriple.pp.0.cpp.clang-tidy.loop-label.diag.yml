@@ -1,31 +1,31 @@
 ---
-MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/doitgenTriple/solution1/.autopilot/db/doitgenTriple.pp.0.cpp
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/doitgenTriple/solution1/.autopilot/db/doitgenTriple.pp.0.cpp
 Diagnostics:     
   - DiagnosticName:  xilinx-label-all-loops
     Message:         'Added loop label VITIS_LOOP_50_1:  '
     FileOffset:      50
-    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.cpp
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp
     Replacements:    
-      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/doitgenTriple/solution1/.autopilot/db/doitgenTriple.pp.0.cpp
-        Offset:          54637
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/doitgenTriple/solution1/.autopilot/db/doitgenTriple.pp.0.cpp
+        Offset:          54565
         Length:          0
         ReplacementText: 'VITIS_LOOP_50_1: '
   - DiagnosticName:  xilinx-label-all-loops
     Message:         'Added loop label VITIS_LOOP_53_2:  '
     FileOffset:      53
-    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.cpp
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp
     Replacements:    
-      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/doitgenTriple/solution1/.autopilot/db/doitgenTriple.pp.0.cpp
-        Offset:          54719
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/doitgenTriple/solution1/.autopilot/db/doitgenTriple.pp.0.cpp
+        Offset:          54647
         Length:          0
         ReplacementText: 'VITIS_LOOP_53_2: '
   - DiagnosticName:  xilinx-label-all-loops
     Message:         'Added loop label VITIS_LOOP_83_3:  '
     FileOffset:      83
-    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.cpp
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp
     Replacements:    
-      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/doitgenTriple/solution1/.autopilot/db/doitgenTriple.pp.0.cpp
-        Offset:          55233
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/doitgenTriple/solution1/.autopilot/db/doitgenTriple.pp.0.cpp
+        Offset:          55161
         Length:          0
         ReplacementText: 'VITIS_LOOP_83_3: '
 ...

@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/PNAnalyser/chaosNCG/src/g.cpp"
+# 1 "benchmarks/jianyicheng/chaosNCG/src/g.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,15 +155,14 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/PNAnalyser/chaosNCG/src/g.cpp" 2
-# 1 "HLS-benchmarks/PNAnalyser/chaosNCG/src/chaosNCG.h" 1
+# 1 "benchmarks/jianyicheng/chaosNCG/src/g.cpp" 2
+# 1 "benchmarks/jianyicheng/chaosNCG/src/chaosNCG.h" 1
 void g(int b0, int b1, int p0, int p1, int X, int Y, int *pp0, int *pp1, int *out0, int *out1);
 void chaosNCG(int I, int bo, int M[2000], int X, int Y, int params0, int params1, int buffer[2000]);
-# 2 "HLS-benchmarks/PNAnalyser/chaosNCG/src/g.cpp" 2
+# 2 "benchmarks/jianyicheng/chaosNCG/src/g.cpp" 2
 
-void g(int b0, int b1, int p0, int p1, int X, int Y, int *pp0, int *pp1, int *out0, int *out1){
-#pragma SS II=2
- p0 ^= b0, p1 ^= b1;
+void g(int b0, int b1, int p0, int p1, int X, int Y, int *pp0, int *pp1, int *out0, int *out1) {
+  p0 ^= b0, p1 ^= b1;
   p1 ^= (Y << (p0 % 17) | Y >> (16 - p0 % 17));
   p0 ^= p1;
   p1 += (X & p0);

@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/DSS/histogram/src/histogram.cpp"
+# 1 "benchmarks/jianyicheng/histogram/src/histogram.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,20 +155,16 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/DSS/histogram/src/histogram.cpp" 2
-# 10 "HLS-benchmarks/DSS/histogram/src/histogram.cpp"
-# 1 "HLS-benchmarks/DSS/histogram/src/histogram.h" 1
-# 10 "HLS-benchmarks/DSS/histogram/src/histogram.h"
-__attribute__((sdx_kernel("histogram", 0))) void histogram(int f[1000], double w[1000], double hist[1000]);
+# 1 "benchmarks/jianyicheng/histogram/src/histogram.cpp" 2
+# 10 "benchmarks/jianyicheng/histogram/src/histogram.cpp"
+# 1 "benchmarks/jianyicheng/histogram/src/histogram.h" 1
+# 10 "benchmarks/jianyicheng/histogram/src/histogram.h"
+void histogram(int f[1000], double w[1000], double hist[1000]);
 void g(int f[1000], double temp, int i, double hist[1000], double x);
-# 11 "HLS-benchmarks/DSS/histogram/src/histogram.cpp" 2
+# 11 "benchmarks/jianyicheng/histogram/src/histogram.cpp" 2
 
-__attribute__((sdx_kernel("histogram", 0))) void histogram(int f[1000], double w[1000], double hist[1000])
+void histogram(int f[1000], double w[1000], double hist[1000])
 {
-#line 19 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=histogram
-# 13 "HLS-benchmarks/DSS/histogram/src/histogram.cpp"
-
   VITIS_LOOP_14_1: for (int i=0; i<1000; ++i) {
  double temp = w[i];
     if (temp >= 0){

@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.cpp"
+# 1 "benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,15 +155,15 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.cpp" 2
-# 1 "HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.h" 1
+# 1 "benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp" 2
+# 1 "benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.h" 1
 typedef float in_float_t;
 typedef float out_float_t;
 typedef float inout_float_t;
 
-__attribute__((sdx_kernel("doitgenTriple", 0))) void doitgenTriple(inout_float_t A[256], in_float_t w[65536],
+void doitgenTriple(inout_float_t A[256], in_float_t w[65536],
                    inout_float_t sum[256]);
-# 2 "HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.cpp" 2
+# 2 "benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp" 2
 
 
 
@@ -171,14 +171,14 @@ __attribute__((sdx_kernel("doitgenTriple", 0))) void doitgenTriple(inout_float_t
 
 
 
-# 1 "HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.h" 1
+# 1 "benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.h" 1
 typedef float in_float_t;
 typedef float out_float_t;
 typedef float inout_float_t;
 
-__attribute__((sdx_kernel("doitgenTriple", 0))) void doitgenTriple(inout_float_t A[256], in_float_t w[65536],
+void doitgenTriple(inout_float_t A[256], in_float_t w[65536],
                    inout_float_t sum[256]);
-# 10 "HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.cpp" 2
+# 10 "benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp" 2
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 1 3
 # 36 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 3
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cstdlib" 1 3
@@ -1979,16 +1979,12 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 11 "HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.cpp" 2
+# 11 "benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp" 2
 
 
 
-__attribute__((sdx_kernel("doitgenTriple", 0))) void doitgenTriple(inout_float_t A[256], in_float_t w[65536],
+void doitgenTriple(inout_float_t A[256], in_float_t w[65536],
                    inout_float_t sum[256]) {
-#line 16 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=doitgenTriple
-# 15 "HLS-benchmarks/C-Slow/doitgenTriple/doitgenTriple.cpp"
-
   int p = 0;
 
 loop_0:
@@ -2020,7 +2016,11 @@ loop_2:
   }
 }
 
-int main() {
+__attribute__((sdx_kernel("main", 0))) int main() {
+#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_doitgenTriple.tcl"
+#pragma HLSDIRECTIVE TOP name=main
+# 47 "benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp"
+
   float A[256], B[256], sum[256], sum_[256], w[256 * 256];
 
   VITIS_LOOP_50_1: for (int i = 0; i < 256; i++) {

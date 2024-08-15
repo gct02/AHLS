@@ -1,168 +1,17 @@
 {
     "0": {
-        "name": "matrixtrans",
+        "name": "main",
         "file": "matrixtrans.cpp",
-        "fileloc": "13",
-        "instructions": "42",
-        "total_instructions": "202",
-        "calls": "1 6 8 7 4 3 2 5",
-        "basicblocks": "1"
-    },
-    "1": {
-        "name": "matrixtrans_Pipeline_loop_0",
-        "file": "HLS-benchmarks\/Inter-Block\/matrixtrans\/matrixtrans.cpp",
-        "fileloc": "23",
-        "instructions": "20",
-        "total_instructions": "20",
+        "fileloc": "66",
+        "instructions": "15",
+        "total_instructions": "15",
         "calls": "",
         "basicblocks": "4",
         "loads": {
-            "L": "1",
-            "T": "1"
-        },
-        "stores": {
-            "L": "2",
-            "T": "1"
-        },
-        "loops": {
             "L": "1"
-        }
-    },
-    "2": {
-        "name": "matrixtrans_Pipeline_loop_6",
-        "file": "HLS-benchmarks\/Inter-Block\/matrixtrans\/matrixtrans.cpp",
-        "fileloc": "47",
-        "instructions": "20",
-        "total_instructions": "20",
-        "calls": "",
-        "basicblocks": "4",
-        "loads": {
-            "L": "1",
-            "T": "1"
         },
         "stores": {
-            "L": "2",
-            "T": "1"
-        },
-        "loops": {
-            "L": "1"
-        }
-    },
-    "3": {
-        "name": "matrixtrans_Pipeline_loop_5",
-        "file": "HLS-benchmarks\/Inter-Block\/matrixtrans\/matrixtrans.cpp",
-        "fileloc": "43",
-        "instructions": "20",
-        "total_instructions": "20",
-        "calls": "",
-        "basicblocks": "4",
-        "loads": {
-            "L": "1",
-            "T": "1"
-        },
-        "stores": {
-            "L": "2",
-            "T": "1"
-        },
-        "loops": {
-            "L": "1"
-        }
-    },
-    "4": {
-        "name": "matrixtrans_Pipeline_loop_4",
-        "file": "HLS-benchmarks\/Inter-Block\/matrixtrans\/matrixtrans.cpp",
-        "fileloc": "39",
-        "instructions": "20",
-        "total_instructions": "20",
-        "calls": "",
-        "basicblocks": "4",
-        "loads": {
-            "L": "1",
-            "T": "1"
-        },
-        "stores": {
-            "L": "2",
-            "T": "1"
-        },
-        "loops": {
-            "L": "1"
-        }
-    },
-    "5": {
-        "name": "matrixtrans_Pipeline_loop_7",
-        "file": "HLS-benchmarks\/Inter-Block\/matrixtrans\/matrixtrans.cpp",
-        "fileloc": "51",
-        "instructions": "20",
-        "total_instructions": "20",
-        "calls": "",
-        "basicblocks": "4",
-        "loads": {
-            "L": "1",
-            "T": "1"
-        },
-        "stores": {
-            "L": "2",
-            "T": "1"
-        },
-        "loops": {
-            "L": "1"
-        }
-    },
-    "6": {
-        "name": "matrixtrans_Pipeline_loop_1",
-        "file": "HLS-benchmarks\/Inter-Block\/matrixtrans\/matrixtrans.cpp",
-        "fileloc": "27",
-        "instructions": "20",
-        "total_instructions": "20",
-        "calls": "",
-        "basicblocks": "4",
-        "loads": {
-            "L": "1",
-            "T": "1"
-        },
-        "stores": {
-            "L": "2",
-            "T": "1"
-        },
-        "loops": {
-            "L": "1"
-        }
-    },
-    "7": {
-        "name": "matrixtrans_Pipeline_loop_3",
-        "file": "HLS-benchmarks\/Inter-Block\/matrixtrans\/matrixtrans.cpp",
-        "fileloc": "35",
-        "instructions": "20",
-        "total_instructions": "20",
-        "calls": "",
-        "basicblocks": "4",
-        "loads": {
-            "L": "1",
-            "T": "1"
-        },
-        "stores": {
-            "L": "2",
-            "T": "1"
-        },
-        "loops": {
-            "L": "1"
-        }
-    },
-    "8": {
-        "name": "matrixtrans_Pipeline_loop_2",
-        "file": "HLS-benchmarks\/Inter-Block\/matrixtrans\/matrixtrans.cpp",
-        "fileloc": "31",
-        "instructions": "20",
-        "total_instructions": "20",
-        "calls": "",
-        "basicblocks": "4",
-        "loads": {
-            "L": "1",
-            "T": "1"
-        },
-        "stores": {
-            "L": "2",
-            "T": "1"
+            "L": "2"
         },
         "loops": {
             "L": "1"

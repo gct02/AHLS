@@ -1,17 +1,44 @@
 {
   "0": {
+    "basicblocks": 13,
+    "calls": "2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1",
+    "file": "matrixmult.cpp",
+    "fileloc": 582,
+    "instructions": 268,
+    "name": "main",
+    "stores": {
+      "L": 24
+    },
+    "total_instructions": 2885
+  },
+  "1": {
     "basicblocks": 625,
     "calls": "",
     "file": "matrixmult.cpp",
-    "fileloc": 14,
+    "fileloc": 25,
     "instructions": 2185,
     "loads": {
-      "T": 128
+      "L": 128
     },
     "name": "matrixmult",
     "stores": {
-      "T": 64
+      "L": 64
     },
     "total_instructions": 2185
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "matrixmult.cpp",
+    "fileloc": 16,
+    "instructions": 27,
+    "loads": {
+      "G": 6
+    },
+    "name": "_rand",
+    "stores": {
+      "G": 2
+    },
+    "total_instructions": 27
   }
 }

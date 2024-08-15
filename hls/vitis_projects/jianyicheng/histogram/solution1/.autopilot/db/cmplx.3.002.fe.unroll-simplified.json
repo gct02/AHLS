@@ -1,15 +1,18 @@
 {
   "0": {
     "basicblocks": 5,
-    "calls": "1",
-    "file": "histogram.cpp",
+    "calls": "2",
+    "file": "histogram_tb.cpp",
     "fileloc": 12,
-    "instructions": 18,
+    "instructions": 34,
     "loads": {
-      "T": 3
+      "L": 1
     },
-    "name": "histogram",
-    "total_instructions": 26
+    "name": "main",
+    "stores": {
+      "L": 3
+    },
+    "total_instructions": 60
   },
   "1": {
     "basicblocks": 1,
@@ -25,5 +28,17 @@
       "L": 1
     },
     "total_instructions": 8
+  },
+  "2": {
+    "basicblocks": 5,
+    "calls": "1",
+    "file": "histogram.cpp",
+    "fileloc": 12,
+    "instructions": 18,
+    "loads": {
+      "L": 3
+    },
+    "name": "histogram",
+    "total_instructions": 26
   }
 }

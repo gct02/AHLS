@@ -1,0 +1,177 @@
+
+
+================================================================
+== Vitis HLS Report for 'main_Pipeline_VITIS_LOOP_31_1_VITIS_LOOP_32_2'
+================================================================
+* Date:           Mon Aug 12 18:57:07 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        syr2k
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  4.815 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
+    +---------+---------+-----------+-----------+------+------+---------+
+    |     2050|     2050|  10.250 us|  10.250 us|  2050|  2050|       no|
+    +---------+---------+-----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |             Loop Name             |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_31_1_VITIS_LOOP_32_2  |     2048|     2048|         3|          2|          1|  1024|       yes|
+        +-----------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 2, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 1
+  Pipeline-0 : II = 2, D = 3, States = { 1 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 4.81>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%j = alloca i32 1" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32]   --->   Operation 6 'alloca' 'j' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 7 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%indvar_flatten = alloca i32 1"   --->   Operation 8 'alloca' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (1.58ns)   --->   "%store_ln0 = store i11 0, i11 %indvar_flatten"   --->   Operation 9 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 10 [1/1] (1.58ns)   --->   "%store_ln31 = store i6 0, i6 %i" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 10 'store' 'store_ln31' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 11 [1/1] (1.58ns)   --->   "%store_ln32 = store i6 0, i6 %j" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32]   --->   Operation 11 'store' 'store_ln32' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc"   --->   Operation 12 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%indvar_flatten_load = load i11 %indvar_flatten" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 13 'load' 'indvar_flatten_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (1.63ns)   --->   "%icmp_ln31 = icmp_eq  i11 %indvar_flatten_load, i11 1024" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 14 'icmp' 'icmp_ln31' <Predicate = true> <Delay = 1.63> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 15 [1/1] (1.63ns)   --->   "%add_ln31 = add i11 %indvar_flatten_load, i11 1" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 15 'add' 'add_ln31' <Predicate = true> <Delay = 1.63> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%br_ln31 = br i1 %icmp_ln31, void %for.inc37, void %VITIS_LOOP_47_4.preheader.exitStub" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 16 'br' 'br_ln31' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%j_load = load i6 %j" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32]   --->   Operation 17 'load' 'j_load' <Predicate = (!icmp_ln31)> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%i_load = load i6 %i" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 18 'load' 'i_load' <Predicate = (!icmp_ln31)> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (1.82ns)   --->   "%icmp_ln32 = icmp_eq  i6 %j_load, i6 32" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32]   --->   Operation 19 'icmp' 'icmp_ln32' <Predicate = (!icmp_ln31)> <Delay = 1.82> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 20 [1/1] (1.18ns)   --->   "%select_ln31 = select i1 %icmp_ln32, i6 0, i6 %j_load" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 20 'select' 'select_ln31' <Predicate = (!icmp_ln31)> <Delay = 1.18> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 1.18> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 21 [1/1] (1.82ns)   --->   "%add_ln31_1 = add i6 %i_load, i6 1" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 21 'add' 'add_ln31_1' <Predicate = (!icmp_ln31)> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 22 [1/1] (1.58ns)   --->   "%store_ln31 = store i11 %add_ln31, i11 %indvar_flatten" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 22 'store' 'store_ln31' <Predicate = (!icmp_ln31)> <Delay = 1.58>
+ST_1 : Operation 48 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 48 'ret' 'ret_ln0' <Predicate = (icmp_ln31)> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 3.41>
+ST_2 : Operation 23 [1/1] (1.18ns)   --->   "%select_ln31_1 = select i1 %icmp_ln32, i6 %add_ln31_1, i6 %i_load" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 23 'select' 'select_ln31_1' <Predicate = (!icmp_ln31)> <Delay = 1.18> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 1.18> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%empty = trunc i6 %select_ln31_1" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 24 'trunc' 'empty' <Predicate = (!icmp_ln31)> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%tmp_1 = bitconcatenate i10 @_ssdm_op_BitConcatenate.i10.i5.i5, i5 %empty, i5 0" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 25 'bitconcatenate' 'tmp_1' <Predicate = (!icmp_ln31)> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%zext_ln32 = zext i6 %select_ln31" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32]   --->   Operation 26 'zext' 'zext_ln32' <Predicate = (!icmp_ln31)> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (1.73ns)   --->   "%add_ln33 = add i10 %zext_ln32, i10 %tmp_1" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:33]   --->   Operation 27 'add' 'add_ln33' <Predicate = (!icmp_ln31)> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 28 [1/1] (1.82ns)   --->   "%add_ln32 = add i6 %select_ln31, i6 1" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32]   --->   Operation 28 'add' 'add_ln32' <Predicate = (!icmp_ln31)> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 29 [1/1] (1.58ns)   --->   "%store_ln31 = store i6 %select_ln31_1, i6 %i" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31]   --->   Operation 29 'store' 'store_ln31' <Predicate = (!icmp_ln31)> <Delay = 1.58>
+ST_2 : Operation 30 [1/1] (1.58ns)   --->   "%store_ln32 = store i6 %add_ln32, i6 %j" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32]   --->   Operation 30 'store' 'store_ln32' <Predicate = (!icmp_ln31)> <Delay = 1.58>
+
+State 3 <SV = 2> <Delay = 3.25>
+ST_3 : Operation 31 [1/1] (0.00ns)   --->   "%specloopname_ln0 = specloopname void @_ssdm_op_SpecLoopName, void @VITIS_LOOP_31_1_VITIS_LOOP_32_2_str"   --->   Operation 31 'specloopname' 'specloopname_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 32 [1/1] (0.00ns)   --->   "%speclooptripcount_ln0 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 1024, i64 1024, i64 1024"   --->   Operation 32 'speclooptripcount' 'speclooptripcount_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 33 [1/1] (0.00ns)   --->   "%specpipeline_ln32 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_0" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32]   --->   Operation 33 'specpipeline' 'specpipeline_ln32' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 34 [1/1] (0.00ns)   --->   "%zext_ln33 = zext i10 %add_ln33" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:33]   --->   Operation 34 'zext' 'zext_ln33' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 35 [1/1] (0.00ns)   --->   "%A_addr = getelementptr i32 %A, i64 0, i64 %zext_ln33" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:33]   --->   Operation 35 'getelementptr' 'A_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 36 [1/1] (3.25ns)   --->   "%store_ln33 = store i32 0.1, i10 %A_addr" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:33]   --->   Operation 36 'store' 'store_ln33' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%A_addr_8 = getelementptr i32 %A_s, i64 0, i64 %zext_ln33" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:34]   --->   Operation 37 'getelementptr' 'A_addr_8' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 38 [1/1] (3.25ns)   --->   "%store_ln34 = store i32 0.1, i10 %A_addr_8" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:34]   --->   Operation 38 'store' 'store_ln34' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 39 [1/1] (0.00ns)   --->   "%B_addr = getelementptr i32 %B, i64 0, i64 %zext_ln33" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:35]   --->   Operation 39 'getelementptr' 'B_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 40 [1/1] (3.25ns)   --->   "%store_ln35 = store i32 0.1, i10 %B_addr" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:35]   --->   Operation 40 'store' 'store_ln35' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%B_addr_9 = getelementptr i32 %B_s, i64 0, i64 %zext_ln33" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:36]   --->   Operation 41 'getelementptr' 'B_addr_9' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (3.25ns)   --->   "%store_ln36 = store i32 0.1, i10 %B_addr_9" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:36]   --->   Operation 42 'store' 'store_ln36' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 43 [1/1] (0.00ns)   --->   "%C_addr = getelementptr i32 %C, i64 0, i64 %zext_ln33" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:37]   --->   Operation 43 'getelementptr' 'C_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 44 [1/1] (3.25ns)   --->   "%store_ln37 = store i32 0.1, i10 %C_addr" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:37]   --->   Operation 44 'store' 'store_ln37' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 45 [1/1] (0.00ns)   --->   "%C_addr_10 = getelementptr i32 %C_s, i64 0, i64 %zext_ln33" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:38]   --->   Operation 45 'getelementptr' 'C_addr_10' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 46 [1/1] (3.25ns)   --->   "%store_ln38 = store i32 0.1, i10 %C_addr_10" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:38]   --->   Operation 46 'store' 'store_ln38' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 47 [1/1] (0.00ns)   --->   "%br_ln32 = br void %for.inc" [benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32]   --->   Operation 47 'br' 'br_ln32' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 4.815ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln0') of constant 0 on local variable 'indvar_flatten' [10]  (1.588 ns)
+	'load' operation 11 bit ('indvar_flatten_load', benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31) on local variable 'indvar_flatten' [15]  (0.000 ns)
+	'add' operation 11 bit ('add_ln31', benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31) [17]  (1.639 ns)
+	'store' operation 0 bit ('store_ln31', benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31) of variable 'add_ln31', benchmarks/jianyicheng/syr2k/src/syr2k.cpp:31 on local variable 'indvar_flatten' [47]  (1.588 ns)
+
+ <State 2>: 3.413ns
+The critical path consists of the following:
+	'add' operation 6 bit ('add_ln32', benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32) [46]  (1.825 ns)
+	'store' operation 0 bit ('store_ln32', benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32) of variable 'add_ln32', benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32 on local variable 'j', benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32 [49]  (1.588 ns)
+
+ <State 3>: 3.254ns
+The critical path consists of the following:
+	'getelementptr' operation 10 bit ('A_addr', benchmarks/jianyicheng/syr2k/src/syr2k.cpp:33) [34]  (0.000 ns)
+	'store' operation 0 bit ('store_ln33', benchmarks/jianyicheng/syr2k/src/syr2k.cpp:33) of constant 0.1 on array 'A' [35]  (3.254 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

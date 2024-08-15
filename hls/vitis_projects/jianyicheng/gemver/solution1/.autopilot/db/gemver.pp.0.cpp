@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/C-Slow/gemver/gemver.cpp"
+# 1 "benchmarks/jianyicheng/gemver/src/gemver.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,22 +155,22 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/C-Slow/gemver/gemver.cpp" 2
+# 1 "benchmarks/jianyicheng/gemver/src/gemver.cpp" 2
 
 
 
 
-# 1 "HLS-benchmarks/C-Slow/gemver/gemver.h" 1
+# 1 "benchmarks/jianyicheng/gemver/src/gemver.h" 1
 typedef float in_float_t;
 typedef float out_float_t;
 typedef float inout_float_t;
 
 
 
-__attribute__((sdx_kernel("gemver", 0))) void gemver(inout_float_t A[65536], in_float_t u1[256], in_float_t v1[256],
+void gemver(inout_float_t A[65536], in_float_t u1[256], in_float_t v1[256],
             in_float_t u2[256], in_float_t v2[256], inout_float_t w[256],
             inout_float_t x[256], in_float_t y[256], in_float_t z[256]);
-# 6 "HLS-benchmarks/C-Slow/gemver/gemver.cpp" 2
+# 6 "benchmarks/jianyicheng/gemver/src/gemver.cpp" 2
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 1 3
 # 36 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 3
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cstdlib" 1 3
@@ -1971,15 +1971,11 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 7 "HLS-benchmarks/C-Slow/gemver/gemver.cpp" 2
+# 7 "benchmarks/jianyicheng/gemver/src/gemver.cpp" 2
 
-__attribute__((sdx_kernel("gemver", 0))) void gemver(inout_float_t A[65536], in_float_t u1[256], in_float_t v1[256],
+void gemver(inout_float_t A[65536], in_float_t u1[256], in_float_t v1[256],
             in_float_t u2[256], in_float_t v2[256], inout_float_t w[256],
             inout_float_t x[256], in_float_t y[256], in_float_t z[256]) {
-#line 16 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=gemver
-# 10 "HLS-benchmarks/C-Slow/gemver/gemver.cpp"
-
 
   float alpha = 0.73f, beta = 0.69f;
   int ii = 0;
@@ -2014,7 +2010,11 @@ __attribute__((sdx_kernel("gemver", 0))) void gemver(inout_float_t A[65536], in_
   }
 }
 
-int main(void) {
+__attribute__((sdx_kernel("main", 0))) int main(void) {
+#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_gemver.tcl"
+#pragma HLSDIRECTIVE TOP name=main
+# 45 "benchmarks/jianyicheng/gemver/src/gemver.cpp"
+
   inout_float_t A[65536], A_[65536];
   in_float_t u1[256];
   in_float_t v1[256];

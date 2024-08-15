@@ -1,6 +1,0 @@
-bnn_mul_32s_32s_32_2_1
-bnn_flow_control_loop_pipe_sequential_init
-bnn_flow_control_loop_pipe_sequential_init
-bnn_Pipeline_VITIS_LOOP_15_1
-bnn_Pipeline_VITIS_LOOP_15_11
-bnn

@@ -1,0 +1,212 @@
+
+
+================================================================
+== Vitis HLS Report for 'main_Pipeline_VITIS_LOOP_83_3'
+================================================================
+* Date:           Mon Aug 12 18:53:36 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        doitgenTriple
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  4.999 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      263|      263|  1.315 us|  1.315 us|  263|  263|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_83_3  |      261|      261|         7|          1|          1|   256|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 7
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 7
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 7, States = { 1 2 3 4 5 6 7 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 4.99>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%f = alloca i32 1" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:82]   --->   Operation 10 'alloca' 'f' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83]   --->   Operation 11 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (1.58ns)   --->   "%store_ln83 = store i9 0, i9 %i" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83]   --->   Operation 12 'store' 'store_ln83' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 13 [1/1] (1.58ns)   --->   "%store_ln82 = store i9 0, i9 %f" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:82]   --->   Operation 13 'store' 'store_ln82' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc80"   --->   Operation 14 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%i_3 = load i9 %i" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83]   --->   Operation 15 'load' 'i_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (1.82ns)   --->   "%icmp_ln83 = icmp_eq  i9 %i_3, i9 256" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83]   --->   Operation 16 'icmp' 'icmp_ln83' <Predicate = true> <Delay = 1.82> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 17 [1/1] (1.82ns)   --->   "%add_ln83 = add i9 %i_3, i9 1" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83]   --->   Operation 17 'add' 'add_ln83' <Predicate = true> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%br_ln83 = br i1 %icmp_ln83, void %for.inc80.split, void %for.end82.exitStub" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83]   --->   Operation 18 'br' 'br_ln83' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%zext_ln83 = zext i9 %i_3" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83]   --->   Operation 19 'zext' 'zext_ln83' <Predicate = (!icmp_ln83)> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%A_addr = getelementptr i32 %A, i64 0, i64 %zext_ln83" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 20 'getelementptr' 'A_addr' <Predicate = (!icmp_ln83)> <Delay = 0.00>
+ST_1 : Operation 21 [2/2] (3.25ns)   --->   "%A_load = load i8 %A_addr" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 21 'load' 'A_load' <Predicate = (!icmp_ln83)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%B_addr = getelementptr i32 %B, i64 0, i64 %zext_ln83" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 22 'getelementptr' 'B_addr' <Predicate = (!icmp_ln83)> <Delay = 0.00>
+ST_1 : Operation 23 [2/2] (3.25ns)   --->   "%B_load = load i8 %B_addr" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 23 'load' 'B_load' <Predicate = (!icmp_ln83)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_1 : Operation 24 [1/1] (1.58ns)   --->   "%store_ln83 = store i9 %add_ln83, i9 %i" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83]   --->   Operation 24 'store' 'store_ln83' <Predicate = (!icmp_ln83)> <Delay = 1.58>
+
+State 2 <SV = 1> <Delay = 3.25>
+ST_2 : Operation 25 [1/2] (3.25ns)   --->   "%A_load = load i8 %A_addr" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 25 'load' 'A_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_2 : Operation 26 [1/2] (3.25ns)   --->   "%B_load = load i8 %B_addr" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 26 'load' 'B_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+
+State 3 <SV = 2> <Delay = 2.73>
+ST_3 : Operation 27 [1/1] (0.00ns)   --->   "%bitcast_ln84 = bitcast i32 %A_load" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 27 'bitcast' 'bitcast_ln84' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 28 [1/1] (0.00ns)   --->   "%tmp_4 = partselect i8 @_ssdm_op_PartSelect.i8.i32.i32.i32, i32 %bitcast_ln84, i32 23, i32 30" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 28 'partselect' 'tmp_4' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 29 [1/1] (0.00ns)   --->   "%trunc_ln84 = trunc i32 %bitcast_ln84" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 29 'trunc' 'trunc_ln84' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 30 [1/1] (0.00ns)   --->   "%bitcast_ln84_1 = bitcast i32 %B_load" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 30 'bitcast' 'bitcast_ln84_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 31 [1/1] (0.00ns)   --->   "%tmp_5 = partselect i8 @_ssdm_op_PartSelect.i8.i32.i32.i32, i32 %bitcast_ln84_1, i32 23, i32 30" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 31 'partselect' 'tmp_5' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 32 [1/1] (0.00ns)   --->   "%trunc_ln84_1 = trunc i32 %bitcast_ln84_1" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 32 'trunc' 'trunc_ln84_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 33 [1/1] (1.91ns)   --->   "%icmp_ln84 = icmp_ne  i8 %tmp_4, i8 255" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 33 'icmp' 'icmp_ln84' <Predicate = true> <Delay = 1.91> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 34 [1/1] (2.28ns)   --->   "%icmp_ln84_1 = icmp_eq  i23 %trunc_ln84, i23 0" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 34 'icmp' 'icmp_ln84_1' <Predicate = true> <Delay = 2.28> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.28> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 35 [1/1] (1.91ns)   --->   "%icmp_ln84_2 = icmp_ne  i8 %tmp_5, i8 255" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 35 'icmp' 'icmp_ln84_2' <Predicate = true> <Delay = 1.91> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 36 [1/1] (2.28ns)   --->   "%icmp_ln84_3 = icmp_eq  i23 %trunc_ln84_1, i23 0" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 36 'icmp' 'icmp_ln84_3' <Predicate = true> <Delay = 2.28> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.28> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 37 [4/4] (2.73ns)   --->   "%tmp_6 = fcmp_oeq  i32 %A_load, i32 %B_load" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 37 'fcmp' 'tmp_6' <Predicate = true> <Delay = 2.73> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 3> <II = 1> <Delay = 2.73> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 2.73>
+ST_4 : Operation 38 [3/4] (2.73ns)   --->   "%tmp_6 = fcmp_oeq  i32 %A_load, i32 %B_load" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 38 'fcmp' 'tmp_6' <Predicate = true> <Delay = 2.73> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 3> <II = 1> <Delay = 2.73> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 2.73>
+ST_5 : Operation 39 [2/4] (2.73ns)   --->   "%tmp_6 = fcmp_oeq  i32 %A_load, i32 %B_load" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 39 'fcmp' 'tmp_6' <Predicate = true> <Delay = 2.73> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 3> <II = 1> <Delay = 2.73> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 2.73>
+ST_6 : Operation 40 [1/4] (2.73ns)   --->   "%tmp_6 = fcmp_oeq  i32 %A_load, i32 %B_load" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 40 'fcmp' 'tmp_6' <Predicate = true> <Delay = 2.73> <CoreInst = "FCompare">   --->   Core 19 'FCompare' <Latency = 3> <II = 1> <Delay = 2.73> <FuncUnit> <Opcode : 'fcmp'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 53 [1/1] (0.00ns)   --->   "%f_load = load i9 %f"   --->   Operation 53 'load' 'f_load' <Predicate = (icmp_ln83)> <Delay = 0.00>
+ST_6 : Operation 54 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i9P0A, i9 %f_1_out, i9 %f_load"   --->   Operation 54 'write' 'write_ln0' <Predicate = (icmp_ln83)> <Delay = 0.00>
+ST_6 : Operation 55 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 55 'ret' 'ret_ln0' <Predicate = (icmp_ln83)> <Delay = 0.00>
+
+State 7 <SV = 6> <Delay = 3.41>
+ST_7 : Operation 41 [1/1] (0.00ns)   --->   "%f_load_1 = load i9 %f" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 41 'load' 'f_load_1' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 42 [1/1] (0.00ns)   --->   "%specpipeline_ln82 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_0" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:82]   --->   Operation 42 'specpipeline' 'specpipeline_ln82' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 43 [1/1] (0.00ns)   --->   "%speclooptripcount_ln82 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 256, i64 256, i64 256" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:82]   --->   Operation 43 'speclooptripcount' 'speclooptripcount_ln82' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 44 [1/1] (0.00ns)   --->   "%specloopname_ln83 = specloopname void @_ssdm_op_SpecLoopName, void @empty_1" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83]   --->   Operation 44 'specloopname' 'specloopname_ln83' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 45 [1/1] (0.00ns) (grouped into LUT with out node f_1)   --->   "%or_ln84 = or i1 %icmp_ln84_1, i1 %icmp_ln84" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 45 'or' 'or_ln84' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 46 [1/1] (0.00ns) (grouped into LUT with out node f_1)   --->   "%or_ln84_1 = or i1 %icmp_ln84_3, i1 %icmp_ln84_2" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 46 'or' 'or_ln84_1' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 47 [1/1] (0.00ns) (grouped into LUT with out node f_1)   --->   "%and_ln84 = and i1 %or_ln84, i1 %or_ln84_1" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 47 'and' 'and_ln84' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 48 [1/1] (0.00ns) (grouped into LUT with out node f_1)   --->   "%and_ln84_1 = and i1 %and_ln84, i1 %tmp_6" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 48 'and' 'and_ln84_1' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 49 [1/1] (0.00ns) (grouped into LUT with out node f_1)   --->   "%zext_ln84 = zext i1 %and_ln84_1" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 49 'zext' 'zext_ln84' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 50 [1/1] (1.82ns) (out node of the LUT)   --->   "%f_1 = add i9 %zext_ln84, i9 %f_load_1" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84]   --->   Operation 50 'add' 'f_1' <Predicate = true> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 51 [1/1] (1.58ns)   --->   "%store_ln82 = store i9 %f_1, i9 %f" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:82]   --->   Operation 51 'store' 'store_ln82' <Predicate = true> <Delay = 1.58>
+ST_7 : Operation 52 [1/1] (0.00ns)   --->   "%br_ln83 = br void %for.inc80" [benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83]   --->   Operation 52 'br' 'br_ln83' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 4.999ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln83', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83) of constant 0 on local variable 'i', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83 [6]  (1.588 ns)
+	'load' operation 9 bit ('i', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83) on local variable 'i', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83 [10]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln83', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83) [11]  (1.823 ns)
+	'store' operation 0 bit ('store_ln83', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83) of variable 'add_ln83', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83 on local variable 'i', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:83 [41]  (1.588 ns)
+
+ <State 2>: 3.254ns
+The critical path consists of the following:
+	'load' operation 32 bit ('A_load', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84) on array 'A' [21]  (3.254 ns)
+
+ <State 3>: 2.730ns
+The critical path consists of the following:
+	'fcmp' operation 1 bit ('tmp_6', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84) [37]  (2.730 ns)
+
+ <State 4>: 2.730ns
+The critical path consists of the following:
+	'fcmp' operation 1 bit ('tmp_6', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84) [37]  (2.730 ns)
+
+ <State 5>: 2.730ns
+The critical path consists of the following:
+	'fcmp' operation 1 bit ('tmp_6', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84) [37]  (2.730 ns)
+
+ <State 6>: 2.730ns
+The critical path consists of the following:
+	'fcmp' operation 1 bit ('tmp_6', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84) [37]  (2.730 ns)
+
+ <State 7>: 3.411ns
+The critical path consists of the following:
+	'load' operation 9 bit ('f_load_1', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84) on local variable 'f', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:82 [15]  (0.000 ns)
+	'add' operation 9 bit ('f', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84) [40]  (1.823 ns)
+	'store' operation 0 bit ('store_ln82', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:82) of variable 'f', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:84 on local variable 'f', benchmarks/jianyicheng/doitgenTriple/src/doitgenTriple.cpp:82 [42]  (1.588 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

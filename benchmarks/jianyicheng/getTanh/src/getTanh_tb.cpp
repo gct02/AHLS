@@ -12,6 +12,15 @@
 #include <iostream>
 #define K 100
 
+unsigned short lfsr = 0xACE1u;
+unsigned bit;
+
+unsigned _rand()
+{
+	bit  = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
+	return lfsr =  (lfsr >> 1) | (bit << 15);
+}
+
 int main(){
 
     int atanh[12] = { 0x08C9, 0x0416, 0x0202, 0x0100, 0x0080, 0x0064, 0x0032, 0x0010, 0x0008, 0x0004, 0x0002, 0x0001 };
@@ -21,7 +30,7 @@ int main(){
     int A[1000],addr_out[1000],addr_in[1000], gold[1000];
 
     for (int i = 0; i < 1000; i++){
-        A[i] = 30000;//i % K == 0? rand()%1000 : 30000;
+        A[i] = 30000;//i % K == 0? _rand()%1000 : 30000;
 	gold[i] = A[i];
 	addr_out[i] = i;
   	addr_in[i] = i;

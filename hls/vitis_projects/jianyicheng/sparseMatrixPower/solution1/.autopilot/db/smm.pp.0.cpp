@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/DSS/sparseMatrixPower/src/smm.cpp"
+# 1 "benchmarks/jianyicheng/sparseMatrixPower/src/smm.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,19 +155,15 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/DSS/sparseMatrixPower/src/smm.cpp" 2
-# 10 "HLS-benchmarks/DSS/sparseMatrixPower/src/smm.cpp"
-# 1 "HLS-benchmarks/DSS/sparseMatrixPower/src/smm.h" 1
-# 10 "HLS-benchmarks/DSS/sparseMatrixPower/src/smm.h"
-__attribute__((sdx_kernel("smm", 0))) void smm(int data[200], int all_zero[100], int w[10000]);
+# 1 "benchmarks/jianyicheng/sparseMatrixPower/src/smm.cpp" 2
+# 10 "benchmarks/jianyicheng/sparseMatrixPower/src/smm.cpp"
+# 1 "benchmarks/jianyicheng/sparseMatrixPower/src/smm.h" 1
+# 10 "benchmarks/jianyicheng/sparseMatrixPower/src/smm.h"
+void smm(int data[200], int all_zero[100], int w[10000]);
 void g(int data[200], int j, int w[10000]);
-# 11 "HLS-benchmarks/DSS/sparseMatrixPower/src/smm.cpp" 2
+# 11 "benchmarks/jianyicheng/sparseMatrixPower/src/smm.cpp" 2
 
-__attribute__((sdx_kernel("smm", 0))) void smm(int data[200], int all_zero[100], int w[10000]){
-#line 19 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=smm
-# 12 "HLS-benchmarks/DSS/sparseMatrixPower/src/smm.cpp"
-
+void smm(int data[200], int all_zero[100], int w[10000]){
   int j, i, temp;
 
   VITIS_LOOP_15_1: for (j=0; j<100; j++){

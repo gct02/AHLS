@@ -1,5 +1,5 @@
 
-set TopModule "substring"
+set TopModule "main"
 set ClockPeriod 5
 set ClockList ap_clk
 set HasVivadoClockPeriod 0
@@ -7,7 +7,7 @@ set CombLogicFlag 0
 set PipelineFlag 0
 set DataflowTaskPipelineFlag 1
 set TrivialPipelineFlag 0
-set noPortSwitchingFlag 0
+set noPortSwitchingFlag 1
 set FloatingPointFlag 0
 set FftOrFirFlag 0
 set NbRWValue 0
@@ -23,7 +23,7 @@ set ResetRegisterNum 0
 set FsmEncStyle onehot
 set MaxFanout 0
 set RtlPrefix {}
-set RtlSubPrefix substring_
+set RtlSubPrefix main_
 set ExtraCCFlags {}
 set ExtraCLdFlags {}
 set SynCheckOptions {}
@@ -41,8 +41,8 @@ set ExportMCPathFlag 0
 set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
-set TargetInfo xcvu35p:-fsvh2104:-1-e
-set SourceFiles {sc {} c ../../../HLS-benchmarks/Inter-Block/substring/substring.cpp}
+set TargetInfo xc7z020:-clg400:-1
+set SourceFiles {sc {} c ../../../../../benchmarks/jianyicheng/substring/src/substring.cpp}
 set SourceFlags {sc {} c {{}}}
 set DirectiveFile {}
 set TBFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
@@ -56,10 +56,10 @@ set ExtraGlobalOptions {"area_timing" 1 "clock_gate" 1 "impl_flow" map "power_ga
 set TBTVFileNotFound {}
 set AppFile ../hls.app
 set ApsFile solution1.aps
-set AvePath ../../../.
+set AvePath ../../../../../.
 set DefaultPlatform DefaultPlatform
 set multiClockList {}
 set SCPortClockMap {}
 set intNbAccess 0
-set PlatformFiles {{DefaultPlatform {xilinx/virtexuplus/virtexuplus}}}
+set PlatformFiles {{DefaultPlatform {xilinx/zynq/zynq}}}
 set HPFPO 0

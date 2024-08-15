@@ -1,17 +1,17 @@
 {
   "0": {
-    "basicblocks": 12,
+    "basicblocks": 32,
     "calls": "",
     "file": "doitgenTriple.cpp",
-    "fileloc": 14,
-    "instructions": 70,
+    "fileloc": 47,
+    "instructions": 171,
     "loads": {
-      "T": 4
+      "L": 10
     },
-    "name": "doitgenTriple",
+    "name": "main",
     "stores": {
-      "T": 2
+      "L": 9
     },
-    "total_instructions": 70
+    "total_instructions": 171
   }
 }

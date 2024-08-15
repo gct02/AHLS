@@ -3,9 +3,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_30_2
+  - LoopName:        VITIS_LOOP_41_2
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:30:24'
+  - LoopLoc:         'benchmarks/jianyicheng/fft/src/fft.cpp:41:24'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -13,9 +13,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_49_4
+  - LoopName:        VITIS_LOOP_60_4
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:49:24'
+  - LoopLoc:         'benchmarks/jianyicheng/fft/src/fft.cpp:60:24'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -23,9 +23,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_68_6
+  - LoopName:        VITIS_LOOP_79_6
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:68:24'
+  - LoopLoc:         'benchmarks/jianyicheng/fft/src/fft.cpp:79:24'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -33,9 +33,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_87_8
+  - LoopName:        VITIS_LOOP_98_8
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:87:24'
+  - LoopLoc:         'benchmarks/jianyicheng/fft/src/fft.cpp:98:24'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -43,9 +43,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_106_10
+  - LoopName:        VITIS_LOOP_117_10
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:106:26'
+  - LoopLoc:         'benchmarks/jianyicheng/fft/src/fft.cpp:117:26'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -53,9 +53,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_125_12
+  - LoopName:        VITIS_LOOP_136_12
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:125:26'
+  - LoopLoc:         'benchmarks/jianyicheng/fft/src/fft.cpp:136:26'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -63,9 +63,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_144_14
+  - LoopName:        VITIS_LOOP_155_14
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:144:26'
+  - LoopLoc:         'benchmarks/jianyicheng/fft/src/fft.cpp:155:26'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -73,8 +73,18 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_163_16
+  - LoopName:        VITIS_LOOP_174_16
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/fft/fft.cpp:163:26'
+  - LoopLoc:         'benchmarks/jianyicheng/fft/src/fft.cpp:174:26'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_373_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/fft/src/fft.cpp:373:21'
   - String:          ' '
 ...

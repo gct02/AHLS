@@ -1,6 +1,7 @@
-<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" projectType="C/C++" name="histogram2" top="histogram">
+<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" top="main" name="histogram2">
     <files>
-        <file name="HLS-benchmarks/Inter-Block/histogram/histogram.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
+        <file name="benchmarks/jianyicheng/histogram2/src/histogram.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
+        <file name="benchmarks/jianyicheng/histogram2/src/histogram.h" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
     </files>
     <solutions>
         <solution name="solution1" status=""/>

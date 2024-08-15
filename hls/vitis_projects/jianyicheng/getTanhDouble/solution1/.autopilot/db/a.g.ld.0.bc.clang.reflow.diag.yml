@@ -1,19 +1,80 @@
 --- !Passed
 Pass:            reflow-inliner
 Name:            Inline
-DebugLoc:        { File: HLS-benchmarks/DSS/getTanhDouble/src/getTanhDouble.cpp, 
+DebugLoc:        { File: benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble.cpp, 
                    Line: 12, Column: 0 }
 Function:        _Z13getTanhDoublePdPiS0_
 Args:            
   - String:          'Inlining function '''
   - Callee:          'g(double)'
-    DebugLoc:        { File: HLS-benchmarks/DSS/getTanhDouble/src/g.cpp, 
+    DebugLoc:        { File: benchmarks/jianyicheng/getTanhDouble/src/g.cpp, 
                        Line: 12, Column: 0 }
   - String:          ''' into '''
   - Caller:          'getTanhDouble(double*, int*, int*)'
-    DebugLoc:        { File: HLS-benchmarks/DSS/getTanhDouble/src/getTanhDouble.cpp, 
+    DebugLoc:        { File: benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble.cpp, 
                        Line: 12, Column: 0 }
   - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble_tb.cpp, 
+                   Line: 26, Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          '_rand()'
+    DebugLoc:        { File: benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble_tb.cpp, 
+                       Line: 21, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble_tb.cpp, 
+                       Line: 26, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble_tb.cpp, 
+                   Line: 26, Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'getTanhDouble(double*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble_tb.cpp, 
+                       Line: 26, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble_tb.cpp, 
+                   Line: 26, Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'inlined(double*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/getTanhDouble/src/inlined.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble_tb.cpp, 
+                       Line: 26, Column: 0 }
+  - String:          ''''
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_31_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble_tb.cpp:31:22'
+  - String:          ' '
 ...
 --- !HLSReportInfo
 Pass:            auto-loop-pipeline
@@ -22,6 +83,26 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        VITIS_LOOP_17_1
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/DSS/getTanhDouble/src/getTanhDouble.cpp:17:20'
+  - LoopLoc:         'benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble.cpp:17:20'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_16_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/getTanhDouble/src/inlined.cpp:16:20'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_43_2
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/getTanhDouble/src/getTanhDouble_tb.cpp:43:22'
   - String:          ' '
 ...

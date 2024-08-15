@@ -1,0 +1,128 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/BNNKernel/src/bnn.cpp, 
+                   Line: 12, Column: 0 }
+Function:        _Z3bnnPiiS_S_S_S_S_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'g1(int, int*, int, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/BNNKernel/src/g1.cpp, 
+                       Line: 10, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'bnn(int*, int, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/BNNKernel/src/bnn.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/BNNKernel/src/bnn.cpp, 
+                   Line: 12, Column: 0 }
+Function:        _Z3bnnPiiS_S_S_S_S_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'g2(int*, int, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/BNNKernel/src/g2.cpp, 
+                       Line: 10, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'bnn(int*, int, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/BNNKernel/src/bnn.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp, 
+                   Line: 12, Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'bnn(int*, int, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/BNNKernel/src/bnn.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp, 
+                   Line: 12, Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'inlined(int*, int, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/BNNKernel/src/inlined.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_16_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:16:20'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_14_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/BNNKernel/src/g2.cpp:14:20'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_14_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/BNNKernel/src/g1.cpp:14:19'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_23_3
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:23:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_16_2
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:16:19'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_32_2
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:32:20'
+  - String:          ' '
+...

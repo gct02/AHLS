@@ -1,17 +1,19 @@
 {
   "0": {
-    "basicblocks": 3,
+    "basicblocks": 5,
     "calls": "",
-    "file": "vecTrans.cpp",
-    "fileloc": 3,
-    "instructions": 28,
+    "file": "vecTrans_tb.cpp",
+    "fileloc": 15,
+    "instructions": 60,
     "loads": {
-      "T": 2
+      "G": 1,
+      "L": 2
     },
-    "name": "vecTrans",
+    "name": "main",
     "stores": {
-      "T": 1
+      "G": 1,
+      "L": 3
     },
-    "total_instructions": 28
+    "total_instructions": 60
   }
 }

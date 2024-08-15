@@ -1,31 +1,15 @@
 <dict>
   <key>main-file</key>
-  <string>/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/vitis_projects/matrixadd/solution1/.autopilot/db/matrixadd.pp.0.cpp</string>
+  <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/vitis_projects/jianyicheng/matrixadd/solution1/.autopilot/db/matrixadd.pp.0.cpp</string>
   <key>diagnostics</key>
   <array>
     <dict>
       <key>level</key>
       <string>warning</string>
       <key>filename</key>
-      <string>/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl</string>
+      <string>benchmarks/jianyicheng/matrixadd/src/matrixadd.cpp</string>
       <key>line</key>
-      <integer>18</integer>
-      <key>column</key>
-      <integer>9</integer>
-      <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrixadd_XLX_SEP_ PragmaOptions=name=matrixadd_XLX_SEP_</string>
-      <key>ID</key>
-      <integer>5471</integer>
-      <key>WarningOption</key>
-      <string>dump-hls-pragmas</string>
-    </dict>
-    <dict>
-      <key>level</key>
-      <string>warning</string>
-      <key>filename</key>
-      <string>HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp</string>
-      <key>line</key>
-      <integer>15</integer>
+      <integer>26</integer>
       <key>column</key>
       <integer>60</integer>
       <key>message</key>
@@ -39,9 +23,9 @@
       <key>level</key>
       <string>warning</string>
       <key>filename</key>
-      <string>HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp</string>
+      <string>benchmarks/jianyicheng/matrixadd/src/matrixadd.cpp</string>
       <key>line</key>
-      <integer>16</integer>
+      <integer>27</integer>
       <key>column</key>
       <integer>60</integer>
       <key>message</key>
@@ -50,6 +34,38 @@
       <integer>5292</integer>
       <key>WarningOption</key>
       <string>unused-parameter</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_matrixadd.tcl</string>
+      <key>line</key>
+      <integer>7</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=main_XLX_SEP_ PragmaOptions=name=main_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>benchmarks/jianyicheng/matrixadd/src/matrixadd.cpp</string>
+      <key>line</key>
+      <integer>87</integer>
+      <key>column</key>
+      <integer>4</integer>
+      <key>message</key>
+      <string>expression result unused</string>
+      <key>ID</key>
+      <integer>5286</integer>
+      <key>WarningOption</key>
+      <string>unused-value</string>
     </dict>
   </array>
 </dict>

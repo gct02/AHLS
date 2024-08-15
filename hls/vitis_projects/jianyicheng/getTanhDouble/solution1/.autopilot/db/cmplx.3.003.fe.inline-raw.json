@@ -1,17 +1,19 @@
 {
   "0": {
-    "basicblocks": 5,
+    "basicblocks": 15,
     "calls": "",
-    "file": "getTanhDouble.cpp",
-    "fileloc": 12,
-    "instructions": 26,
+    "file": "getTanhDouble_tb.cpp",
+    "fileloc": 26,
+    "instructions": 113,
     "loads": {
-      "T": 3
+      "G": 1,
+      "L": 8
     },
-    "name": "getTanhDouble",
+    "name": "main",
     "stores": {
-      "T": 1
+      "G": 1,
+      "L": 6
     },
-    "total_instructions": 26
+    "total_instructions": 113
   }
 }

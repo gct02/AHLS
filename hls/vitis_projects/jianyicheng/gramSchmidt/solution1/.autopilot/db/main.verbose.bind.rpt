@@ -1,0 +1,2237 @@
+
+
+================================================================
+== Vitis HLS Report for 'main'
+================================================================
+* Date:           Mon Aug 12 18:54:36 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        gramSchmidt
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  6.312 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+--------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval    | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |   max  |   Type  |
+    +---------+---------+----------+----------+-------+--------+---------+
+    |    31658|   753834|  0.200 ms|  4.758 ms|  31659|  753835|       no|
+    +---------+---------+----------+----------+-------+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------------------------------+-----------------------------------------------+---------+---------+-----------+-----------+------+-------+---------+
+        |                                                          |                                               |  Latency (cycles) |   Latency (absolute)  |   Interval   | Pipeline|
+        |                         Instance                         |                     Module                    |   min   |   max   |    min    |    max    |  min |  max  |   Type  |
+        +----------------------------------------------------------+-----------------------------------------------+---------+---------+-----------+-----------+------+-------+---------+
+        |grp_main_Pipeline_VITIS_LOOP_69_1_VITIS_LOOP_70_2_fu_116  |main_Pipeline_VITIS_LOOP_69_1_VITIS_LOOP_70_2  |     2087|     2087|  13.173 us|  13.173 us|  2087|   2087|       no|
+        |grp_main_Pipeline_VITIS_LOOP_84_4_fu_128                  |main_Pipeline_VITIS_LOOP_84_4                  |      333|      333|   1.665 us|   1.665 us|   333|    333|       no|
+        |grp_main_Pipeline_VITIS_LOOP_88_5_fu_135                  |main_Pipeline_VITIS_LOOP_88_5                  |       66|       66|   0.330 us|   0.330 us|    66|     66|       no|
+        |grp_main_Pipeline_VITIS_LOOP_90_6_fu_143                  |main_Pipeline_VITIS_LOOP_90_6                  |        1|    11285|   5.000 ns|  56.425 us|     1|  11285|       no|
+        |grp_main_Pipeline_VITIS_LOOP_46_2_fu_155                  |main_Pipeline_VITIS_LOOP_46_2                  |      333|      333|   1.665 us|   1.665 us|   333|    333|       no|
+        |grp_main_Pipeline_VITIS_LOOP_50_3_fu_162                  |main_Pipeline_VITIS_LOOP_50_3                  |       66|       66|   0.330 us|   0.330 us|    66|     66|       no|
+        |grp_main_Pipeline_VITIS_LOOP_52_4_fu_170                  |main_Pipeline_VITIS_LOOP_52_4                  |        1|    11285|   5.000 ns|  56.425 us|     1|  11285|       no|
+        +----------------------------------------------------------+-----------------------------------------------+---------+---------+-----------+-----------+------+-------+---------+
+
+        * Loop: 
+        +-------------------+---------+---------+-------------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) |  Iteration  |  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |   Latency   |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+-------------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_82_3  |    14784|   375872|  462 ~ 11746|          -|          -|    32|        no|
+        |- VITIS_LOOP_44_1  |    14784|   375872|  462 ~ 11746|          -|          -|    32|        no|
+        +-------------------+---------+---------+-------------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 126
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 65 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 23 
+23 --> 24 
+24 --> 25 
+25 --> 26 
+26 --> 27 
+27 --> 28 
+28 --> 29 
+29 --> 30 
+30 --> 31 
+31 --> 32 
+32 --> 33 
+33 --> 34 
+34 --> 35 
+35 --> 36 
+36 --> 37 
+37 --> 38 
+38 --> 39 
+39 --> 40 
+40 --> 41 
+41 --> 42 
+42 --> 43 
+43 --> 44 
+44 --> 45 
+45 --> 46 
+46 --> 47 
+47 --> 48 
+48 --> 49 
+49 --> 50 
+50 --> 51 
+51 --> 52 
+52 --> 53 
+53 --> 54 
+54 --> 55 
+55 --> 56 
+56 --> 57 
+57 --> 58 
+58 --> 59 
+59 --> 60 
+60 --> 61 
+61 --> 62 
+62 --> 63 
+63 --> 64 
+64 --> 3 
+65 --> 66 
+66 --> 67 
+67 --> 68 
+68 --> 69 
+69 --> 70 
+70 --> 71 
+71 --> 72 
+72 --> 73 
+73 --> 74 
+74 --> 75 
+75 --> 76 
+76 --> 77 
+77 --> 78 
+78 --> 79 
+79 --> 80 
+80 --> 81 
+81 --> 82 
+82 --> 83 
+83 --> 84 
+84 --> 85 
+85 --> 86 
+86 --> 87 
+87 --> 88 
+88 --> 89 
+89 --> 90 
+90 --> 91 
+91 --> 92 
+92 --> 93 
+93 --> 94 
+94 --> 95 
+95 --> 96 
+96 --> 97 
+97 --> 98 
+98 --> 99 
+99 --> 100 
+100 --> 101 
+101 --> 102 
+102 --> 103 
+103 --> 104 
+104 --> 105 
+105 --> 106 
+106 --> 107 
+107 --> 108 
+108 --> 109 
+109 --> 110 
+110 --> 111 
+111 --> 112 
+112 --> 113 
+113 --> 114 
+114 --> 115 
+115 --> 116 
+116 --> 117 
+117 --> 118 
+118 --> 119 
+119 --> 120 
+120 --> 121 
+121 --> 122 
+122 --> 123 
+123 --> 124 
+124 --> 125 
+125 --> 126 
+126 --> 65 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.25>
+ST_1 : Operation 127 [1/1] (0.00ns)   --->   "%indvars_iv29 = alloca i32 1"   --->   Operation 127 'alloca' 'indvars_iv29' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 128 [1/1] (0.00ns)   --->   "%k = alloca i32 1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:82]   --->   Operation 128 'alloca' 'k' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 129 [1/1] (0.00ns)   --->   "%nrm_3_loc = alloca i64 1"   --->   Operation 129 'alloca' 'nrm_3_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 130 [1/1] (0.00ns)   --->   "%nrm_loc = alloca i64 1"   --->   Operation 130 'alloca' 'nrm_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 131 [1/1] (3.25ns)   --->   "%a = alloca i64 1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:64]   --->   Operation 131 'alloca' 'a' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 132 [1/1] (3.25ns)   --->   "%q = alloca i64 1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:64]   --->   Operation 132 'alloca' 'q' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 1024> <RAM>
+ST_1 : Operation 133 [1/1] (3.25ns)   --->   "%a_s = alloca i64 1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:65]   --->   Operation 133 'alloca' 'a_s' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 134 [1/1] (3.25ns)   --->   "%q_s = alloca i64 1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:65]   --->   Operation 134 'alloca' 'q_s' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 1024> <RAM>
+ST_1 : Operation 135 [2/2] (0.00ns)   --->   "%call_ln0 = call void @main_Pipeline_VITIS_LOOP_69_1_VITIS_LOOP_70_2, i32 %a, i32 %a_s, i32 %q, i32 %q_s"   --->   Operation 135 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_1 : Operation 136 [1/1] (1.58ns)   --->   "%store_ln82 = store i6 0, i6 %k" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:82]   --->   Operation 136 'store' 'store_ln82' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 137 [1/1] (1.58ns)   --->   "%store_ln0 = store i6 1, i6 %indvars_iv29"   --->   Operation 137 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 138 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 0"   --->   Operation 138 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 139 [1/1] (0.00ns)   --->   "%spectopmodule_ln63 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:63]   --->   Operation 139 'spectopmodule' 'spectopmodule_ln63' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 140 [1/2] (0.00ns)   --->   "%call_ln0 = call void @main_Pipeline_VITIS_LOOP_69_1_VITIS_LOOP_70_2, i32 %a, i32 %a_s, i32 %q, i32 %q_s"   --->   Operation 140 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 141 [1/1] (0.00ns)   --->   "%br_ln90 = br void %VITIS_LOOP_84_4" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:90]   --->   Operation 141 'br' 'br_ln90' <Predicate = true> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 3.41>
+ST_3 : Operation 142 [1/1] (0.00ns)   --->   "%k_2 = load i6 %k" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:90]   --->   Operation 142 'load' 'k_2' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 143 [1/1] (0.00ns)   --->   "%trunc_ln90 = trunc i6 %k_2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:90]   --->   Operation 143 'trunc' 'trunc_ln90' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 144 [1/1] (1.82ns)   --->   "%icmp_ln90 = icmp_eq  i6 %k_2, i6 32" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:90]   --->   Operation 144 'icmp' 'icmp_ln90' <Predicate = true> <Delay = 1.82> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 145 [1/1] (1.82ns)   --->   "%add_ln90 = add i6 %k_2, i6 1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:90]   --->   Operation 145 'add' 'add_ln90' <Predicate = true> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 146 [1/1] (0.00ns)   --->   "%br_ln82 = br i1 %icmp_ln90, void %VITIS_LOOP_84_4.split, void %VITIS_LOOP_46_2.i.preheader" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:82]   --->   Operation 146 'br' 'br_ln82' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 147 [2/2] (0.78ns)   --->   "%call_ln90 = call void @main_Pipeline_VITIS_LOOP_84_4, i5 %trunc_ln90, i32 %a, i32 %nrm_loc" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:90]   --->   Operation 147 'call' 'call_ln90' <Predicate = (!icmp_ln90)> <Delay = 0.78> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_3 : Operation 148 [1/1] (1.58ns)   --->   "%store_ln82 = store i6 %add_ln90, i6 %k" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:82]   --->   Operation 148 'store' 'store_ln82' <Predicate = (!icmp_ln90)> <Delay = 1.58>
+ST_3 : Operation 149 [1/1] (0.00ns)   --->   "%indvars_iv24_i = alloca i32 1"   --->   Operation 149 'alloca' 'indvars_iv24_i' <Predicate = (icmp_ln90)> <Delay = 0.00>
+ST_3 : Operation 150 [1/1] (0.00ns)   --->   "%k_1 = alloca i32 1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:44->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 150 'alloca' 'k_1' <Predicate = (icmp_ln90)> <Delay = 0.00>
+ST_3 : Operation 151 [1/1] (1.58ns)   --->   "%store_ln44 = store i6 0, i6 %k_1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:44->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 151 'store' 'store_ln44' <Predicate = (icmp_ln90)> <Delay = 1.58>
+ST_3 : Operation 152 [1/1] (1.58ns)   --->   "%store_ln0 = store i6 1, i6 %indvars_iv24_i"   --->   Operation 152 'store' 'store_ln0' <Predicate = (icmp_ln90)> <Delay = 1.58>
+ST_3 : Operation 153 [1/1] (0.00ns)   --->   "%br_ln52 = br void %VITIS_LOOP_46_2.i" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:52->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 153 'br' 'br_ln52' <Predicate = (icmp_ln90)> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 154 [1/2] (0.00ns)   --->   "%call_ln90 = call void @main_Pipeline_VITIS_LOOP_84_4, i5 %trunc_ln90, i32 %a, i32 %nrm_loc" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:90]   --->   Operation 154 'call' 'call_ln90' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 4.59>
+ST_5 : Operation 155 [1/1] (0.00ns)   --->   "%nrm_loc_load = load i32 %nrm_loc"   --->   Operation 155 'load' 'nrm_loc_load' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 156 [10/10] (4.59ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 156 'fadd' 'sub' <Predicate = true> <Delay = 4.59> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 3.35>
+ST_6 : Operation 157 [9/10] (3.35ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 157 'fadd' 'sub' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 3.35>
+ST_7 : Operation 158 [8/10] (3.35ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 158 'fadd' 'sub' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 3.35>
+ST_8 : Operation 159 [7/10] (3.35ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 159 'fadd' 'sub' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 3.35>
+ST_9 : Operation 160 [6/10] (3.35ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 160 'fadd' 'sub' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 3.35>
+ST_10 : Operation 161 [5/10] (3.35ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 161 'fadd' 'sub' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 3.35>
+ST_11 : Operation 162 [4/10] (3.35ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 162 'fadd' 'sub' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 3.35>
+ST_12 : Operation 163 [3/10] (3.35ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 163 'fadd' 'sub' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 3.35>
+ST_13 : Operation 164 [2/10] (3.35ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 164 'fadd' 'sub' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 14 <SV = 13> <Delay = 3.35>
+ST_14 : Operation 165 [1/10] (3.35ns)   --->   "%sub = fadd i32 %nrm_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 165 'fadd' 'sub' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 15 <SV = 14> <Delay = 3.80>
+ST_15 : Operation 166 [8/8] (3.80ns)   --->   "%mul1 = fmul i32 %sub, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 166 'fmul' 'mul1' <Predicate = true> <Delay = 3.80> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 16 <SV = 15> <Delay = 2.56>
+ST_16 : Operation 167 [7/8] (2.56ns)   --->   "%mul1 = fmul i32 %sub, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 167 'fmul' 'mul1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 17 <SV = 16> <Delay = 2.56>
+ST_17 : Operation 168 [6/8] (2.56ns)   --->   "%mul1 = fmul i32 %sub, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 168 'fmul' 'mul1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 18 <SV = 17> <Delay = 2.56>
+ST_18 : Operation 169 [5/8] (2.56ns)   --->   "%mul1 = fmul i32 %sub, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 169 'fmul' 'mul1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 19 <SV = 18> <Delay = 2.56>
+ST_19 : Operation 170 [4/8] (2.56ns)   --->   "%mul1 = fmul i32 %sub, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 170 'fmul' 'mul1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 20 <SV = 19> <Delay = 2.56>
+ST_20 : Operation 171 [3/8] (2.56ns)   --->   "%mul1 = fmul i32 %sub, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 171 'fmul' 'mul1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 21 <SV = 20> <Delay = 2.56>
+ST_21 : Operation 172 [2/8] (2.56ns)   --->   "%mul1 = fmul i32 %sub, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 172 'fmul' 'mul1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 22 <SV = 21> <Delay = 2.56>
+ST_22 : Operation 173 [1/8] (2.56ns)   --->   "%mul1 = fmul i32 %sub, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 173 'fmul' 'mul1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 23 <SV = 22> <Delay = 4.59>
+ST_23 : Operation 174 [10/10] (4.59ns)   --->   "%add = fadd i32 %mul1, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 174 'fadd' 'add' <Predicate = true> <Delay = 4.59> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 24 <SV = 23> <Delay = 3.35>
+ST_24 : Operation 175 [9/10] (3.35ns)   --->   "%add = fadd i32 %mul1, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 175 'fadd' 'add' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 25 <SV = 24> <Delay = 3.35>
+ST_25 : Operation 176 [8/10] (3.35ns)   --->   "%add = fadd i32 %mul1, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 176 'fadd' 'add' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 26 <SV = 25> <Delay = 3.35>
+ST_26 : Operation 177 [7/10] (3.35ns)   --->   "%add = fadd i32 %mul1, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 177 'fadd' 'add' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 27 <SV = 26> <Delay = 3.35>
+ST_27 : Operation 178 [6/10] (3.35ns)   --->   "%add = fadd i32 %mul1, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 178 'fadd' 'add' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 28 <SV = 27> <Delay = 3.35>
+ST_28 : Operation 179 [5/10] (3.35ns)   --->   "%add = fadd i32 %mul1, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 179 'fadd' 'add' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 29 <SV = 28> <Delay = 3.35>
+ST_29 : Operation 180 [4/10] (3.35ns)   --->   "%add = fadd i32 %mul1, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 180 'fadd' 'add' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 30 <SV = 29> <Delay = 3.35>
+ST_30 : Operation 181 [3/10] (3.35ns)   --->   "%add = fadd i32 %mul1, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 181 'fadd' 'add' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 31 <SV = 30> <Delay = 3.35>
+ST_31 : Operation 182 [2/10] (3.35ns)   --->   "%add = fadd i32 %mul1, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 182 'fadd' 'add' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 32 <SV = 31> <Delay = 3.35>
+ST_32 : Operation 183 [1/10] (3.35ns)   --->   "%add = fadd i32 %mul1, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 183 'fadd' 'add' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 33 <SV = 32> <Delay = 3.80>
+ST_33 : Operation 184 [8/8] (3.80ns)   --->   "%mul2 = fmul i32 %add, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 184 'fmul' 'mul2' <Predicate = true> <Delay = 3.80> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 34 <SV = 33> <Delay = 2.56>
+ST_34 : Operation 185 [7/8] (2.56ns)   --->   "%mul2 = fmul i32 %add, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 185 'fmul' 'mul2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 35 <SV = 34> <Delay = 2.56>
+ST_35 : Operation 186 [6/8] (2.56ns)   --->   "%mul2 = fmul i32 %add, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 186 'fmul' 'mul2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 36 <SV = 35> <Delay = 2.56>
+ST_36 : Operation 187 [5/8] (2.56ns)   --->   "%mul2 = fmul i32 %add, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 187 'fmul' 'mul2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 37 <SV = 36> <Delay = 2.56>
+ST_37 : Operation 188 [4/8] (2.56ns)   --->   "%mul2 = fmul i32 %add, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 188 'fmul' 'mul2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 38 <SV = 37> <Delay = 2.56>
+ST_38 : Operation 189 [3/8] (2.56ns)   --->   "%mul2 = fmul i32 %add, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 189 'fmul' 'mul2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 39 <SV = 38> <Delay = 2.56>
+ST_39 : Operation 190 [2/8] (2.56ns)   --->   "%mul2 = fmul i32 %add, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 190 'fmul' 'mul2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 40 <SV = 39> <Delay = 2.56>
+ST_40 : Operation 191 [1/8] (2.56ns)   --->   "%mul2 = fmul i32 %add, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 191 'fmul' 'mul2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 41 <SV = 40> <Delay = 3.80>
+ST_41 : Operation 192 [8/8] (3.80ns)   --->   "%mul3 = fmul i32 %mul2, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 192 'fmul' 'mul3' <Predicate = true> <Delay = 3.80> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 42 <SV = 41> <Delay = 2.56>
+ST_42 : Operation 193 [7/8] (2.56ns)   --->   "%mul3 = fmul i32 %mul2, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 193 'fmul' 'mul3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 43 <SV = 42> <Delay = 2.56>
+ST_43 : Operation 194 [6/8] (2.56ns)   --->   "%mul3 = fmul i32 %mul2, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 194 'fmul' 'mul3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 44 <SV = 43> <Delay = 2.56>
+ST_44 : Operation 195 [5/8] (2.56ns)   --->   "%mul3 = fmul i32 %mul2, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 195 'fmul' 'mul3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 45 <SV = 44> <Delay = 2.56>
+ST_45 : Operation 196 [4/8] (2.56ns)   --->   "%mul3 = fmul i32 %mul2, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 196 'fmul' 'mul3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 46 <SV = 45> <Delay = 2.56>
+ST_46 : Operation 197 [3/8] (2.56ns)   --->   "%mul3 = fmul i32 %mul2, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 197 'fmul' 'mul3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 47 <SV = 46> <Delay = 2.56>
+ST_47 : Operation 198 [2/8] (2.56ns)   --->   "%mul3 = fmul i32 %mul2, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 198 'fmul' 'mul3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 48 <SV = 47> <Delay = 2.56>
+ST_48 : Operation 199 [1/8] (2.56ns)   --->   "%mul3 = fmul i32 %mul2, i32 %nrm_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 199 'fmul' 'mul3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 49 <SV = 48> <Delay = 4.59>
+ST_49 : Operation 200 [10/10] (4.59ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 200 'fadd' 'nrm' <Predicate = true> <Delay = 4.59> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 50 <SV = 49> <Delay = 3.35>
+ST_50 : Operation 201 [9/10] (3.35ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 201 'fadd' 'nrm' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 51 <SV = 50> <Delay = 3.35>
+ST_51 : Operation 202 [8/10] (3.35ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 202 'fadd' 'nrm' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 52 <SV = 51> <Delay = 3.35>
+ST_52 : Operation 203 [7/10] (3.35ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 203 'fadd' 'nrm' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 53 <SV = 52> <Delay = 3.35>
+ST_53 : Operation 204 [6/10] (3.35ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 204 'fadd' 'nrm' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 54 <SV = 53> <Delay = 3.35>
+ST_54 : Operation 205 [5/10] (3.35ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 205 'fadd' 'nrm' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 55 <SV = 54> <Delay = 3.35>
+ST_55 : Operation 206 [4/10] (3.35ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 206 'fadd' 'nrm' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 56 <SV = 55> <Delay = 3.35>
+ST_56 : Operation 207 [3/10] (3.35ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 207 'fadd' 'nrm' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 57 <SV = 56> <Delay = 3.35>
+ST_57 : Operation 208 [2/10] (3.35ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 208 'fadd' 'nrm' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 58 <SV = 57> <Delay = 3.35>
+ST_58 : Operation 209 [1/10] (3.35ns)   --->   "%nrm = fadd i32 %mul3, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:86]   --->   Operation 209 'fadd' 'nrm' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 59 <SV = 58> <Delay = 0.78>
+ST_59 : Operation 210 [2/2] (0.78ns)   --->   "%call_ln90 = call void @main_Pipeline_VITIS_LOOP_88_5, i5 %trunc_ln90, i32 %a, i32 %nrm, i32 %q" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:90]   --->   Operation 210 'call' 'call_ln90' <Predicate = true> <Delay = 0.78> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 60 <SV = 59> <Delay = 0.00>
+ST_60 : Operation 211 [1/2] (0.00ns)   --->   "%call_ln90 = call void @main_Pipeline_VITIS_LOOP_88_5, i5 %trunc_ln90, i32 %a, i32 %nrm, i32 %q" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:90]   --->   Operation 211 'call' 'call_ln90' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 61 <SV = 60> <Delay = 3.25>
+ST_61 : Operation 212 [1/1] (0.00ns)   --->   "%zext_ln90 = zext i6 %k_2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:90]   --->   Operation 212 'zext' 'zext_ln90' <Predicate = true> <Delay = 0.00>
+ST_61 : Operation 213 [1/1] (0.00ns)   --->   "%q_addr_2 = getelementptr i32 %q, i64 0, i64 %zext_ln90" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:93]   --->   Operation 213 'getelementptr' 'q_addr_2' <Predicate = true> <Delay = 0.00>
+ST_61 : Operation 214 [2/2] (3.25ns)   --->   "%q_load = load i10 %q_addr_2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:93]   --->   Operation 214 'load' 'q_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 1024> <RAM>
+
+State 62 <SV = 61> <Delay = 3.25>
+ST_62 : Operation 215 [1/2] (3.25ns)   --->   "%q_load = load i10 %q_addr_2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:93]   --->   Operation 215 'load' 'q_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 1024> <RAM>
+
+State 63 <SV = 62> <Delay = 3.41>
+ST_63 : Operation 216 [1/1] (0.00ns)   --->   "%indvars_iv29_load = load i6 %indvars_iv29" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:82]   --->   Operation 216 'load' 'indvars_iv29_load' <Predicate = true> <Delay = 0.00>
+ST_63 : Operation 217 [2/2] (1.58ns)   --->   "%call_ln82 = call void @main_Pipeline_VITIS_LOOP_90_6, i6 %indvars_iv29_load, i32 %a, i32 %q_load, i5 %trunc_ln90, i32 %q, i5 %trunc_ln90, i5 %trunc_ln90, i5 %trunc_ln90" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:82]   --->   Operation 217 'call' 'call_ln82' <Predicate = true> <Delay = 1.58> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_63 : Operation 218 [1/1] (1.82ns)   --->   "%add_ln82 = add i6 %indvars_iv29_load, i6 1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:82]   --->   Operation 218 'add' 'add_ln82' <Predicate = true> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_63 : Operation 219 [1/1] (1.58ns)   --->   "%store_ln82 = store i6 %add_ln82, i6 %indvars_iv29" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:82]   --->   Operation 219 'store' 'store_ln82' <Predicate = true> <Delay = 1.58>
+
+State 64 <SV = 63> <Delay = 0.00>
+ST_64 : Operation 220 [1/1] (0.00ns)   --->   "%speclooptripcount_ln82 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 32, i64 32, i64 32" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:82]   --->   Operation 220 'speclooptripcount' 'speclooptripcount_ln82' <Predicate = true> <Delay = 0.00>
+ST_64 : Operation 221 [1/1] (0.00ns)   --->   "%specloopname_ln82 = specloopname void @_ssdm_op_SpecLoopName, void @empty_8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:82]   --->   Operation 221 'specloopname' 'specloopname_ln82' <Predicate = true> <Delay = 0.00>
+ST_64 : Operation 222 [1/2] (0.00ns)   --->   "%call_ln82 = call void @main_Pipeline_VITIS_LOOP_90_6, i6 %indvars_iv29_load, i32 %a, i32 %q_load, i5 %trunc_ln90, i32 %q, i5 %trunc_ln90, i5 %trunc_ln90, i5 %trunc_ln90" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:82]   --->   Operation 222 'call' 'call_ln82' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_64 : Operation 223 [1/1] (0.00ns)   --->   "%br_ln82 = br void %VITIS_LOOP_84_4" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:82]   --->   Operation 223 'br' 'br_ln82' <Predicate = true> <Delay = 0.00>
+
+State 65 <SV = 3> <Delay = 3.41>
+ST_65 : Operation 224 [1/1] (0.00ns)   --->   "%k_3 = load i6 %k_1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:52->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 224 'load' 'k_3' <Predicate = true> <Delay = 0.00>
+ST_65 : Operation 225 [1/1] (0.00ns)   --->   "%trunc_ln52 = trunc i6 %k_3" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:52->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 225 'trunc' 'trunc_ln52' <Predicate = true> <Delay = 0.00>
+ST_65 : Operation 226 [1/1] (1.82ns)   --->   "%icmp_ln52 = icmp_eq  i6 %k_3, i6 32" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:52->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 226 'icmp' 'icmp_ln52' <Predicate = true> <Delay = 1.82> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_65 : Operation 227 [1/1] (1.82ns)   --->   "%add_ln52 = add i6 %k_3, i6 1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:52->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 227 'add' 'add_ln52' <Predicate = true> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_65 : Operation 228 [1/1] (0.00ns)   --->   "%br_ln44 = br i1 %icmp_ln52, void %VITIS_LOOP_46_2.i.split, void %_Z11gramSchmidtPfS_S_.exit" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:44->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 228 'br' 'br_ln44' <Predicate = true> <Delay = 0.00>
+ST_65 : Operation 229 [2/2] (0.78ns)   --->   "%call_ln52 = call void @main_Pipeline_VITIS_LOOP_46_2, i5 %trunc_ln52, i32 %a_s, i32 %nrm_3_loc" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:52->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 229 'call' 'call_ln52' <Predicate = (!icmp_ln52)> <Delay = 0.78> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_65 : Operation 230 [1/1] (1.58ns)   --->   "%store_ln44 = store i6 %add_ln52, i6 %k_1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:44->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 230 'store' 'store_ln44' <Predicate = (!icmp_ln52)> <Delay = 1.58>
+ST_65 : Operation 231 [1/1] (0.00ns)   --->   "%ret_ln112 = ret i32 0" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:112]   --->   Operation 231 'ret' 'ret_ln112' <Predicate = (icmp_ln52)> <Delay = 0.00>
+
+State 66 <SV = 4> <Delay = 0.00>
+ST_66 : Operation 232 [1/2] (0.00ns)   --->   "%call_ln52 = call void @main_Pipeline_VITIS_LOOP_46_2, i5 %trunc_ln52, i32 %a_s, i32 %nrm_3_loc" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:52->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 232 'call' 'call_ln52' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 67 <SV = 5> <Delay = 4.59>
+ST_67 : Operation 233 [1/1] (0.00ns)   --->   "%nrm_3_loc_load = load i32 %nrm_3_loc"   --->   Operation 233 'load' 'nrm_3_loc_load' <Predicate = true> <Delay = 0.00>
+ST_67 : Operation 234 [10/10] (4.59ns)   --->   "%sub_i = fadd i32 %nrm_3_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 234 'fadd' 'sub_i' <Predicate = true> <Delay = 4.59> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 68 <SV = 6> <Delay = 3.35>
+ST_68 : Operation 235 [9/10] (3.35ns)   --->   "%sub_i = fadd i32 %nrm_3_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 235 'fadd' 'sub_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 69 <SV = 7> <Delay = 3.35>
+ST_69 : Operation 236 [8/10] (3.35ns)   --->   "%sub_i = fadd i32 %nrm_3_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 236 'fadd' 'sub_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 70 <SV = 8> <Delay = 3.35>
+ST_70 : Operation 237 [7/10] (3.35ns)   --->   "%sub_i = fadd i32 %nrm_3_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 237 'fadd' 'sub_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 71 <SV = 9> <Delay = 3.35>
+ST_71 : Operation 238 [6/10] (3.35ns)   --->   "%sub_i = fadd i32 %nrm_3_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 238 'fadd' 'sub_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 72 <SV = 10> <Delay = 3.35>
+ST_72 : Operation 239 [5/10] (3.35ns)   --->   "%sub_i = fadd i32 %nrm_3_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 239 'fadd' 'sub_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 73 <SV = 11> <Delay = 3.35>
+ST_73 : Operation 240 [4/10] (3.35ns)   --->   "%sub_i = fadd i32 %nrm_3_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 240 'fadd' 'sub_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 74 <SV = 12> <Delay = 3.35>
+ST_74 : Operation 241 [3/10] (3.35ns)   --->   "%sub_i = fadd i32 %nrm_3_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 241 'fadd' 'sub_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 75 <SV = 13> <Delay = 3.35>
+ST_75 : Operation 242 [2/10] (3.35ns)   --->   "%sub_i = fadd i32 %nrm_3_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 242 'fadd' 'sub_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 76 <SV = 14> <Delay = 3.35>
+ST_76 : Operation 243 [1/10] (3.35ns)   --->   "%sub_i = fadd i32 %nrm_3_loc_load, i32 -8" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 243 'fadd' 'sub_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 77 <SV = 15> <Delay = 3.80>
+ST_77 : Operation 244 [8/8] (3.80ns)   --->   "%mul10_i = fmul i32 %sub_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 244 'fmul' 'mul10_i' <Predicate = true> <Delay = 3.80> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 78 <SV = 16> <Delay = 2.56>
+ST_78 : Operation 245 [7/8] (2.56ns)   --->   "%mul10_i = fmul i32 %sub_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 245 'fmul' 'mul10_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 79 <SV = 17> <Delay = 2.56>
+ST_79 : Operation 246 [6/8] (2.56ns)   --->   "%mul10_i = fmul i32 %sub_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 246 'fmul' 'mul10_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 80 <SV = 18> <Delay = 2.56>
+ST_80 : Operation 247 [5/8] (2.56ns)   --->   "%mul10_i = fmul i32 %sub_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 247 'fmul' 'mul10_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 81 <SV = 19> <Delay = 2.56>
+ST_81 : Operation 248 [4/8] (2.56ns)   --->   "%mul10_i = fmul i32 %sub_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 248 'fmul' 'mul10_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 82 <SV = 20> <Delay = 2.56>
+ST_82 : Operation 249 [3/8] (2.56ns)   --->   "%mul10_i = fmul i32 %sub_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 249 'fmul' 'mul10_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 83 <SV = 21> <Delay = 2.56>
+ST_83 : Operation 250 [2/8] (2.56ns)   --->   "%mul10_i = fmul i32 %sub_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 250 'fmul' 'mul10_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 84 <SV = 22> <Delay = 2.56>
+ST_84 : Operation 251 [1/8] (2.56ns)   --->   "%mul10_i = fmul i32 %sub_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 251 'fmul' 'mul10_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 85 <SV = 23> <Delay = 4.59>
+ST_85 : Operation 252 [10/10] (4.59ns)   --->   "%add11_i = fadd i32 %mul10_i, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 252 'fadd' 'add11_i' <Predicate = true> <Delay = 4.59> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 86 <SV = 24> <Delay = 3.35>
+ST_86 : Operation 253 [9/10] (3.35ns)   --->   "%add11_i = fadd i32 %mul10_i, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 253 'fadd' 'add11_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 87 <SV = 25> <Delay = 3.35>
+ST_87 : Operation 254 [8/10] (3.35ns)   --->   "%add11_i = fadd i32 %mul10_i, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 254 'fadd' 'add11_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 88 <SV = 26> <Delay = 3.35>
+ST_88 : Operation 255 [7/10] (3.35ns)   --->   "%add11_i = fadd i32 %mul10_i, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 255 'fadd' 'add11_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 89 <SV = 27> <Delay = 3.35>
+ST_89 : Operation 256 [6/10] (3.35ns)   --->   "%add11_i = fadd i32 %mul10_i, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 256 'fadd' 'add11_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 90 <SV = 28> <Delay = 3.35>
+ST_90 : Operation 257 [5/10] (3.35ns)   --->   "%add11_i = fadd i32 %mul10_i, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 257 'fadd' 'add11_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 91 <SV = 29> <Delay = 3.35>
+ST_91 : Operation 258 [4/10] (3.35ns)   --->   "%add11_i = fadd i32 %mul10_i, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 258 'fadd' 'add11_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 92 <SV = 30> <Delay = 3.35>
+ST_92 : Operation 259 [3/10] (3.35ns)   --->   "%add11_i = fadd i32 %mul10_i, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 259 'fadd' 'add11_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 93 <SV = 31> <Delay = 3.35>
+ST_93 : Operation 260 [2/10] (3.35ns)   --->   "%add11_i = fadd i32 %mul10_i, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 260 'fadd' 'add11_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 94 <SV = 32> <Delay = 3.35>
+ST_94 : Operation 261 [1/10] (3.35ns)   --->   "%add11_i = fadd i32 %mul10_i, i32 16" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 261 'fadd' 'add11_i' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 95 <SV = 33> <Delay = 3.80>
+ST_95 : Operation 262 [8/8] (3.80ns)   --->   "%mul12_i = fmul i32 %add11_i, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 262 'fmul' 'mul12_i' <Predicate = true> <Delay = 3.80> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 96 <SV = 34> <Delay = 2.56>
+ST_96 : Operation 263 [7/8] (2.56ns)   --->   "%mul12_i = fmul i32 %add11_i, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 263 'fmul' 'mul12_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 97 <SV = 35> <Delay = 2.56>
+ST_97 : Operation 264 [6/8] (2.56ns)   --->   "%mul12_i = fmul i32 %add11_i, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 264 'fmul' 'mul12_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 98 <SV = 36> <Delay = 2.56>
+ST_98 : Operation 265 [5/8] (2.56ns)   --->   "%mul12_i = fmul i32 %add11_i, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 265 'fmul' 'mul12_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 99 <SV = 37> <Delay = 2.56>
+ST_99 : Operation 266 [4/8] (2.56ns)   --->   "%mul12_i = fmul i32 %add11_i, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 266 'fmul' 'mul12_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 100 <SV = 38> <Delay = 2.56>
+ST_100 : Operation 267 [3/8] (2.56ns)   --->   "%mul12_i = fmul i32 %add11_i, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 267 'fmul' 'mul12_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 101 <SV = 39> <Delay = 2.56>
+ST_101 : Operation 268 [2/8] (2.56ns)   --->   "%mul12_i = fmul i32 %add11_i, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 268 'fmul' 'mul12_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 102 <SV = 40> <Delay = 2.56>
+ST_102 : Operation 269 [1/8] (2.56ns)   --->   "%mul12_i = fmul i32 %add11_i, i32 0.0019" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 269 'fmul' 'mul12_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 103 <SV = 41> <Delay = 3.80>
+ST_103 : Operation 270 [8/8] (3.80ns)   --->   "%mul13_i = fmul i32 %mul12_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 270 'fmul' 'mul13_i' <Predicate = true> <Delay = 3.80> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 104 <SV = 42> <Delay = 2.56>
+ST_104 : Operation 271 [7/8] (2.56ns)   --->   "%mul13_i = fmul i32 %mul12_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 271 'fmul' 'mul13_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 105 <SV = 43> <Delay = 2.56>
+ST_105 : Operation 272 [6/8] (2.56ns)   --->   "%mul13_i = fmul i32 %mul12_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 272 'fmul' 'mul13_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 106 <SV = 44> <Delay = 2.56>
+ST_106 : Operation 273 [5/8] (2.56ns)   --->   "%mul13_i = fmul i32 %mul12_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 273 'fmul' 'mul13_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 107 <SV = 45> <Delay = 2.56>
+ST_107 : Operation 274 [4/8] (2.56ns)   --->   "%mul13_i = fmul i32 %mul12_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 274 'fmul' 'mul13_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 108 <SV = 46> <Delay = 2.56>
+ST_108 : Operation 275 [3/8] (2.56ns)   --->   "%mul13_i = fmul i32 %mul12_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 275 'fmul' 'mul13_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 109 <SV = 47> <Delay = 2.56>
+ST_109 : Operation 276 [2/8] (2.56ns)   --->   "%mul13_i = fmul i32 %mul12_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 276 'fmul' 'mul13_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 110 <SV = 48> <Delay = 2.56>
+ST_110 : Operation 277 [1/8] (2.56ns)   --->   "%mul13_i = fmul i32 %mul12_i, i32 %nrm_3_loc_load" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 277 'fmul' 'mul13_i' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 111 <SV = 49> <Delay = 4.59>
+ST_111 : Operation 278 [10/10] (4.59ns)   --->   "%nrm_3 = fadd i32 %mul13_i, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 278 'fadd' 'nrm_3' <Predicate = true> <Delay = 4.59> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 112 <SV = 50> <Delay = 3.35>
+ST_112 : Operation 279 [9/10] (3.35ns)   --->   "%nrm_3 = fadd i32 %mul13_i, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 279 'fadd' 'nrm_3' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 113 <SV = 51> <Delay = 3.35>
+ST_113 : Operation 280 [8/10] (3.35ns)   --->   "%nrm_3 = fadd i32 %mul13_i, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 280 'fadd' 'nrm_3' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 114 <SV = 52> <Delay = 3.35>
+ST_114 : Operation 281 [7/10] (3.35ns)   --->   "%nrm_3 = fadd i32 %mul13_i, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 281 'fadd' 'nrm_3' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 115 <SV = 53> <Delay = 3.35>
+ST_115 : Operation 282 [6/10] (3.35ns)   --->   "%nrm_3 = fadd i32 %mul13_i, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 282 'fadd' 'nrm_3' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 116 <SV = 54> <Delay = 3.35>
+ST_116 : Operation 283 [5/10] (3.35ns)   --->   "%nrm_3 = fadd i32 %mul13_i, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 283 'fadd' 'nrm_3' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 117 <SV = 55> <Delay = 3.35>
+ST_117 : Operation 284 [4/10] (3.35ns)   --->   "%nrm_3 = fadd i32 %mul13_i, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 284 'fadd' 'nrm_3' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 118 <SV = 56> <Delay = 3.35>
+ST_118 : Operation 285 [3/10] (3.35ns)   --->   "%nrm_3 = fadd i32 %mul13_i, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 285 'fadd' 'nrm_3' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 119 <SV = 57> <Delay = 3.35>
+ST_119 : Operation 286 [2/10] (3.35ns)   --->   "%nrm_3 = fadd i32 %mul13_i, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 286 'fadd' 'nrm_3' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 120 <SV = 58> <Delay = 3.35>
+ST_120 : Operation 287 [1/10] (3.35ns)   --->   "%nrm_3 = fadd i32 %mul13_i, i32 2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:48->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 287 'fadd' 'nrm_3' <Predicate = true> <Delay = 3.35> <CoreInst = "FAddSub_fulldsp">   --->   Core 18 'FAddSub_fulldsp' <Latency = 9> <II = 1> <Delay = 3.35> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 121 <SV = 59> <Delay = 0.78>
+ST_121 : Operation 288 [2/2] (0.78ns)   --->   "%call_ln52 = call void @main_Pipeline_VITIS_LOOP_50_3, i5 %trunc_ln52, i32 %a_s, i32 %nrm_3, i32 %q_s" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:52->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 288 'call' 'call_ln52' <Predicate = true> <Delay = 0.78> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 122 <SV = 60> <Delay = 0.00>
+ST_122 : Operation 289 [1/2] (0.00ns)   --->   "%call_ln52 = call void @main_Pipeline_VITIS_LOOP_50_3, i5 %trunc_ln52, i32 %a_s, i32 %nrm_3, i32 %q_s" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:52->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 289 'call' 'call_ln52' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 123 <SV = 61> <Delay = 3.25>
+ST_123 : Operation 290 [1/1] (0.00ns)   --->   "%zext_ln52 = zext i6 %k_3" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:52->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 290 'zext' 'zext_ln52' <Predicate = true> <Delay = 0.00>
+ST_123 : Operation 291 [1/1] (0.00ns)   --->   "%q_addr_2_18 = getelementptr i32 %q_s, i64 0, i64 %zext_ln52" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:55->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 291 'getelementptr' 'q_addr_2_18' <Predicate = true> <Delay = 0.00>
+ST_123 : Operation 292 [2/2] (3.25ns)   --->   "%q_load_19 = load i10 %q_addr_2_18" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:55->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 292 'load' 'q_load_19' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 1024> <RAM>
+
+State 124 <SV = 62> <Delay = 3.25>
+ST_124 : Operation 293 [1/2] (3.25ns)   --->   "%q_load_19 = load i10 %q_addr_2_18" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:55->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 293 'load' 'q_load_19' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 1024> <RAM>
+
+State 125 <SV = 63> <Delay = 3.41>
+ST_125 : Operation 294 [1/1] (0.00ns)   --->   "%indvars_iv24_i_load = load i6 %indvars_iv24_i" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:44->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 294 'load' 'indvars_iv24_i_load' <Predicate = true> <Delay = 0.00>
+ST_125 : Operation 295 [2/2] (1.58ns)   --->   "%call_ln44 = call void @main_Pipeline_VITIS_LOOP_52_4, i6 %indvars_iv24_i_load, i32 %a_s, i32 %q_load_19, i5 %trunc_ln52, i32 %q_s, i5 %trunc_ln52, i5 %trunc_ln52, i5 %trunc_ln52" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:44->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 295 'call' 'call_ln44' <Predicate = true> <Delay = 1.58> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_125 : Operation 296 [1/1] (1.82ns)   --->   "%add_ln44 = add i6 %indvars_iv24_i_load, i6 1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:44->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 296 'add' 'add_ln44' <Predicate = true> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_125 : Operation 297 [1/1] (1.58ns)   --->   "%store_ln44 = store i6 %add_ln44, i6 %indvars_iv24_i" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:44->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 297 'store' 'store_ln44' <Predicate = true> <Delay = 1.58>
+
+State 126 <SV = 64> <Delay = 0.00>
+ST_126 : Operation 298 [1/1] (0.00ns)   --->   "%speclooptripcount_ln44 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 32, i64 32, i64 32" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:44->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 298 'speclooptripcount' 'speclooptripcount_ln44' <Predicate = true> <Delay = 0.00>
+ST_126 : Operation 299 [1/1] (0.00ns)   --->   "%specloopname_ln44 = specloopname void @_ssdm_op_SpecLoopName, void @empty_4" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:44->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 299 'specloopname' 'specloopname_ln44' <Predicate = true> <Delay = 0.00>
+ST_126 : Operation 300 [1/2] (0.00ns)   --->   "%call_ln44 = call void @main_Pipeline_VITIS_LOOP_52_4, i6 %indvars_iv24_i_load, i32 %a_s, i32 %q_load_19, i5 %trunc_ln52, i32 %q_s, i5 %trunc_ln52, i5 %trunc_ln52, i5 %trunc_ln52" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:44->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 300 'call' 'call_ln44' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_126 : Operation 301 [1/1] (0.00ns)   --->   "%br_ln44 = br void %VITIS_LOOP_46_2.i" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:44->benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:101]   --->   Operation 301 'br' 'br_ln44' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 1
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+indvars_iv29           (alloca           ) [ 0111111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000]
+k                      (alloca           ) [ 0111111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000]
+nrm_3_loc              (alloca           ) [ 0011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111]
+nrm_loc                (alloca           ) [ 0011111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000]
+a                      (alloca           ) [ 0011111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000]
+q                      (alloca           ) [ 0011111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000]
+a_s                    (alloca           ) [ 0011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111]
+q_s                    (alloca           ) [ 0011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111]
+store_ln82             (store            ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+store_ln0              (store            ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+specbitsmap_ln0        (specbitsmap      ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+spectopmodule_ln63     (spectopmodule    ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+call_ln0               (call             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+br_ln90                (br               ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+k_2                    (load             ) [ 0000111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000000]
+trunc_ln90             (trunc            ) [ 0000111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000]
+icmp_ln90              (icmp             ) [ 0001111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000]
+add_ln90               (add              ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+br_ln82                (br               ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+store_ln82             (store            ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+indvars_iv24_i         (alloca           ) [ 0001111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111]
+k_1                    (alloca           ) [ 0001111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111]
+store_ln44             (store            ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+store_ln0              (store            ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+br_ln52                (br               ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+call_ln90              (call             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+nrm_loc_load           (load             ) [ 0000001111111111111111111111111111111111111111111000000000000000000000000000000000000000000000000000000000000000000000000000000]
+sub                    (fadd             ) [ 0000000000000001111111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+mul1                   (fmul             ) [ 0000000000000000000000011111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+add                    (fadd             ) [ 0000000000000000000000000000000001111111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+mul2                   (fmul             ) [ 0000000000000000000000000000000000000000011111111000000000000000000000000000000000000000000000000000000000000000000000000000000]
+mul3                   (fmul             ) [ 0000000000000000000000000000000000000000000000000111111111100000000000000000000000000000000000000000000000000000000000000000000]
+nrm                    (fadd             ) [ 0000000000000000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000000000000000000000]
+call_ln90              (call             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+zext_ln90              (zext             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+q_addr_2               (getelementptr    ) [ 0000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000]
+q_load                 (load             ) [ 0000000000000000000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000000000000000000]
+indvars_iv29_load      (load             ) [ 0000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000]
+add_ln82               (add              ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+store_ln82             (store            ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+speclooptripcount_ln82 (speclooptripcount) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+specloopname_ln82      (specloopname     ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+call_ln82              (call             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+br_ln82                (br               ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+k_3                    (load             ) [ 0000000000000000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111000]
+trunc_ln52             (trunc            ) [ 0000000000000000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111111]
+icmp_ln52              (icmp             ) [ 0000000000000000000000000000000000000000000000000000000000000000011111111111111111111111111111111111111111111111111111111111111]
+add_ln52               (add              ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+br_ln44                (br               ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+store_ln44             (store            ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+ret_ln112              (ret              ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+call_ln52              (call             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+nrm_3_loc_load         (load             ) [ 0000000000000000000000000000000000000000000000000000000000000000000011111111111111111111111111111111111111111110000000000000000]
+sub_i                  (fadd             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000011111111000000000000000000000000000000000000000000]
+mul10_i                (fmul             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000111111111100000000000000000000000000000000]
+add11_i                (fadd             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011111111000000000000000000000000]
+mul12_i                (fmul             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111111110000000000000000]
+mul13_i                (fmul             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001111111111000000]
+nrm_3                  (fadd             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000110000]
+call_ln52              (call             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+zext_ln52              (zext             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+q_addr_2_18            (getelementptr    ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100]
+q_load_19              (load             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011]
+indvars_iv24_i_load    (load             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001]
+add_ln44               (add              ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+store_ln44             (store            ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+speclooptripcount_ln44 (speclooptripcount) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+specloopname_ln44      (specloopname     ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+call_ln44              (call             ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+br_ln44                (br               ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1001" name="const_0">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1001" name="const_2">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1001" name="const_4">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="main_Pipeline_VITIS_LOOP_69_1_VITIS_LOOP_70_2"/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1001" name="const_6">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1001" name="const_8">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1001" name="const_10">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecBitsMap"/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1001" name="const_12">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1001" name="const_14">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecTopModule"/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1001" name="const_16">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty"/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1001" name="const_18">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1001" name="const_20">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="main_Pipeline_VITIS_LOOP_84_4"/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1001" name="const_22">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1001" name="const_24">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1001" name="const_26">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1001" name="const_28">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1001" name="const_30">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="main_Pipeline_VITIS_LOOP_88_5"/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1001" name="const_32">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1001" name="const_34">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="main_Pipeline_VITIS_LOOP_90_6"/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1001" name="const_36">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecLoopTripCount"/></StgValue>
+</bind>
+</comp>
+
+<comp id="38" class="1001" name="const_38">
+<pin_list>
+<pin id="39" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="40" class="1001" name="const_40">
+<pin_list>
+<pin id="41" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecLoopName"/></StgValue>
+</bind>
+</comp>
+
+<comp id="42" class="1001" name="const_42">
+<pin_list>
+<pin id="43" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_8"/></StgValue>
+</bind>
+</comp>
+
+<comp id="44" class="1001" name="const_44">
+<pin_list>
+<pin id="45" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="main_Pipeline_VITIS_LOOP_46_2"/></StgValue>
+</bind>
+</comp>
+
+<comp id="46" class="1001" name="const_46">
+<pin_list>
+<pin id="47" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="main_Pipeline_VITIS_LOOP_50_3"/></StgValue>
+</bind>
+</comp>
+
+<comp id="48" class="1001" name="const_48">
+<pin_list>
+<pin id="49" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="main_Pipeline_VITIS_LOOP_52_4"/></StgValue>
+</bind>
+</comp>
+
+<comp id="50" class="1001" name="const_50">
+<pin_list>
+<pin id="51" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_4"/></StgValue>
+</bind>
+</comp>
+
+<comp id="52" class="1004" name="indvars_iv29_fu_52">
+<pin_list>
+<pin id="53" dir="0" index="0" bw="1" slack="0"/>
+<pin id="54" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="indvars_iv29/1 "/>
+</bind>
+</comp>
+
+<comp id="56" class="1004" name="k_fu_56">
+<pin_list>
+<pin id="57" dir="0" index="0" bw="1" slack="0"/>
+<pin id="58" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="k/1 "/>
+</bind>
+</comp>
+
+<comp id="60" class="1004" name="nrm_3_loc_fu_60">
+<pin_list>
+<pin id="61" dir="0" index="0" bw="1" slack="0"/>
+<pin id="62" dir="1" index="1" bw="32" slack="3"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="nrm_3_loc/1 "/>
+</bind>
+</comp>
+
+<comp id="64" class="1004" name="nrm_loc_fu_64">
+<pin_list>
+<pin id="65" dir="0" index="0" bw="1" slack="0"/>
+<pin id="66" dir="1" index="1" bw="32" slack="2"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="nrm_loc/1 "/>
+</bind>
+</comp>
+
+<comp id="68" class="1004" name="a_alloca_fu_68">
+<pin_list>
+<pin id="69" dir="0" index="0" bw="1" slack="0"/>
+<pin id="70" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="a/1 "/>
+</bind>
+</comp>
+
+<comp id="72" class="1004" name="q_alloca_fu_72">
+<pin_list>
+<pin id="73" dir="0" index="0" bw="1" slack="0"/>
+<pin id="74" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="q/1 "/>
+</bind>
+</comp>
+
+<comp id="76" class="1004" name="a_s_alloca_fu_76">
+<pin_list>
+<pin id="77" dir="0" index="0" bw="1" slack="0"/>
+<pin id="78" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="a_s/1 "/>
+</bind>
+</comp>
+
+<comp id="80" class="1004" name="q_s_alloca_fu_80">
+<pin_list>
+<pin id="81" dir="0" index="0" bw="1" slack="0"/>
+<pin id="82" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="q_s/1 "/>
+</bind>
+</comp>
+
+<comp id="84" class="1004" name="indvars_iv24_i_fu_84">
+<pin_list>
+<pin id="85" dir="0" index="0" bw="1" slack="0"/>
+<pin id="86" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="indvars_iv24_i/3 "/>
+</bind>
+</comp>
+
+<comp id="88" class="1004" name="k_1_fu_88">
+<pin_list>
+<pin id="89" dir="0" index="0" bw="1" slack="0"/>
+<pin id="90" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="k_1/3 "/>
+</bind>
+</comp>
+
+<comp id="92" class="1004" name="q_addr_2_gep_fu_92">
+<pin_list>
+<pin id="93" dir="0" index="0" bw="32" slack="2147483647"/>
+<pin id="94" dir="0" index="1" bw="1" slack="0"/>
+<pin id="95" dir="0" index="2" bw="6" slack="0"/>
+<pin id="96" dir="1" index="3" bw="10" slack="0"/>
+</pin_list>
+<bind>
+<opcode="getelementptr(29) " fcode="getelementptr"/>
+<opset="q_addr_2/61 "/>
+</bind>
+</comp>
+
+<comp id="98" class="1004" name="grp_access_fu_98">
+<pin_list>
+<pin id="99" dir="0" index="0" bw="10" slack="0"/>
+<pin id="100" dir="0" index="1" bw="32" slack="2147483647"/>
+<pin id="101" dir="0" index="2" bw="0" slack="2147483647"/>
+<pin id="102" dir="1" index="3" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="q_load/61 "/>
+</bind>
+</comp>
+
+<comp id="104" class="1004" name="q_addr_2_18_gep_fu_104">
+<pin_list>
+<pin id="105" dir="0" index="0" bw="32" slack="2147483647"/>
+<pin id="106" dir="0" index="1" bw="1" slack="0"/>
+<pin id="107" dir="0" index="2" bw="6" slack="0"/>
+<pin id="108" dir="1" index="3" bw="10" slack="0"/>
+</pin_list>
+<bind>
+<opcode="getelementptr(29) " fcode="getelementptr"/>
+<opset="q_addr_2_18/123 "/>
+</bind>
+</comp>
+
+<comp id="110" class="1004" name="grp_access_fu_110">
+<pin_list>
+<pin id="111" dir="0" index="0" bw="10" slack="0"/>
+<pin id="112" dir="0" index="1" bw="32" slack="2147483647"/>
+<pin id="113" dir="0" index="2" bw="0" slack="2147483647"/>
+<pin id="114" dir="1" index="3" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="q_load_19/123 "/>
+</bind>
+</comp>
+
+<comp id="116" class="1004" name="grp_main_Pipeline_VITIS_LOOP_69_1_VITIS_LOOP_70_2_fu_116">
+<pin_list>
+<pin id="117" dir="0" index="0" bw="0" slack="0"/>
+<pin id="118" dir="0" index="1" bw="32" slack="0"/>
+<pin id="119" dir="0" index="2" bw="32" slack="0"/>
+<pin id="120" dir="0" index="3" bw="32" slack="0"/>
+<pin id="121" dir="0" index="4" bw="32" slack="0"/>
+<pin id="122" dir="1" index="5" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="128" class="1004" name="grp_main_Pipeline_VITIS_LOOP_84_4_fu_128">
+<pin_list>
+<pin id="129" dir="0" index="0" bw="0" slack="0"/>
+<pin id="130" dir="0" index="1" bw="5" slack="0"/>
+<pin id="131" dir="0" index="2" bw="32" slack="2147483647"/>
+<pin id="132" dir="0" index="3" bw="32" slack="2"/>
+<pin id="133" dir="1" index="4" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln90/3 "/>
+</bind>
+</comp>
+
+<comp id="135" class="1004" name="grp_main_Pipeline_VITIS_LOOP_88_5_fu_135">
+<pin_list>
+<pin id="136" dir="0" index="0" bw="0" slack="0"/>
+<pin id="137" dir="0" index="1" bw="5" slack="56"/>
+<pin id="138" dir="0" index="2" bw="32" slack="2147483647"/>
+<pin id="139" dir="0" index="3" bw="32" slack="1"/>
+<pin id="140" dir="0" index="4" bw="32" slack="2147483647"/>
+<pin id="141" dir="1" index="5" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln90/59 "/>
+</bind>
+</comp>
+
+<comp id="143" class="1004" name="grp_main_Pipeline_VITIS_LOOP_90_6_fu_143">
+<pin_list>
+<pin id="144" dir="0" index="0" bw="0" slack="0"/>
+<pin id="145" dir="0" index="1" bw="6" slack="0"/>
+<pin id="146" dir="0" index="2" bw="32" slack="2147483647"/>
+<pin id="147" dir="0" index="3" bw="32" slack="1"/>
+<pin id="148" dir="0" index="4" bw="5" slack="60"/>
+<pin id="149" dir="0" index="5" bw="32" slack="2147483647"/>
+<pin id="150" dir="0" index="6" bw="5" slack="60"/>
+<pin id="151" dir="0" index="7" bw="5" slack="60"/>
+<pin id="152" dir="0" index="8" bw="5" slack="60"/>
+<pin id="153" dir="1" index="9" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln82/63 "/>
+</bind>
+</comp>
+
+<comp id="155" class="1004" name="grp_main_Pipeline_VITIS_LOOP_46_2_fu_155">
+<pin_list>
+<pin id="156" dir="0" index="0" bw="0" slack="0"/>
+<pin id="157" dir="0" index="1" bw="5" slack="0"/>
+<pin id="158" dir="0" index="2" bw="32" slack="2147483647"/>
+<pin id="159" dir="0" index="3" bw="32" slack="3"/>
+<pin id="160" dir="1" index="4" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln52/65 "/>
+</bind>
+</comp>
+
+<comp id="162" class="1004" name="grp_main_Pipeline_VITIS_LOOP_50_3_fu_162">
+<pin_list>
+<pin id="163" dir="0" index="0" bw="0" slack="0"/>
+<pin id="164" dir="0" index="1" bw="5" slack="56"/>
+<pin id="165" dir="0" index="2" bw="32" slack="2147483647"/>
+<pin id="166" dir="0" index="3" bw="32" slack="1"/>
+<pin id="167" dir="0" index="4" bw="32" slack="2147483647"/>
+<pin id="168" dir="1" index="5" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln52/121 "/>
+</bind>
+</comp>
+
+<comp id="170" class="1004" name="grp_main_Pipeline_VITIS_LOOP_52_4_fu_170">
+<pin_list>
+<pin id="171" dir="0" index="0" bw="0" slack="0"/>
+<pin id="172" dir="0" index="1" bw="6" slack="0"/>
+<pin id="173" dir="0" index="2" bw="32" slack="2147483647"/>
+<pin id="174" dir="0" index="3" bw="32" slack="1"/>
+<pin id="175" dir="0" index="4" bw="5" slack="60"/>
+<pin id="176" dir="0" index="5" bw="32" slack="2147483647"/>
+<pin id="177" dir="0" index="6" bw="5" slack="60"/>
+<pin id="178" dir="0" index="7" bw="5" slack="60"/>
+<pin id="179" dir="0" index="8" bw="5" slack="60"/>
+<pin id="180" dir="1" index="9" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln44/125 "/>
+</bind>
+</comp>
+
+<comp id="182" class="1004" name="grp_fu_182">
+<pin_list>
+<pin id="183" dir="0" index="0" bw="32" slack="0"/>
+<pin id="184" dir="0" index="1" bw="32" slack="0"/>
+<pin id="185" dir="1" index="2" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opcode="fadd(9) " fcode="fadd"/>
+<opset="sub/5 add/23 nrm/49 sub_i/67 add11_i/85 nrm_3/111 "/>
+</bind>
+</comp>
+
+<comp id="189" class="1004" name="grp_fu_189">
+<pin_list>
+<pin id="190" dir="0" index="0" bw="32" slack="1"/>
+<pin id="191" dir="0" index="1" bw="32" slack="0"/>
+<pin id="192" dir="1" index="2" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opcode="fmul(13) " fcode="fmul"/>
+<opset="mul1/15 mul2/33 mul3/41 mul10_i/77 mul12_i/95 mul13_i/103 "/>
+</bind>
+</comp>
+
+<comp id="194" class="1005" name="reg_194">
+<pin_list>
+<pin id="195" dir="0" index="0" bw="32" slack="1"/>
+<pin id="196" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="sub add nrm sub_i add11_i nrm_3 "/>
+</bind>
+</comp>
+
+<comp id="201" class="1005" name="reg_201">
+<pin_list>
+<pin id="202" dir="0" index="0" bw="32" slack="1"/>
+<pin id="203" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="mul1 mul2 mul3 mul10_i mul12_i mul13_i "/>
+</bind>
+</comp>
+
+<comp id="207" class="1004" name="store_ln82_store_fu_207">
+<pin_list>
+<pin id="208" dir="0" index="0" bw="1" slack="0"/>
+<pin id="209" dir="0" index="1" bw="6" slack="0"/>
+<pin id="210" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln82/1 "/>
+</bind>
+</comp>
+
+<comp id="212" class="1004" name="store_ln0_store_fu_212">
+<pin_list>
+<pin id="213" dir="0" index="0" bw="1" slack="0"/>
+<pin id="214" dir="0" index="1" bw="6" slack="0"/>
+<pin id="215" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="217" class="1004" name="k_2_load_fu_217">
+<pin_list>
+<pin id="218" dir="0" index="0" bw="6" slack="2"/>
+<pin id="219" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="k_2/3 "/>
+</bind>
+</comp>
+
+<comp id="220" class="1004" name="trunc_ln90_fu_220">
+<pin_list>
+<pin id="221" dir="0" index="0" bw="6" slack="0"/>
+<pin id="222" dir="1" index="1" bw="5" slack="0"/>
+</pin_list>
+<bind>
+<opcode="trunc(33) " fcode="trunc"/>
+<opset="trunc_ln90/3 "/>
+</bind>
+</comp>
+
+<comp id="225" class="1004" name="icmp_ln90_fu_225">
+<pin_list>
+<pin id="226" dir="0" index="0" bw="6" slack="0"/>
+<pin id="227" dir="0" index="1" bw="6" slack="0"/>
+<pin id="228" dir="1" index="2" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="icmp(45) " fcode="icmp"/>
+<opset="icmp_ln90/3 "/>
+</bind>
+</comp>
+
+<comp id="231" class="1004" name="add_ln90_fu_231">
+<pin_list>
+<pin id="232" dir="0" index="0" bw="6" slack="0"/>
+<pin id="233" dir="0" index="1" bw="1" slack="0"/>
+<pin id="234" dir="1" index="2" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="add(8) " fcode="add"/>
+<opset="add_ln90/3 "/>
+</bind>
+</comp>
+
+<comp id="237" class="1004" name="store_ln82_store_fu_237">
+<pin_list>
+<pin id="238" dir="0" index="0" bw="6" slack="0"/>
+<pin id="239" dir="0" index="1" bw="6" slack="2"/>
+<pin id="240" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln82/3 "/>
+</bind>
+</comp>
+
+<comp id="242" class="1004" name="store_ln44_store_fu_242">
+<pin_list>
+<pin id="243" dir="0" index="0" bw="1" slack="0"/>
+<pin id="244" dir="0" index="1" bw="6" slack="0"/>
+<pin id="245" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln44/3 "/>
+</bind>
+</comp>
+
+<comp id="247" class="1004" name="store_ln0_store_fu_247">
+<pin_list>
+<pin id="248" dir="0" index="0" bw="1" slack="0"/>
+<pin id="249" dir="0" index="1" bw="6" slack="0"/>
+<pin id="250" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln0/3 "/>
+</bind>
+</comp>
+
+<comp id="252" class="1004" name="nrm_loc_load_load_fu_252">
+<pin_list>
+<pin id="253" dir="0" index="0" bw="32" slack="4"/>
+<pin id="254" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="nrm_loc_load/5 "/>
+</bind>
+</comp>
+
+<comp id="256" class="1004" name="zext_ln90_fu_256">
+<pin_list>
+<pin id="257" dir="0" index="0" bw="6" slack="58"/>
+<pin id="258" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opcode="zext(34) " fcode="zext"/>
+<opset="zext_ln90/61 "/>
+</bind>
+</comp>
+
+<comp id="260" class="1004" name="indvars_iv29_load_load_fu_260">
+<pin_list>
+<pin id="261" dir="0" index="0" bw="6" slack="62"/>
+<pin id="262" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="indvars_iv29_load/63 "/>
+</bind>
+</comp>
+
+<comp id="264" class="1004" name="add_ln82_fu_264">
+<pin_list>
+<pin id="265" dir="0" index="0" bw="6" slack="0"/>
+<pin id="266" dir="0" index="1" bw="1" slack="0"/>
+<pin id="267" dir="1" index="2" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="add(8) " fcode="add"/>
+<opset="add_ln82/63 "/>
+</bind>
+</comp>
+
+<comp id="270" class="1004" name="store_ln82_store_fu_270">
+<pin_list>
+<pin id="271" dir="0" index="0" bw="6" slack="0"/>
+<pin id="272" dir="0" index="1" bw="6" slack="62"/>
+<pin id="273" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln82/63 "/>
+</bind>
+</comp>
+
+<comp id="275" class="1004" name="k_3_load_fu_275">
+<pin_list>
+<pin id="276" dir="0" index="0" bw="6" slack="1"/>
+<pin id="277" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="k_3/65 "/>
+</bind>
+</comp>
+
+<comp id="278" class="1004" name="trunc_ln52_fu_278">
+<pin_list>
+<pin id="279" dir="0" index="0" bw="6" slack="0"/>
+<pin id="280" dir="1" index="1" bw="5" slack="0"/>
+</pin_list>
+<bind>
+<opcode="trunc(33) " fcode="trunc"/>
+<opset="trunc_ln52/65 "/>
+</bind>
+</comp>
+
+<comp id="283" class="1004" name="icmp_ln52_fu_283">
+<pin_list>
+<pin id="284" dir="0" index="0" bw="6" slack="0"/>
+<pin id="285" dir="0" index="1" bw="6" slack="0"/>
+<pin id="286" dir="1" index="2" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="icmp(45) " fcode="icmp"/>
+<opset="icmp_ln52/65 "/>
+</bind>
+</comp>
+
+<comp id="289" class="1004" name="add_ln52_fu_289">
+<pin_list>
+<pin id="290" dir="0" index="0" bw="6" slack="0"/>
+<pin id="291" dir="0" index="1" bw="1" slack="0"/>
+<pin id="292" dir="1" index="2" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="add(8) " fcode="add"/>
+<opset="add_ln52/65 "/>
+</bind>
+</comp>
+
+<comp id="295" class="1004" name="store_ln44_store_fu_295">
+<pin_list>
+<pin id="296" dir="0" index="0" bw="6" slack="0"/>
+<pin id="297" dir="0" index="1" bw="6" slack="1"/>
+<pin id="298" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln44/65 "/>
+</bind>
+</comp>
+
+<comp id="300" class="1004" name="nrm_3_loc_load_load_fu_300">
+<pin_list>
+<pin id="301" dir="0" index="0" bw="32" slack="5"/>
+<pin id="302" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="nrm_3_loc_load/67 "/>
+</bind>
+</comp>
+
+<comp id="304" class="1004" name="zext_ln52_fu_304">
+<pin_list>
+<pin id="305" dir="0" index="0" bw="6" slack="58"/>
+<pin id="306" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opcode="zext(34) " fcode="zext"/>
+<opset="zext_ln52/123 "/>
+</bind>
+</comp>
+
+<comp id="308" class="1004" name="indvars_iv24_i_load_load_fu_308">
+<pin_list>
+<pin id="309" dir="0" index="0" bw="6" slack="61"/>
+<pin id="310" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="indvars_iv24_i_load/125 "/>
+</bind>
+</comp>
+
+<comp id="312" class="1004" name="add_ln44_fu_312">
+<pin_list>
+<pin id="313" dir="0" index="0" bw="6" slack="0"/>
+<pin id="314" dir="0" index="1" bw="1" slack="0"/>
+<pin id="315" dir="1" index="2" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="add(8) " fcode="add"/>
+<opset="add_ln44/125 "/>
+</bind>
+</comp>
+
+<comp id="318" class="1004" name="store_ln44_store_fu_318">
+<pin_list>
+<pin id="319" dir="0" index="0" bw="6" slack="0"/>
+<pin id="320" dir="0" index="1" bw="6" slack="61"/>
+<pin id="321" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln44/125 "/>
+</bind>
+</comp>
+
+<comp id="323" class="1005" name="indvars_iv29_reg_323">
+<pin_list>
+<pin id="324" dir="0" index="0" bw="6" slack="0"/>
+<pin id="325" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opset="indvars_iv29 "/>
+</bind>
+</comp>
+
+<comp id="330" class="1005" name="k_reg_330">
+<pin_list>
+<pin id="331" dir="0" index="0" bw="6" slack="0"/>
+<pin id="332" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opset="k "/>
+</bind>
+</comp>
+
+<comp id="337" class="1005" name="nrm_3_loc_reg_337">
+<pin_list>
+<pin id="338" dir="0" index="0" bw="32" slack="3"/>
+<pin id="339" dir="1" index="1" bw="32" slack="3"/>
+</pin_list>
+<bind>
+<opset="nrm_3_loc "/>
+</bind>
+</comp>
+
+<comp id="343" class="1005" name="nrm_loc_reg_343">
+<pin_list>
+<pin id="344" dir="0" index="0" bw="32" slack="2"/>
+<pin id="345" dir="1" index="1" bw="32" slack="2"/>
+</pin_list>
+<bind>
+<opset="nrm_loc "/>
+</bind>
+</comp>
+
+<comp id="349" class="1005" name="k_2_reg_349">
+<pin_list>
+<pin id="350" dir="0" index="0" bw="6" slack="58"/>
+<pin id="351" dir="1" index="1" bw="6" slack="58"/>
+</pin_list>
+<bind>
+<opset="k_2 "/>
+</bind>
+</comp>
+
+<comp id="354" class="1005" name="trunc_ln90_reg_354">
+<pin_list>
+<pin id="355" dir="0" index="0" bw="5" slack="1"/>
+<pin id="356" dir="1" index="1" bw="5" slack="1"/>
+</pin_list>
+<bind>
+<opset="trunc_ln90 "/>
+</bind>
+</comp>
+
+<comp id="367" class="1005" name="indvars_iv24_i_reg_367">
+<pin_list>
+<pin id="368" dir="0" index="0" bw="6" slack="0"/>
+<pin id="369" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opset="indvars_iv24_i "/>
+</bind>
+</comp>
+
+<comp id="374" class="1005" name="k_1_reg_374">
+<pin_list>
+<pin id="375" dir="0" index="0" bw="6" slack="0"/>
+<pin id="376" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opset="k_1 "/>
+</bind>
+</comp>
+
+<comp id="384" class="1005" name="q_addr_2_reg_384">
+<pin_list>
+<pin id="385" dir="0" index="0" bw="10" slack="1"/>
+<pin id="386" dir="1" index="1" bw="10" slack="1"/>
+</pin_list>
+<bind>
+<opset="q_addr_2 "/>
+</bind>
+</comp>
+
+<comp id="389" class="1005" name="q_load_reg_389">
+<pin_list>
+<pin id="390" dir="0" index="0" bw="32" slack="1"/>
+<pin id="391" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="q_load "/>
+</bind>
+</comp>
+
+<comp id="394" class="1005" name="indvars_iv29_load_reg_394">
+<pin_list>
+<pin id="395" dir="0" index="0" bw="6" slack="1"/>
+<pin id="396" dir="1" index="1" bw="6" slack="1"/>
+</pin_list>
+<bind>
+<opset="indvars_iv29_load "/>
+</bind>
+</comp>
+
+<comp id="399" class="1005" name="k_3_reg_399">
+<pin_list>
+<pin id="400" dir="0" index="0" bw="6" slack="58"/>
+<pin id="401" dir="1" index="1" bw="6" slack="58"/>
+</pin_list>
+<bind>
+<opset="k_3 "/>
+</bind>
+</comp>
+
+<comp id="404" class="1005" name="trunc_ln52_reg_404">
+<pin_list>
+<pin id="405" dir="0" index="0" bw="5" slack="1"/>
+<pin id="406" dir="1" index="1" bw="5" slack="1"/>
+</pin_list>
+<bind>
+<opset="trunc_ln52 "/>
+</bind>
+</comp>
+
+<comp id="420" class="1005" name="q_addr_2_18_reg_420">
+<pin_list>
+<pin id="421" dir="0" index="0" bw="10" slack="1"/>
+<pin id="422" dir="1" index="1" bw="10" slack="1"/>
+</pin_list>
+<bind>
+<opset="q_addr_2_18 "/>
+</bind>
+</comp>
+
+<comp id="425" class="1005" name="q_load_19_reg_425">
+<pin_list>
+<pin id="426" dir="0" index="0" bw="32" slack="1"/>
+<pin id="427" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="q_load_19 "/>
+</bind>
+</comp>
+
+<comp id="430" class="1005" name="indvars_iv24_i_load_reg_430">
+<pin_list>
+<pin id="431" dir="0" index="0" bw="6" slack="1"/>
+<pin id="432" dir="1" index="1" bw="6" slack="1"/>
+</pin_list>
+<bind>
+<opset="indvars_iv24_i_load "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="55"><net_src comp="0" pin="0"/><net_sink comp="52" pin=0"/></net>
+
+<net id="59"><net_src comp="0" pin="0"/><net_sink comp="56" pin=0"/></net>
+
+<net id="63"><net_src comp="2" pin="0"/><net_sink comp="60" pin=0"/></net>
+
+<net id="67"><net_src comp="2" pin="0"/><net_sink comp="64" pin=0"/></net>
+
+<net id="71"><net_src comp="2" pin="0"/><net_sink comp="68" pin=0"/></net>
+
+<net id="75"><net_src comp="2" pin="0"/><net_sink comp="72" pin=0"/></net>
+
+<net id="79"><net_src comp="2" pin="0"/><net_sink comp="76" pin=0"/></net>
+
+<net id="83"><net_src comp="2" pin="0"/><net_sink comp="80" pin=0"/></net>
+
+<net id="87"><net_src comp="0" pin="0"/><net_sink comp="84" pin=0"/></net>
+
+<net id="91"><net_src comp="0" pin="0"/><net_sink comp="88" pin=0"/></net>
+
+<net id="97"><net_src comp="32" pin="0"/><net_sink comp="92" pin=1"/></net>
+
+<net id="103"><net_src comp="92" pin="3"/><net_sink comp="98" pin=0"/></net>
+
+<net id="109"><net_src comp="32" pin="0"/><net_sink comp="104" pin=1"/></net>
+
+<net id="115"><net_src comp="104" pin="3"/><net_sink comp="110" pin=0"/></net>
+
+<net id="123"><net_src comp="4" pin="0"/><net_sink comp="116" pin=0"/></net>
+
+<net id="124"><net_src comp="68" pin="1"/><net_sink comp="116" pin=1"/></net>
+
+<net id="125"><net_src comp="76" pin="1"/><net_sink comp="116" pin=2"/></net>
+
+<net id="126"><net_src comp="72" pin="1"/><net_sink comp="116" pin=3"/></net>
+
+<net id="127"><net_src comp="80" pin="1"/><net_sink comp="116" pin=4"/></net>
+
+<net id="134"><net_src comp="20" pin="0"/><net_sink comp="128" pin=0"/></net>
+
+<net id="142"><net_src comp="30" pin="0"/><net_sink comp="135" pin=0"/></net>
+
+<net id="154"><net_src comp="34" pin="0"/><net_sink comp="143" pin=0"/></net>
+
+<net id="161"><net_src comp="44" pin="0"/><net_sink comp="155" pin=0"/></net>
+
+<net id="169"><net_src comp="46" pin="0"/><net_sink comp="162" pin=0"/></net>
+
+<net id="181"><net_src comp="48" pin="0"/><net_sink comp="170" pin=0"/></net>
+
+<net id="186"><net_src comp="22" pin="0"/><net_sink comp="182" pin=1"/></net>
+
+<net id="187"><net_src comp="24" pin="0"/><net_sink comp="182" pin=1"/></net>
+
+<net id="188"><net_src comp="28" pin="0"/><net_sink comp="182" pin=1"/></net>
+
+<net id="193"><net_src comp="26" pin="0"/><net_sink comp="189" pin=1"/></net>
+
+<net id="197"><net_src comp="182" pin="2"/><net_sink comp="194" pin=0"/></net>
+
+<net id="198"><net_src comp="194" pin="1"/><net_sink comp="189" pin=0"/></net>
+
+<net id="199"><net_src comp="194" pin="1"/><net_sink comp="135" pin=3"/></net>
+
+<net id="200"><net_src comp="194" pin="1"/><net_sink comp="162" pin=3"/></net>
+
+<net id="204"><net_src comp="189" pin="2"/><net_sink comp="201" pin=0"/></net>
+
+<net id="205"><net_src comp="201" pin="1"/><net_sink comp="182" pin=0"/></net>
+
+<net id="206"><net_src comp="201" pin="1"/><net_sink comp="189" pin=0"/></net>
+
+<net id="211"><net_src comp="6" pin="0"/><net_sink comp="207" pin=0"/></net>
+
+<net id="216"><net_src comp="8" pin="0"/><net_sink comp="212" pin=0"/></net>
+
+<net id="223"><net_src comp="217" pin="1"/><net_sink comp="220" pin=0"/></net>
+
+<net id="224"><net_src comp="220" pin="1"/><net_sink comp="128" pin=1"/></net>
+
+<net id="229"><net_src comp="217" pin="1"/><net_sink comp="225" pin=0"/></net>
+
+<net id="230"><net_src comp="18" pin="0"/><net_sink comp="225" pin=1"/></net>
+
+<net id="235"><net_src comp="217" pin="1"/><net_sink comp="231" pin=0"/></net>
+
+<net id="236"><net_src comp="8" pin="0"/><net_sink comp="231" pin=1"/></net>
+
+<net id="241"><net_src comp="231" pin="2"/><net_sink comp="237" pin=0"/></net>
+
+<net id="246"><net_src comp="6" pin="0"/><net_sink comp="242" pin=0"/></net>
+
+<net id="251"><net_src comp="8" pin="0"/><net_sink comp="247" pin=0"/></net>
+
+<net id="255"><net_src comp="252" pin="1"/><net_sink comp="182" pin=0"/></net>
+
+<net id="259"><net_src comp="256" pin="1"/><net_sink comp="92" pin=2"/></net>
+
+<net id="263"><net_src comp="260" pin="1"/><net_sink comp="143" pin=1"/></net>
+
+<net id="268"><net_src comp="260" pin="1"/><net_sink comp="264" pin=0"/></net>
+
+<net id="269"><net_src comp="8" pin="0"/><net_sink comp="264" pin=1"/></net>
+
+<net id="274"><net_src comp="264" pin="2"/><net_sink comp="270" pin=0"/></net>
+
+<net id="281"><net_src comp="275" pin="1"/><net_sink comp="278" pin=0"/></net>
+
+<net id="282"><net_src comp="278" pin="1"/><net_sink comp="155" pin=1"/></net>
+
+<net id="287"><net_src comp="275" pin="1"/><net_sink comp="283" pin=0"/></net>
+
+<net id="288"><net_src comp="18" pin="0"/><net_sink comp="283" pin=1"/></net>
+
+<net id="293"><net_src comp="275" pin="1"/><net_sink comp="289" pin=0"/></net>
+
+<net id="294"><net_src comp="8" pin="0"/><net_sink comp="289" pin=1"/></net>
+
+<net id="299"><net_src comp="289" pin="2"/><net_sink comp="295" pin=0"/></net>
+
+<net id="303"><net_src comp="300" pin="1"/><net_sink comp="182" pin=0"/></net>
+
+<net id="307"><net_src comp="304" pin="1"/><net_sink comp="104" pin=2"/></net>
+
+<net id="311"><net_src comp="308" pin="1"/><net_sink comp="170" pin=1"/></net>
+
+<net id="316"><net_src comp="308" pin="1"/><net_sink comp="312" pin=0"/></net>
+
+<net id="317"><net_src comp="8" pin="0"/><net_sink comp="312" pin=1"/></net>
+
+<net id="322"><net_src comp="312" pin="2"/><net_sink comp="318" pin=0"/></net>
+
+<net id="326"><net_src comp="52" pin="1"/><net_sink comp="323" pin=0"/></net>
+
+<net id="327"><net_src comp="323" pin="1"/><net_sink comp="212" pin=1"/></net>
+
+<net id="328"><net_src comp="323" pin="1"/><net_sink comp="260" pin=0"/></net>
+
+<net id="329"><net_src comp="323" pin="1"/><net_sink comp="270" pin=1"/></net>
+
+<net id="333"><net_src comp="56" pin="1"/><net_sink comp="330" pin=0"/></net>
+
+<net id="334"><net_src comp="330" pin="1"/><net_sink comp="207" pin=1"/></net>
+
+<net id="335"><net_src comp="330" pin="1"/><net_sink comp="217" pin=0"/></net>
+
+<net id="336"><net_src comp="330" pin="1"/><net_sink comp="237" pin=1"/></net>
+
+<net id="340"><net_src comp="60" pin="1"/><net_sink comp="337" pin=0"/></net>
+
+<net id="341"><net_src comp="337" pin="1"/><net_sink comp="155" pin=3"/></net>
+
+<net id="342"><net_src comp="337" pin="1"/><net_sink comp="300" pin=0"/></net>
+
+<net id="346"><net_src comp="64" pin="1"/><net_sink comp="343" pin=0"/></net>
+
+<net id="347"><net_src comp="343" pin="1"/><net_sink comp="128" pin=3"/></net>
+
+<net id="348"><net_src comp="343" pin="1"/><net_sink comp="252" pin=0"/></net>
+
+<net id="352"><net_src comp="217" pin="1"/><net_sink comp="349" pin=0"/></net>
+
+<net id="353"><net_src comp="349" pin="1"/><net_sink comp="256" pin=0"/></net>
+
+<net id="357"><net_src comp="220" pin="1"/><net_sink comp="354" pin=0"/></net>
+
+<net id="358"><net_src comp="354" pin="1"/><net_sink comp="128" pin=1"/></net>
+
+<net id="359"><net_src comp="354" pin="1"/><net_sink comp="135" pin=1"/></net>
+
+<net id="360"><net_src comp="354" pin="1"/><net_sink comp="143" pin=4"/></net>
+
+<net id="361"><net_src comp="354" pin="1"/><net_sink comp="143" pin=6"/></net>
+
+<net id="362"><net_src comp="354" pin="1"/><net_sink comp="143" pin=7"/></net>
+
+<net id="363"><net_src comp="354" pin="1"/><net_sink comp="143" pin=8"/></net>
+
+<net id="370"><net_src comp="84" pin="1"/><net_sink comp="367" pin=0"/></net>
+
+<net id="371"><net_src comp="367" pin="1"/><net_sink comp="247" pin=1"/></net>
+
+<net id="372"><net_src comp="367" pin="1"/><net_sink comp="308" pin=0"/></net>
+
+<net id="373"><net_src comp="367" pin="1"/><net_sink comp="318" pin=1"/></net>
+
+<net id="377"><net_src comp="88" pin="1"/><net_sink comp="374" pin=0"/></net>
+
+<net id="378"><net_src comp="374" pin="1"/><net_sink comp="242" pin=1"/></net>
+
+<net id="379"><net_src comp="374" pin="1"/><net_sink comp="275" pin=0"/></net>
+
+<net id="380"><net_src comp="374" pin="1"/><net_sink comp="295" pin=1"/></net>
+
+<net id="387"><net_src comp="92" pin="3"/><net_sink comp="384" pin=0"/></net>
+
+<net id="388"><net_src comp="384" pin="1"/><net_sink comp="98" pin=0"/></net>
+
+<net id="392"><net_src comp="98" pin="3"/><net_sink comp="389" pin=0"/></net>
+
+<net id="393"><net_src comp="389" pin="1"/><net_sink comp="143" pin=3"/></net>
+
+<net id="397"><net_src comp="260" pin="1"/><net_sink comp="394" pin=0"/></net>
+
+<net id="398"><net_src comp="394" pin="1"/><net_sink comp="143" pin=1"/></net>
+
+<net id="402"><net_src comp="275" pin="1"/><net_sink comp="399" pin=0"/></net>
+
+<net id="403"><net_src comp="399" pin="1"/><net_sink comp="304" pin=0"/></net>
+
+<net id="407"><net_src comp="278" pin="1"/><net_sink comp="404" pin=0"/></net>
+
+<net id="408"><net_src comp="404" pin="1"/><net_sink comp="155" pin=1"/></net>
+
+<net id="409"><net_src comp="404" pin="1"/><net_sink comp="162" pin=1"/></net>
+
+<net id="410"><net_src comp="404" pin="1"/><net_sink comp="170" pin=4"/></net>
+
+<net id="411"><net_src comp="404" pin="1"/><net_sink comp="170" pin=6"/></net>
+
+<net id="412"><net_src comp="404" pin="1"/><net_sink comp="170" pin=7"/></net>
+
+<net id="413"><net_src comp="404" pin="1"/><net_sink comp="170" pin=8"/></net>
+
+<net id="423"><net_src comp="104" pin="3"/><net_sink comp="420" pin=0"/></net>
+
+<net id="424"><net_src comp="420" pin="1"/><net_sink comp="110" pin=0"/></net>
+
+<net id="428"><net_src comp="110" pin="3"/><net_sink comp="425" pin=0"/></net>
+
+<net id="429"><net_src comp="425" pin="1"/><net_sink comp="170" pin=3"/></net>
+
+<net id="433"><net_src comp="308" pin="1"/><net_sink comp="430" pin=0"/></net>
+
+<net id="434"><net_src comp="430" pin="1"/><net_sink comp="170" pin=1"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+		call_ln0 : 1
+		store_ln82 : 1
+		store_ln0 : 1
+	State 2
+	State 3
+		trunc_ln90 : 1
+		icmp_ln90 : 1
+		add_ln90 : 1
+		br_ln82 : 2
+		call_ln90 : 2
+		store_ln82 : 2
+		store_ln44 : 1
+		store_ln0 : 1
+	State 4
+	State 5
+		sub : 1
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+	State 38
+	State 39
+	State 40
+	State 41
+	State 42
+	State 43
+	State 44
+	State 45
+	State 46
+	State 47
+	State 48
+	State 49
+	State 50
+	State 51
+	State 52
+	State 53
+	State 54
+	State 55
+	State 56
+	State 57
+	State 58
+	State 59
+	State 60
+	State 61
+		q_addr_2 : 1
+		q_load : 2
+	State 62
+	State 63
+		call_ln82 : 1
+		add_ln82 : 1
+		store_ln82 : 2
+	State 64
+	State 65
+		trunc_ln52 : 1
+		icmp_ln52 : 1
+		add_ln52 : 1
+		br_ln44 : 2
+		call_ln52 : 2
+		store_ln44 : 2
+	State 66
+	State 67
+		sub_i : 1
+	State 68
+	State 69
+	State 70
+	State 71
+	State 72
+	State 73
+	State 74
+	State 75
+	State 76
+	State 77
+	State 78
+	State 79
+	State 80
+	State 81
+	State 82
+	State 83
+	State 84
+	State 85
+	State 86
+	State 87
+	State 88
+	State 89
+	State 90
+	State 91
+	State 92
+	State 93
+	State 94
+	State 95
+	State 96
+	State 97
+	State 98
+	State 99
+	State 100
+	State 101
+	State 102
+	State 103
+	State 104
+	State 105
+	State 106
+	State 107
+	State 108
+	State 109
+	State 110
+	State 111
+	State 112
+	State 113
+	State 114
+	State 115
+	State 116
+	State 117
+	State 118
+	State 119
+	State 120
+	State 121
+	State 122
+	State 123
+		q_addr_2_18 : 1
+		q_load_19 : 2
+	State 124
+	State 125
+		call_ln44 : 1
+		add_ln44 : 1
+		store_ln44 : 2
+	State 126
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|----------------------------------------------------------|---------|---------|---------|---------|
+| Operation|                      Functional Unit                     |   DSP   |  Delay  |    FF   |   LUT   |
+|----------|----------------------------------------------------------|---------|---------|---------|---------|
+|          | grp_main_Pipeline_VITIS_LOOP_69_1_VITIS_LOOP_70_2_fu_116 |    0    |  3.4146 |   340   |   138   |
+|          |         grp_main_Pipeline_VITIS_LOOP_84_4_fu_128         |    5    |  3.176  |   762   |   780   |
+|          |         grp_main_Pipeline_VITIS_LOOP_88_5_fu_135         |    0    |  1.588  |   192   |    26   |
+|   call   |         grp_main_Pipeline_VITIS_LOOP_90_6_fu_143         |   160   | 22.2441 |  22936  |  25206  |
+|          |         grp_main_Pipeline_VITIS_LOOP_46_2_fu_155         |    5    |  3.176  |   762   |   780   |
+|          |         grp_main_Pipeline_VITIS_LOOP_50_3_fu_162         |    0    |  1.588  |   192   |    26   |
+|          |         grp_main_Pipeline_VITIS_LOOP_52_4_fu_170         |   160   | 22.2441 |  22936  |  25206  |
+|----------|----------------------------------------------------------|---------|---------|---------|---------|
+|   fadd   |                        grp_fu_182                        |    2    |    0    |   365   |   421   |
+|----------|----------------------------------------------------------|---------|---------|---------|---------|
+|   fmul   |                        grp_fu_189                        |    3    |    0    |   199   |   324   |
+|----------|----------------------------------------------------------|---------|---------|---------|---------|
+|          |                      add_ln90_fu_231                     |    0    |    0    |    0    |    14   |
+|    add   |                      add_ln82_fu_264                     |    0    |    0    |    0    |    14   |
+|          |                      add_ln52_fu_289                     |    0    |    0    |    0    |    14   |
+|          |                      add_ln44_fu_312                     |    0    |    0    |    0    |    14   |
+|----------|----------------------------------------------------------|---------|---------|---------|---------|
+|   icmp   |                     icmp_ln90_fu_225                     |    0    |    0    |    0    |    14   |
+|          |                     icmp_ln52_fu_283                     |    0    |    0    |    0    |    14   |
+|----------|----------------------------------------------------------|---------|---------|---------|---------|
+|   trunc  |                     trunc_ln90_fu_220                    |    0    |    0    |    0    |    0    |
+|          |                     trunc_ln52_fu_278                    |    0    |    0    |    0    |    0    |
+|----------|----------------------------------------------------------|---------|---------|---------|---------|
+|   zext   |                     zext_ln90_fu_256                     |    0    |    0    |    0    |    0    |
+|          |                     zext_ln52_fu_304                     |    0    |    0    |    0    |    0    |
+|----------|----------------------------------------------------------|---------|---------|---------|---------|
+|   Total  |                                                          |   335   | 57.4307 |  48684  |  52991  |
+|----------|----------------------------------------------------------|---------|---------|---------|---------|
+
+Memories:
++----+--------+--------+--------+--------+
+|    |  BRAM  |   FF   |   LUT  |  URAM  |
++----+--------+--------+--------+--------+
+|  a |    2   |    0   |    0   |    0   |
+| a_s|    2   |    0   |    0   |    0   |
+|  q |    2   |    0   |    0   |    0   |
+| q_s|    2   |    0   |    0   |    0   |
++----+--------+--------+--------+--------+
+|Total|    8   |    0   |    0   |    0   |
++----+--------+--------+--------+--------+
+
+* Register list:
++---------------------------+--------+
+|                           |   FF   |
++---------------------------+--------+
+|indvars_iv24_i_load_reg_430|    6   |
+|   indvars_iv24_i_reg_367  |    6   |
+| indvars_iv29_load_reg_394 |    6   |
+|    indvars_iv29_reg_323   |    6   |
+|        k_1_reg_374        |    6   |
+|        k_2_reg_349        |    6   |
+|        k_3_reg_399        |    6   |
+|         k_reg_330         |    6   |
+|     nrm_3_loc_reg_337     |   32   |
+|      nrm_loc_reg_343      |   32   |
+|    q_addr_2_18_reg_420    |   10   |
+|      q_addr_2_reg_384     |   10   |
+|     q_load_19_reg_425     |   32   |
+|       q_load_reg_389      |   32   |
+|          reg_194          |   32   |
+|          reg_201          |   32   |
+|     trunc_ln52_reg_404    |    5   |
+|     trunc_ln90_reg_354    |    5   |
++---------------------------+--------+
+|           Total           |   270  |
++---------------------------+--------+
+
+* Multiplexer (MUX) list: 
+|------------------------------------------|------|------|------|--------||---------||---------|
+|                   Comp                   |  Pin | Size |  BW  | S x BW ||  Delay  ||   LUT   |
+|------------------------------------------|------|------|------|--------||---------||---------|
+|             grp_access_fu_98             |  p0  |   2  |  10  |   20   ||    9    |
+|             grp_access_fu_110            |  p0  |   2  |  10  |   20   ||    9    |
+| grp_main_Pipeline_VITIS_LOOP_84_4_fu_128 |  p1  |   2  |   5  |   10   ||    9    |
+| grp_main_Pipeline_VITIS_LOOP_90_6_fu_143 |  p1  |   2  |   6  |   12   ||    9    |
+| grp_main_Pipeline_VITIS_LOOP_46_2_fu_155 |  p1  |   2  |   5  |   10   ||    9    |
+| grp_main_Pipeline_VITIS_LOOP_52_4_fu_170 |  p1  |   2  |   6  |   12   ||    9    |
+|                grp_fu_182                |  p0  |   3  |  32  |   96   ||    14   |
+|                grp_fu_182                |  p1  |   3  |  32  |   96   |
+|                grp_fu_189                |  p0  |   2  |  32  |   64   ||    9    |
+|------------------------------------------|------|------|------|--------||---------||---------|
+|                   Total                  |      |      |      |   340  || 14.5306 ||    77   |
+|------------------------------------------|------|------|------|--------||---------||---------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+--------+--------+--------+
+|           |  BRAM  |   DSP  |  Delay |   FF   |   LUT  |  URAM  |
++-----------+--------+--------+--------+--------+--------+--------+
+|  Function |    -   |   335  |   57   |  48684 |  52991 |    -   |
+|   Memory  |    8   |    -   |    -   |    0   |    0   |    0   |
+|Multiplexer|    -   |    -   |   14   |    -   |   77   |    -   |
+|  Register |    -   |    -   |    -   |   270  |    -   |    -   |
++-----------+--------+--------+--------+--------+--------+--------+
+|   Total   |    8   |   335  |   71   |  48954 |  53068 |    0   |
++-----------+--------+--------+--------+--------+--------+--------+

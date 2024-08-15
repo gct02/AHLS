@@ -1,0 +1,51 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'main'" level="0">
+<item name = "Date">Mon Aug 12 18:53:36 2024
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">doitgenTriple</item>
+<item name = "Solution">solution1 (Vivado IP Flow Target)</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 5.091 ns, 1.35 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">1575787, 1575787, 8.022 ms, 8.022 ms, 1575788, 1575788, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_main_Pipeline_VITIS_LOOP_50_1_VITIS_LOOP_53_2_fu_78">main_Pipeline_VITIS_LOOP_50_1_VITIS_LOOP_53_2, 131074, 131074, 0.655 ms, 0.655 ms, 131074, 131074, no</column>
+<column name="grp_main_Pipeline_loop_0_loop_1_fu_92">main_Pipeline_loop_0_loop_1, 720928, 720928, 3.605 ms, 3.605 ms, 720928, 720928, no</column>
+<column name="grp_main_Pipeline_loop_2_fu_99">main_Pipeline_loop_2, 2570, 2570, 13.084 us, 13.084 us, 2570, 2570, no</column>
+<column name="grp_main_Pipeline_loop_0_loop_11_fu_106">main_Pipeline_loop_0_loop_11, 720928, 720928, 3.605 ms, 3.605 ms, 720928, 720928, no</column>
+<column name="grp_main_Pipeline_loop_22_fu_113">main_Pipeline_loop_22, 2580, 2580, 13.135 us, 13.135 us, 2580, 2580, no</column>
+<column name="grp_main_Pipeline_VITIS_LOOP_83_3_fu_120">main_Pipeline_VITIS_LOOP_83_3, 263, 263, 1.315 us, 1.315 us, 263, 263, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

@@ -8,7 +8,6 @@
 */
 
 void g2(int mean[10000], int i, int addr_out[10000], int data[10000]){
-#pragma SS II=1
 	
 	int temp, m, k, y, z;
 

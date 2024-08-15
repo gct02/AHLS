@@ -1,11 +1,28 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/covariance/src/covariance.cpp, 
+                   Line: 40, Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'covariance(float*, float*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/covariance/src/covariance.cpp, 
+                       Line: 10, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/covariance/src/covariance.cpp, 
+                       Line: 40, Column: 0 }
+  - String:          ''''
+...
 --- !HLSReportInfo
 Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_10_1
+  - LoopName:        VITIS_LOOP_46_2
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/C-Slow/covariance/covariance.cpp:10:20'
+  - LoopLoc:         'benchmarks/jianyicheng/covariance/src/covariance.cpp:46:22'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -13,92 +30,48 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_24_3
+  - LoopName:        VITIS_LOOP_55_3
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/C-Slow/covariance/covariance.cpp:24:22'
+  - LoopLoc:         'benchmarks/jianyicheng/covariance/src/covariance.cpp:55:22'
   - String:          ' '
 ...
---- !Passed
-Pass:            reflow-infer-unroll
-Name:            ImplicitUnroll
-DebugLoc:        { File: HLS-benchmarks/C-Slow/covariance/covariance.cpp, 
-                   Line: 27, Column: 7 }
-Function:        _Z10covariancePfS_
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
 Args:            
-  - String:          'Loop '''
-  - LoopName:        loop_2
-  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_65_7
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/covariance/src/covariance.cpp:65:24'
+  - String:          ' '
 ...
---- !Passed
-Pass:            reflow-infer-unroll
-Name:            ImplicitUnroll
-DebugLoc:        { File: HLS-benchmarks/C-Slow/covariance/covariance.cpp, 
-                   Line: 13, Column: 5 }
-Function:        _Z10covariancePfS_
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
 Args:            
-  - String:          'Loop '''
-  - LoopName:        loop_0
-  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_12_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/covariance/src/covariance.cpp:12:20'
+  - String:          ' '
 ...
---- !Passed
-Pass:            reflow-infer-unroll
-Name:            ImplicitUnroll
-DebugLoc:        { File: HLS-benchmarks/C-Slow/covariance/covariance.cpp, 
-                   Line: 17, Column: 5 }
-Function:        _Z10covariancePfS_
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
 Args:            
-  - String:          'Loop '''
-  - LoopName:        loop_1
-  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_26_3
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/covariance/src/covariance.cpp:26:22'
+  - String:          ' '
 ...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: HLS-benchmarks/C-Slow/covariance/covariance.cpp, 
-                   Line: 8, Column: 0 }
-Function:        _Z10covariancePfS_
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
 Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        loop_2
-  - String:          ''' ('
-  - LoopLoc:         'HLS-benchmarks/C-Slow/covariance/covariance.cpp:27:7'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          covariance
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: HLS-benchmarks/C-Slow/covariance/covariance.cpp, 
-                   Line: 8, Column: 0 }
-Function:        _Z10covariancePfS_
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        loop_0
-  - String:          ''' ('
-  - LoopLoc:         'HLS-benchmarks/C-Slow/covariance/covariance.cpp:13:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          covariance
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: HLS-benchmarks/C-Slow/covariance/covariance.cpp, 
-                   Line: 8, Column: 0 }
-Function:        _Z10covariancePfS_
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        loop_1
-  - String:          ''' ('
-  - LoopLoc:         'HLS-benchmarks/C-Slow/covariance/covariance.cpp:17:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          covariance
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_79_10
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/covariance/src/covariance.cpp:79:23'
+  - String:          ' '
 ...

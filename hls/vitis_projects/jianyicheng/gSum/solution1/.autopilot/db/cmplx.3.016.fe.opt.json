@@ -2,13 +2,13 @@
   "0": {
     "basicblocks": 6,
     "calls": "",
-    "file": "gSum.cpp",
-    "fileloc": 12,
-    "instructions": 39,
+    "file": "gSum_tb.cpp",
+    "fileloc": 14,
+    "instructions": 35,
     "loads": {
-      "T": 2
+      "G": 2
     },
-    "name": "gSum",
-    "total_instructions": 39
+    "name": "main",
+    "total_instructions": 35
   }
 }

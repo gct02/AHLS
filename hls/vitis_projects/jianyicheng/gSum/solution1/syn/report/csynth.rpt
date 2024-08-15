@@ -1,47 +1,37 @@
 
 
 ================================================================
-== Synthesis Summary Report of 'gSum'
+== Synthesis Summary Report of 'main'
 ================================================================
 + General Information: 
-    * Date:           Sun Jun 23 03:40:57 2024
+    * Date:           Mon Aug 12 18:54:49 2024
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        gSum
     * Solution:       solution1 (Vivado IP Flow Target)
-    * Product family: virtexuplusHBM
-    * Target device:  xcvu35p-fsvh2104-1-e
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
     
 
 + Performance & Resource Estimates: 
     
     PS: '+' for module; 'o' for loop; '*' for dataflow
-    +--------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
-    |       Modules      |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |      |          |            |            |     |
-    |       & Loops      |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM |    DSP   |     FF     |     LUT    | URAM|
-    +--------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
-    |+ gSum              |  Timing|  -0.04|     5071|  2.536e+04|         -|     5072|     -|        no|     -|  14 (~0%)|  2743 (~0%)|  2133 (~0%)|    -|
-    | o VITIS_LOOP_16_1  |      II|   3.65|     5069|  2.534e+04|        75|        5|  1000|       yes|     -|         -|           -|           -|    -|
-    +--------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
+    +--------------------+--------+-------+---------+-----------+----------+---------+------+----------+--------+---------+-----------+-----------+-----+
+    |       Modules      |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |        |         |           |           |     |
+    |       & Loops      |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM  |   DSP   |     FF    |    LUT    | URAM|
+    +--------------------+--------+-------+---------+-----------+----------+---------+------+----------+--------+---------+-----------+-----------+-----+
+    |+ main              |  Timing|  -1.49|    17190|  8.843e+04|         -|    17191|     -|        no|  8 (2%)|  13 (5%)|  3001 (2%)|  2500 (4%)|    -|
+    | o VITIS_LOOP_16_1  |      II|   3.65|    17184|  8.840e+04|       202|       17|  1000|       yes|       -|        -|          -|          -|    -|
+    +--------------------+--------+-------+---------+-----------+----------+---------+------+----------+--------+---------+-----------+-----------+-----+
 
 
 ================================================================
 == HW Interfaces
 ================================================================
-* AP_MEMORY
-+------------+-----------+----------+
-| Port       | Direction | Bitwidth |
-+------------+-----------+----------+
-| A_address0 | out       | 10       |
-| A_q0       | in        | 64       |
-| B_address0 | out       | 10       |
-| B_q0       | in        | 64       |
-+------------+-----------+----------+
-
 * Other Ports
 +-----------+-----------+----------+
 | Port      | Direction | Bitwidth |
 +-----------+-----------+----------+
-| ap_return | out       | 64       |
+| ap_return | out       | 32       |
 +-----------+-----------+----------+
 
 * TOP LEVEL CONTROL
@@ -61,53 +51,53 @@
 +----------+-----------+----------+
 | Argument | Direction | Datatype |
 +----------+-----------+----------+
-| A        | in        | double*  |
-| B        | in        | double*  |
-| return   | out       | double   |
+| return   | out       | int      |
 +----------+-----------+----------+
 
 * SW-to-HW Mapping
-+----------+--------------+---------+----------+
-| Argument | HW Interface | HW Type | HW Usage |
-+----------+--------------+---------+----------+
-| A        | A_address0   | port    | offset   |
-| A        | A_ce0        | port    |          |
-| A        | A_q0         | port    |          |
-| B        | B_address0   | port    | offset   |
-| B        | B_ce0        | port    |          |
-| B        | B_q0         | port    |          |
-| return   | ap_return    | port    |          |
-+----------+--------------+---------+----------+
++----------+--------------+---------+
+| Argument | HW Interface | HW Type |
++----------+--------------+---------+
+| return   | ap_return    | port    |
++----------+--------------+---------+
 
 
 ================================================================
 == Bind Op Report
 ================================================================
-+-------------------------------------+-----+--------+----------+------+---------+---------+
-| Name                                | DSP | Pragma | Variable | Op   | Impl    | Latency |
-+-------------------------------------+-----+--------+----------+------+---------+---------+
-| + gSum                              | 14  |        |          |      |         |         |
-|   add_ln16_fu_140_p2                |     |        | add_ln16 | add  | fabric  | 0       |
-|   dadd_64ns_64ns_64_5_full_dsp_1_U1 | 3   |        | d        | dadd | fulldsp | 4       |
-|   dadd_64ns_64ns_64_5_full_dsp_1_U2 | 3   |        | add_i    | dadd | fulldsp | 4       |
-|   dmul_64ns_64ns_64_6_max_dsp_1_U3  | 8   |        | mul_i    | dmul | maxdsp  | 5       |
-|   dadd_64ns_64ns_64_5_full_dsp_1_U1 | 3   |        | add1_i   | dadd | fulldsp | 4       |
-|   dmul_64ns_64ns_64_6_max_dsp_1_U3  | 8   |        | mul2_i   | dmul | maxdsp  | 5       |
-|   dadd_64ns_64ns_64_5_full_dsp_1_U1 | 3   |        | add3_i   | dadd | fulldsp | 4       |
-|   dmul_64ns_64ns_64_6_max_dsp_1_U3  | 8   |        | mul4_i   | dmul | maxdsp  | 5       |
-|   dadd_64ns_64ns_64_5_full_dsp_1_U1 | 3   |        | add5_i   | dadd | fulldsp | 4       |
-|   dmul_64ns_64ns_64_6_max_dsp_1_U3  | 8   |        | mul6_i   | dmul | maxdsp  | 5       |
-|   dadd_64ns_64ns_64_5_full_dsp_1_U1 | 3   |        | add7_i   | dadd | fulldsp | 4       |
-|   dmul_64ns_64ns_64_6_max_dsp_1_U3  | 8   |        | mul8_i   | dmul | maxdsp  | 5       |
-|   dadd_64ns_64ns_64_5_full_dsp_1_U2 | 3   |        | add9_i   | dadd | fulldsp | 4       |
-|   dadd_64ns_64ns_64_5_full_dsp_1_U2 | 3   |        | s_1      | dadd | fulldsp | 4       |
-+-------------------------------------+-----+--------+----------+------+---------+---------+
++--------------------------------------+-----+--------+----------+------+---------+---------+
+| Name                                 | DSP | Pragma | Variable | Op   | Impl    | Latency |
++--------------------------------------+-----+--------+----------+------+---------+---------+
+| + main                               | 13  |        |          |      |         |         |
+|   add_ln16_fu_142_p2                 |     |        | add_ln16 | add  | fabric  | 0       |
+|   dadd_64ns_64ns_64_16_full_dsp_1_U1 | 3   |        | d        | dadd | fulldsp | 15      |
+|   dadd_64ns_64ns_64_16_full_dsp_1_U1 | 3   |        | add_i_i  | dadd | fulldsp | 15      |
+|   dmul_64ns_64ns_64_14_full_dsp_1_U2 | 10  |        | mul_i_i  | dmul | fulldsp | 13      |
+|   dadd_64ns_64ns_64_16_full_dsp_1_U1 | 3   |        | add1_i_i | dadd | fulldsp | 15      |
+|   dmul_64ns_64ns_64_14_full_dsp_1_U2 | 10  |        | mul2_i_i | dmul | fulldsp | 13      |
+|   dadd_64ns_64ns_64_16_full_dsp_1_U1 | 3   |        | add3_i_i | dadd | fulldsp | 15      |
+|   dmul_64ns_64ns_64_14_full_dsp_1_U2 | 10  |        | mul4_i_i | dmul | fulldsp | 13      |
+|   dadd_64ns_64ns_64_16_full_dsp_1_U1 | 3   |        | add5_i_i | dadd | fulldsp | 15      |
+|   dmul_64ns_64ns_64_14_full_dsp_1_U2 | 10  |        | mul6_i_i | dmul | fulldsp | 13      |
+|   dadd_64ns_64ns_64_16_full_dsp_1_U1 | 3   |        | add7_i_i | dadd | fulldsp | 15      |
+|   dmul_64ns_64ns_64_14_full_dsp_1_U2 | 10  |        | mul8_i_i | dmul | fulldsp | 13      |
+|   dadd_64ns_64ns_64_16_full_dsp_1_U1 | 3   |        | add9_i_i | dadd | fulldsp | 15      |
+|   dadd_64ns_64ns_64_16_full_dsp_1_U1 | 3   |        | s_1      | dadd | fulldsp | 15      |
++--------------------------------------+-----+--------+----------+------+---------+---------+
 
 
 ================================================================
 == Storage Report
 ================================================================
-  No bind storage info in design
++--------+--------+------+------+------+--------+----------+------+---------+------------------+
+| Name   | Usage  | Type | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|        |        |      |      |      |        |          |      |         | Banks            |
++--------+--------+------+------+------+--------+----------+------+---------+------------------+
+| + main |        |      | 8    | 0    |        |          |      |         |                  |
+|   A_U  | rom_1p |      | 4    |      |        | A        | auto | 1       | 64, 1000, 1      |
+|   B_U  | rom_1p |      | 4    |      |        | B        | auto | 1       | 64, 1000, 1      |
++--------+--------+------+------+------+--------+----------+------+---------+------------------+
+
 
 ================================================================
 == Pragma Report

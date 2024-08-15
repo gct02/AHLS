@@ -5,7 +5,7 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        loop_0
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:26:3'
+  - LoopLoc:         'benchmarks/jianyicheng/histogram2/src/histogram.cpp:37:3'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -15,7 +15,7 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        loop_1
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:42:3'
+  - LoopLoc:         'benchmarks/jianyicheng/histogram2/src/histogram.cpp:53:3'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -25,7 +25,7 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        loop_2
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:58:3'
+  - LoopLoc:         'benchmarks/jianyicheng/histogram2/src/histogram.cpp:69:3'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -35,7 +35,7 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        loop_3
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:74:3'
+  - LoopLoc:         'benchmarks/jianyicheng/histogram2/src/histogram.cpp:85:3'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -45,7 +45,7 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        loop_4
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:90:3'
+  - LoopLoc:         'benchmarks/jianyicheng/histogram2/src/histogram.cpp:101:3'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -55,7 +55,7 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        loop_5
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:106:3'
+  - LoopLoc:         'benchmarks/jianyicheng/histogram2/src/histogram.cpp:117:3'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -65,7 +65,7 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        loop_6
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:122:3'
+  - LoopLoc:         'benchmarks/jianyicheng/histogram2/src/histogram.cpp:133:3'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -75,7 +75,7 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        loop_7
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:138:3'
+  - LoopLoc:         'benchmarks/jianyicheng/histogram2/src/histogram.cpp:149:3'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -85,6 +85,26 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        loop_8
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154:3'
+  - LoopLoc:         'benchmarks/jianyicheng/histogram2/src/histogram.cpp:165:3'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_177_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/histogram2/src/histogram.cpp:177:21'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_188_2
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/histogram2/src/histogram.cpp:188:21'
   - String:          ' '
 ...

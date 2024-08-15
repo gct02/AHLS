@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/DSS/histogram/src/g.cpp"
+# 1 "benchmarks/jianyicheng/histogram/src/g.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,16 +155,15 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/DSS/histogram/src/g.cpp" 2
-# 11 "HLS-benchmarks/DSS/histogram/src/g.cpp"
-# 1 "HLS-benchmarks/DSS/histogram/src/histogram.h" 1
-# 10 "HLS-benchmarks/DSS/histogram/src/histogram.h"
+# 1 "benchmarks/jianyicheng/histogram/src/g.cpp" 2
+# 11 "benchmarks/jianyicheng/histogram/src/g.cpp"
+# 1 "benchmarks/jianyicheng/histogram/src/histogram.h" 1
+# 10 "benchmarks/jianyicheng/histogram/src/histogram.h"
 void histogram(int f[1000], double w[1000], double hist[1000]);
 void g(int f[1000], double temp, int i, double hist[1000], double x);
-# 12 "HLS-benchmarks/DSS/histogram/src/g.cpp" 2
+# 12 "benchmarks/jianyicheng/histogram/src/g.cpp" 2
 
 void g(int f[1000], double temp, int i, double hist[1000], double x){
-#pragma SS II=1
 
  hist[f[i]] = x+ temp;
 }

@@ -1,17 +1,33 @@
 {
   "0": {
     "basicblocks": 10,
+    "calls": "1",
+    "file": "levmarq_tb.cpp",
+    "fileloc": 14,
+    "instructions": 91,
+    "loads": {
+      "G": 1
+    },
+    "name": "main",
+    "stores": {
+      "G": 2,
+      "L": 5
+    },
+    "total_instructions": 204
+  },
+  "1": {
+    "basicblocks": 10,
     "calls": "",
     "file": "levmarq.cpp",
     "fileloc": 3,
-    "instructions": 143,
+    "instructions": 113,
     "loads": {
-      "T": 6
+      "L": 6
     },
     "name": "levmarq",
     "stores": {
-      "T": 5
+      "L": 5
     },
-    "total_instructions": 143
+    "total_instructions": 113
   }
 }

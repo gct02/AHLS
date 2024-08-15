@@ -1,6 +1,9 @@
 <xilinx:hls_fe_msgs>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl:16:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="trVecAccum" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=trVecAccum" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_trVecAccum.tcl:7:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="main" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=main" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/jianyicheng/trVecAccum/src/trVecAccum.cpp:22:0" msg_body="Inlining function 'trVecAccum(float*, float*)' into 'main'">
+        <args Callee="trVecAccum(float*, float*)" Callee-DebugLoc="File benchmarks/jianyicheng/trVecAccum/src/trVecAccum.cpp Line 8 Column 0" Caller="main" Caller-DebugLoc="File benchmarks/jianyicheng/trVecAccum/src/trVecAccum.cpp Line 22 Column 0"/>
     </msg>
 </xilinx:hls_fe_msgs>
 

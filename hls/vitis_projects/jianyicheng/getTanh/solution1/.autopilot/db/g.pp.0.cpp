@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/DSS/getTanh/src/g.cpp"
+# 1 "benchmarks/jianyicheng/getTanh/src/g.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,19 +155,18 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/DSS/getTanh/src/g.cpp" 2
-# 10 "HLS-benchmarks/DSS/getTanh/src/g.cpp"
-# 1 "HLS-benchmarks/DSS/getTanh/src/getTanh.h" 1
-# 10 "HLS-benchmarks/DSS/getTanh/src/getTanh.h"
+# 1 "benchmarks/jianyicheng/getTanh/src/g.cpp" 2
+# 10 "benchmarks/jianyicheng/getTanh/src/g.cpp"
+# 1 "benchmarks/jianyicheng/getTanh/src/getTanh.h" 1
+# 10 "benchmarks/jianyicheng/getTanh/src/getTanh.h"
 int g(int beta, int atanh[12], int sinh[5], int cosh[5]);
 void getTanh(int A[1000], int addr_in[1000], int addr_out[1000], int atanh[12], int sinh[5], int cosh[5]);
 void inlined(int A[1000], int addr_in[1000], int addr_out[1000], int atanh[12], int sinh[5], int cosh[5]);
-# 11 "HLS-benchmarks/DSS/getTanh/src/g.cpp" 2
+# 11 "benchmarks/jianyicheng/getTanh/src/g.cpp" 2
 
 int g(int beta, int atanh[12], int sinh[5], int cosh[5]){
-#pragma SS II=1
 
- int x = 0x1351;
+    int x = 0x1351;
     int y = 0;
     int x_new;
     int j, k;
@@ -194,7 +193,7 @@ int g(int beta, int atanh[12], int sinh[5], int cosh[5]){
           for (k = 1; k <= 12; k++) {
 
             if (((k%3)==1) &&( k!=1 )){
-              VITIS_LOOP_42_1: for (j=1;j<=2;j++){
+              VITIS_LOOP_41_1: for (j=1;j<=2;j++){
 
                 if (beta < 0) {
                   x_new = x - (y >> k);

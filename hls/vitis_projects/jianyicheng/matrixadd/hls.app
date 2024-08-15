@@ -1,6 +1,7 @@
-<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" projectType="C/C++" name="matrixadd" top="matrixadd">
+<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" top="main" name="matrixadd">
     <files>
-        <file name="HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
+        <file name="benchmarks/jianyicheng/matrixadd/src/matrixadd.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
+        <file name="benchmarks/jianyicheng/matrixadd/src/matrixadd.h" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
     </files>
     <solutions>
         <solution name="solution1" status=""/>

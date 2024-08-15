@@ -1,21 +1,47 @@
 {
   "0": {
-    "basicblocks": 4,
-    "calls": "1",
+    "basicblocks": 3,
+    "calls": "1 1 2",
+    "file": "chaosNCG_tb.cpp",
+    "fileloc": 14,
+    "instructions": 20,
+    "name": "main",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 124
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "chaosNCG_tb.cpp",
+    "fileloc": 8,
+    "instructions": 16,
+    "loads": {
+      "G": 1
+    },
+    "name": "_rand",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 16
+  },
+  "2": {
+    "basicblocks": 3,
+    "calls": "3",
     "file": "chaosNCG.cpp",
     "fileloc": 3,
-    "instructions": 49,
+    "instructions": 45,
     "loads": {
-      "L": 4,
-      "T": 4
+      "L": 8
     },
     "name": "chaosNCG",
     "stores": {
-      "T": 2
+      "L": 2
     },
-    "total_instructions": 76
+    "total_instructions": 72
   },
-  "1": {
+  "3": {
     "basicblocks": 1,
     "calls": "",
     "file": "g.cpp",

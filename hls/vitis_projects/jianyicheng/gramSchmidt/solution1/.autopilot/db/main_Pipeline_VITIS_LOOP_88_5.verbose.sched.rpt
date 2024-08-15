@@ -1,0 +1,437 @@
+
+
+================================================================
+== Vitis HLS Report for 'main_Pipeline_VITIS_LOOP_88_5'
+================================================================
+* Date:           Mon Aug 12 18:54:35 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        gramSchmidt
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  4.815 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       66|       66|  0.330 us|  0.330 us|   66|   66|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_88_5  |       64|       64|        34|          1|          1|    32|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 34
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 34
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 34, States = { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 23 
+23 --> 24 
+24 --> 25 
+25 --> 26 
+26 --> 27 
+27 --> 28 
+28 --> 29 
+29 --> 30 
+30 --> 31 
+31 --> 32 
+32 --> 33 
+33 --> 34 
+34 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 4.81>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88]   --->   Operation 37 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%nrm_6_read = read i32 @_ssdm_op_Read.ap_auto.float, i32 %nrm_6"   --->   Operation 38 'read' 'nrm_6_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%zext_ln90_4_read = read i5 @_ssdm_op_Read.ap_auto.i5, i5 %zext_ln90_4"   --->   Operation 39 'read' 'zext_ln90_4_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 40 [1/1] (1.58ns)   --->   "%store_ln88 = store i11 0, i11 %i" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88]   --->   Operation 40 'store' 'store_ln88' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc89"   --->   Operation 41 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%i_1 = load i11 %i" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88]   --->   Operation 42 'load' 'i_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i11.i32, i11 %i_1, i32 10" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88]   --->   Operation 43 'bitselect' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%br_ln88 = br i1 %tmp, void %for.inc89.split, void %VITIS_LOOP_90_6.exitStub" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88]   --->   Operation 44 'br' 'br_ln88' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%trunc_ln89 = trunc i11 %i_1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 45 'trunc' 'trunc_ln89' <Predicate = (!tmp)> <Delay = 0.00>
+ST_1 : Operation 46 [1/1] (0.78ns)   --->   "%or_ln89 = or i5 %trunc_ln89, i5 %zext_ln90_4_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 46 'or' 'or_ln89' <Predicate = (!tmp)> <Delay = 0.78> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%tmp_1 = partselect i5 @_ssdm_op_PartSelect.i5.i11.i32.i32, i11 %i_1, i32 5, i32 9" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 47 'partselect' 'tmp_1' <Predicate = (!tmp)> <Delay = 0.00>
+ST_1 : Operation 48 [1/1] (1.63ns)   --->   "%add_ln88 = add i11 %i_1, i11 32" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88]   --->   Operation 48 'add' 'add_ln88' <Predicate = (!tmp)> <Delay = 1.63> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 49 [1/1] (1.58ns)   --->   "%store_ln88 = store i11 %add_ln88, i11 %i" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88]   --->   Operation 49 'store' 'store_ln88' <Predicate = (!tmp)> <Delay = 1.58>
+
+State 2 <SV = 1> <Delay = 3.25>
+ST_2 : Operation 50 [1/1] (0.00ns)   --->   "%add_ln = bitconcatenate i10 @_ssdm_op_BitConcatenate.i10.i5.i5, i5 %tmp_1, i5 %or_ln89" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 50 'bitconcatenate' 'add_ln' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 51 [1/1] (0.00ns)   --->   "%zext_ln89 = zext i10 %add_ln" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 51 'zext' 'zext_ln89' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 52 [1/1] (0.00ns)   --->   "%a_addr_2 = getelementptr i32 %a, i64 0, i64 %zext_ln89" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 52 'getelementptr' 'a_addr_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 53 [2/2] (3.25ns)   --->   "%a_load_1 = load i10 %a_addr_2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 53 'load' 'a_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+
+State 3 <SV = 2> <Delay = 3.25>
+ST_3 : Operation 54 [1/2] (3.25ns)   --->   "%a_load_1 = load i10 %a_addr_2" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 54 'load' 'a_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+
+State 4 <SV = 3> <Delay = 3.37>
+ST_4 : Operation 55 [30/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 55 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 3.37>
+ST_5 : Operation 56 [29/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 56 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 3.37>
+ST_6 : Operation 57 [28/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 57 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 3.37>
+ST_7 : Operation 58 [27/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 58 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 3.37>
+ST_8 : Operation 59 [26/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 59 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 3.37>
+ST_9 : Operation 60 [25/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 60 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 3.37>
+ST_10 : Operation 61 [24/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 61 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 3.37>
+ST_11 : Operation 62 [23/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 62 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 3.37>
+ST_12 : Operation 63 [22/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 63 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 3.37>
+ST_13 : Operation 64 [21/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 64 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 14 <SV = 13> <Delay = 3.37>
+ST_14 : Operation 65 [20/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 65 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 15 <SV = 14> <Delay = 3.37>
+ST_15 : Operation 66 [19/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 66 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 16 <SV = 15> <Delay = 3.37>
+ST_16 : Operation 67 [18/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 67 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 17 <SV = 16> <Delay = 3.37>
+ST_17 : Operation 68 [17/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 68 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 18 <SV = 17> <Delay = 3.37>
+ST_18 : Operation 69 [16/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 69 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 19 <SV = 18> <Delay = 3.37>
+ST_19 : Operation 70 [15/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 70 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 20 <SV = 19> <Delay = 3.37>
+ST_20 : Operation 71 [14/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 71 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 21 <SV = 20> <Delay = 3.37>
+ST_21 : Operation 72 [13/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 72 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 22 <SV = 21> <Delay = 3.37>
+ST_22 : Operation 73 [12/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 73 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 23 <SV = 22> <Delay = 3.37>
+ST_23 : Operation 74 [11/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 74 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 24 <SV = 23> <Delay = 3.37>
+ST_24 : Operation 75 [10/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 75 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 25 <SV = 24> <Delay = 3.37>
+ST_25 : Operation 76 [9/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 76 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 26 <SV = 25> <Delay = 3.37>
+ST_26 : Operation 77 [8/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 77 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 27 <SV = 26> <Delay = 3.37>
+ST_27 : Operation 78 [7/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 78 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 28 <SV = 27> <Delay = 3.37>
+ST_28 : Operation 79 [6/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 79 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 29 <SV = 28> <Delay = 3.37>
+ST_29 : Operation 80 [5/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 80 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 30 <SV = 29> <Delay = 3.37>
+ST_30 : Operation 81 [4/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 81 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 31 <SV = 30> <Delay = 3.37>
+ST_31 : Operation 82 [3/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 82 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 32 <SV = 31> <Delay = 3.37>
+ST_32 : Operation 83 [2/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 83 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+
+State 33 <SV = 32> <Delay = 3.37>
+ST_33 : Operation 84 [1/30] (3.37ns)   --->   "%div2 = fdiv i32 %a_load_1, i32 %nrm_6_read" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 84 'fdiv' 'div2' <Predicate = true> <Delay = 3.37> <CoreInst = "FDiv">   --->   Core 20 'FDiv' <Latency = 29> <II = 1> <Delay = 3.37> <FuncUnit> <Opcode : 'fdiv' 'frem'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 91 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 91 'ret' 'ret_ln0' <Predicate = (tmp)> <Delay = 0.00>
+
+State 34 <SV = 33> <Delay = 3.25>
+ST_34 : Operation 85 [1/1] (0.00ns)   --->   "%specpipeline_ln88 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_0" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88]   --->   Operation 85 'specpipeline' 'specpipeline_ln88' <Predicate = true> <Delay = 0.00>
+ST_34 : Operation 86 [1/1] (0.00ns)   --->   "%speclooptripcount_ln88 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 32, i64 32, i64 32" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88]   --->   Operation 86 'speclooptripcount' 'speclooptripcount_ln88' <Predicate = true> <Delay = 0.00>
+ST_34 : Operation 87 [1/1] (0.00ns)   --->   "%specloopname_ln88 = specloopname void @_ssdm_op_SpecLoopName, void @empty_6" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88]   --->   Operation 87 'specloopname' 'specloopname_ln88' <Predicate = true> <Delay = 0.00>
+ST_34 : Operation 88 [1/1] (0.00ns)   --->   "%q_addr_1 = getelementptr i32 %q, i64 0, i64 %zext_ln89" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 88 'getelementptr' 'q_addr_1' <Predicate = true> <Delay = 0.00>
+ST_34 : Operation 89 [1/1] (3.25ns)   --->   "%store_ln89 = store i32 %div2, i10 %q_addr_1" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89]   --->   Operation 89 'store' 'store_ln89' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 1024> <RAM>
+ST_34 : Operation 90 [1/1] (0.00ns)   --->   "%br_ln88 = br void %for.inc89" [benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88]   --->   Operation 90 'br' 'br_ln88' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 4.815ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln88', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88) of constant 0 on local variable 'i', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88 [8]  (1.588 ns)
+	'load' operation 11 bit ('i', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88) on local variable 'i', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88 [11]  (0.000 ns)
+	'add' operation 11 bit ('add_ln88', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88) [28]  (1.639 ns)
+	'store' operation 0 bit ('store_ln88', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88) of variable 'add_ln88', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88 on local variable 'i', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:88 [29]  (1.588 ns)
+
+ <State 2>: 3.254ns
+The critical path consists of the following:
+	'getelementptr' operation 10 bit ('a_addr_2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [23]  (0.000 ns)
+	'load' operation 32 bit ('a_load_1', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) on array 'a' [24]  (3.254 ns)
+
+ <State 3>: 3.254ns
+The critical path consists of the following:
+	'load' operation 32 bit ('a_load_1', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) on array 'a' [24]  (3.254 ns)
+
+ <State 4>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 5>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 6>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 7>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 8>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 9>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 10>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 11>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 12>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 13>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 14>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 15>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 16>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 17>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 18>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 19>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 20>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 21>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 22>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 23>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 24>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 25>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 26>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 27>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 28>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 29>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 30>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 31>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 32>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 33>: 3.376ns
+The critical path consists of the following:
+	'fdiv' operation 32 bit ('div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [25]  (3.376 ns)
+
+ <State 34>: 3.254ns
+The critical path consists of the following:
+	'getelementptr' operation 10 bit ('q_addr_1', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) [26]  (0.000 ns)
+	'store' operation 0 bit ('store_ln89', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89) of variable 'div2', benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp:89 on array 'q' [27]  (3.254 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

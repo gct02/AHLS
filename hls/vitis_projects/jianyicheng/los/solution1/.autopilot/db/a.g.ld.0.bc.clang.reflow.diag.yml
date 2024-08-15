@@ -1,249 +1,249 @@
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 48, 
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 58, 
                    Column: 24 }
 Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
-  - LoopName:        VITIS_LOOP_48_2
+  - LoopName:        VITIS_LOOP_58_2
   - String:          ' '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:48:24'
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:58:24'
   - String:          ' '
   - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
-    DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 21, 
+    DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 31, 
                        Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 94, 
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 104, 
+                   Column: 25 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        VITIS_LOOP_104_4
+  - String:          ' '
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:104:25'
+  - String:          ' '
+  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 31, 
+                       Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 151, 
+                   Column: 25 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        VITIS_LOOP_151_6
+  - String:          ' '
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:151:25'
+  - String:          ' '
+  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 31, 
+                       Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 198, 
+                   Column: 25 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        VITIS_LOOP_198_8
+  - String:          ' '
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:198:25'
+  - String:          ' '
+  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 31, 
+                       Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 245, 
+                   Column: 26 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        VITIS_LOOP_245_10
+  - String:          ' '
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:245:26'
+  - String:          ' '
+  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 31, 
+                       Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 292, 
+                   Column: 26 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        VITIS_LOOP_292_12
+  - String:          ' '
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:292:26'
+  - String:          ' '
+  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 31, 
+                       Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 339, 
+                   Column: 26 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        VITIS_LOOP_339_14
+  - String:          ' '
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:339:26'
+  - String:          ' '
+  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 31, 
+                       Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 386, 
+                   Column: 26 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        VITIS_LOOP_386_16
+  - String:          ' '
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:386:26'
+  - String:          ' '
+  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 31, 
+                       Column: 0 }
+  - String:          ' '
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 386, 
+                   Column: 26 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_386_16
+  - String:          '''('
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:386:26'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 339, 
+                   Column: 26 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_339_14
+  - String:          '''('
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:339:26'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 292, 
+                   Column: 26 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_292_12
+  - String:          '''('
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:292:26'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 245, 
+                   Column: 26 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_245_10
+  - String:          '''('
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:245:26'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 198, 
+                   Column: 25 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_198_8
+  - String:          '''('
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:198:25'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 151, 
+                   Column: 25 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_151_6
+  - String:          '''('
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:151:25'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 104, 
+                   Column: 25 }
+Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_104_4
+  - String:          '''('
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:104:25'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: benchmarks/jianyicheng/los/src/los.cpp, Line: 58, 
                    Column: 24 }
 Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
 Args:            
-  - String:          Could not analyze the loop bounds
-  - String:          ' _XLX_SEP_ '
-  - LoopName:        VITIS_LOOP_94_4
-  - String:          ' '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:94:24'
-  - String:          ' '
-  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
-    DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 21, 
-                       Column: 0 }
-  - String:          ' '
-...
---- !Missed
-Pass:            reflow-burst-inference
-Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 141, 
-                   Column: 25 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          Could not analyze the loop bounds
-  - String:          ' _XLX_SEP_ '
-  - LoopName:        VITIS_LOOP_141_6
-  - String:          ' '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:141:25'
-  - String:          ' '
-  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
-    DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 21, 
-                       Column: 0 }
-  - String:          ' '
-...
---- !Missed
-Pass:            reflow-burst-inference
-Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 188, 
-                   Column: 25 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          Could not analyze the loop bounds
-  - String:          ' _XLX_SEP_ '
-  - LoopName:        VITIS_LOOP_188_8
-  - String:          ' '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:188:25'
-  - String:          ' '
-  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
-    DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 21, 
-                       Column: 0 }
-  - String:          ' '
-...
---- !Missed
-Pass:            reflow-burst-inference
-Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 235, 
-                   Column: 26 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          Could not analyze the loop bounds
-  - String:          ' _XLX_SEP_ '
-  - LoopName:        VITIS_LOOP_235_10
-  - String:          ' '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:235:26'
-  - String:          ' '
-  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
-    DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 21, 
-                       Column: 0 }
-  - String:          ' '
-...
---- !Missed
-Pass:            reflow-burst-inference
-Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 282, 
-                   Column: 26 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          Could not analyze the loop bounds
-  - String:          ' _XLX_SEP_ '
-  - LoopName:        VITIS_LOOP_282_12
-  - String:          ' '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:282:26'
-  - String:          ' '
-  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
-    DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 21, 
-                       Column: 0 }
-  - String:          ' '
-...
---- !Missed
-Pass:            reflow-burst-inference
-Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 329, 
-                   Column: 26 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          Could not analyze the loop bounds
-  - String:          ' _XLX_SEP_ '
-  - LoopName:        VITIS_LOOP_329_14
-  - String:          ' '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:329:26'
-  - String:          ' '
-  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
-    DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 21, 
-                       Column: 0 }
-  - String:          ' '
-...
---- !Missed
-Pass:            reflow-burst-inference
-Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 376, 
-                   Column: 26 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          Could not analyze the loop bounds
-  - String:          ' _XLX_SEP_ '
-  - LoopName:        VITIS_LOOP_376_16
-  - String:          ' '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:376:26'
-  - String:          ' '
-  - Function:        'los(int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*, int*)'
-    DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 21, 
-                       Column: 0 }
-  - String:          ' '
-...
---- !Failure
-Pass:            reflow-occurrence-inference
-Name:            NonComputableLoopForm
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 376, 
-                   Column: 26 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
   - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_376_16
+  - LoopName:        VITIS_LOOP_58_2
   - String:          '''('
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:376:26'
-  - String:          ') . Requires loop in simplify form and with single exit.'
-...
---- !Failure
-Pass:            reflow-occurrence-inference
-Name:            NonComputableLoopForm
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 329, 
-                   Column: 26 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_329_14
-  - String:          '''('
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:329:26'
-  - String:          ') . Requires loop in simplify form and with single exit.'
-...
---- !Failure
-Pass:            reflow-occurrence-inference
-Name:            NonComputableLoopForm
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 282, 
-                   Column: 26 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_282_12
-  - String:          '''('
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:282:26'
-  - String:          ') . Requires loop in simplify form and with single exit.'
-...
---- !Failure
-Pass:            reflow-occurrence-inference
-Name:            NonComputableLoopForm
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 235, 
-                   Column: 26 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_235_10
-  - String:          '''('
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:235:26'
-  - String:          ') . Requires loop in simplify form and with single exit.'
-...
---- !Failure
-Pass:            reflow-occurrence-inference
-Name:            NonComputableLoopForm
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 188, 
-                   Column: 25 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_188_8
-  - String:          '''('
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:188:25'
-  - String:          ') . Requires loop in simplify form and with single exit.'
-...
---- !Failure
-Pass:            reflow-occurrence-inference
-Name:            NonComputableLoopForm
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 141, 
-                   Column: 25 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_141_6
-  - String:          '''('
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:141:25'
-  - String:          ') . Requires loop in simplify form and with single exit.'
-...
---- !Failure
-Pass:            reflow-occurrence-inference
-Name:            NonComputableLoopForm
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 94, 
-                   Column: 24 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_94_4
-  - String:          '''('
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:94:24'
-  - String:          ') . Requires loop in simplify form and with single exit.'
-...
---- !Failure
-Pass:            reflow-occurrence-inference
-Name:            NonComputableLoopForm
-DebugLoc:        { File: HLS-benchmarks/Inter-Block/los/los.cpp, Line: 48, 
-                   Column: 24 }
-Function:        _Z3losPiS_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
-Args:            
-  - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_48_2
-  - String:          '''('
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:48:24'
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:58:24'
   - String:          ') . Requires loop in simplify form and with single exit.'
 ...
 --- !HLSReportInfo
@@ -251,9 +251,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_48_2
+  - LoopName:        VITIS_LOOP_58_2
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:48:24'
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:58:24'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -261,9 +261,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_94_4
+  - LoopName:        VITIS_LOOP_104_4
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:94:24'
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:104:25'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -271,9 +271,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_141_6
+  - LoopName:        VITIS_LOOP_151_6
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:141:25'
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:151:25'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -281,9 +281,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_188_8
+  - LoopName:        VITIS_LOOP_198_8
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:188:25'
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:198:25'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -291,9 +291,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_235_10
+  - LoopName:        VITIS_LOOP_245_10
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:235:26'
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:245:26'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -301,9 +301,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_282_12
+  - LoopName:        VITIS_LOOP_292_12
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:282:26'
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:292:26'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -311,9 +311,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_329_14
+  - LoopName:        VITIS_LOOP_339_14
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:329:26'
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:339:26'
   - String:          ' '
 ...
 --- !HLSReportInfo
@@ -321,8 +321,18 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_376_16
+  - LoopName:        VITIS_LOOP_386_16
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/Inter-Block/los/los.cpp:376:26'
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:386:26'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_417_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/los/src/los.cpp:417:21'
   - String:          ' '
 ...

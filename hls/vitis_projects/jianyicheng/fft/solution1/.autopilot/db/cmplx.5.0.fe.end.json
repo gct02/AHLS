@@ -1,11 +1,30 @@
 {
-    "0": {
+    "1": {
+        "name": "fft_Pipeline_VITIS_LOOP_41_2",
+        "file": "benchmarks\/jianyicheng\/fft\/src\/fft.cpp",
+        "fileloc": "41",
+        "instructions": "54",
+        "total_instructions": "54",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "G": "2",
+            "L": "7"
+        },
+        "stores": {
+            "L": "6"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
         "name": "fft",
         "file": "fft.cpp",
-        "fileloc": "15",
-        "instructions": "278",
-        "total_instructions": "838",
-        "calls": "3 2 8 7 4 5 6 1",
+        "fileloc": "26",
+        "instructions": "241",
+        "total_instructions": "673",
+        "calls": "1 3 9 10 7 5 4 6",
         "basicblocks": "25",
         "loads": {
             "L": "24"
@@ -17,161 +36,167 @@
             "L": "8"
         }
     },
-    "1": {
-        "name": "fft_Pipeline_VITIS_LOOP_163_16",
-        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
-        "fileloc": "163",
-        "instructions": "70",
-        "total_instructions": "70",
-        "calls": "",
-        "basicblocks": "4",
-        "loads": {
-            "L": "1",
-            "T": "8"
-        },
-        "stores": {
-            "L": "2",
-            "T": "4"
-        },
-        "loops": {
-            "L": "1"
-        }
-    },
-    "2": {
-        "name": "fft_Pipeline_VITIS_LOOP_49_4",
-        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
-        "fileloc": "49",
-        "instructions": "70",
-        "total_instructions": "70",
-        "calls": "",
-        "basicblocks": "4",
-        "loads": {
-            "L": "1",
-            "T": "8"
-        },
-        "stores": {
-            "L": "2",
-            "T": "4"
-        },
-        "loops": {
-            "L": "1"
-        }
-    },
     "3": {
-        "name": "fft_Pipeline_VITIS_LOOP_30_2",
-        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
-        "fileloc": "30",
-        "instructions": "70",
-        "total_instructions": "70",
+        "name": "fft_Pipeline_VITIS_LOOP_60_4",
+        "file": "benchmarks\/jianyicheng\/fft\/src\/fft.cpp",
+        "fileloc": "60",
+        "instructions": "54",
+        "total_instructions": "54",
         "calls": "",
         "basicblocks": "4",
         "loads": {
-            "L": "1",
-            "T": "8"
+            "G": "2",
+            "L": "7"
         },
         "stores": {
-            "L": "2",
-            "T": "4"
+            "L": "6"
         },
         "loops": {
             "L": "1"
         }
     },
     "4": {
-        "name": "fft_Pipeline_VITIS_LOOP_106_10",
-        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
-        "fileloc": "106",
-        "instructions": "70",
-        "total_instructions": "70",
+        "name": "fft_Pipeline_VITIS_LOOP_155_14",
+        "file": "benchmarks\/jianyicheng\/fft\/src\/fft.cpp",
+        "fileloc": "155",
+        "instructions": "54",
+        "total_instructions": "54",
         "calls": "",
         "basicblocks": "4",
         "loads": {
-            "L": "1",
-            "T": "8"
+            "G": "2",
+            "L": "7"
         },
         "stores": {
-            "L": "2",
-            "T": "4"
+            "L": "6"
         },
         "loops": {
             "L": "1"
         }
     },
     "5": {
-        "name": "fft_Pipeline_VITIS_LOOP_125_12",
-        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
-        "fileloc": "125",
-        "instructions": "70",
-        "total_instructions": "70",
+        "name": "fft_Pipeline_VITIS_LOOP_136_12",
+        "file": "benchmarks\/jianyicheng\/fft\/src\/fft.cpp",
+        "fileloc": "136",
+        "instructions": "54",
+        "total_instructions": "54",
         "calls": "",
         "basicblocks": "4",
         "loads": {
-            "L": "1",
-            "T": "8"
+            "G": "2",
+            "L": "7"
         },
         "stores": {
-            "L": "2",
-            "T": "4"
+            "L": "6"
         },
         "loops": {
             "L": "1"
         }
     },
     "6": {
-        "name": "fft_Pipeline_VITIS_LOOP_144_14",
-        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
-        "fileloc": "144",
-        "instructions": "70",
-        "total_instructions": "70",
+        "name": "fft_Pipeline_VITIS_LOOP_174_16",
+        "file": "benchmarks\/jianyicheng\/fft\/src\/fft.cpp",
+        "fileloc": "174",
+        "instructions": "54",
+        "total_instructions": "54",
         "calls": "",
         "basicblocks": "4",
         "loads": {
-            "L": "1",
-            "T": "8"
+            "G": "2",
+            "L": "7"
         },
         "stores": {
-            "L": "2",
-            "T": "4"
+            "L": "6"
         },
         "loops": {
             "L": "1"
         }
     },
     "7": {
-        "name": "fft_Pipeline_VITIS_LOOP_87_8",
-        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
-        "fileloc": "87",
-        "instructions": "70",
-        "total_instructions": "70",
+        "name": "fft_Pipeline_VITIS_LOOP_117_10",
+        "file": "benchmarks\/jianyicheng\/fft\/src\/fft.cpp",
+        "fileloc": "117",
+        "instructions": "54",
+        "total_instructions": "54",
         "calls": "",
         "basicblocks": "4",
         "loads": {
-            "L": "1",
-            "T": "8"
+            "G": "2",
+            "L": "7"
         },
         "stores": {
-            "L": "2",
-            "T": "4"
+            "L": "6"
         },
         "loops": {
             "L": "1"
         }
     },
     "8": {
-        "name": "fft_Pipeline_VITIS_LOOP_68_6",
-        "file": "HLS-benchmarks\/Inter-Block\/fft\/fft.cpp",
-        "fileloc": "68",
-        "instructions": "70",
-        "total_instructions": "70",
+        "name": "_rand",
+        "file": "fft.cpp",
+        "fileloc": "17",
+        "instructions": "12",
+        "total_instructions": "12",
+        "calls": "",
+        "basicblocks": "1",
+        "loads": {
+            "G": "1"
+        },
+        "stores": {
+            "G": "1"
+        }
+    },
+    "9": {
+        "name": "fft_Pipeline_VITIS_LOOP_79_6",
+        "file": "benchmarks\/jianyicheng\/fft\/src\/fft.cpp",
+        "fileloc": "79",
+        "instructions": "54",
+        "total_instructions": "54",
         "calls": "",
         "basicblocks": "4",
         "loads": {
-            "L": "1",
-            "T": "8"
+            "G": "2",
+            "L": "7"
         },
         "stores": {
-            "L": "2",
-            "T": "4"
+            "L": "6"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "10": {
+        "name": "fft_Pipeline_VITIS_LOOP_98_8",
+        "file": "benchmarks\/jianyicheng\/fft\/src\/fft.cpp",
+        "fileloc": "98",
+        "instructions": "54",
+        "total_instructions": "54",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "G": "2",
+            "L": "7"
+        },
+        "stores": {
+            "L": "6"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "0": {
+        "name": "main",
+        "file": "fft.cpp",
+        "fileloc": "190",
+        "instructions": "113",
+        "total_instructions": "978",
+        "calls": "8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 2",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1"
+        },
+        "stores": {
+            "L": "18"
         },
         "loops": {
             "L": "1"

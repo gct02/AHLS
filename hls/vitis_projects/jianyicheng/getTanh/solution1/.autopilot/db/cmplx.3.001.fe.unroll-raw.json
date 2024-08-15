@@ -1,27 +1,58 @@
 {
   "0": {
+    "basicblocks": 12,
+    "calls": "2 1",
+    "file": "getTanh_tb.cpp",
+    "fileloc": 24,
+    "instructions": 55,
+    "loads": {
+      "L": 2
+    },
+    "name": "main",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 352
+  },
+  "1": {
+    "basicblocks": 33,
+    "calls": "",
+    "file": "inlined.cpp",
+    "fileloc": 12,
+    "instructions": 147,
+    "loads": {
+      "G": 8,
+      "L": 3
+    },
+    "name": "inlined",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 147
+  },
+  "2": {
     "basicblocks": 7,
-    "calls": "1",
+    "calls": "3",
     "file": "getTanh.cpp",
     "fileloc": 12,
     "instructions": 25,
     "loads": {
-      "T": 3
+      "L": 3
     },
     "name": "getTanh",
     "stores": {
-      "T": 1
+      "L": 1
     },
     "total_instructions": 150
   },
-  "1": {
+  "3": {
     "basicblocks": 28,
     "calls": "",
     "file": "g.cpp",
     "fileloc": 12,
     "instructions": 125,
     "loads": {
-      "L": 8
+      "G": 8
     },
     "name": "g",
     "total_instructions": 125

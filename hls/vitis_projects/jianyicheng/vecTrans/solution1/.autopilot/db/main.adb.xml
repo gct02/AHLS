@@ -1,0 +1,226 @@
+<stg><name>main</name>
+
+
+<trans_list>
+
+<trans id="14" from="1" to="2">
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+
+<trans id="15" from="2" to="3">
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+
+<trans id="16" from="3" to="4">
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+</trans_list>
+
+
+
+<state_list>
+
+<state id="1" st_id="1">
+
+<operation id="5" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="3" bw="32" op_0_bw="64">
+<![CDATA[
+entry:2 %A = alloca i64 1
+
+]]></Node>
+<StgValue><ssdm name="A"/><MemPortTyVec>2 3 </MemPortTyVec>
+</StgValue>
+</operation>
+
+<operation id="6" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="4" bw="10" op_0_bw="64">
+<![CDATA[
+entry:3 %b = alloca i64 1
+
+]]></Node>
+<StgValue><ssdm name="b"/><MemPortTyVec>2 3 </MemPortTyVec>
+</StgValue>
+</operation>
+
+<operation id="7" st_id="1" stage="2" lat="2">
+<core></core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="5" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="10">
+<![CDATA[
+entry:4 %call_ln0 = call void @main_Pipeline_VITIS_LOOP_18_1, i32 %A, i10 %b
+
+]]></Node>
+<StgValue><ssdm name="call_ln0"/></StgValue>
+</operation>
+</state>
+
+<state id="2" st_id="2">
+
+<operation id="8" st_id="2" stage="1" lat="2">
+<core></core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="5" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="10">
+<![CDATA[
+entry:4 %call_ln0 = call void @main_Pipeline_VITIS_LOOP_18_1, i32 %A, i10 %b
+
+]]></Node>
+<StgValue><ssdm name="call_ln0"/></StgValue>
+</operation>
+</state>
+
+<state id="3" st_id="3">
+
+<operation id="9" st_id="3" stage="2" lat="2">
+<core></core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="6" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="10" op_3_bw="0" op_4_bw="0">
+<![CDATA[
+entry:5 %call_ln0 = call void @main_Pipeline_VITIS_LOOP_4_1, i32 %A, i10 %b
+
+]]></Node>
+<StgValue><ssdm name="call_ln0"/></StgValue>
+</operation>
+</state>
+
+<state id="4" st_id="4">
+
+<operation id="10" st_id="4" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="1" bw="0" op_0_bw="0" op_1_bw="32">
+<![CDATA[
+entry:0 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 0
+
+]]></Node>
+<StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
+</operation>
+
+<operation id="11" st_id="4" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="2" bw="0" op_0_bw="0" op_1_bw="0">
+<![CDATA[
+entry:1 %spectopmodule_ln15 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty
+
+]]></Node>
+<StgValue><ssdm name="spectopmodule_ln15"/></StgValue>
+</operation>
+
+<operation id="12" st_id="4" stage="1" lat="2">
+<core></core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="6" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="10" op_3_bw="0" op_4_bw="0">
+<![CDATA[
+entry:5 %call_ln0 = call void @main_Pipeline_VITIS_LOOP_4_1, i32 %A, i10 %b
+
+]]></Node>
+<StgValue><ssdm name="call_ln0"/></StgValue>
+</operation>
+
+<operation id="13" st_id="4" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="7" bw="0" op_0_bw="32">
+<![CDATA[
+entry:6 %ret_ln24 = ret i32 0
+
+]]></Node>
+<StgValue><ssdm name="ret_ln24"/></StgValue>
+</operation>
+</state>
+</state_list>
+
+
+<ports>
+</ports>
+
+
+<dataflows>
+<dataflow id="18" from="StgValue_17" to="A" fromId="17" toId="5">
+</dataflow>
+<dataflow id="19" from="StgValue_17" to="b" fromId="17" toId="6">
+</dataflow>
+<dataflow id="21" from="main_Pipeline_VITIS_LOOP_18_1" to="call_ln0" fromId="20" toId="7">
+</dataflow>
+<dataflow id="22" from="A" to="call_ln0" fromId="5" toId="7">
+</dataflow>
+<dataflow id="23" from="b" to="call_ln0" fromId="6" toId="7">
+</dataflow>
+<dataflow id="24" from="main_Pipeline_VITIS_LOOP_18_1" to="call_ln0" fromId="20" toId="8">
+</dataflow>
+<dataflow id="25" from="A" to="call_ln0" fromId="5" toId="8">
+</dataflow>
+<dataflow id="26" from="b" to="call_ln0" fromId="6" toId="8">
+</dataflow>
+<dataflow id="28" from="main_Pipeline_VITIS_LOOP_4_1" to="call_ln0" fromId="27" toId="9">
+</dataflow>
+<dataflow id="29" from="A" to="call_ln0" fromId="5" toId="9">
+</dataflow>
+<dataflow id="30" from="b" to="call_ln0" fromId="6" toId="9">
+</dataflow>
+<dataflow id="32" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="31" toId="10">
+</dataflow>
+<dataflow id="34" from="StgValue_33" to="specbitsmap_ln0" fromId="33" toId="10">
+</dataflow>
+<dataflow id="36" from="_ssdm_op_SpecTopModule" to="spectopmodule_ln15" fromId="35" toId="11">
+</dataflow>
+<dataflow id="38" from="empty" to="spectopmodule_ln15" fromId="37" toId="11">
+</dataflow>
+<dataflow id="39" from="main_Pipeline_VITIS_LOOP_4_1" to="call_ln0" fromId="27" toId="12">
+</dataflow>
+<dataflow id="40" from="A" to="call_ln0" fromId="5" toId="12">
+</dataflow>
+<dataflow id="41" from="b" to="call_ln0" fromId="6" toId="12">
+</dataflow>
+<dataflow id="42" from="StgValue_33" to="ret_ln24" fromId="33" toId="13">
+</dataflow>
+</dataflows>
+
+
+</stg>

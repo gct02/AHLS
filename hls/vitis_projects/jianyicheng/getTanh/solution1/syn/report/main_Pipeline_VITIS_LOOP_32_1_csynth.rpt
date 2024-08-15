@@ -1,0 +1,152 @@
+
+
+================================================================
+== Vitis HLS Report for 'main_Pipeline_VITIS_LOOP_32_1'
+================================================================
+* Date:           Mon Aug 12 18:54:12 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        getTanh
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  4.907 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+------+------+---------+
+    |  Latency (cycles) |  Latency (absolute) |   Interval  | Pipeline|
+    |   min   |   max   |    min   |    max   |  min |  max |   Type  |
+    +---------+---------+----------+----------+------+------+---------+
+    |     1002|     1002|  5.010 us|  5.010 us|  1002|  1002|       no|
+    +---------+---------+----------+----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_32_1  |     1000|     1000|         2|          1|          1|  1000|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|     28|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|     36|    -|
+|Register         |        -|    -|      23|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|      23|     64|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------+----------+----+---+----+------------+------------+
+    |    Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------+----------+----+---+----+------------+------------+
+    |add_ln32_fu_108_p2   |         +|   0|  0|  13|          10|           1|
+    |icmp_ln32_fu_102_p2  |      icmp|   0|  0|  13|          10|           6|
+    |ap_enable_pp0        |       xor|   0|  0|   2|           1|           2|
+    +---------------------+----------+----+---+----+------------+------------+
+    |Total                |          |   0|  0|  28|          21|           9|
+    +---------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_i_2     |   9|          2|   10|         20|
+    |i_fu_36                  |   9|          2|   10|         20|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  36|          8|   22|         44|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_done_reg              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |i_2_reg_133              |  10|   0|   10|          0|
+    |i_fu_36                  |  10|   0|   10|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  23|   0|   23|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------+-----+-----+------------+-------------------------------+--------------+
+|     RTL Ports     | Dir | Bits|  Protocol  |         Source Object         |    C Type    |
++-------------------+-----+-----+------------+-------------------------------+--------------+
+|ap_clk             |   in|    1|  ap_ctrl_hs|  main_Pipeline_VITIS_LOOP_32_1|  return value|
+|ap_rst             |   in|    1|  ap_ctrl_hs|  main_Pipeline_VITIS_LOOP_32_1|  return value|
+|ap_start           |   in|    1|  ap_ctrl_hs|  main_Pipeline_VITIS_LOOP_32_1|  return value|
+|ap_done            |  out|    1|  ap_ctrl_hs|  main_Pipeline_VITIS_LOOP_32_1|  return value|
+|ap_idle            |  out|    1|  ap_ctrl_hs|  main_Pipeline_VITIS_LOOP_32_1|  return value|
+|ap_ready           |  out|    1|  ap_ctrl_hs|  main_Pipeline_VITIS_LOOP_32_1|  return value|
+|A_address0         |  out|   10|   ap_memory|                              A|         array|
+|A_ce0              |  out|    1|   ap_memory|                              A|         array|
+|A_we0              |  out|    1|   ap_memory|                              A|         array|
+|A_d0               |  out|   32|   ap_memory|                              A|         array|
+|gold_address0      |  out|   10|   ap_memory|                           gold|         array|
+|gold_ce0           |  out|    1|   ap_memory|                           gold|         array|
+|gold_we0           |  out|    1|   ap_memory|                           gold|         array|
+|gold_d0            |  out|   32|   ap_memory|                           gold|         array|
+|addr_out_address0  |  out|   10|   ap_memory|                       addr_out|         array|
+|addr_out_ce0       |  out|    1|   ap_memory|                       addr_out|         array|
+|addr_out_we0       |  out|    1|   ap_memory|                       addr_out|         array|
+|addr_out_d0        |  out|   10|   ap_memory|                       addr_out|         array|
+|addr_in_address0   |  out|   10|   ap_memory|                        addr_in|         array|
+|addr_in_ce0        |  out|    1|   ap_memory|                        addr_in|         array|
+|addr_in_we0        |  out|    1|   ap_memory|                        addr_in|         array|
+|addr_in_d0         |  out|   10|   ap_memory|                        addr_in|         array|
++-------------------+-----+-----+------------+-------------------------------+--------------+
+

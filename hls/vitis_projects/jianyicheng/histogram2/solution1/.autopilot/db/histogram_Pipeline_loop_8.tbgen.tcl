@@ -118,7 +118,7 @@ set RtlHierarchyInfo {[
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
 		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "8", "EstimateLatencyMax" : "8",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "11", "EstimateLatencyMax" : "11",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -138,27 +138,27 @@ set RtlHierarchyInfo {[
 			{"Name" : "results", "Type" : "Memory", "Direction" : "O"}],
 		"Loop" : [
 			{"Name" : "loop_8", "PipelineType" : "UPC",
-				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter2", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter2", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter5", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter5", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
 	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.flow_control_loop_pipe_sequential_init_U", "Parent" : "0"}]}
 
 
 set ArgLastReadFirstWriteLatency {
 	histogram_Pipeline_loop_8 {
-		results_0 {Type I LastRead 1 FirstWrite -1}
-		results_1 {Type I LastRead 1 FirstWrite -1}
-		results_2 {Type I LastRead 1 FirstWrite -1}
-		results_3 {Type I LastRead 1 FirstWrite -1}
-		results_4 {Type I LastRead 1 FirstWrite -1}
-		results_5 {Type I LastRead 1 FirstWrite -1}
+		results_0 {Type I LastRead 0 FirstWrite -1}
+		results_1 {Type I LastRead 0 FirstWrite -1}
+		results_2 {Type I LastRead 0 FirstWrite -1}
+		results_3 {Type I LastRead 0 FirstWrite -1}
+		results_4 {Type I LastRead 0 FirstWrite -1}
+		results_5 {Type I LastRead 0 FirstWrite -1}
 		results_6 {Type I LastRead 0 FirstWrite -1}
 		results_7 {Type I LastRead 0 FirstWrite -1}
-		results {Type O LastRead -1 FirstWrite 2}}}
+		results {Type O LastRead -1 FirstWrite 5}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "8", "Max" : "8"}
-	, {"Name" : "Interval", "Min" : "8", "Max" : "8"}
+	{"Name" : "Latency", "Min" : "11", "Max" : "11"}
+	, {"Name" : "Interval", "Min" : "11", "Max" : "11"}
 ]}
 
 set PipelineEnableSignalInfo {[
@@ -166,13 +166,13 @@ set PipelineEnableSignalInfo {[
 ]}
 
 set Spec2ImplPortList { 
-	results_0 { ap_memory {  { results_0_address0 mem_address 1 3 }  { results_0_ce0 mem_ce 1 1 }  { results_0_q0 in_data 0 32 } } }
-	results_1 { ap_memory {  { results_1_address0 mem_address 1 3 }  { results_1_ce0 mem_ce 1 1 }  { results_1_q0 in_data 0 32 } } }
-	results_2 { ap_memory {  { results_2_address0 mem_address 1 3 }  { results_2_ce0 mem_ce 1 1 }  { results_2_q0 in_data 0 32 } } }
-	results_3 { ap_memory {  { results_3_address0 mem_address 1 3 }  { results_3_ce0 mem_ce 1 1 }  { results_3_q0 in_data 0 32 } } }
-	results_4 { ap_memory {  { results_4_address0 mem_address 1 3 }  { results_4_ce0 mem_ce 1 1 }  { results_4_q0 in_data 0 32 } } }
-	results_5 { ap_memory {  { results_5_address0 mem_address 1 3 }  { results_5_ce0 mem_ce 1 1 }  { results_5_q0 in_data 0 32 } } }
-	results_6 { ap_memory {  { results_6_address0 mem_address 1 3 }  { results_6_ce0 mem_ce 1 1 }  { results_6_q0 in_data 0 32 } } }
-	results_7 { ap_memory {  { results_7_address0 mem_address 1 3 }  { results_7_ce0 mem_ce 1 1 }  { results_7_q0 in_data 0 32 } } }
+	results_0 { ap_memory {  { results_0_address0 mem_address 1 3 }  { results_0_ce0 mem_ce 1 1 }  { results_0_q0 mem_dout 0 32 } } }
+	results_1 { ap_memory {  { results_1_address0 mem_address 1 3 }  { results_1_ce0 mem_ce 1 1 }  { results_1_q0 mem_dout 0 32 } } }
+	results_2 { ap_memory {  { results_2_address0 mem_address 1 3 }  { results_2_ce0 mem_ce 1 1 }  { results_2_q0 mem_dout 0 32 } } }
+	results_3 { ap_memory {  { results_3_address0 mem_address 1 3 }  { results_3_ce0 mem_ce 1 1 }  { results_3_q0 mem_dout 0 32 } } }
+	results_4 { ap_memory {  { results_4_address0 mem_address 1 3 }  { results_4_ce0 mem_ce 1 1 }  { results_4_q0 mem_dout 0 32 } } }
+	results_5 { ap_memory {  { results_5_address0 mem_address 1 3 }  { results_5_ce0 mem_ce 1 1 }  { results_5_q0 mem_dout 0 32 } } }
+	results_6 { ap_memory {  { results_6_address0 mem_address 1 3 }  { results_6_ce0 mem_ce 1 1 }  { results_6_q0 mem_dout 0 32 } } }
+	results_7 { ap_memory {  { results_7_address0 mem_address 1 3 }  { results_7_ce0 mem_ce 1 1 }  { results_7_q0 mem_dout 0 32 } } }
 	results { ap_memory {  { results_address0 mem_address 1 3 }  { results_ce0 mem_ce 1 1 }  { results_we0 mem_we 1 1 }  { results_d0 mem_din 1 32 } } }
 }

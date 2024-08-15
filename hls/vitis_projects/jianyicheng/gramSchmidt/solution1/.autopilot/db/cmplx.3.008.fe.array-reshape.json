@@ -1,17 +1,19 @@
 {
   "0": {
-    "basicblocks": 14,
+    "basicblocks": 31,
     "calls": "",
     "file": "gramSchmidt.cpp",
-    "fileloc": 30,
-    "instructions": 80,
+    "fileloc": 63,
+    "instructions": 210,
     "loads": {
-      "T": 6
+      "G": 1,
+      "L": 12
     },
-    "name": "gramSchmidt",
+    "name": "main",
     "stores": {
-      "T": 5
+      "G": 1,
+      "L": 8
     },
-    "total_instructions": 80
+    "total_instructions": 210
   }
 }

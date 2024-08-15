@@ -3,6 +3,7 @@ import torch.nn as nn
 
 from sklearn import model_selection
 from pathlib import Path
+from random import shuffle
 import argparse, os
 
 import tkinter as tk
@@ -12,8 +13,16 @@ import matplotlib.pyplot as plt
 from estimators.gat.models import GAT
 from dfg.hls_dfg import build_dfg_lut
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
+import gc
+
+gc.collect()
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.set_default_device(device)
+torch.set_default_dtype(torch.float32)
+
+torch.cuda.set_per_process_memory_fraction(0.8, 0)
+torch.cuda.empty_cache()
 
 MAX_AVAILABLE_LUT = 53200 # Maximum number of LUTs available on the target FPGA (xc7z020clg400-1)
 
@@ -31,15 +40,16 @@ def log_cosh_loss(pred, target):
 
 def train_step(model, loss_func, optimizer, graphs, labels):
     train_loss = 0
-    
     model.train()
 
     for graph, label in zip(graphs, labels):
+        torch.cuda.empty_cache()
+        
         node_features = graph[0]
         adj_mat = graph[1]
         label_pred = model(node_features, adj_mat)
 
-        print(f"Label: {label.item()}, Prediction: {label_pred.item()}")
+        print(f"Train -> Label: {label.item()}, Prediction: {label_pred.item()}")
 
         loss = loss_func(label_pred, label)
         train_loss += loss.item()
@@ -47,6 +57,8 @@ def train_step(model, loss_func, optimizer, graphs, labels):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        
+        del loss, label_pred
 
     train_loss = train_loss / len(graphs)
     return train_loss
@@ -62,6 +74,8 @@ def test_step(model, loss_func, graphs, labels):
             adj_mat = graph[1]
 
             label_pred = model(node_features, adj_mat)
+
+            print(f"Test -> Label: {label.item()}, Prediction: {label_pred.item()}")
 
             loss = loss_func(label_pred, label)
             test_loss += loss.item()
@@ -82,22 +96,27 @@ def save_model(model, target_dir, model_name):
     print(f"[INFO] Saving model to: {model_save_path}")
     torch.save(obj=model.state_dict(), f=model_save_path)
 
-def train_model(model, loss_func, optimizer, graphs, labels, epochs):
+def train_model(model, loss_func, optimizer, graphs, labels, epochs, batch_size=6):
     datasets = list(zip(graphs, labels))
-    train_dataset, test_dataset = model_selection.train_test_split(datasets, train_size=29/34, shuffle=True)
-    train_graphs, train_labels = zip(*train_dataset)
-    test_graphs, test_labels = zip(*test_dataset)
+
     train_losses = []
     test_losses = []
 
-    for epoch in range(epochs):
-        train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
-        test_loss = test_step(model, loss_func, test_graphs, test_labels)
+    batches = [datasets[0:6], datasets[6:12], datasets[12:18]]
 
-        print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}, Test loss: {test_loss}")
+    for batch in batches:
+        train_dataset, test_dataset = model_selection.train_test_split(batch, train_size=5/6, shuffle=True)
+        test_graphs, test_labels = zip(*test_dataset)
+        train_graphs, train_labels = zip(*train_dataset)
 
-        train_losses.append(train_loss)
-        test_losses.append(test_loss)
+        for epoch in range(epochs):
+            train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
+            test_loss = test_step(model, loss_func, test_graphs, test_labels)
+
+            print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}, Test loss: {test_loss}")
+
+            train_losses.append(train_loss)
+            test_losses.append(test_loss)
     
     return train_losses, test_losses
 
@@ -118,6 +137,8 @@ def main(args):
     for graph_file in graph_files:
         graph_file_path = os.fsdecode(os.path.join(graphs_dir, graph_file))
         node_features, adj_mat = build_dfg_lut(graph_file_path)
+        node_features = node_features.to(device)
+        adj_mat = adj_mat.to(device)
         features.append(node_features)
         adj_mats.append(adj_mat)
 
@@ -127,11 +148,13 @@ def main(args):
         graph_labels_lut = [[float(label)] for label in f.readlines()]
 
     graph_labels_lut = torch.FloatTensor(graph_labels_lut)
+    graph_labels_lut = graph_labels_lut.to(device)
 
-    model = GAT(20, 1)
+    model = GAT(7, 1)
 
-    loss_func = MSLELoss
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-2, betas=(0.9, 0.99999))
+    loss_func = RMSELoss
+
+    optimizer = torch.optim.Adam(model.parameters(), lr=2e-4, betas=(0.8, 0.99999))
 
     train_losses, test_losses = train_model(model, loss_func, optimizer, graphs, graph_labels_lut, epochs)
 

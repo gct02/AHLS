@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/C-Slow/syr2k/syr2k.cpp"
+# 1 "benchmarks/jianyicheng/syr2k/src/syr2k.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,20 +155,20 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/C-Slow/syr2k/syr2k.cpp" 2
+# 1 "benchmarks/jianyicheng/syr2k/src/syr2k.cpp" 2
 
 
 
 
-# 1 "HLS-benchmarks/C-Slow/syr2k/syr2k.h" 1
+# 1 "benchmarks/jianyicheng/syr2k/src/syr2k.h" 1
 typedef float in_float_t;
 typedef float out_float_t;
 typedef float inout_float_t;
 
 
 
-__attribute__((sdx_kernel("syr2k", 0))) void syr2k(in_float_t A[1024], in_float_t B[1024], inout_float_t C[1024]);
-# 6 "HLS-benchmarks/C-Slow/syr2k/syr2k.cpp" 2
+void syr2k(in_float_t A[1024], in_float_t B[1024], inout_float_t C[1024]);
+# 6 "benchmarks/jianyicheng/syr2k/src/syr2k.cpp" 2
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 1 3
 # 36 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 3
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cstdlib" 1 3
@@ -1969,13 +1969,9 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 7 "HLS-benchmarks/C-Slow/syr2k/syr2k.cpp" 2
+# 7 "benchmarks/jianyicheng/syr2k/src/syr2k.cpp" 2
 
-__attribute__((sdx_kernel("syr2k", 0))) void syr2k(in_float_t A[1024], in_float_t B[1024], inout_float_t C[1024]) {
-#line 16 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=syr2k
-# 8 "HLS-benchmarks/C-Slow/syr2k/syr2k.cpp"
-
+void syr2k(in_float_t A[1024], in_float_t B[1024], inout_float_t C[1024]) {
   float alpha = 0.73f, beta = 1.96f;
   int ii = 0;
   VITIS_LOOP_11_1: for (int i = 0; i < 32; i++) {
@@ -1993,7 +1989,11 @@ __attribute__((sdx_kernel("syr2k", 0))) void syr2k(in_float_t A[1024], in_float_
   }
 }
 
-int main() {
+__attribute__((sdx_kernel("main", 0))) int main() {
+#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_syr2k.tcl"
+#pragma HLSDIRECTIVE TOP name=main
+# 26 "benchmarks/jianyicheng/syr2k/src/syr2k.cpp"
+
   inout_float_t C[1024];
   in_float_t A[1024], B[1024];
   float A_[1024], B_[1024], C_[1024];

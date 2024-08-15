@@ -1,12 +1,39 @@
 {
   "0": {
+    "basicblocks": 7,
+    "calls": "1 1 1 1 1 1 1 1 2",
+    "file": "substring.cpp",
+    "fileloc": 182,
+    "instructions": 99,
+    "name": "main",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 650
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "substring.cpp",
+    "fileloc": 16,
+    "instructions": 27,
+    "loads": {
+      "G": 6
+    },
+    "name": "_rand",
+    "stores": {
+      "G": 2
+    },
+    "total_instructions": 27
+  },
+  "2": {
     "basicblocks": 142,
     "calls": "",
     "file": "substring.cpp",
-    "fileloc": 14,
+    "fileloc": 25,
     "instructions": 335,
     "loads": {
-      "T": 15
+      "L": 15
     },
     "name": "substring",
     "total_instructions": 335

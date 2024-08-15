@@ -1,18 +1,35 @@
 --- !Passed
 Pass:            reflow-inliner
 Name:            Inline
-DebugLoc:        { File: HLS-benchmarks/DSS/sparseMatrixPower/src/smm.cpp, 
+DebugLoc:        { File: benchmarks/jianyicheng/sparseMatrixPower/src/smm.cpp, 
                    Line: 12, Column: 0 }
 Function:        _Z3smmPiS_S_
 Args:            
   - String:          'Inlining function '''
   - Callee:          'g(int*, int, int*)'
-    DebugLoc:        { File: HLS-benchmarks/DSS/sparseMatrixPower/src/g.cpp, 
+    DebugLoc:        { File: benchmarks/jianyicheng/sparseMatrixPower/src/g.cpp, 
                        Line: 12, Column: 0 }
   - String:          ''' into '''
   - Caller:          'smm(int*, int*, int*)'
-    DebugLoc:        { File: HLS-benchmarks/DSS/sparseMatrixPower/src/smm.cpp, 
+    DebugLoc:        { File: benchmarks/jianyicheng/sparseMatrixPower/src/smm.cpp, 
                        Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/sparseMatrixPower/src/smm_tb.cpp, 
+                   Line: 13, Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'smm(int*, int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/sparseMatrixPower/src/smm.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/sparseMatrixPower/src/smm_tb.cpp, 
+                       Line: 13, Column: 0 }
   - String:          ''''
 ...
 --- !HLSReportInfo
@@ -20,8 +37,91 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_15_1
+  - LoopName:        VITIS_LOOP_17_1
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/DSS/sparseMatrixPower/src/g.cpp:15:20'
+  - LoopLoc:         'benchmarks/jianyicheng/sparseMatrixPower/src/smm_tb.cpp:17:20'
   - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_14_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/sparseMatrixPower/src/g.cpp:14:20'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_32_4
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/sparseMatrixPower/src/smm_tb.cpp:32:24'
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-auto-array-partition
+Name:            AutoParallelPerformanceDrivenVerbosePassed
+DebugLoc:        { File: benchmarks/jianyicheng/sparseMatrixPower/src/smm_tb.cpp, 
+                   Line: 14, Column: 7 }
+Function:        main
+Args:            
+  - PragmaType:      array_partition
+  - String:          ' '
+  - PragmaOptions:   'dim=1 type=cyclic factor=3 variable=data'
+  - String:          ' '
+  - PragmaIsAuto:    '1'
+  - String:          ' '
+  - PragmaFunction:  main
+  - String:          ' '
+  - varLoc:          'benchmarks/jianyicheng/sparseMatrixPower/src/smm_tb.cpp:14:7'
+  - String:          ' '
+  - VarName:         data
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-auto-array-partition
+Name:            AutoArrayXform
+DebugLoc:        { File: benchmarks/jianyicheng/sparseMatrixPower/src/smm_tb.cpp, 
+                   Line: 14, Column: 7 }
+Function:        main
+Args:            
+  - String:          'Inferring pragma '''
+  - PragmaType:      array_partition
+  - String:          ' type='
+  - Mode:            cyclic
+  - String:          ' factor='
+  - Factor:          '3'
+  - String:          ' dim='
+  - Dim:             '1'
+  - String:          ''' for array '''
+  - Name:            data
+  - String:          ''''
+  - String:          ' due to '
+  - String:          pipeline
+  - String:          ' pragma'
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: benchmarks/jianyicheng/sparseMatrixPower/src/smm_tb.cpp, 
+                   Line: 14, Column: 7 }
+Function:        main
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          data
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Cyclic
+  - String:          ' partitioning'
+  - String:          ' with factor '
+  - Factor:          '3'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
 ...

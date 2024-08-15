@@ -1,19 +1,63 @@
 --- !Passed
 Pass:            reflow-inliner
 Name:            Inline
-DebugLoc:        { File: HLS-benchmarks/PNAnalyser/vecTrans2/src/vecTrans2.cpp, 
+DebugLoc:        { File: benchmarks/jianyicheng/vecTrans2/src/vecTrans2.cpp, 
                    Line: 3, Column: 0 }
 Function:        _Z9vecTrans2PiS_
 Args:            
   - String:          'Inlining function '''
   - Callee:          'g(int)'
-    DebugLoc:        { File: HLS-benchmarks/PNAnalyser/vecTrans2/src/g.cpp, 
+    DebugLoc:        { File: benchmarks/jianyicheng/vecTrans2/src/g.cpp, 
                        Line: 3, Column: 0 }
   - String:          ''' into '''
   - Caller:          'vecTrans2(int*, int*)'
-    DebugLoc:        { File: HLS-benchmarks/PNAnalyser/vecTrans2/src/vecTrans2.cpp, 
+    DebugLoc:        { File: benchmarks/jianyicheng/vecTrans2/src/vecTrans2.cpp, 
                        Line: 3, Column: 0 }
   - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/vecTrans2/src/vecTrans2_tb.cpp, 
+                   Line: 15, Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          '_rand()'
+    DebugLoc:        { File: benchmarks/jianyicheng/vecTrans2/src/vecTrans2_tb.cpp, 
+                       Line: 9, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/vecTrans2/src/vecTrans2_tb.cpp, 
+                       Line: 15, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/vecTrans2/src/vecTrans2_tb.cpp, 
+                   Line: 15, Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'vecTrans2(int*, int*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/vecTrans2/src/vecTrans2.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/vecTrans2/src/vecTrans2_tb.cpp, 
+                       Line: 15, Column: 0 }
+  - String:          ''''
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_18_1
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/vecTrans2/src/vecTrans2_tb.cpp:18:24'
+  - String:          ' '
 ...
 --- !HLSReportInfo
 Pass:            auto-loop-pipeline
@@ -22,6 +66,6 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        VITIS_LOOP_4_1
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/PNAnalyser/vecTrans2/src/vecTrans2.cpp:4:19'
+  - LoopLoc:         'benchmarks/jianyicheng/vecTrans2/src/vecTrans2.cpp:4:19'
   - String:          ' '
 ...

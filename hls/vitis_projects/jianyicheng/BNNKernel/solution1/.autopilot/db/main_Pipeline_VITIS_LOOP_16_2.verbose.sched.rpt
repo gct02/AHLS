@@ -1,0 +1,181 @@
+
+
+================================================================
+== Vitis HLS Report for 'main_Pipeline_VITIS_LOOP_16_2'
+================================================================
+* Date:           Mon Aug 12 18:49:38 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        BNNKernel
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  5.046 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      105|      105|  0.530 us|  0.530 us|  105|  105|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_16_2  |      103|      103|         5|          1|          1|   100|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 5
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 5
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 5, States = { 1 2 3 4 5 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 5.04>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%j = alloca i32 1" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:13->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 8 'alloca' 'j' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%phi_mul1_read = read i14 @_ssdm_op_Read.ap_auto.i14, i14 %phi_mul1"   --->   Operation 9 'read' 'phi_mul1_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (1.58ns)   --->   "%store_ln13 = store i7 0, i7 %j" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:13->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 10 'store' 'store_ln13' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc.i8"   --->   Operation 11 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%j_1 = load i7 %j" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:16->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 12 'load' 'j_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (1.87ns)   --->   "%icmp_ln16 = icmp_eq  i7 %j_1, i7 100" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:16->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 13 'icmp' 'icmp_ln16' <Predicate = true> <Delay = 1.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 14 [1/1] (1.87ns)   --->   "%add_ln16 = add i7 %j_1, i7 1" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:16->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 14 'add' 'add_ln16' <Predicate = true> <Delay = 1.87> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.87> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%br_ln16 = br i1 %icmp_ln16, void %for.inc.i8.split, void %for.end.i.exitStub" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:16->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 15 'br' 'br_ln16' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%zext_ln16 = zext i7 %j_1" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:16->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 16 'zext' 'zext_ln16' <Predicate = (!icmp_ln16)> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (1.81ns)   --->   "%add_ln17 = add i14 %zext_ln16, i14 %phi_mul1_read" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:17->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 17 'add' 'add_ln17' <Predicate = (!icmp_ln16)> <Delay = 1.81> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.81> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 18 [1/1] (1.58ns)   --->   "%store_ln13 = store i7 %add_ln16, i7 %j" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:13->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 18 'store' 'store_ln13' <Predicate = (!icmp_ln16)> <Delay = 1.58>
+
+State 2 <SV = 1> <Delay = 3.25>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%zext_ln18 = zext i14 %add_ln17" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:18->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 19 'zext' 'zext_ln18' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%in_addr = getelementptr i1 %in_r, i64 0, i64 %zext_ln18" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:18->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 20 'getelementptr' 'in_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 21 [2/2] (3.25ns)   --->   "%in_load = load i14 %in_addr" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:18->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 21 'load' 'in_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 10000> <RAM>
+ST_2 : Operation 22 [1/1] (0.00ns)   --->   "%w_addr = getelementptr i1 %w, i64 0, i64 %zext_ln18" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:18->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 22 'getelementptr' 'w_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 23 [2/2] (3.25ns)   --->   "%w_load = load i14 %w_addr" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:18->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 23 'load' 'w_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 10000> <RAM>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%gold_addr = getelementptr i32 %gold, i64 0, i64 %zext_ln18" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:19->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 24 'getelementptr' 'gold_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 25 [2/2] (3.25ns)   --->   "%gold_load = load i14 %gold_addr" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:19->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 25 'load' 'gold_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 10000> <RAM>
+
+State 3 <SV = 2> <Delay = 3.25>
+ST_3 : Operation 26 [1/2] (3.25ns)   --->   "%in_load = load i14 %in_addr" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:18->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 26 'load' 'in_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 10000> <RAM>
+ST_3 : Operation 27 [1/2] (3.25ns)   --->   "%w_load = load i14 %w_addr" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:18->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 27 'load' 'w_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 10000> <RAM>
+ST_3 : Operation 28 [1/2] (3.25ns)   --->   "%gold_load = load i14 %gold_addr" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:19->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 28 'load' 'gold_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 10000> <RAM>
+
+State 4 <SV = 3> <Delay = 2.55>
+ST_4 : Operation 29 [1/1] (0.00ns) (grouped into LUT with out node add_ln19)   --->   "%xor_ln19 = xor i1 %w_load, i1 %in_load" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:19->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 29 'xor' 'xor_ln19' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 30 [1/1] (0.00ns) (grouped into LUT with out node add_ln19)   --->   "%shl_ln1 = bitconcatenate i2 @_ssdm_op_BitConcatenate.i2.i1.i1, i1 %xor_ln19, i1 0" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:19->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 30 'bitconcatenate' 'shl_ln1' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 31 [1/1] (0.00ns) (grouped into LUT with out node add_ln19)   --->   "%zext_ln19 = zext i2 %shl_ln1" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:19->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 31 'zext' 'zext_ln19' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 32 [1/1] (2.55ns) (out node of the LUT)   --->   "%add_ln19 = add i32 %gold_load, i32 %zext_ln19" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:19->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 32 'add' 'add_ln19' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 38 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 38 'ret' 'ret_ln0' <Predicate = (icmp_ln16)> <Delay = 0.00>
+
+State 5 <SV = 4> <Delay = 3.25>
+ST_5 : Operation 33 [1/1] (0.00ns)   --->   "%specpipeline_ln13 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_0" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:13->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 33 'specpipeline' 'specpipeline_ln13' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 34 [1/1] (0.00ns)   --->   "%speclooptripcount_ln13 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 100, i64 100, i64 100" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:13->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 34 'speclooptripcount' 'speclooptripcount_ln13' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 35 [1/1] (0.00ns)   --->   "%specloopname_ln16 = specloopname void @_ssdm_op_SpecLoopName, void @empty_2" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:16->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 35 'specloopname' 'specloopname_ln16' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 36 [1/1] (3.25ns)   --->   "%store_ln19 = store i32 %add_ln19, i14 %gold_addr" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:19->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 36 'store' 'store_ln19' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 10000> <RAM>
+ST_5 : Operation 37 [1/1] (0.00ns)   --->   "%br_ln16 = br void %for.inc.i8" [benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:16->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29]   --->   Operation 37 'br' 'br_ln16' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 5.046ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln13', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:13->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29) of constant 0 on local variable 'j', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:13->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29 [7]  (1.588 ns)
+	'load' operation 7 bit ('j', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:16->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29) on local variable 'j', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:13->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29 [10]  (0.000 ns)
+	'add' operation 7 bit ('add_ln16', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:16->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29) [12]  (1.870 ns)
+	'store' operation 0 bit ('store_ln13', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:13->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29) of variable 'add_ln16', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:16->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29 on local variable 'j', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:13->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29 [32]  (1.588 ns)
+
+ <State 2>: 3.254ns
+The critical path consists of the following:
+	'getelementptr' operation 14 bit ('in_addr', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:18->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29) [21]  (0.000 ns)
+	'load' operation 1 bit ('in_load', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:18->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29) on array 'in_r' [22]  (3.254 ns)
+
+ <State 3>: 3.254ns
+The critical path consists of the following:
+	'load' operation 1 bit ('in_load', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:18->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29) on array 'in_r' [22]  (3.254 ns)
+
+ <State 4>: 2.552ns
+The critical path consists of the following:
+	'xor' operation 1 bit ('xor_ln19', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:19->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29) [27]  (0.000 ns)
+	'add' operation 32 bit ('add_ln19', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:19->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29) [30]  (2.552 ns)
+
+ <State 5>: 3.254ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln19', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:19->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29) of variable 'add_ln19', benchmarks/jianyicheng/BNNKernel/src/inlined.cpp:19->benchmarks/jianyicheng/BNNKernel/src/bnn_tb.cpp:29 on array 'gold' [31]  (3.254 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

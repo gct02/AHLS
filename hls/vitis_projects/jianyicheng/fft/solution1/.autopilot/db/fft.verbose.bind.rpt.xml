@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'fft'" level="0">
-<item name = "Date">Sun Jun 23 03:43:32 2024
+<item name = "Date">Mon Aug 12 18:53:48 2024
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">fft</item>
 <item name = "Solution">solution1 (Vivado IP Flow Target)</item>
-<item name = "Product family">virtexuplusHBM</item>
-<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00 ns, 3.579 ns, 1.35 ns</column>
+<column name="ap_clk">5.00 ns, 4.633 ns, 1.35 ns</column>
 </table>
 </item>
 </section>
@@ -24,33 +24,33 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">3848, 410248, 19.240 us, 2.051 ms, 3849, 410249, no</column>
+<column name="">6664, 721928, 33.320 us, 3.610 ms, 6664, 721928, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_fft_Pipeline_VITIS_LOOP_30_2_fu_208">fft_Pipeline_VITIS_LOOP_30_2, 27, 3202, 0.135 us, 16.010 us, 27, 3202, no</column>
-<column name="grp_fft_Pipeline_VITIS_LOOP_49_4_fu_223">fft_Pipeline_VITIS_LOOP_49_4, 27, 3202, 0.135 us, 16.010 us, 27, 3202, no</column>
-<column name="grp_fft_Pipeline_VITIS_LOOP_68_6_fu_238">fft_Pipeline_VITIS_LOOP_68_6, 27, 3202, 0.135 us, 16.010 us, 27, 3202, no</column>
-<column name="grp_fft_Pipeline_VITIS_LOOP_87_8_fu_253">fft_Pipeline_VITIS_LOOP_87_8, 27, 3202, 0.135 us, 16.010 us, 27, 3202, no</column>
-<column name="grp_fft_Pipeline_VITIS_LOOP_106_10_fu_268">fft_Pipeline_VITIS_LOOP_106_10, 27, 3202, 0.135 us, 16.010 us, 27, 3202, no</column>
-<column name="grp_fft_Pipeline_VITIS_LOOP_125_12_fu_283">fft_Pipeline_VITIS_LOOP_125_12, 27, 3202, 0.135 us, 16.010 us, 27, 3202, no</column>
-<column name="grp_fft_Pipeline_VITIS_LOOP_144_14_fu_298">fft_Pipeline_VITIS_LOOP_144_14, 27, 3202, 0.135 us, 16.010 us, 27, 3202, no</column>
-<column name="grp_fft_Pipeline_VITIS_LOOP_163_16_fu_313">fft_Pipeline_VITIS_LOOP_163_16, 27, 3202, 0.135 us, 16.010 us, 27, 3202, no</column>
+<column name="grp_fft_Pipeline_VITIS_LOOP_41_2_fu_192">fft_Pipeline_VITIS_LOOP_41_2, 47, 5635, 0.235 us, 28.175 us, 47, 5635, no</column>
+<column name="grp_fft_Pipeline_VITIS_LOOP_60_4_fu_207">fft_Pipeline_VITIS_LOOP_60_4, 47, 5635, 0.235 us, 28.175 us, 47, 5635, no</column>
+<column name="grp_fft_Pipeline_VITIS_LOOP_79_6_fu_222">fft_Pipeline_VITIS_LOOP_79_6, 47, 5635, 0.235 us, 28.175 us, 47, 5635, no</column>
+<column name="grp_fft_Pipeline_VITIS_LOOP_98_8_fu_237">fft_Pipeline_VITIS_LOOP_98_8, 47, 5635, 0.235 us, 28.175 us, 47, 5635, no</column>
+<column name="grp_fft_Pipeline_VITIS_LOOP_117_10_fu_252">fft_Pipeline_VITIS_LOOP_117_10, 47, 5635, 0.235 us, 28.175 us, 47, 5635, no</column>
+<column name="grp_fft_Pipeline_VITIS_LOOP_136_12_fu_267">fft_Pipeline_VITIS_LOOP_136_12, 47, 5635, 0.235 us, 28.175 us, 47, 5635, no</column>
+<column name="grp_fft_Pipeline_VITIS_LOOP_155_14_fu_282">fft_Pipeline_VITIS_LOOP_155_14, 47, 5635, 0.235 us, 28.175 us, 47, 5635, no</column>
+<column name="grp_fft_Pipeline_VITIS_LOOP_174_16_fu_297">fft_Pipeline_VITIS_LOOP_174_16, 47, 5635, 0.235 us, 28.175 us, 47, 5635, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- loop_0_VITIS_LOOP_28_1">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_1_VITIS_LOOP_47_3">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_2_VITIS_LOOP_66_5">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_3_VITIS_LOOP_85_7">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_4_VITIS_LOOP_104_9">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_5_VITIS_LOOP_123_11">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_6_VITIS_LOOP_142_13">480, 51280, 30 ~ 3205, -, -, 16, no</column>
-<column name="- loop_7_VITIS_LOOP_161_15">480, 51280, 30 ~ 3205, -, -, 16, no</column>
+<column name="- loop_0_VITIS_LOOP_39_1">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_1_VITIS_LOOP_58_3">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_2_VITIS_LOOP_77_5">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_3_VITIS_LOOP_96_7">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_4_VITIS_LOOP_115_9">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_5_VITIS_LOOP_134_11">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_6_VITIS_LOOP_153_13">832, 90240, 52 ~ 5640, -, -, 16, no</column>
+<column name="- loop_7_VITIS_LOOP_172_15">832, 90240, 52 ~ 5640, -, -, 16, no</column>
 </table>
 </item>
 </section>

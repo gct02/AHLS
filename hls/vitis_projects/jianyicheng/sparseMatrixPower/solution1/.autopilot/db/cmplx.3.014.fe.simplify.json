@@ -1,17 +1,18 @@
 {
   "0": {
-    "basicblocks": 6,
+    "basicblocks": 21,
     "calls": "",
-    "file": "smm.cpp",
-    "fileloc": 12,
-    "instructions": 29,
+    "file": "smm_tb.cpp",
+    "fileloc": 13,
+    "instructions": 134,
     "loads": {
-      "T": 4
+      "G": 2,
+      "L": 12
     },
-    "name": "smm",
+    "name": "main",
     "stores": {
-      "T": 1
+      "L": 11
     },
-    "total_instructions": 29
+    "total_instructions": 134
   }
 }

@@ -2,6 +2,13 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+torch.set_default_device(device)
+torch.set_default_dtype(torch.float32)
+
+torch.cuda.set_per_process_memory_fraction(0.8, 0)
+torch.cuda.empty_cache()
+
 class GraphAttentionalLayer(nn.Module):
     def __init__(self, in_features:int, out_features:int, n_heads:int, concat:bool=False, leaky_relu_slope:float=0.01, dropout:float=None):
         super(GraphAttentionalLayer, self).__init__()
@@ -23,6 +30,8 @@ class GraphAttentionalLayer(nn.Module):
         self.leaky_relu = nn.LeakyReLU(self.leaky_relu_slope)
 
         self.reset_parameters()
+
+        self.to(device)
 
     def reset_parameters(self):
         nn.init.xavier_normal_(self.W, gain=1.414)

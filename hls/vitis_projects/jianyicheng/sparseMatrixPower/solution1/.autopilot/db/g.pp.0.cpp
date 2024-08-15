@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/DSS/sparseMatrixPower/src/g.cpp"
+# 1 "benchmarks/jianyicheng/sparseMatrixPower/src/g.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,18 +155,17 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/DSS/sparseMatrixPower/src/g.cpp" 2
-# 10 "HLS-benchmarks/DSS/sparseMatrixPower/src/g.cpp"
-# 1 "HLS-benchmarks/DSS/sparseMatrixPower/src/smm.h" 1
-# 10 "HLS-benchmarks/DSS/sparseMatrixPower/src/smm.h"
+# 1 "benchmarks/jianyicheng/sparseMatrixPower/src/g.cpp" 2
+# 10 "benchmarks/jianyicheng/sparseMatrixPower/src/g.cpp"
+# 1 "benchmarks/jianyicheng/sparseMatrixPower/src/smm.h" 1
+# 10 "benchmarks/jianyicheng/sparseMatrixPower/src/smm.h"
 void smm(int data[200], int all_zero[100], int w[10000]);
 void g(int data[200], int j, int w[10000]);
-# 11 "HLS-benchmarks/DSS/sparseMatrixPower/src/g.cpp" 2
+# 11 "benchmarks/jianyicheng/sparseMatrixPower/src/g.cpp" 2
 
 void g(int data[200], int j, int w[10000]){
-#pragma SS II=1
- int i;
-  VITIS_LOOP_15_1: for (i=0; i<100; i++){
+  int i;
+  VITIS_LOOP_14_1: for (i=0; i<100; i++){
     data[i+100] += w[i*100+j]*data[i];
   }
 }

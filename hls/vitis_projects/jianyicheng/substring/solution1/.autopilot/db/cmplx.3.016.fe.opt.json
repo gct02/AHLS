@@ -1,14 +1,26 @@
 {
   "0": {
-    "basicblocks": 70,
+    "basicblocks": 4,
+    "calls": "1 1 1 1 1 1 1 1",
+    "file": "substring.cpp",
+    "fileloc": 182,
+    "instructions": 19,
+    "name": "main",
+    "total_instructions": 139
+  },
+  "1": {
+    "basicblocks": 1,
     "calls": "",
     "file": "substring.cpp",
-    "fileloc": 14,
-    "instructions": 305,
+    "fileloc": 16,
+    "instructions": 15,
     "loads": {
-      "T": 15
+      "G": 1
     },
-    "name": "substring",
-    "total_instructions": 305
+    "name": "_rand",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 15
   }
 }

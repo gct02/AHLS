@@ -1,18 +1,35 @@
 --- !Passed
 Pass:            reflow-inliner
 Name:            Inline
-DebugLoc:        { File: HLS-benchmarks/DSS/gSum/src/gSum.cpp, Line: 12, 
+DebugLoc:        { File: benchmarks/jianyicheng/gSum/src/gSum.cpp, Line: 12, 
                    Column: 0 }
 Function:        _Z4gSumPdS_
 Args:            
   - String:          'Inlining function '''
   - Callee:          'g(double)'
-    DebugLoc:        { File: HLS-benchmarks/DSS/gSum/src/g.cpp, Line: 12, 
+    DebugLoc:        { File: benchmarks/jianyicheng/gSum/src/g.cpp, Line: 12, 
                        Column: 0 }
   - String:          ''' into '''
   - Caller:          'gSum(double*, double*)'
-    DebugLoc:        { File: HLS-benchmarks/DSS/gSum/src/gSum.cpp, Line: 12, 
-                       Column: 0 }
+    DebugLoc:        { File: benchmarks/jianyicheng/gSum/src/gSum.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/gSum/src/gSum_tb.cpp, Line: 14, 
+                   Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'gSum(double*, double*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/gSum/src/gSum.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/gSum/src/gSum_tb.cpp, 
+                       Line: 14, Column: 0 }
   - String:          ''''
 ...
 --- !HLSReportInfo
@@ -22,6 +39,6 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        VITIS_LOOP_16_1
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/DSS/gSum/src/gSum.cpp:16:22'
+  - LoopLoc:         'benchmarks/jianyicheng/gSum/src/gSum.cpp:16:22'
   - String:          ' '
 ...

@@ -1,15 +1,7 @@
 set SynModuleInfo {
-  {SRCNAME matrixtrans_Pipeline_loop_0 MODELNAME matrixtrans_Pipeline_loop_0 RTLNAME matrixtrans_matrixtrans_Pipeline_loop_0
+  {SRCNAME main MODELNAME main RTLNAME main IS_TOP 1
     SUBMODULES {
-      {MODELNAME matrixtrans_flow_control_loop_pipe_sequential_init RTLNAME matrixtrans_flow_control_loop_pipe_sequential_init BINDTYPE interface TYPE internal_upc_flow_control INSTNAME matrixtrans_flow_control_loop_pipe_sequential_init_U}
+      {MODELNAME main_flow_control_loop_pipe RTLNAME main_flow_control_loop_pipe BINDTYPE interface TYPE internal_upc_flow_control INSTNAME main_flow_control_loop_pipe_U}
     }
   }
-  {SRCNAME matrixtrans_Pipeline_loop_1 MODELNAME matrixtrans_Pipeline_loop_1 RTLNAME matrixtrans_matrixtrans_Pipeline_loop_1}
-  {SRCNAME matrixtrans_Pipeline_loop_2 MODELNAME matrixtrans_Pipeline_loop_2 RTLNAME matrixtrans_matrixtrans_Pipeline_loop_2}
-  {SRCNAME matrixtrans_Pipeline_loop_3 MODELNAME matrixtrans_Pipeline_loop_3 RTLNAME matrixtrans_matrixtrans_Pipeline_loop_3}
-  {SRCNAME matrixtrans_Pipeline_loop_4 MODELNAME matrixtrans_Pipeline_loop_4 RTLNAME matrixtrans_matrixtrans_Pipeline_loop_4}
-  {SRCNAME matrixtrans_Pipeline_loop_5 MODELNAME matrixtrans_Pipeline_loop_5 RTLNAME matrixtrans_matrixtrans_Pipeline_loop_5}
-  {SRCNAME matrixtrans_Pipeline_loop_6 MODELNAME matrixtrans_Pipeline_loop_6 RTLNAME matrixtrans_matrixtrans_Pipeline_loop_6}
-  {SRCNAME matrixtrans_Pipeline_loop_7 MODELNAME matrixtrans_Pipeline_loop_7 RTLNAME matrixtrans_matrixtrans_Pipeline_loop_7}
-  {SRCNAME matrixtrans MODELNAME matrixtrans RTLNAME matrixtrans IS_TOP 1}
 }

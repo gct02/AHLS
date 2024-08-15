@@ -1,0 +1,445 @@
+
+
+================================================================
+== Vitis HLS Report for 'main'
+================================================================
+* Date:           Mon Aug 12 18:56:34 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        matrixtrans
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  4.988 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
+    +---------+---------+-----------+-----------+------+------+---------+
+    |     8194|     8194|  40.970 us|  40.970 us|  8195|  8195|       no|
+    +---------+---------+-----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_72_1  |     8192|     8192|         1|          1|          1|  8192|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 1
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 1
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 1, States = { 1 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 4.98>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72]   --->   Operation 4 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 0"   --->   Operation 5 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%spectopmodule_ln66 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:66]   --->   Operation 6 'spectopmodule' 'spectopmodule_ln66' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (1.58ns)   --->   "%store_ln72 = store i14 0, i14 %i" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72]   --->   Operation 7 'store' 'store_ln72' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%br_ln72 = br void %for.body.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72]   --->   Operation 8 'br' 'br_ln72' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%i_1 = load i14 %i" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72]   --->   Operation 9 'load' 'i_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (1.81ns)   --->   "%icmp_ln72 = icmp_eq  i14 %i_1, i14 8192" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72]   --->   Operation 10 'icmp' 'icmp_ln72' <Predicate = true> <Delay = 1.81> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.81> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 11 [1/1] (1.81ns)   --->   "%add_ln72 = add i14 %i_1, i14 1" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72]   --->   Operation 11 'add' 'add_ln72' <Predicate = true> <Delay = 1.81> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.81> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%br_ln72 = br i1 %icmp_ln72, void %for.body.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.split, void %for.end" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72]   --->   Operation 12 'br' 'br_ln72' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%specpipeline_ln72 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_0" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72]   --->   Operation 13 'specpipeline' 'specpipeline_ln72' <Predicate = (!icmp_ln72)> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%speclooptripcount_ln72 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 8192, i64 8192, i64 8192" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72]   --->   Operation 14 'speclooptripcount' 'speclooptripcount_ln72' <Predicate = (!icmp_ln72)> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%specloopname_ln72 = specloopname void @_ssdm_op_SpecLoopName, void @empty_1" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72]   --->   Operation 15 'specloopname' 'specloopname_ln72' <Predicate = (!icmp_ln72)> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (1.58ns)   --->   "%store_ln72 = store i14 %add_ln72, i14 %i" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72]   --->   Operation 16 'store' 'store_ln72' <Predicate = (!icmp_ln72)> <Delay = 1.58>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%br_ln72 = br void %for.body.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72->benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:72]   --->   Operation 17 'br' 'br_ln72' <Predicate = (!icmp_ln72)> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%ret_ln87 = ret i32 0" [benchmarks/jianyicheng/matrixtrans/src/matrixtrans.cpp:87]   --->   Operation 18 'ret' 'ret_ln87' <Predicate = (icmp_ln72)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 1
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+i                      (alloca           ) [ 01]
+specbitsmap_ln0        (specbitsmap      ) [ 00]
+spectopmodule_ln66     (spectopmodule    ) [ 00]
+store_ln72             (store            ) [ 00]
+br_ln72                (br               ) [ 00]
+i_1                    (load             ) [ 00]
+icmp_ln72              (icmp             ) [ 01]
+add_ln72               (add              ) [ 00]
+br_ln72                (br               ) [ 00]
+specpipeline_ln72      (specpipeline     ) [ 00]
+speclooptripcount_ln72 (speclooptripcount) [ 00]
+specloopname_ln72      (specloopname     ) [ 00]
+store_ln72             (store            ) [ 00]
+br_ln72                (br               ) [ 00]
+ret_ln87               (ret              ) [ 00]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1001" name="const_0">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1001" name="const_2">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecBitsMap"/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1001" name="const_4">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1001" name="const_6">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecTopModule"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1001" name="const_8">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1001" name="const_10">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1001" name="const_12">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1001" name="const_14">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1001" name="const_16">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecPipeline"/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1001" name="const_18">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1001" name="const_20">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_0"/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1001" name="const_22">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecLoopTripCount"/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1001" name="const_24">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1001" name="const_26">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecLoopName"/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1001" name="const_28">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1004" name="i_fu_30">
+<pin_list>
+<pin id="31" dir="0" index="0" bw="1" slack="0"/>
+<pin id="32" dir="1" index="1" bw="14" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="i/1 "/>
+</bind>
+</comp>
+
+<comp id="34" class="1004" name="store_ln72_store_fu_34">
+<pin_list>
+<pin id="35" dir="0" index="0" bw="1" slack="0"/>
+<pin id="36" dir="0" index="1" bw="14" slack="0"/>
+<pin id="37" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln72/1 "/>
+</bind>
+</comp>
+
+<comp id="39" class="1004" name="i_1_load_fu_39">
+<pin_list>
+<pin id="40" dir="0" index="0" bw="14" slack="0"/>
+<pin id="41" dir="1" index="1" bw="14" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="i_1/1 "/>
+</bind>
+</comp>
+
+<comp id="42" class="1004" name="icmp_ln72_fu_42">
+<pin_list>
+<pin id="43" dir="0" index="0" bw="14" slack="0"/>
+<pin id="44" dir="0" index="1" bw="14" slack="0"/>
+<pin id="45" dir="1" index="2" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="icmp(45) " fcode="icmp"/>
+<opset="icmp_ln72/1 "/>
+</bind>
+</comp>
+
+<comp id="48" class="1004" name="add_ln72_fu_48">
+<pin_list>
+<pin id="49" dir="0" index="0" bw="14" slack="0"/>
+<pin id="50" dir="0" index="1" bw="1" slack="0"/>
+<pin id="51" dir="1" index="2" bw="14" slack="0"/>
+</pin_list>
+<bind>
+<opcode="add(8) " fcode="add"/>
+<opset="add_ln72/1 "/>
+</bind>
+</comp>
+
+<comp id="54" class="1004" name="store_ln72_store_fu_54">
+<pin_list>
+<pin id="55" dir="0" index="0" bw="14" slack="0"/>
+<pin id="56" dir="0" index="1" bw="14" slack="0"/>
+<pin id="57" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln72/1 "/>
+</bind>
+</comp>
+
+<comp id="59" class="1005" name="i_reg_59">
+<pin_list>
+<pin id="60" dir="0" index="0" bw="14" slack="0"/>
+<pin id="61" dir="1" index="1" bw="14" slack="0"/>
+</pin_list>
+<bind>
+<opset="i "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="33"><net_src comp="0" pin="0"/><net_sink comp="30" pin=0"/></net>
+
+<net id="38"><net_src comp="10" pin="0"/><net_sink comp="34" pin=0"/></net>
+
+<net id="46"><net_src comp="39" pin="1"/><net_sink comp="42" pin=0"/></net>
+
+<net id="47"><net_src comp="12" pin="0"/><net_sink comp="42" pin=1"/></net>
+
+<net id="52"><net_src comp="39" pin="1"/><net_sink comp="48" pin=0"/></net>
+
+<net id="53"><net_src comp="14" pin="0"/><net_sink comp="48" pin=1"/></net>
+
+<net id="58"><net_src comp="48" pin="2"/><net_sink comp="54" pin=0"/></net>
+
+<net id="62"><net_src comp="30" pin="1"/><net_sink comp="59" pin=0"/></net>
+
+<net id="63"><net_src comp="59" pin="1"/><net_sink comp="34" pin=1"/></net>
+
+<net id="64"><net_src comp="59" pin="1"/><net_sink comp="39" pin=0"/></net>
+
+<net id="65"><net_src comp="59" pin="1"/><net_sink comp="54" pin=1"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+		store_ln72 : 1
+		i_1 : 1
+		icmp_ln72 : 2
+		add_ln72 : 2
+		br_ln72 : 3
+		store_ln72 : 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|-----------------|---------|---------|
+| Operation| Functional Unit |    FF   |   LUT   |
+|----------|-----------------|---------|---------|
+|   icmp   | icmp_ln72_fu_42 |    0    |    17   |
+|----------|-----------------|---------|---------|
+|    add   |  add_ln72_fu_48 |    0    |    17   |
+|----------|-----------------|---------|---------|
+|   Total  |                 |    0    |    34   |
+|----------|-----------------|---------|---------|
+
+Memories:
+N/A
+
+* Register list:
++--------+--------+
+|        |   FF   |
++--------+--------+
+|i_reg_59|   14   |
++--------+--------+
+|  Total |   14   |
++--------+--------+
+
+* Multiplexer (MUX) list: 
+|--------|------|------|------|--------|
+|  Comp  |  Pin | Size |  BW  | S x BW |
+|--------|------|------|------|--------|
+|  Total |      |      |      |    0   |
+|--------|------|------|------|--------|
+
+
+
+* Summary:
++-----------+--------+--------+
+|           |   FF   |   LUT  |
++-----------+--------+--------+
+|  Function |    0   |   34   |
+|   Memory  |    -   |    -   |
+|Multiplexer|    -   |    -   |
+|  Register |   14   |    -   |
++-----------+--------+--------+
+|   Total   |   14   |   34   |
++-----------+--------+--------+

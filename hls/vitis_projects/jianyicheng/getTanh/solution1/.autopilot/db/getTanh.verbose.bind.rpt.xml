@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'getTanh'" level="0">
-<item name = "Date">Sun Jun 23 03:38:34 2024
+<item name = "Date">Mon Aug 12 18:54:12 2024
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">getTanh</item>
 <item name = "Solution">solution1 (Vivado IP Flow Target)</item>
-<item name = "Product family">virtexuplusHBM</item>
-<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00 ns, 3.353 ns, 1.35 ns</column>
+<column name="ap_clk">5.00 ns, 4.842 ns, 1.35 ns</column>
 </table>
 </item>
 </section>
@@ -24,18 +24,18 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">46011, 46011, 0.230 ms, 0.230 ms, 46012, 46012, no</column>
+<column name="">67007, 67007, 0.335 ms, 0.335 ms, 67007, 67007, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_getTanh_Pipeline_VITIS_LOOP_27_1_fu_160">getTanh_Pipeline_VITIS_LOOP_27_1, 46004, 46004, 0.230 ms, 0.230 ms, 46004, 46004, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- VITIS_LOOP_27_1">67005, 67005, 73, 67, 1, 1000, yes</column>
 </table>
 </item>
 </section>

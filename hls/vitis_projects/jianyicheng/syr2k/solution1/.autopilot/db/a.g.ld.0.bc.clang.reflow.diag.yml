@@ -1,3 +1,40 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: benchmarks/jianyicheng/syr2k/src/syr2k.cpp, Line: 26, 
+                   Column: 0 }
+Function:        main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'syr2k(float*, float*, float*)'
+    DebugLoc:        { File: benchmarks/jianyicheng/syr2k/src/syr2k.cpp, 
+                       Line: 8, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          main
+    DebugLoc:        { File: benchmarks/jianyicheng/syr2k/src/syr2k.cpp, 
+                       Line: 26, Column: 0 }
+  - String:          ''''
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_32_2
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/syr2k/src/syr2k.cpp:32:22'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_47_4
+  - String:          '> at '
+  - LoopLoc:         'benchmarks/jianyicheng/syr2k/src/syr2k.cpp:47:24'
+  - String:          ' '
+...
 --- !HLSReportInfo
 Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
@@ -5,34 +42,6 @@ Args:
   - String:          'automatically set the pipeline for Loop< '
   - LoopName:        VITIS_LOOP_13_2
   - String:          '> at '
-  - LoopLoc:         'HLS-benchmarks/C-Slow/syr2k/syr2k.cpp:13:22'
+  - LoopLoc:         'benchmarks/jianyicheng/syr2k/src/syr2k.cpp:13:22'
   - String:          ' '
-...
---- !Passed
-Pass:            reflow-infer-unroll
-Name:            ImplicitUnroll
-DebugLoc:        { File: HLS-benchmarks/C-Slow/syr2k/syr2k.cpp, Line: 17, 
-                   Column: 7 }
-Function:        _Z5syr2kPfS_S_
-Args:            
-  - String:          'Loop '''
-  - LoopName:        loop_2
-  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: HLS-benchmarks/C-Slow/syr2k/syr2k.cpp, Line: 8, 
-                   Column: 0 }
-Function:        _Z5syr2kPfS_S_
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        loop_2
-  - String:          ''' ('
-  - LoopLoc:         'HLS-benchmarks/C-Slow/syr2k/syr2k.cpp:17:7'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          syr2k
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
 ...

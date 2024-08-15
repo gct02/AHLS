@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'histogram'" level="0">
-<item name = "Date">Sun Jun 23 03:44:06 2024
+<item name = "Date">Mon Aug 12 18:55:10 2024
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">histogram2</item>
 <item name = "Solution">solution1 (Vivado IP Flow Target)</item>
-<item name = "Product family">virtexuplusHBM</item>
-<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00 ns, 3.509 ns, 1.35 ns</column>
+<column name="ap_clk">5.00 ns, 4.856 ns, 1.35 ns</column>
 </table>
 </item>
 </section>
@@ -24,22 +24,22 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">8205, 8205, 41.025 us, 41.025 us, 8206, 8206, no</column>
+<column name="">16401, 16401, 82.005 us, 82.005 us, 16401, 16401, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_histogram_Pipeline_loop_0_fu_68">histogram_Pipeline_loop_0, 8194, 8194, 40.970 us, 40.970 us, 8194, 8194, no</column>
-<column name="grp_histogram_Pipeline_loop_1_fu_76">histogram_Pipeline_loop_1, 8194, 8194, 40.970 us, 40.970 us, 8194, 8194, no</column>
-<column name="grp_histogram_Pipeline_loop_2_fu_84">histogram_Pipeline_loop_2, 8194, 8194, 40.970 us, 40.970 us, 8194, 8194, no</column>
-<column name="grp_histogram_Pipeline_loop_3_fu_92">histogram_Pipeline_loop_3, 8194, 8194, 40.970 us, 40.970 us, 8194, 8194, no</column>
-<column name="grp_histogram_Pipeline_loop_4_fu_100">histogram_Pipeline_loop_4, 8194, 8194, 40.970 us, 40.970 us, 8194, 8194, no</column>
-<column name="grp_histogram_Pipeline_loop_5_fu_108">histogram_Pipeline_loop_5, 8194, 8194, 40.970 us, 40.970 us, 8194, 8194, no</column>
-<column name="grp_histogram_Pipeline_loop_6_fu_116">histogram_Pipeline_loop_6, 8194, 8194, 40.970 us, 40.970 us, 8194, 8194, no</column>
-<column name="grp_histogram_Pipeline_loop_7_fu_124">histogram_Pipeline_loop_7, 8194, 8194, 40.970 us, 40.970 us, 8194, 8194, no</column>
-<column name="grp_histogram_Pipeline_loop_8_fu_132">histogram_Pipeline_loop_8, 8, 8, 40.000 ns, 40.000 ns, 8, 8, no</column>
+<column name="grp_histogram_Pipeline_loop_0_fu_52">histogram_Pipeline_loop_0, 16387, 16387, 81.935 us, 81.935 us, 16387, 16387, no</column>
+<column name="grp_histogram_Pipeline_loop_1_fu_60">histogram_Pipeline_loop_1, 16387, 16387, 81.935 us, 81.935 us, 16387, 16387, no</column>
+<column name="grp_histogram_Pipeline_loop_2_fu_68">histogram_Pipeline_loop_2, 16387, 16387, 81.935 us, 81.935 us, 16387, 16387, no</column>
+<column name="grp_histogram_Pipeline_loop_3_fu_76">histogram_Pipeline_loop_3, 16387, 16387, 81.935 us, 81.935 us, 16387, 16387, no</column>
+<column name="grp_histogram_Pipeline_loop_4_fu_84">histogram_Pipeline_loop_4, 16387, 16387, 81.935 us, 81.935 us, 16387, 16387, no</column>
+<column name="grp_histogram_Pipeline_loop_5_fu_92">histogram_Pipeline_loop_5, 16387, 16387, 81.935 us, 81.935 us, 16387, 16387, no</column>
+<column name="grp_histogram_Pipeline_loop_6_fu_100">histogram_Pipeline_loop_6, 16387, 16387, 81.935 us, 81.935 us, 16387, 16387, no</column>
+<column name="grp_histogram_Pipeline_loop_7_fu_108">histogram_Pipeline_loop_7, 16387, 16387, 81.935 us, 81.935 us, 16387, 16387, no</column>
+<column name="grp_histogram_Pipeline_loop_8_fu_116">histogram_Pipeline_loop_8, 11, 11, 55.000 ns, 55.000 ns, 11, 11, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

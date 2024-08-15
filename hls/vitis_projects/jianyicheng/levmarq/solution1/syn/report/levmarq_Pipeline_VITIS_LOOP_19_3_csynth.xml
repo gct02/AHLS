@@ -6,8 +6,8 @@
 
 <UserAssignments>
 <unit>ns</unit>
-<ProductFamily>virtexuplusHBM</ProductFamily>
-<Part>xcvu35p-fsvh2104-1-e</Part>
+<ProductFamily>zynq</ProductFamily>
+<Part>xc7z020-clg400-1</Part>
 <TopModelName>levmarq_Pipeline_VITIS_LOOP_19_3</TopModelName>
 <TargetClockPeriod>5.00</TargetClockPeriod>
 <ClockUncertainty>1.35</ClockUncertainty>
@@ -18,18 +18,18 @@
 <PipelineType>no</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>3.579</EstimatedClockPeriod>
+<EstimatedClockPeriod>5.091</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>17</Best-caseLatency>
-<Average-caseLatency>undef</Average-caseLatency>
-<Worst-caseLatency>2147483664</Worst-caseLatency>
-<Best-caseRealTimeLatency>85.000 ns</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>undef</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>10.737 sec</Worst-caseRealTimeLatency>
-<Interval-min>17</Interval-min>
-<Interval-max>2147483664</Interval-max>
+<Best-caseLatency>30</Best-caseLatency>
+<Average-caseLatency>93</Average-caseLatency>
+<Worst-caseLatency>157</Worst-caseLatency>
+<Best-caseRealTimeLatency>0.153 us</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>0.473 us</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>0.799 us</Worst-caseRealTimeLatency>
+<Interval-min>30</Interval-min>
+<Interval-max>157</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
 <VITIS_LOOP_19_3>
@@ -37,37 +37,37 @@
 <TripCount>
 <range>
 <min>1</min>
-<max>2147483648</max>
+<max>128</max>
 </range>
 </TripCount>
 <Latency>
 <range>
-<min>15</min>
-<max>2147483662</max>
+<min>28</min>
+<max>155</max>
 </range>
 </Latency>
 <AbsoluteTimeLatency>
 <range>
-<min>75</min>
-<max>10737418310</max>
+<min>142</min>
+<max>789</max>
 </range>
 </AbsoluteTimeLatency>
 <PipelineII>1</PipelineII>
-<PipelineDepth>16</PipelineDepth>
+<PipelineDepth>29</PipelineDepth>
 <InstanceList>
 </InstanceList>
 </VITIS_LOOP_19_3>
 </SummaryOfLoopLatency>
 <SummaryOfViolations>
-<IssueType>-</IssueType>
+<IssueType>Timing Violation</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:19</SourceLocation>
+<SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq.cpp:19</SourceLocation>
 <SummaryOfLoopViolations>
 <VITIS_LOOP_19_3>
 <Name>VITIS_LOOP_19_3</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>HLS-benchmarks/PNAnalyser/levmarq/src/levmarq.cpp:19</SourceLocation>
+<SourceLocation>benchmarks/jianyicheng/levmarq/src/levmarq.cpp:19</SourceLocation>
 </VITIS_LOOP_19_3>
 </SummaryOfLoopViolations>
 </SummaryOfViolations>
@@ -75,18 +75,18 @@
 
 <AreaEstimates>
 <Resources>
-<FF>386</FF>
-<LUT>223</LUT>
+<FF>381</FF>
+<LUT>149</LUT>
 <BRAM_18K>0</BRAM_18K>
 <DSP>0</DSP>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>
-<BRAM_18K>2688</BRAM_18K>
-<DSP>5952</DSP>
-<FF>1743360</FF>
-<LUT>871680</LUT>
-<URAM>640</URAM>
+<BRAM_18K>280</BRAM_18K>
+<DSP>220</DSP>
+<FF>106400</FF>
+<LUT>53200</LUT>
+<URAM>0</URAM>
 </AvailableResources>
 </AreaEstimates>
 
@@ -158,7 +158,7 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_222_p_din0</name>
+<name>grp_fu_187_p_din0</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -169,7 +169,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_222_p_din1</name>
+<name>grp_fu_187_p_din1</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -180,7 +180,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_222_p_opcode</name>
+<name>grp_fu_187_p_opcode</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -191,7 +191,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_222_p_dout0</name>
+<name>grp_fu_187_p_dout0</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -202,7 +202,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_222_p_ce</name>
+<name>grp_fu_187_p_ce</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -213,7 +213,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_253_p_din0</name>
+<name>grp_fu_218_p_din0</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -224,7 +224,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_253_p_din1</name>
+<name>grp_fu_218_p_din1</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -235,7 +235,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_253_p_dout0</name>
+<name>grp_fu_218_p_dout0</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -246,7 +246,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_253_p_ce</name>
+<name>grp_fu_218_p_ce</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -257,7 +257,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_258_p_din0</name>
+<name>grp_fu_223_p_din0</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -268,7 +268,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_258_p_din1</name>
+<name>grp_fu_223_p_din1</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -279,7 +279,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_258_p_dout0</name>
+<name>grp_fu_223_p_dout0</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -290,7 +290,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_258_p_ce</name>
+<name>grp_fu_223_p_ce</name>
 <Object>levmarq_Pipeline_VITIS_LOOP_19_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -301,25 +301,14 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>indvars_iv10</name>
-<Object>indvars_iv10</Object>
+<name>indvars_iv7</name>
+<Object>indvars_iv7</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>32</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>empty</name>
-<Object>empty</Object>
-<Type>scalar</Type>
-<Scope></Scope>
-<IOProtocol>ap_none</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>in</Dir>
-<Bits>7</Bits>
+<Bits>8</Bits>
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>

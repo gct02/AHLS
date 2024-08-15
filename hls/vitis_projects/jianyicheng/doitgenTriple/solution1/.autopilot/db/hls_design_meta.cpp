@@ -6,18 +6,6 @@ const Port_Property HLS_Design_Meta::port_props[]={
 	Port_Property("ap_done", 1, hls_out, -1, "", "", 1),
 	Port_Property("ap_idle", 1, hls_out, -1, "", "", 1),
 	Port_Property("ap_ready", 1, hls_out, -1, "", "", 1),
-	Port_Property("A_address0", 8, hls_out, 0, "ap_memory", "mem_address", 1),
-	Port_Property("A_ce0", 1, hls_out, 0, "ap_memory", "mem_ce", 1),
-	Port_Property("A_we0", 1, hls_out, 0, "ap_memory", "mem_we", 1),
-	Port_Property("A_d0", 32, hls_out, 0, "ap_memory", "mem_din", 1),
-	Port_Property("A_q0", 32, hls_in, 0, "ap_memory", "mem_dout", 1),
-	Port_Property("w_address0", 16, hls_out, 1, "ap_memory", "mem_address", 1),
-	Port_Property("w_ce0", 1, hls_out, 1, "ap_memory", "mem_ce", 1),
-	Port_Property("w_q0", 32, hls_in, 1, "ap_memory", "mem_dout", 1),
-	Port_Property("sum_address0", 8, hls_out, 2, "ap_memory", "mem_address", 1),
-	Port_Property("sum_ce0", 1, hls_out, 2, "ap_memory", "mem_ce", 1),
-	Port_Property("sum_we0", 1, hls_out, 2, "ap_memory", "mem_we", 1),
-	Port_Property("sum_d0", 32, hls_out, 2, "ap_memory", "mem_din", 1),
-	Port_Property("sum_q0", 32, hls_in, 2, "ap_memory", "mem_dout", 1),
+	Port_Property("ap_return", 32, hls_out, -1, "", "", 1),
 };
-const char* HLS_Design_Meta::dut_name = "doitgenTriple";
+const char* HLS_Design_Meta::dut_name = "main";

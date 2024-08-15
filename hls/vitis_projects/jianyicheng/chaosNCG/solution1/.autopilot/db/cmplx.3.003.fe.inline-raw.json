@@ -2,18 +2,18 @@
   "0": {
     "basicblocks": 5,
     "calls": "",
-    "file": "chaosNCG.cpp",
-    "fileloc": 3,
-    "instructions": 75,
+    "file": "chaosNCG_tb.cpp",
+    "fileloc": 14,
+    "instructions": 113,
     "loads": {
-      "L": 4,
-      "T": 4
+      "G": 2,
+      "L": 8
     },
-    "name": "chaosNCG",
+    "name": "main",
     "stores": {
-      "L": 4,
-      "T": 2
+      "G": 2,
+      "L": 8
     },
-    "total_instructions": 75
+    "total_instructions": 113
   }
 }

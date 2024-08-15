@@ -1,65 +1,53 @@
 
 
 ================================================================
-== Synthesis Summary Report of 'gemver'
+== Synthesis Summary Report of 'main'
 ================================================================
 + General Information: 
-    * Date:           Sun Jun 23 03:30:06 2024
+    * Date:           Mon Aug 12 18:54:00 2024
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        gemver
     * Solution:       solution1 (Vivado IP Flow Target)
-    * Product family: virtexuplusHBM
-    * Target device:  xcvu35p-fsvh2104-1-e
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
     
 
 + Performance & Resource Estimates: 
     
     PS: '+' for module; 'o' for loop; '*' for dataflow
-    +-------------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------+----------+------------+------------+-----+
-    |                  Modules                  | Issue|      | Latency |  Latency  | Iteration|         |  Trip |          |      |          |            |            |     |
-    |                  & Loops                  | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count | Pipelined| BRAM |    DSP   |     FF     |     LUT    | URAM|
-    +-------------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------+----------+------------+------------+-----+
-    |+ gemver                                   |     -|  0.07|   852019|  4.260e+06|         -|   852020|      -|        no|     -|  10 (~0%)|  2385 (~0%)|  2121 (~0%)|    -|
-    | + gemver_Pipeline_VITIS_LOOP_14_1_loop_2  |     -|  0.07|    65553|  3.278e+05|         -|    65553|      -|        no|     -|   5 (~0%)|   957 (~0%)|   638 (~0%)|    -|
-    |  o VITIS_LOOP_14_1_loop_2                 |     -|  3.65|    65551|  3.278e+05|        17|        1|  65536|       yes|     -|         -|           -|           -|    -|
-    | + gemver_Pipeline_VITIS_LOOP_23_2_loop_3  |     -|  0.07|   393233|  1.966e+06|         -|   393233|      -|        no|     -|         -|   638 (~0%)|   512 (~0%)|    -|
-    |  o VITIS_LOOP_23_2_loop_3                 |    II|  3.65|   393231|  1.966e+06|        22|        6|  65536|       yes|     -|         -|           -|           -|    -|
-    | + gemver_Pipeline_VITIS_LOOP_35_3_loop_4  |     -|  0.07|   393228|  1.966e+06|         -|   393228|      -|        no|     -|         -|   433 (~0%)|   422 (~0%)|    -|
-    |  o VITIS_LOOP_35_3_loop_4                 |    II|  3.65|   393226|  1.966e+06|        17|        6|  65536|       yes|     -|         -|           -|           -|    -|
-    +-------------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------+----------+------------+------------+-----+
+    +--------------------------------------------------+--------+-------+---------+-----------+----------+---------+-------+----------+-----------+---------+-----------+------------+-----+
+    |                      Modules                     |  Issue |       | Latency |  Latency  | Iteration|         |  Trip |          |           |         |           |            |     |
+    |                      & Loops                     |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count | Pipelined|   BRAM    |   DSP   |     FF    |     LUT    | URAM|
+    +--------------------------------------------------+--------+-------+---------+-----------+----------+---------+-------+----------+-----------+---------+-----------+------------+-----+
+    |+ main                                            |  Timing|  -1.35|  2425225|  1.213e+07|         -|  2425226|      -|        no|  266 (95%)|  10 (4%)|  5248 (4%)|  6224 (11%)|    -|
+    | + main_Pipeline_VITIS_LOOP_56_1_VITIS_LOOP_67_2  |       -|   0.24|   131074|  6.554e+05|         -|   131074|      -|        no|          -|        -|   94 (~0%)|   212 (~0%)|    -|
+    |  o VITIS_LOOP_56_1_VITIS_LOOP_67_2               |      II|   3.65|   131072|  6.554e+05|         3|        2|  65536|       yes|          -|        -|          -|           -|    -|
+    | + main_Pipeline_VITIS_LOOP_76_3_VITIS_LOOP_77_4  |       -|   0.24|   131105|  6.555e+05|         -|   131105|      -|        no|          -|        -|  719 (~0%)|    602 (1%)|    -|
+    |  o VITIS_LOOP_76_3_VITIS_LOOP_77_4               |      II|   3.65|   131103|  6.555e+05|        34|        2|  65536|       yes|          -|        -|          -|           -|    -|
+    | + main_Pipeline_VITIS_LOOP_82_5_VITIS_LOOP_85_6  |       -|   0.00|   720927|  3.605e+06|         -|   720927|      -|        no|          -|        -|  627 (~0%)|   528 (~0%)|    -|
+    |  o VITIS_LOOP_82_5_VITIS_LOOP_85_6               |      II|   3.65|   720925|  3.605e+06|        41|       11|  65536|       yes|          -|        -|          -|           -|    -|
+    | + main_Pipeline_VITIS_LOOP_14_1_loop_2           |       -|   0.24|   131105|  6.555e+05|         -|   131105|      -|        no|          -|        -|  719 (~0%)|    602 (1%)|    -|
+    |  o VITIS_LOOP_14_1_loop_2                        |      II|   3.65|   131103|  6.555e+05|        34|        2|  65536|       yes|          -|        -|          -|           -|    -|
+    | + main_Pipeline_VITIS_LOOP_93_7_VITIS_LOOP_95_8  |  Timing|  -0.74|   720917|  3.605e+06|         -|   720917|      -|        no|          -|        -|  446 (~0%)|   438 (~0%)|    -|
+    |  o VITIS_LOOP_93_7_VITIS_LOOP_95_8               |      II|   3.65|   720915|  3.605e+06|        31|       11|  65536|       yes|          -|        -|          -|           -|    -|
+    | + main_Pipeline_VITIS_LOOP_23_2_loop_3           |       -|   0.00|   720927|  3.605e+06|         -|   720927|      -|        no|          -|        -|  627 (~0%)|   528 (~0%)|    -|
+    |  o VITIS_LOOP_23_2_loop_3                        |      II|   3.65|   720925|  3.605e+06|        41|       11|  65536|       yes|          -|        -|          -|           -|    -|
+    | + main_Pipeline_VITIS_LOOP_35_3_loop_4           |  Timing|  -0.74|   720917|  3.605e+06|         -|   720917|      -|        no|          -|        -|  446 (~0%)|   438 (~0%)|    -|
+    |  o VITIS_LOOP_35_3_loop_4                        |      II|   3.65|   720915|  3.605e+06|        31|       11|  65536|       yes|          -|        -|          -|           -|    -|
+    | + main_Pipeline_VITIS_LOOP_105_9                 |  Timing|  -1.35|      263|  1.315e+03|         -|      263|      -|        no|          -|        -|  421 (~0%)|   346 (~0%)|    -|
+    |  o VITIS_LOOP_105_9                              |       -|   3.65|      261|  1.305e+03|         7|        1|    256|       yes|          -|        -|          -|           -|    -|
+    +--------------------------------------------------+--------+-------+---------+-----------+----------+---------+-------+----------+-----------+---------+-----------+------------+-----+
 
 
 ================================================================
 == HW Interfaces
 ================================================================
-* AP_MEMORY
-+-------------+-----------+----------+
-| Port        | Direction | Bitwidth |
-+-------------+-----------+----------+
-| A_address0  | out       | 16       |
-| A_address1  | out       | 16       |
-| A_d0        | out       | 32       |
-| A_q0        | in        | 32       |
-| A_q1        | in        | 32       |
-| u1_address0 | out       | 8        |
-| u1_q0       | in        | 32       |
-| u2_address0 | out       | 8        |
-| u2_q0       | in        | 32       |
-| v1_address0 | out       | 8        |
-| v1_q0       | in        | 32       |
-| v2_address0 | out       | 8        |
-| v2_q0       | in        | 32       |
-| w_address0  | out       | 8        |
-| w_d0        | out       | 32       |
-| w_q0        | in        | 32       |
-| x_address0  | out       | 8        |
-| x_d0        | out       | 32       |
-| x_q0        | in        | 32       |
-| y_address0  | out       | 8        |
-| y_q0        | in        | 32       |
-| z_address0  | out       | 8        |
-| z_q0        | in        | 32       |
-+-------------+-----------+----------+
+* Other Ports
++-----------+-----------+----------+
+| Port      | Direction | Bitwidth |
++-----------+-----------+----------+
+| ap_return | out       | 32       |
++-----------+-----------+----------+
 
 * TOP LEVEL CONTROL
 +-----------+------------+-----------------------------------+
@@ -78,94 +66,93 @@
 +----------+-----------+----------+
 | Argument | Direction | Datatype |
 +----------+-----------+----------+
-| A        | inout     | float*   |
-| u1       | in        | float*   |
-| v1       | in        | float*   |
-| u2       | in        | float*   |
-| v2       | in        | float*   |
-| w        | inout     | float*   |
-| x        | inout     | float*   |
-| y        | in        | float*   |
-| z        | in        | float*   |
+| return   | out       | int      |
 +----------+-----------+----------+
 
 * SW-to-HW Mapping
-+----------+--------------+---------+----------+
-| Argument | HW Interface | HW Type | HW Usage |
-+----------+--------------+---------+----------+
-| A        | A_address0   | port    | offset   |
-| A        | A_ce0        | port    |          |
-| A        | A_we0        | port    |          |
-| A        | A_d0         | port    |          |
-| A        | A_q0         | port    |          |
-| A        | A_address1   | port    | offset   |
-| A        | A_ce1        | port    |          |
-| A        | A_q1         | port    |          |
-| u1       | u1_address0  | port    | offset   |
-| u1       | u1_ce0       | port    |          |
-| u1       | u1_q0        | port    |          |
-| v1       | v1_address0  | port    | offset   |
-| v1       | v1_ce0       | port    |          |
-| v1       | v1_q0        | port    |          |
-| u2       | u2_address0  | port    | offset   |
-| u2       | u2_ce0       | port    |          |
-| u2       | u2_q0        | port    |          |
-| v2       | v2_address0  | port    | offset   |
-| v2       | v2_ce0       | port    |          |
-| v2       | v2_q0        | port    |          |
-| w        | w_address0   | port    | offset   |
-| w        | w_ce0        | port    |          |
-| w        | w_we0        | port    |          |
-| w        | w_d0         | port    |          |
-| w        | w_q0         | port    |          |
-| x        | x_address0   | port    | offset   |
-| x        | x_ce0        | port    |          |
-| x        | x_we0        | port    |          |
-| x        | x_d0         | port    |          |
-| x        | x_q0         | port    |          |
-| y        | y_address0   | port    | offset   |
-| y        | y_ce0        | port    |          |
-| y        | y_q0         | port    |          |
-| z        | z_address0   | port    | offset   |
-| z        | z_ce0        | port    |          |
-| z        | z_q0         | port    |          |
-+----------+--------------+---------+----------+
++----------+--------------+---------+
+| Argument | HW Interface | HW Type |
++----------+--------------+---------+
+| return   | ap_return    | port    |
++----------+--------------+---------+
 
 
 ================================================================
 == Bind Op Report
 ================================================================
-+-------------------------------------------+-----+--------+------------+------+---------+---------+
-| Name                                      | DSP | Pragma | Variable   | Op   | Impl    | Latency |
-+-------------------------------------------+-----+--------+------------+------+---------+---------+
-| + gemver                                  | 10  |        |            |      |         |         |
-|  + gemver_Pipeline_VITIS_LOOP_14_1_loop_2 | 5   |        |            |      |         |         |
-|    add_ln14_fu_182_p2                     |     |        | add_ln14   | add  | fabric  | 0       |
-|    add_ln14_1_fu_208_p2                   |     |        | add_ln14_1 | add  | fabric  | 0       |
-|    fmul_32ns_32ns_32_4_max_dsp_1_U4       | 3   |        | mul1       | fmul | maxdsp  | 3       |
-|    add_ln19_fu_291_p2                     |     |        | add_ln19   | add  | fabric  | 0       |
-|    fadd_32ns_32ns_32_5_full_dsp_1_U2      | 2   |        | add1       | fadd | fulldsp | 4       |
-|    add_ln18_fu_234_p2                     |     |        | add_ln18   | add  | fabric  | 0       |
-|    add_ln20_fu_302_p2                     |     |        | add_ln20   | add  | fabric  | 0       |
-|  + gemver_Pipeline_VITIS_LOOP_23_2_loop_3 | 0   |        |            |      |         |         |
-|    add_ln23_fu_175_p2                     |     |        | add_ln23   | add  | fabric  | 0       |
-|    add_ln23_1_fu_207_p2                   |     |        | add_ln23_1 | add  | fabric  | 0       |
-|    add_ln28_fu_241_p2                     |     |        | add_ln28   | add  | fabric  | 0       |
-|    add_ln29_fu_284_p2                     |     |        | add_ln29   | add  | fabric  | 0       |
-|    add_ln27_fu_256_p2                     |     |        | add_ln27   | add  | fabric  | 0       |
-|  + gemver_Pipeline_VITIS_LOOP_35_3_loop_4 | 0   |        |            |      |         |         |
-|    add_ln35_fu_163_p2                     |     |        | add_ln35   | add  | fabric  | 0       |
-|    add_ln35_1_fu_259_p2                   |     |        | add_ln35_1 | add  | fabric  | 0       |
-|    add_ln39_fu_217_p2                     |     |        | add_ln39   | add  | fabric  | 0       |
-|    add_ln38_fu_232_p2                     |     |        | add_ln38   | add  | fabric  | 0       |
-|    add_ln41_fu_277_p2                     |     |        | add_ln41   | add  | fabric  | 0       |
-+-------------------------------------------+-----+--------+------------+------+---------+---------+
++--------------------------------------------------+-----+--------+------------+-----+--------+---------+
+| Name                                             | DSP | Pragma | Variable   | Op  | Impl   | Latency |
++--------------------------------------------------+-----+--------+------------+-----+--------+---------+
+| + main                                           | 10  |        |            |     |        |         |
+|  + main_Pipeline_VITIS_LOOP_56_1_VITIS_LOOP_67_2 | 0   |        |            |     |        |         |
+|    add_ln56_fu_285_p2                            |     |        | add_ln56   | add | fabric | 0       |
+|    add_ln56_1_fu_317_p2                          |     |        | add_ln56_1 | add | fabric | 0       |
+|    add_ln68_fu_358_p2                            |     |        | add_ln68   | add | fabric | 0       |
+|    add_ln67_fu_364_p2                            |     |        | add_ln67   | add | fabric | 0       |
+|  + main_Pipeline_VITIS_LOOP_76_3_VITIS_LOOP_77_4 | 0   |        |            |     |        |         |
+|    add_ln76_fu_166_p2                            |     |        | add_ln76   | add | fabric | 0       |
+|    add_ln76_1_fu_192_p2                          |     |        | add_ln76_1 | add | fabric | 0       |
+|    add_ln78_fu_254_p2                            |     |        | add_ln78   | add | fabric | 0       |
+|    add_ln77_fu_216_p2                            |     |        | add_ln77   | add | fabric | 0       |
+|    add_ln79_fu_260_p2                            |     |        | add_ln79   | add | fabric | 0       |
+|  + main_Pipeline_VITIS_LOOP_82_5_VITIS_LOOP_85_6 | 0   |        |            |     |        |         |
+|    add_ln82_fu_177_p2                            |     |        | add_ln82   | add | fabric | 0       |
+|    add_ln82_1_fu_209_p2                          |     |        | add_ln82_1 | add | fabric | 0       |
+|    add_ln86_fu_242_p2                            |     |        | add_ln86   | add | fabric | 0       |
+|    add_ln87_fu_248_p2                            |     |        | add_ln87   | add | fabric | 0       |
+|    add_ln85_fu_258_p2                            |     |        | add_ln85   | add | fabric | 0       |
+|  + main_Pipeline_VITIS_LOOP_14_1_loop_2          | 0   |        |            |     |        |         |
+|    add_ln14_fu_166_p2                            |     |        | add_ln14   | add | fabric | 0       |
+|    add_ln14_1_fu_192_p2                          |     |        | add_ln14_1 | add | fabric | 0       |
+|    add_ln19_fu_254_p2                            |     |        | add_ln19   | add | fabric | 0       |
+|    add_ln18_fu_216_p2                            |     |        | add_ln18   | add | fabric | 0       |
+|    add_ln20_fu_260_p2                            |     |        | add_ln20   | add | fabric | 0       |
+|  + main_Pipeline_VITIS_LOOP_93_7_VITIS_LOOP_95_8 | 0   |        |            |     |        |         |
+|    add_ln93_fu_159_p2                            |     |        | add_ln93   | add | fabric | 0       |
+|    add_ln93_1_fu_261_p2                          |     |        | add_ln93_1 | add | fabric | 0       |
+|    add_ln96_fu_212_p2                            |     |        | add_ln96   | add | fabric | 0       |
+|    add_ln95_fu_242_p2                            |     |        | add_ln95   | add | fabric | 0       |
+|    add_ln98_fu_218_p2                            |     |        | add_ln98   | add | fabric | 0       |
+|  + main_Pipeline_VITIS_LOOP_23_2_loop_3          | 0   |        |            |     |        |         |
+|    add_ln23_fu_177_p2                            |     |        | add_ln23   | add | fabric | 0       |
+|    add_ln23_1_fu_209_p2                          |     |        | add_ln23_1 | add | fabric | 0       |
+|    add_ln28_fu_242_p2                            |     |        | add_ln28   | add | fabric | 0       |
+|    add_ln29_fu_248_p2                            |     |        | add_ln29   | add | fabric | 0       |
+|    add_ln27_fu_258_p2                            |     |        | add_ln27   | add | fabric | 0       |
+|  + main_Pipeline_VITIS_LOOP_35_3_loop_4          | 0   |        |            |     |        |         |
+|    add_ln35_fu_159_p2                            |     |        | add_ln35   | add | fabric | 0       |
+|    add_ln35_1_fu_261_p2                          |     |        | add_ln35_1 | add | fabric | 0       |
+|    add_ln39_fu_212_p2                            |     |        | add_ln39   | add | fabric | 0       |
+|    add_ln38_fu_242_p2                            |     |        | add_ln38   | add | fabric | 0       |
+|    add_ln41_fu_218_p2                            |     |        | add_ln41   | add | fabric | 0       |
+|  + main_Pipeline_VITIS_LOOP_105_9                | 0   |        |            |     |        |         |
+|    add_ln105_fu_108_p2                           |     |        | add_ln105  | add | fabric | 0       |
+|    res_1_fu_209_p2                               |     |        | res_1      | add | fabric | 0       |
++--------------------------------------------------+-----+--------+------------+-----+--------+---------+
 
 
 ================================================================
 == Storage Report
 ================================================================
-  No bind storage info in design
++---------+--------------+------+------+------+--------+----------+------+---------+------------------+
+| Name    | Usage        | Type | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|         |              |      |      |      |        |          |      |         | Banks            |
++---------+--------------+------+------+------+--------+----------+------+---------+------------------+
+| + main  |              |      | 266  | 0    |        |          |      |         |                  |
+|   A_U   | ram_1p array |      | 128  |      |        | A        | auto | 1       | 32, 65536, 1     |
+|   A_s_U | ram_1p array |      | 128  |      |        | A_s      | auto | 1       | 32, 65536, 1     |
+|   u1_U  | ram_1p array |      | 2    |      |        | u1       | auto | 1       | 32, 256, 1       |
+|   v1_U  | ram_1p array |      | 2    |      |        | v1       | auto | 1       | 32, 256, 1       |
+|   u2_U  | ram_1p array |      | 2    |      |        | u2       | auto | 1       | 32, 256, 1       |
+|   v2_U  | ram_1p array |      | 2    |      |        | v2       | auto | 1       | 32, 256, 1       |
+|   w_U   | ram_1p array |      | 2    |      |        | w        | auto | 1       | 32, 256, 1       |
+|   w_s_U | ram_1p array |      | 2    |      |        | w_s      | auto | 1       | 32, 256, 1       |
+|   x_U   | ram_1p array |      | 2    |      |        | x        | auto | 1       | 32, 256, 1       |
+|   x_s_U | ram_1p array |      | 2    |      |        | x_s      | auto | 1       | 32, 256, 1       |
+|   y_U   | ram_1p array |      | 2    |      |        | y        | auto | 1       | 32, 256, 1       |
+|   z_U   | ram_1p array |      | 2    |      |        | z        | auto | 1       | 32, 256, 1       |
++---------+--------------+------+------+------+--------+----------+------+---------+------------------+
+
 
 ================================================================
 == Pragma Report

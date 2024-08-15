@@ -1,16 +1,43 @@
 {
   "0": {
+    "basicblocks": 13,
+    "calls": "1 1 1 1 1 1 1 1 2",
+    "file": "histogram.cpp",
+    "fileloc": 170,
+    "instructions": 189,
+    "name": "main",
+    "stores": {
+      "L": 17
+    },
+    "total_instructions": 897
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "histogram.cpp",
+    "fileloc": 16,
+    "instructions": 27,
+    "loads": {
+      "G": 6
+    },
+    "name": "_rand",
+    "stores": {
+      "G": 2
+    },
+    "total_instructions": 27
+  },
+  "2": {
     "basicblocks": 183,
     "calls": "",
     "file": "histogram.cpp",
-    "fileloc": 15,
+    "fileloc": 26,
     "instructions": 492,
     "loads": {
-      "T": 56
+      "L": 56
     },
     "name": "histogram",
     "stores": {
-      "T": 41
+      "L": 41
     },
     "total_instructions": 492
   }

@@ -1,17 +1,45 @@
 {
   "0": {
+    "basicblocks": 5,
+    "calls": "2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1",
+    "file": "fft.cpp",
+    "fileloc": 190,
+    "instructions": 121,
+    "name": "main",
+    "stores": {
+      "L": 16
+    },
+    "total_instructions": 1346
+  },
+  "1": {
     "basicblocks": 81,
     "calls": "",
     "file": "fft.cpp",
-    "fileloc": 15,
+    "fileloc": 26,
     "instructions": 841,
     "loads": {
-      "T": 80
+      "G": 16,
+      "L": 64
     },
     "name": "fft",
     "stores": {
-      "T": 32
+      "L": 32
     },
     "total_instructions": 841
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "fft.cpp",
+    "fileloc": 17,
+    "instructions": 24,
+    "loads": {
+      "G": 5
+    },
+    "name": "_rand",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 24
   }
 }

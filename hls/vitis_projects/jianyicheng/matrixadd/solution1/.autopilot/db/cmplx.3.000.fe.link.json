@@ -1,12 +1,39 @@
 {
   "0": {
+    "basicblocks": 7,
+    "calls": "1 1 1 1 1 1 1 1 2",
+    "file": "matrixadd.cpp",
+    "fileloc": 83,
+    "instructions": 107,
+    "name": "main",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 439
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "matrixadd.cpp",
+    "fileloc": 16,
+    "instructions": 27,
+    "loads": {
+      "G": 6
+    },
+    "name": "_rand",
+    "stores": {
+      "G": 2
+    },
+    "total_instructions": 27
+  },
+  "2": {
     "basicblocks": 49,
     "calls": "",
     "file": "matrixadd.cpp",
-    "fileloc": 14,
+    "fileloc": 25,
     "instructions": 116,
     "loads": {
-      "T": 6
+      "L": 6
     },
     "name": "matrixadd",
     "total_instructions": 116

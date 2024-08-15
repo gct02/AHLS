@@ -1,16 +1,31 @@
 {
   "0": {
+    "basicblocks": 32,
+    "calls": "1",
+    "file": "gemver.cpp",
+    "fileloc": 45,
+    "instructions": 201,
+    "loads": {
+      "L": 14
+    },
+    "name": "main",
+    "stores": {
+      "L": 15
+    },
+    "total_instructions": 305
+  },
+  "1": {
     "basicblocks": 19,
     "calls": "",
     "file": "gemver.cpp",
     "fileloc": 8,
     "instructions": 104,
     "loads": {
-      "T": 12
+      "L": 12
     },
     "name": "gemver",
     "stores": {
-      "T": 3
+      "L": 3
     },
     "total_instructions": 104
   }

@@ -1,34 +1,88 @@
 {
     "1": {
-        "name": "getTanh_Pipeline_VITIS_LOOP_27_1",
-        "file": "HLS-benchmarks\/DSS\/getTanh\/src\/getTanh.cpp",
-        "fileloc": "13",
-        "instructions": "278",
-        "total_instructions": "278",
+        "name": "main_Pipeline_VITIS_LOOP_32_1",
+        "file": "benchmarks\/jianyicheng\/getTanh\/src\/getTanh_tb.cpp",
+        "fileloc": "32",
+        "instructions": "22",
+        "total_instructions": "22",
         "calls": "",
-        "basicblocks": "6",
+        "basicblocks": "4",
         "loads": {
-            "L": "3",
-            "T": "5"
+            "L": "1"
         },
         "stores": {
-            "L": "6",
-            "T": "1"
+            "L": "6"
         },
         "loops": {
             "L": "1"
         }
     },
     "0": {
+        "name": "main",
+        "file": "getTanh_tb.cpp",
+        "fileloc": "24",
+        "instructions": "16",
+        "total_instructions": "599",
+        "calls": "1 3 4 2",
+        "basicblocks": "1",
+        "loads": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "main_Pipeline_VITIS_LOOP_44_2",
+        "file": "benchmarks\/jianyicheng\/getTanh\/src\/getTanh_tb.cpp",
+        "fileloc": "43",
+        "instructions": "27",
+        "total_instructions": "27",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "5"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
         "name": "getTanh",
         "file": "getTanh.cpp",
         "fileloc": "12",
-        "instructions": "37",
-        "total_instructions": "315",
-        "calls": "1",
-        "basicblocks": "1",
+        "instructions": "262",
+        "total_instructions": "262",
+        "calls": "",
+        "basicblocks": "6",
         "loads": {
-            "T": "11"
+            "G": "2",
+            "L": "6"
+        },
+        "stores": {
+            "L": "7"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "4": {
+        "name": "inlined",
+        "file": "inlined.cpp",
+        "fileloc": "12",
+        "instructions": "272",
+        "total_instructions": "272",
+        "calls": "",
+        "basicblocks": "6",
+        "loads": {
+            "G": "2",
+            "L": "6"
+        },
+        "stores": {
+            "L": "7"
+        },
+        "loops": {
+            "L": "1"
         }
     }
 }

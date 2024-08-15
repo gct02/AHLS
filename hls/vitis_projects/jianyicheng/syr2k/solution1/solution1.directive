@@ -1,8 +1,8 @@
 <AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
     <sourceFile name="">
-        <directive functionName="syr2k" label="" functionLabel="">
+        <directive functionName="main" label="" functionLabel="">
             <pragma name="TOP">
-                <option name="name" value="syr2k"/>
+                <option name="name" value="main"/>
             </pragma>
         </directive>
     </sourceFile>

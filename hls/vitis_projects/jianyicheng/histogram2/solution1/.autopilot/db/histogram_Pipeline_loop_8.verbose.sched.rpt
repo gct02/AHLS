@@ -3,13 +3,13 @@
 ================================================================
 == Vitis HLS Report for 'histogram_Pipeline_loop_8'
 ================================================================
-* Date:           Sun Jun 23 03:44:06 2024
+* Date:           Mon Aug 12 18:55:10 2024
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        histogram2
 * Solution:       solution1 (Vivado IP Flow Target)
-* Product family: virtexuplusHBM
-* Target device:  xcvu35p-fsvh2104-1-e
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
 
 
 ================================================================
@@ -20,7 +20,7 @@
     +--------+---------+----------+------------+
     |  Clock |  Target | Estimated| Uncertainty|
     +--------+---------+----------+------------+
-    |ap_clk  |  5.00 ns|  3.509 ns|     1.35 ns|
+    |ap_clk  |  5.00 ns|  4.826 ns|     1.35 ns|
     +--------+---------+----------+------------+
 
 + Latency: 
@@ -29,7 +29,7 @@
     |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
     |   min   |   max   |    min    |    max    | min | max |   Type  |
     +---------+---------+-----------+-----------+-----+-----+---------+
-    |        8|        8|  40.000 ns|  40.000 ns|    8|    8|       no|
+    |       11|       11|  55.000 ns|  55.000 ns|   11|   11|       no|
     +---------+---------+-----------+-----------+-----+-----+---------+
 
     + Detail: 
@@ -41,7 +41,7 @@
         |          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
         | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
         +----------+---------+---------+----------+-----------+-----------+------+----------+
-        |- loop_8  |        6|        6|         3|          1|          1|     5|       yes|
+        |- loop_8  |        9|        9|         6|          1|          1|     5|       yes|
         +----------+---------+---------+----------+-----------+-----------+------+----------+
 
 ============================================================
@@ -67,85 +67,85 @@ HasImplIP: 0
 IsGatedGlobalClock: 0
 
 + Individual pipeline summary: 
-  * Pipeline-0: initiation interval (II) = 1, depth = 3
+  * Pipeline-0: initiation interval (II) = 1, depth = 6
 
 
 ============================================================
 + Verbose Summary: Schedule
 ============================================================
-* Number of FSM states : 3
+* Number of FSM states : 6
 * Pipeline : 1
-  Pipeline-0 : II = 1, D = 3, States = { 1 2 3 }
+  Pipeline-0 : II = 1, D = 6, States = { 1 2 3 4 5 6 }
 * Dataflow Pipeline: 0
 
 * FSM state transitions: 
 1 --> 2 
 2 --> 3 
-3 --> 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 
 
 * FSM state operations: 
 
-State 1 <SV = 0> <Delay = 1.63>
-ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154]   --->   Operation 6 'alloca' 'i' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %results, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 7 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %results_7, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 8 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %results_6, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 9 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %results_5, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 10 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %results_4, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 11 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %results_3, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 12 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %results_2, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 13 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %results_1, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 14 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %results_0, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 15 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 16 [1/1] (0.46ns)   --->   "%store_ln154 = store i3 0, i3 %i" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154]   --->   Operation 16 'store' 'store_ln154' <Predicate = true> <Delay = 0.46>
-ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc375"   --->   Operation 17 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%i_1 = load i3 %i" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154]   --->   Operation 18 'load' 'i_1' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 19 [1/1] (0.71ns)   --->   "%icmp_ln154 = icmp_eq  i3 %i_1, i3 5" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154]   --->   Operation 19 'icmp' 'icmp_ln154' <Predicate = true> <Delay = 0.71> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.71> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 20 [1/1] (0.71ns)   --->   "%add_ln154 = add i3 %i_1, i3 1" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154]   --->   Operation 20 'add' 'add_ln154' <Predicate = true> <Delay = 0.71> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.71> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%br_ln154 = br i1 %icmp_ln154, void %for.inc375.split, void %for.end377.exitStub" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154]   --->   Operation 21 'br' 'br_ln154' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%zext_ln154 = zext i3 %i_1" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154]   --->   Operation 22 'zext' 'zext_ln154' <Predicate = (!icmp_ln154)> <Delay = 0.00>
-ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%results_6_addr = getelementptr i32 %results_6, i64 0, i64 %zext_ln154" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 23 'getelementptr' 'results_6_addr' <Predicate = (!icmp_ln154)> <Delay = 0.00>
-ST_1 : Operation 24 [2/2] (0.73ns)   --->   "%results_6_load = load i3 %results_6_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 24 'load' 'results_6_load' <Predicate = (!icmp_ln154)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%results_7_addr = getelementptr i32 %results_7, i64 0, i64 %zext_ln154" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 25 'getelementptr' 'results_7_addr' <Predicate = (!icmp_ln154)> <Delay = 0.00>
-ST_1 : Operation 26 [2/2] (0.73ns)   --->   "%results_7_load = load i3 %results_7_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 26 'load' 'results_7_load' <Predicate = (!icmp_ln154)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_1 : Operation 27 [1/1] (0.46ns)   --->   "%store_ln154 = store i3 %add_ln154, i3 %i" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154]   --->   Operation 27 'store' 'store_ln154' <Predicate = (!icmp_ln154)> <Delay = 0.46>
+State 1 <SV = 0> <Delay = 4.82>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:165]   --->   Operation 9 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (1.58ns)   --->   "%store_ln165 = store i3 0, i3 %i" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:165]   --->   Operation 10 'store' 'store_ln165' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc375"   --->   Operation 11 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%i_3 = load i3 %i" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:165]   --->   Operation 12 'load' 'i_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (1.65ns)   --->   "%icmp_ln165 = icmp_eq  i3 %i_3, i3 5" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:165]   --->   Operation 13 'icmp' 'icmp_ln165' <Predicate = true> <Delay = 1.65> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.65> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 14 [1/1] (1.65ns)   --->   "%add_ln165 = add i3 %i_3, i3 1" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:165]   --->   Operation 14 'add' 'add_ln165' <Predicate = true> <Delay = 1.65> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.65> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%br_ln165 = br i1 %icmp_ln165, void %for.inc375.split, void %for.end377.exitStub" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:165]   --->   Operation 15 'br' 'br_ln165' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%zext_ln165 = zext i3 %i_3" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:165]   --->   Operation 16 'zext' 'zext_ln165' <Predicate = (!icmp_ln165)> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%results_0_addr = getelementptr i32 %results_0, i64 0, i64 %zext_ln165" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 17 'getelementptr' 'results_0_addr' <Predicate = (!icmp_ln165)> <Delay = 0.00>
+ST_1 : Operation 18 [2/2] (2.32ns)   --->   "%results_0_load = load i3 %results_0_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 18 'load' 'results_0_load' <Predicate = (!icmp_ln165)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%results_1_addr = getelementptr i32 %results_1, i64 0, i64 %zext_ln165" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 19 'getelementptr' 'results_1_addr' <Predicate = (!icmp_ln165)> <Delay = 0.00>
+ST_1 : Operation 20 [2/2] (2.32ns)   --->   "%results_1_load = load i3 %results_1_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 20 'load' 'results_1_load' <Predicate = (!icmp_ln165)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%results_2_addr = getelementptr i32 %results_2, i64 0, i64 %zext_ln165" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 21 'getelementptr' 'results_2_addr' <Predicate = (!icmp_ln165)> <Delay = 0.00>
+ST_1 : Operation 22 [2/2] (2.32ns)   --->   "%results_2_load = load i3 %results_2_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 22 'load' 'results_2_load' <Predicate = (!icmp_ln165)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%results_3_addr = getelementptr i32 %results_3, i64 0, i64 %zext_ln165" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 23 'getelementptr' 'results_3_addr' <Predicate = (!icmp_ln165)> <Delay = 0.00>
+ST_1 : Operation 24 [2/2] (2.32ns)   --->   "%results_3_load = load i3 %results_3_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 24 'load' 'results_3_load' <Predicate = (!icmp_ln165)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%results_4_addr = getelementptr i32 %results_4, i64 0, i64 %zext_ln165" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 25 'getelementptr' 'results_4_addr' <Predicate = (!icmp_ln165)> <Delay = 0.00>
+ST_1 : Operation 26 [2/2] (2.32ns)   --->   "%results_4_load = load i3 %results_4_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 26 'load' 'results_4_load' <Predicate = (!icmp_ln165)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%results_5_addr = getelementptr i32 %results_5, i64 0, i64 %zext_ln165" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 27 'getelementptr' 'results_5_addr' <Predicate = (!icmp_ln165)> <Delay = 0.00>
+ST_1 : Operation 28 [2/2] (2.32ns)   --->   "%results_5_load = load i3 %results_5_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 28 'load' 'results_5_load' <Predicate = (!icmp_ln165)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%results_6_addr = getelementptr i32 %results_6, i64 0, i64 %zext_ln165" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 29 'getelementptr' 'results_6_addr' <Predicate = (!icmp_ln165)> <Delay = 0.00>
+ST_1 : Operation 30 [2/2] (2.32ns)   --->   "%results_6_load = load i3 %results_6_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 30 'load' 'results_6_load' <Predicate = (!icmp_ln165)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%results_7_addr = getelementptr i32 %results_7, i64 0, i64 %zext_ln165" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 31 'getelementptr' 'results_7_addr' <Predicate = (!icmp_ln165)> <Delay = 0.00>
+ST_1 : Operation 32 [2/2] (2.32ns)   --->   "%results_7_load = load i3 %results_7_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 32 'load' 'results_7_load' <Predicate = (!icmp_ln165)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_1 : Operation 33 [1/1] (1.58ns)   --->   "%store_ln165 = store i3 %add_ln165, i3 %i" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:165]   --->   Operation 33 'store' 'store_ln165' <Predicate = (!icmp_ln165)> <Delay = 1.58>
 
-State 2 <SV = 1> <Delay = 1.87>
-ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%results_0_addr = getelementptr i32 %results_0, i64 0, i64 %zext_ln154" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 28 'getelementptr' 'results_0_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 29 [2/2] (0.73ns)   --->   "%results_0_load = load i3 %results_0_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 29 'load' 'results_0_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%results_1_addr = getelementptr i32 %results_1, i64 0, i64 %zext_ln154" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 30 'getelementptr' 'results_1_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 31 [2/2] (0.73ns)   --->   "%results_1_load = load i3 %results_1_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 31 'load' 'results_1_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%results_2_addr = getelementptr i32 %results_2, i64 0, i64 %zext_ln154" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 32 'getelementptr' 'results_2_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 33 [2/2] (0.73ns)   --->   "%results_2_load = load i3 %results_2_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 33 'load' 'results_2_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_2 : Operation 34 [1/1] (0.00ns)   --->   "%results_3_addr = getelementptr i32 %results_3, i64 0, i64 %zext_ln154" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 34 'getelementptr' 'results_3_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 35 [2/2] (0.73ns)   --->   "%results_3_load = load i3 %results_3_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 35 'load' 'results_3_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_2 : Operation 36 [1/1] (0.00ns)   --->   "%results_4_addr = getelementptr i32 %results_4, i64 0, i64 %zext_ln154" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 36 'getelementptr' 'results_4_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 37 [2/2] (0.73ns)   --->   "%results_4_load = load i3 %results_4_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 37 'load' 'results_4_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_2 : Operation 38 [1/1] (0.00ns)   --->   "%results_5_addr = getelementptr i32 %results_5, i64 0, i64 %zext_ln154" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 38 'getelementptr' 'results_5_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 39 [2/2] (0.73ns)   --->   "%results_5_load = load i3 %results_5_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 39 'load' 'results_5_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_2 : Operation 40 [1/2] (0.73ns)   --->   "%results_6_load = load i3 %results_6_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 40 'load' 'results_6_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_2 : Operation 41 [1/2] (0.73ns)   --->   "%results_7_load = load i3 %results_7_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 41 'load' 'results_7_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_2 : Operation 42 [1/1] (1.14ns)   --->   "%add_ln156_4 = add i32 %results_6_load, i32 %results_7_load" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 42 'add' 'add_ln156_4' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 61 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 61 'ret' 'ret_ln0' <Predicate = (icmp_ln154)> <Delay = 0.00>
+State 2 <SV = 1> <Delay = 2.32>
+ST_2 : Operation 34 [1/2] (2.32ns)   --->   "%results_0_load = load i3 %results_0_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 34 'load' 'results_0_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_2 : Operation 35 [1/2] (2.32ns)   --->   "%results_1_load = load i3 %results_1_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 35 'load' 'results_1_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_2 : Operation 36 [1/2] (2.32ns)   --->   "%results_2_load = load i3 %results_2_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 36 'load' 'results_2_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_2 : Operation 37 [1/2] (2.32ns)   --->   "%results_3_load = load i3 %results_3_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 37 'load' 'results_3_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_2 : Operation 38 [1/2] (2.32ns)   --->   "%results_4_load = load i3 %results_4_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 38 'load' 'results_4_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_2 : Operation 39 [1/2] (2.32ns)   --->   "%results_5_load = load i3 %results_5_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 39 'load' 'results_5_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_2 : Operation 40 [1/2] (2.32ns)   --->   "%results_6_load = load i3 %results_6_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 40 'load' 'results_6_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_2 : Operation 41 [1/2] (2.32ns)   --->   "%results_7_load = load i3 %results_7_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 41 'load' 'results_7_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
 
-State 3 <SV = 2> <Delay = 3.50>
-ST_3 : Operation 43 [1/1] (0.00ns)   --->   "%specpipeline_ln154 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_0" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154]   --->   Operation 43 'specpipeline' 'specpipeline_ln154' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 44 [1/1] (0.00ns)   --->   "%speclooptripcount_ln154 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 5, i64 5, i64 5" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154]   --->   Operation 44 'speclooptripcount' 'speclooptripcount_ln154' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 45 [1/1] (0.00ns)   --->   "%specloopname_ln154 = specloopname void @_ssdm_op_SpecLoopName, void @empty_2" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154]   --->   Operation 45 'specloopname' 'specloopname_ln154' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 46 [1/2] (0.73ns)   --->   "%results_0_load = load i3 %results_0_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 46 'load' 'results_0_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_3 : Operation 47 [1/2] (0.73ns)   --->   "%results_1_load = load i3 %results_1_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 47 'load' 'results_1_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_3 : Operation 48 [1/2] (0.73ns)   --->   "%results_2_load = load i3 %results_2_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 48 'load' 'results_2_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_3 : Operation 49 [1/2] (0.73ns)   --->   "%results_3_load = load i3 %results_3_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 49 'load' 'results_3_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_3 : Operation 50 [1/2] (0.73ns)   --->   "%results_4_load = load i3 %results_4_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 50 'load' 'results_4_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_3 : Operation 51 [1/2] (0.73ns)   --->   "%results_5_load = load i3 %results_5_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 51 'load' 'results_5_load' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_3 : Operation 52 [1/1] (1.14ns)   --->   "%add_ln156 = add i32 %results_1_load, i32 %results_0_load" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 52 'add' 'add_ln156' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 53 [1/1] (1.14ns)   --->   "%add_ln156_1 = add i32 %results_2_load, i32 %results_3_load" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 53 'add' 'add_ln156_1' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 54 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln156_2 = add i32 %add_ln156_1, i32 %add_ln156" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 54 'add' 'add_ln156_2' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.45> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
-ST_3 : Operation 55 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln156_3 = add i32 %results_4_load, i32 %results_5_load" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 55 'add' 'add_ln156_3' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.45> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
-ST_3 : Operation 56 [1/1] (0.90ns) (root node of TernaryAdder)   --->   "%add_ln156_5 = add i32 %add_ln156_4, i32 %add_ln156_3" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 56 'add' 'add_ln156_5' <Predicate = true> <Delay = 0.90> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.45> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
-ST_3 : Operation 57 [1/1] (0.90ns) (root node of TernaryAdder)   --->   "%add_ln156_6 = add i32 %add_ln156_5, i32 %add_ln156_2" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156]   --->   Operation 57 'add' 'add_ln156_6' <Predicate = true> <Delay = 0.90> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.45> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
-ST_3 : Operation 58 [1/1] (0.00ns)   --->   "%results_addr = getelementptr i32 %results, i64 0, i64 %zext_ln154" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 58 'getelementptr' 'results_addr' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 59 [1/1] (0.73ns)   --->   "%store_ln155 = store i32 %add_ln156_6, i3 %results_addr" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155]   --->   Operation 59 'store' 'store_ln155' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
-ST_3 : Operation 60 [1/1] (0.00ns)   --->   "%br_ln154 = br void %for.inc375" [HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154]   --->   Operation 60 'br' 'br_ln154' <Predicate = true> <Delay = 0.00>
+State 3 <SV = 2> <Delay = 2.55>
+ST_3 : Operation 42 [1/1] (2.55ns)   --->   "%add_ln167 = add i32 %results_1_load, i32 %results_0_load" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 42 'add' 'add_ln167' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 43 [1/1] (2.55ns)   --->   "%add_ln167_1 = add i32 %results_2_load, i32 %results_3_load" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 43 'add' 'add_ln167_1' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 44 [1/1] (2.55ns)   --->   "%add_ln167_3 = add i32 %results_4_load, i32 %results_5_load" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 44 'add' 'add_ln167_3' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 45 [1/1] (2.55ns)   --->   "%add_ln167_4 = add i32 %results_6_load, i32 %results_7_load" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 45 'add' 'add_ln167_4' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 2.55>
+ST_4 : Operation 46 [1/1] (2.55ns)   --->   "%add_ln167_2 = add i32 %add_ln167_1, i32 %add_ln167" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 46 'add' 'add_ln167_2' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 47 [1/1] (2.55ns)   --->   "%add_ln167_5 = add i32 %add_ln167_4, i32 %add_ln167_3" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 47 'add' 'add_ln167_5' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 2.55>
+ST_5 : Operation 48 [1/1] (2.55ns)   --->   "%add_ln167_6 = add i32 %add_ln167_5, i32 %add_ln167_2" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:167]   --->   Operation 48 'add' 'add_ln167_6' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 55 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 55 'ret' 'ret_ln0' <Predicate = (icmp_ln165)> <Delay = 0.00>
+
+State 6 <SV = 5> <Delay = 2.32>
+ST_6 : Operation 49 [1/1] (0.00ns)   --->   "%specpipeline_ln165 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_0" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:165]   --->   Operation 49 'specpipeline' 'specpipeline_ln165' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 50 [1/1] (0.00ns)   --->   "%speclooptripcount_ln165 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 5, i64 5, i64 5" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:165]   --->   Operation 50 'speclooptripcount' 'speclooptripcount_ln165' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 51 [1/1] (0.00ns)   --->   "%specloopname_ln165 = specloopname void @_ssdm_op_SpecLoopName, void @empty_3" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:165]   --->   Operation 51 'specloopname' 'specloopname_ln165' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 52 [1/1] (0.00ns)   --->   "%results_addr = getelementptr i32 %results, i64 0, i64 %zext_ln165" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 52 'getelementptr' 'results_addr' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 53 [1/1] (2.32ns)   --->   "%store_ln166 = store i32 %add_ln167_6, i3 %results_addr" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:166]   --->   Operation 53 'store' 'store_ln166' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_6 : Operation 54 [1/1] (0.00ns)   --->   "%br_ln165 = br void %for.inc375" [benchmarks/jianyicheng/histogram2/src/histogram.cpp:165]   --->   Operation 54 'br' 'br_ln165' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
@@ -153,25 +153,33 @@ ST_3 : Operation 60 [1/1] (0.00ns)   --->   "%br_ln154 = br void %for.inc375" [H
 ============================================================
 Target clock period: 5.000ns, clock uncertainty: 1.350ns.
 
- <State 1>: 1.635ns
+ <State 1>: 4.826ns
 The critical path consists of the following:
-	'store' operation 0 bit ('store_ln154', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154) of constant 0 on local variable 'i', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154 [20]  (0.460 ns)
-	'load' operation 3 bit ('i', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154) on local variable 'i', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154 [23]  (0.000 ns)
-	'icmp' operation 1 bit ('icmp_ln154', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154) [24]  (0.715 ns)
-	'store' operation 0 bit ('store_ln154', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154) of variable 'add_ln154', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154 on local variable 'i', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:154 [57]  (0.460 ns)
+	'store' operation 0 bit ('store_ln165', benchmarks/jianyicheng/histogram2/src/histogram.cpp:165) of constant 0 on local variable 'i', benchmarks/jianyicheng/histogram2/src/histogram.cpp:165 [11]  (1.588 ns)
+	'load' operation 3 bit ('i', benchmarks/jianyicheng/histogram2/src/histogram.cpp:165) on local variable 'i', benchmarks/jianyicheng/histogram2/src/histogram.cpp:165 [14]  (0.000 ns)
+	'add' operation 3 bit ('add_ln165', benchmarks/jianyicheng/histogram2/src/histogram.cpp:165) [16]  (1.650 ns)
+	'store' operation 0 bit ('store_ln165', benchmarks/jianyicheng/histogram2/src/histogram.cpp:165) of variable 'add_ln165', benchmarks/jianyicheng/histogram2/src/histogram.cpp:165 on local variable 'i', benchmarks/jianyicheng/histogram2/src/histogram.cpp:165 [48]  (1.588 ns)
 
- <State 2>: 1.872ns
+ <State 2>: 2.322ns
 The critical path consists of the following:
-	'load' operation 32 bit ('results_6_load', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156) on array 'results_6' [45]  (0.730 ns)
-	'add' operation 32 bit ('add_ln156_4', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156) [52]  (1.142 ns)
+	'load' operation 32 bit ('results_0_load', benchmarks/jianyicheng/histogram2/src/histogram.cpp:166) on array 'results_0' [24]  (2.322 ns)
 
- <State 3>: 3.509ns
+ <State 3>: 2.552ns
 The critical path consists of the following:
-	'load' operation 32 bit ('results_0_load', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155) on array 'results_0' [33]  (0.730 ns)
-	'add' operation 32 bit ('add_ln156', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156) [48]  (1.142 ns)
-	'add' operation 32 bit ('add_ln156_2', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156) [50]  (0.000 ns)
-	'add' operation 32 bit ('add_ln156_6', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156) [54]  (0.907 ns)
-	'store' operation 0 bit ('store_ln155', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:155) of variable 'add_ln156_6', HLS-benchmarks/Inter-Block/histogram/histogram.cpp:156 on array 'results' [56]  (0.730 ns)
+	'add' operation 32 bit ('add_ln167', benchmarks/jianyicheng/histogram2/src/histogram.cpp:167) [39]  (2.552 ns)
+
+ <State 4>: 2.552ns
+The critical path consists of the following:
+	'add' operation 32 bit ('add_ln167_2', benchmarks/jianyicheng/histogram2/src/histogram.cpp:167) [41]  (2.552 ns)
+
+ <State 5>: 2.552ns
+The critical path consists of the following:
+	'add' operation 32 bit ('add_ln167_6', benchmarks/jianyicheng/histogram2/src/histogram.cpp:167) [45]  (2.552 ns)
+
+ <State 6>: 2.322ns
+The critical path consists of the following:
+	'getelementptr' operation 3 bit ('results_addr', benchmarks/jianyicheng/histogram2/src/histogram.cpp:166) [46]  (0.000 ns)
+	'store' operation 0 bit ('store_ln166', benchmarks/jianyicheng/histogram2/src/histogram.cpp:166) of variable 'add_ln167_6', benchmarks/jianyicheng/histogram2/src/histogram.cpp:167 on array 'results' [47]  (2.322 ns)
 
 
 ============================================================
@@ -185,6 +193,9 @@ N/A
 	State 1
 	State 2
 	State 3
+	State 4
+	State 5
+	State 6
 
 
 ============================================================

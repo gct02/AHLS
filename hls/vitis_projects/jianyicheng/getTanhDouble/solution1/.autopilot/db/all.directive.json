@@ -1,7 +1,7 @@
 [
   {
     "functionLabel": "",
-    "functionName": "getTanhDouble",
+    "functionName": "main",
     "id": 0,
     "ifcond": "",
     "insert_position": "",
@@ -11,13 +11,13 @@
       "option": [
         {
           "name": "name",
-          "value": "getTanhDouble"
+          "value": "main"
         }
       ]
     },
     "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl",
-    "sourceLine": 20,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_getTanhDouble.tcl",
+    "sourceLine": 7,
     "success": true
   }
 ]

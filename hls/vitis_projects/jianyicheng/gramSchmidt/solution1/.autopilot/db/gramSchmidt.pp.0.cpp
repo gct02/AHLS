@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp"
+# 1 "benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,22 +155,22 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp" 2
+# 1 "benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp" 2
 
 
 
 
 
-# 1 "HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.h" 1
+# 1 "benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.h" 1
 typedef float in_float_t;
 typedef float out_float_t;
 typedef float inout_float_t;
 
 
 
-__attribute__((sdx_kernel("gramSchmidt", 0))) void gramSchmidt(inout_float_t a[1024], inout_float_t r[1024],
+void gramSchmidt(inout_float_t a[1024], inout_float_t r[1024],
                  inout_float_t q[1024]);
-# 7 "HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp" 2
+# 7 "benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp" 2
 # 1 "/usr/include/stdio.h" 1 3 4
 # 27 "/usr/include/stdio.h" 3 4
 # 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
@@ -1068,7 +1068,7 @@ extern int __uflow (FILE *);
 extern int __overflow (FILE *, int);
 # 902 "/usr/include/stdio.h" 3 4
 }
-# 8 "HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp" 2
+# 8 "benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp" 2
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 1 3
 # 36 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/stdlib.h" 3
 # 1 "/tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cstdlib" 1 3
@@ -2660,67 +2660,76 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 9 "HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp" 2
-# 30 "HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp"
-__attribute__((sdx_kernel("gramSchmidt", 0))) void gramSchmidt(inout_float_t a[1024], inout_float_t r[1024],
-                 inout_float_t q[1024]) {
-#line 16 "/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=gramSchmidt
-# 31 "HLS-benchmarks/C-Slow/gramSchmidt/gramSchmidt.cpp"
+# 9 "benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp" 2
 
+unsigned short lfsr = 0xACE1u;
+unsigned bit;
+
+unsigned _rand()
+{
+ bit = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
+ return lfsr = (lfsr >> 1) | (bit << 15);
+}
+# 40 "benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp"
+void gramSchmidt(inout_float_t a[1024], inout_float_t r[1024],
+                 inout_float_t q[1024]) {
 
   int kk = 0;
-  VITIS_LOOP_34_1: for (int k = 0; k < 32; k++) {
+  VITIS_LOOP_44_1: for (int k = 0; k < 32; k++) {
     float nrm = 0.0f;
-    VITIS_LOOP_36_2: for (int i = 0; i < 32 * 32; i += 32)
+    VITIS_LOOP_46_2: for (int i = 0; i < 32 * 32; i += 32)
       nrm += a[i + k] * a[i + k];
     nrm = 0.0019f * ((nrm - 8.0f) * nrm + 16.0f) * nrm + 2.0f;
     r[kk + k] = nrm;
-    VITIS_LOOP_40_3: for (int i = 0; i < 32 * 32; i += 32)
+    VITIS_LOOP_50_3: for (int i = 0; i < 32 * 32; i += 32)
       q[i + k] = a[i + k] / r[kk + k];
-    VITIS_LOOP_42_4: for (int j = k + 1; j < 32; j++) {
+    VITIS_LOOP_52_4: for (int j = k + 1; j < 32; j++) {
       r[kk + j] = 0.0f;
-      VITIS_LOOP_44_5: for (int i = 0; i < 32 * 32; i += 32)
+      VITIS_LOOP_54_5: for (int i = 0; i < 32 * 32; i += 32)
         r[kk + j] += q[i + k] * a[i + j];
-      VITIS_LOOP_46_6: for (int i = 0; i < 32 * 32; i += 32)
+      VITIS_LOOP_56_6: for (int i = 0; i < 32 * 32; i += 32)
         a[i + j] = a[i + j] - q[i + k] * r[kk + j];
     }
     kk += 32;
   }
 }
 
-int main() {
+__attribute__((sdx_kernel("main", 0))) int main() {
+#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_gramSchmidt.tcl"
+#pragma HLSDIRECTIVE TOP name=main
+# 63 "benchmarks/jianyicheng/gramSchmidt/src/gramSchmidt.cpp"
+
   inout_float_t a[1024], r[1024], q[1024];
   float a_[1024], r_[1024], q_[1024];
 
-  srand(9);
+  (9);
 
-  VITIS_LOOP_59_1: for (int i = 0; i < 32; i++) {
-    VITIS_LOOP_60_2: for (int j = 0; j < 32; j++) {
-      a[i * 32 + j] = rand() / 1000.0f;
+  VITIS_LOOP_69_1: for (int i = 0; i < 32; i++) {
+    VITIS_LOOP_70_2: for (int j = 0; j < 32; j++) {
+      a[i * 32 + j] = _rand() / 1000.0f;
       a_[i * 32 + j] = a[i * 32 + j];
-      r[i * 32 + j] = rand() / 1000.0f;
+      r[i * 32 + j] = _rand() / 1000.0f;
       r_[i * 32 + j] = r[i * 32 + j];
-      q[i * 32 + j] = rand() / 1000.0f;
+      q[i * 32 + j] = _rand() / 1000.0f;
       q_[i * 32 + j] = q[i * 32 + j];
     }
   }
 
   {
     int kk = 0;
-    VITIS_LOOP_72_3: for (int k = 0; k < 32; k++) {
+    VITIS_LOOP_82_3: for (int k = 0; k < 32; k++) {
       float nrm = 0.0f;
-      VITIS_LOOP_74_4: for (int i = 0; i < 32 * 32; i += 32)
+      VITIS_LOOP_84_4: for (int i = 0; i < 32 * 32; i += 32)
         nrm += a[i + k] * a[i + k];
       nrm = 0.0019f * ((nrm - 8.0f) * nrm + 16.0f) * nrm + 2.0f;
       r[kk + k] = nrm;
-      VITIS_LOOP_78_5: for (int i = 0; i < 32 * 32; i += 32)
+      VITIS_LOOP_88_5: for (int i = 0; i < 32 * 32; i += 32)
         q[i + k] = a[i + k] / r[kk + k];
-      VITIS_LOOP_80_6: for (int j = k + 1; j < 32; j++) {
+      VITIS_LOOP_90_6: for (int j = k + 1; j < 32; j++) {
         r[kk + j] = 0.0f;
-        VITIS_LOOP_82_7: for (int i = 0; i < 32 * 32; i += 32)
+        VITIS_LOOP_92_7: for (int i = 0; i < 32 * 32; i += 32)
           r[kk + j] += q[i + k] * a[i + j];
-        VITIS_LOOP_84_8: for (int i = 0; i < 32 * 32; i += 32)
+        VITIS_LOOP_94_8: for (int i = 0; i < 32 * 32; i += 32)
           a[i + j] = a[i + j] - q[i + k] * r[kk + j];
       }
       kk += 32;
@@ -2730,8 +2739,8 @@ int main() {
   gramSchmidt(a_, r_, q_);
 
   int res = 0;
-  VITIS_LOOP_94_9: for (int i = 0; i < 32; i++)
-    VITIS_LOOP_95_10: for (int j = 0; j < 32; j++) {
+  VITIS_LOOP_104_9: for (int i = 0; i < 32; i++)
+    VITIS_LOOP_105_10: for (int j = 0; j < 32; j++) {
       res += (a[i * 32 + j] == a_[i * 32 + j]);
       res += (r[i * 32 + j] == r_[i * 32 + j]);
       res += (q[i * 32 + j] == q_[i * 32 + j]);

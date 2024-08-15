@@ -1,12 +1,15 @@
 <xilinx:hls_fe_msgs>
-    <msg msg_groups="" msg_id="207-5292" msg_severity="WARNING" msg_loc="HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:15:60" msg_body="unused parameter 'array_3'">
+    <msg msg_groups="" msg_id="207-5286" msg_severity="WARNING" msg_loc="benchmarks/jianyicheng/matrixadd/src/matrixadd.cpp:87:4" msg_body="expression result unused">
+        <args ClangWarningOption="unused-value"/>
+    </msg>
+    <msg msg_groups="" msg_id="207-5292" msg_severity="WARNING" msg_loc="benchmarks/jianyicheng/matrixadd/src/matrixadd.cpp:26:60" msg_body="unused parameter 'array_3'">
         <args ClangWarningOption="unused-parameter"/>
     </msg>
-    <msg msg_groups="" msg_id="207-5292" msg_severity="WARNING" msg_loc="HLS-benchmarks/Inter-Block/matrixadd/matrixadd.cpp:16:60" msg_body="unused parameter 'array_5'">
+    <msg msg_groups="" msg_id="207-5292" msg_severity="WARNING" msg_loc="benchmarks/jianyicheng/matrixadd/src/matrixadd.cpp:27:60" msg_body="unused parameter 'array_5'">
         <args ClangWarningOption="unused-parameter"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/ahls_resource_estimation/run_hls.tcl:18:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="matrixadd" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=matrixadd" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_matrixadd.tcl:7:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="main" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=main" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
 </xilinx:hls_fe_msgs>
 

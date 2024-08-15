@@ -1,0 +1,235 @@
+
+
+================================================================
+== Vitis HLS Report for 'los_Pipeline_VITIS_LOOP_339_14'
+================================================================
+* Date:           Mon Aug 12 18:55:34 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        los
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  5.118 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                     |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name      |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_339_14  |        ?|        ?|         7|          5|          1|     ?|       yes|
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 5, depth = 7
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 7
+* Pipeline : 1
+  Pipeline-0 : II = 5, D = 7, States = { 1 2 3 4 5 6 7 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 5.11>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%err = alloca i32 1" [benchmarks/jianyicheng/los/src/los.cpp:337]   --->   Operation 10 'alloca' 'err' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%y0 = alloca i32 1" [benchmarks/jianyicheng/los/src/los.cpp:319]   --->   Operation 11 'alloca' 'y0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%x0 = alloca i32 1" [benchmarks/jianyicheng/los/src/los.cpp:318]   --->   Operation 12 'alloca' 'x0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%sight_6 = alloca i32 1" [benchmarks/jianyicheng/los/src/los.cpp:317]   --->   Operation 13 'alloca' 'sight_6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%sext_ln320_read = read i7 @_ssdm_op_Read.ap_auto.i7, i7 %sext_ln320"   --->   Operation 14 'read' 'sext_ln320_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%select_ln321_read = read i2 @_ssdm_op_Read.ap_auto.i2, i2 %select_ln321"   --->   Operation 15 'read' 'select_ln321_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%zext_ln315_1_read = read i6 @_ssdm_op_Read.ap_auto.i6, i6 %zext_ln315_1"   --->   Operation 16 'read' 'zext_ln315_1_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%sext_ln315_read = read i6 @_ssdm_op_Read.ap_auto.i6, i6 %sext_ln315"   --->   Operation 17 'read' 'sext_ln315_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%sext_ln337_read = read i7 @_ssdm_op_Read.ap_auto.i7, i7 %sext_ln337"   --->   Operation 18 'read' 'sext_ln337_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%zext_ln315_3_read = read i4 @_ssdm_op_Read.ap_auto.i4, i4 %zext_ln315_3"   --->   Operation 19 'read' 'zext_ln315_3_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%zext_ln326_read = read i6 @_ssdm_op_Read.ap_auto.i6, i6 %zext_ln326"   --->   Operation 20 'read' 'zext_ln326_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%sext_ln320_cast = sext i7 %sext_ln320_read"   --->   Operation 21 'sext' 'sext_ln320_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%select_ln321_cast = sext i2 %select_ln321_read"   --->   Operation 22 'sext' 'select_ln321_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%zext_ln315_1_cast = zext i6 %zext_ln315_1_read"   --->   Operation 23 'zext' 'zext_ln315_1_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%sext_ln315_cast = sext i6 %sext_ln315_read"   --->   Operation 24 'sext' 'sext_ln315_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%sext_ln337_cast = sext i7 %sext_ln337_read"   --->   Operation 25 'sext' 'sext_ln337_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%zext_ln315_3_cast = zext i4 %zext_ln315_3_read"   --->   Operation 26 'zext' 'zext_ln315_3_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%zext_ln326_cast = zext i6 %zext_ln326_read"   --->   Operation 27 'zext' 'zext_ln326_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (1.58ns)   --->   "%store_ln317 = store i32 1, i32 %sight_6" [benchmarks/jianyicheng/los/src/los.cpp:317]   --->   Operation 28 'store' 'store_ln317' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 29 [1/1] (1.58ns)   --->   "%store_ln318 = store i32 %zext_ln326_cast, i32 %x0" [benchmarks/jianyicheng/los/src/los.cpp:318]   --->   Operation 29 'store' 'store_ln318' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 30 [1/1] (1.58ns)   --->   "%store_ln319 = store i32 %zext_ln315_3_cast, i32 %y0" [benchmarks/jianyicheng/los/src/los.cpp:319]   --->   Operation 30 'store' 'store_ln319' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 31 [1/1] (1.58ns)   --->   "%store_ln337 = store i32 %sext_ln337_cast, i32 %err" [benchmarks/jianyicheng/los/src/los.cpp:337]   --->   Operation 31 'store' 'store_ln337' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%br_ln0 = br void %while.body464"   --->   Operation 32 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%y0_7 = load i32 %y0" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 33 'load' 'y0_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%x0_7 = load i32 %x0" [benchmarks/jianyicheng/los/src/los.cpp:337]   --->   Operation 34 'load' 'x0_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%specpipeline_ln337 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_9" [benchmarks/jianyicheng/los/src/los.cpp:337]   --->   Operation 35 'specpipeline' 'specpipeline_ln337' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%specloopname_ln339 = specloopname void @_ssdm_op_SpecLoopName, void @empty_6" [benchmarks/jianyicheng/los/src/los.cpp:339]   --->   Operation 36 'specloopname' 'specloopname_ln339' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 37 [1/1] (2.55ns)   --->   "%icmp_ln340 = icmp_eq  i32 %x0_7, i32 32" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 37 'icmp' 'icmp_ln340' <Predicate = true> <Delay = 2.55> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 38 [1/1] (2.55ns)   --->   "%icmp_ln340_1 = icmp_eq  i32 %y0_7, i32 32" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 38 'icmp' 'icmp_ln340_1' <Predicate = true> <Delay = 2.55> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 39 [1/1] (0.97ns)   --->   "%and_ln340 = and i1 %icmp_ln340, i1 %icmp_ln340_1" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 39 'and' 'and_ln340' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%br_ln340 = br i1 %and_ln340, void %land.lhs.true468, void %if.end475" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 40 'br' 'br_ln340' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%trunc_ln340 = trunc i32 %y0_7" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 41 'trunc' 'trunc_ln340' <Predicate = (!and_ln340)> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%shl_ln6 = bitconcatenate i10 @_ssdm_op_BitConcatenate.i10.i4.i6, i4 %trunc_ln340, i6 0" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 42 'bitconcatenate' 'shl_ln6' <Predicate = (!and_ln340)> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%trunc_ln337 = trunc i32 %x0_7" [benchmarks/jianyicheng/los/src/los.cpp:337]   --->   Operation 43 'trunc' 'trunc_ln337' <Predicate = (!and_ln340)> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (1.73ns)   --->   "%add_ln340 = add i10 %shl_ln6, i10 %trunc_ln337" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 44 'add' 'add_ln340' <Predicate = (!and_ln340)> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 2 <SV = 1> <Delay = 3.25>
+ST_2 : Operation 45 [1/1] (0.00ns)   --->   "%zext_ln340 = zext i10 %add_ln340" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 45 'zext' 'zext_ln340' <Predicate = (!and_ln340)> <Delay = 0.00>
+ST_2 : Operation 46 [1/1] (0.00ns)   --->   "%obstacles_6_addr = getelementptr i1 %obstacles_6, i64 0, i64 %zext_ln340" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 46 'getelementptr' 'obstacles_6_addr' <Predicate = (!and_ln340)> <Delay = 0.00>
+ST_2 : Operation 47 [2/2] (3.25ns)   --->   "%obstacles_6_load = load i10 %obstacles_6_addr" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 47 'load' 'obstacles_6_load' <Predicate = (!and_ln340)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+
+State 3 <SV = 2> <Delay = 3.25>
+ST_3 : Operation 48 [1/2] (3.25ns)   --->   "%obstacles_6_load = load i10 %obstacles_6_addr" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 48 'load' 'obstacles_6_load' <Predicate = (!and_ln340)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+
+State 4 <SV = 3> <Delay = 2.28>
+ST_4 : Operation 49 [1/1] (0.00ns)   --->   "%sight_6_load = load i32 %sight_6" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 49 'load' 'sight_6_load' <Predicate = (!and_ln340 & !obstacles_6_load)> <Delay = 0.00>
+ST_4 : Operation 50 [1/1] (0.69ns)   --->   "%select_ln340 = select i1 %obstacles_6_load, i32 0, i32 %sight_6_load" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 50 'select' 'select_ln340' <Predicate = (!and_ln340)> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_4 : Operation 51 [1/1] (1.58ns)   --->   "%store_ln317 = store i32 %select_ln340, i32 %sight_6" [benchmarks/jianyicheng/los/src/los.cpp:317]   --->   Operation 51 'store' 'store_ln317' <Predicate = (!and_ln340)> <Delay = 1.58>
+ST_4 : Operation 52 [1/1] (0.00ns)   --->   "%br_ln340 = br void %if.end475" [benchmarks/jianyicheng/los/src/los.cpp:340]   --->   Operation 52 'br' 'br_ln340' <Predicate = (!and_ln340)> <Delay = 0.00>
+
+State 5 <SV = 4> <Delay = 3.53>
+ST_5 : Operation 53 [1/1] (0.00ns)   --->   "%sight_6_1 = load i32 %sight_6"   --->   Operation 53 'load' 'sight_6_1' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 54 [1/1] (2.55ns)   --->   "%icmp_ln342 = icmp_eq  i32 %sight_6_1, i32 0" [benchmarks/jianyicheng/los/src/los.cpp:342]   --->   Operation 54 'icmp' 'icmp_ln342' <Predicate = true> <Delay = 2.55> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 55 [1/1] (0.97ns)   --->   "%or_ln342 = or i1 %and_ln340, i1 %icmp_ln342" [benchmarks/jianyicheng/los/src/los.cpp:342]   --->   Operation 55 'or' 'or_ln342' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 56 [1/1] (0.00ns)   --->   "%br_ln342 = br i1 %or_ln342, void %if.end482, void %while.end496.exitStub" [benchmarks/jianyicheng/los/src/los.cpp:342]   --->   Operation 56 'br' 'br_ln342' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 57 [1/1] (0.00ns)   --->   "%err_load = load i32 %err" [benchmarks/jianyicheng/los/src/los.cpp:344]   --->   Operation 57 'load' 'err_load' <Predicate = (!or_ln342)> <Delay = 0.00>
+ST_5 : Operation 58 [1/1] (0.00ns)   --->   "%e2 = shl i32 %err_load, i32 1" [benchmarks/jianyicheng/los/src/los.cpp:344]   --->   Operation 58 'shl' 'e2' <Predicate = (!or_ln342)> <Delay = 0.00>
+ST_5 : Operation 59 [1/1] (2.55ns)   --->   "%icmp_ln345 = icmp_sgt  i32 %e2, i32 %sext_ln315_cast" [benchmarks/jianyicheng/los/src/los.cpp:345]   --->   Operation 59 'icmp' 'icmp_ln345' <Predicate = (!or_ln342)> <Delay = 2.55> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 60 [1/1] (2.55ns)   --->   "%err_10 = sub i32 %err_load, i32 %zext_ln315_1_cast" [benchmarks/jianyicheng/los/src/los.cpp:346]   --->   Operation 60 'sub' 'err_10' <Predicate = (!or_ln342)> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 61 [1/1] (2.55ns)   --->   "%x0_8 = add i32 %x0_7, i32 %select_ln321_cast" [benchmarks/jianyicheng/los/src/los.cpp:347]   --->   Operation 61 'add' 'x0_8' <Predicate = (!or_ln342)> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 62 [1/1] (0.69ns)   --->   "%x0_9 = select i1 %icmp_ln345, i32 %x0_8, i32 %x0_7" [benchmarks/jianyicheng/los/src/los.cpp:345]   --->   Operation 62 'select' 'x0_9' <Predicate = (!or_ln342)> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_5 : Operation 63 [1/1] (0.69ns)   --->   "%err_11 = select i1 %icmp_ln345, i32 %err_10, i32 %err_load" [benchmarks/jianyicheng/los/src/los.cpp:345]   --->   Operation 63 'select' 'err_11' <Predicate = (!or_ln342)> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_5 : Operation 64 [1/1] (2.55ns)   --->   "%icmp_ln350 = icmp_slt  i32 %e2, i32 %sext_ln320_cast" [benchmarks/jianyicheng/los/src/los.cpp:350]   --->   Operation 64 'icmp' 'icmp_ln350' <Predicate = (!or_ln342)> <Delay = 2.55> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 65 [1/1] (2.55ns)   --->   "%y0_8 = add i32 %y0_7, i32 1" [benchmarks/jianyicheng/los/src/los.cpp:352]   --->   Operation 65 'add' 'y0_8' <Predicate = (!or_ln342)> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 66 [1/1] (0.69ns)   --->   "%y0_9 = select i1 %icmp_ln350, i32 %y0_8, i32 %y0_7" [benchmarks/jianyicheng/los/src/los.cpp:350]   --->   Operation 66 'select' 'y0_9' <Predicate = (!or_ln342)> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_5 : Operation 73 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i32P0A, i32 %sight_6_1_out, i32 %sight_6_1"   --->   Operation 73 'write' 'write_ln0' <Predicate = (or_ln342)> <Delay = 0.00>
+ST_5 : Operation 74 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 74 'ret' 'ret_ln0' <Predicate = (or_ln342)> <Delay = 0.00>
+
+State 6 <SV = 5> <Delay = 2.55>
+ST_6 : Operation 67 [1/1] (2.55ns)   --->   "%err_12 = add i32 %err_11, i32 %sext_ln320_cast" [benchmarks/jianyicheng/los/src/los.cpp:351]   --->   Operation 67 'add' 'err_12' <Predicate = (icmp_ln350)> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 68 [1/1] (1.58ns)   --->   "%store_ln318 = store i32 %x0_9, i32 %x0" [benchmarks/jianyicheng/los/src/los.cpp:318]   --->   Operation 68 'store' 'store_ln318' <Predicate = true> <Delay = 1.58>
+ST_6 : Operation 69 [1/1] (1.58ns)   --->   "%store_ln319 = store i32 %y0_9, i32 %y0" [benchmarks/jianyicheng/los/src/los.cpp:319]   --->   Operation 69 'store' 'store_ln319' <Predicate = true> <Delay = 1.58>
+
+State 7 <SV = 6> <Delay = 2.28>
+ST_7 : Operation 70 [1/1] (0.69ns)   --->   "%err_13 = select i1 %icmp_ln350, i32 %err_12, i32 %err_11" [benchmarks/jianyicheng/los/src/los.cpp:350]   --->   Operation 70 'select' 'err_13' <Predicate = true> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_7 : Operation 71 [1/1] (1.58ns)   --->   "%store_ln337 = store i32 %err_13, i32 %err" [benchmarks/jianyicheng/los/src/los.cpp:337]   --->   Operation 71 'store' 'store_ln337' <Predicate = true> <Delay = 1.58>
+ST_7 : Operation 72 [1/1] (0.00ns)   --->   "%br_ln339 = br void %while.body464" [benchmarks/jianyicheng/los/src/los.cpp:339]   --->   Operation 72 'br' 'br_ln339' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 5.118ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln318', benchmarks/jianyicheng/los/src/los.cpp:318) of variable 'zext_ln326_cast' on local variable 'x0', benchmarks/jianyicheng/los/src/los.cpp:318 [29]  (1.588 ns)
+	'load' operation 32 bit ('x0', benchmarks/jianyicheng/los/src/los.cpp:337) on local variable 'x0', benchmarks/jianyicheng/los/src/los.cpp:318 [35]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln340', benchmarks/jianyicheng/los/src/los.cpp:340) [38]  (2.552 ns)
+	'and' operation 1 bit ('and_ln340', benchmarks/jianyicheng/los/src/los.cpp:340) [40]  (0.978 ns)
+
+ <State 2>: 3.254ns
+The critical path consists of the following:
+	'getelementptr' operation 10 bit ('obstacles_6_addr', benchmarks/jianyicheng/los/src/los.cpp:340) [49]  (0.000 ns)
+	'load' operation 1 bit ('obstacles_6_load', benchmarks/jianyicheng/los/src/los.cpp:340) on array 'obstacles_6' [50]  (3.254 ns)
+
+ <State 3>: 3.254ns
+The critical path consists of the following:
+	'load' operation 1 bit ('obstacles_6_load', benchmarks/jianyicheng/los/src/los.cpp:340) on array 'obstacles_6' [50]  (3.254 ns)
+
+ <State 4>: 2.286ns
+The critical path consists of the following:
+	'load' operation 32 bit ('sight_6_load', benchmarks/jianyicheng/los/src/los.cpp:340) on local variable 'sight_6', benchmarks/jianyicheng/los/src/los.cpp:317 [43]  (0.000 ns)
+	'select' operation 32 bit ('select_ln340', benchmarks/jianyicheng/los/src/los.cpp:340) [51]  (0.698 ns)
+	'store' operation 0 bit ('store_ln317', benchmarks/jianyicheng/los/src/los.cpp:317) of variable 'select_ln340', benchmarks/jianyicheng/los/src/los.cpp:340 on local variable 'sight_6', benchmarks/jianyicheng/los/src/los.cpp:317 [52]  (1.588 ns)
+
+ <State 5>: 3.530ns
+The critical path consists of the following:
+	'load' operation 32 bit ('sight_6') on local variable 'sight_6', benchmarks/jianyicheng/los/src/los.cpp:317 [55]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln342', benchmarks/jianyicheng/los/src/los.cpp:342) [56]  (2.552 ns)
+	'or' operation 1 bit ('or_ln342', benchmarks/jianyicheng/los/src/los.cpp:342) [57]  (0.978 ns)
+
+ <State 6>: 2.552ns
+The critical path consists of the following:
+	'add' operation 32 bit ('err', benchmarks/jianyicheng/los/src/los.cpp:351) [68]  (2.552 ns)
+
+ <State 7>: 2.286ns
+The critical path consists of the following:
+	'select' operation 32 bit ('err', benchmarks/jianyicheng/los/src/los.cpp:350) [71]  (0.698 ns)
+	'store' operation 0 bit ('store_ln337', benchmarks/jianyicheng/los/src/los.cpp:337) of variable 'err', benchmarks/jianyicheng/los/src/los.cpp:350 on local variable 'err', benchmarks/jianyicheng/los/src/los.cpp:337 [74]  (1.588 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

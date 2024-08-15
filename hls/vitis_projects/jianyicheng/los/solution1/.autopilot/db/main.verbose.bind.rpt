@@ -1,0 +1,2110 @@
+
+
+================================================================
+== Vitis HLS Report for 'main'
+================================================================
+* Date:           Mon Aug 12 18:55:35 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        los
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  5.118 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------+-------+---------+---------+----------+----------+-----+-----+---------+
+        |                |       |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |    Instance    | Module|   min   |   max   |    min   |    max   | min | max |   Type  |
+        +----------------+-------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_los_fu_236  |los    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        +----------------+-------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_417_1  |     1024|     1024|         2|          1|          1|  1024|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 5
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 2, States = { 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 4 3 
+3 --> 2 
+4 --> 5 
+5 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.25>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 6 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%lfsr_0 = alloca i32 1"   --->   Operation 7 'alloca' 'lfsr_0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 0"   --->   Operation 8 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%spectopmodule_ln409 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_4" [benchmarks/jianyicheng/los/src/los.cpp:409]   --->   Operation 9 'spectopmodule' 'spectopmodule_ln409' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (3.25ns)   --->   "%obstacles_0 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:410]   --->   Operation 10 'alloca' 'obstacles_0' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_1 : Operation 11 [1/1] (3.25ns)   --->   "%obstacles_1 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:410]   --->   Operation 11 'alloca' 'obstacles_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_1 : Operation 12 [1/1] (3.25ns)   --->   "%obstacles_2 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:410]   --->   Operation 12 'alloca' 'obstacles_2' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_1 : Operation 13 [1/1] (3.25ns)   --->   "%obstacles_3 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:411]   --->   Operation 13 'alloca' 'obstacles_3' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_1 : Operation 14 [1/1] (3.25ns)   --->   "%obstacles_4 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:411]   --->   Operation 14 'alloca' 'obstacles_4' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_1 : Operation 15 [1/1] (3.25ns)   --->   "%obstacles_5 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:411]   --->   Operation 15 'alloca' 'obstacles_5' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_1 : Operation 16 [1/1] (3.25ns)   --->   "%obstacles_6 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:412]   --->   Operation 16 'alloca' 'obstacles_6' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_1 : Operation 17 [1/1] (3.25ns)   --->   "%obstacles_7 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:412]   --->   Operation 17 'alloca' 'obstacles_7' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_1 : Operation 18 [1/1] (3.25ns)   --->   "%results_0 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:413]   --->   Operation 18 'alloca' 'results_0' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 19 [1/1] (3.25ns)   --->   "%results_1 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:413]   --->   Operation 19 'alloca' 'results_1' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 20 [1/1] (3.25ns)   --->   "%results_2 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:413]   --->   Operation 20 'alloca' 'results_2' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 21 [1/1] (3.25ns)   --->   "%results_3 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:413]   --->   Operation 21 'alloca' 'results_3' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 22 [1/1] (3.25ns)   --->   "%results_4 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:414]   --->   Operation 22 'alloca' 'results_4' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 23 [1/1] (3.25ns)   --->   "%results_5 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:414]   --->   Operation 23 'alloca' 'results_5' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 24 [1/1] (3.25ns)   --->   "%results_6 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:414]   --->   Operation 24 'alloca' 'results_6' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 25 [1/1] (3.25ns)   --->   "%results_7 = alloca i64 1" [benchmarks/jianyicheng/los/src/los.cpp:414]   --->   Operation 25 'alloca' 'results_7' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 26 [1/1] (1.58ns)   --->   "%store_ln0 = store i16 44257, i16 %lfsr_0"   --->   Operation 26 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 27 [1/1] (1.58ns)   --->   "%store_ln417 = store i11 0, i11 %i" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 27 'store' 'store_ln417' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%br_ln417 = br void %for.body.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 28 'br' 'br_ln417' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 3.22>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%i_1 = load i11 %i" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 29 'load' 'i_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (1.63ns)   --->   "%icmp_ln417 = icmp_eq  i11 %i_1, i11 1024" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 30 'icmp' 'icmp_ln417' <Predicate = true> <Delay = 1.63> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 31 [1/1] (1.63ns)   --->   "%add_ln417 = add i11 %i_1, i11 1" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 31 'add' 'add_ln417' <Predicate = true> <Delay = 1.63> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%br_ln417 = br i1 %icmp_ln417, void %for.body.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.split, void %for.end" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 32 'br' 'br_ln417' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (1.58ns)   --->   "%store_ln417 = store i11 %add_ln417, i11 %i" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 33 'store' 'store_ln417' <Predicate = (!icmp_ln417)> <Delay = 1.58>
+
+State 3 <SV = 2> <Delay = 3.54>
+ST_3 : Operation 34 [1/1] (0.00ns)   --->   "%lfsr_0_load = load i16 %lfsr_0" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:418->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 34 'load' 'lfsr_0_load' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 35 [1/1] (0.00ns)   --->   "%zext_ln417 = zext i11 %i_1" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 35 'zext' 'zext_ln417' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 36 [1/1] (0.00ns)   --->   "%specpipeline_ln417 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_9" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 36 'specpipeline' 'specpipeline_ln417' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%speclooptripcount_ln417 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 1024, i64 1024, i64 1024" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 37 'speclooptripcount' 'speclooptripcount_ln417' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 38 [1/1] (0.00ns)   --->   "%specloopname_ln417 = specloopname void @_ssdm_op_SpecLoopName, void @empty_0" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 38 'specloopname' 'specloopname_ln417' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 39 [1/1] (0.00ns) (grouped into LUT with out node xor_ln19_2)   --->   "%trunc_ln19 = trunc i16 %lfsr_0_load" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:418->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 39 'trunc' 'trunc_ln19' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 40 [1/1] (0.00ns)   --->   "%tmp_1 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_0_load, i32 2" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:418->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 40 'bitselect' 'tmp_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%tmp_2 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_0_load, i32 3" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:418->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 41 'bitselect' 'tmp_2' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "%tmp_3 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_0_load, i32 5" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:418->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 42 'bitselect' 'tmp_3' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 43 [1/1] (0.97ns)   --->   "%xor_ln19_1 = xor i1 %tmp_2, i1 %tmp_3" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:418->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 43 'xor' 'xor_ln19_1' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 44 [1/1] (0.00ns) (grouped into LUT with out node xor_ln19_2)   --->   "%xor_ln19 = xor i1 %xor_ln19_1, i1 %tmp_1" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:418->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 44 'xor' 'xor_ln19' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 45 [1/1] (0.97ns) (out node of the LUT)   --->   "%xor_ln19_2 = xor i1 %xor_ln19, i1 %trunc_ln19" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:418->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 45 'xor' 'xor_ln19_2' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 46 [1/1] (0.00ns)   --->   "%tmp_4 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_0_load, i32 1" [benchmarks/jianyicheng/los/src/los.cpp:418->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 46 'bitselect' 'tmp_4' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 47 [1/1] (0.00ns)   --->   "%obstacles_0_addr = getelementptr i1 %obstacles_0, i64 0, i64 %zext_ln417" [benchmarks/jianyicheng/los/src/los.cpp:418->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 47 'getelementptr' 'obstacles_0_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 48 [1/1] (3.25ns)   --->   "%store_ln418 = store i1 %tmp_4, i10 %obstacles_0_addr" [benchmarks/jianyicheng/los/src/los.cpp:418->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 48 'store' 'store_ln418' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_3 : Operation 49 [1/1] (0.00ns)   --->   "%tmp_5 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_0_load, i32 4" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:419->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 49 'bitselect' 'tmp_5' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 50 [1/1] (0.00ns)   --->   "%tmp_6 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_0_load, i32 6" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:419->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 50 'bitselect' 'tmp_6' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 51 [1/1] (0.00ns) (grouped into LUT with out node xor_ln19_5)   --->   "%xor_ln19_3 = xor i1 %tmp_2, i1 %tmp_4" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:419->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 51 'xor' 'xor_ln19_3' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 52 [1/1] (0.97ns)   --->   "%xor_ln19_4 = xor i1 %tmp_5, i1 %tmp_6" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:419->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 52 'xor' 'xor_ln19_4' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 53 [1/1] (0.97ns) (out node of the LUT)   --->   "%xor_ln19_5 = xor i1 %xor_ln19_4, i1 %xor_ln19_3" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:419->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 53 'xor' 'xor_ln19_5' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 54 [1/1] (0.00ns)   --->   "%obstacles_1_addr = getelementptr i1 %obstacles_1, i64 0, i64 %zext_ln417" [benchmarks/jianyicheng/los/src/los.cpp:419->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 54 'getelementptr' 'obstacles_1_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 55 [1/1] (3.25ns)   --->   "%store_ln419 = store i1 %tmp_1, i10 %obstacles_1_addr" [benchmarks/jianyicheng/los/src/los.cpp:419->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 55 'store' 'store_ln419' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%tmp_7 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_0_load, i32 7" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:420->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 56 'bitselect' 'tmp_7' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 57 [1/1] (0.00ns) (grouped into LUT with out node xor_ln19_8)   --->   "%xor_ln19_6 = xor i1 %tmp_5, i1 %tmp_1" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:420->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 57 'xor' 'xor_ln19_6' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 58 [1/1] (0.97ns)   --->   "%xor_ln19_7 = xor i1 %tmp_3, i1 %tmp_7" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:420->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 58 'xor' 'xor_ln19_7' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 59 [1/1] (0.97ns) (out node of the LUT)   --->   "%xor_ln19_8 = xor i1 %xor_ln19_7, i1 %xor_ln19_6" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:420->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 59 'xor' 'xor_ln19_8' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 60 [1/1] (0.00ns)   --->   "%obstacles_2_addr = getelementptr i1 %obstacles_2, i64 0, i64 %zext_ln417" [benchmarks/jianyicheng/los/src/los.cpp:420->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 60 'getelementptr' 'obstacles_2_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 61 [1/1] (3.25ns)   --->   "%store_ln420 = store i1 %tmp_2, i10 %obstacles_2_addr" [benchmarks/jianyicheng/los/src/los.cpp:420->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 61 'store' 'store_ln420' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_3 : Operation 62 [1/1] (0.00ns)   --->   "%tmp_8 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_0_load, i32 8" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:421->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 62 'bitselect' 'tmp_8' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 63 [1/1] (0.97ns)   --->   "%xor_ln19_9 = xor i1 %tmp_6, i1 %tmp_8" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:421->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 63 'xor' 'xor_ln19_9' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 64 [1/1] (0.97ns)   --->   "%xor_ln19_10 = xor i1 %xor_ln19_9, i1 %xor_ln19_1" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:421->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 64 'xor' 'xor_ln19_10' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 65 [1/1] (0.00ns)   --->   "%obstacles_3_addr = getelementptr i1 %obstacles_3, i64 0, i64 %zext_ln417" [benchmarks/jianyicheng/los/src/los.cpp:421->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 65 'getelementptr' 'obstacles_3_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 66 [1/1] (3.25ns)   --->   "%store_ln421 = store i1 %tmp_5, i10 %obstacles_3_addr" [benchmarks/jianyicheng/los/src/los.cpp:421->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 66 'store' 'store_ln421' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_3 : Operation 67 [1/1] (0.00ns)   --->   "%tmp_9 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_0_load, i32 9" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:422->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 67 'bitselect' 'tmp_9' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 68 [1/1] (0.97ns)   --->   "%xor_ln19_11 = xor i1 %tmp_7, i1 %tmp_9" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:422->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 68 'xor' 'xor_ln19_11' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 69 [1/1] (0.97ns)   --->   "%xor_ln19_12 = xor i1 %xor_ln19_11, i1 %xor_ln19_4" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:422->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 69 'xor' 'xor_ln19_12' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 70 [1/1] (0.00ns)   --->   "%obstacles_4_addr = getelementptr i1 %obstacles_4, i64 0, i64 %zext_ln417" [benchmarks/jianyicheng/los/src/los.cpp:422->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 70 'getelementptr' 'obstacles_4_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 71 [1/1] (3.25ns)   --->   "%store_ln422 = store i1 %tmp_3, i10 %obstacles_4_addr" [benchmarks/jianyicheng/los/src/los.cpp:422->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 71 'store' 'store_ln422' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_3 : Operation 72 [1/1] (0.00ns)   --->   "%tmp_10 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_0_load, i32 10" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:423->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 72 'bitselect' 'tmp_10' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 73 [1/1] (0.00ns) (grouped into LUT with out node xor_ln19_14)   --->   "%xor_ln19_13 = xor i1 %tmp_8, i1 %tmp_10" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:423->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 73 'xor' 'xor_ln19_13' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 74 [1/1] (0.97ns) (out node of the LUT)   --->   "%xor_ln19_14 = xor i1 %xor_ln19_13, i1 %xor_ln19_7" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:423->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 74 'xor' 'xor_ln19_14' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 75 [1/1] (0.00ns)   --->   "%obstacles_5_addr = getelementptr i1 %obstacles_5, i64 0, i64 %zext_ln417" [benchmarks/jianyicheng/los/src/los.cpp:423->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 75 'getelementptr' 'obstacles_5_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 76 [1/1] (3.25ns)   --->   "%store_ln423 = store i1 %tmp_6, i10 %obstacles_5_addr" [benchmarks/jianyicheng/los/src/los.cpp:423->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 76 'store' 'store_ln423' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_3 : Operation 77 [1/1] (0.00ns) (grouped into LUT with out node xor_ln19_16)   --->   "%tmp_11 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_0_load, i32 11" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:424->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 77 'bitselect' 'tmp_11' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 78 [1/1] (0.00ns) (grouped into LUT with out node xor_ln19_16)   --->   "%xor_ln19_15 = xor i1 %tmp_9, i1 %tmp_11" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:424->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 78 'xor' 'xor_ln19_15' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 79 [1/1] (0.97ns) (out node of the LUT)   --->   "%xor_ln19_16 = xor i1 %xor_ln19_15, i1 %xor_ln19_9" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:424->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 79 'xor' 'xor_ln19_16' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 80 [1/1] (0.00ns)   --->   "%obstacles_6_addr = getelementptr i1 %obstacles_6, i64 0, i64 %zext_ln417" [benchmarks/jianyicheng/los/src/los.cpp:424->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 80 'getelementptr' 'obstacles_6_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 81 [1/1] (3.25ns)   --->   "%store_ln424 = store i1 %tmp_7, i10 %obstacles_6_addr" [benchmarks/jianyicheng/los/src/los.cpp:424->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 81 'store' 'store_ln424' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_3 : Operation 82 [1/1] (0.00ns) (grouped into LUT with out node xor_ln19_18)   --->   "%tmp_12 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_0_load, i32 12" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:425->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 82 'bitselect' 'tmp_12' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 83 [1/1] (0.00ns)   --->   "%tmp = partselect i8 @_ssdm_op_PartSelect.i8.i16.i32.i32, i16 %lfsr_0_load, i32 8, i32 15" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:425->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 83 'partselect' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 84 [1/1] (0.00ns) (grouped into LUT with out node xor_ln19_18)   --->   "%xor_ln19_17 = xor i1 %tmp_10, i1 %tmp_12" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:425->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 84 'xor' 'xor_ln19_17' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 85 [1/1] (0.97ns) (out node of the LUT)   --->   "%xor_ln19_18 = xor i1 %xor_ln19_17, i1 %xor_ln19_11" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:425->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 85 'xor' 'xor_ln19_18' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 86 [1/1] (0.00ns)   --->   "%or_ln19_7 = bitconcatenate i16 @_ssdm_op_BitConcatenate.i16.i1.i1.i1.i1.i1.i1.i1.i1.i8, i1 %xor_ln19_18, i1 %xor_ln19_16, i1 %xor_ln19_14, i1 %xor_ln19_12, i1 %xor_ln19_10, i1 %xor_ln19_8, i1 %xor_ln19_5, i1 %xor_ln19_2, i8 %tmp" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:425->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 86 'bitconcatenate' 'or_ln19_7' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 87 [1/1] (0.00ns)   --->   "%obstacles_7_addr = getelementptr i1 %obstacles_7, i64 0, i64 %zext_ln417" [benchmarks/jianyicheng/los/src/los.cpp:425->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 87 'getelementptr' 'obstacles_7_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 88 [1/1] (3.25ns)   --->   "%store_ln425 = store i1 %tmp_8, i10 %obstacles_7_addr" [benchmarks/jianyicheng/los/src/los.cpp:425->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 88 'store' 'store_ln425' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 1024> <RAM>
+ST_3 : Operation 89 [1/1] (1.58ns)   --->   "%store_ln19 = store i16 %or_ln19_7, i16 %lfsr_0" [benchmarks/jianyicheng/los/src/los.cpp:19->benchmarks/jianyicheng/los/src/los.cpp:425->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 89 'store' 'store_ln19' <Predicate = true> <Delay = 1.58>
+ST_3 : Operation 90 [1/1] (0.00ns)   --->   "%br_ln417 = br void %for.body.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i" [benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417->benchmarks/jianyicheng/los/src/los.cpp:417]   --->   Operation 90 'br' 'br_ln417' <Predicate = true> <Delay = 0.00>
+
+State 4 <SV = 2> <Delay = 0.00>
+ST_4 : Operation 91 [2/2] (0.00ns)   --->   "%call_ln428 = call void @los, i1 %obstacles_0, i1 %obstacles_1, i1 %obstacles_2, i1 %obstacles_3, i1 %obstacles_4, i1 %obstacles_5, i1 %obstacles_6, i1 %obstacles_7, i1 %results_0, i1 %results_1, i1 %results_2, i1 %results_3, i1 %results_4, i1 %results_5, i1 %results_6, i1 %results_7" [benchmarks/jianyicheng/los/src/los.cpp:428]   --->   Operation 91 'call' 'call_ln428' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 3> <Delay = 0.00>
+ST_5 : Operation 92 [1/2] (0.00ns)   --->   "%call_ln428 = call void @los, i1 %obstacles_0, i1 %obstacles_1, i1 %obstacles_2, i1 %obstacles_3, i1 %obstacles_4, i1 %obstacles_5, i1 %obstacles_6, i1 %obstacles_7, i1 %results_0, i1 %results_1, i1 %results_2, i1 %results_3, i1 %results_4, i1 %results_5, i1 %results_6, i1 %results_7" [benchmarks/jianyicheng/los/src/los.cpp:428]   --->   Operation 92 'call' 'call_ln428' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 93 [1/1] (0.00ns)   --->   "%ret_ln432 = ret i32 0" [benchmarks/jianyicheng/los/src/los.cpp:432]   --->   Operation 93 'ret' 'ret_ln432' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 1
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+i                       (alloca           ) [ 011100]
+lfsr_0                  (alloca           ) [ 011100]
+specbitsmap_ln0         (specbitsmap      ) [ 000000]
+spectopmodule_ln409     (spectopmodule    ) [ 000000]
+obstacles_0             (alloca           ) [ 001111]
+obstacles_1             (alloca           ) [ 001111]
+obstacles_2             (alloca           ) [ 001111]
+obstacles_3             (alloca           ) [ 001111]
+obstacles_4             (alloca           ) [ 001111]
+obstacles_5             (alloca           ) [ 001111]
+obstacles_6             (alloca           ) [ 001111]
+obstacles_7             (alloca           ) [ 001111]
+results_0               (alloca           ) [ 001111]
+results_1               (alloca           ) [ 001111]
+results_2               (alloca           ) [ 001111]
+results_3               (alloca           ) [ 001111]
+results_4               (alloca           ) [ 001111]
+results_5               (alloca           ) [ 001111]
+results_6               (alloca           ) [ 001111]
+results_7               (alloca           ) [ 001111]
+store_ln0               (store            ) [ 000000]
+store_ln417             (store            ) [ 000000]
+br_ln417                (br               ) [ 000000]
+i_1                     (load             ) [ 001100]
+icmp_ln417              (icmp             ) [ 001100]
+add_ln417               (add              ) [ 000000]
+br_ln417                (br               ) [ 000000]
+store_ln417             (store            ) [ 000000]
+lfsr_0_load             (load             ) [ 000000]
+zext_ln417              (zext             ) [ 000000]
+specpipeline_ln417      (specpipeline     ) [ 000000]
+speclooptripcount_ln417 (speclooptripcount) [ 000000]
+specloopname_ln417      (specloopname     ) [ 000000]
+trunc_ln19              (trunc            ) [ 000000]
+tmp_1                   (bitselect        ) [ 000000]
+tmp_2                   (bitselect        ) [ 000000]
+tmp_3                   (bitselect        ) [ 000000]
+xor_ln19_1              (xor              ) [ 000000]
+xor_ln19                (xor              ) [ 000000]
+xor_ln19_2              (xor              ) [ 000000]
+tmp_4                   (bitselect        ) [ 000000]
+obstacles_0_addr        (getelementptr    ) [ 000000]
+store_ln418             (store            ) [ 000000]
+tmp_5                   (bitselect        ) [ 000000]
+tmp_6                   (bitselect        ) [ 000000]
+xor_ln19_3              (xor              ) [ 000000]
+xor_ln19_4              (xor              ) [ 000000]
+xor_ln19_5              (xor              ) [ 000000]
+obstacles_1_addr        (getelementptr    ) [ 000000]
+store_ln419             (store            ) [ 000000]
+tmp_7                   (bitselect        ) [ 000000]
+xor_ln19_6              (xor              ) [ 000000]
+xor_ln19_7              (xor              ) [ 000000]
+xor_ln19_8              (xor              ) [ 000000]
+obstacles_2_addr        (getelementptr    ) [ 000000]
+store_ln420             (store            ) [ 000000]
+tmp_8                   (bitselect        ) [ 000000]
+xor_ln19_9              (xor              ) [ 000000]
+xor_ln19_10             (xor              ) [ 000000]
+obstacles_3_addr        (getelementptr    ) [ 000000]
+store_ln421             (store            ) [ 000000]
+tmp_9                   (bitselect        ) [ 000000]
+xor_ln19_11             (xor              ) [ 000000]
+xor_ln19_12             (xor              ) [ 000000]
+obstacles_4_addr        (getelementptr    ) [ 000000]
+store_ln422             (store            ) [ 000000]
+tmp_10                  (bitselect        ) [ 000000]
+xor_ln19_13             (xor              ) [ 000000]
+xor_ln19_14             (xor              ) [ 000000]
+obstacles_5_addr        (getelementptr    ) [ 000000]
+store_ln423             (store            ) [ 000000]
+tmp_11                  (bitselect        ) [ 000000]
+xor_ln19_15             (xor              ) [ 000000]
+xor_ln19_16             (xor              ) [ 000000]
+obstacles_6_addr        (getelementptr    ) [ 000000]
+store_ln424             (store            ) [ 000000]
+tmp_12                  (bitselect        ) [ 000000]
+tmp                     (partselect       ) [ 000000]
+xor_ln19_17             (xor              ) [ 000000]
+xor_ln19_18             (xor              ) [ 000000]
+or_ln19_7               (bitconcatenate   ) [ 000000]
+obstacles_7_addr        (getelementptr    ) [ 000000]
+store_ln425             (store            ) [ 000000]
+store_ln19              (store            ) [ 000000]
+br_ln417                (br               ) [ 000000]
+call_ln428              (call             ) [ 000000]
+ret_ln432               (ret              ) [ 000000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1001" name="const_0">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1001" name="const_2">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecBitsMap"/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1001" name="const_4">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1001" name="const_6">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecTopModule"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1001" name="const_8">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_4"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1001" name="const_10">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1001" name="const_12">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1001" name="const_14">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1001" name="const_16">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1001" name="const_18">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1001" name="const_20">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecPipeline"/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1001" name="const_22">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1001" name="const_24">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_9"/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1001" name="const_26">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecLoopTripCount"/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1001" name="const_28">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1001" name="const_30">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecLoopName"/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1001" name="const_32">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_0"/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1001" name="const_34">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_BitSelect.i1.i16.i32"/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1001" name="const_36">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="38" class="1001" name="const_38">
+<pin_list>
+<pin id="39" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="40" class="1001" name="const_40">
+<pin_list>
+<pin id="41" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="42" class="1001" name="const_42">
+<pin_list>
+<pin id="43" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="44" class="1001" name="const_44">
+<pin_list>
+<pin id="45" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="46" class="1001" name="const_46">
+<pin_list>
+<pin id="47" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="48" class="1001" name="const_48">
+<pin_list>
+<pin id="49" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="50" class="1001" name="const_50">
+<pin_list>
+<pin id="51" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="52" class="1001" name="const_52">
+<pin_list>
+<pin id="53" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="54" class="1001" name="const_54">
+<pin_list>
+<pin id="55" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="56" class="1001" name="const_56">
+<pin_list>
+<pin id="57" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="58" class="1001" name="const_58">
+<pin_list>
+<pin id="59" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="60" class="1001" name="const_60">
+<pin_list>
+<pin id="61" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_PartSelect.i8.i16.i32.i32"/></StgValue>
+</bind>
+</comp>
+
+<comp id="62" class="1001" name="const_62">
+<pin_list>
+<pin id="63" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="64" class="1001" name="const_64">
+<pin_list>
+<pin id="65" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_BitConcatenate.i16.i1.i1.i1.i1.i1.i1.i1.i1.i8"/></StgValue>
+</bind>
+</comp>
+
+<comp id="66" class="1001" name="const_66">
+<pin_list>
+<pin id="67" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="los"/></StgValue>
+</bind>
+</comp>
+
+<comp id="68" class="1004" name="i_fu_68">
+<pin_list>
+<pin id="69" dir="0" index="0" bw="1" slack="0"/>
+<pin id="70" dir="1" index="1" bw="11" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="i/1 "/>
+</bind>
+</comp>
+
+<comp id="72" class="1004" name="lfsr_0_fu_72">
+<pin_list>
+<pin id="73" dir="0" index="0" bw="1" slack="0"/>
+<pin id="74" dir="1" index="1" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="lfsr_0/1 "/>
+</bind>
+</comp>
+
+<comp id="76" class="1004" name="obstacles_0_alloca_fu_76">
+<pin_list>
+<pin id="77" dir="0" index="0" bw="1" slack="0"/>
+<pin id="78" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="obstacles_0/1 "/>
+</bind>
+</comp>
+
+<comp id="80" class="1004" name="obstacles_1_alloca_fu_80">
+<pin_list>
+<pin id="81" dir="0" index="0" bw="1" slack="0"/>
+<pin id="82" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="obstacles_1/1 "/>
+</bind>
+</comp>
+
+<comp id="84" class="1004" name="obstacles_2_alloca_fu_84">
+<pin_list>
+<pin id="85" dir="0" index="0" bw="1" slack="0"/>
+<pin id="86" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="obstacles_2/1 "/>
+</bind>
+</comp>
+
+<comp id="88" class="1004" name="obstacles_3_alloca_fu_88">
+<pin_list>
+<pin id="89" dir="0" index="0" bw="1" slack="0"/>
+<pin id="90" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="obstacles_3/1 "/>
+</bind>
+</comp>
+
+<comp id="92" class="1004" name="obstacles_4_alloca_fu_92">
+<pin_list>
+<pin id="93" dir="0" index="0" bw="1" slack="0"/>
+<pin id="94" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="obstacles_4/1 "/>
+</bind>
+</comp>
+
+<comp id="96" class="1004" name="obstacles_5_alloca_fu_96">
+<pin_list>
+<pin id="97" dir="0" index="0" bw="1" slack="0"/>
+<pin id="98" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="obstacles_5/1 "/>
+</bind>
+</comp>
+
+<comp id="100" class="1004" name="obstacles_6_alloca_fu_100">
+<pin_list>
+<pin id="101" dir="0" index="0" bw="1" slack="0"/>
+<pin id="102" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="obstacles_6/1 "/>
+</bind>
+</comp>
+
+<comp id="104" class="1004" name="obstacles_7_alloca_fu_104">
+<pin_list>
+<pin id="105" dir="0" index="0" bw="1" slack="0"/>
+<pin id="106" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="obstacles_7/1 "/>
+</bind>
+</comp>
+
+<comp id="108" class="1004" name="results_0_alloca_fu_108">
+<pin_list>
+<pin id="109" dir="0" index="0" bw="1" slack="0"/>
+<pin id="110" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="results_0/1 "/>
+</bind>
+</comp>
+
+<comp id="112" class="1004" name="results_1_alloca_fu_112">
+<pin_list>
+<pin id="113" dir="0" index="0" bw="1" slack="0"/>
+<pin id="114" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="results_1/1 "/>
+</bind>
+</comp>
+
+<comp id="116" class="1004" name="results_2_alloca_fu_116">
+<pin_list>
+<pin id="117" dir="0" index="0" bw="1" slack="0"/>
+<pin id="118" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="results_2/1 "/>
+</bind>
+</comp>
+
+<comp id="120" class="1004" name="results_3_alloca_fu_120">
+<pin_list>
+<pin id="121" dir="0" index="0" bw="1" slack="0"/>
+<pin id="122" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="results_3/1 "/>
+</bind>
+</comp>
+
+<comp id="124" class="1004" name="results_4_alloca_fu_124">
+<pin_list>
+<pin id="125" dir="0" index="0" bw="1" slack="0"/>
+<pin id="126" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="results_4/1 "/>
+</bind>
+</comp>
+
+<comp id="128" class="1004" name="results_5_alloca_fu_128">
+<pin_list>
+<pin id="129" dir="0" index="0" bw="1" slack="0"/>
+<pin id="130" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="results_5/1 "/>
+</bind>
+</comp>
+
+<comp id="132" class="1004" name="results_6_alloca_fu_132">
+<pin_list>
+<pin id="133" dir="0" index="0" bw="1" slack="0"/>
+<pin id="134" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="results_6/1 "/>
+</bind>
+</comp>
+
+<comp id="136" class="1004" name="results_7_alloca_fu_136">
+<pin_list>
+<pin id="137" dir="0" index="0" bw="1" slack="0"/>
+<pin id="138" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="results_7/1 "/>
+</bind>
+</comp>
+
+<comp id="140" class="1004" name="obstacles_0_addr_gep_fu_140">
+<pin_list>
+<pin id="141" dir="0" index="0" bw="1" slack="2147483647"/>
+<pin id="142" dir="0" index="1" bw="1" slack="0"/>
+<pin id="143" dir="0" index="2" bw="11" slack="0"/>
+<pin id="144" dir="1" index="3" bw="10" slack="0"/>
+</pin_list>
+<bind>
+<opcode="getelementptr(29) " fcode="getelementptr"/>
+<opset="obstacles_0_addr/3 "/>
+</bind>
+</comp>
+
+<comp id="146" class="1004" name="store_ln418_access_fu_146">
+<pin_list>
+<pin id="147" dir="0" index="0" bw="10" slack="0"/>
+<pin id="148" dir="0" index="1" bw="1" slack="0"/>
+<pin id="149" dir="0" index="2" bw="0" slack="2147483647"/>
+<pin id="150" dir="1" index="3" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln418/3 "/>
+</bind>
+</comp>
+
+<comp id="152" class="1004" name="obstacles_1_addr_gep_fu_152">
+<pin_list>
+<pin id="153" dir="0" index="0" bw="1" slack="2147483647"/>
+<pin id="154" dir="0" index="1" bw="1" slack="0"/>
+<pin id="155" dir="0" index="2" bw="11" slack="0"/>
+<pin id="156" dir="1" index="3" bw="10" slack="0"/>
+</pin_list>
+<bind>
+<opcode="getelementptr(29) " fcode="getelementptr"/>
+<opset="obstacles_1_addr/3 "/>
+</bind>
+</comp>
+
+<comp id="158" class="1004" name="store_ln419_access_fu_158">
+<pin_list>
+<pin id="159" dir="0" index="0" bw="10" slack="0"/>
+<pin id="160" dir="0" index="1" bw="1" slack="0"/>
+<pin id="161" dir="0" index="2" bw="0" slack="2147483647"/>
+<pin id="162" dir="1" index="3" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln419/3 "/>
+</bind>
+</comp>
+
+<comp id="164" class="1004" name="obstacles_2_addr_gep_fu_164">
+<pin_list>
+<pin id="165" dir="0" index="0" bw="1" slack="2147483647"/>
+<pin id="166" dir="0" index="1" bw="1" slack="0"/>
+<pin id="167" dir="0" index="2" bw="11" slack="0"/>
+<pin id="168" dir="1" index="3" bw="10" slack="0"/>
+</pin_list>
+<bind>
+<opcode="getelementptr(29) " fcode="getelementptr"/>
+<opset="obstacles_2_addr/3 "/>
+</bind>
+</comp>
+
+<comp id="170" class="1004" name="store_ln420_access_fu_170">
+<pin_list>
+<pin id="171" dir="0" index="0" bw="10" slack="0"/>
+<pin id="172" dir="0" index="1" bw="1" slack="0"/>
+<pin id="173" dir="0" index="2" bw="0" slack="2147483647"/>
+<pin id="174" dir="1" index="3" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln420/3 "/>
+</bind>
+</comp>
+
+<comp id="176" class="1004" name="obstacles_3_addr_gep_fu_176">
+<pin_list>
+<pin id="177" dir="0" index="0" bw="1" slack="2147483647"/>
+<pin id="178" dir="0" index="1" bw="1" slack="0"/>
+<pin id="179" dir="0" index="2" bw="11" slack="0"/>
+<pin id="180" dir="1" index="3" bw="10" slack="0"/>
+</pin_list>
+<bind>
+<opcode="getelementptr(29) " fcode="getelementptr"/>
+<opset="obstacles_3_addr/3 "/>
+</bind>
+</comp>
+
+<comp id="182" class="1004" name="store_ln421_access_fu_182">
+<pin_list>
+<pin id="183" dir="0" index="0" bw="10" slack="0"/>
+<pin id="184" dir="0" index="1" bw="1" slack="0"/>
+<pin id="185" dir="0" index="2" bw="0" slack="2147483647"/>
+<pin id="186" dir="1" index="3" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln421/3 "/>
+</bind>
+</comp>
+
+<comp id="188" class="1004" name="obstacles_4_addr_gep_fu_188">
+<pin_list>
+<pin id="189" dir="0" index="0" bw="1" slack="2147483647"/>
+<pin id="190" dir="0" index="1" bw="1" slack="0"/>
+<pin id="191" dir="0" index="2" bw="11" slack="0"/>
+<pin id="192" dir="1" index="3" bw="10" slack="0"/>
+</pin_list>
+<bind>
+<opcode="getelementptr(29) " fcode="getelementptr"/>
+<opset="obstacles_4_addr/3 "/>
+</bind>
+</comp>
+
+<comp id="194" class="1004" name="store_ln422_access_fu_194">
+<pin_list>
+<pin id="195" dir="0" index="0" bw="10" slack="0"/>
+<pin id="196" dir="0" index="1" bw="1" slack="0"/>
+<pin id="197" dir="0" index="2" bw="0" slack="2147483647"/>
+<pin id="198" dir="1" index="3" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln422/3 "/>
+</bind>
+</comp>
+
+<comp id="200" class="1004" name="obstacles_5_addr_gep_fu_200">
+<pin_list>
+<pin id="201" dir="0" index="0" bw="1" slack="2147483647"/>
+<pin id="202" dir="0" index="1" bw="1" slack="0"/>
+<pin id="203" dir="0" index="2" bw="11" slack="0"/>
+<pin id="204" dir="1" index="3" bw="10" slack="0"/>
+</pin_list>
+<bind>
+<opcode="getelementptr(29) " fcode="getelementptr"/>
+<opset="obstacles_5_addr/3 "/>
+</bind>
+</comp>
+
+<comp id="206" class="1004" name="store_ln423_access_fu_206">
+<pin_list>
+<pin id="207" dir="0" index="0" bw="10" slack="0"/>
+<pin id="208" dir="0" index="1" bw="1" slack="0"/>
+<pin id="209" dir="0" index="2" bw="0" slack="2147483647"/>
+<pin id="210" dir="1" index="3" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln423/3 "/>
+</bind>
+</comp>
+
+<comp id="212" class="1004" name="obstacles_6_addr_gep_fu_212">
+<pin_list>
+<pin id="213" dir="0" index="0" bw="1" slack="2147483647"/>
+<pin id="214" dir="0" index="1" bw="1" slack="0"/>
+<pin id="215" dir="0" index="2" bw="11" slack="0"/>
+<pin id="216" dir="1" index="3" bw="10" slack="0"/>
+</pin_list>
+<bind>
+<opcode="getelementptr(29) " fcode="getelementptr"/>
+<opset="obstacles_6_addr/3 "/>
+</bind>
+</comp>
+
+<comp id="218" class="1004" name="store_ln424_access_fu_218">
+<pin_list>
+<pin id="219" dir="0" index="0" bw="10" slack="0"/>
+<pin id="220" dir="0" index="1" bw="1" slack="0"/>
+<pin id="221" dir="0" index="2" bw="0" slack="2147483647"/>
+<pin id="222" dir="1" index="3" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln424/3 "/>
+</bind>
+</comp>
+
+<comp id="224" class="1004" name="obstacles_7_addr_gep_fu_224">
+<pin_list>
+<pin id="225" dir="0" index="0" bw="1" slack="2147483647"/>
+<pin id="226" dir="0" index="1" bw="1" slack="0"/>
+<pin id="227" dir="0" index="2" bw="11" slack="0"/>
+<pin id="228" dir="1" index="3" bw="10" slack="0"/>
+</pin_list>
+<bind>
+<opcode="getelementptr(29) " fcode="getelementptr"/>
+<opset="obstacles_7_addr/3 "/>
+</bind>
+</comp>
+
+<comp id="230" class="1004" name="store_ln425_access_fu_230">
+<pin_list>
+<pin id="231" dir="0" index="0" bw="10" slack="0"/>
+<pin id="232" dir="0" index="1" bw="1" slack="0"/>
+<pin id="233" dir="0" index="2" bw="0" slack="2147483647"/>
+<pin id="234" dir="1" index="3" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln425/3 "/>
+</bind>
+</comp>
+
+<comp id="236" class="1004" name="grp_los_fu_236">
+<pin_list>
+<pin id="237" dir="0" index="0" bw="0" slack="0"/>
+<pin id="238" dir="0" index="1" bw="1" slack="2147483647"/>
+<pin id="239" dir="0" index="2" bw="1" slack="2147483647"/>
+<pin id="240" dir="0" index="3" bw="1" slack="2147483647"/>
+<pin id="241" dir="0" index="4" bw="1" slack="2147483647"/>
+<pin id="242" dir="0" index="5" bw="1" slack="2147483647"/>
+<pin id="243" dir="0" index="6" bw="1" slack="2147483647"/>
+<pin id="244" dir="0" index="7" bw="1" slack="2147483647"/>
+<pin id="245" dir="0" index="8" bw="1" slack="2147483647"/>
+<pin id="246" dir="0" index="9" bw="1" slack="2147483647"/>
+<pin id="247" dir="0" index="10" bw="1" slack="2147483647"/>
+<pin id="248" dir="0" index="11" bw="1" slack="2147483647"/>
+<pin id="249" dir="0" index="12" bw="1" slack="2147483647"/>
+<pin id="250" dir="0" index="13" bw="1" slack="2147483647"/>
+<pin id="251" dir="0" index="14" bw="1" slack="2147483647"/>
+<pin id="252" dir="0" index="15" bw="1" slack="2147483647"/>
+<pin id="253" dir="0" index="16" bw="1" slack="2147483647"/>
+<pin id="254" dir="1" index="17" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln428/4 "/>
+</bind>
+</comp>
+
+<comp id="256" class="1004" name="store_ln0_store_fu_256">
+<pin_list>
+<pin id="257" dir="0" index="0" bw="16" slack="0"/>
+<pin id="258" dir="0" index="1" bw="16" slack="0"/>
+<pin id="259" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="261" class="1004" name="store_ln417_store_fu_261">
+<pin_list>
+<pin id="262" dir="0" index="0" bw="1" slack="0"/>
+<pin id="263" dir="0" index="1" bw="11" slack="0"/>
+<pin id="264" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln417/1 "/>
+</bind>
+</comp>
+
+<comp id="266" class="1004" name="i_1_load_fu_266">
+<pin_list>
+<pin id="267" dir="0" index="0" bw="11" slack="1"/>
+<pin id="268" dir="1" index="1" bw="11" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="i_1/2 "/>
+</bind>
+</comp>
+
+<comp id="269" class="1004" name="icmp_ln417_fu_269">
+<pin_list>
+<pin id="270" dir="0" index="0" bw="11" slack="0"/>
+<pin id="271" dir="0" index="1" bw="11" slack="0"/>
+<pin id="272" dir="1" index="2" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="icmp(45) " fcode="icmp"/>
+<opset="icmp_ln417/2 "/>
+</bind>
+</comp>
+
+<comp id="275" class="1004" name="add_ln417_fu_275">
+<pin_list>
+<pin id="276" dir="0" index="0" bw="11" slack="0"/>
+<pin id="277" dir="0" index="1" bw="1" slack="0"/>
+<pin id="278" dir="1" index="2" bw="11" slack="0"/>
+</pin_list>
+<bind>
+<opcode="add(8) " fcode="add"/>
+<opset="add_ln417/2 "/>
+</bind>
+</comp>
+
+<comp id="281" class="1004" name="store_ln417_store_fu_281">
+<pin_list>
+<pin id="282" dir="0" index="0" bw="11" slack="0"/>
+<pin id="283" dir="0" index="1" bw="11" slack="1"/>
+<pin id="284" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln417/2 "/>
+</bind>
+</comp>
+
+<comp id="286" class="1004" name="lfsr_0_load_load_fu_286">
+<pin_list>
+<pin id="287" dir="0" index="0" bw="16" slack="2"/>
+<pin id="288" dir="1" index="1" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="lfsr_0_load/3 "/>
+</bind>
+</comp>
+
+<comp id="289" class="1004" name="zext_ln417_fu_289">
+<pin_list>
+<pin id="290" dir="0" index="0" bw="11" slack="1"/>
+<pin id="291" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opcode="zext(34) " fcode="zext"/>
+<opset="zext_ln417/3 "/>
+</bind>
+</comp>
+
+<comp id="300" class="1004" name="trunc_ln19_fu_300">
+<pin_list>
+<pin id="301" dir="0" index="0" bw="16" slack="0"/>
+<pin id="302" dir="1" index="1" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="trunc(33) " fcode="trunc"/>
+<opset="trunc_ln19/3 "/>
+</bind>
+</comp>
+
+<comp id="304" class="1004" name="tmp_1_fu_304">
+<pin_list>
+<pin id="305" dir="0" index="0" bw="1" slack="0"/>
+<pin id="306" dir="0" index="1" bw="16" slack="0"/>
+<pin id="307" dir="0" index="2" bw="3" slack="0"/>
+<pin id="308" dir="1" index="3" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_1/3 "/>
+</bind>
+</comp>
+
+<comp id="313" class="1004" name="tmp_2_fu_313">
+<pin_list>
+<pin id="314" dir="0" index="0" bw="1" slack="0"/>
+<pin id="315" dir="0" index="1" bw="16" slack="0"/>
+<pin id="316" dir="0" index="2" bw="3" slack="0"/>
+<pin id="317" dir="1" index="3" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_2/3 "/>
+</bind>
+</comp>
+
+<comp id="322" class="1004" name="tmp_3_fu_322">
+<pin_list>
+<pin id="323" dir="0" index="0" bw="1" slack="0"/>
+<pin id="324" dir="0" index="1" bw="16" slack="0"/>
+<pin id="325" dir="0" index="2" bw="4" slack="0"/>
+<pin id="326" dir="1" index="3" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_3/3 "/>
+</bind>
+</comp>
+
+<comp id="331" class="1004" name="xor_ln19_1_fu_331">
+<pin_list>
+<pin id="332" dir="0" index="0" bw="1" slack="0"/>
+<pin id="333" dir="0" index="1" bw="1" slack="0"/>
+<pin id="334" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_1/3 "/>
+</bind>
+</comp>
+
+<comp id="337" class="1004" name="xor_ln19_fu_337">
+<pin_list>
+<pin id="338" dir="0" index="0" bw="1" slack="0"/>
+<pin id="339" dir="0" index="1" bw="1" slack="0"/>
+<pin id="340" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19/3 "/>
+</bind>
+</comp>
+
+<comp id="343" class="1004" name="xor_ln19_2_fu_343">
+<pin_list>
+<pin id="344" dir="0" index="0" bw="1" slack="0"/>
+<pin id="345" dir="0" index="1" bw="1" slack="0"/>
+<pin id="346" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_2/3 "/>
+</bind>
+</comp>
+
+<comp id="349" class="1004" name="tmp_4_fu_349">
+<pin_list>
+<pin id="350" dir="0" index="0" bw="1" slack="0"/>
+<pin id="351" dir="0" index="1" bw="16" slack="0"/>
+<pin id="352" dir="0" index="2" bw="1" slack="0"/>
+<pin id="353" dir="1" index="3" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_4/3 "/>
+</bind>
+</comp>
+
+<comp id="358" class="1004" name="tmp_5_fu_358">
+<pin_list>
+<pin id="359" dir="0" index="0" bw="1" slack="0"/>
+<pin id="360" dir="0" index="1" bw="16" slack="0"/>
+<pin id="361" dir="0" index="2" bw="4" slack="0"/>
+<pin id="362" dir="1" index="3" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_5/3 "/>
+</bind>
+</comp>
+
+<comp id="367" class="1004" name="tmp_6_fu_367">
+<pin_list>
+<pin id="368" dir="0" index="0" bw="1" slack="0"/>
+<pin id="369" dir="0" index="1" bw="16" slack="0"/>
+<pin id="370" dir="0" index="2" bw="4" slack="0"/>
+<pin id="371" dir="1" index="3" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_6/3 "/>
+</bind>
+</comp>
+
+<comp id="376" class="1004" name="xor_ln19_3_fu_376">
+<pin_list>
+<pin id="377" dir="0" index="0" bw="1" slack="0"/>
+<pin id="378" dir="0" index="1" bw="1" slack="0"/>
+<pin id="379" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_3/3 "/>
+</bind>
+</comp>
+
+<comp id="382" class="1004" name="xor_ln19_4_fu_382">
+<pin_list>
+<pin id="383" dir="0" index="0" bw="1" slack="0"/>
+<pin id="384" dir="0" index="1" bw="1" slack="0"/>
+<pin id="385" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_4/3 "/>
+</bind>
+</comp>
+
+<comp id="388" class="1004" name="xor_ln19_5_fu_388">
+<pin_list>
+<pin id="389" dir="0" index="0" bw="1" slack="0"/>
+<pin id="390" dir="0" index="1" bw="1" slack="0"/>
+<pin id="391" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_5/3 "/>
+</bind>
+</comp>
+
+<comp id="394" class="1004" name="tmp_7_fu_394">
+<pin_list>
+<pin id="395" dir="0" index="0" bw="1" slack="0"/>
+<pin id="396" dir="0" index="1" bw="16" slack="0"/>
+<pin id="397" dir="0" index="2" bw="4" slack="0"/>
+<pin id="398" dir="1" index="3" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_7/3 "/>
+</bind>
+</comp>
+
+<comp id="403" class="1004" name="xor_ln19_6_fu_403">
+<pin_list>
+<pin id="404" dir="0" index="0" bw="1" slack="0"/>
+<pin id="405" dir="0" index="1" bw="1" slack="0"/>
+<pin id="406" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_6/3 "/>
+</bind>
+</comp>
+
+<comp id="409" class="1004" name="xor_ln19_7_fu_409">
+<pin_list>
+<pin id="410" dir="0" index="0" bw="1" slack="0"/>
+<pin id="411" dir="0" index="1" bw="1" slack="0"/>
+<pin id="412" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_7/3 "/>
+</bind>
+</comp>
+
+<comp id="415" class="1004" name="xor_ln19_8_fu_415">
+<pin_list>
+<pin id="416" dir="0" index="0" bw="1" slack="0"/>
+<pin id="417" dir="0" index="1" bw="1" slack="0"/>
+<pin id="418" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_8/3 "/>
+</bind>
+</comp>
+
+<comp id="421" class="1004" name="tmp_8_fu_421">
+<pin_list>
+<pin id="422" dir="0" index="0" bw="1" slack="0"/>
+<pin id="423" dir="0" index="1" bw="16" slack="0"/>
+<pin id="424" dir="0" index="2" bw="5" slack="0"/>
+<pin id="425" dir="1" index="3" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_8/3 "/>
+</bind>
+</comp>
+
+<comp id="430" class="1004" name="xor_ln19_9_fu_430">
+<pin_list>
+<pin id="431" dir="0" index="0" bw="1" slack="0"/>
+<pin id="432" dir="0" index="1" bw="1" slack="0"/>
+<pin id="433" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_9/3 "/>
+</bind>
+</comp>
+
+<comp id="436" class="1004" name="xor_ln19_10_fu_436">
+<pin_list>
+<pin id="437" dir="0" index="0" bw="1" slack="0"/>
+<pin id="438" dir="0" index="1" bw="1" slack="0"/>
+<pin id="439" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_10/3 "/>
+</bind>
+</comp>
+
+<comp id="442" class="1004" name="tmp_9_fu_442">
+<pin_list>
+<pin id="443" dir="0" index="0" bw="1" slack="0"/>
+<pin id="444" dir="0" index="1" bw="16" slack="0"/>
+<pin id="445" dir="0" index="2" bw="5" slack="0"/>
+<pin id="446" dir="1" index="3" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_9/3 "/>
+</bind>
+</comp>
+
+<comp id="450" class="1004" name="xor_ln19_11_fu_450">
+<pin_list>
+<pin id="451" dir="0" index="0" bw="1" slack="0"/>
+<pin id="452" dir="0" index="1" bw="1" slack="0"/>
+<pin id="453" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_11/3 "/>
+</bind>
+</comp>
+
+<comp id="456" class="1004" name="xor_ln19_12_fu_456">
+<pin_list>
+<pin id="457" dir="0" index="0" bw="1" slack="0"/>
+<pin id="458" dir="0" index="1" bw="1" slack="0"/>
+<pin id="459" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_12/3 "/>
+</bind>
+</comp>
+
+<comp id="462" class="1004" name="tmp_10_fu_462">
+<pin_list>
+<pin id="463" dir="0" index="0" bw="1" slack="0"/>
+<pin id="464" dir="0" index="1" bw="16" slack="0"/>
+<pin id="465" dir="0" index="2" bw="5" slack="0"/>
+<pin id="466" dir="1" index="3" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_10/3 "/>
+</bind>
+</comp>
+
+<comp id="470" class="1004" name="xor_ln19_13_fu_470">
+<pin_list>
+<pin id="471" dir="0" index="0" bw="1" slack="0"/>
+<pin id="472" dir="0" index="1" bw="1" slack="0"/>
+<pin id="473" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_13/3 "/>
+</bind>
+</comp>
+
+<comp id="476" class="1004" name="xor_ln19_14_fu_476">
+<pin_list>
+<pin id="477" dir="0" index="0" bw="1" slack="0"/>
+<pin id="478" dir="0" index="1" bw="1" slack="0"/>
+<pin id="479" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_14/3 "/>
+</bind>
+</comp>
+
+<comp id="482" class="1004" name="tmp_11_fu_482">
+<pin_list>
+<pin id="483" dir="0" index="0" bw="1" slack="0"/>
+<pin id="484" dir="0" index="1" bw="16" slack="0"/>
+<pin id="485" dir="0" index="2" bw="5" slack="0"/>
+<pin id="486" dir="1" index="3" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_11/3 "/>
+</bind>
+</comp>
+
+<comp id="490" class="1004" name="xor_ln19_15_fu_490">
+<pin_list>
+<pin id="491" dir="0" index="0" bw="1" slack="0"/>
+<pin id="492" dir="0" index="1" bw="1" slack="0"/>
+<pin id="493" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_15/3 "/>
+</bind>
+</comp>
+
+<comp id="496" class="1004" name="xor_ln19_16_fu_496">
+<pin_list>
+<pin id="497" dir="0" index="0" bw="1" slack="0"/>
+<pin id="498" dir="0" index="1" bw="1" slack="0"/>
+<pin id="499" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_16/3 "/>
+</bind>
+</comp>
+
+<comp id="502" class="1004" name="tmp_12_fu_502">
+<pin_list>
+<pin id="503" dir="0" index="0" bw="1" slack="0"/>
+<pin id="504" dir="0" index="1" bw="16" slack="0"/>
+<pin id="505" dir="0" index="2" bw="5" slack="0"/>
+<pin id="506" dir="1" index="3" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_12/3 "/>
+</bind>
+</comp>
+
+<comp id="510" class="1004" name="tmp_fu_510">
+<pin_list>
+<pin id="511" dir="0" index="0" bw="8" slack="0"/>
+<pin id="512" dir="0" index="1" bw="16" slack="0"/>
+<pin id="513" dir="0" index="2" bw="5" slack="0"/>
+<pin id="514" dir="0" index="3" bw="5" slack="0"/>
+<pin id="515" dir="1" index="4" bw="8" slack="0"/>
+</pin_list>
+<bind>
+<opcode="partselect(1002) " fcode="partselect"/>
+<opset="tmp/3 "/>
+</bind>
+</comp>
+
+<comp id="520" class="1004" name="xor_ln19_17_fu_520">
+<pin_list>
+<pin id="521" dir="0" index="0" bw="1" slack="0"/>
+<pin id="522" dir="0" index="1" bw="1" slack="0"/>
+<pin id="523" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_17/3 "/>
+</bind>
+</comp>
+
+<comp id="526" class="1004" name="xor_ln19_18_fu_526">
+<pin_list>
+<pin id="527" dir="0" index="0" bw="1" slack="0"/>
+<pin id="528" dir="0" index="1" bw="1" slack="0"/>
+<pin id="529" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="xor(25) " fcode="xor"/>
+<opset="xor_ln19_18/3 "/>
+</bind>
+</comp>
+
+<comp id="532" class="1004" name="or_ln19_7_fu_532">
+<pin_list>
+<pin id="533" dir="0" index="0" bw="16" slack="0"/>
+<pin id="534" dir="0" index="1" bw="1" slack="0"/>
+<pin id="535" dir="0" index="2" bw="1" slack="0"/>
+<pin id="536" dir="0" index="3" bw="1" slack="0"/>
+<pin id="537" dir="0" index="4" bw="1" slack="0"/>
+<pin id="538" dir="0" index="5" bw="1" slack="0"/>
+<pin id="539" dir="0" index="6" bw="1" slack="0"/>
+<pin id="540" dir="0" index="7" bw="1" slack="0"/>
+<pin id="541" dir="0" index="8" bw="1" slack="0"/>
+<pin id="542" dir="0" index="9" bw="8" slack="0"/>
+<pin id="543" dir="1" index="10" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitconcatenate(1004) " fcode="bitconcatenate"/>
+<opset="or_ln19_7/3 "/>
+</bind>
+</comp>
+
+<comp id="554" class="1004" name="store_ln19_store_fu_554">
+<pin_list>
+<pin id="555" dir="0" index="0" bw="16" slack="0"/>
+<pin id="556" dir="0" index="1" bw="16" slack="2"/>
+<pin id="557" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln19/3 "/>
+</bind>
+</comp>
+
+<comp id="559" class="1005" name="i_reg_559">
+<pin_list>
+<pin id="560" dir="0" index="0" bw="11" slack="0"/>
+<pin id="561" dir="1" index="1" bw="11" slack="0"/>
+</pin_list>
+<bind>
+<opset="i "/>
+</bind>
+</comp>
+
+<comp id="566" class="1005" name="lfsr_0_reg_566">
+<pin_list>
+<pin id="567" dir="0" index="0" bw="16" slack="0"/>
+<pin id="568" dir="1" index="1" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opset="lfsr_0 "/>
+</bind>
+</comp>
+
+<comp id="573" class="1005" name="i_1_reg_573">
+<pin_list>
+<pin id="574" dir="0" index="0" bw="11" slack="1"/>
+<pin id="575" dir="1" index="1" bw="11" slack="1"/>
+</pin_list>
+<bind>
+<opset="i_1 "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="71"><net_src comp="0" pin="0"/><net_sink comp="68" pin=0"/></net>
+
+<net id="75"><net_src comp="0" pin="0"/><net_sink comp="72" pin=0"/></net>
+
+<net id="79"><net_src comp="10" pin="0"/><net_sink comp="76" pin=0"/></net>
+
+<net id="83"><net_src comp="10" pin="0"/><net_sink comp="80" pin=0"/></net>
+
+<net id="87"><net_src comp="10" pin="0"/><net_sink comp="84" pin=0"/></net>
+
+<net id="91"><net_src comp="10" pin="0"/><net_sink comp="88" pin=0"/></net>
+
+<net id="95"><net_src comp="10" pin="0"/><net_sink comp="92" pin=0"/></net>
+
+<net id="99"><net_src comp="10" pin="0"/><net_sink comp="96" pin=0"/></net>
+
+<net id="103"><net_src comp="10" pin="0"/><net_sink comp="100" pin=0"/></net>
+
+<net id="107"><net_src comp="10" pin="0"/><net_sink comp="104" pin=0"/></net>
+
+<net id="111"><net_src comp="10" pin="0"/><net_sink comp="108" pin=0"/></net>
+
+<net id="115"><net_src comp="10" pin="0"/><net_sink comp="112" pin=0"/></net>
+
+<net id="119"><net_src comp="10" pin="0"/><net_sink comp="116" pin=0"/></net>
+
+<net id="123"><net_src comp="10" pin="0"/><net_sink comp="120" pin=0"/></net>
+
+<net id="127"><net_src comp="10" pin="0"/><net_sink comp="124" pin=0"/></net>
+
+<net id="131"><net_src comp="10" pin="0"/><net_sink comp="128" pin=0"/></net>
+
+<net id="135"><net_src comp="10" pin="0"/><net_sink comp="132" pin=0"/></net>
+
+<net id="139"><net_src comp="10" pin="0"/><net_sink comp="136" pin=0"/></net>
+
+<net id="145"><net_src comp="42" pin="0"/><net_sink comp="140" pin=1"/></net>
+
+<net id="151"><net_src comp="140" pin="3"/><net_sink comp="146" pin=0"/></net>
+
+<net id="157"><net_src comp="42" pin="0"/><net_sink comp="152" pin=1"/></net>
+
+<net id="163"><net_src comp="152" pin="3"/><net_sink comp="158" pin=0"/></net>
+
+<net id="169"><net_src comp="42" pin="0"/><net_sink comp="164" pin=1"/></net>
+
+<net id="175"><net_src comp="164" pin="3"/><net_sink comp="170" pin=0"/></net>
+
+<net id="181"><net_src comp="42" pin="0"/><net_sink comp="176" pin=1"/></net>
+
+<net id="187"><net_src comp="176" pin="3"/><net_sink comp="182" pin=0"/></net>
+
+<net id="193"><net_src comp="42" pin="0"/><net_sink comp="188" pin=1"/></net>
+
+<net id="199"><net_src comp="188" pin="3"/><net_sink comp="194" pin=0"/></net>
+
+<net id="205"><net_src comp="42" pin="0"/><net_sink comp="200" pin=1"/></net>
+
+<net id="211"><net_src comp="200" pin="3"/><net_sink comp="206" pin=0"/></net>
+
+<net id="217"><net_src comp="42" pin="0"/><net_sink comp="212" pin=1"/></net>
+
+<net id="223"><net_src comp="212" pin="3"/><net_sink comp="218" pin=0"/></net>
+
+<net id="229"><net_src comp="42" pin="0"/><net_sink comp="224" pin=1"/></net>
+
+<net id="235"><net_src comp="224" pin="3"/><net_sink comp="230" pin=0"/></net>
+
+<net id="255"><net_src comp="66" pin="0"/><net_sink comp="236" pin=0"/></net>
+
+<net id="260"><net_src comp="12" pin="0"/><net_sink comp="256" pin=0"/></net>
+
+<net id="265"><net_src comp="14" pin="0"/><net_sink comp="261" pin=0"/></net>
+
+<net id="273"><net_src comp="266" pin="1"/><net_sink comp="269" pin=0"/></net>
+
+<net id="274"><net_src comp="16" pin="0"/><net_sink comp="269" pin=1"/></net>
+
+<net id="279"><net_src comp="266" pin="1"/><net_sink comp="275" pin=0"/></net>
+
+<net id="280"><net_src comp="18" pin="0"/><net_sink comp="275" pin=1"/></net>
+
+<net id="285"><net_src comp="275" pin="2"/><net_sink comp="281" pin=0"/></net>
+
+<net id="292"><net_src comp="289" pin="1"/><net_sink comp="140" pin=2"/></net>
+
+<net id="293"><net_src comp="289" pin="1"/><net_sink comp="152" pin=2"/></net>
+
+<net id="294"><net_src comp="289" pin="1"/><net_sink comp="164" pin=2"/></net>
+
+<net id="295"><net_src comp="289" pin="1"/><net_sink comp="176" pin=2"/></net>
+
+<net id="296"><net_src comp="289" pin="1"/><net_sink comp="188" pin=2"/></net>
+
+<net id="297"><net_src comp="289" pin="1"/><net_sink comp="200" pin=2"/></net>
+
+<net id="298"><net_src comp="289" pin="1"/><net_sink comp="212" pin=2"/></net>
+
+<net id="299"><net_src comp="289" pin="1"/><net_sink comp="224" pin=2"/></net>
+
+<net id="303"><net_src comp="286" pin="1"/><net_sink comp="300" pin=0"/></net>
+
+<net id="309"><net_src comp="34" pin="0"/><net_sink comp="304" pin=0"/></net>
+
+<net id="310"><net_src comp="286" pin="1"/><net_sink comp="304" pin=1"/></net>
+
+<net id="311"><net_src comp="36" pin="0"/><net_sink comp="304" pin=2"/></net>
+
+<net id="312"><net_src comp="304" pin="3"/><net_sink comp="158" pin=1"/></net>
+
+<net id="318"><net_src comp="34" pin="0"/><net_sink comp="313" pin=0"/></net>
+
+<net id="319"><net_src comp="286" pin="1"/><net_sink comp="313" pin=1"/></net>
+
+<net id="320"><net_src comp="38" pin="0"/><net_sink comp="313" pin=2"/></net>
+
+<net id="321"><net_src comp="313" pin="3"/><net_sink comp="170" pin=1"/></net>
+
+<net id="327"><net_src comp="34" pin="0"/><net_sink comp="322" pin=0"/></net>
+
+<net id="328"><net_src comp="286" pin="1"/><net_sink comp="322" pin=1"/></net>
+
+<net id="329"><net_src comp="40" pin="0"/><net_sink comp="322" pin=2"/></net>
+
+<net id="330"><net_src comp="322" pin="3"/><net_sink comp="194" pin=1"/></net>
+
+<net id="335"><net_src comp="313" pin="3"/><net_sink comp="331" pin=0"/></net>
+
+<net id="336"><net_src comp="322" pin="3"/><net_sink comp="331" pin=1"/></net>
+
+<net id="341"><net_src comp="331" pin="2"/><net_sink comp="337" pin=0"/></net>
+
+<net id="342"><net_src comp="304" pin="3"/><net_sink comp="337" pin=1"/></net>
+
+<net id="347"><net_src comp="337" pin="2"/><net_sink comp="343" pin=0"/></net>
+
+<net id="348"><net_src comp="300" pin="1"/><net_sink comp="343" pin=1"/></net>
+
+<net id="354"><net_src comp="34" pin="0"/><net_sink comp="349" pin=0"/></net>
+
+<net id="355"><net_src comp="286" pin="1"/><net_sink comp="349" pin=1"/></net>
+
+<net id="356"><net_src comp="0" pin="0"/><net_sink comp="349" pin=2"/></net>
+
+<net id="357"><net_src comp="349" pin="3"/><net_sink comp="146" pin=1"/></net>
+
+<net id="363"><net_src comp="34" pin="0"/><net_sink comp="358" pin=0"/></net>
+
+<net id="364"><net_src comp="286" pin="1"/><net_sink comp="358" pin=1"/></net>
+
+<net id="365"><net_src comp="44" pin="0"/><net_sink comp="358" pin=2"/></net>
+
+<net id="366"><net_src comp="358" pin="3"/><net_sink comp="182" pin=1"/></net>
+
+<net id="372"><net_src comp="34" pin="0"/><net_sink comp="367" pin=0"/></net>
+
+<net id="373"><net_src comp="286" pin="1"/><net_sink comp="367" pin=1"/></net>
+
+<net id="374"><net_src comp="46" pin="0"/><net_sink comp="367" pin=2"/></net>
+
+<net id="375"><net_src comp="367" pin="3"/><net_sink comp="206" pin=1"/></net>
+
+<net id="380"><net_src comp="313" pin="3"/><net_sink comp="376" pin=0"/></net>
+
+<net id="381"><net_src comp="349" pin="3"/><net_sink comp="376" pin=1"/></net>
+
+<net id="386"><net_src comp="358" pin="3"/><net_sink comp="382" pin=0"/></net>
+
+<net id="387"><net_src comp="367" pin="3"/><net_sink comp="382" pin=1"/></net>
+
+<net id="392"><net_src comp="382" pin="2"/><net_sink comp="388" pin=0"/></net>
+
+<net id="393"><net_src comp="376" pin="2"/><net_sink comp="388" pin=1"/></net>
+
+<net id="399"><net_src comp="34" pin="0"/><net_sink comp="394" pin=0"/></net>
+
+<net id="400"><net_src comp="286" pin="1"/><net_sink comp="394" pin=1"/></net>
+
+<net id="401"><net_src comp="48" pin="0"/><net_sink comp="394" pin=2"/></net>
+
+<net id="402"><net_src comp="394" pin="3"/><net_sink comp="218" pin=1"/></net>
+
+<net id="407"><net_src comp="358" pin="3"/><net_sink comp="403" pin=0"/></net>
+
+<net id="408"><net_src comp="304" pin="3"/><net_sink comp="403" pin=1"/></net>
+
+<net id="413"><net_src comp="322" pin="3"/><net_sink comp="409" pin=0"/></net>
+
+<net id="414"><net_src comp="394" pin="3"/><net_sink comp="409" pin=1"/></net>
+
+<net id="419"><net_src comp="409" pin="2"/><net_sink comp="415" pin=0"/></net>
+
+<net id="420"><net_src comp="403" pin="2"/><net_sink comp="415" pin=1"/></net>
+
+<net id="426"><net_src comp="34" pin="0"/><net_sink comp="421" pin=0"/></net>
+
+<net id="427"><net_src comp="286" pin="1"/><net_sink comp="421" pin=1"/></net>
+
+<net id="428"><net_src comp="50" pin="0"/><net_sink comp="421" pin=2"/></net>
+
+<net id="429"><net_src comp="421" pin="3"/><net_sink comp="230" pin=1"/></net>
+
+<net id="434"><net_src comp="367" pin="3"/><net_sink comp="430" pin=0"/></net>
+
+<net id="435"><net_src comp="421" pin="3"/><net_sink comp="430" pin=1"/></net>
+
+<net id="440"><net_src comp="430" pin="2"/><net_sink comp="436" pin=0"/></net>
+
+<net id="441"><net_src comp="331" pin="2"/><net_sink comp="436" pin=1"/></net>
+
+<net id="447"><net_src comp="34" pin="0"/><net_sink comp="442" pin=0"/></net>
+
+<net id="448"><net_src comp="286" pin="1"/><net_sink comp="442" pin=1"/></net>
+
+<net id="449"><net_src comp="52" pin="0"/><net_sink comp="442" pin=2"/></net>
+
+<net id="454"><net_src comp="394" pin="3"/><net_sink comp="450" pin=0"/></net>
+
+<net id="455"><net_src comp="442" pin="3"/><net_sink comp="450" pin=1"/></net>
+
+<net id="460"><net_src comp="450" pin="2"/><net_sink comp="456" pin=0"/></net>
+
+<net id="461"><net_src comp="382" pin="2"/><net_sink comp="456" pin=1"/></net>
+
+<net id="467"><net_src comp="34" pin="0"/><net_sink comp="462" pin=0"/></net>
+
+<net id="468"><net_src comp="286" pin="1"/><net_sink comp="462" pin=1"/></net>
+
+<net id="469"><net_src comp="54" pin="0"/><net_sink comp="462" pin=2"/></net>
+
+<net id="474"><net_src comp="421" pin="3"/><net_sink comp="470" pin=0"/></net>
+
+<net id="475"><net_src comp="462" pin="3"/><net_sink comp="470" pin=1"/></net>
+
+<net id="480"><net_src comp="470" pin="2"/><net_sink comp="476" pin=0"/></net>
+
+<net id="481"><net_src comp="409" pin="2"/><net_sink comp="476" pin=1"/></net>
+
+<net id="487"><net_src comp="34" pin="0"/><net_sink comp="482" pin=0"/></net>
+
+<net id="488"><net_src comp="286" pin="1"/><net_sink comp="482" pin=1"/></net>
+
+<net id="489"><net_src comp="56" pin="0"/><net_sink comp="482" pin=2"/></net>
+
+<net id="494"><net_src comp="442" pin="3"/><net_sink comp="490" pin=0"/></net>
+
+<net id="495"><net_src comp="482" pin="3"/><net_sink comp="490" pin=1"/></net>
+
+<net id="500"><net_src comp="490" pin="2"/><net_sink comp="496" pin=0"/></net>
+
+<net id="501"><net_src comp="430" pin="2"/><net_sink comp="496" pin=1"/></net>
+
+<net id="507"><net_src comp="34" pin="0"/><net_sink comp="502" pin=0"/></net>
+
+<net id="508"><net_src comp="286" pin="1"/><net_sink comp="502" pin=1"/></net>
+
+<net id="509"><net_src comp="58" pin="0"/><net_sink comp="502" pin=2"/></net>
+
+<net id="516"><net_src comp="60" pin="0"/><net_sink comp="510" pin=0"/></net>
+
+<net id="517"><net_src comp="286" pin="1"/><net_sink comp="510" pin=1"/></net>
+
+<net id="518"><net_src comp="50" pin="0"/><net_sink comp="510" pin=2"/></net>
+
+<net id="519"><net_src comp="62" pin="0"/><net_sink comp="510" pin=3"/></net>
+
+<net id="524"><net_src comp="462" pin="3"/><net_sink comp="520" pin=0"/></net>
+
+<net id="525"><net_src comp="502" pin="3"/><net_sink comp="520" pin=1"/></net>
+
+<net id="530"><net_src comp="520" pin="2"/><net_sink comp="526" pin=0"/></net>
+
+<net id="531"><net_src comp="450" pin="2"/><net_sink comp="526" pin=1"/></net>
+
+<net id="544"><net_src comp="64" pin="0"/><net_sink comp="532" pin=0"/></net>
+
+<net id="545"><net_src comp="526" pin="2"/><net_sink comp="532" pin=1"/></net>
+
+<net id="546"><net_src comp="496" pin="2"/><net_sink comp="532" pin=2"/></net>
+
+<net id="547"><net_src comp="476" pin="2"/><net_sink comp="532" pin=3"/></net>
+
+<net id="548"><net_src comp="456" pin="2"/><net_sink comp="532" pin=4"/></net>
+
+<net id="549"><net_src comp="436" pin="2"/><net_sink comp="532" pin=5"/></net>
+
+<net id="550"><net_src comp="415" pin="2"/><net_sink comp="532" pin=6"/></net>
+
+<net id="551"><net_src comp="388" pin="2"/><net_sink comp="532" pin=7"/></net>
+
+<net id="552"><net_src comp="343" pin="2"/><net_sink comp="532" pin=8"/></net>
+
+<net id="553"><net_src comp="510" pin="4"/><net_sink comp="532" pin=9"/></net>
+
+<net id="558"><net_src comp="532" pin="10"/><net_sink comp="554" pin=0"/></net>
+
+<net id="562"><net_src comp="68" pin="1"/><net_sink comp="559" pin=0"/></net>
+
+<net id="563"><net_src comp="559" pin="1"/><net_sink comp="261" pin=1"/></net>
+
+<net id="564"><net_src comp="559" pin="1"/><net_sink comp="266" pin=0"/></net>
+
+<net id="565"><net_src comp="559" pin="1"/><net_sink comp="281" pin=1"/></net>
+
+<net id="569"><net_src comp="72" pin="1"/><net_sink comp="566" pin=0"/></net>
+
+<net id="570"><net_src comp="566" pin="1"/><net_sink comp="256" pin=1"/></net>
+
+<net id="571"><net_src comp="566" pin="1"/><net_sink comp="286" pin=0"/></net>
+
+<net id="572"><net_src comp="566" pin="1"/><net_sink comp="554" pin=1"/></net>
+
+<net id="576"><net_src comp="266" pin="1"/><net_sink comp="573" pin=0"/></net>
+
+<net id="577"><net_src comp="573" pin="1"/><net_sink comp="289" pin=0"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+		store_ln0 : 1
+		store_ln417 : 1
+	State 2
+		icmp_ln417 : 1
+		add_ln417 : 1
+		br_ln417 : 2
+		store_ln417 : 2
+	State 3
+		trunc_ln19 : 1
+		tmp_1 : 1
+		tmp_2 : 1
+		tmp_3 : 1
+		xor_ln19_1 : 2
+		xor_ln19 : 2
+		xor_ln19_2 : 2
+		tmp_4 : 1
+		obstacles_0_addr : 1
+		store_ln418 : 2
+		tmp_5 : 1
+		tmp_6 : 1
+		xor_ln19_3 : 2
+		xor_ln19_4 : 2
+		xor_ln19_5 : 2
+		obstacles_1_addr : 1
+		store_ln419 : 2
+		tmp_7 : 1
+		xor_ln19_6 : 2
+		xor_ln19_7 : 2
+		xor_ln19_8 : 2
+		obstacles_2_addr : 1
+		store_ln420 : 2
+		tmp_8 : 1
+		xor_ln19_9 : 2
+		xor_ln19_10 : 2
+		obstacles_3_addr : 1
+		store_ln421 : 2
+		tmp_9 : 1
+		xor_ln19_11 : 2
+		xor_ln19_12 : 2
+		obstacles_4_addr : 1
+		store_ln422 : 2
+		tmp_10 : 1
+		xor_ln19_13 : 2
+		xor_ln19_14 : 2
+		obstacles_5_addr : 1
+		store_ln423 : 2
+		tmp_11 : 1
+		xor_ln19_15 : 2
+		xor_ln19_16 : 2
+		obstacles_6_addr : 1
+		store_ln424 : 2
+		tmp_12 : 1
+		tmp : 1
+		xor_ln19_17 : 2
+		xor_ln19_18 : 2
+		or_ln19_7 : 2
+		obstacles_7_addr : 1
+		store_ln425 : 2
+		store_ln19 : 3
+	State 4
+	State 5
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|--------------------|---------|---------|---------|
+| Operation|   Functional Unit  |  Delay  |    FF   |   LUT   |
+|----------|--------------------|---------|---------|---------|
+|   call   |   grp_los_fu_236   |  12.704 |   4856  |   5976  |
+|----------|--------------------|---------|---------|---------|
+|          |  xor_ln19_1_fu_331 |    0    |    0    |    2    |
+|          |   xor_ln19_fu_337  |    0    |    0    |    2    |
+|          |  xor_ln19_2_fu_343 |    0    |    0    |    2    |
+|          |  xor_ln19_3_fu_376 |    0    |    0    |    2    |
+|          |  xor_ln19_4_fu_382 |    0    |    0    |    2    |
+|          |  xor_ln19_5_fu_388 |    0    |    0    |    2    |
+|          |  xor_ln19_6_fu_403 |    0    |    0    |    2    |
+|          |  xor_ln19_7_fu_409 |    0    |    0    |    2    |
+|          |  xor_ln19_8_fu_415 |    0    |    0    |    2    |
+|    xor   |  xor_ln19_9_fu_430 |    0    |    0    |    2    |
+|          | xor_ln19_10_fu_436 |    0    |    0    |    2    |
+|          | xor_ln19_11_fu_450 |    0    |    0    |    2    |
+|          | xor_ln19_12_fu_456 |    0    |    0    |    2    |
+|          | xor_ln19_13_fu_470 |    0    |    0    |    2    |
+|          | xor_ln19_14_fu_476 |    0    |    0    |    2    |
+|          | xor_ln19_15_fu_490 |    0    |    0    |    2    |
+|          | xor_ln19_16_fu_496 |    0    |    0    |    2    |
+|          | xor_ln19_17_fu_520 |    0    |    0    |    2    |
+|          | xor_ln19_18_fu_526 |    0    |    0    |    2    |
+|----------|--------------------|---------|---------|---------|
+|   icmp   |  icmp_ln417_fu_269 |    0    |    0    |    12   |
+|----------|--------------------|---------|---------|---------|
+|    add   |  add_ln417_fu_275  |    0    |    0    |    12   |
+|----------|--------------------|---------|---------|---------|
+|   zext   |  zext_ln417_fu_289 |    0    |    0    |    0    |
+|----------|--------------------|---------|---------|---------|
+|   trunc  |  trunc_ln19_fu_300 |    0    |    0    |    0    |
+|----------|--------------------|---------|---------|---------|
+|          |    tmp_1_fu_304    |    0    |    0    |    0    |
+|          |    tmp_2_fu_313    |    0    |    0    |    0    |
+|          |    tmp_3_fu_322    |    0    |    0    |    0    |
+|          |    tmp_4_fu_349    |    0    |    0    |    0    |
+|          |    tmp_5_fu_358    |    0    |    0    |    0    |
+| bitselect|    tmp_6_fu_367    |    0    |    0    |    0    |
+|          |    tmp_7_fu_394    |    0    |    0    |    0    |
+|          |    tmp_8_fu_421    |    0    |    0    |    0    |
+|          |    tmp_9_fu_442    |    0    |    0    |    0    |
+|          |    tmp_10_fu_462   |    0    |    0    |    0    |
+|          |    tmp_11_fu_482   |    0    |    0    |    0    |
+|          |    tmp_12_fu_502   |    0    |    0    |    0    |
+|----------|--------------------|---------|---------|---------|
+|partselect|     tmp_fu_510     |    0    |    0    |    0    |
+|----------|--------------------|---------|---------|---------|
+|bitconcatenate|  or_ln19_7_fu_532  |    0    |    0    |    0    |
+|----------|--------------------|---------|---------|---------|
+|   Total  |                    |  12.704 |   4856  |   6038  |
+|----------|--------------------|---------|---------|---------|
+
+Memories:
++-----------+--------+--------+--------+--------+
+|           |  BRAM  |   FF   |   LUT  |  URAM  |
++-----------+--------+--------+--------+--------+
+|obstacles_0|    1   |    0   |    0   |    0   |
+|obstacles_1|    1   |    0   |    0   |    0   |
+|obstacles_2|    1   |    0   |    0   |    0   |
+|obstacles_3|    1   |    0   |    0   |    0   |
+|obstacles_4|    1   |    0   |    0   |    0   |
+|obstacles_5|    1   |    0   |    0   |    0   |
+|obstacles_6|    1   |    0   |    0   |    0   |
+|obstacles_7|    1   |    0   |    0   |    0   |
+| results_0 |    1   |    0   |    0   |    0   |
+| results_1 |    1   |    0   |    0   |    0   |
+| results_2 |    1   |    0   |    0   |    0   |
+| results_3 |    1   |    0   |    0   |    0   |
+| results_4 |    1   |    0   |    0   |    0   |
+| results_5 |    1   |    0   |    0   |    0   |
+| results_6 |    1   |    0   |    0   |    0   |
+| results_7 |    1   |    0   |    0   |    0   |
++-----------+--------+--------+--------+--------+
+|   Total   |   16   |    0   |    0   |    0   |
++-----------+--------+--------+--------+--------+
+
+* Register list:
++--------------+--------+
+|              |   FF   |
++--------------+--------+
+|  i_1_reg_573 |   11   |
+|   i_reg_559  |   11   |
+|lfsr_0_reg_566|   16   |
++--------------+--------+
+|     Total    |   38   |
++--------------+--------+
+
+* Multiplexer (MUX) list: 
+|--------|------|------|------|--------|
+|  Comp  |  Pin | Size |  BW  | S x BW |
+|--------|------|------|------|--------|
+|  Total |      |      |      |    0   |
+|--------|------|------|------|--------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+--------+--------+
+|           |  BRAM  |  Delay |   FF   |   LUT  |  URAM  |
++-----------+--------+--------+--------+--------+--------+
+|  Function |    -   |   12   |  4856  |  6038  |    -   |
+|   Memory  |   16   |    -   |    0   |    0   |    0   |
+|Multiplexer|    -   |    -   |    -   |    -   |    -   |
+|  Register |    -   |    -   |   38   |    -   |    -   |
++-----------+--------+--------+--------+--------+--------+
+|   Total   |   16   |   12   |  4894  |  6038  |    0   |
++-----------+--------+--------+--------+--------+--------+

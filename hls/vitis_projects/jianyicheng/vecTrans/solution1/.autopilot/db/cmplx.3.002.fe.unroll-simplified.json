@@ -1,20 +1,47 @@
 {
   "0": {
     "basicblocks": 3,
-    "calls": "1",
+    "calls": "2 1",
+    "file": "vecTrans_tb.cpp",
+    "fileloc": 15,
+    "instructions": 20,
+    "name": "main",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 67
+  },
+  "1": {
+    "basicblocks": 3,
+    "calls": "3",
     "file": "vecTrans.cpp",
     "fileloc": 3,
     "instructions": 15,
     "loads": {
-      "T": 2
+      "L": 2
     },
     "name": "vecTrans",
     "stores": {
-      "T": 1
+      "L": 1
     },
     "total_instructions": 31
   },
-  "1": {
+  "2": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "vecTrans_tb.cpp",
+    "fileloc": 8,
+    "instructions": 16,
+    "loads": {
+      "G": 1
+    },
+    "name": "_rand",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 16
+  },
+  "3": {
     "basicblocks": 1,
     "calls": "",
     "file": "g.cpp",

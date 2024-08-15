@@ -1,4 +1,4 @@
-# 1 "HLS-benchmarks/DSS/gSum/src/g.cpp"
+# 1 "benchmarks/jianyicheng/gSum/src/g.cpp"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 376 "<built-in>" 3
@@ -155,17 +155,16 @@ extern "C" {
 
 }
 # 2 "<built-in>" 2
-# 1 "HLS-benchmarks/DSS/gSum/src/g.cpp" 2
-# 10 "HLS-benchmarks/DSS/gSum/src/g.cpp"
-# 1 "HLS-benchmarks/DSS/gSum/src/gSum.h" 1
-# 10 "HLS-benchmarks/DSS/gSum/src/gSum.h"
+# 1 "benchmarks/jianyicheng/gSum/src/g.cpp" 2
+# 10 "benchmarks/jianyicheng/gSum/src/g.cpp"
+# 1 "benchmarks/jianyicheng/gSum/src/gSum.h" 1
+# 10 "benchmarks/jianyicheng/gSum/src/gSum.h"
 double gSum(double A[1000], double B[1000]);
 
 double g(double i);
-# 11 "HLS-benchmarks/DSS/gSum/src/g.cpp" 2
+# 11 "benchmarks/jianyicheng/gSum/src/g.cpp" 2
 
 double g(double i){
-#pragma SS II=1
 
- return (((((i+0.64)*i+0.7)*i+0.21)*i+0.33)*i+0.25)*i+0.125;
+        return (((((i+0.64)*i+0.7)*i+0.21)*i+0.33)*i+0.25)*i+0.125;
 }

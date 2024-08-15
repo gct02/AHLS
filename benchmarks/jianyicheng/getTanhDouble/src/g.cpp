@@ -10,7 +10,6 @@
 #include "getTanhDouble.h"
 
 double g(double beta){
-#pragma SS II=1 
  
   double result;
 

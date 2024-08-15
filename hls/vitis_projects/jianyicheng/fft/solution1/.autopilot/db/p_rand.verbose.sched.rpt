@@ -1,0 +1,122 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_rand'
+================================================================
+* Date:           Mon Aug 12 18:53:47 2024
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        fft
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  0.978 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 1
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 1
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 1, States = { 1 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.97>
+ST_1 : Operation 2 [1/1] (0.00ns)   --->   "%lfsr_load = load i16 %lfsr" [benchmarks/jianyicheng/fft/src/fft.cpp:19]   --->   Operation 2 'load' 'lfsr_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 3 [1/1] (0.00ns) (grouped into LUT with out node xor_ln20_2)   --->   "%trunc_ln20 = trunc i16 %lfsr_load" [benchmarks/jianyicheng/fft/src/fft.cpp:20]   --->   Operation 3 'trunc' 'trunc_ln20' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns) (grouped into LUT with out node xor_ln20_2)   --->   "%tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_load, i32 2" [benchmarks/jianyicheng/fft/src/fft.cpp:20]   --->   Operation 4 'bitselect' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns) (grouped into LUT with out node xor_ln20_2)   --->   "%tmp_1 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_load, i32 3" [benchmarks/jianyicheng/fft/src/fft.cpp:20]   --->   Operation 5 'bitselect' 'tmp_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns) (grouped into LUT with out node xor_ln20_2)   --->   "%tmp_2 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %lfsr_load, i32 5" [benchmarks/jianyicheng/fft/src/fft.cpp:20]   --->   Operation 6 'bitselect' 'tmp_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%lshr_ln20_3 = partselect i15 @_ssdm_op_PartSelect.i15.i16.i32.i32, i16 %lfsr_load, i32 1, i32 15" [benchmarks/jianyicheng/fft/src/fft.cpp:20]   --->   Operation 7 'partselect' 'lshr_ln20_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns) (grouped into LUT with out node xor_ln20_2)   --->   "%xor_ln20 = xor i1 %tmp, i1 %trunc_ln20" [benchmarks/jianyicheng/fft/src/fft.cpp:20]   --->   Operation 8 'xor' 'xor_ln20' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 9 [1/1] (0.00ns) (grouped into LUT with out node xor_ln20_2)   --->   "%xor_ln20_1 = xor i1 %tmp_1, i1 %tmp_2" [benchmarks/jianyicheng/fft/src/fft.cpp:20]   --->   Operation 9 'xor' 'xor_ln20_1' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 10 [1/1] (0.97ns) (out node of the LUT)   --->   "%xor_ln20_2 = xor i1 %xor_ln20_1, i1 %xor_ln20" [benchmarks/jianyicheng/fft/src/fft.cpp:20]   --->   Operation 10 'xor' 'xor_ln20_2' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%or_ln = bitconcatenate i16 @_ssdm_op_BitConcatenate.i16.i1.i15, i1 %xor_ln20_2, i15 %lshr_ln20_3" [benchmarks/jianyicheng/fft/src/fft.cpp:20]   --->   Operation 11 'bitconcatenate' 'or_ln' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%store_ln20 = store i16 %or_ln, i16 %lfsr" [benchmarks/jianyicheng/fft/src/fft.cpp:20]   --->   Operation 12 'store' 'store_ln20' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%ret_ln20 = ret i16 %or_ln" [benchmarks/jianyicheng/fft/src/fft.cpp:20]   --->   Operation 13 'ret' 'ret_ln20' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5.000ns, clock uncertainty: 1.350ns.
+
+ <State 1>: 0.978ns
+The critical path consists of the following:
+	'load' operation 16 bit ('lfsr_load', benchmarks/jianyicheng/fft/src/fft.cpp:19) on static variable 'lfsr' [2]  (0.000 ns)
+	'xor' operation 1 bit ('xor_ln20', benchmarks/jianyicheng/fft/src/fft.cpp:20) [8]  (0.000 ns)
+	'xor' operation 1 bit ('xor_ln20_2', benchmarks/jianyicheng/fft/src/fft.cpp:20) [10]  (0.978 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

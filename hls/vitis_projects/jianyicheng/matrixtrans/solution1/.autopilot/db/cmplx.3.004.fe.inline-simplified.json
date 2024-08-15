@@ -1,17 +1,26 @@
 {
   "0": {
-    "basicblocks": 17,
+    "basicblocks": 19,
+    "calls": "1 1 1 1 1 1 1 1",
+    "file": "matrixtrans.cpp",
+    "fileloc": 66,
+    "instructions": 54,
+    "name": "main",
+    "total_instructions": 182
+  },
+  "1": {
+    "basicblocks": 1,
     "calls": "",
     "file": "matrixtrans.cpp",
-    "fileloc": 13,
-    "instructions": 73,
+    "fileloc": 16,
+    "instructions": 16,
     "loads": {
-      "T": 8
+      "G": 1
     },
-    "name": "matrixtrans",
+    "name": "_rand",
     "stores": {
-      "T": 8
+      "G": 1
     },
-    "total_instructions": 73
+    "total_instructions": 16
   }
 }

@@ -1,144 +1,64 @@
 
 
 ================================================================
-== Synthesis Summary Report of 'fft'
+== Synthesis Summary Report of 'main'
 ================================================================
 + General Information: 
-    * Date:           Sun Jun 23 03:43:33 2024
+    * Date:           Mon Aug 12 18:53:49 2024
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        fft
     * Solution:       solution1 (Vivado IP Flow Target)
-    * Product family: virtexuplusHBM
-    * Target device:  xcvu35p-fsvh2104-1-e
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
     
 
 + Performance & Resource Estimates: 
     
     PS: '+' for module; 'o' for loop; '*' for dataflow
-    +------------------------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
-    |               Modules              | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |      |          |            |            |     |
-    |               & Loops              | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM |    DSP   |     FF     |     LUT    | URAM|
-    +------------------------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
-    |+ fft                               |     -|  0.07|   410248|  2.051e+06|         -|   410249|     -|        no|     -|  16 (~0%)|  5391 (~0%)|  6353 (~0%)|    -|
-    | o loop_0_VITIS_LOOP_28_1           |     -|  3.65|    51280|  2.564e+05|      3205|        -|    16|        no|     -|         -|           -|           -|    -|
-    |  + fft_Pipeline_VITIS_LOOP_30_2    |     -|  0.07|     3202|  1.601e+04|         -|     3202|     -|        no|     -|         -|   518 (~0%)|   406 (~0%)|    -|
-    |   o VITIS_LOOP_30_2                |    II|  3.65|     3200|  1.600e+04|        25|       25|   128|       yes|     -|         -|           -|           -|    -|
-    | o loop_1_VITIS_LOOP_47_3           |     -|  3.65|    51280|  2.564e+05|      3205|        -|    16|        no|     -|         -|           -|           -|    -|
-    |  + fft_Pipeline_VITIS_LOOP_49_4    |     -|  0.07|     3202|  1.601e+04|         -|     3202|     -|        no|     -|         -|   518 (~0%)|   406 (~0%)|    -|
-    |   o VITIS_LOOP_49_4                |    II|  3.65|     3200|  1.600e+04|        25|       25|   128|       yes|     -|         -|           -|           -|    -|
-    | o loop_2_VITIS_LOOP_66_5           |     -|  3.65|    51280|  2.564e+05|      3205|        -|    16|        no|     -|         -|           -|           -|    -|
-    |  + fft_Pipeline_VITIS_LOOP_68_6    |     -|  0.07|     3202|  1.601e+04|         -|     3202|     -|        no|     -|         -|   518 (~0%)|   406 (~0%)|    -|
-    |   o VITIS_LOOP_68_6                |    II|  3.65|     3200|  1.600e+04|        25|       25|   128|       yes|     -|         -|           -|           -|    -|
-    | o loop_3_VITIS_LOOP_85_7           |     -|  3.65|    51280|  2.564e+05|      3205|        -|    16|        no|     -|         -|           -|           -|    -|
-    |  + fft_Pipeline_VITIS_LOOP_87_8    |     -|  0.07|     3202|  1.601e+04|         -|     3202|     -|        no|     -|         -|   518 (~0%)|   406 (~0%)|    -|
-    |   o VITIS_LOOP_87_8                |    II|  3.65|     3200|  1.600e+04|        25|       25|   128|       yes|     -|         -|           -|           -|    -|
-    | o loop_4_VITIS_LOOP_104_9          |     -|  3.65|    51280|  2.564e+05|      3205|        -|    16|        no|     -|         -|           -|           -|    -|
-    |  + fft_Pipeline_VITIS_LOOP_106_10  |     -|  0.07|     3202|  1.601e+04|         -|     3202|     -|        no|     -|         -|   518 (~0%)|   406 (~0%)|    -|
-    |   o VITIS_LOOP_106_10              |    II|  3.65|     3200|  1.600e+04|        25|       25|   128|       yes|     -|         -|           -|           -|    -|
-    | o loop_5_VITIS_LOOP_123_11         |     -|  3.65|    51280|  2.564e+05|      3205|        -|    16|        no|     -|         -|           -|           -|    -|
-    |  + fft_Pipeline_VITIS_LOOP_125_12  |     -|  0.07|     3202|  1.601e+04|         -|     3202|     -|        no|     -|         -|   518 (~0%)|   406 (~0%)|    -|
-    |   o VITIS_LOOP_125_12              |    II|  3.65|     3200|  1.600e+04|        25|       25|   128|       yes|     -|         -|           -|           -|    -|
-    | o loop_6_VITIS_LOOP_142_13         |     -|  3.65|    51280|  2.564e+05|      3205|        -|    16|        no|     -|         -|           -|           -|    -|
-    |  + fft_Pipeline_VITIS_LOOP_144_14  |     -|  0.07|     3202|  1.601e+04|         -|     3202|     -|        no|     -|         -|   518 (~0%)|   406 (~0%)|    -|
-    |   o VITIS_LOOP_144_14              |    II|  3.65|     3200|  1.600e+04|        25|       25|   128|       yes|     -|         -|           -|           -|    -|
-    | o loop_7_VITIS_LOOP_161_15         |     -|  3.65|    51280|  2.564e+05|      3205|        -|    16|        no|     -|         -|           -|           -|    -|
-    |  + fft_Pipeline_VITIS_LOOP_163_16  |     -|  0.07|     3202|  1.601e+04|         -|     3202|     -|        no|     -|         -|   518 (~0%)|   406 (~0%)|    -|
-    |   o VITIS_LOOP_163_16              |    II|  3.65|     3200|  1.600e+04|        25|       25|   128|       yes|     -|         -|           -|           -|    -|
-    +------------------------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
+    +-------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+----------+---------+-----------+------------+-----+
+    |               Modules               |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |          |         |           |            |     |
+    |               & Loops               |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|   BRAM   |   DSP   |     FF    |     LUT    | URAM|
+    +-------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+----------+---------+-----------+------------+-----+
+    |+ main                               |  Timing|  -2.66|   738324|  4.660e+06|         -|   738325|     -|        no|  34 (12%)|  16 (7%)|  6496 (6%)|  9898 (18%)|    -|
+    | + fft                               |  Timing|  -0.98|   721928|  3.610e+06|         -|   721928|     -|        no|   2 (~0%)|  16 (7%)|  6374 (5%)|  8483 (15%)|    -|
+    |  o loop_0_VITIS_LOOP_39_1           |       -|   3.65|    90240|  4.512e+05|      5640|        -|    16|        no|         -|        -|          -|           -|    -|
+    |   + fft_Pipeline_VITIS_LOOP_41_2    |  Timing|  -0.98|     5635|  2.818e+04|         -|     5635|     -|        no|         -|        -|  565 (~0%)|   487 (~0%)|    -|
+    |    o VITIS_LOOP_41_2                |      II|   3.65|     5633|  2.816e+04|        45|       44|   128|       yes|         -|        -|          -|           -|    -|
+    |  o loop_1_VITIS_LOOP_58_3           |       -|   3.65|    90240|  4.512e+05|      5640|        -|    16|        no|         -|        -|          -|           -|    -|
+    |   + fft_Pipeline_VITIS_LOOP_60_4    |  Timing|  -0.98|     5635|  2.818e+04|         -|     5635|     -|        no|         -|        -|  565 (~0%)|   487 (~0%)|    -|
+    |    o VITIS_LOOP_60_4                |      II|   3.65|     5633|  2.816e+04|        45|       44|   128|       yes|         -|        -|          -|           -|    -|
+    |  o loop_2_VITIS_LOOP_77_5           |       -|   3.65|    90240|  4.512e+05|      5640|        -|    16|        no|         -|        -|          -|           -|    -|
+    |   + fft_Pipeline_VITIS_LOOP_79_6    |  Timing|  -0.98|     5635|  2.818e+04|         -|     5635|     -|        no|         -|        -|  565 (~0%)|   487 (~0%)|    -|
+    |    o VITIS_LOOP_79_6                |      II|   3.65|     5633|  2.816e+04|        45|       44|   128|       yes|         -|        -|          -|           -|    -|
+    |  o loop_3_VITIS_LOOP_96_7           |       -|   3.65|    90240|  4.512e+05|      5640|        -|    16|        no|         -|        -|          -|           -|    -|
+    |   + fft_Pipeline_VITIS_LOOP_98_8    |  Timing|  -0.98|     5635|  2.818e+04|         -|     5635|     -|        no|         -|        -|  565 (~0%)|   487 (~0%)|    -|
+    |    o VITIS_LOOP_98_8                |      II|   3.65|     5633|  2.816e+04|        45|       44|   128|       yes|         -|        -|          -|           -|    -|
+    |  o loop_4_VITIS_LOOP_115_9          |       -|   3.65|    90240|  4.512e+05|      5640|        -|    16|        no|         -|        -|          -|           -|    -|
+    |   + fft_Pipeline_VITIS_LOOP_117_10  |  Timing|  -0.98|     5635|  2.818e+04|         -|     5635|     -|        no|         -|        -|  565 (~0%)|   487 (~0%)|    -|
+    |    o VITIS_LOOP_117_10              |      II|   3.65|     5633|  2.816e+04|        45|       44|   128|       yes|         -|        -|          -|           -|    -|
+    |  o loop_5_VITIS_LOOP_134_11         |       -|   3.65|    90240|  4.512e+05|      5640|        -|    16|        no|         -|        -|          -|           -|    -|
+    |   + fft_Pipeline_VITIS_LOOP_136_12  |  Timing|  -0.98|     5635|  2.818e+04|         -|     5635|     -|        no|         -|        -|  565 (~0%)|   487 (~0%)|    -|
+    |    o VITIS_LOOP_136_12              |      II|   3.65|     5633|  2.816e+04|        45|       44|   128|       yes|         -|        -|          -|           -|    -|
+    |  o loop_6_VITIS_LOOP_153_13         |       -|   3.65|    90240|  4.512e+05|      5640|        -|    16|        no|         -|        -|          -|           -|    -|
+    |   + fft_Pipeline_VITIS_LOOP_155_14  |  Timing|  -0.98|     5635|  2.818e+04|         -|     5635|     -|        no|         -|        -|  565 (~0%)|   487 (~0%)|    -|
+    |    o VITIS_LOOP_155_14              |      II|   3.65|     5633|  2.816e+04|        45|       44|   128|       yes|         -|        -|          -|           -|    -|
+    |  o loop_7_VITIS_LOOP_172_15         |       -|   3.65|    90240|  4.512e+05|      5640|        -|    16|        no|         -|        -|          -|           -|    -|
+    |   + fft_Pipeline_VITIS_LOOP_174_16  |  Timing|  -0.98|     5635|  2.818e+04|         -|     5635|     -|        no|         -|        -|  565 (~0%)|   487 (~0%)|    -|
+    |    o VITIS_LOOP_174_16              |      II|   3.65|     5633|  2.816e+04|        45|       44|   128|       yes|         -|        -|          -|           -|    -|
+    | o VITIS_LOOP_373_1                  |      II|   3.65|    16393|  1.035e+05|        25|       16|  1024|       yes|         -|        -|          -|           -|    -|
+    |  + p_rand                           |      II|   2.67|        0|      0.000|         -|        1|     -|       yes|         -|        -|   17 (~0%)|     6 (~0%)|    -|
+    +-------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+----------+---------+-----------+------------+-----+
 
 
 ================================================================
 == HW Interfaces
 ================================================================
-* AP_MEMORY
-+---------------------------------+-----------+----------+
-| Port                            | Direction | Bitwidth |
-+---------------------------------+-----------+----------+
-| X_I_0_address0                  | out       | 10       |
-| X_I_0_address1                  | out       | 10       |
-| X_I_0_d0                        | out       | 32       |
-| X_I_0_q0                        | in        | 32       |
-| X_I_0_q1                        | in        | 32       |
-| X_I_1_address0                  | out       | 10       |
-| X_I_1_address1                  | out       | 10       |
-| X_I_1_d0                        | out       | 32       |
-| X_I_1_q0                        | in        | 32       |
-| X_I_1_q1                        | in        | 32       |
-| X_I_2_address0                  | out       | 10       |
-| X_I_2_address1                  | out       | 10       |
-| X_I_2_d0                        | out       | 32       |
-| X_I_2_q0                        | in        | 32       |
-| X_I_2_q1                        | in        | 32       |
-| X_I_3_address0                  | out       | 10       |
-| X_I_3_address1                  | out       | 10       |
-| X_I_3_d0                        | out       | 32       |
-| X_I_3_q0                        | in        | 32       |
-| X_I_3_q1                        | in        | 32       |
-| X_I_4_address0                  | out       | 10       |
-| X_I_4_address1                  | out       | 10       |
-| X_I_4_d0                        | out       | 32       |
-| X_I_4_q0                        | in        | 32       |
-| X_I_4_q1                        | in        | 32       |
-| X_I_5_address0                  | out       | 10       |
-| X_I_5_address1                  | out       | 10       |
-| X_I_5_d0                        | out       | 32       |
-| X_I_5_q0                        | in        | 32       |
-| X_I_5_q1                        | in        | 32       |
-| X_I_6_address0                  | out       | 10       |
-| X_I_6_address1                  | out       | 10       |
-| X_I_6_d0                        | out       | 32       |
-| X_I_6_q0                        | in        | 32       |
-| X_I_6_q1                        | in        | 32       |
-| X_I_7_address0                  | out       | 10       |
-| X_I_7_address1                  | out       | 10       |
-| X_I_7_d0                        | out       | 32       |
-| X_I_7_q0                        | in        | 32       |
-| X_I_7_q1                        | in        | 32       |
-| X_R_0_address0                  | out       | 10       |
-| X_R_0_address1                  | out       | 10       |
-| X_R_0_d0                        | out       | 32       |
-| X_R_0_q0                        | in        | 32       |
-| X_R_0_q1                        | in        | 32       |
-| X_R_1_address0                  | out       | 10       |
-| X_R_1_address1                  | out       | 10       |
-| X_R_1_d0                        | out       | 32       |
-| X_R_1_q0                        | in        | 32       |
-| X_R_1_q1                        | in        | 32       |
-| X_R_2_address0                  | out       | 10       |
-| X_R_2_address1                  | out       | 10       |
-| X_R_2_d0                        | out       | 32       |
-| X_R_2_q0                        | in        | 32       |
-| X_R_2_q1                        | in        | 32       |
-| X_R_3_address0                  | out       | 10       |
-| X_R_3_address1                  | out       | 10       |
-| X_R_3_d0                        | out       | 32       |
-| X_R_3_q0                        | in        | 32       |
-| X_R_3_q1                        | in        | 32       |
-| X_R_4_address0                  | out       | 10       |
-| X_R_4_address1                  | out       | 10       |
-| X_R_4_d0                        | out       | 32       |
-| X_R_4_q0                        | in        | 32       |
-| X_R_4_q1                        | in        | 32       |
-| X_R_5_address0                  | out       | 10       |
-| X_R_5_address1                  | out       | 10       |
-| X_R_5_d0                        | out       | 32       |
-| X_R_5_q0                        | in        | 32       |
-| X_R_5_q1                        | in        | 32       |
-| X_R_6_address0                  | out       | 10       |
-| X_R_6_address1                  | out       | 10       |
-| X_R_6_d0                        | out       | 32       |
-| X_R_6_q0                        | in        | 32       |
-| X_R_6_q1                        | in        | 32       |
-| X_R_7_address0                  | out       | 10       |
-| X_R_7_address1                  | out       | 10       |
-| X_R_7_d0                        | out       | 32       |
-| X_R_7_q0                        | in        | 32       |
-| X_R_7_q1                        | in        | 32       |
-| cos_coefficients_table_address0 | out       | 9        |
-| cos_coefficients_table_q0       | in        | 32       |
-| sin_coefficients_table_address0 | out       | 9        |
-| sin_coefficients_table_q0       | in        | 32       |
-+---------------------------------+-----------+----------+
+* Other Ports
++-----------+-----------+----------+
+| Port      | Direction | Bitwidth |
++-----------+-----------+----------+
+| ap_return | out       | 32       |
++-----------+-----------+----------+
 
 * TOP LEVEL CONTROL
 +-----------+------------+-----------------------------------+
@@ -154,248 +74,125 @@
 == SW I/O Information
 ================================================================
 * Top Function Arguments
-+------------------------+-----------+----------+
-| Argument               | Direction | Datatype |
-+------------------------+-----------+----------+
-| X_R_0                  | inout     | float*   |
-| X_R_1                  | inout     | float*   |
-| X_R_2                  | inout     | float*   |
-| X_R_3                  | inout     | float*   |
-| X_R_4                  | inout     | float*   |
-| X_R_5                  | inout     | float*   |
-| X_R_6                  | inout     | float*   |
-| X_R_7                  | inout     | float*   |
-| X_I_0                  | inout     | float*   |
-| X_I_1                  | inout     | float*   |
-| X_I_2                  | inout     | float*   |
-| X_I_3                  | inout     | float*   |
-| X_I_4                  | inout     | float*   |
-| X_I_5                  | inout     | float*   |
-| X_I_6                  | inout     | float*   |
-| X_I_7                  | inout     | float*   |
-| cos_coefficients_table | in        | float*   |
-| sin_coefficients_table | in        | float*   |
-+------------------------+-----------+----------+
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| return   | out       | int      |
++----------+-----------+----------+
 
 * SW-to-HW Mapping
-+------------------------+---------------------------------+---------+----------+
-| Argument               | HW Interface                    | HW Type | HW Usage |
-+------------------------+---------------------------------+---------+----------+
-| X_R_0                  | X_R_0_address0                  | port    | offset   |
-| X_R_0                  | X_R_0_ce0                       | port    |          |
-| X_R_0                  | X_R_0_we0                       | port    |          |
-| X_R_0                  | X_R_0_d0                        | port    |          |
-| X_R_0                  | X_R_0_q0                        | port    |          |
-| X_R_0                  | X_R_0_address1                  | port    | offset   |
-| X_R_0                  | X_R_0_ce1                       | port    |          |
-| X_R_0                  | X_R_0_q1                        | port    |          |
-| X_R_1                  | X_R_1_address0                  | port    | offset   |
-| X_R_1                  | X_R_1_ce0                       | port    |          |
-| X_R_1                  | X_R_1_we0                       | port    |          |
-| X_R_1                  | X_R_1_d0                        | port    |          |
-| X_R_1                  | X_R_1_q0                        | port    |          |
-| X_R_1                  | X_R_1_address1                  | port    | offset   |
-| X_R_1                  | X_R_1_ce1                       | port    |          |
-| X_R_1                  | X_R_1_q1                        | port    |          |
-| X_R_2                  | X_R_2_address0                  | port    | offset   |
-| X_R_2                  | X_R_2_ce0                       | port    |          |
-| X_R_2                  | X_R_2_we0                       | port    |          |
-| X_R_2                  | X_R_2_d0                        | port    |          |
-| X_R_2                  | X_R_2_q0                        | port    |          |
-| X_R_2                  | X_R_2_address1                  | port    | offset   |
-| X_R_2                  | X_R_2_ce1                       | port    |          |
-| X_R_2                  | X_R_2_q1                        | port    |          |
-| X_R_3                  | X_R_3_address0                  | port    | offset   |
-| X_R_3                  | X_R_3_ce0                       | port    |          |
-| X_R_3                  | X_R_3_we0                       | port    |          |
-| X_R_3                  | X_R_3_d0                        | port    |          |
-| X_R_3                  | X_R_3_q0                        | port    |          |
-| X_R_3                  | X_R_3_address1                  | port    | offset   |
-| X_R_3                  | X_R_3_ce1                       | port    |          |
-| X_R_3                  | X_R_3_q1                        | port    |          |
-| X_R_4                  | X_R_4_address0                  | port    | offset   |
-| X_R_4                  | X_R_4_ce0                       | port    |          |
-| X_R_4                  | X_R_4_we0                       | port    |          |
-| X_R_4                  | X_R_4_d0                        | port    |          |
-| X_R_4                  | X_R_4_q0                        | port    |          |
-| X_R_4                  | X_R_4_address1                  | port    | offset   |
-| X_R_4                  | X_R_4_ce1                       | port    |          |
-| X_R_4                  | X_R_4_q1                        | port    |          |
-| X_R_5                  | X_R_5_address0                  | port    | offset   |
-| X_R_5                  | X_R_5_ce0                       | port    |          |
-| X_R_5                  | X_R_5_we0                       | port    |          |
-| X_R_5                  | X_R_5_d0                        | port    |          |
-| X_R_5                  | X_R_5_q0                        | port    |          |
-| X_R_5                  | X_R_5_address1                  | port    | offset   |
-| X_R_5                  | X_R_5_ce1                       | port    |          |
-| X_R_5                  | X_R_5_q1                        | port    |          |
-| X_R_6                  | X_R_6_address0                  | port    | offset   |
-| X_R_6                  | X_R_6_ce0                       | port    |          |
-| X_R_6                  | X_R_6_we0                       | port    |          |
-| X_R_6                  | X_R_6_d0                        | port    |          |
-| X_R_6                  | X_R_6_q0                        | port    |          |
-| X_R_6                  | X_R_6_address1                  | port    | offset   |
-| X_R_6                  | X_R_6_ce1                       | port    |          |
-| X_R_6                  | X_R_6_q1                        | port    |          |
-| X_R_7                  | X_R_7_address0                  | port    | offset   |
-| X_R_7                  | X_R_7_ce0                       | port    |          |
-| X_R_7                  | X_R_7_we0                       | port    |          |
-| X_R_7                  | X_R_7_d0                        | port    |          |
-| X_R_7                  | X_R_7_q0                        | port    |          |
-| X_R_7                  | X_R_7_address1                  | port    | offset   |
-| X_R_7                  | X_R_7_ce1                       | port    |          |
-| X_R_7                  | X_R_7_q1                        | port    |          |
-| X_I_0                  | X_I_0_address0                  | port    | offset   |
-| X_I_0                  | X_I_0_ce0                       | port    |          |
-| X_I_0                  | X_I_0_we0                       | port    |          |
-| X_I_0                  | X_I_0_d0                        | port    |          |
-| X_I_0                  | X_I_0_q0                        | port    |          |
-| X_I_0                  | X_I_0_address1                  | port    | offset   |
-| X_I_0                  | X_I_0_ce1                       | port    |          |
-| X_I_0                  | X_I_0_q1                        | port    |          |
-| X_I_1                  | X_I_1_address0                  | port    | offset   |
-| X_I_1                  | X_I_1_ce0                       | port    |          |
-| X_I_1                  | X_I_1_we0                       | port    |          |
-| X_I_1                  | X_I_1_d0                        | port    |          |
-| X_I_1                  | X_I_1_q0                        | port    |          |
-| X_I_1                  | X_I_1_address1                  | port    | offset   |
-| X_I_1                  | X_I_1_ce1                       | port    |          |
-| X_I_1                  | X_I_1_q1                        | port    |          |
-| X_I_2                  | X_I_2_address0                  | port    | offset   |
-| X_I_2                  | X_I_2_ce0                       | port    |          |
-| X_I_2                  | X_I_2_we0                       | port    |          |
-| X_I_2                  | X_I_2_d0                        | port    |          |
-| X_I_2                  | X_I_2_q0                        | port    |          |
-| X_I_2                  | X_I_2_address1                  | port    | offset   |
-| X_I_2                  | X_I_2_ce1                       | port    |          |
-| X_I_2                  | X_I_2_q1                        | port    |          |
-| X_I_3                  | X_I_3_address0                  | port    | offset   |
-| X_I_3                  | X_I_3_ce0                       | port    |          |
-| X_I_3                  | X_I_3_we0                       | port    |          |
-| X_I_3                  | X_I_3_d0                        | port    |          |
-| X_I_3                  | X_I_3_q0                        | port    |          |
-| X_I_3                  | X_I_3_address1                  | port    | offset   |
-| X_I_3                  | X_I_3_ce1                       | port    |          |
-| X_I_3                  | X_I_3_q1                        | port    |          |
-| X_I_4                  | X_I_4_address0                  | port    | offset   |
-| X_I_4                  | X_I_4_ce0                       | port    |          |
-| X_I_4                  | X_I_4_we0                       | port    |          |
-| X_I_4                  | X_I_4_d0                        | port    |          |
-| X_I_4                  | X_I_4_q0                        | port    |          |
-| X_I_4                  | X_I_4_address1                  | port    | offset   |
-| X_I_4                  | X_I_4_ce1                       | port    |          |
-| X_I_4                  | X_I_4_q1                        | port    |          |
-| X_I_5                  | X_I_5_address0                  | port    | offset   |
-| X_I_5                  | X_I_5_ce0                       | port    |          |
-| X_I_5                  | X_I_5_we0                       | port    |          |
-| X_I_5                  | X_I_5_d0                        | port    |          |
-| X_I_5                  | X_I_5_q0                        | port    |          |
-| X_I_5                  | X_I_5_address1                  | port    | offset   |
-| X_I_5                  | X_I_5_ce1                       | port    |          |
-| X_I_5                  | X_I_5_q1                        | port    |          |
-| X_I_6                  | X_I_6_address0                  | port    | offset   |
-| X_I_6                  | X_I_6_ce0                       | port    |          |
-| X_I_6                  | X_I_6_we0                       | port    |          |
-| X_I_6                  | X_I_6_d0                        | port    |          |
-| X_I_6                  | X_I_6_q0                        | port    |          |
-| X_I_6                  | X_I_6_address1                  | port    | offset   |
-| X_I_6                  | X_I_6_ce1                       | port    |          |
-| X_I_6                  | X_I_6_q1                        | port    |          |
-| X_I_7                  | X_I_7_address0                  | port    | offset   |
-| X_I_7                  | X_I_7_ce0                       | port    |          |
-| X_I_7                  | X_I_7_we0                       | port    |          |
-| X_I_7                  | X_I_7_d0                        | port    |          |
-| X_I_7                  | X_I_7_q0                        | port    |          |
-| X_I_7                  | X_I_7_address1                  | port    | offset   |
-| X_I_7                  | X_I_7_ce1                       | port    |          |
-| X_I_7                  | X_I_7_q1                        | port    |          |
-| cos_coefficients_table | cos_coefficients_table_address0 | port    | offset   |
-| cos_coefficients_table | cos_coefficients_table_ce0      | port    |          |
-| cos_coefficients_table | cos_coefficients_table_q0       | port    |          |
-| sin_coefficients_table | sin_coefficients_table_address0 | port    | offset   |
-| sin_coefficients_table | sin_coefficients_table_ce0      | port    |          |
-| sin_coefficients_table | sin_coefficients_table_q0       | port    |          |
-+------------------------+---------------------------------+---------+----------+
++----------+--------------+---------+
+| Argument | HW Interface | HW Type |
++----------+--------------+---------+
+| return   | ap_return    | port    |
++----------+--------------+---------+
 
 
 ================================================================
 == Bind Op Report
 ================================================================
-+-----------------------------------+-----+--------+-------------+-----+--------+---------+
-| Name                              | DSP | Pragma | Variable    | Op  | Impl   | Latency |
-+-----------------------------------+-----+--------+-------------+-----+--------+---------+
-| + fft                             | 16  |        |             |     |        |         |
-|   add_ln27_fu_352_p2              |     |        | add_ln27    | add | fabric | 0       |
-|   add_ln27_1_fu_425_p2            |     |        | add_ln27_1  | add | fabric | 0       |
-|   add_ln29_fu_375_p2              |     |        | add_ln29    | add | fabric | 0       |
-|   sub9_fu_443_p2                  |     |        | sub9        | sub | fabric | 0       |
-|   stage_2_fu_391_p2               |     |        | stage_2     | add | fabric | 0       |
-|   add_ln46_fu_463_p2              |     |        | add_ln46    | add | fabric | 0       |
-|   add_ln46_1_fu_536_p2            |     |        | add_ln46_1  | add | fabric | 0       |
-|   add_ln48_fu_486_p2              |     |        | add_ln48    | add | fabric | 0       |
-|   sub97_fu_554_p2                 |     |        | sub97       | sub | fabric | 0       |
-|   stage_4_fu_502_p2               |     |        | stage_4     | add | fabric | 0       |
-|   add_ln65_fu_574_p2              |     |        | add_ln65    | add | fabric | 0       |
-|   add_ln65_1_fu_647_p2            |     |        | add_ln65_1  | add | fabric | 0       |
-|   add_ln67_fu_597_p2              |     |        | add_ln67    | add | fabric | 0       |
-|   sub196_fu_665_p2                |     |        | sub196      | sub | fabric | 0       |
-|   stage_6_fu_613_p2               |     |        | stage_6     | add | fabric | 0       |
-|   add_ln84_fu_685_p2              |     |        | add_ln84    | add | fabric | 0       |
-|   add_ln84_1_fu_758_p2            |     |        | add_ln84_1  | add | fabric | 0       |
-|   add_ln86_fu_708_p2              |     |        | add_ln86    | add | fabric | 0       |
-|   sub295_fu_776_p2                |     |        | sub295      | sub | fabric | 0       |
-|   stage_8_fu_724_p2               |     |        | stage_8     | add | fabric | 0       |
-|   add_ln103_fu_796_p2             |     |        | add_ln103   | add | fabric | 0       |
-|   add_ln103_1_fu_869_p2           |     |        | add_ln103_1 | add | fabric | 0       |
-|   add_ln105_fu_819_p2             |     |        | add_ln105   | add | fabric | 0       |
-|   sub394_fu_887_p2                |     |        | sub394      | sub | fabric | 0       |
-|   stage_10_fu_835_p2              |     |        | stage_10    | add | fabric | 0       |
-|   add_ln122_fu_907_p2             |     |        | add_ln122   | add | fabric | 0       |
-|   add_ln122_1_fu_980_p2           |     |        | add_ln122_1 | add | fabric | 0       |
-|   add_ln124_fu_930_p2             |     |        | add_ln124   | add | fabric | 0       |
-|   sub493_fu_998_p2                |     |        | sub493      | sub | fabric | 0       |
-|   stage_12_fu_946_p2              |     |        | stage_12    | add | fabric | 0       |
-|   add_ln141_fu_1018_p2            |     |        | add_ln141   | add | fabric | 0       |
-|   add_ln141_1_fu_1091_p2          |     |        | add_ln141_1 | add | fabric | 0       |
-|   add_ln143_fu_1041_p2            |     |        | add_ln143   | add | fabric | 0       |
-|   sub592_fu_1109_p2               |     |        | sub592      | sub | fabric | 0       |
-|   stage_14_fu_1057_p2             |     |        | stage_14    | add | fabric | 0       |
-|   add_ln160_fu_1129_p2            |     |        | add_ln160   | add | fabric | 0       |
-|   add_ln160_1_fu_1187_p2          |     |        | add_ln160_1 | add | fabric | 0       |
-|   add_ln162_fu_1152_p2            |     |        | add_ln162   | add | fabric | 0       |
-|   sub691_fu_1205_p2               |     |        | sub691      | sub | fabric | 0       |
-|   stage_15_fu_1168_p2             |     |        | stage_15    | add | fabric | 0       |
-|  + fft_Pipeline_VITIS_LOOP_30_2   | 0   |        |             |     |        |         |
-|    add_ln30_fu_212_p2             |     |        | add_ln30    | add | fabric | 0       |
-|    add_ln35_fu_238_p2             |     |        | add_ln35    | add | fabric | 0       |
-|  + fft_Pipeline_VITIS_LOOP_49_4   | 0   |        |             |     |        |         |
-|    add_ln49_fu_212_p2             |     |        | add_ln49    | add | fabric | 0       |
-|    add_ln54_fu_238_p2             |     |        | add_ln54    | add | fabric | 0       |
-|  + fft_Pipeline_VITIS_LOOP_68_6   | 0   |        |             |     |        |         |
-|    add_ln68_fu_212_p2             |     |        | add_ln68    | add | fabric | 0       |
-|    add_ln73_fu_238_p2             |     |        | add_ln73    | add | fabric | 0       |
-|  + fft_Pipeline_VITIS_LOOP_87_8   | 0   |        |             |     |        |         |
-|    add_ln87_fu_212_p2             |     |        | add_ln87    | add | fabric | 0       |
-|    add_ln92_fu_238_p2             |     |        | add_ln92    | add | fabric | 0       |
-|  + fft_Pipeline_VITIS_LOOP_106_10 | 0   |        |             |     |        |         |
-|    add_ln106_fu_212_p2            |     |        | add_ln106   | add | fabric | 0       |
-|    add_ln111_fu_238_p2            |     |        | add_ln111   | add | fabric | 0       |
-|  + fft_Pipeline_VITIS_LOOP_125_12 | 0   |        |             |     |        |         |
-|    add_ln125_fu_212_p2            |     |        | add_ln125   | add | fabric | 0       |
-|    add_ln130_fu_238_p2            |     |        | add_ln130   | add | fabric | 0       |
-|  + fft_Pipeline_VITIS_LOOP_144_14 | 0   |        |             |     |        |         |
-|    add_ln144_fu_212_p2            |     |        | add_ln144   | add | fabric | 0       |
-|    add_ln149_fu_238_p2            |     |        | add_ln149   | add | fabric | 0       |
-|  + fft_Pipeline_VITIS_LOOP_163_16 | 0   |        |             |     |        |         |
-|    add_ln163_fu_212_p2            |     |        | add_ln163   | add | fabric | 0       |
-|    add_ln168_fu_238_p2            |     |        | add_ln168   | add | fabric | 0       |
-+-----------------------------------+-----+--------+-------------+-----+--------+---------+
++---------------------------------------------+-----+--------+-------------+-----+--------+---------+
+| Name                                        | DSP | Pragma | Variable    | Op  | Impl   | Latency |
++---------------------------------------------+-----+--------+-------------+-----+--------+---------+
+| + main                                      | 16  |        |             |     |        |         |
+|   add_ln373_fu_410_p2                       |     |        | add_ln373   | add | fabric | 0       |
+|  + fft                                      | 16  |        |             |     |        |         |
+|    add_ln38_fu_336_p2                       |     |        | add_ln38    | add | fabric | 0       |
+|    add_ln38_1_fu_386_p2                     |     |        | add_ln38_1  | add | fabric | 0       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U105 |     |        | add_ln40    | add | fabric | 0       |
+|    faddfsub_32ns_32ns_32_10_full_dsp_1_U106 |     |        | sub9        | sub | fabric | 0       |
+|    stage_2_fu_417_p2                        |     |        | stage_2     | add | fabric | 0       |
+|    add_ln57_fu_440_p2                       |     |        | add_ln57    | add | fabric | 0       |
+|    add_ln57_1_fu_501_p2                     |     |        | add_ln57_1  | add | fabric | 0       |
+|    add_ln59_fu_483_p2                       |     |        | add_ln59    | add | fabric | 0       |
+|    sub97_fu_527_p2                          |     |        | sub97       | sub | fabric | 0       |
+|    stage_4_fu_488_p2                        |     |        | stage_4     | add | fabric | 0       |
+|    add_ln76_fu_545_p2                       |     |        | add_ln76    | add | fabric | 0       |
+|    add_ln76_1_fu_595_p2                     |     |        | add_ln76_1  | add | fabric | 0       |
+|    add_ln78_fu_586_p2                       |     |        | add_ln78    | add | fabric | 0       |
+|    sub196_fu_621_p2                         |     |        | sub196      | sub | fabric | 0       |
+|    stage_6_fu_626_p2                        |     |        | stage_6     | add | fabric | 0       |
+|    add_ln95_fu_649_p2                       |     |        | add_ln95    | add | fabric | 0       |
+|    add_ln95_1_fu_699_p2                     |     |        | add_ln95_1  | add | fabric | 0       |
+|    add_ln97_fu_690_p2                       |     |        | add_ln97    | add | fabric | 0       |
+|    sub295_fu_725_p2                         |     |        | sub295      | sub | fabric | 0       |
+|    stage_8_fu_730_p2                        |     |        | stage_8     | add | fabric | 0       |
+|    add_ln114_fu_753_p2                      |     |        | add_ln114   | add | fabric | 0       |
+|    add_ln114_1_fu_803_p2                    |     |        | add_ln114_1 | add | fabric | 0       |
+|    add_ln116_fu_794_p2                      |     |        | add_ln116   | add | fabric | 0       |
+|    sub394_fu_829_p2                         |     |        | sub394      | sub | fabric | 0       |
+|    stage_10_fu_834_p2                       |     |        | stage_10    | add | fabric | 0       |
+|    add_ln133_fu_857_p2                      |     |        | add_ln133   | add | fabric | 0       |
+|    add_ln133_1_fu_907_p2                    |     |        | add_ln133_1 | add | fabric | 0       |
+|    add_ln135_fu_898_p2                      |     |        | add_ln135   | add | fabric | 0       |
+|    sub493_fu_933_p2                         |     |        | sub493      | sub | fabric | 0       |
+|    stage_12_fu_938_p2                       |     |        | stage_12    | add | fabric | 0       |
+|    add_ln152_fu_961_p2                      |     |        | add_ln152   | add | fabric | 0       |
+|    add_ln152_1_fu_1011_p2                   |     |        | add_ln152_1 | add | fabric | 0       |
+|    add_ln154_fu_1002_p2                     |     |        | add_ln154   | add | fabric | 0       |
+|    sub592_fu_1037_p2                        |     |        | sub592      | sub | fabric | 0       |
+|    stage_14_fu_1042_p2                      |     |        | stage_14    | add | fabric | 0       |
+|    add_ln171_fu_1065_p2                     |     |        | add_ln171   | add | fabric | 0       |
+|    add_ln171_1_fu_1091_p2                   |     |        | add_ln171_1 | add | fabric | 0       |
+|    add_ln173_fu_1114_p2                     |     |        | add_ln173   | add | fabric | 0       |
+|    sub691_fu_1142_p2                        |     |        | sub691      | sub | fabric | 0       |
+|    stage_15_fu_1119_p2                      |     |        | stage_15    | add | fabric | 0       |
+|   + fft_Pipeline_VITIS_LOOP_41_2            | 0   |        |             |     |        |         |
+|     add_ln41_fu_238_p2                      |     |        | add_ln41    | add | fabric | 0       |
+|     add_ln46_fu_232_p2                      |     |        | add_ln46    | add | fabric | 0       |
+|   + fft_Pipeline_VITIS_LOOP_60_4            | 0   |        |             |     |        |         |
+|     add_ln60_fu_238_p2                      |     |        | add_ln60    | add | fabric | 0       |
+|     add_ln65_fu_232_p2                      |     |        | add_ln65    | add | fabric | 0       |
+|   + fft_Pipeline_VITIS_LOOP_79_6            | 0   |        |             |     |        |         |
+|     add_ln79_fu_238_p2                      |     |        | add_ln79    | add | fabric | 0       |
+|     add_ln84_fu_232_p2                      |     |        | add_ln84    | add | fabric | 0       |
+|   + fft_Pipeline_VITIS_LOOP_98_8            | 0   |        |             |     |        |         |
+|     add_ln98_fu_238_p2                      |     |        | add_ln98    | add | fabric | 0       |
+|     add_ln103_fu_232_p2                     |     |        | add_ln103   | add | fabric | 0       |
+|   + fft_Pipeline_VITIS_LOOP_117_10          | 0   |        |             |     |        |         |
+|     add_ln117_fu_238_p2                     |     |        | add_ln117   | add | fabric | 0       |
+|     add_ln122_fu_232_p2                     |     |        | add_ln122   | add | fabric | 0       |
+|   + fft_Pipeline_VITIS_LOOP_136_12          | 0   |        |             |     |        |         |
+|     add_ln136_fu_238_p2                     |     |        | add_ln136   | add | fabric | 0       |
+|     add_ln141_fu_232_p2                     |     |        | add_ln141   | add | fabric | 0       |
+|   + fft_Pipeline_VITIS_LOOP_155_14          | 0   |        |             |     |        |         |
+|     add_ln155_fu_238_p2                     |     |        | add_ln155   | add | fabric | 0       |
+|     add_ln160_fu_232_p2                     |     |        | add_ln160   | add | fabric | 0       |
+|   + fft_Pipeline_VITIS_LOOP_174_16          | 0   |        |             |     |        |         |
+|     add_ln174_fu_238_p2                     |     |        | add_ln174   | add | fabric | 0       |
+|     add_ln179_fu_232_p2                     |     |        | add_ln179   | add | fabric | 0       |
++---------------------------------------------+-----+--------+-------------+-----+--------+---------+
 
 
 ================================================================
 == Storage Report
 ================================================================
-  No bind storage info in design
++-----------------------------+---------------+------+------+------+--------+------------------------+------+---------+------------------+
+| Name                        | Usage         | Type | BRAM | URAM | Pragma | Variable               | Impl | Latency | Bitwidth, Depth, |
+|                             |               |      |      |      |        |                        |      |         | Banks            |
++-----------------------------+---------------+------+------+------+--------+------------------------+------+---------+------------------+
+| + main                      |               |      | 34   | 0    |        |                        |      |         |                  |
+|   X_R_0_U                   | ram_t2p array |      | 2    |      |        | X_R_0                  | auto | 1       | 32, 1024, 1      |
+|   X_R_1_U                   | ram_t2p array |      | 2    |      |        | X_R_1                  | auto | 1       | 32, 1024, 1      |
+|   X_R_2_U                   | ram_t2p array |      | 2    |      |        | X_R_2                  | auto | 1       | 32, 1024, 1      |
+|   X_R_3_U                   | ram_t2p array |      | 2    |      |        | X_R_3                  | auto | 1       | 32, 1024, 1      |
+|   X_R_4_U                   | ram_t2p array |      | 2    |      |        | X_R_4                  | auto | 1       | 32, 1024, 1      |
+|   X_R_5_U                   | ram_t2p array |      | 2    |      |        | X_R_5                  | auto | 1       | 32, 1024, 1      |
+|   X_R_6_U                   | ram_t2p array |      | 2    |      |        | X_R_6                  | auto | 1       | 32, 1024, 1      |
+|   X_R_7_U                   | ram_t2p array |      | 2    |      |        | X_R_7                  | auto | 1       | 32, 1024, 1      |
+|   X_I_0_U                   | ram_t2p array |      | 2    |      |        | X_I_0                  | auto | 1       | 32, 1024, 1      |
+|   X_I_1_U                   | ram_t2p array |      | 2    |      |        | X_I_1                  | auto | 1       | 32, 1024, 1      |
+|   X_I_2_U                   | ram_t2p array |      | 2    |      |        | X_I_2                  | auto | 1       | 32, 1024, 1      |
+|   X_I_3_U                   | ram_t2p array |      | 2    |      |        | X_I_3                  | auto | 1       | 32, 1024, 1      |
+|   X_I_4_U                   | ram_t2p array |      | 2    |      |        | X_I_4                  | auto | 1       | 32, 1024, 1      |
+|   X_I_5_U                   | ram_t2p array |      | 2    |      |        | X_I_5                  | auto | 1       | 32, 1024, 1      |
+|   X_I_6_U                   | ram_t2p array |      | 2    |      |        | X_I_6                  | auto | 1       | 32, 1024, 1      |
+|   X_I_7_U                   | ram_t2p array |      | 2    |      |        | X_I_7                  | auto | 1       | 32, 1024, 1      |
+|  + fft                      |               |      | 2    | 0    |        |                        |      |         |                  |
+|    cos_coefficients_table_U | rom_1p        |      | 1    |      |        | cos_coefficients_table | auto | 1       | 32, 512, 1       |
+|    sin_coefficients_table_U | rom_1p        |      | 1    |      |        | sin_coefficients_table | auto | 1       | 32, 512, 1       |
++-----------------------------+---------------+------+------+------+--------+------------------------+------+---------+------------------+
+
 
 ================================================================
 == Pragma Report

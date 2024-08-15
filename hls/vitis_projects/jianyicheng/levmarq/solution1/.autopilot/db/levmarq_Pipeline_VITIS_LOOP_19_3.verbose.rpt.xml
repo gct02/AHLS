@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'levmarq_Pipeline_VITIS_LOOP_19_3'" level="0">
-<item name = "Date">Sun Jun 23 03:48:04 2024
+<item name = "Date">Mon Aug 12 18:55:23 2024
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">levmarq</item>
 <item name = "Solution">solution1 (Vivado IP Flow Target)</item>
-<item name = "Product family">virtexuplusHBM</item>
-<item name = "Target device">xcvu35p-fsvh2104-1-e</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00 ns, 3.579 ns, 1.35 ns</column>
+<column name="ap_clk">5.00 ns, 5.091 ns, 1.35 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">17, 2147483664, 85.000 ns, 10.737 sec, 17, 2147483664, no</column>
+<column name="">30, 157, 0.153 us, 0.799 us, 30, 157, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- VITIS_LOOP_19_3">15, 2147483662, 16, 1, 1, 1 ~ 2147483648, yes</column>
+<column name="- VITIS_LOOP_19_3">28, 155, 29, 1, 1, 1 ~ 128, yes</column>
 </table>
 </item>
 </section>
@@ -48,15 +48,13 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, -, 0, 114, -</column>
+<column name="Expression">-, -, 0, 49, -</column>
 <column name="FIFO">-, -, -, -, -</column>
 <column name="Instance">-, -, -, -, -</column>
 <column name="Memory">-, -, -, -, -</column>
-<column name="Multiplexer">-, -, -, 45, -</column>
-<column name="Register">-, -, 386, 64, -</column>
-<specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
-<specialColumn name="Utilization SLR (%)">0, 0, ~0, ~0, 0</specialColumn>
-<specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
+<column name="Multiplexer">-, -, -, 36, -</column>
+<column name="Register">-, -, 381, 64, -</column>
+<specialColumn name="Available">280, 220, 106400, 53200, 0</specialColumn>
 <specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
 </table>
 </item>
@@ -80,10 +78,9 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln19_fu_156_p2">+, 0, 0, 38, 31, 1</column>
-<column name="add_ln20_1_fu_169_p2">+, 0, 0, 14, 7, 7</column>
-<column name="add_ln20_fu_179_p2">+, 0, 0, 21, 14, 14</column>
-<column name="icmp_ln19_fu_151_p2">icmp, 0, 0, 39, 32, 32</column>
+<column name="add_ln19_fu_130_p2">+, 0, 0, 15, 8, 1</column>
+<column name="add_ln20_fu_145_p2">+, 0, 0, 17, 14, 14</column>
+<column name="icmp_ln19_fu_124_p2">icmp, 0, 0, 15, 8, 8</column>
 <column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
 </table>
 </item>
@@ -91,15 +88,14 @@
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_done_int">9, 2, 1, 2</column>
 <column name="ap_enable_reg_pp0_iter1">9, 2, 1, 2</column>
-<column name="ap_enable_reg_pp0_iter2">9, 2, 1, 2</column>
-<column name="j_fu_58">9, 2, 31, 62</column>
-<column name="phi_mul_fu_54">9, 2, 7, 14</column>
+<column name="ap_sig_allocacmp_j_1">9, 2, 8, 16</column>
+<column name="j_fu_46">9, 2, 8, 16</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add1_reg_299">32, 0, 32, 0</column>
-<column name="add_ln20_reg_258">14, 0, 14, 0</column>
+<column name="add1_reg_217">32, 0, 32, 0</column>
+<column name="add_ln20_reg_186">14, 0, 14, 0</column>
 <column name="ap_CS_fsm">1, 0, 1, 0</column>
 <column name="ap_done_reg">1, 0, 1, 0</column>
 <column name="ap_enable_reg_pp0_iter1">1, 0, 1, 0</column>
@@ -110,7 +106,19 @@
 <column name="ap_enable_reg_pp0_iter14">1, 0, 1, 0</column>
 <column name="ap_enable_reg_pp0_iter15">1, 0, 1, 0</column>
 <column name="ap_enable_reg_pp0_iter16">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter17">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter18">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter19">1, 0, 1, 0</column>
 <column name="ap_enable_reg_pp0_iter2">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter20">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter21">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter22">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter23">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter24">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter25">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter26">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter27">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter28">1, 0, 1, 0</column>
 <column name="ap_enable_reg_pp0_iter3">1, 0, 1, 0</column>
 <column name="ap_enable_reg_pp0_iter4">1, 0, 1, 0</column>
 <column name="ap_enable_reg_pp0_iter5">1, 0, 1, 0</column>
@@ -124,6 +132,19 @@
 <column name="ap_loop_exit_ready_pp0_iter13_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter14_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter15_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter16_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter17_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter18_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter19_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter1_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter20_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter21_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter22_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter23_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter24_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter25_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter26_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter27_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter2_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter3_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter4_reg">1, 0, 1, 0</column>
@@ -132,15 +153,14 @@
 <column name="ap_loop_exit_ready_pp0_iter7_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter8_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter9_reg">1, 0, 1, 0</column>
-<column name="g_load_reg_263">32, 0, 32, 0</column>
-<column name="h_addr_reg_278">14, 0, 14, 0</column>
-<column name="h_load_reg_289">32, 0, 32, 0</column>
-<column name="j_fu_58">31, 0, 31, 0</column>
-<column name="mul1_reg_284">32, 0, 32, 0</column>
-<column name="mul_reg_273">32, 0, 32, 0</column>
-<column name="phi_mul_fu_54">7, 0, 7, 0</column>
-<column name="add_ln20_reg_258">64, 32, 14, 0</column>
-<column name="h_addr_reg_278">64, 32, 14, 0</column>
+<column name="g_load_reg_191">32, 0, 32, 0</column>
+<column name="h_addr_reg_201">14, 0, 14, 0</column>
+<column name="h_load_reg_212">32, 0, 32, 0</column>
+<column name="j_fu_46">8, 0, 8, 0</column>
+<column name="mul1_reg_207">32, 0, 32, 0</column>
+<column name="mul_reg_196">32, 0, 32, 0</column>
+<column name="add_ln20_reg_186">64, 32, 14, 0</column>
+<column name="h_addr_reg_201">64, 32, 14, 0</column>
 </table>
 </item>
 </section>
@@ -156,21 +176,20 @@
 <column name="ap_done">out, 1, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
 <column name="ap_idle">out, 1, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
 <column name="ap_ready">out, 1, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_222_p_din0">out, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_222_p_din1">out, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_222_p_opcode">out, 1, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_222_p_dout0">in, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_222_p_ce">out, 1, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_253_p_din0">out, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_253_p_din1">out, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_253_p_dout0">in, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_253_p_ce">out, 1, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_258_p_din0">out, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_258_p_din1">out, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_258_p_dout0">in, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="grp_fu_258_p_ce">out, 1, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
-<column name="indvars_iv10">in, 32, ap_none, indvars_iv10, scalar</column>
-<column name="empty">in, 7, ap_none, empty, scalar</column>
+<column name="grp_fu_187_p_din0">out, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="grp_fu_187_p_din1">out, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="grp_fu_187_p_opcode">out, 1, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="grp_fu_187_p_dout0">in, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="grp_fu_187_p_ce">out, 1, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="grp_fu_218_p_din0">out, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="grp_fu_218_p_din1">out, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="grp_fu_218_p_dout0">in, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="grp_fu_218_p_ce">out, 1, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="grp_fu_223_p_din0">out, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="grp_fu_223_p_din1">out, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="grp_fu_223_p_dout0">in, 32, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="grp_fu_223_p_ce">out, 1, ap_ctrl_hs, levmarq_Pipeline_VITIS_LOOP_19_3, return value</column>
+<column name="indvars_iv7">in, 8, ap_none, indvars_iv7, scalar</column>
 <column name="g_address0">out, 7, ap_memory, g, array</column>
 <column name="g_ce0">out, 1, ap_memory, g, array</column>
 <column name="g_q0">in, 32, ap_memory, g, array</column>

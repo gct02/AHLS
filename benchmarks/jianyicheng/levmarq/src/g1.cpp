@@ -1,7 +1,6 @@
 #include "levmarq.h"
 
 void g1(float x, float *out0, float *out1, float *out2){
-#pragma SS II = 2
 	float d = -0.67f * x;
 	float exp_d = (((((d+0.2f)*d+0.3f)*d+0.6f)*d+0.2f)*d+0.7f)*d+0.2f;
 	*out0 = 1.0f - exp_d;

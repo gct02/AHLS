@@ -1,69 +1,32 @@
 
 
 ================================================================
-== Synthesis Summary Report of 'substring'
+== Synthesis Summary Report of 'main'
 ================================================================
 + General Information: 
-    * Date:           Sun Jun 23 03:45:58 2024
+    * Date:           Mon Aug 12 18:56:56 2024
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        substring
     * Solution:       solution1 (Vivado IP Flow Target)
-    * Product family: virtexuplusHBM
-    * Target device:  xcvu35p-fsvh2104-1-e
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
     
 
 + Performance & Resource Estimates: 
     
     PS: '+' for module; 'o' for loop; '*' for dataflow
-    +-----------------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------+----+------------+------------+-----+
-    |                    Modules                    | Issue|      | Latency |  Latency  | Iteration|         |  Trip |          |      |    |            |            |     |
-    |                    & Loops                    | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count | Pipelined| BRAM | DSP|     FF     |     LUT    | URAM|
-    +-----------------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------+----+------------+------------+-----+
-    |+ substring                                    |     -|  0.69|    98343|  4.917e+05|         -|    98344|      -|        no|     -|   -|  1959 (~0%)|  4431 (~0%)|    -|
-    | + substring_Pipeline_loop_0_VITIS_LOOP_31_1   |     -|  1.14|    12292|  6.146e+04|         -|    12292|      -|        no|     -|   -|   232 (~0%)|   488 (~0%)|    -|
-    |  o loop_0_VITIS_LOOP_31_1                     |     -|  3.65|    12290|  6.145e+04|         4|        1|  12288|       yes|     -|   -|           -|           -|    -|
-    | + substring_Pipeline_loop_1_VITIS_LOOP_49_2   |     -|  1.14|    12292|  6.146e+04|         -|    12292|      -|        no|     -|   -|   232 (~0%)|   488 (~0%)|    -|
-    |  o loop_1_VITIS_LOOP_49_2                     |     -|  3.65|    12290|  6.145e+04|         4|        1|  12288|       yes|     -|   -|           -|           -|    -|
-    | + substring_Pipeline_loop_2_VITIS_LOOP_67_3   |     -|  1.14|    12292|  6.146e+04|         -|    12292|      -|        no|     -|   -|   232 (~0%)|   488 (~0%)|    -|
-    |  o loop_2_VITIS_LOOP_67_3                     |     -|  3.65|    12290|  6.145e+04|         4|        1|  12288|       yes|     -|   -|           -|           -|    -|
-    | + substring_Pipeline_loop_3_VITIS_LOOP_85_4   |     -|  1.14|    12292|  6.146e+04|         -|    12292|      -|        no|     -|   -|   232 (~0%)|   488 (~0%)|    -|
-    |  o loop_3_VITIS_LOOP_85_4                     |     -|  3.65|    12290|  6.145e+04|         4|        1|  12288|       yes|     -|   -|           -|           -|    -|
-    | + substring_Pipeline_loop_4_VITIS_LOOP_103_5  |     -|  1.14|    12292|  6.146e+04|         -|    12292|      -|        no|     -|   -|   232 (~0%)|   488 (~0%)|    -|
-    |  o loop_4_VITIS_LOOP_103_5                    |     -|  3.65|    12290|  6.145e+04|         4|        1|  12288|       yes|     -|   -|           -|           -|    -|
-    | + substring_Pipeline_loop_5_VITIS_LOOP_121_6  |     -|  1.14|    12292|  6.146e+04|         -|    12292|      -|        no|     -|   -|   232 (~0%)|   488 (~0%)|    -|
-    |  o loop_5_VITIS_LOOP_121_6                    |     -|  3.65|    12290|  6.145e+04|         4|        1|  12288|       yes|     -|   -|           -|           -|    -|
-    | + substring_Pipeline_loop_6_VITIS_LOOP_139_7  |     -|  1.14|    12292|  6.146e+04|         -|    12292|      -|        no|     -|   -|   232 (~0%)|   488 (~0%)|    -|
-    |  o loop_6_VITIS_LOOP_139_7                    |     -|  3.65|    12290|  6.145e+04|         4|        1|  12288|       yes|     -|   -|           -|           -|    -|
-    | + substring_Pipeline_loop_7_VITIS_LOOP_157_8  |     -|  0.73|    12283|  6.142e+04|         -|    12283|      -|        no|     -|   -|   310 (~0%)|   485 (~0%)|    -|
-    |  o loop_7_VITIS_LOOP_157_8                    |     -|  3.65|    12281|  6.140e+04|         4|        1|  12279|       yes|     -|   -|           -|           -|    -|
-    +-----------------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------+----+------------+------------+-----+
+    +---------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----+----------+----------+-----+
+    |       Modules       |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |      |    |          |          |     |
+    |       & Loops       |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM | DSP|    FF    |    LUT   | URAM|
+    +---------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----+----------+----------+-----+
+    |+ main               |  Timing|  -1.21|     4098|  2.049e+04|         -|     4099|     -|        no|     -|   -|  15 (~0%)|  58 (~0%)|    -|
+    | o VITIS_LOOP_187_1  |       -|   3.65|     4096|  2.048e+04|         1|        1|  4096|       yes|     -|   -|         -|         -|    -|
+    +---------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----+----------+----------+-----+
 
 
 ================================================================
 == HW Interfaces
 ================================================================
-* AP_MEMORY
-+----------------+-----------+----------+
-| Port           | Direction | Bitwidth |
-+----------------+-----------+----------+
-| str_0_address0 | out       | 12       |
-| str_0_q0       | in        | 32       |
-| str_1_address0 | out       | 12       |
-| str_1_q0       | in        | 32       |
-| str_2_address0 | out       | 12       |
-| str_2_q0       | in        | 32       |
-| str_3_address0 | out       | 12       |
-| str_3_q0       | in        | 32       |
-| str_4_address0 | out       | 12       |
-| str_4_q0       | in        | 32       |
-| str_5_address0 | out       | 12       |
-| str_5_q0       | in        | 32       |
-| str_6_address0 | out       | 12       |
-| str_6_q0       | in        | 32       |
-| str_7_address0 | out       | 12       |
-| str_7_q0       | in        | 32       |
-+----------------+-----------+----------+
-
 * Other Ports
 +-----------+-----------+----------+
 | Port      | Direction | Bitwidth |
@@ -88,108 +51,26 @@
 +----------+-----------+----------+
 | Argument | Direction | Datatype |
 +----------+-----------+----------+
-| str_0    | in        | int*     |
-| str_1    | in        | int*     |
-| str_2    | in        | int*     |
-| str_3    | in        | int*     |
-| str_4    | in        | int*     |
-| str_5    | in        | int*     |
-| str_6    | in        | int*     |
-| str_7    | in        | int*     |
 | return   | out       | int      |
 +----------+-----------+----------+
 
 * SW-to-HW Mapping
-+----------+----------------+---------+----------+
-| Argument | HW Interface   | HW Type | HW Usage |
-+----------+----------------+---------+----------+
-| str_0    | str_0_address0 | port    | offset   |
-| str_0    | str_0_ce0      | port    |          |
-| str_0    | str_0_q0       | port    |          |
-| str_1    | str_1_address0 | port    | offset   |
-| str_1    | str_1_ce0      | port    |          |
-| str_1    | str_1_q0       | port    |          |
-| str_2    | str_2_address0 | port    | offset   |
-| str_2    | str_2_ce0      | port    |          |
-| str_2    | str_2_q0       | port    |          |
-| str_3    | str_3_address0 | port    | offset   |
-| str_3    | str_3_ce0      | port    |          |
-| str_3    | str_3_q0       | port    |          |
-| str_4    | str_4_address0 | port    | offset   |
-| str_4    | str_4_ce0      | port    |          |
-| str_4    | str_4_q0       | port    |          |
-| str_5    | str_5_address0 | port    | offset   |
-| str_5    | str_5_ce0      | port    |          |
-| str_5    | str_5_q0       | port    |          |
-| str_6    | str_6_address0 | port    | offset   |
-| str_6    | str_6_ce0      | port    |          |
-| str_6    | str_6_q0       | port    |          |
-| str_7    | str_7_address0 | port    | offset   |
-| str_7    | str_7_ce0      | port    |          |
-| str_7    | str_7_q0       | port    |          |
-| return   | ap_return      | port    |          |
-+----------+----------------+---------+----------+
++----------+--------------+---------+
+| Argument | HW Interface | HW Type |
++----------+--------------+---------+
+| return   | ap_return    | port    |
++----------+--------------+---------+
 
 
 ================================================================
 == Bind Op Report
 ================================================================
-+-----------------------------------------------+-----+--------+-------------+-----+--------+---------+
-| Name                                          | DSP | Pragma | Variable    | Op  | Impl   | Latency |
-+-----------------------------------------------+-----+--------+-------------+-----+--------+---------+
-| + substring                                   | 0   |        |             |     |        |         |
-|   add_ln168_fu_176_p2                         |     |        | add_ln168   | add | fabric | 0       |
-|   add_ln168_1_fu_182_p2                       |     |        | add_ln168_1 | add | fabric | 0       |
-|   add_ln168_4_fu_200_p2                       |     |        | add_ln168_4 | add | fabric | 0       |
-|  + substring_Pipeline_loop_0_VITIS_LOOP_31_1  | 0   |        |             |     |        |         |
-|    add_ln28_fu_143_p2                         |     |        | add_ln28    | add | fabric | 0       |
-|    add_ln28_1_fu_169_p2                       |     |        | add_ln28_1  | add | fabric | 0       |
-|    add_ln32_fu_207_p2                         |     |        | add_ln32    | add | fabric | 0       |
-|    add_ln38_fu_183_p2                         |     |        | add_ln38    | add | fabric | 0       |
-|    add_ln42_fu_291_p2                         |     |        | add_ln42    | add | fabric | 0       |
-|  + substring_Pipeline_loop_1_VITIS_LOOP_49_2  | 0   |        |             |     |        |         |
-|    add_ln46_fu_143_p2                         |     |        | add_ln46    | add | fabric | 0       |
-|    add_ln46_1_fu_169_p2                       |     |        | add_ln46_1  | add | fabric | 0       |
-|    add_ln50_fu_207_p2                         |     |        | add_ln50    | add | fabric | 0       |
-|    add_ln56_fu_183_p2                         |     |        | add_ln56    | add | fabric | 0       |
-|    add_ln60_fu_291_p2                         |     |        | add_ln60    | add | fabric | 0       |
-|  + substring_Pipeline_loop_2_VITIS_LOOP_67_3  | 0   |        |             |     |        |         |
-|    add_ln64_fu_143_p2                         |     |        | add_ln64    | add | fabric | 0       |
-|    add_ln64_1_fu_169_p2                       |     |        | add_ln64_1  | add | fabric | 0       |
-|    add_ln68_fu_207_p2                         |     |        | add_ln68    | add | fabric | 0       |
-|    add_ln74_fu_183_p2                         |     |        | add_ln74    | add | fabric | 0       |
-|    add_ln78_fu_291_p2                         |     |        | add_ln78    | add | fabric | 0       |
-|  + substring_Pipeline_loop_3_VITIS_LOOP_85_4  | 0   |        |             |     |        |         |
-|    add_ln82_fu_143_p2                         |     |        | add_ln82    | add | fabric | 0       |
-|    add_ln82_1_fu_169_p2                       |     |        | add_ln82_1  | add | fabric | 0       |
-|    add_ln86_fu_207_p2                         |     |        | add_ln86    | add | fabric | 0       |
-|    add_ln92_fu_183_p2                         |     |        | add_ln92    | add | fabric | 0       |
-|    add_ln96_fu_291_p2                         |     |        | add_ln96    | add | fabric | 0       |
-|  + substring_Pipeline_loop_4_VITIS_LOOP_103_5 | 0   |        |             |     |        |         |
-|    add_ln100_fu_143_p2                        |     |        | add_ln100   | add | fabric | 0       |
-|    add_ln100_1_fu_169_p2                      |     |        | add_ln100_1 | add | fabric | 0       |
-|    add_ln104_fu_207_p2                        |     |        | add_ln104   | add | fabric | 0       |
-|    add_ln110_fu_183_p2                        |     |        | add_ln110   | add | fabric | 0       |
-|    add_ln114_fu_291_p2                        |     |        | add_ln114   | add | fabric | 0       |
-|  + substring_Pipeline_loop_5_VITIS_LOOP_121_6 | 0   |        |             |     |        |         |
-|    add_ln118_fu_143_p2                        |     |        | add_ln118   | add | fabric | 0       |
-|    add_ln118_1_fu_169_p2                      |     |        | add_ln118_1 | add | fabric | 0       |
-|    add_ln122_fu_207_p2                        |     |        | add_ln122   | add | fabric | 0       |
-|    add_ln128_fu_183_p2                        |     |        | add_ln128   | add | fabric | 0       |
-|    add_ln132_fu_291_p2                        |     |        | add_ln132   | add | fabric | 0       |
-|  + substring_Pipeline_loop_6_VITIS_LOOP_139_7 | 0   |        |             |     |        |         |
-|    add_ln136_fu_143_p2                        |     |        | add_ln136   | add | fabric | 0       |
-|    add_ln136_1_fu_169_p2                      |     |        | add_ln136_1 | add | fabric | 0       |
-|    add_ln140_fu_207_p2                        |     |        | add_ln140   | add | fabric | 0       |
-|    add_ln146_fu_183_p2                        |     |        | add_ln146   | add | fabric | 0       |
-|    add_ln150_fu_291_p2                        |     |        | add_ln150   | add | fabric | 0       |
-|  + substring_Pipeline_loop_7_VITIS_LOOP_157_8 | 0   |        |             |     |        |         |
-|    add_ln154_fu_124_p2                        |     |        | add_ln154   | add | fabric | 0       |
-|    add_ln154_1_fu_150_p2                      |     |        | add_ln154_1 | add | fabric | 0       |
-|    add_ln158_fu_188_p2                        |     |        | add_ln158   | add | fabric | 0       |
-|    add_ln161_fu_164_p2                        |     |        | add_ln161   | add | fabric | 0       |
-|    add_ln165_fu_249_p2                        |     |        | add_ln165   | add | fabric | 0       |
-+-----------------------------------------------+-----+--------+-------------+-----+--------+---------+
++----------------+-----+--------+----------+-----+--------+---------+
+| Name           | DSP | Pragma | Variable | Op  | Impl   | Latency |
++----------------+-----+--------+----------+-----+--------+---------+
+| + main         | 0   |        |          |     |        |         |
+|   i_2_fu_48_p2 |     |        | i_2      | add | fabric | 0       |
++----------------+-----+--------+----------+-----+--------+---------+
 
 
 ================================================================
