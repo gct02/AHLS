@@ -1,4 +1,5 @@
 import torch
+import torch.cuda.nccl
 import torch.nn as nn
 
 from sklearn import model_selection
@@ -19,10 +20,6 @@ gc.collect()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.set_default_device(device)
-torch.set_default_dtype(torch.float32)
-
-torch.cuda.set_per_process_memory_fraction(0.8, 0)
-torch.cuda.empty_cache()
 
 MAX_AVAILABLE_LUT = 53200 # Maximum number of LUTs available on the target FPGA (xc7z020clg400-1)
 
@@ -102,13 +99,14 @@ def train_model(model, loss_func, optimizer, graphs, labels, epochs, batch_size=
     train_losses = []
     test_losses = []
 
-    batches = [datasets[0:6], datasets[6:12], datasets[12:18]]
+    n_batches = len(datasets) // batch_size
+    batches = [datasets[i*batch_size:(i+1)*batch_size] for i in range(n_batches)]
 
     for batch in batches:
         train_dataset, test_dataset = model_selection.train_test_split(batch, train_size=5/6, shuffle=True)
         test_graphs, test_labels = zip(*test_dataset)
         train_graphs, train_labels = zip(*train_dataset)
-
+        
         for epoch in range(epochs):
             train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
             test_loss = test_step(model, loss_func, test_graphs, test_labels)
@@ -154,7 +152,7 @@ def main(args):
 
     loss_func = RMSELoss
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=2e-4, betas=(0.8, 0.99999))
+    optimizer = torch.optim.Adam(model.parameters(), lr=4e-2, betas=(0.6, 0.9999))
 
     train_losses, test_losses = train_model(model, loss_func, optimizer, graphs, graph_labels_lut, epochs)
 
