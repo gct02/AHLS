@@ -10,14 +10,39 @@ torch.set_default_device(device)
 class GAT(nn.Module):
     def __init__(self, in_features:int, out_size:int):
         super(GAT, self).__init__()
-        self.first_gat = GraphAttentionalLayer(in_features, 8, 4, True, 0.1)
-        self.gat1 = GraphAttentionalLayer(8, 8, 4, True, 0.1)
-        self.gat2 = GraphAttentionalLayer(8, 8, 4, True, 0.1)
-        self.gat3 = GraphAttentionalLayer(8, 8, 4, True, 0.1)
-        self.last_gat = GraphAttentionalLayer(8, 4, 2, False, 0.1)
+        self.gat0 = GraphAttentionalLayer(in_features, 32, 2, True, 0.2, 0.2)
+        self.gat1 = GraphAttentionalLayer(32, 8, 2, True, 0.2, 0.2)
+        self.gat2 = GraphAttentionalLayer(8, out_size, 1, False, 0.2, 0.2)
+        self.to(device)
+
+    def forward(self, node_features:torch.Tensor, adj_mat:torch.Tensor):
+        x = F.elu(self.gat0(node_features, adj_mat))
+        torch.cuda.empty_cache()
+        x = F.elu(self.gat1(x, adj_mat))
+        torch.cuda.empty_cache()
+        x = F.relu(self.gat2(x, adj_mat))
+        torch.cuda.empty_cache()
+        return torch.sum(x, dim=0)
+
+
+
+
+"""
+Some code that I was working on to implement a more dynamic GAT model
+It is not finished and it is not working properly yet
+I will leave it here for future reference
+
+class GAT(nn.Module):
+    def __init__(self, in_features:int, out_size:int):
+        super(GAT, self).__init__()
+        self.gat0 = GraphAttentionalLayer(in_features, 8, 2, True, 0.2, 0.1)
+        self.gat1 = GraphAttentionalLayer(8, 8, 2, True, 0.2, 0.2)
+        self.gat2 = GraphAttentionalLayer(8, 8, 2, True, 0.2, 0.2)
+        self.gat3 = GraphAttentionalLayer(8, 8, 2, True, 0.2, 0.2)
+        self.gatn = GraphAttentionalLayer(8, 4, 2, False, 0.2, 0.1)
         self.fc = nn.Linear(4, out_size)
-        self.t1 = 500
-        self.t2 = 1000
+        self.t1 = 10
+        self.t2 = 100
         self.reset_parameters()
         self.to(device)
 
@@ -30,26 +55,17 @@ class GAT(nn.Module):
 
         if n_nodes == 0:
             return torch.zeros(1)
+
+        x = F.elu(self.gat0(node_features, adj_mat))
+        torch.cuda.empty_cache()
         
         if n_nodes == 1:
-            return self.fc(self.last_gat(self.first_gat(node_features, adj_mat), adj_mat))
-
-        x = node_features
-        x = self.first_gat(x, adj_mat)
-        torch.cuda.empty_cache()
-
-        while n_nodes > 1:
-            x = self.gat1(x, adj_mat)
+            x = F.relu(self.gatn(x, adj_mat))
             torch.cuda.empty_cache()
-
-            if n_nodes >= self.t1:
-                x = self.gat2(x, adj_mat)
-                torch.cuda.empty_cache()
-
-            if n_nodes >= self.t2:
-                x = self.gat3(x, adj_mat)
-                torch.cuda.empty_cache()
-
+            x = self.fc(x)
+            return x
+        
+        while n_nodes > 1:
             degree = torch.sum(adj_mat, dim=0)
             nodes_sorted = torch.argsort(degree, descending=True).tolist()
 
@@ -66,7 +82,7 @@ class GAT(nn.Module):
                 n_nodes -= 1
 
             if n_nodes <= 1:
-                x = self.last_gat(x, adj_mat)
+                x = F.relu(self.gatn(x, adj_mat))
                 torch.cuda.empty_cache()
 
             for node in min_degree_nodes:
@@ -87,10 +103,20 @@ class GAT(nn.Module):
                 adj_mat = torch.cat((adj_mat[:, :node], adj_mat[:, node + 1:]), dim=1)
                 adj_mat = torch.cat((adj_mat[:node], adj_mat[node + 1:]), dim=0)
 
-            # del degree, nodes_sorted, min_degree, max_degree, min_degree_nodes
+            if n_nodes > 1:
+                x = F.elu(self.gat1(x, adj_mat))
+                torch.cuda.empty_cache()
+
+                if n_nodes < self.t2:
+                    x = F.elu(self.gat3(x, adj_mat))
+                    torch.cuda.empty_cache()
+
+                if n_nodes < self.t1:
+                    x = F.elu(self.gat2(x, adj_mat))
+                    torch.cuda.empty_cache()
         
         x = torch.sum(x, dim=0)
         x = self.fc(x)
 
         return x
-    
+"""

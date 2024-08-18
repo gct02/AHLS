@@ -5,7 +5,6 @@ def get_resource_savings(data_stats: dict, transformed_data_stats: dict):
     """
     Get the reources (LUTs, DSPs, FFs) saved by the transformation.
     """
-
     model = torch.load("models/resource_usage_estimator.sav")
     modified_ops, removed_ops, added_ops = get_transformed_ops_stats(data_stats, transformed_data_stats)
 

@@ -4,7 +4,4 @@ __pycache__/
 .venv/
 *ldrgen/
 *.log
-scripts/restore_benchmarks.sh
-hls/create_tcl.py
-hls/template.tcl
-hls/tcl/
+dataset/

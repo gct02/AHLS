@@ -23,6 +23,19 @@ def apply_v2m_to_all_ops(exact_ir_path, exact_data_stats_path, approx_ir_folder,
         approx_exec_paths.append(approx_exec_path)
     return approx_ir_paths, approx_exec_paths, data_stats
 
+def apply_v2c_to_all_ops(exact_ir_path, exact_data_stats_path, approx_ir_folder, approx_exec_folder, const):
+    data_stats = parse_data_stats_file(exact_data_stats_path)
+    approx_ir_paths = []
+    approx_exec_paths = []
+    for opid, op_stats in data_stats.items():
+        approx_ir_path = approx_ir_folder / Path(exact_ir_path.stem + f"_v2c_{opid}_{const}.bc")
+        apply_v2c(exact_ir_path, opid, const, approx_ir_path)
+        approx_exec_path = approx_exec_folder / Path(approx_ir_path.stem)
+        create_executable_from_llvm_ir(approx_ir_path, approx_exec_path)
+        approx_ir_paths.append(approx_ir_path)
+        approx_exec_paths.append(approx_exec_path)
+    return approx_ir_paths, approx_exec_paths, data_stats
+
 def run_approx(approx_exec_path: Path, input_args, output_path, data_stats_path, timeout):
     exec_cmd = f"{approx_exec_path.as_posix()} {input_args} {output_path.as_posix()}"
     try:
