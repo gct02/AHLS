@@ -12,7 +12,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 from estimators.gat.models import GAT
-from dfg.hls_dfg import build_dfg_lut
+from dfg.hls_dfg import build_dfg_for_area_estimation
 
 import gc
 
@@ -20,6 +20,7 @@ gc.collect()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.set_default_device(device)
+torch.cuda.empty_cache()
 
 def RMSELoss(pred, target):
     return torch.sqrt(torch.mean((pred - target) ** 2))
@@ -42,7 +43,7 @@ def train_step(model, loss_func, optimizer, graphs, labels):
         adj_mat = graph[1]
         label_pred = model(node_features, adj_mat)
 
-        print(f"Train -> Label: {label.item()}, Prediction: {label_pred.item()}")
+        print(f"Train -> Label: {label}, Prediction: {label_pred}")
 
         loss = loss_func(label_pred, label)
         train_loss += loss.item()
@@ -50,8 +51,8 @@ def train_step(model, loss_func, optimizer, graphs, labels):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        
-        del loss, label_pred
+
+        del loss
 
     train_loss = train_loss / len(graphs)
     return train_loss
@@ -68,10 +69,12 @@ def test_step(model, loss_func, graphs, labels):
 
             label_pred = model(node_features, adj_mat)
 
-            print(f"Test -> Label: {label.item()}, Prediction: {label_pred.item()}")
+            print(f"Test -> Label: {label}, Prediction: {label_pred}")
 
             loss = loss_func(label_pred, label)
             test_loss += loss.item()
+
+            del loss
 
     test_loss = test_loss / len(graphs)
     return test_loss
@@ -89,17 +92,15 @@ def save_model(model, target_dir, model_name):
     print(f"[INFO] Saving model to: {model_save_path}")
     torch.save(obj=model.state_dict(), f=model_save_path)
 
-def train_model(model, loss_func, optimizer, graphs, labels, epochs, batch_size=10, scheduler=None):
-    datasets = list(zip(graphs, labels))
-
+def train_model(model, loss_func, optimizer, dataset, epochs, batch_size=8, scheduler=None):
     train_losses = []
     test_losses = []
 
-    n_batches = len(datasets) // batch_size
-    batches = [datasets[i*batch_size:(i+1)*batch_size] for i in range(n_batches)]
+    n_batches = len(dataset) // batch_size
+    batches = [dataset[i*batch_size:(i+1)*batch_size] for i in range(n_batches)]
 
     for batch in batches:
-        train_dataset, test_dataset = model_selection.train_test_split(batch, train_size=0.6, shuffle=True)
+        train_dataset, test_dataset = model_selection.train_test_split(batch, train_size=0.75, shuffle=True)
         valid_dataset, test_dataset = model_selection.train_test_split(test_dataset, train_size=0.5, shuffle=True)
         test_graphs, test_labels = zip(*test_dataset)
         train_graphs, train_labels = zip(*train_dataset)
@@ -134,54 +135,54 @@ def main(args):
 
     torch.manual_seed(seed)
 
-    graphs_dir = os.fsencode(args['graphs'])
-    target_lut_file = args['lut']
+    dataset_path = os.fsencode(args['dataset'])
+    instances = sorted(os.listdir(dataset_path))
 
-    graphs = []
-    graph_files = sorted(os.listdir(graphs_dir))
     features = []
     adj_mats = []
+    labels = []
 
-    for graph_file in graph_files:
-        graph_file_path = os.fsdecode(os.path.join(graphs_dir, graph_file))
-        node_features, adj_mat = build_dfg_lut(graph_file_path)
+    for instance_path in instances:
+        instance_folder = os.fsdecode(os.path.join(dataset_path, instance_path))
+        dfg_path = os.path.join(instance_folder, "dfg.txt")
+        node_features, adj_mat = build_dfg_for_area_estimation(dfg_path)
         node_features = node_features.to(device)
         adj_mat = adj_mat.to(device)
         features.append(node_features)
         adj_mats.append(adj_mat)
 
+        resource_labels_path = os.path.join(instance_folder, "resource_labels.txt")
+        with open(resource_labels_path, 'r') as f:
+            resources = torch.FloatTensor(list(map(float, f.readlines()[0].strip().split(','))))
+            resources = resources.to(device)
+            labels.append(resources)
+
     graphs = list(zip(features, adj_mats))
+    dataset = list(zip(graphs, labels))
 
-    with open(target_lut_file, 'r') as f:
-        graph_labels_lut = [[float(label)] for label in f.readlines()]
-
-    graph_labels_lut = torch.FloatTensor(graph_labels_lut)
-    graph_labels_lut = graph_labels_lut.to(device)
-
-    model = GAT(11, 1)
+    model = GAT(12, 3)
 
     loss_func = RMSELoss
 
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-1, betas=(0.64, 0.9999))
     scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=10, T_mult=2, eta_min=1e-6)
 
-    train_losses, test_losses = train_model(model, loss_func, optimizer, graphs, graph_labels_lut, epochs, 10, scheduler)
+    train_losses, test_losses = train_model(model, loss_func, optimizer, dataset, epochs, 8, scheduler)
 
     plt.plot(train_losses, label="Train Loss", color="red")
     plt.plot(test_losses, label="Test Loss", color="blue")
     plt.legend()
     plt.show()
-    # plt.savefig("estimators/gat/gat_lut_learning.png")
+    # plt.savefig("estimators/gat/gat_area_training.png")
 
-    save_model(model, "estimators/gat/models", "gat_lut.pth")
+    save_model(model, "estimators/gat/models", "gat_area.pth")
     
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Provide arguments for the graph embedding model with LUT predictions')
+    parser = argparse.ArgumentParser(description='Provide arguments for the GAT model for resource usage prediction')
 
     parser.add_argument('--epoch', help='The number of training epochs', default=500)
     parser.add_argument('--seed', help='Random seed for repeatability', default=42)
-    parser.add_argument('--graphs', help='Path to the directory containing the DFGs', required=True)
-    parser.add_argument('--lut', help='Path to the file containing the target LUTs', required=True)
+    parser.add_argument('--dataset', help='Path to the dataset', required=True)
 
     args = vars(parser.parse_args())
 

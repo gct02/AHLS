@@ -6,7 +6,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.set_default_device(device)
 
 class GraphAttentionalLayer(nn.Module):
-    def __init__(self, in_features:int, out_features:int, n_heads:int, concat:bool=False, leaky_relu_slope:float=0.01, dropout:float=0.2):
+    def __init__(self, in_features:int, out_features:int, n_heads:int, concat:bool=False, leaky_relu_slope:float=0.1, dropout:float=0.2):
         super(GraphAttentionalLayer, self).__init__()
         self.n_heads = n_heads
         self.concat = concat
@@ -36,8 +36,7 @@ class GraphAttentionalLayer(nn.Module):
     def _get_attn_scores(self, h_transformed:torch.Tensor):
         source_scores = torch.matmul(h_transformed, self.a[:, :self.n_hidden, :])
         target_scores = torch.matmul(h_transformed, self.a[:, self.n_hidden:, :])
-        e = source_scores + target_scores.mT
-        return self.leaky_relu(e)
+        return self.leaky_relu(source_scores + target_scores.mT)
 
     def forward(self, h:torch.Tensor, adj_mat:torch.Tensor):
         n_nodes = h.shape[0]
@@ -50,6 +49,8 @@ class GraphAttentionalLayer(nn.Module):
         e = self._get_attn_scores(h_transformed)
         connectivity_mask = -9e15 * torch.ones_like(e)
         e = torch.where(adj_mat > 0, e, connectivity_mask)
+        del connectivity_mask
+        torch.cuda.empty_cache()
 
         attn = F.softmax(e, dim=-1)
         attn = F.dropout(attn, self.dropout, training=self.training)

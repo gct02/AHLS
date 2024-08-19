@@ -7,12 +7,14 @@ from estimators.gat.layers import GraphAttentionalLayer
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.set_default_device(device)
 
+# Gat model for area estimation (might be generalized to other estimations in the future)
+# TODO: Apply an autoencoder to the node features before passing them to the GAT (in order to reduce the dimensionality)
 class GAT(nn.Module):
     def __init__(self, in_features:int, out_size:int):
         super(GAT, self).__init__()
-        self.gat0 = GraphAttentionalLayer(in_features, 32, 2, True, 0.2, 0.2)
-        self.gat1 = GraphAttentionalLayer(32, 8, 2, True, 0.2, 0.2)
-        self.gat2 = GraphAttentionalLayer(8, out_size, 1, False, 0.2, 0.2)
+        self.gat0 = GraphAttentionalLayer(in_features, 12, 2, True, 0.2, 0.2)
+        self.gat1 = GraphAttentionalLayer(12, 6, 2, True, 0.2, 0.2)
+        self.gat2 = GraphAttentionalLayer(6, out_size, 1, False, 0.2, 0.2)
         self.to(device)
 
     def forward(self, node_features:torch.Tensor, adj_mat:torch.Tensor):
