@@ -88,8 +88,8 @@ def get_directives_features(directives_md):
 
 def build_dfg_for_area_estimation(dfg_file:Path):
     nodes, edges = parse_dfg_file(dfg_file)
-    opcodes_to_keep = list(range(11, 29))\
-                      + [1, 37, 38, 43, 44, 51, 52, 53, 54, 55]
+    opcodes_to_keep = list(range(1, 29))\
+                      + [30, 31, 32, 36, 37, 38, 43, 44, 47, 51, 52, 53, 54, 55]
     nodes, edges = filter_nodes(nodes, edges, opcodes_to_keep)
     nodes, edges = rescale_node_ids(nodes, edges)
     adj_mat = get_adj_mat(nodes, edges)
@@ -99,19 +99,21 @@ def build_dfg_for_area_estimation(dfg_file:Path):
     for node in nodes:
         opcode = node[1]
         if opcode >= 53 or opcode <= 11:
-            one_hot_opcode = [0, 0, 0, 0, 0, 0, 1]
+            one_hot_opcode = [0, 0, 0, 0, 0, 0, 0, 1]
         elif opcode <= 14 or opcode in [51, 52]:
-            one_hot_opcode = [0, 0, 0, 0, 0, 1, 0]
+            one_hot_opcode = [0, 0, 0, 0, 0, 0, 1, 0]
         elif opcode <= 16:
-            one_hot_opcode = [0, 0, 0, 0, 1, 0, 0]
+            one_hot_opcode = [0, 0, 0, 0, 0, 1, 0, 0]
         elif opcode <= 22:
-            one_hot_opcode = [0, 0, 0, 1, 0, 0, 0]
+            one_hot_opcode = [0, 0, 0, 0, 1, 0, 0, 0]
         elif opcode <= 25:
-            one_hot_opcode = [0, 0, 1, 0, 0, 0, 0]
+            one_hot_opcode = [0, 0, 0, 1, 0, 0, 0, 0]
         elif opcode <= 28:
-            one_hot_opcode = [0, 1, 0, 0, 0, 0, 0]
+            one_hot_opcode = [0, 0, 1, 0, 0, 0, 0, 0]
+        elif opcode <= 32:
+            one_hot_opcode = [0, 1, 0, 0, 0, 0, 0, 0]
         else:
-            one_hot_opcode = [1, 0, 0, 0, 0, 0, 0]
+            one_hot_opcode = [1, 0, 0, 0, 0, 0, 0, 0]
         node_features = one_hot_opcode + node[2:5] + node[9:11]
         features.append(torch.FloatTensor(node_features))
 

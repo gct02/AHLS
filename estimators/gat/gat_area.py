@@ -19,7 +19,6 @@ import gc
 gc.collect()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-torch.set_default_device(device)
 torch.cuda.empty_cache()
 
 def RMSELoss(pred, target):
@@ -41,7 +40,13 @@ def train_step(model, loss_func, optimizer, graphs, labels):
     for graph, label in zip(graphs, labels):
         node_features = graph[0]
         adj_mat = graph[1]
+        
+        node_features = node_features.to(device)
+        adj_mat = adj_mat.to(device)
+
         label_pred = model(node_features, adj_mat)
+
+        label = label.to(device)
 
         print(f"Train -> Label: {label}, Prediction: {label_pred}")
 
@@ -52,7 +57,12 @@ def train_step(model, loss_func, optimizer, graphs, labels):
         loss.backward()
         optimizer.step()
 
-        del loss
+        del loss, label_pred
+
+        # Move the instances to the CPU
+        node_features = node_features.to("cpu")
+        adj_mat = adj_mat.to("cpu")
+        label = label.to("cpu")
 
     train_loss = train_loss / len(graphs)
     return train_loss
@@ -67,14 +77,23 @@ def test_step(model, loss_func, graphs, labels):
             node_features = graph[0]
             adj_mat = graph[1]
 
+            node_features = node_features.to(device)
+            adj_mat = adj_mat.to(device)
+
             label_pred = model(node_features, adj_mat)
+
+            label = label.to(device)
 
             print(f"Test -> Label: {label}, Prediction: {label_pred}")
 
             loss = loss_func(label_pred, label)
             test_loss += loss.item()
+            del loss, label_pred
 
-            del loss
+            # Move the instances to the CPU
+            node_features = node_features.to("cpu")
+            adj_mat = adj_mat.to("cpu")
+            label = label.to("cpu")
 
     test_loss = test_loss / len(graphs)
     return test_loss
@@ -92,7 +111,7 @@ def save_model(model, target_dir, model_name):
     print(f"[INFO] Saving model to: {model_save_path}")
     torch.save(obj=model.state_dict(), f=model_save_path)
 
-def train_model(model, loss_func, optimizer, dataset, epochs, batch_size=8, scheduler=None):
+def train_model(model, loss_func, optimizer, dataset, epochs, batch_size=10, scheduler=None):
     train_losses = []
     test_losses = []
 
@@ -107,19 +126,17 @@ def train_model(model, loss_func, optimizer, dataset, epochs, batch_size=8, sche
         
         for epoch in range(epochs):
             torch.cuda.empty_cache()
-            
-            train_graphs, train_labels = zip(*train_dataset)
 
             train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
             test_loss = test_step(model, loss_func, test_graphs, test_labels)
 
             print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}, Test loss: {test_loss}")
 
-            train_losses.append(train_loss)
-            test_losses.append(test_loss)
-
             if scheduler is not None:
                 scheduler.step()
+
+            train_losses.append(train_loss)
+            test_losses.append(test_loss)
 
             train_dataset = list(zip(train_graphs, train_labels))
             shuffle(train_dataset)
@@ -138,36 +155,31 @@ def main(args):
     dataset_path = os.fsencode(args['dataset'])
     instances = sorted(os.listdir(dataset_path))
 
-    features = []
-    adj_mats = []
     labels = []
+    graphs = []
 
     for instance_path in instances:
         instance_folder = os.fsdecode(os.path.join(dataset_path, instance_path))
         dfg_path = os.path.join(instance_folder, "dfg.txt")
         node_features, adj_mat = build_dfg_for_area_estimation(dfg_path)
-        node_features = node_features.to(device)
-        adj_mat = adj_mat.to(device)
-        features.append(node_features)
-        adj_mats.append(adj_mat)
+        graphs.append([node_features, adj_mat])
 
         resource_labels_path = os.path.join(instance_folder, "resource_labels.txt")
         with open(resource_labels_path, 'r') as f:
             resources = torch.FloatTensor(list(map(float, f.readlines()[0].strip().split(','))))
-            resources = resources.to(device)
             labels.append(resources)
-
-    graphs = list(zip(features, adj_mats))
+            
     dataset = list(zip(graphs, labels))
 
-    model = GAT(12, 3)
+    model = GAT(13, 3)
+    model = model.to(device)
 
     loss_func = RMSELoss
 
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-1, betas=(0.64, 0.9999))
     scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=10, T_mult=2, eta_min=1e-6)
 
-    train_losses, test_losses = train_model(model, loss_func, optimizer, dataset, epochs, 8, scheduler)
+    train_losses, test_losses = train_model(model, loss_func, optimizer, dataset, epochs, 10, scheduler)
 
     plt.plot(train_losses, label="Train Loss", color="red")
     plt.plot(test_losses, label="Test Loss", color="blue")
