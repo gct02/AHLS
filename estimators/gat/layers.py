@@ -53,7 +53,6 @@ class GraphAttentionalLayer(nn.Module):
         h_prime = torch.matmul(attn, h_transformed)
 
         if self.concat:
-            h_prime = F.elu(h_prime)
             h_prime = h_prime.permute(1, 0, 2).contiguous().view(n_nodes, self.out_features)
         else:
             h_prime = h_prime.mean(dim=0)

@@ -4,13 +4,14 @@ import torch.nn.functional as F
 
 from estimators.gat.layers import GraphAttentionalLayer
 
-# Gat model for area estimation (might be generalized to other estimations in the future)
+# GAT model for area estimation (might be generalized to other estimations in the future)
 # TODO: Apply an autoencoder to the node features before passing them to the GAT (in order to reduce the dimensionality)
 class GAT(nn.Module):
     def __init__(self, in_features:int, out_size:int):
         super(GAT, self).__init__()
         self.gat1 = GraphAttentionalLayer(in_features, 12, 3, True, 0.2, 0.2)
-        self.gat2 = GraphAttentionalLayer(12, 6, 3, True, 0.2, 0.2)
+        self.gat2 = GraphAttentionalLayer(12, 6, 2, True, 0.2, 0.2)
+        self.gat3 = GraphAttentionalLayer(6, 6, 2, True, 0.2, 0.2)
         self.gat3 = GraphAttentionalLayer(6, out_size, 3, False, 0.2, 0.2)
 
     """
@@ -53,14 +54,21 @@ class GAT(nn.Module):
 
     def forward(self, node_features:torch.Tensor, adj_mat:torch.Tensor):
         x = self.gat1(node_features, adj_mat)
+        x = F.elu(x)
         #x, adj_mat = self._prune_graph(x, adj_mat)
         torch.cuda.empty_cache()
 
         x = self.gat2(x, adj_mat)
+        x = F.elu(x)
         #x, adj_mat = self._prune_graph(x, adj_mat)
         torch.cuda.empty_cache()
 
         x = self.gat3(x, adj_mat)
+        x = F.elu(x)
+        #x, adj_mat = self._prune_graph(x, adj_mat)
+        torch.cuda.empty_cache()
+
+        x = self.gat4(x, adj_mat)
         x = F.relu(x)
         #x, adj_mat = self._prune_graph(x, adj_mat)
         torch.cuda.empty_cache()
