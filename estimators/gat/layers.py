@@ -32,30 +32,16 @@ class GraphAttentionalLayer(nn.Module):
         return self.leaky_relu(source_scores + target_scores.mT)
 
     def forward(self, h:torch.Tensor, adj_mat:torch.Tensor):
-        n_nodes = h.shape[0]
-
-        h_transformed = torch.mm(h, self.W)
-        h_transformed = h_transformed.view(n_nodes, self.n_heads, self.n_hidden).permute(1, 0, 2)
-        h_transformed = self.dropout(h_transformed)
+        h_transformed = self.dropout(torch.mm(h, self.W).view(h.shape[0], self.n_heads, self.n_hidden).permute(1, 0, 2))
 
         torch.cuda.empty_cache()
-
-        e = self._get_attn_scores(h_transformed)
-        connectivity_mask = -9e15 * torch.ones_like(e)
-        e = torch.where(adj_mat > 0, e, connectivity_mask)
-
-        del connectivity_mask
+        e = torch.where(adj_mat > 0, self._get_attn_scores(h_transformed), -9e15)
         torch.cuda.empty_cache()
 
-        attn = F.softmax(e, dim=-1)
-        attn = self.dropout(attn)
-
-        h_prime = torch.matmul(attn, h_transformed)
+        attn = self.dropout(F.softmax(e, dim=-1))
 
         if self.concat:
-            h_prime = h_prime.permute(1, 0, 2).contiguous().view(n_nodes, self.out_features)
-        else:
-            h_prime = h_prime.mean(dim=0)
+            return torch.matmul(attn, h_transformed).permute(1, 0, 2).contiguous().view(h.shape[0], self.out_features)
+        return torch.matmul(attn, h_transformed).mean(dim=0)
 
-        return h_prime
 

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<BindInfo>
-	<BindNode BINDTYPE="op" DISPLAY="bind_op icmp" ID="" IMPL="auto" LATENCY="0" OPTYPE="icmp" PRAGMA="" RTLNAME="icmp_ln187_fu_42_p2" SOURCE="benchmarks/jianyicheng/substring/src/substring.cpp:187" VARIABLE="icmp_ln187" MODULE="main" LOOP="VITIS_LOOP_187_1" BUNDLEDNAME="" DSP="0" BRAM="0" URAM="0" USAGE="" STORAGESUBTYPE="" STORAGESIZE=""/>
-	<BindNode BINDTYPE="op" DISPLAY="bind_op add" ID="" IMPL="fabric" LATENCY="0" OPTYPE="add" PRAGMA="" RTLNAME="i_2_fu_48_p2" SOURCE="benchmarks/jianyicheng/substring/src/substring.cpp:187" VARIABLE="i_2" MODULE="main" LOOP="VITIS_LOOP_187_1" BUNDLEDNAME="" DSP="0" BRAM="0" URAM="0" USAGE="" STORAGESUBTYPE="" STORAGESIZE=""/>
-</BindInfo>

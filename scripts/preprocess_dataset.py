@@ -1,10 +1,11 @@
 from pathlib import Path
 from sys import argv
 
-import json
+import json, pickle, subprocess
 
 from utils.parsers import parse_impl_rpt
 from llvm.opt_utils import *
+from estimators.utils.dfg import build_dfg_for_area_estimation
 
 def create_directives_tcl(solution_data_json:Path, output_path:Path):
     with open(solution_data_json, "r") as f:
@@ -21,6 +22,8 @@ if __name__ == "__main__":
     projects = sorted(list(dataset_path.iterdir()))
 
     for i, project in enumerate(projects):
+        project_folder = processed_dataset_folder_path / project.stem
+        project_folder.mkdir(parents=True, exist_ok=True)
         solutions = sorted(list(project.iterdir()))
         for j, solution in enumerate(solutions):
             if not solution.is_dir():
@@ -50,8 +53,7 @@ if __name__ == "__main__":
             ir_mod.unlink()
             ir_mod_temp.rename(ir_mod)
 
-            instance_name = f"{project.stem}_{solution.stem}"
-            instance_folder = processed_dataset_folder_path / instance_name
+            instance_folder = project_folder / solution.stem
             instance_folder.mkdir(parents=True, exist_ok=True)
 
             instance_dfg = instance_folder / "dfg.txt"
@@ -75,3 +77,10 @@ if __name__ == "__main__":
             
             with open(instance_timing_labels, "w") as f:
                 f.write(f"{cp}\n")
+
+            node_features, adj_mat = build_dfg_for_area_estimation(instance_dfg)
+            dfg = (node_features, adj_mat)
+            instance_dfg.unlink()
+            instance_dfg_pickle = instance_folder / "dfg.pkl"
+            with open(instance_dfg_pickle, "wb") as f:
+                pickle.dump(dfg, f)

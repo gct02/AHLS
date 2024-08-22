@@ -9,12 +9,34 @@ from estimators.gat.layers import GraphAttentionalLayer
 class GAT(nn.Module):
     def __init__(self, in_features:int, out_size:int):
         super(GAT, self).__init__()
-        self.gat1 = GraphAttentionalLayer(in_features, 12, 3, True, 0.2, 0.2)
-        self.gat2 = GraphAttentionalLayer(12, 6, 2, True, 0.2, 0.2)
+        self.gat1 = GraphAttentionalLayer(in_features, 9, 3, True, 0.2, 0.4)
+        self.gat2 = GraphAttentionalLayer(9, 6, 2, True, 0.2, 0.2)
         self.gat3 = GraphAttentionalLayer(6, 6, 2, True, 0.2, 0.2)
-        self.gat3 = GraphAttentionalLayer(6, out_size, 3, False, 0.2, 0.2)
+        self.gat4 = GraphAttentionalLayer(6, out_size, 3, False, 0.2, 0.2)
 
-    """
+    def forward(self, node_features:torch.Tensor, adj_mat:torch.Tensor):
+        x = self.gat1(node_features, adj_mat)
+        x = F.elu(x)
+        x, adj_mat = self._prune_graph(x, adj_mat)
+        torch.cuda.empty_cache()
+
+        x = self.gat2(x, adj_mat)
+        x = F.elu(x)
+        x, adj_mat = self._prune_graph(x, adj_mat)
+        torch.cuda.empty_cache()
+
+        x = self.gat3(x, adj_mat)
+        x = F.elu(x)
+        x, adj_mat = self._prune_graph(x, adj_mat)
+        torch.cuda.empty_cache()
+
+        x = self.gat4(x, adj_mat)
+        x = F.elu(x, 0.001)
+        x, adj_mat = self._prune_graph(x, adj_mat)
+        torch.cuda.empty_cache()
+
+        return torch.sum(x, dim=0)
+    
     def _prune_graph(self, node_features:torch.Tensor, adj_mat:torch.Tensor):
         degrees = torch.sum(adj_mat, dim=1)
         min_deg = torch.min(degrees)
@@ -50,27 +72,3 @@ class GAT(nn.Module):
             adj_mat = torch.cat((adj_mat[:i], adj_mat[i + 1:]), dim=0)
 
         return node_features, adj_mat
-    """
-
-    def forward(self, node_features:torch.Tensor, adj_mat:torch.Tensor):
-        x = self.gat1(node_features, adj_mat)
-        x = F.elu(x)
-        #x, adj_mat = self._prune_graph(x, adj_mat)
-        torch.cuda.empty_cache()
-
-        x = self.gat2(x, adj_mat)
-        x = F.elu(x)
-        #x, adj_mat = self._prune_graph(x, adj_mat)
-        torch.cuda.empty_cache()
-
-        x = self.gat3(x, adj_mat)
-        x = F.elu(x)
-        #x, adj_mat = self._prune_graph(x, adj_mat)
-        torch.cuda.empty_cache()
-
-        x = self.gat4(x, adj_mat)
-        x = F.relu(x)
-        #x, adj_mat = self._prune_graph(x, adj_mat)
-        torch.cuda.empty_cache()
-
-        return torch.sum(x, dim=0)

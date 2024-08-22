@@ -5,14 +5,13 @@ import torch.nn as nn
 from sklearn import model_selection
 from pathlib import Path
 from random import shuffle
-import argparse, os
+import argparse, os, pickle
 
 import tkinter as tk
 import matplotlib
 import matplotlib.pyplot as plt
 
 from estimators.gat.models import GAT
-from dfg.hls_dfg import build_dfg_for_area_estimation
 
 import gc
 
@@ -21,26 +20,20 @@ gc.collect()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.cuda.empty_cache()
 
+torch.set_printoptions(precision=6, threshold=1000, edgeitems=10, linewidth=200, profile="short", sci_mode=False)
+
 def RMSELoss(pred, target):
     return torch.sqrt(torch.mean((pred - target) ** 2))
 
-def MSLELoss(pred, target):
-    return torch.mean((torch.log(pred + 1) - torch.log(target + 1)) ** 2)
-
-def RMSLELoss(pred, target):
-    return torch.sqrt(torch.mean((torch.log(pred + 1) - torch.log(target + 1)) ** 2))
-
-def log_cosh_loss(pred, target):
-    return torch.mean(torch.log(torch.cosh(pred - target)))
-
 def train_step(model, loss_func, optimizer, graphs, labels):
+    print("Training...")
     train_loss = 0
     model.train()
 
     for graph, label in zip(graphs, labels):
         node_features = graph[0]
         adj_mat = graph[1]
-        
+
         node_features = node_features.to(device)
         adj_mat = adj_mat.to(device)
 
@@ -48,7 +41,7 @@ def train_step(model, loss_func, optimizer, graphs, labels):
 
         label = label.to(device)
 
-        print(f"Train -> Label: {label}, Prediction: {label_pred}")
+        print(f"Label: {label}, Prediction: {label_pred}")
 
         loss = loss_func(label_pred, label)
         train_loss += loss.item()
@@ -68,8 +61,9 @@ def train_step(model, loss_func, optimizer, graphs, labels):
     return train_loss
 
 def test_step(model, loss_func, graphs, labels):
-    test_loss = 0
+    print("Testing...")
 
+    test_loss = 0
     model.eval()
 
     with torch.inference_mode():
@@ -84,7 +78,7 @@ def test_step(model, loss_func, graphs, labels):
 
             label = label.to(device)
 
-            print(f"Test -> Label: {label}, Prediction: {label_pred}")
+            print(f"Label: {label}, Prediction: {label_pred}")
 
             loss = loss_func(label_pred, label)
             test_loss += loss.item()
@@ -111,18 +105,34 @@ def save_model(model, target_dir, model_name):
     print(f"[INFO] Saving model to: {model_save_path}")
     torch.save(obj=model.state_dict(), f=model_save_path)
 
-def train_model(model, loss_func, optimizer, dataset, epochs, batch_size=10, scheduler=None):
+def split_instances(instances_per_benchmark):
+    # This function is provisory and will be removed once the dataset is properly structured
+    test_instances = []
+    train_instances = []
+    for benchmark in instances_per_benchmark:
+        test_instances += benchmark[4:6]
+        train_instances += benchmark[:4] + benchmark[6:]
+    return train_instances, test_instances
+
+def train_model(model, loss_func, optimizer, dataset, epochs, scheduler=None):
+    BATCH_SIZE = 16 # This is provisory and will be removed once the dataset is properly structured
+
+    train_dataset, test_dataset = split_instances(dataset)
+    test_graphs = [instance[0] for instance in test_dataset]
+    test_labels = [instance[1] for instance in test_dataset]
+    batches = [train_dataset[i:i+BATCH_SIZE] for i in range(0, len(train_dataset), BATCH_SIZE)]
+
+    n_train = len(train_dataset)
+    n_valid = int(n_train * 0.25)
+    n_instances_out = n_train - n_valid
+
     train_losses = []
     test_losses = []
 
-    n_batches = len(dataset) // batch_size
-    batches = [dataset[i*batch_size:(i+1)*batch_size] for i in range(n_batches)]
-
     for batch in batches:
-        train_dataset, test_dataset = model_selection.train_test_split(batch, train_size=0.75, shuffle=True)
-        valid_dataset, test_dataset = model_selection.train_test_split(test_dataset, train_size=0.5, shuffle=True)
-        test_graphs, test_labels = zip(*test_dataset)
-        train_graphs, train_labels = zip(*train_dataset)
+        train_dataset, valid_dataset = model_selection.train_test_split(batch, test_size=0.25, shuffle=True)
+        train_graphs = [instance[0] for instance in train_dataset]
+        train_labels = [instance[1] for instance in train_dataset]
         
         for epoch in range(epochs):
             torch.cuda.empty_cache()
@@ -138,10 +148,9 @@ def train_model(model, loss_func, optimizer, dataset, epochs, batch_size=10, sch
             train_losses.append(train_loss)
             test_losses.append(test_loss)
 
-            train_dataset = list(zip(train_graphs, train_labels))
             shuffle(train_dataset)
-            next_valid_dataset = train_dataset[len(train_dataset) - len(valid_dataset):]
-            train_dataset = train_dataset[:len(train_dataset) - len(valid_dataset)] + valid_dataset
+            next_valid_dataset = train_dataset[:n_instances_out]
+            train_dataset = train_dataset[n_instances_out:] + valid_dataset
             valid_dataset = next_valid_dataset
     
     return train_losses, test_losses
@@ -153,33 +162,34 @@ def main(args):
     torch.manual_seed(seed)
 
     dataset_path = os.fsencode(args['dataset'])
-    instances = sorted(os.listdir(dataset_path))
 
-    labels = []
-    graphs = []
+    benchmarks = sorted(os.listdir(dataset_path))
+    instances_per_benchmark = []
 
-    for instance_path in instances:
-        instance_folder = os.fsdecode(os.path.join(dataset_path, instance_path))
-        dfg_path = os.path.join(instance_folder, "dfg.txt")
-        node_features, adj_mat = build_dfg_for_area_estimation(dfg_path)
-        graphs.append([node_features, adj_mat])
-
-        resource_labels_path = os.path.join(instance_folder, "resource_labels.txt")
-        with open(resource_labels_path, 'r') as f:
-            resources = torch.FloatTensor(list(map(float, f.readlines()[0].strip().split(','))))
-            labels.append(resources)
+    for benchmark in benchmarks:
+        benchmark_folder = os.fsdecode(os.path.join(dataset_path, benchmark))
+        instances = sorted(os.listdir(benchmark_folder))
+        instances_per_benchmark.append([])
+        for instance in instances:
+            instance_folder = os.fsdecode(os.path.join(benchmark_folder, instance))
             
-    dataset = list(zip(graphs, labels))
+            dfg_path = os.path.join(instance_folder, "dfg.pkl")
+            dfg = pickle.load(open(dfg_path, 'rb'))
 
-    model = GAT(13, 3)
+            with open(os.path.join(instance_folder, "resource_labels.txt"), 'r') as f:
+                resources = torch.FloatTensor(list(map(float, f.readlines()[0].strip().split(','))))
+
+            instances_per_benchmark[-1].append((dfg, resources))
+
+    model = GAT(11, 3)
     model = model.to(device)
 
     loss_func = RMSELoss
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-1, betas=(0.64, 0.9999))
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=10, T_mult=2, eta_min=1e-6)
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-1, betas=(0.8, 0.9999))
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=16, T_mult=1, eta_min=1e-6)
 
-    train_losses, test_losses = train_model(model, loss_func, optimizer, dataset, epochs, 10, scheduler)
+    train_losses, test_losses = train_model(model, loss_func, optimizer, instances_per_benchmark, epochs, scheduler)
 
     plt.plot(train_losses, label="Train Loss", color="red")
     plt.plot(test_losses, label="Test Loss", color="blue")

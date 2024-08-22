@@ -1,9 +1,0 @@
-<xilinx:hls_fe_msgs>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/tcl/run_syr2k.tcl:7:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="main" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=main" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="benchmarks/jianyicheng/syr2k/src/syr2k.cpp:26:0" msg_body="Inlining function 'syr2k(float*, float*, float*)' into 'main'">
-        <args Callee="syr2k(float*, float*, float*)" Callee-DebugLoc="File benchmarks/jianyicheng/syr2k/src/syr2k.cpp Line 8 Column 0" Caller="main" Caller-DebugLoc="File benchmarks/jianyicheng/syr2k/src/syr2k.cpp Line 26 Column 0"/>
-    </msg>
-</xilinx:hls_fe_msgs>
-
