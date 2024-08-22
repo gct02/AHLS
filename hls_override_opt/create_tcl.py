@@ -17,7 +17,7 @@ def generate_tcl_with_input_ir(src_files: list, top_function: str, proj_dir: Pat
         'AHLS_LLVM_LIB': '$AHLS_LLVM_LIB'
     }
 
-    with open('./run_hls_template.tcl') as f:
+    with open('./template.tcl') as f:
         tcl_template = Template(f.read())
     
     tcl_script = tcl_template.substitute(substitutions)
