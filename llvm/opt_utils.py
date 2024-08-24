@@ -163,7 +163,7 @@ def get_dfg(ir_path: Path, dfg_path: Path, has_updated_md: bool=True):
     if has_updated_md is False:
         ir_path = update_md(ir_path)
 
-    get_dfg_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -get-dfg -dfg-file {dfg_path.as_posix()} < {ir_path.as_posix()};"
+    get_dfg_cmd = f"{OPT} -load {AHLS_LLVM_LIB} -dfg -df {dfg_path.as_posix()} < {ir_path.as_posix()};"
 
     try:
         subprocess.check_output(get_dfg_cmd, stderr=subprocess.STDOUT, shell=True)

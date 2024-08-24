@@ -35,23 +35,28 @@ if __name__ == "__main__":
                 print(f"File not found: {ir}")
                 continue
 
-            ir_mod_temp = solution / ".autopilot/db/a.o.4.temp.bc"
+            ir_mod_temp_1 = solution / ".autopilot/db/a.o.4.t1.bc"
+            ir_mod_temp_2 = solution / ".autopilot/db/a.o.4.t2.bc"
+            ir_mod_temp_3 = solution / ".autopilot/db/a.o.4.t3.bc"
             ir_mod = solution / ".autopilot/db/a.o.4.bc"
 
-            subprocess.check_output(f"{OPT} -strip-debug -mem2reg -instcombine -loop-simplify -indvars < {ir.as_posix()} > {ir_mod_temp.as_posix()};",\
+            subprocess.check_output(f"{OPT} -strip-debug -mem2reg -instcombine -loop-simplify -indvars -mergereturn -argpromotion < {ir.as_posix()} > {ir_mod_temp_1.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
-            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md < {ir_mod_temp.as_posix()} > {ir_mod.as_posix()};",\
+            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md < {ir_mod_temp_1.as_posix()} > {ir_mod_temp_2.as_posix()};",\
+                                    stderr=subprocess.STDOUT, shell=True)
+            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -preprocess-vitis-ir < {ir_mod_temp_2.as_posix()} > {ir_mod_temp_3.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
             
             solution_data_json = solution / f"{solution.stem}_data.json"
             directives_tcl_path = solution / f"directives.tcl"
             create_directives_tcl(solution_data_json, directives_tcl_path)
 
-            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -add-directives-md -tcl {directives_tcl_path.as_posix()} < {ir_mod.as_posix()} > {ir_mod_temp.as_posix()};",\
+            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -add-directives-md -tcl {directives_tcl_path.as_posix()} < {ir_mod_temp_3.as_posix()} > {ir_mod.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
             
-            ir_mod.unlink()
-            ir_mod_temp.rename(ir_mod)
+            ir_mod_temp_1.unlink()
+            ir_mod_temp_2.unlink()
+            ir_mod_temp_3.unlink()
 
             instance_folder = project_folder / solution.stem
             instance_folder.mkdir(parents=True, exist_ok=True)
@@ -60,7 +65,7 @@ if __name__ == "__main__":
             instance_resource_labels = instance_folder / "resource_labels.txt"
             instance_timing_labels = instance_folder / "timing_labels.txt"
 
-            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -get-dfg -dfg-file {instance_dfg.as_posix()} < {ir_mod.as_posix()};",\
+            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -dfg -df {instance_dfg.as_posix()} < {ir_mod.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
             
             xml_rpt_file = solution / "impl/report/verilog/export_impl.xml"

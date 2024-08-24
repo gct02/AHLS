@@ -27,9 +27,9 @@ class GraphAttentionalLayer(nn.Module):
         nn.init.xavier_normal_(self.a, gain=1.414)
 
     def _get_attn_scores(self, h_transformed:torch.Tensor):
-        source_scores = torch.matmul(h_transformed, self.a[:, :self.n_hidden, :])
-        target_scores = torch.matmul(h_transformed, self.a[:, self.n_hidden:, :])
-        return self.leaky_relu(source_scores + target_scores.mT)
+        source_scores = torch.matmul(self.leaky_relu(h_transformed), self.a[:, :self.n_hidden, :])
+        target_scores = torch.matmul(self.leaky_relu(h_transformed), self.a[:, self.n_hidden:, :])
+        return source_scores + target_scores.mT
 
     def forward(self, h:torch.Tensor, adj_mat:torch.Tensor):
         h_transformed = self.dropout(torch.mm(h, self.W).view(h.shape[0], self.n_heads, self.n_hidden).permute(1, 0, 2))

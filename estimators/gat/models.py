@@ -9,30 +9,24 @@ from estimators.gat.layers import GraphAttentionalLayer
 class GAT(nn.Module):
     def __init__(self, in_features:int, out_size:int):
         super(GAT, self).__init__()
-        self.gat1 = GraphAttentionalLayer(in_features, 9, 3, True, 0.2, 0.4)
-        self.gat2 = GraphAttentionalLayer(9, 6, 2, True, 0.2, 0.2)
-        self.gat3 = GraphAttentionalLayer(6, 6, 2, True, 0.2, 0.2)
-        self.gat4 = GraphAttentionalLayer(6, out_size, 3, False, 0.2, 0.2)
+        self.gat1 = GraphAttentionalLayer(in_features, 12, 4, False, 0.2, 0.4)
+        self.gat2 = GraphAttentionalLayer(12, 6, 3, False, 0.2, 0.2)
+        self.gat3 = GraphAttentionalLayer(6, out_size, 3, False, 0.2, 0.2)
 
     def forward(self, node_features:torch.Tensor, adj_mat:torch.Tensor):
         x = self.gat1(node_features, adj_mat)
         x = F.elu(x)
-        x, adj_mat = self._prune_graph(x, adj_mat)
+        #x, adj_mat = self._prune_graph(x, adj_mat)
         torch.cuda.empty_cache()
 
         x = self.gat2(x, adj_mat)
         x = F.elu(x)
-        x, adj_mat = self._prune_graph(x, adj_mat)
+        #x, adj_mat = self._prune_graph(x, adj_mat)
         torch.cuda.empty_cache()
 
         x = self.gat3(x, adj_mat)
-        x = F.elu(x)
-        x, adj_mat = self._prune_graph(x, adj_mat)
-        torch.cuda.empty_cache()
-
-        x = self.gat4(x, adj_mat)
-        x = F.elu(x, 0.001)
-        x, adj_mat = self._prune_graph(x, adj_mat)
+        x = F.relu(x)
+        #x, adj_mat = self._prune_graph(x, adj_mat)
         torch.cuda.empty_cache()
 
         return torch.sum(x, dim=0)

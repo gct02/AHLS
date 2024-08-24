@@ -43,9 +43,9 @@ struct PreprocessVitisIR : ModulePass
             if (!F.hasName() || !F.isIntrinsic())
                 continue;
             
-            if (F.getName().startswith("llvm.fpga.legacy.part.select")) {
+            if (F.getName().startswith("llvm.fpga.legacy.part.select") || F.getName().startswith("llvm.part.select")) {
                 partSelectIntrinsics.push_back(&F);
-            } else if (F.getName().startswith("llvm.fpga.legacy.part.set")) {
+            } else if (F.getName().startswith("llvm.fpga.legacy.part.set") || F.getName().startswith("llvm.part.set")) {
                 partSetIntrinsics.push_back(&F);
             }
         }
