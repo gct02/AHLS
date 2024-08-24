@@ -6,7 +6,7 @@ set_top $top
 
 open_solution -reset solution1 -flow_target vivado
 
-set_part { xc7z020clg400-1 }
+set_part { xcu50-fsvh2104-2-e }
 create_clock -period 5 -name default
 
 set ::LLVM_CUSTOM_OPT $OPT

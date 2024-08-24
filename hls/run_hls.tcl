@@ -102,7 +102,7 @@ if { $bench_exec == 1 } { # Face detection
 open_solution -reset solution1 -flow_target vivado
 
 # Define technology and clock rate
-set_part { xc7z020clg400-1 }
+set_part { xcu50-fsvh2104-2-e }
 create_clock -period 5 -name default
 
 # Compile and runs pre-synthesis C simulation using the provided C test bench
