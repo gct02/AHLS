@@ -26,22 +26,25 @@ class GraphAttentionalLayer(nn.Module):
         nn.init.xavier_normal_(self.W, gain=1.414)
         nn.init.xavier_normal_(self.a, gain=1.414)
 
-    def _get_attn_scores(self, h_transformed:torch.Tensor):
-        source_scores = torch.matmul(self.leaky_relu(h_transformed), self.a[:, :self.n_hidden, :])
-        target_scores = torch.matmul(self.leaky_relu(h_transformed), self.a[:, self.n_hidden:, :])
-        return source_scores + target_scores.mT
-
     def forward(self, h:torch.Tensor, adj_mat:torch.Tensor):
-        h_transformed = self.dropout(torch.mm(h, self.W).view(h.shape[0], self.n_heads, self.n_hidden).permute(1, 0, 2))
+        h_transformed = torch.mm(h, self.W)
+        h_transformed = h_transformed.view(h.shape[0], self.n_heads, self.n_hidden).permute(1, 0, 2)
+        h_transformed = self.dropout(h_transformed)
 
         torch.cuda.empty_cache()
-        e = torch.where(adj_mat > 0, self._get_attn_scores(h_transformed), -9e15)
-        torch.cuda.empty_cache()
 
-        attn = self.dropout(F.softmax(e, dim=-1))
+        h_transformed = self.leaky_relu(h_transformed)
+        source_scores = torch.matmul(h_transformed, self.a[:, :self.n_hidden, :])
+        target_scores = torch.matmul(h_transformed, self.a[:, self.n_hidden:, :])
+        e = source_scores + target_scores.mT
+        e = torch.where(adj_mat > 0, e, -9e15)
+        attn = F.softmax(e, dim=-1)
+
+        torch.cuda.empty_cache()
 
         if self.concat:
             return torch.matmul(attn, h_transformed).permute(1, 0, 2).contiguous().view(h.shape[0], self.out_features)
-        return torch.matmul(attn, h_transformed).mean(dim=0)
+        else:
+            return torch.matmul(attn, h_transformed).mean(dim=0)
 
 
