@@ -25,19 +25,23 @@ torch.set_printoptions(precision=6, threshold=1000, edgeitems=10, linewidth=200,
 def RMSELoss(pred, target):
     return torch.sqrt(torch.mean((pred - target) ** 2))
 
-def train_step(model, loss_func, optimizer, graphs, labels):
+def train_step(model, loss_func, optimizer, graphs_o, graphs_g, labels):
     print("Training...")
     train_loss = 0
     model.train()
 
-    for graph, label in zip(graphs, labels):
-        node_features = graph[0]
-        adj_mat = graph[1]
+    for graph_o, graph_g, label in zip(graphs_o, graphs_g, labels):
+        node_features_o = graph_o[0]
+        node_features_g = graph_g[0]
+        adj_mat_o = graph_o[1]
+        adj_mat_g = graph_g[1]
 
-        node_features = node_features.to(device)
-        adj_mat = adj_mat.to(device)
+        node_features_o = node_features_o.to(device)
+        node_features_g = node_features_g.to(device)
+        adj_mat_o = adj_mat_o.to(device)
+        adj_mat_g = adj_mat_g.to(device)
 
-        label_pred = model(node_features, adj_mat)
+        label_pred = model(node_features_o, adj_mat_o, node_features_g, adj_mat_g)
 
         label = label.to(device)
 
@@ -53,28 +57,34 @@ def train_step(model, loss_func, optimizer, graphs, labels):
         del loss, label_pred
 
         # Move the instances to the CPU
-        node_features = node_features.to("cpu")
-        adj_mat = adj_mat.to("cpu")
+        node_features_o = node_features_o.to("cpu")
+        node_features_g = node_features_g.to("cpu")
+        adj_mat_o = adj_mat_o.to("cpu")
+        adj_mat_g = adj_mat_g.to("cpu")
         label = label.to("cpu")
 
-    train_loss = train_loss / len(graphs)
+    train_loss = train_loss / len(labels)
     return train_loss
 
-def test_step(model, loss_func, graphs, labels):
+def test_step(model, loss_func, graphs_o, graphs_g, labels):
     print("Testing...")
 
     test_loss = 0
     model.eval()
 
     with torch.inference_mode():
-        for graph, label in zip(graphs, labels):
-            node_features = graph[0]
-            adj_mat = graph[1]
+        for graph_o, graph_g, label in zip(graphs_o, graphs_g, labels):
+            node_features_o = graph_o[0]
+            node_features_g = graph_g[0]
+            adj_mat_o = graph_o[1]
+            adj_mat_g = graph_g[1]
 
-            node_features = node_features.to(device)
-            adj_mat = adj_mat.to(device)
+            node_features_o = node_features_o.to(device)
+            node_features_g = node_features_g.to(device)
+            adj_mat_o = adj_mat_o.to(device)
+            adj_mat_g = adj_mat_g.to(device)
 
-            label_pred = model(node_features, adj_mat)
+            label_pred = model(node_features_o, adj_mat_o, node_features_g, adj_mat_g)
 
             label = label.to(device)
 
@@ -85,11 +95,13 @@ def test_step(model, loss_func, graphs, labels):
             del loss, label_pred
 
             # Move the instances to the CPU
-            node_features = node_features.to("cpu")
-            adj_mat = adj_mat.to("cpu")
+            node_features_o = node_features_o.to("cpu")
+            node_features_g = node_features_g.to("cpu")
+            adj_mat_o = adj_mat_o.to("cpu")
+            adj_mat_g = adj_mat_g.to("cpu")
             label = label.to("cpu")
 
-    test_loss = test_loss / len(graphs)
+    test_loss = test_loss / len(labels)
     return test_loss
 
 def save_model(model, target_dir, model_name):
@@ -118,8 +130,9 @@ def train_model(model, loss_func, optimizer, dataset, epochs, scheduler=None):
     BATCH_SIZE = 16 # This is provisory and will be removed once the dataset is properly structured
 
     train_dataset, test_dataset = split_instances(dataset)
-    test_graphs = [instance[0] for instance in test_dataset]
-    test_labels = [instance[1] for instance in test_dataset]
+    test_graphs_o = [instance[0] for instance in test_dataset]
+    test_graphs_g = [instance[1] for instance in test_dataset]
+    test_labels = [instance[2] for instance in test_dataset]
     batches = [train_dataset[i:i+BATCH_SIZE] for i in range(0, len(train_dataset), BATCH_SIZE)]
 
     n_train = len(train_dataset)
@@ -131,14 +144,15 @@ def train_model(model, loss_func, optimizer, dataset, epochs, scheduler=None):
 
     for batch in batches:
         train_dataset, valid_dataset = model_selection.train_test_split(batch, test_size=0.25, shuffle=True)
-        train_graphs = [instance[0] for instance in train_dataset]
-        train_labels = [instance[1] for instance in train_dataset]
+        train_graphs_o = [instance[0] for instance in train_dataset]
+        train_graphs_g = [instance[1] for instance in train_dataset]
+        train_labels = [instance[2] for instance in train_dataset]
         
         for epoch in range(epochs):
             torch.cuda.empty_cache()
 
-            train_loss = train_step(model, loss_func, optimizer, train_graphs, train_labels)
-            test_loss = test_step(model, loss_func, test_graphs, test_labels)
+            train_loss = train_step(model, loss_func, optimizer, train_graphs_o, train_graphs_g, train_labels)
+            test_loss = test_step(model, loss_func, test_graphs_o, test_graphs_g, test_labels)
 
             print(f"Epoch {epoch+1}/{epochs}: Train loss: {train_loss}, Test loss: {test_loss}")
 
@@ -173,15 +187,17 @@ def main(args):
         for instance in instances:
             instance_folder = os.fsdecode(os.path.join(benchmark_folder, instance))
             
-            dfg_path = os.path.join(instance_folder, "dfg.pkl")
-            dfg = pickle.load(open(dfg_path, 'rb'))
+            dfg_path_o = os.path.join(instance_folder, "dfg_o.pkl")
+            dfg_path_g = os.path.join(instance_folder, "dfg_g.pkl")
+            dfg_o = pickle.load(open(dfg_path_o, 'rb'))
+            dfg_g = pickle.load(open(dfg_path_g, 'rb'))
 
             with open(os.path.join(instance_folder, "resource_labels.txt"), 'r') as f:
                 resources = torch.FloatTensor(list(map(float, f.readlines()[0].strip().split(','))))
 
-            instances_per_benchmark[-1].append((dfg, resources))
+            instances_per_benchmark[-1].append((dfg_o, dfg_g, resources))
 
-    model = GAT(11, 3)
+    model = GAT(11, 20, 3)
     model = model.to(device)
 
     loss_func = RMSELoss

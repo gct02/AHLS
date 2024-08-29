@@ -5,3 +5,4 @@ __pycache__/
 *.log
 dataset/
 hls/run_hls.tcl
+hls_ir/
