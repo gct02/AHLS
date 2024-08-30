@@ -52,7 +52,7 @@ class GAT(nn.Module):
         return x
     
     """
-    Test: Graph pruning function for GAT model to reduce memory usage
+    # Test: Graph pruning function for GAT model to reduce memory usage
     def _prune_graph(self, node_features:torch.Tensor, adj_mat:torch.Tensor):
         degrees = torch.sum(adj_mat, dim=1)
         min_deg = torch.min(degrees)
@@ -93,57 +93,71 @@ class GAT(nn.Module):
 """
 # Test: GAT model using LSTM for Jumping Knowledge aggregation
 class GAT(nn.Module):
-    def __init__(self, in_features_1:int, in_features_2:int, out_size:int, n_layers:int=8):
+    def __init__(self, in_features_1:int, in_features_2:int, out_size:int, hidden_size_1:int=12, hidden_size_2:int=24, n_layers:int=4):
         super(GAT, self).__init__()
 
         self.n_layers = n_layers
-        self.hidden_size = out_size
 
-        self.gat_pre11 = GraphAttentionalLayer(in_features_1, 9, 3, True, 0.2, 0.0)
-        self.gat_pre12 = GraphAttentionalLayer(9, 3, 3, True, 0.1, 0.0)
-        self.gat1 = GraphAttentionalLayer(3, 3, 3, False, 0.1, 0.0)
+        self.in_size_1 = in_features_1
+        self.in_size_2 = in_features_2
+        self.hidden_size_1 = hidden_size_1
+        self.hidden_size_2 = hidden_size_2
+        self.out_size = out_size
 
-        self.gat_pre21 = GraphAttentionalLayer(in_features_2, 9, 3, True, 0.2, 0.0)
-        self.gat_pre22 = GraphAttentionalLayer(9, 3, 3, True, 0.1, 0.0)
-        self.gat2 = GraphAttentionalLayer(3, 3, 3, False, 0.1, 0.0)
+        self.gat_jkn_pre_1 = GraphAttentionalLayer(in_features_1, hidden_size_1, 4, True, 0.2, 0.1)
+        self.gat_jkn_1 = GraphAttentionalLayer(hidden_size_1, hidden_size_1, 4, True, 0.1, 0.1)
+        self.gat_out_1 = GraphAttentionalLayer(hidden_size_1, out_size, 3, False, 0.1, 0.0)
+
+        self.gat_jkn_pre_2 = GraphAttentionalLayer(in_features_2, hidden_size_2, 8, True, 0.2, 0.1)
+        self.gat_jkn_2 = GraphAttentionalLayer(hidden_size_2, hidden_size_2, 8, True, 0.1, 0.1)
+        self.gat_out_2 = GraphAttentionalLayer(hidden_size_2, out_size, 3, False, 0.1, 0.0)
 
         # LSTM for Jumping Knowledge aggregation
-        self.lstm_1 = nn.LSTM(input_size=3, hidden_size=self.hidden_size, batch_first=True)
-        self.lstm_2 = nn.LSTM(input_size=3, hidden_size=self.hidden_size, batch_first=True)
+        self.lstm_1 = nn.LSTM(input_size=hidden_size_1, hidden_size=hidden_size_1, batch_first=True)
+        self.lstm_2 = nn.LSTM(input_size=hidden_size_2, hidden_size=hidden_size_2, batch_first=True)
 
-        self.fc = nn.Linear(2*self.hidden_size, out_size)
+        self.fc = nn.Linear(2*out_size, out_size)
 
         # Initialize parameters
         nn.init.xavier_normal_(self.fc.weight, gain=1.41)
         nn.init.zeros_(self.fc.bias)
 
+        nn.init.xavier_normal_(self.lstm_1.weight_ih_l0, gain=1.41)
+        nn.init.xavier_normal_(self.lstm_1.weight_hh_l0, gain=1.41)
+        nn.init.zeros_(self.lstm_1.bias_ih_l0)
+        nn.init.zeros_(self.lstm_1.bias_hh_l0)
+
     def forward(self, node_features_1:torch.Tensor, adj_mat_1:torch.Tensor, node_features_2:torch.Tensor, adj_mat_2:torch.Tensor):
         x1 = node_features_1
         x2 = node_features_2
 
-        x1 = self.gat_pre12(F.elu(self.gat_pre11(x1, adj_mat_1)), adj_mat_1)
-        x2 = self.gat_pre22(F.elu(self.gat_pre21(x2, adj_mat_2)), adj_mat_2)
+        x1 = F.elu(self.gat_jkn_pre_1(x1, adj_mat_1))
+        x2 = F.elu(self.gat_jkn_pre_2(x2, adj_mat_2))
 
         x1k = []
         x2k = []
 
         for _ in range(self.n_layers):
-            x1 = F.elu(self.gat1(x1, adj_mat_1))
-            x2 = F.elu(self.gat2(x2, adj_mat_2))
+            x1 = F.elu(self.gat_jkn_1(x1, adj_mat_1))
+            x2 = F.elu(self.gat_jkn_2(x2, adj_mat_2))
             x1k.append(x1.unsqueeze(1))  # Add extra dimension for LSTM (sequence length)
             x2k.append(x2.unsqueeze(1))
 
-        x1k = torch.cat(x1k, dim=1)  # Shape: (batch_size, sequence_length, feature_dim)
-        x2k = torch.cat(x2k, dim=1)
+        x1k = torch.cat(x1k, dim=1)  # Shape: (1, n_layers, hidden_size_1)
+        x2k = torch.cat(x2k, dim=1)  # Shape: (1, n_layers, hidden_size_2)
 
         _, (hn1, _) = self.lstm_1(x1k)  # Only take the final hidden state from LSTM
         _, (hn2, _) = self.lstm_2(x2k)
 
-        hn1 = torch.sum(hn1.squeeze(0), dim=0)  # Remove the num_layers dimension and sum the final hidden states
-        hn2 = torch.sum(hn2.squeeze(0), dim=0)
+        # Apply the final GAT layer
+        x1 = self.gat_out_1(hn1.squeeze(0), adj_mat_1)
+        x2 = self.gat_out_2(hn2.squeeze(0), adj_mat_2)
 
-        x = torch.cat((hn1, hn2), dim=-1)
-        x = self.fc(x)
+        # Sum the final hidden states
+        x1 = torch.sum(x1, dim=0)
+        x2 = torch.sum(x2, dim=0)
 
+        x = torch.cat((x1, x2), dim=-1)
+        x = F.relu(self.fc(x))
         return x
 """

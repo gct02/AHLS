@@ -22,6 +22,10 @@ torch.cuda.empty_cache()
 
 torch.set_printoptions(precision=6, threshold=1000, edgeitems=10, linewidth=200, profile="short", sci_mode=False)
 
+NUM_LUTS = 870000
+NUM_FF = 1740000
+NUM_DSP = 5952
+
 def RMSELoss(pred, target):
     return torch.sqrt(torch.mean((pred - target) ** 2))
 
@@ -54,7 +58,7 @@ def train_step(model, loss_func, optimizer, graphs_o, graphs_g, labels):
         loss.backward()
         optimizer.step()
 
-        del loss, label_pred
+        # del loss, label_pred
 
         # Move the instances to the CPU
         node_features_o = node_features_o.to("cpu")
@@ -143,7 +147,7 @@ def train_model(model, loss_func, optimizer, dataset, epochs, scheduler=None):
     test_losses = []
 
     for batch in batches:
-        train_dataset, valid_dataset = model_selection.train_test_split(batch, test_size=0.25, shuffle=True)
+        train_dataset, valid_dataset = model_selection.train_test_split(batch, test_size=0.25, shuffle=False)
         train_graphs_o = [instance[0] for instance in train_dataset]
         train_graphs_g = [instance[1] for instance in train_dataset]
         train_labels = [instance[2] for instance in train_dataset]
