@@ -58,14 +58,14 @@ def train_step(model, loss_func, optimizer, graphs_o, graphs_g, labels):
         loss.backward()
         optimizer.step()
 
-        # del loss, label_pred
+        del loss, label_pred, node_features_g, node_features_o, adj_mat_g, adj_mat_o, label
 
         # Move the instances to the CPU
-        node_features_o = node_features_o.to("cpu")
-        node_features_g = node_features_g.to("cpu")
-        adj_mat_o = adj_mat_o.to("cpu")
-        adj_mat_g = adj_mat_g.to("cpu")
-        label = label.to("cpu")
+        # node_features_o = node_features_o.to("cpu")
+        # node_features_g = node_features_g.to("cpu")
+        # adj_mat_o = adj_mat_o.to("cpu")
+        # adj_mat_g = adj_mat_g.to("cpu")
+        # label = label.to("cpu")
 
     train_loss = train_loss / len(labels)
     return train_loss
@@ -96,14 +96,15 @@ def test_step(model, loss_func, graphs_o, graphs_g, labels):
 
             loss = loss_func(label_pred, label)
             test_loss += loss.item()
-            del loss, label_pred
+
+            del loss, label_pred, node_features_g, node_features_o, adj_mat_g, adj_mat_o, label
 
             # Move the instances to the CPU
-            node_features_o = node_features_o.to("cpu")
-            node_features_g = node_features_g.to("cpu")
-            adj_mat_o = adj_mat_o.to("cpu")
-            adj_mat_g = adj_mat_g.to("cpu")
-            label = label.to("cpu")
+            # node_features_o = node_features_o.to("cpu")
+            # node_features_g = node_features_g.to("cpu")
+            # adj_mat_o = adj_mat_o.to("cpu")
+            # adj_mat_g = adj_mat_g.to("cpu")
+            # label = label.to("cpu")
 
     test_loss = test_loss / len(labels)
     return test_loss
@@ -147,7 +148,7 @@ def train_model(model, loss_func, optimizer, dataset, epochs, scheduler=None):
     test_losses = []
 
     for batch in batches:
-        train_dataset, valid_dataset = model_selection.train_test_split(batch, test_size=0.25, shuffle=False)
+        train_dataset, valid_dataset = model_selection.train_test_split(batch, test_size=0.25, shuffle=True)
         train_graphs_o = [instance[0] for instance in train_dataset]
         train_graphs_g = [instance[1] for instance in train_dataset]
         train_labels = [instance[2] for instance in train_dataset]
@@ -170,6 +171,8 @@ def train_model(model, loss_func, optimizer, dataset, epochs, scheduler=None):
             next_valid_dataset = train_dataset[:n_instances_out]
             train_dataset = train_dataset[n_instances_out:] + valid_dataset
             valid_dataset = next_valid_dataset
+
+        del batch
     
     return train_losses, test_losses
 
@@ -204,10 +207,10 @@ def main(args):
     model = GAT(11, 20, 3)
     model = model.to(device)
 
-    loss_func = RMSELoss
+    loss_func = nn.MSELoss()
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-1, betas=(0.8, 0.9999))
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=16, T_mult=1, eta_min=1e-6)
+    optimizer = torch.optim.Adam(model.parameters())
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=8, T_mult=2, eta_min=0)
 
     train_losses, test_losses = train_model(model, loss_func, optimizer, instances_per_benchmark, epochs, scheduler)
 
