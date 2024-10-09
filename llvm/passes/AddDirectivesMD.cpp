@@ -21,9 +21,9 @@ static cl::opt<std::string> directivesTclFilePath("tcl", cl::desc("Path to the t
 
 namespace {
 
-struct AddDirectivesMetadataPass : public ModulePass {
+struct AddDirectivesMDPass : public ModulePass {
     static char ID;
-    AddDirectivesMetadataPass() : ModulePass(ID) {}
+    AddDirectivesMDPass() : ModulePass(ID) {}
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "add-directives-md"
@@ -241,5 +241,5 @@ struct AddDirectivesMetadataPass : public ModulePass {
 
 }
 
-char AddDirectivesMetadataPass::ID = 0;
-static RegisterPass<AddDirectivesMetadataPass> X("add-directives-md", "Add information about the directives in the input tcl file to the module's metadata", false, false);
+char AddDirectivesMDPass::ID = 0;
+static RegisterPass<AddDirectivesMDPass> X("add-directives-md", "Add information about the directives in the input tcl file to the module's metadata", false, false);

@@ -8,7 +8,7 @@
 ##===----------------------------------------------------------------------===##
 
 LEVEL = ../../..
-LIBRARYNAME = libLLVMAHLS
+LIBRARYNAME = libAHLS
 LOADABLE_MODULE = 1
 
 include $(LEVEL)/Makefile.common

@@ -1,12 +1,12 @@
-add_llvm_loadable_module( libLLVMAHLS
+add_llvm_loadable_module( libAHLS
 	UpdateMD.cpp
 	RemoveIOFCall.cpp
 	Profiling.cpp
 	PreprocessVitisIR.cpp
 	BinOpTrace.cpp
-	VariableToConstant.cpp
+	V2C.cpp
 	DFG.cpp
-	AddDirectivesMetadata.cpp
+	AddDirectivesMD.cpp
   )
 
-target_link_libraries(libLLVMAHLS)
+target_link_libraries(libAHLS)

@@ -1,7 +1,5 @@
 from pathlib import Path
-from sys import argv
 import xml.etree.ElementTree as ET
-import json
 
 def parse_impl_rpt(xml_rpt_path:Path):
     tree = ET.parse(xml_rpt_path)
