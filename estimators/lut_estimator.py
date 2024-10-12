@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from torch.utils.data import Dataset, DataLoader
 from estimators.hgat.models import SimpleHGAT
-from estimators.gat.dataset import HLSDatasetLUT
+from estimators.hgat.dataset import HLSDatasetLUT
 
 matplotlib.use('Agg')
 
@@ -35,39 +35,43 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
     train_losses = []
     test_losses = []
 
+    n_instances = len(test_loader)
+    test_preds_inst = [[] for _ in range(n_instances)]
+
     for epoch in range(epochs):
         print(f"Epoch {epoch + 1}/{epochs}")
 
-        train_loss_epoch = 0
         model.train()
-
+        train_loss_epoch = 0
         for batch_samples, batch_labels in train_loader:
-            G_0, G_1 = batch_samples[0]
-            x_0, x_1 = G_0[0], G_1[0]
-            adj_0, adj_1 = G_0[1], G_1[1]
-            
-            x_0, x_1 = x_0.to(device), x_1.to(device)
-            adj_0, adj_1 = adj_0.to(device), adj_1.to(device)
+            x_inst, x_var, x_const, x_inst_indexes, x_var_indexes, x_const_indexes, adj_mat_control, adj_mat_data, adj_mat_call = batch_samples[0]
 
-            y_pred = model(x_0, adj_0, x_1, adj_1) 
+            x_inst, x_var, x_const = x_inst.to(device), x_var.to(device), x_const.to(device)
+            x_inst_indexes, x_var_indexes, x_const_indexes = x_inst_indexes.to(device), x_var_indexes.to(device), x_const_indexes.to(device)
+            adj_mat_control, adj_mat_data, adj_mat_call = adj_mat_control.to(device), adj_mat_data.to(device), adj_mat_call.to(device)
+
+            y_pred = model(x_inst, x_var, x_const, \
+                           x_inst_indexes, x_var_indexes, x_const_indexes, \
+                           adj_mat_control, adj_mat_data, adj_mat_call)
 
             y = batch_labels[0]
             y = y.to(device)
+
             loss = loss_func(y_pred, y)
 
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
 
-            train_loss_epoch += loss.item()
-
             if scheduler is not None:
-               scheduler.step()
+                scheduler.step()
 
             # Move the instances to the CPU
-            x_0, x_1 = x_0.to("cpu"), x_1.to("cpu")
-            adj_0, adj_1 = adj_0.to("cpu"), adj_1.to("cpu")
-            y = y.to("cpu")
+            x_inst, x_var, x_const = x_inst.to("cpu"), x_var.to("cpu"), x_const.to("cpu")
+            x_inst_indexes, x_var_indexes, x_const_indexes = x_inst_indexes.to("cpu"), x_var_indexes.to("cpu"), x_const_indexes.to("cpu")
+            adj_mat_control, adj_mat_data, adj_mat_call = adj_mat_control.to("cpu"), adj_mat_data.to("cpu"), adj_mat_call.to("cpu")
+
+            train_loss_epoch += loss.item()
 
             torch.cuda.empty_cache()
 
@@ -75,71 +79,98 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
         train_losses.append(train_loss_epoch)
         
         model.eval()
-        test_loss = 0
+        test_loss_epoch = 0
         with torch.no_grad():
-            for batch_samples, batch_labels in test_loader:
-                G_0, G_1 = batch_samples[0]
-                x_0, x_1 = G_0[0], G_1[0]
-                adj_0, adj_1 = G_0[1], G_1[1]
+            for i, (batch_samples, batch_labels) in enumerate(test_loader):
+                x_inst, x_var, x_const, x_inst_indexes, x_var_indexes, x_const_indexes, adj_mat_control, adj_mat_data, adj_mat_call = batch_samples[0]
 
-                x_0, x_1 = x_0.to(device), x_1.to(device)
-                adj_0, adj_1 = adj_0.to(device), adj_1.to(device)
-                y_pred = model(x_0, adj_0, x_1, adj_1)
+                x_inst, x_var, x_const = x_inst.to(device), x_var.to(device), x_const.to(device)
+                x_inst_indexes, x_var_indexes, x_const_indexes = x_inst_indexes.to(device), x_var_indexes.to(device), x_const_indexes.to(device)
+                adj_mat_control, adj_mat_data, adj_mat_call = adj_mat_control.to(device), adj_mat_data.to(device), adj_mat_call.to(device)
 
                 y = batch_labels[0]
                 y = y.to(device)
+
                 loss = loss_func(y_pred, y)
 
-                x_0, x_1 = x_0.to("cpu"), x_1.to("cpu")
-                adj_0, adj_1 = adj_0.to("cpu"), adj_1.to("cpu")
-                y = y.to("cpu")
+                x_inst, x_var, x_const = x_inst.to("cpu"), x_var.to("cpu"), x_const.to("cpu")
+                x_inst_indexes, x_var_indexes, x_const_indexes = x_inst_indexes.to("cpu"), x_var_indexes.to("cpu"), x_const_indexes.to("cpu")
+                adj_mat_control, adj_mat_data, adj_mat_call = adj_mat_control.to("cpu"), adj_mat_data.to("cpu"), adj_mat_call.to("cpu")
+
+                test_loss_epoch += loss.item()
+                test_preds_inst[i].append([y_pred.item(), y.item()])
+                
+                print(f"Labels: {y}; Predictions: {y_pred}; Loss: {loss.item()}")
 
                 torch.cuda.empty_cache()
 
-                print(f"Labels: {y}; Predictions: {y_pred}; Loss: {loss.item()}")
+        test_loss_epoch = test_loss_epoch / n_instances
+        test_losses.append(test_loss_epoch)
 
-                test_loss += loss.item()
-        
-        test_loss = test_loss / len(test_loader)
-        test_losses.append(test_loss)
-        print(f"Test Loss: {test_loss}")
-    
-    return train_losses, test_losses
+    return train_losses, test_losses, test_preds_inst
 
 def main(args):
     epochs = int(args['epoch'])
     batch_size = int(args['batch'])
     seed = int(args['seed'])
     dataset_path = args['dataset']
-
+    
     torch.manual_seed(seed)
+    
+    n_benchs = len(os.listdir(dataset_path))
 
-    train_dataset_path = Path(dataset_path) / "train"
-    test_dataset_path = Path(dataset_path) / "test"
+    for i in range(n_benchs):
+        train_dataset = HLSDatasetLUT(dataset_path, i, False)
+        test_dataset = HLSDatasetLUT(dataset_path, i, True)
 
-    train_dataset = HLSDatasetLUT(train_dataset_path)
-    test_dataset = HLSDatasetLUT(test_dataset_path)
+        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
+        test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
-    test_loader = DataLoader(test_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
+        model = SimpleHGAT(20, 7, 7, 8, 4, 1, 1)
+        model = model.to(device)
 
-    model = SimpleHGAT(20, 6, 6, 9, 3, 1, 1)
-    model = model.to(device)
+        loss_func = RMSELoss
 
-    loss_func = RMSELoss
+        optimizer = torch.optim.AdamW(model.parameters(), lr=5e-3, betas=(0.8, 0.999))
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=batch_size, T_mult=2, eta_min=0)
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-2, betas=(0.6, 0.9999))
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=int(batch_size/2), T_mult=2, eta_min=0)
+        train_losses, test_losses, test_preds_inst = train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, scheduler)
 
-    train_losses, test_losses = train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, scheduler)
+        save_model(model, "estimators/hgat/models", f"hgat_lut_{i}.pth")
 
-    save_model(model, "estimators/gat/models", "hgat_lut_0.pth")
+        with open(f"estimators/hgat/model_stats/test_preds_{i}.txt", "w") as f:
+            for instance in test_preds_inst:
+                target = float(instance[0][1])
+                f.write(f"{target}")
+                for target_pred_pair in instance:
+                    pred = float(target_pred_pair[0])
+                    f.write(f",{pred}")
+                f.write("\n")
 
-    plt.plot(train_losses, label="Train Loss", color="red")
-    plt.plot(test_losses, label="Test Loss", color="blue")
-    plt.savefig("estimators/gat/gat_lut_training_0.png")
-    plt.legend()
-    plt.show()
+        with open(f"estimators/hgat/model_stats/train_losses_{i}.txt", "w") as f:
+            f.write("\n".join(list(map(lambda x: str(float(x)), train_losses))))
+
+        for j, instance in enumerate(test_preds_inst):
+            target = float(instance[0][1])
+            preds = [target_pred_pair[0] for target_pred_pair in instance]
+            x_axis = range(epochs)
+            target_line = epochs * [target]
+            plt.figure(figsize=[30, 20], facecolor='skyblue', edgecolor='black', dpi=100, layout='constrained')
+            plt.plot(x_axis, target_line, label='target', color='k')
+            plt.plot(x_axis, preds, label='pred', color='b')
+            plt.legend()
+            plt.savefig(f"preds_bench_{i}_inst_{j}.png")
+            plt.close()
+
+        x_axis = range(epochs)
+        plt.figure(figsize=[30, 20], facecolor='skyblue', edgecolor='black', dpi=100, layout='constrained')
+        plt.plot(x_axis, train_losses, label='train loss', color='g')
+        plt.plot(x_axis, test_losses, label='test loss', color='r')
+        plt.legend()
+        plt.savefig(f"losses_bench_{i}.png")
+        plt.close()
+
+        del model, train_dataset, test_dataset, train_loader, test_loader, optimizer
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Provide arguments for the GAT model for resource usage prediction')

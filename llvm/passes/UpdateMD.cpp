@@ -71,21 +71,25 @@ struct UpdateMDPass : public ModulePass {
 					I.setMetadata("isFp", MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt1Ty(ctx), isFp))}));
 					I.setMetadata("loopDepth", MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), loopDepth))}));
 
-					// Initially, directives = (0,0,0,0,0,0,0,0)
-					SmallVector<Metadata*, 3> arrayPartitionMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)), 
+					SmallVector<Metadata*, 5> arrayPartitionMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)), 
+																  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+																  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
 																  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
 																  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
-					SmallVector<Metadata*, 2> pipelineMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
-														    ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
-					SmallVector<Metadata*, 2> unrollMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+					SmallVector<Metadata*, 4> pipelineMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+														    ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+															ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+															ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
+					SmallVector<Metadata*, 3> unrollMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+														  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
 														  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
-					SmallVector<Metadata*, 1> loopMergeMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
 
 					// Set the instruction's directives.
 					I.setMetadata("arrayPartition", MDTuple::get(ctx, arrayPartitionMD));
 					I.setMetadata("pipeline", MDTuple::get(ctx, pipelineMD));
 					I.setMetadata("unroll", MDTuple::get(ctx, unrollMD));
-					I.setMetadata("loopMerge", MDTuple::get(ctx, loopMergeMD));
+					
+					I.setMetadata("dummyOpID." + std::to_string(opID), MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt64Ty(ctx), opID))}));
 				}
 			}
 		}

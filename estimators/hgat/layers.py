@@ -8,6 +8,7 @@ class SimpleHGATLayer(nn.Module):
         super(SimpleHGATLayer, self).__init__()
         self.n_heads = n_heads
         self.dropout = dropout
+        self.leaky_relu_slope = leaky_relu_slope
         self.leaky_relu = nn.LeakyReLU(leaky_relu_slope)
         self.n_hidden = n_hidden
         
@@ -51,38 +52,38 @@ class SimpleHGATLayer(nn.Module):
         x_var = x_var @ self.M_transf_var
         x_const = x_const @ self.M_transf_const
         return x_inst, x_var, x_const
+    
+    def _compute_semantic_att(self, z):
+        z_transf = torch.mm(z, self.W).add(self.b)
+        return torch.matmul(F.tanh(z_transf), self.q).mean(dim=0)
 
-    def forward(self, x:torch.Tensor, node_types:torch.Tensor, 
-                adj_mat_control:torch.Tensor, adj_mat_data:torch.Tensor, adj_mat_call:torch.Tensor):
-        # Divide by type
-        x_inst = x[node_types == 0]
-        x_var = x[node_types == 1]
-        x_const = x[node_types == 2]
-
+    def forward(self, x_inst, x_var, x_const, x_inst_indexes, x_var_indexes, x_const_indexes, 
+                adj_mat_control, adj_mat_data, adj_mat_call):
         # Project features
         h_inst = x_inst @ self.M_inst
         h_var = x_var @ self.M_var
         h_const = x_const @ self.M_const
 
-        h = torch.cat([h_inst, h_var, h_const], dim=0).view(self.n_heads, x.shape[0], self.n_hidden)
+        h = torch.where(x_inst_indexes, h_inst, torch.zeros_like(h_inst))
+        h = torch.where(x_var_indexes, h_var, h)
+        h = torch.where(x_const_indexes, h_const, h)
+
+        h = h.view(self.n_heads, h.shape[0], self.n_hidden)
         h = F.dropout(h, self.dropout, training=self.training)
 
         # Compute attention scores for each type of edge
-        # Control
         source_control = torch.matmul(h, self.a_control[:, :self.n_hidden, :])
         target_control = torch.matmul(h, self.a_control[:, self.n_hidden:, :])
         e_control = self.leaky_relu(source_control + target_control.mT)
         e_control[:, adj_mat_control == 0] = -9e15
         att_control = F.softmax(e_control, dim=-1)
 
-        # Data
         source_data = torch.matmul(h, self.a_data[:, :self.n_hidden, :])
         target_data = torch.matmul(h, self.a_data[:, self.n_hidden:, :])
         e_data = self.leaky_relu(source_data + target_data.mT)
         e_data[:, adj_mat_data == 0] = -9e15
         att_data = F.softmax(e_data, dim=-1)
 
-        # Call
         source_call = torch.matmul(h, self.a_call[:, :self.n_hidden, :])
         target_call = torch.matmul(h, self.a_call[:, self.n_hidden:, :])
         e_call = self.leaky_relu(source_call + target_call.mT)
@@ -94,15 +95,10 @@ class SimpleHGATLayer(nn.Module):
         z_data = torch.matmul(att_data, h).mean(dim=0)
         z_call = torch.matmul(att_call, h).mean(dim=0)
 
-        # Calculate semantic attention scores ("betas")
-        z_control_transf = torch.mm(z_control, self.W).add(self.b)
-        w_control = torch.matmul(F.tanh(z_control_transf), self.q).mean(dim=0)
-
-        z_data_transf = torch.mm(z_data, self.W).add(self.b)
-        w_data = torch.matmul(F.tanh(z_data_transf), self.q).mean(dim=0)
-
-        z_call_transf = torch.mm(z_call, self.W).add(self.b)
-        w_call = torch.matmul(F.tanh(z_call_transf), self.q).mean(dim=0)
+        # Calculate semantic attention scores
+        w_control = self._compute_semantic_att(z_control)
+        w_data = self._compute_semantic_att(z_data)
+        w_call = self._compute_semantic_att(z_call)
 
         # Normalize semantic attention scores
         betas = torch.stack([w_control, w_data, w_call], dim=0)

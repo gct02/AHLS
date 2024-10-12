@@ -3,7 +3,11 @@ __pycache__/
 .vscode/
 .venv/
 *.log
-dataset/
 hls/run_hls.tcl
-estimators/gat/model_stats/
-estimators/gat/dataset_graphs/
+estimators/*/model_analysis/
+estimators/dataset_graphs/
+dataset/
+mini_dataset/
+estimators/utils/*.txt
+estimators/utils/*.tcl
+estimators/utils/*.ll

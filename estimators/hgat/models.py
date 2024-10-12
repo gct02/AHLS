@@ -9,7 +9,7 @@ class SimpleHGAT(nn.Module):
 
         assert n_hidden_1 % n_heads == 0
 
-        self.hgat = SimpleHGATLayer(n_feats_inst, n_feats_var, n_feats_const, n_hidden_1, n_heads, True, 0.01, 0.3)
+        self.hgat = SimpleHGATLayer(n_feats_inst, n_feats_var, n_feats_const, n_hidden_1, n_heads, 0.01, 0.3)
 
         self.fc_1 = nn.Linear(n_hidden_1, n_hidden_2)
         self.fc_2 = nn.Linear(n_hidden_2, n_out)
@@ -23,9 +23,9 @@ class SimpleHGAT(nn.Module):
         nn.init.constant_(self.fc_1.bias, 0.1)
         nn.init.constant_(self.fc_2.bias, 0.1)
 
-    def forward(self, x:torch.Tensor, node_types:torch.Tensor, 
+    def forward(self, x_inst, x_var, x_const, x_inst_indexes, x_var_indexes, x_const_indexes, 
                 adj_mat_control:torch.Tensor, adj_mat_data:torch.Tensor, adj_mat_call:torch.Tensor):
-        z = self.hgat(x, node_types, adj_mat_control, adj_mat_data, adj_mat_call)
+        z = self.hgat(x_inst, x_var, x_const, x_inst_indexes, x_var_indexes, x_const_indexes, adj_mat_control, adj_mat_data, adj_mat_call)
 
         # Sum the final hidden states
         z = torch.sum(z, dim=0)
