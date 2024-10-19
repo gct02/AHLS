@@ -24,8 +24,8 @@ class GraphAttentionalLayer(nn.Module):
         self.reset_parameters()
 
     def reset_parameters(self):
-        nn.init.xavier_normal_(self.W, gain=1.414)
-        nn.init.xavier_normal_(self.a, gain=1.414)
+        nn.init.xavier_normal_(self.W, gain=1.41)
+        nn.init.xavier_normal_(self.a, gain=1.41)
 
     def _get_att_scores(self, h_transformed:torch.Tensor, adj_mat:torch.Tensor):
         source = torch.matmul(h_transformed, self.a[:, :self.n_hidden, :])
@@ -41,7 +41,7 @@ class GraphAttentionalLayer(nn.Module):
         e = self._get_att_scores(h_transformed, adj_mat)
         torch.cuda.empty_cache()
         att = F.softmax(e, dim=-1)
-        # att = F.dropout(att, self.dropout, training=self.training)
+        att = F.dropout(att, self.dropout, training=self.training)
         
         h_prime = torch.matmul(att, h_transformed)
 

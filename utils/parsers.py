@@ -9,4 +9,4 @@ def parse_impl_rpt(xml_rpt_path:Path):
     dsp = root.findall("AreaReport/Resources/DSP")[0].text
     bram = root.findall("AreaReport/Resources/BRAM")[0].text
     cp = root.findall("TimingReport/CP_FINAL")[0].text
-    return ff, lut, dsp, cp
+    return ff, lut, dsp, bram, cp

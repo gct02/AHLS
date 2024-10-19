@@ -4,10 +4,6 @@ __pycache__/
 .venv/
 *.log
 hls/run_hls.tcl
-estimators/*/model_analysis/
-estimators/dataset_graphs/
-dataset/
-mini_dataset/
-estimators/utils/*.txt
-estimators/utils/*.tcl
-estimators/utils/*.ll
+*model_analysis/
+*dataset_graphs/
+*dataset/

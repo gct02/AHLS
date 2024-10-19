@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Messages>
-	<Message severity="INFO" prefix="[IMPL 213-8]" key="IMPL_8_1776" tag="" content="Exporting RTL as a Vivado IP." resolution=""/>
-	<Message severity="INFO" prefix="[IMPL 213-8]" key="IMPL_8_1773" tag="" content="Starting RTL evaluation using Vivado ..." resolution=""/>
-	<Message severity="ERROR" prefix="[HLS 200-478]" key="HLS 200-478" tag="" content="vivado returned an error" resolution=""/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished Command export_design CPU user time: 368.31 seconds. CPU system time: 9.73 seconds. Elapsed time: 414.36 seconds; current allocated memory: 5.531 MB." resolution=""/>
-</Messages>
