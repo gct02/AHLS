@@ -36,10 +36,7 @@ class GAT(nn.Module):
         self.reset_parameters()
 
     def reset_parameters(self):
-        nn.init.xavier_normal_(self.fc.weight, gain=1.41)
         nn.init.constant_(self.fc.bias, 0.1)
-        nn.init.xavier_normal_(self.lstm_1.weight_ih_l0)
-        nn.init.xavier_normal_(self.lstm_1.weight_hh_l0)
         nn.init.constant_(self.lstm_1.bias_ih_l0, 0.1)
         nn.init.constant_(self.lstm_1.bias_hh_l0, 0.1)
 

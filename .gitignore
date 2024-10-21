@@ -7,3 +7,4 @@ hls/run_hls.tcl
 *model_analysis/
 *dataset_graphs/
 *dataset/
+estimators/hgt/utils/test*

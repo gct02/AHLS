@@ -136,7 +136,7 @@ def main(args):
 
         loss_func = RMSELoss
 
-        optimizer = torch.optim.Adam(model.parameters(), lr=5e-3, betas=(0.8, 0.999))
+        optimizer = torch.optim.AdamW(model.parameters(), lr=5e-3, betas=(0.8, 0.999))
         scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=batch_size, T_mult=2, eta_min=0)
 
         train_losses, test_losses, test_preds_inst = train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, scheduler)

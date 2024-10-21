@@ -12,6 +12,7 @@
 #include "llvm/IR/Module.h"
 #include "llvm/IR/InstIterator.h"
 #include "llvm/IR/Metadata.h"
+#include "llvm/IR/Module.h"
 #include "llvm/Pass.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"
@@ -73,23 +74,28 @@ struct UpdateMD : public ModulePass {
 					I.setMetadata("bbID", MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), bbID))}));
 					I.setMetadata("opCode", MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), opCode))}));
 					I.setMetadata("bitwidth", MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), bitwidth))}));
-					I.setMetadata("opType", MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), opTypeID))}));
+					I.setMetadata("valueType", MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), opTypeID))}));
 					I.setMetadata("loopDepth", MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), loopDepth))}));
 
-					SmallVector<Metadata*, 5> arrayPartitionMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)), 
+					SmallVector<Metadata*, 6> arrayPartitionMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)), 
+																  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
 																  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
 																  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
 																  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
 																  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
-					SmallVector<Metadata*, 4> pipelineMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+					SmallVector<Metadata*, 5> pipelineMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+															ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
 														    ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
 															ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
 															ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
-					SmallVector<Metadata*, 3> unrollMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+					SmallVector<Metadata*, 4> unrollMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+														  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
 														  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
 														  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
-					SmallVector<Metadata*, 1> loopFlattenMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
-					SmallVector<Metadata*, 1> loopMergeMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
+					SmallVector<Metadata*, 2> loopFlattenMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+															   ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
+					SmallVector<Metadata*, 2> loopMergeMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+															 ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
 
 					// Set the instruction's directives.
 					I.setMetadata("arrayPartition", MDTuple::get(ctx, arrayPartitionMD));
@@ -98,16 +104,37 @@ struct UpdateMD : public ModulePass {
 					I.setMetadata("loopFlatten", MDTuple::get(ctx, loopFlattenMD));
 					I.setMetadata("loopMerge", MDTuple::get(ctx, loopMergeMD));
 
-					// Include a dummy opID metadata to use as a reference for the instruction 
-					// while building the CDFG using ProGraML
-					std::string opIDStr = "opID." + std::to_string(opID);
-					I.setMetadata(opIDStr, MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), opID))}));
+					I.setMetadata("ID." + std::to_string(opID), MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), opID))}));
 
 					opID++;
 				}
 				bbID++;
 			}
 			functionID++;
+		}
+
+		uint32_t globalID = 1;
+
+		for (auto& global : M.getGlobalList()) {
+			global.setMetadata("globalID", MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), globalID))}));
+
+			int bitwidth = global.getType()->getPointerElementType()->getPrimitiveSizeInBits();
+			int globalTypeID = (int)global.getType()->getPointerElementType()->getTypeID();
+
+			global.setMetadata("bitwidth", MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), bitwidth))}));
+			global.setMetadata("valueType", MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), globalTypeID))}));
+
+			SmallVector<Metadata*, 5> arrayPartitionMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)), 
+														  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+														  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+														  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)),
+														  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0))};
+
+			global.setMetadata("arrayPartition", MDTuple::get(ctx, arrayPartitionMD));
+
+			global.setMetadata("ID." + std::to_string(globalID), MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), globalID))}));
+
+			globalID++;
 		}
 
 		return true;

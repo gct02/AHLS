@@ -22,14 +22,14 @@ using namespace llvm;
 
 namespace
 {
-struct PreprocessVitisIR : ModulePass
+struct PreprocessHLSIRForX86 : ModulePass
 {
     static char ID;
-    PreprocessVitisIR() : ModulePass(ID) {}
+    PreprocessHLSIRForX86() : ModulePass(ID) {}
 
     bool runOnModule(Module& M) override
     {
-        #define DEBUG_TYPE "preprocess-vitis-ir"
+        #define DEBUG_TYPE "preprocess-hls-ir-x86"
 
         LLVMContext& ctx = M.getContext();
 
@@ -200,5 +200,5 @@ struct PreprocessVitisIR : ModulePass
 };
 } // namespace
 
-char PreprocessVitisIR::ID = 0;
-static RegisterPass<PreprocessVitisIR> X("preprocess-vitis-ir", "Preprocess Vitis IR to apply ACTs", false, false);
+char PreprocessHLSIRForX86::ID = 0;
+static RegisterPass<PreprocessHLSIRForX86> X("preprocess-hls-ir-x86", "Preprocess Vitis IR to apply ACTs", false, false);

@@ -40,6 +40,7 @@ struct AddDirectivesMD : public ModulePass {
 
         uint32_t directiveIndex = 1;
         std::string line;
+        uint32_t arrayID = 1;
 
         while (std::getline(directivesTclFile, line)) {
             DEBUG (errs() << "Directive: " << line << "\n");
@@ -47,8 +48,8 @@ struct AddDirectivesMD : public ModulePass {
             std::vector<std::string> directiveTokens = split(line);
 
             if (directiveTokens[0] == "set_directive_unroll") {
-                // set_directive_unroll -factor N function/loop -> (directiveIndex,0,N)
-                // set_directive_unroll function/loop -> (directiveIndex,1,0)
+                // set_directive_unroll -factor N function/loop -> (directiveIndex,1,0,N)
+                // set_directive_unroll function/loop -> (directiveIndex,1,1,0)
                 uint32_t factor = 0;
                 uint32_t complete = 1;
                 std::string location;
@@ -83,7 +84,8 @@ struct AddDirectivesMD : public ModulePass {
                         if (BB->hasName() && BB->getName() == loopName) {
                             DEBUG(errs() << "Found loop " << loopName << "\n");
 
-                            SmallVector<Metadata*, 3> unrollMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex)),
+                            SmallVector<Metadata*, 4> unrollMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex)),
+                                                                  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1)),
                                                                   ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), complete)), 
                                                                   ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), factor))};
 
@@ -98,8 +100,8 @@ struct AddDirectivesMD : public ModulePass {
                 }
                 directiveIndex++;
             } else if (directiveTokens[0] == "set_directive_pipeline") {
-                // set_directive_pipeline -II N function[/loop] -> (directiveIndex,0,N)
-                // set_directive_pipeline function[/loop] -> (directiveIndex,1,0)
+                // set_directive_pipeline -II N function -> (directiveIndex,1,1,0,N)
+                // set_directive_pipeline function/loop -> (directiveIndex,1,0,1,0)
                 uint32_t pipelineII = 0;
                 uint32_t IINotSpecified = 1;
                 std::string location;
@@ -130,7 +132,8 @@ struct AddDirectivesMD : public ModulePass {
                     if (slashPos == std::string::npos) {
                         DEBUG(errs() << "Found function " << F->getName() << "\n");
 
-                        SmallVector<Metadata*, 4> pipelineMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex)),
+                        SmallVector<Metadata*, 5> pipelineMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex)),
+                                                                ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1)),
                                                                 ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1)), // 1 for function
                                                                 ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), IINotSpecified)),
                                                                 ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), pipelineII))};
@@ -152,7 +155,8 @@ struct AddDirectivesMD : public ModulePass {
                             if (BB->hasName() && BB->getName() == loopName) {
                                 DEBUG(errs() << "Found loop " << BB->getName() << "\n");
 
-                                SmallVector<Metadata*, 4> pipelineMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex)),
+                                SmallVector<Metadata*, 5> pipelineMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex)),
+                                                                        ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1)),
                                                                         ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)), // 0 for loop
                                                                         ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), IINotSpecified)),
                                                                         ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), pipelineII))};
@@ -169,11 +173,11 @@ struct AddDirectivesMD : public ModulePass {
                 }
                 directiveIndex++;
             } else if (directiveTokens[0] == "set_directive_array_partition") {
-                // set_directive_array_partition -type T -dim N -factor M location variable -> (directiveIndex,T,M,N)
-                // set_directive_array_partition [-type complete] -dim N location variable -> (directiveIndex,1,arrayLength,N)
-                // set_directive_array_partition [-type complete] location variable -> (directiveIndex,1,arrayLength,0)
+                // set_directive_array_partition -type T -dim N -factor M location local_variable -> (directiveIndex,1,1,T,M,N)
+                // set_directive_array_partition [-type complete] -dim N location global_variable -> (directiveIndex,1,0,1,arrayLength,N)
+                // set_directive_array_partition [-type complete] location local_variable -> (directiveIndex,1,1,1,arrayLength,0)
                 std::string type = "complete";
-                uint32_t typeCode, dim = 0, factor = 1;
+                uint32_t typeCode, dim = 0, factor = 0;
                 size_t numTokens = directiveTokens.size();
 
                 std::string variable;
@@ -226,13 +230,15 @@ struct AddDirectivesMD : public ModulePass {
                         factor = arrayLength;
                     }
 
-                    SmallVector<Metadata*, 5> arrayPartitionMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex)),
+                    SmallVector<Metadata*, 6> arrayPartitionMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex)),
+                                                                  ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1)),
                                                                   ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)), // 0 for global variable
                                                                   ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), typeCode)),
                                                                   ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), factor)),
                                                                   ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), dim))};
 
                     GV->setMetadata("arrayPartition", MDTuple::get(ctx, arrayPartitionMD));
+                    arrayID++;
 
                     for (Use& U : GV->uses()) {
                         if (Instruction* op = dyn_cast<Instruction>(U.getUser())) {
@@ -276,13 +282,15 @@ struct AddDirectivesMD : public ModulePass {
                         	        factor = arrayLength;
                     		    }
 
-                                SmallVector<Metadata*, 5> arrayPartitionMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex)),
+                                SmallVector<Metadata*, 6> arrayPartitionMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex)),
+                                                                              ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1)),
                                                                               ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1)), // 1 for local variable
                                                                               ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), typeCode)),
                                                                               ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), factor)),
                                                                               ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), dim))};
 
                                 I->setMetadata("arrayPartition", MDTuple::get(ctx, arrayPartitionMD));
+                                arrayID++;
 
                                 for (Use& U : I->uses()) {
                                     if (Instruction* op = dyn_cast<Instruction>(U.getUser())) {
@@ -299,7 +307,7 @@ struct AddDirectivesMD : public ModulePass {
                 }
                 directiveIndex++;
             } else if (directiveTokens[0] == "set_directive_loop_flatten") {
-                // set_directive_loop_flatten function/loop -> (1)
+                // set_directive_loop_flatten function/loop -> (directiveIndex,1)
                 std::string location = directiveTokens[1];
                 size_t slashPos = location.find_first_of('/');
                 std::string functionName = location.substr(0, slashPos);
@@ -317,7 +325,8 @@ struct AddDirectivesMD : public ModulePass {
                         if (BB->hasName() && BB->getName() == loopName) {
                             DEBUG(errs() << "Found loop " << loopName << "\n");
 
-                            SmallVector<Metadata*, 1> loopFlattenMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex))};
+                            SmallVector<Metadata*, 2> loopFlattenMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex)),
+                                                                       ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1))};
 
                             for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
                                 Instruction* I = &*II;
@@ -330,7 +339,7 @@ struct AddDirectivesMD : public ModulePass {
                 }
                 directiveIndex++;
             } else if (directiveTokens[0] == "set_directive_loop_merge") {
-                // set_directive_loop_merge function/loop -> (1)
+                // set_directive_loop_merge function/loop -> (directiveIndex,1)
                 std::string location = directiveTokens[1];
                 size_t slashPos = location.find_first_of('/');
                 std::string functionName = location.substr(0, slashPos);
@@ -348,7 +357,8 @@ struct AddDirectivesMD : public ModulePass {
                         if (BB->hasName() && BB->getName() == loopName) {
                             DEBUG(errs() << "Found loop " << loopName << "\n");
 
-                            SmallVector<Metadata*, 1> loopMergeMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex))};
+                            SmallVector<Metadata*, 1> loopMergeMD = {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex)),
+                                                                     ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1))};
 
                             for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
                                 Instruction* I = &*II;

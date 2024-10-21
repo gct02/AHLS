@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math
+from torch_geometric.utils import softmax
 from torch_geometric.nn.conv import MessagePassing
 from torch_geometric.nn.inits import glorot, uniform
 
