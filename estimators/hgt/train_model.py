@@ -131,7 +131,7 @@ def main(args):
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        model = HGT(30, 15, 15, 20, 8, 4, 4, 1)
+        model = HGT(32, 20, 21, 24, 8, 4, 4, 1)
         model = model.to(device)
 
         loss_func = RMSELoss
