@@ -7,13 +7,14 @@ DEVICE_NUM_FF = 1740000
 DEVICE_NUM_DSP = 5952
 
 class HLSDataset(Dataset):
-    def __init__(self, data_path, target_metric, test_set_index=None, get_test=False):
+    def __init__(self, data_path, target_metric, test_set_index=None, get_test=False, max_instances_per_benchmark=200):
         target_metric = target_metric.lower().strip()
         assert target_metric in ["lut", "ff", "dsp", "bram", "cp"], "target_metric should be one of ['lut', 'ff', 'dsp', 'bram', 'cp']"
         self.target = target_metric
         self.data_path = data_path
         self.test_set_index = test_set_index
         self.get_test = get_test
+        self.max_instances = max_instances_per_benchmark
         self.data = []
         self.__load_data()
 
@@ -30,6 +31,7 @@ class HLSDataset(Dataset):
     def __load_data(self):
         self.data = []
         benchmarks = sorted(os.listdir(self.data_path))
+
         if self.get_test:
             if self.test_set_index is not None:
                 benchmarks = [benchmarks[self.test_set_index]]
@@ -38,16 +40,27 @@ class HLSDataset(Dataset):
         else:
             if self.test_set_index is not None:
                 del benchmarks[self.test_set_index]
+
         for benchmark in benchmarks:
             benchmark_folder = os.fsdecode(os.path.join(self.data_path, benchmark))
             instances = sorted(os.listdir(benchmark_folder))
+
+            i = 0
             for instance in instances:
                 instance_folder = os.fsdecode(os.path.join(benchmark_folder, instance))
 
                 cdfg_path = os.path.join(instance_folder, "cdfg.pkl")
+
+                if not os.path.exists(cdfg_path):
+                    continue
+
                 cdfg = pickle.load(open(cdfg_path, 'rb'))
 
                 with open(os.path.join(instance_folder, f"{self.target}.txt"), 'r') as f:
                     target_value = torch.FloatTensor([float(f.readline().strip())])
 
                 self.data.append((cdfg, target_value))
+
+                i += 1
+                if i >= self.max_instances:
+                    break

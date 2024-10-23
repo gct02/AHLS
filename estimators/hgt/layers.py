@@ -6,12 +6,15 @@ from torch_geometric.utils import softmax
 from torch_geometric.nn.conv import MessagePassing
 from torch_geometric.nn.inits import glorot, uniform
 
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+
 class HGTLayer(MessagePassing):
     def __init__(self, in_dim, out_dim, n_heads, use_norm:bool=False, dropout:float=0.5, **kwargs):
         super(HGTLayer, self).__init__(node_dim=0, aggr='add', **kwargs)
 
         self.in_dim = in_dim
         self.n_heads = n_heads
+        self.out_dim = out_dim
 
         assert out_dim % n_heads == 0
 
@@ -36,13 +39,13 @@ class HGTLayer(MessagePassing):
         self.m_linears_var = nn.ModuleList([nn.Linear(in_dim, self.hid_dim, bias=True) for _ in range(n_heads)])
         self.m_linears_const = nn.ModuleList([nn.Linear(in_dim, self.hid_dim, bias=True) for _ in range(n_heads)])
 
-        self.a_linears_inst = nn.Linear(out_dim, out_dim, bias=False)
-        self.a_linears_var = nn.Linear(out_dim, out_dim, bias=False)
+        self.a_linears_inst = nn.Linear(out_dim, in_dim, bias=False)
+        self.a_linears_var = nn.Linear(out_dim, in_dim, bias=False)
     
         if use_norm:
-            self.norm_inst = nn.LayerNorm(out_dim)
-            self.norm_var = nn.LayerNorm(out_dim)
-            self.norm_const = nn.LayerNorm(out_dim)
+            self.norm_inst = nn.LayerNorm(in_dim)
+            self.norm_var = nn.LayerNorm(in_dim)
+            self.norm_const = nn.LayerNorm(in_dim)
 
         self.relation_prior = nn.Parameter(torch.ones(self.n_meta_relations, 1))
 
@@ -82,10 +85,10 @@ class HGTLayer(MessagePassing):
         const_key = torch.stack([linear(h_const) for linear in self.k_linears_const])
 
         # Attention for Inst target nodes
-        att_inst_control_inst = torch.stack([torch.mm(inst_key[i], torch.mm(self.W_att_control, inst_query[i])) * (self.relation_prior[0] / self.sqrt_hid_dim) for i in range(self.n_heads)])
-        att_inst_call_inst = torch.stack([torch.mm(inst_key[i], torch.mm(self.W_att_call, inst_query[i])) * (self.relation_prior[1] / self.sqrt_hid_dim) for i in range(self.n_heads)])
-        att_var_data_inst = torch.stack([torch.mm(var_key[i], torch.mm(self.W_att_data, var_query[i])) * (self.relation_prior[3] / self.sqrt_hid_dim) for i in range(self.n_heads)])
-        att_const_data_inst = torch.stack([torch.mm(const_key[i], torch.mm(self.W_att_data, var_query[i])) * (self.relation_prior[4] / self.sqrt_hid_dim)  for i in range(self.n_heads)])
+        att_inst_control_inst = torch.stack([torch.mm(inst_key[i], torch.mm(self.W_att_control, inst_query[i].transpose(0, 1))) * (self.relation_prior[0] / self.sqrt_hid_dim) for i in range(self.n_heads)])
+        att_inst_call_inst = torch.stack([torch.mm(inst_key[i], torch.mm(self.W_att_call, inst_query[i].transpose(0, 1))) * (self.relation_prior[1] / self.sqrt_hid_dim) for i in range(self.n_heads)])
+        att_var_data_inst = torch.stack([torch.mm(var_key[i], torch.mm(self.W_att_data, inst_query[i].transpose(0, 1))) * (self.relation_prior[3] / self.sqrt_hid_dim) for i in range(self.n_heads)])
+        att_const_data_inst = torch.stack([torch.mm(const_key[i], torch.mm(self.W_att_data, inst_query[i].transpose(0, 1))) * (self.relation_prior[4] / self.sqrt_hid_dim)  for i in range(self.n_heads)])
 
         n_inst = h_inst.shape[0]
         n_var = h_var.shape[0]
@@ -99,10 +102,9 @@ class HGTLayer(MessagePassing):
         att_inst = F.softmax(att_inst, dim=1)
         
         # Attention for Var target nodes
-        att_inst_data_var = torch.stack([torch.mm(inst_key[i], torch.mm(self.W_att_data, var_query[i])) * (self.relation_prior[2] / self.sqrt_hid_dim) for i in range(self.n_heads)])
+        att_inst_data_var = torch.stack([torch.mm(inst_key[i], torch.mm(self.W_att_data, var_query[i].transpose(0, 1))) * (self.relation_prior[2] / self.sqrt_hid_dim) for i in range(self.n_heads)])
 
         att_inst_data_var[:, adj_mat_data[:n_inst, n_inst:n_inst + n_var] == 0] = -9e15
-
         att_var = F.softmax(att_inst_data_var, dim=1)
 
         return att_inst, att_var
@@ -115,27 +117,30 @@ class HGTLayer(MessagePassing):
         m_const_data = torch.stack([torch.mm(linear(h_const), self.W_msg_data) for linear in self.m_linears_const])
 
         m_targeting_inst = torch.cat([m_inst_control, m_inst_call, m_var_data, m_const_data], dim=1)
-        m_targeting_var = torch.cat([m_inst_data], dim=1)
+        m_targeting_var = m_inst_data
 
         return m_targeting_inst, m_targeting_var
     
     def aggregate(self, m_targeting_inst, m_targeting_var, att_inst, att_var):
-        n_inst = att_inst.shape[1]
-        n_var = att_var.shape[1]
+        n_inst = att_inst.shape[-1]
+        n_var = att_var.shape[-1]
 
-        h_updated_inst = torch.zeros_like(m_targeting_inst)
-        h_updated_var = torch.zeros_like(m_targeting_var)
+        h_updated_inst = torch.zeros(self.n_heads, n_inst, self.hid_dim)
+        h_updated_var = torch.zeros(self.n_heads, n_var, self.hid_dim)
 
         for i in range(self.n_heads):
-            h_updated_inst[i] = att_inst[i].transpose(0, 1) @ m_targeting_inst[i]
-            h_updated_var[i] = att_var[i].transpose(0, 1) @ m_targeting_var[i]
+            h_updated_inst[i] = torch.mm(att_inst[i].transpose(0, 1), m_targeting_inst[i])
+            h_updated_var[i] = torch.mm(att_var[i].transpose(0, 1), m_targeting_var[i])
 
-        h_updated_inst = h_updated_inst.view(n_inst, self.out_dim)
-        h_updated_var = h_updated_var.view(n_var, self.out_dim)
+        h_updated_inst = h_updated_inst.view(-1, self.out_dim)
+        h_updated_var = h_updated_var.view(-1, self.out_dim)
 
         return h_updated_inst, h_updated_var
     
     def update(self, h_inst, h_var, h_const, h_updated_inst, h_updated_var):
+        h_updated_inst = h_updated_inst.to(device)
+        h_updated_var = h_updated_var.to(device)
+
         h_inst = self.dropout(self.a_linears_inst(F.elu(h_updated_inst))) + h_inst
         h_var = self.dropout(self.a_linears_var(F.elu(h_updated_var))) + h_var
 

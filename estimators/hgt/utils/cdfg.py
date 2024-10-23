@@ -195,7 +195,13 @@ def get_node_features(programl_graph, metadata, ir_op_texts, ir_global_texts):
                 var_node_indices.append(i)
             else: # Constant
                 if is_int == 1:
-                    const_value = int(full_text.split(' ')[-1])
+                    value_text = full_text.split(' ')[-1]
+                    if value_text == 'true':
+                        const_value = 1
+                    elif value_text == 'false':
+                        const_value = 0
+                    else:
+                        const_value = int(value_text)
                 elif is_fp == 1:
                     const_value = float(full_text.split(' ')[-1])
                 else:
@@ -236,17 +242,13 @@ def build_cdfg(ir_path:Path):
     with open(ir_path, 'r') as ir_file:
         ir_text = ir_file.read()
         programl_graph = programl.from_llvm_ir(ir_text)
-
-        # with open("estimators/hgt/utils/test_pgml.txt", 'w') as f:
-        #    f.write(str(programl_graph))
-
         ir_lines = ir_text.split('\n')
         ir_op_texts = [ir_op_text for ir_op_text in ir_lines if '!opID' in ir_op_text]
         ir_global_texts = [ir_global_text for ir_global_text in ir_lines if '!globalID' in ir_global_text]
 
     metadata = get_metadata(ir_path)
-    inst_nodes, var_nodes, const_nodes, inst_indices, var_indices, const_indices = get_node_features(programl_graph, metadata, ir_op_texts, ir_global_texts)
 
+    inst_nodes, var_nodes, const_nodes, inst_indices, var_indices, const_indices = get_node_features(programl_graph, metadata, ir_op_texts, ir_global_texts)
     control_adj, data_adj, call_adj = make_adj_mat(programl_graph.edge, inst_indices, var_indices, const_indices)
 
     return inst_nodes, var_nodes, const_nodes, control_adj, data_adj, call_adj
@@ -257,15 +259,5 @@ if __name__ == "__main__":
     inst_nodes, var_nodes, const_nodes, adj_mat_control, adj_mat_data, adj_mat_call = build_cdfg(ir_path)
 
     with open(output_path, "w") as f:
-        f.write("inst_nodes\n")
-        f.write(str(inst_nodes) + "\n")
-        f.write("var_nodes\n")
-        f.write(str(var_nodes) + "\n")
-        f.write("const_nodes\n")
-        f.write(str(const_nodes) + "\n")
-        f.write("adj_mat_control\n")
-        f.write(str(adj_mat_control) + "\n")
-        f.write("adj_mat_data\n")
-        f.write(str(adj_mat_data) + "\n")
-        f.write("adj_mat_call\n")
-        f.write(str(adj_mat_call) + "\n")
+        f.write("inst_nodes:\n" + str(inst_nodes) + "\n" + "var_nodes:\n" + str(var_nodes) + "\n" + "const_nodes:\n" + str(const_nodes)\
+                + "\n" + "adj_mat_control:\n" + str(adj_mat_control) + "\n" + "adj_mat_data:\n" + str(adj_mat_data) + "\n" + "adj_mat_call:\n" + str(adj_mat_call) + "\n")

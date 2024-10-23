@@ -45,17 +45,16 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
         model.train()
 
         for batch_samples, batch_labels in train_loader:
-            G_0, G_1 = batch_samples[0]
-            x_0, x_1 = G_0[0], G_1[0]
-            adj_0, adj_1 = G_0[1], G_1[1]
+            x_inst, x_var, x_const, adj_control, adj_data, adj_call = batch_samples[0]
             
-            x_0, x_1 = x_0.to(device), x_1.to(device)
-            adj_0, adj_1 = adj_0.to(device), adj_1.to(device)
+            x_inst, x_var, x_const = x_inst.to(device), x_var.to(device), x_const.to(device)
+            adj_control, adj_data, adj_call = adj_control.to(device), adj_data.to(device), adj_call.to(device)
 
-            y_pred = model(x_0, adj_0, x_1, adj_1) 
+            y_pred = model(x_inst, x_var, x_const, adj_control, adj_data, adj_call)
 
             y = batch_labels[0]
             y = y.to(device)
+
             loss = loss_func(y_pred, y)
 
             optimizer.zero_grad()
@@ -68,8 +67,8 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
                scheduler.step()
 
             # Move the instances to the CPU
-            x_0, x_1 = x_0.to("cpu"), x_1.to("cpu")
-            adj_0, adj_1 = adj_0.to("cpu"), adj_1.to("cpu")
+            x_inst, x_var, x_const = x_inst.to("cpu"), x_var.to("cpu"), x_const.to("cpu")
+            adj_control, adj_data, adj_call = adj_control.to("cpu"), adj_data.to("cpu"), adj_call.to("cpu")
             y = y.to("cpu")
 
             torch.cuda.empty_cache()
@@ -81,29 +80,29 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
         test_loss_epoch = 0
         with torch.no_grad():
             for i, (batch_samples, batch_labels) in enumerate(test_loader):
-                G_0, G_1 = batch_samples[0]
-                x_0, x_1 = G_0[0], G_1[0]
-                adj_0, adj_1 = G_0[1], G_1[1]
+                x_inst, x_var, x_const, adj_control, adj_data, adj_call = batch_samples[0]
 
-                x_0, x_1 = x_0.to(device), x_1.to(device)
-                adj_0, adj_1 = adj_0.to(device), adj_1.to(device)
-                y_pred = model(x_0, adj_0, x_1, adj_1)
+                x_inst, x_var, x_const = x_inst.to(device), x_var.to(device), x_const.to(device)
+                adj_control, adj_data, adj_call = adj_control.to(device), adj_data.to(device), adj_call.to(device)
+
+                y_pred = model(x_inst, x_var, x_const, adj_control, adj_data, adj_call)
 
                 y = batch_labels[0]
                 y = y.to(device)
+
                 loss = loss_func(y_pred, y)
 
-                x_0, x_1 = x_0.to("cpu"), x_1.to("cpu")
-                adj_0, adj_1 = adj_0.to("cpu"), adj_1.to("cpu")
+                # Move the instances to the CPU
+                x_inst, x_var, x_const = x_inst.to("cpu"), x_var.to("cpu"), x_const.to("cpu")
+                adj_control, adj_data, adj_call = adj_control.to("cpu"), adj_data.to("cpu"), adj_call.to("cpu")
                 y = y.to("cpu")
 
                 torch.cuda.empty_cache()
                 
+                test_loss_epoch += loss.item()
                 test_preds_inst[i].append([y_pred.item(), y.item()])
 
                 print(f"Labels: {y}; Predictions: {y_pred}; Loss: {loss.item()}")
-
-                test_loss_epoch += loss.item()
         
         test_loss_epoch = test_loss_epoch / n_instances
         test_losses.append(test_loss_epoch)
@@ -131,13 +130,14 @@ def main(args):
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        model = HGT(32, 20, 21, 24, 8, 4, 4, 1)
+        model = HGT(32, 20, 21, 16, 6, 4, 3, 1)
         model = model.to(device)
 
         loss_func = RMSELoss
 
-        optimizer = torch.optim.AdamW(model.parameters(), lr=5e-3, betas=(0.8, 0.999))
-        scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=batch_size, T_mult=2, eta_min=0)
+        optimizer = torch.optim.AdamW(model.parameters(), eps=1e-6, lr=5e-3, betas=(0.8, 0.999))
+        scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, pct_start=0.05, anneal_strategy='linear', final_div_factor=10,\
+                                max_lr = 5e-3, total_steps = batch_size * epochs + 1)
 
         train_losses, test_losses, test_preds_inst = train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, scheduler)
 
