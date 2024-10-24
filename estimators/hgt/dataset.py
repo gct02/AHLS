@@ -8,7 +8,6 @@ DEVICE_NUM_DSP = 5952
 
 class HLSDataset(Dataset):
     def __init__(self, data_path, target_metric, test_set_index=None, get_test=False, max_instances_per_benchmark=200):
-        target_metric = target_metric.lower().strip()
         assert target_metric in ["lut", "ff", "dsp", "bram", "cp"], "target_metric should be one of ['lut', 'ff', 'dsp', 'bram', 'cp']"
         self.target = target_metric
         self.data_path = data_path

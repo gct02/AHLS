@@ -5,14 +5,14 @@ import matplotlib
 import matplotlib.pyplot as plt
 from pathlib import Path
 from torch.utils.data import Dataset, DataLoader
-from estimators.hgt.models import HGT
+from estimators.hgt.models import HAN
 from estimators.hgt.dataset import HLSDataset
 
 matplotlib.use('Agg')
 
 gc.collect()
 
-device = torch.device("cuda:0")
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 torch.backends.cudnn.benchmark = True
 
 torch.set_printoptions(precision=6, threshold=1000, edgeitems=10, linewidth=200, profile="short", sci_mode=False)
@@ -45,12 +45,15 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
         model.train()
 
         for batch_samples, batch_labels in train_loader:
-            x_inst, x_var, x_const, adj_control, adj_data, adj_call = batch_samples[0]
+            x_dict, edge_index_dict = batch_samples[0]
             
-            x_inst, x_var, x_const = x_inst.to(device), x_var.to(device), x_const.to(device)
-            adj_control, adj_data, adj_call = adj_control.to(device), adj_data.to(device), adj_call.to(device)
+            for key in x_dict:
+                x_dict[key] = x_dict[key].to(device)
+            
+            for key in edge_index_dict:
+                edge_index_dict[key] = edge_index_dict[key].to(device)
 
-            y_pred = model(x_inst, x_var, x_const, adj_control, adj_data, adj_call)
+            y_pred = model(x_dict, edge_index_dict)
 
             y = batch_labels[0]
             y = y.to(device)
@@ -67,8 +70,12 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
                scheduler.step()
 
             # Move the instances to the CPU
-            x_inst, x_var, x_const = x_inst.to("cpu"), x_var.to("cpu"), x_const.to("cpu")
-            adj_control, adj_data, adj_call = adj_control.to("cpu"), adj_data.to("cpu"), adj_call.to("cpu")
+            for key in x_dict:
+                x_dict[key] = x_dict[key].to("cpu")
+            
+            for key in edge_index_dict:
+                edge_index_dict[key] = edge_index_dict[key].to("cpu")
+
             y = y.to("cpu")
 
             torch.cuda.empty_cache()
@@ -80,12 +87,15 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
         test_loss_epoch = 0
         with torch.no_grad():
             for i, (batch_samples, batch_labels) in enumerate(test_loader):
-                x_inst, x_var, x_const, adj_control, adj_data, adj_call = batch_samples[0]
+                x_dict, edge_index_dict = batch_samples[0]
+            
+                for key in x_dict:
+                    x_dict[key] = x_dict[key].to(device)
+                
+                for key in edge_index_dict:
+                    edge_index_dict[key] = edge_index_dict[key].to(device)
 
-                x_inst, x_var, x_const = x_inst.to(device), x_var.to(device), x_const.to(device)
-                adj_control, adj_data, adj_call = adj_control.to(device), adj_data.to(device), adj_call.to(device)
-
-                y_pred = model(x_inst, x_var, x_const, adj_control, adj_data, adj_call)
+                y_pred = model(x_dict, edge_index_dict)
 
                 y = batch_labels[0]
                 y = y.to(device)
@@ -93,8 +103,12 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
                 loss = loss_func(y_pred, y)
 
                 # Move the instances to the CPU
-                x_inst, x_var, x_const = x_inst.to("cpu"), x_var.to("cpu"), x_const.to("cpu")
-                adj_control, adj_data, adj_call = adj_control.to("cpu"), adj_data.to("cpu"), adj_call.to("cpu")
+                for key in x_dict:
+                    x_dict[key] = x_dict[key].to("cpu")
+
+                for key in edge_index_dict:
+                    edge_index_dict[key] = edge_index_dict[key].to("cpu")
+
                 y = y.to("cpu")
 
                 torch.cuda.empty_cache()
@@ -115,7 +129,7 @@ def main(args):
     batch_size = int(args['batch'])
     seed = int(args['seed'])
     dataset_path = args['dataset']
-    target = args['target']
+    target_metric = args['target']
 
     torch.manual_seed(seed)
     
@@ -124,27 +138,29 @@ def main(args):
     for i in range(n_benchs):
         bench_name = os.listdir(dataset_path)[i]
 
-        train_dataset = HLSDataset(dataset_path, target, test_set_index=i, get_test=False)
-        test_dataset = HLSDataset(dataset_path, target, test_set_index=i, get_test=True)
+        train_dataset = HLSDataset(dataset_path, target_metric, test_set_index=i, get_test=False)
+        test_dataset = HLSDataset(dataset_path, target_metric, test_set_index=i, get_test=True)
 
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        model = HGT(32, 20, 21, 16, 6, 4, 3, 1)
+        in_features = {'inst': 32, 'var': 20, 'const': 21}
+
+        model = HAN(in_features, 24, 16, 4, 4, 1)
         model = model.to(device)
 
         loss_func = RMSELoss
 
-        optimizer = torch.optim.AdamW(model.parameters(), eps=1e-6, lr=5e-3, betas=(0.8, 0.999))
+        optimizer = torch.optim.AdamW(model.parameters(), lr=5e-3, betas=(0.8, 0.999))
         scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, pct_start=0.05, anneal_strategy='linear', final_div_factor=10,\
-                                max_lr = 5e-3, total_steps = batch_size * epochs + 1)
+                                max_lr=5e-3, total_steps=batch_size * epochs + 1)
 
         train_losses, test_losses, test_preds_inst = train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, scheduler)
 
-        save_model(model, "estimators/hgt/models", f"hgt_{target}_{bench_name}.pth")
+        save_model(model, "estimators/hgt/models", f"hgt_{target_metric}_{bench_name}.pth")
 
-        model_stats_folder = f"estimators/hgt/model_analysis/stats/data_{target}"
-        model_graphs_folder = f"estimators/hgt/model_analysis/graphs/data_{target}"
+        model_stats_folder = f"estimators/hgt/model_analysis/stats/data_{target_metric}"
+        model_graphs_folder = f"estimators/hgt/model_analysis/graphs/data_{target_metric}"
 
         os.makedirs(model_stats_folder, exist_ok=True)
         os.makedirs(model_graphs_folder, exist_ok=True)

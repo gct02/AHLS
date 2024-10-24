@@ -1,60 +1,69 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import math
-from estimators.hgt.layers import HGTLayer
+from torch_geometric.nn.conv import HANConv
+from torch_geometric.nn.inits import glorot
+from torch.nn import MultiheadAttention
 
-class HGT(nn.Module):
-    def __init__(self, inst_features_dim, var_features_dim, const_features_dim, hid_dim_l1, hid_dim_l2, n_heads_l1, n_heads_l2, out_dim):
-        super(HGT, self).__init__()
+class SetTransformer(nn.Module):
+    def __init__(self, input_dim, output_dim, num_heads=4, num_inducing_points=8):
+        super(SetTransformer, self).__init__()
+        self.multihead_attn = MultiheadAttention(input_dim, num_heads)
+        self.inducing_points = nn.Parameter(torch.Tensor(num_inducing_points, input_dim))
+        glorot(self.inducing_points)
+        self.fc_out = nn.Linear(input_dim, output_dim)
 
-        in_dim = math.ceil((inst_features_dim + var_features_dim + const_features_dim) / 3)
+    def forward(self, x):
+        x, _ = self.multihead_attn(self.inducing_points, x, x)  # Shape: (num_inducing_points, input_dim)
+        x = torch.mean(x, dim=0)  # Aggregate inducing points to a single vector
+        return self.fc_out(x)
 
-        self.proj_inst = nn.Linear(inst_features_dim, in_dim, bias=True)
-        self.proj_var = nn.Linear(var_features_dim, in_dim, bias=True)
-        self.proj_const = nn.Linear(const_features_dim, in_dim, bias=True)
+class HAN(nn.Module):
+    def __init__(self, in_features:dict, hid_dim_l1, hid_dim_l2, n_heads_l1, n_heads_l2, out_dim):
+        super(HAN, self).__init__()
 
-        self.hgt1 = HGTLayer(in_dim=in_dim, out_dim=hid_dim_l1, n_heads=n_heads_l1, use_norm=True, dropout=0.4)
-        self.linear1 = nn.Linear(in_dim, hid_dim_l1, bias=True)
+        node_types = ['inst', 'var', 'const']
+        edge_types = [('inst', 'control', 'inst'), ('inst', 'call', 'inst'), ('inst', 'data', 'var'), ('var', 'data', 'inst'), ('const', 'data', 'inst')]
+        metadata = (node_types, edge_types)
 
-        self.hgt2 = HGTLayer(in_dim=hid_dim_l1, out_dim=hid_dim_l2, n_heads=n_heads_l2, use_norm=True, dropout=0.2)
-        self.linear2 = nn.Linear(hid_dim_l1, hid_dim_l2, bias=True)
+        self.han_conv_1 = HANConv(in_channels=in_features, out_channels=hid_dim_l1, metadata=metadata, heads=n_heads_l1, negative_slope=0.1, dropout=0.4)
+        self.han_conv_2 = HANConv(in_channels=hid_dim_l1, out_channels=hid_dim_l2, metadata=metadata, heads=n_heads_l2, negative_slope=0.1, dropout=0.2)
+        self.han_conv_3 = HANConv(in_channels=hid_dim_l2, out_channels=8 * out_dim, metadata=metadata, heads=4, negative_slope=0.1)
 
-        self.hgt3 = HGTLayer(in_dim=hid_dim_l2, out_dim=3 * out_dim, n_heads=3, use_norm=False, dropout=0.0)
-        self.linear3 = nn.Linear(hid_dim_l2, 3 * out_dim, bias=True)
+        self.set_transformer_inst = SetTransformer(8 * out_dim, 4 * out_dim)
+        self.set_transformer_var = SetTransformer(8 * out_dim, 4 * out_dim)
 
-        self.linear_out = nn.Linear(3 * out_dim, out_dim, bias=True)
+        self.fc_out = nn.Linear(4 * out_dim, out_dim, bias=True)
 
         self.reset_parameters()
 
     def reset_parameters(self):
         # Initialize bias with a small positive value to prevent propagation of negative values
-        nn.init.constant_(self.proj_inst.bias, 0.1)
-        nn.init.constant_(self.proj_var.bias, 0.1)
-        nn.init.constant_(self.proj_const.bias, 0.1)
-        nn.init.constant_(self.linear_out.bias, 0.1)
+        nn.init.constant_(self.fc_out.bias, 0.01)
 
-    def forward(self, inst_nodes, var_nodes, const_nodes,
-                adj_mat_control, adj_mat_data, adj_mat_call):
-        h_inst = self.proj_inst(inst_nodes)
-        h_var = self.proj_var(var_nodes)
-        h_const = self.proj_const(const_nodes)
+    def forward(self, x_dict, edge_index_dict):
+        x_dict = self.han_conv_1(x_dict, edge_index_dict)
+        x_dict['inst'] = F.elu(x_dict['inst'])
+        x_dict['var'] = F.elu(x_dict['var'])
 
-        h_inst, h_var, h_const = self.hgt1(h_inst, h_var, h_const, adj_mat_control, adj_mat_data, adj_mat_call)
-        h_inst = F.elu(self.linear1(h_inst))
-        h_var = F.elu(self.linear1(h_var))
-        h_const = F.elu(self.linear1(h_const))
+        if 'const' in x_dict:
+            x_dict.pop('const')
 
-        h_inst, h_var, h_const = self.hgt2(h_inst, h_var, h_const, adj_mat_control, adj_mat_data, adj_mat_call)
-        h_inst = F.elu(self.linear2(h_inst))
-        h_var = F.elu(self.linear2(h_var))
-        h_const = F.elu(self.linear2(h_const))
+        if ('const', 'data', 'inst') in edge_index_dict:
+            edge_index_dict.pop(('const', 'data', 'inst'))
 
-        h_inst, h_var, h_const = self.hgt3(h_inst, h_var, h_const, adj_mat_control, adj_mat_data, adj_mat_call)
-        h_inst = F.elu(self.linear3(h_inst))
-        h_var = F.elu(self.linear3(h_var))
-        h_const = F.elu(self.linear3(h_const))
+        x_dict = self.han_conv_2(x_dict, edge_index_dict)
+        x_dict['inst'] = F.elu(x_dict['inst'])
+        x_dict['var'] = F.elu(x_dict['var'])
 
-        h = torch.sum(torch.cat([h_inst, h_var, h_const], dim=0), dim=0)
-        h = F.leaky_relu(self.linear_out(h), negative_slope=0.01)
-        return h
+        x_dict = self.han_conv_3(x_dict, edge_index_dict)
+        x_dict['inst'] = F.elu(x_dict['inst'])
+        x_dict['var'] = F.elu(x_dict['var'])
+
+        inst_agg = self.set_transformer_inst(x_dict['inst'])
+        var_agg = self.set_transformer_var(x_dict['var'])
+
+        agg = inst_agg + var_agg
+        agg = self.fc_out(F.leaky_relu(agg, negative_slope=0.01))
+
+        return agg

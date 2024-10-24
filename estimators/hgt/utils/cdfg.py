@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 import programl
-import re
+import re, gc
 from pathlib import Path
 
 torch.set_printoptions(profile="full")
@@ -131,9 +131,9 @@ def get_type_bitwidth(text:str):
         return 64
     return int(text.strip('i'))
 
-def get_node_features(programl_graph, metadata, ir_op_texts, ir_global_texts):
-    inst_node_features, var_node_features, const_node_features = [], [], []
-    inst_node_indices, var_node_indices, const_node_indices = [], [], []
+def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts):
+    nodes = {'inst': [], 'var': [], 'const': []}
+    inst_indices, var_indices, const_indices = [], [], []
 
     for i, node in enumerate(programl_graph.node):
         function = node.function + 1
@@ -146,23 +146,20 @@ def get_node_features(programl_graph, metadata, ir_op_texts, ir_global_texts):
         if node.type == 0:  # Instruction
             if "ID." not in full_text:
                 features = [function, block] + 30 * [0]
-                inst_node_features.append(torch.tensor(features, dtype=torch.float32))
-                inst_node_indices.append(i)
-                continue
+            else:
+                op_id = int(full_text.split('ID.')[1].split(' ')[0])
+                full_text = ir_op_texts[op_id - 1]
 
-            op_id = int(full_text.split('ID.')[1].split(' ')[0])
-            full_text = ir_op_texts[op_id - 1]
+                instruction = text.split(' ')[0]
+                one_hot_opcode = get_one_hot_opcode(instruction)
+                loop_depth = metadata[int(full_text.split('!loopDepth !')[1].strip().split(',')[0])][0]
+                directives_features = get_directives_features(full_text, metadata, 0)
 
-            instruction = text.split(' ')[0]
-            one_hot_opcode = get_one_hot_opcode(instruction)
+                features = [function, block, loop_depth] + one_hot_opcode + directives_features
 
-            directives_features = get_directives_features(full_text, metadata, 0)
-
-            loop_depth = metadata[int(full_text.split('!loopDepth !')[1].strip().split(',')[0])][0]
-
-            features = [function, block, loop_depth] + one_hot_opcode + directives_features
-            inst_node_features.append(torch.tensor(features, dtype=torch.float32))
-            inst_node_indices.append(i)
+            features = torch.tensor(features, dtype=torch.float32)
+            nodes['inst'].append(features)
+            inst_indices.append(i)
 
         elif node.type == 1 or node.type == 2: # Variable or Constant
             if (operation_text := find_instruction(ir_op_texts, full_text)) is not None:
@@ -190,9 +187,11 @@ def get_node_features(programl_graph, metadata, ir_op_texts, ir_global_texts):
             bitwidth = get_type_bitwidth(text)
 
             if node.type == 1: # Variable
-                features = [function, block, bitwidth, is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector] + directives_features
-                var_node_features.append(torch.tensor(features, dtype=torch.float32))
-                var_node_indices.append(i)
+                features = [function, block, bitwidth, is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector]\
+                    + directives_features
+                features = torch.tensor(features, dtype=torch.float32)
+                nodes['var'].append(features)
+                var_indices.append(i)
             else: # Constant
                 if is_int == 1:
                     value_text = full_text.split(' ')[-1]
@@ -206,58 +205,101 @@ def get_node_features(programl_graph, metadata, ir_op_texts, ir_global_texts):
                     const_value = float(full_text.split(' ')[-1])
                 else:
                     const_value = 0 # Placeholder for now
-                features = [function, block, bitwidth, is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector, const_value] + directives_features
-                const_node_features.append(torch.tensor(features, dtype=torch.float32))
-                const_node_indices.append(i)
+                    
+                features = [function, block, bitwidth, is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector, const_value]\
+                    + directives_features
+                features = torch.tensor(features, dtype=torch.float32)
+                nodes['const'].append(features)
+                const_indices.append(i)
         
-    inst_node_features = torch.stack(inst_node_features)
-    var_node_features = torch.stack(var_node_features)
-    const_node_features = torch.stack(const_node_features)
-        
-    return inst_node_features, var_node_features, const_node_features,\
-           inst_node_indices, var_node_indices, const_node_indices
+    nodes['inst'] = torch.stack(nodes['inst'])
+    nodes['var'] = torch.stack(nodes['var'])
+    nodes['const'] = torch.stack(nodes['const'])
+    
+    return nodes, inst_indices, var_indices, const_indices
 
-def make_adj_mat(edges, inst_node_indices:list, var_node_indices:list, const_node_indices:list):
-    node_indices = inst_node_indices + var_node_indices + const_node_indices
-    n_inst_nodes = len(inst_node_indices)
-    n_nodes = len(node_indices)
+def get_edges(programl_graph, inst_indices, var_indices, const_indices):
+    edges = {('inst', 'control', 'inst'): [], ('inst', 'call', 'inst'): [], ('inst', 'data', 'var'): [],
+             ('var', 'data', 'inst'): [], ('const', 'data', 'inst'): []}
+    
+    for edge in programl_graph.edge:
+        source = edge.source
+        target = edge.target
+        source_type = programl_graph.node[source].type
+        target_type = programl_graph.node[target].type
 
-    adj_mat_control = torch.zeros(n_inst_nodes, n_inst_nodes)
-    adj_mat_call = torch.zeros(n_inst_nodes, n_inst_nodes)
-    adj_mat_data = torch.zeros(n_nodes, n_nodes)
+        if source_type == 0:
+            assert source in inst_indices
+            source_idx = inst_indices.index(source)
+            if target_type == 0:
+                assert target in inst_indices
+                target_idx = inst_indices.index(target)
+                if edge.flow == 0:
+                    edges[('inst', 'control', 'inst')].append(torch.tensor([source_idx, target_idx], dtype=torch.int64))
+                else:
+                    edges[('inst', 'call', 'inst')].append(torch.tensor([source_idx, target_idx], dtype=torch.int64))
+            else:
+                assert target in var_indices
+                target_idx = var_indices.index(target)
+                edges[('inst', 'data', 'var')].append(torch.tensor([source_idx, target_idx], dtype=torch.int64))
+        elif source_type == 1:
+            assert source in var_indices
+            source_idx = var_indices.index(source)
+            assert target in inst_indices
+            target_idx = inst_indices.index(target)
+            edges[('var', 'data', 'inst')].append(torch.tensor([source_idx, target_idx], dtype=torch.int64))
+        else:
+            assert source in const_indices
+            source_idx = const_indices.index(source)
+            assert target in inst_indices
+            target_idx = inst_indices.index(target)
+            edges[('const', 'data', 'inst')].append(torch.tensor([source_idx, target_idx], dtype=torch.int64))
 
-    for edge in edges:
-        source = node_indices.index(edge.source)
-        target = node_indices.index(edge.target)
-        if edge.flow == 0:
-            adj_mat_control[source, target] = 1
-        elif edge.flow == 1:
-            adj_mat_data[source, target] = 1
-        elif edge.flow == 2:
-            adj_mat_call[source, target] = 1
+    edges[('inst', 'control', 'inst')] = torch.stack(edges[('inst', 'control', 'inst')]).transpose(0, 1)
+    edges[('inst', 'call', 'inst')] = torch.stack(edges[('inst', 'call', 'inst')]).transpose(0, 1)
+    edges[('inst', 'data', 'var')] = torch.stack(edges[('inst', 'data', 'var')]).transpose(0, 1)
+    edges[('var', 'data', 'inst')] = torch.stack(edges[('var', 'data', 'inst')]).transpose(0, 1)
+    edges[('const', 'data', 'inst')] = torch.stack(edges[('const', 'data', 'inst')]).transpose(0, 1)
 
-    return adj_mat_control, adj_mat_data, adj_mat_call
+    return edges
 
 def build_cdfg(ir_path:Path):
     with open(ir_path, 'r') as ir_file:
         ir_text = ir_file.read()
-        programl_graph = programl.from_llvm_ir(ir_text)
-        ir_lines = ir_text.split('\n')
-        ir_op_texts = [ir_op_text for ir_op_text in ir_lines if '!opID' in ir_op_text]
-        ir_global_texts = [ir_global_text for ir_global_text in ir_lines if '!globalID' in ir_global_text]
+
+    programl_graph = programl.from_llvm_ir(ir_text)
+    ir_lines = ir_text.split('\n')
+
+    del ir_text
+    gc.collect()
+
+    ir_op_texts = [ir_op_text for ir_op_text in ir_lines if '!opID' in ir_op_text]
+    ir_global_texts = [ir_global_text for ir_global_text in ir_lines if '!globalID' in ir_global_text]
+
+    del ir_lines
+    gc.collect()
 
     metadata = get_metadata(ir_path)
 
-    inst_nodes, var_nodes, const_nodes, inst_indices, var_indices, const_indices = get_node_features(programl_graph, metadata, ir_op_texts, ir_global_texts)
-    control_adj, data_adj, call_adj = make_adj_mat(programl_graph.edge, inst_indices, var_indices, const_indices)
+    nodes, inst_indices, var_indices, const_indices = get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts)
+    edges = get_edges(programl_graph, inst_indices, var_indices, const_indices)
 
-    return inst_nodes, var_nodes, const_nodes, control_adj, data_adj, call_adj
+    return nodes, edges
 
 if __name__ == "__main__":
     ir_path = Path("estimators/hgt/utils/test.ll")
     output_path = Path("estimators/hgt/utils/test_cdfg.txt")
-    inst_nodes, var_nodes, const_nodes, adj_mat_control, adj_mat_data, adj_mat_call = build_cdfg(ir_path)
+
+    nodes, edges = build_cdfg(ir_path)
 
     with open(output_path, "w") as f:
-        f.write("inst_nodes:\n" + str(inst_nodes) + "\n" + "var_nodes:\n" + str(var_nodes) + "\n" + "const_nodes:\n" + str(const_nodes)\
-                + "\n" + "adj_mat_control:\n" + str(adj_mat_control) + "\n" + "adj_mat_data:\n" + str(adj_mat_data) + "\n" + "adj_mat_call:\n" + str(adj_mat_call) + "\n")
+        f.write(f"Nodes:\n")
+        f.write(f"Instruction Nodes:\n{nodes['inst']}\n")
+        f.write(f"Variable Nodes:\n{nodes['var']}\n")
+        f.write(f"Constant Nodes:\n{nodes['const']}\n")
+        f.write(f"\nEdges:\n")
+        f.write(f"Control Edges:\n{edges[('inst', 'control', 'inst')]}\n")
+        f.write(f"Call Edges:\n{edges[('inst', 'call', 'inst')]}\n")
+        f.write(f"Data Edges (Var -> Inst):\n{edges[('var', 'data', 'inst')]}\n")
+        f.write(f"Data Edges (Inst -> Var):\n{edges[('inst', 'data', 'var')]}\n")
+        f.write(f"Data Edges (Const -> Inst):\n{edges[('const', 'data', 'inst')]}\n")
