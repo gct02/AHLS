@@ -5,7 +5,7 @@ import json, pickle, subprocess
 
 from utils.parsers import parse_impl_rpt
 from llvm.opt_utils import *
-from estimators.hgt.utils.cdfg import build_cdfg
+from estimators.han.utils.cdfg import build_cdfg
 
 def create_directives_tcl(solution_data_json:Path, output_path:Path):
     with open(solution_data_json, "r") as f:

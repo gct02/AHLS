@@ -200,7 +200,11 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts):
                     elif value_text == 'false':
                         const_value = 0
                     else:
-                        const_value = int(value_text)
+                        # Check if string is convertible to int
+                        try:
+                            const_value = int(value_text)
+                        except ValueError:
+                            const_value = 0
                 elif is_fp == 1:
                     const_value = float(full_text.split(' ')[-1])
                 else:
@@ -220,7 +224,7 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts):
 
 def get_edges(programl_graph, inst_indices, var_indices, const_indices):
     edges = {('inst', 'control', 'inst'): [], ('inst', 'call', 'inst'): [], ('inst', 'data', 'var'): [],
-             ('var', 'data', 'inst'): [], ('const', 'data', 'inst'): []}
+             ('var', 'data', 'inst'): [], ('const', 'data', 'inst'): [], ('inst', 'id', 'inst'): [], ('var', 'id', 'var'): []}
     
     for edge in programl_graph.edge:
         source = edge.source
@@ -255,11 +259,21 @@ def get_edges(programl_graph, inst_indices, var_indices, const_indices):
             target_idx = inst_indices.index(target)
             edges[('const', 'data', 'inst')].append(torch.tensor([source_idx, target_idx], dtype=torch.int64))
 
+    n_inst, n_var = len(inst_indices), len(var_indices)
+
+    for i in range(n_inst):
+        edges[('inst', 'id', 'inst')].append(torch.tensor([i, i], dtype=torch.int64))
+
+    for i in range(n_var):
+        edges[('var', 'id', 'var')].append(torch.tensor([i, i], dtype=torch.int64))
+
     edges[('inst', 'control', 'inst')] = torch.stack(edges[('inst', 'control', 'inst')]).transpose(0, 1)
     edges[('inst', 'call', 'inst')] = torch.stack(edges[('inst', 'call', 'inst')]).transpose(0, 1)
     edges[('inst', 'data', 'var')] = torch.stack(edges[('inst', 'data', 'var')]).transpose(0, 1)
     edges[('var', 'data', 'inst')] = torch.stack(edges[('var', 'data', 'inst')]).transpose(0, 1)
     edges[('const', 'data', 'inst')] = torch.stack(edges[('const', 'data', 'inst')]).transpose(0, 1)
+    edges[('inst', 'id', 'inst')] = torch.stack(edges[('inst', 'id', 'inst')]).transpose(0, 1)
+    edges[('var', 'id', 'var')] = torch.stack(edges[('var', 'id', 'var')]).transpose(0, 1)
 
     return edges
 
@@ -287,8 +301,8 @@ def build_cdfg(ir_path:Path):
     return nodes, edges
 
 if __name__ == "__main__":
-    ir_path = Path("estimators/hgt/utils/test.ll")
-    output_path = Path("estimators/hgt/utils/test_cdfg.txt")
+    ir_path = Path("estimators/han/utils/test.ll")
+    output_path = Path("estimators/han/utils/test_cdfg.txt")
 
     nodes, edges = build_cdfg(ir_path)
 

@@ -5,8 +5,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 from pathlib import Path
 from torch.utils.data import Dataset, DataLoader
-from estimators.hgt.models import HAN
-from estimators.hgt.dataset import HLSDataset
+from estimators.han.models import HAN
+from estimators.han.dataset import HLSDataset
 
 matplotlib.use('Agg')
 
@@ -146,21 +146,21 @@ def main(args):
 
         in_features = {'inst': 32, 'var': 20, 'const': 21}
 
-        model = HAN(in_features, 24, 16, 4, 4, 1)
+        model = HAN(in_features, 12, 8, 4, 4, 1)
         model = model.to(device)
 
         loss_func = RMSELoss
 
-        optimizer = torch.optim.AdamW(model.parameters(), lr=5e-3, betas=(0.8, 0.999))
-        scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, pct_start=0.05, anneal_strategy='linear', final_div_factor=10,\
-                                max_lr=5e-3, total_steps=batch_size * epochs + 1)
+        optimizer = torch.optim.Adam(model.parameters(), lr=1e-2, betas=(0.6, 0.9999))
+        #scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, pct_start=0.05, anneal_strategy='linear', final_div_factor=10,\
+        #                        max_lr=5e-3, total_steps=batch_size * epochs + 1)
 
-        train_losses, test_losses, test_preds_inst = train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, scheduler)
+        train_losses, test_losses, test_preds_inst = train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, None)
 
-        save_model(model, "estimators/hgt/models", f"hgt_{target_metric}_{bench_name}.pth")
+        save_model(model, "estimators/han/models", f"han_{target_metric}_{bench_name}.pth")
 
-        model_stats_folder = f"estimators/hgt/model_analysis/stats/data_{target_metric}"
-        model_graphs_folder = f"estimators/hgt/model_analysis/graphs/data_{target_metric}"
+        model_stats_folder = f"estimators/han/model_analysis/stats/data_{target_metric}"
+        model_graphs_folder = f"estimators/han/model_analysis/graphs/data_{target_metric}"
 
         os.makedirs(model_stats_folder, exist_ok=True)
         os.makedirs(model_graphs_folder, exist_ok=True)
@@ -203,7 +203,7 @@ def main(args):
         del model, train_dataset, test_dataset, train_loader, test_loader, optimizer
     
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Provide arguments for the HGT model for resource usage prediction')
+    parser = argparse.ArgumentParser(description='Provide arguments for the han model for resource usage prediction')
 
     parser.add_argument('--epoch', help='The number of training epochs', default=100)
     parser.add_argument('--seed', help='Random seed for repeatability', default=42)
