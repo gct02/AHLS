@@ -7,3 +7,6 @@ hls/run_hls.tcl
 *model_analysis/
 *dataset/
 estimators/han/layers.py
+estimators/han/utils/*.ll
+estimators/han/utils/*.bc
+estimators/han/utils/*.txt

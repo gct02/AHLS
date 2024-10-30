@@ -1,7 +1,7 @@
 from pathlib import Path
 from sys import argv
 
-import json, pickle, subprocess
+import json, pickle, subprocess, argparse
 
 from utils.parsers import parse_impl_rpt
 from llvm.opt_utils import *
@@ -15,12 +15,20 @@ def create_directives_tcl(solution_data_json:Path, output_path:Path):
         directives_tcl = "\n".join(directives_tcl)
         f.write(directives_tcl)
 
-if __name__ == "__main__":
-    dataset_path = Path(argv[1])
-    output_folder_path = Path(argv[2])
+def parse_args():
+    parser = argparse.ArgumentParser(prog="preprocess_dataset_han", description="Create CDFGs from HLS solutions")
+    parser.add_argument("-b", "--benchs", help = "Path to the folder containing the Vitis HLS projects", required=True)
+    parser.add_argument("-o", "--output", help = "Path where the processed dataset should be written", required=True)
+    parser.add_argument("-d", "--directives", help = "Sinalize that directives features should be included", action="store_true")
+    return parser.parse_args()
 
-    benchmarks = sorted(list(dataset_path.iterdir()))
-    n_benchmarks = len(benchmarks)
+if __name__ == "__main__":
+    args = parse_args()
+    benchmark_path = Path(args.benchs)
+    output_folder_path = Path(args.output)
+    directives = args.directives
+
+    benchmarks = sorted(list(benchmark_path.iterdir()))
 
     for i, benchmark in enumerate(benchmarks):
         benchmark_folder = output_folder_path / benchmark.stem
@@ -48,8 +56,6 @@ if __name__ == "__main__":
                 continue
 
             solution_data_json = solution / f"{solution.stem}_data.json"
-            # directives_tcl_path = solution / f"directives.tcl"
-            # create_directives_tcl(solution_data_json, directives_tcl_path)
 
             ir_temp_1 = solution / ".autopilot/db/temp.1.ll"
             ir_temp_2 = solution / ".autopilot/db/temp.2.ll"
@@ -58,16 +64,24 @@ if __name__ == "__main__":
             try:
                 subprocess.check_output(f"{OPT} -strip-debug -S < {ir.as_posix()} > {ir_temp_1.as_posix()};",\
                                         stderr=subprocess.STDOUT, shell=True)
+                
                 subprocess.check_output(f"{OPT} -mem2reg -S < {ir_temp_1.as_posix()} > {ir_temp_2.as_posix()};",\
                                         stderr=subprocess.STDOUT, shell=True)
-                # subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -preprocess-hls-ir-x86 -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
-                #                         stderr=subprocess.STDOUT, shell=True)
+                
                 subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
                                         stderr=subprocess.STDOUT, shell=True)
-                # ubprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -add-directives-md -tcl {directives_tcl_path.as_posix()} -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
-                #                         stderr=subprocess.STDOUT, shell=True)
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp_1.as_posix()} > {ir_mod.as_posix()};",\
-                                        stderr=subprocess.STDOUT, shell=True)
+                if directives:
+                    directives_tcl_path = solution / f"directives.tcl"
+                    create_directives_tcl(solution_data_json, directives_tcl_path)
+                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -add-directives-md -tcl {directives_tcl_path.as_posix()} -S < {ir_temp_1.as_posix()} > {ir_temp_2.as_posix()};",\
+                                            stderr=subprocess.STDOUT, shell=True)
+                    
+                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp_2.as_posix()} > {ir_mod.as_posix()};",\
+                                            stderr=subprocess.STDOUT, shell=True)
+                else:
+                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp_1.as_posix()} > {ir_mod.as_posix()};",\
+                                            stderr=subprocess.STDOUT, shell=True)
+                
             except subprocess.CalledProcessError as e:
                 print(f"Error processing {solution}")
                 print(e)

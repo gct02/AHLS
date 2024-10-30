@@ -2,6 +2,7 @@ import numpy as np
 import torch
 import programl
 import re, gc
+from sys import argv
 from pathlib import Path
 
 torch.set_printoptions(profile="full")
@@ -40,7 +41,6 @@ def get_metadata(ir_path:Path):
     
     return metadata
 
-"""
 def get_directives_features(node_full_text:str, metadata, node_type:int):
     if node_type == 0: # Instruction
         loop_merge_md_id = int(node_full_text.split("!loopMerge !")[1].strip().split(',')[0])
@@ -65,7 +65,6 @@ def get_directives_features(node_full_text:str, metadata, node_type:int):
         array_partition_features = array_partition_md[1:3] + one_hot_array_partition_type + array_partition_md[3:]
 
         return array_partition_features
-"""
 
 def get_one_hot_opcode(instruction):
     if instruction not in LLVM_OPCODES:
@@ -133,21 +132,26 @@ def get_type_bitwidth(text:str):
         return 64
     return int(text.strip('i'))
 
-def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts):
+def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives:bool=False):
     nodes = {'inst': [], 'var': [], 'const': []}
     inst_indices, var_indices, const_indices = [], [], []
 
     for i, node in enumerate(programl_graph.node):
-        function = node.function + 1
-        block = node.block + 1
+        # function = node.function
+        # block = node.block
         text = node.text
+
         full_text = node.features.feature["full_text"].bytes_list.value.__str__()[1:-1]
+
         if full_text != "":
             full_text = full_text[2:-1]
 
         if node.type == 0:  # Instruction
             if "ID." not in full_text:
-                features = [function, block] + 21 * [0]
+                if directives:
+                    features = [0] * 30
+                else:
+                    features = [0] * 21
             else:
                 op_id = int(full_text.split('ID.')[1].split(' ')[0])
                 full_text = ir_op_texts[op_id - 1]
@@ -155,34 +159,59 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts):
                 instruction = text.split(' ')[0]
                 one_hot_opcode = get_one_hot_opcode(instruction)
                 loop_depth = metadata[int(full_text.split('!loopDepth !')[1].strip().split(',')[0])][0]
-                # directives_features = get_directives_features(full_text, metadata, 0)
 
-                features = [function, block, loop_depth] + one_hot_opcode
+                if directives:
+                    directives_features = get_directives_features(full_text, metadata, 0)
+                    features = one_hot_opcode + [loop_depth] + directives_features
+                else:
+                    features = one_hot_opcode + [loop_depth]
 
             features = torch.tensor(features, dtype=torch.float32)
             nodes['inst'].append(features)
             inst_indices.append(i)
 
         elif node.type == 1 or node.type == 2: # Variable or Constant
+            if directives:
+                if node.type == 1:
+                    global_text = find_global_value(ir_global_texts, full_text)
+                    if global_text is not None:
+                        directives_features = get_directives_features(global_text, metadata, 1)
+                    else:
+                        directives_features = 8 * [0]
+                else:
+                    instruction = find_instruction(ir_op_texts, full_text)
+                    if instruction is not None:
+                        directives_features = get_directives_features(instruction, metadata, 2)
+                    else:
+                        directives_features = 8 * [0]
+
             is_ptr, is_array, is_fp, is_int, is_void, is_struct, is_vector, is_label, is_token = 0, 0, 0, 0, 0, 0, 0, 0, 0
                 
             if text[-1] == '*':
                 is_ptr = 1
             elif '[' in text:
                 is_array = 1
-            else:
-                is_void = 1 if 'void' in text else 0
-                is_fp = 1 if 'float' in text or 'double' in text or 'half' in text else 0
-                is_label = 1 if 'label' in text else 0
-                is_token = 1 if 'token' in text else 0
-                is_int = 1 if text[0] == 'i' else 0
-                is_struct = 1 if 'struct' in text else 0
-                is_vector = 1 if 'vector' in text else 0
+            elif 'void' in text:
+                is_void = 1
+            elif 'float' in text or 'double' in text or 'half' in text:
+                is_fp = 1
+            elif text[0] == 'i':
+                is_int = 1
+            elif 'struct' in text:
+                is_struct = 1
+            elif 'vector' in text:
+                is_vector = 1
+            elif 'label' in text:
+                is_label = 1
+            elif 'token' in text:
+                is_token = 1
 
             bitwidth = get_type_bitwidth(text)
 
             if node.type == 1: # Variable
-                features = [function, block, bitwidth, is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector]
+                features = [is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector, bitwidth]
+                if directives:
+                    features += directives_features
                 features = torch.tensor(features, dtype=torch.float32)
                 nodes['var'].append(features)
                 var_indices.append(i)
@@ -204,7 +233,9 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts):
                 else:
                     const_value = 0 # Placeholder for now
                     
-                features = [function, block, bitwidth, is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector, const_value]
+                features = [is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector, bitwidth, const_value]
+                if directives:
+                    features += directives_features
                 features = torch.tensor(features, dtype=torch.float32)
                 nodes['const'].append(features)
                 const_indices.append(i)
@@ -270,7 +301,7 @@ def get_edges(programl_graph, inst_indices, var_indices, const_indices):
 
     return edges
 
-def build_cdfg(ir_path:Path):
+def build_cdfg(ir_path:Path, directives:bool=False):
     with open(ir_path, 'r') as ir_file:
         ir_text = ir_file.read()
 
@@ -288,14 +319,14 @@ def build_cdfg(ir_path:Path):
 
     metadata = get_metadata(ir_path)
 
-    nodes, inst_indices, var_indices, const_indices = get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts)
+    nodes, inst_indices, var_indices, const_indices = get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives)
     edges = get_edges(programl_graph, inst_indices, var_indices, const_indices)
 
     return nodes, edges
 
 if __name__ == "__main__":
-    ir_path = Path("estimators/han/utils/adpcm.hls.1.ll")
-    output_path = Path("estimators/han/utils/adpcm_cdfg_1.txt")
+    ir_path = Path(argv[1])
+    output_path = Path(argv[2])
 
     nodes, edges = build_cdfg(ir_path)
 
