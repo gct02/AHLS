@@ -40,6 +40,7 @@ def get_metadata(ir_path:Path):
     
     return metadata
 
+"""
 def get_directives_features(node_full_text:str, metadata, node_type:int):
     if node_type == 0: # Instruction
         loop_merge_md_id = int(node_full_text.split("!loopMerge !")[1].strip().split(',')[0])
@@ -64,6 +65,7 @@ def get_directives_features(node_full_text:str, metadata, node_type:int):
         array_partition_features = array_partition_md[1:3] + one_hot_array_partition_type + array_partition_md[3:]
 
         return array_partition_features
+"""
 
 def get_one_hot_opcode(instruction):
     if instruction not in LLVM_OPCODES:
@@ -145,7 +147,7 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts):
 
         if node.type == 0:  # Instruction
             if "ID." not in full_text:
-                features = [function, block] + 30 * [0]
+                features = [function, block] + 21 * [0]
             else:
                 op_id = int(full_text.split('ID.')[1].split(' ')[0])
                 full_text = ir_op_texts[op_id - 1]
@@ -153,22 +155,15 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts):
                 instruction = text.split(' ')[0]
                 one_hot_opcode = get_one_hot_opcode(instruction)
                 loop_depth = metadata[int(full_text.split('!loopDepth !')[1].strip().split(',')[0])][0]
-                directives_features = get_directives_features(full_text, metadata, 0)
+                # directives_features = get_directives_features(full_text, metadata, 0)
 
-                features = [function, block, loop_depth] + one_hot_opcode + directives_features
+                features = [function, block, loop_depth] + one_hot_opcode
 
             features = torch.tensor(features, dtype=torch.float32)
             nodes['inst'].append(features)
             inst_indices.append(i)
 
         elif node.type == 1 or node.type == 2: # Variable or Constant
-            if (operation_text := find_instruction(ir_op_texts, full_text)) is not None:
-                directives_features = get_directives_features(operation_text, metadata, node.type)
-            elif (global_text := find_global_value(ir_global_texts, full_text)) is not None:
-                directives_features = get_directives_features(global_text, metadata, node.type)
-            else:
-                directives_features = [0] * 8
-
             is_ptr, is_array, is_fp, is_int, is_void, is_struct, is_vector, is_label, is_token = 0, 0, 0, 0, 0, 0, 0, 0, 0
                 
             if text[-1] == '*':
@@ -187,8 +182,7 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts):
             bitwidth = get_type_bitwidth(text)
 
             if node.type == 1: # Variable
-                features = [function, block, bitwidth, is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector]\
-                    + directives_features
+                features = [function, block, bitwidth, is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector]
                 features = torch.tensor(features, dtype=torch.float32)
                 nodes['var'].append(features)
                 var_indices.append(i)
@@ -210,8 +204,7 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts):
                 else:
                     const_value = 0 # Placeholder for now
                     
-                features = [function, block, bitwidth, is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector, const_value]\
-                    + directives_features
+                features = [function, block, bitwidth, is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector, const_value]
                 features = torch.tensor(features, dtype=torch.float32)
                 nodes['const'].append(features)
                 const_indices.append(i)
@@ -301,8 +294,8 @@ def build_cdfg(ir_path:Path):
     return nodes, edges
 
 if __name__ == "__main__":
-    ir_path = Path("estimators/han/utils/test.ll")
-    output_path = Path("estimators/han/utils/test_cdfg.txt")
+    ir_path = Path("estimators/han/utils/adpcm.hls.1.ll")
+    output_path = Path("estimators/han/utils/adpcm_cdfg_1.txt")
 
     nodes, edges = build_cdfg(ir_path)
 

@@ -41,15 +41,15 @@ if __name__ == "__main__":
 
             instance_folder.mkdir(parents=True, exist_ok=True)
 
-            ir = solution / ".autopilot/db/a.g.ld.5.gdce.bc"
+            ir = solution / ".autopilot/db/a.o.3.bc"
 
             if not ir.exists():
                 print(f"Intermediate representation not found for {solution}")
                 continue
 
             solution_data_json = solution / f"{solution.stem}_data.json"
-            directives_tcl_path = solution / f"directives.tcl"
-            create_directives_tcl(solution_data_json, directives_tcl_path)
+            # directives_tcl_path = solution / f"directives.tcl"
+            # create_directives_tcl(solution_data_json, directives_tcl_path)
 
             ir_temp_1 = solution / ".autopilot/db/temp.1.ll"
             ir_temp_2 = solution / ".autopilot/db/temp.2.ll"
@@ -60,12 +60,12 @@ if __name__ == "__main__":
                                         stderr=subprocess.STDOUT, shell=True)
                 subprocess.check_output(f"{OPT} -mem2reg -S < {ir_temp_1.as_posix()} > {ir_temp_2.as_posix()};",\
                                         stderr=subprocess.STDOUT, shell=True)
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -preprocess-hls-ir-x86 -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
+                # subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -preprocess-hls-ir-x86 -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
+                #                         stderr=subprocess.STDOUT, shell=True)
+                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
                                         stderr=subprocess.STDOUT, shell=True)
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_temp_1.as_posix()} > {ir_temp_2.as_posix()};",\
-                                        stderr=subprocess.STDOUT, shell=True)
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -add-directives-md -tcl {directives_tcl_path.as_posix()} -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
-                                        stderr=subprocess.STDOUT, shell=True)
+                # ubprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -add-directives-md -tcl {directives_tcl_path.as_posix()} -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
+                #                         stderr=subprocess.STDOUT, shell=True)
                 subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp_1.as_posix()} > {ir_mod.as_posix()};",\
                                         stderr=subprocess.STDOUT, shell=True)
             except subprocess.CalledProcessError as e:

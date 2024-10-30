@@ -18,7 +18,7 @@ class SetTransformer(nn.Module):
         return self.fc_out(x)
 
 class HAN(nn.Module):
-    def __init__(self, in_features:dict, hid_dim_l1, hid_dim_l2, n_heads_l1, n_heads_l2, out_dim):
+    def __init__(self, in_features:dict, hid_dim_l1, hid_dim_l2, hid_dim_l3, n_heads_l1, n_heads_l2, n_heads_l3, out_dim):
         super(HAN, self).__init__()
 
         node_types = ['inst', 'var', 'const']
@@ -28,19 +28,15 @@ class HAN(nn.Module):
 
         self.han_conv_1 = HANConv(in_channels=in_features, out_channels=hid_dim_l1, metadata=metadata, heads=n_heads_l1, negative_slope=0.1, dropout=0.6)
         self.han_conv_2 = HANConv(in_channels=hid_dim_l1, out_channels=hid_dim_l2, metadata=metadata, heads=n_heads_l2, negative_slope=0.1, dropout=0.4)
-        self.han_conv_3 = HANConv(in_channels=hid_dim_l2, out_channels=8 * out_dim, metadata=metadata, heads=4, negative_slope=0.1)
+        self.han_conv_3 = HANConv(in_channels=hid_dim_l2, out_channels=hid_dim_l3, metadata=metadata, heads=n_heads_l3, negative_slope=0.1)
 
-        self.set_transformer_inst = SetTransformer(8 * out_dim, 8 * out_dim)
-        self.set_transformer_var = SetTransformer(8 * out_dim, 8 * out_dim)
+        self.set_transformer_inst = SetTransformer(hid_dim_l3, hid_dim_l3)
+        self.set_transformer_var = SetTransformer(hid_dim_l3, hid_dim_l3)
 
-        self.fc_out_1 = nn.Linear(8 * out_dim, 4 * out_dim, bias=True)
-        self.fc_out_2 = nn.Linear(4 * out_dim, out_dim, bias=True)
+        self.fc_out = nn.Linear(hid_dim_l3, out_dim)
 
-        self.reset_parameters()
-
-    def reset_parameters(self):
-        # Initialize bias with a small positive value to prevent propagation of negative values
-        nn.init.constant_(self.fc_out_2.bias, 0.1)
+        # Initialize final bias with a small positive value to prevent negative predictions
+        nn.init.constant_(self.fc_out.bias, 0.1)
 
     def forward(self, x_dict, edge_index_dict):
         x_dict = self.han_conv_1(x_dict, edge_index_dict)
@@ -66,8 +62,4 @@ class HAN(nn.Module):
 
         agg = inst_agg + var_agg
 
-        z = self.fc_out_1(agg)
-        z = F.leaky_relu(z, negative_slope=0.01)
-        z = self.fc_out_2(z)
-
-        return z
+        return self.fc_out(F.leaky_relu(agg, negative_slope=0.01))

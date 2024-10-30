@@ -144,18 +144,17 @@ def main(args):
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        in_features = {'inst': 32, 'var': 20, 'const': 21}
+        in_features = {'inst': 23, 'var': 12, 'const': 13}
 
-        model = HAN(in_features, 12, 8, 4, 4, 1)
+        model = HAN(in_features, 24, 16, 8, 4, 4, 2, 1)
         model = model.to(device)
 
         loss_func = RMSELoss
 
-        optimizer = torch.optim.Adam(model.parameters(), lr=1e-2, betas=(0.6, 0.9999))
-        #scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, pct_start=0.05, anneal_strategy='linear', final_div_factor=10,\
-        #                        max_lr=5e-3, total_steps=batch_size * epochs + 1)
+        optimizer = torch.optim.AdamW(model.parameters(), lr=5e-3, betas=(0.72, 0.999))
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=batch_size, T_mult=2, eta_min=0)
 
-        train_losses, test_losses, test_preds_inst = train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, None)
+        train_losses, test_losses, test_preds_inst = train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, scheduler)
 
         save_model(model, "estimators/han/models", f"han_{target_metric}_{bench_name}.pth")
 

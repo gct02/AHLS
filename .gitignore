@@ -6,5 +6,4 @@ __pycache__/
 hls/run_hls.tcl
 *model_analysis/
 *dataset/
-estimators/han/utils/test*
 estimators/han/layers.py
