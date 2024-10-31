@@ -35,6 +35,7 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
     train_losses = []
     test_losses = []
 
+    n_batches = len(train_loader)
     n_instances = len(test_loader)
     test_preds_inst = [[] for _ in range(n_instances)]
 
@@ -44,19 +45,29 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
         train_loss_epoch = 0
         model.train()
 
-        for batch_samples, batch_labels in train_loader:
-            G_0, G_1 = batch_samples[0]
-            x_0, x_1 = G_0[0], G_1[0]
-            adj_0, adj_1 = G_0[1], G_1[1]
-            
-            x_0, x_1 = x_0.to(device), x_1.to(device)
-            adj_0, adj_1 = adj_0.to(device), adj_1.to(device)
+        for batch_samples, batch_targets in train_loader:
+            preds = []
+            for dfgs in batch_samples:
+                G_0, G_1 = dfgs
 
-            y_pred = model(x_0, adj_0, x_1, adj_1) 
+                x_0, x_1 = G_0[0], G_1[0]
+                adj_0, adj_1 = G_0[1], G_1[1]
 
-            y = batch_labels[0]
-            y = y.to(device)
-            loss = loss_func(y_pred, y)
+                x_0, x_1 = x_0.to(device), x_1.to(device)
+                adj_0, adj_1 = adj_0.to(device), adj_1.to(device)
+
+                preds.append(model(x_0, adj_0, x_1, adj_1))
+
+                x_0, x_1 = x_0.to("cpu"), x_1.to("cpu")
+                adj_0, adj_1 = adj_0.to("cpu"), adj_1.to("cpu")
+
+            preds = torch.stack(preds, dim=0)
+            preds = preds.to(device)
+
+            targets = torch.stack(batch_targets, dim=0)
+            targets = targets.to(device)
+
+            loss = loss_func(preds, targets)
 
             optimizer.zero_grad()
             loss.backward()
@@ -64,24 +75,19 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
 
             train_loss_epoch += loss.item()
 
-            if scheduler is not None:
-               scheduler.step()
-
-            # Move the instances to the CPU
-            x_0, x_1 = x_0.to("cpu"), x_1.to("cpu")
-            adj_0, adj_1 = adj_0.to("cpu"), adj_1.to("cpu")
-            y = y.to("cpu")
-
             torch.cuda.empty_cache()
+        
+        if scheduler is not None:
+            scheduler.step()
 
-        train_loss_epoch = train_loss_epoch / len(train_loader)
+        train_loss_epoch = train_loss_epoch / n_batches
         train_losses.append(train_loss_epoch)
         
         model.eval()
         test_loss_epoch = 0
         with torch.no_grad():
-            for i, (batch_samples, batch_labels) in enumerate(test_loader):
-                G_0, G_1 = batch_samples[0]
+            for i, (batch_samples, batch_targets) in enumerate(test_loader):
+                G_0, G_1 = batch_samples[0] # Only one instance per batch in test_loader
                 x_0, x_1 = G_0[0], G_1[0]
                 adj_0, adj_1 = G_0[1], G_1[1]
 
@@ -89,7 +95,7 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
                 adj_0, adj_1 = adj_0.to(device), adj_1.to(device)
                 y_pred = model(x_0, adj_0, x_1, adj_1)
 
-                y = batch_labels[0]
+                y = batch_targets[0]
                 y = y.to(device)
                 loss = loss_func(y_pred, y)
 
@@ -134,10 +140,10 @@ def main(args):
         model = GAT(38, 25, 1)
         model = model.to(device)
 
-        loss_func = RMSELoss
+        loss_func = nn.MSELoss()
 
         optimizer = torch.optim.AdamW(model.parameters(), lr=5e-3, betas=(0.8, 0.999))
-        scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=batch_size, T_mult=2, eta_min=0)
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=15, T_mult=2, eta_min=1e-7)
 
         train_losses, test_losses, test_preds_inst = train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, scheduler)
 
