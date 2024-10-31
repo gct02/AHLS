@@ -31,10 +31,13 @@ def save_model(model, target_dir, model_name):
     print(f"[INFO] Saving model to: {model_save_path}")
     torch.save(obj=model.state_dict(), f=model_save_path)
 
+
+# Is this the correct way to train a pytorch model? 
 def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, scheduler=None):
     train_losses = []
     test_losses = []
 
+    n_batches = len(train_loader)
     n_instances = len(test_loader)
     test_preds_inst = [[] for _ in range(n_instances)]
 
@@ -44,21 +47,31 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
         train_loss_epoch = 0
         model.train()
 
-        for batch_samples, batch_labels in train_loader:
-            x_dict, edge_index_dict = batch_samples[0]
-            
-            for key in x_dict:
-                x_dict[key] = x_dict[key].to(device)
-            
-            for key in edge_index_dict:
-                edge_index_dict[key] = edge_index_dict[key].to(device)
+        for input_batch, target_batch in train_loader:
+            preds = []
+            for cdfg in input_batch:
+                x_dict, edge_index_dict = cdfg
+                for key in x_dict:
+                    x_dict[key] = x_dict[key].to(device)
+                
+                for key in edge_index_dict:
+                    edge_index_dict[key] = edge_index_dict[key].to(device)
 
-            y_pred = model(x_dict, edge_index_dict)
+                preds.append(model(x_dict, edge_index_dict))
 
-            y = batch_labels[0]
-            y = y.to(device)
+                for key in x_dict:
+                    x_dict[key] = x_dict[key].to("cpu")
+                
+                for key in edge_index_dict:
+                    edge_index_dict[key] = edge_index_dict[key].to("cpu")
 
-            loss = loss_func(y_pred, y)
+            preds = torch.stack(preds, dim=0)
+            preds = preds.to(device)
+
+            targets = torch.stack(target_batch, dim=0)
+            targets = targets.to(device)
+
+            loss = loss_func(preds, targets)
 
             optimizer.zero_grad()
             loss.backward()
@@ -66,28 +79,24 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
 
             train_loss_epoch += loss.item()
 
-            if scheduler is not None:
-               scheduler.step()
+            print(f"Predictions: {preds};\n Targets: {targets};\n Loss: {loss.item()}\n")
 
-            # Move the instances to the CPU
-            for key in x_dict:
-                x_dict[key] = x_dict[key].to("cpu")
-            
-            for key in edge_index_dict:
-                edge_index_dict[key] = edge_index_dict[key].to("cpu")
-
-            y = y.to("cpu")
+            targets = targets.to("cpu")
+            preds = preds.to("cpu")
 
             torch.cuda.empty_cache()
 
-        train_loss_epoch = train_loss_epoch / len(train_loader)
+        if scheduler is not None:
+            scheduler.step()
+
+        train_loss_epoch = train_loss_epoch / n_batches
         train_losses.append(train_loss_epoch)
         
         model.eval()
         test_loss_epoch = 0
         with torch.no_grad():
-            for i, (batch_samples, batch_labels) in enumerate(test_loader):
-                x_dict, edge_index_dict = batch_samples[0]
+            for i, (input_batch, target_batch) in enumerate(test_loader):
+                x_dict, edge_index_dict = input_batch[0]
             
                 for key in x_dict:
                     x_dict[key] = x_dict[key].to(device)
@@ -95,12 +104,13 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
                 for key in edge_index_dict:
                     edge_index_dict[key] = edge_index_dict[key].to(device)
 
-                y_pred = model(x_dict, edge_index_dict)
+                pred = model(x_dict, edge_index_dict)
 
-                y = batch_labels[0]
-                y = y.to(device)
+                target = target_batch[0]
+                target = target.to(device)
+                pred = pred.to(device)
 
-                loss = loss_func(y_pred, y)
+                loss = loss_func(pred, target)
 
                 # Move the instances to the CPU
                 for key in x_dict:
@@ -109,14 +119,15 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
                 for key in edge_index_dict:
                     edge_index_dict[key] = edge_index_dict[key].to("cpu")
 
-                y = y.to("cpu")
+                target = target.to("cpu")
+                pred = pred.to("cpu")
 
                 torch.cuda.empty_cache()
                 
                 test_loss_epoch += loss.item()
-                test_preds_inst[i].append([y_pred.item(), y.item()])
+                test_preds_inst[i].append([pred.item(), target.item()])
 
-                print(f"Labels: {y}; Predictions: {y_pred}; Loss: {loss.item()}")
+                print(f"Target: {target.item()}; Prediction: {pred.item()}; Loss: {loss.item()}")
         
         test_loss_epoch = test_loss_epoch / n_instances
         test_losses.append(test_loss_epoch)
@@ -149,7 +160,7 @@ def main(args):
         model = HAN(in_features, 24, 16, 8, 4, 4, 2, 1)
         model = model.to(device)
 
-        loss_func = RMSELoss
+        loss_func = nn.MSELoss()
 
         optimizer = torch.optim.AdamW(model.parameters(), lr=5e-3, betas=(0.72, 0.999))
         scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=batch_size, T_mult=2, eta_min=0)

@@ -30,15 +30,16 @@ class HAN(nn.Module):
         self.han_conv_2 = HANConv(in_channels=hid_dim_l1, out_channels=hid_dim_l2, metadata=metadata, heads=n_heads_l2, negative_slope=0.1, dropout=0.4)
         self.han_conv_3 = HANConv(in_channels=hid_dim_l2, out_channels=hid_dim_l3, metadata=metadata, heads=n_heads_l3, negative_slope=0.1)
 
+        self.norm_1 = nn.LayerNorm(hid_dim_l1)
+        self.norm_2 = nn.LayerNorm(hid_dim_l2)
+
         self.set_transformer_inst = SetTransformer(hid_dim_l3, hid_dim_l3)
         self.set_transformer_var = SetTransformer(hid_dim_l3, hid_dim_l3)
 
         self.fc_out = nn.Linear(hid_dim_l3, out_dim)
 
-        # Initialize final bias with a small positive value to prevent negative predictions
-        nn.init.constant_(self.fc_out.bias, 0.1)
-
     def forward(self, x_dict, edge_index_dict):
+
         x_dict = self.han_conv_1(x_dict, edge_index_dict)
         x_dict['inst'] = F.elu(x_dict['inst'])
         x_dict['var'] = F.elu(x_dict['var'])
@@ -49,9 +50,14 @@ class HAN(nn.Module):
         if ('const', 'data', 'inst') in edge_index_dict:
             edge_index_dict.pop(('const', 'data', 'inst'))
 
+        x_dict['inst'] = self.norm_1(x_dict['inst'])
+        x_dict['var'] = self.norm_1(x_dict['var'])
+
         x_dict = self.han_conv_2(x_dict, edge_index_dict)
         x_dict['inst'] = F.elu(x_dict['inst'])
         x_dict['var'] = F.elu(x_dict['var'])
+        x_dict['inst'] = self.norm_2(x_dict['inst'])
+        x_dict['var'] = self.norm_2(x_dict['var'])
 
         x_dict = self.han_conv_3(x_dict, edge_index_dict)
         x_dict['inst'] = F.elu(x_dict['inst'])
@@ -62,4 +68,4 @@ class HAN(nn.Module):
 
         agg = inst_agg + var_agg
 
-        return self.fc_out(F.leaky_relu(agg, negative_slope=0.01))
+        return F.relu(self.fc_out(agg))
