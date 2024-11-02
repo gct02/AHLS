@@ -16,31 +16,26 @@
 #include "llvm/Support/Debug.h"
 #include <string>
 #include <vector>
-#include <cstdint>
 
 using namespace llvm;
 
 namespace
 {
-struct PreprocessHLSIRForX86 : ModulePass
+struct PreprocessHLSIRForGNN : ModulePass
 {
     static char ID;
-    PreprocessHLSIRForX86() : ModulePass(ID) {}
+    PreprocessHLSIRForGNN() : ModulePass(ID) {}
 
     bool runOnModule(Module& M) override
     {
-        #define DEBUG_TYPE "preprocess-ir-x86"
+        #define DEBUG_TYPE "preprocess-ir-gnn"
 
         LLVMContext& ctx = M.getContext();
-
-        // Replace target triple and target data layout from fpga specific to generic x86
-        M.setTargetTriple("x86_64-unknown-linux-gnu");
-        M.setDataLayout("e-m:e-i64:64-f80:128-n8:16:32:64-S128");
 
         // Collect all 'llvm.fpga.legacy.part.select.*' and 'llvm.fpga.legacy.part.set.*' intrinsics
         std::vector<Function*> partSelectIntrinsics, partSetIntrinsics;
         for (Function& F : M) {
-            if (!F.hasName() || !F.isIntrinsic())
+            if (!F.isIntrinsic() || !F.hasName())
                 continue;
             
             if (F.getName().startswith("llvm.fpga.legacy.part.select") || F.getName().startswith("llvm.part.select")) {
@@ -51,55 +46,71 @@ struct PreprocessHLSIRForX86 : ModulePass
         }
 
         // Replace 'llvm.fpga.legacy.part.set.*' and 'llvm.fpga.legacy.part.select.*' intrinsics with their implementation
-        // and remove them from the module
-        implementPartSelectIntrinsics(M, ctx, partSelectIntrinsics);
-        implementPartSetIntrinsics(M, ctx, partSetIntrinsics);
+        implementPartSelect(M, ctx, partSelectIntrinsics);
+        implementPartSet(M, ctx, partSetIntrinsics);
 
-        // Replace '__hls_fptosi_float_i32' with 'fptosi' and remove it from the module
-        replaceHlsFptosiWithBuiltIn(M, ctx, "__hls_fptosi_float_i32");
+        // Collect all 'llvm.dbg.*' intrinsics
+        std::vector<Function*> dbgIntrinsics;
+        for (Function& F : M) {
+            if (!F.isIntrinsic() || !F.hasName())
+                continue;
+            
+            if (F.getName().startswith("llvm.dbg.")) {
+                dbgIntrinsics.push_back(&F);
+            }
+        }
 
-        // Replace '__hls_fptosi_double_i32' with 'fptosi' and remove it from the module
-        replaceHlsFptosiWithBuiltIn(M, ctx, "__hls_fptosi_double_i32");
-        
-        // Remove 'nsw' flag from all integer addition, multiplication, and subtraction operations
-        for (auto& F : M) {
-            for (auto& B : F) {
-                for (auto& I : B) {
-                    if (auto* binOp = dyn_cast<BinaryOperator>(&I)) {
-                        if (binOp->getOpcode() == Instruction::Add || binOp->getOpcode() == Instruction::Mul || binOp->getOpcode() == Instruction::Sub) {
-                            if (binOp->getOperand(0)->getType()->isIntegerTy()) {
-                                binOp->setHasNoUnsignedWrap(false);
-                                binOp->setHasNoSignedWrap(false);
-                            }
-                        }
+        // Remove all 'llvm.dbg.*' intrinsics from the module
+        for (Function* F : dbgIntrinsics) {
+            if (!F->use_empty()) {
+                for (auto it = F->use_begin(); it != F->use_end(); ) {
+                    Use& U = *it++;
+                    User* user = U.getUser();
+                    if (auto* callInst = dyn_cast<CallInst>(user)) {
+                        callInst->eraseFromParent();
                     }
                 }
+            }
+            F->eraseFromParent();
+        }
+
+        // Collect all '_ssdm_op_Spec.*' functions from the module
+        std::vector<Function*> ssdmSpecIntrinsics;
+        for (Function& F : M) {
+            if (!F.hasName())
+                continue;
+            
+            if (F.getName().startswith("_ssdm_op_Spec")) {
+                ssdmSpecIntrinsics.push_back(&F);
+            }
+        }
+
+        // Remove all '_ssdm_op_Spec.*' functions from the module
+        for (Function* F : ssdmSpecIntrinsics) {
+            if (!F->use_empty()) {
+                for (auto it = F->use_begin(); it != F->use_end(); ) {
+                    Use& U = *it++;
+                    User* user = U.getUser();
+                    if (auto* callInst = dyn_cast<CallInst>(user)) {
+                        callInst->eraseFromParent();
+                    }
+                }
+            }
+            F->eraseFromParent();
+        }
+
+        // Remove all unused global variables from the module
+        for (auto it = M.global_begin(); it != M.global_end(); ) {
+            GlobalVariable& GV = *it++;
+            if (GV.use_empty()) {
+                GV.eraseFromParent();
             }
         }
 
         return true;
     }
 
-    void replaceHlsFptosiWithBuiltIn(Module& M, LLVMContext& ctx, std::string hlsFptosiName) {
-        Function* hlsFptosi = M.getFunction(hlsFptosiName);
-        if (hlsFptosi && !hlsFptosi->use_empty()) {
-            // Replace uses of 'hlsFptosi' with the built-in 'fptosi' operation
-            for (auto it = hlsFptosi->use_begin(); it != hlsFptosi->use_end(); ) {
-                Use& U = *it++;
-                User* user = U.getUser();
-                if (auto* callInst = dyn_cast<CallInst>(user)) {
-                    IRBuilder<> builder(callInst);
-                    Value* operand = callInst->getArgOperand(0);
-                    Value* fptosiFunc = builder.CreateFPToSI(operand, Type::getInt32Ty(ctx));
-                    callInst->replaceAllUsesWith(fptosiFunc);
-                    callInst->eraseFromParent();
-                }
-            }
-            hlsFptosi->eraseFromParent();
-        }
-    }
-
-    void implementPartSelectIntrinsics(Module& M, LLVMContext& ctx, std::vector<Function*> partSelectIntrinsics) {
+    void implementPartSelect(Module& M, LLVMContext& ctx, std::vector<Function*> partSelectIntrinsics) {
         // Replace 'llvm.fpga.legacy.part.select.*' intrinsics with their implementation
         int partSelectCounter = 0;
         for (Function* F : partSelectIntrinsics) {
@@ -137,7 +148,7 @@ struct PreprocessHLSIRForX86 : ModulePass
         }
     }
 
-    void implementPartSetIntrinsics(Module& M, LLVMContext& ctx, std::vector<Function*> partSetIntrinsics) {
+    void implementPartSet(Module& M, LLVMContext& ctx, std::vector<Function*> partSetIntrinsics) {
         // Replace 'llvm.fpga.legacy.part.set.*' intrinsics with their implementation
         int partSetCounter = 0;
         for (Function* F : partSetIntrinsics) {
@@ -200,5 +211,5 @@ struct PreprocessHLSIRForX86 : ModulePass
 };
 } // namespace
 
-char PreprocessHLSIRForX86::ID = 0;
-static RegisterPass<PreprocessHLSIRForX86> X("preprocess-ir-x86", "Preprocess Vitis IR to run it on an x86 machine", false, false);
+char PreprocessHLSIRForGNN::ID = 0;
+static RegisterPass<PreprocessHLSIRForGNN> X("preprocess-ir-gnn", "Preprocess Vitis IR to use it as input to a GNN model (GAT or HAN)", false, false);

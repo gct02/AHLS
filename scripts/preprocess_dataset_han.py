@@ -68,18 +68,21 @@ if __name__ == "__main__":
                 subprocess.check_output(f"{OPT} -mem2reg -S < {ir_temp_1.as_posix()} > {ir_temp_2.as_posix()};",\
                                         stderr=subprocess.STDOUT, shell=True)
                 
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
+                subprocess.check_output(f"{OPT} -preprocess-ir-gnn -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
+                                        stderr=subprocess.STDOUT, shell=True)
+                
+                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_temp_1.as_posix()} > {ir_temp_2.as_posix()};",\
                                         stderr=subprocess.STDOUT, shell=True)
                 if directives:
                     directives_tcl_path = solution / f"directives.tcl"
                     create_directives_tcl(solution_data_json, directives_tcl_path)
-                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -add-directives-md -tcl {directives_tcl_path.as_posix()} -S < {ir_temp_1.as_posix()} > {ir_temp_2.as_posix()};",\
+                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -add-directives-md -tcl {directives_tcl_path.as_posix()} -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
                                             stderr=subprocess.STDOUT, shell=True)
                     
-                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp_2.as_posix()} > {ir_mod.as_posix()};",\
+                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp_1.as_posix()} > {ir_mod.as_posix()};",\
                                             stderr=subprocess.STDOUT, shell=True)
                 else:
-                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp_1.as_posix()} > {ir_mod.as_posix()};",\
+                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp_2.as_posix()} > {ir_mod.as_posix()};",\
                                             stderr=subprocess.STDOUT, shell=True)
                 
             except subprocess.CalledProcessError as e:

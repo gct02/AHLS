@@ -159,12 +159,13 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
                 instruction = text.split(' ')[0]
                 one_hot_opcode = get_one_hot_opcode(instruction)
                 loop_depth = metadata[int(full_text.split('!loopDepth !')[1].strip().split(',')[0])][0]
+                trip_count = metadata[int(full_text.split('!tripCount !')[1].strip().split(',')[0])][0]
 
                 if directives:
                     directives_features = get_directives_features(full_text, metadata, 0)
-                    features = one_hot_opcode + [loop_depth] + directives_features
+                    features = one_hot_opcode + [loop_depth, trip_count] + directives_features
                 else:
-                    features = one_hot_opcode + [loop_depth]
+                    features = one_hot_opcode + [loop_depth, trip_count]
 
             features = torch.tensor(features, dtype=torch.float32)
             nodes['inst'].append(features)
@@ -306,6 +307,10 @@ def build_cdfg(ir_path:Path, directives:bool=False):
         ir_text = ir_file.read()
 
     programl_graph = programl.from_llvm_ir(ir_text)
+
+    with open('estimators/han/utils/adpcm_pipeline_on_pgml.txt', 'w') as f:
+        f.write(str(programl_graph))
+
     ir_lines = ir_text.split('\n')
 
     del ir_text
