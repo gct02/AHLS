@@ -1,9 +1,9 @@
 add_llvm_loadable_module(libAHLS
 	UpdateMD.cpp
-	AddDirectivesMD.cpp
-	BuildGATModelDFG.cpp
+	SetHLSDirectivesMD.cpp
 	PreprocessHLSIRForX86.cpp
 	PreprocessHLSIRForGNN.cpp
+	BuildGATModelDFG.cpp
 	RenameValues.cpp
 	Profiling.cpp
 	RemoveIOFCall.cpp

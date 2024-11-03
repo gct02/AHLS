@@ -57,44 +57,39 @@ if __name__ == "__main__":
 
             solution_data_json = solution / f"{solution.stem}_data.json"
 
-            ir_temp_1 = solution / ".autopilot/db/temp.1.ll"
-            ir_temp_2 = solution / ".autopilot/db/temp.2.ll"
+            ir_temp1 = solution / ".autopilot/db/temp.1.ll"
+            ir_temp2 = solution / ".autopilot/db/temp.2.ll"
             ir_mod = solution / ".autopilot/db/final.ll"
 
+            ir_posix = ir.as_posix()
+            ir_temp1_posix = ir_temp1.as_posix()
+            ir_temp2_posix = ir_temp2.as_posix()
+            ir_mod_posix = ir_mod.as_posix()
+
             try:
-                subprocess.check_output(f"{OPT} -strip-debug -S < {ir.as_posix()} > {ir_temp_1.as_posix()};",\
-                                        stderr=subprocess.STDOUT, shell=True)
-                
-                subprocess.check_output(f"{OPT} -mem2reg -S < {ir_temp_1.as_posix()} > {ir_temp_2.as_posix()};",\
-                                        stderr=subprocess.STDOUT, shell=True)
-                
-                subprocess.check_output(f"{OPT} -preprocess-ir-gnn -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
-                                        stderr=subprocess.STDOUT, shell=True)
-                
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_temp_1.as_posix()} > {ir_temp_2.as_posix()};",\
-                                        stderr=subprocess.STDOUT, shell=True)
+                subprocess.check_output(f"{OPT} -strip-debug -S < {ir_posix} > {ir_temp1_posix};", shell=True) 
+                subprocess.check_output(f"{OPT} -mem2reg -S < {ir_temp1_posix} > {ir_temp2_posix};", shell=True)
+                subprocess.check_output(f"{OPT} -preprocess-ir-gnn -S < {ir_temp2_posix} > {ir_temp1_posix};", shell=True)
+                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_temp1_posix} > {ir_temp2_posix};", shell=True)
                 if directives:
-                    directives_tcl_path = solution / f"directives.tcl"
-                    create_directives_tcl(solution_data_json, directives_tcl_path)
-                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -add-directives-md -tcl {directives_tcl_path.as_posix()} -S < {ir_temp_2.as_posix()} > {ir_temp_1.as_posix()};",\
-                                            stderr=subprocess.STDOUT, shell=True)
-                    
-                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp_1.as_posix()} > {ir_mod.as_posix()};",\
-                                            stderr=subprocess.STDOUT, shell=True)
+                    tcl_path = solution / "directives.tcl"
+                    create_directives_tcl(solution_data_json, tcl_path)
+                    tcl_path = tcl_path.as_posix()
+                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -set-hls-md -tcl {tcl_path} -S < {ir_temp2_posix} > {ir_temp1_posix};", shell=True)
+                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp1_posix} > {ir_temp2_posix};", shell=True)
                 else:
-                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp_2.as_posix()} > {ir_mod.as_posix()};",\
-                                            stderr=subprocess.STDOUT, shell=True)
+                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp2_posix} > {ir_mod_posix};", shell=True)
                 
             except subprocess.CalledProcessError as e:
                 print(f"Error processing {solution}")
                 print(e)
-                ir_temp_1.unlink()
-                ir_temp_2.unlink()
+                ir_temp1.unlink()
+                ir_temp2.unlink()
                 ir_mod.unlink()
                 continue
 
-            ir_temp_1.unlink()
-            ir_temp_2.unlink()
+            ir_temp1.unlink()
+            ir_temp2.unlink()
 
             xml_rpt_file = solution / "impl/report/verilog/export_impl.xml"
 
