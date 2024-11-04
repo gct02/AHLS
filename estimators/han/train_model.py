@@ -31,8 +31,6 @@ def save_model(model, target_dir, model_name):
     print(f"[INFO] Saving model to: {model_save_path}")
     torch.save(obj=model.state_dict(), f=model_save_path)
 
-
-# Is this the correct way to train a pytorch model? 
 def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, scheduler=None):
     train_losses = []
     test_losses = []
