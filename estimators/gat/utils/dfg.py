@@ -68,11 +68,33 @@ def get_adj_mat(nodes, edges):
     return adj_mat
 
 def get_directives_features(directives_md):
-    array_partition_type = directives_md[1]
-    one_hot_array_partition_type = 3 * [0]
-    if array_partition_type != 0:
-        one_hot_array_partition_type[array_partition_type - 1] = 1
-    return directives_md[0:1] + one_hot_array_partition_type + directives_md[2:]
+    array_partition_md = directives_md[0:5]
+    pipeline_md = directives_md[5:9]
+    unroll_md = directives_md[9:11]
+    loop_flatten_md = directives_md[11:12]
+    loop_merge_md = directives_md[12:13]
+
+    array_partition_dim_size = array_partition_md[1]
+    array_partition_type = array_partition_md[2]
+    array_partition_factor = array_partition_md[3]
+    array_partition_dim= array_partition_md[4]
+    if array_partition_type <= 2:
+        array_partition_type = 0
+    else:
+        array_partition_type = 1
+    array_partition_features = [array_partition_dim_size, array_partition_type, array_partition_factor, array_partition_dim]
+
+    pipeline_ii_not_spec = pipeline_md[2]
+    pipeline_ii = pipeline_md[3]
+    pipeline_features = [pipeline_ii_not_spec, pipeline_ii]
+
+    unroll_factor = unroll_md[1]
+    unroll_features = [unroll_factor]
+
+    loop_flatten_features = loop_flatten_md
+    loop_merge_features = loop_merge_md
+
+    return array_partition_features + pipeline_features + unroll_features + loop_flatten_features + loop_merge_features
     
 def get_one_hot_opcode(opcode:int):
     one_hot_op_type = 7 * [0]
@@ -119,9 +141,9 @@ def build_dfg(dfg_file:Path, has_directives:bool, reduce_size:bool=False):
     for node in nodes:
         opcode = node[3]
         one_hot_opcode = get_one_hot_opcode(opcode)
-        node_features = node[0:3] + one_hot_opcode + node[4:7]
+        node_features = one_hot_opcode + node[4:8]
         if has_directives:
-            directives_md = node[7:len(node)-1]
+            directives_md = node[8:]
             directives_features = get_directives_features(directives_md)
             node_features += directives_features
         features.append(torch.FloatTensor(node_features))

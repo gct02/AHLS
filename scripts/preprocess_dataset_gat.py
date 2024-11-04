@@ -1,8 +1,6 @@
+import json, pickle, subprocess
 from pathlib import Path
 from sys import argv
-
-import json, pickle, subprocess
-
 from utils.parsers import parse_impl_rpt
 from llvm.opt_utils import *
 from estimators.gat.utils.dfg import build_dfg
@@ -55,35 +53,35 @@ if __name__ == "__main__":
             directives_tcl_path = solution / f"directives.tcl"
             create_directives_tcl(solution_data_json, directives_tcl_path)
 
-            ir_post_dirs_temp_1 = solution / ".autopilot/db/a.o.3.t1.bc"
-            ir_post_dirs_temp_2 = solution / ".autopilot/db/a.o.3.t2.bc"
-            ir_post_dirs_mod = solution / ".autopilot/db/a.o.4.bc"
+            ir_post_dirs_temp_1 = solution / ".autopilot/db/a.o.3.t1.ll"
+            ir_post_dirs_temp_2 = solution / ".autopilot/db/a.o.3.t2.ll"
+            ir_post_dirs_mod = solution / ".autopilot/db/a.o.4.ll"
 
-            subprocess.check_output(f"{OPT} -strip-debug < {ir_post_dirs.as_posix()} > {ir_post_dirs_temp_1.as_posix()};",\
+            subprocess.check_output(f"{OPT} -strip-debug -S < {ir_post_dirs.as_posix()} > {ir_post_dirs_temp_1.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
-            subprocess.check_output(f"{OPT} -mem2reg < {ir_post_dirs_temp_1.as_posix()} > {ir_post_dirs_temp_2.as_posix()};",\
+            subprocess.check_output(f"{OPT} -mem2reg -S < {ir_post_dirs_temp_1.as_posix()} > {ir_post_dirs_temp_2.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
-            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -preprocess-vitis-ir < {ir_post_dirs_temp_2.as_posix()} > {ir_post_dirs_temp_1.as_posix()};",\
+            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -preprocess-ir-gnn -S < {ir_post_dirs_temp_2.as_posix()} > {ir_post_dirs_temp_1.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
-            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md < {ir_post_dirs_temp_1.as_posix()} > {ir_post_dirs_mod.as_posix()};",\
+            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_post_dirs_temp_1.as_posix()} > {ir_post_dirs_mod.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
 
             ir_post_dirs_temp_1.unlink()
             ir_post_dirs_temp_2.unlink()
 
-            ir_pre_dirs_temp_1 = solution / ".autopilot/db/a.g.ld.5.gdce.t1.bc"
-            ir_pre_dirs_temp_2 = solution / ".autopilot/db/a.g.ld.5.gdce.t2.bc"
-            ir_pre_dirs_mod = solution / ".autopilot/db/a.g.6.bc"
+            ir_pre_dirs_temp_1 = solution / ".autopilot/db/a.g.ld.5.gdce.t1.ll"
+            ir_pre_dirs_temp_2 = solution / ".autopilot/db/a.g.ld.5.gdce.t2.ll"
+            ir_pre_dirs_mod = solution / ".autopilot/db/a.g.6.ll"
 
-            subprocess.check_output(f"{OPT} -strip-debug < {ir_pre_dirs.as_posix()} > {ir_pre_dirs_temp_1.as_posix()};",\
+            subprocess.check_output(f"{OPT} -strip-debug -S < {ir_pre_dirs.as_posix()} > {ir_pre_dirs_temp_1.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
-            subprocess.check_output(f"{OPT} -mem2reg < {ir_pre_dirs_temp_1.as_posix()} > {ir_pre_dirs_temp_2.as_posix()};",\
+            subprocess.check_output(f"{OPT} -mem2reg -S < {ir_pre_dirs_temp_1.as_posix()} > {ir_pre_dirs_temp_2.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
-            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -preprocess-vitis-ir < {ir_pre_dirs_temp_2.as_posix()} > {ir_pre_dirs_temp_1.as_posix()};",\
+            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -preprocess-ir-gnn -S < {ir_pre_dirs_temp_2.as_posix()} > {ir_pre_dirs_temp_1.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
-            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md < {ir_pre_dirs_temp_1.as_posix()} > {ir_pre_dirs_temp_2.as_posix()};",\
+            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md -dirmd -S < {ir_pre_dirs_temp_1.as_posix()} > {ir_pre_dirs_temp_2.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
-            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -add-directives-md -tcl {directives_tcl_path.as_posix()} < {ir_pre_dirs_temp_2.as_posix()} > {ir_pre_dirs_mod.as_posix()};",\
+            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -set-hls-md -tcl {directives_tcl_path.as_posix()} -S < {ir_pre_dirs_temp_2.as_posix()} > {ir_pre_dirs_mod.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
             
             ir_pre_dirs_temp_1.unlink()
@@ -92,9 +90,9 @@ if __name__ == "__main__":
             instance_post_dir_dfg = instance_folder / "dfg_post_dirs.txt"
             instance_pre_dir_dfg = instance_folder / "dfg_pre_dirs.txt"
 
-            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -build-dfg-gat -dfg {instance_post_dir_dfg.as_posix()} < {ir_post_dirs_mod.as_posix()};",\
+            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -mdfg -gout {instance_post_dir_dfg.as_posix()} < {ir_post_dirs_mod.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
-            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -build-dfg-gat -dfg {instance_pre_dir_dfg.as_posix()} < {ir_pre_dirs_mod.as_posix()};",\
+            subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -mdfg -gout {instance_pre_dir_dfg.as_posix()} -dir < {ir_pre_dirs_mod.as_posix()};",\
                                     stderr=subprocess.STDOUT, shell=True)
 
             xml_rpt_file = solution / "impl/report/verilog/export_impl.xml"
@@ -128,5 +126,3 @@ if __name__ == "__main__":
 
             with open(instance_folder / "dfg_post_dirs.pkl", "wb") as f:
                 pickle.dump(dfg_post_dirs, f)
-
-            subprocess.check_output(f"rm -rf {solution}", stderr=subprocess.STDOUT, shell=True)

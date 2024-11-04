@@ -59,7 +59,7 @@ struct SetHLSDirectivesMD : public ModulePass
             if (directiveTokens[0] == "set_directive_unroll") {
                 // set_directive_unroll -factor N function/loop -> (directiveIndex,1,0,N)
                 // set_directive_unroll function/loop -> (directiveIndex,1,1,tripCount)
-                uint32_t factor = 0;
+                uint32_t factor = 1;
                 uint32_t complete = 1; // If the factor is not specified, the loop will be completely unrolled
                 std::string location;
 
