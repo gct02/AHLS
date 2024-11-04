@@ -27,7 +27,7 @@ class HAN(nn.Module):
         metadata = (node_types, edge_types)
 
         self.han_conv_1 = HANConv(in_channels=in_features, out_channels=hid_dim_l1, metadata=metadata, heads=n_heads_l1, negative_slope=0.1, dropout=0.6)
-        self.han_conv_2 = HANConv(in_channels=hid_dim_l1, out_channels=hid_dim_l2, metadata=metadata, heads=n_heads_l2, negative_slope=0.1, dropout=0.4)
+        self.han_conv_2 = HANConv(in_channels=hid_dim_l1, out_channels=hid_dim_l2, metadata=metadata, heads=n_heads_l2, negative_slope=0.1, dropout=0.5)
         self.han_conv_3 = HANConv(in_channels=hid_dim_l2, out_channels=hid_dim_l3, metadata=metadata, heads=n_heads_l3, negative_slope=0.1)
 
         self.norm_1 = nn.LayerNorm(hid_dim_l1)

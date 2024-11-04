@@ -19,7 +19,7 @@ def parse_args():
     parser = argparse.ArgumentParser(prog="preprocess_dataset_han", description="Create CDFGs from HLS solutions")
     parser.add_argument("-b", "--benchs", help = "Path to the folder containing the Vitis HLS projects", required=True)
     parser.add_argument("-o", "--output", help = "Path where the processed dataset should be written", required=True)
-    parser.add_argument("-d", "--directives", help = "Sinalize that directives features should be included", action="store_true")
+    parser.add_argument("-d", "--directives", help = "Sinalize that directives features should be included", action="store_true", required=False, default=False)
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -69,14 +69,14 @@ if __name__ == "__main__":
             try:
                 subprocess.check_output(f"{OPT} -strip-debug -S < {ir_posix} > {ir_temp1_posix};", shell=True) 
                 subprocess.check_output(f"{OPT} -mem2reg -S < {ir_temp1_posix} > {ir_temp2_posix};", shell=True)
-                subprocess.check_output(f"{OPT} -preprocess-ir-gnn -S < {ir_temp2_posix} > {ir_temp1_posix};", shell=True)
+                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -preprocess-ir-gnn -S < {ir_temp2_posix} > {ir_temp1_posix};", shell=True)
                 subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_temp1_posix} > {ir_temp2_posix};", shell=True)
                 if directives:
                     tcl_path = solution / "directives.tcl"
                     create_directives_tcl(solution_data_json, tcl_path)
                     tcl_path = tcl_path.as_posix()
                     subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -set-hls-md -tcl {tcl_path} -S < {ir_temp2_posix} > {ir_temp1_posix};", shell=True)
-                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp1_posix} > {ir_temp2_posix};", shell=True)
+                    subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp1_posix} > {ir_mod_posix};", shell=True)
                 else:
                     subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_temp2_posix} > {ir_mod_posix};", shell=True)
                 

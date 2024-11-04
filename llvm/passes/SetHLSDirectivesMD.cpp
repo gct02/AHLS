@@ -44,27 +44,26 @@ struct SetHLSDirectivesMD : public ModulePass
             return false;
         }
 
-        ConstantAsMetadata* directiveOnMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1));
-        ConstantAsMetadata* constZero = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0));
-        ConstantAsMetadata* constOne = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1));
+        ConstantAsMetadata* constZeroMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0));
+        ConstantAsMetadata* constOneMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1));
 
-        uint32_t directiveIndex = 1;
+        uint32_t directiveIndex = 1; // Assign an index for each directive
         std::string line;
 
         while (std::getline(directivesTclFile, line)) {
             DEBUG (errs() << "Directive: " << line << "\n");
 
+            // Split the directive into tokens (separated by spaces)
             std::vector<std::string> directiveTokens = split(line);
 
             if (directiveTokens[0] == "set_directive_unroll") {
                 // set_directive_unroll -factor N function/loop -> (directiveIndex,1,0,N)
                 // set_directive_unroll function/loop -> (directiveIndex,1,1,tripCount)
                 uint32_t factor = 0;
-                uint32_t complete = 1;
+                uint32_t complete = 1; // If the factor is not specified, the loop will be completely unrolled
                 std::string location;
 
                 size_t numTokens = directiveTokens.size();
-
                 for (int i = 1; i < numTokens; i++) {
                     if (directiveTokens[i].at(0) != '-') {
                         location = directiveTokens[i];
@@ -83,8 +82,7 @@ struct SetHLSDirectivesMD : public ModulePass
                 for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
                     Function* F = &*FI;
 
-                    if (F->size() == 0 || F->getName() != functionName)
-                        continue;
+                    if (F->getName() != functionName) continue;
 
                     LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(*F).getLoopInfo();
                         
@@ -95,28 +93,30 @@ struct SetHLSDirectivesMD : public ModulePass
                             DEBUG(errs() << "Found loop " << loopName << "\n");
 
                             if (complete == 1) {
+                                // If the factor is not specified, get the trip count of the loop and use it as the factor
                                 Instruction* firstInstruction = &*BB->getFirstInsertionPt();
                                 if (MDNode* tripCountMDNode = firstInstruction->getMetadata("tripCount")) {
                                     int tripCount = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(tripCountMDNode->getOperand(0))->getValue())->getZExtValue();
-                                    // In 'update-md', the trip count is set as the first operand of the 'tripCount' metadata node
-                                    // It will be 1 if the instruction is not part of a loop
                                     if (tripCount > 1) 
+                                        // Trip count will be <= 1 only if it is not computable by ScalarEvolution
                                         factor = tripCount;
                                 }
                             }
-
                             ConstantAsMetadata* directiveIndexMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex));
+                            ConstantAsMetadata* directiveOnMD = constOneMD;
                             ConstantAsMetadata* completeMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), complete));
                             ConstantAsMetadata* factorMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), factor));
                             SmallVector<Metadata*, 4> unrollMD = {directiveIndexMD, directiveOnMD, completeMD, factorMD};
 
                             /*
+                            // Attach metadata to all instructions in the loop entering node
                             for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
                                 Instruction* I = &*II;
                                 I->setMetadata("unroll", MDTuple::get(ctx, unrollMD));
                             }
                             */
 
+                            // Attach metadata to all instructions in the loop
                             BasicBlock* loopHeader = BB->getSingleSuccessor();
                             if (loopHeader) {
                                 Loop* L = LI.getLoopFor(loopHeader);
@@ -138,14 +138,13 @@ struct SetHLSDirectivesMD : public ModulePass
                 directiveIndex++;
             } 
             else if (directiveTokens[0] == "set_directive_pipeline") {
-                // set_directive_pipeline -II N function -> (directiveIndex,1,1,N)
-                // set_directive_pipeline function/loop -> (directiveIndex,1,0,achievedII)
+                // set_directive_pipeline -II N function -> (directiveIndex,1,1,0,N)
+                // set_directive_pipeline function/loop -> (directiveIndex,1,0,1,0)
                 uint32_t pipelineII = 0;
                 uint32_t IINotSpecified = 1;
                 std::string location;
 
                 size_t numTokens = directiveTokens.size();
-
                 for (int i = 1; i < numTokens; i++) {
                     if (directiveTokens[i].at(0) != '-') {
                         location = directiveTokens[i];
@@ -156,8 +155,9 @@ struct SetHLSDirectivesMD : public ModulePass
                         i++;
                     }
                 }
-
                 ConstantAsMetadata* directiveIndexMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex));
+                ConstantAsMetadata* directiveOnMD = constOneMD;
+                ConstantAsMetadata* isFunctionPipeline;
                 ConstantAsMetadata* IINotSpecifiedMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), IINotSpecified));
                 ConstantAsMetadata* pipelineIIMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), pipelineII));
 
@@ -175,49 +175,56 @@ struct SetHLSDirectivesMD : public ModulePass
                     if (slashPos == std::string::npos) {
                         DEBUG(errs() << "Found function " << F->getName() << "\n");
 
-                        SmallVector<Metadata*, 5> pipelineMD = {directiveIndexMD, directiveOnMD, constOne, IINotSpecifiedMD, pipelineIIMD};
+                        isFunctionPipeline = constOneMD;
 
+                        SmallVector<Metadata*, 5> pipelineMD = {directiveIndexMD, directiveOnMD, isFunctionPipeline, IINotSpecifiedMD, pipelineIIMD};
+
+                        // Attach metadata to all instructions in the function
                         for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                             BasicBlock* BB = &*BI;
-
                             for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
                                 Instruction* I = &*II;
                                 I->setMetadata("pipeline", MDTuple::get(ctx, pipelineMD));
                             }
                         }
-                    } else {
+                    } 
+                    else {
                         std::string loopName = location.substr(slashPos + 1);
 
+                        isFunctionPipeline = constZeroMD;
+
+                        // Find the loop in the function
                         for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                             BasicBlock* BB = &*BI;
 
-                            if (BB->hasName() && BB->getName() == loopName) {
-                                DEBUG(errs() << "Found loop " << BB->getName() << "\n");
+                            if (!BB->hasName() || BB->getName() != loopName) continue;
 
-                                SmallVector<Metadata*, 5> pipelineMD = {directiveIndexMD, directiveOnMD, constZero, IINotSpecifiedMD, pipelineIIMD};
+                            DEBUG(errs() << "Found loop " << loopName << "\n");
 
-                                /*
-                                for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
-                                    Instruction* I = &*II;
-                                    I->setMetadata("pipeline", MDTuple::get(ctx, pipelineMD));
-                                }
-                                */
+                            SmallVector<Metadata*, 5> pipelineMD = {directiveIndexMD, directiveOnMD, isFunctionPipeline, IINotSpecifiedMD, pipelineIIMD};
 
-                                BasicBlock* loopHeader = BB->getSingleSuccessor();
-                                if (loopHeader) {
-                                    Loop *L = LI.getLoopFor(loopHeader);
-                                    if (L) {
-                                        ArrayRef<BasicBlock*> loopBlocks = L->getBlocks();
-                                        for (BasicBlock* loopBlock : loopBlocks) {
-                                            for (BasicBlock::iterator II = loopBlock->begin(), IE = loopBlock->end(); II != IE; ++II) {
-                                                Instruction* I = &*II;
-                                                I->setMetadata("pipeline", MDTuple::get(ctx, pipelineMD));
-                                            }
+                            /*
+                            // Attach metadata to all instructions in the loop entering node
+                            for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
+                                Instruction* I = &*II;
+                                I->setMetadata("pipeline", MDTuple::get(ctx, pipelineMD));
+                            }*/
+
+                            // Attach metadata to all instructions in the loop
+                            BasicBlock* loopHeader = BB->getSingleSuccessor();
+                            if (loopHeader) {
+                                Loop *L = LI.getLoopFor(loopHeader);
+                                if (L) {
+                                    ArrayRef<BasicBlock*> loopBlocks = L->getBlocks();
+                                    for (BasicBlock* loopBlock : loopBlocks) {
+                                        for (BasicBlock::iterator II = loopBlock->begin(), IE = loopBlock->end(); II != IE; ++II) {
+                                            Instruction* I = &*II;
+                                            I->setMetadata("pipeline", MDTuple::get(ctx, pipelineMD));
                                         }
                                     }
                                 }
-                                break;
                             }
+                            break;
                         }
                     }
                     break;
@@ -225,9 +232,9 @@ struct SetHLSDirectivesMD : public ModulePass
                 directiveIndex++;
             } 
             else if (directiveTokens[0] == "set_directive_array_partition") {
-                // set_directive_array_partition -type T -dim N -factor M location local_variable -> (directiveIndex,1,1,T,M,N)
-                // set_directive_array_partition [-type complete] -dim N location global_variable -> (directiveIndex,1,0,1,arrayLength,N)
-                // set_directive_array_partition [-type complete] location local_variable -> (directiveIndex,1,1,1,arrayLength,0)
+                // set_directive_array_partition -type T -dim N -factor M location local_variable -> (directiveIndex,1,1,dimSize,T,M,N)
+                // set_directive_array_partition [-type complete] -dim N location global_variable -> (directiveIndex,1,0,dimSize,1,arrayLength,N)
+                // set_directive_array_partition [-type complete] location local_variable -> (directiveIndex,1,1,dimSize,1,arrayLength,0)
                 uint32_t type = 1, dim = 0, factor = 0;
                 size_t numTokens = directiveTokens.size();
                 std::string variable, location;
@@ -256,6 +263,8 @@ struct SetHLSDirectivesMD : public ModulePass
                 }
 
                 ConstantAsMetadata* directiveIndexMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex));
+                ConstantAsMetadata* directiveOnMD = constOneMD;
+                ConstantAsMetadata* isLocalArrayMD;
                 ConstantAsMetadata* typeMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), type));
                 ConstantAsMetadata* dimMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), dim));
 
@@ -263,40 +272,54 @@ struct SetHLSDirectivesMD : public ModulePass
                     // Array to be partitioned is a global variable
                     DEBUG(errs() << "Found global array " << variable << "\n");
 
+                    isLocalArrayMD = constZeroMD;
                     Type* arrayType = GV->getType();
+
+                    // Get the array type that the global variable points to
                     if (arrayType->isPointerTy()) 
                         arrayType = arrayType->getPointerElementType();
 
-                    size_t arrayNumElementsInDim;
+                    size_t arrayNumElementsInDim; // The number of elements in the dimension to be partitioned
+                    size_t numDims = 1;
 
                     if (dim == 0) {
+                        // If the dimension is not specified, all dimensions are partitioned
                         arrayNumElementsInDim = arrayType->getArrayNumElements();
                         arrayType = arrayType->getArrayElementType();
                         while (arrayType->isArrayTy()) {
+                            numDims++;
                             arrayNumElementsInDim *= arrayType->getArrayNumElements();
                             arrayType = arrayType->getArrayElementType();
                         }
                     }
                     else {
+                        // Get the number of elements in the specified dimension
                         for (size_t i = 1; i < dim; i++) {
                             arrayType = arrayType->getArrayElementType();
                         }
                         arrayNumElementsInDim = arrayType->getArrayNumElements();
                     }
 
-                    if (type == 1) 
+                    if (type == 1)
+                        // If the type is complete, the factor will be set to 
+                        // the number of elements in the dimension to be partitioned;
                         factor = arrayNumElementsInDim;
+                    else
+                        // otherwise, the factor is multiplied by the number of dimensions that will be partitioned
+                        factor *= numDims;
+                    
 
                     ConstantAsMetadata* dimSizeMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), arrayNumElementsInDim));
                     ConstantAsMetadata* factorMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), factor));
 
-                    SmallVector<Metadata*, 7> arrayPartitionMD = {directiveIndexMD, directiveOnMD, constZero, dimSizeMD, typeMD, factorMD, dimMD};
+                    SmallVector<Metadata*, 7> arrayPartitionMD = {directiveIndexMD, directiveOnMD, isLocalArrayMD, dimSizeMD, typeMD, factorMD, dimMD};
 
                     GV->setMetadata("arrayPartition", MDTuple::get(ctx, arrayPartitionMD));
 
                     for (Use& U : GV->uses()) {
-                        if (Instruction* op = dyn_cast<Instruction>(U.getUser())) 
+                        if (Instruction* op = dyn_cast<Instruction>(U.getUser())) {
                             op->setMetadata("arrayPartition", MDTuple::get(ctx, arrayPartitionMD));
+                        }
                     }
                 } 
                 else {
@@ -319,40 +342,52 @@ struct SetHLSDirectivesMD : public ModulePass
 
                                 DEBUG(errs() << "Found local array " << variable << "\n");
 
+                                isLocalArrayMD = constOneMD;
                                	Type* arrayType = I->getType();
-                   		        if (arrayType->isPointerTy()) 
-                        	        arrayType = arrayType->getPointerElementType();
+                   		        // If the variable is a pointer to an array, get the type of the array that it points to
+                                if (arrayType->isPointerTy()) 
+                                    arrayType = arrayType->getPointerElementType();
 
-                                size_t arrayNumElementsInDim;
+                                size_t arrayNumElementsInDim; // The number of elements in the dimension to be partitioned
+                                size_t numDims = 1;
 
                                 if (dim == 0) {
+                                    // If the dimension is not specified, all dimensions are partitioned
                                     arrayNumElementsInDim = arrayType->getArrayNumElements();
                                     arrayType = arrayType->getArrayElementType();
                                     while (arrayType->isArrayTy()) {
+                                        numDims++;
                                         arrayNumElementsInDim *= arrayType->getArrayNumElements();
                                         arrayType = arrayType->getArrayElementType();
                                     }
                                 }
                                 else {
+                                    // Get the number of elements in the specified dimension
                                     for (size_t i = 1; i < dim; i++) {
                                         arrayType = arrayType->getArrayElementType();
                                     }
                                     arrayNumElementsInDim = arrayType->getArrayNumElements();
                                 }
 
-                                if (type == 1) 
+                                if (type == 1)
+                                    // If the type is complete, the factor will be set to 
+                                    // the number of elements in the dimension to be partitioned;
                                     factor = arrayNumElementsInDim;
+                                else
+                                    // otherwise, the factor is multiplied by the number of dimensions that will be partitioned
+                                    factor *= numDims;
 
                                 ConstantAsMetadata* dimSizeMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), arrayNumElementsInDim));
                                 ConstantAsMetadata* factorMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), factor));
 
-                                SmallVector<Metadata*, 7> arrayPartitionMD = {directiveIndexMD, directiveOnMD, constZero, dimSizeMD, typeMD, factorMD, dimMD};
+                                SmallVector<Metadata*, 7> arrayPartitionMD = {directiveIndexMD, directiveOnMD, isLocalArrayMD, dimSizeMD, typeMD, factorMD, dimMD};
 
                                 I->setMetadata("arrayPartition", MDTuple::get(ctx, arrayPartitionMD));
 
                                 for (Use& U : I->uses()) {
-                                    if (Instruction* op = dyn_cast<Instruction>(U.getUser())) 
+                                    if (Instruction* op = dyn_cast<Instruction>(U.getUser())) {
                                         op->setMetadata("arrayPartition", MDTuple::get(ctx, arrayPartitionMD));
+                                    }
                                 }
                                 found = true;
                                 break;
@@ -372,6 +407,7 @@ struct SetHLSDirectivesMD : public ModulePass
                 std::string loopName = location.substr(slashPos + 1);
 
                 ConstantAsMetadata* directiveIndexMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex));
+                ConstantAsMetadata* directiveOnMD = constOneMD;
 
                 for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
                     Function* F = &*FI;
@@ -384,33 +420,34 @@ struct SetHLSDirectivesMD : public ModulePass
                     for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                         BasicBlock* BB = &*BI;
 
-                        if (BB->hasName() && BB->getName() == loopName) {
-                            DEBUG(errs() << "Found loop " << loopName << "\n");
+                        if (!BB->hasName() || BB->getName() != loopName) continue;
 
-                            SmallVector<Metadata*, 2> loopFlattenMD = {directiveIndexMD, directiveOnMD};
+                        DEBUG(errs() << "Found loop " << loopName << "\n");
 
-                            /*
-                            for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
-                                Instruction* I = &*II;
-                                I->setMetadata("loopFlatten", MDTuple::get(ctx, loopFlattenMD));
-                            }
-                            */
+                        SmallVector<Metadata*, 2> loopFlattenMD = {directiveIndexMD, directiveOnMD};
 
-                            BasicBlock* loopHeader = BB->getSingleSuccessor();
-                            if (loopHeader) {
-                                Loop *L = LI.getLoopFor(loopHeader);
-                                if (L) {
-                                    ArrayRef<BasicBlock*> loopBlocks = L->getBlocks();
-                                    for (BasicBlock* loopBlock : loopBlocks) {
-                                        for (BasicBlock::iterator II = loopBlock->begin(), IE = loopBlock->end(); II != IE; ++II) {
-                                            Instruction* I = &*II;
-                                            I->setMetadata("loopFlatten", MDTuple::get(ctx, loopFlattenMD));
-                                        }
+                        /*
+                        // Attach metadata to all instructions in the loop entering node
+                        for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
+                            Instruction* I = &*II;
+                            I->setMetadata("loopFlatten", MDTuple::get(ctx, loopFlattenMD));
+                        }*/
+
+                        // Attach metadata to all instructions in the loop
+                        BasicBlock* loopHeader = BB->getSingleSuccessor();
+                        if (loopHeader) {
+                            Loop *L = LI.getLoopFor(loopHeader);
+                            if (L) {
+                                ArrayRef<BasicBlock*> loopBlocks = L->getBlocks();
+                                for (BasicBlock* loopBlock : loopBlocks) {
+                                    for (BasicBlock::iterator II = loopBlock->begin(), IE = loopBlock->end(); II != IE; ++II) {
+                                        Instruction* I = &*II;
+                                        I->setMetadata("loopFlatten", MDTuple::get(ctx, loopFlattenMD));
                                     }
                                 }
                             }
-                            break;
                         }
+                        break;
                     }
                     break;
                 }
@@ -424,6 +461,7 @@ struct SetHLSDirectivesMD : public ModulePass
                 std::string loopName = location.substr(slashPos + 1);
 
                 ConstantAsMetadata* directiveIndexMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), directiveIndex));
+                ConstantAsMetadata* directiveOnMD = constOneMD;
 
                 for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
                     Function* F = &*FI;
@@ -436,33 +474,34 @@ struct SetHLSDirectivesMD : public ModulePass
                     for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                         BasicBlock* BB = &*BI;
 
-                        if (BB->hasName() && BB->getName() == loopName) {
-                            DEBUG(errs() << "Found loop " << loopName << "\n");
+                        if (!BB->hasName() || BB->getName() != loopName) continue;
 
-                            SmallVector<Metadata*, 2> loopMergeMD = {directiveIndexMD, directiveOnMD};
+                        DEBUG(errs() << "Found loop " << loopName << "\n");
 
-                            /*
-                            for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
-                                Instruction* I = &*II;
-                                I->setMetadata("loopMerge", MDTuple::get(ctx, loopMergeMD));
-                            }
-                            */
+                        SmallVector<Metadata*, 2> loopMergeMD = {directiveIndexMD, directiveOnMD};
 
-                            BasicBlock* loopHeader = BB->getSingleSuccessor();
-                            if (loopHeader) {
-                                Loop *L = LI.getLoopFor(loopHeader);
-                                if (L) {
-                                    ArrayRef<BasicBlock*> loopBlocks = L->getBlocks();
-                                    for (BasicBlock* loopBlock : loopBlocks) {
-                                        for (BasicBlock::iterator II = loopBlock->begin(), IE = loopBlock->end(); II != IE; ++II) {
-                                            Instruction* I = &*II;
-                                            I->setMetadata("loopMerge", MDTuple::get(ctx, loopMergeMD));
-                                        }
+                        /*
+                        // Attach metadata to all instructions in the loop entering node
+                        for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
+                            Instruction* I = &*II;
+                            I->setMetadata("loopMerge", MDTuple::get(ctx, loopMergeMD));
+                        }*/
+                        
+                        // Attach metadata to all instructions in the loop
+                        BasicBlock* loopHeader = BB->getSingleSuccessor();
+                        if (loopHeader) {
+                            Loop *L = LI.getLoopFor(loopHeader);
+                            if (L) {
+                                ArrayRef<BasicBlock*> loopBlocks = L->getBlocks();
+                                for (BasicBlock* loopBlock : loopBlocks) {
+                                    for (BasicBlock::iterator II = loopBlock->begin(), IE = loopBlock->end(); II != IE; ++II) {
+                                        Instruction* I = &*II;
+                                        I->setMetadata("loopMerge", MDTuple::get(ctx, loopMergeMD));
                                     }
                                 }
                             }
-                            break;
                         }
+                        break;
                     }
                 }
                 directiveIndex++;
@@ -472,6 +511,7 @@ struct SetHLSDirectivesMD : public ModulePass
         return false; // Module is not modified
     }
 
+    // Split a string into tokens separated by spaces
     std::vector<std::string> split(const std::string& str) 
     {
         std::vector<std::string> result;

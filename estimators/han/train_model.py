@@ -155,7 +155,7 @@ def main(args):
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        in_features = {'inst': 23, 'var': 12, 'const': 13}
+        in_features = {'inst': 23, 'var': 9, 'const': 10}
 
         model = HAN(in_features, 24, 16, 8, 4, 4, 2, 1)
         model = model.to(device)

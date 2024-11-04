@@ -49,7 +49,7 @@ struct UpdateMD : public ModulePass
 
 		for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
 			Function& F = *FI;
-			if (F.isDeclaration() || F.isIntrinsic() || F.size() == 0) continue;
+			if (F.size() == 0) continue;
 
 			setLoopMD(F, ctx);
 
@@ -128,7 +128,17 @@ struct UpdateMD : public ModulePass
 
 					DEBUG(dbgs() << "Trip count: " << tripCountValue->getValue() << "\n");
 
-					MDNode* tripCountMD = MDNode::get(ctx, ConstantAsMetadata::get(tripCountValue));
+					MDNode* tripCountMD =  MDNode::get(ctx, ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), tripCountValue->getZExtValue())));
+					MDNode* loopDepthMD = MDNode::get(ctx, ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), loopDepth)));
+
+					// Attach metadata to all instructions in the basic block
+					for (Instruction &I : BB) {
+						I.setMetadata("tripCount", tripCountMD);
+						I.setMetadata("loopDepth", loopDepthMD);
+					}
+				}
+				else {
+					MDNode* tripCountMD =  MDNode::get(ctx, ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 0)));
 					MDNode* loopDepthMD = MDNode::get(ctx, ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), loopDepth)));
 
 					// Attach metadata to all instructions in the basic block

@@ -3,17 +3,19 @@
 # Source the Vitis HLS settings
 source /tools/Xilinx/Vitis_HLS/2023.2/settings64.sh
 
+HLS_LLVM_DIR="${HOME}/Documents/hls-llvm-project"
+HLS_LLVM_BUILD_DIR="${HLS_LLVM_DIR}/hls-build"
+
 # Set the HLS LLVM environment variables
-export AHLS_LLVM_LIB="${HOME}/Documents/hls-llvm-project/hls-build/lib/libAHLS.so"
-export HLS_LLVM_ROOT="${HOME}Documents/hls-llvm-project/"
-export OPT="${HOME}/Documents/hls-llvm-project/hls-build/bin/opt"
-export LLI="${HOME}/Documents/hls-llvm-project/hls-build/bin/lli"
-export LLC="${HOME}/Documents/hls-llvm-project/hls-build/bin/llc"
-export LLVM_LINK="${HOME}/Documents/hls-llvm-project/hls-build/bin/llvm-link"
-export LLVM_DIS="${HOME}/Documents/hls-llvm-project/hls-build/bin/llvm-dis"
-export LLVM_AS="${HOME}/Documents/hls-llvm-project/hls-build/bin/llvm-as"
-export CLANG="${HOME}/Documents/hls-llvm-project/hls-build/bin/clang"
-export CLANGXX="${HOME}/Documents/hls-llvm-project/hls-build/bin/clang++"
+export AHLS_LLVM_LIB="${HLS_LLVM_BUILD_DIR}/lib/libAHLS.so"
+export OPT="${HLS_LLVM_BUILD_DIR}/bin/opt"
+export LLI="${HLS_LLVM_BUILD_DIR}/bin/lli"
+export LLC="${HLS_LLVM_BUILD_DIR}/bin/llc"
+export LLVM_LINK="${HLS_LLVM_BUILD_DIR}/bin/llvm-link"
+export LLVM_DIS="${HLS_LLVM_BUILD_DIR}/bin/llvm-dis"
+export LLVM_AS="${HLS_LLVM_BUILD_DIR}/bin/llvm-as"
+export CLANG="${HLS_LLVM_BUILD_DIR}/bin/clang"
+export CLANGXX="${HLS_LLVM_BUILD_DIR}/bin/clang++"
 
 # Set PYTHONPATH to main code directory
 export PYTHONPATH=.

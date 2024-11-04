@@ -29,7 +29,7 @@ def get_metadata(ir_path:Path):
     with open(ir_path, 'r') as ir_file:
         lines = ir_file.readlines()
 
-    md_pattern = re.compile(r'^!\d+ = !\{(i32 [-+]?\d*\.?\d+,\s*)*i32 [-+]?\d*\.?\d+\}$')
+    md_pattern = re.compile(r'^!\d+ = !\{(i[1-9]\d* [-+]?\d*\.?\d+,\s*)*i[1-9]\d* [-+]?\d*\.?\d+\}$')
 
     metadata_lines = [line for line in lines if md_pattern.match(line)]
     metadata = {}
@@ -48,21 +48,46 @@ def get_directives_features(node_full_text:str, metadata, node_type:int):
         unroll_md_id = int(node_full_text.split("!unroll !")[1].strip().split(',')[0])
         pipeline_md_id = int(node_full_text.split("!pipeline !")[1].strip().split(',')[0])
 
-        loop_merge_features = metadata[loop_merge_md_id][1:]
-        loop_flatten_features = metadata[loop_flatten_md_id][1:]
-        unroll_features = metadata[unroll_md_id][1:]
-        pipeline_features = metadata[pipeline_md_id][1:]
+        loop_merge_md = metadata[loop_merge_md_id][1:]
+        loop_flatten_md = metadata[loop_flatten_md_id][1:]
+        unroll_md = metadata[unroll_md_id][1:]
+        pipeline_md = metadata[pipeline_md_id][1:]
+
+        pipeline_on = pipeline_md[0]
+        pipeline_ii_spec = pipeline_md[2]
+        pipeline_ii = pipeline_md[3]
+        if pipeline_ii_spec == 0 or pipeline_on == 0:
+            pipeline_ii = 0
+        pipeline_features = [pipeline_on, pipeline_ii]
+
+        unroll_on = unroll_md[0]
+        unroll_factor = unroll_md[2]
+        if unroll_on == 0:
+            unroll_factor = 1
+        unroll_features = [unroll_factor]
+
+        loop_flatten_features = loop_flatten_md
+        loop_merge_features = loop_merge_md
 
         return unroll_features + pipeline_features + loop_flatten_features + loop_merge_features
     else: # Variable or Constant
         array_partition_md_id = int(node_full_text.split("!arrayPartition !")[1].strip().split(',')[0])
         array_partition_md = metadata[array_partition_md_id]
 
+        array_partition_on = array_partition_md[0]
         array_partition_type = array_partition_md[3]
-        one_hot_array_partition_type = 3 * [0]
-        one_hot_array_partition_type[array_partition_type - 1] = 1
+        array_partition_factor = array_partition_md[4]
+        array_partition_dim = array_partition_md[5]
+
+        if array_partition_type <= 2:
+            array_partition_type = 0
+        else:
+            array_partition_type = 1
+
+        if array_partition_on == 0:
+            array_partition_factor = 1
         
-        array_partition_features = array_partition_md[1:3] + one_hot_array_partition_type + array_partition_md[3:]
+        array_partition_features = [array_partition_type, array_partition_dim, array_partition_factor]
 
         return array_partition_features
 
@@ -122,15 +147,15 @@ def get_type_bitwidth(text:str):
         return array_size * array_type_bitwidth
     if 'void' in text:
         return 0
-    if 'struct' in text or 'label' in text or 'token' in text or 'vector' in text:
-        return 32 # Placeholder for now
     if 'half' in text:
         return 16
     if 'float' in text:
         return 32
     if 'double' in text:
         return 64
-    return int(text.strip('i'))
+    if text[0] == 'i':
+        return int(text.strip('i'))
+    return 32 # Placeholder for now
 
 def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives:bool=False):
     nodes = {'inst': [], 'var': [], 'const': []}
@@ -148,24 +173,34 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
 
         if node.type == 0:  # Instruction
             if "ID." not in full_text:
+                external = 1
                 if directives:
-                    features = [0] * 30
+                    features = [external] + [0] * 27
                 else:
-                    features = [0] * 21
+                    features = [external] + [0] * 22
             else:
+                external = 0
                 op_id = int(full_text.split('ID.')[1].split(' ')[0])
                 full_text = ir_op_texts[op_id - 1]
 
                 instruction = text.split(' ')[0]
                 one_hot_opcode = get_one_hot_opcode(instruction)
-                loop_depth = metadata[int(full_text.split('!loopDepth !')[1].strip().split(',')[0])][0]
-                trip_count = metadata[int(full_text.split('!tripCount !')[1].strip().split(',')[0])][0]
+
+                loop_depth_md = full_text.split('!loopDepth !')[1].strip()
+                if ',' in loop_depth_md:
+                    loop_depth_md = loop_depth_md.split(',')[0]
+                loop_depth = metadata[int(loop_depth_md)][0]
+
+                trip_count_md = full_text.split('!tripCount !')[1].strip()
+                if ',' in trip_count_md:
+                    trip_count_md = trip_count_md.split(',')[0]
+                trip_count = metadata[int(trip_count_md)][0]
 
                 if directives:
                     directives_features = get_directives_features(full_text, metadata, 0)
-                    features = one_hot_opcode + [loop_depth, trip_count] + directives_features
+                    features = [external] + one_hot_opcode + [loop_depth, trip_count] + directives_features
                 else:
-                    features = one_hot_opcode + [loop_depth, trip_count]
+                    features = [external] + one_hot_opcode + [loop_depth, trip_count]
 
             features = torch.tensor(features, dtype=torch.float32)
             nodes['inst'].append(features)
@@ -178,15 +213,15 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
                     if global_text is not None:
                         directives_features = get_directives_features(global_text, metadata, 1)
                     else:
-                        directives_features = 8 * [0]
+                        directives_features = 3 * [0]
                 else:
                     instruction = find_instruction(ir_op_texts, full_text)
                     if instruction is not None:
                         directives_features = get_directives_features(instruction, metadata, 2)
                     else:
-                        directives_features = 8 * [0]
+                        directives_features = 3 * [0]
 
-            is_ptr, is_array, is_fp, is_int, is_void, is_struct, is_vector, is_label, is_token = 0, 0, 0, 0, 0, 0, 0, 0, 0
+            is_ptr, is_array, is_fp, is_int, is_void, is_struct, is_vector, is_label = 0, 0, 0, 0, 0, 0, 0, 0
                 
             if text[-1] == '*':
                 is_ptr = 1
@@ -204,13 +239,11 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
                 is_vector = 1
             elif 'label' in text:
                 is_label = 1
-            elif 'token' in text:
-                is_token = 1
 
             bitwidth = get_type_bitwidth(text)
 
             if node.type == 1: # Variable
-                features = [is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector, bitwidth]
+                features = [is_void, is_int, is_fp, is_ptr, is_array, is_struct, is_vector, is_label, bitwidth]
                 if directives:
                     features += directives_features
                 features = torch.tensor(features, dtype=torch.float32)
@@ -234,7 +267,7 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
                 else:
                     const_value = 0 # Placeholder for now
                     
-                features = [is_void, is_int, is_fp, is_ptr, is_array, is_label, is_token, is_struct, is_vector, bitwidth, const_value]
+                features = [is_void, is_int, is_fp, is_ptr, is_array, is_struct, is_vector, is_label, bitwidth, const_value]
                 if directives:
                     features += directives_features
                 features = torch.tensor(features, dtype=torch.float32)
@@ -305,22 +338,10 @@ def get_edges(programl_graph, inst_indices, var_indices, const_indices):
 def build_cdfg(ir_path:Path, directives:bool=False):
     with open(ir_path, 'r') as ir_file:
         ir_text = ir_file.read()
-
-    programl_graph = programl.from_llvm_ir(ir_text)
-
-    with open('estimators/han/utils/adpcm_pipeline_on_pgml.txt', 'w') as f:
-        f.write(str(programl_graph))
-
-    ir_lines = ir_text.split('\n')
-
-    del ir_text
-    gc.collect()
-
-    ir_op_texts = [ir_op_text for ir_op_text in ir_lines if '!opID' in ir_op_text]
-    ir_global_texts = [ir_global_text for ir_global_text in ir_lines if '!globalID' in ir_global_text]
-
-    del ir_lines
-    gc.collect()
+        programl_graph = programl.from_llvm_ir(ir_text)
+        ir_lines = ir_text.split('\n')
+        ir_op_texts = [ir_op_text for ir_op_text in ir_lines if '!opID' in ir_op_text]
+        ir_global_texts = [ir_global_text for ir_global_text in ir_lines if '!globalID' in ir_global_text]
 
     metadata = get_metadata(ir_path)
 
