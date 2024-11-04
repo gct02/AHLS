@@ -5,13 +5,16 @@ from estimators.gat.layers import GraphAttentionalLayer
 
 class GAT(nn.Module):
     def __init__(self, in_features_1:int, in_features_2:int, out_size:int, 
-                 hidden_size_1:int=12, hidden_size_2:int=6, n_layers:int=6):
+                 hidden_size_1:int=12, hidden_size_2:int=6, n_layers:int=6,
+                 norm:bool=False):
         super(GAT, self).__init__()
 
         self.n_layers = n_layers
 
-        # self.layer_norm_1 = nn.LayerNorm(in_features_1)
-        # self.layer_norm_2 = nn.LayerNorm(in_features_2)
+        self.normalize = norm
+        if norm:
+            self.norm1 = nn.LayerNorm(hidden_size_1)
+            self.norm2 = nn.LayerNorm(hidden_size_2)
 
         self.in_size_1 = in_features_1
         self.in_size_2 = in_features_2
@@ -37,16 +40,15 @@ class GAT(nn.Module):
 
     def reset_parameters(self):
         nn.init.constant_(self.fc.bias, 0.1)
-        nn.init.constant_(self.lstm_1.bias_ih_l0, 0.1)
-        nn.init.constant_(self.lstm_1.bias_hh_l0, 0.1)
 
     def forward(self, node_features_1:torch.Tensor, adj_mat_1:torch.Tensor, 
                 node_features_2:torch.Tensor, adj_mat_2:torch.Tensor):
-        # x1 = self.layer_norm_1(node_features_1)
-        # x2 = self.layer_norm_2(node_features_2)
-
         x1 = F.elu(self.gat_jkn_pre_1(node_features_1, adj_mat_1))
         x2 = F.elu(self.gat_jkn_pre_2(node_features_2, adj_mat_2))
+
+        if self.normalize:
+            x1 = self.norm1(x1)
+            x2 = self.norm2(x2)
 
         x1k = []
         x2k = []
@@ -54,6 +56,9 @@ class GAT(nn.Module):
         for _ in range(self.n_layers):
             x1 = F.elu(self.gat_jkn_1(x1, adj_mat_1))
             x2 = F.elu(self.gat_jkn_2(x2, adj_mat_2))
+            if self.normalize:
+                x1 = self.norm1(x1)
+                x2 = self.norm2(x2)
             x1k.append(x1.unsqueeze(1))  # Add extra dimension for LSTM
             x2k.append(x2.unsqueeze(1))
 
