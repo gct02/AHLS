@@ -23,7 +23,7 @@ def filter_nodes(nodes, edges, opcodes_to_keep):
     
     return stripped_nodes, stripped_edges
 
-def parse_dfg_file(dfg_file:Path):
+def parse_dfg_file(dfg_file:Path, add_self_loops:bool=False):
     with open(dfg_file, 'r') as f:
         lines = f.readlines()
 
@@ -37,6 +37,10 @@ def parse_dfg_file(dfg_file:Path):
     for i in range(num_nodes + 2, num_nodes + num_edges + 2):
         edge = lines[i].strip().split(',')
         edges.append((int(edge[0]), int(edge[1])))
+
+    if add_self_loops:
+        for node in nodes:
+            edges.append((node[0], node[0]))
 
     return nodes, edges
 
@@ -127,14 +131,14 @@ def get_one_hot_opcode(opcode:int):
     return one_hot_op_type + one_hot_opcode
 
 def build_dfg(dfg_file:Path, has_directives:bool, reduce_size:bool=False):
-    nodes, edges = parse_dfg_file(dfg_file)
+    nodes, edges = parse_dfg_file(dfg_file, add_self_loops=True)
 
     if reduce_size:
         opcodes_to_keep = [1, 2, 3] + list(range(11, 33)) + [53, 54, 55]
         nodes, edges = filter_nodes(nodes, edges, opcodes_to_keep)
         nodes, edges = rescale_node_ids(nodes, edges)
 
-    adj_mat = get_adj_mat(nodes, edges)
+    # adj_mat = get_adj_mat(nodes, edges)
 
     features = []
 
@@ -149,5 +153,6 @@ def build_dfg(dfg_file:Path, has_directives:bool, reduce_size:bool=False):
         features.append(torch.FloatTensor(node_features))
 
     features = torch.stack(features)
+    edges = torch.LongTensor(edges).transpose(0, 1)
 
-    return features, adj_mat
+    return features, edges

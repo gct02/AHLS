@@ -4,8 +4,8 @@ __pycache__/
 .venv/
 *.log
 hls/run_hls.tcl
-*model_analysis/
-*dataset/
+*model_analysis*/
+*dataset*/
 estimators/han/layers.py
 estimators/han/utils/
 !estimators/han/utils/*.py

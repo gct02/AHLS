@@ -119,7 +119,7 @@ if __name__ == "__main__":
                 f.write(f"{cp}\n")
 
             dfg_post_dirs = build_dfg(instance_post_dir_dfg, has_directives=False, reduce_size=False)
-            dfg_pre_dirs = build_dfg(instance_post_dir_dfg, has_directives=True, reduce_size=False)
+            dfg_pre_dirs = build_dfg(instance_pre_dir_dfg, has_directives=True, reduce_size=False)
 
             with open(instance_folder / "dfg_pre_dirs.pkl", "wb") as f:
                 pickle.dump(dfg_pre_dirs, f)

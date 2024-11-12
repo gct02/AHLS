@@ -2,9 +2,9 @@ import os, pickle
 import torch
 from torch.utils.data import Dataset
 
-DEVICE_NUM_LUT = 870000
-DEVICE_NUM_FF = 1740000
-DEVICE_NUM_DSP = 5952
+# DEVICE_NUM_LUT = 870000
+# DEVICE_NUM_FF = 1740000
+# DEVICE_NUM_DSP = 5952
 
 class HLSDataset(Dataset):
     def __init__(self, data_path, target_metric, test_set_index=None, get_test=False):

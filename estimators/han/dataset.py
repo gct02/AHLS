@@ -7,13 +7,12 @@ from torch.utils.data import Dataset
 # DEVICE_NUM_DSP = 5952
 
 class HLSDataset(Dataset):
-    def __init__(self, data_path, target_metric, test_set_index=None, get_test=False, max_instances_per_benchmark=200):
+    def __init__(self, data_path, target_metric, test_set_index=None, get_test=False):
         assert target_metric in ["lut", "ff", "dsp", "bram", "cp"], "target_metric should be one of ['lut', 'ff', 'dsp', 'bram', 'cp']"
         self.target = target_metric
         self.data_path = data_path
         self.test_set_index = test_set_index
         self.get_test = get_test
-        self.max_instances = max_instances_per_benchmark
         self.data = []
         self.__load_data()
 
@@ -44,22 +43,21 @@ class HLSDataset(Dataset):
             benchmark_folder = os.fsdecode(os.path.join(self.data_path, benchmark))
             instances = sorted(os.listdir(benchmark_folder))
 
-            i = 0
             for instance in instances:
                 instance_folder = os.fsdecode(os.path.join(benchmark_folder, instance))
 
-                cdfg_path = os.path.join(instance_folder, "cdfg.pkl")
+                cdfg_src_path = os.path.join(instance_folder, "cdfg_src.pkl")
+                cdfg_hls_path = os.path.join(instance_folder, "cdfg_hls.pkl")
 
-                if not os.path.exists(cdfg_path):
+                if not os.path.exists(cdfg_src_path) or not os.path.exists(cdfg_hls_path):
                     continue
 
-                cdfg = pickle.load(open(cdfg_path, 'rb'))
+                cdfg_src = pickle.load(open(cdfg_src_path, 'rb'))
+                cdfg_hls = pickle.load(open(cdfg_hls_path, 'rb'))
+
+                cdfg = (cdfg_src, cdfg_hls)
 
                 with open(os.path.join(instance_folder, f"{self.target}.txt"), 'r') as f:
                     target_value = torch.FloatTensor([float(f.readline().strip())])
 
                 self.data.append((cdfg, target_value))
-
-                i += 1
-                if i >= self.max_instances:
-                    break

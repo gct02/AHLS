@@ -1,71 +1,142 @@
+from typing import Dict, List, Optional, Tuple, Union
+from torch_geometric.typing import Adj, EdgeType, Metadata, NodeType, OptTensor
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torch import Tensor
 from torch_geometric.nn.conv import HANConv
 from torch_geometric.nn.inits import glorot
 from torch.nn import MultiheadAttention
 
 class SetTransformer(nn.Module):
-    def __init__(self, input_dim, output_dim, num_heads=4, num_inducing_points=8):
+    def __init__(
+        self, 
+        n_in:int,
+        n_out:int,
+        heads:int,
+        n_inducing_points:int
+    ):
         super(SetTransformer, self).__init__()
-        self.multihead_attn = MultiheadAttention(input_dim, num_heads)
-        self.inducing_points = nn.Parameter(torch.randn(num_inducing_points, input_dim))
-        self.fc_out = nn.Linear(input_dim, output_dim)
+        self.multihead_attn = MultiheadAttention(n_in, heads)
+        self.inducing_points = nn.Parameter(torch.randn(n_inducing_points, n_in))
+        self.fc_out = nn.Linear(n_in, n_out)
 
-    def forward(self, x):
-        x, _ = self.multihead_attn(self.inducing_points, x, x)  # Shape: (num_inducing_points, input_dim)
+    def forward(
+        self,
+        x:Tensor
+    ) -> Tensor:
+        x, _ = self.multihead_attn(self.inducing_points, x, x)  # Shape: (n_inducing_points, n_in)
         x = torch.mean(x, dim=0)  # Aggregate inducing points to a single vector
         return self.fc_out(x)
 
 class HAN(nn.Module):
-    def __init__(self, in_features:dict, hid_dim_l1, hid_dim_l2, hid_dim_l3, n_heads_l1, n_heads_l2, n_heads_l3, out_dim):
+    def __init__(
+        self,
+        n_features:List[Union[int, Dict[str, int]]],
+        n_out:int,
+        n_hid_att:List[int],
+        heads_att:List[int],
+        n_hid_set:List[int]=None,
+        heads_set:List[int]=None,
+        norm:bool=True,
+        n_inducing_points:int=16
+    ):
         super(HAN, self).__init__()
 
         node_types = ['inst', 'var', 'const']
         edge_types = [('inst', 'control', 'inst'), ('inst', 'call', 'inst'), ('inst', 'data', 'var'), ('var', 'data', 'inst'), 
-                      ('const', 'data', 'inst'), ('inst', 'id', 'inst'), ('var', 'id', 'var')]
-        metadata = (node_types, edge_types)
+                      ('const', 'data', 'inst'), ('inst', 'id', 'inst'), ('var', 'id', 'var')]     
+        metadata = (node_types, edge_types)     
 
-        self.han_conv_1 = HANConv(in_channels=in_features, out_channels=hid_dim_l1, metadata=metadata, heads=n_heads_l1, negative_slope=0.1, dropout=0.6)
-        self.han_conv_2 = HANConv(in_channels=hid_dim_l1, out_channels=hid_dim_l2, metadata=metadata, heads=n_heads_l2, negative_slope=0.1, dropout=0.5)
-        self.han_conv_3 = HANConv(in_channels=hid_dim_l2, out_channels=hid_dim_l3, metadata=metadata, heads=n_heads_l3, negative_slope=0.1)
+        self.n_graphs = len(n_features)
+        self.normalize = norm
+        self.n_inducing_points = n_inducing_points
 
-        self.norm_1 = nn.LayerNorm(hid_dim_l1)
-        self.norm_2 = nn.LayerNorm(hid_dim_l2)
+        if n_hid_set is None:
+            n_hid_set = self.n_graphs * [n_out]
 
-        self.set_transformer_inst = SetTransformer(hid_dim_l3, hid_dim_l3)
-        self.set_transformer_var = SetTransformer(hid_dim_l3, hid_dim_l3)
+        if heads_set is None:
+            heads_set = self.n_graphs * [1]
 
-        self.fc_out = nn.Linear(hid_dim_l3, out_dim)
+        self.han1 = nn.ModuleList()
+        self.han2 = nn.ModuleList()
+        self.han3 = nn.ModuleList()
 
-    def forward(self, x_dict, edge_index_dict):
+        if norm:
+            self.norm1 = nn.ModuleList()
+            self.norm2 = nn.ModuleList()
 
-        x_dict = self.han_conv_1(x_dict, edge_index_dict)
-        x_dict['inst'] = F.elu(x_dict['inst'])
-        x_dict['var'] = F.elu(x_dict['var'])
+        self.set_transformer_inst = nn.ModuleList()
+        self.set_transformer_var = nn.ModuleList()
 
-        if 'const' in x_dict:
-            x_dict.pop('const')
+        self.fc_inst_agg = nn.ModuleList()
+        self.fc_var_agg = nn.ModuleList()
 
-        if ('const', 'data', 'inst') in edge_index_dict:
-            edge_index_dict.pop(('const', 'data', 'inst'))
+        for i in range(self.n_graphs):
+            self.han1.append(HANConv(in_channels=n_features[i], out_channels=n_hid_att[i], metadata=metadata, heads=heads_att[i], negative_slope=0.1, dropout=0.6))
+            self.han2.append(HANConv(in_channels=n_hid_att[i], out_channels=n_hid_att[i], metadata=metadata, heads=heads_att[i], negative_slope=0.1, dropout=0.5))
+            self.han3.append(HANConv(in_channels=n_hid_att[i], out_channels=n_hid_set[i], metadata=metadata, heads=heads_set[i], negative_slope=0.1))
+            
+            if norm:
+                self.norm1.append(nn.LayerNorm(n_hid_att[i]))
+                self.norm2.append(nn.LayerNorm(n_hid_att[i]))
 
-        x_dict['inst'] = self.norm_1(x_dict['inst'])
-        x_dict['var'] = self.norm_1(x_dict['var'])
+            self.set_transformer_inst.append(SetTransformer(n_hid_set[i], n_hid_set[i], heads_set[i], n_inducing_points))
+            self.set_transformer_var.append(SetTransformer(n_hid_set[i], n_hid_set[i], heads_set[i], n_inducing_points))
 
-        x_dict = self.han_conv_2(x_dict, edge_index_dict)
-        x_dict['inst'] = F.elu(x_dict['inst'])
-        x_dict['var'] = F.elu(x_dict['var'])
-        x_dict['inst'] = self.norm_2(x_dict['inst'])
-        x_dict['var'] = self.norm_2(x_dict['var'])
+            self.fc_inst_agg.append(nn.Linear(n_hid_set[i], n_out))
+            self.fc_var_agg.append(nn.Linear(n_hid_set[i], n_out))
 
-        x_dict = self.han_conv_3(x_dict, edge_index_dict)
-        x_dict['inst'] = F.elu(x_dict['inst'])
-        x_dict['var'] = F.elu(x_dict['var'])
+        self.fc_graph_agg = nn.Linear(2 * n_out, n_out)
+        self.fc_out = nn.Linear(self.n_graphs * n_out, n_out)
 
-        inst_agg = self.set_transformer_inst(x_dict['inst'])
-        var_agg = self.set_transformer_var(x_dict['var'])
+    def forward(
+        self, 
+        x_dict:List[Dict[NodeType, Tensor]],
+        edge_index_dict:List[Dict[EdgeType, Adj]]
+    ) -> Tensor:
+        agg = []
 
-        agg = inst_agg + var_agg
+        for i in range(self.n_graphs):
+            h = self.han1[i](x_dict[i], edge_index_dict[i])
+            h['inst'] = F.elu(h['inst'])
+            h['var'] = F.elu(h['var'])
 
-        return F.relu(self.fc_out(agg))
+            if 'const' in h:
+                h.pop('const')
+
+            if ('const', 'data', 'inst') in edge_index_dict[i]:
+                edge_index_dict[i].pop(('const', 'data', 'inst'))
+
+            if self.normalize:
+                h['inst'] = self.norm1[i](h['inst'])
+                h['var'] = self.norm1[i](h['var'])
+
+            h = self.han2[i](h, edge_index_dict[i])
+            h['inst'] = F.elu(h['inst'])
+            h['var'] = F.elu(h['var'])
+
+            if self.normalize:
+                h['inst'] = self.norm2[i](h['inst'])
+                h['var'] = self.norm2[i](h['var'])
+
+            h = self.han3[i](h, edge_index_dict[i])
+            h['inst'] = F.elu(h['inst'])
+            h['var'] = F.elu(h['var'])
+
+            inst_agg = self.set_transformer_inst[i](h['inst'])
+            var_agg = self.set_transformer_var[i](h['var'])
+
+            inst_agg = F.gelu(self.fc_inst_agg[i](inst_agg))
+            var_agg = F.gelu(self.fc_var_agg[i](var_agg))
+
+            graph_agg = torch.cat([inst_agg, var_agg], dim=-1)
+            graph_agg = F.leaky_relu(self.fc_graph_agg(graph_agg), negative_slope=0.01)
+
+            agg.append(graph_agg)
+
+        agg = torch.cat(agg, dim=0)
+        agg = F.relu(self.fc_out(agg)).squeeze(0)
+
+        return agg

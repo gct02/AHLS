@@ -79,11 +79,7 @@ def get_directives_features(node_full_text:str, metadata, node_type:int):
         array_partition_factor = array_partition_md[4]
         array_partition_dim = array_partition_md[5]
 
-        if array_partition_type <= 2:
-            array_partition_type = 0
-        else:
-            array_partition_type = 1
-
+        array_partition_type = 0 if array_partition_type <= 2 else 1
         if array_partition_on == 0:
             array_partition_factor = 1
         
@@ -125,25 +121,19 @@ def get_one_hot_opcode(instruction):
 
     return one_hot_op_type + one_hot_opcode
 
-def find_global_value(ir_global_texts, node_full_text):
-    for global_text in ir_global_texts:
-        if node_full_text in global_text.split('=')[0]:
-            return global_text
+def find_value_in_ir(ir_text_lines, value_text):
+    for line in ir_text_lines:
+        if value_text in line.split('=')[0]:
+            return line
     return None
 
-def find_instruction(ir_op_texts, node_full_text):
-    for op_text in ir_op_texts:
-        if node_full_text in op_text.split('=')[0]:
-            return op_text
-    return None
-
-def get_type_bitwidth(text:str):
+def get_type_bitwidth(text:str, full_text:str):
     if text[-1] == '*':
         return 32 # Placeholder for now
     if '[' in text: # Array type
         array_size = int(text.split('[')[1].split(' x ')[0])
         array_type = text.split(' x ')[1].split(']')[0]
-        array_type_bitwidth = get_type_bitwidth(array_type)
+        array_type_bitwidth = get_type_bitwidth(array_type, full_text)
         return array_size * array_type_bitwidth
     if 'void' in text:
         return 0
@@ -155,7 +145,17 @@ def get_type_bitwidth(text:str):
         return 64
     if text[0] == 'i':
         return int(text.strip('i'))
+    if 'vector' in text or ('<' in full_text and '>' in full_text):
+        vector_size = int(full_text.split('<')[1].split(' x ')[0])
+        vector_type = full_text.split(' x ')[1].split('>')[0]
+        vector_type_bitwidth = get_type_bitwidth(vector_type, vector_type)
+        return vector_size * vector_type_bitwidth
     return 32 # Placeholder for now
+
+def get_num_of_dims(text:str):
+    num_dims = text.count('[')
+    num_dims += text.count('<')
+    return num_dims
 
 def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives:bool=False):
     nodes = {'inst': [], 'var': [], 'const': []}
@@ -174,10 +174,9 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
         if node.type == 0:  # Instruction
             if "ID." not in full_text:
                 external = 1
+                features = [external] + [0] * 22
                 if directives:
-                    features = [external] + [0] * 27
-                else:
-                    features = [external] + [0] * 22
+                    features += 5 * [0]
             else:
                 external = 0
                 op_id = int(full_text.split('ID.')[1].split(' ')[0])
@@ -186,18 +185,14 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
                 instruction = text.split(' ')[0]
                 one_hot_opcode = get_one_hot_opcode(instruction)
 
-                loop_depth_md = full_text.split('!loopDepth !')[1].strip()
-                if ',' in loop_depth_md:
-                    loop_depth_md = loop_depth_md.split(',')[0]
-                loop_depth = metadata[int(loop_depth_md)][0]
+                loop_depth_md_id = int(full_text.split("!loopDepth !")[1].strip().split(',')[0])
+                loop_depth = metadata[loop_depth_md_id][0]
 
-                trip_count_md = full_text.split('!tripCount !')[1].strip()
-                if ',' in trip_count_md:
-                    trip_count_md = trip_count_md.split(',')[0]
-                trip_count = metadata[int(trip_count_md)][0]
+                trip_count_md_id = int(full_text.split("!tripCount !")[1].strip().split(',')[0])
+                trip_count = metadata[trip_count_md_id][0]
 
                 if directives:
-                    directives_features = get_directives_features(full_text, metadata, 0)
+                    directives_features = get_directives_features(full_text, metadata, node.type)
                     features = [external] + one_hot_opcode + [loop_depth, trip_count] + directives_features
                 else:
                     features = [external] + one_hot_opcode + [loop_depth, trip_count]
@@ -205,23 +200,16 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
             features = torch.tensor(features, dtype=torch.float32)
             nodes['inst'].append(features)
             inst_indices.append(i)
-
         elif node.type == 1 or node.type == 2: # Variable or Constant
             if directives:
-                if node.type == 1:
-                    global_text = find_global_value(ir_global_texts, full_text)
-                    if global_text is not None:
-                        directives_features = get_directives_features(global_text, metadata, 1)
-                    else:
-                        directives_features = 3 * [0]
+                lines_to_search = ir_global_texts if node.type == 1 else ir_op_texts
+                value_text = find_value_in_ir(lines_to_search, full_text)
+                if value_text is not None:
+                    directives_features = get_directives_features(value_text, metadata, node.type)
                 else:
-                    instruction = find_instruction(ir_op_texts, full_text)
-                    if instruction is not None:
-                        directives_features = get_directives_features(instruction, metadata, 2)
-                    else:
-                        directives_features = 3 * [0]
+                    directives_features = 3 * [0]
 
-            is_ptr, is_array, is_fp, is_int, is_void, is_struct, is_vector, is_label = 0, 0, 0, 0, 0, 0, 0, 0
+            is_ptr, is_array, is_int, is_fp, is_void, is_vector, is_struct, is_label = 0, 0, 0, 0, 0, 0, 0, 0
                 
             if text[-1] == '*':
                 is_ptr = 1
@@ -235,15 +223,17 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
                 is_int = 1
             elif 'struct' in text:
                 is_struct = 1
-            elif 'vector' in text:
+            elif 'vector' in text or ('<' in full_text and '>' in full_text):
                 is_vector = 1
             elif 'label' in text:
                 is_label = 1
 
-            bitwidth = get_type_bitwidth(text)
+            one_hot_type = [is_ptr, is_array, is_int, is_fp, is_void, is_vector, is_struct, is_label]
+            bitwidth = get_type_bitwidth(text, full_text)
+            num_dims = get_num_of_dims(text)
 
             if node.type == 1: # Variable
-                features = [is_void, is_int, is_fp, is_ptr, is_array, is_struct, is_vector, is_label, bitwidth]
+                features = one_hot_type + [num_dims, bitwidth]
                 if directives:
                     features += directives_features
                 features = torch.tensor(features, dtype=torch.float32)
@@ -267,7 +257,7 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
                 else:
                     const_value = 0 # Placeholder for now
                     
-                features = [is_void, is_int, is_fp, is_ptr, is_array, is_struct, is_vector, is_label, bitwidth, const_value]
+                features = one_hot_type + [num_dims, bitwidth, const_value]
                 if directives:
                     features += directives_features
                 features = torch.tensor(features, dtype=torch.float32)
