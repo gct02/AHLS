@@ -48,26 +48,16 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
         for batch_samples, batch_targets in train_loader:
             preds = []
             for instance in batch_samples:
-                dfg_pre_dirs, dfg_post_dirs = instance
+                nodes = instance[0].to(device)
+                edges = instance[1].to(device)
 
-                x_1, x_2 = dfg_pre_dirs[0], dfg_post_dirs[0]
-                edges_1, edges_2 = dfg_pre_dirs[1], dfg_post_dirs[1]
+                preds.append(model(nodes, edges))
 
-                x_1, x_2 = x_1.to(device), x_2.to(device)
-                edges_1, edges_2 = edges_1.to(device), edges_2.to(device)
-
-                preds.append(model(x_1, edges_1, x_2, edges_2))
-
-                x_1, x_2 = x_1.to("cpu"), x_2.to("cpu")
-                edges_1, edges_2 = edges_1.to("cpu"), edges_2.to("cpu")
-
+                nodes, edges = nodes.to("cpu"), edges.to("cpu")
                 torch.cuda.empty_cache()
 
-            preds = torch.stack(preds, dim=0)
-            preds = preds.to(device)
-
-            targets = torch.stack(batch_targets, dim=0)
-            targets = targets.to(device)
+            preds = torch.stack(preds, dim=0).to(device)
+            targets = torch.stack(batch_targets, dim=0).to(device)
 
             loss = loss_func(preds, targets)
 
@@ -75,10 +65,9 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
             loss.backward()
             optimizer.step()
 
-            preds = preds.to("cpu")
-            targets = targets.to("cpu")
-
             train_loss_epoch += loss.item()
+
+            preds, targets = preds.to("cpu"), targets.to("cpu")
         
         if scheduler is not None:
             scheduler.step()
@@ -90,30 +79,21 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
         test_loss_epoch = 0
         with torch.no_grad():
             for i, (batch_samples, batch_targets) in enumerate(test_loader):
-                dfg_pre_dirs, dfg_post_dirs = batch_samples[0] # Only one instance per batch in test_loader
-                x_1, x_2 = dfg_pre_dirs[0], dfg_post_dirs[0]
-                edges_1, edges_2 = dfg_pre_dirs[1], dfg_post_dirs[1]
+                dfg = batch_samples[0] # Only one instance per batch in test_loader
+                nodes, edges = dfg[0].to(device), dfg[1].to(device)
 
-                x_1, x_2 = x_1.to(device), x_2.to(device)
-                edges_1, edges_2 = edges_1.to(device), edges_2.to(device)
+                pred = model(nodes, edges)
 
-                pred = model(x_1, edges_1, x_2, edges_2)
-
-                target = batch_targets[0]
-                target = target.to(device)
+                target = batch_targets[0].to(device)
                 pred = pred.to(device)
 
                 loss = loss_func(pred, target)
 
-                x_1, x_2 = x_1.to("cpu"), x_2.to("cpu")
-                edges_1, edges_2 = edges_1.to("cpu"), edges_2.to("cpu")
-                target = target.to("cpu")
-                pred = pred.to("cpu")
-
+                nodes, edges = nodes.to("cpu"), edges.to("cpu")
+                target, pred = target.to("cpu"), pred.to("cpu")
                 torch.cuda.empty_cache()
                 
                 test_preds_inst[i].append([pred.item(), target.item()])
-
                 print(f"Target: {target}; Prediction: {pred}; Loss: {loss.item()}")
 
                 test_loss_epoch += loss.item()
@@ -144,9 +124,7 @@ def main(args):
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        model = GAT(in_features_1=33, in_features_2=24, out_size=1, 
-                    hidden_size_1=9, hidden_size_2=6, n_layers=3,
-                    n_heads_1=3, n_heads_2=2, norm=False)
+        model = GAT(n_features=26, n_out=1, n_hid1=12, n_hid2=6, heads1=3, heads2=2, n_layers=5)
         model = model.to(device)
 
         loss_func = nn.MSELoss()

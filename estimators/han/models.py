@@ -1,12 +1,11 @@
-from typing import Dict, List, Optional, Tuple, Union
-from torch_geometric.typing import Adj, EdgeType, Metadata, NodeType, OptTensor
+from typing import Dict, List, Union
+from torch_geometric.typing import Adj, EdgeType, NodeType
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn.conv import HANConv
-from torch_geometric.nn.inits import glorot
 from torch.nn import MultiheadAttention
 
 class SetTransformer(nn.Module):

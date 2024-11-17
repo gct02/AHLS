@@ -58,27 +58,17 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
         for input_batch, target_batch in train_loader:
             preds = []
             for cdfg in input_batch:
-                cdfg_src, cdfg_hls = cdfg
-                x_dict_src, edge_index_dict_src = cdfg_src
-                x_dict_hls, edge_index_dict_hls = cdfg_hls
+                x_dict, edge_index_dict = cdfg
+                x_dict = move_to_device(x_dict, device)
+                edge_index_dict = move_to_device(edge_index_dict, device)
 
-                x_dict_src = move_to_device(x_dict_src, device)
-                edge_index_dict_src = move_to_device(edge_index_dict_src, device)
-                x_dict_hls = move_to_device(x_dict_hls, device)
-                edge_index_dict_hls = move_to_device(edge_index_dict_hls, device)
+                preds.append(model([x_dict], [edge_index_dict]))
 
-                preds.append(model([x_dict_src, x_dict_hls], [edge_index_dict_src, edge_index_dict_hls]))
+                x_dict = move_to_device(x_dict, "cpu")
+                edge_index_dict = move_to_device(edge_index_dict, "cpu")
 
-                x_dict_src = move_to_device(x_dict_src, "cpu")
-                edge_index_dict_src = move_to_device(edge_index_dict_src, "cpu")
-                x_dict_hls = move_to_device(x_dict_hls, "cpu")
-                edge_index_dict_hls = move_to_device(edge_index_dict_hls, "cpu")
-
-            preds = torch.stack(preds, dim=0)
-            preds = preds.to(device)
-
-            targets = torch.stack(target_batch, dim=0).squeeze()
-            targets = targets.to(device)
+            preds = torch.stack(preds, dim=0).to(device)
+            targets = torch.stack(target_batch, dim=0).squeeze().to(device)
 
             loss = loss_func(preds, targets)
 
@@ -90,9 +80,7 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
 
             print(f"Predictions: {preds};\n Targets: {targets};\n Loss: {loss.item()}\n")
 
-            targets = targets.to("cpu")
-            preds = preds.to("cpu")
-
+            targets, preds = targets.to("cpu"), preds.to("cpu")
             torch.cuda.empty_cache()
 
         if scheduler is not None:
@@ -105,36 +93,26 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
         test_loss_epoch = 0
         with torch.no_grad():
             for i, (input_batch, target_batch) in enumerate(test_loader):
-                cdfg_src, cdfg_hls = input_batch[0]
-                x_dict_src, edge_index_dict_src = cdfg_src
-                x_dict_hls, edge_index_dict_hls = cdfg_hls
+                cdfg = input_batch[0] # Only one instance per batch in test_loader
+                x_dict, edge_index_dict = cdfg
+                x_dict = move_to_device(x_dict, device)
+                edge_index_dict = move_to_device(edge_index_dict, device)
 
-                x_dict_src = move_to_device(x_dict_src, device)
-                edge_index_dict_src = move_to_device(edge_index_dict_src, device)
-                x_dict_hls = move_to_device(x_dict_hls, device)
-                edge_index_dict_hls = move_to_device(edge_index_dict_hls, device)
-            
-                pred = model([x_dict_src, x_dict_hls], [edge_index_dict_src, edge_index_dict_hls])
+                pred = model([x_dict], [edge_index_dict])
 
-                target = target_batch[0].squeeze()
-                target = target.to(device)
+                target = target_batch[0].squeeze().to(device)
                 pred = pred.to(device)
 
                 loss = loss_func(pred, target)
 
-                x_dict_src = move_to_device(x_dict_src, "cpu")
-                edge_index_dict_src = move_to_device(edge_index_dict_src, "cpu")
-                x_dict_hls = move_to_device(x_dict_hls, "cpu")
-                edge_index_dict_hls = move_to_device(edge_index_dict_hls, "cpu")
-                
                 test_loss_epoch += loss.item()
                 test_preds_inst[i].append([pred.item(), target.item()])
 
                 print(f"Target: {target.item()}; Prediction: {pred.item()}; Loss: {loss.item()}")
 
-                target = target.to("cpu")
-                pred = pred.to("cpu")
-
+                x_dict = move_to_device(x_dict, "cpu")
+                edge_index_dict = move_to_device(edge_index_dict, "cpu")
+                target, pred = target.to("cpu"), pred.to("cpu")
                 torch.cuda.empty_cache()
         
         test_loss_epoch = test_loss_epoch / n_instances
@@ -163,9 +141,9 @@ def main(args):
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        n_features = [{'inst': 28, 'var': 13, 'const': 14}, {'inst': 23, 'var': 10, 'const': 11}]
+        n_features = [{'inst': 25, 'var': 10, 'const': 11}]
 
-        model = HAN(n_features=n_features, n_out=1, n_hid_att=[32, 24], heads_att=[8, 8], n_hid_set=[6, 4], heads_set=[3, 2], norm=True)
+        model = HAN(n_features=n_features, n_out=1, n_hid_att=[24], heads_att=[6], n_hid_set=[6], heads_set=[3], norm=True)
         model = model.to(device)
 
         loss_func = nn.MSELoss()

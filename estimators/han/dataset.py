@@ -46,16 +46,11 @@ class HLSDataset(Dataset):
             for instance in instances:
                 instance_folder = os.fsdecode(os.path.join(benchmark_folder, instance))
 
-                cdfg_src_path = os.path.join(instance_folder, "cdfg_src.pkl")
-                cdfg_hls_path = os.path.join(instance_folder, "cdfg_hls.pkl")
-
-                if not os.path.exists(cdfg_src_path) or not os.path.exists(cdfg_hls_path):
+                cdfg_path = os.path.join(instance_folder, "cdfg.pkl")
+                if not os.path.exists(cdfg_path):
                     continue
 
-                cdfg_src = pickle.load(open(cdfg_src_path, 'rb'))
-                cdfg_hls = pickle.load(open(cdfg_hls_path, 'rb'))
-
-                cdfg = (cdfg_src, cdfg_hls)
+                cdfg = pickle.load(open(cdfg_path, 'rb'))
 
                 with open(os.path.join(instance_folder, f"{self.target}.txt"), 'r') as f:
                     target_value = torch.FloatTensor([float(f.readline().strip())])

@@ -42,14 +42,10 @@ class HLSDataset(Dataset):
             for instance in instances:
                 instance_folder = os.fsdecode(os.path.join(benchmark_folder, instance))
 
-                dfg_post_dirs_path = os.path.join(instance_folder, "dfg_post_dirs.pkl")
-                dfg_pre_dirs_path = os.path.join(instance_folder, "dfg_pre_dirs.pkl")
-                dfg_post_dirs = pickle.load(open(dfg_post_dirs_path, 'rb'))
-                dfg_pre_dirs = pickle.load(open(dfg_pre_dirs_path, 'rb'))
-                
-                dfgs = (dfg_pre_dirs, dfg_post_dirs)
+                dfg_path = os.path.join(instance_folder, "dfg.pkl")
+                dfg = pickle.load(open(dfg_path, 'rb'))
 
-                with open(os.path.join(instance_folder, f"{self.target}_label.txt"), 'r') as f:
+                with open(os.path.join(instance_folder, f"{self.target}.txt"), 'r') as f:
                     target_value = torch.FloatTensor([float(f.readline().strip())])
 
-                self.data.append((dfgs, target_value))
+                self.data.append((dfg, target_value))

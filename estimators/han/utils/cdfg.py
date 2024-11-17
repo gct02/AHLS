@@ -41,83 +41,59 @@ def get_metadata(ir_path:Path):
     
     return metadata
 
-def get_directives_features(node_full_text:str, metadata, node_type:int):
-    if node_type == 0: # Instruction
-        loop_merge_md_id = int(node_full_text.split("!loopMerge !")[1].strip().split(',')[0])
-        loop_flatten_md_id = int(node_full_text.split("!loopFlatten !")[1].strip().split(',')[0])
-        unroll_md_id = int(node_full_text.split("!unroll !")[1].strip().split(',')[0])
-        pipeline_md_id = int(node_full_text.split("!pipeline !")[1].strip().split(',')[0])
+def get_loop_pipeline_features(ir_op_text:str, metadata:dict):
+    loop_pipeline_features = 2 * [0]
+    if '!loopPipeline' in ir_op_text:
+        mdnode_id = int(ir_op_text.split("!loopPipeline !")[1].strip().split(',')[0])
+        loop_pipeline_features[0] = 1
+        loop_pipeline_features[1] = metadata[mdnode_id][1]
+    return loop_pipeline_features
 
-        loop_merge_md = metadata[loop_merge_md_id][1:]
-        loop_flatten_md = metadata[loop_flatten_md_id][1:]
-        unroll_md = metadata[unroll_md_id][1:]
-        pipeline_md = metadata[pipeline_md_id][1:]
+def get_loop_depth(ir_op_text:str, metadata:dict):
+    if '!loopDepth' in ir_op_text:
+        mdnode_id = int(ir_op_text.split("!loopDepth !")[1].strip().split(',')[0])
+        return metadata[mdnode_id][0]
+    return 0
 
-        pipeline_on = pipeline_md[0]
-        pipeline_ii_spec = pipeline_md[2]
-        pipeline_ii = pipeline_md[3]
-        if pipeline_ii_spec == 0 or pipeline_on == 0:
-            pipeline_ii = 0
-        pipeline_features = [pipeline_on, pipeline_ii]
-
-        unroll_on = unroll_md[0]
-        unroll_factor = unroll_md[2]
-        if unroll_on == 0:
-            unroll_factor = 1
-        unroll_features = [unroll_factor]
-
-        loop_flatten_features = loop_flatten_md
-        loop_merge_features = loop_merge_md
-
-        return unroll_features + pipeline_features + loop_flatten_features + loop_merge_features
-    else: # Variable or Constant
-        array_partition_md_id = int(node_full_text.split("!arrayPartition !")[1].strip().split(',')[0])
-        array_partition_md = metadata[array_partition_md_id]
-
-        array_partition_on = array_partition_md[0]
-        array_partition_type = array_partition_md[3]
-        array_partition_factor = array_partition_md[4]
-        array_partition_dim = array_partition_md[5]
-
-        array_partition_type = 0 if array_partition_type <= 2 else 1
-        if array_partition_on == 0:
-            array_partition_factor = 1
-        
-        array_partition_features = [array_partition_type, array_partition_dim, array_partition_factor]
-
-        return array_partition_features
+def get_trip_count(ir_op_text:str, metadata:dict):
+    if '!tripCount' in ir_op_text:
+        mdnode_id = int(ir_op_text.split("!tripCount !")[1].strip().split(',')[0])
+        return metadata[mdnode_id][0]
+    return 0
 
 def get_one_hot_opcode(instruction):
-    if instruction not in LLVM_OPCODES:
-        return 20 * [0]
-    
-    opcode = LLVM_OPCODES[instruction]
-    one_hot_op_type = 7 * [0]
-    one_hot_opcode = 13 * [0]
+    NUM_OPTYPES = 7
+    MAX_OPCODES_PER_TYPE = 13
 
-    if opcode <= 10: # Terminators
-        one_hot_op_type[0] = 1
-        one_hot_opcode[opcode - 1] = 1
-    elif opcode <= 22: # Binary operations
-        one_hot_op_type[1] = 1
-        one_hot_opcode[opcode - 11] = 1
-    elif opcode <= 28: # Logical operations
-        one_hot_op_type[2] = 1
-        one_hot_opcode[opcode - 23] = 1
-    elif opcode <= 35: # Memory operations
-        one_hot_op_type[3] = 1
-        one_hot_opcode[opcode - 29] = 1
-    elif opcode <= 48: # Cast operations
-        one_hot_op_type[4] = 1
-        one_hot_opcode[opcode - 36] = 1
-    elif opcode <= 50: # Exception handling operations
-        one_hot_op_type[5] = 1
-        one_hot_opcode[opcode - 49] = 1
-    else: # Other operations (comparison, phi, call, select, etc.)
-        if opcode >= 58: 
-            opcode -= 2 # Ignoring UserOp1 and UserOp2
-        one_hot_op_type[6] = 1
-        one_hot_opcode[opcode - 51] = 1
+    one_hot_op_type = NUM_OPTYPES * [0]
+    one_hot_opcode = MAX_OPCODES_PER_TYPE * [0]
+
+    if instruction in LLVM_OPCODES:
+        opcode = LLVM_OPCODES[instruction]
+
+        if opcode <= 10: # Terminators
+            one_hot_op_type[0] = 1
+            one_hot_opcode[opcode - 1] = 1
+        elif opcode <= 22: # Binary operations
+            one_hot_op_type[1] = 1
+            one_hot_opcode[opcode - 11] = 1
+        elif opcode <= 28: # Logical operations
+            one_hot_op_type[2] = 1
+            one_hot_opcode[opcode - 23] = 1
+        elif opcode <= 35: # Memory operations
+            one_hot_op_type[3] = 1
+            one_hot_opcode[opcode - 29] = 1
+        elif opcode <= 48: # Cast operations
+            one_hot_op_type[4] = 1
+            one_hot_opcode[opcode - 36] = 1
+        elif opcode <= 50: # Exception handling operations
+            one_hot_op_type[5] = 1
+            one_hot_opcode[opcode - 49] = 1
+        else: # Other operations (comparison, phi, call, select, etc.)
+            if opcode >= 58: 
+                opcode -= 2 # Ignoring UserOp1 and UserOp2
+            one_hot_op_type[6] = 1
+            one_hot_opcode[opcode - 51] = 1
 
     return one_hot_op_type + one_hot_opcode
 
@@ -152,31 +128,25 @@ def get_type_bitwidth(text:str, full_text:str):
         return vector_size * vector_type_bitwidth
     return 32 # Placeholder for now
 
-def get_num_of_dims(text:str):
+def get_num_dims(text:str):
     num_dims = text.count('[')
     num_dims += text.count('<')
     return num_dims
 
-def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives:bool=False):
+def get_nodes(programl_graph, metadata, ir_op_texts):
     nodes = {'inst': [], 'var': [], 'const': []}
     inst_indices, var_indices, const_indices = [], [], []
 
     for i, node in enumerate(programl_graph.node):
-        # function = node.function
-        # block = node.block
         text = node.text
-
         full_text = node.features.feature["full_text"].bytes_list.value.__str__()[1:-1]
-
         if full_text != "":
             full_text = full_text[2:-1]
 
         if node.type == 0:  # Instruction
             if "ID." not in full_text:
                 external = 1
-                features = [external] + [0] * 22
-                if directives:
-                    features += 5 * [0]
+                features = [external] + [0] * 23
             else:
                 external = 0
                 op_id = int(full_text.split('ID.')[1].split(' ')[0])
@@ -184,33 +154,17 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
 
                 instruction = text.split(' ')[0]
                 one_hot_opcode = get_one_hot_opcode(instruction)
+                loop_depth = get_loop_depth(full_text, metadata)
+                trip_count = get_trip_count(full_text, metadata)
+                loop_pipeline_features = get_loop_pipeline_features(full_text, metadata)
 
-                loop_depth_md_id = int(full_text.split("!loopDepth !")[1].strip().split(',')[0])
-                loop_depth = metadata[loop_depth_md_id][0]
-
-                trip_count_md_id = int(full_text.split("!tripCount !")[1].strip().split(',')[0])
-                trip_count = metadata[trip_count_md_id][0]
-
-                if directives:
-                    directives_features = get_directives_features(full_text, metadata, node.type)
-                    features = [external] + one_hot_opcode + [loop_depth, trip_count] + directives_features
-                else:
-                    features = [external] + one_hot_opcode + [loop_depth, trip_count]
+                features = [external] + one_hot_opcode + [loop_depth, trip_count] + loop_pipeline_features
 
             features = torch.tensor(features, dtype=torch.float32)
             nodes['inst'].append(features)
             inst_indices.append(i)
         elif node.type == 1 or node.type == 2: # Variable or Constant
-            if directives:
-                lines_to_search = ir_global_texts if node.type == 1 else ir_op_texts
-                value_text = find_value_in_ir(lines_to_search, full_text)
-                if value_text is not None:
-                    directives_features = get_directives_features(value_text, metadata, node.type)
-                else:
-                    directives_features = 3 * [0]
-
             is_ptr, is_array, is_int, is_fp, is_void, is_vector, is_struct, is_label = 0, 0, 0, 0, 0, 0, 0, 0
-                
             if text[-1] == '*':
                 is_ptr = 1
             elif '[' in text:
@@ -230,12 +184,10 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
 
             one_hot_type = [is_ptr, is_array, is_int, is_fp, is_void, is_vector, is_struct, is_label]
             bitwidth = get_type_bitwidth(text, full_text)
-            num_dims = get_num_of_dims(text)
+            num_dims = get_num_dims(text)
 
             if node.type == 1: # Variable
                 features = one_hot_type + [num_dims, bitwidth]
-                if directives:
-                    features += directives_features
                 features = torch.tensor(features, dtype=torch.float32)
                 nodes['var'].append(features)
                 var_indices.append(i)
@@ -247,7 +199,6 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
                     elif value_text == 'false':
                         const_value = 0
                     else:
-                        # Check if string is convertible to int
                         try:
                             const_value = int(value_text)
                         except ValueError:
@@ -256,10 +207,8 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
                     const_value = float(full_text.split(' ')[-1])
                 else:
                     const_value = 0 # Placeholder for now
-                    
+                
                 features = one_hot_type + [num_dims, bitwidth, const_value]
-                if directives:
-                    features += directives_features
                 features = torch.tensor(features, dtype=torch.float32)
                 nodes['const'].append(features)
                 const_indices.append(i)
@@ -267,7 +216,7 @@ def get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives
     nodes['inst'] = torch.stack(nodes['inst'])
     nodes['var'] = torch.stack(nodes['var'])
     nodes['const'] = torch.stack(nodes['const'])
-    
+
     return nodes, inst_indices, var_indices, const_indices
 
 def get_edges(programl_graph, inst_indices, var_indices, const_indices):
@@ -325,17 +274,17 @@ def get_edges(programl_graph, inst_indices, var_indices, const_indices):
 
     return edges
 
-def build_cdfg(ir_path:Path, directives:bool=False):
+def build_cdfg(ir_path:Path):
     with open(ir_path, 'r') as ir_file:
         ir_text = ir_file.read()
-        programl_graph = programl.from_llvm_ir(ir_text)
-        ir_lines = ir_text.split('\n')
-        ir_op_texts = [ir_op_text for ir_op_text in ir_lines if '!opID' in ir_op_text]
-        ir_global_texts = [ir_global_text for ir_global_text in ir_lines if '!globalID' in ir_global_text]
+
+    programl_graph = programl.from_llvm_ir(ir_text)
+    ir_lines = ir_text.split('\n')
+    ir_op_texts = [ir_op_text for ir_op_text in ir_lines if '!opID' in ir_op_text]
 
     metadata = get_metadata(ir_path)
 
-    nodes, inst_indices, var_indices, const_indices = get_nodes(programl_graph, metadata, ir_op_texts, ir_global_texts, directives)
+    nodes, inst_indices, var_indices, const_indices = get_nodes(programl_graph, metadata, ir_op_texts)
     edges = get_edges(programl_graph, inst_indices, var_indices, const_indices)
 
     return nodes, edges

@@ -18,7 +18,6 @@
 using namespace llvm;
 
 static cl::opt<std::string> outputFileName("gout", cl::desc("Specify the file where the DFG should be written"), cl::value_desc("filename"));
-static cl::opt<bool> hasHLSDirectivesMD("dir", cl::desc("Specify that the module has HLS directives metadata"), cl::Optional, cl::init(false));
 
 namespace {
 
@@ -183,45 +182,13 @@ struct ModuleDFGBuilder : public ModulePass {
         int loopDepth = (int)cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I->getMetadata("loopDepth")->getOperand(0))->getValue())->getZExtValue();
         int tripCount = (int)cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I->getMetadata("tripCount")->getOperand(0))->getValue())->getZExtValue();
 
-        std::vector<int> features({opID, functionID, bbID, opCode, bitwidth, valueType, loopDepth, tripCount});
-
-        if (!hasHLSDirectivesMD) {
-            return features;
+        int loopPipelineOn = 0, loopPipelineII = 0;
+        if (MDTuple* loopPipelineMDTuple = dyn_cast<MDTuple>(I->getMetadata("loopPipeline"))) {
+            loopPipelineOn = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopPipelineMDTuple->getOperand(0))->getValue())->getZExtValue();
+            loopPipelineII = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopPipelineMDTuple->getOperand(1))->getValue())->getZExtValue();
         }
-        int arrayPartitionOn = 0, arrayPartitionDimSize = 0, arrayPartitionType = 0, arrayPartitionFactor = 1, arrayPartitionDim = 0;
-        int pipelineOn = 0, isFunctionPipeline = 0, IINotSpecified = 0, II = 0;
-        int unrollOn = 0, unrollFactor = 1;
-        int loopFlattenOn = 0, loopMergeOn = 0;
-
-        if (MDTuple* arrayPartitionMDTuple = dyn_cast<MDTuple>(I->getMetadata("arrayPartition"))) {
-            arrayPartitionOn = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(1))->getValue())->getZExtValue();
-            arrayPartitionDimSize = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(3))->getValue())->getZExtValue();
-            arrayPartitionType = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(4))->getValue())->getZExtValue();
-            arrayPartitionFactor = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(5))->getValue())->getZExtValue();
-            arrayPartitionDim = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartitionMDTuple->getOperand(6))->getValue())->getZExtValue();
-        }
-        if (MDTuple* pipelineMDTuple = dyn_cast<MDTuple>(I->getMetadata("pipeline"))) {
-            pipelineOn = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMDTuple->getOperand(1))->getValue())->getZExtValue();
-            isFunctionPipeline = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMDTuple->getOperand(2))->getValue())->getZExtValue();
-            IINotSpecified = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMDTuple->getOperand(3))->getValue())->getZExtValue();
-            II = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMDTuple->getOperand(4))->getValue())->getZExtValue();
-        }
-        if (MDTuple* unrollMDTuple = dyn_cast<MDTuple>(I->getMetadata("unroll"))) {
-            unrollOn = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMDTuple->getOperand(1))->getValue())->getZExtValue();
-            unrollFactor = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMDTuple->getOperand(3))->getValue())->getZExtValue();
-        }
-        if (MDTuple* loopFlattenMDTuple = dyn_cast<MDTuple>(I->getMetadata("loopFlatten"))) {
-            loopFlattenOn = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopFlattenMDTuple->getOperand(1))->getValue())->getZExtValue();
-        }
-        if (MDTuple* loopMergeMDTuple = dyn_cast<MDTuple>(I->getMetadata("loopMerge"))) {
-            loopMergeOn = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopMergeMDTuple->getOperand(1))->getValue())->getZExtValue();
-        }
-
-        features.insert(features.end(), {arrayPartitionOn, arrayPartitionDimSize, arrayPartitionType, arrayPartitionFactor, arrayPartitionDim});
-        features.insert(features.end(), {pipelineOn, isFunctionPipeline, IINotSpecified, II});
-        features.insert(features.end(), {unrollOn, unrollFactor});
-        features.insert(features.end(), {loopFlattenOn, loopMergeOn});
-
+        
+        std::vector<int> features({opID, functionID, bbID, opCode, bitwidth, valueType, loopDepth, tripCount, loopPipelineOn, loopPipelineII});
         return features;
     }
 }; // struct ModuleDFGBuilder
