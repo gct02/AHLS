@@ -18,9 +18,9 @@ using namespace llvm;
 
 namespace {
 
-struct RemoveIOFCallPass : public ModulePass {
+struct RemoveIOFCall : public ModulePass {
     static char ID;
-    RemoveIOFCallPass() : ModulePass(ID) {}
+    RemoveIOFCall() : ModulePass(ID) {}
 
     bool runOnModule(Module& M) override {
         bool modified = false; 
@@ -43,9 +43,9 @@ struct RemoveIOFCallPass : public ModulePass {
         }
         return modified;
     }
-};
+}; // struct RemoveIOFCall
 
-}
+}  // anonymous namespace
 
-char RemoveIOFCallPass::ID = 0;
-static RegisterPass<RemoveIOFCallPass> X("remove-iof", "Remove calls to 'populateInput' and 'populateOutput' functions.");
+char RemoveIOFCall::ID = 0;
+static RegisterPass<RemoveIOFCall> X("rmiof", "Remove calls to 'populateInput' and 'populateOutput' functions.");

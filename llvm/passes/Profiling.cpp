@@ -25,7 +25,7 @@ struct ProfilingPass : public ModulePass {
     ProfilingPass() : ModulePass(ID) {}
     
     bool runOnModule(Module &M) override {
-        #define DEBUG_TYPE "profiling"
+        #define DEBUG_TYPE "profile"
 
         LLVMContext &ctx = M.getContext();
 
@@ -117,9 +117,9 @@ struct ProfilingPass : public ModulePass {
 
         return modified;
     }
-};
+}; // struct ProfilingPass
 
-}
+}  // anonymous namespace
 
 char ProfilingPass::ID = 0;
 static RegisterPass<ProfilingPass> X("profile", "Profile binary operations in the module", false, false);

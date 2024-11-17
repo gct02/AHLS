@@ -20,17 +20,14 @@ using namespace llvm;
 static cl::opt<std::string> outputFileName("gout", cl::desc("Specify the file where the DFG should be written"), cl::value_desc("filename"));
 static cl::opt<bool> hasHLSDirectivesMD("dir", cl::desc("Specify that the module has HLS directives metadata"), cl::Optional, cl::init(false));
 
-namespace 
-{
+namespace {
 
-struct ModuleDFGBuilder : public ModulePass 
-{
+struct ModuleDFGBuilder : public ModulePass {
     static char ID;
     ModuleDFGBuilder() : ModulePass(ID) {}
 
-    bool runOnModule(Module& M) override 
-    {
-        #define DEBUG_TYPE "mdfg-builder"
+    bool runOnModule(Module& M) override {
+        #define DEBUG_TYPE "mdfg"
 
         LLVMContext& ctx = M.getContext();
         
@@ -44,18 +41,16 @@ struct ModuleDFGBuilder : public ModulePass
 
         for(Module::iterator FIter = M.begin(), FEnd = M.end(); FIter != FEnd; ++FIter) {
             Function* F = &*FIter;
-            if (F->isDeclaration() || F->isIntrinsic()) continue;
-
+            if (F->isDeclaration() || F->isIntrinsic()) {
+                continue;
+            }
             for(Function::iterator BBIter = F->begin(), BBEnd = F->end(); BBIter != BBEnd; ++BBIter) {
                 BasicBlock* BB = &*BBIter;
-
                 for(BasicBlock::iterator IIter = BB->begin(), IEnd = BB->end(); IIter != IEnd; ++IIter) {
                     Instruction* I = &*IIter;
-
                     if (MDNode* opIDNode = I->getMetadata("opID")) {
                         std::vector<int> features(getFeatures(I));
                         nodes.push_back(features);
-
                         int opID = features[0];
 
                         if (StoreInst* storeInst = dyn_cast<StoreInst>(I)) {
@@ -157,14 +152,11 @@ struct ModuleDFGBuilder : public ModulePass
                 }
             }
         }
-        
         writeDFG(outputFile, nodes, edges);
-
         return true;
     }
 
-    void writeDFG(std::ofstream& outputFile, std::vector<std::vector<int>>& nodes, std::vector<std::pair<int, int>>& edges)
-    {
+    void writeDFG(std::ofstream& outputFile, std::vector<std::vector<int>>& nodes, std::vector<std::pair<int, int>>& edges) {
         int numNodes = nodes.size();
         outputFile << numNodes << "\n";
         for (int i = 0; i < numNodes; i++) {
@@ -181,8 +173,7 @@ struct ModuleDFGBuilder : public ModulePass
         }
     }
 
-    std::vector<int> getFeatures(Instruction* I)
-    {
+    std::vector<int> getFeatures(Instruction* I) {
         int opID = (int)cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I->getMetadata("opID")->getOperand(0))->getValue())->getZExtValue();
         int functionID = (int)cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I->getMetadata("functionID")->getOperand(0))->getValue())->getZExtValue();
         int bbID = (int)cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I->getMetadata("bbID")->getOperand(0))->getValue())->getZExtValue();
@@ -194,9 +185,9 @@ struct ModuleDFGBuilder : public ModulePass
 
         std::vector<int> features({opID, functionID, bbID, opCode, bitwidth, valueType, loopDepth, tripCount});
 
-        if (!hasHLSDirectivesMD)
+        if (!hasHLSDirectivesMD) {
             return features;
-
+        }
         int arrayPartitionOn = 0, arrayPartitionDimSize = 0, arrayPartitionType = 0, arrayPartitionFactor = 1, arrayPartitionDim = 0;
         int pipelineOn = 0, isFunctionPipeline = 0, IINotSpecified = 0, II = 0;
         int unrollOn = 0, unrollFactor = 1;
@@ -233,9 +224,9 @@ struct ModuleDFGBuilder : public ModulePass
 
         return features;
     }
-};
+}; // struct ModuleDFGBuilder
 
-}
+}  // anonymous namespace
 
 char ModuleDFGBuilder::ID = 0;
 static RegisterPass<ModuleDFGBuilder> X("mdfg", "Build a module-level DFG", false, false);

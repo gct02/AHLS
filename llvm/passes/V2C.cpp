@@ -62,9 +62,9 @@ struct V2CPass : public ModulePass {
         }
         return modified;
     }
-};
+}; // struct V2CPass
 
-}
+}  // anonymous namespace
 
 char V2CPass::ID = 0;
 static RegisterPass<V2CPass> X("v2c", "Replace the result of an operation with a constant value", false, false);

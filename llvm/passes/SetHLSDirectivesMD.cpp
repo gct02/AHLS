@@ -24,16 +24,13 @@ using namespace llvm;
 
 static cl::opt<std::string> directivesTclFilePath("tcl", cl::desc("Path to the tcl file containing the HLS directives"), cl::value_desc("filepath"));
 
-namespace 
-{
+namespace  {
 
-struct SetHLSDirectivesMD : public ModulePass 
-{
+struct SetHLSDirectivesMD : public ModulePass {
     static char ID;
     SetHLSDirectivesMD() : ModulePass(ID) {}
 
-    bool runOnModule(Module& M) override 
-    {
+    bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "set-hls-md"
 
         LLVMContext& ctx = M.getContext();
@@ -81,14 +78,13 @@ struct SetHLSDirectivesMD : public ModulePass
 
                 for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
                     Function* F = &*FI;
-
-                    if (F->getName() != functionName) continue;
-
+                    if (F->getName() != functionName) {
+                        continue;
+                    }
                     LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(*F).getLoopInfo();
                         
                     for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                         BasicBlock* BB = &*BI;
-
                         if (BB->hasName() && BB->getName() == loopName) {
                             DEBUG(errs() << "Found loop " << loopName << "\n");
 
@@ -166,17 +162,15 @@ struct SetHLSDirectivesMD : public ModulePass
 
                 for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
                     Function* F = &*FI;
-
-                    if (F->size() == 0 || F->getName() != functionName)
+                    if (F->size() == 0 || F->getName() != functionName) {
                         continue;
-
+                    }
                     LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(*F).getLoopInfo();
 
                     if (slashPos == std::string::npos) {
                         DEBUG(errs() << "Found function " << F->getName() << "\n");
 
                         isFunctionPipeline = constOneMD;
-
                         SmallVector<Metadata*, 5> pipelineMD = {directiveIndexMD, directiveOnMD, isFunctionPipeline, IINotSpecifiedMD, pipelineIIMD};
 
                         // Attach metadata to all instructions in the function
@@ -196,11 +190,10 @@ struct SetHLSDirectivesMD : public ModulePass
                         // Find the loop in the function
                         for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                             BasicBlock* BB = &*BI;
-
-                            if (!BB->hasName() || BB->getName() != loopName) continue;
-
+                            if (!BB->hasName() || BB->getName() != loopName) {
+                                continue;
+                            }
                             DEBUG(errs() << "Found loop " << loopName << "\n");
-
                             SmallVector<Metadata*, 5> pipelineMD = {directiveIndexMD, directiveOnMD, isFunctionPipeline, IINotSpecifiedMD, pipelineIIMD};
 
                             /*
@@ -246,14 +239,17 @@ struct SetHLSDirectivesMD : public ModulePass
                             location = directiveTokens[i];
                             locationFound = true;
                         } 
-                        else 
+                        else {
                             variable = directiveTokens[i];
+                        }
                     } 
                     else if (directiveTokens[i] == "-type") {
-                        if (directiveTokens[i + 1] == "block")
+                        if (directiveTokens[i + 1] == "block") {
                             type = 2;
-                        else if (directiveTokens[i + 1] == "cyclic") 
+                        }
+                        else if (directiveTokens[i + 1] == "cyclic") {
                             type = 3;
+                        }
                         i++;
                     } 
                     else if (directiveTokens[i] == "-dim") {
@@ -300,20 +296,18 @@ struct SetHLSDirectivesMD : public ModulePass
                         arrayNumElementsInDim = arrayType->getArrayNumElements();
                     }
 
-                    if (type == 1)
+                    if (type == 1) {
                         // If the type is complete, the factor will be set to 
                         // the number of elements in the dimension to be partitioned;
                         factor = arrayNumElementsInDim;
-                    else
+                    }
+                    else {
                         // otherwise, the factor is multiplied by the number of dimensions that will be partitioned
                         factor *= numDims;
-                    
-
+                    }
                     ConstantAsMetadata* dimSizeMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), arrayNumElementsInDim));
                     ConstantAsMetadata* factorMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), factor));
-
                     SmallVector<Metadata*, 7> arrayPartitionMD = {directiveIndexMD, directiveOnMD, isLocalArrayMD, dimSizeMD, typeMD, factorMD, dimMD};
-
                     GV->setMetadata("arrayPartition", MDTuple::get(ctx, arrayPartitionMD));
 
                     for (Use& U : GV->uses()) {
@@ -329,25 +323,24 @@ struct SetHLSDirectivesMD : public ModulePass
 
                     for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
                         Function* F = &*FI;
-
-                        if (F->size() == 0 || F->getName() != functionName) continue;
-
+                        if (F->size() == 0 || F->getName() != functionName) {
+                            continue;
+                        }
                         for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                             BasicBlock* BB = &*BI;
 
                             for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
                                 Instruction* I = &*II;
-                                
-                                if (I->getName() != variable) continue;
-
+                                if (I->getName() != variable) {
+                                    continue;
+                                }
                                 DEBUG(errs() << "Found local array " << variable << "\n");
-
                                 isLocalArrayMD = constOneMD;
                                	Type* arrayType = I->getType();
                    		        // If the variable is a pointer to an array, get the type of the array that it points to
-                                if (arrayType->isPointerTy()) 
+                                if (arrayType->isPointerTy()) {
                                     arrayType = arrayType->getPointerElementType();
-
+                                }
                                 size_t arrayNumElementsInDim; // The number of elements in the dimension to be partitioned
                                 size_t numDims = 1;
 
@@ -369,19 +362,18 @@ struct SetHLSDirectivesMD : public ModulePass
                                     arrayNumElementsInDim = arrayType->getArrayNumElements();
                                 }
 
-                                if (type == 1)
+                                if (type == 1) {
                                     // If the type is complete, the factor will be set to 
                                     // the number of elements in the dimension to be partitioned;
                                     factor = arrayNumElementsInDim;
-                                else
+                                }
+                                else {
                                     // otherwise, the factor is multiplied by the number of dimensions that will be partitioned
                                     factor *= numDims;
-
+                                }
                                 ConstantAsMetadata* dimSizeMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), arrayNumElementsInDim));
                                 ConstantAsMetadata* factorMD = ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), factor));
-
                                 SmallVector<Metadata*, 7> arrayPartitionMD = {directiveIndexMD, directiveOnMD, isLocalArrayMD, dimSizeMD, typeMD, factorMD, dimMD};
-
                                 I->setMetadata("arrayPartition", MDTuple::get(ctx, arrayPartitionMD));
 
                                 for (Use& U : I->uses()) {
@@ -392,7 +384,9 @@ struct SetHLSDirectivesMD : public ModulePass
                                 found = true;
                                 break;
                             }
-                            if (found) break;
+                            if (found) {
+                                break;
+                            }
                         }
                         break;
                     }
@@ -411,19 +405,17 @@ struct SetHLSDirectivesMD : public ModulePass
 
                 for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
                     Function* F = &*FI;
-
-                    if (F->size() == 0 || F->getName() != functionName)
+                    if (F->size() == 0 || F->getName() != functionName) {
                         continue;
-
+                    }
                     LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(*F).getLoopInfo();
 
                     for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                         BasicBlock* BB = &*BI;
-
-                        if (!BB->hasName() || BB->getName() != loopName) continue;
-
+                        if (!BB->hasName() || BB->getName() != loopName) {
+                            continue;
+                        }
                         DEBUG(errs() << "Found loop " << loopName << "\n");
-
                         SmallVector<Metadata*, 2> loopFlattenMD = {directiveIndexMD, directiveOnMD};
 
                         /*
@@ -465,21 +457,18 @@ struct SetHLSDirectivesMD : public ModulePass
 
                 for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
                     Function* F = &*FI;
-
-                    if (F->size() == 0 || F->getName() != functionName)
+                    if (F->size() == 0 || F->getName() != functionName) {
                         continue;
-
+                    }
                     LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(*F).getLoopInfo();
 
                     for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                         BasicBlock* BB = &*BI;
-
-                        if (!BB->hasName() || BB->getName() != loopName) continue;
-
+                        if (!BB->hasName() || BB->getName() != loopName) {
+                            continue;
+                        }
                         DEBUG(errs() << "Found loop " << loopName << "\n");
-
                         SmallVector<Metadata*, 2> loopMergeMD = {directiveIndexMD, directiveOnMD};
-
                         /*
                         // Attach metadata to all instructions in the loop entering node
                         for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
@@ -512,27 +501,24 @@ struct SetHLSDirectivesMD : public ModulePass
     }
 
     // Split a string into tokens separated by spaces
-    std::vector<std::string> split(const std::string& str) 
-    {
+    std::vector<std::string> split(const std::string& str) {
         std::vector<std::string> result;
         std::istringstream iss(str);
         std::string token;
-
         while (std::getline(iss, token, ' ')) {
-            if (!token.empty()) 
+            if (!token.empty()) {
                 result.push_back(token);
+            }
         }
-
         return result;
     }
 
-    virtual void getAnalysisUsage(AnalysisUsage& AU) const override 
-    {
+    virtual void getAnalysisUsage(AnalysisUsage& AU) const override {
         AU.addRequired<LoopInfoWrapperPass>();
     }
-}; // struct AddDirectivesMD
+}; // struct SetHLSDirectivesMD
 
-}  // namespace
+}  // anonymous namespace
 
 char SetHLSDirectivesMD::ID = 0;
 static RegisterPass<SetHLSDirectivesMD> X("set-hls-md", "Set HLS directives metadata", false, false);

@@ -1,8 +1,9 @@
 add_llvm_loadable_module(libAHLS
 	UpdateMD.cpp
+	HLSIRPrepForGNN.cpp
+	HLSIRPrepForX86.cpp
+	RemoveSpecFunctions.cpp
 	SetHLSDirectivesMD.cpp
-	PreprocessHLSIRForX86.cpp
-	PreprocessHLSIRForGNN.cpp
 	ModuleDFGBuilder.cpp
 	RenameValues.cpp
 	Profiling.cpp

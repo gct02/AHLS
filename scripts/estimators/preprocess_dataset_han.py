@@ -1,4 +1,6 @@
 import json, pickle, subprocess, argparse
+import yaml
+import re
 from pathlib import Path
 from utils.parsers import parse_impl_rpt
 from llvm.opt_utils import *
@@ -44,7 +46,7 @@ if __name__ == "__main__":
 
             instance_folder.mkdir(parents=True, exist_ok=True)
             
-            ir_src = solution / ".autopilot/db/a.g.0.bc"
+            ir_src = solution / ".autopilot/db/a.g.ld.5.gdce.bc"
             ir_hls = solution / ".autopilot/db/a.o.3.bc"
 
             if not ir_hls.exists() or not ir_src.exists():

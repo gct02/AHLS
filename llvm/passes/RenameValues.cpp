@@ -26,18 +26,14 @@ struct RenameValues : ModulePass {
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "rename"
-
         LLVMContext& ctx = M.getContext();
 
         for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
             Function* F = &*FI;
-
             for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                 BasicBlock* BB = &*BI;
-
                 for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
                     Instruction* I = &*II;
-
                     if (!I->getType()->isVoidTy()) {
                         if (MDNode* opIDMDNode = I->getMetadata("opID")) {
                             uint32_t opID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(opIDMDNode->getOperand(0))->getValue())->getZExtValue();
@@ -59,9 +55,9 @@ struct RenameValues : ModulePass {
 
         return true;
     }
-};
+}; // struct RenameValues
 
-} // namespace
+}  // anonymous namespace
 
 char RenameValues::ID = 0;
-static RegisterPass<RenameValues> X("rename", "Rename all variables in the module to op.<opID> if local or global.<globalID> if global. This pass must be used only after 'update-md' and 'add-directives-md'.", false, false);
+static RegisterPass<RenameValues> X("rename", "Rename all variables in the module to op.<opID> if local or global.<globalID> if global. This pass must be used only after 'update-md'.", false, false);
