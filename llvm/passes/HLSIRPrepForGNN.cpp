@@ -179,13 +179,6 @@ struct HLSIRPrepForGNN : ModulePass {
         intrinsic->eraseFromParent(); // Remove the intrinsic from the module
     }
 
-    /*
-     * TODO: 
-     *  1. Implelent '_ssdm_op_BitConcatenate.*' and '_ssdm_op_SparseMux.*' intrinsics as functions;
-     *  2. Remove all '_ssdm_SpecDependence' intrinsics from the module.
-     */
-    
-
 }; // struct HLSIRPrepForGNN
 
 }  // anonymous namespace
