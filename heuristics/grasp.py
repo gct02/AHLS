@@ -10,19 +10,37 @@ from scripts.approx import create_approx_design, run_with_timeout
 from llvm.clang_utils import create_executable_from_llvm_ir
 
 class GRASP(Heuristic):
-    def __init__(self, trained_estimator_path: Path, n_iter=100):
+    def __init__(
+        self, 
+        trained_estimator_path:Path, 
+        n_iter=100
+        ):
         self.n_iter = n_iter
         with open(trained_estimator_path, "rb") as f:
             self.estimator = torch.load(f)
 
     # Randomized Greedy Construction
-    def RGC(self, design_ir, ac_transforms):
+    def RGC(self,
+        design_ir, 
+        ac_transforms
+        ):
         ...
 
-    def local_search(self, ac_transforms):
+    def local_search(
+        self, 
+        ac_transforms
+        ):
         ...
 
-    def run(self, design_ir: Path, design_executable: Path, data_stats: Path, ac_transforms: list, exact_design_exec_time: float, input_args: str):
+    def run(
+        self, 
+        design_ir:Path, 
+        design_executable:Path, 
+        data_stats:Path, 
+        ac_transforms:list, 
+        exact_design_exec_time:float, 
+        input_args:str
+        ):
         """
         Parameters
         ----------

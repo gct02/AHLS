@@ -6,7 +6,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 class GraphAttentionalLayer(nn.Module):
     def __init__(self, in_features:int, out_features:int, n_heads:int, 
-                 concat:bool=False, leaky_relu_slope:float=0.01, dropout:float=0.4):
+                 concat:bool=False, leaky_relu_slope:float=0.01, dropout:float=0.0):
         super(GraphAttentionalLayer, self).__init__()
         self.n_heads = n_heads
         self.concat = concat

@@ -1,14 +1,19 @@
 import os, pickle
 import torch
+from typing import Union
+from pathlib import Path
 from torch.utils.data import Dataset
 
-# DEVICE_NUM_LUT = 870000
-# DEVICE_NUM_FF = 1740000
-# DEVICE_NUM_DSP = 5952
-
 class HLSDataset(Dataset):
-    def __init__(self, data_path, target_metric, test_set_index=None, get_test=False):
-        assert target_metric in ["lut", "ff", "dsp", "bram", "cp"], "target_metric should be one of ['lut', 'ff', 'dsp', 'bram', 'cp']"
+    def __init__(
+        self, 
+        data_path:Union[Path, str], 
+        target_metric:str, 
+        test_set_index:Union[int, None]=None, 
+        get_test:bool=False
+        ):
+        assert target_metric in ["lut", "ff", "dsp", "bram", "cp"], \
+            "target_metric should be one of ['lut', 'ff', 'dsp', 'bram', 'cp']"
         self.target = target_metric
         self.data_path = data_path
         self.test_set_index = test_set_index
@@ -31,28 +36,33 @@ class HLSDataset(Dataset):
         benchmarks = sorted(os.listdir(self.data_path))
 
         if self.get_test:
-            if self.test_set_index is not None:
-                benchmarks = [benchmarks[self.test_set_index]]
-            else:
+            if self.test_set_index == None or \
+               self.test_set_index >= len(benchmarks):
                 return
+            benchmarks = [benchmarks[self.test_set_index]]
         else:
             if self.test_set_index is not None:
                 del benchmarks[self.test_set_index]
 
-        for benchmark in benchmarks:
-            benchmark_folder = os.fsdecode(os.path.join(self.data_path, benchmark))
-            instances = sorted(os.listdir(benchmark_folder))
+        for bench in benchmarks:
+            bench_folder = os.fsdecode(os.path.join(self.data_path, bench))
+            instances = sorted(os.listdir(bench_folder))
 
-            for instance in instances:
-                instance_folder = os.fsdecode(os.path.join(benchmark_folder, instance))
+            for inst in instances:
+                inst_folder = os.fsdecode(os.path.join(bench_folder, inst))
 
-                cdfg_path = os.path.join(instance_folder, "cdfg.pkl")
+                cdfg_path = os.path.join(inst_folder, "cdfg.pkl")
                 if not os.path.exists(cdfg_path):
                     continue
 
                 cdfg = pickle.load(open(cdfg_path, 'rb'))
 
-                with open(os.path.join(instance_folder, f"{self.target}.txt"), 'r') as f:
-                    target_value = torch.FloatTensor([float(f.readline().strip())])
+                with open(os.path.join(inst_folder, f"targets.txt"), 'r') as f:
+                    line = f.readline().split(' ')
+                    metric = line[0]
+                    while metric != self.target:
+                        line = f.readline().split(' ')
+                        metric = line[0]
+                    target_value = float(line[1])
 
                 self.data.append((cdfg, target_value))

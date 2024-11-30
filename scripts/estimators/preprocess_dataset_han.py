@@ -2,14 +2,14 @@ import pickle, subprocess, argparse
 from pathlib import Path
 from utils.parsers import parse_impl_rpt
 from llvm.opt_utils import *
-from estimators.han.utils.cdfg import build_cdfg
+from estimators.han.cdfg import build_cdfg
 
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Create CDFGs for the IRs of the Vitis HLS projects in the given folder"
     )
-    parser.add_argument("-b", "--benchs", help = "Path to the folder containing the Vitis HLS projects", required=True)
-    parser.add_argument("-o", "--output", help = "Path where the processed dataset should be written", required=True)
+    parser.add_argument("-b", "--benchs", help="Path to the folder containing the Vitis HLS projects", required=True)
+    parser.add_argument("-o", "--output", help="Path where the processed dataset should be written", required=True)
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -53,12 +53,30 @@ if __name__ == "__main__":
             ir_mod_path = ir_mod.as_posix()
 
             try:
-                subprocess.check_output(f"{OPT} -strip-debug -S < {ir_path} > {ir_tmp1_path};", shell=True) 
-                subprocess.check_output(f"{OPT} -mem2reg -S < {ir_tmp1_path} > {ir_tmp2_path};", shell=True)
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -prepgnn -S < {ir_tmp2_path} > {ir_tmp1_path};", shell=True)
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_tmp1_path} > {ir_tmp2_path};", shell=True)
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rmspec -S < {ir_tmp2_path} > {ir_tmp1_path};", shell=True)
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_tmp1_path} > {ir_mod_path};", shell=True)
+                subprocess.check_output(
+                    f"{OPT} -strip-debug -S < {ir_path} > {ir_tmp1_path};",
+                    shell=True
+                ) 
+                subprocess.check_output(
+                    f"{OPT} -mem2reg -S < {ir_tmp1_path} > {ir_tmp2_path};",
+                    shell=True
+                )
+                subprocess.check_output(
+                    f"{OPT} -load {AHLS_LLVM_LIB} -prepgnn -S < {ir_tmp2_path} > {ir_tmp1_path};",
+                    shell=True
+                )
+                subprocess.check_output(
+                    f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_tmp1_path} > {ir_tmp2_path};",
+                    shell=True
+                )
+                subprocess.check_output(
+                    f"{OPT} -load {AHLS_LLVM_LIB} -rmspec -S < {ir_tmp2_path} > {ir_tmp1_path};",
+                    shell=True
+                )
+                subprocess.check_output(
+                    f"{OPT} -load {AHLS_LLVM_LIB} -rename -S < {ir_tmp1_path} > {ir_mod_path};",
+                    shell=True
+                )
             except subprocess.CalledProcessError as e:
                 print(f"Error processing {solution}")
                 print(e)
@@ -79,21 +97,9 @@ if __name__ == "__main__":
                 continue
 
             ff, lut, dsp, bram, cp = parse_impl_rpt(xml_rpt_file)
-
-            with open(instance_folder / "lut.txt", "w") as f:
-                f.write(f"{lut}\n")
-
-            with open(instance_folder / "ff.txt", "w") as f:
-                f.write(f"{ff}\n")
-
-            with open(instance_folder / "dsp.txt", "w") as f:
-                f.write(f"{dsp}\n")
-
-            with open(instance_folder / "bram.txt", "w") as f:
-                f.write(f"{bram}\n")
-
-            with open(instance_folder / "cp.txt", "w") as f:
-                f.write(f"{cp}\n")
+            
+            with open(instance_folder / "targets.txt", "w") as f:
+                f.write(f"lut {lut}\nff {ff}\ndsp {dsp}\nbram {bram}\ncp {cp}\n")
 
             cdfg = build_cdfg(ir_mod)
 

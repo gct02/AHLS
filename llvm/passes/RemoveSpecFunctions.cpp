@@ -32,8 +32,10 @@ struct RemoveSpecFunctions : ModulePass {
         std::vector<Function*> ssdmSpecIntrinsics;
 
         for (Function& F : M) {
-            if (F.hasName() && (F.getName().startswith("_ssdm_op_Spec") || F.getName().startswith("_ssdm_Spec"))) {
-                ssdmSpecIntrinsics.push_back(&F);
+            if (F.isIntrinsic() && F.hasName()) {
+                if (F.getName().startswith("_ssdm_op_Spec") || F.getName().startswith("_ssdm_Spec")) {
+                    ssdmSpecIntrinsics.push_back(&F);
+                }
             }
         }
 

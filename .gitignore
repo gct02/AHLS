@@ -2,12 +2,5 @@ __pycache__/
 *__pycache__/
 .vscode/
 .venv/
-*.log
-hls/
-hls_override_opt/
 *model_analysis*/
 *dataset*/
-estimators/gat/models/
-estimators/han/layers.py
-estimators/han/utils/
-!estimators/han/utils/*.py

@@ -124,7 +124,7 @@ def main(args):
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        model = GAT(n_features=26, n_out=1, n_hid1=12, n_hid2=6, heads1=3, heads2=2, n_layers=5)
+        model = GAT(n_features=19, n_out=1, n_hid1=12, n_hid2=6, heads1=3, heads2=2, n_layers=5)
         model = model.to(device)
 
         loss_func = nn.MSELoss()

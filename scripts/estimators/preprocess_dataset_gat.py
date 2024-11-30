@@ -3,7 +3,7 @@ from pathlib import Path
 from sys import argv
 from utils.parsers import parse_impl_rpt
 from llvm.opt_utils import *
-from estimators.gat.utils.dfg import build_dfg
+from estimators.gat.dfg import build_module_dfg
 
 if __name__ == "__main__":
     dataset_path = Path(argv[1])
@@ -49,11 +49,26 @@ if __name__ == "__main__":
             ir_mod_path = ir_mod.as_posix()
 
             try:
-                subprocess.check_output(f"{OPT} -strip-debug -S < {ir_path} > {ir_tmp1_path};", shell=True) 
-                subprocess.check_output(f"{OPT} -mem2reg -S < {ir_tmp1_path} > {ir_tmp2_path};", shell=True)
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -prepgnn -S < {ir_tmp2_path} > {ir_tmp1_path};", shell=True)
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_tmp1_path} > {ir_tmp2_path};", shell=True)
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -rmspec -S < {ir_tmp2_path} > {ir_tmp1_path};", shell=True)
+                subprocess.check_output(
+                    f"{OPT} -strip-debug -S < {ir_path} > {ir_tmp1_path};",
+                    shell=True
+                ) 
+                subprocess.check_output(
+                    f"{OPT} -mem2reg -S < {ir_tmp1_path} > {ir_tmp2_path};",
+                    shell=True
+                )
+                subprocess.check_output(
+                    f"{OPT} -load {AHLS_LLVM_LIB} -prepgnn -S < {ir_tmp2_path} > {ir_tmp1_path};",
+                    shell=True
+                )
+                subprocess.check_output(
+                    f"{OPT} -load {AHLS_LLVM_LIB} -update-md -S < {ir_tmp1_path} > {ir_tmp2_path};",
+                    shell=True
+                )
+                subprocess.check_output(
+                    f"{OPT} -load {AHLS_LLVM_LIB} -rmspec -S < {ir_tmp2_path} > {ir_tmp1_path};",
+                    shell=True
+                )
             except subprocess.CalledProcessError as e:
                 print(f"Error processing {solution}")
                 print(e)
@@ -66,8 +81,12 @@ if __name__ == "__main__":
             ir_tmp2.unlink()
 
             dfg_txt = solution / "dfg.txt"
+            dfg_txt_path = dfg_txt.as_posix()
             try:
-                subprocess.check_output(f"{OPT} -load {AHLS_LLVM_LIB} -mdfg -gout {dfg_txt.as_posix()} < {ir_mod_path};", shell=True)
+                subprocess.check_output(
+                    f"{OPT} -load {AHLS_LLVM_LIB} -mdfg -gout {dfg_txt_path} < {ir_mod_path};", 
+                    shell=True
+                )
             except subprocess.CalledProcessError as e:
                 print(f"Error processing {solution}")
                 print(e)
@@ -87,22 +106,10 @@ if __name__ == "__main__":
 
             ff, lut, dsp, bram, cp = parse_impl_rpt(xml_rpt_file)
 
-            with open(instance_folder / "lut.txt", "w") as f:
-                f.write(f"{lut}\n")
-
-            with open(instance_folder / "ff.txt", "w") as f:
-                f.write(f"{ff}\n")
-
-            with open(instance_folder / "dsp.txt", "w") as f:
-                f.write(f"{dsp}\n")
-
-            with open(instance_folder / "bram.txt", "w") as f:
-                f.write(f"{bram}\n")
-
-            with open(instance_folder / "cp.txt", "w") as f:
-                f.write(f"{cp}\n")
-
-            dfg = build_dfg(dfg_txt)
+            with open(instance_folder / "targets.txt", "w") as f:
+                f.write(f"lut {lut}\nff {ff}\ndsp {dsp}\nbram {bram}\ncp {cp}\n")
+                
+            dfg = build_module_dfg(dfg_txt)
 
             with open(instance_folder / "dfg.pkl", "wb") as f:
                 pickle.dump(dfg, f)
