@@ -1,7 +1,6 @@
 import torch
 from pathlib import Path
 
-
 OPCODE_DICT = {
     'add': [1,0,0,0,0,0, 0,0,0,0,0,1,0],
     'fadd': [1,0,0,0,0,0, 0,0,0,0,0,1,0],
@@ -72,7 +71,6 @@ OPCODE_DICT = {
     'cleanupret': [0,0,0,0,0,1, 1,0,0,0,0,0,0],
     'unreachable': [0,0,0,0,0,1, 1,0,0,0,0,0,0]
 }
-
 
 def filter_nodes(nodes, edges, ops_to_keep):
     stripped_nodes = nodes.copy()

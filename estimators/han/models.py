@@ -7,7 +7,6 @@ from torch_geometric.nn.conv import HANConv
 from torch import Tensor
 from torch.nn import MultiheadAttention
 
-
 class SetTransformer(nn.Module):
     def __init__(
         self, 
@@ -15,24 +14,21 @@ class SetTransformer(nn.Module):
         n_out:int,
         heads:int,
         n_inducing_points:int
-        ):
+    ):
         super(SetTransformer, self).__init__()
         self.multihead_attn = MultiheadAttention(n_in, heads)
         self.inducing_points = nn.Parameter(torch.randn(n_inducing_points, n_in))
         self.fc_out = nn.Linear(n_in, n_out)
 
-
     def forward(
         self,
         x:Tensor
-        ) -> Tensor:
+    ) -> Tensor:
         x, _ = self.multihead_attn(self.inducing_points, x, x)
         x = torch.mean(x, dim=0)  # Aggregate inducing points to a single vector
         return self.fc_out(x)
 
-
 class HAN(nn.Module):
-
     def __init__(
         self,
         n_features:Union[int, Dict[str, int]],
@@ -43,7 +39,7 @@ class HAN(nn.Module):
         heads_set:int=1,
         norm:bool=True,
         n_inducing_points:int=16
-        ):
+    ):
         super(HAN, self).__init__()
 
         node_types = ['inst', 'var', 'const']
@@ -103,12 +99,11 @@ class HAN(nn.Module):
         self.fc_var_agg = nn.Linear(n_hid_set, n_out)
         self.fc_graph_agg = nn.Linear(2 * n_out, n_out)
 
-
     def forward(
         self, 
         x_dict:Dict[NodeType, Tensor],
         edge_index_dict:Dict[EdgeType, Adj]
-        ) -> Tensor:
+    ) -> Tensor:
         h = self.han1(x_dict, edge_index_dict)
         h['inst'] = F.elu(h['inst'])
         h['var'] = F.elu(h['var'])

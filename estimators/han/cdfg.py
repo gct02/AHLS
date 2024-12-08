@@ -5,10 +5,6 @@ from typing import List
 from sys import argv
 from pathlib import Path
 
-
-torch.set_printoptions(profile="full")
-
-
 OPCODE_DICT = {
     'add': [1,0,0,0,0,0, 0,0,0,0,0,1,0],
     'fadd': [1,0,0,0,0,0, 0,0,0,0,0,1,0],
@@ -80,7 +76,6 @@ OPCODE_DICT = {
     'unreachable': [0,0,0,0,0,1, 1,0,0,0,0,0,0]
 }
 
-
 def parse_mdnode(mdnode_text:str):
     operands_text = mdnode_text.split('!{')[1].split('}')[0].split(',')
     operands = []
@@ -89,7 +84,6 @@ def parse_mdnode(mdnode_text:str):
         operands.append(int(operand))
     return operands
 
-
 def get_metadata(ir_path:Path):
     with open(ir_path, 'r') as ir_file:
         lines = ir_file.readlines()
@@ -97,17 +91,15 @@ def get_metadata(ir_path:Path):
     md_pattern = re.compile(
         r'^!\d+ = !\{(i[1-9]\d* [-+]?\d*\.?\d+,\s*)*i[1-9]\d* [-+]?\d*\.?\d+\}$'
     )
-
     metadata_lines = [line for line in lines if md_pattern.match(line)]
     metadata = {}
 
     for line in metadata_lines:
-        index = int(line.split(' = ')[0].strip('!'))
-        mdnode_text = line.split(' = ')[1]
+        index = int(line.split(' =')[0].strip('!'))
+        mdnode_text = line.split('= ')[1]
         metadata[index] = parse_mdnode(mdnode_text)
     
     return metadata
-
 
 def get_mdnode_id(op_line_text:str, mdnode_name:str):
     if f"!{mdnode_name}" not in op_line_text:
@@ -117,33 +109,28 @@ def get_mdnode_id(op_line_text:str, mdnode_name:str):
         mdnode_id = mdnode_id.split(',')[0]
     return int(mdnode_id)
 
-
 def get_loop_pipeline_features(op_line_text:str, metadata:dict):
     mdnode_id = get_mdnode_id(op_line_text, "loopPipeline")
     if mdnode_id == -1:
         return [0,0]
     return metadata[mdnode_id][:2]
 
-
 def get_loop_depth(op_line_text:str, metadata:dict):
     mdnode_id = get_mdnode_id(op_line_text, "loopDepth")
     if mdnode_id == -1:
-        return [0,0]
+        return 0
     return metadata[mdnode_id][0]
-
 
 def get_trip_count(op_line_text:str, metadata:dict):
     mdnode_id = get_mdnode_id(op_line_text, "loopPipeline")
     if mdnode_id == -1:
-        return [0,0]
+        return 1
     return metadata[mdnode_id][0]
 
-
-def get_one_hot_opcode(op_type_text:str):
-    if op_type_text in OPCODE_DICT:
-        return OPCODE_DICT[op_type_text]
+def get_one_hot_opcode(inst_text:str):
+    if inst_text in OPCODE_DICT:
+        return OPCODE_DICT[inst_text]
     return [0]*13 # Unknown instruction
-
 
 def find_value_declaration(ir_lines:list, value_text:str):
     for line in ir_lines:
@@ -151,9 +138,8 @@ def find_value_declaration(ir_lines:list, value_text:str):
             return line
     return None
 
-
 def get_bitwidth(type_text:str, op_line_text:str):
-    if type_text[-1] == '*': # Pointer type
+    if type_text[-1] != '*': # Pointer type
         return 32 # Placeholder for now
     if '[' in type_text: # Array type
         n_elems = int(type_text.split('[')[1].split(' x')[0])
@@ -179,12 +165,11 @@ def get_bitwidth(type_text:str, op_line_text:str):
     # Other types (e.g. struct, label, token, etc.)
     return 32 # Placeholder for now
 
-
 def get_nodes(
     programl_graph, 
     metadata:dict, 
     op_lines_text:list
-    ):
+):
     nodes = {'inst': [], 'var': [], 'const': []}
     inst_indices, var_indices, const_indices = [], [], []
 
@@ -199,7 +184,7 @@ def get_nodes(
         if node.type == 0: # Instruction
             if "ID." not in full_text:
                 external = 1
-                features = [external] + [0]*17
+                features = [external] + ([0] * 17)
             else:
                 external = 0
                 op_id = int(full_text.split('ID.')[1].split(' ')[0])
@@ -219,7 +204,7 @@ def get_nodes(
             nodes['inst'].append(features)
             inst_indices.append(i)
         elif node.type == 1 or node.type == 2: # Variable or Constant
-            one_hot_type = [0]*8
+            one_hot_type = [0] * 8
             
             if text[-1] == '*': # Pointer type
                 one_hot_type[0] = 1
@@ -273,13 +258,12 @@ def get_nodes(
 
     return nodes, inst_indices, var_indices, const_indices
 
-
 def get_edges(
     programl_graph, 
     inst_indices:List[int], 
     var_indices:List[int], 
     const_indices:List[int]
-    ):
+):
     edges = {
         ('inst','control','inst'): [], 
         ('inst','call','inst'): [], 
@@ -347,7 +331,6 @@ def get_edges(
 
     return edges
 
-
 def build_cdfg(ir_path:Path):
     with open(ir_path, 'r') as ir_file:
         ir_text = ir_file.read()
@@ -364,10 +347,9 @@ def build_cdfg(ir_path:Path):
 
     return nodes, edges
 
-
 if __name__ == "__main__":
-
     # *** For debugging *** #
+    torch.set_printoptions(profile="full")
 
     ir_path = Path(argv[1])
     output_path = Path(argv[2])

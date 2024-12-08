@@ -4,9 +4,9 @@ import argparse, os, pickle, gc
 import matplotlib
 import matplotlib.pyplot as plt
 from pathlib import Path
-from torch.utils.data import Dataset, DataLoader
-from estimators.gat.models import GAT
-from estimators.gat.dataset import HLSDataset
+from torch.utils.data import DataLoader
+from gat.models import GAT
+from gat.dataset import HLSDataset
 
 matplotlib.use('Agg')
 
@@ -20,18 +20,25 @@ torch.set_printoptions(precision=6, threshold=1000, edgeitems=10, linewidth=200,
 def RMSELoss(pred, target):
     return torch.sqrt(torch.mean((pred - target) ** 2))
 
+
 def save_model(model, target_dir, model_name):
-    # Create target directory
     target_dir_path = Path(target_dir)
     target_dir_path.mkdir(parents=True, exist_ok=True)
-    # Create model save path
     assert model_name.endswith(".pth") or model_name.endswith(".pt"), "model_name should end with '.pt' or '.pth'"
     model_save_path = target_dir_path / model_name
-    # Save the model state_dict()
     print(f"[INFO] Saving model to: {model_save_path}")
     torch.save(obj=model.state_dict(), f=model_save_path)
 
-def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, scheduler=None):
+
+def train_model(
+    model, 
+    loss_func, 
+    optimizer, 
+    train_loader, 
+    test_loader, 
+    epochs, 
+    scheduler=None
+):
     train_losses = []
     test_losses = []
 
@@ -103,6 +110,7 @@ def train_model(model, loss_func, optimizer, train_loader, test_loader, epochs, 
         print(f"Test Loss: {test_loss_epoch}")
         
     return train_losses, test_losses, test_preds_inst
+
 
 def main(args):
     epochs = int(args['epoch'])
@@ -179,6 +187,7 @@ def main(args):
 
         del model, train_dataset, test_dataset, train_loader, test_loader, optimizer
     
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Provide arguments for the GAT model for resource usage prediction')
 

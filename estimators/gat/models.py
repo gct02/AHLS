@@ -3,23 +3,23 @@ import torch.nn as nn
 import torch.nn.functional as F
 import gc
 from torch import Tensor
-from estimators.gat.layers import GraphAttentionalLayer
+from gat.layers import GraphAttentionalLayer
 from torch.utils.checkpoint import checkpoint
 
 
 class GAT(nn.Module):
 
     def __init__(
-            self, 
-            n_features:int, 
-            n_out:int, 
-            n_hid1:int, 
-            n_hid2:int, 
-            heads1:int, 
-            heads2:int=1, 
-            n_layers:int=5, 
-            norm:bool=False
-        ):
+        self, 
+        n_features:int, 
+        n_out:int, 
+        n_hid1:int, 
+        n_hid2:int, 
+        heads1:int, 
+        heads2:int=1, 
+        n_layers:int=5, 
+        norm:bool=False
+    ):
         super(GAT, self).__init__()
 
         self.n_layers = n_layers
@@ -78,15 +78,18 @@ class GAT(nn.Module):
         edges:Tensor,
         n_nodes:int,
         sparse:bool=False
-        ) -> Tensor:
+    ) -> Tensor:
         adj_mat = torch.tensor(
             [-9e15] * (n_nodes * n_nodes), 
             dtype=torch.float32, 
             device="cpu"
         ).view(n_nodes, n_nodes)
+
         adj_mat[edges[0,:]-1, edges[1,:]-1] = 0
+
         if sparse:
             adj_mat = adj_mat.to_sparse()
+
         return adj_mat
 
 
@@ -94,7 +97,7 @@ class GAT(nn.Module):
         self, 
         node_features:Tensor, 
         edges:Tensor
-        ) -> Tensor:
+    ) -> Tensor:
         n_nodes = node_features.shape[0]
         adj_mat = self._make_adj_mat(edges, n_nodes)
 

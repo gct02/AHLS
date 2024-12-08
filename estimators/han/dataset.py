@@ -11,9 +11,7 @@ class HLSDataset(Dataset):
         target_metric:str, 
         test_set_index:Union[int, None]=None, 
         get_test:bool=False
-        ):
-        assert target_metric in ["lut", "ff", "dsp", "bram", "cp"], \
-            "target_metric should be one of ['lut', 'ff', 'dsp', 'bram', 'cp']"
+    ):
         self.target = target_metric
         self.data_path = data_path
         self.test_set_index = test_set_index

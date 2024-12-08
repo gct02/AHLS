@@ -1,5 +1,5 @@
 import torch
-from metrics.data_stats import *
+from data_stats import *
 
 def get_resource_savings(data_stats: dict, transformed_data_stats: dict):
     """

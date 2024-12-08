@@ -5,8 +5,15 @@ import torch.nn.functional as F
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 class GraphAttentionalLayer(nn.Module):
-    def __init__(self, in_features:int, out_features:int, n_heads:int, 
-                 concat:bool=False, leaky_relu_slope:float=0.01, dropout:float=0.0):
+    def __init__(
+        self, 
+        in_features:int, 
+        out_features:int, 
+        n_heads:int, 
+        concat:bool=False, 
+        leaky_relu_slope:float=0.01, 
+        dropout:float=0.0
+    ):
         super(GraphAttentionalLayer, self).__init__()
         self.n_heads = n_heads
         self.concat = concat
@@ -29,7 +36,11 @@ class GraphAttentionalLayer(nn.Module):
         nn.init.xavier_normal_(self.W, gain=1.41)
         nn.init.xavier_normal_(self.a, gain=1.41)
 
-    def _get_att_scores(self, h_transformed:torch.Tensor, adj_mat:torch.Tensor):
+    def _get_att_scores(
+        self, 
+        h_transformed:torch.Tensor, 
+        adj_mat:torch.Tensor
+    ):
         a_src = self.a[:, :self.n_hidden, :]
         a_dst = self.a[:, self.n_hidden:, :]
 
@@ -54,7 +65,11 @@ class GraphAttentionalLayer(nn.Module):
 
         return torch.stack(e)
 
-    def forward(self, h:torch.Tensor, adj_mat:torch.Tensor):
+    def forward(
+        self, 
+        h:torch.Tensor, 
+        adj_mat:torch.Tensor
+    ):
         h_transformed = torch.mm(h, self.W).view(h.shape[0], self.n_heads, self.n_hidden).permute(1, 0, 2)
         h_transformed = F.dropout(h_transformed, self.dropout, training=self.training)
 

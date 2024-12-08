@@ -8,16 +8,16 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="Create CDFGs for the IRs of the Vitis HLS projects in the given folder"
     )
-    parser.add_argument("-b", "--benchs", help="Path to the folder containing the Vitis HLS projects", required=True)
+    parser.add_argument("-d", "--dataset", help="Path to the original dataset folder", required=True)
     parser.add_argument("-o", "--output", help="Path where the processed dataset should be written", required=True)
     return parser.parse_args()
 
 if __name__ == "__main__":
     args = parse_args()
-    benchmark_path = Path(args.benchs)
+    dataset = Path(args.dataset)
     output_folder_path = Path(args.output)
 
-    benchmarks = sorted(list(benchmark_path.iterdir()))
+    benchmarks = sorted(list(dataset.iterdir()))
 
     for i, benchmark in enumerate(benchmarks):
         benchmark_folder = output_folder_path / benchmark.stem
@@ -80,9 +80,9 @@ if __name__ == "__main__":
             except subprocess.CalledProcessError as e:
                 print(f"Error processing {solution}")
                 print(e)
-                ir_tmp1.unlink()
-                ir_tmp2.unlink()
-                ir_mod.unlink()
+                ir_tmp1.unlink(missing_ok=True)
+                ir_tmp2.unlink(missing_ok=True)
+                ir_mod.unlink(missing_ok=True)
                 continue
 
             ir_tmp1.unlink()

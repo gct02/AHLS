@@ -2,5 +2,5 @@ __pycache__/
 *__pycache__/
 .vscode/
 .venv/
-*model_analysis*/
-*dataset*/
+model_analysis/
+dataset/

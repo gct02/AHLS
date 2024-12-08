@@ -1,9 +1,7 @@
 import subprocess
 from pathlib import Path
 from os import environ
-
-from llvm.exceptions import *
-
+from exceptions import *
 
 try:
     AHLS_LLVM_LIB = environ['AHLS_LLVM_LIB']
@@ -13,7 +11,6 @@ try:
 except KeyError as error:
     print(f"Error: environment variable {error.args[0]} not defined.")
     raise
-
 
 def update_md(ir_path: Path, output_path: Path=None) -> Path:
     """

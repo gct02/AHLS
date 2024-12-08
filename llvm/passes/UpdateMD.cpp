@@ -101,7 +101,7 @@ struct UpdateMD : public ModulePass {
 				MDNode* pipelineMD = MDNode::get(ctx, {ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), 1)), 
 											           ConstantAsMetadata::get(ConstantInt::get(Type::getInt32Ty(ctx), pipelineII))});
 				for (Instruction& I : BB) {
-					I.setMetadata("loopPipeline", MDTuple::get(ctx, pipelineMD));
+					I.setMetadata("loopPipeline", pipelineMD);
 				}
 			}
 		}

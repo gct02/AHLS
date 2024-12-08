@@ -4,10 +4,9 @@ import argparse, os
 import matplotlib
 import matplotlib.pyplot as plt
 from pathlib import Path
-from torch.utils.data import Dataset, DataLoader
-from estimators.han.models import HAN
-from estimators.han.dataset import HLSDataset
-
+from torch.utils.data import DataLoader
+from han.models import HAN
+from han.dataset import HLSDataset
 
 matplotlib.use('Agg')
 
@@ -23,7 +22,6 @@ torch.set_printoptions(
     sci_mode=False
 )
 
-
 def save_model(model, target_dir, model_name):
     target_dir_path = Path(target_dir)
     target_dir_path.mkdir(parents=True, exist_ok=True)
@@ -32,7 +30,6 @@ def save_model(model, target_dir, model_name):
     model_save_path = target_dir_path / model_name
     print(f"[INFO] Saving model to: {model_save_path}")
     torch.save(obj=model.state_dict(), f=model_save_path)
-
 
 def move_to_device(data, device):
     if isinstance(data, torch.Tensor):
@@ -44,7 +41,6 @@ def move_to_device(data, device):
     else:
         return data
 
-
 def train_model(
     model,
     loss_func,
@@ -55,7 +51,7 @@ def train_model(
     epochs,
     scheduler=None,
     verbose=False
-    ):
+):
     train_losses = []
     test_losses = []
 
@@ -178,7 +174,6 @@ def train_model(
         
     return train_losses, test_losses, test_preds_inst
 
-
 def main(args):
     epochs = int(args['epoch'])
     batch_size = int(args['batch'])
@@ -291,7 +286,6 @@ def main(args):
 
         del model, train_dataset, test_dataset, train_loader, test_loader, \
             optimizer, scheduler, train_losses, test_losses, test_preds_inst
-
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

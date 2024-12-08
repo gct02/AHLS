@@ -1,8 +1,7 @@
 import subprocess
 from pathlib import Path
 from os import environ
-
-from llvm.exceptions import ClangException
+from exceptions import ClangException
 
 try:
     CLANG = environ['CLANG']
@@ -10,7 +9,11 @@ except KeyError as error:
     print(f"Error: environment variable {error.args[0]} not defined.")
     raise
 
-def create_executable_from_llvm_ir(ir_path: Path, output_path: Path, include_libraries: list=None) -> None:
+def create_executable_from_llvm_ir(
+    ir_path:Path, 
+    output_path:Path, 
+    include_libraries:list=None
+):
     """
     Compile the LLVM IR file at ir_path to an executable at output_path.
     """
