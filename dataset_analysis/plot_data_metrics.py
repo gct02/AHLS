@@ -142,9 +142,13 @@ def extract_solution_directives(
 def extract_timing_summary(
     dataset_path:Union[Path, str], 
     bench_name:str, 
-    solution:str
+    solution:str,
+    filtered:bool=False
 ) -> Tuple[float, float, float, float]:
-    path = f'{dataset_path}/{bench_name}/{solution}/impl/report/verilog/'
+    if filtered:
+        path = f'{dataset_path}/{bench_name}/{solution}/reports/'
+    else:
+        path = f'{dataset_path}/{bench_name}/{solution}/impl/report/verilog/'
     rpt_path = f'{path}export_impl.xml'
 
     if Path(rpt_path).is_file() == False:
@@ -163,9 +167,13 @@ def extract_timing_summary(
 def extract_utilization(
     dataset_path:Union[Path, str], 
     bench_name:str, 
-    solution:str
+    solution:str,
+    filtered:bool=False
 ) -> Tuple[int, int, int, int, int, int]:
-    path = f'{dataset_path}/{bench_name}/{solution}/impl/report/verilog/'
+    if filtered:
+        path = f'{dataset_path}/{bench_name}/{solution}/reports/'
+    else:
+        path = f'{dataset_path}/{bench_name}/{solution}/impl/report/verilog/'
     rpt_path = f'{path}export_impl.xml'
 
     if Path(rpt_path).is_file() == False:
@@ -186,9 +194,13 @@ def extract_utilization(
 def extract_hls_cc_report(
     dataset_path:Union[Path, str],
     bench_name:str, 
-    solution:str
+    solution:str,
+    filtered:bool=False
 ) -> int:
-    rpt_path = f'{dataset_path}/{bench_name}/{solution}/syn/report/csynth.xml'
+    if filtered:
+        rpt_path = f'{dataset_path}/{bench_name}/{solution}/reports/csynth.xml'
+    else:
+        rpt_path = f'{dataset_path}/{bench_name}/{solution}/syn/report/csynth.xml'
 
     if Path(rpt_path).is_file() == False:
         return -1
@@ -205,35 +217,43 @@ def extract_hls_cc_report(
 def organize_data(
     dataset_path:Union[Path, str], 
     bench_name:str, 
-    available_directives:Union[Path, str]
+    available_directives:Union[Path, str],
+    filtered:bool=False,
+    directives:bool=True
 ) -> Tuple[pd.DataFrame, List[NDArray[Any]]]:
     dset_dir = f'{dataset_path}/{bench_name}'
     sol_index = 1
     sol_dir = 'solution' + str(sol_index)
 
     list_to_df = []
-    one_hot_directives_list = []
+    if directives:
+        one_hot_directives_list = []
+    else:
+        one_hot_directives_list = None
 
     for _ in Path(dset_dir).iterdir():
         if Path(f'{dset_dir}/{sol_dir}').is_dir():
-            solution_data_json = Path(f'{dset_dir}/{sol_dir}/solution{sol_index}_data.json')
-            if solution_data_json.exists():
-                one_hot_directives = get_one_hot_directives(available_directives, solution_data_json)
-                one_hot_directives_list.append(one_hot_directives)
-
-                wns, tns, target_clk, achieved_clk = extract_timing_summary(dataset_path, bench_name, sol_dir)
-                lut, bram, ff, dsp, clb, latch  = extract_utilization(dataset_path, bench_name, sol_dir)
-                cc = extract_hls_cc_report(dataset_path, bench_name, sol_dir)
-
-                if achieved_clk == -1.0 or cc == -1:
-                    timing = -1.0
+            if directives:
+                solution_data_json = Path(f'{dset_dir}/{sol_dir}/solution{sol_index}_data.json')
+                if solution_data_json.exists():
+                    one_hot_directives = get_one_hot_directives(available_directives, solution_data_json)
+                    one_hot_directives_list.append(one_hot_directives)
                 else:
-                    timing = achieved_clk * cc
+                    one_hot_directives_list.append(np.zeros(2))
 
-                metrics = [sol_dir, lut, bram, ff, dsp, clb, latch, 
-                           target_clk, achieved_clk, wns, tns, cc, timing]
+            wns, tns, target_clk, achieved_clk = extract_timing_summary(dataset_path, bench_name, sol_dir, filtered)
+            lut, bram, ff, dsp, clb, latch  = extract_utilization(dataset_path, bench_name, sol_dir, filtered)
+            cc = extract_hls_cc_report(dataset_path, bench_name, sol_dir, filtered)
 
-                list_to_df.append(metrics)
+            if achieved_clk == -1.0 or cc == -1:
+                timing = -1.0
+            else:
+                timing = achieved_clk * cc
+
+            metrics = [sol_dir, lut, bram, ff, dsp, clb, latch, 
+                        target_clk, achieved_clk, wns, tns, cc, timing]
+
+            list_to_df.append(metrics)
 
         sol_index += 1
         sol_dir = "solution" + str(sol_index)
@@ -301,25 +321,29 @@ def build_graphs(
     y_data:str, 
     one_hot_directives_list:List[NDArray[Any]],
     num_clusters:int=4,
-    output_folder:Union[Path, str]=None
+    output_folder:Union[Path, str]=None,
+    directives:bool=False
 ):
-    solution_groups = group_solutions_by_directives(
-        one_hot_directives_list,
-        num_clusters=num_clusters,
-        num_iter=100
-    )
-    print(solution_groups)
-    resources_data['group'] = solution_groups
-
-    colors = ['red', 'blue', 'purple', 'green', 'orange']
-
-    for i in range(num_clusters):
-        group_data = resources_data[resources_data['group'] == i]
-        plt.scatter(
-            group_data[x_data], 
-            group_data[y_data], 
-            color=colors[i],
+    if directives:
+        solution_groups = group_solutions_by_directives(
+            one_hot_directives_list,
+            num_clusters=num_clusters,
+            num_iter=100
         )
+        print(solution_groups)
+        resources_data['group'] = solution_groups
+
+        colors = ['red', 'blue', 'purple', 'green', 'orange']
+
+        for i in range(num_clusters):
+            group_data = resources_data[resources_data['group'] == i]
+            plt.scatter(
+                group_data[x_data], 
+                group_data[y_data], 
+                color=colors[i],
+            )
+    else:
+        plt.scatter(resources_data[x_data], resources_data[y_data])
     
     plt.xlabel(x_data)
     plt.ylabel(y_data)
@@ -327,7 +351,10 @@ def build_graphs(
     plt.grid()
 
     if output_folder is not None:
-        plt.savefig(f'{output_folder}/{bench_name}_{x_data}_{y_data}_{num_clusters}.png')
+        if directives:
+            plt.savefig(f'{output_folder}/{bench_name}_{x_data}_{y_data}_{num_clusters}.png')
+        else:
+            plt.savefig(f'{output_folder}/{bench_name}_{x_data}_{y_data}.png')
 
     plt.show()
 
@@ -342,6 +369,8 @@ def parse_args():
     parser.add_argument('-y', '--ydata', help='Y axis data',required=False, default='estimated_time')
     parser.add_argument('-s', '--seed', help='Random seed', required=False, default=42)
     parser.add_argument('-c', '--clusters', help='Number of clusters', required=False, default=4)
+    parser.add_argument('-f', '--filtered', help='Sinalize if the dataset is filtered', required=False, action='store_true', default=False)
+    parser.add_argument('-dr', '--directives', help='Sinalize to plot information about directives', required=False, action='store_true', default=False)
 
     return parser.parse_args()
 
@@ -355,12 +384,14 @@ def main():
     y_data = args.ydata
     clusters = int(args.clusters)
     seed = int(args.seed)
+    filtered = args.filtered
+    directives = args.directives
 
     np.random.seed(seed)
 
     assert Path(f'{dataset_path}/{bench_name}').is_dir()
-    data, directives = organize_data(dataset_path, bench_name, available_directives)
-    build_graphs(data, bench_name, x_data, y_data, directives, clusters, args.output)
+    data, directives = organize_data(dataset_path, bench_name, available_directives, filtered, directives)
+    build_graphs(data, bench_name, x_data, y_data, directives, clusters, args.output, directives)
 
 if __name__ == '__main__':
     main()
