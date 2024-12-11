@@ -55,10 +55,14 @@ void local_memset(
     uint32_t *p = s;
     int m = n / 4;
 
+    local_memset_label0:
     while (e-- > 0) {
+        #pragma HLS LOOP_TRIPCOUNT max=63
         p++;
     }
+    local_memset_label1:
     while (m-- > 0) {
+        #pragma HLS LOOP_TRIPCOUNT max=16
         *p++ = uc;
     }
 }
@@ -73,7 +77,9 @@ void local_memcpy(
     uint32_t tmp;
     int m = n / 4;
 
+    local_memcpy_label3:
     while (m-- > 0) {
+        #pragma HLS LOOP_TRIPCOUNT max=16
         tmp = 0;
         tmp |= 0xFF & *p2++;
         tmp |= (0xFF & *p2++) << 8;
@@ -91,10 +97,15 @@ static void sha_transform(
     uint32_t temp, A, B, C, D, E, W[80];
 
     /* Prepare message schedule */
+    sha_transform_label1:
     for (i = 0; i < 16; ++i) {
+        #pragma HLS LOOP_TRIPCOUNT min=16 max=16 avg=16
         W[i] = sha_info_data[i];
     }
+
+    sha_transform_label2:
     for (i = 16; i < 80; ++i) {
+        #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
         W[i] = W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16];
     }
 
@@ -106,10 +117,10 @@ static void sha_transform(
     E = sha_info_digest[4];
 
     /* Main computation loop */
-    for (i = 0; i < 20; ++i) FUNC(1, i);
-    for (i = 20; i < 40; ++i) FUNC(2, i);
-    for (i = 40; i < 60; ++i) FUNC(3, i);
-    for (i = 60; i < 80; ++i) FUNC(4, i);
+    sha_transform_label3: for (i = 0; i < 20; ++i) FUNC(1, i);
+    sha_transform_label4: for (i = 20; i < 40; ++i) FUNC(2, i);
+    sha_transform_label5: for (i = 40; i < 60; ++i) FUNC(3, i);
+    sha_transform_label6: for (i = 60; i < 80; ++i) FUNC(4, i);
 
     /* Update digest values */
     sha_info_digest[0] += A;
@@ -143,7 +154,9 @@ void sha_update(
     sha_info_count_lo += (uint32_t)count << 3;
     sha_info_count_hi += (uint32_t)count >> 29;
 
+    sha_update_label4:
     while (count >= SHA_BUFFER_SIZE) {
+        #pragma HLS LOOP_TRIPCOUNT min=127 max=128
         local_memcpy(sha_info_digest, sha_info_data, buffer, SHA_BUFFER_SIZE);
         sha_transform(sha_info_digest);
         buffer += SHA_BUFFER_SIZE;
@@ -176,6 +189,7 @@ void sha_final(
     sha_transform(sha_info_digest);
 }
 
+/* top-level function */
 /* Compute SHA digest from input stream */
 void sha_stream(
     uint8_t indata[NUM_BLOCKS][BLOCK_SIZE], 
@@ -186,10 +200,14 @@ void sha_stream(
     const uint8_t *p;
 
     sha_init(sha_info_digest);
+
+    sha_stream_label0:
     for (j = 0; j < NUM_BLOCKS; j++) {
+        #pragma HLS LOOP_TRIPCOUNT min=2 max=2 avg=2
         i = in_i[j];
         p = &indata[j][0];
         sha_update(sha_info_digest, p, i);
     }
+
     sha_final(sha_info_digest);
 }

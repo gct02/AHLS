@@ -87,17 +87,22 @@ int statemt[IN_SIZE];
 int word[4][120];
 
 /* key generate */
-int KeySchedule (int, int *);
-int SubByte (int);
+int KeySchedule (int type, int key[32]);
+
+/* ********* ByteSub & ShiftRow ********* */
+void ByteSub_ShiftRow (int statemt[32], int nb);
+/* ********* InversShiftRow & ByteSub ********* */
+void InversShiftRow_ByteSub (int statemt[32], int nb);
+/* ******** MixColumn ********** */
+int MixColumn_AddRoundKey (int statemt[32], int nb, int n);
+/* ******** InversMixColumn ********** */
+int AddRoundKey_InversMixColumn (int statemt[32], int nb, int n);
+/* ******** AddRoundKey ********** */
+int AddRoundKey (int statemt[32], int type, int n);
 
 /* encrypt/decrypt functions */
-void ByteSub_ShiftRow (int*, int);
-void InversShiftRow_ByteSub (int*, int);
-int MixColumn_AddRoundKey (int*, int, int);
-int AddRoundKey_InversMixColumn (int*, int, int);
-int AddRoundKey (int*, int, int);
-int encrypt (int*, int*, int);
-int decrypt (int*, int*, int);
+int encrypt(int statemt[IN_SIZE], int key[IN_SIZE], int type);
+int decrypt(int statemt[IN_SIZE], int key[IN_SIZE], int type);
 
 /* top-level function */
 int aes_main (int statemt[IN_SIZE], int key[IN_SIZE]);

@@ -60,7 +60,6 @@
  *
  */
 
-#include <stdio.h>
 #include "aes.h"
 
 /* top-level function */

@@ -1,12 +1,6 @@
 {
     "directives":
         {   
-            "pipeline main_label0": {
-                "possible_directives":["","set_directive_pipeline \"main/main_label0\""],
-                "function":"main",
-                "label": "main_label0",
-                "directive_type":"pipeline"
-            },
             "pipeline local_memcpy_label3":{
                 "possible_directives":["","set_directive_pipeline \"local_memcpy/local_memcpy_label3\""],
                 "function":"local_memcpy",
@@ -150,11 +144,15 @@
                     "",
                     "set_directive_array_partition -type block -factor 8 -dim 1 \"sha_transform\" W",
                     "set_directive_array_partition -type block -factor 16 -dim 1 \"sha_transform\" W",
+                    "set_directive_array_partition -type block -factor 20 -dim 1 \"sha_transform\" W",
                     "set_directive_array_partition -type block -factor 32 -dim 1 \"sha_transform\" W",
+                    "set_directive_array_partition -type block -factor 40 -dim 1 \"sha_transform\" W",
                     "set_directive_array_partition -type block -factor 64 -dim 1 \"sha_transform\" W",
                     "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"sha_transform\" W",
                     "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"sha_transform\" W",
+                    "set_directive_array_partition -type cyclic -factor 20 -dim 1 \"sha_transform\" W",
                     "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"sha_transform\" W",
+                    "set_directive_array_partition -type cyclic -factor 40 -dim 1 \"sha_transform\" W",
                     "set_directive_array_partition -type cyclic -factor 64 -dim 1 \"sha_transform\" W",
                     "set_directive_array_partition -type complete -dim 1 \"sha_transform\" W"],
                 "function":"sha_transform",

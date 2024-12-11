@@ -78,34 +78,10 @@
                 "label": "encrypt_label1",
                 "directive_type":"unroll"
             },
-            "unroll encrypt_label2": {
-                "possible_directives":["","set_directive_unroll \"encrypt/encrypt_label2\""],
-                "function":"encrypt",
-                "label": "encrypt_label2",
-                "directive_type":"unroll"
-            },
-            "unroll encrypt_label3": {
-                "possible_directives":["","set_directive_unroll \"encrypt/encrypt_label3\""],
-                "function":"encrypt",
-                "label": "encrypt_label3",
-                "directive_type":"unroll"
-            },
             "pipeline encrypt_label1": {
                 "possible_directives":["","set_directive_pipeline \"encrypt/encrypt_label1\""],
                 "function":"encrypt",
                 "label": "encrypt_label1",
-                "directive_type":"pipeline"
-            },
-            "pipeline encrypt_label2": {
-                "possible_directives":["","set_directive_pipeline \"encrypt/encrypt_label2\""],
-                "function":"encrypt",
-                "label": "encrypt_label2",
-                "directive_type":"pipeline"
-            },
-            "pipeline encrypt_label3": {
-                "possible_directives":["","set_directive_pipeline \"encrypt/encrypt_label3\""],
-                "function":"encrypt",
-                "label": "encrypt_label3",
                 "directive_type":"pipeline"
             },
 
@@ -115,20 +91,6 @@
                 "label": "decrypt_label4",
                 "directive_type":"unroll"
             },
-            
-            "unroll decrypt_label5": {
-                "possible_directives":["","set_directive_unroll \"decrypt/decrypt_label5\""],
-                "function":"decrypt",
-                "label": "decrypt_label5",
-                "directive_type":"unroll"
-            },
-
-            "unroll decrypt_label6": {
-                "possible_directives":["","set_directive_unroll \"decrypt/decrypt_label6\""],
-                "function":"decrypt",
-                "label": "decrypt_label6",
-                "directive_type":"unroll"
-            },
 
             "pipeline decrypt_label4": {
                 "possible_directives":["","set_directive_pipeline \"decrypt/decrypt_label4\""],
@@ -136,26 +98,14 @@
                 "label": "decrypt_label4",
                 "directive_type":"pipeline"
             },
-
-            "pipeline decrypt_label5": {
-                "possible_directives":["","set_directive_pipeline \"decrypt/decrypt_label5\""],
-                "function":"decrypt",
-                "label": "decrypt_label5",
-                "directive_type":"pipeline"
-            },
             
-            "pipeline decrypt_label6": {
-                "possible_directives":["","set_directive_pipeline \"decrypt/decrypt_label6\""],
-                "function":"decrypt",
-                "label": "decrypt_label6",
-                "directive_type":"pipeline"
-            },
             "loop_merge KeySchedule_label7": {
                 "possible_directives":["","set_directive_loop_merge \"KeySchedule/KeySchedule_label7\""],
                 "function":"KeySchedule",
                 "label": "KeySchedule_label7",
                 "directive_type":"loop_merge"
             },
+
             "pipeline KeySchedule_label8": {
                 "possible_directives":["","set_directive_pipeline \"KeySchedule/KeySchedule_label8\""],
                 "function":"KeySchedule",
@@ -187,6 +137,7 @@
                 "label": "KeySchedule_label9",
                 "directive_type":"unroll"
             },
+
             "array_partition ByteSub_ShiftRow Sbox": {
                 "possible_directives":["",
                     "set_directive_array_partition -type block -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox",
@@ -204,18 +155,18 @@
                 "directive_type":"array_partition"
             },
 
-            "array_partition ByteSub_ShiftRow invSbox": {
+            "array_partition InversShiftRow_ByteSub invSbox": {
                 "possible_directives":["",
-                    "set_directive_array_partition -type block -factor 2 -dim 0 \"ByteSub_ShiftRow\" invSbox",
-                    "set_directive_array_partition -type block -factor 4 -dim 0 \"ByteSub_ShiftRow\" invSbox",
-                    "set_directive_array_partition -type block -factor 8 -dim 0 \"ByteSub_ShiftRow\" invSbox",
-                    "set_directive_array_partition -type block -factor 16 -dim 0 \"ByteSub_ShiftRow\" invSbox",
-                    "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"ByteSub_ShiftRow\" invSbox",
-                    "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"ByteSub_ShiftRow\" invSbox",
-                    "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"ByteSub_ShiftRow\" invSbox",
-                    "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"ByteSub_ShiftRow\" invSbox",
-                    "set_directive_array_partition -type complete -dim 0 \"ByteSub_ShiftRow\" invSbox"],
-                "function":"ByteSub_ShiftRow",
+                    "set_directive_array_partition -type block -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox",
+                    "set_directive_array_partition -type block -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox",
+                    "set_directive_array_partition -type block -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox",
+                    "set_directive_array_partition -type block -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox",
+                    "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox",
+                    "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox",
+                    "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox",
+                    "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox",
+                    "set_directive_array_partition -type complete -dim 0 \"InversShiftRow_ByteSub\" invSbox"],
+                "function":"InversShiftRow_ByteSub",
                 "label": "",
                 "variable": "invSbox",
                 "directive_type":"array_partition"

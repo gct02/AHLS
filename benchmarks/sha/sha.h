@@ -45,6 +45,7 @@ void sha_final (
 );
 
 /* top-level function */
+/* Compute SHA digest from input stream */
 void sha_stream (
     uint8_t indata[NUM_BLOCKS][BLOCK_SIZE], 
     int in_i[NUM_BLOCKS], 

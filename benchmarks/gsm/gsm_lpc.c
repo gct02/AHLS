@@ -31,7 +31,10 @@
  */
 
 /* 4.2.4 */
-void Autocorrelation(word *s /* [0..159] IN/OUT */, longword *L_ACF /* [0..8] OUT */)
+void Autocorrelation(
+    word *s /* [0..159] IN/OUT */, 
+    longword *L_ACF /* [0..8] OUT */
+) 
 {
     register int k, i;
     word temp;
@@ -42,7 +45,9 @@ void Autocorrelation(word *s /* [0..159] IN/OUT */, longword *L_ACF /* [0..8] OU
 
     /* Search for the maximum. */
     smax = 0;
+    Autocorrelation_label0:
     for (k = 0; k <= 159; k++) {
+        #pragma HLS LOOP_TRIPCOUNT min=160 max=160 avg=160
         temp = GSM_ABS(s[k]);
         if (temp > smax)
             smax = temp;
@@ -56,18 +61,21 @@ void Autocorrelation(word *s /* [0..159] IN/OUT */, longword *L_ACF /* [0..8] OU
 
     if (scalauto > 0 && scalauto <= 4) {
         n = scalauto;
-        for (k = 0; k <= 159; k++)
+        for (k = 0; k <= 159; k++) {
             s[k] = GSM_MULT_R(s[k], 16384 >> (n - 1));
+        }
     }
 
     /* Compute the L_ACF[..]. */
     sp = s;
     sl = *sp;
 
-#define STEP(k) L_ACF[k] += ((longword)sl * sp[-(k)]);
-#define NEXTI sl = *++sp
-    for (k = 8; k >= 0; k--)
+    #define STEP(k) L_ACF[k] += ((longword)sl * sp[-(k)]);
+    #define NEXTI sl = *++sp
+
+    for (k = 8; k >= 0; k--) {
         L_ACF[k] = 0;
+    }
 
     STEP(0);
     NEXTI;
@@ -126,17 +134,23 @@ void Autocorrelation(word *s /* [0..159] IN/OUT */, longword *L_ACF /* [0..8] OU
         STEP(8);
     }
 
-    for (k = 8; k >= 0; k--)
+    for (k = 8; k >= 0; k--) {
         L_ACF[k] <<= 1;
+    }
 
     /* Rescaling of the array s[0..159] */
-    if (scalauto > 0)
-        for (k = 159; k >= 0; k--)
+    if (scalauto > 0) {
+        for (k = 159; k >= 0; k--) {
             *s++ <<= scalauto;
+        }
+    }
 }
 
 /* 4.2.5 */
-void Reflection_coefficients(longword *L_ACF /* 0...8 IN */, register word *r /* 0...7 OUT */)
+void Reflection_coefficients(
+    longword *L_ACF /* 0...8 IN */, 
+    register word *r /* 0...7 OUT */
+)
 {
     register int i, m, n;
     register word temp;
@@ -146,28 +160,47 @@ void Reflection_coefficients(longword *L_ACF /* 0...8 IN */, register word *r /*
 
     /* Schur recursion with 16 bits arithmetic. */
     if (L_ACF[0] == 0) {
-        for (i = 8; i > 0; i--)
+        Reflection_coefficients_label0:
+        for (i = 8; i > 0; i--) {
+            #pragma HLS LOOP_TRIPCOUNT min=8 max=8 avg=8
             *r++ = 0;
+        }
         return;
     }
 
     temp = gsm_norm(L_ACF[0]);
-    for (i = 0; i <= 8; i++)
+
+    Reflection_coefficients_label1:
+    for (i = 0; i <= 8; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=9 max=9 avg=9
         ACF[i] = SASR(L_ACF[i] << temp, 16);
+    }
 
     /* Initialize array P[..] and K[..] for the recursion. */
-    for (i = 1; i <= 7; i++)
+    Reflection_coefficients_label2:
+    for (i = 1; i <= 7; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=7 max=7 avg=7
         K[i] = ACF[i];
-    for (i = 0; i <= 8; i++)
+    }
+
+    Reflection_coefficients_label3:
+    for (i = 0; i <= 8; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=9 max=9 avg=9
         P[i] = ACF[i];
+    }
 
     /* Compute reflection coefficients */
+    Reflection_coefficients_label4:
     for (n = 1; n <= 8; n++, r++) {
+        #pragma HLS LOOP_TRIPCOUNT min=1 max=8
         temp = P[1];
         temp = GSM_ABS(temp);
         if (P[0] < temp) {
-            for (i = n; i <= 8; i++)
+            Reflection_coefficients_label6:
+            for (i = n; i <= 8; i++) {
+                #pragma HLS LOOP_TRIPCOUNT min=1 max=8
                 *r++ = 0;
+            }
             return;
         }
 
@@ -182,7 +215,9 @@ void Reflection_coefficients(longword *L_ACF /* 0...8 IN */, register word *r /*
         temp = GSM_MULT_R(P[1], *r);
         P[0] = GSM_ADD(P[0], temp);
 
+        Reflection_coefficients_label5:
         for (m = 1; m <= 8 - n; m++) {
+            #pragma HLS LOOP_TRIPCOUNT min=1 max=7
             temp = GSM_MULT_R(K[m], *r);
             P[m] = GSM_ADD(P[m + 1], temp);
 

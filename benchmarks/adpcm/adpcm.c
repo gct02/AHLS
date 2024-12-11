@@ -65,38 +65,6 @@
 #include <stdio.h>
 #include "adpcm.h"
 
-int encode (int, int);
-void decode (int);
-int filtez (int *bpl, int *dlt);
-void upzero (int dlt, int *dlti, int *bli);
-int filtep (int rlt1, int al1, int rlt2, int al2);
-int quantl (int el, int detl);
-int logscl (int il, int nbl);
-int scalel (int nbl, int shift_constant);
-int uppol2 (int al1, int al2, int plt, int plt1, int plt2);
-int uppol1 (int al1, int apl2, int plt, int plt1);
-int logsch (int ih, int nbh);
-void reset ();
-
-/* top-level function */
-void adpcm_main(const int in_data[SIZE], int encoded[SIZE/2], int decoded[SIZE]) {
-    int i;
-
-    reset(); /* reset, initialize required memory */
-
-    adpcm_main_label12: 
-    for (i = 0; i < SIZE; i += 2) {
-        encoded[i / 2] = encode (in_data[i], in_data[i + 1]);
-    }
-
-    adpcm_main_label13:
-    for (i = 0; i < SIZE; i += 2) {
-        decode (encoded[i / 2]);
-        decoded[i] = xout1;
-        decoded[i + 1] = xout2;
-    }
-}
-
 /* G722 C code */
 
 /* variables for transimit quadrature mirror filter here */
@@ -238,10 +206,40 @@ int dec_ph, dec_sph;
 int dec_sh;
 int dec_ph1, dec_ph2;
 
-/* G722 encode function two ints in, one 8 bit output */
+int encode (int, int);
+void decode (int);
+int filtez (int *bpl, int *dlt);
+void upzero (int dlt, int *dlti, int *bli);
+int filtep (int rlt1, int al1, int rlt2, int al2);
+int quantl (int el, int detl);
+int logscl (int il, int nbl);
+int scalel (int nbl, int shift_constant);
+int uppol2 (int al1, int al2, int plt, int plt1, int plt2);
+int uppol1 (int al1, int apl2, int plt, int plt1);
+int logsch (int ih, int nbh);
+void reset ();
 
-/* put input samples in xin1 = first value, xin2 = second value */
-/* returns il and ih stored together */
+/* top-level function */
+void adpcm_main(const int in_data[SIZE], int encoded[SIZE/2], int decoded[SIZE]) {
+    int i;
+
+    reset(); /* reset, initialize required memory */
+
+    adpcm_main_label12: 
+    for (i = 0; i < SIZE/2; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=50 max=50 avg=50
+        encoded[i] = encode (in_data[2*i], in_data[2*i + 1]);
+    }
+
+    adpcm_main_label13:
+    for (i = 0; i < SIZE/2; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=50 max=50 avg=50
+        decode (encoded[i]);
+        decoded[2*i] = xout1;
+        decoded[2*i + 1] = xout2;
+    }
+}
+
 int abs(int n) {
     int m;
     if (n >= 0)
@@ -263,19 +261,28 @@ int encode(int xin1, int xin2) {
     tqmf_ptr = tqmf;
     xa = (long)(*tqmf_ptr++) * (*h_ptr++);
     xb = (long)(*tqmf_ptr++) * (*h_ptr++);
+
     /* Main multiply-accumulate loop for samples and coefficients */
+    encode_label0:
     for (i = 0; i < 10; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=10 max=10 avg=10
         xa += (long)(*tqmf_ptr++) * (*h_ptr++);
         xb += (long)(*tqmf_ptr++) * (*h_ptr++);
     }
+
     /* Final multiply-accumulate */
     xa += (long)(*tqmf_ptr++) * (*h_ptr++);
     xb += (long)(*tqmf_ptr) * (*h_ptr++);
 
     /* Update delay line tqmf */
     tqmf_ptr1 = tqmf_ptr - 2;
-    for (i = 0; i < 22; i++)
+
+    encode_label1:
+    for (i = 0; i < 22; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=22 max=22 avg=22
         *tqmf_ptr-- = *tqmf_ptr1--;
+    }
+
     *tqmf_ptr-- = xin1;
     *tqmf_ptr = xin2;
 
@@ -389,10 +396,14 @@ void decode(int input) {
     ad_ptr = accumd;
     xa1 = (long)xd * (*h_ptr++);
     xa2 = (long)xs * (*h_ptr++);
+
+    decode_label2:
     for (i = 0; i < 10; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=10 max=10 avg=10
         xa1 += (long)(*ac_ptr++) * (*h_ptr++);
         xa2 += (long)(*ad_ptr++) * (*h_ptr++);
     }
+
     xa1 += (long)(*ac_ptr) * (*h_ptr++);
     xa2 += (long)(*ad_ptr) * (*h_ptr++);
     xout1 = xa1 >> 14;
@@ -401,10 +412,14 @@ void decode(int input) {
     /* Update delay lines */
     ac_ptr1 = ac_ptr - 1;
     ad_ptr1 = ad_ptr - 1;
+
+    decode_label3:
     for (i = 0; i < 10; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=10 max=10 avg=10
         *ac_ptr-- = *ac_ptr1--;
         *ad_ptr-- = *ad_ptr1--;
     }
+
     *ac_ptr = xd;
     *ad_ptr = xs;
 }
@@ -420,24 +435,33 @@ void reset() {
     dec_nbl = dec_al1 = dec_al2 = dec_plt1 = dec_plt2 = dec_rlt1 = dec_rlt2 = 0;
     dec_nbh = dec_ah1 = dec_ah2 = dec_ph1 = dec_ph2 = dec_rh1 = dec_rh2 = 0;
 
+    reset_label4:
     for (i = 0; i < 6; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=6 max=6 avg=6
         delay_dltx[i] = 0;
         delay_dhx[i] = 0;
         dec_del_dltx[i] = 0;
         dec_del_dhx[i] = 0;
     }
 
+    reset_label5:
     for (i = 0; i < 6; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=6 max=6 avg=6
         delay_bpl[i] = 0;
         delay_bph[i] = 0;
         dec_del_bpl[i] = 0;
         dec_del_bph[i] = 0;
     }
 
-    for (i = 0; i < 24; i++)
+    reset_label6:
+    for (i = 0; i < 24; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=24 max=24 avg=24
         tqmf[i] = 0;
+    }
 
+    reset_label7:
     for (i = 0; i < 11; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=11 max=11 avg=11
         accumc[i] = 0;
         accumd[i] = 0;
     }
@@ -447,9 +471,13 @@ int filtez(int *bpl, int *dlt) {
     int i;
     long int zl;
     zl = (long)(*bpl++) * (*dlt++);
+
+    filtez_label8:
     for (i = 1; i < 6; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=5 max=5 avg=5
         zl += (long)(*bpl++) * (*dlt++);
     }
+
     return ((int)(zl >> 14)); // x2 here
 }
 
@@ -473,7 +501,9 @@ int quantl(int el, int detl) {
     wd = abs(el);
 
     // determine mil based on decision levels and detl gain
+    quantl_label9:
     for (mil = 0; mil < 30; mil++) {
+        #pragma HLS LOOP_TRIPCOUNT min=30 max=30 avg=30
         decis = (decis_levl[mil] * (long)detl) >> 15L;
         if (wd <= decis)
             break;
@@ -515,11 +545,15 @@ void upzero(int dlt, int *dlti, int *bli) {
 
     // if dlt is zero, then no sum into bli
     if (dlt == 0) {
+        upzero_label10:
         for (i = 0; i < 6; i++) {
+            #pragma HLS LOOP_TRIPCOUNT min=6 max=6 avg=6
             bli[i] = (int)((255L * bli[i]) >> 8L); // leak factor of 255/256
         }
     } else {
+        upzero_label11:
         for (i = 0; i < 6; i++) {
+            #pragma HLS LOOP_TRIPCOUNT min=6 max=6 avg=6
             if ((long)dlt * dlti[i] >= 0)
                 wd2 = 128;
             else

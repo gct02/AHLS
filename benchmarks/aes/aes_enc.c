@@ -60,6 +60,7 @@
  *
  */
 
+#include <stdint.h>
 #include "aes.h"
 
 int encrypt(int statemt[IN_SIZE], int key[IN_SIZE], int type)
@@ -105,8 +106,10 @@ int encrypt(int statemt[IN_SIZE], int key[IN_SIZE], int type)
     AddRoundKey(statemt, type, 0);
 
     // Main encryption loop
+    encrypt_label1:
     for (i = 1; i <= round_val + 9; ++i)
     {
+        #pragma HLS LOOP_TRIPCOUNT min=9 max=13 avg=11
         ByteSub_ShiftRow(statemt, nb);
         MixColumn_AddRoundKey(statemt, nb, i);
     }
