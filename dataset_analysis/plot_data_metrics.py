@@ -343,6 +343,10 @@ def build_graphs(
                 color=colors[i],
             )
     else:
+        for i in range(len(resources_data)):
+            lut = resources_data['lut'][i]
+            if lut >= 400:
+                print(resources_data['solution'][i])
         plt.scatter(resources_data[x_data], resources_data[y_data])
     
     plt.xlabel(x_data)
