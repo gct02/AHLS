@@ -63,16 +63,16 @@
 #include <stdint.h>
 #include "aes.h"
 
-int decrypt(int statemt[IN_SIZE], int key[IN_SIZE], int type) 
-{
+int decrypt(int statemt[IN_SIZE], int key[IN_SIZE], int type) {
     int i;
+    int nb;
+    int round_val;
 
     // Perform key scheduling
     KeySchedule(type, key);
 
     // Determine round values and nb based on the encryption type
-    switch (type) 
-    {
+    switch (type) {
         case 128128:
             round_val = 10;
             nb = 4;
@@ -113,8 +113,7 @@ int decrypt(int statemt[IN_SIZE], int key[IN_SIZE], int type)
 
     // Main decryption loop
     decrypt_label4:
-    for (i = round_val - 1; i >= 1; --i) 
-    {
+    for (i = round_val - 1; i >= 1; --i) {
         #pragma HLS LOOP_TRIPCOUNT min=9 max=13 avg=12
         AddRoundKey_InversMixColumn(statemt, nb, i);
         InversShiftRow_ByteSub(statemt, nb);

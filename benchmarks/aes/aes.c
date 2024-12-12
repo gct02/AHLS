@@ -63,9 +63,8 @@
 #include "aes.h"
 
 /* top-level function */
-int aes_main(int statemt[IN_SIZE], int key[IN_SIZE])
-{
-    encrypt(statemt, key, AES128);
-    decrypt(statemt, key, AES128);
+int aes_main(int statemt[IN_SIZE], int key[IN_SIZE]) {
+    encrypt(statemt, key, 128128);
+    decrypt(statemt, key, 128128);
     return 0;
 }

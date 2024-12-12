@@ -19,8 +19,6 @@
 #ifndef SHA_H
 #define SHA_H
 
-#include <stdint.h>
-
 /* NIST Secure Hash Algorithm */
 /* heavily modified from Peter C. Gutmann's implementation */
 
@@ -30,26 +28,12 @@
 #define BLOCK_SIZE 8192
 #define NUM_BLOCKS 2
 
-uint32_t sha_info_count_lo, sha_info_count_hi;	/* 64-bit bit count */
-uint32_t sha_info_data[16];
-
-void sha_init (
-    uint32_t sha_info_digest[DIGEST_SIZE]
-);
-void sha_update (
-    uint32_t sha_info_digest[DIGEST_SIZE], 
-    const uint8_t* buffer, int count
-);
-void sha_final (
-    uint32_t sha_info_digest[DIGEST_SIZE]
-);
-
 /* top-level function */
 /* Compute SHA digest from input stream */
 void sha_stream (
-    uint8_t indata[NUM_BLOCKS][BLOCK_SIZE], 
-    int in_i[NUM_BLOCKS], 
-    uint32_t sha_info_digest[DIGEST_SIZE]
+    const unsigned char indata[NUM_BLOCKS][BLOCK_SIZE], 
+    const int in_i[NUM_BLOCKS],
+    unsigned int outdata[DIGEST_SIZE]
 );
 
 #endif /* SHA_H */

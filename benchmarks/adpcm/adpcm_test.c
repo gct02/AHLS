@@ -65,18 +65,23 @@ int main() {
     
     adpcm_main(in_data, encoded, decoded);
 
+    printf("Encoded: ");
     for (i = 0; i < SIZE/2; i++) {
+        printf("%d ", encoded[i]);
         if (encoded[i] != encoded_test[i]) {
             wrong_values += 1;
         }
     }
+    printf("\n");
 
+    printf("Decoded: ");
     for (i = 0; i < SIZE; i++) {
+        printf("%d ", decoded[i]);
         if (decoded[i] != decoded_test[i]) {
             wrong_values += 1;
         }
     }
 
-    printf("%d\n", decoded_test);
-    return decoded_test;
+    printf("\nWrong values: %d\n", wrong_values);
+    return wrong_values;
 }

@@ -69,26 +69,12 @@
 
 #define AES_POLY 0x11B // AES irreducible polynomial (283 in decimal)
 
-// Define AES types as constants
-#define AES128 128128
-#define AES192 192192
-#define AES256 256256
-
 // Define constants for AES
 #define AES_BLOCK_SIZE 4 // Number of words in a block
 #define MAX_WORDS 60     // Maximum number of words for expanded keys (256-bit AES with 14 rounds)
 
-/* data type definitions */
-int type;
-int nb;
-int round_val;
-int key[IN_SIZE];
-int statemt[IN_SIZE];
-int word[4][120];
-
 /* key generate */
 int KeySchedule (int type, int key[32]);
-
 /* ********* ByteSub & ShiftRow ********* */
 void ByteSub_ShiftRow (int statemt[32], int nb);
 /* ********* InversShiftRow & ByteSub ********* */

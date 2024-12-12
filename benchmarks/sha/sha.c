@@ -46,13 +46,16 @@
     temp = ROT32(A, 5) + f##n(B, C, D) + E + W[i] + CONST##n; \
     E = D; D = C; C = ROT32(B, 30); B = A; A = temp
 
+unsigned int sha_info_count_lo, sha_info_count_hi;	/* 64-bit bit count */
+unsigned int sha_info_data[16];
+unsigned int sha_info_digest[DIGEST_SIZE];
+
+unsigned char local_indata[NUM_BLOCKS][BLOCK_SIZE];
+
 /* Local memory set function */
-void local_memset(
-    uint32_t sha_info_digest[DIGEST_SIZE], 
-    uint32_t *s, int c, int n, int e
-) {
-    uint32_t uc = c;
-    uint32_t *p = s;
+void local_memset(unsigned int *s, int c, int n, int e) {
+    unsigned int uc = c;
+    unsigned int *p = (unsigned int *)s;
     int m = n / 4;
 
     local_memset_label0:
@@ -68,13 +71,10 @@ void local_memset(
 }
 
 /* Local memory copy function */
-void local_memcpy(
-    uint32_t sha_info_digest[DIGEST_SIZE], 
-    uint32_t *s1, const uint8_t *s2, int n
-) {
-    uint32_t *p1 = s1;
-    uint8_t *p2 = (uint8_t *)s2;
-    uint32_t tmp;
+void local_memcpy(unsigned int *s1, const unsigned char *s2, int n) {
+    unsigned int *p1 = (unsigned int *)s1;
+    unsigned char *p2 = (unsigned char *)s2;
+    unsigned int tmp;
     int m = n / 4;
 
     local_memcpy_label3:
@@ -85,16 +85,15 @@ void local_memcpy(
         tmp |= (0xFF & *p2++) << 8;
         tmp |= (0xFF & *p2++) << 16;
         tmp |= (0xFF & *p2++) << 24;
-        *p1++ = tmp;
+        *p1 = tmp;
+        p1++;
     }
 }
 
 /* Perform SHA transformation */
-static void sha_transform(
-    uint32_t sha_info_digest[DIGEST_SIZE]
-) {
+static void sha_transform() {
     int i;
-    uint32_t temp, A, B, C, D, E, W[80];
+    unsigned int temp, A, B, C, D, E, W[80];
 
     /* Prepare message schedule */
     sha_transform_label1:
@@ -131,9 +130,7 @@ static void sha_transform(
 }
 
 /* Initialize SHA digest */
-void sha_init(
-    uint32_t sha_info_digest[DIGEST_SIZE]
-) {
+void sha_init() {
     sha_info_digest[0] = 0x67452301L;
     sha_info_digest[1] = 0xefcdab89L;
     sha_info_digest[2] = 0x98badcfeL;
@@ -144,70 +141,75 @@ void sha_init(
 }
 
 /* Update SHA digest with new data */
-void sha_update(
-    uint32_t sha_info_digest[DIGEST_SIZE], 
-    const uint8_t *buffer, int count
-) {
-    if ((sha_info_count_lo + ((uint32_t)count << 3)) < sha_info_count_lo) {
+void sha_update(const unsigned char *buffer, int count) {
+    if ((sha_info_count_lo + ((unsigned int)count << 3)) < sha_info_count_lo) {
         ++sha_info_count_hi;
     }
-    sha_info_count_lo += (uint32_t)count << 3;
-    sha_info_count_hi += (uint32_t)count >> 29;
+    sha_info_count_lo += (unsigned int)count << 3;
+    sha_info_count_hi += (unsigned int)count >> 29;
 
     sha_update_label4:
     while (count >= SHA_BUFFER_SIZE) {
         #pragma HLS LOOP_TRIPCOUNT min=127 max=128
-        local_memcpy(sha_info_digest, sha_info_data, buffer, SHA_BUFFER_SIZE);
-        sha_transform(sha_info_digest);
+        local_memcpy(sha_info_data, buffer, SHA_BUFFER_SIZE);
+        sha_transform();
         buffer += SHA_BUFFER_SIZE;
         count -= SHA_BUFFER_SIZE;
     }
-    local_memcpy(sha_info_digest, sha_info_data, buffer, count);
+    local_memcpy(sha_info_data, buffer, count);
 }
 
 /* Finalize SHA digest computation */
-void sha_final(
-    uint32_t sha_info_digest[DIGEST_SIZE]
-) {
+void sha_final() {
     int count;
-    uint32_t lo_bit_count = sha_info_count_lo;
-    uint32_t hi_bit_count = sha_info_count_hi;
+    unsigned int lo_bit_count = sha_info_count_lo;
+    unsigned int hi_bit_count = sha_info_count_hi;
 
     count = (int)((lo_bit_count >> 3) & 0x3f);
     sha_info_data[count++] = 0x80;
 
     if (count > 56) {
-        local_memset(sha_info_digest, sha_info_data, 0, 64 - count, count);
-        sha_transform(sha_info_digest);
-        local_memset(sha_info_digest, sha_info_data, 0, 56, 0);
+        local_memset(sha_info_data, 0, 64 - count, count);
+        sha_transform();
+        local_memset(sha_info_data, 0, 56, 0);
     } else {
-        local_memset(sha_info_digest, sha_info_data, 0, 56 - count, count);
+        local_memset(sha_info_data, 0, 56 - count, count);
     }
 
     sha_info_data[14] = hi_bit_count;
     sha_info_data[15] = lo_bit_count;
-    sha_transform(sha_info_digest);
+    sha_transform();
 }
 
 /* top-level function */
 /* Compute SHA digest from input stream */
 void sha_stream(
-    uint8_t indata[NUM_BLOCKS][BLOCK_SIZE], 
-    int in_i[NUM_BLOCKS], 
-    uint32_t sha_info_digest[DIGEST_SIZE]
+    const unsigned char indata[NUM_BLOCKS][BLOCK_SIZE], 
+    const int in_i[NUM_BLOCKS],
+    unsigned int outdata[DIGEST_SIZE]
 ) {
     int i, j;
-    const uint8_t *p;
+    const unsigned char *p;
 
-    sha_init(sha_info_digest);
+    for (i = 0; i < NUM_BLOCKS; i++) {
+        for (j = 0; j < BLOCK_SIZE; j++) {
+            local_indata[i][j] = indata[i][j];
+        }
+    }
+
+    sha_init();
 
     sha_stream_label0:
     for (j = 0; j < NUM_BLOCKS; j++) {
         #pragma HLS LOOP_TRIPCOUNT min=2 max=2 avg=2
         i = in_i[j];
-        p = &indata[j][0];
-        sha_update(sha_info_digest, p, i);
+        p = &local_indata[j][0];
+        sha_update(p, i);
     }
 
-    sha_final(sha_info_digest);
+    sha_final();
+
+    for (i = 0; i < DIGEST_SIZE; i++) {
+        outdata[i] = sha_info_digest[i];
+    }
 }

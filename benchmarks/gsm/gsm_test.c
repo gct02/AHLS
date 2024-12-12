@@ -26,7 +26,6 @@
 |     outData, outLARc : expected output data                              |
 +--------------------------------------------------------------------------+
 */
-
 const word inData[N] = {
     81, 10854, 1893, -10291, 7614, 29718, 20475, -29215, -18949, -29806,
     -32017, 1596, 15744, -3088, -17413, -22123, 6798, -13276, 3819, -16273,
@@ -46,7 +45,6 @@ const word inData[N] = {
     -20224, -2776, 24084, -7963, -10438, -11938, -14833, -6658, 32058, 
     4020, 10461, 15159
 };
-
 const word outData[N] = {
     80, 10848, 1888, -10288, 7616, 29712, 20480, -29216, -18944, -29808,
     -32016, 1600, 15744, -3088, -17408, -22128, 6800, -13280, 3824, -16272, 
@@ -66,7 +64,6 @@ const word outData[N] = {
     -2768, 24080, -7968, -10432, -11936, -14832, -6656, 32064, 4016, 10464, 
     15152
 };
-
 const word outLARc[M] = { 32, 33, 22, 13, 7, 5, 3, 2 };
 
 int main()
@@ -86,15 +83,19 @@ int main()
     Gsm_LPC_Analysis(so, LARc);
 
     // Compare 'so' with 'outData'
-    for (i = 0; i < N; i++)
+    for (i = 0; i < N; i++) {
+        printf("so[%d] = %d, outData[%d] = %d\n", i, so[i], i, outData[i]);
         wrong_values += (so[i] != outData[i]);
+    }
 
     // Compare 'LARc' with 'outLARc'
-    for (i = 0; i < M; i++)
+    for (i = 0; i < M; i++) {
+        printf("LARc[%d] = %d, outLARc[%d] = %d\n", i, LARc[i], i, outLARc[i]);
         wrong_values += (LARc[i] != outLARc[i]);
+    }
 
     // Print the result
-    printf("%d\n", wrong_values);
+    printf("Wrong values: %d\n", wrong_values);
 
     return wrong_values;
 }

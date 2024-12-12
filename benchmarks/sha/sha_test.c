@@ -33,7 +33,7 @@
 |     indata, in_i : input data                                            |
 +--------------------------------------------------------------------------+
 */
-const uint8_t indata[NUM_BLOCKS][BLOCK_SIZE] = {
+const unsigned char indata[NUM_BLOCKS][BLOCK_SIZE] = {
   {75, 117, 114, 116, 86, 111, 110, 110, 101, 103, 117, 116, 115, 67, 111,
    109, 109, 101, 110, 99, 101, 109, 101, 110, 116, 65, 100, 100, 114, 101,
    115, 115, 97, 116, 77, 73, 84, 76, 97, 100, 105, 101, 115, 97, 110, 100,
@@ -1119,21 +1119,23 @@ const uint8_t indata[NUM_BLOCKS][BLOCK_SIZE] = {
 };
 const int in_i[NUM_BLOCKS] = { 8192, 8192 };
 
+/* outData : expected output data */
+const unsigned int shaTestOutput[DIGEST_SIZE] = { 0x006a5a37UL, 0x93dc9485UL, 0x2c412112UL, 0x63f7ba43UL, 0xad73f922UL };
+
 int main ()
 {
-    /* outData : expected output data */
-    const uint32_t outData[5] = { 0x006a5a37UL, 0x93dc9485UL, 0x2c412112UL, 0x63f7ba43UL, 0xad73f922UL };
-    uint32_t sha_info_digest[DIGEST_SIZE];
+    unsigned int outdata[DIGEST_SIZE];
     int wrong_values = 0;
     int i;
 
-    sha_stream (indata, in_i, sha_info_digest);
+    sha_stream (indata, in_i, outdata);
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < DIGEST_SIZE; i++)
     {
-        wrong_values += (sha_info_digest[i] != outData[i]);
+        printf("sha_info_digest[%d] = %x\n", i, outdata[i]);
+        wrong_values += (outdata[i] != shaTestOutput[i]);
     }
 
-    printf ("%d\n", wrong_values);
+    printf ("Wrong values: %d\n", wrong_values);
     return wrong_values;
 }

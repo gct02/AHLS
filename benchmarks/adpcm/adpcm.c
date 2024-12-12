@@ -62,7 +62,7 @@
 /*                                                                       */
 /*                                                                       */
 /*************************************************************************/
-#include <stdio.h>
+
 #include "adpcm.h"
 
 /* G722 C code */
@@ -78,18 +78,8 @@ const int h[24] = {
     1448, 128, -624, 48, 212, -44, -44, 12
 };
 
-int xl, xh;
-
 /* variables for receive quadrature mirror filter here */
 int accumc[11], accumd[11];
-
-/* outputs of decode() */
-int xout1, xout2;
-
-int xs, xd;
-
-/* variables for encoder (hi and lo) here */
-int il, szl, spl, sl, el;
 
 const int qq4_code4_table[16] = {
     0, -20456, -12896, -8968, -6288, -4240, -2584, -1200,
@@ -107,9 +97,6 @@ const int qq6_code6_table[64] = {
     1688, 1360, 1040, 728, 432, 136, -432, -136
 };
 
-int delay_bpl[6];
-int delay_dltx[6];
-
 const int wl_code_table[16] = {
     -60, 3042, 1198, 538, 334, 172, 58, -30,
     3042, 1198, 538, 334, 172, 58, -30, -60
@@ -121,12 +108,6 @@ const int ilb_table[32] = {
     2896, 2960, 3025, 3091, 3158, 3228, 3298, 3371,
     3444, 3520, 3597, 3676, 3756, 3838, 3922, 4008
 };
-
-int nbl; /* delay line */
-int al1, al2;
-int plt, plt1, plt2;
-int dlt;
-int rlt, rlt1, rlt2;
 
 /* decision levels - pre-multiplied by 8, 0 to indicate end */
 const int decis_levl[30] = {
@@ -156,71 +137,78 @@ const int quant26bt_neg[31] = {
     9, 8, 7, 6, 5, 4, 4
 };
 
-int deth;
-int sh;	/* this comes from adaptive predictor */
-int eh;
-
-const int qq2_code2_table[4] = {
-    -7408, -1616, 7408, 1616
-};
-
-const int wh_code_table[4] = {
-    798, -214, 798, -214
-};
-
-int dh, ih;
-int nbh, szh;
-int sph, ph, yh, rh;
-
-int delay_dhx[6];
-int delay_bph[6];
-
-int ah1, ah2;
-int ph1, ph2;
-int rh1, rh2;
-
-/* variables for decoder here */
-int ilr, rl;
-int dec_deth, dec_detl, dec_dlt;
-
-int dec_del_bpl[6];
-int dec_del_dltx[6];
-
-int dec_plt, dec_plt1, dec_plt2;
-int dec_szl, dec_spl, dec_sl;
-int dec_rlt1, dec_rlt2, dec_rlt;
-int dec_al1, dec_al2;
-int dl;
-int dec_nbl, dec_dh, dec_nbh;
+const int qq2_code2_table[4] = { -7408, -1616, 7408, 1616 };
+const int wh_code_table[4] = { 798, -214, 798, -214 };
 
 /* variables used in filtez */
 int dec_del_bph[6];
 int dec_del_dhx[6];
 
-int dec_szh;
 /* variables used in filtep */
 int dec_rh1, dec_rh2;
 int dec_ah1, dec_ah2;
 int dec_ph, dec_sph;
 
-int dec_sh;
+/* variables used in decode */
+int dec_szh, dec_sh;
 int dec_ph1, dec_ph2;
+int dec_plt, dec_plt1, dec_plt2;
+int dec_szl, dec_spl, dec_sl;
+int dec_rlt1, dec_rlt2, dec_rlt;
+int dec_al1, dec_al2;
+int dl, dec_nbl, dec_dh, dec_nbh;
+int ilr, rl;
+int dec_deth, dec_detl, dec_dlt;
+int dec_del_bpl[6];
+int dec_del_dltx[6];
+int xl, xh;
+int xs, xd;
 
-int encode (int, int);
-void decode (int);
-int filtez (int *bpl, int *dlt);
-void upzero (int dlt, int *dlti, int *bli);
-int filtep (int rlt1, int al1, int rlt2, int al2);
-int quantl (int el, int detl);
-int logscl (int il, int nbl);
-int scalel (int nbl, int shift_constant);
-int uppol2 (int al1, int al2, int plt, int plt1, int plt2);
-int uppol1 (int al1, int apl2, int plt, int plt1);
-int logsch (int ih, int nbh);
-void reset ();
+/* outputs of decode */
+int xout1, xout2;
+
+/* variables used in encode */
+int delay_bpl[6];
+int delay_dltx[6];
+int nbl; /* delay line */
+int al1, al2;
+int plt, plt1, plt2;
+int dlt;
+int rlt, rlt1, rlt2;
+int dh, ih;
+int nbh, szh;
+int sph, ph, yh, rh;
+int delay_dhx[6];
+int delay_bph[6];
+int ah1, ah2;
+int ph1, ph2;
+int rh1, rh2;
+int deth;
+int sh;	/* this comes from adaptive predictor */
+int eh;
+int il, szl, spl, sl, el;
+
+/* function prototypes */
+int abs(int n);
+int encode(int xin1, int xin2) ;
+void decode(int input);
+int filtez(int *bpl, int *dlt);
+void upzero(int dlt, int *dlti, int *bli);
+int filtep(int rlt1, int al1, int rlt2, int al2);
+int quantl(int el, int detl);
+int logscl(int il, int nbl);
+int scalel(int nbl, int shift_constant);
+int uppol2(int al1, int al2, int plt, int plt1, int plt2);
+int uppol1(int al1, int apl2, int plt, int plt1);
+int logsch(int ih, int nbh);
+void reset();
 
 /* top-level function */
-void adpcm_main(const int in_data[SIZE], int encoded[SIZE/2], int decoded[SIZE]) {
+void adpcm_main(
+    const int in_data[SIZE], 
+    int encoded[SIZE/2], 
+    int decoded[SIZE]
+) {
     int i;
 
     reset(); /* reset, initialize required memory */
