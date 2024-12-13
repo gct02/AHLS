@@ -27,24 +27,23 @@
 #include "sha.h"
 
 /* SHA f()-functions */
-#define f1(x, y, z) ((x & y) | (~x & z))
-#define f2(x, y, z) (x ^ y ^ z)
-#define f3(x, y, z) ((x & y) | (x & z) | (y & z))
-#define f4(x, y, z) (x ^ y ^ z)
+#define f1(x,y,z)	((x & y) | (~x & z))
+#define f2(x,y,z)	(x ^ y ^ z)
+#define f3(x,y,z)	((x & y) | (x & z) | (y & z))
+#define f4(x,y,z)	(x ^ y ^ z)
 
 /* SHA constants */
-#define CONST1 0x5a827999L
-#define CONST2 0x6ed9eba1L
-#define CONST3 0x8f1bbcdcL
-#define CONST4 0xca62c1d6L
+#define CONST1		0x5a827999L
+#define CONST2		0x6ed9eba1L
+#define CONST3		0x8f1bbcdcL
+#define CONST4		0xca62c1d6L
 
 /* 32-bit rotate */
-#define ROT32(x, n) ((x << n) | (x >> (32 - n)))
+#define ROT32(x,n)	((x << n) | (x >> (32 - n)))
 
-/* Function macro for SHA transformation */
-#define FUNC(n, i) \
-    temp = ROT32(A, 5) + f##n(B, C, D) + E + W[i] + CONST##n; \
-    E = D; D = C; C = ROT32(B, 30); B = A; A = temp
+#define FUNC(n,i)						\
+    temp = ROT32(A,5) + f##n(B,C,D) + E + W[i] + CONST##n;	\
+    E = D; D = C; C = ROT32(B,30); B = A; A = temp
 
 unsigned int sha_info_count_lo, sha_info_count_hi;	/* 64-bit bit count */
 unsigned int sha_info_data[16];
@@ -116,10 +115,18 @@ static void sha_transform() {
     E = sha_info_digest[4];
 
     /* Main computation loop */
-    sha_transform_label3: for (i = 0; i < 20; ++i) FUNC(1, i);
-    sha_transform_label4: for (i = 20; i < 40; ++i) FUNC(2, i);
-    sha_transform_label5: for (i = 40; i < 60; ++i) FUNC(3, i);
-    sha_transform_label6: for (i = 60; i < 80; ++i) FUNC(4, i);
+    sha_transform_label3: for (i = 0; i < 20; ++i) {
+        FUNC(1, i);
+    }
+    sha_transform_label4: for (i = 20; i < 40; ++i) {
+        FUNC(2, i);
+    }
+    sha_transform_label5: for (i = 40; i < 60; ++i) {
+        FUNC(3, i);
+    }
+    sha_transform_label6: for (i = 60; i < 80; ++i) {
+        FUNC(4, i);
+    }
 
     /* Update digest values */
     sha_info_digest[0] += A;
