@@ -1,20 +1,92 @@
 import numpy as np
 import pandas as pd
 import json
+import re
 import xml.etree.ElementTree as ET
 from typing import List, Tuple, Union, Any
 from numpy.typing import NDArray
 from pathlib import Path
 
-def parse_impl_rpt(xml_rpt_path:Path):
-    tree = ET.parse(xml_rpt_path)
+def parse_utilization_rpt_xml(rpt_path:Path):
+    tree = ET.parse(rpt_path)
     root = tree.getroot()
-    ff = root.findall("AreaReport/Resources/FF")[0].text
-    lut = root.findall("AreaReport/Resources/LUT")[0].text
-    dsp = root.findall("AreaReport/Resources/DSP")[0].text
-    bram = root.findall("AreaReport/Resources/BRAM")[0].text
-    cp = root.findall("TimingReport/CP_FINAL")[0].text
-    return ff, lut, dsp, bram, cp
+
+    lut   = root.find('AreaReport/Resources/LUT').text
+    bram  = root.find('AreaReport/Resources/BRAM').text
+    ff    = root.find('AreaReport/Resources/FF').text
+    dsp   = root.find('AreaReport/Resources/DSP').text
+    clb   = root.find('AreaReport/Resources/CLB').text
+    latch = root.find('AreaReport/Resources/LATCH').text
+
+    return lut, bram, ff, dsp, clb, latch
+
+def parse_timing_rpt_xml(rpt_path:Path):
+    tree = ET.parse(rpt_path)
+    root = tree.getroot()
+
+    wns          = root.find('TimingReport/WNS_FINAL').text
+    tns          = root.find('TimingReport/TNS_FINAL').text
+    target_clk   = root.find('TimingReport/TargetClockPeriod').text
+    achieved_clk = root.find('TimingReport/AchievedClockPeriod').text
+
+    return wns, tns, target_clk, achieved_clk
+
+def parse_utilization_rpt_txt(rpt_path:Path):
+    numeric_const_pattern = '-?\d+'
+    rx = re.compile(numeric_const_pattern, re.VERBOSE)
+
+    lut = bram = ff = dsp = clb = latch = -1
+        
+    with open(rpt_path, "r") as rpt:
+        lines = rpt.readlines()
+
+    for line in lines:
+        if lut != -1 and ff != -1 and latch != -1:
+            if clb == -1:
+                if line.find('CLB') != -1:
+                    clb = int((rx.findall(line))[0])
+            else:
+                if line.find('Block RAM Tile') != -1 and bram == -1:
+                    bram = int((rx.findall(line))[0])
+                elif line.find('DSPs') != -1 and dsp == -1:
+                    dsp = int((rx.findall(line))[0])
+        else:
+            if line.find('CLB LUTs') != -1 and lut == -1:
+                lut = int((rx.findall(line))[0])
+            elif line.find('Register as Flip Flop') != -1 and ff == -1:
+                ff = int((rx.findall(line))[0])
+            elif line.find('Register as Latch') != -1 and latch == -1:
+                latch = int((rx.findall(line))[0])
+        
+        if lut != -1 and bram != -1 and ff != -1 and dsp != -1 and clb != -1 and latch != -1:
+            break
+
+    return lut, bram, ff, dsp, clb, latch
+
+def parse_timing_rpt_txt(rpt_path:Path):
+    numeric_const_pattern = '-?[0-9]\d*(\.\d+)?'
+    rx = re.compile(numeric_const_pattern, re.VERBOSE)
+
+    wns = tns = achieved_clk = -1.0
+    target_clk = 8.0
+
+    with open(rpt_path, "r") as rpt:
+        lines = rpt.readlines()
+
+    n_lines = len(lines)
+    i = 0
+    while i < n_lines and \
+        (wns == -1.0 or tns == -1.0 or achieved_clk == -1.0):
+        line = lines[i]
+        if line.find('WNS(ns)') != -1 and line.find('TNS(ns)') != -1:
+            line = lines[i+2]
+            wns = float((rx.findall(line))[0])
+            tns = float((rx.findall(line))[1])
+            achieved_clk = target_clk - wns
+            break
+        i += 1
+
+    return wns, tns, target_clk, achieved_clk
 
 def directives_to_one_hot(
     directive_index:int, 
@@ -112,6 +184,8 @@ def get_one_hot_directives(
     one_hot_directives = []
 
     for directive_group in available_directives.values():
+        if type(directive_group) is not dict:
+            continue
         for directive_dict in directive_group.values():
             directives = directive_dict["possible_directives"][1:]
             directive_index = 0
@@ -132,7 +206,7 @@ def get_one_hot_directives(
             one_hot_directives[i] = np.pad(directive, (0, max_directives - len(directive)))
             
     one_hot_directives = np.ndarray(
-        shape=(len(one_hot_directives), 2), 
+        shape=(len(one_hot_directives), max_directives), 
         buffer=np.array(one_hot_directives)
     )
 
@@ -156,18 +230,16 @@ def extract_timing_summary(
         path = f'{dataset_path}/{bench_name}/{solution}/reports/'
     else:
         path = f'{dataset_path}/{bench_name}/{solution}/impl/report/verilog/'
-    rpt_path = f'{path}export_impl.xml'
 
-    if Path(rpt_path).is_file() == False:
-        return -1.0, -1.0, -1.0, -1.0
-
-    tree = ET.parse(rpt_path)
-    root = tree.getroot()
-
-    wns          = root.find('TimingReport/WNS_FINAL').text
-    tns          = root.find('TimingReport/TNS_FINAL').text
-    target_clk   = root.find('TimingReport/TargetClockPeriod').text
-    achieved_clk = root.find('TimingReport/AchievedClockPeriod').text
+    rpt_path = Path(f'{path}export_impl.xml')
+    if rpt_path.is_file() == False:
+        rpt_path = Path(f'{path}impl_timing_summary.rpt')
+        if rpt_path.is_file() == False:
+            return -1.0, -1.0, -1.0, -1.0
+        
+        wns, tns, target_clk, achieved_clk = parse_timing_rpt_txt(rpt_path)
+    else:
+        wns, tns, target_clk, achieved_clk = parse_timing_rpt_xml(rpt_path)
 
     return float(wns), float(tns), float(target_clk), float(achieved_clk)
 
@@ -181,20 +253,15 @@ def extract_utilization(
         path = f'{dataset_path}/{bench_name}/{solution}/reports/'
     else:
         path = f'{dataset_path}/{bench_name}/{solution}/impl/report/verilog/'
-    rpt_path = f'{path}export_impl.xml'
 
-    if Path(rpt_path).is_file() == False:
-        return -1, -1, -1, -1, -1, -1
-
-    tree = ET.parse(rpt_path)
-    root = tree.getroot()
-
-    lut   = root.find('AreaReport/Resources/LUT').text
-    bram  = root.find('AreaReport/Resources/BRAM').text
-    ff    = root.find('AreaReport/Resources/FF').text
-    dsp   = root.find('AreaReport/Resources/DSP').text
-    clb   = root.find('AreaReport/Resources/CLB').text
-    latch = root.find('AreaReport/Resources/LATCH').text
+    rpt_path = Path(f'{path}export_impl.xml')
+    if rpt_path.is_file() == False:
+        rpt_path = Path(f'{path}impl_utilization_placed.rpt')
+        if rpt_path.is_file() == False:
+            return -1, -1, -1, -1, -1, -1
+        lut, bram, ff, dsp, clb, latch = parse_utilization_rpt_txt(rpt_path)
+    else:
+        lut, bram, ff, dsp, clb, latch = parse_utilization_rpt_xml(rpt_path)
 
     return int(lut), int(bram), int(ff), int(dsp), int(clb), int(latch)
 

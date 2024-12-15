@@ -63,7 +63,7 @@ def build_graphs(
     bench_name:str, 
     x_data:str, 
     y_data:str, 
-    one_hot_directives_list:List[NDArray[Any]],
+    one_hot_directives_list:Union[List[NDArray[Any]], None]=None,
     num_clusters:int=4,
     output_folder:Union[Path, str]=None,
     directives:bool=False
@@ -112,7 +112,7 @@ def parse_args():
     parser.add_argument('-d', '--dataset', help='dataset path', required=True)
     parser.add_argument('-b', '--benchmark', help='benchmark name (if not provided, use all benchmarks available)', required=True)
     parser.add_argument('-o', '--output', help='Output folder', required=False, default=None)
-    parser.add_argument('-a', '--available', help='Available directives file', required=True)
+    parser.add_argument('-a', '--available', help='Available directives file', required=False, default=None)
     parser.add_argument('-x', '--xdata', help='X axis data', required=False, default='lut')
     parser.add_argument('-y', '--ydata', help='Y axis data',required=False, default='estimated_time')
     parser.add_argument('-s', '--seed', help='Random seed', required=False, default=42)
@@ -130,6 +130,7 @@ def main():
     available_directives = args.available
     x_data = args.xdata
     y_data = args.ydata
+    output = args.output
     clusters = int(args.clusters)
     seed = int(args.seed)
     filtered = args.filtered
@@ -138,8 +139,22 @@ def main():
     np.random.seed(seed)
 
     assert Path(f'{dataset_path}/{bench_name}').is_dir()
-    data, directives = organize_data(dataset_path, bench_name, available_directives, filtered, directives)
-    build_graphs(data, bench_name, x_data, y_data, directives, clusters, args.output, directives)
+
+    if available_directives is not None:
+        available_directives = Path(available_directives)
+        assert available_directives.exists()
+
+    if output is not None:
+        output = Path(output)
+        if not output.exists():
+            output.mkdir(parents=True)
+
+    if available_directives is not None and directives:
+        data, one_hot_directives = organize_data(dataset_path, bench_name, available_directives, filtered, directives)
+        build_graphs(data, bench_name, x_data, y_data, one_hot_directives, clusters, output, directives)
+    else:   
+        data = organize_data(dataset_path, bench_name, filtered=filtered)
+        build_graphs(data, bench_name, x_data, y_data, output_folder=output)
 
 if __name__ == '__main__':
     main()

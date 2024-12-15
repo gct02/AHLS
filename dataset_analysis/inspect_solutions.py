@@ -60,6 +60,7 @@ def parse_args():
     parser.add_argument('-b', '--benchmark', help='benchmark name', required=True)
     parser.add_argument('-o', '--output_dir', help='output directory', required=True)
     parser.add_argument('-a', '--available', help='Available directives file', required=False, default=None)
+    parser.add_argument('-f', '--filtered', help='Sinalize if the dataset is filtered', required=False, action='store_true', default=False)
     parser.add_argument('-lt', '--lut_threshold', help='LUT threshold', required=False, default=DEFAULT_LUT_THRESHOLD)
     parser.add_argument('-dr', '--directives', help='Sinalize to include information about directives', required=False, action='store_true', default=False)
     return parser.parse_args()
@@ -73,6 +74,7 @@ if __name__ == '__main__':
     available_directives = args.available
     directives = args.directives
     lut_threshold = int(args.lut_threshold)
+    filtered = args.filtered
 
     if available_directives is not None:
         available_directives = Path(available_directives)
@@ -80,7 +82,7 @@ if __name__ == '__main__':
 
     assert Path(f'{dataset_path}/{benchmark_name}').is_dir()
 
-    solution_data = organize_data(dataset_path, benchmark_name)
+    solution_data = organize_data(dataset_path, benchmark_name, filtered=filtered)
     lut_below, lut_above = separate_solutions(solution_data, lut_threshold)
 
     if directives:
