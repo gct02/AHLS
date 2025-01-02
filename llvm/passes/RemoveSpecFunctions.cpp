@@ -26,7 +26,7 @@ struct RemoveSpecFunctions : ModulePass {
     RemoveSpecFunctions() : ModulePass(ID) {}
 
     bool runOnModule(Module& M) override {
-        #define DEBUG_TYPE "rmspec"
+        #define DEBUG_TYPE "rm-spec"
         LLVMContext& ctx = M.getContext();
         bool changed = false;
         std::vector<Function*> ssdmSpecIntrinsics;
@@ -60,4 +60,4 @@ struct RemoveSpecFunctions : ModulePass {
 }  // anonymous namespace
 
 char RemoveSpecFunctions::ID = 0;
-static RegisterPass<RemoveSpecFunctions> X("rmspec", "Remove all '_ssdm_op_Spec.*' functions from the module.", false, false);
+static RegisterPass<RemoveSpecFunctions> X("rm-spec", "Remove all '_ssdm_op_Spec.*' functions from the module.", false, false);

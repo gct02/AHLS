@@ -58,7 +58,7 @@ if __name__ == "__main__":
                     shell=True
                 )
                 subprocess.check_output(
-                    f"{OPT} -load {AHLS_LLVM_LIB} -prepgnn -S < {ir_tmp2_path} > {ir_tmp1_path};",
+                    f"{OPT} -load {AHLS_LLVM_LIB} -prep-gnn -S < {ir_tmp2_path} > {ir_tmp1_path};",
                     shell=True
                 )
                 subprocess.check_output(
@@ -66,7 +66,7 @@ if __name__ == "__main__":
                     shell=True
                 )
                 subprocess.check_output(
-                    f"{OPT} -load {AHLS_LLVM_LIB} -rmspec -S < {ir_tmp2_path} > {ir_tmp1_path};",
+                    f"{OPT} -load {AHLS_LLVM_LIB} -rm-spec -S < {ir_tmp2_path} > {ir_tmp1_path};",
                     shell=True
                 )
             except subprocess.CalledProcessError as e:
@@ -84,7 +84,7 @@ if __name__ == "__main__":
             dfg_txt_path = dfg_txt.as_posix()
             try:
                 subprocess.check_output(
-                    f"{OPT} -load {AHLS_LLVM_LIB} -mdfg -gout {dfg_txt_path} < {ir_mod_path};", 
+                    f"{OPT} -load {AHLS_LLVM_LIB} -mod-dfg -out {dfg_txt_path} < {ir_mod_path};", 
                     shell=True
                 )
             except subprocess.CalledProcessError as e:

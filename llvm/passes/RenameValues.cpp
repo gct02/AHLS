@@ -25,7 +25,7 @@ struct RenameValues : ModulePass {
     RenameValues() : ModulePass(ID) {}
 
     bool runOnModule(Module& M) override {
-        #define DEBUG_TYPE "rename"
+        #define DEBUG_TYPE "rename-vals"
         LLVMContext& ctx = M.getContext();
 
         for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
@@ -60,4 +60,4 @@ struct RenameValues : ModulePass {
 }  // anonymous namespace
 
 char RenameValues::ID = 0;
-static RegisterPass<RenameValues> X("rename", "Rename all variables in the module to op.<opID> if local or global.<globalID> if global. This pass must be used only after 'update-md'.", false, false);
+static RegisterPass<RenameValues> X("rename-vals", "Rename all variables in the module to op.<opID> if local or global.<globalID> if global. This pass must be used only after 'update-md'.", false, false);

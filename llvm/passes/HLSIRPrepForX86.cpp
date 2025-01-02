@@ -27,7 +27,7 @@ struct HLSIRPrepForX86 : ModulePass {
     HLSIRPrepForX86() : ModulePass(ID) {}
 
     bool runOnModule(Module& M) override {
-        #define DEBUG_TYPE "prepx86"
+        #define DEBUG_TYPE "prep-x86"
 
         LLVMContext& ctx = M.getContext();
 
@@ -38,18 +38,19 @@ struct HLSIRPrepForX86 : ModulePass {
         // Collect all 'llvm.fpga.legacy.part.select.*' and 'llvm.fpga.legacy.part.set.*' intrinsics
         std::vector<Function*> partSelectIntrinsics, partSetIntrinsics;
         for (Function& F : M) {
-            if (!F.hasName() || !F.isIntrinsic())
+            if (!F.hasName() || !F.isIntrinsic()) {
                 continue;
-            
-            if (F.getName().startswith("llvm.fpga.legacy.part.select") || F.getName().startswith("llvm.part.select")) {
+            }
+            StringRef name = F.getName();
+            if (name.startswith("llvm.fpga.legacy.part.select") || name.startswith("llvm.part.select")) {
                 partSelectIntrinsics.push_back(&F);
-            } else if (F.getName().startswith("llvm.fpga.legacy.part.set") || F.getName().startswith("llvm.part.set")) {
+            } else if (name.startswith("llvm.fpga.legacy.part.set") || name.startswith("llvm.part.set")) {
                 partSetIntrinsics.push_back(&F);
             }
         }
 
-        // Replace 'llvm.fpga.legacy.part.set.*' and 'llvm.fpga.legacy.part.select.*' intrinsics with their implementation
-        // and remove them from the module
+        // Replace 'llvm.fpga.legacy.part.set.*' and 'llvm.fpga.legacy.part.select.*' 
+        // intrinsics with their implementation and remove them from the module
         implementPartSelectIntrinsics(M, ctx, partSelectIntrinsics);
         implementPartSetIntrinsics(M, ctx, partSetIntrinsics);
 
@@ -64,11 +65,9 @@ struct HLSIRPrepForX86 : ModulePass {
             for (auto& B : F) {
                 for (auto& I : B) {
                     if (auto* binOp = dyn_cast<BinaryOperator>(&I)) {
-                        if (binOp->getOpcode() == Instruction::Add || binOp->getOpcode() == Instruction::Mul || binOp->getOpcode() == Instruction::Sub) {
-                            if (binOp->getOperand(0)->getType()->isIntegerTy()) {
-                                binOp->setHasNoUnsignedWrap(false);
-                                binOp->setHasNoSignedWrap(false);
-                            }
+                        if (isAddSubMul(binOp) && binOp->getOperand(0)->getType()->isIntegerTy()) {
+                            binOp->setHasNoUnsignedWrap(false);
+                            binOp->setHasNoSignedWrap(false);
                         }
                     }
                 }
@@ -76,6 +75,12 @@ struct HLSIRPrepForX86 : ModulePass {
         }
 
         return true;
+    }
+
+    bool isAddSubMul(BinaryOperator* binOp) {
+        return binOp->getOpcode() == Instruction::Add || 
+               binOp->getOpcode() == Instruction::Mul || 
+               binOp->getOpcode() == Instruction::Sub;
     }
 
     void replaceHlsFptosiWithBuiltIn(Module& M, LLVMContext& ctx, std::string hlsFptosiName) {
@@ -103,7 +108,9 @@ struct HLSIRPrepForX86 : ModulePass {
         for (Function* F : partSelectIntrinsics) {
             std::string newFuncName = "part_select_" + std::to_string(counter++);
 
-            FunctionType* funcType = FunctionType::get(F->getReturnType(), {F->getArg(0)->getType(), F->getArg(1)->getType(), F->getArg(2)->getType()}, false);
+            FunctionType* funcType = FunctionType::get(F->getReturnType(), 
+                                                       {F->getArg(0)->getType(), F->getArg(1)->getType(), F->getArg(2)->getType()}, 
+                                                       false);
             Function* partSelectFunction = Function::Create(funcType, GlobalValue::LinkageTypes::ExternalLinkage, newFuncName, &M);
             partSelectFunction->setCallingConv(CallingConv::C);
             partSelectFunction->setDoesNotThrow();
@@ -140,7 +147,9 @@ struct HLSIRPrepForX86 : ModulePass {
         int counter = 0;
         for (Function* F : partSetIntrinsics) {
             std::string newFuncName = "part_set_" + std::to_string(counter++);
-            FunctionType* funcType = FunctionType::get(F->getReturnType(), {F->getArg(0)->getType(), F->getArg(1)->getType(), F->getArg(2)->getType(), F->getArg(3)->getType()}, false);
+            FunctionType* funcType = FunctionType::get(F->getReturnType(), 
+                                                       {F->getArg(0)->getType(), F->getArg(1)->getType(), F->getArg(2)->getType(), F->getArg(3)->getType()}, 
+                                                       false);
             Function* partSetFunction = Function::Create(funcType, GlobalValue::LinkageTypes::ExternalLinkage, newFuncName, &M);
             partSetFunction->setCallingConv(CallingConv::C);
             partSetFunction->setDoesNotThrow();
@@ -199,4 +208,4 @@ struct HLSIRPrepForX86 : ModulePass {
 }  // anonymous namespace
 
 char HLSIRPrepForX86::ID = 0;
-static RegisterPass<HLSIRPrepForX86> X("prepx86", "Preprocess Vitis IR to run it on a x86 machine", false, false);
+static RegisterPass<HLSIRPrepForX86> X("prep-x86", "Preprocess Vitis IR to run it on a x86 machine", false, false);

@@ -24,6 +24,7 @@ void bbgemm(TYPE m1[N], TYPE m2[N], TYPE prod[N]){
                     k_row = (k  + kk) * row_size;
                     temp_x = m1[i_row + k + kk];
                     loopj:for (j = 0; j < block_size; ++j){
+                        #pragma HLS LOOP_TRIPCOUNT min=8 max=8 avg=8
                         mul = temp_x * m2[k_row + j + jj];
                         prod[i_row + j + jj] += mul;
                     }

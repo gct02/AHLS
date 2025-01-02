@@ -17,7 +17,7 @@
 
 using namespace llvm;
 
-static cl::opt<std::string> outputFileName("gout", cl::desc("Specify the file where the DFG should be written"), cl::value_desc("filename"));
+static cl::opt<std::string> outputFileName("out", cl::desc("Specify the file where the DFG should be written"), cl::value_desc("filename"));
 
 namespace {
 
@@ -26,7 +26,7 @@ struct ModuleDFGBuilder : public ModulePass {
     ModuleDFGBuilder() : ModulePass(ID) {}
 
     bool runOnModule(Module& M) override {
-        #define DEBUG_TYPE "mdfg"
+        #define DEBUG_TYPE "mod-dfg"
 
         LLVMContext& ctx = M.getContext();
         
@@ -196,4 +196,4 @@ struct ModuleDFGBuilder : public ModulePass {
 }  // anonymous namespace
 
 char ModuleDFGBuilder::ID = 0;
-static RegisterPass<ModuleDFGBuilder> X("mdfg", "Build a module-level DFG", false, false);
+static RegisterPass<ModuleDFGBuilder> X("mod-dfg", "Build a module-level DFG", false, false);

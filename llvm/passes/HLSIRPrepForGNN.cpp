@@ -26,7 +26,7 @@ struct HLSIRPrepForGNN : ModulePass {
     HLSIRPrepForGNN() : ModulePass(ID) {}
 
     bool runOnModule(Module& M) override {
-        #define DEBUG_TYPE "prepgnn"
+        #define DEBUG_TYPE "prep-gnn"
         LLVMContext& ctx = M.getContext();
 
         // Collect all 'llvm.fpga.legacy.part.select.*' and 'llvm.fpga.legacy.part.set.*' intrinsics
@@ -58,6 +58,30 @@ struct HLSIRPrepForGNN : ModulePass {
         }
         // Remove all 'llvm.dbg.*' intrinsics from the module
         for (Function* F : dbgIntrinsics) {
+            if (!F->use_empty()) {
+                for (auto it = F->use_begin(); it != F->use_end(); ) {
+                    Use& U = *it++;
+                    User* user = U.getUser();
+                    if (auto* callInst = dyn_cast<CallInst>(user)) {
+                        callInst->eraseFromParent();
+                    }
+                }
+            }
+            F->eraseFromParent();
+        }
+
+        // Collect all 'llvm.lifetime.*' intrinsics
+        std::vector<Function*> lifetimeIntrinsics;
+        for (Function& F : M) {
+            if (!F.isIntrinsic() || !F.hasName()) {
+                continue;
+            }
+            if (F.getName().startswith("llvm.lifetime.")) {
+                lifetimeIntrinsics.push_back(&F);
+            }
+        }
+        // Remove all 'llvm.lifetime.*' intrinsics from the module
+        for (Function* F : lifetimeIntrinsics) {
             if (!F->use_empty()) {
                 for (auto it = F->use_begin(); it != F->use_end(); ) {
                     Use& U = *it++;
@@ -184,4 +208,4 @@ struct HLSIRPrepForGNN : ModulePass {
 }  // anonymous namespace
 
 char HLSIRPrepForGNN::ID = 0;
-static RegisterPass<HLSIRPrepForGNN> X("prepgnn", "Preprocess Vitis IR to use it as input to a GNN model", false, false);
+static RegisterPass<HLSIRPrepForGNN> X("prep-gnn", "Preprocess Vitis IR to use it as input to a GNN model", false, false);
