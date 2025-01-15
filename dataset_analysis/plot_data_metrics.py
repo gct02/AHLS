@@ -109,17 +109,56 @@ def build_graphs(
 def parse_args():
     parser = ArgumentParser()
 
-    parser.add_argument('-d', '--dataset', help='dataset path', required=True)
-    parser.add_argument('-b', '--benchmark', help='benchmark name (if not provided, use all benchmarks available)', required=True)
-    parser.add_argument('-o', '--output', help='Output folder', required=False, default=None)
-    parser.add_argument('-a', '--available', help='Available directives file', required=False, default=None)
-    parser.add_argument('-x', '--xdata', help='X axis data', required=False, default='lut')
-    parser.add_argument('-y', '--ydata', help='Y axis data',required=False, default='estimated_time')
-    parser.add_argument('-s', '--seed', help='Random seed', required=False, default=42)
-    parser.add_argument('-c', '--clusters', help='Number of clusters', required=False, default=4)
-    parser.add_argument('-f', '--filtered', help='Sinalize if the dataset is filtered', required=False, action='store_true', default=False)
-    parser.add_argument('-dr', '--directives', help='Sinalize to plot information about directives', required=False, action='store_true', default=False)
-
+    parser.add_argument(
+        '-d', '--dataset', 
+        help='dataset path', 
+        required=True
+    )
+    parser.add_argument(
+        '-b', '--benchmark', 
+        help='benchmark name (if not provided, use all benchmarks available)', 
+        required=True
+    )
+    parser.add_argument(
+        '-o', '--output', 
+        help='Output folder', 
+        required=False, default=None
+    )
+    parser.add_argument(
+        '-a', '--available', 
+        help='Available directives file', 
+        required=False, default=None
+    )
+    parser.add_argument(
+        '-x', '--xdata', 
+        help='X axis data', 
+        required=False, default='lut'
+    )
+    parser.add_argument(
+        '-y', '--ydata', 
+        help='Y axis data',
+        required=False, default='estimated_time'
+    )
+    parser.add_argument(
+        '-s', '--seed', 
+        help='Random seed for clustering', 
+        required=False, default=42
+    )
+    parser.add_argument(
+        '-c', '--clusters', 
+        help='Number of clusters', 
+        required=False, default=4
+    )
+    parser.add_argument(
+        '-f', '--filtered', 
+        help='Sinalize if the dataset is filtered', 
+        required=False, action='store_true', default=False
+    )
+    parser.add_argument(
+        '-dr', '--directives', 
+        help='Sinalize to plot information about directives', 
+        required=False, action='store_true', default=False
+    )
     return parser.parse_args()
 
 def main():
@@ -150,11 +189,33 @@ def main():
             output.mkdir(parents=True)
 
     if available_directives is not None and directives:
-        data, one_hot_directives = organize_data(dataset_path, bench_name, available_directives, filtered, directives)
-        build_graphs(data, bench_name, x_data, y_data, one_hot_directives, clusters, output, directives)
+        data, one_hot_directives = organize_data(
+            dataset_path, 
+            bench_name, 
+            available_directives, 
+            filtered, 
+            directives
+        )
+        
+        build_graphs(
+            data, bench_name, 
+            x_data, y_data, 
+            one_hot_directives, 
+            clusters, 
+            output, 
+            directives
+        )
     else:   
-        data = organize_data(dataset_path, bench_name, filtered=filtered)
-        build_graphs(data, bench_name, x_data, y_data, output_folder=output)
+        data = organize_data(
+            dataset_path, 
+            bench_name, 
+            filtered=filtered)
+        
+        build_graphs(
+            data, bench_name, 
+            x_data, y_data, 
+            output_folder=output
+        )
 
 if __name__ == '__main__':
     main()

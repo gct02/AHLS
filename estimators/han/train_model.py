@@ -215,14 +215,14 @@ def main(args):
         val_loader = DataLoader(val_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        n_features = {'inst': 18, 'var': 9, 'const': 10}
+        n_features = {'inst': 23, 'var': 9, 'const': 10, 'array': 16}
 
         model = HAN(
             n_features=n_features, 
             n_out=1, 
-            n_hid_att=16, 
+            n_hid_att=10, 
             heads_att=4, 
-            n_hid_set=6, 
+            n_hid_set=9, 
             heads_set=3, 
             norm=True
         )
@@ -295,7 +295,7 @@ if __name__ == '__main__':
     parser.add_argument('--batch', help='Batch size', default=16)
     parser.add_argument('--dataset', help='Path to the dataset', required=True)
     parser.add_argument('--verbose', help='Print debug information', action='store_true')
-    parser.add_argument('--target', help='The target resource metric', required=True, \
+    parser.add_argument('--target', help='The target resource metric', required=True,
                         choices=['lut', 'ff', 'dsp', 'bram', 'cp'])
 
     args = vars(parser.parse_args())

@@ -17,10 +17,14 @@
 
 using namespace llvm;
 
-static cl::opt<std::string> outputFileName("out", cl::desc("Specify the file where the DFG should be written"), cl::value_desc("filename"));
+static cl::opt<std::string> outputFileName(
+    "out", 
+    cl::desc("Specify the file where the DFG should be written"), 
+    cl::value_desc("filename")
+);
 
 namespace {
-
+    
 struct ModuleDFGBuilder : public ModulePass {
     static char ID;
     ModuleDFGBuilder() : ModulePass(ID) {}

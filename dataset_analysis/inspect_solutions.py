@@ -56,13 +56,41 @@ def get_most_common_directives(
 
 def parse_args():
     parser = ArgumentParser()
-    parser.add_argument('-d', '--dataset', help='dataset path', required=True)
-    parser.add_argument('-b', '--benchmark', help='benchmark name', required=True)
-    parser.add_argument('-o', '--output_dir', help='output directory', required=True)
-    parser.add_argument('-a', '--available', help='Available directives file', required=False, default=None)
-    parser.add_argument('-f', '--filtered', help='Sinalize if the dataset is filtered', required=False, action='store_true', default=False)
-    parser.add_argument('-lt', '--lut_threshold', help='LUT threshold', required=False, default=DEFAULT_LUT_THRESHOLD)
-    parser.add_argument('-dr', '--directives', help='Sinalize to include information about directives', required=False, action='store_true', default=False)
+    parser.add_argument(
+        '-d', '--dataset', 
+        help='dataset path', 
+        required=True
+    )
+    parser.add_argument(
+        '-b', '--benchmark', 
+        help='benchmark name', 
+        required=True
+    )
+    parser.add_argument(
+        '-o', '--output_dir', 
+        help='output directory', 
+        required=True
+    )
+    parser.add_argument(
+        '-a', '--available', 
+        help='Available directives file', 
+        required=False, default=None
+    )
+    parser.add_argument(
+        '-f', '--filtered', 
+        help='Sinalize if the dataset is filtered', 
+        required=False, action='store_true', default=False
+    )
+    parser.add_argument(
+        '-lt', '--lut_threshold', 
+        help='LUT threshold', 
+        required=False, default=DEFAULT_LUT_THRESHOLD
+    )
+    parser.add_argument(
+        '-dr', '--directives', 
+        help='Sinalize to include information about directives', 
+        required=False, action='store_true', default=False
+    )
     return parser.parse_args()
 
 if __name__ == '__main__':
@@ -82,23 +110,36 @@ if __name__ == '__main__':
 
     assert Path(f'{dataset_path}/{benchmark_name}').is_dir()
 
-    solution_data = organize_data(dataset_path, benchmark_name, filtered=filtered)
+    solution_data = organize_data(dataset_path, 
+                                  benchmark_name, 
+                                  filtered=filtered)
     lut_below, lut_above = separate_solutions(solution_data, lut_threshold)
 
     if directives:
         solutions_below = lut_below['solution'].values
-        directives_sorted = get_most_common_directives(dataset_path, benchmark_name, solutions_below)
+        directives_sorted = get_most_common_directives(dataset_path, 
+                                                       benchmark_name, 
+                                                       solutions_below)
 
         with open(output_dir / f'commom-directives_lut-lte-{lut_threshold}_{benchmark_name}.txt', 'w') as f:
             for directive in directives_sorted:
                 f.write(f'{directive}\n')
 
         solutions_above = lut_above['solution'].values
-        directives_sorted = get_most_common_directives(dataset_path, benchmark_name, solutions_above)
+        directives_sorted = get_most_common_directives(dataset_path, 
+                                                       benchmark_name, 
+                                                       solutions_above)
+        
         with open(output_dir / f'commom-directives_lut-gt-{lut_threshold}_{benchmark_name}.txt', 'w') as f:
             for directive in directives_sorted:
                 f.write(f'{directive}\n')
         
 
-    lut_below.to_csv(output_dir / f'lut_below_{lut_threshold}_{benchmark_name}.csv', index=False)
-    lut_above.to_csv(output_dir / f'lut_above_{lut_threshold}_{benchmark_name}.csv', index=False)
+    lut_below.to_csv(
+        output_dir / f'lut_below_{lut_threshold}_{benchmark_name}.csv', 
+        index=False
+    )
+    lut_above.to_csv(
+        output_dir / f'lut_above_{lut_threshold}_{benchmark_name}.csv', 
+        index=False
+    )

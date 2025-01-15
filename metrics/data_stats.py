@@ -1,15 +1,26 @@
-def parse_data_stats_file(data_stats_file):
+from typing import List, Tuple, Dict, Union
+from pathlib import Path
+
+def parse_data_stats_file(
+    data_stats_file: Union[str, Path]
+) -> Dict[int, List[int]]:
     with open(data_stats_file, 'r') as f:
-        stats = {}
+        stats_dict = {}
         lines = f.readlines()
         for line in lines:
-            stats_str = line.strip().split('|')
-            opid = int(stats_str[0])
-            stats[opid] = [int(stats_str[1]), int(stats_str[2]), int(stats_str[3]),\
-                           float(stats_str[4]), float(stats_str[5]), float(stats_str[6]), float(stats_str[7])]
-    return stats
+            stats = line.strip().split('|')
+            opid = int(stats[0])
+            stats_dict[opid] = [
+                int(stats[1]), int(stats[2]), int(stats[3]),
+                float(stats[4]), float(stats[5]), 
+                float(stats[6]), float(stats[7])
+            ]
+    return stats_dict
 
-def get_transformed_ops_stats(data_stats: dict, transformed_data_stats: dict):
+def get_transformed_ops_stats(
+    data_stats: Dict[int, List[int]], 
+    transformed_data_stats: Dict[int, List[int]]
+) -> Tuple[List[int], List[int], List[int]]:
     """
     Get the ID from each operation that has been modified.
     """

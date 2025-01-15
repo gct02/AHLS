@@ -29,16 +29,19 @@ struct HLSIRPrepForGNN : ModulePass {
         #define DEBUG_TYPE "prep-gnn"
         LLVMContext& ctx = M.getContext();
 
-        // Collect all 'llvm.fpga.legacy.part.select.*' and 'llvm.fpga.legacy.part.set.*' intrinsics
+        // Collect all 'llvm.fpga.legacy.part.select.*' and 
+        // 'llvm.fpga.legacy.part.set.*' intrinsics
         std::vector<Function*> partSelectIntrinsics, partSetIntrinsics;
         for (Function& F : M) {
             if (!F.isIntrinsic() || !F.hasName()) {
                 continue;
             }
-            if (F.getName().startswith("llvm.fpga.legacy.part.select") || F.getName().startswith("llvm.part.select")) {
+            if (F.getName().startswith("llvm.fpga.legacy.part.select") ||
+                F.getName().startswith("llvm.part.select")) {
                 partSelectIntrinsics.push_back(&F);
             } 
-            else if (F.getName().startswith("llvm.fpga.legacy.part.set") || F.getName().startswith("llvm.part.set")) {
+            else if (F.getName().startswith("llvm.fpga.legacy.part.set") || 
+                     F.getName().startswith("llvm.part.set")) {
                 partSetIntrinsics.push_back(&F);
             }
         }
@@ -94,6 +97,30 @@ struct HLSIRPrepForGNN : ModulePass {
             F->eraseFromParent();
         }
 
+        // Collect all '_ssdm_op_Spec.*' and '_ssdm_Spec.*' intrinsics
+        std::vector<Function*> ssdmSpecIntrinsics;
+        for (Function& F : M) {
+            if (F.isIntrinsic() && F.hasName()) {
+                if (F.getName().startswith("_ssdm_op_Spec") ||
+                    F.getName().startswith("_ssdm_Spec")) {
+                    ssdmSpecIntrinsics.push_back(&F);
+                }
+            }
+        }
+        // Remove all '_ssdm_op_Spec.*' and '_ssdm_Spec.*' intrinsics from the module
+        for (Function* F : ssdmSpecIntrinsics) {
+            if (!F->use_empty()) {
+                for (auto it = F->use_begin(); it != F->use_end(); ) {
+                    Use& U = *it++;
+                    User* user = U.getUser();
+                    if (auto* callInst = dyn_cast<CallInst>(user)) {
+                        callInst->eraseFromParent();
+                    }
+                }
+            }
+            F->eraseFromParent();
+        }
+
         // Remove all unused global variables from the module
         for (auto it = M.global_begin(); it != M.global_end(); ) {
             GlobalVariable& GV = *it++;
@@ -111,8 +138,17 @@ struct HLSIRPrepForGNN : ModulePass {
         for (Function* F : partSelectIntrinsics) {
             std::string newFuncName = "part_select_" + std::to_string(++counter);
 
-            FunctionType* funcType = FunctionType::get(F->getReturnType(), {F->getArg(0)->getType(), F->getArg(1)->getType(), F->getArg(2)->getType()}, false);
-            Function* partSelectFunction = Function::Create(funcType, GlobalValue::LinkageTypes::ExternalLinkage, newFuncName, &M);
+            FunctionType* funcType = FunctionType::get(
+                F->getReturnType(), 
+                {F->getArg(0)->getType(), F->getArg(1)->getType(), F->getArg(2)->getType()}, 
+                false
+            );
+            Function* partSelectFunction = Function::Create(
+                funcType, 
+                GlobalValue::LinkageTypes::ExternalLinkage, 
+                newFuncName, 
+                &M
+            );
             partSelectFunction->setCallingConv(CallingConv::C);
             partSelectFunction->setDoesNotThrow();
             partSelectFunction->setDoesNotAccessMemory();
@@ -148,8 +184,17 @@ struct HLSIRPrepForGNN : ModulePass {
         int counter = 0;
         for (Function* F : partSetIntrinsics) {
             std::string newFuncName = "part_set_" + std::to_string(++counter);
-            FunctionType* funcType = FunctionType::get(F->getReturnType(), {F->getArg(0)->getType(), F->getArg(1)->getType(), F->getArg(2)->getType(), F->getArg(3)->getType()}, false);
-            Function* partSetFunction = Function::Create(funcType, GlobalValue::LinkageTypes::ExternalLinkage, newFuncName, &M);
+            FunctionType* funcType = FunctionType::get(
+                F->getReturnType(), 
+                {F->getArg(0)->getType(), F->getArg(1)->getType(), F->getArg(2)->getType(), F->getArg(3)->getType()}, 
+                false
+            );
+            Function* partSetFunction = Function::Create(
+                funcType, 
+                GlobalValue::LinkageTypes::ExternalLinkage, 
+                newFuncName, 
+                &M
+            );
             partSetFunction->setCallingConv(CallingConv::C);
             partSetFunction->setDoesNotThrow();
             partSetFunction->setDoesNotAccessMemory();
@@ -184,7 +229,8 @@ struct HLSIRPrepForGNN : ModulePass {
         }
     }
 
-    void replaceIntrinsicWithFunction(Module& M, LLVMContext& ctx, Function* intrinsic, Function* newFunction) {
+    void replaceIntrinsicWithFunction(Module& M, LLVMContext& ctx, Function* intrinsic, 
+                                      Function* newFunction) {
         // Replace uses of the intrinsic with calls to the new function
         for (auto it = intrinsic->use_begin(); it != intrinsic->use_end(); ) {
             Use& U = *it++;

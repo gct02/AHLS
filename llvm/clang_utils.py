@@ -13,7 +13,7 @@ def create_executable_from_llvm_ir(
     ir_path:Path, 
     output_path:Path, 
     include_libraries:list=None
-):
+) -> None:
     """
     Compile the LLVM IR file at ir_path to an executable at output_path.
     """

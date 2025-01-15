@@ -37,8 +37,9 @@ struct UpdateMD : public ModulePass {
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "update-md"
         
-        setMetadataForInstructions(M);
-        setMetadataForGlobals(M);
+        int id = 0;
+        setMetadataForInstructions(M, id);
+        setMetadataForGlobals(M, id);
         setMetadataForArrays(M);
 
         return false; // Module is not modified
@@ -122,23 +123,21 @@ struct UpdateMD : public ModulePass {
     }
 
     // Set named metadata for all global objects in the module
-    void setMetadataForGlobals(Module& M) {
-        uint32_t globalID = 1;
-
+    void setMetadataForGlobals(Module& M, int& id) {
         for (GlobalObject& G : M.getGlobalList()) {
-            DEBUG(dbgs() << "Setting metadata for global: " << G << " (globalID = " << globalID << ")\n");
-            setMetadata(G, "globalID", globalID);
+            DEBUG(dbgs() << "Setting metadata for global: " << G << " (globalID = " << id << ")\n");
+            setMetadata(G, "globalID", id);
             setMetadata(G, "bitwidth", G.getType()->getPointerElementType()->getPrimitiveSizeInBits());
             setMetadata(G, "type", (uint32_t)G.getType()->getPointerElementType()->getTypeID());
-            setMetadata(G, "ID." + std::to_string(globalID), globalID);
-            globalID++;
+            setMetadata(G, "ID." + std::to_string(id), id);
+            id++;
         }
     }
 
     // Set named metadata for all instructions in the module
-    void setMetadataForInstructions(Module& M) {
-        uint32_t opID, functionID, bbID;
-        opID = functionID = bbID = 1;
+    void setMetadataForInstructions(Module& M, int& id) {
+        uint32_t functionID = 1, bbID = 1;
+
 
         for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
             Function& F = *FI;
@@ -160,9 +159,9 @@ struct UpdateMD : public ModulePass {
                     }
                 }
                 for (Instruction& I : BB) {
-                    DEBUG(dbgs() << "Setting metadata for instruction: " << I << " (opID = " << opID << ")\n");
-                    setInstructionMetadata(I, opID, functionID, bbID, loopDepth, tripCountValue);
-                    opID++;
+                    DEBUG(dbgs() << "Setting metadata for instruction: " << I << " (opID = " << id << ")\n");
+                    setInstructionMetadata(I, id, functionID, bbID, loopDepth, tripCountValue);
+                    id++;
                 }
                 bbID++;
             }

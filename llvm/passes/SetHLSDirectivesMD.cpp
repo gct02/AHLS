@@ -482,7 +482,8 @@ struct SetHLSDirectivesMD : public ModulePass {
             bool found = false;
             for (Function::arg_iterator AI = F->arg_begin(), AE = F->arg_end(); AI != AE; ++AI) {
                 Argument* arg = &*AI;
-                if (arg->getName() == variable) {
+                if (arg->getName() == variable && 
+                    (arg->getType()->isPointerTy() || arg->getType()->isArrayTy())) {
                     /* The array is a function parameter.
                      * In this case, we will set the metadata to all 
                      * instructions that uses the array. */
@@ -505,7 +506,8 @@ struct SetHLSDirectivesMD : public ModulePass {
                     BasicBlock* BB = &*BI;
                     for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
                         Instruction* I = &*II;
-                        if (I->getName() == variable) {
+                        if (I->getName() == variable && 
+                            (I->getType()->isPointerTy() || I->getType()->isArrayTy())) {
                             /* The array is a local variable.
                             * In this case, we will set the metadata to all 
                             * instructions that uses the array. */

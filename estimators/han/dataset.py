@@ -56,10 +56,10 @@ class HLSDataset(Dataset):
                 cdfg = pickle.load(open(cdfg_path, 'rb'))
 
                 with open(os.path.join(inst_folder, f"targets.txt"), 'r') as f:
-                    line = f.readline().split(' ')
+                    line = f.readline().split('=')
                     metric = line[0]
                     while metric != self.target:
-                        line = f.readline().split(' ')
+                        line = f.readline().split('=')
                         metric = line[0]
                     target_value = float(line[1])
 

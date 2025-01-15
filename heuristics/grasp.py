@@ -14,7 +14,7 @@ class GRASP(Heuristic):
         self, 
         trained_estimator_path:Path, 
         n_iter=100
-        ):
+    ):
         self.n_iter = n_iter
         with open(trained_estimator_path, "rb") as f:
             self.estimator = torch.load(f)
@@ -23,13 +23,13 @@ class GRASP(Heuristic):
     def RGC(self,
         design_ir, 
         ac_transforms
-        ):
+    ):
         ...
 
     def local_search(
         self, 
         ac_transforms
-        ):
+    ):
         ...
 
     def run(
@@ -40,14 +40,15 @@ class GRASP(Heuristic):
         ac_transforms:list, 
         exact_design_exec_time:float, 
         input_args:str
-        ):
+    ):
         """
         Parameters
         ----------
         * design_ir:
-            Intermediate representation of the design. It assumes that this IR is already preprocessed
-            (i.e., with metadata added with the 'update-md' pass and instrumented with the 'profile' pass,
-            as well as linked with the IR containing the functions to handle the input/output of the design).
+            Intermediate representation of the design. It assumes that this IR 
+            is already preprocessed (i.e., with metadata added with the 'update-md' 
+            pass and instrumented with the 'profile' pass, as well as linked with 
+            the IR containing the functions to handle the input/output of the design).
         * data_stats:
             Path to the file containing the statistics obtained from the profiled operations.
         * ac_transforms:
@@ -59,12 +60,13 @@ class GRASP(Heuristic):
 
         Notes
         -----
-        The run method is responsible for executing the GRASP heuristic. It should initially apply all the 
-        transformations in ac_transforms and test them, keeping only the ones that do not break the program.
-        With the subset of AC transformations that is kept after this process, we calculate the error measure E
-        and resource savings R of each design and build a Restricted Candidate List (RCL) with the Pareto-optimal
-        solutions (considering the minimization of E and maximization of R). Starting from this initial RCL, we
-        run the RGC and Local Search procedures n_iter times.
+        The run method is responsible for executing the GRASP heuristic. It should 
+        initially apply all the transformations in ac_transforms and test them, keeping 
+        only the ones that do not break the program. With the subset of AC transformations 
+        that is kept after this process, we calculate the error measure Eand resource savings 
+        R of each design and build a Restricted Candidate List (RCL) with the Pareto-optimal
+        solutions (considering the minimization of E and maximization of R). 
+        Starting from this initial RCL, we run the RGC and Local Search procedures n_iter times.
         """
         valid_approx_designs = []
         approx_data_stats = []

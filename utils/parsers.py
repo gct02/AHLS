@@ -58,7 +58,8 @@ def parse_utilization_rpt_txt(rpt_path:Path):
             elif line.find('Register as Latch') != -1 and latch == -1:
                 latch = int((rx.findall(line))[0])
         
-        if lut != -1 and bram != -1 and ff != -1 and dsp != -1 and clb != -1 and latch != -1:
+        if lut != -1 and bram != -1 and ff != -1 and \
+           dsp != -1 and clb != -1 and latch != -1:
             break
 
     return lut, bram, ff, dsp, clb, latch
@@ -109,52 +110,53 @@ def find_directive_arg(
 def parse_directive_tcl_cmd(
     directive_tcl_cmd:str
 ) -> List[str]:
-    directive_type = directive_tcl_cmd.split(' ')[0]
-    directive_args = directive_tcl_cmd.split(' ')[1:]
+    dir_type = directive_tcl_cmd.split(' ')[0]
+    dir_args = directive_tcl_cmd.split(' ')[1:]
 
-    if directive_type == 'set_directive_pipeline' \
-        or directive_type == 'set_directive_loop_merge' \
-        or directive_type == 'set_directive_loop_flatten':
+    if dir_type == 'set_directive_pipeline' \
+        or dir_type == 'set_directive_loop_merge' \
+        or dir_type == 'set_directive_loop_flatten':
         # All these directives have the same format:
         # set_directive_<directive_type> "<location>"
-        location = directive_args[0].strip('\"')
-        return [directive_type, location]
+        location = dir_args[0].strip('\"')
+        return [dir_type, location]
 
-    if directive_type == 'set_directive_unroll':
-        factor_index, factor = find_directive_arg('-factor', directive_args)
+    if dir_type == 'set_directive_unroll':
+        factor_index, factor = find_directive_arg('-factor', dir_args)
         if factor is not None:
             factor = int(factor)
-            directive_args.pop(factor_index)
-            directive_args.pop(factor_index)
+            dir_args.pop(factor_index)
+            dir_args.pop(factor_index)
         else:
             factor = 0
-        location = directive_args[-1].strip('\"')
-        return [directive_type, location, factor]
+        location = dir_args[-1].strip('\"')
+        return [dir_type, location, factor]
 
-    if directive_type == 'set_directive_array_partition':
-        partition_type_index, partition_type = find_directive_arg('-type', directive_args)
+    if dir_type == 'set_directive_array_partition':
+        partition_type_index, partition_type = find_directive_arg('-type', dir_args)
         if partition_type is None:
             partition_type = 'complete'
         else:
-            directive_args.pop(partition_type_index)
-            directive_args.pop(partition_type_index)
-        partition_factor_index, partition_factor = find_directive_arg('-factor', directive_args)
+            dir_args.pop(partition_type_index)
+            dir_args.pop(partition_type_index)
+        partition_factor_index, partition_factor = find_directive_arg('-factor', dir_args)
         if partition_factor is not None:
             partition_factor = int(partition_factor)
-            directive_args.pop(partition_factor_index)
-            directive_args.pop(partition_factor_index)
+            dir_args.pop(partition_factor_index)
+            dir_args.pop(partition_factor_index)
         else:
             partition_factor = 0
-        partition_dim_index, partition_dim = find_directive_arg('-dim', directive_args)
+        partition_dim_index, partition_dim = find_directive_arg('-dim', dir_args)
         if partition_dim is not None:
             partition_dim = int(partition_dim)
-            directive_args.pop(partition_dim_index)
-            directive_args.pop(partition_dim_index)
+            dir_args.pop(partition_dim_index)
+            dir_args.pop(partition_dim_index)
         else:
             partition_dim = 0
-        partition_array = directive_args[-1]
-        location = directive_args[-2].strip('\"')
-        return [directive_type, location, partition_array, partition_type, partition_factor, partition_dim]
+        partition_array = dir_args[-1]
+        location = dir_args[-2].strip('\"')
+        return [dir_type, location, partition_array, partition_type,
+                partition_factor, partition_dim]
 
     return []
 
@@ -193,11 +195,13 @@ def get_one_hot_directives(
                 parsed_directive = parse_directive_tcl_cmd(directive)
                 if len(parsed_directive) == 0:
                     continue
-                if finc_directive_in_list(parsed_directive, solution_directives):
+                if finc_directive_in_list(parsed_directive, 
+                                          solution_directives):
                     directive_index = i + 1
                     break
             num_directives = len(directives) + 1
-            one_hot_directive = directives_to_one_hot(directive_index, num_directives)
+            one_hot_directive = directives_to_one_hot(directive_index, 
+                                                      num_directives)
             one_hot_directives.append(one_hot_directive)
 
     max_directives = max(len(directive) for directive in one_hot_directives)
@@ -308,15 +312,32 @@ def organize_data(
             if directives:
                 solution_data_json = Path(f'{dset_dir}/{sol_dir}/solution{sol_index}_data.json')
                 if solution_data_json.exists():
-                    one_hot_directives = get_one_hot_directives(available_directives, solution_data_json)
+                    one_hot_directives = get_one_hot_directives(
+                        available_directives, 
+                        solution_data_json
+                    )
                     one_hot_directives_list.append(one_hot_directives)
                 else:
                     one_hot_directives_list.append(np.zeros(2))
 
-            wns, tns, target_clk, achieved_clk = extract_timing_summary(dataset_path, bench_name, sol_dir, filtered)
-            lut, bram, ff, dsp, clb, latch  = extract_utilization(dataset_path, bench_name, sol_dir, filtered)
-            cc = extract_hls_cc_report(dataset_path, bench_name, sol_dir, filtered)
-
+            wns, tns, target_clk, achieved_clk = extract_timing_summary(
+                dataset_path, 
+                bench_name, 
+                sol_dir, 
+                filtered
+            )
+            lut, bram, ff, dsp, clb, latch  = extract_utilization(
+                dataset_path, 
+                bench_name, 
+                sol_dir, 
+                filtered
+            )
+            cc = extract_hls_cc_report(
+                dataset_path, 
+                bench_name, 
+                sol_dir, 
+                filtered
+            )
             if achieved_clk == -1.0 or cc == -1:
                 timing = -1.0
             else:
@@ -331,7 +352,8 @@ def organize_data(
         sol_dir = "solution" + str(sol_index)
 
     cols = ['solution', 'lut', 'bram', 'ff', 'dsp', 'clb', 'latch', 
-            'target_clk', 'achieved_clk', 'wns', 'tns', 'cycles', 'estimated_time']
+            'target_clk', 'achieved_clk', 'wns', 'tns', 'cycles', 
+            'estimated_time']
     
     bench_dataframe = pd.DataFrame(list_to_df, columns=cols)
     

@@ -23,7 +23,7 @@ The output directory will have the following structure:
 '''
 
 try:
-    AHLS_LLVM_LIB = environ['AHLS_LLVM_LIB']
+    DSE_LIB = environ['DSE_LIB']
     OPT = environ['OPT']
     CLANG = environ['CLANG']
     LLVM_LINK = environ['LLVM_LINK']
@@ -91,7 +91,7 @@ if __name__ == "__main__":
         input_ir_path.unlink()
         temp_ir_path.rename(input_ir_path)
 
-    get_dfg(input_ir_path, dfg_folder / "dfg.txt")
+    generate_dfg(input_ir_path, dfg_folder / "dfg.txt")
 
     if args.dfg is not None:
         # Move the DFG file to the specified path
@@ -114,13 +114,25 @@ if __name__ == "__main__":
             i = 1
             for input_file in inputs_folder.iterdir():
                 output_path = outputs_folder / f"output_{i}.txt"
-                subprocess.run(f"{executable_path.as_posix()} {input_file.as_posix()} {output_path.as_posix()}", stderr=subprocess.STDOUT, shell=True)
+                subprocess.run(
+                    f"{executable_path.as_posix()} {input_file.as_posix()} {output_path.as_posix()}", 
+                    stderr=subprocess.STDOUT, 
+                    shell=True
+                )
                 data_stats_file = data_stats_folder / f"data_stats_{i}.txt"
-                subprocess.run(f"mv data_stats.txt {data_stats_file.as_posix()}", stderr=subprocess.STDOUT, shell=True)
+                subprocess.run(
+                    f"mv data_stats.txt {data_stats_file.as_posix()}", 
+                    stderr=subprocess.STDOUT, 
+                    shell=True
+                )
                 i += 1
         else:
             subprocess.run(executable_path.as_posix(), stderr=subprocess.STDOUT, shell=True)
             data_stats_file = data_stats_folder / "data_stats_1.txt"
-            subprocess.run(f"mv data_stats.txt {data_stats_file.as_posix()}", stderr=subprocess.STDOUT, shell=True)
+            subprocess.run(
+                f"mv data_stats.txt {data_stats_file.as_posix()}", 
+                stderr=subprocess.STDOUT, 
+                shell=True
+            )
     '''
         

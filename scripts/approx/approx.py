@@ -9,7 +9,8 @@ from llvm.clang_utils import *
 from metrics.error_measure import *
 
 '''
-This script assumes that the input design IR file is already instrumented and linked with the populate_io IR file.
+This script assumes that the input design IR file is already instrumented 
+and linked with the populate_io IR file.
 The project's working directory should be structured as follows:
     .
     ├── approx
@@ -23,12 +24,12 @@ The project's working directory should be structured as follows:
     ├── <design_name>
     ...
 
-The script will execute the input design and the transformed design, compare their outputs using the specified error metric,
-and print the error value.
+The script will execute the input design and the transformed design, compare 
+their outputs using the specified error metric, and print the error value.
 '''
 
 try:
-    AHLS_LLVM_LIB = environ['AHLS_LLVM_LIB']
+    DSE_LIB = environ['DSE_LIB']
     OPT = environ['OPT']
     CLANG = environ['CLANG']
     LLVM_LINK = environ['LLVM_LINK']
@@ -36,7 +37,12 @@ except KeyError as ahls_error:
     print(f"Error: environment variable {ahls_error.args[0]} not defined.")
     raise
 
-def run_with_timeout(run_cmd, max_execution_time, transformed_executable_path: Path, transformed_output_dir: Path):
+def run_with_timeout(
+    run_cmd, 
+    timeout, 
+    transformed_executable_path: Path, 
+    transformed_output_dir: Path
+) -> None:
     """
     Runs a subprocess with a timeout and handles process termination.
     """
@@ -46,12 +52,12 @@ def run_with_timeout(run_cmd, max_execution_time, transformed_executable_path: P
         start_time = time.time()
 
         while True:
-            if time.time() - start_time > max_execution_time:
+            if time.time() - start_time > timeout:
                 # Process exceeded timeout, terminate it
                 for proc in psutil.process_iter():
                     if proc.name() == transformed_executable_path:
                         proc.terminate()
-                        timeout_error_msg = f"Error: Transformed design took more than {max_execution_time} seconds to execute."
+                        timeout_error_msg = f"Error: Transformed design took more than {timeout} seconds to execute."
                         timeout_exceeded = True
                         break
                 break
@@ -75,7 +81,10 @@ def run_with_timeout(run_cmd, max_execution_time, transformed_executable_path: P
             Path("data_stats.txt").unlink()
         raise Exception(f"Error while executing transformed design: {e}")
 
-def create_approx_design(input_ir: Path, act_with_args: str) -> Path:
+def create_approx_design(
+    input_ir: Path, 
+    act_with_args: str
+) -> Path:
     approx_suffix = ""
     act_tokens = act_with_args.split()
     for token in act_tokens:
