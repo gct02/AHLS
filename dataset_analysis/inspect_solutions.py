@@ -11,9 +11,9 @@ from dataset_analysis.plot_data_metrics import organize_data
 DEFAULT_LUT_THRESHOLD = 400
 
 def separate_solutions(
-    solution_data:pd.DataFrame, 
-    lut_threshold:int=DEFAULT_LUT_THRESHOLD,
-    one_hot_directives:pd.DataFrame=None
+    solution_data: pd.DataFrame, 
+    lut_threshold: int = DEFAULT_LUT_THRESHOLD,
+    one_hot_directives: pd.DataFrame = None
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     # Separate solutions based on LUT usage
     lut = solution_data['lut']
@@ -32,9 +32,9 @@ def separate_solutions(
     return lut_below, lut_above
 
 def get_most_common_directives(
-    dataset_path:Union[Path, str],
-    benchmark_name:str,
-    solutions_to_search:List[str]
+    dataset_path: Union[Path, str],
+    benchmark_name: str,
+    solutions_to_search: List[str]
 ) -> List[str]:
     directives = []
     for solution in solutions_to_search:

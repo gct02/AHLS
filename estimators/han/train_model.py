@@ -14,12 +14,9 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 torch.backends.cudnn.benchmark = True
 
 torch.set_printoptions(
-    precision=6,
-    threshold=1000,
-    edgeitems=10,
-    linewidth=200,
-    profile="short",
-    sci_mode=False
+    precision=6, threshold=1000,
+    edgeitems=10, linewidth=200,
+    profile="short", sci_mode=False
 )
 
 def save_model(model, target_dir, model_name):
@@ -42,15 +39,9 @@ def move_to_device(data, device):
         return data
 
 def train_model(
-    model,
-    loss_func,
-    optimizer,
-    train_loader,
-    test_loader,
-    val_loader,
-    epochs,
-    scheduler=None,
-    verbose=False
+    model, loss_func, optimizer,
+    train_loader, test_loader, val_loader,
+    epochs, scheduler=None, verbose=False
 ):
     train_losses = []
     test_losses = []
@@ -215,7 +206,7 @@ def main(args):
         val_loader = DataLoader(val_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        n_features = {'inst': 23, 'var': 9, 'const': 10, 'array': 16}
+        n_features = {'inst': 21, 'var': 8, 'const': 9, 'array': 15}
 
         model = HAN(
             n_features=n_features, 

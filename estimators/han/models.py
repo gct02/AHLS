@@ -10,10 +10,10 @@ from torch.nn import MultiheadAttention
 class SetTransformer(nn.Module):
     def __init__(
         self, 
-        n_in:int,
-        n_out:int,
-        heads:int,
-        n_inducing_points:int
+        n_in: int,
+        n_out: int,
+        heads: int,
+        n_inducing_points: int
     ):
         super(SetTransformer, self).__init__()
         self.multihead_attn = MultiheadAttention(n_in, heads)
@@ -22,7 +22,7 @@ class SetTransformer(nn.Module):
 
     def forward(
         self,
-        x:Tensor
+        x: Tensor
     ) -> Tensor:
         x, _ = self.multihead_attn(self.inducing_points, x, x)
         x = torch.mean(x, dim=0)  # Aggregate inducing points to a single vector
@@ -31,14 +31,14 @@ class SetTransformer(nn.Module):
 class HAN(nn.Module):
     def __init__(
         self,
-        n_features:Union[int, Dict[str, int]],
-        n_out:int,
-        n_hid_att:int,
-        heads_att:int,
-        n_hid_set:Union[int, None]=None,
-        heads_set:int=1,
-        norm:bool=True,
-        n_inducing_points:int=16
+        n_features: Union[int, Dict[str, int]],
+        n_out: int,
+        n_hid_att: int,
+        heads_att: int,
+        n_hid_set: Union[int, None] = None,
+        heads_set: int = 1,
+        norm: bool = True,
+        n_inducing_points: int = 16
     ):
         super(HAN, self).__init__()
 

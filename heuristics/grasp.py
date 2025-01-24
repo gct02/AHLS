@@ -12,7 +12,7 @@ from llvm.clang_utils import create_executable_from_llvm_ir
 class GRASP(Heuristic):
     def __init__(
         self, 
-        trained_estimator_path:Path, 
+        trained_estimator_path: Path, 
         n_iter=100
     ):
         self.n_iter = n_iter
@@ -34,12 +34,12 @@ class GRASP(Heuristic):
 
     def run(
         self, 
-        design_ir:Path, 
-        design_executable:Path, 
-        data_stats:Path, 
-        ac_transforms:list, 
-        exact_design_exec_time:float, 
-        input_args:str
+        design_ir: Path, 
+        design_executable: Path, 
+        data_stats: Path, 
+        ac_transforms: list, 
+        exact_design_exec_time: float, 
+        input_args: str
     ):
         """
         Parameters

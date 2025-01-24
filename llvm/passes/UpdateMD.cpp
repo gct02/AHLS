@@ -15,7 +15,6 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
-
 #include "llvm/Analysis/IVDescriptors.h"
 #include "llvm/Analysis/LoopAccessAnalysis.h"
 #include "llvm/Analysis/XILINXLoopInfoUtils.h"
@@ -24,7 +23,6 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include <utility>
 
 using namespace llvm;
 

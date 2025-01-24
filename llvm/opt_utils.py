@@ -1,7 +1,7 @@
 import subprocess
 from pathlib import Path
 from os import environ
-from exceptions import *
+from llvm.exceptions import *
 
 try:
     DSE_LIB = environ['DSE_LIB']
@@ -14,8 +14,8 @@ except KeyError as error:
 
 def execute_opt(
     input_path: Path, 
-    output_path: Path=None,
-    args: str="",
+    output_path: Path = None,
+    args: str = "",
 ) -> None:
     """
     Execute the opt command with the arguments in args on the IR file
@@ -35,7 +35,7 @@ def execute_opt(
 
 def update_md(
     ir_path: Path, 
-    output_path: Path=None
+    output_path: Path = None
 ) -> Path:
     """
     Apply the update-md pass to the IR file at ir_path and return 
@@ -83,8 +83,8 @@ def preprocess_vitis_hls_ir(
 def instrument(
     ir_path: Path, 
     data_stats_file_path: Path, 
-    populate_io_path: Path=None, 
-    output_path: Path=None
+    populate_io_path: Path = None, 
+    output_path: Path = None
 ) -> Path:
     """
     Instrument the IR file at ir_path with profiling functions, 
@@ -135,8 +135,8 @@ def instrument(
 def update_md_and_instrument(
     ir_path: Path, 
     data_stats_file_path: Path, 
-    populate_io_path: Path=None, 
-    output_path: Path=None
+    populate_io_path: Path = None, 
+    output_path: Path = None
 ) -> Path:
     """
     Update the metadata of the IR file at ir_path and instrument it 
@@ -158,8 +158,9 @@ def update_md_and_instrument(
 
 def apply_v2c(
     ir_path: Path, 
-    op_to_prune, const, 
-    output_path=None
+    op_to_prune: int, 
+    const: int, 
+    output_path: Path = None
 ) -> Path:
     """
     Apply the variable-to-constant (v2c) transformation to the IR file 
@@ -220,7 +221,7 @@ def apply_act(
 def add_directives_md(
     ir_path: Path, 
     tcl_path: Path, 
-    output_path: Path=None
+    output_path: Path = None
 ) -> Path:
     if output_path is None:
         output_path = ir_path.parent / (ir_path.stem + ".dir.bc")
@@ -239,7 +240,7 @@ def add_directives_md(
 def generate_dfg(
     ir_path: Path, 
     dfg_path: Path, 
-    has_updated_md: bool=True
+    has_updated_md: bool = True
 ) -> None:
     if has_updated_md is False:
         ir_path = update_md(ir_path)

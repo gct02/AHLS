@@ -10,21 +10,21 @@ from argparse import ArgumentParser
 from utils.parsers import *
 
 def matrix_hamming_distance(
-    matrix1:NDArray[Any], 
-    matrix2:NDArray[Any]
+    matrix1: NDArray[Any], 
+    matrix2: NDArray[Any]
 ) -> Union[int, float]:
     return np.sum(matrix1 != matrix2)
 
 def matrix_euclidean_distance(
-    matrix1:NDArray[Any], 
-    matrix2:NDArray[Any]
+    matrix1: NDArray[Any], 
+    matrix2: NDArray[Any]
 ) -> float:
     return np.linalg.norm(matrix1 - matrix2)
 
 def group_solutions_by_directives(
-    one_hot_directives_list:List[NDArray[Any]],
-    num_clusters:int,
-    num_iter:int=100
+    one_hot_directives_list: List[NDArray[Any]],
+    num_clusters: int,
+    num_iter: int = 100
 ) -> NDArray[Any]:
     num_solutions = len(one_hot_directives_list)
     centroid_indices = np.random.choice(num_solutions, num_clusters, replace=False)
@@ -59,14 +59,14 @@ def group_solutions_by_directives(
     return np.argmin(distances, axis=1)
 
 def build_graphs(
-    resources_data:pd.DataFrame, 
-    bench_name:str, 
-    x_data:str, 
-    y_data:str, 
-    one_hot_directives_list:Union[List[NDArray[Any]], None]=None,
-    num_clusters:int=4,
-    output_folder:Union[Path, str]=None,
-    directives:bool=False
+    resources_data: pd.DataFrame, 
+    bench_name: str, 
+    x_data: str, 
+    y_data: str, 
+    one_hot_directives_list: Union[List[NDArray[Any]], None] = None,
+    num_clusters: int = 4,
+    output_folder: Union[Path, str] = None,
+    directives: bool = False
 ):
     if directives:
         solution_groups = group_solutions_by_directives(
@@ -87,10 +87,6 @@ def build_graphs(
                 color=colors[i],
             )
     else:
-        for i in range(len(resources_data)):
-            lut = resources_data['lut'][i]
-            if lut >= 400:
-                print(resources_data['solution'][i])
         plt.scatter(resources_data[x_data], resources_data[y_data])
     
     plt.xlabel(x_data)
@@ -193,24 +189,21 @@ def main():
             dataset_path, 
             bench_name, 
             available_directives, 
-            filtered, 
-            directives
+            filtered, directives
         )
-        
         build_graphs(
             data, bench_name, 
             x_data, y_data, 
             one_hot_directives, 
             clusters, 
-            output, 
-            directives
+            output, directives
         )
     else:   
         data = organize_data(
             dataset_path, 
             bench_name, 
-            filtered=filtered)
-        
+            filtered=filtered
+        )
         build_graphs(
             data, bench_name, 
             x_data, y_data, 

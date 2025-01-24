@@ -1,4 +1,5 @@
-import os, pickle
+import os
+import pickle
 import torch
 from typing import Union
 from pathlib import Path
@@ -7,10 +8,10 @@ from torch.utils.data import Dataset
 class HLSDataset(Dataset):
     def __init__(
         self, 
-        data_path:Union[Path, str], 
-        target_metric:str, 
-        test_set_index:Union[int, None]=None, 
-        get_test:bool=False
+        data_path: Union[Path, str], 
+        target_metric: str, 
+        test_set_index: Union[int, None] = None, 
+        get_test: bool = False
     ):
         self.target = target_metric
         self.data_path = data_path

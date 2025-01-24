@@ -6,6 +6,9 @@ from torch import Tensor
 from sys import argv
 from pathlib import Path
 
+# Set torch to print full tensors
+torch.set_printoptions(profile="full")
+
 # "One-hot-like" encoding of the opcodes
 OPCODE_DICT = {
     # Arithmetic
@@ -64,7 +67,7 @@ OPCODE_DICT = {
 }
 
 def parse_mdnode(
-    mdnode_text:str
+    mdnode_text: str
 ) -> List[int]:
     operands_text = mdnode_text.split('!{')[1].split('}')[0].split(',')
     operands = []
@@ -74,7 +77,7 @@ def parse_mdnode(
     return operands
 
 def get_metadata(
-    ir_path:Path
+    ir_path: Path
 ) -> Dict[int, List[int]]:
     with open(ir_path, 'r') as ir_file:
         lines = ir_file.readlines()
@@ -93,8 +96,8 @@ def get_metadata(
     return metadata
 
 def get_mdnode_id(
-    op_line_text:str, 
-    mdnode_name:str
+    op_line_text: str, 
+    mdnode_name: str
 ) -> int:
     if f"!{mdnode_name}" not in op_line_text:
         return -1
@@ -104,8 +107,8 @@ def get_mdnode_id(
     return int(mdnode_id)
 
 def get_loop_depth(
-    op_line_text:str, 
-    metadata:Dict[int, List[int]]
+    op_line_text: str, 
+    metadata: Dict[int, List[int]]
 ) -> int:
     mdnode_id = get_mdnode_id(op_line_text, "loopDepth")
     if mdnode_id == -1:
@@ -113,8 +116,8 @@ def get_loop_depth(
     return metadata[mdnode_id][0]
 
 def get_trip_count(
-    op_line_text:str, 
-    metadata:Dict[int, List[int]]
+    op_line_text: str, 
+    metadata: Dict[int, List[int]]
 ) -> int:
     mdnode_id = get_mdnode_id(op_line_text, "tripCount")
     if mdnode_id == -1:
@@ -122,8 +125,8 @@ def get_trip_count(
     return metadata[mdnode_id][0]
 
 def get_pipeline_md(
-    op_line_text:str, 
-    metadata:Dict[int, List[int]]
+    op_line_text: str, 
+    metadata: Dict[int, List[int]]
 ) -> List[int]:
     mdnode_id = get_mdnode_id(op_line_text, "pipeline")
     if mdnode_id == -1:
@@ -136,8 +139,8 @@ def get_pipeline_md(
     return [1, ii]
 
 def get_array_partition_md(
-    op_line_text:str, 
-    metadata:Dict[int, List[int]]
+    op_line_text: str, 
+    metadata: Dict[int, List[int]]
 ) -> List[int]:
     mdnode_id = get_mdnode_id(op_line_text, "arrayPartition")
     if mdnode_id == -1:
@@ -156,8 +159,8 @@ def get_array_partition_md(
     return [1] + type_one_hot + [dim, factor, dim_size, num_partitions]
 
 def get_unroll_md(
-    op_line_text:str, 
-    metadata:Dict[int, List[int]]
+    op_line_text: str, 
+    metadata: Dict[int, List[int]]
 ) -> List[int]:
     mdnode_id = get_mdnode_id(op_line_text, "unroll")
     if mdnode_id == -1:
@@ -171,8 +174,8 @@ def get_unroll_md(
     return [1, complete, factor]
 
 def get_loop_flatten_md(
-    op_line_text:str, 
-    metadata:Dict[int, List[int]]
+    op_line_text: str, 
+    metadata: Dict[int, List[int]]
 ) -> List[int]:
     mdnode_id = get_mdnode_id(op_line_text, "loopFlatten")
     if mdnode_id == -1 or mdnode_id not in metadata:
@@ -189,18 +192,18 @@ def get_loop_merge_md(
     return [1]
 
 def get_directives_md(
-    op_line_text:str, 
-    metadata:Dict[int, List[int]]
+    op_line_text: str, 
+    metadata: Dict[int, List[int]]
 ) -> List[int]:
-    return get_pipeline_md(op_line_text, metadata) + \
-           get_array_partition_md(op_line_text, metadata) + \
-           get_unroll_md(op_line_text, metadata) + \
-           get_loop_flatten_md(op_line_text, metadata) + \
-           get_loop_merge_md(op_line_text, metadata)
+    return get_pipeline_md(op_line_text, metadata) \
+           + get_array_partition_md(op_line_text, metadata) \
+           + get_unroll_md(op_line_text, metadata) \
+           + get_loop_flatten_md(op_line_text, metadata) \
+           + get_loop_merge_md(op_line_text, metadata)
 
 def get_array_md(
-    array_declaration_line:str, 
-    metadata:Dict[int, List[int]]
+    array_declaration_line: str, 
+    metadata: Dict[int, List[int]]
 ) -> List[int]:
     num_dims_md_id = get_mdnode_id(array_declaration_line, "numDims")
     if num_dims_md_id == -1 or num_dims_md_id not in metadata:
@@ -225,8 +228,8 @@ def get_array_md(
     return [num_dims, num_elems, elem_type, elem_bitwidth]
 
 def get_bitwidth(
-    line_text:str, 
-    metadata:Dict[int, List[int]]
+    line_text: str, 
+    metadata: Dict[int, List[int]]
 ) -> int:
     bitwidth_md_id = get_mdnode_id(line_text, "bitwidth")
     if bitwidth_md_id == -1 or bitwidth_md_id not in metadata:
@@ -234,14 +237,14 @@ def get_bitwidth(
     return metadata[bitwidth_md_id][0]
 
 def get_one_hot_opcode(
-    inst_text:str
+    inst_text: str
 ) -> List[int]:
     if inst_text in OPCODE_DICT:
         return OPCODE_DICT[inst_text]
     return [0] * 12 # Unknown instruction
 
 def get_one_hot_type_from_id(
-    type_id:int
+    type_id: int
 ) -> List[int]:
     # Note: Arrays are treated separately as another node type
     if type_id == 0: # VoidTyID
@@ -260,8 +263,8 @@ def get_one_hot_type_from_id(
         return [0, 0, 0, 0, 0, 0, 1]
 
 def get_one_hot_type(
-    line_text:str, 
-    metadata:Dict[int, List[int]]
+    line_text: str, 
+    metadata: Dict[int, List[int]]
 ) -> List[int]:
     type_md_id = get_mdnode_id(line_text, "type")
     if type_md_id == -1 or type_md_id not in metadata:
@@ -271,8 +274,8 @@ def get_one_hot_type(
 
 def get_nodes(
     programl_graph,
-    metadata:Dict[int, List[int]],
-    ir_lines:Dict[int, List[int]]
+    metadata: Dict[int, List[int]],
+    ir_lines: Dict[int, List[int]]
 ) -> Tuple[Dict[str, Tensor], List[int], List[int], List[int], List[int]]:
     nodes = {'inst': [], 'var': [], 'const': [], 'array': []}
     inst_indices, var_indices, const_indices, array_indices = [], [], [], []
@@ -288,8 +291,7 @@ def get_nodes(
         if node.type == 0:
             # --- Instruction --- #
             if "!ID." not in full_text:
-                features = 23 * [0]
-                features = Tensor(features, dtype=torch.float32)
+                features = torch.zeros(21, dtype=torch.float32)
                 nodes['inst'].append(features)
                 inst_indices.append(i)
                 continue
@@ -301,9 +303,9 @@ def get_nodes(
             if array_md is not None:
                 array_partition_md = get_array_partition_md(full_text, metadata)
                 one_hot_type = get_one_hot_type_from_id(array_md[2])
-                features = array_md[:2] + one_hot_type + array_md[3:] + \
-                           array_partition_md
-                features = Tensor(features, dtype=torch.float32)
+                features = array_md[:2] + one_hot_type + array_md[3:] \
+                           + array_partition_md
+                features = torch.tensor(features, dtype=torch.float32)
                 nodes['array'].append(features)
                 array_indices.append(i)
                 continue
@@ -314,26 +316,24 @@ def get_nodes(
             loop_depth = get_loop_depth(full_text, metadata)
             trip_count = get_trip_count(full_text, metadata)
 
-            directives = get_pipeline_md(full_text, metadata) + \
-                         get_unroll_md(full_text, metadata) + \
-                         get_loop_flatten_md(full_text, metadata) + \
-                         get_loop_merge_md(full_text, metadata)
+            directives = get_pipeline_md(full_text, metadata) \
+                         + get_unroll_md(full_text, metadata) \
+                         + get_loop_flatten_md(full_text, metadata) \
+                         + get_loop_merge_md(full_text, metadata)
 
             features = one_hot_op + [loop_depth, trip_count] + directives
-            features = Tensor(features, dtype=torch.float32)
+            features = torch.tensor(features, dtype=torch.float32)
             nodes['inst'].append(features)
             inst_indices.append(i)
         elif node.type == 1 or node.type == 2: 
             # --- Variable or Constant --- #
             if "!ID." not in full_text:
                 if node.type == 1:
-                    features = 9 * [0]
-                    features = Tensor(features, dtype=torch.float32)
+                    features = torch.zeros(8, dtype=torch.float32)
                     nodes['var'].append(features)
                     var_indices.append(i)
                 else:
-                    features = 10 * [0]
-                    features = Tensor(features, dtype=torch.float32)
+                    features = torch.zeros(9, dtype=torch.float32)
                     nodes['const'].append(features)
                     const_indices.append(i)
                 continue
@@ -345,20 +345,20 @@ def get_nodes(
             if array_md is not None:
                 array_partition_md = get_array_partition_md(full_text, metadata)
                 one_hot_type = get_one_hot_type_from_id(array_md[2])
-                features = array_md[:2] + one_hot_type + array_md[3:] + \
-                           array_partition_md
-                features = Tensor(features, dtype=torch.float32)
+                features = array_md[:2] + one_hot_type + array_md[3:] \
+                           + array_partition_md
+                features = torch.tensor(features, dtype=torch.float32)
                 nodes['array'].append(features)
                 array_indices.append(i)
                 continue
             
-            one_hot_type = get_one_hot_type(text)
-            bitwidth = get_bitwidth(text, full_text)
+            one_hot_type = get_one_hot_type(full_text, metadata)
+            bitwidth = get_bitwidth(full_text, metadata)
 
             if node.type == 1: 
                 # Variable
                 features = one_hot_type + [bitwidth]
-                features = Tensor(features, dtype=torch.float32)
+                features = torch.tensor(features, dtype=torch.float32)
                 nodes['var'].append(features)
                 var_indices.append(i)
             else: 
@@ -384,7 +384,7 @@ def get_nodes(
                 else:
                     const_value = 0
                 features = one_hot_type + [bitwidth, const_value]
-                features = Tensor(features, dtype=torch.float32)
+                features = torch.tensor(features, dtype=torch.float32)
                 nodes['const'].append(features)
                 const_indices.append(i)
     
@@ -397,10 +397,10 @@ def get_nodes(
 
 def get_edges(
     programl_graph, 
-    inst_indices:List[int], 
-    var_indices:List[int], 
-    const_indices:List[int],
-    array_indices:List[int]
+    inst_indices: List[int], 
+    var_indices: List[int], 
+    const_indices: List[int],
+    array_indices: List[int]
 ) -> Dict[Tuple[str, str, str], Tensor]:
     edges = {
         ('inst','control','inst'): [], 
@@ -429,8 +429,8 @@ def get_edges(
             if dst_type == 0:
                 # dst is 'inst'
                 dst_idx = inst_indices.index(dst)
-                edge_tensor = Tensor([src_idx, dst_idx], 
-                                     dtype=torch.int64)
+                edge_tensor = torch.tensor([src_idx, dst_idx], 
+                                           dtype=torch.int64)
                 if edge.flow == 0:
                     edges[('inst','control','inst')].append(edge_tensor)
                 else:
@@ -439,15 +439,15 @@ def get_edges(
                 if dst in array_indices:
                     # dst is 'array'
                     dst_idx = array_indices.index(dst)
-                    edge_tensor = Tensor([src_idx, dst_idx], 
-                                         dtype=torch.int64)
+                    edge_tensor = torch.tensor([src_idx, dst_idx], 
+                                               dtype=torch.int64)
                     edges[('inst', 'data', 'array')].append(edge_tensor)
                     continue
                 # dst is 'var'
                 assert dst_type == 1
                 dst_idx = var_indices.index(dst)
-                edge_tensor = Tensor([src_idx, dst_idx], 
-                                     dtype=torch.int64)
+                edge_tensor = torch.tensor([src_idx, dst_idx], 
+                                           dtype=torch.int64)
                 edges[('inst','data','var')].append(edge_tensor)
         elif src_type == 1:
             # src is 'var' or 'array'
@@ -455,15 +455,15 @@ def get_edges(
                 # src is 'array'
                 src_idx = array_indices.index(src)
                 dst_idx = inst_indices.index(dst)
-                edge_tensor = Tensor([src_idx, dst_idx], 
-                                     dtype=torch.int64)
+                edge_tensor = torch.tensor([src_idx, dst_idx], 
+                                           dtype=torch.int64)
                 edges[('array','data','inst')].append(edge_tensor)
                 continue
             # src is 'var'
             src_idx = var_indices.index(src)
             dst_idx = inst_indices.index(dst)
-            edge_tensor = Tensor([src_idx, dst_idx], 
-                                 dtype=torch.int64)
+            edge_tensor = torch.tensor([src_idx, dst_idx], 
+                                       dtype=torch.int64)
             edges[('var','data','inst')].append(edge_tensor)
         else:
             # src is 'const' or 'array'
@@ -471,39 +471,41 @@ def get_edges(
                 # src is 'array'
                 src_idx = array_indices.index(src)
                 dst_idx = inst_indices.index(dst)
-                edge_tensor = Tensor([src_idx, dst_idx], 
-                                     dtype=torch.int64)
+                edge_tensor = torch.tensor([src_idx, dst_idx], 
+                                           dtype=torch.int64)
                 edges[('array','data','inst')].append(edge_tensor)
                 continue
             # src is 'const'
             src_idx = const_indices.index(src)
             dst_idx = inst_indices.index(dst)
-            edge_tensor = Tensor([src_idx, dst_idx], 
-                                 dtype=torch.int64)
+            edge_tensor = torch.tensor([src_idx, dst_idx], 
+                                       dtype=torch.int64)
             edges[('const','data','inst')].append(edge_tensor)
 
     n_inst = len(inst_indices)
     n_var = len(var_indices)
 
     for i in range(n_inst):
-        edge_tensor = Tensor([i, i], dtype=torch.int64)
+        edge_tensor = torch.tensor([i, i], dtype=torch.int64)
         edges[('inst','id','inst')].append(edge_tensor)
 
     for i in range(n_var):
-        edge_tensor = Tensor([i, i], dtype=torch.int64)
+        edge_tensor = torch.tensor([i, i], dtype=torch.int64)
         edges[('var','id','var')].append(edge_tensor)
 
     for i in range(len(array_indices)):
-        edge_tensor = Tensor([i, i], dtype=torch.int64)
+        edge_tensor = torch.tensor([i, i], dtype=torch.int64)
         edges[('array','id','array')].append(edge_tensor)
 
     for key in edges.keys():
+        if len(edges[key]) == 0:
+            continue
         edges[key] = torch.stack(edges[key]).transpose(0, 1)
 
     return edges
 
 def build_cdfg(
-    ir_path:Path
+    ir_path: Path
 ) -> Tuple[Dict[str, Tensor], Dict[Tuple[str, str, str], Tensor]]:
     with open(ir_path, 'r') as ir_file:
         ir_text = ir_file.read()
@@ -524,6 +526,19 @@ def build_cdfg(
     edges = get_edges(ir_graph, inst_idx, var_idx, const_idx, array_idx)
 
     return nodes, edges
+
+def print_cdfg(
+    nodes: Dict[str, Tensor], 
+    edges: Dict[Tuple[str, str, str], Tensor],
+    output_path: Path = None
+) -> None:
+    if output_path is not None:
+        with open(output_path, 'w') as f:
+            f.write(f"Nodes = {nodes.__str__()}\n\n")
+            f.write(f"Edges = {edges.__str__()}")
+    else:
+        print(f"Nodes = {nodes.__str__()}\n\n")
+        print(f"Edges = {edges.__str__()}")
 
 if __name__ == "__main__":
     # *** For debugging *** #

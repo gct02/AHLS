@@ -7,31 +7,31 @@ from typing import List, Tuple, Union, Any
 from numpy.typing import NDArray
 from pathlib import Path
 
-def parse_utilization_rpt_xml(rpt_path:Path):
+def parse_utilization_rpt_xml(rpt_path: Path):
     tree = ET.parse(rpt_path)
     root = tree.getroot()
 
-    lut   = root.find('AreaReport/Resources/LUT').text
-    bram  = root.find('AreaReport/Resources/BRAM').text
-    ff    = root.find('AreaReport/Resources/FF').text
-    dsp   = root.find('AreaReport/Resources/DSP').text
-    clb   = root.find('AreaReport/Resources/CLB').text
+    lut = root.find('AreaReport/Resources/LUT').text
+    bram = root.find('AreaReport/Resources/BRAM').text
+    ff = root.find('AreaReport/Resources/FF').text
+    dsp = root.find('AreaReport/Resources/DSP').text
+    clb = root.find('AreaReport/Resources/CLB').text
     latch = root.find('AreaReport/Resources/LATCH').text
 
     return lut, bram, ff, dsp, clb, latch
 
-def parse_timing_rpt_xml(rpt_path:Path):
+def parse_timing_rpt_xml(rpt_path: Path):
     tree = ET.parse(rpt_path)
     root = tree.getroot()
 
-    wns          = root.find('TimingReport/WNS_FINAL').text
-    tns          = root.find('TimingReport/TNS_FINAL').text
-    target_clk   = root.find('TimingReport/TargetClockPeriod').text
+    wns = root.find('TimingReport/WNS_FINAL').text
+    tns = root.find('TimingReport/TNS_FINAL').text
+    target_clk = root.find('TimingReport/TargetClockPeriod').text
     achieved_clk = root.find('TimingReport/AchievedClockPeriod').text
 
     return wns, tns, target_clk, achieved_clk
 
-def parse_utilization_rpt_txt(rpt_path:Path):
+def parse_utilization_rpt_txt(rpt_path: Path):
     numeric_const_pattern = '-?\d+'
     rx = re.compile(numeric_const_pattern, re.VERBOSE)
 
@@ -64,7 +64,7 @@ def parse_utilization_rpt_txt(rpt_path:Path):
 
     return lut, bram, ff, dsp, clb, latch
 
-def parse_timing_rpt_txt(rpt_path:Path):
+def parse_timing_rpt_txt(rpt_path: Path):
     numeric_const_pattern = '-?[0-9]\d*(\.\d+)?'
     rx = re.compile(numeric_const_pattern, re.VERBOSE)
 
@@ -90,16 +90,16 @@ def parse_timing_rpt_txt(rpt_path:Path):
     return wns, tns, target_clk, achieved_clk
 
 def directives_to_one_hot(
-    directive_index:int, 
-    num_directives:int
+    directive_index: int, 
+    num_directives: int
 ) -> NDArray[Any]:
     one_hot = np.zeros(num_directives)
     one_hot[directive_index] = 1
     return one_hot
 
 def find_directive_arg(
-    key:str,
-    arg_list:List[str]
+    key: str,
+    arg_list: List[str]
 ) -> Tuple[int, Union[str, None]]:
     try:
         index = arg_list.index(key)
@@ -107,15 +107,13 @@ def find_directive_arg(
     except ValueError:
         return -1, None
 
-def parse_directive_tcl_cmd(
-    directive_tcl_cmd:str
-) -> List[str]:
+def parse_directive_tcl_cmd(directive_tcl_cmd: str) -> List[str]:
     dir_type = directive_tcl_cmd.split(' ')[0]
     dir_args = directive_tcl_cmd.split(' ')[1:]
 
-    if dir_type == 'set_directive_pipeline' \
-        or dir_type == 'set_directive_loop_merge' \
-        or dir_type == 'set_directive_loop_flatten':
+    if (dir_type == 'set_directive_pipeline'
+        or dir_type == 'set_directive_loop_merge'
+        or dir_type == 'set_directive_loop_flatten'):
         # All these directives have the same format:
         # set_directive_<directive_type> "<location>"
         location = dir_args[0].strip('\"')
@@ -170,8 +168,8 @@ def finc_directive_in_list(
     return False
 
 def get_one_hot_directives(
-    directives_file:Path, 
-    solution_data_json:Path
+    directives_file: Path, 
+    solution_data_json: Path
 ) -> NDArray[Any]:
     solution_directives_tcl = extract_solution_directives(solution_data_json)
     solution_directives = []
@@ -217,7 +215,7 @@ def get_one_hot_directives(
     return one_hot_directives
 
 def extract_solution_directives(
-    solution_data_json:Union[Path, str]
+    solution_data_json: Union[Path, str]
 ) -> List[str]:
     with open(solution_data_json, "r") as f:
         data = json.load(f)
@@ -225,10 +223,10 @@ def extract_solution_directives(
     return directives
 
 def extract_timing_summary(
-    dataset_path:Union[Path, str], 
-    bench_name:str, 
-    solution:str,
-    filtered:bool=False
+    dataset_path: Union[Path, str], 
+    bench_name: str, 
+    solution: str,
+    filtered: bool = False
 ) -> Tuple[float, float, float, float]:
     if filtered:
         path = f'{dataset_path}/{bench_name}/{solution}/reports/'
@@ -248,10 +246,10 @@ def extract_timing_summary(
     return float(wns), float(tns), float(target_clk), float(achieved_clk)
 
 def extract_utilization(
-    dataset_path:Union[Path, str], 
-    bench_name:str, 
-    solution:str,
-    filtered:bool=False
+    dataset_path: Union[Path, str], 
+    bench_name: str, 
+    solution: str,
+    filtered: bool = False
 ) -> Tuple[int, int, int, int, int, int]:
     if filtered:
         path = f'{dataset_path}/{bench_name}/{solution}/reports/'
@@ -270,10 +268,10 @@ def extract_utilization(
     return int(lut), int(bram), int(ff), int(dsp), int(clb), int(latch)
 
 def extract_hls_cc_report(
-    dataset_path:Union[Path, str],
-    bench_name:str, 
-    solution:str,
-    filtered:bool=False
+    dataset_path: Union[Path, str],
+    bench_name: str, 
+    solution: str,
+    filtered: bool = False
 ) -> int:
     if filtered:
         rpt_path = f'{dataset_path}/{bench_name}/{solution}/reports/csynth.xml'
@@ -293,24 +291,24 @@ def extract_hls_cc_report(
     return int(cc)
 
 def organize_data(
-    dataset_path:Union[Path, str], 
-    bench_name:str, 
-    available_directives:Union[Union[Path, str], None]=None,
-    filtered:bool=False,
-    directives:bool=False
+    dataset_path: Union[Path, str], 
+    bench_name: str, 
+    available_directives: Union[Union[Path, str], None] = None,
+    filtered: bool = False,
+    directives: bool = False
 ) -> Union[Tuple[pd.DataFrame, List[NDArray[Any]]], pd.DataFrame]:
     dset_dir = f'{dataset_path}/{bench_name}'
-    sol_index = 1
-    sol_dir = 'solution' + str(sol_index)
+    max_solutions = 300
 
     list_to_df = []
     if directives:
         one_hot_directives_list = []
 
-    for _ in Path(dset_dir).iterdir():
+    for i in range(1, max_solutions + 1):
+        sol_dir = f'solution{i}'
         if Path(f'{dset_dir}/{sol_dir}').is_dir():
             if directives:
-                solution_data_json = Path(f'{dset_dir}/{sol_dir}/solution{sol_index}_data.json')
+                solution_data_json = Path(f'{dset_dir}/{sol_dir}/solution{i}_data.json')
                 if solution_data_json.exists():
                     one_hot_directives = get_one_hot_directives(
                         available_directives, 
@@ -318,7 +316,7 @@ def organize_data(
                     )
                     one_hot_directives_list.append(one_hot_directives)
                 else:
-                    one_hot_directives_list.append(np.zeros(2))
+                    one_hot_directives_list.append(np.zeros(10))
 
             wns, tns, target_clk, achieved_clk = extract_timing_summary(
                 dataset_path, 
@@ -348,9 +346,6 @@ def organize_data(
 
             list_to_df.append(metrics)
 
-        sol_index += 1
-        sol_dir = "solution" + str(sol_index)
-
     cols = ['solution', 'lut', 'bram', 'ff', 'dsp', 'clb', 'latch', 
             'target_clk', 'achieved_clk', 'wns', 'tns', 'cycles', 
             'estimated_time']
@@ -358,6 +353,13 @@ def organize_data(
     bench_dataframe = pd.DataFrame(list_to_df, columns=cols)
     
     if directives:
+        max_0 = max(one_hot_directives_list, key=lambda x: x.shape[0]).shape[0]
+        max_1 = max(one_hot_directives_list, key=lambda x: x.shape[1] if len(x.shape) > 1 else 0).shape[1]
+
+        for i, one_hot_directives in enumerate(one_hot_directives_list):
+            if len(one_hot_directives.shape) < 2:
+                one_hot_directives_list[i] = np.zeros((max_0, max_1))
+
         return bench_dataframe, one_hot_directives_list
     else:
         return bench_dataframe
