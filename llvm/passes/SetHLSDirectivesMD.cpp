@@ -62,7 +62,7 @@ struct SetHLSDirectivesMD : public ModulePass {
         DirectiveDict directives;
 
         // Parse the TCL script containing the HLS directives
-        parseDirectivesFile(directives);
+        parseDirectivesFile(directives, M);
         if (directives.empty()) {
             errs() << "No directives found\n";
             return false;
@@ -435,8 +435,7 @@ struct SetHLSDirectivesMD : public ModulePass {
     }
 
     int setArrayPartitionMD(Module& M, const Directive& directive, uint32_t directiveIndex) {
-        if (directive.options.find("off") != directive.options.end() 
-            && directive.options.at("off") == "true") {
+        if (directive.options.find("off") != directive.options.end()) {
             return 1;
         }
         LLVMContext& ctx = M.getContext();
@@ -459,14 +458,19 @@ struct SetHLSDirectivesMD : public ModulePass {
                 errs() << "Global variable not found: " << directive.label << "\n";
                 return -1;
             }
-            Type* arrayType = GV->getType();
-            MDTuple* md = getArrayPartitionMDTuple(ctx, arrayType, directiveIndex, 
+            Type* valueType = GV->getType();
+            if (valueType->isPointerTy()) {
+                valueType = valueType->getPointerElementType();
+            }
+            if (!valueType->isArrayTy()) {
+                errs() << "Variable is not an array: " << directive.label << "\n";
+                return -1;
+            }
+            MDTuple* md = getArrayPartitionMDTuple(ctx, valueType, directiveIndex, 
                                                    type, dim, factor, true);
             GV->setMetadata("arrayPartition", md);
         } else {
-            // Array is scoped within a function, it can be:
-            // - an array allocated inside the function;
-            // - a pointer to an array passed as argument.
+            // Array is scoped within a function
             Function* F = M.getFunction(directive.functionName);
             if (!F) {
                 errs() << "Function not found: " << directive.functionName << "\n";
@@ -477,51 +481,30 @@ struct SetHLSDirectivesMD : public ModulePass {
                 errs() << "Variable name not found\n";
                 return -1;
             }
-
-            // Search for the variable name in the function parameters
             bool found = false;
             for (Function::arg_iterator AI = F->arg_begin(), AE = F->arg_end(); AI != AE; ++AI) {
                 Argument* arg = &*AI;
-                if (arg->getName() == variable 
-                    && (arg->getType()->isPointerTy() || arg->getType()->isArrayTy())) {
-                    // The array is a function parameter.
-                    // In this case, we will set the metadata to all 
-                    // instructions that uses the array.
-                    Type* arrayType = arg->getType(); // Get underlying array type
-                    MDTuple* md = getArrayPartitionMDTuple(ctx, arrayType, directiveIndex, 
-                                                           type, dim, factor, false);
-                    for (Use& U : arg->uses()) {
-                        if (Instruction* I = dyn_cast<Instruction>(U.getUser())) {
-                            I->setMetadata("arrayPartition", md);
-                        }
-                    }
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                // The variable is not a function parameter, 
-                // search for the variable in the function
                 for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                     BasicBlock* BB = &*BI;
                     for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
                         Instruction* I = &*II;
-                        if (I->getName() == variable 
-                            && (I->getType()->isPointerTy() || I->getType()->isArrayTy())) {
-                            // The array is a local variable.
-                            // In this case, we will set the metadata to all 
-                            // instructions that uses the array.
-                            Type* arrayType = I->getType(); // Get underlying array type
-                            MDTuple* md = getArrayPartitionMDTuple(ctx, arrayType, directiveIndex, 
+                        if (I->getName() == variable) {
+                            Type* valueType = I->getType();
+                            if (valueType->isPointerTy()) {
+                                valueType = valueType->getPointerElementType();
+                            }
+                            if (!valueType->isArrayTy()) {
+                                errs() << "Variable is not an array: " << variable << "\n";
+                                return -1;
+                            }
+                            MDTuple* md = getArrayPartitionMDTuple(ctx, valueType, directiveIndex, 
                                                                    type, dim, factor, false);
                             I->setMetadata("arrayPartition", md);
                             found = true;
                             break;
                         }
                     }
-                    if (found) {
-                        break;
-                    }
+                    if (found) break;
                 }
             }
             if (!found) {
@@ -532,8 +515,35 @@ struct SetHLSDirectivesMD : public ModulePass {
         return 0;
     }
 
+    void setArrayMD(Value& V) {
+        Type* valueType = V.getType();
+        if (valueType->isPointerTy()) {
+            valueType = valueType->getPointerElementType();
+        }
+        if (valueType->isArrayTy()) {
+            setMetadata(V, "isArray", 1);
+
+            uint32_t numDims = getArrayNumDims(V.getType());
+            uint32_t numElements = getArrayNumElements(V.getType());
+            setMetadata(V, "numDims", numDims);
+            setMetadata(V, "numElements", numElements);
+            
+            // for (uint32_t dim = 1; dim <= numDims; dim++) {
+            //     uint32_t dimSize = getArrayDimNumElements(V.getType(), dim);
+            //     setMetadata(V, "dimSize." + std::to_string(dim), dimSize);
+            // }
+
+            // Get element type of the array
+            while (valueType->isArrayTy()) {
+                valueType = valueType->getArrayElementType();
+            }
+            setMetadata(V, "elementType", (uint32_t)valueType->getTypeID());
+            setMetadata(V, "elementBitwidth", valueType->getPrimitiveSizeInBits());
+        }
+    }
+
     /* Parse the TCL script containing the HLS directives */
-    void parseDirectivesFile(DirectiveDict& directives) {
+    void parseDirectivesFile(DirectiveDict& directives, Module& M) {
         std::ifstream file(directivesFilePath);
         if (!file.is_open()) {
             errs() << "Error opening file\n";
@@ -552,13 +562,46 @@ struct SetHLSDirectivesMD : public ModulePass {
                 // Format: set_directive_array_partition <location> [-dim <dim> -factor <factor> -type <type>] <array>
                 // <location> can be <function>/<label> or <label>
                 std::string location = arguments.substr(0, arguments.find(" "));
+
+                std::string arrayName = arguments.substr(arguments.find_last_of(" ") + 1);
+                directive.options["variable"] = arrayName;
+
                 if (location.find("/") != std::string::npos) {
                     directive.functionName = location.substr(0, location.find("/"));
                     directive.label = location.substr(location.find("/") + 1);
                 } else {
+                    directive.functionName = location;
                     directive.label = location;
                 }
-                directive.options["variable"] = arguments.substr(arguments.find_last_of(" ") + 1);
+
+                Function* F = M.getFunction(directive.functionName);
+                if (F && F->getMetadata("top")) {
+                    // Check if the array is a parameter of the top-level function
+                    bool found = false;
+                    Argument* arrayArg = nullptr;
+                    for (Function::arg_iterator AI = F->arg_begin(), AE = F->arg_end(); AI != AE; ++AI) {
+                        Argument* arg = &*AI;
+                        if (arg->getName() == arrayName) {
+                            found = true;
+                            arrayArg = arg;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        // Create a dummy global variable to represent the array
+                        // and set the metadata for the global variable
+                        std::string dummyArrayName = F->getName().str() + "." + arrayName;
+                        GlobalVariable* GV = new GlobalVariable(M, arrayArg->getType(), true, 
+                                                                GlobalValue::ExternalLinkage, nullptr, 
+                                                                dummyArrayName);
+                        GV->setMetadata("top", F->getMetadata("top"));
+                        setArrayMD(*GV);
+
+                        directive.label = dummyArrayName;
+                        directive.functionName = "";
+                        directive.options["variable"] = dummyArrayName;
+                    }
+                }
 
                 // Initialize the options with default values
                 directive.options["dim"] = "0";

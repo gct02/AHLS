@@ -3,6 +3,7 @@ add_llvm_loadable_module(libDSE
 	HLSIRPrepForGNN.cpp
 	HLSIRPrepForX86.cpp
 	SetHLSDirectivesMD.cpp
+	ExtractMD.cpp
 	ModuleDFGBuilder.cpp
 	RenameValues.cpp
 	Profiling.cpp

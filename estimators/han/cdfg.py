@@ -542,13 +542,18 @@ def print_cdfg(
 
 if __name__ == "__main__":
     # *** For debugging *** #
-    torch.set_printoptions(profile="full")
-
     ir_path = Path(argv[1])
     output_path = Path(argv[2])
+
+    with open(ir_path, 'r') as ir_file:
+        ir_text = ir_file.read()
+
+    ir_graph = programl.from_llvm_ir(ir_text)
 
     nodes, edges = build_cdfg(ir_path)
 
     with open(output_path, "w") as f:
         f.write(f"Nodes = {nodes.__str__()}\n\n")
         f.write(f"Edges = {edges.__str__()}")
+        f.write("\n\n")
+        f.write(f"ProGraML Graph = {ir_graph.__str__()}")

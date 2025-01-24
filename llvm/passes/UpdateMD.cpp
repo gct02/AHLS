@@ -26,11 +26,31 @@
 
 using namespace llvm;
 
+static cl::opt<std::string> topLevelFunctionName(
+    "top",
+    cl::desc("Name of the top-level function"), 
+    cl::value_desc("function name")
+);
+
 namespace {
 
 struct UpdateMD : public ModulePass {
     static char ID;
     UpdateMD() : ModulePass(ID) {}
+
+    // Set named metadata for an instruction, global object or function
+    void setMetadata(Value& V, StringRef name, uint32_t value) {
+        LLVMContext& ctx = V.getContext();
+        ConstantInt* valueCI = ConstantInt::get(Type::getInt32Ty(ctx), value);
+        MDNode* md = MDNode::get(ctx, {ConstantAsMetadata::get(valueCI)});
+        if (Instruction* I = dyn_cast<Instruction>(&V)) {
+            I->setMetadata(name, md);
+        } else if (GlobalObject* G = dyn_cast<GlobalObject>(&V)) {
+            G->setMetadata(name, md);
+        } else if (Function* F = dyn_cast<Function>(&V)) {
+            F->setMetadata(name, md);
+        }
+    }
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "update-md"
@@ -39,6 +59,14 @@ struct UpdateMD : public ModulePass {
         setMetadataForInstructions(M, id);
         setMetadataForGlobals(M, id);
         setMetadataForArrays(M);
+
+        Function* topLevelFunction = M.getFunction(topLevelFunctionName);
+        if (topLevelFunction) {
+            setMetadata(*topLevelFunction, "top", 1);
+        }
+        else {
+            errs() << "Top-level function not found: " << topLevelFunctionName << "\n";
+        }
 
         return false; // Module is not modified
     }
@@ -83,14 +111,17 @@ struct UpdateMD : public ModulePass {
             valueType = valueType->getPointerElementType();
         }
         if (valueType->isArrayTy()) {
+            setMetadata(V, "isArray", 1);
+
             uint32_t numDims = getArrayNumDims(V.getType());
             uint32_t numElements = getArrayNumElements(V.getType());
             setMetadata(V, "numDims", numDims);
             setMetadata(V, "numElements", numElements);
-            for (uint32_t dim = 1; dim <= numDims; dim++) {
-                uint32_t dimSize = getArrayDimNumElements(V.getType(), dim);
-                setMetadata(V, "dimSize." + std::to_string(dim), dimSize);
-            }
+            
+            // for (uint32_t dim = 1; dim <= numDims; dim++) {
+            //     uint32_t dimSize = getArrayDimNumElements(V.getType(), dim);
+            //     setMetadata(V, "dimSize." + std::to_string(dim), dimSize);
+            // }
 
             // Get element type of the array
             while (valueType->isArrayTy()) {
@@ -106,15 +137,9 @@ struct UpdateMD : public ModulePass {
             setArrayMD(G);
         }
         for (Function& F : M) {
-            for (Argument& A : F.args()) {
-                setArrayMD(A);
-            }
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
-                    for (Use& U : I.operands()) {
-                        Value* V = U.get();
-                        setArrayMD(*V);
-                    }
+                    setArrayMD(I);
                 }
             }
         }
@@ -135,7 +160,6 @@ struct UpdateMD : public ModulePass {
     // Set named metadata for all instructions in the module
     void setMetadataForInstructions(Module& M, int& id) {
         uint32_t functionID = 1, bbID = 1;
-
 
         for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
             Function& F = *FI;
@@ -182,18 +206,6 @@ struct UpdateMD : public ModulePass {
         }
         if (tripCount != -1) {
             setMetadata(I, "tripCount", tripCount);
-        }
-    }
-
-    // Set named metadata for an instruction or global object
-    void setMetadata(Value& V, StringRef name, uint32_t value) {
-        LLVMContext& ctx = V.getContext();
-        ConstantInt* valueCI = ConstantInt::get(Type::getInt32Ty(ctx), value);
-        MDNode* md = MDNode::get(ctx, {ConstantAsMetadata::get(valueCI)});
-        if (Instruction* I = dyn_cast<Instruction>(&V)) {
-            I->setMetadata(name, md);
-        } else if (GlobalObject* G = dyn_cast<GlobalObject>(&V)) {
-            G->setMetadata(name, md);
         }
     }
 

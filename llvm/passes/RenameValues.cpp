@@ -31,6 +31,13 @@ struct RenameValues : ModulePass {
 
         for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
             Function* F = &*FI;
+            // Rename the parameters of the function to <function_name>.in.<param_index>
+            for (Function::arg_iterator AI = F->arg_begin(), AE = F->arg_end(); AI != AE; ++AI) {
+                Argument* A = &*AI;
+                std::string newName = F->getName().str() + ".in." + std::to_string(A->getArgNo());
+                A->setName(newName);
+            }
+
             for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                 BasicBlock* BB = &*BI;
                 for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {

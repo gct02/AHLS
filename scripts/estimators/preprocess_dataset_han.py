@@ -1,6 +1,7 @@
 import pickle
 import subprocess
 import argparse
+import shutil
 from pathlib import Path
 from utils.parsers import *
 from llvm.opt_utils import *
@@ -30,7 +31,9 @@ def run_opt(ir_src_path:Path, ir_dst_path:Path, opt_args:str, output_ll:bool=Tru
 
 def process_ir(
     ir_src_path: Path, 
-    ir_dst_path: Path, 
+    ir_dst_path: Path,
+    top_level: str,
+    output_md_path: Path,
     directives_path: Path
 ) -> None:
     """
@@ -94,9 +97,14 @@ def process_ir(
         run_opt(temp1_path, temp2_path, "-lowerswitch")
         run_opt(temp2_path, temp1_path, "-mem2reg")
         run_opt(temp1_path, temp2_path, "-prep-gnn")
-        run_opt(temp2_path, temp1_path, "-update-md")
+        run_opt(temp2_path, temp1_path, "-update-md -top {}".format(top_level))
         run_opt(temp1_path, temp2_path, "-set-hls-md -dir {}".format(directives_path))
         run_opt(temp2_path, ir_dst_path, "-rename-vals")
+        
+        subprocess.check_output(
+            f"{OPT} -load {DSE_LIB} -extract-md -md {output_md_path.as_posix} < {ir_src_path.as_posix()};", 
+            shell=True
+        )
     except subprocess.CalledProcessError as e:
         print(f"Error processing {ir_src_path}: {e}")
         temp1_path.unlink(missing_ok=True)
@@ -116,6 +124,14 @@ def create_directives_tcl(directives_json: Path, output_path: Path):
         directives_tcl = "\n".join(directives_tcl)
         f.write(directives_tcl)
 
+def get_top_level(directives_tcl: Path):
+    with open(directives_tcl, "r") as f:
+        lines = f.readlines()
+    for line in lines:
+        if "set_directive_top" in line:
+            return line.split()[-1]
+    return None
+
 if __name__ == "__main__":
     args = parse_args()
     dataset = Path(args.dataset)
@@ -133,6 +149,14 @@ if __name__ == "__main__":
             if not solution.is_dir():
                 continue
 
+            directives_json_path = solution / f"{solution.stem}_data.json"
+            if not directives_json_path.exists():
+                print(f"Directives JSON file not found for {solution}")
+                continue
+
+            directives_tcl_path = solution / f"directives.tcl"
+            create_directives_tcl(directives_json_path, directives_tcl_path)
+
             if not filtered:
                 ir_folder = solution / ".autopilot/db"
                 if not ir_folder.exists():
@@ -149,31 +173,33 @@ if __name__ == "__main__":
                     print(f"IR folder not found for {solution}")
                     continue
 
+            ir = ir_folder / "a.g.ld.0.bc"
+            if not ir.exists():
+                print(f"Intermediate representation not found for {solution}")
+                continue
+
+            ir_mod = ir_folder / "a.g.ld.0.han.ll"
+            top_level = get_top_level(directives_tcl_path)
+            if top_level is None:
+                print(f"Top level function not defined for {solution}")
+                continue
+
             output_instance_folder = output_bench_folder / solution.stem
             if output_instance_folder.exists():
                 continue
 
             output_instance_folder.mkdir(parents=True, exist_ok=True)
 
-            ir = ir_folder / "a.g.ld.0.bc"
-            if not ir.exists():
-                print(f"Intermediate representation not found for {solution}")
-                continue
-
-            directives_json_path = solution / f"{solution.stem}_data.json"
-            if not directives_json_path.exists():
-                print(f"Directives JSON file not found for {solution}")
-                continue
-
-            directives_tcl_path = solution / f"directives.tcl"
-            create_directives_tcl(directives_json_path, directives_tcl_path)
-
-            ir_mod = ir_folder / "a.g.ld.0.han.ll"
+            output_md_path = output_instance_folder / "metadata.txt"
 
             try:
-                process_ir(ir, ir_mod, directives_tcl_path)
+                process_ir(ir, ir_mod, top_level, output_md_path, directives_tcl_path)
             except subprocess.CalledProcessError:
+                output_instance_folder.rmdir()
                 continue
+
+            # Copy the modified IR to the output folder
+            shutil.copy(ir_mod, output_instance_folder / "ir.ll")
 
             lut, bram, ff, dsp, clb, latch = extract_utilization(dataset, benchmark_name, solution.stem, filtered)
             wns, tns, target_clk, achieved_clk = extract_timing_summary(dataset, benchmark_name, solution.stem, filtered)
