@@ -506,7 +506,8 @@ def get_edges(
     return edges
 
 def build_cdfg(
-    ir_path: Path
+    ir_path: Path,
+    metadata_path: Path
 ) -> Tuple[Dict[str, Tensor], Dict[Tuple[str, str, str], Tensor]]:
     with open(ir_path, 'r') as ir_file:
         ir_text = ir_file.read()

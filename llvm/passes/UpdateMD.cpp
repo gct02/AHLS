@@ -36,15 +36,19 @@ struct UpdateMD : public ModulePass {
     static char ID;
     UpdateMD() : ModulePass(ID) {}
 
+    bool modified = false;
+
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "update-md"
         
-        int id = 0;
-        setMetadataForInstructions(M, id);
-        setMetadataForGlobals(M, id);
-        setMetadataForArrays(M);
+        int opIDCounter = 0;
+        int globalIDCounter = 0;
 
-        return false; // Module is not modified
+        setMetadataForInstructions(M, opIDCounter);
+        setMetadataForArrays(M);
+        setMetadataForGlobals(M, globalIDCounter);
+
+        return modified;
     }
 
     // Set named metadata for an instruction, global object or function
@@ -154,6 +158,8 @@ struct UpdateMD : public ModulePass {
             uint32_t numElements = decayedDimSize * getArrayNumElements(underlyingType);
 
             setMetadata(V, "isArray", 1);
+            setMetadata(V, "decayed", 1);
+
             setMetadata(V, "numDims", numDims);
             setMetadata(V, "numElements", numElements);
 
@@ -196,7 +202,10 @@ struct UpdateMD : public ModulePass {
                 GlobalVariable* GV = new GlobalVariable(M, arrayType, true, 
                                                         GlobalValue::ExternalLinkage, nullptr, 
                                                         restoredArrayName);
+                setMetadata(*GV, "decayed", 1);
                 setArrayMD(*GV, false);
+
+                modified = true;
             }
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
@@ -219,7 +228,6 @@ struct UpdateMD : public ModulePass {
             setMetadata(G, "globalID", id);
             setMetadata(G, "bitwidth", G.getType()->getPointerElementType()->getPrimitiveSizeInBits());
             setMetadata(G, "type", (uint32_t)G.getType()->getPointerElementType()->getTypeID());
-            setMetadata(G, "ID." + std::to_string(id), id);
             id++;
         }
     }
@@ -267,7 +275,6 @@ struct UpdateMD : public ModulePass {
         setMetadata(I, "opcode", I.getOpcode());
         setMetadata(I, "bitwidth", I.getType()->getPrimitiveSizeInBits());
         setMetadata(I, "valueType", (uint32_t)I.getType()->getTypeID());
-        setMetadata(I, "ID." + std::to_string(opID), opID);
         if (loopDepth != -1) {
             setMetadata(I, "loopDepth", loopDepth);
         }

@@ -105,22 +105,20 @@ struct ExtractMD : public ModulePass {
         for (GlobalObject& G : M.getGlobalList()) {
             Metadata m;
 
-            // Check if the global variable is a dummy array
-            // created by `set-hls-md` pass to represent an array
-            // that is a parameter of a function
-            MDNode* isDummyArray = G.getMetadata("isParam");
-            if (isDummyArray) {
+            // Check if the global variable is a decayed array
+            // that was reconstructed by the `update-md` pass
+            // as a global variable
+            MDNode* isDecayedArray = G.getMetadata("decayed");
+            if (isDecayedArray) {
                 std::string arrayName = G.getName().str();
 
                 m.functionName = arrayName.substr(0, arrayName.find("."));
                 m.name = arrayName.substr(arrayName.find(".") + 1);
 
-                m.values["isParam"] = 1;
                 m.values["numDims"] = getMDOperandValue(G, "numDims", 0);
                 m.values["numElements"] = getMDOperandValue(G, "numElements", 0);
                 m.values["elementType"] = getMDOperandValue(G, "elementType", 0);
                 m.values["elementBitwidth"] = getMDOperandValue(G, "elementBitwidth", 0);
-                m.values["unbounded"] = getMDOperandValue(G, "unbounded", 0);
 
                 if (MDNode* arrayPartitionMD = G.getMetadata("arrayPartition")) {
                     m.values["arrayPartition"] = 1;
@@ -147,7 +145,6 @@ struct ExtractMD : public ModulePass {
                 m.values["numElements"] = getMDOperandValue(G, "numElements", 0);
                 m.values["elementType"] = getMDOperandValue(G, "elementType", 0);
                 m.values["elementBitwidth"] = getMDOperandValue(G, "elementBitwidth", 0);
-                m.values["unbounded"] = getMDOperandValue(G, "unbounded", 0);
 
                 if (MDNode* arrayPartitionMD = G.getMetadata("arrayPartition")) {
                     m.values["arrayPartition"] = 1;
@@ -207,36 +204,37 @@ struct ExtractMD : public ModulePass {
                     }
                     md["instruction"].push_back(instMD);
 
-                    // Get metadata for the value produced by the instruction
-                    Metadata valMD;
+                    if (!I.getType()->isVoidTy()) {
+                        // Get metadata for the value produced by the instruction
+                        Metadata valMD;
 
-                    valMD.name = I.getName().str();
-                    valMD.functionName = F.getType()->isVoidTy() ? "" : F.getName().str();
+                        valMD.name = I.getName().str();
+                        valMD.functionName = F.getType()->isVoidTy() ? "" : F.getName().str();
 
-                    valMD.values["opID"] = getMDOperandValue(I, "opID", 0);
-                    valMD.values["bitwidth"] = getMDOperandValue(I, "bitwidth", 0);
-                    valMD.values["valueType"] = getMDOperandValue(I, "valueType", 0);
+                        valMD.values["opID"] = getMDOperandValue(I, "opID", 0);
+                        valMD.values["bitwidth"] = getMDOperandValue(I, "bitwidth", 0);
+                        valMD.values["valueType"] = getMDOperandValue(I, "valueType", 0);
 
-                    MDNode* isArray = I.getMetadata("isArray");
-                    if (isArray) {
-                        valMD.values["numDims"] = getMDOperandValue(I, "numDims", 0);
-                        valMD.values["numElements"] = getMDOperandValue(I, "numElements", 0);
-                        valMD.values["elementType"] = getMDOperandValue(I, "elementType", 0);
-                        valMD.values["elementBitwidth"] = getMDOperandValue(I, "elementBitwidth", 0);
-                        valMD.values["unbounded"] = getMDOperandValue(I, "unbounded", 0);
+                        MDNode* isArray = I.getMetadata("isArray");
+                        if (isArray) {
+                            valMD.values["numDims"] = getMDOperandValue(I, "numDims", 0);
+                            valMD.values["numElements"] = getMDOperandValue(I, "numElements", 0);
+                            valMD.values["elementType"] = getMDOperandValue(I, "elementType", 0);
+                            valMD.values["elementBitwidth"] = getMDOperandValue(I, "elementBitwidth", 0);
 
-                        if (MDNode* arrayPartition = I.getMetadata("arrayPartition")) {
-                            valMD.values["arrayPartition"] = 1;
-                            valMD.values["arrayPartitionID"] = MDOperandToInt(arrayPartition, 0);
-                            valMD.values["arrayPartitionDim"] = MDOperandToInt(arrayPartition, 1);
-                            valMD.values["arrayPartitionType"] = MDOperandToInt(arrayPartition, 2);
-                            valMD.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartition, 3);
-                            valMD.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartition, 4);
-                            valMD.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartition, 5);
+                            if (MDNode* arrayPartition = I.getMetadata("arrayPartition")) {
+                                valMD.values["arrayPartition"] = 1;
+                                valMD.values["arrayPartitionID"] = MDOperandToInt(arrayPartition, 0);
+                                valMD.values["arrayPartitionDim"] = MDOperandToInt(arrayPartition, 1);
+                                valMD.values["arrayPartitionType"] = MDOperandToInt(arrayPartition, 2);
+                                valMD.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartition, 3);
+                                valMD.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartition, 4);
+                                valMD.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartition, 5);
+                            }
+                            md["local_array"].push_back(valMD);
+                        } else {
+                            md["local_variable"].push_back(valMD);
                         }
-                        md["local_array"].push_back(valMD);
-                    } else {
-                        md["local_variable"].push_back(valMD);
                     }
                 }
             }

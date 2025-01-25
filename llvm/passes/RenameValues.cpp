@@ -47,11 +47,11 @@ struct RenameValues : ModulePass {
         }
 
         for (GlobalVariable& GV : M.getGlobalList()) {
-            // Check if the global variable is a dummy array
-            // created by `set-hls-md` pass to represent an array
-            // that is a parameter of a function
-            MDNode* isDummyArray = GV.getMetadata("isParam");
-            if (isDummyArray) {
+            // Check if the global variable is a decayed array
+            // that was reconstructed by the `update-md` pass
+            // as a global variable
+            MDNode* isDecayedArray = GV.getMetadata("decayed");
+            if (isDecayedArray) {
                 continue;
             }
             if (MDNode* globalIDMDNode = GV.getMetadata("globalID")) {
