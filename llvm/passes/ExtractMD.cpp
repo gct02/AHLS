@@ -35,10 +35,11 @@ static cl::opt<std::string> outputFile(
 
 namespace {
 
-struct Metadata {
+typedef struct {
+    std::string functionName;
     std::string name;
     std::unordered_map<std::string, uint32_t> values;
-};
+} Metadata;
 
 using MetadataDict = std::unordered_map<std::string, std::vector<Metadata>>;
 
@@ -48,6 +49,8 @@ struct ExtractMD : public ModulePass {
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "extract-md"
+
+        LLVMContext& ctx = M.getContext();
 
         MetadataDict md;
 
@@ -60,11 +63,19 @@ struct ExtractMD : public ModulePass {
             return false;
         }
 
-        for (auto& [type, metadata] : md) {
+        for (auto& type_metadata_pair : md) {
+            const auto& type = type_metadata_pair.first;
+            const auto& metadata = type_metadata_pair.second;
+
             out << type << ":\n";
-            for (Metadata& m : metadata) {
+            for (const Metadata& m : metadata) {
                 out << "  " << m.name << ":\n";
-                for (auto& [key, value] : m.values) {
+                if (!m.functionName.empty()) {
+                    out << "    functionName: " << m.functionName << "\n";
+                }
+                for (const auto& key_value_pair : m.values) {
+                    const auto& key = key_value_pair.first;
+                    const auto& value = key_value_pair.second;
                     out << "    " << key << ": " << value << "\n";
                 }
             }
@@ -73,30 +84,81 @@ struct ExtractMD : public ModulePass {
         return false; // Module is not modified
     }
 
+    uint32_t MDOperandToInt(MDNode* md, uint32_t index) {
+        return cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(md->getOperand(index))->getValue())->getZExtValue();
+    }
+
+    uint32_t getMDOperandValue(Value& V, StringRef name, uint32_t index,
+                               uint32_t defaultValue=0) {
+        MDNode* md = nullptr;
+        if (Instruction* I = dyn_cast<Instruction>(&V)) {
+            md = I->getMetadata(name);
+        } else if (GlobalObject* G = dyn_cast<GlobalObject>(&V)) {
+            md = G->getMetadata(name);
+        } else if (Function* F = dyn_cast<Function>(&V)) {
+            md = F->getMetadata(name);
+        }
+        return md == nullptr ? defaultValue : MDOperandToInt(md, index);
+    }
+
     void getGlobalValuesMD(MetadataDict& md, Module& M) {
         for (GlobalObject& G : M.getGlobalList()) {
             Metadata m;
 
+            // Check if the global variable is a dummy array
+            // created by `set-hls-md` pass to represent an array
+            // that is a parameter of a function
+            MDNode* isDummyArray = G.getMetadata("isParam");
+            if (isDummyArray) {
+                std::string arrayName = G.getName().str();
+
+                m.functionName = arrayName.substr(0, arrayName.find("."));
+                m.name = arrayName.substr(arrayName.find(".") + 1);
+
+                m.values["isParam"] = 1;
+                m.values["numDims"] = getMDOperandValue(G, "numDims", 0);
+                m.values["numElements"] = getMDOperandValue(G, "numElements", 0);
+                m.values["elementType"] = getMDOperandValue(G, "elementType", 0);
+                m.values["elementBitwidth"] = getMDOperandValue(G, "elementBitwidth", 0);
+                m.values["unbounded"] = getMDOperandValue(G, "unbounded", 0);
+
+                if (MDNode* arrayPartitionMD = G.getMetadata("arrayPartition")) {
+                    m.values["arrayPartition"] = 1;
+                    m.values["arrayPartitionID"] = MDOperandToInt(arrayPartitionMD, 0);
+                    m.values["arrayPartitionDim"] = MDOperandToInt(arrayPartitionMD, 1);
+                    m.values["arrayPartitionType"] = MDOperandToInt(arrayPartitionMD, 2);
+                    m.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartitionMD, 3);
+                    m.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartitionMD, 4);
+                    m.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartitionMD, 5);
+                }
+                md["param_array"].push_back(m);
+                continue;
+            }
             m.name = G.getName().str();
-            m.values["globalID"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(G.getMetadata("globalID")->getOperand(0))->getValue())->getZExtValue();
-            m.values["bitwidth"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(G.getMetadata("bitwidth")->getOperand(0))->getValue())->getZExtValue();
-            m.values["type"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(G.getMetadata("type")->getOperand(0))->getValue())->getZExtValue();
+            m.functionName = "";
+
+            m.values["globalID"] = getMDOperandValue(G, "globalID", 0);
+            m.values["bitwidth"] = getMDOperandValue(G, "bitwidth", 0);
+            m.values["type"] = getMDOperandValue(G, "type", 0);
 
             MDNode* isArray = G.getMetadata("isArray");
             if (isArray) {
-                m.values["numDims"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(G.getMetadata("numDims")->getOperand(0))->getValue())->getZExtValue();
-                m.values["numElements"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(G.getMetadata("numElements")->getOperand(0))->getValue())->getZExtValue();
-                m.values["elementType"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(G.getMetadata("elementType")->getOperand(0))->getValue())->getZExtValue();
-                m.values["elementBitwidth"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(G.getMetadata("elementBitwidth")->getOperand(0))->getValue())->getZExtValue();
+                m.values["numDims"] = getMDOperandValue(G, "numDims", 0);
+                m.values["numElements"] = getMDOperandValue(G, "numElements", 0);
+                m.values["elementType"] = getMDOperandValue(G, "elementType", 0);
+                m.values["elementBitwidth"] = getMDOperandValue(G, "elementBitwidth", 0);
+                m.values["unbounded"] = getMDOperandValue(G, "unbounded", 0);
 
-                MDNode* isTopLevelParam = G.getMetadata("top");
-                if (isTopLevelParam) {
-                    m.values["top"] = 1;
-                    m.name = G.getName().str().substr(G.getName().str().find(".") + 1);
-                    md["top_level_array"].push_back(m);
-                } else {
-                    md["global_array"].push_back(m);
+                if (MDNode* arrayPartitionMD = G.getMetadata("arrayPartition")) {
+                    m.values["arrayPartition"] = 1;
+                    m.values["arrayPartitionID"] = MDOperandToInt(arrayPartitionMD, 0);
+                    m.values["arrayPartitionDim"] = MDOperandToInt(arrayPartitionMD, 1);
+                    m.values["arrayPartitionType"] = MDOperandToInt(arrayPartitionMD, 2);
+                    m.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartitionMD, 3);
+                    m.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartitionMD, 4);
+                    m.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartitionMD, 5);
                 }
+                md["global_array"].push_back(m);
             } else {
                 md["global_variable"].push_back(m);
             }
@@ -107,64 +169,70 @@ struct ExtractMD : public ModulePass {
         for (Function& F : M) {
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
-                    // Get metadata for the instruction
+                    // Get metadata from the instruction
                     Metadata instMD;
+
                     instMD.name = I.getName().str();
-                    instMD.values["opID"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I.getMetadata("opID")->getOperand(0))->getValue())->getZExtValue();
-                    instMD.values["functionID"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I.getMetadata("functionID")->getOperand(0))->getValue())->getZExtValue();
-                    instMD.values["bbID"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I.getMetadata("bbID")->getOperand(0))->getValue())->getZExtValue();
-                    instMD.values["opcode"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I.getMetadata("opcode")->getOperand(0))->getValue())->getZExtValue();
+                    instMD.functionName = F.getType()->isVoidTy() ? "" : F.getName().str();
+
+                    instMD.values["opID"] = getMDOperandValue(I, "opID", 0);
+                    instMD.values["functionID"] = getMDOperandValue(I, "functionID", 0);
+                    instMD.values["bbID"] = getMDOperandValue(I, "bbID", 0);
+                    instMD.values["opcode"] = getMDOperandValue(I, "opcode", 0);
 
                     if (MDNode* loopDepth = I.getMetadata("loopDepth")) {
-                        instMD.values["loopDepth"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopDepth->getOperand(0))->getValue())->getZExtValue();
+                        instMD.values["loopDepth"] = MDOperandToInt(loopDepth, 0);
                     }
                     if (MDNode* tripCount = I.getMetadata("tripCount")) {
-                        instMD.values["tripCount"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(tripCount->getOperand(0))->getValue())->getZExtValue();
+                        instMD.values["tripCount"] = MDOperandToInt(tripCount, 0);
                     }
                     if (MDNode* pipelineMD = I.getMetadata("pipeline")) {
                         instMD.values["pipeline"] = 1;
-                        instMD.values["pipelineID"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMD->getOperand(0))->getValue())->getZExtValue();
-                        instMD.values["pipelineII"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(pipelineMD->getOperand(1))->getValue())->getZExtValue();
+                        instMD.values["pipelineID"] = MDOperandToInt(pipelineMD, 0);
+                        instMD.values["pipelineII"] = MDOperandToInt(pipelineMD, 1);
                     }
                     if (MDNode* unrollMD = I.getMetadata("unroll")) {
                         instMD.values["unroll"] = 1;
-                        instMD.values["unrollID"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMD->getOperand(0))->getValue())->getZExtValue();
-                        instMD.values["unrollComplete"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMD->getOperand(1))->getValue())->getZExtValue();
-                        instMD.values["unrollFactor"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(unrollMD->getOperand(2))->getValue())->getZExtValue();
+                        instMD.values["unrollID"] = MDOperandToInt(unrollMD, 0);
+                        instMD.values["unrollComplete"] = MDOperandToInt(unrollMD, 1);
+                        instMD.values["unrollFactor"] = MDOperandToInt(unrollMD, 2);
                     }
                     if (MDNode* loopFlattenMD = I.getMetadata("loopFlatten")) {
                         instMD.values["loopFlatten"] = 1;
-                        instMD.values["loopFlattenID"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopFlattenMD->getOperand(0))->getValue())->getZExtValue();
+                        instMD.values["loopFlattenID"] = MDOperandToInt(loopFlattenMD, 0);
                     }
                     if (MDNode* loopMergeMD = I.getMetadata("loopMerge")) {
                         instMD.values["loopMerge"] = 1;
-                        instMD.values["loopMergeID"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopMergeMD->getOperand(0))->getValue())->getZExtValue();
+                        instMD.values["loopMergeID"] = MDOperandToInt(loopMergeMD, 0);
                     }
-
                     md["instruction"].push_back(instMD);
 
                     // Get metadata for the value produced by the instruction
                     Metadata valMD;
 
                     valMD.name = I.getName().str();
-                    valMD.values["opID"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I.getMetadata("opID")->getOperand(0))->getValue())->getZExtValue();
-                    valMD.values["bitwidth"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I.getMetadata("bitwidth")->getOperand(0))->getValue())->getZExtValue();
-                    valMD.values["valueType"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I.getMetadata("valueType")->getOperand(0))->getValue())->getZExtValue();
+                    valMD.functionName = F.getType()->isVoidTy() ? "" : F.getName().str();
+
+                    valMD.values["opID"] = getMDOperandValue(I, "opID", 0);
+                    valMD.values["bitwidth"] = getMDOperandValue(I, "bitwidth", 0);
+                    valMD.values["valueType"] = getMDOperandValue(I, "valueType", 0);
 
                     MDNode* isArray = I.getMetadata("isArray");
                     if (isArray) {
-                        valMD.values["numDims"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I.getMetadata("numDims")->getOperand(0))->getValue())->getZExtValue();
-                        valMD.values["numElements"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I.getMetadata("numElements")->getOperand(0))->getValue())->getZExtValue();
-                        valMD.values["elementType"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I.getMetadata("elementType")->getOperand(0))->getValue())->getZExtValue();
-                        valMD.values["elementBitwidth"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(I.getMetadata("elementBitwidth")->getOperand(0))->getValue())->getZExtValue();
+                        valMD.values["numDims"] = getMDOperandValue(I, "numDims", 0);
+                        valMD.values["numElements"] = getMDOperandValue(I, "numElements", 0);
+                        valMD.values["elementType"] = getMDOperandValue(I, "elementType", 0);
+                        valMD.values["elementBitwidth"] = getMDOperandValue(I, "elementBitwidth", 0);
+                        valMD.values["unbounded"] = getMDOperandValue(I, "unbounded", 0);
+
                         if (MDNode* arrayPartition = I.getMetadata("arrayPartition")) {
                             valMD.values["arrayPartition"] = 1;
-                            valMD.values["arrayPartitionID"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartition->getOperand(0))->getValue())->getZExtValue();
-                            valMD.values["arrayPartitionDim"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartition->getOperand(1))->getValue())->getZExtValue();
-                            valMD.values["arrayPartitionType"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartition->getOperand(2))->getValue())->getZExtValue();
-                            valMD.values["arrayPartitionFactor"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartition->getOperand(3))->getValue())->getZExtValue();
-                            valMD.values["arrayPartitionDimSize"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartition->getOperand(4))->getValue())->getZExtValue();
-                            valMD.values["arrayPartitionNumPartitions"] = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(arrayPartition->getOperand(5))->getValue())->getZExtValue();
+                            valMD.values["arrayPartitionID"] = MDOperandToInt(arrayPartition, 0);
+                            valMD.values["arrayPartitionDim"] = MDOperandToInt(arrayPartition, 1);
+                            valMD.values["arrayPartitionType"] = MDOperandToInt(arrayPartition, 2);
+                            valMD.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartition, 3);
+                            valMD.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartition, 4);
+                            valMD.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartition, 5);
                         }
                         md["local_array"].push_back(valMD);
                     } else {

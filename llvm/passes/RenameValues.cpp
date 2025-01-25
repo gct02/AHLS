@@ -31,13 +31,6 @@ struct RenameValues : ModulePass {
 
         for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
             Function* F = &*FI;
-            // Rename the parameters of the function to <function_name>.in.<param_index>
-            for (Function::arg_iterator AI = F->arg_begin(), AE = F->arg_end(); AI != AE; ++AI) {
-                Argument* A = &*AI;
-                std::string newName = F->getName().str() + ".in." + std::to_string(A->getArgNo());
-                A->setName(newName);
-            }
-
             for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                 BasicBlock* BB = &*BI;
                 for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
@@ -54,6 +47,13 @@ struct RenameValues : ModulePass {
         }
 
         for (GlobalVariable& GV : M.getGlobalList()) {
+            // Check if the global variable is a dummy array
+            // created by `set-hls-md` pass to represent an array
+            // that is a parameter of a function
+            MDNode* isDummyArray = GV.getMetadata("isParam");
+            if (isDummyArray) {
+                continue;
+            }
             if (MDNode* globalIDMDNode = GV.getMetadata("globalID")) {
                 uint32_t globalID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(globalIDMDNode->getOperand(0))->getValue())->getZExtValue();
                 std::string newName = "global." + std::to_string(globalID);
@@ -68,4 +68,4 @@ struct RenameValues : ModulePass {
 }  // anonymous namespace
 
 char RenameValues::ID = 0;
-static RegisterPass<RenameValues> X("rename-vals", "Rename all variables in the module to op.<opID> if local or global.<globalID> if global. This pass must be used only after 'update-md'.", false, false);
+static RegisterPass<RenameValues> X("rename-vals", "Rename all variables in the module to op.<opID> if local or global.<globalID> if global. This pass should be used after `update-md`.", false, false);

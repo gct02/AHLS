@@ -387,11 +387,12 @@ def get_nodes(
                 features = torch.tensor(features, dtype=torch.float32)
                 nodes['const'].append(features)
                 const_indices.append(i)
-    
-    nodes['inst'] = torch.stack(nodes['inst'])
-    nodes['var'] = torch.stack(nodes['var'])
-    nodes['const'] = torch.stack(nodes['const'])
-    nodes['array'] = torch.stack(nodes['array'])
+
+    for key in nodes.keys():
+        if len(nodes[key]) > 0:
+            nodes[key] = torch.stack(nodes[key])
+        else:
+            nodes[key] = None
 
     return nodes, inst_indices, var_indices, const_indices, array_indices
 
@@ -530,15 +531,25 @@ def build_cdfg(
 def print_cdfg(
     nodes: Dict[str, Tensor], 
     edges: Dict[Tuple[str, str, str], Tensor],
-    output_path: Path = None
+    output_path: Path = None,
+    ir_path: Path = None
 ) -> None:
+    if ir_path is not None:
+        with open(ir_path, 'r') as ir_file:
+            ir_text = ir_file.read()
+        ir_graph = programl.from_llvm_ir(ir_text)
+
     if output_path is not None:
         with open(output_path, 'w') as f:
             f.write(f"Nodes = {nodes.__str__()}\n\n")
-            f.write(f"Edges = {edges.__str__()}")
+            f.write(f"Edges = {edges.__str__()}\n\n")
+            if ir_path is not None:
+                f.write(f"ProGraML Graph = {ir_graph.__str__()}")
     else:
         print(f"Nodes = {nodes.__str__()}\n\n")
-        print(f"Edges = {edges.__str__()}")
+        print(f"Edges = {edges.__str__()}\n\n")
+        if ir_path is not None:
+            print(f"ProGraML Graph = {ir_graph.__str__()}")
 
 if __name__ == "__main__":
     # *** For debugging *** #
@@ -555,5 +566,4 @@ if __name__ == "__main__":
     with open(output_path, "w") as f:
         f.write(f"Nodes = {nodes.__str__()}\n\n")
         f.write(f"Edges = {edges.__str__()}")
-        f.write("\n\n")
         f.write(f"ProGraML Graph = {ir_graph.__str__()}")

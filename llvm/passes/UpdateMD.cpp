@@ -2,6 +2,7 @@
 #include "llvm/Analysis/LoopPass.h"
 #include "llvm/Analysis/ScalarEvolution.h"
 #include "llvm/Analysis/ScalarEvolutionExpressions.h"
+#include "llvm/ADT/SmallVector.h"
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/Metadata.h"
@@ -17,26 +18,34 @@
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
 #include "llvm/Analysis/IVDescriptors.h"
 #include "llvm/Analysis/LoopAccessAnalysis.h"
+
 #include "llvm/Analysis/XILINXLoopInfoUtils.h"
+#include "llvm/Analysis/XILINXInterfaceAnalysis.h"
 #include "llvm/IR/XILINXFPGAIntrinsicInst.h"
 
+#include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
 
 using namespace llvm;
 
-static cl::opt<std::string> topLevelFunctionName(
-    "top",
-    cl::desc("Name of the top-level function"), 
-    cl::value_desc("function name")
-);
-
 namespace {
 
 struct UpdateMD : public ModulePass {
     static char ID;
     UpdateMD() : ModulePass(ID) {}
+
+    bool runOnModule(Module& M) override {
+        #define DEBUG_TYPE "update-md"
+        
+        int id = 0;
+        setMetadataForInstructions(M, id);
+        setMetadataForGlobals(M, id);
+        setMetadataForArrays(M);
+
+        return false; // Module is not modified
+    }
 
     // Set named metadata for an instruction, global object or function
     void setMetadata(Value& V, StringRef name, uint32_t value) {
@@ -50,25 +59,6 @@ struct UpdateMD : public ModulePass {
         } else if (Function* F = dyn_cast<Function>(&V)) {
             F->setMetadata(name, md);
         }
-    }
-
-    bool runOnModule(Module& M) override {
-        #define DEBUG_TYPE "update-md"
-        
-        int id = 0;
-        setMetadataForInstructions(M, id);
-        setMetadataForGlobals(M, id);
-        setMetadataForArrays(M);
-
-        Function* topLevelFunction = M.getFunction(topLevelFunctionName);
-        if (topLevelFunction) {
-            setMetadata(*topLevelFunction, "top", 1);
-        }
-        else {
-            errs() << "Top-level function not found: " << topLevelFunctionName << "\n";
-        }
-
-        return false; // Module is not modified
     }
 
     uint32_t getArrayNumDims(Type* arrayType) {
@@ -105,41 +95,118 @@ struct UpdateMD : public ModulePass {
         return arrayType->getArrayNumElements();
     }
 
-    void setArrayMD(Value& V) {
+    uint64_t getArgAttributeValue(const Argument *Arg, StringRef AttrName) {
+        AttributeList Attrs = Arg->getParent()->getAttributes();
+        auto ArgIdx = Arg->getArgNo();
+        const auto &Attr = Attrs.getParamAttr(ArgIdx, AttrName);
+        auto Str = Attr.getValueAsString();
+        if (Str.empty())
+            return 0;
+
+        unsigned Size;
+        if (to_integer(Str, Size))
+            return Size;
+
+        return 0;
+    }
+
+    uint64_t getDecayedDimSize(const Argument *Arg) {
+        return getArgAttributeValue(Arg, "fpga.decayed.dim.hint");
+    }
+
+    int setArrayMD(Value& V, bool decayed=false) {
         Type* valueType = V.getType();
-        if (valueType->isPointerTy()) {
-            valueType = valueType->getPointerElementType();
+        Type* elementType = nullptr;
+
+        if (!decayed && !valueType->isArrayTy() && !valueType->isPointerTy()) {
+            return -1;
         }
-        if (valueType->isArrayTy()) {
+
+        if (!decayed) {
             setMetadata(V, "isArray", 1);
+
+            while (valueType->isPointerTy()) {
+                valueType = valueType->getPointerElementType();
+            }
 
             uint32_t numDims = getArrayNumDims(V.getType());
             uint32_t numElements = getArrayNumElements(V.getType());
             setMetadata(V, "numDims", numDims);
             setMetadata(V, "numElements", numElements);
-            
-            // for (uint32_t dim = 1; dim <= numDims; dim++) {
-            //     uint32_t dimSize = getArrayDimNumElements(V.getType(), dim);
-            //     setMetadata(V, "dimSize." + std::to_string(dim), dimSize);
-            // }
+        
+            // Get element type of the array
+            elementType = V.getType()->getPointerElementType();
+            while (elementType->isArrayTy()) {
+                elementType = elementType->getArrayElementType();
+            }
+        } else {
+            // Array arguments decayed to pointers can still be reconstructed
+            // using the "fpga.decayed.dim.hint" attribute set by Vitis HLS
+            uint64_t decayedDimSize = getDecayedDimSize(cast<Argument>(&V));
+            if (decayedDimSize == 0) {
+                // Array does not have a decayed dimension size
+                // or the variable is not an array
+                return -1;
+            }
+
+            Type* underlyingType = V.getType()->getPointerElementType();
+            uint32_t numDims = 1 + getArrayNumDims(underlyingType);
+            uint32_t numElements = decayedDimSize * getArrayNumElements(underlyingType);
+
+            setMetadata(V, "isArray", 1);
+            setMetadata(V, "numDims", numDims);
+            setMetadata(V, "numElements", numElements);
 
             // Get element type of the array
-            while (valueType->isArrayTy()) {
-                valueType = valueType->getArrayElementType();
+            elementType = V.getType()->getPointerElementType();
+            while (elementType->isArrayTy()) {
+                elementType = elementType->getArrayElementType();
             }
-            setMetadata(V, "elementType", (uint32_t)valueType->getTypeID());
-            setMetadata(V, "elementBitwidth", valueType->getPrimitiveSizeInBits());
         }
+        setMetadata(V, "elementType", (uint32_t)elementType->getTypeID());
+        setMetadata(V, "elementBitwidth", elementType->getPrimitiveSizeInBits());
+
+        return 0;
     }
 
     void setMetadataForArrays(Module& M) {
         for (GlobalObject& G : M.getGlobalList()) {
-            setArrayMD(G);
+            Type* type = G.getType();
+            while (type->isPointerTy()) {
+                type = type->getPointerElementType();
+            }
+            if (type->isArrayTy()) {
+                setArrayMD(G, false);
+            }
         }
+
         for (Function& F : M) {
+            // Check for decayed arrays in the function arguments
+            for (Argument& A : F.args()) {
+                // Array arguments decay to pointers, but we can still
+                // reconstruct the array type using the "fpga.decayed.dim.hint"
+                // attribute set by Vitis HLS. A global variable representing
+                // the array is created and metadata is set for the global variable
+                uint64_t decayedDimSize = getDecayedDimSize(&A);
+                if (decayedDimSize == 0) {
+                    continue;
+                }
+                ArrayType* arrayType = ArrayType::get(A.getType()->getPointerElementType(), decayedDimSize);
+                std::string restoredArrayName = F.getName().str() + "." + A.getName().str();
+                GlobalVariable* GV = new GlobalVariable(M, arrayType, true, 
+                                                        GlobalValue::ExternalLinkage, nullptr, 
+                                                        restoredArrayName);
+                setArrayMD(*GV, false);
+            }
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
-                    setArrayMD(I);
+                    Type* type = I.getType();
+                    while (type->isPointerTy()) {
+                        type = type->getPointerElementType();
+                    }
+                    if (type->isArrayTy()) {
+                        setArrayMD(I, false);
+                    }
                 }
             }
         }

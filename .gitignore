@@ -66,6 +66,7 @@ dkms.conf
 
 __pycache__/
 *__pycache__/
+build/
 .venv/
 model_analysis/
 dataset/
