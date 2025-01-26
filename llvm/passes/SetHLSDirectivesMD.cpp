@@ -261,11 +261,11 @@ struct SetHLSDirectivesMD : public ModulePass {
             for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                 BasicBlock* BB = &*BI;
                 if (BB->hasName() && BB->getName() == directive.label) {
-                    BasicBlock* loopHeader = BB->getSingleSuccessor();
-                    if (!loopHeader) {
-                        errs() << "Loop header not found\n";
-                        return -1;
-                    }
+                    BasicBlock* loopHeader;
+                    // loopHeader = BB->getSingleSuccessor();
+                    // if (!loopHeader) {
+                    loopHeader = BB;
+                    // }
                     MDTuple* md = MDTuple::get(M.getContext(), {directiveIndexMD});
                     LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(*F).getLoopInfo();
                     Loop* L = LI.getLoopFor(loopHeader);
@@ -610,7 +610,7 @@ struct SetHLSDirectivesMD : public ModulePass {
                     directive.label = "";
                 }
 
-                // Check if the array is a parameter of a function
+                // Check if the array is a parameter of a function or is a local variable
                 if (!directive.functionName.empty()) {
                     if (Function* F = M.getFunction(directive.functionName)) {
                         Argument* arrayArg = nullptr;
@@ -629,6 +629,16 @@ struct SetHLSDirectivesMD : public ModulePass {
                             directive.options["variable"] = restoredArrayName;
                             directive.label = "";
                             directive.functionName = "";
+                        } else {
+                            // Clang might have promoted the array to a global constant,
+                            // so we need to check if the array is a global object even
+                            // if it is scoped within a function
+                            std::string globalArrayName = directive.functionName + "." + arrayName;
+                            if (GlobalVariable* GV = M.getGlobalVariable(globalArrayName, true)) {
+                                directive.options["variable"] = globalArrayName;
+                                directive.label = "";
+                                directive.functionName = "";
+                            }
                         }
                     }
                 }

@@ -72,5 +72,4 @@ model_analysis/
 dataset/
 dataset_analysis/graphs/
 dataset_analysis/solutions_info/
-scripts/estimators/preprocess_dataset_gat.py
-estimators/gat/
+preprocess_dataset_gat.py

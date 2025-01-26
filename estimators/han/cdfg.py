@@ -306,7 +306,7 @@ def get_literal_const_features(
 
     if type_id == 16: # Array type
         is_array = True
-        array_md = get_array_info_from_type_str(type_str)
+        array_md = get_array_info_from_type_str(node_full_text)
         one_hot_type = get_one_hot_type_from_id(array_md[2])
         array_partition_md = [0] * 8
         features = (array_md[:2] + one_hot_type + array_md[3:]

@@ -89,7 +89,7 @@ struct HLSIRPrepForGNN : ModulePass {
      */
     void extractParamsAsGlobals(Module& M) {
         for (Function& F : M) {
-            if (!F.hasName()) {
+            if (!F.hasName() || F.isIntrinsic()) {
                 continue;
             }
             for (Argument& A : F.args()) {
