@@ -65,6 +65,11 @@ OPCODE_DICT = {
     'select':        [0,0,0,0,1, 0,1,0,0,0,0,0],
 }
 
+INST_FEATURES_SIZE = 21
+VAR_FEATURES_SIZE = 8
+CONST_FEATURES_SIZE = 9
+ARRAY_FEATURES_SIZE = 13
+
 """
 def parse_mdnode(
     mdnode_text: str
@@ -199,7 +204,7 @@ def get_one_hot_opcode(
 def get_one_hot_type(
     md: Dict[str, Union[int, float]]
 ) -> List[int]:
-    type_id = md["type"] if "type" in md else 0
+    type_id = md["type"] if "type" in md else -1
     return get_one_hot_type_from_id(type_id)
 
 def convert_raw_metadata(
@@ -227,7 +232,7 @@ def get_type_id_from_type_str(
     type_str: str,
     node_full_text: str = ""
 ) -> int:
-    if type_str[-1] != '*': # Pointer type
+    if type_str[-1] == '*': # Pointer type
         return 15
     if '[' in type_str: # Array type
         return 16
@@ -246,6 +251,18 @@ def get_type_id_from_type_str(
         return 9
     # Other types (e.g. struct, label, token, etc.)
     return -1
+
+def get_array_info_from_type_str(
+    type_str: str
+) -> List[int, int, int, int]:
+    num_dims = type_str.count('[')
+    num_elems_last_dim = int(type_str.split('[')[-1].split(' x')[0])
+    num_elems = num_dims * num_elems_last_dim
+
+    elem_type = type_str.split('x ')[1].split(']')[0]
+    elem_type_id = get_type_id_from_type_str(elem_type)
+
+    return [num_dims, num_elems, elem_type_id, num_elems_last_dim]
 
 def get_bitwidth_from_type_str(
     type_str: str,
@@ -279,13 +296,24 @@ def get_bitwidth_from_type_str(
     # Other types (e.g. struct, label, token, etc.)
     return 0
 
-def get_numeric_const_features(
+def get_literal_const_features(
     node_full_text: str
-) -> List[int]:
+) -> Tuple[List[int], bool]:
     type_str = node_full_text.split(' ')[0]
     value_str = node_full_text.split(' ')[-1]
 
     type_id = get_type_id_from_type_str(type_str, node_full_text)
+
+    if type_id == 16: # Array type
+        is_array = True
+        array_md = get_array_info_from_type_str(type_str)
+        one_hot_type = get_one_hot_type_from_id(array_md[2])
+        array_partition_md = [0] * 8
+        features = (array_md[:2] + one_hot_type + array_md[3:]
+                    + array_partition_md)
+        return features, is_array
+    
+    is_array = False
     one_hot_type = get_one_hot_type_from_id(type_id)
     bitwidth = get_bitwidth_from_type_str(type_str, node_full_text)
 
@@ -310,18 +338,14 @@ def get_numeric_const_features(
         else:
             const_value = 0
 
-    return one_hot_type + [bitwidth, const_value]
+    features = one_hot_type + [bitwidth, const_value]
+    return features, is_array
 
 def get_nodes(
     programl_graph,
     metadata: Dict[str, Dict[str, Dict[str, str]]],
     ir_instructions: Dict[int, str]
 ) -> Tuple[Dict[str, Tensor], List[int], List[int], List[int], List[int]]:
-    INST_FEATURES_SIZE = 21
-    VAR_FEATURES_SIZE = 8
-    CONST_FEATURES_SIZE = 9
-    ARRAY_FEATURES_SIZE = 13
-
     nodes = {'inst': [], 'var': [], 'const': [], 'array': []}
     indices = {'inst': [], 'var': [], 'const': [], 'array': []}
 
@@ -374,7 +398,7 @@ def get_nodes(
 
         elif node.type == 1 or node.type == 2: 
             # --- Variable or Constant --- #
-            is_numeric_const = False
+            is_literal = False
 
             if node_full_text.startswith('@'): # Global value
                 name = node_full_text.split(' ')[0].strip('@')
@@ -383,12 +407,16 @@ def get_nodes(
                 if name.startswith('%'):
                     name = name.strip('%')
                 else:
-                    is_numeric_const = True
+                    is_literal = True
 
-            if is_numeric_const:
-                features = get_numeric_const_features(node_full_text)
-                nodes['const'].append(torch.tensor(features, dtype=torch.float32))
-                indices["const"].append(i)
+            if is_literal:
+                features, is_array = get_literal_const_features(node_full_text)
+                if is_array:
+                    nodes['array'].append(torch.tensor(features, dtype=torch.float32))
+                    indices["array"].append(i)
+                else:
+                    nodes['const'].append(torch.tensor(features, dtype=torch.float32))
+                    indices["const"].append(i)
                 continue
 
             raw_md = metadata["value"][name]
