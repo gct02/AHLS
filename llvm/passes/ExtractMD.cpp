@@ -122,6 +122,7 @@ struct ExtractMD : public ModulePass {
 
             MDNode* isArray = G.getMetadata("isArray");
             if (isArray) {
+                m.values["isArray"] = 1;
                 m.values["numDims"] = getMDOperandValue(G, "numDims", 0);
                 m.values["numElements"] = getMDOperandValue(G, "numElements", 0);
                 m.values["elementType"] = getMDOperandValue(G, "elementType", 0);
@@ -199,6 +200,7 @@ struct ExtractMD : public ModulePass {
 
                         MDNode* isArray = I.getMetadata("isArray");
                         if (isArray) {
+                            valMD.values["isArray"] = 1;
                             valMD.values["numDims"] = getMDOperandValue(I, "numDims", 0);
                             valMD.values["numElements"] = getMDOperandValue(I, "numElements", 0);
                             valMD.values["elementType"] = getMDOperandValue(I, "elementType", 0);

@@ -6,8 +6,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 from pathlib import Path
 from torch.utils.data import DataLoader
-from han.models import HAN
-from han.dataset import HLSDataset
+from estimators.han.models import HAN
+from estimators.han.dataset import HLSDataset
 
 matplotlib.use('Agg')
 
@@ -66,7 +66,7 @@ def train_model(
 
                 x_dict = move_to_device(x_dict, device)
                 edge_index_dict = move_to_device(edge_index_dict, device)
-                target = target.to(device)
+                # target = target.to(device)
 
                 pred = model(x_dict, edge_index_dict)
 
@@ -76,7 +76,7 @@ def train_model(
 
                 x_dict = move_to_device(x_dict, "cpu")
                 edge_index_dict = move_to_device(edge_index_dict, "cpu")
-                target, pred = target.to("cpu"), pred.to("cpu")
+                # target, pred = target.to("cpu"), pred.to("cpu")
                 torch.cuda.empty_cache()
 
             optimizer.step()
@@ -202,7 +202,7 @@ def main(args):
             train_dataset, [n_train, n_val]
         )
 
-        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, \
+        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True,
                                   collate_fn=lambda x: tuple(zip(*x)))
         val_loader = DataLoader(val_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
