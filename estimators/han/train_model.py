@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
-import argparse, os
+import argparse
+import os
 import matplotlib
 import matplotlib.pyplot as plt
 from pathlib import Path
@@ -206,7 +207,7 @@ def main(args):
         val_loader = DataLoader(val_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        n_features = {'inst': 21, 'var': 8, 'const': 9, 'array': 15}
+        n_features = {'inst': 21, 'var': 8, 'const': 9, 'array': 17}
 
         model = HAN(
             n_features=n_features, 
