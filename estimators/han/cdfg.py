@@ -254,7 +254,7 @@ def get_type_id_from_type_str(
 
 def get_array_info_from_type_str(
     type_str: str
-) -> List[int, int, int, int]:
+) -> List[int]:
     num_dims = type_str.count('[')
     num_elems_last_dim = int(type_str.split('[')[-1].split(' x')[0])
     num_elems = num_dims * num_elems_last_dim
