@@ -193,7 +193,7 @@ if __name__ == "__main__":
             with open(output_instance_folder / "targets.txt", "w") as f:
                 f.write(f"lut={lut}\nff={ff}\ndsp={dsp}\nbram={bram}\nclb={clb}\nlatch={latch}\ncp={achieved_clk}\ncc={cc}")
 
-            cdfg = build_cdfg(ir_mod)
+            cdfg = build_cdfg(ir_mod, output_md_path)
 
             nodes, edges = cdfg
             print_cdfg(nodes, edges, output_instance_folder / "cdfg.txt", ir_mod)

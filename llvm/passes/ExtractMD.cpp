@@ -129,36 +129,33 @@ struct ExtractMD : public ModulePass {
                     m.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartitionMD, 4);
                     m.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartitionMD, 5);
                 }
-                md["param_array"].push_back(m);
-                continue;
-            }
-            m.name = G.getName().str();
-            m.functionName = "";
-
-            m.values["globalID"] = getMDOperandValue(G, "globalID", 0);
-            m.values["bitwidth"] = getMDOperandValue(G, "bitwidth", 0);
-            m.values["type"] = getMDOperandValue(G, "type", 0);
-
-            MDNode* isArray = G.getMetadata("isArray");
-            if (isArray) {
-                m.values["numDims"] = getMDOperandValue(G, "numDims", 0);
-                m.values["numElements"] = getMDOperandValue(G, "numElements", 0);
-                m.values["elementType"] = getMDOperandValue(G, "elementType", 0);
-                m.values["elementBitwidth"] = getMDOperandValue(G, "elementBitwidth", 0);
-
-                if (MDNode* arrayPartitionMD = G.getMetadata("arrayPartition")) {
-                    m.values["arrayPartition"] = 1;
-                    m.values["arrayPartitionID"] = MDOperandToInt(arrayPartitionMD, 0);
-                    m.values["arrayPartitionDim"] = MDOperandToInt(arrayPartitionMD, 1);
-                    m.values["arrayPartitionType"] = MDOperandToInt(arrayPartitionMD, 2);
-                    m.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartitionMD, 3);
-                    m.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartitionMD, 4);
-                    m.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartitionMD, 5);
-                }
-                md["global_array"].push_back(m);
             } else {
-                md["global_variable"].push_back(m);
+                m.name = G.getName().str();
+                m.functionName = "";
+
+                m.values["globalID"] = getMDOperandValue(G, "globalID", 0);
+                m.values["bitwidth"] = getMDOperandValue(G, "bitwidth", 0);
+                m.values["type"] = getMDOperandValue(G, "type", 0);
+
+                MDNode* isArray = G.getMetadata("isArray");
+                if (isArray) {
+                    m.values["numDims"] = getMDOperandValue(G, "numDims", 0);
+                    m.values["numElements"] = getMDOperandValue(G, "numElements", 0);
+                    m.values["elementType"] = getMDOperandValue(G, "elementType", 0);
+                    m.values["elementBitwidth"] = getMDOperandValue(G, "elementBitwidth", 0);
+
+                    if (MDNode* arrayPartitionMD = G.getMetadata("arrayPartition")) {
+                        m.values["arrayPartition"] = 1;
+                        m.values["arrayPartitionID"] = MDOperandToInt(arrayPartitionMD, 0);
+                        m.values["arrayPartitionDim"] = MDOperandToInt(arrayPartitionMD, 1);
+                        m.values["arrayPartitionType"] = MDOperandToInt(arrayPartitionMD, 2);
+                        m.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartitionMD, 3);
+                        m.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartitionMD, 4);
+                        m.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartitionMD, 5);
+                    }
+                }
             }
+            md["value"].push_back(m);
         }
     }
 
@@ -169,10 +166,13 @@ struct ExtractMD : public ModulePass {
                     // Get metadata from the instruction
                     Metadata instMD;
 
-                    instMD.name = I.getName().str();
+                    // For instructions, the key will be the instruction's opID
+                    uint32_t opID = getMDOperandValue(I, "opID", 0);
+
+                    instMD.name = std::to_string(opID);
                     instMD.functionName = F.getType()->isVoidTy() ? "" : F.getName().str();
 
-                    instMD.values["opID"] = getMDOperandValue(I, "opID", 0);
+                    instMD.values["opID"] = opID;
                     instMD.values["functionID"] = getMDOperandValue(I, "functionID", 0);
                     instMD.values["bbID"] = getMDOperandValue(I, "bbID", 0);
                     instMD.values["opcode"] = getMDOperandValue(I, "opcode", 0);
@@ -231,10 +231,8 @@ struct ExtractMD : public ModulePass {
                                 valMD.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartition, 4);
                                 valMD.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartition, 5);
                             }
-                            md["local_array"].push_back(valMD);
-                        } else {
-                            md["local_variable"].push_back(valMD);
                         }
+                        md["value"].push_back(valMD);
                     }
                 }
             }

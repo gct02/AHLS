@@ -281,6 +281,7 @@ struct UpdateMD : public ModulePass {
         if (tripCount != -1) {
             setMetadata(I, "tripCount", tripCount);
         }
+        setMetadata(I, "ID." + std::to_string(opID), opID);
     }
 
     /* Set, for each instruction in the function, metadata containing the 
