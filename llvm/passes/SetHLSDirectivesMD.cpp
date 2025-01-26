@@ -66,7 +66,6 @@ struct SetHLSDirectivesMD : public ModulePass {
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "set-hls-md"
 
-        LLVMContext& ctx = M.getContext();
         DirectiveDict directives;
 
         // Parse the TCL script containing the HLS directives
@@ -196,6 +195,10 @@ struct SetHLSDirectivesMD : public ModulePass {
 
     MDTuple* getArrayPartitionMDTuple(LLVMContext& ctx, Type* arrayType, uint32_t directiveIndex, 
                                       uint32_t type, uint32_t dim, uint32_t factor) {
+        while (arrayType->isPointerTy()) {
+            arrayType = arrayType->getPointerElementType();
+        }
+
         uint32_t dimSize, numPartitions;
         if (dim == 0) {
             // If the dimension is not specified, all dimensions are partitioned
@@ -437,13 +440,6 @@ struct SetHLSDirectivesMD : public ModulePass {
         return found ? 0 : -1;
     }
 
-    /*
-     * Set metadata for array partitioning directive.
-     * Note: If the target array is a function argument, a dummy global variable is created
-     * to represent the array and the metadata is set for the global variable (for example, 
-     * if the array is a parameter named "A" of the function "foo", a dummy global variable 
-     * named "foo.A" is created, and the metadata is set for "foo.A").
-     */
     int setArrayPartitionMD(Module& M, const Directive& directive, uint32_t directiveIndex) {
         LLVMContext& ctx = M.getContext();
         uint32_t dim, type, factor;
@@ -474,21 +470,9 @@ struct SetHLSDirectivesMD : public ModulePass {
                 errs() << "Global variable not found: " << variable << "\n";
                 return -1;
             }
-
-            // Set array metadata if not already set
-            if (!GV->getMetadata("isArray")) {
-                if (setArrayMD(*GV, false) != 0) {
-                    return -1;
-                }
-            }
-
-            Type* valueType = GV->getType();
-            while (valueType->isPointerTy()) {
-                valueType = valueType->getPointerElementType();
-            }
-
-            MDTuple* md = getArrayPartitionMDTuple(ctx, valueType, directiveIndex, 
-                                                   type, dim, factor);
+            MDTuple* md = getArrayPartitionMDTuple(
+                ctx, GV->getType(), directiveIndex, type, dim, factor
+            );
             GV->setMetadata("arrayPartition", md);
         } else {
             // Array is scoped within a function
@@ -497,27 +481,15 @@ struct SetHLSDirectivesMD : public ModulePass {
                 errs() << "Function not found: " << directive.functionName << "\n";
                 return -1;
             }
-
             bool found = false;
             for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                 BasicBlock* BB = &*BI;
                 for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
                     Instruction* I = &*II;
                     if (I->hasName() && I->getName() == variable) {
-                        // Set array metadata if not already set
-                        if (!I->getMetadata("isArray")) {
-                            if (setArrayMD(*I, false) != 0) {
-                                return -1;
-                            }
-                        }
-
-                        Type* valueType = I->getType();
-                        while (valueType->isPointerTy()) {
-                            valueType = valueType->getPointerElementType();
-                        }
-
-                        MDTuple* md = getArrayPartitionMDTuple(ctx, valueType, directiveIndex, 
-                                                                type, dim, factor);
+                        MDTuple* md = getArrayPartitionMDTuple(
+                            ctx, I->getType(), directiveIndex, type, dim, factor
+                        );
                         I->setMetadata("arrayPartition", md);
                         found = true;
                         break;
@@ -525,87 +497,11 @@ struct SetHLSDirectivesMD : public ModulePass {
                 }
                 if (found) break;
             }
-            
             if (!found) {
                 errs() << "Variable not found: " << variable << "\n";
                 return -1;
             }
         }
-
-        return 0;
-    }
-
-    uint64_t getArgAttributeValue(const Argument *arg, StringRef attrName) {
-        AttributeList attrs = arg->getParent()->getAttributes();
-        auto argIdx = arg->getArgNo();
-        const auto &attr = attrs.getParamAttr(argIdx, attrName);
-        auto attrStr = attr.getValueAsString();
-        if (attrStr.empty())
-            return 0;
-
-        unsigned size;
-        if (to_integer(attrStr, size))
-            return size;
-
-        return 0;
-    }
-
-    uint64_t getDecayedDimSize(const Argument *arg) {
-        return getArgAttributeValue(arg, "fpga.decayed.dim.hint");
-    }
-
-    int setArrayMD(Value& V, bool decayed=false) {
-        Type* valueType = V.getType();
-        Type* elementType = valueType;
-
-        if (!decayed && !valueType->isArrayTy()) {
-            return -1; // Variable is not an array
-        }
-
-        if (!decayed) {
-            setMetadata(V, "isArray", 1);
-
-            while (valueType->isPointerTy()) {
-                valueType = valueType->getPointerElementType();
-            }
-
-            uint32_t numDims = getArrayNumDims(V.getType());
-            uint32_t numElements = getArrayNumElements(V.getType());
-            setMetadata(V, "numDims", numDims);
-            setMetadata(V, "numElements", numElements);
-        
-            // Get element type of the array
-            while (elementType->isArrayTy()) {
-                elementType = elementType->getArrayElementType();
-            }
-        } else {
-            // Array arguments decayed to pointers can still be reconstructed
-            // using the "fpga.decayed.dim.hint" attribute set by Vitis HLS
-            uint64_t decayedDimSize = getDecayedDimSize(cast<Argument>(&V));
-            if (decayedDimSize == 0) {
-                // Array does not have a decayed dimension size
-                // or the variable is not an array
-                return -1;
-            }
-
-            Type* underlyingType = V.getType()->getPointerElementType();
-            uint32_t numDims = 1 + getArrayNumDims(underlyingType);
-            uint32_t numElements = decayedDimSize * getArrayNumElements(underlyingType);
-
-            setMetadata(V, "isArray", 1);
-            setMetadata(V, "decayed", 1);
-
-            setMetadata(V, "numDims", numDims);
-            setMetadata(V, "numElements", numElements);
-
-            // Get element type of the array
-            elementType = V.getType()->getPointerElementType();
-            while (elementType->isArrayTy()) {
-                elementType = elementType->getArrayElementType();
-            }
-        }
-        setMetadata(V, "elementType", (uint32_t)elementType->getTypeID());
-        setMetadata(V, "elementBitwidth", elementType->getPrimitiveSizeInBits());
 
         return 0;
     }
@@ -729,9 +625,7 @@ struct SetHLSDirectivesMD : public ModulePass {
                             // Get the respective global variable for the (restored) decayed array argument
                             // (named as "functionName.arrayName")
                             std::string restoredArrayName = directive.functionName + "." + arrayName;
-
                             GlobalVariable* GV = M.getGlobalVariable(restoredArrayName, true);
-                            
                             directive.options["variable"] = restoredArrayName;
                             directive.label = "";
                             directive.functionName = "";

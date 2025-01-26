@@ -50,8 +50,6 @@ struct ExtractMD : public ModulePass {
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "extract-md"
 
-        LLVMContext& ctx = M.getContext();
-
         MetadataDict md;
 
         getGlobalValuesMD(md, M);
@@ -105,16 +103,25 @@ struct ExtractMD : public ModulePass {
         for (GlobalObject& G : M.getGlobalList()) {
             Metadata m;
 
-            // Check if the global variable is a decayed array
-            // that was reconstructed by the `update-md` pass
-            // as a global variable
-            MDNode* isDecayedArray = G.getMetadata("decayed");
-            if (isDecayedArray) {
-                std::string arrayName = G.getName().str();
+            // Check if the global variable is a parameter
+            // that was extracted from a function by the
+            // ´prep-gnn´ pass
+            MDNode* isParam = G.getMetadata("param");
+            if (isParam) {
+                std::string variableName = G.getName().str();
+                m.functionName = variableName.substr(0, variableName.find("."));
+                m.name = variableName.substr(variableName.find(".") + 1);
+            } else {
+                m.functionName = "";
+                m.name = G.getName().str();
+            }
 
-                m.functionName = arrayName.substr(0, arrayName.find("."));
-                m.name = arrayName.substr(arrayName.find(".") + 1);
+            m.values["ID"] = getMDOperandValue(G, "globalID", 0);
+            m.values["bitwidth"] = getMDOperandValue(G, "bitwidth", 0);
+            m.values["type"] = getMDOperandValue(G, "type", 0);
 
+            MDNode* isArray = G.getMetadata("isArray");
+            if (isArray) {
                 m.values["numDims"] = getMDOperandValue(G, "numDims", 0);
                 m.values["numElements"] = getMDOperandValue(G, "numElements", 0);
                 m.values["elementType"] = getMDOperandValue(G, "elementType", 0);
@@ -128,31 +135,6 @@ struct ExtractMD : public ModulePass {
                     m.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartitionMD, 3);
                     m.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartitionMD, 4);
                     m.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartitionMD, 5);
-                }
-            } else {
-                m.name = G.getName().str();
-                m.functionName = "";
-
-                m.values["globalID"] = getMDOperandValue(G, "globalID", 0);
-                m.values["bitwidth"] = getMDOperandValue(G, "bitwidth", 0);
-                m.values["type"] = getMDOperandValue(G, "type", 0);
-
-                MDNode* isArray = G.getMetadata("isArray");
-                if (isArray) {
-                    m.values["numDims"] = getMDOperandValue(G, "numDims", 0);
-                    m.values["numElements"] = getMDOperandValue(G, "numElements", 0);
-                    m.values["elementType"] = getMDOperandValue(G, "elementType", 0);
-                    m.values["elementBitwidth"] = getMDOperandValue(G, "elementBitwidth", 0);
-
-                    if (MDNode* arrayPartitionMD = G.getMetadata("arrayPartition")) {
-                        m.values["arrayPartition"] = 1;
-                        m.values["arrayPartitionID"] = MDOperandToInt(arrayPartitionMD, 0);
-                        m.values["arrayPartitionDim"] = MDOperandToInt(arrayPartitionMD, 1);
-                        m.values["arrayPartitionType"] = MDOperandToInt(arrayPartitionMD, 2);
-                        m.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartitionMD, 3);
-                        m.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartitionMD, 4);
-                        m.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartitionMD, 5);
-                    }
                 }
             }
             md["value"].push_back(m);
@@ -172,7 +154,7 @@ struct ExtractMD : public ModulePass {
                     instMD.name = std::to_string(opID);
                     instMD.functionName = F.getType()->isVoidTy() ? "" : F.getName().str();
 
-                    instMD.values["opID"] = opID;
+                    instMD.values["ID"] = opID;
                     instMD.values["functionID"] = getMDOperandValue(I, "functionID", 0);
                     instMD.values["bbID"] = getMDOperandValue(I, "bbID", 0);
                     instMD.values["opcode"] = getMDOperandValue(I, "opcode", 0);
@@ -211,9 +193,9 @@ struct ExtractMD : public ModulePass {
                         valMD.name = I.getName().str();
                         valMD.functionName = F.getType()->isVoidTy() ? "" : F.getName().str();
 
-                        valMD.values["opID"] = getMDOperandValue(I, "opID", 0);
+                        valMD.values["ID"] = getMDOperandValue(I, "opID", 0);
                         valMD.values["bitwidth"] = getMDOperandValue(I, "bitwidth", 0);
-                        valMD.values["valueType"] = getMDOperandValue(I, "valueType", 0);
+                        valMD.values["type"] = getMDOperandValue(I, "valueType", 0);
 
                         MDNode* isArray = I.getMetadata("isArray");
                         if (isArray) {

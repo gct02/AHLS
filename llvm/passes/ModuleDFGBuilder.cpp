@@ -32,8 +32,6 @@ struct ModuleDFGBuilder : public ModulePass {
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "mod-dfg"
-
-        LLVMContext& ctx = M.getContext();
         
         std::ofstream outputFile(outputFileName);
         if (!outputFile.is_open()) {
@@ -63,7 +61,9 @@ struct ModuleDFGBuilder : public ModulePass {
                                 Use* U = &*UIter;
                                 if (Instruction* op = dyn_cast<Instruction>(U->getUser())) {
                                     if (MDNode* otherOpIDNode = op->getMetadata("opID")) {
-                                        int otherOpID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue())->getZExtValue();
+                                        int otherOpID = cast<ConstantInt>(
+                                            dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue()
+                                        )->getZExtValue();
                                         edges.push_back(std::make_pair(opID, otherOpID));
                                     }
                                 }
@@ -79,7 +79,9 @@ struct ModuleDFGBuilder : public ModulePass {
                                         Use* U = &*UIter;
                                         if (Instruction* op = dyn_cast<Instruction>(U->getUser())) {
                                             if (MDNode* otherOpIDNode = op->getMetadata("opID")) {
-                                                int otherOpID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue())->getZExtValue();
+                                                int otherOpID = cast<ConstantInt>(
+                                                    dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue()
+                                                )->getZExtValue();
                                                 edges.push_back(std::make_pair(opID, otherOpID));
                                             }
                                         }
@@ -94,7 +96,9 @@ struct ModuleDFGBuilder : public ModulePass {
                                     Use* U = &*UIter;
                                     if (Instruction* op = dyn_cast<Instruction>(U->getUser())) {
                                         if (MDNode* otherOpIDNode = op->getMetadata("opID")) {
-                                            int otherOpID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue())->getZExtValue();
+                                            int otherOpID = cast<ConstantInt>(
+                                                dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue()
+                                            )->getZExtValue();
                                             edges.push_back(std::make_pair(opID, otherOpID));
                                         }
                                     }
@@ -108,7 +112,9 @@ struct ModuleDFGBuilder : public ModulePass {
                                     Use* U = &*UIter;
                                     if (Instruction* op = dyn_cast<Instruction>(U->getUser())) {
                                         if (MDNode* otherOpIDNode = op->getMetadata("opID")) {
-                                            int otherOpID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue())->getZExtValue();
+                                            int otherOpID = cast<ConstantInt>(
+                                                dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue()
+                                            )->getZExtValue();
                                             edges.push_back(std::make_pair(opID, otherOpID));
                                         }
                                     }
@@ -121,7 +127,9 @@ struct ModuleDFGBuilder : public ModulePass {
                                 Use* U = &*UIter;
                                 if (Instruction* op = dyn_cast<Instruction>(U->getUser())) {
                                     if (MDNode* otherOpIDNode = op->getMetadata("opID")) {
-                                        int otherOpID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue())->getZExtValue();
+                                        int otherOpID = cast<ConstantInt>(
+                                            dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue()
+                                        )->getZExtValue();
                                         edges.push_back(std::make_pair(opID, otherOpID));
                                     }
                                 }
@@ -134,7 +142,9 @@ struct ModuleDFGBuilder : public ModulePass {
                                     Use* U = &*UIter;
                                     if (Instruction* op = dyn_cast<Instruction>(U->getUser())) {
                                         if (MDNode* otherOpIDNode = op->getMetadata("opID")) {
-                                            int otherOpID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue())->getZExtValue();
+                                            int otherOpID = cast<ConstantInt>(
+                                                dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue()
+                                            )->getZExtValue();
                                             edges.push_back(std::make_pair(opID, otherOpID));
                                         }
                                     }
@@ -146,7 +156,9 @@ struct ModuleDFGBuilder : public ModulePass {
                                 Use* U = &*UIter;
                                 if (Instruction* op = dyn_cast<Instruction>(U->getUser())) {
                                     if (MDNode* otherOpIDNode = op->getMetadata("opID")) {
-                                        int otherOpID = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue())->getZExtValue();
+                                        int otherOpID = cast<ConstantInt>(
+                                            dyn_cast<ConstantAsMetadata>(otherOpIDNode->getOperand(0))->getValue()
+                                        )->getZExtValue();
                                         edges.push_back(std::make_pair(opID, otherOpID));
                                     }
                                 }
@@ -160,7 +172,8 @@ struct ModuleDFGBuilder : public ModulePass {
         return true;
     }
 
-    void writeDFG(std::ofstream& outputFile, std::vector<std::vector<int>>& nodes, std::vector<std::pair<int, int>>& edges) {
+    void writeDFG(std::ofstream& outputFile, const std::vector<std::vector<int>>& nodes, 
+                  const std::vector<std::pair<int, int>>& edges) {
         int numNodes = nodes.size();
         outputFile << numNodes << "\n";
         for (int i = 0; i < numNodes; i++) {
@@ -193,7 +206,10 @@ struct ModuleDFGBuilder : public ModulePass {
             loopPipelineII = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(loopPipelineMDTuple->getOperand(1))->getValue())->getZExtValue();
         }
         
-        std::vector<int> features({opID, functionID, bbID, opCode, bitwidth, valueType, loopDepth, tripCount, loopPipelineOn, loopPipelineII});
+        std::vector<int> features(
+            {opID, functionID, bbID, opCode, bitwidth, valueType, 
+             loopDepth, tripCount, loopPipelineOn, loopPipelineII}
+        );
         return features;
     }
 }; // struct ModuleDFGBuilder
@@ -201,4 +217,6 @@ struct ModuleDFGBuilder : public ModulePass {
 }  // anonymous namespace
 
 char ModuleDFGBuilder::ID = 0;
-static RegisterPass<ModuleDFGBuilder> X("mod-dfg", "Build a module-level DFG", false, false);
+static RegisterPass<ModuleDFGBuilder> X(
+    "mod-dfg", "Build a module-level DFG", false, false
+);

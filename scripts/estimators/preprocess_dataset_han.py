@@ -53,9 +53,7 @@ def process_ir(
         lower invoke instructions to call instructions;
     lowerswitch: 
         lower switch instructions to branch instructions;
-    mem2reg: 
-        promote memory to register;
-    prep-gnn: 
+    prep-gnn:
         prepare the IR for the GNN, removing 'llvm.dbg', 'llvm.lifetime' and 
         '_ssdm_Spec.* intrinsics and implementing 'part.select' and 'part.set';
     update-md: 
@@ -74,6 +72,8 @@ def process_ir(
         Path to the original IR file
     ir_dst_path: Path
         Path to the processed IR file
+    output_md_path: Path
+        Path to the file where the metadata extracted from the IR will be written
     directives_path: Path
         Path to the directives file used in the solution
 
@@ -91,11 +91,10 @@ def process_ir(
         run_opt(temp1_path, temp2_path, "-indirectbr-expand")
         run_opt(temp2_path, temp1_path, "-lowerinvoke")
         run_opt(temp1_path, temp2_path, "-lowerswitch")
-        run_opt(temp2_path, temp1_path, "-mem2reg")
-        run_opt(temp1_path, temp2_path, "-prep-gnn")
-        run_opt(temp2_path, temp1_path, "-update-md")
-        run_opt(temp1_path, temp2_path, "-set-hls-md -dir {}".format(directives_path.as_posix()))
-        run_opt(temp2_path, ir_dst_path, "-rename-vals")
+        run_opt(temp2_path, temp1_path, "-prep-gnn")
+        run_opt(temp1_path, temp2_path, "-update-md")
+        run_opt(temp2_path, temp1_path, "-set-hls-md -dir {}".format(directives_path.as_posix()))
+        run_opt(temp1_path, ir_dst_path, "-rename-vals")
         
         subprocess.check_output(
             f"{OPT} -load {DSE_LIB} -extract-md -md {output_md_path.as_posix()} < {ir_dst_path.as_posix()};", 

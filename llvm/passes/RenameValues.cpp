@@ -27,7 +27,6 @@ struct RenameValues : ModulePass {
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "rename-vals"
-        LLVMContext& ctx = M.getContext();
 
         for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
             Function* F = &*FI;
@@ -47,11 +46,11 @@ struct RenameValues : ModulePass {
         }
 
         for (GlobalVariable& GV : M.getGlobalList()) {
-            // Check if the global variable is a decayed array
-            // that was reconstructed by the `update-md` pass
-            // as a global variable
-            MDNode* isDecayedArray = GV.getMetadata("decayed");
-            if (isDecayedArray) {
+            // Check if the global variable is a parameter
+            // that was extracted from a function by the 
+            // ´prep-gnn´ pass
+            MDNode* isParam = GV.getMetadata("param");
+            if (isParam) {
                 continue;
             }
             if (MDNode* globalIDMDNode = GV.getMetadata("globalID")) {

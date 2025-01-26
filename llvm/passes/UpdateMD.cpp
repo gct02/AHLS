@@ -36,19 +36,14 @@ struct UpdateMD : public ModulePass {
     static char ID;
     UpdateMD() : ModulePass(ID) {}
 
-    bool modified = false;
-
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "update-md"
-        
-        int opIDCounter = 0;
-        int globalIDCounter = 0;
 
-        setMetadataForInstructions(M, opIDCounter);
+        setMetadataForInstructions(M);
         setMetadataForArrays(M);
-        setMetadataForGlobals(M, globalIDCounter);
+        setMetadataForGlobals(M);
 
-        return modified;
+        return false; // Module is not modified
     }
 
     // Set named metadata for an instruction, global object or function
@@ -99,75 +94,29 @@ struct UpdateMD : public ModulePass {
         return arrayType->getArrayNumElements();
     }
 
-    uint64_t getArgAttributeValue(const Argument *Arg, StringRef AttrName) {
-        AttributeList Attrs = Arg->getParent()->getAttributes();
-        auto ArgIdx = Arg->getArgNo();
-        const auto &Attr = Attrs.getParamAttr(ArgIdx, AttrName);
-        auto Str = Attr.getValueAsString();
-        if (Str.empty())
-            return 0;
-
-        unsigned Size;
-        if (to_integer(Str, Size))
-            return Size;
-
-        return 0;
-    }
-
-    uint64_t getDecayedDimSize(const Argument *Arg) {
-        return getArgAttributeValue(Arg, "fpga.decayed.dim.hint");
-    }
-
-    int setArrayMD(Value& V, bool decayed=false) {
+    int setArrayMD(Value& V) {
         Type* valueType = V.getType();
-        Type* elementType = nullptr;
-
-        if (!decayed && !valueType->isArrayTy() && !valueType->isPointerTy()) {
-            return -1;
+        if (!valueType->isArrayTy() && !valueType->isPointerTy()) {
+            return -1; // Not an array or pointer
         }
 
-        if (!decayed) {
-            setMetadata(V, "isArray", 1);
+        while (valueType->isPointerTy()) {
+            valueType = valueType->getPointerElementType();
+        }
+        if (!valueType->isArrayTy()) {
+            return -1; // Not an array
+        }
+        uint32_t numDims = getArrayNumDims(V.getType());
+        uint32_t numElements = getArrayNumElements(V.getType());
 
-            while (valueType->isPointerTy()) {
-                valueType = valueType->getPointerElementType();
-            }
-
-            uint32_t numDims = getArrayNumDims(V.getType());
-            uint32_t numElements = getArrayNumElements(V.getType());
-            setMetadata(V, "numDims", numDims);
-            setMetadata(V, "numElements", numElements);
-        
-            // Get element type of the array
-            elementType = V.getType()->getPointerElementType();
-            while (elementType->isArrayTy()) {
-                elementType = elementType->getArrayElementType();
-            }
-        } else {
-            // Array arguments decayed to pointers can still be reconstructed
-            // using the "fpga.decayed.dim.hint" attribute set by Vitis HLS
-            uint64_t decayedDimSize = getDecayedDimSize(cast<Argument>(&V));
-            if (decayedDimSize == 0) {
-                // Array does not have a decayed dimension size
-                // or the variable is not an array
-                return -1;
-            }
-
-            Type* underlyingType = V.getType()->getPointerElementType();
-            uint32_t numDims = 1 + getArrayNumDims(underlyingType);
-            uint32_t numElements = decayedDimSize * getArrayNumElements(underlyingType);
-
-            setMetadata(V, "isArray", 1);
-            setMetadata(V, "decayed", 1);
-
-            setMetadata(V, "numDims", numDims);
-            setMetadata(V, "numElements", numElements);
-
-            // Get element type of the array
-            elementType = V.getType()->getPointerElementType();
-            while (elementType->isArrayTy()) {
-                elementType = elementType->getArrayElementType();
-            }
+        setMetadata(V, "isArray", 1);
+        setMetadata(V, "numDims", numDims);
+        setMetadata(V, "numElements", numElements);
+    
+        // Get element type of the array
+        Type* elementType = V.getType()->getPointerElementType();
+        while (elementType->isArrayTy()) {
+            elementType = elementType->getArrayElementType();
         }
         setMetadata(V, "elementType", (uint32_t)elementType->getTypeID());
         setMetadata(V, "elementBitwidth", elementType->getPrimitiveSizeInBits());
@@ -175,54 +124,23 @@ struct UpdateMD : public ModulePass {
         return 0;
     }
 
+    // Set array-specific metadata for all arrays in the module
     void setMetadataForArrays(Module& M) {
         for (GlobalObject& G : M.getGlobalList()) {
-            Type* type = G.getType();
-            while (type->isPointerTy()) {
-                type = type->getPointerElementType();
-            }
-            if (type->isArrayTy()) {
-                setArrayMD(G, false);
-            }
+            setArrayMD(G);
         }
-
         for (Function& F : M) {
-            // Check for decayed arrays in the function arguments
-            for (Argument& A : F.args()) {
-                // Array arguments decay to pointers, but we can still
-                // reconstruct the array type using the "fpga.decayed.dim.hint"
-                // attribute set by Vitis HLS. A global variable representing
-                // the array is created and metadata is set for the global variable
-                uint64_t decayedDimSize = getDecayedDimSize(&A);
-                if (decayedDimSize == 0) {
-                    continue;
-                }
-                ArrayType* arrayType = ArrayType::get(A.getType()->getPointerElementType(), decayedDimSize);
-                std::string restoredArrayName = F.getName().str() + "." + A.getName().str();
-                GlobalVariable* GV = new GlobalVariable(M, arrayType, true, 
-                                                        GlobalValue::ExternalLinkage, nullptr, 
-                                                        restoredArrayName);
-                setMetadata(*GV, "decayed", 1);
-                setArrayMD(*GV, false);
-
-                modified = true;
-            }
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
-                    Type* type = I.getType();
-                    while (type->isPointerTy()) {
-                        type = type->getPointerElementType();
-                    }
-                    if (type->isArrayTy()) {
-                        setArrayMD(I, false);
-                    }
+                    setArrayMD(I);
                 }
             }
         }
     }
 
     // Set named metadata for all global objects in the module
-    void setMetadataForGlobals(Module& M, int& id) {
+    void setMetadataForGlobals(Module& M) {
+        int id = 1;
         for (GlobalObject& G : M.getGlobalList()) {
             DEBUG(dbgs() << "Setting metadata for global: " << G << " (globalID = " << id << ")\n");
             setMetadata(G, "globalID", id);
@@ -233,7 +151,8 @@ struct UpdateMD : public ModulePass {
     }
 
     // Set named metadata for all instructions in the module
-    void setMetadataForInstructions(Module& M, int& id) {
+    void setMetadataForInstructions(Module& M) {
+        int id = 1;
         uint32_t functionID = 1, bbID = 1;
 
         for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
@@ -284,8 +203,7 @@ struct UpdateMD : public ModulePass {
         setMetadata(I, "ID." + std::to_string(opID), opID);
     }
 
-    /* Set, for each instruction in the function, metadata containing the 
-     * loop depth and tripcount of the loop containing the instruction */
+    // Set loop-specific metadata for all instructions that reside in a loop
     void setLoopMetadata(Function& F) {
         // Get LoopInfo and ScalarEvolution analyses
         LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
@@ -324,4 +242,6 @@ struct UpdateMD : public ModulePass {
 }  // anonymous namespace
 
 char UpdateMD::ID = 0;
-static RegisterPass<UpdateMD> X("update-md", "Update metadata for instructions and global objects", false, false);
+static RegisterPass<UpdateMD> X(
+    "update-md", "Update metadata for instructions and global objects", false, false
+);

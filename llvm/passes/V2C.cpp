@@ -30,8 +30,6 @@ struct V2CPass : public ModulePass {
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "v2c"
 
-        LLVMContext& ctx = M.getContext();
-
         uint64_t opToPruneID = std::stoull(opToPrune);
         double opValDouble = std::stod(opValue);
 

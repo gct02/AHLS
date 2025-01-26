@@ -1,7 +1,6 @@
 import torch
 import programl
-import re
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Union
 from torch import Tensor
 from sys import argv
 from pathlib import Path
@@ -66,6 +65,7 @@ OPCODE_DICT = {
     'select':        [0,0,0,0,1, 0,1,0,0,0,0,0],
 }
 
+"""
 def parse_mdnode(
     mdnode_text: str
 ) -> List[int]:
@@ -105,147 +105,74 @@ def get_mdnode_id(
     if ',' in mdnode_id:
         mdnode_id = mdnode_id.split(',')[0]
     return int(mdnode_id)
+"""
 
-def get_loop_depth(
-    op_line_text: str, 
-    metadata: Dict[int, List[int]]
-) -> int:
-    mdnode_id = get_mdnode_id(op_line_text, "loopDepth")
-    if mdnode_id == -1:
+def get_loop_depth(md: Dict[str, Union[int, float]]) -> int:
+    if "loopDepth" not in md:
         return 0 # Use 0 for instructions outside loops
-    return metadata[mdnode_id][0]
+    loop_depth = md["loopDepth"]
+    return loop_depth
 
-def get_trip_count(
-    op_line_text: str, 
-    metadata: Dict[int, List[int]]
-) -> int:
-    mdnode_id = get_mdnode_id(op_line_text, "tripCount")
-    if mdnode_id == -1:
+def get_trip_count(md: Dict[str, Union[int, float]]) -> int:
+    if "tripCount" not in md:
         return 1 # Use 1 for instructions outside loops
-    return metadata[mdnode_id][0]
+    trip_count = md["tripCount"]
+    return 1 if trip_count < 1 else trip_count
 
-def get_pipeline_md(
-    op_line_text: str, 
-    metadata: Dict[int, List[int]]
-) -> List[int]:
-    mdnode_id = get_mdnode_id(op_line_text, "pipeline")
-    if mdnode_id == -1:
-        return [0, 0] # Not pipelined
-    try:
-        pipeline_md = metadata[mdnode_id]
-    except KeyError:
+def get_pipeline_md(md: Dict[str, Union[int, float]]) -> List[int]:
+    if "pipeline" not in md:
         return [0, 0]
-    ii = pipeline_md[0]
+    ii = md["pipelineII"]
     return [1, ii]
 
-def get_array_partition_md(
-    op_line_text: str, 
-    metadata: Dict[int, List[int]]
-) -> List[int]:
-    mdnode_id = get_mdnode_id(op_line_text, "arrayPartition")
-    if mdnode_id == -1:
-        return 8 * [0] # Not partitioned
-    try:
-        partition_md = metadata[mdnode_id]
-    except KeyError:
-        return 8 * [0] # Not partitioned (metadata not found)
-    dim = partition_md[1]
-    type_id = partition_md[2] # 1: complete, 2: cyclic, 3: block
-    type_one_hot = [0, 0, 0]
-    type_one_hot[type_id - 1] = 1
-    factor = partition_md[3]
-    dim_size = partition_md[4]
-    num_partitions = partition_md[5]
-    return [1] + type_one_hot + [dim, factor, dim_size, num_partitions]
+def get_array_partition_md(md: Dict[str, Union[int, float]]) -> List[int]:
+    if "arrayPartition" not in md:
+        return [0] * 8
+    dim = md["arrayPartitionDim"]
+    partition_type = md["arrayPartitionType"]
+    one_hot_partition_type = [0, 0, 0]
+    one_hot_partition_type[partition_type - 1] = 1
+    factor = md["arrayPartitionFactor"]
+    dim_size = md["arrayPartitionDimSize"]
+    num_partitions = md["arrayPartitionNumPartitions"]
+    return [1] + one_hot_partition_type + [dim, factor, dim_size, num_partitions]
 
-def get_unroll_md(
-    op_line_text: str, 
-    metadata: Dict[int, List[int]]
-) -> List[int]:
-    mdnode_id = get_mdnode_id(op_line_text, "unroll")
-    if mdnode_id == -1:
-        return [0, 0, 0] # Not unrolled
-    try:
-        unroll_md = metadata[mdnode_id]
-    except KeyError:
-        return [0, 0, 0] # Not unrolled (metadata not found)
-    complete = unroll_md[1]
-    factor = unroll_md[2]
+def get_unroll_md(md: Dict[str, Union[int, float]]) -> List[int]:
+    if "unroll" not in md:
+        return [0, 0, 0]
+    complete = md["unrollComplete"]
+    factor = md["unrollFactor"]
     return [1, complete, factor]
 
-def get_loop_flatten_md(
-    op_line_text: str, 
-    metadata: Dict[int, List[int]]
-) -> List[int]:
-    mdnode_id = get_mdnode_id(op_line_text, "loopFlatten")
-    if mdnode_id == -1 or mdnode_id not in metadata:
-        return [0] # Not flattened
-    return [1]
+def get_loop_flatten_md(md: Dict[str, Union[int, float]]) -> List[int]:
+    if "loopFlatten" not in md:
+        return [0]
+    flattened = md["loopFlatten"]
+    return [flattened]
 
-def get_loop_merge_md(
-    op_line_text:str, 
-    metadata:Dict[int, List[int]]
-) -> List[int]:
-    mdnode_id = get_mdnode_id(op_line_text, "loopMerge")
-    if mdnode_id == -1 or mdnode_id not in metadata:
-        return [0] # Not merged
-    return [1]
+def get_loop_merge_md(md: Dict[str, Union[int, float]]) -> List[int]:
+    if "loopMerge" not in md:
+        return [0]
+    merged = md["loopMerge"]
+    return [merged]
 
-def get_directives_md(
-    op_line_text: str, 
-    metadata: Dict[int, List[int]]
-) -> List[int]:
-    return get_pipeline_md(op_line_text, metadata) \
-           + get_array_partition_md(op_line_text, metadata) \
-           + get_unroll_md(op_line_text, metadata) \
-           + get_loop_flatten_md(op_line_text, metadata) \
-           + get_loop_merge_md(op_line_text, metadata)
+def get_directives_md(md: Dict[str, Union[int, float]]) -> List[int]:
+    return get_pipeline_md(md) \
+           + get_array_partition_md(md) \
+           + get_unroll_md(md) \
+           + get_loop_flatten_md(md) \
+           + get_loop_merge_md(md)
 
-def get_array_md(
-    array_declaration_line: str, 
-    metadata: Dict[int, List[int]]
-) -> List[int]:
-    num_dims_md_id = get_mdnode_id(array_declaration_line, "numDims")
-    if num_dims_md_id == -1 or num_dims_md_id not in metadata:
-        return None
-    num_dims = metadata[num_dims_md_id][0]
+def get_array_md(md: Dict[str, Union[int, float]]) -> List[int]:
+    return [
+        md["numDims"], md["numElements"], 
+        md["elementType"], md["elementBitwidth"]
+    ]
 
-    num_elems_md_id = get_mdnode_id(array_declaration_line, "numElements")
-    if num_elems_md_id == -1 or num_elems_md_id not in metadata:
-        return None
-    num_elems = metadata[num_elems_md_id][0]
+def get_bitwidth(md: Dict[str, Union[int, float]]) -> int:
+    return md["bitwidth"]
 
-    elem_type_md_id = get_mdnode_id(array_declaration_line, "elementType")
-    if elem_type_md_id == -1 or elem_type_md_id not in metadata:
-        return None
-    elem_type = metadata[elem_type_md_id][0]
-
-    elem_bitwidth_md_id = get_mdnode_id(array_declaration_line, "elementBitwidth")
-    if elem_bitwidth_md_id == -1 or elem_bitwidth_md_id not in metadata:
-        return None
-    elem_bitwidth = metadata[elem_bitwidth_md_id][0]
-
-    return [num_dims, num_elems, elem_type, elem_bitwidth]
-
-def get_bitwidth(
-    line_text: str, 
-    metadata: Dict[int, List[int]]
-) -> int:
-    bitwidth_md_id = get_mdnode_id(line_text, "bitwidth")
-    if bitwidth_md_id == -1 or bitwidth_md_id not in metadata:
-        return 32 # Placeholder for now
-    return metadata[bitwidth_md_id][0]
-
-def get_one_hot_opcode(
-    inst_text: str
-) -> List[int]:
-    if inst_text in OPCODE_DICT:
-        return OPCODE_DICT[inst_text]
-    return [0] * 12 # Unknown instruction
-
-def get_one_hot_type_from_id(
-    type_id: int
-) -> List[int]:
+def get_one_hot_type_from_id(type_id: int) -> List[int]:
     # Note: Arrays are treated separately as another node type
     if type_id == 0: # VoidTyID
         return [1, 0, 0, 0, 0, 0, 0]
@@ -253,7 +180,7 @@ def get_one_hot_type_from_id(
         return [0, 1, 0, 0, 0, 0, 0]
     elif type_id == 11: # IntegerTyID
         return [0, 0, 1, 0, 0, 0, 0]
-    elif type_id == 9 or type_id == 16: # Vectors
+    elif type_id == 9 or type_id == 16: # Vector types
         return [0, 0, 0, 1, 0, 0, 0]
     elif type_id == 15: # PointerTyID
         return [0, 0, 0, 0, 1, 0, 0]
@@ -262,15 +189,128 @@ def get_one_hot_type_from_id(
     else: # Other types
         return [0, 0, 0, 0, 0, 0, 1]
 
-def get_one_hot_type(
-    line_text: str, 
-    metadata: Dict[int, List[int]]
+def get_one_hot_opcode(
+    inst_name: str
 ) -> List[int]:
-    type_md_id = get_mdnode_id(line_text, "type")
-    if type_md_id == -1 or type_md_id not in metadata:
-        return 7 * [0] # Placeholder for now
-    type_id = metadata[type_md_id][0]
+    if inst_name in OPCODE_DICT:
+        return OPCODE_DICT[inst_name]
+    return [0] * 12 # Unknown instruction
+
+def get_one_hot_type(
+    md: Dict[str, Union[int, float]]
+) -> List[int]:
+    type_id = md["type"] if "type" in md else 0
     return get_one_hot_type_from_id(type_id)
+
+def convert_raw_metadata(
+    raw_md: Dict[str, str]
+) -> Dict[str, Union[int, float]]:
+    processed_md = {}
+    for key, value in raw_md.items():
+        if key == "functionName":
+            continue
+        if value == "true":
+            processed_md[key] = 1
+        elif value == "false":
+            processed_md[key] = 0
+        else:
+            try:
+                processed_md[key] = int(value)
+            except ValueError:
+                try:
+                    processed_md[key] = float(value)
+                except ValueError:
+                    processed_md[key] = 0
+    return processed_md
+
+def get_type_id_from_type_str(
+    type_str: str,
+    node_full_text: str = ""
+) -> int:
+    if type_str[-1] != '*': # Pointer type
+        return 15
+    if '[' in type_str: # Array type
+        return 16
+    if 'void' in type_str: # Void type
+        return 0
+    if 'half' in type_str: # 16-bit float type
+        return 1
+    if 'float' in type_str: # 32-bit float type
+        return 2
+    if 'double' in type_str: # 64-bit float type
+        return 3
+    if type_str[0] == 'i': # Int type
+        return 11
+    if ('vector' in type_str or
+        ('<' in node_full_text and '>' in node_full_text)): # Vector type
+        return 9
+    # Other types (e.g. struct, label, token, etc.)
+    return -1
+
+def get_bitwidth_from_type_str(
+    type_str: str,
+    node_full_text: str = ""
+) -> int:
+    if type_str[-1] == '*': # Pointer type
+        return 0
+    if '[' in type_str: # Array type
+        n_elems = int(type_str.split('[')[1].split(' x')[0])
+        elem_type = type_str.split('x ')[1].split(']')[0]
+        elem_bitwidth = get_bitwidth_from_type_str(
+            elem_type, node_full_text
+        )
+        return n_elems * elem_bitwidth
+    if 'void' in type_str: # Void type
+        return 0
+    if 'half' in type_str: # 16-bit float type
+        return 16
+    if 'float' in type_str: # 32-bit float type
+        return 32
+    if 'double' in type_str: # 64-bit float type
+        return 64
+    if type_str[0] == 'i': # Int type
+        return int(type_str[1:])
+    if ('vector' in type_str or
+        ('<' in node_full_text and '>' in node_full_text)): # Vector type
+        n_elems = int(node_full_text.split('<')[1].split(' x')[0])
+        elem_type = node_full_text.split('x ')[1].split('>')[0]
+        elem_bitwidth = get_bitwidth(elem_type, elem_type)
+        return n_elems * elem_bitwidth
+    # Other types (e.g. struct, label, token, etc.)
+    return 0
+
+def get_numeric_const_features(
+    node_full_text: str
+) -> List[int]:
+    type_str = node_full_text.split(' ')[0]
+    value_str = node_full_text.split(' ')[-1]
+
+    type_id = get_type_id_from_type_str(type_str, node_full_text)
+    one_hot_type = get_one_hot_type_from_id(type_id)
+    bitwidth = get_bitwidth_from_type_str(type_str, node_full_text)
+
+    is_int = True if one_hot_type[2] == 1 else False
+    if is_int:
+        if value_str == 'true':
+            const_value = 1
+        elif value_str == 'false':
+            const_value = 0
+        else:
+            try:
+                const_value = int(value_str)
+            except ValueError:
+                const_value = 0
+    else:
+        is_float = True if one_hot_type[1] == 1 else False
+        if is_float:
+            try:
+                const_value = float(value_str)
+            except ValueError:
+                const_value = 0
+        else:
+            const_value = 0
+
+    return one_hot_type + [bitwidth, const_value]
 
 def get_nodes(
     programl_graph,
@@ -316,15 +356,17 @@ def get_nodes(
             node_full_text = ir_instructions[id]
 
             raw_md = metadata["instruction"][str(id)]
+            # function_name = raw_md["functionName"] if "functionName" in raw_md else ""
+            md = convert_raw_metadata(raw_md)
 
-            one_hot_op = get_one_hot_opcode(raw_md)
-            loop_depth = get_loop_depth(raw_md)
-            trip_count = get_trip_count(raw_md)
+            one_hot_op = get_one_hot_opcode(node_text)
+            loop_depth = get_loop_depth(md)
+            trip_count = get_trip_count(md)
 
-            directives = get_pipeline_md(raw_md) \
-                         + get_unroll_md(raw_md) \
-                         + get_loop_flatten_md(raw_md) \
-                         + get_loop_merge_md(raw_md)
+            directives = get_pipeline_md(md) \
+                         + get_unroll_md(md) \
+                         + get_loop_flatten_md(md) \
+                         + get_loop_merge_md(md)
 
             features = one_hot_op + [loop_depth, trip_count] + directives
             nodes['inst'].append(torch.tensor(features, dtype=torch.float32))
@@ -332,22 +374,39 @@ def get_nodes(
 
         elif node.type == 1 or node.type == 2: 
             # --- Variable or Constant --- #
-            name = node_text.split(' ')[1] if ' ' in node_text else node_text
+            is_numeric_const = False
+
+            if node_full_text.startswith('@'): # Global value
+                name = node_full_text.split(' ')[0].strip('@')
+            else: # Local value
+                name = node_full_text.split(' ')[1]
+                if name.startswith('%'):
+                    name = name.strip('%')
+                else:
+                    is_numeric_const = True
+
+            if is_numeric_const:
+                features = get_numeric_const_features(node_full_text)
+                nodes['const'].append(torch.tensor(features, dtype=torch.float32))
+                indices["const"].append(i)
+                continue
 
             raw_md = metadata["value"][name]
+            # function_name = raw_md["functionName"] if "functionName" in raw_md else ""
+            md = convert_raw_metadata(raw_md)
 
-            if "isArray" in raw_md:
-                array_md = get_array_md(raw_md)
+            if "isArray" in md:
+                array_md = get_array_md(md)
                 one_hot_type = get_one_hot_type_from_id(array_md[2])
-                array_partition_md = get_array_partition_md(raw_md)
+                array_partition_md = get_array_partition_md(md)
                 features = (array_md[:2] + one_hot_type + array_md[3:]
                             + array_partition_md)
                 nodes['array'].append(torch.tensor(features, dtype=torch.float32))
                 indices["array"].append(i)
                 continue
             
-            one_hot_type = get_one_hot_type(raw_md)
-            bitwidth = get_bitwidth(raw_md)
+            one_hot_type = get_one_hot_type(md)
+            bitwidth = get_bitwidth(md)
 
             if node.type == 1: 
                 # Variable
@@ -356,10 +415,9 @@ def get_nodes(
                 indices["var"].append(i)
             else: 
                 # Constant
+                value_text = node_full_text.split(' ')[-1]
                 is_int = True if one_hot_type[2] == 1 else False
-                is_float = True if one_hot_type[1] == 1 else False
                 if is_int:
-                    value_text = node_full_text.split(' ')[-1]
                     if value_text == 'true':
                         const_value = 1
                     elif value_text == 'false':
@@ -369,13 +427,15 @@ def get_nodes(
                             const_value = int(value_text)
                         except ValueError:
                             const_value = 0
-                elif is_float:
-                    try:
-                        const_value = float(node_full_text.split(' ')[-1])
-                    except ValueError:
-                        const_value = 0
                 else:
-                    const_value = 0
+                    is_float = True if one_hot_type[1] == 1 else False
+                    if is_float:
+                        try:
+                            const_value = float(value_text)
+                        except ValueError:
+                            const_value = 0
+                    else:
+                        const_value = 0
                 features = one_hot_type + [bitwidth, const_value]
                 nodes['const'].append(torch.tensor(features, dtype=torch.float32))
                 indices["const"].append(i)
@@ -512,17 +572,17 @@ def parse_md_file(metadata_path: Path) -> Dict[str, Dict[str, Dict[str, str]]]:
     node_type = None
     node_name = None
     for line in lines:
-        if line.startswith('  '):
+        if line.startswith('    '):
             if node_name is None:
                 continue
             if node_name not in metadata[node_type]:
                 metadata[node_type][node_name] = {}
             metadata_name, metadata_value = line.strip().split(': ')
             metadata[node_type][node_name][metadata_name] = metadata_value
-        elif line.startswith(' '):
-            node_name = line.strip()
+        elif line.startswith('  '):
+            node_name = line.strip(": \n")
         else:
-            node_type = line.strip()
+            node_type = line.strip(": \n")
             metadata[node_type] = {}
 
     return metadata
@@ -536,7 +596,6 @@ def build_cdfg(
         ir_text = ir_file.read()
 
     ir_graph = programl.from_llvm_ir(ir_text)
-
     ir_lines = ir_text.split('\n')
 
     ir_instructions = {}

@@ -1,21 +1,26 @@
-#include "llvm/IR/IRBuilder.h"
+#include "llvm/ADT/SmallVector.h"
 #include "llvm/IR/LLVMContext.h"
+#include "llvm/IR/IRBuilder.h"
+#include "llvm/IR/Metadata.h"
 #include "llvm/IR/Module.h"
 #include "llvm/IR/Function.h"
-#include "llvm/IR/Instructions.h"
-#include "llvm/IR/BasicBlock.h"
-#include "llvm/IR/Type.h"
+#include "llvm/IR/Instruction.h"
 #include "llvm/IR/Constants.h"
-#include "llvm/IR/PassManager.h"
-#include "llvm/IR/DIBuilder.h"
-#include "llvm/IR/DerivedTypes.h"
-#include "llvm/IR/GlobalVariable.h"
-#include "llvm/IR/Intrinsics.h"
 #include "llvm/Pass.h"
-#include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/raw_ostream.h"
+#include "llvm/Transforms/IPO/PassManagerBuilder.h"
+#include "llvm/Transforms/Utils/BasicBlockUtils.h"
+#include "llvm/Analysis/IVDescriptors.h"
+#include "llvm/Analysis/LoopAccessAnalysis.h"
+
+#include "llvm/Analysis/XILINXLoopInfoUtils.h"
+#include "llvm/Analysis/XILINXInterfaceAnalysis.h"
+#include "llvm/IR/XILINXFPGAIntrinsicInst.h"
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -29,36 +34,92 @@ struct HLSIRPrepForGNN : ModulePass {
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "prep-gnn"
-        LLVMContext& ctx = M.getContext();
 
-        // Collect all 'llvm.fpga.legacy.part.select.*' and 
-        // 'llvm.fpga.legacy.part.set.*' intrinsics
-        std::vector<Function*> partSelectIntrinsics, partSetIntrinsics;
+        implementPartSelect(M);
+        implementPartSet(M);
+
+        removeDbgIntrinsics(M);
+        removeLifetimeIntrinsics(M);
+        removeSpecIntrinsics(M);
+
+        extractParamsAsGlobals(M);
+
+        return true;
+    }
+
+    uint64_t getArgAttributeValue(const Argument *arg, StringRef attrName) {
+        AttributeList attrs = arg->getParent()->getAttributes();
+        auto argIdx = arg->getArgNo();
+        const auto &attr = attrs.getParamAttr(argIdx, attrName);
+        auto attrStr = attr.getValueAsString();
+        if (attrStr.empty())
+            return 0;
+
+        unsigned size;
+        if (to_integer(attrStr, size))
+            return size;
+
+        return 0;
+    }
+
+    uint64_t getDecayedDimSize(const Argument *arg) {
+        return getArgAttributeValue(arg, "fpga.decayed.dim.hint");
+    }
+
+    // Set named metadata for an instruction, global object or function
+    void setMetadata(Value& V, StringRef name, uint32_t value) {
+        LLVMContext& ctx = V.getContext();
+        ConstantInt* valueCI = ConstantInt::get(Type::getInt32Ty(ctx), value);
+        MDNode* md = MDNode::get(ctx, {ConstantAsMetadata::get(valueCI)});
+        if (Instruction* I = dyn_cast<Instruction>(&V)) {
+            I->setMetadata(name, md);
+        } else if (GlobalObject* G = dyn_cast<GlobalObject>(&V)) {
+            G->setMetadata(name, md);
+        } else if (Function* F = dyn_cast<Function>(&V)) {
+            F->setMetadata(name, md);
+        }
+    }
+
+    /*
+     * Create a global variable <func>.<arg> for each argument arg
+     * of each function func in the module M.
+     * Note: If the argument is a decayed array, the global variable
+     * will have the same type as the original array if the 
+     * "fpga.decayed.dim.hint" attribute is set.
+     */
+    void extractParamsAsGlobals(Module& M) {
         for (Function& F : M) {
-            if (!F.isIntrinsic() || !F.hasName()) {
+            if (!F.hasName()) {
                 continue;
             }
-            if (F.getName().startswith("llvm.fpga.legacy.part.select") ||
-                F.getName().startswith("llvm.part.select")) {
-                partSelectIntrinsics.push_back(&F);
-            } 
-            else if (F.getName().startswith("llvm.fpga.legacy.part.set") || 
-                     F.getName().startswith("llvm.part.set")) {
-                partSetIntrinsics.push_back(&F);
+            for (Argument& A : F.args()) {
+                Type* argTy = A.getType();
+                Type* Ty;
+                std::string globalName = F.getName().str() + "." + A.getName().str();
+                uint64_t decayedDimSize = getDecayedDimSize(&A);
+
+                if (decayedDimSize != 0) {
+                    Ty = ArrayType::get(argTy->getPointerElementType(), decayedDimSize);
+                } else {
+                    Ty = argTy;
+                }
+
+                GlobalVariable* GV = new GlobalVariable(
+                    M, Ty, true, GlobalValue::ExternalLinkage, nullptr, globalName
+                );
+                setMetadata(*GV, "param", 1);
             }
         }
-        // Replace part_select and part_set intrinsics with their implementation
-        implementPartSelect(M, ctx, partSelectIntrinsics);
-        implementPartSet(M, ctx, partSetIntrinsics);
+    }
 
+    void removeDbgIntrinsics(Module& M) {
         // Collect all 'llvm.dbg.*' intrinsics
         std::vector<Function*> dbgIntrinsics;
         for (Function& F : M) {
-            if (!F.isIntrinsic() || !F.hasName()) {
-                continue;
-            }
-            if (F.getName().startswith("llvm.dbg.")) {
-                dbgIntrinsics.push_back(&F);
+            if (F.isIntrinsic() && F.hasName()) {
+                if (F.getName().startswith("llvm.dbg.")) {
+                    dbgIntrinsics.push_back(&F);
+                }
             }
         }
         // Remove all 'llvm.dbg.*' intrinsics from the module
@@ -74,15 +135,16 @@ struct HLSIRPrepForGNN : ModulePass {
             }
             F->eraseFromParent();
         }
+    }
 
+    void removeLifetimeIntrinsics(Module& M) {
         // Collect all 'llvm.lifetime.*' intrinsics
         std::vector<Function*> lifetimeIntrinsics;
         for (Function& F : M) {
-            if (!F.isIntrinsic() || !F.hasName()) {
-                continue;
-            }
-            if (F.getName().startswith("llvm.lifetime.")) {
-                lifetimeIntrinsics.push_back(&F);
+            if (F.isIntrinsic() && F.hasName()) {
+                if (F.getName().startswith("llvm.lifetime.")) {
+                    lifetimeIntrinsics.push_back(&F);
+                }
             }
         }
         // Remove all 'llvm.lifetime.*' intrinsics from the module
@@ -98,7 +160,9 @@ struct HLSIRPrepForGNN : ModulePass {
             }
             F->eraseFromParent();
         }
+    }
 
+    void removeSpecIntrinsics(Module& M) {
         // Collect all '_ssdm_op_Spec.*' and '_ssdm_Spec.*' intrinsics
         std::vector<Function*> ssdmSpecIntrinsics;
         for (Function& F : M) {
@@ -122,19 +186,23 @@ struct HLSIRPrepForGNN : ModulePass {
             }
             F->eraseFromParent();
         }
+    }
 
-        // Remove all unused global variables from the module
-        for (auto it = M.global_begin(); it != M.global_end(); ) {
-            GlobalVariable& GV = *it++;
-            if (GV.use_empty()) {
-                GV.eraseFromParent();
+    void implementPartSelect(Module& M) {
+        LLVMContext& ctx = M.getContext();
+
+        // Collect all 'llvm.fpga.legacy.part.select.*' intrinsics
+        std::vector<Function*> partSelectIntrinsics;
+        for (Function& F : M) {
+            if (!F.isIntrinsic() || !F.hasName()) {
+                continue;
+            }
+            if (F.getName().startswith("llvm.fpga.legacy.part.select") ||
+                F.getName().startswith("llvm.part.select")) {
+                partSelectIntrinsics.push_back(&F);
             }
         }
 
-        return true;
-    }
-
-    void implementPartSelect(Module& M, LLVMContext& ctx, std::vector<Function*> partSelectIntrinsics) {
         // Replace 'llvm.fpga.legacy.part.select.*' intrinsics with their implementation
         int counter = 0;
         for (Function* F : partSelectIntrinsics) {
@@ -181,7 +249,20 @@ struct HLSIRPrepForGNN : ModulePass {
         }
     }
 
-    void implementPartSet(Module& M, LLVMContext& ctx, std::vector<Function*> partSetIntrinsics) {
+    void implementPartSet(Module& M) {
+        LLVMContext& ctx = M.getContext();
+
+        // Collect all 'llvm.fpga.legacy.part.set.*' intrinsics
+        std::vector<Function*> partSetIntrinsics;
+        for (Function& F : M) {
+            if (!F.isIntrinsic() || !F.hasName()) {
+                continue;
+            }
+            if (F.getName().startswith("llvm.fpga.legacy.part.set") ||
+                F.getName().startswith("llvm.part.set")) {
+                partSetIntrinsics.push_back(&F);
+            }
+        }
         // Replace 'llvm.fpga.legacy.part.set.*' intrinsics with their implementation
         int counter = 0;
         for (Function* F : partSetIntrinsics) {
@@ -256,4 +337,6 @@ struct HLSIRPrepForGNN : ModulePass {
 }  // anonymous namespace
 
 char HLSIRPrepForGNN::ID = 0;
-static RegisterPass<HLSIRPrepForGNN> X("prep-gnn", "Preprocess Vitis IR to use it as input to a GNN model", false, false);
+static RegisterPass<HLSIRPrepForGNN> X(
+    "prep-gnn", "Preprocess Vitis IR to use it as input to a GNN model", false, false
+);
