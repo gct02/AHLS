@@ -63,5 +63,6 @@ class HLSDataset(Dataset):
                         line = f.readline().split('=')
                         metric = line[0]
                     target_value = float(line[1])
+                    target_value = torch.tensor([target_value])
 
                 self.data.append((cdfg, target_value))

@@ -67,7 +67,7 @@ OPCODE_DICT = {
 
 INST_FEATURES_SIZE = 21
 VAR_FEATURES_SIZE = 8
-CONST_FEATURES_SIZE = 9
+CONST_FEATURES_SIZE = 8
 ARRAY_FEATURES_SIZE = 17
 
 """
@@ -111,6 +111,16 @@ def get_mdnode_id(
         mdnode_id = mdnode_id.split(',')[0]
     return int(mdnode_id)
 """
+
+def get_node_num_features(node_type: str) -> int:
+    if node_type == 'inst':
+        return INST_FEATURES_SIZE
+    elif node_type == 'var':
+        return VAR_FEATURES_SIZE
+    elif node_type == 'const':
+        return CONST_FEATURES_SIZE
+    else:
+        return ARRAY_FEATURES_SIZE
 
 def get_loop_depth(md: Dict[str, Union[int, float]]) -> int:
     if "loopDepth" not in md:
@@ -317,28 +327,31 @@ def get_literal_const_features(
     one_hot_type = get_one_hot_type_from_id(type_id)
     bitwidth = get_bitwidth_from_type_str(type_str, node_full_text)
 
-    is_int = True if one_hot_type[2] == 1 else False
-    if is_int:
-        if value_str == 'true':
-            const_value = 1
-        elif value_str == 'false':
-            const_value = 0
-        else:
-            try:
-                const_value = int(value_str)
-            except ValueError:
-                const_value = 0
-    else:
-        is_float = True if one_hot_type[1] == 1 else False
-        if is_float:
-            try:
-                const_value = float(value_str)
-            except ValueError:
-                const_value = 0
-        else:
-            const_value = 0
+    features = one_hot_type + [bitwidth]
 
-    features = one_hot_type + [bitwidth, const_value]
+    # is_int = True if one_hot_type[2] == 1 else False
+    # if is_int:
+    #     if value_str == 'true':
+    #         const_value = 1
+    #     elif value_str == 'false':
+    #         const_value = 0
+    #     else:
+    #         try:
+    #             const_value = int(value_str)
+    #         except ValueError:
+    #             const_value = 0
+    # else:
+    #     is_float = True if one_hot_type[1] == 1 else False
+    #     if is_float:
+    #         try:
+    #             const_value = float(value_str)
+    #         except ValueError:
+    #             const_value = 0
+    #     else:
+    #         const_value = 0
+    #
+    # features = one_hot_type + [bitwidth, const_value]
+
     return features, is_array
 
 def get_nodes(
@@ -436,35 +449,39 @@ def get_nodes(
             one_hot_type = get_one_hot_type(md)
             bitwidth = get_bitwidth(md)
 
+            features = one_hot_type + [bitwidth]
+
             if node.type == 1: 
                 # Variable
-                features = one_hot_type + [bitwidth]
                 nodes['var'].append(torch.tensor(features, dtype=torch.float32))
                 indices["var"].append(i)
             else: 
                 # Constant
-                value_text = node_full_text.split(' ')[-1]
-                is_int = True if one_hot_type[2] == 1 else False
-                if is_int:
-                    if value_text == 'true':
-                        const_value = 1
-                    elif value_text == 'false':
-                        const_value = 0
-                    else:
-                        try:
-                            const_value = int(value_text)
-                        except ValueError:
-                            const_value = 0
-                else:
-                    is_float = True if one_hot_type[1] == 1 else False
-                    if is_float:
-                        try:
-                            const_value = float(value_text)
-                        except ValueError:
-                            const_value = 0
-                    else:
-                        const_value = 0
-                features = one_hot_type + [bitwidth, const_value]
+
+                # value_text = node_full_text.split(' ')[-1]
+                # is_int = True if one_hot_type[2] == 1 else False
+                # if is_int:
+                #     if value_text == 'true':
+                #         const_value = 1
+                #     elif value_text == 'false':
+                #         const_value = 0
+                #     else:
+                #         try:
+                #             const_value = int(value_text)
+                #         except ValueError:
+                #             const_value = 0
+                # else:
+                #     is_float = True if one_hot_type[1] == 1 else False
+                #     if is_float:
+                #         try:
+                #             const_value = float(value_text)
+                #         except ValueError:
+                #             const_value = 0
+                #     else:
+                #         const_value = 0
+                #
+                # features = one_hot_type + [bitwidth, const_value]
+
                 nodes['const'].append(torch.tensor(features, dtype=torch.float32))
                 indices["const"].append(i)
 
@@ -472,7 +489,8 @@ def get_nodes(
         if len(nodes[key]) > 0:
             nodes[key] = torch.stack(nodes[key])
         else:
-            nodes[key] = None
+            n_features = get_node_num_features(key)
+            nodes[key] = torch.empty((0, n_features), dtype=torch.float32)
 
     return nodes, indices
 
@@ -576,9 +594,10 @@ def get_edges(
         edges[('array','id','array')].append(edge_tensor)
 
     for key in edges.keys():
-        if len(edges[key]) == 0:
-            continue
-        edges[key] = torch.stack(edges[key]).transpose(0, 1)
+        if len(edges[key]) > 0:
+            edges[key] = torch.stack(edges[key]).transpose(0, 1)
+        else:
+            edges[key] = torch.empty((0, 2), dtype=torch.int64)
 
     return edges
 

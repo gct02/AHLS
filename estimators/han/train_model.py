@@ -66,7 +66,9 @@ def train_model(
 
                 x_dict = move_to_device(x_dict, device)
                 edge_index_dict = move_to_device(edge_index_dict, device)
-                # target = target.to(device)
+                target = target.to(device)
+
+                print(edge_index_dict)
 
                 pred = model(x_dict, edge_index_dict)
 
@@ -76,7 +78,7 @@ def train_model(
 
                 x_dict = move_to_device(x_dict, "cpu")
                 edge_index_dict = move_to_device(edge_index_dict, "cpu")
-                # target, pred = target.to("cpu"), pred.to("cpu")
+                target, pred = target.to("cpu"), pred.to("cpu")
                 torch.cuda.empty_cache()
 
             optimizer.step()
@@ -207,12 +209,12 @@ def main(args):
         val_loader = DataLoader(val_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        n_features = {'inst': 21, 'var': 8, 'const': 9, 'array': 17}
+        n_features = {'inst': 21, 'var': 8, 'const': 8, 'array': 18}
 
         model = HAN(
             n_features=n_features, 
             n_out=1, 
-            n_hid_att=10, 
+            n_hid_att=16, 
             heads_att=4, 
             n_hid_set=9, 
             heads_set=3, 
