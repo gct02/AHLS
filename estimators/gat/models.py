@@ -16,9 +16,14 @@ class GAT(nn.Module):
         heads1: int, 
         heads2: int = 1, 
         n_layers: int = 5, 
-        norm: bool = False
+        norm: bool = False,
+        dropout: float = 0.1,
+        leaky_relu_slope: float = 0.01
     ):
         super(GAT, self).__init__()
+
+        self.dropout = dropout
+        self.leaky_relu_slope = leaky_relu_slope
 
         self.n_layers = n_layers
 
@@ -36,24 +41,24 @@ class GAT(nn.Module):
             out_features=n_hid1, 
             n_heads=heads1, 
             concat=True, 
-            leaky_relu_slope=0.01, 
-            dropout=0.5
+            leaky_relu_slope=leaky_relu_slope,
+            dropout=dropout
         )
         self.gat_jkn = GraphAttentionalLayer(
             in_features=n_hid1, 
             out_features=n_hid1, 
             n_heads=heads1, 
             concat=True, 
-            leaky_relu_slope=0.01, 
-            dropout=0.4
+            leaky_relu_slope=leaky_relu_slope,
+            dropout=dropout
         )
         self.gat_out = GraphAttentionalLayer(
             in_features=n_hid1, 
             out_features=n_hid2, 
             n_heads=heads2, 
             concat=False, 
-            leaky_relu_slope=0.01, 
-            dropout=0.3
+            leaky_relu_slope=leaky_relu_slope,
+            dropout=dropout
         )
 
         # LSTM for Jumping Knowledge aggregation
@@ -69,30 +74,35 @@ class GAT(nn.Module):
         # to prevent negative predictions without using a ReLU activation
         nn.init.constant_(self.fc.bias, 0.1)
 
-    def _make_adj_mat(
+    def get_adj_and_node_degrees(
         self, 
         edges: Tensor,
         n_nodes: int,
         sparse: bool = False
     ) -> Tensor:
         adj_mat = torch.tensor(
-            [-9e15] * (n_nodes * n_nodes), 
+            [0] * (n_nodes * n_nodes), 
             dtype=torch.float32, 
             device="cpu"
         ).view(n_nodes, n_nodes)
 
         adj_mat[edges[0,:]-1, edges[1,:]-1] = 0
 
+        node_degrees = torch.sum(adj_mat, dim=1)
+        node_degrees[node_degrees == 0] = 1
+
+        adj_mat[adj_mat == 0] = -9e15
+
         if sparse:
             adj_mat = adj_mat.to_sparse()
 
-        return adj_mat
+        return adj_mat, node_degrees
 
     def forward(self, node_features: Tensor, edges: Tensor) -> Tensor:
         n_nodes = node_features.shape[0]
-        adj_mat = self._make_adj_mat(edges, n_nodes)
+        adj_mat, node_degrees = self.get_adj_and_node_degrees(edges, n_nodes)
 
-        x = checkpoint(self.gat_jkn_pre, node_features, adj_mat, 
+        x = checkpoint(self.gat_jkn_pre, node_features, adj_mat, node_degrees,
                        use_reentrant=False)
         x = F.elu(x)
 
@@ -101,7 +111,7 @@ class GAT(nn.Module):
 
         xk = []
         for _ in range(self.n_layers):
-            x = checkpoint(self.gat_jkn, x, adj_mat, 
+            x = checkpoint(self.gat_jkn, x, adj_mat, node_degrees,
                            use_reentrant=False)
             x = F.elu(x)
             if self.normalize:
@@ -113,7 +123,7 @@ class GAT(nn.Module):
         _, (hn, _) = self.lstm(xk) # Only take the final hidden state from LSTM
 
         # Apply the final GAT layer
-        x = checkpoint(self.gat_out, hn.squeeze(0), adj_mat, 
+        x = checkpoint(self.gat_out, hn.squeeze(0), adj_mat, node_degrees,
                        use_reentrant=False)
         x = F.elu(x)
 
@@ -122,6 +132,6 @@ class GAT(nn.Module):
 
         # Sum the final hidden states
         x = torch.sum(x, dim=0)
-        x = F.leaky_relu(x, negative_slope=0.01)
+        x = F.leaky_relu(x, negative_slope=self.leaky_relu_slope)
         
         return self.fc(x)

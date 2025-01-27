@@ -131,7 +131,7 @@ def main(args):
             test_dataset, batch_size=1, shuffle=False, collate_fn=lambda x: tuple(zip(*x))
         )
 
-        model = GAT(n_features=19, n_out=1, n_hid1=12, n_hid2=6, heads1=3, heads2=2, n_layers=5)
+        model = GAT(n_features=18, n_out=1, n_hid1=16, n_hid2=8, heads1=4, heads2=2, n_layers=5)
         model = model.to(device)
 
         loss_func = nn.MSELoss()

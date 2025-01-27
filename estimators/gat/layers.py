@@ -1,4 +1,3 @@
-import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -14,7 +13,7 @@ class GraphAttentionalLayer(nn.Module):
         n_heads: int, 
         concat: bool = False, 
         leaky_relu_slope: float = 0.01, 
-        dropout: float = 0.0
+        dropout: float = 0.1
     ):
         super(GraphAttentionalLayer, self).__init__()
         self.n_heads = n_heads
@@ -63,11 +62,23 @@ class GraphAttentionalLayer(nn.Module):
 
         return torch.stack(e)
 
-    def forward(self, h: Tensor, adj_mat: Tensor) -> Tensor:
-        h_transformed = torch.mm(h, self.W).view(h.shape[0], self.n_heads, self.n_hidden).permute(1, 0, 2)
+    def forward(
+        self, 
+        h: Tensor,
+        node_degrees: Tensor,
+        adj_mat: Tensor
+    ) -> Tensor:
+        h_transformed = torch.mm(h, self.W).view(h.shape[0], self.n_heads, self.n_hidden)
+        h_transformed = h_transformed.permute(1, 0, 2)
         h_transformed = F.dropout(h_transformed, self.dropout, training=self.training)
 
         e = self._get_att_scores(h_transformed, adj_mat)
+
+        # Scale the attention scores by the inverse square root of the node degrees
+        # to prevent the values from blowing up
+        scaling = 1. / torch.sqrt(node_degrees).unsqueeze(1)
+        e = e * scaling
+
         att = e.softmax(dim=-1)
         att = F.dropout(att, self.dropout, training=self.training)
 

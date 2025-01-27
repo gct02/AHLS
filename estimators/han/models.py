@@ -38,7 +38,8 @@ class HAN(nn.Module):
         n_hid_set: Union[int, None] = None,
         heads_set: int = 1,
         norm: bool = True,
-        n_inducing_points: int = 16
+        n_inducing_points: int = 16,
+        dropout: float = 0.2
     ):
         super(HAN, self).__init__()
 
@@ -67,13 +68,13 @@ class HAN(nn.Module):
             metadata=metadata,
             in_channels=n_features, out_channels=n_hid_att, 
             heads=heads_att, 
-            negative_slope=0.1, dropout=0.6
+            negative_slope=0.1, dropout=dropout
         )
         self.han2 = HANConv(
             metadata=metadata,
             in_channels=n_hid_att, out_channels=n_hid_att, 
             heads=heads_att, 
-            negative_slope=0.1, dropout=0.5
+            negative_slope=0.1, dropout=dropout
         )
         self.han3 = HANConv(
             metadata=metadata,

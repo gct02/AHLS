@@ -70,48 +70,6 @@ VAR_FEATURES_SIZE = 8
 CONST_FEATURES_SIZE = 8
 ARRAY_FEATURES_SIZE = 17
 
-"""
-def parse_mdnode(
-    mdnode_text: str
-) -> List[int]:
-    operands_text = mdnode_text.split('!{')[1].split('}')[0].split(',')
-    operands = []
-    for operand_text in operands_text:
-        operand = ''.join(re.findall(r"[-+]?\d*", operand_text.split(' ')[-1]))
-        operands.append(int(operand))
-    return operands
-
-def get_metadata(
-    ir_path: Path
-) -> Dict[int, List[int]]:
-    with open(ir_path, 'r') as ir_file:
-        lines = ir_file.readlines()
-
-    md_pattern = re.compile(
-        r'^!\d+ = !\{(i[1-9]\d* [-+]?\d*\.?\d+,\s*)*i[1-9]\d* [-+]?\d*\.?\d+\}$'
-    )
-    metadata_lines = [line for line in lines if md_pattern.match(line)]
-    metadata = {}
-
-    for line in metadata_lines:
-        index = int(line.split(' =')[0].strip('!'))
-        mdnode_text = line.split('= ')[1]
-        metadata[index] = parse_mdnode(mdnode_text)
-    
-    return metadata
-
-def get_mdnode_id(
-    op_line_text: str, 
-    mdnode_name: str
-) -> int:
-    if f"!{mdnode_name}" not in op_line_text:
-        return -1
-    mdnode_id = op_line_text.split(f"!{mdnode_name} !")[1].strip()
-    if ',' in mdnode_id:
-        mdnode_id = mdnode_id.split(',')[0]
-    return int(mdnode_id)
-"""
-
 def get_node_num_features(node_type: str) -> int:
     if node_type == 'inst':
         return INST_FEATURES_SIZE
@@ -204,16 +162,12 @@ def get_one_hot_type_from_id(type_id: int) -> List[int]:
     else: # Other types
         return [0, 0, 0, 0, 0, 0, 1]
 
-def get_one_hot_opcode(
-    inst_name: str
-) -> List[int]:
+def get_one_hot_opcode(inst_name: str) -> List[int]:
     if inst_name in OPCODE_DICT:
         return OPCODE_DICT[inst_name]
     return [0] * 12 # Unknown instruction
 
-def get_one_hot_type(
-    md: Dict[str, Union[int, float]]
-) -> List[int]:
+def get_one_hot_type(md: Dict[str, Union[int, float]]) -> List[int]:
     type_id = md["type"] if "type" in md else -1
     return get_one_hot_type_from_id(type_id)
 
@@ -245,7 +199,7 @@ def get_type_id_from_type_str(
     if type_str[-1] == '*': # Pointer type
         return 15
     if '[' in type_str: # Array type
-        return 16
+        return 14
     if 'void' in type_str: # Void type
         return 0
     if 'half' in type_str: # 16-bit float type
@@ -314,7 +268,7 @@ def get_literal_const_features(
 
     type_id = get_type_id_from_type_str(type_str, node_full_text)
 
-    if type_id == 16: # Array type
+    if type_id == 14: # Array type
         is_array = True
         array_md = get_array_info_from_type_str(node_full_text)
         one_hot_type = get_one_hot_type_from_id(array_md[2])
@@ -326,31 +280,7 @@ def get_literal_const_features(
     is_array = False
     one_hot_type = get_one_hot_type_from_id(type_id)
     bitwidth = get_bitwidth_from_type_str(type_str, node_full_text)
-
     features = one_hot_type + [bitwidth]
-
-    # is_int = True if one_hot_type[2] == 1 else False
-    # if is_int:
-    #     if value_str == 'true':
-    #         const_value = 1
-    #     elif value_str == 'false':
-    #         const_value = 0
-    #     else:
-    #         try:
-    #             const_value = int(value_str)
-    #         except ValueError:
-    #             const_value = 0
-    # else:
-    #     is_float = True if one_hot_type[1] == 1 else False
-    #     if is_float:
-    #         try:
-    #             const_value = float(value_str)
-    #         except ValueError:
-    #             const_value = 0
-    #     else:
-    #         const_value = 0
-    #
-    # features = one_hot_type + [bitwidth, const_value]
 
     return features, is_array
 
@@ -393,7 +323,6 @@ def get_nodes(
             node_full_text = ir_instructions[id]
 
             raw_md = metadata["instruction"][str(id)]
-            # function_name = raw_md["functionName"] if "functionName" in raw_md else ""
             md = convert_raw_metadata(raw_md)
 
             one_hot_op = get_one_hot_opcode(node_text)
@@ -433,7 +362,6 @@ def get_nodes(
                 continue
 
             raw_md = metadata["value"][name]
-            # function_name = raw_md["functionName"] if "functionName" in raw_md else ""
             md = convert_raw_metadata(raw_md)
 
             if "isArray" in md:
@@ -451,37 +379,10 @@ def get_nodes(
 
             features = one_hot_type + [bitwidth]
 
-            if node.type == 1: 
-                # Variable
+            if node.type == 1: # Variable
                 nodes['var'].append(torch.tensor(features, dtype=torch.float32))
                 indices["var"].append(i)
-            else: 
-                # Constant
-
-                # value_text = node_full_text.split(' ')[-1]
-                # is_int = True if one_hot_type[2] == 1 else False
-                # if is_int:
-                #     if value_text == 'true':
-                #         const_value = 1
-                #     elif value_text == 'false':
-                #         const_value = 0
-                #     else:
-                #         try:
-                #             const_value = int(value_text)
-                #         except ValueError:
-                #             const_value = 0
-                # else:
-                #     is_float = True if one_hot_type[1] == 1 else False
-                #     if is_float:
-                #         try:
-                #             const_value = float(value_text)
-                #         except ValueError:
-                #             const_value = 0
-                #     else:
-                #         const_value = 0
-                #
-                # features = one_hot_type + [bitwidth, const_value]
-
+            else: # Constant
                 nodes['const'].append(torch.tensor(features, dtype=torch.float32))
                 indices["const"].append(i)
 
@@ -597,7 +498,7 @@ def get_edges(
         if len(edges[key]) > 0:
             edges[key] = torch.stack(edges[key]).transpose(0, 1)
         else:
-            edges[key] = torch.empty((0, 2), dtype=torch.int64)
+            edges[key] = torch.empty((2, 0), dtype=torch.int64)
 
     return edges
 

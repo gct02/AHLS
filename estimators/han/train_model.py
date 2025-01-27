@@ -68,8 +68,6 @@ def train_model(
                 edge_index_dict = move_to_device(edge_index_dict, device)
                 target = target.to(device)
 
-                print(edge_index_dict)
-
                 pred = model(x_dict, edge_index_dict)
 
                 instance_loss = loss_func(pred, target)
