@@ -73,3 +73,4 @@ dataset/
 dataset_analysis/graphs/
 dataset_analysis/solutions_info/
 preprocess_dataset_gat.py
+tests/

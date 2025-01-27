@@ -30,6 +30,7 @@
 #include <vector>
 #include <unordered_map>
 #include <utility>
+#include <regex>
 
 using namespace llvm;
 
@@ -85,40 +86,40 @@ struct SetHLSDirectivesMD : public ModulePass {
         LLVMContext& ctx = M.getContext();
         uint32_t directiveIndex = 1;
 
-        if (directives.find("ARRAY_PARTITION") != directives.end()) {
-            std::vector<Directive> arrayPartitionDirectives = directives.at("ARRAY_PARTITION");
+        if (directives.find("arrayPartition") != directives.end()) {
+            std::vector<Directive> arrayPartitionDirectives = directives.at("arrayPartition");
             for (const Directive& directive : arrayPartitionDirectives) {
                 if (setArrayPartitionMD(M, directive, directiveIndex) == 0) {
                     directiveIndex++;
                 }
             }
         }
-        if (directives.find("PIPELINE") != directives.end()) {
-            std::vector<Directive> pipelineDirectives = directives.at("PIPELINE");
+        if (directives.find("pipeline") != directives.end()) {
+            std::vector<Directive> pipelineDirectives = directives.at("pipeline");
             for (const Directive& directive : pipelineDirectives) {
                 if (setPipelineMD(M, directive, directiveIndex) == 0) {
                     directiveIndex++;
                 }
             }
         }
-        if (directives.find("UNROLL") != directives.end()) {
-            std::vector<Directive> unrollDirectives = directives.at("UNROLL");
+        if (directives.find("unroll") != directives.end()) {
+            std::vector<Directive> unrollDirectives = directives.at("unroll");
             for (const Directive& directive : unrollDirectives) {
                 if (setUnrollMD(M, directive, directiveIndex) == 0) {
                     directiveIndex++;
                 }
             }
         }
-        if (directives.find("LOOP_FLATTEN") != directives.end()) {
-            std::vector<Directive> loopFlattenDirectives = directives.at("LOOP_FLATTEN");
+        if (directives.find("loopFlatten") != directives.end()) {
+            std::vector<Directive> loopFlattenDirectives = directives.at("loopFlatten");
             for (const Directive& directive : loopFlattenDirectives) {
                 if (setLoopFlattenMD(M, directive, directiveIndex) == 0) {
                     directiveIndex++;
                 }
             }
         }
-        if (directives.find("LOOP_MERGE") != directives.end()) {
-            std::vector<Directive> loopMergeDirectives = directives.at("LOOP_MERGE");
+        if (directives.find("loopMerge") != directives.end()) {
+            std::vector<Directive> loopMergeDirectives = directives.at("loopMerge");
             for (const Directive& directive : loopMergeDirectives) {
                 if (setLoopMergeMD(M, directive, directiveIndex) == 0) {
                     directiveIndex++;
@@ -141,18 +142,18 @@ struct SetHLSDirectivesMD : public ModulePass {
         }
     }
 
+    bool isNumber(const std::string& s) {
+        return !s.empty() && s.find_first_not_of("-.0123456789") == std::string::npos;
+    }
+
     uint32_t getNumericalOption(const Directive& directive, const std::string& optionName, 
                                 uint32_t defaultValue=0) {
         if (directive.options.find(optionName) != directive.options.end()) {
-            // Check if the option is a numerical value
             std::string optionValue = directive.options.at(optionName);
-            if (optionValue.find_first_not_of("0123456789-") != std::string::npos) {
-                return defaultValue;
-            }
-            return std::stoi(optionValue);
-        } else {
-            return defaultValue;
+            if (isNumber(optionValue)) 
+                return std::stoi(optionValue);
         }
+        return defaultValue;
     }
 
     uint32_t getArrayNumDims(Type* arrayType) {
@@ -221,9 +222,9 @@ struct SetHLSDirectivesMD : public ModulePass {
         ConstantAsMetadata* typeMD = getConstantAsMetadata(ctx, type);
         ConstantAsMetadata* factorMD = getConstantAsMetadata(ctx, factor);
         ConstantAsMetadata* dimSizeMD = getConstantAsMetadata(ctx, dimSize);
-        ConstantAsMetadata* partitionsMD = getConstantAsMetadata(ctx, numPartitions);
+        ConstantAsMetadata* numPartitionsMD = getConstantAsMetadata(ctx, numPartitions);
         SmallVector<Metadata*, 6> arrayPartitionMD = {indexMD, typeMD, dimMD, factorMD, 
-                                                      dimSizeMD, partitionsMD};
+                                                      dimSizeMD, numPartitionsMD};
         return MDTuple::get(ctx, arrayPartitionMD);
     }
 
@@ -347,6 +348,8 @@ struct SetHLSDirectivesMD : public ModulePass {
             return -1;
         }
         uint32_t factor = getNumericalOption(directive, "factor");
+        DEBUG(dbgs() << "factor: " << factor << "\n");
+
         uint32_t complete = factor == 0 ? 1 : 0;
 
         bool found = false;
@@ -445,9 +448,12 @@ struct SetHLSDirectivesMD : public ModulePass {
         uint32_t dim, type, factor;
 
         dim = getNumericalOption(directive, "dim");
+        DEBUG(dbgs() << "dim: " << dim << "\n");
         factor = getNumericalOption(directive, "factor");
+        DEBUG(dbgs() << "factor: " << factor << "\n");
 
         std::string typeOption = directive.options.at("type");
+        DEBUG(dbgs() << "type: " << typeOption << "\n");
 
         if (typeOption == "complete") {
             type = 1;
@@ -506,10 +512,11 @@ struct SetHLSDirectivesMD : public ModulePass {
         return 0;
     }
 
-    std::vector<std::string> splitTokens(const std::string& str, const std::string& delimiters) {
+    std::vector<std::string> tokenize(const std::string& str, 
+                                      const std::string& delim=" ") {
         std::vector<std::string> tokens;
-        size_t start = 0, end = 0;
-        while ((end = str.find_first_of(delimiters, start)) != std::string::npos) {
+        std::size_t start = 0, end = 0;
+        while ((end = str.find(delim, start)) != std::string::npos) {
             if (end != start) {
                 tokens.push_back(str.substr(start, end - start));
             }
@@ -519,51 +526,6 @@ struct SetHLSDirectivesMD : public ModulePass {
             tokens.push_back(str.substr(start));
         }
         return tokens;
-    }
-
-    std::string joinTokens(const std::vector<std::string>& tokens, const std::string& delimiter) {
-        std::string str;
-        for (size_t i = 0; i < tokens.size(); i++) {
-            str += tokens[i];
-            if (i < tokens.size() - 1) {
-                str += delimiter;
-            }
-        }
-        return str;
-    }
-
-    /*
-     * Fetch all directive options starting with a hyphen and store them in a dictionary.
-     * Returns a pair with the directive options and the remaining arguments.
-     */
-    std::pair<DirectiveOptions, std::vector<std::string>> parseDirectiveOptions(
-        const std::string& arguments
-    ) {
-        DirectiveOptions options;
-        std::vector<std::string> tokens = splitTokens(arguments, " ");
-        std::vector<std::string> remainingArgs;
-        size_t numTokens = tokens.size();
-
-        int i = 0;
-        while (i < numTokens) {
-            if (tokens[i].at(0) != '-') {
-                remainingArgs.push_back(tokens[i]);
-                i++;
-                continue;
-            }
-            std::string optionName = tokens[i].substr(1);
-            std::string optionValue = "";
-            if (i + 1 < numTokens && tokens[i + 1].at(0) != '-') {
-                optionValue = tokens[i + 1];
-                i += 2;
-            } else {
-                optionValue = "1";
-                i++;
-            }
-            options[optionName] = optionValue;
-        }
-        
-        return std::make_pair(options, remainingArgs);
     }
 
     /* Parse the TCL script containing the HLS directives */
@@ -578,71 +540,39 @@ struct SetHLSDirectivesMD : public ModulePass {
 
         while (std::getline(file, line)) {
             // Split the line into two tokens: the directive name and the arguments
-            std::string directiveName = line.substr(0, line.find(" "));
-            std::string arguments = line.substr(line.find(" ") + 1);
+            size_t firstSpace = line.find(" ");
+            std::string directiveName = line.substr(0, firstSpace);
+            std::string arguments = line.substr(firstSpace + 1);
 
             if (directiveName == "set_directive_array_partition") {
-                // Format: set_directive_array_partition [<location> -dim <dim> -factor <factor> -type <type>] <array>
-                // where <location>, when specified, is <function>[/<label>]
+                // Format: set_directive_array_partition <location> [-dim <dim> -factor <factor> -type <type>] <array>
+                std::vector<std::string> argTokens = tokenize(arguments, " ");
+                size_t numTokens = argTokens.size();
+                bool locationFound = false;
 
-                directive.name = "ARRAY_PARTITION";
-                
-                std::pair<DirectiveOptions, std::vector<std::string>> optionsAndArgs = parseDirectiveOptions(arguments);
-                directive.options = optionsAndArgs.first;
+                for (size_t i = 0; i < numTokens; i++) {
+                    // Remove any leading or trailing whitespace
+                    std::string token = argTokens[i];
+                    token.erase(token.find_last_not_of(" \t") + 1);
+                    token.erase(0, token.find_first_not_of(" \t"));
 
-                std::vector<std::string> remainingArgs = optionsAndArgs.second;
-                std::string location;
-                std::string arrayName = remainingArgs.back();
-
-                directive.options["variable"] = arrayName;
-                
-                if (remainingArgs.size() > 1) {
-                    location = remainingArgs[0];
-                    if (location.find("/") != std::string::npos) {
-                        directive.functionName = location.substr(0, location.find("/"));
-                        directive.label = location.substr(location.find("/") + 1);
+                    if (token == "-dim") {
+                        directive.options["dim"] = argTokens[i + 1];
+                        i++;
+                    } else if (token == "-factor") {
+                        directive.options["factor"] = argTokens[i + 1];
+                        i++;
+                    } else if (token == "-type") {
+                        directive.options["type"] = argTokens[i + 1];
+                        i++;
+                    } else if (!locationFound) {
+                        directive.functionName = token;
+                        directive.label = "";
+                        locationFound = true;
                     } else {
-                        directive.functionName = location;
-                        directive.label = location;
-                    }
-                } else {
-                    directive.functionName = "";
-                    directive.label = "";
-                }
-
-                // Check if the array is a parameter of a function or is a local variable
-                if (!directive.functionName.empty()) {
-                    if (Function* F = M.getFunction(directive.functionName)) {
-                        Argument* arrayArg = nullptr;
-                        for (Function::arg_iterator AI = F->arg_begin(), AE = F->arg_end(); AI != AE; ++AI) {
-                            Argument* arg = &*AI;
-                            if (arg->hasName() && arg->getName() == arrayName) {
-                                arrayArg = arg;
-                                break;
-                            }
-                        }
-                        if (arrayArg != nullptr) {
-                            // Get the respective global variable for the (restored) decayed array argument
-                            // (named as "functionName.arrayName")
-                            std::string restoredArrayName = directive.functionName + "." + arrayName;
-                            GlobalVariable* GV = M.getGlobalVariable(restoredArrayName, true);
-                            directive.options["variable"] = restoredArrayName;
-                            directive.label = "";
-                            directive.functionName = "";
-                        } else {
-                            // Clang might have promoted the array to a global constant,
-                            // so we need to check if the array is a global object even
-                            // if it is scoped within a function
-                            std::string globalArrayName = directive.functionName + "." + arrayName;
-                            if (GlobalVariable* GV = M.getGlobalVariable(globalArrayName, true)) {
-                                directive.options["variable"] = globalArrayName;
-                                directive.label = "";
-                                directive.functionName = "";
-                            }
-                        }
+                        directive.options["variable"] = token;
                     }
                 }
-
                 // Set the undefined directive options to default values
                 if (directive.options.find("dim") == directive.options.end()) {
                     directive.options["dim"] = "0";
@@ -654,81 +584,136 @@ struct SetHLSDirectivesMD : public ModulePass {
                     directive.options["type"] = "complete";
                 }
 
-                directives["ARRAY_PARTITION"].push_back(directive);
+                // Check if the array in the source code is a parameter of a function or a local variable.
+                // If the array is a parameter, the `prep-gnn` pass may have created a global variable 
+                // named as "functionName.arrayName" to represent the array, and if the array is a local 
+                // variable or constant, Clang might have promoted it to a global constant.
+                if (!directive.functionName.empty()) {
+                    if (Function* F = M.getFunction(directive.functionName)) {
+                        std::string arrayName = directive.options.at("variable");
+                        Argument* arrayArg = nullptr;
+                        for (Function::arg_iterator AI = F->arg_begin(), AE = F->arg_end(); AI != AE; ++AI) {
+                            Argument* arg = &*AI;
+                            if (arg->hasName() && arg->getName() == arrayName) {
+                                arrayArg = arg;
+                                break;
+                            }
+                        }
+                        std::string globalArrayName = directive.functionName + "." + arrayName;
+                        if (GlobalVariable* GV = M.getGlobalVariable(globalArrayName, true)) {
+                            directive.options["variable"] = globalArrayName;
+                            directive.functionName = "";
+                        }
+                    }
+                }
+
+                directive.name = "arrayPartition";
+                directives["arrayPartition"].push_back(directive);
+
             } else if (directiveName == "set_directive_pipeline") {
                 // Format: set_directive_pipeline <location> [-II <II> -off=true]
                 // where <location> is <function>[/<label>]
+                std::vector<std::string> argTokens = tokenize(arguments, " ");
+                size_t numTokens = argTokens.size();
 
-                directive.name = "PIPELINE";
+                for (size_t i = 0; i < numTokens; i++) {
+                    // Remove any leading or trailing whitespace
+                    std::string token = argTokens[i];
+                    token.erase(token.find_last_not_of(" \t") + 1);
+                    token.erase(0, token.find_first_not_of(" \t"));
 
-                std::pair<DirectiveOptions, std::vector<std::string>> optionsAndArgs = parseDirectiveOptions(arguments);
-                directive.options = optionsAndArgs.first;
-
-                std::string location = optionsAndArgs.second[0];
-                if (location.find("/") != std::string::npos) {
-                    directive.functionName = location.substr(0, location.find("/"));
-                    directive.label = location.substr(location.find("/") + 1);
-                } else {
-                    directive.functionName = location;
-                    directive.label = "";
+                    if (token == "-II") {
+                        directive.options["II"] = argTokens[i + 1];
+                        i++;
+                    } else if (token.find("-off") != std::string::npos) {
+                        directive.options["off"] = "true";
+                    } else {
+                        size_t slashPos = token.find("/");
+                        if (slashPos != std::string::npos) {
+                            directive.functionName = token.substr(0, slashPos);
+                            directive.label = token.substr(slashPos + 1);
+                        } else {
+                            directive.functionName = token;
+                            directive.label = "";
+                        }
+                    }
                 }
-                
                 // Set the undefined directive options to default values
                 if (directive.options.find("II") == directive.options.end()) {
                     directive.options["II"] = "0";
                 }
+                directive.name = "pipeline";
+                directives["pipeline"].push_back(directive);
 
-                directives["PIPELINE"].push_back(directive);
             } else if (directiveName == "set_directive_unroll") {
                 // Format: set_directive_unroll <location> [-factor <factor>]
                 // where <location> is <function>/<label>
+                std::vector<std::string> argTokens = tokenize(arguments, " ");
+                size_t numTokens = argTokens.size();
+                bool valid = true;
 
-                directive.name = "UNROLL";
+                for (size_t i = 0; i < numTokens; i++) {
+                    // Remove any leading or trailing whitespace
+                    std::string token = argTokens[i];
+                    token.erase(token.find_last_not_of(" \t") + 1);
+                    token.erase(0, token.find_first_not_of(" \t"));
 
-                std::pair<DirectiveOptions, std::vector<std::string>> optionsAndArgs = parseDirectiveOptions(arguments);
-                directive.options = optionsAndArgs.first;
-
-                std::string location = optionsAndArgs.second[0];
-
-                directive.functionName = location.substr(0, location.find("/"));
-                directive.label = location.substr(location.find("/") + 1);
-
-                directive.options["factor"] = "0";
-
+                    if (token == "-factor") {
+                        directive.options["factor"] = argTokens[i + 1];
+                        i++;
+                    } else {
+                        size_t slashPos = token.find("/");
+                        if (slashPos != std::string::npos) {
+                            directive.functionName = token.substr(0, slashPos);
+                            directive.label = token.substr(slashPos + 1);
+                        } else {
+                            errs() << "Invalid location format\n";
+                            valid = false;
+                            break;
+                        }
+                    }
+                }
+                if (!valid) {
+                    continue;
+                }
                 // Set the undefined directive options to default values
                 if (directive.options.find("factor") == directive.options.end()) {
                     directive.options["factor"] = "0";
                 }
-                
-                directives["UNROLL"].push_back(directive);
+                directive.name = "unroll";
+                directives["unroll"].push_back(directive);
+
             } else if (directiveName == "set_directive_loop_flatten") {
                 // Format: set_directive_loop_flatten <location>
                 // where <location> is <function>/<label>
-
-                directive.name = "LOOP_FLATTEN";
-
                 std::string location = arguments.substr(0, arguments.find(" "));
+                size_t slashPos = location.find("/");
 
-                directive.functionName = location.substr(0, location.find("/"));
-                directive.label = location.substr(location.find("/") + 1);
+                if (slashPos != std::string::npos) {
+                    directive.functionName = location.substr(0, slashPos);
+                    directive.label = location.substr(slashPos + 1);
+                } else {
+                    errs() << "Invalid location format\n";
+                    continue;
+                }
+                directive.name = "loopFlatten";
+                directives["loopFlatten"].push_back(directive);
 
-                directives["LOOP_FLATTEN"].push_back(directive);
             } else if (directiveName == "set_directive_loop_merge") {
                 // Format: set_directive_loop_merge <location>
                 // where <location> is <function>[/<label>]
-
-                directive.name = "LOOP_MERGE";
-
                 std::string location = arguments.substr(0, arguments.find(" "));
-                if (location.find("/") != std::string::npos) {
-                    directive.functionName = location.substr(0, location.find("/"));
-                    directive.label = location.substr(location.find("/") + 1);
+                size_t slashPos = location.find("/");
+
+                if (slashPos != std::string::npos) {
+                    directive.functionName = location.substr(0, slashPos);
+                    directive.label = location.substr(slashPos + 1);
                 } else {
                     directive.functionName = location;
                     directive.label = "";
                 }
-
-                directives["LOOP_MERGE"].push_back(directive);
+                directive.name = "loopMerge";
+                directives["loopMerge"].push_back(directive);
             }
         }
         file.close();

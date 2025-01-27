@@ -55,7 +55,7 @@ class HAN(nn.Module):
             ('inst', 'id', 'inst'), 
             ('var', 'id', 'var'),
             ('array', 'id', 'array')
-        ]     
+        ]
         metadata = (node_types, edge_types)     
 
         self.normalize = norm

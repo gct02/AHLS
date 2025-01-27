@@ -131,8 +131,8 @@ struct ExtractMD : public ModulePass {
                 if (MDNode* arrayPartitionMD = G.getMetadata("arrayPartition")) {
                     m.values["arrayPartition"] = 1;
                     m.values["arrayPartitionID"] = MDOperandToInt(arrayPartitionMD, 0);
-                    m.values["arrayPartitionDim"] = MDOperandToInt(arrayPartitionMD, 1);
-                    m.values["arrayPartitionType"] = MDOperandToInt(arrayPartitionMD, 2);
+                    m.values["arrayPartitionType"] = MDOperandToInt(arrayPartitionMD, 1);
+                    m.values["arrayPartitionDim"] = MDOperandToInt(arrayPartitionMD, 2);
                     m.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartitionMD, 3);
                     m.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartitionMD, 4);
                     m.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartitionMD, 5);
@@ -209,8 +209,8 @@ struct ExtractMD : public ModulePass {
                             if (MDNode* arrayPartition = I.getMetadata("arrayPartition")) {
                                 valMD.values["arrayPartition"] = 1;
                                 valMD.values["arrayPartitionID"] = MDOperandToInt(arrayPartition, 0);
-                                valMD.values["arrayPartitionDim"] = MDOperandToInt(arrayPartition, 1);
-                                valMD.values["arrayPartitionType"] = MDOperandToInt(arrayPartition, 2);
+                                valMD.values["arrayPartitionType"] = MDOperandToInt(arrayPartition, 1);
+                                valMD.values["arrayPartitionDim"] = MDOperandToInt(arrayPartition, 2);
                                 valMD.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartition, 3);
                                 valMD.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartition, 4);
                                 valMD.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartition, 5);

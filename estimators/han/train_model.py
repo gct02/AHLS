@@ -210,7 +210,7 @@ def main(args):
         val_loader = DataLoader(val_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
         test_loader = DataLoader(test_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
-        n_features = {'inst': 21, 'var': 8, 'const': 8, 'array': 18}
+        n_features = {'inst': 21, 'var': 8, 'const': 8, 'array': 17}
 
         model = HAN(
             n_features=n_features, 

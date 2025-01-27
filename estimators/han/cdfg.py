@@ -100,15 +100,15 @@ def get_pipeline_md(md: Dict[str, Union[int, float]]) -> List[int]:
 
 def get_array_partition_md(md: Dict[str, Union[int, float]]) -> List[int]:
     if "arrayPartition" not in md:
-        return [0] * 8
+        return [0] * 7
     dim = md["arrayPartitionDim"]
     partition_type = md["arrayPartitionType"]
     one_hot_partition_type = [0, 0, 0]
     one_hot_partition_type[partition_type - 1] = 1
     factor = md["arrayPartitionFactor"]
     dim_size = md["arrayPartitionDimSize"]
-    num_partitions = md["arrayPartitionNumPartitions"]
-    return [1] + one_hot_partition_type + [dim, factor, dim_size, num_partitions]
+    # num_partitions = md["arrayPartitionNumPartitions"]
+    return [1] + one_hot_partition_type + [dim, factor, dim_size]
 
 def get_unroll_md(md: Dict[str, Union[int, float]]) -> List[int]:
     if "unroll" not in md:
@@ -216,18 +216,6 @@ def get_type_id_from_type_str(
     # Other types (e.g. struct, label, token, etc.)
     return -1
 
-def get_array_info_from_type_str(
-    type_str: str
-) -> List[int]:
-    num_dims = type_str.count('[')
-    num_elems_last_dim = int(type_str.split('[')[-1].split(' x')[0])
-    num_elems = num_dims * num_elems_last_dim
-
-    elem_type = type_str.split('x ')[1].split(']')[0]
-    elem_type_id = get_type_id_from_type_str(elem_type)
-
-    return [num_dims, num_elems, elem_type_id, num_elems_last_dim]
-
 def get_bitwidth_from_type_str(
     type_str: str,
     node_full_text: str = ""
@@ -260,11 +248,23 @@ def get_bitwidth_from_type_str(
     # Other types (e.g. struct, label, token, etc.)
     return 0
 
+def get_array_info_from_type_str(
+    type_str: str
+) -> List[int]:
+    num_dims = type_str.count('[')
+    num_elems_last_dim = int(type_str.split('[')[-1].split(' x')[0])
+    num_elems = num_dims * num_elems_last_dim
+
+    elem_type = type_str.split('x ')[1].split(']')[0]
+    elem_type_id = get_type_id_from_type_str(elem_type)
+    elem_bitwidth = get_bitwidth_from_type_str(elem_type)
+
+    return [num_dims, num_elems, elem_type_id, elem_bitwidth]
+
 def get_literal_const_features(
     node_full_text: str
 ) -> Tuple[List[int], bool]:
     type_str = node_full_text.split(' ')[0]
-    value_str = node_full_text.split(' ')[-1]
 
     type_id = get_type_id_from_type_str(type_str, node_full_text)
 
@@ -272,7 +272,7 @@ def get_literal_const_features(
         is_array = True
         array_md = get_array_info_from_type_str(node_full_text)
         one_hot_type = get_one_hot_type_from_id(array_md[2])
-        array_partition_md = [0] * 8
+        array_partition_md = [0] * 7
         features = (array_md[:2] + one_hot_type + array_md[3:]
                     + array_partition_md)
         return features, is_array
