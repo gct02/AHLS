@@ -156,7 +156,7 @@ class HAN(nn.Module):
         array_agg = F.gelu(self.fc_array_agg(array_agg))
 
         graph_agg = torch.cat([inst_agg, var_agg, array_agg], dim=-1)
-        graph_agg = F.relu(self.fc_graph_agg(graph_agg))
+        graph_agg = self.fc_graph_agg(F.relu(graph_agg))
         graph_agg = graph_agg.squeeze(0)
 
         return graph_agg

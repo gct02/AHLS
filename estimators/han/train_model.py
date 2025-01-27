@@ -2,8 +2,10 @@ import torch
 import torch.nn as nn
 import argparse
 import os
+import random
 import matplotlib
 import matplotlib.pyplot as plt
+import numpy as np
 from pathlib import Path
 from torch.utils.data import DataLoader
 from estimators.han.models import HAN
@@ -77,7 +79,6 @@ def train_model(
                 x_dict = move_to_device(x_dict, "cpu")
                 edge_index_dict = move_to_device(edge_index_dict, "cpu")
                 target, pred = target.to("cpu"), pred.to("cpu")
-                torch.cuda.empty_cache()
 
             optimizer.step()
 
@@ -119,7 +120,6 @@ def train_model(
                 x_dict = move_to_device(x_dict, "cpu")
                 edge_index_dict = move_to_device(edge_index_dict, "cpu")
                 target, pred = target.to("cpu"), pred.to("cpu")
-                torch.cuda.empty_cache()
 
             val_loss_epoch = val_loss_epoch / len(val_loader)
 
@@ -156,7 +156,6 @@ def train_model(
                 x_dict = move_to_device(x_dict, "cpu")
                 edge_index_dict = move_to_device(edge_index_dict, "cpu")
                 target, pred = target.to("cpu"), pred.to("cpu")
-                torch.cuda.empty_cache()
         
             test_loss_epoch = test_loss_epoch / len(test_loader)
             test_losses.append(test_loss_epoch)
@@ -175,6 +174,10 @@ def main(args):
     verbose = args['verbose']
 
     torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
     
     n_benchs = len(os.listdir(dataset_path))
 
@@ -212,20 +215,23 @@ def main(args):
         model = HAN(
             n_features=n_features, 
             n_out=1, 
-            n_hid_att=16, 
+            n_hid_att=20, 
             heads_att=4, 
             n_hid_set=9, 
             heads_set=3, 
-            norm=True
+            norm=True,
+            n_inducing_points=16,
+            dropout=0.1
         )
         model = model.to(device)
 
         loss_func = nn.MSELoss()
 
-        optimizer = torch.optim.RAdam(
-            model.parameters(), 
-            lr=1e-3, 
-            betas=(0.8, 0.999)
+        optimizer = torch.optim.Adam(
+            model.parameters(),
+            lr=4e-3,
+            betas=(0.8, 0.999),
+            eps=1e-8
         )
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
             optimizer, 
