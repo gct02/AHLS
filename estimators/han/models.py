@@ -40,13 +40,14 @@ class HGT(nn.Module):
                 self.norm[node_type] = nn.LayerNorm(hid_channels)
 
         self.set_transformer = nn.ModuleDict()
+        self.node_fc = nn.ModuleDict()
         for node_type in metadata[0]:
             self.set_transformer[node_type] = SetTransformerAggregation(
                 channels=out_channels,
                 num_seed_points=n_inducing_points,
-                concat=False,
                 layer_norm=True
             )
+            self.node_fc[node_type] = nn.Linear(n_inducing_points*out_channels, out_channels)
 
         n_node_types = len(metadata[0])
         self.fc = nn.Linear(n_node_types*out_channels, out_channels)
@@ -57,23 +58,24 @@ class HGT(nn.Module):
         edge_index_dict: Dict[EdgeType, Tensor]
     ) -> Tensor:
         h = self.conv1(x_dict, edge_index_dict)
-        # h = {k: F.relu(v) for k, v in h.items()}
+        h = {k: F.elu(v) for k, v in h.items()}
 
         if self.normalize:
             for k in h.keys():
                 h[k] = self.norm[k](h[k])
 
         h = self.conv2(h, edge_index_dict)
-        # h = {k: F.relu(v) for k, v in h.items()}
+        h = {k: F.elu(v) for k, v in h.items()}
 
         # Transform the node embeddings to a graph embedding
         h_agg = []
         for node_type in h.keys():
             h_agg_node = self.set_transformer[node_type](h[node_type])
+            h_agg_node = F.elu(self.node_fc[node_type](h_agg_node), alpha=0.1)
             h_agg.append(h_agg_node)
 
-        h_agg = self.set_transformer(h)
-        h_agg = F.relu(self.fc(h_agg))
+        h_agg = torch.cat(h_agg, dim=-1)
+        h_agg = self.fc(h_agg)
         h_agg = h_agg.squeeze(0)
 
         return h_agg
@@ -177,12 +179,12 @@ class HAN(nn.Module):
         h_agg = []
         for node_type in h.keys():
             h_agg_node = self.set_transformer[node_type](h[node_type])
-            h_agg_node = F.gelu(self.node_fc1[node_type](h_agg_node))
+            h_agg_node = F.elu(self.node_fc1[node_type](h_agg_node), alpha=0.1)
             h_agg_node = self.node_fc2[node_type](h_agg_node)
             h_agg.append(h_agg_node)
 
         h_agg = torch.cat(h_agg, dim=-1)
-        h_agg = F.relu(self.out_fc(h_agg))
+        h_agg = self.out_fc(h_agg)
         h_agg = h_agg.squeeze(0)
 
         return h_agg
