@@ -229,16 +229,21 @@ def main(args):
             heads_1=4,
             hid_dim_2=12,
             heads_2=3,
-            dropout=0.1,
-            norm=True
-        ).to(device)
+            num_layers=5,
+            k=8,
+            dropout_fc=0.1,
+            dropout_conv=0.0,
+            use_residual=True,
+            use_norm=True,
+            device=device
+        )
         
         loss_func = nn.MSELoss()
 
         optimizer = torch.optim.Adam(
             model.parameters(),
-            lr=6e-3,
-            betas=(0.8, 0.999),
+            lr=1e-2,
+            betas=(0.9, 0.999),
             eps=1e-8
         )
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
