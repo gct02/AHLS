@@ -225,9 +225,10 @@ def main(args):
             metadata=metadata,
             in_channels=in_channels, 
             out_channels=1, 
-            hid_dim1=16,
-            hid_dim2=12,
-            heads=4,
+            hid_dim_1=16,
+            heads_1=4,
+            hid_dim_2=12,
+            heads_2=3,
             dropout=0.1,
             norm=True
         ).to(device)
