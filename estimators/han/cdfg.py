@@ -1,9 +1,13 @@
 import torch
 import programl
+import matplotlib.pyplot as plt
+import networkx as nx
 from typing import List, Dict, Tuple, Union
 from torch import Tensor
 from sys import argv
 from pathlib import Path
+from torch_geometric.data import HeteroData
+from torch_geometric.utils import to_networkx
 
 # Set torch to print full tensors
 torch.set_printoptions(profile="full")
@@ -288,7 +292,9 @@ def get_nodes(
     programl_graph,
     metadata: Dict[str, Dict[str, Dict[str, str]]],
     ir_instructions: Dict[int, str]
-) -> Tuple[Dict[str, Tensor], List[int], List[int], List[int], List[int]]:
+) -> Tuple[HeteroData, Dict[str, List[int]]]:
+    graph = HeteroData()
+
     nodes = {'inst': [], 'var': [], 'const': [], 'array': []}
     indices = {'inst': [], 'var': [], 'const': [], 'array': []}
 
@@ -313,7 +319,7 @@ def get_nodes(
             node_full_text = node_full_text[2:-1]
 
         if node.type == 0:
-            # --- Instruction --- #
+            # Instruction
             if "!ID." not in node_full_text:
                 nodes['inst'].append(torch.zeros(INST_FEATURES_SIZE, dtype=torch.float32))
                 indices["inst"].append(i)
@@ -339,7 +345,7 @@ def get_nodes(
             indices["inst"].append(i)
 
         elif node.type == 1 or node.type == 2: 
-            # --- Variable or Constant --- #
+            # Variable or Constant
             is_literal = False
 
             if node_full_text.startswith('@'): # Global value
@@ -379,26 +385,32 @@ def get_nodes(
 
             features = one_hot_type + [bitwidth]
 
-            if node.type == 1: # Variable
+            if node.type == 1: 
+                # Variable
                 nodes['var'].append(torch.tensor(features, dtype=torch.float32))
                 indices["var"].append(i)
-            else: # Constant
+            else: 
+                # Constant
                 nodes['const'].append(torch.tensor(features, dtype=torch.float32))
                 indices["const"].append(i)
 
     for key in nodes.keys():
         if len(nodes[key]) > 0:
-            nodes[key] = torch.stack(nodes[key])
+            graph[key].x = torch.stack(nodes[key])
         else:
-            n_features = get_node_num_features(key)
-            nodes[key] = torch.empty((0, n_features), dtype=torch.float32)
+            feature_dim = get_node_num_features(key)
+            graph[key].x = torch.empty((0, feature_dim), dtype=torch.float32)
 
-    return nodes, indices
+    return graph, indices
+
+def make_edge(src: int, dst: int) -> Tensor:
+    return torch.tensor([src, dst], dtype=torch.int64)
 
 def get_edges(
-    programl_graph, 
+    programl_graph,
+    graph: HeteroData,
     indices: Dict[str, List[int]]
-) -> Dict[Tuple[str, str, str], Tensor]:
+) -> HeteroData:
     edges = {
         ('inst','control','inst'): [], 
         ('inst','call','inst'): [], 
@@ -420,87 +432,75 @@ def get_edges(
         src_type = programl_graph.node[src].type
         dst_type = programl_graph.node[dst].type
 
-        if src_type == 0:
+        if src_type == 0: 
             # src is 'inst'
             src_idx = indices["inst"].index(src)
-            if dst_type == 0:
+            if dst_type == 0: 
                 # dst is 'inst'
                 dst_idx = indices["inst"].index(dst)
-                edge_tensor = torch.tensor([src_idx, dst_idx], 
-                                           dtype=torch.int64)
+                edge_tensor = make_edge(src_idx, dst_idx)
                 if edge.flow == 0:
                     edges[('inst','control','inst')].append(edge_tensor)
                 else:
                     edges[('inst','call','inst')].append(edge_tensor)
+            elif dst in indices["array"]: 
+                # dst is 'array'
+                dst_idx = indices["array"].index(dst)
+                edge_tensor = make_edge(src_idx, dst_idx)
+                edges[('inst', 'data', 'array')].append(edge_tensor)
             else:
-                if dst in indices["array"]:
-                    # dst is 'array'
-                    dst_idx = indices["array"].index(dst)
-                    edge_tensor = torch.tensor([src_idx, dst_idx], 
-                                               dtype=torch.int64)
-                    edges[('inst', 'data', 'array')].append(edge_tensor)
-                    continue
                 # dst is 'var'
-                assert dst_type == 1
                 dst_idx = indices["var"].index(dst)
-                edge_tensor = torch.tensor([src_idx, dst_idx], 
-                                           dtype=torch.int64)
+                edge_tensor = make_edge(src_idx, dst_idx)
                 edges[('inst','data','var')].append(edge_tensor)
         elif src_type == 1:
-            # src is 'var' or 'array'
             if src in indices["array"]:
                 # src is 'array'
                 src_idx = indices["array"].index(src)
                 dst_idx = indices["inst"].index(dst)
-                edge_tensor = torch.tensor([src_idx, dst_idx], 
-                                           dtype=torch.int64)
+                edge_tensor = make_edge(src_idx, dst_idx)
                 edges[('array','data','inst')].append(edge_tensor)
-                continue
-            # src is 'var'
-            src_idx = indices["var"].index(src)
-            dst_idx = indices["inst"].index(dst)
-            edge_tensor = torch.tensor([src_idx, dst_idx], 
-                                       dtype=torch.int64)
+            else:
+                # src is 'var'
+                src_idx = indices["var"].index(src)
+                dst_idx = indices["inst"].index(dst)
+                edge_tensor = make_edge(src_idx, dst_idx)
             edges[('var','data','inst')].append(edge_tensor)
+        elif src in indices["array"]:
+            # src is 'array'
+            src_idx = indices["array"].index(src)
+            dst_idx = indices["inst"].index(dst)
+            edge_tensor = make_edge(src_idx, dst_idx)
+            edges[('array','data','inst')].append(edge_tensor)
         else:
-            # src is 'const' or 'array'
-            if src in indices["array"]:
-                # src is 'array'
-                src_idx = indices["array"].index(src)
-                dst_idx = indices["inst"].index(dst)
-                edge_tensor = torch.tensor([src_idx, dst_idx], 
-                                           dtype=torch.int64)
-                edges[('array','data','inst')].append(edge_tensor)
-                continue
             # src is 'const'
             src_idx = indices["const"].index(src)
             dst_idx = indices["inst"].index(dst)
-            edge_tensor = torch.tensor([src_idx, dst_idx], 
-                                       dtype=torch.int64)
+            edge_tensor = make_edge(src_idx, dst_idx)
             edges[('const','data','inst')].append(edge_tensor)
 
     n_inst = len(indices["inst"])
-    n_var = len(indices["var"])
-
     for i in range(n_inst):
-        edge_tensor = torch.tensor([i, i], dtype=torch.int64)
+        edge_tensor = make_edge(i, i)
         edges[('inst','id','inst')].append(edge_tensor)
 
+    n_var = len(indices["var"])
     for i in range(n_var):
-        edge_tensor = torch.tensor([i, i], dtype=torch.int64)
+        edge_tensor = make_edge(i, i)
         edges[('var','id','var')].append(edge_tensor)
 
-    for i in range(len(indices["array"])):
-        edge_tensor = torch.tensor([i, i], dtype=torch.int64)
+    n_array = len(indices["array"])
+    for i in range(n_array):
+        edge_tensor = make_edge(i, i)
         edges[('array','id','array')].append(edge_tensor)
 
-    for key in edges.keys():
-        if len(edges[key]) > 0:
-            edges[key] = torch.stack(edges[key]).transpose(0, 1)
+    for edge_type, edge_list in edges.items():
+        if len(edge_list) > 0:
+            graph[edge_type].edge_index = torch.stack(edge_list).transpose(0, 1)
         else:
-            edges[key] = torch.empty((2, 0), dtype=torch.int64)
+            graph[edge_type].edge_index = torch.empty((2, 0), dtype=torch.int64)
 
-    return edges
+    return graph
 
 def parse_md_file(metadata_path: Path) -> Dict[str, Dict[str, Dict[str, str]]]:
     with open(metadata_path, 'r') as f:
@@ -539,14 +539,14 @@ def parse_md_file(metadata_path: Path) -> Dict[str, Dict[str, Dict[str, str]]]:
 def build_cdfg(
     ir_path: Path,
     metadata_path: Path
-) -> Tuple[Dict[str, Tensor], Dict[Tuple[str, str, str], Tensor]]:
+) -> HeteroData:
     with open(ir_path, 'r') as ir_file:
         ir_text = ir_file.read()
 
-    ir_graph = programl.from_llvm_ir(ir_text)
-    ir_lines = ir_text.split('\n')
+    programl_cdfg = programl.from_llvm_ir(ir_text)
 
     ir_instructions = {}
+    ir_lines = ir_text.split('\n')
     for line in ir_lines:
         if "!ID" not in line:
             continue
@@ -555,47 +555,104 @@ def build_cdfg(
 
     metadata = parse_md_file(metadata_path)
 
-    nodes, indices = get_nodes(ir_graph, metadata, ir_instructions)
-    edges = get_edges(ir_graph, indices)
+    cdfg, indices = get_nodes(programl_cdfg, metadata, ir_instructions)
+    cdfg = get_edges(programl_cdfg, cdfg, indices)
 
-    return nodes, edges
+    return cdfg
+
+def plot_cdfg(
+    cdfg: HeteroData,
+    output_path: Path
+) -> None:
+    nx_cdfg = to_networkx(cdfg, to_undirected=False, node_attrs=['x'])
+
+    # Define colors for the nodes
+    node_type_colors = {
+        "inst": "#4599C3",
+        "var": "#ED8546",
+        "const": "#A5A5A5",
+        "array": "#70B349",
+    }
+
+    node_colors = []
+    labels = {}
+    for node, attrs in nx_cdfg.nodes(data=True):
+        print("Node:", node)
+        print("Attrs:", attrs)
+        node_type = attrs["type"]
+        color = node_type_colors[node_type]
+        node_colors.append(color)
+        if attrs["type"] == "inst":
+            labels[node] = f"I{node}"
+        elif attrs["type"] == "var":
+            labels[node] = f"V{node}"
+        elif attrs["type"] == "const":
+            labels[node] = f"C{node}"
+        else:
+            labels[node] = f"A{node}"
+
+    # Define colors for the edges
+    edge_type_colors = {
+        ('inst','control','inst'): "#8B4D9E",
+        ('inst','call','inst'): "#DFB825",
+        ('inst','data','var'): "#70B349",
+        ('var','data','inst'): "#70B349",
+        ('const','data','inst'): "#70B349",
+        ('array','data','inst'): "#70B349",
+        ('inst', 'data', 'array'): "#70B349",
+        ('inst','id','inst'): "#FFFFFF",
+        ('var','id','var'): "#FFFFFF",
+        ('array','id','array'): "#FFFFFF",
+    }
+
+    edge_colors = []
+    for from_node, to_node, attrs in nx_cdfg.edges(data=True):
+        edge_type = attrs["type"]
+        color = edge_type_colors[edge_type]
+
+        nx_cdfg.edges[from_node, to_node]["color"] = color
+        edge_colors.append(color)
+
+    # Draw the graph
+    pos = nx.spring_layout(nx_cdfg, k=2)
+    nx.draw_networkx(
+        nx_cdfg,
+        pos=pos,
+        labels=labels,
+        with_labels=True,
+        node_color=node_colors,
+        edge_color=edge_colors,
+        node_size=50,
+        width=0.25,
+        font_size=8
+    )
+    plt.axis("off") 
+    plt.tight_layout()
+    plt.show()
+    plt.savefig(output_path)
+    plt.close()
 
 def print_cdfg(
-    nodes: Dict[str, Tensor], 
-    edges: Dict[Tuple[str, str, str], Tensor],
-    output_path: Path = None,
-    ir_path: Path = None
+    cdfg: HeteroData,
+    output_path: Path
 ) -> None:
-    if ir_path is not None:
-        with open(ir_path, 'r') as ir_file:
-            ir_text = ir_file.read()
-        ir_graph = programl.from_llvm_ir(ir_text)
-
-    if output_path is not None:
-        with open(output_path, 'w') as f:
-            f.write(f"Nodes = {nodes.__str__()}\n\n")
-            f.write(f"Edges = {edges.__str__()}\n\n")
-            if ir_path is not None:
-                f.write(f"ProGraML Graph = {ir_graph.__str__()}")
-    else:
-        print(f"Nodes = {nodes.__str__()}\n\n")
-        print(f"Edges = {edges.__str__()}\n\n")
-        if ir_path is not None:
-            print(f"ProGraML Graph = {ir_graph.__str__()}")
+    cdfg_dict = cdfg.to_dict()
+    with open(output_path, "w") as f:
+        f.write(str(cdfg_dict))
 
 if __name__ == "__main__":
     # *** For debugging *** #
     ir_path = Path(argv[1])
-    output_path = Path(argv[2])
+    metadata_path = Path(argv[2])
+    output_path = Path(argv[3])
 
     with open(ir_path, 'r') as ir_file:
         ir_text = ir_file.read()
 
-    ir_graph = programl.from_llvm_ir(ir_text)
+    programl_cdfg = programl.from_llvm_ir(ir_text)
+    cdfg = build_cdfg(ir_path, metadata_path)
 
-    nodes, edges = build_cdfg(ir_path)
+    cdfg_dict = cdfg.to_dict()
 
     with open(output_path, "w") as f:
-        f.write(f"Nodes = {nodes.__str__()}\n\n")
-        f.write(f"Edges = {edges.__str__()}")
-        f.write(f"ProGraML Graph = {ir_graph.__str__()}")
+        f.write(str(cdfg_dict))

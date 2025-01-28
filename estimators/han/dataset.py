@@ -1,5 +1,4 @@
 import os
-import pickle
 import torch
 from typing import Union
 from pathlib import Path
@@ -50,12 +49,6 @@ class HLSDataset(Dataset):
             for inst in instances:
                 inst_folder = os.fsdecode(os.path.join(bench_folder, inst))
 
-                cdfg_path = os.path.join(inst_folder, "cdfg.pkl")
-                if not os.path.exists(cdfg_path):
-                    continue
-
-                cdfg = pickle.load(open(cdfg_path, 'rb'))
-
                 with open(os.path.join(inst_folder, f"targets.txt"), 'r') as f:
                     line = f.readline().split('=')
                     metric = line[0]
@@ -67,5 +60,11 @@ class HLSDataset(Dataset):
                 if target_value == -1:
                     continue
 
+                cdfg_path = os.path.join(inst_folder, "cdfg.pt")
+                if not os.path.exists(cdfg_path):
+                    continue
+
+                cdfg = torch.load(cdfg_path)
                 target_value = torch.tensor([target_value])
+
                 self.data.append((cdfg, target_value))

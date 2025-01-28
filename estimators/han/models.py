@@ -1,126 +1,162 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import Dict, Union
-from torch_geometric.typing import Adj, EdgeType, NodeType
-from torch_geometric.nn.conv import HANConv
+from typing import Dict, Union, List, Tuple
+from torch_geometric.typing import EdgeType, NodeType
+from torch_geometric.nn.conv import HANConv, HGTConv
+from torch_geometric.nn.aggr import SetTransformerAggregation
 from torch import Tensor
-from torch.nn import MultiheadAttention
 
-class SetTransformer(nn.Module):
+class HGT(nn.Module):
     def __init__(
-        self, 
-        n_in: int,
-        n_out: int,
-        heads: int,
-        n_inducing_points: int
+        self,
+        metadata: Tuple[List[str], List[Tuple[str, str, str]]],
+        in_channels: Union[int, Dict[str, int]],
+        out_channels: int,
+        hid_channels: int,
+        heads: int = 1,
+        n_inducing_points: int = 16,
+        dropout: float = 0.1,
+        norm: bool = True
     ):
-        super(SetTransformer, self).__init__()
-        self.multihead_attn = MultiheadAttention(n_in, heads)
-        self.inducing_points = nn.Parameter(torch.randn(n_inducing_points, n_in))
-        self.fc_out = nn.Linear(n_in, n_out)
+        super(HGT, self).__init__()
+
+        self.normalize = norm
+
+        self.conv1 = HGTConv(
+            metadata=metadata,
+            in_channels=in_channels, out_channels=hid_channels,
+            heads=heads, dropout=dropout
+        )
+        self.conv2 = HGTConv(
+            metadata=metadata,
+            in_channels=hid_channels, out_channels=out_channels,
+            heads=heads, dropout=dropout
+        )
+
+        if norm:
+            self.norm = nn.ModuleDict()
+            for node_type in metadata[0]:
+                self.norm[node_type] = nn.LayerNorm(hid_channels)
+
+        self.set_transformer = nn.ModuleDict()
+        for node_type in metadata[0]:
+            self.set_transformer[node_type] = SetTransformerAggregation(
+                channels=out_channels,
+                num_seed_points=n_inducing_points,
+                concat=False,
+                layer_norm=True
+            )
+
+        n_node_types = len(metadata[0])
+        self.fc = nn.Linear(n_node_types*out_channels, out_channels)
 
     def forward(
         self,
-        x: Tensor
+        x_dict: Dict[NodeType, Tensor],
+        edge_index_dict: Dict[EdgeType, Tensor]
     ) -> Tensor:
-        x, _ = self.multihead_attn(self.inducing_points, x, x)
-        x = torch.mean(x, dim=0)  # Aggregate inducing points to a single vector
-        return self.fc_out(x)
+        h = self.conv1(x_dict, edge_index_dict)
+        # h = {k: F.relu(v) for k, v in h.items()}
+
+        if self.normalize:
+            for k in h.keys():
+                h[k] = self.norm[k](h[k])
+
+        h = self.conv2(h, edge_index_dict)
+        # h = {k: F.relu(v) for k, v in h.items()}
+
+        # Transform the node embeddings to a graph embedding
+        h_agg = []
+        for node_type in h.keys():
+            h_agg_node = self.set_transformer[node_type](h[node_type])
+            h_agg.append(h_agg_node)
+
+        h_agg = self.set_transformer(h)
+        h_agg = F.relu(self.fc(h_agg))
+        h_agg = h_agg.squeeze(0)
+
+        return h_agg
 
 class HAN(nn.Module):
     def __init__(
         self,
-        n_features: Union[int, Dict[str, int]],
-        n_out: int,
-        n_hid_att: int,
-        heads_att: int,
-        n_hid_set: Union[int, None] = None,
-        heads_set: int = 1,
-        norm: bool = True,
+        metadata: Tuple[List[str], List[Tuple[str, str, str]]],
+        in_channels: Union[int, Dict[str, int]],
+        out_channels: int,
+        hid_channels_att: int,
+        hid_channels_pool: Union[int, None] = None,
+        heads_att: int = 1,
+        heads_pool: int = 1,
         n_inducing_points: int = 16,
-        dropout: float = 0.2
+        dropout: float = 0.1,
+        norm: bool = True
     ):
-        super(HAN, self).__init__()
-
-        node_types = ['inst', 'var', 'const', 'array']
-        edge_types = [
-            ('inst', 'control', 'inst'), 
-            ('inst', 'call', 'inst'), 
-            ('inst', 'data', 'var'), 
-            ('var', 'data', 'inst'), 
-            ('const', 'data', 'inst'), 
-            ('array', 'data', 'inst'),
-            ('inst', 'data', 'array'),
-            ('inst', 'id', 'inst'), 
-            ('var', 'id', 'var'),
-            ('array', 'id', 'array')
-        ]
-        metadata = (node_types, edge_types)     
+        super(HAN, self).__init__() 
 
         self.normalize = norm
-        self.n_inducing_points = n_inducing_points
 
-        if n_hid_set is None:
-            n_hid_set = n_out
+        if hid_channels_pool is None:
+            hid_channels_pool = out_channels
 
-        self.han1 = HANConv(
+        self.conv1 = HANConv(
             metadata=metadata,
-            in_channels=n_features, out_channels=n_hid_att, 
+            in_channels=in_channels, out_channels=hid_channels_att, 
             heads=heads_att, 
             negative_slope=0.1, dropout=dropout
         )
-        self.han2 = HANConv(
+        self.conv2 = HANConv(
             metadata=metadata,
-            in_channels=n_hid_att, out_channels=n_hid_att, 
+            in_channels=hid_channels_att, out_channels=hid_channels_att, 
             heads=heads_att, 
             negative_slope=0.1, dropout=dropout
         )
-        self.han3 = HANConv(
+        self.conv3 = HANConv(
             metadata=metadata,
-            in_channels=n_hid_att, out_channels=n_hid_set, 
-            heads=heads_set, 
-            negative_slope=0.1
+            in_channels=hid_channels_att, out_channels=hid_channels_pool, 
+            heads=heads_pool, 
+            negative_slope=0.1, dropout=0.0
         )
 
         if norm:
-            self.norm1 = nn.LayerNorm(n_hid_att)
-            self.norm2 = nn.LayerNorm(n_hid_att)
+            self.norm1 = nn.ModuleDict()
+            self.norm2 = nn.ModuleDict()
+            for node_type in metadata[0]:
+                if node_type == 'const':
+                    continue
+                self.norm1[node_type] = nn.LayerNorm(hid_channels_att)
+                self.norm2[node_type] = nn.LayerNorm(hid_channels_att)
 
-        self.set_transformer_inst = SetTransformer(
-            n_in=n_hid_set, 
-            n_out=n_hid_set, 
-            heads=heads_set, 
-            n_inducing_points=n_inducing_points
-        )
-        self.set_transformer_var = SetTransformer(
-            n_in=n_hid_set, 
-            n_out=n_hid_set, 
-            heads=heads_set, 
-            n_inducing_points=n_inducing_points
-        )
-        self.set_transformer_array = SetTransformer(
-            n_in=n_hid_set, 
-            n_out=n_hid_set, 
-            heads=heads_set, 
-            n_inducing_points=n_inducing_points
-        )
+        self.set_transformer = nn.ModuleDict()
+        for node_type in metadata[0]:
+            if node_type == 'const':
+                continue
+            self.set_transformer[node_type] = SetTransformerAggregation(
+                channels=hid_channels_pool,
+                num_seed_points=n_inducing_points,
+                heads=heads_pool,
+                layer_norm=True
+            )
 
-        self.fc_inst_agg = nn.Linear(n_hid_set, n_out)
-        self.fc_var_agg = nn.Linear(n_hid_set, n_out)
-        self.fc_array_agg = nn.Linear(n_hid_set, n_out)
-        self.fc_graph_agg = nn.Linear(3 * n_out, n_out)
+        self.node_fc1 = nn.ModuleDict()
+        self.node_fc2 = nn.ModuleDict()
+        for node_type in metadata[0]:
+            if node_type == 'const':
+                continue
+            self.node_fc1[node_type] = nn.Linear(n_inducing_points*hid_channels_pool, hid_channels_pool)
+            self.node_fc2[node_type] = nn.Linear(hid_channels_pool, out_channels)
+
+        self.out_fc = nn.Linear(3*out_channels, out_channels)
 
     def forward(
         self, 
         x_dict:Dict[NodeType, Tensor],
-        edge_index_dict:Dict[EdgeType, Adj]
+        edge_index_dict:Dict[EdgeType, Tensor]
     ) -> Tensor:
-        h = self.han1(x_dict, edge_index_dict)
-        h['inst'] = F.elu(h['inst'])
-        h['var'] = F.elu(h['var'])
-        h['array'] = F.elu(h['array'])
+        h = self.conv1(x_dict, edge_index_dict)
 
+        # Remove 'const' nodes after first layer since
+        # they are not targeted by any edge
         if 'const' in h:
             h.pop('const')
 
@@ -128,35 +164,25 @@ class HAN(nn.Module):
             edge_index_dict.pop(('const', 'data', 'inst'))
 
         if self.normalize:
-            h['inst'] = self.norm1(h['inst'])
-            h['var'] = self.norm1(h['var'])
-            h['array'] = self.norm1(h['array'])
+            for k in h.keys():
+                h[k] = self.norm1[k](h[k])
 
-        h = self.han2(h, edge_index_dict)
-        h['inst'] = F.elu(h['inst'])
-        h['var'] = F.elu(h['var'])
-        h['array'] = F.elu(h['array'])
-
+        h = self.conv2(h, edge_index_dict)
         if self.normalize:
-            h['inst'] = self.norm2(h['inst'])
-            h['var'] = self.norm2(h['var'])
-            h['array'] = self.norm2(h['array'])
+            for k in h.keys():
+                h[k] = self.norm2[k](h[k])
 
-        h = self.han3(h, edge_index_dict)
-        h['inst'] = F.elu(h['inst'])
-        h['var'] = F.elu(h['var'])
-        h['array'] = F.elu(h['array'])
+        h = self.conv3(h, edge_index_dict)
 
-        inst_agg = self.set_transformer_inst(h['inst'])
-        var_agg = self.set_transformer_var(h['var'])
-        array_agg = self.set_transformer_array(h['array'])
+        h_agg = []
+        for node_type in h.keys():
+            h_agg_node = self.set_transformer[node_type](h[node_type])
+            h_agg_node = F.gelu(self.node_fc1[node_type](h_agg_node))
+            h_agg_node = self.node_fc2[node_type](h_agg_node)
+            h_agg.append(h_agg_node)
 
-        inst_agg = F.gelu(self.fc_inst_agg(inst_agg))
-        var_agg = F.gelu(self.fc_var_agg(var_agg))
-        array_agg = F.gelu(self.fc_array_agg(array_agg))
+        h_agg = torch.cat(h_agg, dim=-1)
+        h_agg = F.relu(self.out_fc(h_agg))
+        h_agg = h_agg.squeeze(0)
 
-        graph_agg = torch.cat([inst_agg, var_agg, array_agg], dim=-1)
-        graph_agg = self.fc_graph_agg(F.relu(graph_agg))
-        graph_agg = graph_agg.squeeze(0)
-
-        return graph_agg
+        return h_agg

@@ -1,11 +1,12 @@
-import pickle
 import subprocess
 import argparse
 import shutil
+import torch
 from pathlib import Path
 from utils.parsers import *
 from llvm.opt_utils import *
-from estimators.han.cdfg import build_cdfg, print_cdfg
+from estimators.han.cdfg import \
+    build_cdfg, print_cdfg, plot_cdfg
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -194,8 +195,7 @@ if __name__ == "__main__":
 
             cdfg = build_cdfg(ir_mod, output_md_path)
 
-            nodes, edges = cdfg
-            print_cdfg(nodes, edges, output_instance_folder / "cdfg.txt", ir_mod)
-
-            with open(output_instance_folder / "cdfg.pkl", "wb") as f:
-                pickle.dump(cdfg, f)
+            torch.save(cdfg, output_instance_folder / "cdfg.pt")
+            
+            print_cdfg(cdfg, output_instance_folder / "cdfg.txt")
+            # plot_cdfg(cdfg, output_instance_folder / "cdfg.png")

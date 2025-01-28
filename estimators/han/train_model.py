@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
 from torch.utils.data import DataLoader
+from torch_geometric.data import HeteroData
 from estimators.han.models import HAN
 from estimators.han.dataset import HLSDataset
-
 matplotlib.use('Agg')
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -64,20 +64,18 @@ def train_model(
             optimizer.zero_grad()
 
             for (cdfg, target) in zip(input_batch, target_batch):
-                x_dict, edge_index_dict = cdfg
+                cdfg = cdfg.to(device)
 
-                x_dict = move_to_device(x_dict, device)
-                edge_index_dict = move_to_device(edge_index_dict, device)
-                target = target.to(device)
+                pred = model(cdfg.x_dict, cdfg.edge_index_dict)
 
-                pred = model(x_dict, edge_index_dict)
+                target = target_batch[0].squeeze().to(device)
+                pred = pred.to(device)
 
                 instance_loss = loss_func(pred, target)
                 batch_loss += instance_loss.item()
                 instance_loss.backward()
 
-                x_dict = move_to_device(x_dict, "cpu")
-                edge_index_dict = move_to_device(edge_index_dict, "cpu")
+                cdfg = cdfg.to("cpu")
                 target, pred = target.to("cpu"), pred.to("cpu")
 
             optimizer.step()
@@ -101,11 +99,9 @@ def train_model(
             val_loss_epoch = 0
             for input_batch, target_batch in val_loader:
                 cdfg = input_batch[0] # Only one instance per batch in val_loader
-                x_dict, edge_index_dict = cdfg
-                x_dict = move_to_device(x_dict, device)
-                edge_index_dict = move_to_device(edge_index_dict, device)
+                cdfg = cdfg.to(device)
 
-                pred = model(x_dict, edge_index_dict)
+                pred = model(cdfg.x_dict, cdfg.edge_index_dict)
 
                 target = target_batch[0].squeeze().to(device)
                 pred = pred.to(device)
@@ -117,8 +113,7 @@ def train_model(
                 if verbose:
                     print(f"Target: {target.item()}; Prediction: {pred.item()}; Loss: {loss.item()}")
 
-                x_dict = move_to_device(x_dict, "cpu")
-                edge_index_dict = move_to_device(edge_index_dict, "cpu")
+                cdfg = cdfg.to("cpu")
                 target, pred = target.to("cpu"), pred.to("cpu")
 
             val_loss_epoch = val_loss_epoch / len(val_loader)
@@ -136,11 +131,9 @@ def train_model(
             test_loss_epoch = 0
             for i, (input_batch, target_batch) in enumerate(test_loader):
                 cdfg = input_batch[0] # Only one instance per batch in test_loader
-                x_dict, edge_index_dict = cdfg
-                x_dict = move_to_device(x_dict, device)
-                edge_index_dict = move_to_device(edge_index_dict, device)
+                cdfg = cdfg.to(device)
 
-                pred = model(x_dict, edge_index_dict)
+                pred = model(cdfg.x_dict, cdfg.edge_index_dict)
 
                 target = target_batch[0].squeeze().to(device)
                 pred = pred.to(device)
@@ -153,8 +146,7 @@ def train_model(
                 if verbose:
                     print(f"Target: {target.item()}; Prediction: {pred.item()}; Loss: {loss.item()}")
 
-                x_dict = move_to_device(x_dict, "cpu")
-                edge_index_dict = move_to_device(edge_index_dict, "cpu")
+                cdfg = cdfg.to("cpu")
                 target, pred = target.to("cpu"), pred.to("cpu")
         
             test_loss_epoch = test_loss_epoch / len(test_loader)
@@ -207,24 +199,41 @@ def main(args):
 
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True,
                                   collate_fn=lambda x: tuple(zip(*x)))
-        val_loader = DataLoader(val_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
-        test_loader = DataLoader(test_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
+        val_loader = DataLoader(val_dataset, shuffle=False, 
+                                collate_fn=lambda x: tuple(zip(*x)))
+        test_loader = DataLoader(test_dataset, shuffle=False,
+                                collate_fn=lambda x: tuple(zip(*x)))
 
-        n_features = {'inst': 21, 'var': 8, 'const': 8, 'array': 17}
+        node_types = ['inst', 'var', 'const', 'array']
+        edge_types = [
+            ('inst', 'control', 'inst'), 
+            ('inst', 'call', 'inst'), 
+            ('inst', 'data', 'var'), 
+            ('var', 'data', 'inst'), 
+            ('const', 'data', 'inst'), 
+            ('array', 'data', 'inst'),
+            ('inst', 'data', 'array'),
+            ('inst', 'id', 'inst'), 
+            ('var', 'id', 'var'),
+            ('array', 'id', 'array')
+        ]
+        metadata = (node_types, edge_types)
+        
+        in_channels = {'inst': 21, 'var': 8, 'const': 8, 'array': 17}
 
         model = HAN(
-            n_features=n_features, 
-            n_out=1, 
-            n_hid_att=20, 
-            heads_att=4, 
-            n_hid_set=9, 
-            heads_set=3, 
-            norm=True,
+            metadata=metadata,
+            in_channels=in_channels, 
+            out_channels=1, 
+            hid_channels_att=16, 
+            hid_channels_pool=9,
+            heads_att=4,
+            heads_pool=3,
             n_inducing_points=16,
-            dropout=0.1
-        )
-        model = model.to(device)
-
+            dropout=0.1,
+            norm=True
+        ).to(device)
+        
         loss_func = nn.MSELoss()
 
         optimizer = torch.optim.Adam(
