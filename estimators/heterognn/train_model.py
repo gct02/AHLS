@@ -8,14 +8,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
 from torch.utils.data import DataLoader
-from torch_geometric.data import HeteroData
-from estimators.han.models import HAN
-from estimators.han.dataset import HLSDataset
+from estimators.heterognn.models import HGT
+from estimators.heterognn.utils.dataset import HLSDataset
+
 matplotlib.use('Agg')
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 torch.backends.cudnn.benchmark = True
-
 torch.set_printoptions(
     precision=6, threshold=1000,
     edgeitems=10, linewidth=200,
@@ -66,7 +65,7 @@ def train_model(
             for (cdfg, target) in zip(input_batch, target_batch):
                 cdfg = cdfg.to(device)
 
-                pred = model(cdfg.x_dict, cdfg.edge_index_dict)
+                pred = model(cdfg)
 
                 target = target_batch[0].squeeze().to(device)
                 pred = pred.to(device)
@@ -101,7 +100,7 @@ def train_model(
                 cdfg = input_batch[0] # Only one instance per batch in val_loader
                 cdfg = cdfg.to(device)
 
-                pred = model(cdfg.x_dict, cdfg.edge_index_dict)
+                pred = model(cdfg)
 
                 target = target_batch[0].squeeze().to(device)
                 pred = pred.to(device)
@@ -133,7 +132,7 @@ def train_model(
                 cdfg = input_batch[0] # Only one instance per batch in test_loader
                 cdfg = cdfg.to(device)
 
-                pred = model(cdfg.x_dict, cdfg.edge_index_dict)
+                pred = model(cdfg)
 
                 target = target_batch[0].squeeze().to(device)
                 pred = pred.to(device)
@@ -213,23 +212,22 @@ def main(args):
             ('const', 'data', 'inst'), 
             ('array', 'data', 'inst'),
             ('inst', 'data', 'array'),
-            ('inst', 'id', 'inst'), 
+            ('inst', 'id', 'inst'),
             ('var', 'id', 'var'),
+            ('const', 'id', 'const'),
             ('array', 'id', 'array')
         ]
         metadata = (node_types, edge_types)
         
         in_channels = {'inst': 21, 'var': 8, 'const': 8, 'array': 17}
 
-        model = HAN(
+        model = HGT(
             metadata=metadata,
             in_channels=in_channels, 
             out_channels=1, 
-            hid_channels_att=16, 
-            hid_channels_pool=9,
-            heads_att=4,
-            heads_pool=3,
-            n_inducing_points=16,
+            hid_dim1=16,
+            hid_dim2=12,
+            heads=4,
             dropout=0.1,
             norm=True
         ).to(device)
@@ -238,7 +236,7 @@ def main(args):
 
         optimizer = torch.optim.Adam(
             model.parameters(),
-            lr=4e-3,
+            lr=6e-3,
             betas=(0.8, 0.999),
             eps=1e-8
         )

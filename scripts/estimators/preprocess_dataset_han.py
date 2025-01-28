@@ -4,9 +4,10 @@ import shutil
 import torch
 from pathlib import Path
 from utils.parsers import *
-from llvm.opt_utils import *
-from estimators.han.cdfg import \
+from llvm.opt_utils import OPT, DSE_LIB
+from estimators.heterognn.utils.cdfg import(
     build_cdfg, print_cdfg, plot_cdfg
+)
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -186,9 +187,15 @@ if __name__ == "__main__":
             # Copy the modified IR to the output folder
             shutil.copy(ir_mod, output_instance_folder / "ir.ll")
 
-            lut, bram, ff, dsp, clb, latch = extract_utilization(dataset, benchmark_name, solution.stem, filtered)
-            wns, tns, target_clk, achieved_clk = extract_timing_summary(dataset, benchmark_name, solution.stem, filtered)
-            cc = extract_hls_cc_report(dataset, benchmark_name, solution.stem, filtered)
+            lut, bram, ff, dsp, clb, latch = extract_utilization(
+                dataset, benchmark_name, solution.stem, filtered
+            )
+            wns, tns, target_clk, achieved_clk = extract_timing_summary(
+                dataset, benchmark_name, solution.stem, filtered
+            )
+            cc = extract_hls_cc_report(
+                dataset, benchmark_name, solution.stem, filtered
+            )
             
             with open(output_instance_folder / "targets.txt", "w") as f:
                 f.write(f"lut={lut}\nff={ff}\ndsp={dsp}\nbram={bram}\nclb={clb}\nlatch={latch}\ncp={achieved_clk}\ncc={cc}")

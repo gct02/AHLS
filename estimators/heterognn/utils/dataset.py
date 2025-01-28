@@ -34,8 +34,8 @@ class HLSDataset(Dataset):
         benchmarks = sorted(os.listdir(self.data_path))
 
         if self.get_test:
-            if self.test_set_index == None or \
-               self.test_set_index >= len(benchmarks):
+            if (self.test_set_index == None 
+                or self.test_set_index >= len(benchmarks)):
                 return
             benchmarks = [benchmarks[self.test_set_index]]
         else:

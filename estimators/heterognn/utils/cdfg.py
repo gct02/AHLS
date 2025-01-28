@@ -421,10 +421,9 @@ def get_edges(
         ('inst', 'data', 'array'): [],
         ('inst','id','inst'): [], 
         ('var','id','var'): [],
+        ('const','id','const'): [],
         ('array','id','array'): []
     }
-    # Note: there are no (const, id, const) edges because the constant nodes are 
-    # only source nodes in the graph (they should be removed in the 1st layer)
     
     for edge in programl_graph.edge:
         src = edge.source
@@ -488,6 +487,11 @@ def get_edges(
     for i in range(n_var):
         edge_tensor = make_edge(i, i)
         edges[('var','id','var')].append(edge_tensor)
+
+    n_const = len(indices["const"])
+    for i in range(n_const):
+        edge_tensor = make_edge(i, i)
+        edges[('const','id','const')].append(edge_tensor)
 
     n_array = len(indices["array"])
     for i in range(n_array):
