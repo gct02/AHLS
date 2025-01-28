@@ -17,7 +17,7 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 torch.backends.cudnn.benchmark = True
 torch.set_printoptions(
     precision=6, threshold=1000,
-    edgeitems=10, linewidth=200,
+    edgeitems=20, linewidth=200,
     profile="short", sci_mode=False
 )
 
