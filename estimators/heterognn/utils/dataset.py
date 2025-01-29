@@ -1,21 +1,24 @@
+from typing import Union, Optional
+
 import os
 import torch
-from typing import Union
 from pathlib import Path
 from torch.utils.data import Dataset
 
 class HLSDataset(Dataset):
     def __init__(
         self, 
-        data_path: Union[Path, str], 
+        dataset_path: Union[Path, str], 
         target_metric: str, 
-        test_set_index: Union[int, None] = None, 
-        get_test: bool = False
+        test_benchmark: Optional[str] = None, 
+        load_test_data: bool = False
     ):
+        assert test_benchmark is not None or not load_test_data, \
+            "Test benchmark must be specified when loading test data."
         self.target = target_metric
-        self.data_path = data_path
-        self.test_set_index = test_set_index
-        self.get_test = get_test
+        self.data_path = dataset_path
+        self.test_benchmark = test_benchmark
+        self.load_test_data = load_test_data
         self.data = []
         self.__load_data()
 
@@ -27,44 +30,40 @@ class HLSDataset(Dataset):
 
     def __del__(self):
         del self.data
-        torch.cuda.empty_cache()
 
     def __load_data(self):
         self.data = []
-        benchmarks = sorted(os.listdir(self.data_path))
 
-        if self.get_test:
-            if (self.test_set_index == None 
-                or self.test_set_index >= len(benchmarks)):
-                return
-            benchmarks = [benchmarks[self.test_set_index]]
-        else:
-            if self.test_set_index is not None:
-                del benchmarks[self.test_set_index]
+        if not os.path.exists(self.data_path):
+            raise FileNotFoundError(f"Dataset path {self.data_path} does not exist.")
+        
+        benchmark_list = os.listdir(self.data_path) if not self.load_test_data else [self.test_benchmark]
 
-        for bench in benchmarks:
-            bench_folder = os.fsdecode(os.path.join(self.data_path, bench))
-            instances = sorted(os.listdir(bench_folder))
+        for benchmark_name in benchmark_list:
+            benchmark_path = os.fsdecode(os.path.join(self.data_path, benchmark_name))
+            if not os.path.isdir(benchmark_path):
+                continue
 
-            for inst in instances:
-                inst_folder = os.fsdecode(os.path.join(bench_folder, inst))
+            benchmark_path = os.fsdecode(benchmark_path)
+            instance_list = sorted(os.listdir(benchmark_path))
 
-                with open(os.path.join(inst_folder, f"targets.txt"), 'r') as f:
+            for instance_name in instance_list:
+                instance_path = os.fsdecode(os.path.join(benchmark_path, instance_name))
+
+                with open(os.path.join(instance_path, f"targets.txt"), 'r') as f:
                     line = f.readline().split('=')
-                    metric = line[0]
-                    while metric != self.target:
+                    while line[0] != self.target:
                         line = f.readline().split('=')
-                        metric = line[0]
+
                     target_value = float(line[1])
                 
                 if target_value == -1:
                     continue
 
-                cdfg_path = os.path.join(inst_folder, "cdfg.pt")
+                cdfg_path = os.path.join(instance_path, "cdfg.pt")
                 if not os.path.exists(cdfg_path):
                     continue
 
                 cdfg = torch.load(cdfg_path)
                 target_value = torch.tensor([target_value])
-
                 self.data.append((cdfg, target_value))
