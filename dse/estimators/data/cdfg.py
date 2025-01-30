@@ -68,7 +68,7 @@ _OPCODE_DICT = {
     'select':        [0,0,0,0,1, 0,1,0,0,0,0,0],
 }
 
-_INST_FEATURE_SIZE = 21
+_INST_FEATURE_SIZE = 20
 _VAR_FEATURE_SIZE = 8
 _CONST_FEATURE_SIZE = 8
 _ARRAY_FEATURE_SIZE = 17
@@ -97,9 +97,9 @@ def _retrieve_trip_count(md: Dict[str, Number]) -> int:
 
 def _retrieve_pipeline_info(md: Dict[str, Number]) -> List[int]:
     if "pipeline" not in md:
-        return [0, 0]
-    ii = md["pipelineII"]
-    return [1, ii]
+        return [0]
+    pipelined = md["pipeline"]
+    return [pipelined]
 
 def _retrieve_array_partition_info(md: Dict[str, Number]) -> List[int]:
     if "arrayPartition" not in md:

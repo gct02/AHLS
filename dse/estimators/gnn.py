@@ -1,4 +1,4 @@
-from typing import Dict, Union, Optional
+from typing import Dict, Union, Optional, List
 from torch.types import Device
 from torch_geometric.typing import NodeType, EdgeType, OptTensor, Metadata
 
@@ -7,7 +7,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn import SAGPooling, HGTConv, GATConv, Linear, LayerNorm
-from torch_geometric.data import HeteroData, Data
+from torch_geometric.data import HeteroData
 
 class HGT(nn.Module):
     def __init__(
@@ -23,25 +23,30 @@ class HGT(nn.Module):
         dropout_fc: float = 0.1,
         dropout_conv: float = 0.0,
         pool_size: int = 8,
+        agg_edge_types: Optional[List[List[EdgeType]]] = None,
         use_norm: bool = True,
         use_residual: bool = True,
-        device: Optional[Device] = None,
+        device: Optional[Device] = 'cpu',
     ):
         super().__init__()
 
+        assert num_conv_layers >= 2, \
+            "Number of convolutional layers must be at least 2."
+        
         # Set device
-        self.device = device or torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
-        assert num_conv_layers >= 2, "Number of convolutional layers must be at least 2."
+        self.device = device
 
         self.use_norm = use_norm
         self.use_residual = use_residual
         self.num_conv_layers = num_conv_layers
 
+        self.agg_edge_types = agg_edge_types if agg_edge_types else [metadata[1]]
+        self.num_agg = len(self.agg_edge_types)
+
         # Define dimensions and attention heads
         hid_dim_2 = hid_dim_2 or hid_dim_1
         heads_2 = heads_2 or heads_1
-        hid_dim_3 = hid_dim_2 // 2 if hid_dim_2 > 2 * out_channels else hid_dim_2
+        hid_dim_3 = hid_dim_2 // 2 if hid_dim_2 > 2*out_channels else hid_dim_2
 
         # Define convolutional (transformer) layers
         self.conv = nn.ModuleList(
@@ -55,31 +60,47 @@ class HGT(nn.Module):
 
         # Define normalization layers (optional)
         if self.use_norm:
-            self.norm = {
+            self.norm = nn.ModuleDict({
                 node_type: nn.ModuleList(
                     [LayerNorm(hid_dim_1).to(self.device) 
                      for _ in range(num_conv_layers - 1)]
                 )
                 for node_type in metadata[0]
-            }
+            })
 
         # Define dropouts
         self.dropout_fc = nn.Dropout(dropout_fc)
         self.dropout_conv = nn.Dropout(dropout_conv)
 
-        # Define pooling layer
-        self.pool = SAGPooling(
-            hid_dim_2, ratio=pool_size, GNN=GATConv, 
-            nonlinearity='tanh'
+        # Define pooling and readout layers
+        agg_out_dim = self._ceildiv(hid_dim_2, self.num_agg)
+        self.pool = nn.ModuleList(
+            [SAGPooling(hid_dim_2, ratio=pool_size, GNN=GATConv, nonlinearity='tanh')
+             for _ in range(self.num_agg)]
         )
+        self.readout = nn.ModuleList([
+            nn.Sequential(
+                Linear(hid_dim_2*pool_size, hid_dim_2),
+                nn.GELU(),
+                nn.Dropout(dropout_fc),
+                Linear(hid_dim_2, agg_out_dim)
+            )
+            for _ in range(self.num_agg)
+        ])
 
         # Define fully connected layers
-        self.mlp = nn.ModuleList([
-            Linear(pool_size*hid_dim_2, hid_dim_2), 
+        self.mlp = nn.Sequential(
+            Linear(agg_out_dim*self.num_agg, hid_dim_2),
+            nn.GELU(),
+            nn.Dropout(dropout_fc),
             Linear(hid_dim_2, hid_dim_3),
+            nn.GELU(),
+            nn.Dropout(dropout_fc),
             Linear(hid_dim_3, hid_dim_3),
+            nn.GELU(),
+            nn.Dropout(dropout_fc),
             Linear(hid_dim_3, out_channels)
-        ])
+        )
 
         self.to(self.device)
 
@@ -113,34 +134,51 @@ class HGT(nn.Module):
         x = self.conv[-1](x, edge_index)
         x = {k: F.gelu(v) for k, v in x.items()}
 
-        # Convert heterogeneous data to homogeneous (for pooling)
-        data_hom = self._to_homogeneous(x, edge_index)
-        x_hom, edge_index_hom = data_hom.x, data_hom.edge_index
-
-        # Aggregate all nodes into a fixed-size node set
-        x_agg = self.pool(x_hom, edge_index_hom)[0].flatten()
+        # Aggregate nodes from different edge types
+        x_agg = self._aggregate(x, edge_index)
 
         # Fully connected layers
-        x_agg = self._process_fc_layers(x_agg)
+        x_agg = self.mlp(x_agg)
 
         # Avoid NaNs (edge case handling)
         x_agg = x_agg.nan_to_num_()
 
         return x_agg
-
-    def _to_homogeneous(self, 
+    
+    def _aggregate(
+        self,
         x: Dict[NodeType, OptTensor],
         edge_index: Dict[EdgeType, OptTensor]
-    ) -> Data:
+    ) -> Tensor:
+        # Create a new HeteroData object with the transformed data
+        transformed_data = self._get_transformed_data(x, edge_index)
+
+        # Aggregate nodes based on edge types
+        x_agg = []
+        for i in range(self.num_agg):
+            subg = transformed_data.edge_type_subgraph(self.agg_edge_types[i])
+            subg_hom = subg.to_homogeneous()
+            x_agg.append(
+                self.readout[i](
+                    self.pool[i](subg_hom.x, subg_hom.edge_index)[0].flatten()
+                )
+            )
+
+        # Concatenate all readout vectors
+        x_agg = torch.cat(x_agg, dim=-1)
+        return x_agg
+    
+    def _ceildiv(self, a: int, b: int):
+        return -(a // -b)
+    
+    def _get_transformed_data(
+        self,
+        x: Dict[NodeType, OptTensor],
+        edge_index: Dict[EdgeType, OptTensor]
+    ) -> HeteroData:
         transformed_data = HeteroData()
         for k, v in x.items():
             transformed_data[k].x = v
         for k, v in edge_index.items():
             transformed_data[k].edge_index = v
-        return transformed_data.to_homogeneous()
-
-    def _process_fc_layers(self, x: Tensor) -> Tensor:
-        for fc in self.mlp[:-1]:
-            x = F.gelu(fc(x))
-            x = self.dropout_fc(x)
-        return self.mlp[-1](x)
+        return transformed_data

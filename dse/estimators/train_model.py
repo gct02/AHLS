@@ -267,6 +267,10 @@ def _initialize_model() -> nn.Module:
         ('inst', 'data', 'array'), ('inst', 'id', 'inst'), ('var', 'id', 'var'),
         ('const', 'id', 'const'), ('array', 'id', 'array')
     ]
+    agg_edge_types = [
+        [t for t in edge_types if t[1] == 'data'],
+        [t for t in edge_types if t[1] == 'call' or t[1] == 'control']
+    ]
     metadata = (node_types, edge_types)
     in_channels = {'inst': 21, 'var': 8, 'const': 8, 'array': 17}
 
@@ -274,7 +278,7 @@ def _initialize_model() -> nn.Module:
         metadata=metadata, in_channels=in_channels, out_channels=1,
         hid_dim_1=16, heads_1=4, hid_dim_2=12, heads_2=3,
         num_conv_layers=5, pool_size=8, dropout_fc=0.1, dropout_conv=0.0,
-        use_norm=True, use_residual=True, device=_DEVICE
+        use_norm=True, use_residual=True, device=_DEVICE, agg_edge_types=agg_edge_types
     )
 
 
