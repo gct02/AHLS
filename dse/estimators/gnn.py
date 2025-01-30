@@ -78,7 +78,7 @@ class HGT(nn.Module):
 
         assert num_conv_layers >= 2, \
             "Number of convolutional layers must be at least 2."
-        
+
         # Set device
         self.device = device
 
@@ -130,7 +130,9 @@ class HGT(nn.Module):
                 Linear(hid_dim_agg*pool_size, hid_dim_agg),
                 nn.GELU(),
                 nn.Dropout(dropout_fc),
-                Linear(hid_dim_agg, agg_out_dim)
+                Linear(hid_dim_agg, agg_out_dim),
+                nn.GELU(),
+                nn.Dropout(dropout_fc)
             )
             for _ in range(self.num_agg)
         ])
@@ -181,7 +183,7 @@ class HGT(nn.Module):
                 x = {k: self.norm[k][i](v) for k, v in x.items()}
 
             if residual:
-                x = {k: x[k] + 0.5 * residual[k] for k in x.keys()}
+                x = {k: x[k] + residual[k] for k in x.keys()}
 
             x = {k: F.gelu(v) for k, v in x.items()}
             x = {k: self.dropout_conv(v) for k, v in x.items()}
@@ -189,6 +191,7 @@ class HGT(nn.Module):
         # Last layer
         x = self.conv[-1](x, edge_index)
         x = {k: F.gelu(v) for k, v in x.items()}
+        x = {k: self.dropout_conv(v) for k, v in x.items()}
 
         # Aggregate nodes from different edge types
         x_agg = self._aggregate(x, edge_index)
