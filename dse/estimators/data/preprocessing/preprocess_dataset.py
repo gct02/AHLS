@@ -129,9 +129,9 @@ def create_directives_tcl(directives_json: Path, output_path: Path):
         f.write(directives_tcl)
 
 def main(args: Dict[str, str]):
-    dataset = Path(args.dataset)
-    output_folder_path = Path(args.output)
-    filtered = args.filtered
+    dataset = Path(args['dataset'])
+    output_folder_path = Path(args['output'])
+    filtered = args['filtered']
 
     benchmarks = list(dataset.iterdir())
 

@@ -272,7 +272,7 @@ def _initialize_model() -> nn.Module:
         [t for t in edge_types if t[1] == 'call' or t[1] == 'control']
     ]
     metadata = (node_types, edge_types)
-    in_channels = {'inst': 21, 'var': 8, 'const': 8, 'array': 17}
+    in_channels = {'inst': 20, 'var': 8, 'const': 8, 'array': 17}
 
     return HGT(
         metadata=metadata, in_channels=in_channels, out_channels=1,

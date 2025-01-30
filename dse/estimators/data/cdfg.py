@@ -283,13 +283,13 @@ def _parse_literal_const_info(
         is_array = True
         array_md = _retrieve_array_info_from_string(node_full_text)
         element_type = array_md[2]
-        one_hot_element_type = _one_hot_encode_type(element_type)
+        one_hot_element_type = _map_type_to_one_hot(element_type)
         array_partition_md = [0] * 7
         features = (array_md[:2] + one_hot_element_type 
                     + array_md[3:] + array_partition_md)
     else:
         is_array = False
-        one_hot_type = _one_hot_encode_type(type_id)
+        one_hot_type = _map_type_to_one_hot(type_id)
         bitwidth = _retrieve_bitwidth_from_string(type_str, node_full_text)
         features = one_hot_type + [bitwidth]
 
@@ -342,10 +342,10 @@ def _build_nodes(
             loop_depth = _retrieve_loop_depth(md)
             trip_count = _retrieve_trip_count(md)
 
-            directives = _retrieve_pipeline_info(md) \
-                         + _retrieve_unroll_info(md) \
-                         + _retrieve_loop_flatten_info(md) \
-                         + _retrieve_loop_merge_info(md)
+            directives = (_retrieve_pipeline_info(md)
+                          + _retrieve_unroll_info(md)
+                          + _retrieve_loop_flatten_info(md)
+                          + _retrieve_loop_merge_info(md))
 
             features = one_hot_op + [loop_depth, trip_count] + directives
             nodes['inst'].append(torch.tensor(features, dtype=torch.float32))
@@ -379,7 +379,7 @@ def _build_nodes(
 
             if "isArray" in md:
                 array_md = _retrieve_array_info(md)
-                one_hot_type = _one_hot_encode_type(array_md[2])
+                one_hot_type = _map_type_to_one_hot(array_md[2])
                 array_partition_md = _retrieve_array_partition_info(md)
                 features = (array_md[:2] + one_hot_type + array_md[3:]
                             + array_partition_md)
