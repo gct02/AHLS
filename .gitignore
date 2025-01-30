@@ -64,14 +64,22 @@ dkms.conf
 .vscode/
 .idea/
 
+# Environment specific files
 __pycache__/
 *__pycache__/
-build/
 .venv/
+
+# Build folders
+build/
+
+# Approximate Computing project files (on hold)
+approx/
+hls_utils/
+
+# Test files and statistics
+test/
 model_analysis/
+solutions_info/
+
+# The dataset to train the estimator (too large for git)
 dataset/
-dataset_analysis/graphs/
-dataset_analysis/solutions_info/
-estimators/gnn/
-preprocess_dataset_gat.py
-tests/
