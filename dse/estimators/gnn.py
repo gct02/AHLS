@@ -68,7 +68,10 @@ class HGT(nn.Module):
         self.dropout_conv = nn.Dropout(dropout_conv)
 
         # Define pooling layer
-        self.pool = SAGPooling(hid_dim_2, ratio=pool_size, GNN=GATConv)
+        self.pool = SAGPooling(
+            hid_dim_2, ratio=pool_size, GNN=GATConv, 
+            nonlinearity='tanh'
+        )
 
         # Define fully connected layers
         self.mlp = nn.ModuleList([

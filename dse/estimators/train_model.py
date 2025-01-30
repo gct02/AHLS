@@ -125,7 +125,7 @@ def train_model(
                 model, val_loader, loss_func, verbosity, "validation"
             )
             if scheduler:
-                scheduler.step(val_loss_epoch)
+                scheduler.step(val_loss_epoch[0])
               
             # ********** Test ********** #
             test_loss_epoch, test_preds = _evaluate(
@@ -173,10 +173,12 @@ def main(args: Dict[str, str]):
         train_loader, val_loader, test_loader = _prepare_data_loaders(dataset_path, target_metric, benchmark_name, batch_size)
 
         model = _initialize_model()
-        loss_func = nn.MSELoss()
-        optimizer = torch.optim.Adam(model.parameters(), lr=1e-2, betas=(0.9, 0.999), eps=1e-8)
+        loss_func = nn.HuberLoss(delta=1.35)
+        optimizer = torch.optim.AdamW(
+            model.parameters(), lr=1e-2, betas=(0.9, 0.999), eps=1e-8
+        )
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-            optimizer, mode='min', factor=0.1, patience=10, min_lr=1e-6
+            optimizer, mode='min', factor=0.1, patience=10, min_lr=1e-6, eps=1e-8, verbose=verbosity > 0
         )
 
         train_losses, test_losses, test_preds_inst = train_model(
