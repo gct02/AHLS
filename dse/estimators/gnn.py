@@ -115,6 +115,13 @@ class HGT(nn.Module):
                 for node_type in metadata[0]
             })
 
+        # Define fully connected layer to be applied for each node type
+        # after the convolutional layers
+        self.fc = nn.ModuleDict({
+            node_type: Linear(hid_dim_agg, hid_dim_agg)
+            for node_type in metadata[0]
+        })
+
         # Define dropouts
         self.dropout_fc = nn.Dropout(dropout_fc)
         self.dropout_conv = nn.Dropout(dropout_conv)
@@ -122,7 +129,7 @@ class HGT(nn.Module):
         # Define pooling and readout layers
         agg_out_dim = self._ceildiv(hid_dim_agg, self.num_agg)
         self.pool = nn.ModuleList(
-            [SAGPooling(hid_dim_agg, ratio=pool_size, GNN=GATConv, nonlinearity='tanh')
+            [SAGPooling(hid_dim_agg, ratio=pool_size, GNN=GATConv)
              for _ in range(self.num_agg)]
         )
         self.readout = nn.ModuleList([
@@ -153,13 +160,28 @@ class HGT(nn.Module):
 
         self.to(self.device)
 
+    def reset_parameters(self):
+        r"""Reinitializes the model parameters."""
+        for conv in self.conv:
+            conv.reset_parameters()
+        if self.use_norm:
+            self.norm.apply(lambda x: x.apply(lambda y: y.reset_parameters()))
+        self.fc.apply(lambda x: x.reset_parameters())
+        self.pool.apply(lambda x: x.reset_parameters())
+        self.readout.apply(lambda x: x.apply(self._reset_linear))
+        self.mlp.apply(self._reset_linear)
+
+    def _reset_linear(self, m):
+        if isinstance(m, Linear):
+            m.reset_parameters()
+
     def forward(self, data: HeteroData) -> Tensor:
         r"""Runs the forward pass of the module.
 
         Args:
             data (:class:`torch_geometric.data.HeteroData`):
-                A data object containing input node features and graph connectivity
-                information for each individual edge type.
+                A data object containing input node features and graph 
+                connectivity information for each individual edge type.
     
         Returns: :obj:`torch.Tensor` - The output prediction tensor.
         """
@@ -193,7 +215,10 @@ class HGT(nn.Module):
         x = {k: F.gelu(v) for k, v in x.items()}
         x = {k: self.dropout_conv(v) for k, v in x.items()}
 
-        # Aggregate nodes from different edge types
+        # Node-wise fully connected layers
+        x = {k: self.fc[k](v) for k, v in x.items()}
+
+        # Edge-wise aggregation
         x_agg = self._aggregate(x, edge_index)
 
         # Fully connected layers
@@ -217,11 +242,8 @@ class HGT(nn.Module):
         for i in range(self.num_agg):
             subg = transformed_data.edge_type_subgraph(self.agg_edge_types[i])
             subg_hom = subg.to_homogeneous()
-            x_agg.append(
-                self.readout[i](
-                    self.pool[i](subg_hom.x, subg_hom.edge_index)[0].flatten()
-                )
-            )
+            x_pool = self.pool[i](subg_hom.x, subg_hom.edge_index)[0]
+            x_agg.append(self.readout[i](x_pool.flatten()))
 
         # Concatenate all readout vectors
         x_agg = torch.cat(x_agg, dim=-1)

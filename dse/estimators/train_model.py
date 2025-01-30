@@ -61,7 +61,7 @@ def _evaluate(
 
     loss_epoch /= len(loader)
     if verbosity > 0:
-        print(f"\nAverage MSE on {mode} set: {loss_epoch}\n")
+        print(f"\nAverage Huber loss on {mode} set: {loss_epoch}\n")
 
     return (loss_epoch, preds_all) if return_preds else (loss_epoch, None)
 
@@ -112,7 +112,7 @@ def train_model(
             train_loss_epoch += batch_loss
 
             if verbosity > 0:
-                print(f"Average MSE on train batch {i}: {batch_loss}")
+                print(f"Average Huber loss on train batch {i}: {batch_loss}")
 
         # ********** Evaluation ********** #
         model.eval()
