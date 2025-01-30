@@ -174,9 +174,7 @@ def main(args: Dict[str, str]):
 
         model = _initialize_model()
         loss_func = nn.HuberLoss(delta=1.35)
-        optimizer = torch.optim.AdamW(
-            model.parameters(), lr=1e-2, betas=(0.9, 0.999), eps=1e-8
-        )
+        optimizer = torch.optim.AdamW(model.parameters(), lr=1e-2, betas=(0.9, 0.999), eps=1e-8)
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
             optimizer, mode='min', factor=0.1, patience=10, min_lr=1e-6, eps=1e-8, verbose=verbosity > 0
         )
@@ -276,9 +274,10 @@ def _initialize_model() -> nn.Module:
 
     return HGT(
         metadata=metadata, in_channels=in_channels, out_channels=1,
-        hid_dim_1=20, heads_1=4, hid_dim_2=20, heads_2=4,
+        hid_dim_conv=20, heads_conv=4, hid_dim_agg=20, heads_agg=4,
         num_conv_layers=6, pool_size=16, dropout_fc=0.1, dropout_conv=0.0,
-        use_norm=True, use_residual=True, agg_edge_types=agg_edge_types, device=_DEVICE
+        use_norm=True, use_residual=True, agg_edge_types=agg_edge_types, 
+        device=_DEVICE
     )
 
 
