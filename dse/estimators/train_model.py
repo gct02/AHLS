@@ -276,9 +276,9 @@ def _initialize_model() -> nn.Module:
 
     return HGT(
         metadata=metadata, in_channels=in_channels, out_channels=1,
-        hid_dim_1=16, heads_1=4, hid_dim_2=12, heads_2=3,
-        num_conv_layers=5, pool_size=8, dropout_fc=0.1, dropout_conv=0.0,
-        use_norm=True, use_residual=True, device=_DEVICE, agg_edge_types=agg_edge_types
+        hid_dim_1=20, heads_1=4, hid_dim_2=20, heads_2=4,
+        num_conv_layers=6, pool_size=16, dropout_fc=0.1, dropout_conv=0.0,
+        use_norm=True, use_residual=True, agg_edge_types=agg_edge_types, device=_DEVICE
     )
 
 
