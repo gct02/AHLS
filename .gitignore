@@ -80,6 +80,7 @@ hls_utils/
 test/
 model_analysis/
 solutions_info/
+dse/estimators/utils/plotting.py
 
 # The dataset to train the estimator (too large for git)
 dataset/
