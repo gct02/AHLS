@@ -2,6 +2,7 @@ from typing import Union, Optional, List, Dict
 
 import os
 import torch
+from collections import defaultdict
 from pathlib import Path
 from torch.utils.data import Dataset
 
@@ -19,45 +20,94 @@ class HLSDataset(Dataset):
         self.normalize = normalize
         self.benchmarks = benchmarks
 
-        self._load_data()
+        self._load_data_paths()
 
         if self.normalize:
             if feature_stats is None:
                 self._compute_stats()
             else:
-                self.feature_stats = feature_stats
+                self.feature_stats = feature_stats.copy()
 
     def _compute_stats(self):
-        """Compute mean and std for each node type across all graphs"""
-        self.feature_stats = {}
-        for cdfg, _ in self.data:
-            for k, v in cdfg.x_dict.items():
-                if k not in self.feature_stats:
-                    self.feature_stats[k] = {'mean': [], 'std': []}
-                self.feature_stats[k]['mean'].append(v.mean(dim=0))
-                self.feature_stats[k]['std'].append(v.std(dim=0))
+        """Compute mean and standard deviation of features for normalization."""
+        
+        feature_sums = defaultdict(lambda: torch.zeros(0))
+        feature_squares = defaultdict(lambda: torch.zeros(0))
+        counts = defaultdict(lambda: 0)
+        node_types = set()
 
-        for k, v in self.feature_stats.items():
-            self.feature_stats[k]['mean'] = torch.stack(v['mean']).mean(dim=0)
-            self.feature_stats[k]['std'] = torch.stack(v['std']).mean(dim=0)
+        for cdfg_path, _ in self.data_paths:
+            cdfg = torch.load(cdfg_path)
+            for nt, features in cdfg.x_dict.items():
+                node_types.add(nt)
+                if (features is None or features.numel() == 0 
+                    or features.shape[0] == 0):
+                    continue
+                    
+                if (nt not in feature_sums 
+                    or feature_sums[nt].numel() == 0):
+                    feature_sums[nt] = features.sum(dim=0)
+                    feature_squares[nt] = (features**2).sum(dim=0)
+                else:
+                    feature_sums[nt] += features.sum(dim=0)
+                    feature_squares[nt] += (features**2).sum(dim=0)
+
+                if nt not in counts:
+                    counts[nt] = features.shape[0]
+                else:
+                    counts[nt] += features.shape[0]
+
+        self.feature_stats = {}
+        for nt in node_types:
+            if nt not in counts or counts[nt] == 0:
+                self.feature_stats[nt] = {'mean': 0, 'std': 1}
+                continue
+                
+            mean = feature_sums[nt] / counts[nt]
+            std = torch.sqrt(
+                (feature_squares[nt] / counts[nt]) - mean**2
+            ).clamp_min(1e-8)
+            
+            self.feature_stats[nt] = {
+                'mean': mean,
+                'std': std
+            }
 
     def __len__(self):
-        return len(self.data)
+        return len(self.data_paths)
 
-    def __getitem__(self, idx:int):
-        cdfg, target = self.data[idx]
+    def __getitem__(self, idx: int):
+        cdfg_path, targets_path = self.data_paths[idx]
         
+        # Load CDFG and target value from disk
+        cdfg = torch.load(cdfg_path)
+        
+        target_value = -1
+        with open(targets_path, 'r') as f:
+            for line in f:
+                if line.startswith(self.target):
+                    target_value = float(line.split("=")[1].strip())
+                    break
+        
+        if target_value == -1:
+            raise ValueError(f"Invalid target in {targets_path}")
+
+        # Apply normalization
         if self.normalize:
-            for k, v in cdfg.x_dict.items():
-                stats = self.feature_stats[k]
-                cdfg.x_dict[k] = (v - stats['mean']) / stats['std']
+            for nt in cdfg.x_dict.keys():
+                if nt not in self.feature_stats:
+                    continue
+                    
+                stats = self.feature_stats[nt]
+                cdfg.x_dict[nt] = ((cdfg.x_dict[nt] - stats['mean'].unsqueeze(0)) 
+                                   / stats['std'].unsqueeze(0))
+                
+        if not cdfg.is_sorted():
+            cdfg = cdfg.sort()
 
-        return cdfg, target
+        return cdfg, torch.tensor([target_value])
 
-    def __del__(self):
-        del self.data
-
-    def _load_data(self):
+    def _load_data_paths(self):
         if not os.path.exists(self.dataset_path):
             raise FileNotFoundError(f"Dataset path {self.dataset_path} does not exist.")
         
@@ -73,17 +123,15 @@ class HLSDataset(Dataset):
                     raise FileNotFoundError(f"Benchmark {benchmark} not found in {self.dataset_path}")
                 
         self.benchmarks = sorted(self.benchmarks)
-        self.data = []
+        self.data_paths = []
         for benchmark_name in self.benchmarks:
-            benchmark_path = os.fsdecode(os.path.join(self.dataset_path, benchmark_name))
+            benchmark_path = os.path.join(self.dataset_path, benchmark_name)
             if not os.path.isdir(benchmark_path):
                 continue
 
-            benchmark_path = os.fsdecode(benchmark_path)
             solutions = sorted(os.listdir(benchmark_path))
-
             for solution_name in solutions:
-                instance_path = os.fsdecode(os.path.join(benchmark_path, solution_name))
+                instance_path = os.path.join(benchmark_path, solution_name)
 
                 targets_path = os.path.join(instance_path, "targets.txt")
                 if not os.path.exists(targets_path):
@@ -103,6 +151,4 @@ class HLSDataset(Dataset):
                 if target_value == -1:
                     continue
 
-                cdfg = torch.load(cdfg_path)
-                target_value = torch.tensor([target_value])
-                self.data.append((cdfg, target_value))
+                self.data_paths.append((cdfg_path, targets_path))

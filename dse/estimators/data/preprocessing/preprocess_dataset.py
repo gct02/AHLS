@@ -132,14 +132,17 @@ def main(args: Dict[str, str]):
     dataset = Path(args['dataset'])
     output_folder_path = Path(args['output'])
     filtered = args['filtered']
+    benchmarks = args['benchmarks']
 
-    benchmarks = list(dataset.iterdir())
+    if benchmarks is None:
+        # Process all benchmarks in the dataset
+        benchmarks = [b.stem for b in list(dataset.iterdir())]
 
     for benchmark in benchmarks:
-        benchmark_name = benchmark.stem
-        output_bench_folder = output_folder_path / benchmark_name
+        benchmark_dir = dataset / benchmark
+        output_bench_folder = output_folder_path / benchmark
         output_bench_folder.mkdir(parents=True, exist_ok=True)
-        solutions = list(benchmark.iterdir())
+        solutions = list(benchmark_dir.iterdir())
 
         for solution in solutions:
             if not solution.is_dir():
@@ -190,13 +193,13 @@ def main(args: Dict[str, str]):
             shutil.copy(ir_mod, output_instance_folder / "ir.ll")
 
             lut, bram, ff, dsp, clb, latch = extract_utilization(
-                dataset, benchmark_name, solution.stem, filtered
+                dataset, benchmark, solution.stem, filtered
             )
             _, _, _, achieved_clk = extract_timing_summary(
-                dataset, benchmark_name, solution.stem, filtered
+                dataset, benchmark, solution.stem, filtered
             )
             cc = extract_hls_cc_report(
-                dataset, benchmark_name, solution.stem, filtered
+                dataset, benchmark, solution.stem, filtered
             )
             
             with open(output_instance_folder / "targets.txt", "w") as f:
@@ -213,6 +216,7 @@ def parse_args():
     parser.add_argument("-d", "--dataset", help="Path to the original dataset folder", required=True)
     parser.add_argument("-o", "--output", help="Path where the processed dataset should be written", required=True)
     parser.add_argument("-f", "--filtered", help="Signal that the dataset is filtered", action="store_true")
+    parser.add_argument("-b", "--benchmarks", help="List of benchmarks to process", nargs="+", default=None)
     return vars(parser.parse_args())
 
 if __name__ == "__main__":

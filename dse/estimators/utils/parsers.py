@@ -349,7 +349,7 @@ def organize_data(
 
     cols = ['solution', 'lut', 'bram', 'ff', 'dsp', 'clb', 'latch', 
             'target_clk', 'achieved_clk', 'wns', 'tns', 'cycles', 
-            'estimated_time']
+            'time']
     
     bench_dataframe = pd.DataFrame(list_to_df, columns=cols)
     

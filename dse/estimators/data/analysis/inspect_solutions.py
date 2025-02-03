@@ -59,17 +59,31 @@ def get_most_common_directives(
 
 def parse_args():
     parser = ArgumentParser()
-    parser.add_argument('-d', '--dataset', help='dataset path', required=True)
-    parser.add_argument('-b', '--benchmark', help='benchmark name', required=True)
-    parser.add_argument('-o', '--output_dir', help='output directory', required=True)
-    parser.add_argument('-a', '--available', help='Available directives file', 
-                        required=False, default=None)
-    parser.add_argument('-f', '--filtered', help='Sinalize if the dataset is filtered', 
-                        required=False, action='store_true', default=False)
-    parser.add_argument('-lt', '--lut_threshold', help='LUT threshold', 
-                        required=False, default=_DEFAULT_LUT_THRESHOLD)
-    parser.add_argument('-dr', '--directives', help='Sinalize to include information about directives', 
-                        required=False, action='store_true', default=False)
+    parser.add_argument(
+        '-d', '--dataset', required=True, help='Dataset directory path'
+    )
+    parser.add_argument(
+        '-b', '--benchmark', required=True, help='Benchmark name'
+    )
+    parser.add_argument(
+        '-o', '--output_dir', required=True, help='Output directory path'
+    )
+    parser.add_argument(
+        '-a', '--available', required=False, default=None,
+        help='Available directives file path'
+    )
+    parser.add_argument(
+        '-f', '--filtered', required=False, action='store_true', default=False,
+        help='Sinalize if the dataset is filtered'
+    )
+    parser.add_argument(
+        '-lt', '--lut_threshold', required=False, default=_DEFAULT_LUT_THRESHOLD,
+        help='Threshold to separate LUT usage into two groups (default: 400)'
+    )
+    parser.add_argument(
+        '-dr', '--directives', required=False, action='store_true', default=False,
+        help='Sinalize to include information about directives'
+    )
     return parser.parse_args()
 
 if __name__ == '__main__':

@@ -1,15 +1,18 @@
 from typing import List, Dict, Tuple, Union, Optional
 from torch.types import Number
-from torch_geometric.typing import NodeType
 
 import torch
-import programl
 import matplotlib.pyplot as plt
-import networkx as nx
-from torch import Tensor
 from pathlib import Path
+from torch import Tensor
+from torch_geometric.typing import NodeType
 from torch_geometric.data import HeteroData, Data
 from torch_geometric.utils import to_networkx
+
+INST_FEATURE_SIZE = 20
+VAR_FEATURE_SIZE = 8
+CONST_FEATURE_SIZE = 8
+ARRAY_FEATURE_SIZE = 17
 
 # "One-hot-like" encoding of the opcodes
 _OPCODE_DICT = {
@@ -68,20 +71,15 @@ _OPCODE_DICT = {
     'select':        [0,0,0,0,1, 0,1,0,0,0,0,0],
 }
 
-_INST_FEATURE_SIZE = 20
-_VAR_FEATURE_SIZE = 8
-_CONST_FEATURE_SIZE = 8
-_ARRAY_FEATURE_SIZE = 17
-
 def _retrieve_feature_size(node_type: str) -> int:
     if node_type == 'inst':
-        return _INST_FEATURE_SIZE
+        return INST_FEATURE_SIZE
     elif node_type == 'var':
-        return _VAR_FEATURE_SIZE
+        return VAR_FEATURE_SIZE
     elif node_type == 'const':
-        return _CONST_FEATURE_SIZE
+        return CONST_FEATURE_SIZE
     else:
-        return _ARRAY_FEATURE_SIZE
+        return ARRAY_FEATURE_SIZE
 
 def _retrieve_loop_depth(md: Dict[str, Number]) -> int:
     if "loopDepth" not in md:
@@ -311,13 +309,13 @@ def _build_nodes(
 
         if node_text == "" or node_text == "[external]":
             if node_type == 0:
-                nodes['inst'].append(torch.zeros(_INST_FEATURE_SIZE, dtype=torch.float32))
+                nodes['inst'].append(torch.zeros(INST_FEATURE_SIZE, dtype=torch.float32))
                 indices["inst"].append(i)
             elif node_type == 1:
-                nodes['var'].append(torch.zeros(_VAR_FEATURE_SIZE, dtype=torch.float32))
+                nodes['var'].append(torch.zeros(VAR_FEATURE_SIZE, dtype=torch.float32))
                 indices["var"].append(i)
             else:
-                nodes['const'].append(torch.zeros(_CONST_FEATURE_SIZE, dtype=torch.float32))
+                nodes['const'].append(torch.zeros(CONST_FEATURE_SIZE, dtype=torch.float32))
                 indices["const"].append(i)
             continue
 
@@ -328,7 +326,7 @@ def _build_nodes(
         if node.type == 0:
             # Instruction
             if "!ID." not in node_full_text:
-                nodes['inst'].append(torch.zeros(_INST_FEATURE_SIZE, dtype=torch.float32))
+                nodes['inst'].append(torch.zeros(INST_FEATURE_SIZE, dtype=torch.float32))
                 indices["inst"].append(i)
                 continue
 
@@ -549,6 +547,8 @@ def build_cdfg(
     ir_path: Path,
     metadata_path: Path,
 ) -> HeteroData:
+    import programl
+
     with open(ir_path, 'r') as ir_file:
         ir_text = ir_file.read()
 
@@ -572,6 +572,8 @@ def plot_cdfg(
     cdfg: Union[HeteroData, Data],
     output_path: Optional[Path] = None
 ) -> None:
+    import networkx as nx
+
     def get_short_type(node_type: NodeType) -> str:
         if node_type == 'inst':
             return 'I'
@@ -663,6 +665,7 @@ def print_cdfg(
 
 if __name__ == "__main__":
     # *** For debugging *** #
+    import programl
     from sys import argv
 
     ir_path = Path(argv[1])

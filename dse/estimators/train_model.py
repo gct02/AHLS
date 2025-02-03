@@ -17,10 +17,14 @@ from matplotlib.cm import RdYlGn
 
 from dse.estimators.gnn import HGT
 from dse.estimators.data.dataset import HLSDataset
+from dse.estimators.data.cdfg import (
+    INST_FEATURE_SIZE, VAR_FEATURE_SIZE, 
+    CONST_FEATURE_SIZE, ARRAY_FEATURE_SIZE
+)
 
-_DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-def _save_model(model, target_dir, model_name):
+def save_model(model, target_dir, model_name):
     target_dir_path = Path(target_dir)
     target_dir_path.mkdir(parents=True, exist_ok=True)
     assert model_name.endswith(".pth") or model_name.endswith(".pt"), \
@@ -30,7 +34,7 @@ def _save_model(model, target_dir, model_name):
     torch.save(obj=model.state_dict(), f=model_save_path)
     
 
-def _evaluate(
+def evaluate(
     model: nn.Module,
     loader: DataLoader,
     loss_func: nn.Module,
@@ -48,9 +52,9 @@ def _evaluate(
     for input_batch, target_batch in loader:
         preds_batch = []
 
-        cdfg = input_batch[0].to(_DEVICE)
+        cdfg = input_batch[0].to(DEVICE)
         pred = model(cdfg)
-        target = target_batch[0].to(_DEVICE)
+        target = target_batch[0].to(DEVICE)
         loss = loss_func(pred, target)
 
         loss_epoch += loss.item()
@@ -98,7 +102,7 @@ def train_model(
             optimizer.zero_grad()
 
             for cdfg, target in zip(input_batch, target_batch):
-                cdfg, target = cdfg.to(_DEVICE), target.to(_DEVICE)
+                cdfg, target = cdfg.to(DEVICE), target.to(DEVICE)
 
                 pred = model(cdfg)
                 loss = loss_func(pred, target)
@@ -127,14 +131,14 @@ def train_model(
         model.eval()
         with torch.no_grad():
             # ********** Validation ********** #
-            val_loss_epoch = _evaluate(
+            val_loss_epoch = evaluate(
                 model, val_loader, loss_func, verbosity, "validation"
             )
             if scheduler:
                 scheduler.step(val_loss_epoch[0])
               
             # ********** Test ********** #
-            test_loss_epoch, test_preds = _evaluate(
+            test_loss_epoch, test_preds = evaluate(
                 model, test_loader, loss_func, verbosity, "test", return_preds=True
             )
             test_losses.append(test_loss_epoch)
@@ -150,7 +154,7 @@ def main(args: Dict[str, str]):
     seed = int(args['seed'])
     dataset_path = args['dataset']
     target_metric = args['target']
-    selected_test_benchmark = args['testbench']
+    selected_test_bench = args['testbench']
     verbosity = int(args['verbose'])
 
     matplotlib.use('Agg')
@@ -162,37 +166,37 @@ def main(args: Dict[str, str]):
     )
 
     # Set random seeds for reproducibility
-    _set_random_seeds(seed)
+    set_random_seeds(seed)
 
     base_stats_dir = f"dse/estimators/model_analysis/{target_metric}"
     base_pretrained_dir = f"dse/estimators/pretrained/{target_metric}"
 
     benchmarks = sorted(os.listdir(dataset_path))
 
-    if selected_test_benchmark is None:
-        test_benchmarks = benchmarks
+    if selected_test_bench is None:
+        test_benches = benchmarks
     else:
-        test_benchmarks = [selected_test_benchmark]
+        test_benches = [selected_test_bench]
 
-    for test_benchmark in test_benchmarks:
-        stats_dir, graphs_dir, pretrained_dir = _make_output_dirs(
-            base_stats_dir, base_pretrained_dir, test_benchmark
+    for test_bench in test_benches:
+        stats_dir, graphs_dir, pretrained_dir = make_output_dirs(
+            base_stats_dir, base_pretrained_dir, test_bench
         )
 
-        train_benchmarks = [b for b in benchmarks if b != test_benchmark]
+        train_benches = [b for b in benchmarks if b != test_bench]
 
-        train_loader, val_loader, test_loader = _prepare_data_loaders(
-            dataset_path, target_metric, train_benchmarks, 
-            test_benchmark, batch_size, val_split=0.1
+        train_loader, val_loader, test_loader = prepare_data_loaders(
+            dataset_path, target_metric, train_benches, test_bench, 
+            batch_size, val_split=0.1
         )
 
-        model = _initialize_model()
+        model = initialize_model()
         loss_func = nn.HuberLoss(delta=1.35)
         optimizer = torch.optim.AdamW(
-            model.parameters(), lr=1e-2, betas=(0.9, 0.999), eps=1e-8
+            model.parameters(), lr=1e-3, betas=(0.8, 0.999), eps=1e-8, weight_decay=1e-4
         )
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-            optimizer, mode='min', factor=0.1, patience=10, min_lr=1e-6, eps=1e-8
+            optimizer, mode='min', factor=0.5, patience=5, min_lr=1e-6, eps=1e-8
         )
 
         train_losses, test_losses, test_preds_sorted = train_model(
@@ -200,15 +204,15 @@ def main(args: Dict[str, str]):
             val_loader, epochs, scheduler, verbosity
         )
         
-        _save_model(model, pretrained_dir, f"hgt_{target_metric}.pth")
-        _save_training_artifacts(
+        save_model(model, pretrained_dir, f"hgt_{target_metric}.pt")
+        save_training_artifacts(
             train_losses, test_losses, test_preds_sorted, 
             stats_dir, graphs_dir
         )
-        _plot_benchmark_analysis(test_preds_sorted, test_benchmark, graphs_dir)
+        plot_benchmark_analysis(test_preds_sorted, test_bench, graphs_dir)
 
 
-def _plot_learning_curves(
+def plot_learning_curves(
     train_losses: List[float], 
     test_losses: List[float], 
     save_path: Optional[str] = None
@@ -258,7 +262,7 @@ def _plot_learning_curves(
     plt.close()
 
 
-def _plot_predictions(
+def plot_predictions(
     test_preds_sorted: List[List[Tuple[float, float]]],
     save_path: str
 ):
@@ -303,9 +307,9 @@ def _plot_predictions(
     plt.close()
 
 
-def _plot_benchmark_analysis(
+def plot_benchmark_analysis(
     test_preds_sorted: List[List[Tuple[float, float]]],
-    benchmark: str,
+    bench_name: str,
     save_dir: str
 ):
     """Plot per-benchmark instance-level predictions and errors"""
@@ -353,7 +357,7 @@ def _plot_benchmark_analysis(
         )
     
     plt.title(
-        f'Benchmark: {benchmark}\nMAE: {np.mean(np.abs(preds - targets)):.2f} | '
+        f'Benchmark: {bench_name}\nMAE: {np.mean(np.abs(preds - targets)):.2f} | '
         f'RMSE: {np.sqrt(np.mean((preds - targets)**2)):.2f}', fontsize=14
     )
     plt.ylabel('Resource Usage', fontsize=12)
@@ -381,11 +385,11 @@ def _plot_benchmark_analysis(
     plt.ylim(-100, 100)
 
     plt.tight_layout()
-    plt.savefig(f"{save_dir}/{benchmark}_analysis.png", bbox_inches='tight')
+    plt.savefig(f"{save_dir}/{bench_name}_analysis.png", bbox_inches='tight')
     plt.close()
 
 
-def _save_training_artifacts(
+def save_training_artifacts(
     train_losses: List[float],
     test_losses: List[float],
     test_preds_sorted: List[List[Tuple[float, float]]],
@@ -416,8 +420,8 @@ def _save_training_artifacts(
     ])
     predictions_df.to_csv(f"{stats_dir}/test_predictions.csv", index=False)
 
-    _plot_learning_curves(train_losses, test_losses, f"{graphs_dir}/learning_curve.png")
-    _plot_predictions(test_preds_sorted, f"{graphs_dir}/test_predictions.png")
+    plot_learning_curves(train_losses, test_losses, f"{graphs_dir}/learning_curve.png")
+    plot_predictions(test_preds_sorted, f"{graphs_dir}/test_predictions.png")
 
     # Add error distribution plot
     plt.figure(figsize=(10, 6))
@@ -427,7 +431,7 @@ def _save_training_artifacts(
     plt.close()
     
 
-def _set_random_seeds(seed: int):
+def set_random_seeds(seed: int):
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
@@ -435,14 +439,14 @@ def _set_random_seeds(seed: int):
     random.seed(seed)
 
 
-def _make_output_dirs(
+def make_output_dirs(
     base_stats_dir: str,
     base_pretrained_dir: str,
-    test_benchmark: str
+    test_bench: str
 ) -> Tuple[str, str, str]:
-    stats_dir = f"{base_stats_dir}/{test_benchmark}/stats"
-    graphs_dir = f"{base_stats_dir}/{test_benchmark}/graphs"
-    pretrained_dir = f"{base_pretrained_dir}/{test_benchmark}"
+    stats_dir = f"{base_stats_dir}/{test_bench}/stats"
+    graphs_dir = f"{base_stats_dir}/{test_bench}/graphs"
+    pretrained_dir = f"{base_pretrained_dir}/{test_bench}"
 
     os.makedirs(base_stats_dir, exist_ok=True)
     os.makedirs(stats_dir, exist_ok=True)
@@ -453,19 +457,19 @@ def _make_output_dirs(
     return stats_dir, graphs_dir, pretrained_dir
 
 
-def _prepare_data_loaders(
+def prepare_data_loaders(
     dataset_dir: str, 
     target_metric: str,
-    train_benchmarks: Union[List[str], str],
-    test_benchmarks: Union[List[str], str],
+    train_benches: Union[List[str], str],
+    test_benches: Union[List[str], str],
     batch_size: int,
     val_split: float = 0.1
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
     train_dataset = HLSDataset(
-        dataset_dir, target_metric, normalize=True, benchmarks=train_benchmarks
+        dataset_dir, target_metric, normalize=True, benchmarks=train_benches
     )
     test_dataset = HLSDataset(
-        dataset_dir, target_metric, normalize=True, benchmarks=test_benchmarks,
+        dataset_dir, target_metric, normalize=True, benchmarks=test_benches,
         feature_stats=train_dataset.feature_stats
     )
 
@@ -483,7 +487,7 @@ def _prepare_data_loaders(
     return train_loader, val_loader, test_loader
 
 
-def _initialize_model() -> nn.Module:
+def initialize_model() -> nn.Module:
     node_types = ['inst', 'var', 'const', 'array']
     edge_types = [
         ('inst', 'control', 'inst'), ('inst', 'call', 'inst'), ('inst', 'data', 'var'),
@@ -491,33 +495,39 @@ def _initialize_model() -> nn.Module:
         ('inst', 'data', 'array'), ('inst', 'id', 'inst'), ('var', 'id', 'var'),
         ('const', 'id', 'const'), ('array', 'id', 'array')
     ]
+    metadata = (node_types, edge_types)
+    in_channels = {
+        'inst': INST_FEATURE_SIZE, 'var': VAR_FEATURE_SIZE, 
+        'const': CONST_FEATURE_SIZE, 'array': ARRAY_FEATURE_SIZE
+    }
     agg_edge_types = [
         [t for t in edge_types if t[1] == 'data'],
-        [t for t in edge_types if t[1] == 'call' or t[1] == 'control']
+        [t for t in edge_types if t[1] == 'call'],
+        [t for t in edge_types if t[1] == 'control'],
+        [t for t in edge_types if t[1] == 'id']
     ]
-    metadata = (node_types, edge_types)
-    in_channels = {'inst': 20, 'var': 8, 'const': 8, 'array': 17}
 
     return HGT(
-        metadata=metadata, in_channels=in_channels, out_channels=1,
-        hid_dim_conv=20, heads_conv=4, hid_dim_agg=20, heads_agg=4,
-        num_conv_layers=6, pool_size=16, dropout_fc=0.1, dropout_conv=0.0,
-        use_norm=True, use_residual=True, agg_edge_types=agg_edge_types, 
-        device=_DEVICE
+        metadata=metadata, in_channels=in_channels, out_channels=1, hid_dim=64, 
+        heads=8, n_layers=6, pool_size=16, fc_dropout=0.2, conv_dropout=0.0, 
+        use_norm=True, agg_edge_types=agg_edge_types, device=DEVICE
     )
 
 
-def _parse_arguments():
+def parse_arguments():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--dataset', help='Path to the dataset', required=True)
-    parser.add_argument('--epoch', help='The number of training epochs', default=1000)
-    parser.add_argument('--seed', help='Random seed for repeatability', default=42)
-    parser.add_argument('--batch', help='Batch size', default=16)
-    parser.add_argument('--testbench', help='The test benchmark to use', default=None)
+    parser.add_argument('--dataset', required=True, help='Path to the dataset.')
+    parser.add_argument('--epoch', default=300, help='The number of training epochs (default: 300).')
+    parser.add_argument('--seed', default=42, help='Random seed for repeatability (default: 42).')
+    parser.add_argument('--batch', default=16, help='The size of the training batch (default: 16).')
     parser.add_argument(
-        '--target', help='The target resource metric', required=True,
-        choices=['lut', 'ff', 'dsp', 'bram', 'cp']
+        '--testbench', default=None, 
+        help='The name of the benchmark to use for test. If not specified, a cross-validation is performed.'
+    )
+    parser.add_argument(
+        '--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp'],
+        help='The target resource metric.'
     )
     parser.add_argument(
         '--verbose', nargs='?', const=1, type=int, default=0, 
@@ -527,5 +537,5 @@ def _parse_arguments():
     return vars(parser.parse_args())
 
 if __name__ == '__main__':
-    args = _parse_arguments()
+    args = parse_arguments()
     main(args)

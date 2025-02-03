@@ -2,12 +2,14 @@ from typing import Dict, Union, Optional, List
 from torch.types import Device
 from torch_geometric.typing import NodeType, EdgeType, OptTensor, Metadata
 
+import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn import SAGPooling, HGTConv, GATConv, Linear, LayerNorm
 from torch_geometric.data import HeteroData
+from torch_geometric.nn.inits import reset
 
 class HGT(nn.Module):
     r"""Module that uses the Heterogeneous Graph Transformer (HGT) operator from the
@@ -21,36 +23,28 @@ class HGT(nn.Module):
             Number of input channels for each node type.
         out_channels (int):
             Number of output channels.
-        hid_dim_conv (int):
-            Hidden dimension of convolutional layers.
-        heads_conv (int):
-            Number of attention heads for convolutional layers.
-        num_conv_layers (int):
+        hid_dim (int):
+            Hidden dimension.
+        heads (int):
+            Number of attention heads.
+            (default: :obj:`1`)
+        n_layers (int):
             Number of convolutional layers.
             (default: :obj:`6`)
-        hid_dim_agg (int, optional):
-            Hidden dimension of aggregation layers.
-            (default: :obj:`None`)
-        heads_agg (int, optional):
-            Number of attention heads for aggregation layers.
-            (default: :obj:`None`)
-        dropout_fc (float):
+        fc_dropout (float):
             Dropout rate for fully connected layers.
             (default: :obj:`0.1`)
-        dropout_conv (float):
+        conv_dropout (float):
             Dropout rate for convolutional layers.
             (default: :obj:`0.0`)
         pool_size (int):
             Number of nodes to keep after pooling.
-            (default: :obj:`8`)
+            (default: :obj:`16`)
         agg_edge_types (List[List[EdgeType]], optional):
             Lists of edge types to aggregate for each pooling layer.
             (default: :obj:`None`)
         use_norm (bool):
             Whether to use normalization layers.
-            (default: :obj:`True`)
-        use_residual (bool):
-            Whether to use residual connections.
             (default: :obj:`True`)
         device (torch.device):
             Device to use for computation.
@@ -61,119 +55,125 @@ class HGT(nn.Module):
         metadata: Metadata,
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
-        hid_dim_conv: int,
-        heads_conv: int,
-        num_conv_layers: int = 6,
-        hid_dim_agg: Optional[int] = None,
-        heads_agg: Optional[int] = None,
-        dropout_fc: float = 0.1,
-        dropout_conv: float = 0.0,
-        pool_size: int = 8,
+        hid_dim: int,
+        heads: int = 1,
+        n_layers: int = 6,
+        fc_dropout: float = 0.1,
+        conv_dropout: float = 0.0,
+        pool_size: int = 16,
         agg_edge_types: Optional[List[List[EdgeType]]] = None,
         use_norm: bool = True,
-        use_residual: bool = True,
-        device: Optional[Device] = 'cpu',
+        device: Optional[Device] = 'cpu'
     ):
         super().__init__()
 
-        assert num_conv_layers >= 2, \
+        assert n_layers >= 2, \
             "Number of convolutional layers must be at least 2."
 
-        # Set device
         self.device = device
-
+        self.node_types = metadata[0]
+        self.edge_types = metadata[1]
+        self.hid_dim = hid_dim
+        self.n_layers = n_layers
         self.use_norm = use_norm
-        self.use_residual = use_residual
-        self.num_conv_layers = num_conv_layers
-
-        self.agg_edge_types = agg_edge_types if agg_edge_types else [metadata[1]]
+        self.agg_edge_types = agg_edge_types if agg_edge_types else [self.edge_types]
         self.num_agg = len(self.agg_edge_types)
 
-        # Define dimensions and attention heads
-        hid_dim_agg = hid_dim_agg or hid_dim_conv
-        heads_agg = heads_agg or heads_conv
-        hid_dim_fc_1 = hid_dim_agg // 2 if hid_dim_agg > 2*out_channels else hid_dim_agg
-        hid_dim_fc_2 = hid_dim_fc_1 // 2 if hid_dim_fc_1 > 2*out_channels else hid_dim_fc_1
+        if isinstance(in_channels, int):
+            in_channels = {nt: in_channels for nt in self.node_types}
 
-        # Define convolutional (transformer) layers
+        # Define input projection layers for each node type
+        self.proj = nn.ModuleDict({
+            nt: Linear(in_channels[nt], hid_dim)
+            for nt in self.node_types
+        })
+
+        # Define convolutional layers
         self.conv = nn.ModuleList(
-            [HGTConv(in_channels, hid_dim_conv, metadata, heads_conv)]
+            [HGTConv(hid_dim, hid_dim, metadata, heads)
+             for _ in range(n_layers)]
         )
-        self.conv.extend(
-            HGTConv(hid_dim_conv, hid_dim_conv, metadata, heads_conv)
-            for _ in range(num_conv_layers - 2)
-        )
-        self.conv.append(HGTConv(hid_dim_conv, hid_dim_agg, metadata, heads_agg))
 
         # Define normalization layers (optional)
         if self.use_norm:
             self.norm = nn.ModuleDict({
-                node_type: nn.ModuleList(
-                    [LayerNorm(hid_dim_conv).to(self.device) 
-                     for _ in range(num_conv_layers - 1)]
+                nt: nn.ModuleList(
+                    [LayerNorm(hid_dim) for _ in range(n_layers)]
                 )
-                for node_type in metadata[0]
+                for nt in self.node_types
             })
 
         # Define fully connected layer to be applied for each node type
         # after the convolutional layers
+        in_agg_dim = max(hid_dim // 2, out_channels)
         self.fc = nn.ModuleDict({
-            node_type: Linear(hid_dim_agg, hid_dim_agg)
-            for node_type in metadata[0]
+            nt: Linear(hid_dim, in_agg_dim)
+            for nt in self.node_types
         })
 
         # Define dropouts
-        self.dropout_fc = nn.Dropout(dropout_fc)
-        self.dropout_conv = nn.Dropout(dropout_conv)
+        self.dropout_fc = nn.Dropout(fc_dropout)
+        self.dropout_conv = nn.Dropout(conv_dropout)
 
         # Define pooling and readout layers
-        agg_out_dim = self._ceildiv(hid_dim_agg, self.num_agg)
+        out_agg_dim = math.ceil(in_agg_dim / self.num_agg)
         self.pool = nn.ModuleList(
-            [SAGPooling(hid_dim_agg, ratio=pool_size, GNN=GATConv)
+            [SAGPooling(in_agg_dim, ratio=pool_size, GNN=GATConv)
              for _ in range(self.num_agg)]
         )
         self.readout = nn.ModuleList([
             nn.Sequential(
-                Linear(hid_dim_agg*pool_size, hid_dim_agg),
-                nn.GELU(),
-                nn.Dropout(dropout_fc),
-                Linear(hid_dim_agg, agg_out_dim),
-                nn.GELU(),
-                nn.Dropout(dropout_fc)
+                Linear(in_agg_dim*pool_size, in_agg_dim),
+                nn.GELU(), 
+                nn.Dropout(fc_dropout),
+                Linear(in_agg_dim, out_agg_dim),
+                nn.GELU(), 
+                nn.Dropout(fc_dropout)
             )
             for _ in range(self.num_agg)
         ])
 
         # Define fully connected layers
+        fc1_dim = max(in_agg_dim // 2, out_channels)
+        fc2_dim = max(fc1_dim // 2, out_channels)
+        
         self.mlp = nn.Sequential(
-            Linear(agg_out_dim*self.num_agg, hid_dim_agg),
+            Linear(out_agg_dim * self.num_agg, in_agg_dim),
+            nn.GELU(), 
+            nn.Dropout(fc_dropout),
+            Linear(in_agg_dim, fc1_dim),
+            nn.GELU(), 
+            nn.Dropout(fc_dropout),
+            Linear(fc1_dim, fc2_dim),
             nn.GELU(),
-            nn.Dropout(dropout_fc),
-            Linear(hid_dim_agg, hid_dim_fc_1),
-            nn.GELU(),
-            nn.Dropout(dropout_fc),
-            Linear(hid_dim_fc_1, hid_dim_fc_2),
-            nn.GELU(),
-            nn.Dropout(dropout_fc),
-            Linear(hid_dim_fc_2, out_channels)
+            nn.Dropout(fc_dropout),
+            Linear(fc2_dim, out_channels)
         )
 
+        self.reset_parameters()
         self.to(self.device)
 
     def reset_parameters(self):
         r"""Reinitializes the model parameters."""
-        for conv in self.conv:
-            conv.reset_parameters()
+        self.proj.apply(self._init_weights)
+        self.conv.apply(self._init_weights)
+        self.fc.apply(self._init_weights)
+        self.pool.apply(self._init_weights)
+        self.readout.apply(self._init_weights)
+        self.mlp.apply(self._init_weights)
         if self.use_norm:
-            self.norm.apply(lambda x: x.apply(lambda y: y.reset_parameters()))
-        self.fc.apply(lambda x: x.reset_parameters())
-        self.pool.apply(lambda x: x.reset_parameters())
-        self.readout.apply(lambda x: x.apply(self._reset_linear))
-        self.mlp.apply(self._reset_linear)
+            self.norm.apply(self._init_weights)
 
-    def _reset_linear(self, m):
+    def _init_weights(self, m):
         if isinstance(m, Linear):
-            m.reset_parameters()
+            nn.init.kaiming_normal_(m.weight, mode='fan_in', nonlinearity='leaky_relu')
+            if m.bias is not None:
+                nn.init.zeros_(m.bias)
+        elif isinstance(m, LayerNorm):
+            nn.init.constant_(m.weight, math.sqrt(2 / m.in_channels))
+            nn.init.normal_(m.bias, mean=0, std=0.01)
+        elif isinstance(m, HGTConv) or isinstance(m, SAGPooling):
+            reset(m)
 
     def forward(self, data: HeteroData) -> Tensor:
         r"""Runs the forward pass of the module.
@@ -187,36 +187,22 @@ class HGT(nn.Module):
         """
         x, edge_index = data.x_dict, data.edge_index_dict
 
-        # First layer
-        x = self.conv[0](x, edge_index)
+        # Node-wise projection layers
+        x = {k: self.proj[k](v) for k, v in x.items()}
 
-        if self.use_norm:
-            x = {k: self.norm[k][0](v) for k, v in x.items()}
-
-        x = {k: F.gelu(v) for k, v in x.items()}
-        x = {k: self.dropout_conv(v) for k, v in x.items()}
-
-        # Intermediate layers
-        for i in range(1, self.num_conv_layers - 1):
-            residual = x if self.use_residual else None
+        # Convolutional layers
+        for i in range(self.n_layers):
             x = self.conv[i](x, edge_index)
 
             if self.use_norm:
                 x = {k: self.norm[k][i](v) for k, v in x.items()}
 
-            if residual:
-                x = {k: x[k] + residual[k] for k in x.keys()}
-
             x = {k: F.gelu(v) for k, v in x.items()}
-            x = {k: self.dropout_conv(v) for k, v in x.items()}
-
-        # Last layer
-        x = self.conv[-1](x, edge_index)
-        x = {k: F.gelu(v) for k, v in x.items()}
-        x = {k: self.dropout_conv(v) for k, v in x.items()}
+            if i < self.n_layers - 1:
+                x = {k: self.dropout_conv(v) for k, v in x.items()}
 
         # Node-wise fully connected layers
-        x = {k: self.fc[k](v) for k, v in x.items()}
+        x = {k: F.gelu(self.fc[k](v)) for k, v in x.items()}
 
         # Edge-wise aggregation
         x_agg = self._aggregate(x, edge_index)
@@ -248,9 +234,6 @@ class HGT(nn.Module):
         # Concatenate all readout vectors
         x_agg = torch.cat(x_agg, dim=-1)
         return x_agg
-    
-    def _ceildiv(self, a: int, b: int):
-        return -(a // -b)
     
     def _get_transformed_data(
         self,
