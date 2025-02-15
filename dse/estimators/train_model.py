@@ -13,8 +13,6 @@ import torch.nn as nn
 from pathlib import Path
 from torch.utils.data import DataLoader
 from sklearn.metrics import r2_score
-from matplotlib.cm import RdYlGn
-
 from dse.estimators.gnn import HGT
 from dse.estimators.data.dataset import HLSDataset
 from dse.estimators.data.cdfg import (
@@ -91,12 +89,12 @@ def train_model(
     test_preds_inst = [[] for _ in range(num_instances)]
 
     for epoch in range(epochs):
-        train_loss_epoch = 0
         if verbosity > 0:
             print(f"Epoch {epoch + 1}/{epochs}\n")
 
-        # ********** Training ********** #
+        # Training
         model.train()
+        train_loss_epoch = 0
         for i, (input_batch, target_batch) in enumerate(train_loader):
             batch_loss = 0
             optimizer.zero_grad()
@@ -127,17 +125,17 @@ def train_model(
         train_loss_epoch /= num_batches
         train_losses.append(train_loss_epoch)
 
-        # ********** Evaluation ********** #
+        # Evaluation
         model.eval()
         with torch.no_grad():
-            # ********** Validation ********** #
+            # Validation
             val_loss_epoch = evaluate(
                 model, val_loader, loss_func, verbosity, "validation"
             )
             if scheduler:
                 scheduler.step(val_loss_epoch[0])
               
-            # ********** Test ********** #
+            # Testing
             test_loss_epoch, test_preds = evaluate(
                 model, test_loader, loss_func, verbosity, "test", return_preds=True
             )
@@ -161,8 +159,7 @@ def main(args: Dict[str, str]):
 
     torch.backends.cudnn.benchmark = True
     torch.set_printoptions(
-        precision=6, threshold=1000, edgeitems=20, linewidth=200,
-        profile="short", sci_mode=False
+        precision=6, threshold=1000, edgeitems=20, linewidth=200, sci_mode=False
     )
 
     # Set random seeds for reproducibility
@@ -192,11 +189,9 @@ def main(args: Dict[str, str]):
 
         model = initialize_model()
         loss_func = nn.HuberLoss(delta=1.35)
-        optimizer = torch.optim.AdamW(
-            model.parameters(), lr=1e-3, betas=(0.8, 0.999), eps=1e-8, weight_decay=1e-4
-        )
+        optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, betas=(0.9, 0.999))
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-            optimizer, mode='min', factor=0.5, patience=5, min_lr=1e-6, eps=1e-8
+            optimizer, mode='min', factor=0.1, patience=10, min_lr=1e-6, eps=1e-8
         )
 
         train_losses, test_losses, test_preds_sorted = train_model(
@@ -209,7 +204,7 @@ def main(args: Dict[str, str]):
             train_losses, test_losses, test_preds_sorted, 
             stats_dir, graphs_dir
         )
-        plot_benchmark_analysis(test_preds_sorted, test_bench, graphs_dir)
+        plot_benchmark_analysis(test_preds_sorted, test_bench, target_metric, graphs_dir)
 
 
 def plot_learning_curves(
@@ -310,82 +305,49 @@ def plot_predictions(
 def plot_benchmark_analysis(
     test_preds_sorted: List[List[Tuple[float, float]]],
     bench_name: str,
+    metric: str,
     save_dir: str
 ):
     """Plot per-benchmark instance-level predictions and errors"""
-    instances = list(range(len(test_preds_sorted)))
+    indices = list(range(len(test_preds_sorted)))
     targets = [inst[0][1] for inst in test_preds_sorted]
-    preds = [inst[-1][0] for inst in test_preds_sorted]
+    preds = [inst[-1][0] + 1000 for inst in test_preds_sorted]
     rel_errors = [(p - t) / t * 100 for p, t in zip(preds, targets)]
+
+    bench_name = bench_name.upper()
+    metric = metric.upper()
         
-    # Sort by target value for better visualization
-    sorted_idx = np.argsort(targets)
-    targets = np.array(targets)[sorted_idx]
-    preds = np.array(preds)[sorted_idx]
-    rel_errors = np.array(rel_errors)[sorted_idx]
-    instances = np.array(instances)[sorted_idx]
+    bar_width = 0.45
+    fig, ax = plt.subplots(figsize=(20, 8), dpi=150)
 
-    plt.figure(figsize=(16, 10), dpi=120)
-    sns.set_style("whitegrid")
-    cmap = RdYlGn.reversed()
+    # Plot bars
+    bars_target = ax.bar(
+        [i - bar_width/2 for i in indices], targets, bar_width, 
+        label='Target', color='#1a80bb', alpha=0.8
+    )
+    bars_pred = ax.bar(
+        [i + bar_width/2 for i in indices], preds, bar_width,
+        label='Prediction', color='#ea801c', alpha=0.8
+    )
 
-    # Top subplot: Actual vs Predicted values
-    plt.subplot(2, 1, 1)
-    bar_width = 0.4
-    x = np.arange(len(targets))
+    # Add relative error on top of each pair of bars
+    for i, (t, p, err) in enumerate(zip(targets, preds, rel_errors)):
+        ax.text(i, max(t, p) + 0.02 * max(targets), f'{err:.2f}%', ha='center', fontsize=6, rotation=90)
+
+    # Add gridlines for better readability
+    ax.grid(axis='y', linestyle='--', alpha=0.7)
     
-    # Actual values
-    plt.bar(
-        x - bar_width/2, targets, width=bar_width, 
-        color='#2ecc71', alpha=0.8, label='Actual'
-    )
-    # Predicted values
-    plt.bar(
-        x + bar_width/2, preds, width=bar_width, 
-        color='#e74c3c', alpha=0.8, label='Predicted'
-    )
-    
-    # Add data labels
-    for i, (t, p) in enumerate(zip(targets, preds)):
-        plt.text(
-            i - bar_width/2, t + 0.05*max(targets), f'{t:.1f}', 
-            ha='center', va='bottom', fontsize=8
-        )
-        plt.text(
-            i + bar_width/2, p + 0.05*max(targets), f'{p:.1f}', 
-            ha='center', va='bottom', fontsize=8
-        )
-    
-    plt.title(
-        f'Benchmark: {bench_name}\nMAE: {np.mean(np.abs(preds - targets)):.2f} | '
-        f'RMSE: {np.sqrt(np.mean((preds - targets)**2)):.2f}', fontsize=14
-    )
-    plt.ylabel('Resource Usage', fontsize=12)
-    # plt.xticks(x, instances, rotation=45, ha='right')
-    plt.legend()
-    
-    # Bottom subplot: Relative errors
-    plt.subplot(2, 1, 2)
-    colors = cmap(np.clip(rel_errors/100, -1, 1))  # Normalize errors to [-1, 1]
-    
-    bars = plt.bar(x, rel_errors, color=colors, alpha=0.8)
-    plt.axhline(0, color='black', linewidth=0.8)
-    
-    # Add error labels
-    for bar, err in zip(bars, rel_errors):
-        plt.text(
-            bar.get_x() + bar.get_width()/2, bar.get_height() + (1 if err >=0 else -3), 
-            f'{err:.1f}%', ha='center', va='bottom' if err >=0 else 'top', fontsize=8
-        )
-    
-    plt.title('Relative Prediction Errors (%)', fontsize=14)
-    plt.ylabel('Error Percentage', fontsize=12)
-    plt.xlabel('Instance ID', fontsize=12)
-    # plt.xticks(x, instances, rotation=45, ha='right')
-    plt.ylim(-100, 100)
+    # Rotate x-axis labels to prevent overlap
+    ax.set_xticks(indices)
+    ax.set_xticklabels(indices, rotation=90, fontsize=6)
+
+    ax.set_title(f'Instance-Level {metric} Predictions for {bench_name}', fontsize=16)
+    ax.set_xlabel('Instance', fontsize=12)
+    ax.set_ylabel('Value', fontsize=12)
+    ax.legend()
 
     plt.tight_layout()
-    plt.savefig(f"{save_dir}/{bench_name}_analysis.png", bbox_inches='tight')
+    plt.savefig(f"{save_dir}/{bench_name}_predictions.png", bbox_inches='tight')
     plt.close()
 
 
@@ -496,21 +458,23 @@ def initialize_model() -> nn.Module:
         ('const', 'id', 'const'), ('array', 'id', 'array')
     ]
     metadata = (node_types, edge_types)
+
     in_channels = {
         'inst': INST_FEATURE_SIZE, 'var': VAR_FEATURE_SIZE, 
         'const': CONST_FEATURE_SIZE, 'array': ARRAY_FEATURE_SIZE
     }
-    agg_edge_types = [
+    hid_dims = [24, 20, 16, 12, 8]
+    heads = [6, 4, 4, 3, 2]
+
+    agg_paths = [
         [t for t in edge_types if t[1] == 'data'],
-        [t for t in edge_types if t[1] == 'call'],
-        [t for t in edge_types if t[1] == 'control'],
-        [t for t in edge_types if t[1] == 'id']
+        [t for t in edge_types if t[1] == 'call' or t[1] == 'control']
     ]
 
     return HGT(
-        metadata=metadata, in_channels=in_channels, out_channels=1, hid_dim=64, 
-        heads=8, n_layers=6, pool_size=16, fc_dropout=0.2, conv_dropout=0.0, 
-        use_norm=True, agg_edge_types=agg_edge_types, device=DEVICE
+        metadata=metadata, in_channels=in_channels, out_channels=1, hid_dim=hid_dims,
+        heads=heads, num_layers=5, pool_size=8, fc_dropout=0.1, conv_dropout=0.0, 
+        use_norm=True, agg_paths=agg_paths, device=DEVICE
     )
 
 
