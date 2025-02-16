@@ -81,6 +81,7 @@ test/
 model_analysis/
 solutions_info/
 dse/estimators/utils/plotting.py
+model_backup*/
 
 # The dataset to train the estimator (too large for git)
 dataset/
