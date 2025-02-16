@@ -189,7 +189,7 @@ def main(args: Dict[str, str]):
 
         model = initialize_model()
         loss_func = nn.HuberLoss(delta=1.35)
-        optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, betas=(0.9, 0.999))
+        optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, betas=(0.9, 0.999), weight_decay=1e-4)
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
             optimizer, mode='min', factor=0.1, patience=10, min_lr=1e-6, eps=1e-8
         )
@@ -463,18 +463,21 @@ def initialize_model() -> nn.Module:
         'inst': INST_FEATURE_SIZE, 'var': VAR_FEATURE_SIZE, 
         'const': CONST_FEATURE_SIZE, 'array': ARRAY_FEATURE_SIZE
     }
-    hid_dims = [24, 20, 16, 12, 8]
-    heads = [6, 4, 4, 3, 2]
+    hid_dim_conv = [24, 24, 16, 16, 16, 12, 8, 4]
+    heads = [8, 8, 4, 4, 4, 4, 2, 2]
+    hid_dim_fc = [32, 16, 8, 4]
+    out_channels = 1
 
     agg_paths = [
         [t for t in edge_types if t[1] == 'data'],
-        [t for t in edge_types if t[1] == 'call' or t[1] == 'control']
+        [t for t in edge_types if t[1] == 'call'],
+        [t for t in edge_types if t[1] == 'control']
     ]
 
     return HGT(
-        metadata=metadata, in_channels=in_channels, out_channels=1, hid_dim=hid_dims,
-        heads=heads, num_layers=5, pool_size=8, fc_dropout=0.1, conv_dropout=0.0, 
-        use_norm=True, agg_paths=agg_paths, device=DEVICE
+        metadata, in_channels, out_channels, hid_dim_conv, num_conv_layers=len(hid_dim_conv),
+        hid_dim_fc=hid_dim_fc, num_fc_layers=len(hid_dim_fc), num_heads=heads, fc_dropout=0.4, 
+        conv_dropout=0.25, use_norm=True, pool_size=16, aggr_paths=agg_paths, device=DEVICE
     )
 
 
