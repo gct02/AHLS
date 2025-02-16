@@ -7,9 +7,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
-from torch_geometric.nn import SAGPooling, HGTConv, SAGEConv, Linear, LayerNorm
+from torch_geometric.nn import HGTConv, LayerNorm
 from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
+from dse.estimators.layers import HetSAGPooling
 
 class HGT(nn.Module):
     r"""Module that uses the Heterogeneous Graph Transformer (HGT) operator from the
@@ -70,7 +71,7 @@ class HGT(nn.Module):
         conv_dropout: float = 0.0,
         pool_size: int = 8,
         aggr_paths: Optional[List[List[EdgeType]]] = None,
-        use_norm: bool = True,
+        layer_norm: bool = True,
         device: Optional[Device] = 'cpu'
     ):
         super().__init__()
@@ -79,7 +80,7 @@ class HGT(nn.Module):
 
         hid_dim_conv = [hid_dim_conv] * num_conv_layers if isinstance(hid_dim_conv, int) else hid_dim_conv
         num_heads = [num_heads] * num_conv_layers if isinstance(num_heads, int) else num_heads
-        aggr_paths = aggr_paths if aggr_paths else [[metadata[1]]]
+        aggr_paths = aggr_paths if aggr_paths else [metadata[1]]
 
         self.device = device
         self.node_types = metadata[0]
@@ -87,7 +88,7 @@ class HGT(nn.Module):
         self.hid_dim = hid_dim_conv
         self.num_layers = num_conv_layers
         self.heads = num_heads
-        self.use_norm = use_norm
+        self.use_norm = layer_norm
         self.aggr_paths = aggr_paths
         self.num_aggr_paths = len(aggr_paths)
 
@@ -115,17 +116,15 @@ class HGT(nn.Module):
         pooling_dim = max(hid_dim_conv[-1] // 2, out_channels)
         self.node_fc = nn.ModuleDict({
             nt: nn.Sequential(
-                Linear(hid_dim_conv[-1], pooling_dim),
+                nn.Linear(hid_dim_conv[-1], pooling_dim),
                 nn.GELU()
             )
             for nt in self.node_types
         })
 
-        # Define pooling and readout layers
-        self.pool = nn.ModuleList([
-            SAGPooling(pooling_dim, ratio=pool_size, GNN=SAGEConv)
-            for _ in range(self.num_aggr_paths)
-        ])
+        # Define pooling layer
+        self.pool = HetSAGPooling(metadata, pooling_dim, aggr_paths, pool_size)
+        
         aggr_dim = pooling_dim * pool_size * self.num_aggr_paths
 
         # Define fully connected layers
@@ -137,17 +136,17 @@ class HGT(nn.Module):
             hid_dim_fc = [hid_dim_fc] * num_fc_layers
 
         self.mlp = nn.Sequential(
-            Linear(aggr_dim, hid_dim_fc[0]),
+            nn.Linear(aggr_dim, hid_dim_fc[0]),
             nn.GELU(),
             nn.Dropout(fc_dropout)
         )
-        for i in range(num_fc_layers):
+        for i in range(1, num_fc_layers):
             self.mlp.extend([
-                Linear(hid_dim_fc[i-1], hid_dim_fc[i]),
+                nn.Linear(hid_dim_fc[i-1], hid_dim_fc[i]),
                 nn.GELU(),
                 nn.Dropout(fc_dropout)
             ])
-        self.mlp.append(Linear(hid_dim_fc[-1], out_channels))
+        self.mlp.append(nn.Linear(hid_dim_fc[-1], out_channels))
 
         self.reset_parameters()
         self.to(self.device)
@@ -162,14 +161,14 @@ class HGT(nn.Module):
             self.norm.apply(self._init_weights)
 
     def _init_weights(self, m):
-        if isinstance(m, Linear):
+        if isinstance(m, nn.Linear):
             nn.init.kaiming_normal_(m.weight, mode='fan_in', nonlinearity='leaky_relu')
             if m.bias is not None:
                 nn.init.zeros_(m.bias)
         elif isinstance(m, LayerNorm):
             nn.init.constant_(m.weight, math.sqrt(2 / m.in_channels))
             nn.init.normal_(m.bias, mean=0, std=0.01)
-        elif isinstance(m, HGTConv) or isinstance(m, SAGPooling):
+        else:
             reset(m)
 
     def forward(self, data: HeteroData) -> Tensor:
@@ -197,7 +196,8 @@ class HGT(nn.Module):
         x = {k: self.node_fc[k](v) for k, v in x.items()}
 
         # Edge-wise aggregation
-        x_aggr = self._aggregate(x, edge_index)
+        transformed_data = self._get_transformed_data(x, edge_index)
+        x_aggr = self.pool(transformed_data)
 
         # Fully connected layers
         x_aggr = self.mlp(x_aggr)
@@ -206,26 +206,6 @@ class HGT(nn.Module):
         x_aggr = torch.nan_to_num(x_aggr)
 
         return x_aggr
-    
-    def _aggregate(
-        self,
-        x: Dict[NodeType, OptTensor],
-        edge_index: Dict[EdgeType, OptTensor]
-    ) -> Tensor:
-        # Create a new HeteroData object with the transformed data
-        transformed_data = self._get_transformed_data(x, edge_index)
-
-        # Aggregate nodes based on edge types
-        graph_embeddings = []
-        for i in range(self.num_aggr_paths):
-            subg = transformed_data.edge_type_subgraph(self.aggr_paths[i])
-            subg = subg.to_homogeneous().sort()
-            repr_nodes = self.pool[i](subg.x, subg.edge_index)[0]
-            graph_embeddings.append(repr_nodes.flatten())
-
-        # Concatenate all representations
-        graph_embeddings = torch.cat(graph_embeddings, dim=-1)
-        return graph_embeddings
     
     def _get_transformed_data(
         self,

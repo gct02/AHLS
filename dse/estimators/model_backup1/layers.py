@@ -1,0 +1,236 @@
+from typing import Callable, Optional, Tuple, Union, List, Dict
+from torch_geometric.typing import OptTensor, Metadata, EdgeType, NodeType
+
+import torch
+import torch.nn as nn
+from torch import Tensor
+from torch.nn import MultiheadAttention
+from torch_geometric.nn import GraphConv, LayerNorm, HGTConv
+from torch_geometric.nn.pool.topk_pool import SelectTopK
+from torch_geometric.data import HeteroData
+from torch_geometric.nn.inits import reset
+
+
+class MAB(nn.Module):
+    r"""
+    The Graph Multi-head Attention block from the 
+    `"Accurate Learning of Graph Representations with Graph Multiset Pooling" 
+    <https://arxiv.org/pdf/2102.11533>`_ paper.
+    """
+    def __init__(
+        self,
+        kdim: int,
+        vdim: int,
+        num_heads: int = 1,
+        dropout: float = 0.0,
+        GNN: nn.Module = GraphConv
+    ):
+        super(MAB, self).__init__()
+
+        assert vdim % num_heads == 0, 'vdim must be divisible by num_heads'
+
+        self.vdim = vdim
+        self.num_heads = num_heads
+
+        self.q_proj = nn.Linear(kdim, vdim)
+        self.k_proj = GNN(kdim, vdim)
+        self.v_proj = GNN(vdim, vdim)
+
+        self.attn = MultiheadAttention(vdim, num_heads, dropout=dropout)
+
+    def reset_parameters(self):
+        nn.init.xavier_normal_(self.q_proj.weight)
+        nn.init.zeros_(self.q_proj.bias)
+        self.k_proj.reset_parameters()
+        self.v_proj.reset_parameters()
+
+    def forward(
+        self, 
+        Q: Tensor,
+        X: Tensor,
+        edge_index: Tensor
+    ) -> Tensor:
+        Q = self.q_proj(Q)
+        K = self.k_proj(X, edge_index)
+        V = self.v_proj(X, edge_index)
+        O, _ = self.attn(Q, K, V)
+        return O
+
+
+class PMA(nn.Module):
+    r"""
+    The Graph Multi-set Pooling block from the 
+    `"Accurate Learning of Graph Representations with Graph Multiset Pooling"
+    <https://arxiv.org/pdf/2102.11533>`_ paper.
+    """
+    def __init__(
+        self, 
+        dim: int,
+        num_seeds: int,
+        num_heads: int = 1,
+        layer_norm: bool = True,
+        dropout: float = 0.0,
+        GNN: nn.Module = GraphConv
+    ):
+        super(PMA, self).__init__()
+
+        self.S = nn.Parameter(torch.empty(num_seeds, dim))
+
+        self.mab = MAB(dim, dim, num_heads, dropout, GNN)
+        self.rff = nn.Linear(dim, dim)
+        self.ln = LayerNorm(dim) if layer_norm else None
+
+    def reset_parameters(self):
+        torch.nn.init.xavier_uniform_(self.S)
+        self.mab.reset_parameters()
+        nn.init.xavier_normal_(self.rff.weight)
+        nn.init.zeros_(self.rff.bias)
+        if self.ln is not None:
+            self.ln.reset_parameters()
+        
+    def forward(self, X: Tensor, edge_index: Tensor) -> Tensor:
+        Z = self.S + self.mab(self.S, X, edge_index)
+        if self.ln is not None:
+            Z = self.ln(Z)
+        return Z + self.rff(Z)
+
+
+class HetSAGPooling(torch.nn.Module):
+    r"""A heterogeneous graph aggregator that uses the self-attention pooling operator 
+    from the `"Self-Attention Graph Pooling" <https://arxiv.org/abs/1904.08082>`_ and `"Understanding
+    Attention and Generalization in Graph Neural Networks" <https://arxiv.org/abs/1905.02850>`_ papers 
+    to pool nodes based on their scores in a path-wise manner.
+
+    If :obj:`min_score` :math:`\tilde{\alpha}` is :obj:`None`, computes:
+
+        .. math::
+            \mathbf{y} &= \textrm{GNN}(\mathbf{X}, \mathbf{A})
+
+            \mathbf{i} &= \mathrm{top}_k(\mathbf{y})
+
+            \mathbf{X}^{\prime} &= (\mathbf{X} \odot
+            \mathrm{tanh}(\mathbf{y}))_{\mathbf{i}}
+
+            \mathbf{A}^{\prime} &= \mathbf{A}_{\mathbf{i},\mathbf{i}}
+
+    If :obj:`min_score` :math:`\tilde{\alpha}` is a value in :obj:`[0, 1]`,
+    computes:
+
+        .. math::
+            \mathbf{y} &= \mathrm{softmax}(\textrm{GNN}(\mathbf{X},\mathbf{A}))
+
+            \mathbf{i} &= \mathbf{y}_i > \tilde{\alpha}
+
+            \mathbf{X}^{\prime} &= (\mathbf{X} \odot \mathbf{y})_{\mathbf{i}}
+
+            \mathbf{A}^{\prime} &= \mathbf{A}_{\mathbf{i},\mathbf{i}}.
+
+    Projections scores are learned based on a graph neural network layer.
+
+    Args:
+        metadata (Tuple[List[str], List[Tuple[str, str, str]]]):
+            Metadata object containing node and edge types.
+        in_channels (int): 
+            Size of each input sample.
+        aggr_paths (List[List[EdgeType]], optional):
+            List of edge type combinations to aggregate over.
+            (default: :obj:`None`)
+        ratio (float or int): 
+            Graph pooling ratio, which is used to compute
+            :math:`k = \lceil \mathrm{ratio} \cdot N \rceil`, or the value
+            of :math:`k` itself, depending on whether the type of :obj:`ratio`
+            is :obj:`float` or :obj:`int`.
+            This value is ignored if :obj:`min_score` is not :obj:`None`.
+            (default: :obj:`0.5`)
+        min_score (float, optional): 
+            Minimal node score :math:`\tilde{\alpha}`
+            which is used to compute indices of pooled nodes
+            :math:`\mathbf{i} = \mathbf{y}_i > \tilde{\alpha}`.
+            When this value is not :obj:`None`, the :obj:`ratio` argument is
+            ignored. 
+            (default: :obj:`None`)
+        multiplier (float, optional): 
+            Coefficient by which features gets
+            multiplied after pooling. This can be useful for large graphs and
+            when :obj:`min_score` is used. 
+            (default: :obj:`1`)
+        nonlinearity (str or callable, optional): 
+            The non-linearity to use.
+            (default: :obj:`"tanh"`)
+        **kwargs (optional): 
+            Additional parameters for initializing the GNN layer.
+    """
+    def __init__(
+        self,
+        metadata: Metadata,
+        in_channels: int,
+        aggr_paths: Optional[List[List[EdgeType]]] = None,
+        ratio: Union[float, int] = 0.5,
+        min_score: Optional[float] = None,
+        multiplier: float = 1.0,
+        nonlinearity: Union[str, Callable] = 'tanh',
+        **kwargs,
+    ):
+        super(HetSAGPooling, self).__init__()
+
+        self.aggr_paths = aggr_paths if aggr_paths else [metadata[1]]
+        self.num_aggr_paths = len(self.aggr_paths)
+        self.in_channels = in_channels
+        self.multiplier = multiplier
+
+        self.gnn = nn.ModuleList([
+            HGTConv(in_channels, 1, metadata, **kwargs)
+            for _ in range(self.num_aggr_paths)
+        ])
+        # self.select = nn.ModuleList([
+        #     SelectTopK(1, ratio, min_score, nonlinearity)
+        #     for _ in range(self.num_aggr_paths)
+        # ])
+        self.select = SelectTopK(1, ratio, min_score, nonlinearity)
+
+        self.reset_parameters()
+
+    def reset_parameters(self):
+        r"""Resets all learnable parameters of the module."""
+        self.gnn.apply(reset)
+        self.select.apply(reset)
+
+    def forward(
+        self,
+        data: HeteroData
+    ) -> Dict[NodeType, OptTensor]:
+        r"""Forward pass.
+
+        Args:
+            x (torch.Tensor): The node feature matrix.
+            edge_index (torch.Tensor): The edge indices.
+        """
+        x, edge_index = data.x_dict, data.edge_index_dict
+        pathwise_attn = []
+
+        for i, path in enumerate(self.aggr_paths):
+            path_edges = {k: edge_index[k] for k in path}
+            attn = self.gnn[i](x, path_edges)
+            pathwise_attn.append(attn)
+
+        pathwise_attn = [torch.cat([attn[k] for k in attn.keys()], dim=0) 
+                         for attn in pathwise_attn]
+        attn = torch.stack(pathwise_attn, dim=0).sum(dim=0)
+
+        sel = self.select(attn)
+        perm = sel.node_index
+        score = sel.weight
+
+        x_ = torch.cat([x[k] for k in x.keys()], dim=0)
+        x_ = x_[perm] * score.view(-1, 1) * self.multiplier
+        aggr_embeddings = x_.flatten()
+
+            # sel = self.select[i](attn)
+            # perm = sel.node_index
+            # score = sel.weight
+
+            # x_ = torch.cat([x[k] for k in x.keys()], dim=0)
+            # x_ = x_[perm] * score.view(-1, 1) * self.multiplier
+            # aggr_embeddings.append(x_.flatten())
+
+        return aggr_embeddings
