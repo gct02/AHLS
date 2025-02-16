@@ -188,8 +188,8 @@ def main(args: Dict[str, str]):
         )
 
         model = initialize_model()
-        loss_func = nn.HuberLoss(delta=1.35)
-        optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, betas=(0.8, 0.999), weight_decay=1e-4)
+        loss_func = nn.HuberLoss(delta=1.345)
+        optimizer = torch.optim.AdamW(model.parameters(), lr=3e-3, betas=(0.9, 0.999), weight_decay=1e-4)
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
             optimizer, mode='min', factor=0.1, patience=10, min_lr=1e-6, eps=1e-8
         )
@@ -463,22 +463,21 @@ def initialize_model() -> nn.Module:
         'inst': INST_FEATURE_SIZE, 'var': VAR_FEATURE_SIZE, 
         'const': CONST_FEATURE_SIZE, 'array': ARRAY_FEATURE_SIZE
     }
-    hid_dim_conv = [24, 16, 16, 16, 16, 8]
+    hid_dim_conv = [32, 16, 16, 16, 16, 8]
     heads = [8, 4, 4, 4, 4, 2]
-    hid_dim_fc = [32, 16, 8]
+    hid_dim_fc = [48, 24, 12, 4]
     out_channels = 1
 
     agg_paths = [
-        [t for t in edge_types if t[1] == 'data'],
-        [t for t in edge_types if t[1] == 'call'],
-        [t for t in edge_types if t[1] == 'control'],
-        [t for t in edge_types if t[1] == 'id']
+        [t for t in edge_types if t[1] == 'data' or t[1] == 'id'],
+        [t for t in edge_types if t[1] == 'call' or t[1] == 'id'],
+        [t for t in edge_types if t[1] == 'control' or t[1] == 'id']
     ]
 
     return HGT(
         metadata, in_channels, out_channels, hid_dim_conv, num_conv_layers=len(hid_dim_conv),
-        hid_dim_fc=hid_dim_fc, num_fc_layers=len(hid_dim_fc), num_heads=heads, fc_dropout=0.4, 
-        conv_dropout=0.25, layer_norm=True, pool_size=16, aggr_paths=agg_paths, device=DEVICE
+        hid_dim_fc=hid_dim_fc, num_fc_layers=len(hid_dim_fc), num_heads=heads, fc_dropout=0.2, 
+        conv_dropout=0.1, layer_norm=True, pool_size=16, aggr_paths=agg_paths, device=DEVICE
     )
 
 

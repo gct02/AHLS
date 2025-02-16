@@ -113,7 +113,7 @@ class HGT(nn.Module):
 
         # Define node-wise fully connected layers to be applied after
         # the convolutional layers
-        pooling_dim = max(hid_dim_conv[-1] // 2, out_channels)
+        pooling_dim = hid_dim_conv[-1]
         self.node_fc = nn.ModuleDict({
             nt: nn.Sequential(
                 nn.Linear(hid_dim_conv[-1], pooling_dim),
@@ -125,7 +125,7 @@ class HGT(nn.Module):
         # Define pooling layer
         self.pool = HetSAGPooling(metadata, pooling_dim, aggr_paths, pool_size)
         
-        aggr_dim = pooling_dim * pool_size * self.num_aggr_paths
+        aggr_dim = pooling_dim * pool_size
 
         # Define fully connected layers
         if hid_dim_fc is None:

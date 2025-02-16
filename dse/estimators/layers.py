@@ -182,10 +182,7 @@ class HetSAGPooling(torch.nn.Module):
             HGTConv(in_channels, 1, metadata, **kwargs)
             for _ in range(self.num_aggr_paths)
         ])
-        self.select = nn.ModuleList([
-            SelectTopK(1, ratio, min_score, nonlinearity)
-            for _ in range(self.num_aggr_paths)
-        ])
+        self.select = SelectTopK(1, ratio, min_score, nonlinearity)
 
         self.reset_parameters()
 
@@ -205,21 +202,22 @@ class HetSAGPooling(torch.nn.Module):
             edge_index (torch.Tensor): The edge indices.
         """
         x, edge_index = data.x_dict, data.edge_index_dict
-        aggr_embeddings = []
+        path_attn = []
 
         for i, path in enumerate(self.aggr_paths):
-            subg = data.edge_type_subgraph(path)
-            x, edge_index = subg.x_dict, subg.edge_index_dict
+            path_edges = {k: edge_index[k] for k in path}
+            attn = self.gnn[i](x, path_edges)
+            path_attn.append(attn)
 
-            attn = self.gnn[i](x, edge_index)
-            attn = torch.cat([attn[k] for k in attn.keys()], dim=0)
+        attn = torch.stack([
+            torch.cat([a[k] for k in a.keys()]) for a in path_attn
+        ]).sum(dim=0)
 
-            sel = self.select[i](attn)
-            perm = sel.node_index
-            score = sel.weight
+        sel = self.select(attn)
+        perm = sel.node_index
+        score = sel.weight
 
-            x_ = torch.cat([x[k] for k in x.keys()], dim=0)
-            x_ = x_[perm] * score.view(-1, 1) * self.multiplier
-            aggr_embeddings.append(x_.flatten())
+        x_aggr = torch.cat([x[k] for k in x.keys()], dim=0)
+        x_aggr = x_aggr[perm] * score.view(-1, 1) * self.multiplier
 
-        return torch.cat(aggr_embeddings, dim=0)
+        return x_aggr.flatten()
