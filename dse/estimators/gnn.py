@@ -6,9 +6,8 @@ import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from collections import OrderedDict
 from torch import Tensor
-from torch_geometric.nn import SAGPooling, HGTConv, GATConv, Linear, LayerNorm
+from torch_geometric.nn import SAGPooling, HGTConv, SAGEConv, Linear, LayerNorm
 from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
 
@@ -67,7 +66,7 @@ class HGT(nn.Module):
         hid_dim_fc: Optional[Union[int, List[int]]] = None,
         num_fc_layers: int = 3,
         num_heads: Union[int, List[int]] = 1,
-        fc_dropout: float = 0.1,
+        fc_dropout: float = 0.0,
         conv_dropout: float = 0.0,
         pool_size: int = 8,
         aggr_paths: Optional[List[List[EdgeType]]] = None,
@@ -117,22 +116,21 @@ class HGT(nn.Module):
         self.node_fc = nn.ModuleDict({
             nt: nn.Sequential(
                 Linear(hid_dim_conv[-1], pooling_dim),
-                nn.GELU(), 
-                nn.Dropout(fc_dropout)
+                nn.GELU()
             )
             for nt in self.node_types
         })
 
         # Define pooling and readout layers
         self.pool = nn.ModuleList([
-            SAGPooling(pooling_dim, ratio=pool_size, GNN=GATConv)
+            SAGPooling(pooling_dim, ratio=pool_size, GNN=SAGEConv)
             for _ in range(self.num_aggr_paths)
         ])
         aggr_dim = pooling_dim * pool_size * self.num_aggr_paths
 
         # Define fully connected layers
         if hid_dim_fc is None:
-            hid_dim_fc = [aggr_dim // 2]
+            hid_dim_fc = [max(aggr_dim // 2, out_channels)]
             for _ in range(num_fc_layers-1):
                 hid_dim_fc.append(max(hid_dim_fc[-1] // 2, out_channels))
         elif isinstance(hid_dim_fc, int):
@@ -143,7 +141,7 @@ class HGT(nn.Module):
             nn.GELU(),
             nn.Dropout(fc_dropout)
         )
-        for i in range(1, num_fc_layers):
+        for i in range(num_fc_layers):
             self.mlp.extend([
                 Linear(hid_dim_fc[i-1], hid_dim_fc[i]),
                 nn.GELU(),
