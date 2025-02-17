@@ -1,5 +1,5 @@
-from typing import Callable, Optional, Tuple, Union, List, Dict
-from torch_geometric.typing import OptTensor, Metadata, EdgeType, NodeType
+from typing import Callable, Optional, Union, List
+from torch_geometric.typing import Metadata, EdgeType
 
 import torch
 import torch.nn as nn
@@ -183,6 +183,7 @@ class HetSAGPooling(torch.nn.Module):
             for _ in range(self.num_aggr_paths)
         ])
         self.select = SelectTopK(1, ratio, min_score, nonlinearity)
+        self.fc = nn.Linear(self.num_aggr_paths, 1)
 
         self.reset_parameters()
 
@@ -190,11 +191,12 @@ class HetSAGPooling(torch.nn.Module):
         r"""Resets all learnable parameters of the module."""
         self.gnn.apply(reset)
         self.select.apply(reset)
+        self.fc.apply(reset)
 
     def forward(
         self,
         data: HeteroData
-    ) -> Dict[NodeType, OptTensor]:
+    ) -> Tensor:
         r"""Forward pass.
 
         Args:
@@ -202,17 +204,15 @@ class HetSAGPooling(torch.nn.Module):
             edge_index (torch.Tensor): The edge indices.
         """
         x, edge_index = data.x_dict, data.edge_index_dict
-        path_attn = []
+        attn = []
 
         for i, path in enumerate(self.aggr_paths):
             path_edges = {k: edge_index[k] for k in path}
-            attn = self.gnn[i](x, path_edges)
-            path_attn.append(attn)
+            path_attn = self.gnn[i](x, path_edges)
+            path_attn = torch.cat([path_attn[k] for k in path_attn.keys()])
+            attn.append(path_attn.flatten())
 
-        attn = torch.stack([
-            torch.cat([a[k] for k in a.keys()]) for a in path_attn
-        ]).sum(dim=0)
-
+        attn = self.fc(torch.stack(attn, dim=1))
         sel = self.select(attn)
         perm = sel.node_index
         score = sel.weight

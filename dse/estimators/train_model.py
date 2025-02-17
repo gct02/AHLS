@@ -189,7 +189,7 @@ def main(args: Dict[str, str]):
 
         model = initialize_model()
         loss_func = nn.HuberLoss(delta=1.345)
-        optimizer = torch.optim.AdamW(model.parameters(), lr=3e-3, betas=(0.9, 0.999), weight_decay=1e-4)
+        optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=1e-4)
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
             optimizer, mode='min', factor=0.1, patience=10, min_lr=1e-6, eps=1e-8
         )
@@ -470,8 +470,8 @@ def initialize_model() -> nn.Module:
 
     agg_paths = [
         [t for t in edge_types if t[1] == 'data' or t[1] == 'id'],
+        [t for t in edge_types if t[1] == 'control' or t[1] == 'id'],
         [t for t in edge_types if t[1] == 'call' or t[1] == 'id'],
-        [t for t in edge_types if t[1] == 'control' or t[1] == 'id']
     ]
 
     return HGT(
