@@ -1,11 +1,8 @@
 from typing import List, Tuple, Union
 
-import numpy as np
 import pandas as pd
 from pathlib import Path
 from argparse import ArgumentParser
-from estimators.utils.parsers import *
-from analysis.plot_data_metrics import organize_data
 
 _DEFAULT_LUT_THRESHOLD = 400
 
@@ -87,6 +84,18 @@ def parse_args():
     return parser.parse_args()
 
 if __name__ == '__main__':
+    import sys
+
+    if __package__ is None:                  
+        DIR = Path(__file__).resolve().parent
+        sys.path.insert(0, str(DIR.parent))
+        sys.path.insert(0, str(DIR.parent.parent))
+        __package__ = DIR.name
+
+    from utils.parsers import (
+        extract_solution_directives, organize_data
+    )
+
     args = parse_args()
 
     dataset_path = Path(args.dataset)

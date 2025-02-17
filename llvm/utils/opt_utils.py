@@ -1,7 +1,7 @@
 import subprocess
 from pathlib import Path
 from os import environ
-from llvm.utils.exceptions import *
+from exceptions import *
 
 try:
     DSE_LIB = environ['DSE_LIB']

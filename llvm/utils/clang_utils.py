@@ -3,7 +3,7 @@ from typing import List, Optional
 import subprocess
 from pathlib import Path
 from os import environ
-from llvm.utils.exceptions import ClangException
+from exceptions import ClangException
 
 try:
     CLANG = environ['CLANG']

@@ -10,7 +10,8 @@ from torch import Tensor
 from torch_geometric.nn import HGTConv, LayerNorm
 from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
-from dse.estimators.layers import HetSAGPooling
+from layers import HetSAGPooling
+
 
 class HGT(nn.Module):
     r"""Module that uses the Heterogeneous Graph Transformer (HGT) operator from the
@@ -78,9 +79,14 @@ class HGT(nn.Module):
 
         assert num_conv_layers >= 2, "Number of conv layers must be at least 2."
 
-        hid_dim_conv = [hid_dim_conv] * num_conv_layers if isinstance(hid_dim_conv, int) else hid_dim_conv
-        num_heads = [num_heads] * num_conv_layers if isinstance(num_heads, int) else num_heads
-        aggr_paths = aggr_paths if aggr_paths else [metadata[1]]
+        if isinstance(hid_dim_conv, int):
+            hid_dim_conv = [hid_dim_conv] * num_conv_layers
+
+        if isinstance(num_heads, int):
+            num_heads = [num_heads] * num_conv_layers
+
+        if aggr_paths is None:
+            aggr_paths = [metadata[1]]
 
         self.device = device
         self.node_types = metadata[0]
@@ -97,37 +103,31 @@ class HGT(nn.Module):
 
         # Define convolutional layers
         self.conv = nn.ModuleList([
-            HGTConv(in_channels if i == 0 else hid_dim_conv[i-1], hid_dim_conv[i], metadata, num_heads[i])
-            for i in range(num_conv_layers)
+            HGTConv(in_channels, hid_dim_conv[0], metadata, num_heads[0])
+        ])
+        self.conv.extend([
+            HGTConv(hid_dim_conv[i-1], hid_dim_conv[i], metadata, num_heads[i])
+            for i in range(1, num_conv_layers)
         ])
 
         # Define normalization layers (optional)
         if self.use_norm:
             self.norm = nn.ModuleDict({
-                nt: nn.ModuleList(LayerNorm(hid_dim_conv[i]) for i in range(num_conv_layers))
+                nt: nn.ModuleList([
+                    LayerNorm((hid_dim_conv[i])) for i in range(num_conv_layers-1)
+                ])
                 for nt in self.node_types
             })
 
         # Define dropouts
         self.conv_dropout = nn.Dropout(conv_dropout)
 
-        # Define node-wise fully connected layers to be applied after
-        # the convolutional layers
-        pooling_dim = hid_dim_conv[-1]
-        self.node_fc = nn.ModuleDict({
-            nt: nn.Sequential(
-                nn.Linear(hid_dim_conv[-1], pooling_dim),
-                nn.GELU()
-            )
-            for nt in self.node_types
-        })
-
         # Define pooling layer
+        pooling_dim = hid_dim_conv[-1]
         self.pool = HetSAGPooling(metadata, pooling_dim, aggr_paths, pool_size)
-        
-        aggr_dim = pooling_dim * pool_size
 
         # Define fully connected layers
+        aggr_dim = pooling_dim * pool_size
         if hid_dim_fc is None:
             hid_dim_fc = [max(aggr_dim // 2, out_channels)]
             for _ in range(num_fc_layers-1):
@@ -155,7 +155,6 @@ class HGT(nn.Module):
         r"""Reinitializes the model parameters."""
         self.conv.apply(self._init_weights)
         self.pool.apply(self._init_weights)
-        self.node_fc.apply(self._init_weights)
         self.mlp.apply(self._init_weights)
         if self.use_norm:
             self.norm.apply(self._init_weights)
@@ -165,10 +164,6 @@ class HGT(nn.Module):
             nn.init.kaiming_normal_(m.weight, mode='fan_in', nonlinearity='leaky_relu')
             if m.bias is not None:
                 nn.init.zeros_(m.bias)
-        elif isinstance(m, LayerNorm):
-            nn.init.constant_(m.weight, math.sqrt(2 / m.in_channels))
-            nn.init.normal_(m.bias, mean=0, std=0.01)
-        else:
             reset(m)
 
     def forward(self, data: HeteroData) -> Tensor:
@@ -184,7 +179,7 @@ class HGT(nn.Module):
         x, edge_index = data.x_dict, data.edge_index_dict
 
         # Convolutional layers
-        for i in range(self.num_layers):
+        for i in range(self.num_layers-1):
             x = self.conv[i](x, edge_index)
 
             if self.use_norm:
@@ -192,12 +187,11 @@ class HGT(nn.Module):
 
             x = {k: self.conv_dropout(F.gelu(v)) for k, v in x.items()}
 
-        # Node-wise fully connected layers
-        x = {k: self.node_fc[k](v) for k, v in x.items()}
+        x = self.conv[-1](x, edge_index)
+        x = {k: F.gelu(v) for k, v in x.items()}
 
         # Edge-wise aggregation
-        transformed_data = self._get_transformed_data(x, edge_index)
-        x_aggr = self.pool(transformed_data)
+        x_aggr = self.pool(x, edge_index)
 
         # Fully connected layers
         x_aggr = self.mlp(x_aggr)
@@ -206,15 +200,4 @@ class HGT(nn.Module):
         x_aggr = torch.nan_to_num(x_aggr)
 
         return x_aggr
-    
-    def _get_transformed_data(
-        self,
-        x: Dict[NodeType, OptTensor],
-        edge_index: Dict[EdgeType, OptTensor]
-    ) -> HeteroData:
-        transformed_data = HeteroData()
-        for k, v in x.items():
-            transformed_data[k].x = v
-        for k, v in edge_index.items():
-            transformed_data[k].edge_index = v
-        return transformed_data
+

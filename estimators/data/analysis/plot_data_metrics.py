@@ -8,9 +8,7 @@ from pathlib import Path
 from argparse import ArgumentParser
 from sklearn.cluster import KMeans, AgglomerativeClustering
 from sklearn.metrics import silhouette_score
-from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
-from dse.estimators.utils.parsers import organize_data
 
 def cluster_solutions_by_directives(
     directive_groups: List[NDArray[Any]],
@@ -201,6 +199,16 @@ if __name__ == '__main__':
         return parser.parse_args()
 
     def main(args):
+        import sys
+
+        if __package__ is None:                  
+            DIR = Path(__file__).resolve().parent
+            sys.path.insert(0, str(DIR.parent))
+            sys.path.insert(0, str(DIR.parent.parent))
+            __package__ = DIR.name
+            
+        from utils.parsers import organize_data
+
         dataset_path = args.dataset
         bench_name = args.benchmark
         directives_file = args.available

@@ -4,11 +4,9 @@ import subprocess
 import argparse
 import shutil
 import torch
+import json
 from os import environ
 from pathlib import Path
-
-from dse.estimators.utils.parsers import *
-from dse.estimators.data.cdfg import build_cdfg, print_cdfg
 
 try:
     DSE_LIB = environ['DSE_LIB']
@@ -220,6 +218,17 @@ def parse_args():
     return vars(parser.parse_args())
 
 if __name__ == "__main__":
+    import sys
+
+    if __package__ is None:                  
+        DIR = Path(__file__).resolve().parent
+        sys.path.insert(0, str(DIR.parent))
+        sys.path.insert(0, str(DIR.parent.parent))
+        __package__ = DIR.name
+
+    from cdfg import build_cdfg, print_cdfg
+    from utils.parsers import extract_utilization, extract_timing_summary, extract_hls_cc_report
+
     args = parse_args()
     main(args)
 

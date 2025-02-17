@@ -13,14 +13,7 @@ import torch.nn as nn
 from pathlib import Path
 from torch.utils.data import DataLoader
 from sklearn.metrics import r2_score
-from dse.estimators.models import HGT
-from dse.estimators.data.dataset import HLSDataset
-from dse.estimators.data.cdfg import (
-    INST_FEATURE_SIZE, VAR_FEATURE_SIZE, 
-    CONST_FEATURE_SIZE, ARRAY_FEATURE_SIZE
-)
-
-DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+from models import HGT
 
 def save_model(model, target_dir, model_name):
     target_dir_path = Path(target_dir)
@@ -165,8 +158,8 @@ def main(args: Dict[str, str]):
     # Set random seeds for reproducibility
     set_random_seeds(seed)
 
-    base_stats_dir = f"dse/estimators/model_analysis/{target_metric}"
-    base_pretrained_dir = f"dse/estimators/pretrained/{target_metric}"
+    base_stats_dir = f"estimators/model_analysis/{target_metric}"
+    base_pretrained_dir = f"estimators/pretrained/{target_metric}"
 
     benchmarks = sorted(os.listdir(dataset_path))
 
@@ -465,7 +458,7 @@ def initialize_model() -> nn.Module:
     }
     hid_dim_conv = [32, 16, 16, 16, 16, 8]
     heads = [8, 4, 4, 4, 4, 2]
-    hid_dim_fc = [48, 24, 12, 4]
+    hid_dim_fc = [64, 32, 16, 8]
     out_channels = 1
 
     agg_paths = [
@@ -476,8 +469,8 @@ def initialize_model() -> nn.Module:
 
     return HGT(
         metadata, in_channels, out_channels, hid_dim_conv, num_conv_layers=len(hid_dim_conv),
-        hid_dim_fc=hid_dim_fc, num_fc_layers=len(hid_dim_fc), num_heads=heads, fc_dropout=0.2, 
-        conv_dropout=0.1, layer_norm=True, pool_size=16, aggr_paths=agg_paths, device=DEVICE
+        hid_dim_fc=hid_dim_fc, num_fc_layers=len(hid_dim_fc), num_heads=heads, fc_dropout=0.1, 
+        conv_dropout=0.0, layer_norm=True, pool_size=16, aggr_paths=agg_paths, device=DEVICE
     )
 
 
@@ -504,5 +497,13 @@ def parse_arguments():
     return vars(parser.parse_args())
 
 if __name__ == '__main__':
+    from data.dataset import HLSDataset
+    from data.cdfg import (
+        INST_FEATURE_SIZE, VAR_FEATURE_SIZE, 
+        CONST_FEATURE_SIZE, ARRAY_FEATURE_SIZE
+    )
+
+    DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+
     args = parse_arguments()
     main(args)

@@ -74,14 +74,9 @@ build/
 
 # Approximate Computing project files (on hold)
 approx/
-hls_utils/
 
 # Test files and statistics
-test/
 model_analysis/
-solutions_info/
-dse/estimators/utils/plotting.py
-model_backup*/
 
 # The dataset to train the estimator (too large for git)
 dataset/

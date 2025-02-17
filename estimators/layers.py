@@ -1,5 +1,5 @@
-from typing import Callable, Optional, Union, List
-from torch_geometric.typing import Metadata, EdgeType
+from typing import Callable, Optional, Union, List, Dict
+from torch_geometric.typing import Metadata, EdgeType, NodeType, OptTensor
 
 import torch
 import torch.nn as nn
@@ -7,7 +7,6 @@ from torch import Tensor
 from torch.nn import MultiheadAttention
 from torch_geometric.nn import GraphConv, LayerNorm, HGTConv
 from torch_geometric.nn.pool.topk_pool import SelectTopK
-from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
 
 
@@ -173,14 +172,22 @@ class HetSAGPooling(torch.nn.Module):
     ):
         super(HetSAGPooling, self).__init__()
 
-        self.aggr_paths = aggr_paths if aggr_paths else [metadata[1]]
-        self.num_aggr_paths = len(self.aggr_paths)
+        node_types, edge_types = metadata
+        
+        if aggr_paths:
+            path_metadata = [(node_types, path) for path in aggr_paths]
+        else:
+            aggr_paths = [edge_types]
+            path_metadata = [metadata]
+
+        self.aggr_paths = aggr_paths
+        self.num_aggr_paths = len(aggr_paths)
         self.in_channels = in_channels
         self.multiplier = multiplier
 
         self.gnn = nn.ModuleList([
-            HGTConv(in_channels, 1, metadata, **kwargs)
-            for _ in range(self.num_aggr_paths)
+            HGTConv(in_channels, 1, path_metadata[i], **kwargs)
+            for i in range(self.num_aggr_paths)
         ])
         self.select = SelectTopK(1, ratio, min_score, nonlinearity)
         self.fc = nn.Linear(self.num_aggr_paths, 1)
@@ -191,11 +198,19 @@ class HetSAGPooling(torch.nn.Module):
         r"""Resets all learnable parameters of the module."""
         self.gnn.apply(reset)
         self.select.apply(reset)
-        self.fc.apply(reset)
+        self.fc.apply(self._init_fc_weights)
+
+    def _init_fc_weights(self, m):
+        if isinstance(m, nn.Linear):
+            nn.init.xavier_normal_(m.weight)
+            nn.init.zeros_(m.bias)
+        else:
+            reset(m)
 
     def forward(
         self,
-        data: HeteroData
+        x: Dict[NodeType, OptTensor],
+        edge_index: Dict[EdgeType, OptTensor]
     ) -> Tensor:
         r"""Forward pass.
 
@@ -203,7 +218,6 @@ class HetSAGPooling(torch.nn.Module):
             x (torch.Tensor): The node feature matrix.
             edge_index (torch.Tensor): The edge indices.
         """
-        x, edge_index = data.x_dict, data.edge_index_dict
         attn = []
 
         for i, path in enumerate(self.aggr_paths):
@@ -216,6 +230,9 @@ class HetSAGPooling(torch.nn.Module):
         sel = self.select(attn)
         perm = sel.node_index
         score = sel.weight
+
+        print(f"Permutation: {perm}")
+        print(f"Score: {score}")
 
         x_aggr = torch.cat([x[k] for k in x.keys()], dim=0)
         x_aggr = x_aggr[perm] * score.view(-1, 1) * self.multiplier
