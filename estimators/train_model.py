@@ -469,9 +469,9 @@ def prepare_data_loaders(
 
 
 def initialize_model() -> nn.Module:
-    hid_dim_conv = [4, 2]
-    heads = [1, 1]
-    hid_dim_fc = [4, 2]
+    hid_dim_conv = [32, 16, 16, 16, 16, 8]
+    heads = [8, 4, 4, 4, 4, 2]
+    hid_dim_fc = [64, 32, 16, 8]
     out_channels = 1
 
     agg_paths = [
