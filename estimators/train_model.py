@@ -484,7 +484,7 @@ def initialize_model() -> nn.Module:
     return HGT(
         METADATA, FEATURE_SIZE_PER_NODE_TYPE, out_channels, hid_dim_conv, num_conv_layers=len(hid_dim_conv),
         hid_dim_fc=hid_dim_fc, num_fc_layers=len(hid_dim_fc), num_heads=heads, fc_dropout=0.1, 
-        conv_dropout=0.0, layer_norm=True, pool_size=4, aggr_paths=agg_paths, device=DEVICE
+        conv_dropout=0.0, layer_norm=True, pool_size=16, aggr_paths=agg_paths, device=DEVICE
     )
 
 
