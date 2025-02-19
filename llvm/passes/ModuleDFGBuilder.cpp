@@ -19,7 +19,7 @@
 using namespace llvm;
 
 static cl::opt<std::string> outputFileName(
-    "out", 
+    "out-dfg", 
     cl::desc("Specify the file where the DFG should be written"), 
     cl::value_desc("filename")
 );

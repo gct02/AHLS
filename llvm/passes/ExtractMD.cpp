@@ -28,7 +28,7 @@
 using namespace llvm;
 
 static cl::opt<std::string> outputFile(
-    "md", 
+    "out-md", 
     cl::desc("Path to the file where the module's metadata should be written"), 
     cl::value_desc("filepath")
 );
@@ -170,6 +170,7 @@ struct ExtractMD : public ModulePass {
                         instMD.values["pipeline"] = 1;
                         instMD.values["pipelineID"] = MDOperandToInt(pipelineMD, 0);
                         instMD.values["pipelineII"] = MDOperandToInt(pipelineMD, 1);
+                        instMD.values["functionLevel"] = MDOperandToInt(pipelineMD, 2);
                     }
                     if (MDNode* unrollMD = I.getMetadata("unroll")) {
                         instMD.values["unroll"] = 1;
@@ -184,6 +185,7 @@ struct ExtractMD : public ModulePass {
                     if (MDNode* loopMergeMD = I.getMetadata("loopMerge")) {
                         instMD.values["loopMerge"] = 1;
                         instMD.values["loopMergeID"] = MDOperandToInt(loopMergeMD, 0);
+                        instMD.values["functionLevel"] = MDOperandToInt(loopMergeMD, 1);
                     }
                     md["instruction"].push_back(instMD);
 

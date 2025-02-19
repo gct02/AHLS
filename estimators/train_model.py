@@ -12,6 +12,7 @@ import torch
 import torch.nn as nn
 from pathlib import Path
 from torch.utils.data import DataLoader
+from torch.utils.data import random_split
 from sklearn.metrics import r2_score
 from models import HGT
 
@@ -28,46 +29,57 @@ def save_model(model, target_dir, model_name):
 def evaluate(
     model: nn.Module,
     loader: DataLoader,
-    loss_func: nn.Module,
+    loss_fn: nn.Module,
     verbosity: int,
     mode: str,
     return_preds: bool = False
-) -> Tuple[float, Optional[List[List[Tuple[float, float]]]]]:
-    loss_epoch = 0
-    preds_all = []
-
+) -> Tuple[float, float, Optional[List[Tuple[float, float]]]]:
     if verbosity > 0:
         print(f"\nEvaluating on {mode} set\n")
 
+    eval_epoch_error = 0
+    preds, targets = [], []
+    
     # Assumption: Only one instance per batch
     for input_batch, target_batch in loader:
-        preds_batch = []
-
         cdfg = input_batch[0].to(DEVICE)
-        pred = model(cdfg)
         target = target_batch[0].to(DEVICE)
-        loss = loss_func(pred, target)
+        pred = model(cdfg)
+        cdfg = cdfg.cpu()
+        
+        preds.append(pred)
+        targets.append(target)
 
-        loss_epoch += loss.item()
-        if return_preds:
-            preds_batch.append((pred.item(), target.item()))
+        pred_val = pred.item()
+        target_val = target.item()
+        abs_error = abs(pred_val - target_val)
+        eval_epoch_error += abs_error
 
         if verbosity > 0:
-            print(f"Target: {target.item()}; Prediction: {pred.item()}; Loss: {loss.item()}")
+            if target_val != 0:
+                rel_error = abs_error / target_val * 100
+            else:
+                rel_error = 0 if abs_error <= 1e-2 else float('inf')
+            print(f"Target: {target_val}; Prediction: {pred_val}; "
+                  + f"Abs. Error: {abs_error:.4f}; Rel. Error: {rel_error:.4f}%")
 
-        cdfg, target, pred = cdfg.cpu(), target.cpu(), pred.cpu()
-        preds_all.append(preds_batch) if return_preds else None
-
-    loss_epoch /= len(loader)
+    eval_epoch_error /= len(loader)
     if verbosity > 0:
-        print(f"Loss on {mode} set: {loss_epoch}\n")
+        print(f"Mean Absolute Error on {mode} set: {eval_epoch_error}\n")
 
-    return (loss_epoch, preds_all) if return_preds else (loss_epoch, None)
+    preds_tensor = torch.stack(preds)
+    targets_tensor = torch.stack(targets)
+    loss = loss_fn(preds_tensor, targets_tensor).item()
+
+    preds_and_targets = list(zip(preds, targets))
+
+    return ((loss, eval_epoch_error, preds_and_targets) 
+            if return_preds else (loss, eval_epoch_error))
 
 
 def train_model(
     model: nn.Module,
-    loss_func: nn.Module,
+    loss_fn: nn.Module,
     optimizer: torch.optim.Optimizer,
     train_loader: DataLoader,
     test_loader: DataLoader,
@@ -76,67 +88,72 @@ def train_model(
     scheduler: Optional[torch.optim.lr_scheduler._LRScheduler] = None,
     verbosity: int = 1
 ) -> Tuple[List[float], List[float], List[List[Tuple[float, float]]]]:
-    train_losses, test_losses = [], []
+    train_error_per_epoch, test_error_per_epoch = [], []
     num_batches = len(train_loader)
     num_instances = len(test_loader)
-    test_preds_inst = [[] for _ in range(num_instances)]
+    test_preds_per_instance = [[] for _ in range(num_instances)]
 
     for epoch in range(epochs):
         if verbosity > 0:
             print(f"Epoch {epoch + 1}/{epochs}\n")
-
+        
         # Training
         model.train()
-        train_loss_epoch = 0
+        train_epoch_error = 0
         for i, (input_batch, target_batch) in enumerate(train_loader):
-            batch_loss = 0
+            preds, targets = [], []
             optimizer.zero_grad()
-
+            train_batch_error = 0
             for cdfg, target in zip(input_batch, target_batch):
                 cdfg, target = cdfg.to(DEVICE), target.to(DEVICE)
-
                 pred = model(cdfg)
-                loss = loss_func(pred, target)
-                loss.backward()
+                cdfg = cdfg.cpu()
 
-                # Move tensors back to CPU to free GPU memory
-                cdfg, target, pred = cdfg.cpu(), target.cpu(), pred.cpu()
+                preds.append(pred)
+                targets.append(target)
 
-                if verbosity > 0:
-                    batch_loss += loss.item()
-                    if verbosity > 1:
-                        print(f"Target: {target.item()}; Prediction: {pred.item()}; Loss: {loss.item()}")
+                pred_val = pred.item()
+                target_val = target.item()
+                abs_error = abs(pred_val - target_val)
+                train_batch_error += abs_error
 
+                if verbosity > 1:
+                    if target_val != 0:
+                        rel_error = abs_error / target_val * 100
+                    else:
+                        rel_error = 0 if abs_error <= 1e-2 else float('inf')
+                    print(f"Target: {target_val}; Prediction: {pred_val}; "
+                          + f"Abs. Error: {abs_error:.4f}; Rel. Error: {rel_error:.4f}%")
+
+            batch_size = len(input_batch)
+
+            preds = torch.stack(preds).view(batch_size, 1)
+            targets = torch.stack(targets).view(batch_size, 1)
+            loss_fn(preds, targets).backward()
             optimizer.step()
+            if scheduler:
+                scheduler.step()
 
-            batch_loss /= len(input_batch)
-            train_loss_epoch += batch_loss
+            train_batch_error /= batch_size
+            train_epoch_error += train_batch_error
 
-            if verbosity > 0:
-                print(f"Loss on train batch {i}: {batch_loss}")
-
-        train_loss_epoch /= num_batches
-        train_losses.append(train_loss_epoch)
+        train_epoch_error /= num_batches
+        train_error_per_epoch.append(train_epoch_error)
 
         # Evaluation
         model.eval()
         with torch.no_grad():
             # Validation
-            val_loss_epoch = evaluate(
-                model, val_loader, loss_func, verbosity, "validation"
-            )
-            if scheduler:
-                scheduler.step(val_loss_epoch[0])
-              
+            evaluate(model, val_loader, loss_fn, verbosity, "validation")
             # Testing
-            test_loss_epoch, test_preds = evaluate(
-                model, test_loader, loss_func, verbosity, "test", return_preds=True
+            _, test_error, test_preds = evaluate(
+                model, test_loader, loss_fn, verbosity, "test", return_preds=True
             )
-            test_losses.append(test_loss_epoch)
-            for i, preds in enumerate(test_preds):
-                test_preds_inst[i].extend(preds)
+            test_error_per_epoch.append(test_error)
+            for i, instance_pred in enumerate(test_preds):
+                test_preds_per_instance[i].extend(instance_pred)
         
-    return train_losses, test_losses, test_preds_inst
+    return train_error_per_epoch, test_error_per_epoch, test_preds_per_instance
 
 
 def main(args: Dict[str, str]):
@@ -183,9 +200,9 @@ def main(args: Dict[str, str]):
         model = initialize_model()
         loss_func = nn.HuberLoss(delta=1.345)
         optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=1e-4)
-        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-            optimizer, mode='min', factor=0.1, patience=10, min_lr=1e-6, eps=1e-8
-        )
+
+        total_steps = epochs * len(train_loader)
+        scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, max_lr=1e-2, total_steps=total_steps)
 
         train_losses, test_losses, test_preds_sorted = train_model(
             model, loss_func, optimizer, train_loader, test_loader, 
@@ -420,57 +437,54 @@ def prepare_data_loaders(
     batch_size: int,
     val_split: float = 0.1
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
-    train_dataset = HLSDataset(
-        dataset_dir, target_metric, normalize=True, benchmarks=train_benches
-    )
-    test_dataset = HLSDataset(
-        dataset_dir, target_metric, normalize=True, benchmarks=test_benches,
-        feature_stats=train_dataset.feature_stats
-    )
+    train_data = HLSDataset(dataset_dir, target_metric, benchmarks=train_benches)
+    n_instances = len(train_data)
+    n_train = int((1 - val_split) * n_instances)
+    n_val = n_instances - n_train
+    train_data_split, val_data_split = random_split(train_data, [n_train, n_val])
 
-    n_train = int((1 - val_split) * len(train_dataset))
-    n_val = len(train_dataset) - n_train
-    train_dataset, val_dataset = torch.utils.data.random_split(train_dataset, [n_train, n_val])
+    train_indices = train_data_split.indices
+    filter_instances = [i in train_indices for i in range(n_instances)]
+    train_data.compute_feature_stats(filter_instances)
+
+    test_data = HLSDataset(
+        dataset_dir, target_metric, normalize=True, benchmarks=test_benches,
+        feature_stats=train_data.feature_stats
+    )
 
     train_loader = DataLoader(
-        train_dataset, batch_size=batch_size, shuffle=True, 
+        train_data_split, batch_size=batch_size, shuffle=True, 
         collate_fn=lambda x: tuple(zip(*x))
     )
-    val_loader = DataLoader(val_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
-    test_loader = DataLoader(test_dataset, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
+    val_loader = DataLoader(
+        val_data_split, batch_size=1, shuffle=False, 
+        collate_fn=lambda x: tuple(zip(*x))
+    )
+    test_loader = DataLoader(
+        test_data, batch_size=1, shuffle=False, 
+        collate_fn=lambda x: tuple(zip(*x))
+    )
 
     return train_loader, val_loader, test_loader
 
 
 def initialize_model() -> nn.Module:
-    node_types = ['inst', 'var', 'const', 'array']
-    edge_types = [
-        ('inst', 'control', 'inst'), ('inst', 'call', 'inst'), ('inst', 'data', 'var'),
-        ('var', 'data', 'inst'), ('const', 'data', 'inst'), ('array', 'data', 'inst'),
-        ('inst', 'data', 'array'), ('inst', 'id', 'inst'), ('var', 'id', 'var'),
-        ('const', 'id', 'const'), ('array', 'id', 'array')
-    ]
-    metadata = (node_types, edge_types)
-
-    in_channels = {
-        'inst': INST_FEATURE_SIZE, 'var': VAR_FEATURE_SIZE, 
-        'const': CONST_FEATURE_SIZE, 'array': ARRAY_FEATURE_SIZE
-    }
-    hid_dim_conv = [32, 16, 16, 16, 16, 8]
-    heads = [8, 4, 4, 4, 4, 2]
-    hid_dim_fc = [64, 32, 16, 8]
+    hid_dim_conv = [4, 2]
+    heads = [1, 1]
+    hid_dim_fc = [4, 2]
     out_channels = 1
 
     agg_paths = [
-        [t for t in edge_types if t[1] == 'data' or t[1] == 'id'],
-        [t for t in edge_types if t[1] == 'control' or t[1] == 'id'],
-        [t for t in edge_types if t[1] == 'call' or t[1] == 'id'],
+        [t for t in EDGE_TYPES if (t[0] == 'inst' and t[2] == 'inst') or t[1] == 'id'],
+        [t for t in EDGE_TYPES if t[1] == 'prod' or t[1] == 'uses' or t[1] == 'used_by' or t[1] == 'prod_by' or t[1] == 'id'],
+        [t for t in EDGE_TYPES if t[0] == 'bb' or t[1] == 'bb' or t[1] == 'id'],
+        [t for t in EDGE_TYPES if t[0] == 'func' or t[1] == 'func' or t[1] == 'id']
     ]
 
     return HGT(
-        metadata, in_channels, out_channels, hid_dim_conv, num_conv_layers=len(hid_dim_conv),
+        METADATA, FEATURE_SIZE_PER_NODE_TYPE, out_channels, hid_dim_conv, num_conv_layers=len(hid_dim_conv),
         hid_dim_fc=hid_dim_fc, num_fc_layers=len(hid_dim_fc), num_heads=heads, fc_dropout=0.1, 
-        conv_dropout=0.0, layer_norm=True, pool_size=16, aggr_paths=agg_paths, device=DEVICE
+        conv_dropout=0.0, layer_norm=True, pool_size=4, aggr_paths=agg_paths, device=DEVICE
     )
 
 
@@ -498,10 +512,7 @@ def parse_arguments():
 
 if __name__ == '__main__':
     from data.dataset import HLSDataset
-    from data.cdfg import (
-        INST_FEATURE_SIZE, VAR_FEATURE_SIZE, 
-        CONST_FEATURE_SIZE, ARRAY_FEATURE_SIZE
-    )
+    from data.cdfg import METADATA, FEATURE_SIZE_PER_NODE_TYPE, EDGE_TYPES
 
     DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 

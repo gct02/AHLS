@@ -231,9 +231,6 @@ class HetSAGPooling(torch.nn.Module):
         perm = sel.node_index
         score = sel.weight
 
-        print(f"Permutation: {perm}")
-        print(f"Score: {score}")
-
         x_aggr = torch.cat([x[k] for k in x.keys()], dim=0)
         x_aggr = x_aggr[perm] * score.view(-1, 1) * self.multiplier
 

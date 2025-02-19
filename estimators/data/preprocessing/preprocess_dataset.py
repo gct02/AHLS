@@ -39,6 +39,7 @@ def process_ir(
     ir_src_path: Path, 
     ir_dst_path: Path,
     output_md_path: Path,
+    output_cfg_path: Path,
     directives_path: Path
 ) -> None:
     """
@@ -80,6 +81,8 @@ def process_ir(
         Path to the processed IR file
     output_md_path: Path
         Path to the file where the metadata extracted from the IR will be written
+    output_cfg_path: Path
+        Path to the file where the CFG extracted from the IR will be written
     directives_path: Path
         Path to the directives file used in the solution
 
@@ -103,9 +106,12 @@ def process_ir(
         run_opt(temp1_path, ir_dst_path, "-rename-vals")
         
         subprocess.check_output(
-            f"{OPT} -load {DSE_LIB} -extract-md -md {output_md_path.as_posix()} < {ir_dst_path.as_posix()};", 
-            shell=True,
-            stderr=subprocess.STDOUT
+            f"{OPT} -load {DSE_LIB} -extract-md -out-md {output_md_path.as_posix()} < {ir_dst_path.as_posix()};", 
+            shell=True, stderr=subprocess.STDOUT
+        )
+        subprocess.check_output(
+            f"{OPT} -load {DSE_LIB} -write-cfg -out-cfg {output_cfg_path.as_posix()} < {ir_dst_path.as_posix()};", 
+            shell=True, stderr=subprocess.STDOUT
         )
     except subprocess.CalledProcessError as e:
         print(f"Error processing {ir_src_path}: {e}")
@@ -180,9 +186,10 @@ def main(args: Dict[str, str]):
 
             ir_mod = ir_folder / "a.g.ld.0.dse.ll"
             output_md_path = output_instance_folder / "metadata.txt"
+            output_cfg_path = output_instance_folder / "cfg_edges.txt"
 
             try:
-                process_ir(ir, ir_mod, output_md_path, directives_tcl_path)
+                process_ir(ir, ir_mod, output_md_path, output_cfg_path, directives_tcl_path)
             except subprocess.CalledProcessError:
                 output_instance_folder.rmdir()
                 continue
@@ -203,7 +210,7 @@ def main(args: Dict[str, str]):
             with open(output_instance_folder / "targets.txt", "w") as f:
                 f.write(f"lut={lut}\nff={ff}\ndsp={dsp}\nbram={bram}\nclb={clb}\nlatch={latch}\ncp={achieved_clk}\ncc={cc}")
 
-            cdfg = build_cdfg(ir_mod, output_md_path)
+            cdfg = build_cdfg(ir_mod, output_md_path, output_cfg_path)
             torch.save(cdfg, output_instance_folder / "cdfg.pt")
             print_cdfg(cdfg, output_instance_folder / "cdfg.txt")
 

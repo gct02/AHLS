@@ -239,12 +239,18 @@ struct SetHLSDirectivesMD : public ModulePass {
             return -1;
         }
         ConstantAsMetadata* directiveIndexMD = getConstantAsMetadata(M.getContext(), directiveIndex);
+        ConstantAsMetadata* functionLevelMD;
+        if (directive.label.empty()) {
+            functionLevelMD = getConstantAsMetadata(M.getContext(), 1);
+        } else {
+            functionLevelMD = getConstantAsMetadata(M.getContext(), 0);
+        }
         
         bool found = false;
         if (directive.label.empty()) {
             for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                 BasicBlock* BB = &*BI;
-                MDTuple* md = MDTuple::get(M.getContext(), {directiveIndexMD});
+                MDTuple* md = MDTuple::get(M.getContext(), {directiveIndexMD, functionLevelMD});
                 LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(*F).getLoopInfo();
                 Loop* L = LI.getLoopFor(BB);
                 if (L) {
@@ -267,7 +273,7 @@ struct SetHLSDirectivesMD : public ModulePass {
                     // if (!loopHeader) {
                     loopHeader = BB;
                     // }
-                    MDTuple* md = MDTuple::get(M.getContext(), {directiveIndexMD});
+                    MDTuple* md = MDTuple::get(M.getContext(), {directiveIndexMD, functionLevelMD});
                     LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(*F).getLoopInfo();
                     Loop* L = LI.getLoopFor(loopHeader);
                     if (L) {
@@ -400,11 +406,17 @@ struct SetHLSDirectivesMD : public ModulePass {
 
         ConstantAsMetadata* directiveIndexMD = getConstantAsMetadata(M.getContext(), directiveIndex);
         ConstantAsMetadata* IIMD = getConstantAsMetadata(M.getContext(), II);
+        ConstantAsMetadata* functionLevelMD;
+        if (directive.label.empty()) {
+            functionLevelMD = getConstantAsMetadata(M.getContext(), 1);
+        } else {
+            functionLevelMD = getConstantAsMetadata(M.getContext(), 0);
+        }
         
         bool found = false;
         if (directive.label.empty()) {
             // Set metadata to all instructions in the function
-            MDTuple* md = MDTuple::get(M.getContext(), {directiveIndexMD, IIMD});
+            MDTuple* md = MDTuple::get(M.getContext(), {directiveIndexMD, IIMD, functionLevelMD});
             for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                 BasicBlock* BB = &*BI;
                 for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
@@ -415,7 +427,7 @@ struct SetHLSDirectivesMD : public ModulePass {
             found = true;
         } else {
             // Set metadata to all instructions in the loop labeled as directive.label
-            MDTuple* md = MDTuple::get(M.getContext(), {directiveIndexMD, IIMD});
+            MDTuple* md = MDTuple::get(M.getContext(), {directiveIndexMD, IIMD, functionLevelMD});
             for (Function::iterator BI = F->begin(), BE = F->end(); BI != BE; ++BI) {
                 BasicBlock* BB = &*BI;
                 if (BB->hasName() && BB->getName() == directive.label) {
@@ -642,6 +654,11 @@ struct SetHLSDirectivesMD : public ModulePass {
                 if (directive.options.find("II") == directive.options.end()) {
                     directive.options["II"] = "0";
                 }
+                if (directive.label.empty()) {
+                    directive.options["functionLevel"] = "1";
+                } else {
+                    directive.options["functionLevel"] = "0";
+                }
                 directive.name = "pipeline";
                 directives["pipeline"].push_back(directive);
 
@@ -712,6 +729,11 @@ struct SetHLSDirectivesMD : public ModulePass {
                     directive.functionName = location;
                     directive.label = "";
                 }
+                if (directive.label.empty()) {
+                    directive.options["functionLevel"] = "1";
+                } else {
+                    directive.options["functionLevel"] = "0";
+                }
                 directive.name = "loopMerge";
                 directives["loopMerge"].push_back(directive);
             }
@@ -725,6 +747,7 @@ struct SetHLSDirectivesMD : public ModulePass {
 		AU.addRequired<ScalarEvolutionWrapperPass>();
 		AU.setPreservesAll();
     }
+    
 }; // struct SetHLSDirectivesMD
 
 }  // anonymous namespace

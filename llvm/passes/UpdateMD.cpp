@@ -165,13 +165,15 @@ struct UpdateMD : public ModulePass {
             ScalarEvolution& SE = getAnalysis<ScalarEvolutionWrapperPass>(F).getSE();
             for (BasicBlock& BB : F) {
                 uint32_t loopDepth = 0;
-                uint64_t tripCountValue = 0;
+                uint64_t tripCountValue = 1;
                 if (Loop* L = LI.getLoopFor(&BB)) {
                     // The basic block is inside a loop
                     uint32_t loopDepth = L->getLoopDepth();
                     const SCEV* tripCount = SE.getBackedgeTakenCount(L);
                     if (const SCEVConstant* tripCountConst = dyn_cast<SCEVConstant>(tripCount)) {
                         tripCountValue = tripCountConst->getValue()->getZExtValue();
+                    } else {
+                        tripCountValue = 0;
                     }
                 }
                 for (Instruction& I : BB) {
@@ -187,56 +189,52 @@ struct UpdateMD : public ModulePass {
 
     // Set named metadata for an instruction
     void setInstructionMetadata(Instruction& I, uint32_t opID, uint32_t functionID, uint32_t bbID,
-                                uint32_t loopDepth=-1, uint64_t tripCount=-1) {
+                                uint32_t loopDepth=0, uint64_t tripCount=1) {
         setMetadata(I, "opID", opID);
         setMetadata(I, "functionID", functionID);
         setMetadata(I, "bbID", bbID);
         setMetadata(I, "opcode", I.getOpcode());
         setMetadata(I, "bitwidth", I.getType()->getPrimitiveSizeInBits());
         setMetadata(I, "valueType", (uint32_t)I.getType()->getTypeID());
-        if (loopDepth != -1) {
-            setMetadata(I, "loopDepth", loopDepth);
-        }
-        if (tripCount != -1) {
-            setMetadata(I, "tripCount", tripCount);
-        }
+        setMetadata(I, "loopDepth", loopDepth);
+        setMetadata(I, "tripCount", (uint32_t)tripCount);
         setMetadata(I, "ID." + std::to_string(opID), opID);
     }
 
     // Set loop-specific metadata for all instructions that reside in a loop
-    void setLoopMetadata(Function& F) {
-        // Get LoopInfo and ScalarEvolution analyses
-        LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
-        ScalarEvolution& SE = getAnalysis<ScalarEvolutionWrapperPass>(F).getSE();
+    // void setLoopMetadata(Function& F) {
+    //     // Get LoopInfo and ScalarEvolution analyses
+    //     LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
+    //     ScalarEvolution& SE = getAnalysis<ScalarEvolutionWrapperPass>(F).getSE();
+    //     for (BasicBlock& BB : F) {
+    //         uint32_t loopDepth = 0;
+    //         uint32_t tripCount = 1;
+    //         Loop* L = LI.getLoopFor(&BB);
+    //         if (L) {
+	// 			loopDepth = L->getLoopDepth();
+    //             tripCount = getLoopTripCount(L, &SE);
+    //         }
+    //         for (Instruction& I : BB) {
+    //             setMetadata(I, "loopDepth", loopDepth);
+    //             setMetadata(I, "tripCount", tripCount);
+    //         }
+    //     }
+    // }
 
-        for (BasicBlock& BB : F) {
-            uint32_t loopDepth = 0;
-            uint32_t tripCount = 0;
-            Loop* L = LI.getLoopFor(&BB);
-            if (L) {
-				loopDepth = L->getLoopDepth();
-                tripCount = getLoopTripCount(L, &SE);
-            }
-            for (Instruction& I : BB) {
-                setMetadata(I, "loopDepth", loopDepth);
-                setMetadata(I, "tripCount", tripCount);
-            }
-        }
-    }
-
-    uint32_t getLoopTripCount(Loop* L, ScalarEvolution* SE) {
-        BasicBlock* exitingBlock = getExitingBlock(L, SE);
-        if (exitingBlock) {
-            return SE->getSmallConstantTripCount(L, exitingBlock);
-        }
-        return 0;
-    }
+    // uint32_t getLoopTripCount(Loop* L, ScalarEvolution* SE) {
+    //     BasicBlock* exitingBlock = getExitingBlock(L, SE);
+    //     if (exitingBlock) {
+    //         return SE->getSmallConstantTripCount(L, exitingBlock);
+    //     }
+    //     return 0;
+    // }
 
 	virtual void getAnalysisUsage(AnalysisUsage& AU) const override {
         AU.addRequired<LoopInfoWrapperPass>();
 		AU.addRequired<ScalarEvolutionWrapperPass>();
 		AU.setPreservesAll();
     }
+    
 }; // struct UpdateMD
 
 }  // anonymous namespace
