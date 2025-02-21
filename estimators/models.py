@@ -10,10 +10,11 @@ from torch import Tensor
 from torch_geometric.nn import HGTConv, LayerNorm
 from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
+from torch_geometric.nn.models import JumpingKnowledge
 from layers import HetSAGPooling
 
 
-class HGT(nn.Module):
+class HGT_HLS(nn.Module):
     r"""Module that uses the Heterogeneous Graph Transformer (HGT) operator from the
     `"Heterogeneous Graph Transformer" <https://arxiv.org/abs/2003.01332>`_ paper to
     perform graph-level regression.
@@ -51,9 +52,12 @@ class HGT(nn.Module):
         aggr_paths (List[List[EdgeType]], optional):
             List of edge type combinations to aggregate over.
             (default: :obj:`None`)
-        use_norm (bool):
-            Whether to use normalization layers.
+        apply_ln (bool):
+            Whether to use layer normalization.
             (default: :obj:`True`)
+        sep_pragmas (bool):
+            Whether to apply separate convolutions for pragma and CDFG edges.
+            (default: :obj:`False`)
         device (torch.device):
             Device to use for computation.
             (default: :obj:`"cpu"`)
@@ -72,7 +76,8 @@ class HGT(nn.Module):
         conv_dropout: float = 0.0,
         pool_size: int = 8,
         aggr_paths: Optional[List[List[EdgeType]]] = None,
-        layer_norm: bool = True,
+        apply_ln: bool = True,
+        sep_pragmas: bool = False,
         device: Optional[Device] = 'cpu'
     ):
         super().__init__()
@@ -94,7 +99,8 @@ class HGT(nn.Module):
         self.hid_dim = hid_dim_conv
         self.num_layers = num_conv_layers
         self.heads = num_heads
-        self.use_norm = layer_norm
+        self.use_norm = apply_ln
+        self.sep_pragmas = sep_pragmas
         self.aggr_paths = aggr_paths
         self.num_aggr_paths = len(aggr_paths)
 
@@ -102,13 +108,41 @@ class HGT(nn.Module):
             in_channels = {nt: in_channels for nt in self.node_types}
 
         # Define convolutional layers
-        self.conv = nn.ModuleList([
-            HGTConv(in_channels, hid_dim_conv[0], metadata, num_heads[0])
-        ])
-        self.conv.extend([
-            HGTConv(hid_dim_conv[i-1], hid_dim_conv[i], metadata, num_heads[i])
-            for i in range(1, num_conv_layers)
-        ])
+        if sep_pragmas:
+            pragma_nodes = ['loop_pragma', 'array_pragma']
+            pragma_rels = ['transf', 'transf_by']
+            self.pragma_edge_types = [
+                et for et in self.edge_types if et[1] in pragma_rels or et[0] in pragma_nodes
+            ]
+            self.cdfg_edge_types = [
+                et for et in self.edge_types if et not in self.pragma_edge_types
+            ]
+            pragma_metadata = (self.node_types, self.pragma_edge_types)
+            cdfg_metadata = (self.node_types, self.cdfg_edge_types)
+
+            self.proj_conv = nn.ModuleList([
+                HGTConv(in_channels, hid_dim_conv[0], metadata, num_heads[0])
+            ])
+            self.pragma_conv = nn.ModuleList([
+                HGTConv(hid_dim_conv[i-1], hid_dim_conv[i], pragma_metadata, num_heads[i])
+                for i in range(1, num_conv_layers + 1)
+            ])
+            self.cdfg_conv = nn.ModuleList([
+                HGTConv(hid_dim_conv[i-1], hid_dim_conv[i], cdfg_metadata, num_heads[i])
+                for i in range(1, num_conv_layers + 1)
+            ])
+            self.merge_conv = nn.ModuleList([
+                HGTConv(hid_dim_conv[i], hid_dim_conv[i], metadata, num_heads[i])
+                for i in range(1, num_conv_layers + 1) 
+            ])
+        else:
+            self.conv = nn.ModuleList([
+                HGTConv(in_channels, hid_dim_conv[0], metadata, num_heads[0])
+            ])
+            self.conv.extend([
+                HGTConv(hid_dim_conv[i-1], hid_dim_conv[i], metadata, num_heads[i])
+                for i in range(1, num_conv_layers)
+            ])
 
         # Define normalization layers (optional)
         if self.use_norm:
@@ -121,6 +155,12 @@ class HGT(nn.Module):
 
         # Define dropouts
         self.conv_dropout = nn.Dropout(conv_dropout)
+
+        # Define Jumping Knowledge layer
+        self.jkn = nn.ModuleDict({
+            nt: JumpingKnowledge('lstm', channels=hid_dim_conv[-1], num_layers=num_conv_layers)
+            for nt in self.node_types
+        })
 
         # Define pooling layer
         pooling_dim = hid_dim_conv[-1]
@@ -153,7 +193,7 @@ class HGT(nn.Module):
 
     def reset_parameters(self):
         r"""Reinitializes the model parameters."""
-        self.conv.apply(self._init_weights)
+        self.proj_conv.apply(self._init_weights)
         self.pool.apply(self._init_weights)
         self.mlp.apply(self._init_weights)
         if self.use_norm:
@@ -177,18 +217,45 @@ class HGT(nn.Module):
         Returns: :obj:`torch.Tensor` - The output prediction tensor.
         """
         x, edge_index = data.x_dict, data.edge_index_dict
+        outs = {nt: [] for nt in self.node_types}
 
-        # Convolutional layers
-        for i in range(self.num_layers-1):
-            x = self.conv[i](x, edge_index)
+        if self.sep_pragmas:
+            pragma_edge_index = {et: edge_index[et] for et in self.pragma_edge_types}
+            cdfg_edge_index = {et: edge_index[et] for et in self.cdfg_edge_types}
 
+            x = self.proj_conv[i](x, edge_index)
             if self.use_norm:
                 x = {k: self.norm[k][i](v) for k, v in x.items()}
 
             x = {k: self.conv_dropout(F.gelu(v)) for k, v in x.items()}
 
-        x = self.conv[-1](x, edge_index)
-        x = {k: F.gelu(v) for k, v in x.items()}
+            for k, v in x.items():
+                outs[k].append(v)
+
+        # Convolutional layers
+        for i in range(self.num_layers):
+            if self.sep_pragmas:
+                x_pragma = self.pragma_conv[i](x, pragma_edge_index)
+                x_cdfg = self.cdfg_conv[i](x, cdfg_edge_index)
+                
+                x_pragma = {k: x_pragma[k] if k in x_pragma else torch.zeros_like(x[k]) for k in x}
+                x_cdfg = {k: x_cdfg[k] if k in x_cdfg else torch.zeros_like(x[k]) for k in x}
+
+                x = {k: x_pragma[k] + x_cdfg[k] for k in x}
+                x = self.merge_conv[i](x, edge_index)
+            else:
+                x = self.conv[i](x, edge_index)
+
+            if i < self.num_layers - 1:
+                if self.use_norm:
+                    x = {k: self.norm[k][i](v) for k, v in x.items()}
+                x = {k: self.conv_dropout(F.gelu(v)) for k, v in x.items()}
+
+            for k, v in x.items():
+                outs[k].append(v)
+
+        # Jumping Knowledge layer
+        x = {k: self.jkn[k](outs[k]) for k in x.keys()}
 
         # Edge-wise aggregation
         x_aggr = self.pool(x, edge_index)

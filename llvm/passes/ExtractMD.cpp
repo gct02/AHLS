@@ -86,8 +86,7 @@ struct ExtractMD : public ModulePass {
         return cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(md->getOperand(index))->getValue())->getZExtValue();
     }
 
-    uint32_t getMDOperandValue(Value& V, StringRef name, uint32_t index,
-                               uint32_t defaultValue=0) {
+    uint32_t getMDOperandValue(Value& V, StringRef name, uint32_t index, uint32_t defaultValue=0) {
         MDNode* md = nullptr;
         if (Instruction* I = dyn_cast<Instruction>(&V)) {
             md = I->getMetadata(name);
@@ -123,7 +122,15 @@ struct ExtractMD : public ModulePass {
             MDNode* isArray = G.getMetadata("isArray");
             if (isArray) {
                 m.values["isArray"] = 1;
-                m.values["numDims"] = getMDOperandValue(G, "numDims", 0);
+
+                uint32_t numDims = getMDOperandValue(G, "numDims", 0);
+                m.values["numDims"] = numDims;
+
+                for (uint32_t i = 1; i <= numDims; i++) {
+                    m.values["numElements" + std::to_string(i)] = getMDOperandValue(
+                        G, "numElements." + std::to_string(i), 0
+                    );
+                }
                 m.values["numElements"] = getMDOperandValue(G, "numElements", 0);
                 m.values["elementType"] = getMDOperandValue(G, "elementType", 0);
                 m.values["elementBitwidth"] = getMDOperandValue(G, "elementBitwidth", 0);
@@ -153,12 +160,17 @@ struct ExtractMD : public ModulePass {
                     uint32_t opID = getMDOperandValue(I, "opID", 0);
 
                     instMD.name = std::to_string(opID);
-                    instMD.functionName = F.getType()->isVoidTy() ? "" : F.getName().str();
+                    instMD.functionName = F.hasName() ? F.getName().str() : "";
 
                     instMD.values["ID"] = opID;
                     instMD.values["functionID"] = getMDOperandValue(I, "functionID", 0);
                     instMD.values["bbID"] = getMDOperandValue(I, "bbID", 0);
                     instMD.values["opcode"] = getMDOperandValue(I, "opcode", 0);
+                    instMD.values["numOperands"] = getMDOperandValue(I, "numOperands", 0);
+                    instMD.values["numUses"] = getMDOperandValue(I, "numUses", 0);
+                    instMD.values["retType"] = getMDOperandValue(I, "valueType", 0);
+                    instMD.values["bitwidth"] = getMDOperandValue(I, "bitwidth", 0);
+                    instMD.values["inLoop"] = getMDOperandValue(I, "inLoop", 0);
 
                     if (MDNode* loopDepth = I.getMetadata("loopDepth")) {
                         instMD.values["loopDepth"] = MDOperandToInt(loopDepth, 0);
@@ -187,6 +199,20 @@ struct ExtractMD : public ModulePass {
                         instMD.values["loopMergeID"] = MDOperandToInt(loopMergeMD, 0);
                         instMD.values["functionLevel"] = MDOperandToInt(loopMergeMD, 1);
                     }
+
+                    // Retrieve metadata about the basic block that contains the instruction
+                    instMD.values["bbSize"] = getMDOperandValue(BB, "bbSize", 0);
+                    
+                    // Retrieve metadata about the function that contains the instruction
+                    instMD.values["numOperandsInFunction"] = getMDOperandValue(F, "numOperandsInFunction", 0);
+                    instMD.values["numUsesInFunction"] = getMDOperandValue(F, "numUsesInFunction", 0);
+                    instMD.values["entryCountInFunction"] = getMDOperandValue(F, "entryCountInFunction", 0);
+                    instMD.values["functionRetType"] = getMDOperandValue(F, "functionRetType", 0);
+                    instMD.values["functionRetTypeBitwidth"] = getMDOperandValue(F, "functionRetTypeBitwidth", 0);
+                    instMD.values["numInstsInFunction"] = getMDOperandValue(F, "numInstsInFunction", 0);
+                    instMD.values["numBBsInFunction"] = getMDOperandValue(F, "numBBsInFunction", 0);
+                    instMD.values["numLoopsInFunction"] = getMDOperandValue(F, "numLoopsInFunction", 0);
+
                     md["instruction"].push_back(instMD);
 
                     if (!I.getType()->isVoidTy()) {
@@ -194,7 +220,7 @@ struct ExtractMD : public ModulePass {
                         Metadata valMD;
 
                         valMD.name = I.getName().str();
-                        valMD.functionName = F.getType()->isVoidTy() ? "" : F.getName().str();
+                        valMD.functionName = F.hasName() ? F.getName().str() : "";
 
                         valMD.values["ID"] = getMDOperandValue(I, "opID", 0);
                         valMD.values["bitwidth"] = getMDOperandValue(I, "bitwidth", 0);
@@ -203,7 +229,15 @@ struct ExtractMD : public ModulePass {
                         MDNode* isArray = I.getMetadata("isArray");
                         if (isArray) {
                             valMD.values["isArray"] = 1;
-                            valMD.values["numDims"] = getMDOperandValue(I, "numDims", 0);
+
+                            uint32_t numDims = getMDOperandValue(I, "numDims", 0);
+                            valMD.values["numDims"] = numDims;
+
+                            for (uint32_t i = 1; i <= numDims; i++) {
+                                valMD.values["numElements" + std::to_string(i)] = getMDOperandValue(
+                                    I, "numElements." + std::to_string(i), 0
+                                );
+                            }
                             valMD.values["numElements"] = getMDOperandValue(I, "numElements", 0);
                             valMD.values["elementType"] = getMDOperandValue(I, "elementType", 0);
                             valMD.values["elementBitwidth"] = getMDOperandValue(I, "elementBitwidth", 0);

@@ -14,23 +14,27 @@ class HLSDataset(Dataset):
         normalize: bool = False,
         benchmarks: Optional[Union[str, List[str]]] = None,
         feature_stats: Optional[Dict[str, Dict[str, torch.Tensor]]] = None,
-        filter_instances: Optional[List[bool]] = None
+        filter_cols: Optional[Dict[str, List[int]]] = None
     ):
         self.target = target_metric
         self.dataset_path = dataset_path
         self.normalize = normalize
         self.benchmarks = benchmarks
         self.feature_stats = None
+        self.filter_rows = filter_cols
 
         self._load_data_paths()
 
         if self.normalize:
             if feature_stats is None:
-                self.compute_feature_stats(filter_instances)
+                self.compute_feature_stats(filter_cols)
             else:
                 self.feature_stats = feature_stats.copy()
 
-    def compute_feature_stats(self, filter_instances: Optional[List[bool]] = None):
+    def compute_feature_stats(
+        self,
+        filter_cols: Optional[Dict[str, List[int]]] = None
+    ):
         """Compute mean and standard deviation of features for normalization."""
         
         feature_sums = defaultdict(lambda: torch.zeros(0))
@@ -39,9 +43,6 @@ class HLSDataset(Dataset):
         node_types = set()
 
         for i, (cdfg_path, _) in enumerate(self.data_paths):
-            if filter_instances is not None and not filter_instances[i]:
-                continue
-
             cdfg = torch.load(cdfg_path)
             for nt, features in cdfg.x_dict.items():
                 node_types.add(nt)
@@ -72,6 +73,11 @@ class HLSDataset(Dataset):
             std = torch.sqrt(
                 (feature_squares[nt] / counts[nt]) - mean**2
             ).clamp_min(1e-8)
+
+            if filter_cols is not None and nt in filter_cols:
+                for col in filter_cols[nt]:
+                    mean[col] = 0
+                    std[col] = 1
             
             self.feature_stats[nt] = {
                 'mean': mean,

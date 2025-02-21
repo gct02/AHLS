@@ -367,14 +367,22 @@ struct SetHLSDirectivesMD : public ModulePass {
                     errs() << "Loop header not found\n";
                     return -1;
                 }
-                ConstantAsMetadata* directiveIndexMD = getConstantAsMetadata(M.getContext(), directiveIndex);
-                ConstantAsMetadata* completeMD = getConstantAsMetadata(M.getContext(), complete);
-                ConstantAsMetadata* factorMD = getConstantAsMetadata(M.getContext(), factor);
-                MDTuple* md = MDTuple::get(M.getContext(), {directiveIndexMD, completeMD, factorMD});
                 LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(*F).getLoopInfo();
                 Loop* L = LI.getLoopFor(loopHeader);
                 if (L) {
                     ArrayRef<BasicBlock*> loopBlocks = L->getBlocks();
+                    if (complete) {
+                        // Use the loop trip count as factor if complete unrolling
+                        BasicBlock* loopBlock = loopBlocks[0];
+                        Instruction* I = &*loopBlock->begin();
+                        MDNode* tripCountMD = I->getMetadata("tripCount");
+                        uint32_t tripCount = cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(tripCountMD->getOperand(0))->getValue())->getZExtValue();
+                        factor = tripCount;
+                    }
+                    ConstantAsMetadata* directiveIndexMD = getConstantAsMetadata(M.getContext(), directiveIndex);
+                    ConstantAsMetadata* completeMD = getConstantAsMetadata(M.getContext(), complete);
+                    ConstantAsMetadata* factorMD = getConstantAsMetadata(M.getContext(), factor);
+                    MDTuple* md = MDTuple::get(M.getContext(), {directiveIndexMD, completeMD, factorMD});
                     for (BasicBlock* loopBlock : loopBlocks) {
                         for (BasicBlock::iterator II = loopBlock->begin(), IE = loopBlock->end(); II != IE; ++II) {
                             Instruction* I = &*II;

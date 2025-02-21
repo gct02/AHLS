@@ -11,128 +11,139 @@ from torch_geometric.typing import NodeType
 from torch_geometric.data import HeteroData, Data
 from torch_geometric.utils import to_networkx
 
-NODE_TYPES = ['inst', 'var', 'const', 'array', 'bb', 'func']
+NODE_TYPES = ['inst', 'var', 'const', 'array', 'bb', 'func', 'loop_pragma', 'array_pragma']
 EDGE_TYPES = [
     ('inst', 'prec', 'inst'), ('inst', 'succ', 'inst'), ('inst', 'calls', 'inst'),
     ('inst', 'called_by', 'inst'), ('inst', 'uses', 'var'), ('inst', 'prod', 'var'),
     ('inst', 'uses', 'array'), ('inst', 'uses', 'const'), ('inst', 'belongs_to', 'bb'), 
     ('inst', 'belongs_to', 'func'), ('inst', 'id', 'inst'), ('var', 'used_by', 'inst'), 
     ('var', 'prod_by', 'inst'), ('var', 'id', 'var'), ('const', 'used_by', 'inst'), 
-    ('const', 'id', 'const'), ('array', 'used_by', 'inst'), ('array', 'id', 'array'), 
-    ('bb', 'contains', 'inst'), ('bb', 'belongs_to', 'func'), ('bb', 'prec', 'bb'), 
-    ('bb', 'succ', 'bb'), ('bb', 'id', 'bb'), ('func', 'contains', 'bb'),
-    ('func', 'contains', 'inst'), ('func', 'calls', 'func'), ('func', 'called_by', 'func'), 
-    ('func', 'id', 'func')
+    ('const', 'id', 'const'), ('array', 'used_by', 'inst'), ('array', 'transf_by', 'array_pragma'),
+    ('array', 'id', 'array'), ('bb', 'contains', 'inst'), ('bb', 'belongs_to', 'func'), 
+    ('bb', 'prec', 'bb'), ('bb', 'succ', 'bb'), ('bb', 'transf_by', 'loop_pragma'), 
+    ('bb', 'id', 'bb'), ('func', 'contains', 'bb'), ('func', 'contains', 'inst'), 
+    ('func', 'calls', 'func'), ('func', 'called_by', 'func'), ('func', 'transf_by', 'loop_pragma'), 
+    ('func', 'id', 'func'), ('loop_pragma', 'transf', 'bb'), ('loop_pragma', 'transf', 'func'), 
+    ('loop_pragma', 'id', 'loop_pragma'), ('array_pragma', 'transf', 'array'), ('array_pragma', 'id', 'array_pragma')
 ]
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
-INST_FEATURE_SIZE = 12
-VAR_FEATURE_SIZE = 7
-CONST_FEATURE_SIZE = 7
-ARRAY_FEATURE_SIZE = 16
-BB_FEATURE_SIZE = 8
-FUNCTION_FEATURE_SIZE = 2
+class LoopPragmaType(builtins.int, Enum):
+    UNROLL = 0, PIPELINE = 1, FLATTEN = 2, MERGE = 3
 
-FEATURE_SIZE_PER_NODE_TYPE = {
-    'inst': INST_FEATURE_SIZE,
-    'var': VAR_FEATURE_SIZE,
-    'const': CONST_FEATURE_SIZE,
-    'array': ARRAY_FEATURE_SIZE,
-    'bb': BB_FEATURE_SIZE,
-    'func': FUNCTION_FEATURE_SIZE
-}
+NUM_LOOP_PRAGMA_TYPES = 4
 
-# "One-hot-like" encoding of the opcodes
-_OPCODE_DICT = {
-    # Arithmetic
-    'add':           [1,0,0,0,0, 0,0,0,0,0,1,0],
-    'fadd':          [1,0,0,0,0, 0,0,0,0,0,1,0],
-    'sub':           [1,0,0,0,0, 0,0,0,0,1,0,0],
-    'fsub':          [1,0,0,0,0, 0,0,0,0,1,0,0],
-    'mul':           [1,0,0,0,0, 0,0,0,1,0,0,0],
-    'fmul':          [1,0,0,0,0, 0,0,0,1,0,0,0],
-    'udiv':          [1,0,0,0,0, 0,0,1,0,0,0,1],
-    'sdiv':          [1,0,0,0,0, 0,0,1,0,0,0,0],
-    'fdiv':          [1,0,0,0,0, 0,0,1,0,0,0,0],
-    'urem':          [1,0,0,0,0, 0,1,0,0,0,0,1],
-    'srem':          [1,0,0,0,0, 0,1,0,0,0,0,0],
-    'frem':          [1,0,0,0,0, 0,1,0,0,0,0,0],
-    'sqrt':          [1,0,0,0,0, 1,0,0,0,0,0,0],
-    'fsqrt':         [1,0,0,0,0, 1,0,0,0,0,0,0],
+INST_FEAT_SIZE = 17
+VAR_FEAT_SIZE = 6
+CONST_FEAT_SIZE = 6
+ARRAY_FEAT_SIZE = 11
+BB_FEAT_SIZE = 10
+FUNC_FEAT_SIZE = 14
+LOOP_PRAGMA_FEAT_SIZE = NUM_LOOP_PRAGMA_TYPES + 2
+ARRAY_PRAGMA_FEAT_SIZE = 10
 
-    # Logical
-    'shl':           [0,1,0,0,0, 0,0,0,0,0,0,1],
-    'lshr':          [0,1,0,0,0, 0,0,0,0,0,1,0],
-    'ashr':          [0,1,0,0,0, 0,0,0,0,1,0,0],
-    'and':           [0,1,0,0,0, 0,0,0,1,0,0,0],
-    'or':            [0,1,0,0,0, 0,0,1,0,0,0,0],
-    'xor':           [0,1,0,0,0, 0,1,0,0,0,0,0],
-    'icmp':          [0,1,0,0,0, 1,0,0,0,0,0,0],
-    'fcmp':          [0,1,0,0,0, 1,0,0,0,0,0,0],
-
-    # Memory
-    'alloca':        [0,0,1,0,0, 0,0,0,0,0,0,1],
-    'load':          [0,0,1,0,0, 0,0,0,0,0,1,0],
-    'store':         [0,0,1,0,0, 0,0,0,0,1,0,0],
-    'getelementptr': [0,0,1,0,0, 0,0,0,1,0,0,0],
-    'fence':         [0,0,1,0,0, 0,0,1,0,0,0,0],
-
-    # Casts
-    'trunc':         [0,0,0,1,0, 0,0,0,0,0,1,0],
-    'fptrunc':       [0,0,0,1,0, 0,0,0,0,0,1,0],
-    'zext':          [0,0,0,1,0, 0,0,0,0,1,0,1],
-    'sext':          [0,0,0,1,0, 0,0,0,0,1,0,0],
-    'fptoui':        [0,0,0,1,0, 0,0,0,1,0,0,1],
-    'fptosi':        [0,0,0,1,0, 0,0,0,1,0,0,0],
-    'uitofp':        [0,0,0,1,0, 0,0,0,1,0,0,1],
-    'sitofp':        [0,0,0,1,0, 0,0,0,1,0,0,0],
-    'bitcast':       [0,0,0,1,0, 0,0,1,0,0,0,0],
-    'ptrtoint':      [0,0,0,1,0, 0,1,0,0,0,0,0],
-    'inttoptr':      [0,0,0,1,0, 1,0,0,0,0,0,0],
-
-    # Control flow
-    'br':            [0,0,0,0,1, 0,0,0,0,0,0,1],
-    'resume':        [0,0,0,0,1, 0,0,0,0,0,1,0],
-    'ret':           [0,0,0,0,1, 0,0,0,0,1,0,0],
-    'call':          [0,0,0,0,1, 0,0,0,1,0,0,0],
-    'phi':           [0,0,0,0,1, 0,0,1,0,0,0,0],
-    'select':        [0,0,0,0,1, 0,1,0,0,0,0,0],
+FEAT_SIZE_PER_NODE_TYPE = {
+    'inst': INST_FEAT_SIZE,
+    'var': VAR_FEAT_SIZE,
+    'const': CONST_FEAT_SIZE,
+    'array': ARRAY_FEAT_SIZE,
+    'bb': BB_FEAT_SIZE,
+    'func': FUNC_FEAT_SIZE,
+    'loop_pragma': LOOP_PRAGMA_FEAT_SIZE,
+    'array_pragma': ARRAY_PRAGMA_FEAT_SIZE
 }
 
 class NodeType(builtins.int, Enum):
-    INST = 0
-    VAR = 1
-    CONST = 2
-    ARRAY = 3
-    BB = 4
-    FUNC = 5
+    INST = 0, VAR = 1, CONST = 2, ARRAY = 3, BB = 4, FUNC = 5
 
 # Type IDs from LLVM 7.0
-class TypeID(builtins.int, Enum):
-    VoidTyID = 0        # type with no size
-    HalfTyID = 1        # 16-bit floating point type
-    FloatTyID = 2       # 32-bit floating point type
-    DoubleTyID = 3      # 64-bit floating point type
-    X86_FP80TyID = 4    # 80-bit floating point type (X87)
-    FP128TyID = 5       # 128-bit floating point type (112-bit mantissa)
-    PPC_FP128TyID = 6   # 128-bit floating point type (two 64-bits, PowerPC)
-    LabelTyID = 7       # Labels
-    MetadataTyID = 8    # Metadata
-    X86_MMXTyID = 9     # MMX vectors (64 bits, X86 specific)
-    TokenTyID = 10      # Tokens
-    IntegerTyID = 11    # Arbitrary bit width integers
-    FunctionTyID = 12   # Functions
-    StructTyID = 13     # Structures
-    ArrayTyID = 14      # Arrays
-    PointerTyID = 15    # Pointers
-    VectorTyID = 16     # SIMD 'packed' format, or other vector type
+class LLVMTypeID(builtins.int, Enum):
+    VOID = 0, HALF = 1, FLOAT = 2, DOUBLE = 3, X86_FP80 = 4, FP128 = 5, 
+    PPC_FP128 = 6, LABEL = 7, METADATA = 8, X86_MMX = 9, TOKEN = 10, INT = 11, 
+    FUNCTION = 12, STRUCT = 13, ARRAY = 14, POINTER = 15, VECTOR = 16
 
-_ONE_HOT_VOID_TYPE = [1, 0, 0, 0, 0, 0]
-_ONE_HOT_FP_TYPE = [0, 1, 0, 0, 0, 0]
-_ONE_HOT_INT_TYPE = [0, 0, 1, 0, 0, 0]
-_ONE_HOT_VECTOR_TYPE = [0, 0, 0, 1, 0, 0]
-_ONE_HOT_POINTER_TYPE = [0, 0, 0, 0, 1, 0]
-_ONE_HOT_UNK_TYPE = [0, 0, 0, 0, 0, 1]
+# Opcodes from LLVM 7.0
+class LLVMOpcode(builtins.int, Enum):
+    RET = 1, BR = 2, SWITCH = 3, ADD = 11, FADD = 12, SUB = 13, FSUB = 14
+    MUL = 15, FMUL = 16, UDIV = 17, SDIV = 18, FDIV = 19, UREM = 20, 
+    SREM = 21, FREM = 22, SHL = 23, LSHR = 24, ASHR = 25, AND = 26, OR = 27, 
+    XOR = 28, ALLOCA = 29, LOAD = 30, STORE = 31, GETELEMENTPTR = 32,
+    TRUNC = 36, ZEXT = 37, SEXT = 38, FPTRUNC = 43, FPEXT = 44, BITCAST = 47,
+    ICMP = 51, FCMP = 52, PHI = 53, CALL = 54
+
+# "One-hot-like" encoding of instructions (12 bits)
+# The first 5 bits represent the instruction category
+# The next 5 bits represent the instruction type
+# The 11th bit represents the instruction is a floating-point operation
+# The 12th bit represents the instruction is signed
+INSTRUCTION_ENC = {
+    # Arithmetic
+    LLVMOpcode.ADD:           [1,0,0,0,0, 1,0,0,0,0, 0,1],
+    LLVMOpcode.FADD:          [1,0,0,0,0, 1,0,0,0,0, 1,0],
+    LLVMOpcode.SUB:           [1,0,0,0,0, 0,1,0,0,0, 0,1],
+    LLVMOpcode.FSUB:          [1,0,0,0,0, 0,1,0,0,0, 1,0],
+    LLVMOpcode.MUL:           [1,0,0,0,0, 0,0,1,0,0, 0,1],
+    LLVMOpcode.FMUL:          [1,0,0,0,0, 0,0,1,0,0, 1,0],
+    LLVMOpcode.SDIV:          [1,0,0,0,0, 0,0,0,1,0, 0,1],
+    LLVMOpcode.UDIV:          [1,0,0,0,0, 0,0,0,1,0, 0,0],
+    LLVMOpcode.FDIV:          [1,0,0,0,0, 0,0,0,1,0, 1,0],
+    LLVMOpcode.SREM:          [1,0,0,0,0, 0,0,0,0,1, 0,1],
+    LLVMOpcode.UREM:          [1,0,0,0,0, 0,0,0,0,1, 0,0],
+    LLVMOpcode.FREM:          [1,0,0,0,0, 0,0,0,0,1, 1,0],
+
+    # Logical
+    LLVMOpcode.SHL:           [0,1,0,0,0, 1,0,0,0,0, 0,0],
+    LLVMOpcode.LSHR:          [0,1,0,0,0, 0,1,0,0,0, 0,0],
+    LLVMOpcode.ASHR:          [0,1,0,0,0, 0,1,0,0,0, 0,1],
+    LLVMOpcode.AND:           [0,1,0,0,0, 0,0,1,0,0, 0,0],
+    LLVMOpcode.OR:            [0,1,0,0,0, 0,0,0,1,0, 0,0],
+    LLVMOpcode.XOR:           [0,1,0,0,0, 0,0,0,0,1, 0,0],
+
+    # Memory
+    LLVMOpcode.ALLOCA:        [0,0,1,0,0, 1,0,0,0,0, 0,0],
+    LLVMOpcode.LOAD:          [0,0,1,0,0, 0,1,0,0,0, 0,0],
+    LLVMOpcode.STORE:         [0,0,1,0,0, 0,0,1,0,0, 0,0],
+    LLVMOpcode.GETELEMENTPTR: [0,0,1,0,0, 0,0,0,1,0, 0,0],
+
+    # Casts
+    LLVMOpcode.TRUNC:         [0,0,0,1,0, 1,0,0,0,0, 0,0],
+    LLVMOpcode.FPTRUNC:       [0,0,0,1,0, 1,0,0,0,0, 1,0],
+    LLVMOpcode.ZEXT:          [0,0,0,1,0, 0,1,0,0,0, 0,0],
+    LLVMOpcode.SEXT:          [0,0,0,1,0, 0,1,0,0,0, 0,1],
+    LLVMOpcode.FPEXT:         [0,0,0,1,0, 0,1,0,0,0, 1,0],
+    LLVMOpcode.BITCAST:       [0,0,0,1,0, 0,0,1,0,0, 0,0],
+
+    # Control flow
+    LLVMOpcode.BR:            [0,0,0,0,1, 1,0,0,0,0, 0,0],
+    LLVMOpcode.RET:           [0,0,0,0,1, 0,1,0,0,0, 0,0],
+    LLVMOpcode.CALL:          [0,0,0,0,1, 0,0,1,0,0, 0,0],
+    LLVMOpcode.PHI:           [0,0,0,0,1, 0,0,0,1,0, 0,0],
+    LLVMOpcode.ICMP:          [0,0,0,0,1, 0,0,0,0,1, 0,0],
+    LLVMOpcode.FCMP:          [0,0,0,0,1, 0,0,0,0,1, 1,0]
+}
+INSTRUCTION_ENC_SIZE = 12
+
+TYPE_ENC = {
+    LLVMTypeID.INT:       [1,0,0,0,0],
+    LLVMTypeID.HALF:      [0,1,0,0,0],
+    LLVMTypeID.FLOAT:     [0,1,0,0,0],
+    LLVMTypeID.DOUBLE:    [0,1,0,0,0],
+    LLVMTypeID.X86_FP80:  [0,1,0,0,0],
+    LLVMTypeID.FP128:     [0,1,0,0,0],
+    LLVMTypeID.PPC_FP128: [0,1,0,0,0],
+    LLVMTypeID.POINTER:   [0,0,1,0,0],
+    LLVMTypeID.STRUCT:    [0,0,0,1,0],
+
+    LLVMTypeID.VOID:      [0,0,0,0,1],
+    LLVMTypeID.VECTOR:    [0,0,0,0,1],
+    LLVMTypeID.ARRAY:     [0,0,0,0,1],
+    LLVMTypeID.LABEL:     [0,0,0,0,1],
+    LLVMTypeID.METADATA:  [0,0,0,0,1],
+    LLVMTypeID.X86_MMX:   [0,0,0,0,1],
+    LLVMTypeID.TOKEN:     [0,0,0,0,1],
+    LLVMTypeID.FUNCTION:  [0,0,0,0,1]
+}
+TYPE_ENC_SIZE = 5
 
 def _get_loop_depth(md: Dict[str, Number]) -> int:
     if "loopDepth" not in md:
@@ -146,202 +157,136 @@ def _get_trip_count(md: Dict[str, Number]) -> int:
     trip_count = md["tripCount"]
     return trip_count
 
-def _get_pipeline_info(md: Dict[str, Number]) -> List[int]:
-    if "pipeline" not in md:
-        return [0, 0]
-    pipelined = md["pipeline"]
+def _get_pipeline_info(md: Dict[str, Number]) -> Union[List[int], int]:
+    if "pipeline" not in md or md["pipeline"] == 0:
+        return [0, 0], -1
     is_function_level = md["functionLevel"]
-    return [pipelined, is_function_level]
+    return [is_function_level], md["pipelineID"]
 
-def _get_array_partition_info(md: Dict[str, Number]) -> List[int]:
-    if "arrayPartition" not in md:
-        return [0] * 7
+def _get_array_partition_info(md: Dict[str, Number]) -> Union[List[int], int]:
+    if "arrayPartition" not in md or md["arrayPartition"] == 0:
+        return [0] * ARRAY_PRAGMA_FEAT_SIZE, -1
+    max_dims = 4 # Maximum number of dimensions (4D arrays) for now
     dim = md["arrayPartitionDim"]
+    enc_dim = [0] * (max_dims + 1)
+    if dim > max_dims:
+        dim = max_dims
+    enc_dim[dim] = 1
     partition_type = md["arrayPartitionType"]
-    one_hot_partition_type = [0, 0, 0]
-    one_hot_partition_type[partition_type - 1] = 1
+    enc_partition_type = [0, 0, 0]
+    enc_partition_type[partition_type - 1] = 1
     factor = md["arrayPartitionFactor"]
-    dim_size = md["arrayPartitionDimSize"]
-    return [1] + one_hot_partition_type + [dim, factor, dim_size]
+    return enc_partition_type + enc_dim + [factor], md["arrayPartitionID"]
 
-def _get_unroll_info(md: Dict[str, Number]) -> List[int]:
-    if "unroll" not in md:
-        return [0, 0, 0]
+def _get_unroll_info(md: Dict[str, Number]) -> Union[List[int], int]:
+    if "unroll" not in md or md["unroll"] == 0:
+        return [0, 0, 0], -1
     complete = md["unrollComplete"]
     factor = md["unrollFactor"]
-    return [1, complete, factor]
+    return [complete, factor], md["unrollID"]
 
-def _get_loop_flatten_info(md: Dict[str, Number]) -> List[int]:
+def _get_loop_flatten_info(md: Dict[str, Number]) -> Union[List[int], int]:
     if "loopFlatten" not in md:
-        return [0]
+        return [0], -1
     flattened = md["loopFlatten"]
-    return [flattened]
+    return [flattened], md["loopFlattenID"]
 
-def _get_loop_merge_info(md: Dict[str, Number]) -> List[int]:
-    if "loopMerge" not in md:
-        return [0, 0]
-    merged = md["loopMerge"]
+def _get_loop_merge_info(md: Dict[str, Number]) -> Union[List[int], int]:
+    if "loopMerge" not in md or md["loopMerge"] == 0:
+        return [0, 0], -1
     is_function_level = md["functionLevel"]
-    return [merged, is_function_level]
+    return [is_function_level], md["loopMergeID"]
 
 def _get_array_info(md: Dict[str, Number]) -> List[int]:
-    return [
-        md["numDims"], md["numElements"], 
-        md["elementType"], md["elementBitwidth"]
-    ]
+    n_dims = md["numDims"]
+    elem_type = md["elementType"]
+    elem_bw = md["elementBitwidth"]
+    dim_size = [0] * 4
 
-def _get_bitwidth(md: Dict[str, Number]) -> int:
-    return md["bitwidth"]
+    for i in range(1, n_dims):
+        curr_dim_size = md[f"numElements.{i}"]
+        if i > 4:
+            dim_size[-1] *= curr_dim_size
+        else:
+            dim_size[i - 1] = curr_dim_size
 
-def _map_instruction_to_one_hot(instruction: str) -> List[int]:
-    if instruction in _OPCODE_DICT:
-        return _OPCODE_DICT[instruction]
-    return [0] * 12 # Unknown instruction
+    return [n_dims] + dim_size + [elem_type, elem_bw]
 
-def _map_type_to_one_hot(type_id: int) -> List[int]:
-    # Note: Arrays are treated separately as another node type
-    if type_id == TypeID.VoidTyID:
-        return _ONE_HOT_VOID_TYPE
-    if type_id >= TypeID.HalfTyID and type_id <= TypeID.PPC_FP128TyID:
-        return _ONE_HOT_FP_TYPE
-    if type_id == TypeID.IntegerTyID:
-        return _ONE_HOT_INT_TYPE
-    if type_id == TypeID.VectorTyID or type_id == TypeID.X86_MMXTyID:
-        return _ONE_HOT_VECTOR_TYPE
-    if type_id == TypeID.PointerTyID:
-        return _ONE_HOT_POINTER_TYPE
-    # Other types (e.g. struct, label, token, etc.)
-    return _ONE_HOT_UNK_TYPE
-
-def _one_hot_encode_type(md: Dict[str, Number]) -> List[int]:
-    type_id = md["type"] if "type" in md else -1
-    return _map_type_to_one_hot(type_id)
-
-def _process_metadata_entries(raw_md: Dict[str, str]) -> Dict[str, Number]:
+def _process_metadata_entries(
+        raw_md: Dict[str, str]
+        ) -> Dict[str, Union[int, float]]:
     processed_md = {}
     for key, value in raw_md.items():
         if key == "functionName":
             continue
-        if value == "true":
-            processed_md[key] = 1
-        elif value == "false":
-            processed_md[key] = 0
-        else:
+        try:
+            processed_md[key] = int(value)
+        except ValueError:
             try:
-                processed_md[key] = int(value)
+                processed_md[key] = float(value)
             except ValueError:
-                try:
-                    processed_md[key] = float(value)
-                except ValueError:
-                    processed_md[key] = 0
+                # Boolean (possibly represented as a string) 
+                # or non-numeric value 
+                processed_md[key] = 1 if value == "true" else 0
     return processed_md
 
-def _is_ptr_type(type_str: str) -> bool:
-    return type_str[-1] == '*'
+def _get_type_id_from_text(node_text: str) -> int:
+    if node_text[-1] == '*':
+        return LLVMTypeID.POINTER
+    if '[' in node_text and ']' in node_text:
+        return LLVMTypeID.ARRAY
+    if 'half' in node_text:
+        return LLVMTypeID.HALF
+    if 'float' in node_text:
+        return LLVMTypeID.FLOAT
+    if 'double' in node_text:
+        return LLVMTypeID.DOUBLE
+    if node_text[0] == 'i':
+        return int(node_text[1:])
+    if 'struct' in node_text:
+        return LLVMTypeID.STRUCT
+    return LLVMTypeID.VOID
 
-def _is_array_type(type_str: str) -> bool:
-    return (not _is_ptr_type(type_str) 
-            and '[' in type_str and ']' in type_str)
-
-def _is_vector_type(type_str: str, node_full_text: str) -> bool:
-    return (not _is_ptr_type(type_str) and ('vector' in type_str 
-            or ('<' in node_full_text and '>' in node_full_text)))
-
-def _is_iter_type(type_str: str, node_full_text: str) -> bool:
-    return _is_array_type(type_str) or _is_vector_type(type_str, node_full_text)
-
-def _is_iter_or_ptr_type(type_str: str, node_full_text: str) -> bool:
-    return _is_ptr_type(type_str) or _is_iter_type(type_str, node_full_text)
-
-def _is_void_type(type_str: str, node_full_text: str) -> bool:
-    return (not _is_iter_or_ptr_type(type_str, node_full_text) 
-            and 'void' in type_str)
-
-def _is_half_type(type_str: str, node_full_text: str) -> bool:
-    return (not _is_iter_or_ptr_type(type_str, node_full_text)
-            and 'half' in type_str)
-
-def _is_float_type(type_str: str, node_full_text: str) -> bool:
-    return (not _is_iter_or_ptr_type(type_str, node_full_text) 
-            and 'float' in type_str)
-
-def _is_double_type(type_str: str, node_full_text: str) -> bool:
-    return (not _is_iter_or_ptr_type(type_str, node_full_text)
-            and 'double' in type_str)
-
-def _is_int_type(type_str: str, node_full_text: str) -> bool:
-    return (not _is_iter_or_ptr_type(type_str, node_full_text) 
-            and type_str[0] == 'i')
-
-def _get_type_id_from_string(type_str: str, node_full_text: str = "") -> int:
-    if _is_ptr_type(type_str): 
-        return TypeID.PointerTyID
-    if _is_array_type(type_str):   
-        return TypeID.ArrayTyID
-    if _is_void_type(type_str, node_full_text): 
-        return TypeID.VoidTyID
-    if _is_half_type(type_str, node_full_text):
-        return TypeID.HalfTyID
-    if _is_float_type(type_str, node_full_text):
-        return TypeID.FloatTyID
-    if _is_double_type(type_str, node_full_text):
-        return TypeID.DoubleTyID
-    if _is_int_type(type_str, node_full_text):
-        return TypeID.IntegerTyID
-    if _is_vector_type(type_str, node_full_text):
-        return TypeID.VectorTyID
-    # Other types (e.g. struct, label, token, etc.)
-    return -1
-
-def _get_bitwidth_from_str(type_str: str, node_full_text: str = "") -> int:
-    if _is_ptr_type(type_str):
+def _get_bitwidth_from_text(node_text: str) -> int:
+    if node_text[-1] == '*':
         return 0
-    if _is_iter_type(type_str, node_full_text):
-        if '<' in node_full_text and '>' in node_full_text:
-            n_elems = int(node_full_text.split('[<')[1].split(' x')[0])
-            elem_type = node_full_text.split('x ')[1].split(']>')[0]
-            elem_bw = _get_bitwidth_from_str(elem_type, node_full_text)
-        else:
-            n_elems = int(type_str.split('[')[1].split(' x')[0])
-            elem_type = type_str.split('x ')[1].split(']')[0]
-            elem_bw = _get_bitwidth_from_str(elem_type, node_full_text)
+    if '[' in node_text and ']' in node_text:
+        n_elems = int(node_text.split('[')[1].split(' x')[0])
+        elem_type = node_text.split('x ')[1].split(']')[0]
+        elem_bw = _get_bitwidth_from_text(elem_type)
         return n_elems * elem_bw
-    if _is_void_type(type_str, node_full_text):
-        return 0
-    if _is_half_type(type_str, node_full_text):
+    if 'half' in node_text:
         return 16
-    if _is_float_type(type_str, node_full_text):
+    if 'float' in node_text:
         return 32
-    if _is_double_type(type_str, node_full_text):
+    if 'double' in node_text:
         return 64 
-    if _is_int_type(type_str, node_full_text):
-        return int(type_str[1:])
-    # Other types (e.g. struct, label, token, etc.)
+    if node_text[0] == 'i':
+        return int(node_text[1:])
     return 0
 
-def _parse_literal_const_info(node_full_text: str) -> List[int]:
-    type_str = node_full_text.split(' ')[0].strip()
-    type_id = _get_type_id_from_string(type_str, node_full_text)
-    one_hot_type = _map_type_to_one_hot(type_id)
-    bitwidth = _get_bitwidth_from_str(type_str, node_full_text)
-    features = one_hot_type + [bitwidth]
-    return features
+def _parse_literal_const_info(node_text: str) -> List[int]:
+    type_id = _get_type_id_from_text(node_text)
+    bitwidth = _get_bitwidth_from_text(node_text)
+    return TYPE_ENC[type_id] + [bitwidth]
 
 def _build_nodes(
-    programl_graph,
-    metadata: Dict[str, Dict[str, Dict[str, str]]],
-    ir_instructions: Dict[int, str]
-) -> Tuple[HeteroData, Dict[str, List[int]]]:
+        programl_graph,
+        metadata: Dict[str, Dict[str, Dict[str, str]]],
+        ir_instructions: Dict[int, str]
+        ):
     inst_bb_map, inst_func_map, bb_func_map = {}, {}, {}
+    pragma_bb_map, pragma_func_map, pragma_array_map = {}, {}, {}
     nodes = {nt: [] for nt in NODE_TYPES}
     indices = {nt: [] for nt in NODE_TYPES}
     graph = HeteroData()
 
-    # External functions are represented as a function, a basic block, 
-    # and an instruction node, all of them with all-zero features and index 0
-    nodes['inst'].append(torch.zeros(INST_FEATURE_SIZE, dtype=torch.float32))
-    nodes['bb'].append(torch.zeros(BB_FEATURE_SIZE, dtype=torch.float32))
-    nodes['func'].append(torch.zeros(FUNCTION_FEATURE_SIZE, dtype=torch.float32))
+    # External functions are represented as a function, 
+    # a basic block, and an instruction node, all of them 
+    # with all-zero features and index 0
+    nodes['inst'].append(torch.zeros(INST_FEAT_SIZE, dtype=torch.float32))
+    nodes['bb'].append(torch.zeros(BB_FEAT_SIZE, dtype=torch.float32))
+    nodes['func'].append(torch.zeros(FUNC_FEAT_SIZE, dtype=torch.float32))
     indices["inst"].append(0)
     indices["bb"].append(0)
     indices["func"].append(0)
@@ -351,15 +296,17 @@ def _build_nodes(
 
     for i, node in enumerate(programl_graph.node):
         node_type, node_text = node.type, node.text
-        if node_text == "" or node_text == "[external]":
+        if len(node_text) == 0 or node_text == "[external]":
             continue
 
-        node_full_text = node.features.feature["full_text"].bytes_list.value.__str__()[1:-1]
-        node_full_text = node_full_text[2:-1] if node_full_text[0] == 'b' else node_full_text
+        node_full_text = (node.features.feature["full_text"]
+                          .bytes_list.value.__str__()[1:-1])
+        if node_full_text[0] == 'b':
+            node_full_text = node_full_text[2:-1]
 
         if node_type == NodeType.INST:
             if "!ID." not in node_full_text:
-                nodes['inst'].append(torch.zeros(INST_FEATURE_SIZE, dtype=torch.float32))
+                nodes['inst'].append(torch.zeros(INST_FEAT_SIZE, dtype=torch.float32))
                 indices["inst"].append(i)
                 continue
 
@@ -367,9 +314,22 @@ def _build_nodes(
             node_full_text = ir_instructions[id]
             md = _process_metadata_entries(metadata["instruction"][str(id)])
 
-            one_hot_op = _map_instruction_to_one_hot(node_text)
+            opcode = md["opcode"]
+            if opcode not in INSTRUCTION_ENC:
+                # Unknown instruction
+                one_hot_inst = [0] * INSTRUCTION_ENC_SIZE
+            else:
+                one_hot_inst = INSTRUCTION_ENC[opcode]
 
-            nodes['inst'].append(torch.tensor(one_hot_op, dtype=torch.float32))
+            num_operands = md["numOperands"]
+            num_uses = md["numUses"]
+            mod_memory = md["modifiesMemory"]
+            reads_memory = md["readsMemory"]
+            mod_cfg = md["modifiesControlFlow"]
+
+            inst_features = ([num_operands, num_uses] + one_hot_inst 
+                             + [mod_memory, reads_memory, mod_cfg])
+            nodes['inst'].append(torch.tensor(inst_features, dtype=torch.float32))
             indices["inst"].append(i)
 
             bb_id = md["bbID"]
@@ -380,70 +340,130 @@ def _build_nodes(
 
             loop_depth = _get_loop_depth(md)
             trip_count = _get_trip_count(md)
-            pipeline_features = _get_pipeline_info(md)
-            unroll_features = _get_unroll_info(md)
-            loop_merge_features = _get_loop_merge_info(md)
-            loop_flatten_features = _get_loop_flatten_info(md)
 
-            function_level_pipeline = pipeline_features[1] == 1
-            function_level_loop_merge = loop_merge_features[1] == 1
+            pipeline_features, pipeline_id = _get_pipeline_info(md)
+            unroll_features, unroll_id = _get_unroll_info(md)
+            loop_merge_features, loop_merge_id = _get_loop_merge_info(md)
+            _, loop_flatten_id = _get_loop_flatten_info(md)
+
+            function_level_pipeline = pipeline_features[0] == 1
+            function_level_loop_merge = loop_merge_features[0] == 1
             
             if bb_id not in indices["bb"]:
-                bb_pipeline = 0 if function_level_pipeline else pipeline_features[0]
-                bb_loop_merge = 0 if function_level_loop_merge else loop_merge_features[0]
-                bb_features = ([loop_depth, trip_count, bb_pipeline, bb_loop_merge]
-                               + unroll_features + loop_flatten_features)
+                bb_size = md["bbSize"]
+                in_loop = md["inLoop"]
+
+                if (function_level_pipeline == 0 and pipeline_id != -1
+                    and pipeline_id not in indices["loop_pragma"]):
+                    features = torch.zeros(LOOP_PRAGMA_FEAT_SIZE, dtype=torch.float32)
+                    features[LoopPragmaType.PIPELINE] = 1
+                    nodes['loop_pragma'].append(features)
+                    indices["loop_pragma"].append(pipeline_id)
+                    pragma_bb_map[pipeline_id] = bb_id
+                
+                if (function_level_loop_merge == 0 and loop_merge_id != -1
+                    and loop_merge_id not in indices["loop_pragma"]):
+                    features = torch.zeros(LOOP_PRAGMA_FEAT_SIZE, dtype=torch.float32)
+                    features[LoopPragmaType.MERGE] = 1
+                    nodes['loop_pragma'].append(features)
+                    indices["loop_pragma"].append(loop_merge_id)
+                    pragma_bb_map[loop_merge_id] = bb_id
+
+                if loop_flatten_id != -1 and loop_flatten_id not in indices["loop_pragma"]:
+                    features = torch.zeros(LOOP_PRAGMA_FEAT_SIZE, dtype=torch.float32)
+                    features[LoopPragmaType.FLATTEN] = 1
+                    nodes['loop_pragma'].append(features)
+                    indices["loop_pragma"].append(loop_flatten_id)
+                    pragma_bb_map[loop_flatten_id] = bb_id
+
+                if unroll_id != -1 and unroll_id not in indices["loop_pragma"]:
+                    features = torch.zeros(LOOP_PRAGMA_FEAT_SIZE, dtype=torch.float32)
+                    features[LoopPragmaType.UNROLL] = 1
+                    features[-1] = unroll_features[-1]
+                    features[-2] = unroll_features[-2]
+                    nodes['loop_pragma'].append(features)
+                    indices["loop_pragma"].append(unroll_id)
+                    pragma_bb_map[unroll_id] = bb_id
+                    
+                bb_features = [bb_size, in_loop, loop_depth, trip_count]
                 nodes['bb'].append(torch.tensor(bb_features, dtype=torch.float32))
                 indices["bb"].append(bb_id)
                 bb_func_map[bb_id] = function_id
 
             if function_id not in indices["func"]:
-                function_pipeline = 0 if not function_level_pipeline else pipeline_features[0]
-                function_loop_merge = 0 if not function_level_loop_merge else loop_merge_features[0]
-                function_features = [function_pipeline, function_loop_merge]
+                n_operands = md["numOperandsInFunction"]
+                n_uses = md["numUsesInFunction"]
+                entry_count = md["entryCountInFunction"]
+                ret_type = md["functionRetType"]
+                ret_bw = md["functionRetTypeBitwidth"]
+                n_insts = md["numInstsInFunction"]
+                n_bbs = md["numBBsInFunction"]
+                n_loops = md["numLoopsInFunction"]
+                ret_type_features = TYPE_ENC[ret_type] + [ret_bw]
+
+                if (function_level_pipeline == 1 and pipeline_id != -1
+                    and pipeline_id not in indices["loop_pragma"]):
+                    features = torch.zeros(LOOP_PRAGMA_FEAT_SIZE, dtype=torch.float32)
+                    features[LoopPragmaType.PIPELINE] = 1
+                    nodes['loop_pragma'].append(features)
+                    indices["loop_pragma"].append(pipeline_id)
+                    pragma_func_map[pipeline_id] = function_id
+
+                if (function_level_loop_merge == 1 and loop_merge_id != -1
+                    and loop_merge_id not in indices["loop_pragma"]):
+                    features = torch.zeros(LOOP_PRAGMA_FEAT_SIZE, dtype=torch.float32)
+                    features[LoopPragmaType.MERGE] = 1
+                    nodes['loop_pragma'].append(features)
+                    indices["loop_pragma"].append(loop_merge_id)
+                    pragma_func_map[loop_merge_id] = function_id
+
+                function_features = ([n_operands, n_uses, entry_count, n_insts, n_bbs, n_loops]
+                                     + ret_type_features)
                 nodes['func'].append(torch.tensor(function_features, dtype=torch.float32))
                 indices["func"].append(function_id)
 
-        else: # Variable or Constant
+        elif node_type == NodeType.VAR or node_type == NodeType.CONST:
             tokens = node_full_text.split(' ')
             if node_full_text.startswith('@'): 
                 name = tokens[0].strip('@')
-            elif node_full_text.startswith('%'):
-                name = tokens[0].strip('%')
             elif len(tokens) > 1 and tokens[1].startswith('%'):
                 name = tokens[1].strip('%')
-            # elif len(tokens) > 1 and tokens[1].startswith('@'):
-            #     name = tokens[1].strip('@')
             else:
                 # Value does not have a name (e.g. literal constant)
                 if '*' in node_full_text:
                     # Value is a pointer
-                    one_hot_pointer_type = _ONE_HOT_POINTER_TYPE
-                    bitwidth = 0
-                    features = one_hot_pointer_type + [bitwidth]
+                    features = TYPE_ENC[LLVMTypeID.POINTER] + [0]
                 else:
                     # Value is a literal constant
                     features = _parse_literal_const_info(node_full_text)
+
                 node_type_str = 'var' if node_type == NodeType.VAR else 'const'
                 nodes[node_type_str].append(torch.tensor(features, dtype=torch.float32))
                 indices[node_type_str].append(i)
                 continue
 
             md = _process_metadata_entries(metadata["value"][name])
-
             if "isArray" in md and md["isArray"] == 1:
                 array_md = _get_array_info(md)
-                one_hot_type = _map_type_to_one_hot(array_md[2])
-                array_partition_md = _get_array_partition_info(md)
-                features = (array_md[:2] + one_hot_type + array_md[3:]
-                            + array_partition_md)
+                elem_type = array_md[5]
+                elem_bw = array_md[6]
+
+                elem_type_features = TYPE_ENC[elem_type] + [elem_bw]
+                partition_md, partition_id = _get_array_partition_info(md)
+
+                if partition_id != -1 and partition_id not in indices["array_pragma"]:
+                    nodes['array_pragma'].append(torch.tensor(partition_md, dtype=torch.float32))
+                    indices["array_pragma"].append(partition_id)
+                    pragma_array_map[partition_id] = i
+
+                features = array_md[:5] + elem_type_features
                 nodes['array'].append(torch.tensor(features, dtype=torch.float32))
                 indices["array"].append(i)
                 continue
             
-            one_hot_type = _one_hot_encode_type(md)
-            bitwidth = _get_bitwidth(md)
-            features = one_hot_type + [bitwidth]
+            type_id = md["type"]
+            bitwidth = md["bitwidth"]
+            features = TYPE_ENC[type_id] + [bitwidth]
 
             node_type_str = 'var' if node_type == NodeType.VAR else 'const'
             nodes[node_type_str].append(torch.tensor(features, dtype=torch.float32))
@@ -453,20 +473,21 @@ def _build_nodes(
         if len(nodes[key]) > 0:
             graph[key].x = torch.stack(nodes[key])
         else:
-            feature_dim = FEATURE_SIZE_PER_NODE_TYPE[key]
+            feature_dim = FEAT_SIZE_PER_NODE_TYPE[key]
             graph[key].x = torch.empty((0, feature_dim), dtype=torch.float32)
 
-    return graph, indices, inst_bb_map, inst_func_map, bb_func_map
+    return (graph, indices, inst_bb_map, inst_func_map, bb_func_map, 
+            pragma_bb_map, pragma_func_map, pragma_array_map)
 
 def _build_edge_tensor(src: int, dst: int) -> Tensor:
     return torch.tensor([src, dst], dtype=torch.int64)
 
 def _create_scope_edges(
-    mapping: Dict[int, int],
-    indices: Dict[str, List[int]],
-    containing_type: str,
-    contained_type: str
-) -> Tuple[List[Tensor], List[Tensor]]:
+        mapping: Dict[int, int],
+        indices: Dict[str, List[int]],
+        containing_type: str,
+        contained_type: str
+        ) -> Tuple[List[Tensor], List[Tensor]]:
     edges = []
     inv_edges = []
     for node_id, scope_id in mapping.items():
@@ -478,15 +499,36 @@ def _create_scope_edges(
         inv_edges.append(inv_edge_tensor)
     return edges, inv_edges
 
+def _create_pragma_edges(
+        mapping: Dict[int, int],
+        indices: Dict[str, List[int]],
+        pragma_type: str,
+        obj_type: str
+        ) -> List[Tensor]:
+    edges = []
+    inv_edges = []
+    for node_id, pragma_id in mapping.items():
+        src_idx = indices[pragma_type].index(node_id)
+        dst_idx = indices[obj_type].index(pragma_id)
+        edge_tensor = _build_edge_tensor(src_idx, dst_idx)
+        inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
+        edges.append(edge_tensor)
+        inv_edges.append(inv_edge_tensor)
+    return edges, inv_edges
+
+
 def _build_edges(
-    programl_graph,
-    graph: HeteroData,
-    indices: Dict[str, List[int]],
-    cfg_edges: List[List[int]],
-    inst_bb_map: Dict[int, int],
-    inst_func_map: Dict[int, int],
-    bb_func_map: Dict[int, int]
-) -> HeteroData:
+        programl_graph,
+        graph: HeteroData,
+        indices: Dict[str, List[int]],
+        cfg_edges: List[List[int]],
+        inst_bb_map: Dict[int, int],
+        inst_func_map: Dict[int, int],
+        bb_func_map: Dict[int, int],
+        pragma_bb_map: Dict[int, int],
+        pragma_func_map: Dict[int, int],
+        pragma_array_map: Dict[int, int]
+        ) -> HeteroData:
     edge_dict = {et: [] for et in EDGE_TYPES}
     
     for edge in programl_graph.edge:
@@ -557,6 +599,22 @@ def _build_edges(
     edge_dict[('func', 'contains', 'bb')] = bb_func_edges
     edge_dict[('bb', 'belongs_to', 'func')] = func_bb_edges
 
+    pragma_bb_edges, bb_pragma_edges = _create_pragma_edges(
+        pragma_bb_map, indices, 'loop_pragma', 'bb'
+    )
+    pragma_func_edges, func_pragma_edges = _create_pragma_edges(
+        pragma_func_map, indices, 'loop_pragma', 'func'
+    )
+    pragma_array_edges, array_pragma_edges = _create_pragma_edges(
+        pragma_array_map, indices, 'array_pragma', 'array'
+    )
+    edge_dict[('loop_pragma', 'transf', 'bb')] = pragma_bb_edges
+    edge_dict[('bb', 'transf_by', 'loop_pragma')] = bb_pragma_edges
+    edge_dict[('loop_pragma', 'transf', 'func')] = pragma_func_edges
+    edge_dict[('func', 'transf_by', 'loop_pragma')] = func_pragma_edges
+    edge_dict[('array_pragma', 'transf', 'array')] = pragma_array_edges
+    edge_dict[('array', 'transf_by', 'array_pragma')] = array_pragma_edges
+
     for call_edges in edge_dict[('inst', 'calls', 'inst')]:
         src_inst = indices['inst'][call_edges[0].item()]
         dst_inst = indices['inst'][call_edges[1].item()]
@@ -591,7 +649,9 @@ def _build_edges(
 
     return graph
 
-def _parse_md_file(metadata_path: Path) -> Dict[str, Dict[str, Dict[str, str]]]:
+def _parse_md_file(
+    metadata_path: Path
+    ) -> Dict[str, Dict[str, Dict[str, str]]]:
     # The format of the metadata file is as follows:
     # <node_type_1>:
     #   <node_name_1>:
@@ -623,7 +683,9 @@ def _parse_md_file(metadata_path: Path) -> Dict[str, Dict[str, Dict[str, str]]]:
 
     return metadata
 
-def _parse_cfg_file(cfg_path: Path) -> List[Tuple[int, int]]:
+def _parse_cfg_file(
+        cfg_path: Path
+        ) -> List[Tuple[int, int]]:
     # The format of the cfg file is as follows:
     # <num_edges>
     # <src_node_1>,<dst_node_1>
@@ -632,13 +694,12 @@ def _parse_cfg_file(cfg_path: Path) -> List[Tuple[int, int]]:
     with open(cfg_path, 'r') as f:
         lines = f.readlines()[1:]
     
-    edges = [tuple(map(int, line.strip().split(','))) 
-             for line in lines]
+    edges = [tuple(map(int, l.strip().split(','))) for l in lines]
     return edges
 
 def _map_instruction_ids(
-    ir_text: Union[str, List[str]]
-) -> Dict[int, str]:
+        ir_text: Union[str, List[str]]
+        ) -> Dict[int, str]:
     if isinstance(ir_text, str):
         ir_text = ir_text.split('\n')
 
@@ -653,10 +714,10 @@ def _map_instruction_ids(
     return inst_dict
 
 def build_cdfg(
-    ir_path: Path,
-    metadata_path: Path,
-    cfg_path: Path
-) -> HeteroData:
+        ir_path: Path,
+        metadata_path: Path,
+        cfg_path: Path
+        ) -> HeteroData:
     import programl
 
     with open(ir_path, 'r') as ir_file:
@@ -669,19 +730,21 @@ def build_cdfg(
     cfg_edges = _parse_cfg_file(cfg_path)
 
     ret = _build_nodes(programl_cdfg, metadata, inst_dict)
-    cdfg, node_indices, inst_bb_map, inst_func_map, bb_func_map = ret
+    cdfg, node_indices, inst_bb_map, inst_func_map, bb_func_map, \
+        pragma_bb_map, pragma_func_map, pragma_array_map = ret
     
     cdfg = _build_edges(
         programl_cdfg, cdfg, node_indices, cfg_edges, 
-        inst_bb_map, inst_func_map, bb_func_map
+        inst_bb_map, inst_func_map, bb_func_map,
+        pragma_bb_map, pragma_func_map, pragma_array_map
     )
 
     return cdfg
 
 def plot_cdfg(
-    cdfg: Union[HeteroData, Data],
-    output_path: Optional[Path] = None
-) -> None:
+        cdfg: Union[HeteroData, Data],
+        output_path: Optional[Path] = None
+        ) -> None:
     import networkx as nx
 
     def get_short_type(node_type: NodeType) -> str:
@@ -763,9 +826,9 @@ def plot_cdfg(
     plt.close()
 
 def print_cdfg(
-    cdfg: HeteroData,
-    output_path: Optional[Path] = None
-) -> None:
+        cdfg: HeteroData,
+        output_path: Optional[Path] = None
+        ) -> None:
     cdfg_dict = cdfg.to_dict()
     if output_path is not None:
         with open(output_path, "w") as f:

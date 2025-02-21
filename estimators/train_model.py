@@ -12,9 +12,8 @@ import torch
 import torch.nn as nn
 from pathlib import Path
 from torch.utils.data import DataLoader
-from torch.utils.data import random_split
 from sklearn.metrics import r2_score
-from models import HGT
+from models import HGT_HLS
 
 def save_model(model, target_dir, model_name):
     target_dir_path = Path(target_dir)
@@ -32,13 +31,14 @@ def evaluate(
     loss_fn: nn.Module,
     verbosity: int,
     mode: str,
-    return_preds: bool = False
+    rel_error_threshold: float = 0.01,
 ) -> Tuple[float, float, Optional[List[Tuple[float, float]]]]:
     if verbosity > 0:
         print(f"\nEvaluating on {mode} set\n")
 
-    eval_epoch_error = 0
-    preds, targets = [], []
+    pred_tensors, target_tensors = [], []
+    pred_vals, target_vals = [], []
+    abs_errors, rel_errors = [], []
     
     # Assumption: Only one instance per batch
     for input_batch, target_batch in loader:
@@ -47,34 +47,38 @@ def evaluate(
         pred = model(cdfg)
         cdfg = cdfg.cpu()
         
-        preds.append(pred)
-        targets.append(target)
+        pred_tensors.append(pred)
+        target_tensors.append(target)
 
         pred_val = pred.item()
         target_val = target.item()
         abs_error = abs(pred_val - target_val)
-        eval_epoch_error += abs_error
+        if target_val != 0:
+            rel_error = abs_error / target_val * 100
+        else:
+            rel_error = 0 if abs_error <= rel_error_threshold else 100
 
-        if verbosity > 0:
-            if target_val != 0:
-                rel_error = abs_error / target_val * 100
-            else:
-                rel_error = 0 if abs_error <= 1e-2 else float('inf')
-            print(f"Target: {target_val}; Prediction: {pred_val}; "
-                  + f"Abs. Error: {abs_error:.4f}; Rel. Error: {rel_error:.4f}%")
+        pred_vals.append(pred_val)
+        target_vals.append(target_val)
+        abs_errors.append(abs_error)
+        rel_errors.append(rel_error)
 
-    eval_epoch_error /= len(loader)
+    mean_abs_error = np.mean(abs_errors)
+    mean_rel_error = np.mean(rel_errors)
     if verbosity > 0:
-        print(f"Mean Absolute Error on {mode} set: {eval_epoch_error}\n")
+        for i, (p, t, a, r) in enumerate(zip(pred_vals, target_vals, abs_errors, rel_errors)):
+            print(f"Instance {i}: Target: {t}; Prediction: {p}; "
+                  + f"Abs. Error: {a:.3f}; Rel. Error: {r:.3f}")
 
-    preds_tensor = torch.stack(preds)
-    targets_tensor = torch.stack(targets)
-    loss = loss_fn(preds_tensor, targets_tensor).item()
+        print(f"\nMean Absolute Error on {mode} set: {mean_abs_error:.3f}")
+        print(f"Mean Relative Error on {mode} set: {mean_rel_error:.3f}\n")
 
-    preds_and_targets = list(zip(preds, targets))
+    pred_tensor = torch.stack(pred_tensors)
+    target_tensor = torch.stack(target_tensors)
+    loss = loss_fn(pred_tensor, target_tensor).item()
 
-    return ((loss, eval_epoch_error, preds_and_targets) 
-            if return_preds else (loss, eval_epoch_error))
+    return (loss, mean_abs_error, mean_rel_error, 
+            list(zip(pred_vals, target_vals)))
 
 
 def train_model(
@@ -83,14 +87,17 @@ def train_model(
     optimizer: torch.optim.Optimizer,
     train_loader: DataLoader,
     test_loader: DataLoader,
-    val_loader: DataLoader,
     epochs: int,
     scheduler: Optional[torch.optim.lr_scheduler._LRScheduler] = None,
     verbosity: int = 1
-) -> Tuple[List[float], List[float], List[List[Tuple[float, float]]]]:
-    train_error_per_epoch, test_error_per_epoch = [], []
+) -> Tuple[List[float], List[float], List[float], List[List[Tuple[float, float]]]]:
+    train_error_per_epoch = []
+    test_abs_error_per_epoch = []
+    test_rel_error_per_epoch = []
+
     num_batches = len(train_loader)
     num_instances = len(test_loader)
+
     test_preds_per_instance = [[] for _ in range(num_instances)]
 
     for epoch in range(epochs):
@@ -122,8 +129,8 @@ def train_model(
                         rel_error = abs_error / target_val * 100
                     else:
                         rel_error = 0 if abs_error <= 1e-2 else float('inf')
-                    print(f"Target: {target_val}; Prediction: {pred_val}; "
-                          + f"Abs. Error: {abs_error:.4f}; Rel. Error: {rel_error:.4f}%")
+                    print(f"Instance: {i}; Target: {target_val}; Prediction: {pred_val}; "
+                          + f"Abs. Error: {abs_error:.3f}; Rel. Error: {rel_error:.3f}%")
 
             batch_size = len(input_batch)
 
@@ -143,17 +150,16 @@ def train_model(
         # Evaluation
         model.eval()
         with torch.no_grad():
-            # Validation
-            evaluate(model, val_loader, loss_fn, verbosity, "validation")
-            # Testing
-            _, test_error, test_preds = evaluate(
-                model, test_loader, loss_fn, verbosity, "test", return_preds=True
+            _, test_abs_error, test_rel_error, test_preds = evaluate(
+                model, test_loader, loss_fn, verbosity, "test", rel_error_threshold=1.0
             )
-            test_error_per_epoch.append(test_error)
+            test_abs_error_per_epoch.append(test_abs_error)
+            test_rel_error_per_epoch.append(test_rel_error)
             for i, instance_pred in enumerate(test_preds):
-                test_preds_per_instance[i].extend(instance_pred)
-        
-    return train_error_per_epoch, test_error_per_epoch, test_preds_per_instance
+                test_preds_per_instance[i].append(instance_pred)
+
+    return (train_error_per_epoch, test_abs_error_per_epoch, 
+            test_rel_error_per_epoch, test_preds_per_instance)
 
 
 def main(args: Dict[str, str]):
@@ -189,32 +195,36 @@ def main(args: Dict[str, str]):
         stats_dir, graphs_dir, pretrained_dir = make_output_dirs(
             base_stats_dir, base_pretrained_dir, test_bench
         )
-
         train_benches = [b for b in benchmarks if b != test_bench]
 
-        train_loader, val_loader, test_loader = prepare_data_loaders(
-            dataset_path, target_metric, train_benches, test_bench, 
-            batch_size, val_split=0.1
+        train_loader, test_loader = prepare_data_loaders(
+            dataset_path, target_metric, train_benches, test_bench, batch_size
         )
 
         model = initialize_model()
         loss_func = nn.HuberLoss(delta=1.345)
-        optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=1e-4)
+        optimizer = torch.optim.AdamW(
+            model.parameters(), lr=1e-4, betas=(0.9, 0.999), weight_decay=1e-4
+        )
 
         total_steps = epochs * len(train_loader)
-        scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, max_lr=1e-2, total_steps=total_steps)
+        scheduler = torch.optim.lr_scheduler.OneCycleLR(
+            optimizer, max_lr=5e-3, total_steps=total_steps
+        )
 
-        train_losses, test_losses, test_preds_sorted = train_model(
+        train_errors, test_abs_errors, test_rel_errors, test_preds = train_model(
             model, loss_func, optimizer, train_loader, test_loader, 
-            val_loader, epochs, scheduler, verbosity
+            epochs, scheduler, verbosity
         )
         
         save_model(model, pretrained_dir, f"hgt_{target_metric}.pt")
         save_training_artifacts(
-            train_losses, test_losses, test_preds_sorted, 
+            train_errors, test_abs_errors, test_rel_errors, test_preds,
             stats_dir, graphs_dir
         )
-        plot_benchmark_analysis(test_preds_sorted, test_bench, target_metric, graphs_dir)
+        plot_benchmark_analysis(
+            test_preds, test_rel_errors, test_bench, target_metric, graphs_dir
+        )
 
 
 def plot_learning_curves(
@@ -268,11 +278,12 @@ def plot_learning_curves(
 
 
 def plot_predictions(
-    test_preds_sorted: List[List[Tuple[float, float]]],
-    save_path: str
+    test_preds_per_epoch: List[List[Tuple[float, float]]],
+    save_path: str,
+    epoch: int = -1
 ):
-    targets = [inst[0][1] for inst in test_preds_sorted]
-    preds = [inst[-1][0] for inst in test_preds_sorted]  # Get final epoch predictions
+    targets = [inst[0][1] for inst in test_preds_per_epoch]
+    preds = [inst[epoch][0] for inst in test_preds_per_epoch]
 
     plt.figure(figsize=(10, 10), dpi=150)
     sns.set_style("whitegrid")
@@ -313,35 +324,52 @@ def plot_predictions(
 
 
 def plot_benchmark_analysis(
-    test_preds_sorted: List[List[Tuple[float, float]]],
+    test_preds_per_epoch: List[List[Tuple[float, float]]],
+    test_rel_err_per_epoch: List[float],
     bench_name: str,
     metric: str,
     save_dir: str
 ):
     """Plot per-benchmark instance-level predictions and errors"""
-    indices = list(range(len(test_preds_sorted)))
-    targets = [inst[0][1] for inst in test_preds_sorted]
-    preds = [inst[-1][0] + 1000 for inst in test_preds_sorted]
-    rel_errors = [(p - t) / t * 100 for p, t in zip(preds, targets)]
-
     bench_name = bench_name.upper()
     metric = metric.upper()
-        
-    bar_width = 0.45
+
+    if metric == 'LUT' or metric == 'FF':
+        rel_error_threshold = 1.0
+    else:
+        rel_error_threshold = 0.01
+
+    best_epoch = np.argmin([np.mean(err) for err in test_rel_err_per_epoch])
+
+    indices = list(range(len(test_preds_per_epoch)))
+    targets = [inst[0][1] for inst in test_preds_per_epoch]
+    preds = [inst[best_epoch][0] for inst in test_preds_per_epoch]
+
+    rel_errors_per_inst = []
+    for inst in test_preds_per_epoch:
+        best_epoch_pred = inst[best_epoch][0]
+        target = inst[0][1]
+        if target != 0:
+            rel_error = (best_epoch_pred - target) / target * 100
+        else:
+            rel_error = 0 if abs(best_epoch_pred - target) <= rel_error_threshold else 100
+        rel_errors_per_inst.append(rel_error)
+
+    bar_width = 0.35
     fig, ax = plt.subplots(figsize=(20, 8), dpi=150)
 
     # Plot bars
     bars_target = ax.bar(
         [i - bar_width/2 for i in indices], targets, bar_width, 
-        label='Target', color='#1a80bb', alpha=0.8
+        label='Target', color='blue', alpha=0.7
     )
     bars_pred = ax.bar(
         [i + bar_width/2 for i in indices], preds, bar_width,
-        label='Prediction', color='#ea801c', alpha=0.8
+        label='Prediction', color='orange', alpha=0.7
     )
 
     # Add relative error on top of each pair of bars
-    for i, (t, p, err) in enumerate(zip(targets, preds, rel_errors)):
+    for i, (t, p, err) in enumerate(zip(targets, preds, rel_errors_per_inst)):
         ax.text(i, max(t, p) + 0.02 * max(targets), f'{err:.2f}%', ha='center', fontsize=6, rotation=90)
 
     # Add gridlines for better readability
@@ -353,7 +381,7 @@ def plot_benchmark_analysis(
 
     ax.set_title(f'Instance-Level {metric} Predictions for {bench_name}', fontsize=16)
     ax.set_xlabel('Instance', fontsize=12)
-    ax.set_ylabel('Value', fontsize=12)
+    ax.set_ylabel(metric, fontsize=12)
     ax.legend()
 
     plt.tight_layout()
@@ -362,38 +390,46 @@ def plot_benchmark_analysis(
 
 
 def save_training_artifacts(
-    train_losses: List[float],
-    test_losses: List[float],
-    test_preds_sorted: List[List[Tuple[float, float]]],
+    train_err_per_epoch: List[float],
+    test_abs_err_per_epoch: List[float],
+    test_rel_err_per_epoch: List[float],
+    test_preds_per_epoch: List[List[Tuple[float, float]]],
     stats_dir: str,
     graphs_dir: str
 ):
-    assert len(train_losses) == len(test_losses), \
-        "Mismatch in number of training and test losses"
+    assert len(train_err_per_epoch) == len(test_abs_err_per_epoch), \
+        "Mismatch in number of training and test epochs"
     
     # Save metrics
     metrics_df = pd.DataFrame({
-        'epoch': list(range(len(test_losses))),
-        'train_loss': train_losses,
-        'test_loss': test_losses
+        'epoch': list(range(len(test_abs_err_per_epoch))),
+        'train_error': train_err_per_epoch,
+        'test_abs_error': test_abs_err_per_epoch,
+        'test_rel_error': test_rel_err_per_epoch
     })
     metrics_df.to_csv(f"{stats_dir}/metrics.csv", index=False)
+
+    best_epoch = np.argmin(test_rel_err_per_epoch)
 
     # Save predictions with metadata
     predictions_df = pd.DataFrame([
         {
-            'target': instance[0][1],
-            'predictions': [p[0] for p in instance],
-            'final_prediction': instance[-1][0],
-            'absolute_error': abs(instance[-1][0] - instance[0][1]),
-            'relative_error': abs(instance[-1][0] - instance[0][1]) / instance[0][1]
+            'instance': i,
+            'target': inst[0][1],
+            'preds': [p[0] for p in inst],
+            'final_pred': inst[-1][0],
+            'best_pred': inst[best_epoch][0],
+            'abs_error_final': abs(inst[-1][0] - inst[0][1]),
+            'rel_error_final': abs(inst[-1][0] - inst[0][1]) / (inst[0][1] + 1e-6),
+            'abs_error_best': abs(inst[best_epoch][0] - inst[0][1]),
+            'rel_error_best': abs(inst[best_epoch][0] - inst[0][1]) / (inst[0][1] + 1e-6)
         }
-        for instance in test_preds_sorted
+        for i, inst in enumerate(test_preds_per_epoch)
     ])
     predictions_df.to_csv(f"{stats_dir}/test_predictions.csv", index=False)
 
-    plot_learning_curves(train_losses, test_losses, f"{graphs_dir}/learning_curve.png")
-    plot_predictions(test_preds_sorted, f"{graphs_dir}/test_predictions.png")
+    plot_learning_curves(train_err_per_epoch, test_abs_err_per_epoch, f"{graphs_dir}/learning_curve.png")
+    plot_predictions(test_preds_per_epoch, f"{graphs_dir}/test_predictions.png", epoch=best_epoch)
 
     # Add error distribution plot
     plt.figure(figsize=(10, 6))
@@ -434,38 +470,51 @@ def prepare_data_loaders(
     target_metric: str,
     train_benches: Union[List[str], str],
     test_benches: Union[List[str], str],
-    batch_size: int,
-    val_split: float = 0.1
+    batch_size: int
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
-    train_data = HLSDataset(dataset_dir, target_metric, benchmarks=train_benches)
-    n_instances = len(train_data)
-    n_train = int((1 - val_split) * n_instances)
-    n_val = n_instances - n_train
-    train_data_split, val_data_split = random_split(train_data, [n_train, n_val])
+    # Don't normalize columns representing one-hot encoded categorical features
+    # inst:  0: num_operands, 1: num_uses, inst_type: 2-13, mod_memory: 14, read_memory: 15, mod_cf: 16. 
+    #        Filter out 2-13, 14, 15, 16
+    # var:   0-4: var_type, 5: bitwidth. 
+    #        Filter out 0-4
+    # const: 0-4: const_type, 5: bitwidth. 
+    #        Filter out 0-4
+    # array: 0: num_dims, 1-4: dim_sizes, 5: num_elements, 6-10: elem_type, 11: elem_bitwidth, 
+    #        12: partitioned, 13-17: partition_dims, 18-20: partition_type, 21: partition_factor, 
+    #        22: partitioned_dim_size, 23: num_partitions.
+    #        Filter out 6-10, 12, 13-17, 18-20
+    # bb:    0: num_instructions, 1: in_loop, 2: loop_depth, 3: trip_count, 4: pipelined, 5: merged, 
+    #        6: unrolled, 7: completelly_unrolled, 8: unroll_factor, 9: flattened.
+    #        Filter out 1, 4, 5, 6, 7, 9
+    # func:  0: num_operands, 1: num_uses, 2: entry_count, 3: num_instructions, 4: num_bbs, 5: num_loops, 
+    #        6-10: ret_type, 11: ret_bitwidth, 12: pipelined, 13: merged.
+    #        Filter out 6-10, 12, 13
+    filter_cols = {
+        'inst': list(range(2, 17)),
+        'var': list(range(5)),
+        'const': list(range(5)),
+        'array': [6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        'bb': [1, 4, 5, 6, 7, 9],
+        'func': list(range(6, 11)) + [12, 13]
+    }
 
-    train_indices = train_data_split.indices
-    filter_instances = [i in train_indices for i in range(n_instances)]
-    train_data.compute_feature_stats(filter_instances)
-
+    train_data = HLSDataset(
+        dataset_dir, target_metric, normalize=True, benchmarks=train_benches,
+        filter_cols=filter_cols
+    )
     test_data = HLSDataset(
         dataset_dir, target_metric, normalize=True, benchmarks=test_benches,
         feature_stats=train_data.feature_stats
     )
-
     train_loader = DataLoader(
-        train_data_split, batch_size=batch_size, shuffle=True, 
-        collate_fn=lambda x: tuple(zip(*x))
-    )
-    val_loader = DataLoader(
-        val_data_split, batch_size=1, shuffle=False, 
+        train_data, batch_size=batch_size, shuffle=True, 
         collate_fn=lambda x: tuple(zip(*x))
     )
     test_loader = DataLoader(
         test_data, batch_size=1, shuffle=False, 
         collate_fn=lambda x: tuple(zip(*x))
     )
-
-    return train_loader, val_loader, test_loader
+    return train_loader, test_loader
 
 
 def initialize_model() -> nn.Module:
@@ -475,16 +524,18 @@ def initialize_model() -> nn.Module:
     out_channels = 1
 
     agg_paths = [
-        [t for t in EDGE_TYPES if (t[0] == 'inst' and t[2] == 'inst') or t[1] == 'id'],
-        [t for t in EDGE_TYPES if t[1] == 'prod' or t[1] == 'uses' or t[1] == 'used_by' or t[1] == 'prod_by' or t[1] == 'id'],
-        [t for t in EDGE_TYPES if t[0] == 'bb' or t[1] == 'bb' or t[1] == 'id'],
-        [t for t in EDGE_TYPES if t[0] == 'func' or t[1] == 'func' or t[1] == 'id']
+        [et for et in EDGE_TYPES if (et[0] == 'inst' and et[2] == 'inst') or et[1] == 'id'],
+        [et for et in EDGE_TYPES if et[1] == 'prod' or et[1] == 'uses' or et[1] == 'used_by' or et[1] == 'prod_by' or et[1] == 'id'],
+        [et for et in EDGE_TYPES if et[0] == 'bb' or et[2] == 'bb' or et[1] == 'id'],
+        [et for et in EDGE_TYPES if et[0] == 'func' or et[2] == 'func' or et[1] == 'id'],
+        [et for et in EDGE_TYPES if et[1] == 'transf' or et[1] == 'transf_by' or et[1] == 'id'],
     ]
 
-    return HGT(
-        METADATA, FEATURE_SIZE_PER_NODE_TYPE, out_channels, hid_dim_conv, num_conv_layers=len(hid_dim_conv),
+    return HGT_HLS(
+        METADATA, FEAT_SIZE_PER_NODE_TYPE, out_channels, hid_dim_conv, num_conv_layers=len(hid_dim_conv),
         hid_dim_fc=hid_dim_fc, num_fc_layers=len(hid_dim_fc), num_heads=heads, fc_dropout=0.1, 
-        conv_dropout=0.0, layer_norm=True, pool_size=16, aggr_paths=agg_paths, device=DEVICE
+        conv_dropout=0.0, apply_ln=True, pool_size=16, aggr_paths=agg_paths, device=DEVICE,
+        sep_pragmas=False
     )
 
 
@@ -512,7 +563,7 @@ def parse_arguments():
 
 if __name__ == '__main__':
     from data.dataset import HLSDataset
-    from data.cdfg import METADATA, FEATURE_SIZE_PER_NODE_TYPE, EDGE_TYPES
+    from data.cdfg import METADATA, FEAT_SIZE_PER_NODE_TYPE, EDGE_TYPES
 
     DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
