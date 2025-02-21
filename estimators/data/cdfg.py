@@ -1,11 +1,10 @@
 from typing import List, Dict, Tuple, Union, Optional
 from torch.types import Number
 
-import builtins
 import torch
 import matplotlib.pyplot as plt
 from pathlib import Path
-from enum import Enum
+from enum import IntEnum
 from torch import Tensor
 from torch_geometric.typing import NodeType
 from torch_geometric.data import HeteroData, Data
@@ -28,8 +27,11 @@ EDGE_TYPES = [
 ]
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
-class LoopPragmaType(builtins.int, Enum):
-    UNROLL = 0, PIPELINE = 1, FLATTEN = 2, MERGE = 3
+class LoopPragmaType(IntEnum):
+    UNROLL = 0
+    PIPELINE = 1
+    FLATTEN = 2
+    MERGE = 3
 
 NUM_LOOP_PRAGMA_TYPES = 4
 
@@ -37,8 +39,8 @@ INST_FEAT_SIZE = 17
 VAR_FEAT_SIZE = 6
 CONST_FEAT_SIZE = 6
 ARRAY_FEAT_SIZE = 11
-BB_FEAT_SIZE = 10
-FUNC_FEAT_SIZE = 14
+BB_FEAT_SIZE = 4
+FUNC_FEAT_SIZE = 11
 LOOP_PRAGMA_FEAT_SIZE = NUM_LOOP_PRAGMA_TYPES + 2
 ARRAY_PRAGMA_FEAT_SIZE = 10
 
@@ -53,23 +55,72 @@ FEAT_SIZE_PER_NODE_TYPE = {
     'array_pragma': ARRAY_PRAGMA_FEAT_SIZE
 }
 
-class NodeType(builtins.int, Enum):
-    INST = 0, VAR = 1, CONST = 2, ARRAY = 3, BB = 4, FUNC = 5
+class NodeType(IntEnum):
+    INST = 0
+    VAR = 1
+    CONST = 2
+    ARRAY = 3
+    BB = 4
+    FUNC = 5
 
 # Type IDs from LLVM 7.0
-class LLVMTypeID(builtins.int, Enum):
-    VOID = 0, HALF = 1, FLOAT = 2, DOUBLE = 3, X86_FP80 = 4, FP128 = 5, 
-    PPC_FP128 = 6, LABEL = 7, METADATA = 8, X86_MMX = 9, TOKEN = 10, INT = 11, 
-    FUNCTION = 12, STRUCT = 13, ARRAY = 14, POINTER = 15, VECTOR = 16
+class LLVMTypeID(IntEnum):
+    VOID = 0
+    HALF = 1
+    FLOAT = 2
+    DOUBLE = 3
+    X86_FP80 = 4
+    FP128 = 5
+    PPC_FP128 = 6
+    LABEL = 7
+    METADATA = 8
+    X86_MMX = 9
+    TOKEN = 10
+    INT = 11
+    FUNCTION = 12
+    STRUCT = 13
+    ARRAY = 14
+    POINTER = 15
+    VECTOR = 16
 
 # Opcodes from LLVM 7.0
-class LLVMOpcode(builtins.int, Enum):
-    RET = 1, BR = 2, SWITCH = 3, ADD = 11, FADD = 12, SUB = 13, FSUB = 14
-    MUL = 15, FMUL = 16, UDIV = 17, SDIV = 18, FDIV = 19, UREM = 20, 
-    SREM = 21, FREM = 22, SHL = 23, LSHR = 24, ASHR = 25, AND = 26, OR = 27, 
-    XOR = 28, ALLOCA = 29, LOAD = 30, STORE = 31, GETELEMENTPTR = 32,
-    TRUNC = 36, ZEXT = 37, SEXT = 38, FPTRUNC = 43, FPEXT = 44, BITCAST = 47,
-    ICMP = 51, FCMP = 52, PHI = 53, CALL = 54
+
+class LLVMOpcode(IntEnum):
+    RET = 1
+    BR = 2
+    SWITCH = 3
+    ADD = 11
+    FADD = 12
+    SUB = 13
+    FSUB = 14
+    MUL = 15
+    FMUL = 16
+    UDIV = 17
+    SDIV = 18
+    FDIV = 19
+    UREM = 20
+    SREM = 21
+    FREM = 22
+    SHL = 23
+    LSHR = 24
+    ASHR = 25
+    AND = 26
+    OR = 27
+    XOR = 28
+    ALLOCA = 29
+    LOAD = 30
+    STORE = 31
+    GETELEMENTPTR = 32
+    TRUNC = 36
+    ZEXT = 37
+    SEXT = 38
+    FPTRUNC = 43
+    FPEXT = 44
+    BITCAST = 47
+    ICMP = 51
+    FCMP = 52
+    PHI = 53
+    CALL = 54
 
 # "One-hot-like" encoding of instructions (12 bits)
 # The first 5 bits represent the instruction category
@@ -157,13 +208,13 @@ def _get_trip_count(md: Dict[str, Number]) -> int:
     trip_count = md["tripCount"]
     return trip_count
 
-def _get_pipeline_info(md: Dict[str, Number]) -> Union[List[int], int]:
+def _get_pipeline_info(md: Dict[str, Number]) -> Tuple[List[int], int]:
     if "pipeline" not in md or md["pipeline"] == 0:
         return [0, 0], -1
     is_function_level = md["functionLevel"]
     return [is_function_level], md["pipelineID"]
 
-def _get_array_partition_info(md: Dict[str, Number]) -> Union[List[int], int]:
+def _get_array_partition_info(md: Dict[str, Number]) -> Tuple[List[int], int]:
     if "arrayPartition" not in md or md["arrayPartition"] == 0:
         return [0] * ARRAY_PRAGMA_FEAT_SIZE, -1
     max_dims = 4 # Maximum number of dimensions (4D arrays) for now
@@ -178,20 +229,20 @@ def _get_array_partition_info(md: Dict[str, Number]) -> Union[List[int], int]:
     factor = md["arrayPartitionFactor"]
     return enc_partition_type + enc_dim + [factor], md["arrayPartitionID"]
 
-def _get_unroll_info(md: Dict[str, Number]) -> Union[List[int], int]:
+def _get_unroll_info(md: Dict[str, Number]) -> Tuple[List[int], int]:
     if "unroll" not in md or md["unroll"] == 0:
         return [0, 0, 0], -1
     complete = md["unrollComplete"]
     factor = md["unrollFactor"]
     return [complete, factor], md["unrollID"]
 
-def _get_loop_flatten_info(md: Dict[str, Number]) -> Union[List[int], int]:
+def _get_loop_flatten_info(md: Dict[str, Number]) -> Tuple[List[int], int]:
     if "loopFlatten" not in md:
         return [0], -1
     flattened = md["loopFlatten"]
     return [flattened], md["loopFlattenID"]
 
-def _get_loop_merge_info(md: Dict[str, Number]) -> Union[List[int], int]:
+def _get_loop_merge_info(md: Dict[str, Number]) -> Tuple[List[int], int]:
     if "loopMerge" not in md or md["loopMerge"] == 0:
         return [0, 0], -1
     is_function_level = md["functionLevel"]
@@ -213,8 +264,8 @@ def _get_array_info(md: Dict[str, Number]) -> List[int]:
     return [n_dims] + dim_size + [elem_type, elem_bw]
 
 def _process_metadata_entries(
-        raw_md: Dict[str, str]
-        ) -> Dict[str, Union[int, float]]:
+    raw_md: Dict[str, str]
+) -> Dict[str, Union[int, float]]:
     processed_md = {}
     for key, value in raw_md.items():
         if key == "functionName":
@@ -242,7 +293,7 @@ def _get_type_id_from_text(node_text: str) -> int:
     if 'double' in node_text:
         return LLVMTypeID.DOUBLE
     if node_text[0] == 'i':
-        return int(node_text[1:])
+        return LLVMTypeID.INT
     if 'struct' in node_text:
         return LLVMTypeID.STRUCT
     return LLVMTypeID.VOID
@@ -271,10 +322,10 @@ def _parse_literal_const_info(node_text: str) -> List[int]:
     return TYPE_ENC[type_id] + [bitwidth]
 
 def _build_nodes(
-        programl_graph,
-        metadata: Dict[str, Dict[str, Dict[str, str]]],
-        ir_instructions: Dict[int, str]
-        ):
+    programl_graph,
+    metadata: Dict[str, Dict[str, Dict[str, str]]],
+    ir_instructions: Dict[int, str]
+):
     inst_bb_map, inst_func_map, bb_func_map = {}, {}, {}
     pragma_bb_map, pragma_func_map, pragma_array_map = {}, {}, {}
     nodes = {nt: [] for nt in NODE_TYPES}
@@ -391,14 +442,13 @@ def _build_nodes(
                 bb_func_map[bb_id] = function_id
 
             if function_id not in indices["func"]:
-                n_operands = md["numOperandsInFunction"]
-                n_uses = md["numUsesInFunction"]
-                entry_count = md["entryCountInFunction"]
-                ret_type = md["functionRetType"]
-                ret_bw = md["functionRetTypeBitwidth"]
-                n_insts = md["numInstsInFunction"]
-                n_bbs = md["numBBsInFunction"]
-                n_loops = md["numLoopsInFunction"]
+                n_operands = md["funcNumOperands"]
+                n_uses = md["funcNumUses"]
+                ret_type = md["funcRetType"]
+                ret_bw = md["funcRetBitwidth"]
+                n_insts = md["funcNumInsts"]
+                n_bbs = md["funcNumBBs"]
+                n_loops = md["funcNumLoops"]
                 ret_type_features = TYPE_ENC[ret_type] + [ret_bw]
 
                 if (function_level_pipeline == 1 and pipeline_id != -1
@@ -417,7 +467,7 @@ def _build_nodes(
                     indices["loop_pragma"].append(loop_merge_id)
                     pragma_func_map[loop_merge_id] = function_id
 
-                function_features = ([n_operands, n_uses, entry_count, n_insts, n_bbs, n_loops]
+                function_features = ([n_operands, n_uses, n_insts, n_bbs, n_loops]
                                      + ret_type_features)
                 nodes['func'].append(torch.tensor(function_features, dtype=torch.float32))
                 indices["func"].append(function_id)
@@ -435,14 +485,24 @@ def _build_nodes(
                     features = TYPE_ENC[LLVMTypeID.POINTER] + [0]
                 else:
                     # Value is a literal constant
-                    features = _parse_literal_const_info(node_full_text)
+                    features = _parse_literal_const_info(node_text)
 
                 node_type_str = 'var' if node_type == NodeType.VAR else 'const'
                 nodes[node_type_str].append(torch.tensor(features, dtype=torch.float32))
                 indices[node_type_str].append(i)
                 continue
 
-            md = _process_metadata_entries(metadata["value"][name])
+            if name in metadata["value"]:
+                md = _process_metadata_entries(metadata["value"][name])
+            else:
+                function_id = node.function + 1
+
+                name = f"{name}.{function_id}"
+                if name in metadata["param"]:
+                    md = _process_metadata_entries(metadata["param"][name])
+                else:
+                    md = {}
+
             if "isArray" in md and md["isArray"] == 1:
                 array_md = _get_array_info(md)
                 elem_type = array_md[5]
@@ -483,11 +543,11 @@ def _build_edge_tensor(src: int, dst: int) -> Tensor:
     return torch.tensor([src, dst], dtype=torch.int64)
 
 def _create_scope_edges(
-        mapping: Dict[int, int],
-        indices: Dict[str, List[int]],
-        containing_type: str,
-        contained_type: str
-        ) -> Tuple[List[Tensor], List[Tensor]]:
+    mapping: Dict[int, int],
+    indices: Dict[str, List[int]],
+    containing_type: str,
+    contained_type: str
+) -> Tuple[List[Tensor], List[Tensor]]:
     edges = []
     inv_edges = []
     for node_id, scope_id in mapping.items():
@@ -500,11 +560,11 @@ def _create_scope_edges(
     return edges, inv_edges
 
 def _create_pragma_edges(
-        mapping: Dict[int, int],
-        indices: Dict[str, List[int]],
-        pragma_type: str,
-        obj_type: str
-        ) -> List[Tensor]:
+    mapping: Dict[int, int],
+    indices: Dict[str, List[int]],
+    pragma_type: str,
+    obj_type: str
+) -> List[Tensor]:
     edges = []
     inv_edges = []
     for node_id, pragma_id in mapping.items():
@@ -518,17 +578,17 @@ def _create_pragma_edges(
 
 
 def _build_edges(
-        programl_graph,
-        graph: HeteroData,
-        indices: Dict[str, List[int]],
-        cfg_edges: List[List[int]],
-        inst_bb_map: Dict[int, int],
-        inst_func_map: Dict[int, int],
-        bb_func_map: Dict[int, int],
-        pragma_bb_map: Dict[int, int],
-        pragma_func_map: Dict[int, int],
-        pragma_array_map: Dict[int, int]
-        ) -> HeteroData:
+    programl_graph,
+    graph: HeteroData,
+    indices: Dict[str, List[int]],
+    cfg_edges: List[List[int]],
+    inst_bb_map: Dict[int, int],
+    inst_func_map: Dict[int, int],
+    bb_func_map: Dict[int, int],
+    pragma_bb_map: Dict[int, int],
+    pragma_func_map: Dict[int, int],
+    pragma_array_map: Dict[int, int]
+) -> HeteroData:
     edge_dict = {et: [] for et in EDGE_TYPES}
     
     for edge in programl_graph.edge:
@@ -651,7 +711,7 @@ def _build_edges(
 
 def _parse_md_file(
     metadata_path: Path
-    ) -> Dict[str, Dict[str, Dict[str, str]]]:
+) -> Dict[str, Dict[str, Dict[str, str]]]:
     # The format of the metadata file is as follows:
     # <node_type_1>:
     #   <node_name_1>:
@@ -684,8 +744,8 @@ def _parse_md_file(
     return metadata
 
 def _parse_cfg_file(
-        cfg_path: Path
-        ) -> List[Tuple[int, int]]:
+    cfg_path: Path
+) -> List[Tuple[int, int]]:
     # The format of the cfg file is as follows:
     # <num_edges>
     # <src_node_1>,<dst_node_1>
@@ -698,8 +758,8 @@ def _parse_cfg_file(
     return edges
 
 def _map_instruction_ids(
-        ir_text: Union[str, List[str]]
-        ) -> Dict[int, str]:
+    ir_text: Union[str, List[str]]
+) -> Dict[int, str]:
     if isinstance(ir_text, str):
         ir_text = ir_text.split('\n')
 
@@ -716,7 +776,8 @@ def _map_instruction_ids(
 def build_cdfg(
         ir_path: Path,
         metadata_path: Path,
-        cfg_path: Path
+        cfg_path: Path,
+        output_folder: Optional[Path] = None
         ) -> HeteroData:
     import programl
 
@@ -738,6 +799,15 @@ def build_cdfg(
         inst_bb_map, inst_func_map, bb_func_map,
         pragma_bb_map, pragma_func_map, pragma_array_map
     )
+
+    cdfg_pt_out_path = output_folder / f"cdfg.pt"
+    cdfg_txt_out_path = output_folder / f"cdfg.txt"
+    programl_out_path = output_folder / f"pgml_cdfg.pbtxt"
+
+    torch.save(cdfg, cdfg_pt_out_path)
+    print_cdfg(cdfg, cdfg_txt_out_path)
+    with open(programl_out_path, 'w') as f:
+        f.write(str(programl_cdfg))
 
     return cdfg
 

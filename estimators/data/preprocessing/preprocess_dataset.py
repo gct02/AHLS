@@ -3,7 +3,6 @@ from typing import Dict
 import subprocess
 import argparse
 import shutil
-import torch
 import json
 from os import environ
 from pathlib import Path
@@ -48,29 +47,19 @@ def process_ir(
 
     The following passes are applied (in order) to the IR:
 
-    strip-debug: 
-        remove Vitis HLS debug information;
-    strip-dead-prototypes: 
-        remove unused function prototypes (e.g. llvm.sideeffect);
-    instnamer: 
-        assign names to anonymous values;
-    indirectbr-expand: 
-        turn indirectbr into switch instructions;
-    lowerinvoke: 
-        lower invoke instructions to call instructions;
-    lowerswitch: 
-        lower switch instructions to branch instructions;
-    prep-gnn:
-        prepare the IR for the GNN, removing 'llvm.dbg', 'llvm.lifetime' and 
+    strip-debug: remove Vitis HLS debug information;
+    strip-dead-prototypes: remove unused function prototypes (e.g. llvm.sideeffect);
+    instnamer: assign names to anonymous values;
+    indirectbr-expand: turn indirectbr into switch instructions;
+    lowerinvoke: lower invoke instructions to call instructions;
+    lowerswitch: lower switch instructions to branch instructions;
+    prep-gnn: prepare the IR for the GNN, removing 'llvm.dbg', 'llvm.lifetime' and 
         '_ssdm_Spec.* intrinsics and implementing 'part.select' and 'part.set';
-    update-md: 
-        update the metadata of the operations in the IR to include the module's 
+    update-md: update the metadata of the operations in the IR to include the module's 
         operations IDs, opcodes, bitwidths, and loop information;
-    set-hls-md: 
-        set metadata to operations and global values in the IR according to the 
+    set-hls-md: set metadata to operations and global values in the IR according to the 
         directives used in the solution;
-    rename-vals: 
-        rename the values in the IR to have standard names based on their 
+    rename-vals: rename the values in the IR to have standard names based on their 
         position (e.g. %op.1 will occur before %op.2).
 
     Parameters:
@@ -91,37 +80,40 @@ def process_ir(
     subprocess.CalledProcessError
         If any of the LLVM passes fail
     """
-    temp1_path = ir_src_path.parent / "temp1.ll"
-    temp2_path = ir_src_path.parent / "temp2.ll"
+    tmp1 = ir_src_path.parent / "tmp1.ll"
+    tmp2 = ir_src_path.parent / "tmp2.ll"
     try:
-        run_opt(ir_src_path, temp1_path, "-strip-debug")
-        run_opt(temp1_path, temp2_path, "-strip-dead-prototypes")
-        run_opt(temp2_path, temp1_path, "-instnamer")
-        run_opt(temp1_path, temp2_path, "-indirectbr-expand")
-        run_opt(temp2_path, temp1_path, "-lowerinvoke")
-        run_opt(temp1_path, temp2_path, "-lowerswitch")
-        run_opt(temp2_path, temp1_path, "-prep-gnn")
-        run_opt(temp1_path, temp2_path, "-update-md")
-        run_opt(temp2_path, temp1_path, "-set-hls-md -dir {}".format(directives_path.as_posix()))
-        run_opt(temp1_path, ir_dst_path, "-rename-vals")
+        run_opt(ir_src_path, tmp1, "-strip-debug")
+        run_opt(tmp1, tmp2, "-strip-dead-prototypes")
+        run_opt(tmp2, tmp1, "-instnamer")
+        run_opt(tmp1, tmp2, "-indirectbr-expand")
+        run_opt(tmp2, tmp1, "-lowerinvoke")
+        run_opt(tmp1, tmp2, "-lowerswitch")
+        run_opt(tmp2, tmp1, "-prep-gnn")
+        run_opt(tmp1, tmp2, "-update-md")
+        run_opt(tmp2, tmp1, "-set-hls-md -dir {}".format(directives_path.as_posix()))
+        run_opt(tmp1, tmp2, "-rename-vals")
         
         subprocess.check_output(
-            f"{OPT} -load {DSE_LIB} -extract-md -out-md {output_md_path.as_posix()} < {ir_dst_path.as_posix()};", 
+            f"{OPT} -load {DSE_LIB} -extract-md -out-md {output_md_path.as_posix()} < {tmp2.as_posix()};", 
             shell=True, stderr=subprocess.STDOUT
         )
+        
+        run_opt(tmp2, ir_dst_path, "-rm-dummy-globals")
+
         subprocess.check_output(
             f"{OPT} -load {DSE_LIB} -write-cfg -out-cfg {output_cfg_path.as_posix()} < {ir_dst_path.as_posix()};", 
             shell=True, stderr=subprocess.STDOUT
         )
     except subprocess.CalledProcessError as e:
         print(f"Error processing {ir_src_path}: {e}")
-        temp1_path.unlink(missing_ok=True)
-        temp2_path.unlink(missing_ok=True)
+        tmp1.unlink(missing_ok=True)
+        tmp2.unlink(missing_ok=True)
         ir_dst_path.unlink(missing_ok=True)
         raise e
     finally:
-        temp1_path.unlink(missing_ok=True)
-        temp2_path.unlink(missing_ok=True)
+        tmp1.unlink(missing_ok=True)
+        tmp2.unlink(missing_ok=True)
 
 
 def create_directives_tcl(directives_json: Path, output_path: Path):
@@ -210,9 +202,10 @@ def main(args: Dict[str, str]):
             with open(output_instance_folder / "targets.txt", "w") as f:
                 f.write(f"lut={lut}\nff={ff}\ndsp={dsp}\nbram={bram}\nclb={clb}\nlatch={latch}\ncp={achieved_clk}\ncc={cc}")
 
-            cdfg = build_cdfg(ir_mod, output_md_path, output_cfg_path)
-            torch.save(cdfg, output_instance_folder / "cdfg.pt")
-            print_cdfg(cdfg, output_instance_folder / "cdfg.txt")
+            build_cdfg(
+                ir_mod, output_md_path, output_cfg_path, 
+                output_instance_folder
+            )
 
 def parse_args():
     parser = argparse.ArgumentParser(

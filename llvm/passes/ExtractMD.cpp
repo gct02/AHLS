@@ -61,9 +61,9 @@ struct ExtractMD : public ModulePass {
             return false;
         }
 
-        for (auto& type_metadata_pair : md) {
-            const auto& type = type_metadata_pair.first;
-            const auto& metadata = type_metadata_pair.second;
+        for (auto& item : md) {
+            const auto& type = item.first;
+            const auto& metadata = item.second;
 
             out << type << ":\n";
             for (const Metadata& m : metadata) {
@@ -107,9 +107,11 @@ struct ExtractMD : public ModulePass {
             // ´prep-gnn´ pass
             MDNode* isParam = G.getMetadata("param");
             if (isParam) {
+                uint32_t functionID = getMDOperandValue(G, "functionID", 0);
                 std::string variableName = G.getName().str();
                 m.functionName = variableName.substr(0, variableName.find("."));
-                m.name = variableName.substr(variableName.find(".") + 1);
+                m.name = variableName.substr(variableName.find(".") + 1) 
+                         + "." + std::to_string(functionID);
             } else {
                 m.functionName = "";
                 m.name = G.getName().str();
@@ -120,6 +122,7 @@ struct ExtractMD : public ModulePass {
             m.values["type"] = getMDOperandValue(G, "type", 0);
 
             MDNode* isArray = G.getMetadata("isArray");
+
             if (isArray) {
                 m.values["isArray"] = 1;
 
@@ -127,7 +130,7 @@ struct ExtractMD : public ModulePass {
                 m.values["numDims"] = numDims;
 
                 for (uint32_t i = 1; i <= numDims; i++) {
-                    m.values["numElements" + std::to_string(i)] = getMDOperandValue(
+                    m.values["numElements." + std::to_string(i)] = getMDOperandValue(
                         G, "numElements." + std::to_string(i), 0
                     );
                 }
@@ -145,7 +148,12 @@ struct ExtractMD : public ModulePass {
                     m.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartitionMD, 5);
                 }
             }
-            md["value"].push_back(m);
+
+            if (isParam) {
+                md["param"].push_back(m);
+            } else {
+                md["value"].push_back(m);
+            }
         }
     }
 
@@ -171,6 +179,9 @@ struct ExtractMD : public ModulePass {
                     instMD.values["retType"] = getMDOperandValue(I, "valueType", 0);
                     instMD.values["bitwidth"] = getMDOperandValue(I, "bitwidth", 0);
                     instMD.values["inLoop"] = getMDOperandValue(I, "inLoop", 0);
+                    instMD.values["modifiesMemory"] = getMDOperandValue(I, "modifiesMemory", 0);
+                    instMD.values["readsMemory"] = getMDOperandValue(I, "readsMemory", 0);
+                    instMD.values["modifiesControlFlow"] = getMDOperandValue(I, "modifiesControlFlow", 0);
 
                     if (MDNode* loopDepth = I.getMetadata("loopDepth")) {
                         instMD.values["loopDepth"] = MDOperandToInt(loopDepth, 0);
@@ -201,17 +212,17 @@ struct ExtractMD : public ModulePass {
                     }
 
                     // Retrieve metadata about the basic block that contains the instruction
-                    instMD.values["bbSize"] = getMDOperandValue(BB, "bbSize", 0);
+                    instMD.values["bbSize"] = getMDOperandValue(I, "bbSize", 0);
+                    instMD.values["inLoop"] = getMDOperandValue(I, "inLoop", 0);
                     
                     // Retrieve metadata about the function that contains the instruction
-                    instMD.values["numOperandsInFunction"] = getMDOperandValue(F, "numOperandsInFunction", 0);
-                    instMD.values["numUsesInFunction"] = getMDOperandValue(F, "numUsesInFunction", 0);
-                    instMD.values["entryCountInFunction"] = getMDOperandValue(F, "entryCountInFunction", 0);
-                    instMD.values["functionRetType"] = getMDOperandValue(F, "functionRetType", 0);
-                    instMD.values["functionRetTypeBitwidth"] = getMDOperandValue(F, "functionRetTypeBitwidth", 0);
-                    instMD.values["numInstsInFunction"] = getMDOperandValue(F, "numInstsInFunction", 0);
-                    instMD.values["numBBsInFunction"] = getMDOperandValue(F, "numBBsInFunction", 0);
-                    instMD.values["numLoopsInFunction"] = getMDOperandValue(F, "numLoopsInFunction", 0);
+                    instMD.values["funcNumOperands"] = getMDOperandValue(F, "numOperands", 0);
+                    instMD.values["funcNumUses"] = getMDOperandValue(F, "numUses", 0);
+                    instMD.values["funcRetType"] = getMDOperandValue(F, "retType", 0);
+                    instMD.values["funcRetBitwidth"] = getMDOperandValue(F, "retBitwidth", 0);
+                    instMD.values["funcNumInsts"] = getMDOperandValue(F, "numInsts", 0);
+                    instMD.values["funcNumBBs"] = getMDOperandValue(F, "numBBs", 0);
+                    instMD.values["funcNumLoops"] = getMDOperandValue(F, "numLoops", 0);
 
                     md["instruction"].push_back(instMD);
 
@@ -234,7 +245,7 @@ struct ExtractMD : public ModulePass {
                             valMD.values["numDims"] = numDims;
 
                             for (uint32_t i = 1; i <= numDims; i++) {
-                                valMD.values["numElements" + std::to_string(i)] = getMDOperandValue(
+                                valMD.values["numElements." + std::to_string(i)] = getMDOperandValue(
                                     I, "numElements." + std::to_string(i), 0
                                 );
                             }

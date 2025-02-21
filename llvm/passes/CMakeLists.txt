@@ -7,6 +7,7 @@ add_llvm_loadable_module(libDSE
 	WriteCFG.cpp
 	ModuleDFGBuilder.cpp
 	RenameValues.cpp
+	RemoveDummyGlobals.cpp
 	Profiling.cpp
 	RemoveIOFCall.cpp
 	V2C.cpp

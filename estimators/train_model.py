@@ -473,29 +473,32 @@ def prepare_data_loaders(
     batch_size: int
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
     # Don't normalize columns representing one-hot encoded categorical features
-    # inst:  0: num_operands, 1: num_uses, inst_type: 2-13, mod_memory: 14, read_memory: 15, mod_cf: 16. 
-    #        Filter out 2-13, 14, 15, 16
-    # var:   0-4: var_type, 5: bitwidth. 
-    #        Filter out 0-4
+    # inst: 0: num_operands, 1: num_uses, inst_type: 2-13, mod_memory: 14, read_memory: 15, mod_cf: 16. 
+    #     Filter out 2-13, 14, 15, 16
+    # var: 0-4: var_type, 5: bitwidth. 
+    #     Filter out 0-4
     # const: 0-4: const_type, 5: bitwidth. 
-    #        Filter out 0-4
-    # array: 0: num_dims, 1-4: dim_sizes, 5: num_elements, 6-10: elem_type, 11: elem_bitwidth, 
-    #        12: partitioned, 13-17: partition_dims, 18-20: partition_type, 21: partition_factor, 
-    #        22: partitioned_dim_size, 23: num_partitions.
-    #        Filter out 6-10, 12, 13-17, 18-20
-    # bb:    0: num_instructions, 1: in_loop, 2: loop_depth, 3: trip_count, 4: pipelined, 5: merged, 
-    #        6: unrolled, 7: completelly_unrolled, 8: unroll_factor, 9: flattened.
-    #        Filter out 1, 4, 5, 6, 7, 9
-    # func:  0: num_operands, 1: num_uses, 2: entry_count, 3: num_instructions, 4: num_bbs, 5: num_loops, 
-    #        6-10: ret_type, 11: ret_bitwidth, 12: pipelined, 13: merged.
-    #        Filter out 6-10, 12, 13
+    #     Filter out 0-4
+    # array: 0: num_dims, 1-4: dim_sizes, 5-9: elem_type, 10: elem_bitwidth.
+    #     Filter out 5-9
+    # bb: 0: num_instructions, 1: in_loop, 2: loop_depth, 3: trip_count.
+    #     Filter out 1
+    # func: 0: num_operands, 1: num_uses, 3: num_instructions, 4: num_bbs, 5: num_loops, 
+    #     6-10: ret_type, 11: ret_bitwidth.
+    #     Filter out 6-10
+    # loop_pragma: 0-3: pragma_type, 4: complete_unroll, 5: unroll_factor.
+    #     Filter out 0-4
+    # array_pragma: 0-2: partition_type, 3: full_partition, 3-7: partition_dims, 8: partition_factor
+    #     Filter out 0-7
     filter_cols = {
         'inst': list(range(2, 17)),
         'var': list(range(5)),
         'const': list(range(5)),
-        'array': [6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-        'bb': [1, 4, 5, 6, 7, 9],
-        'func': list(range(6, 11)) + [12, 13]
+        'array': list(range(5, 10)),
+        'bb': [1],
+        'func': list(range(6, 11)),
+        'loop_pragma': list(range(5)),
+        'array_pragma': list(range(8))
     }
 
     train_data = HLSDataset(

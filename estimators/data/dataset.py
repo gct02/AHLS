@@ -63,6 +63,12 @@ class HLSDataset(Dataset):
                 else:
                     counts[nt] += features.shape[0]
 
+                # Remove 'inst', 'bb' and 'function' nodes with all-zero features
+                # from the counts
+                if nt in ['inst', 'bb', 'function']:
+                    zero_features = features.sum(dim=1) == 0
+                    counts[nt] -= zero_features.sum().item()
+
         self.feature_stats = {}
         for nt in node_types:
             if nt not in counts or counts[nt] == 0:

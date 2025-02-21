@@ -30,7 +30,6 @@
 #include <vector>
 #include <unordered_map>
 #include <utility>
-#include <regex>
 
 using namespace llvm;
 

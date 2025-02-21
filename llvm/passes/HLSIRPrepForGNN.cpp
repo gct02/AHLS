@@ -42,7 +42,9 @@ struct HLSIRPrepForGNN : ModulePass {
         removeLifetimeIntrinsics(M);
         removeSpecIntrinsics(M);
 
+        setIDMetadata(M);
         extractParamsAsGlobals(M);
+        setIDMetadataToGlobals(M);
 
         return true;
     }
@@ -80,6 +82,51 @@ struct HLSIRPrepForGNN : ModulePass {
         }
     }
 
+    uint32_t MDOperandToInt(MDNode* md, uint32_t index) {
+        return cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(md->getOperand(index))->getValue())->getZExtValue();
+    }
+
+    uint32_t getMDOperandValue(Value& V, StringRef name, uint32_t index, uint32_t defaultValue=0) {
+        MDNode* md = nullptr;
+        if (Instruction* I = dyn_cast<Instruction>(&V)) {
+            md = I->getMetadata(name);
+        } else if (GlobalObject* G = dyn_cast<GlobalObject>(&V)) {
+            md = G->getMetadata(name);
+        } else if (Function* F = dyn_cast<Function>(&V)) {
+            md = F->getMetadata(name);
+        }
+        return md == nullptr ? defaultValue : MDOperandToInt(md, index);
+    }
+
+    void setIDMetadata(Module& M) {
+        uint32_t opID = 1, bbID = 1, functionID = 1;
+
+        for (Function& F : M) {
+            if (!F.hasName() || F.isIntrinsic()) {
+                functionID++;
+                continue;
+            }
+            setMetadata(F, "functionID", functionID);
+            for (BasicBlock& BB : F) {
+                for (Instruction& I : BB) {
+                    setMetadata(I, "opID", opID++);
+                    setMetadata(I, "bbID", bbID);
+                    setMetadata(I, "functionID", functionID);
+                }
+                bbID++;
+            }
+            functionID++;
+        }
+    }
+
+    void setIDMetadataToGlobals(Module& M) {
+        uint32_t globalID = 1;
+
+        for (GlobalObject& G : M.getGlobalList()) {
+            setMetadata(G, "globalID", globalID++);
+        }
+    }
+
     /*
      * Create a global variable <func>.<arg> for each argument arg
      * of each function func in the module M.
@@ -108,6 +155,9 @@ struct HLSIRPrepForGNN : ModulePass {
                     M, Ty, true, GlobalValue::ExternalLinkage, nullptr, globalName
                 );
                 setMetadata(*GV, "param", 1);
+
+                uint32_t functionID = getMDOperandValue(F, "functionID", 0);
+                setMetadata(*GV, "functionID", functionID);
             }
         }
     }

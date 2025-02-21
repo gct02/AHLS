@@ -1,8 +1,7 @@
 from typing import Dict, Union, Optional, List
 from torch.types import Device
-from torch_geometric.typing import NodeType, EdgeType, OptTensor, Metadata
+from torch_geometric.typing import EdgeType, Metadata
 
-import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -22,48 +21,35 @@ class HGT_HLS(nn.Module):
     Args:
         metadata (Tuple[List[str], List[Tuple[str, str, str]]]):
             Metadata object containing node and edge types.
-        in_channels (int or Dict[str, int]):
-            Number of input channels for each node type.
-        out_channels (int):
-            Number of output channels.
-        hid_dim_conv (int or List[int]):
-            Hidden dimension for each convolutional layer.
-        num_conv_layers (int):
-            Number of convolutional layers.
+        in_channels (int or Dict[str, int]): Number of input channels 
+            for each node type.
+        out_channels (int): Number of output channels.
+        hid_dim_conv (int or List[int]): Hidden dimension for each 
+            convolutional layer.
+        num_conv_layers (int): Number of convolutional layers.
             (default: :obj:`6`)
-        hid_dim_fc (int or List[int], optional):
-            Hidden dimension for each fully connected layer.
-            (default: :obj:`None`)
-        num_fc_layers (int):
-            Number of fully connected layers.
+        hid_dim_fc (int or List[int], optional): Hidden dimension 
+            for each fully connected layer. (default: :obj:`None`)
+        num_fc_layers (int): Number of fully connected layers.
             (default: :obj:`3`)
-        num_heads (int or List[int]):
-            Number of attention heads for each convolutional layer.
-            (default: :obj:`1`)
-        fc_dropout (float):
-            Dropout rate for fully connected layers.
+        num_heads (int or List[int]): Number of attention heads for 
+            each convolutional layer. (default: :obj:`1`)
+        fc_dropout (float): Dropout rate for fully connected layers.
             (default: :obj:`0.1`)
-        conv_dropout (float):
-            Dropout rate for convolutional layers.
+        conv_dropout (float): Dropout rate for convolutional layers.
             (default: :obj:`0.0`)
-        pool_size (int):
-            Number of nodes to keep after pooling.
+        pool_size (int): Number of nodes to keep after pooling.
             (default: :obj:`8`)
-        aggr_paths (List[List[EdgeType]], optional):
-            List of edge type combinations to aggregate over.
-            (default: :obj:`None`)
-        apply_ln (bool):
-            Whether to use layer normalization.
+        aggr_paths (List[List[EdgeType]], optional): List of edge type 
+            combinations to aggregate over. (default: :obj:`None`)
+        apply_ln (bool): Whether to use layer normalization.
             (default: :obj:`True`)
-        sep_pragmas (bool):
-            Whether to apply separate convolutions for pragma and CDFG edges.
-            (default: :obj:`False`)
-        device (torch.device):
-            Device to use for computation.
+        sep_pragmas (bool): Whether to apply separate convolutions 
+            for pragma and CDFG edges. (default: :obj:`False`)
+        device (torch.device): Device to use for computation.
             (default: :obj:`"cpu"`)
     """
-    def __init__(
-        self, 
+    def __init__(self, 
         metadata: Metadata,
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,

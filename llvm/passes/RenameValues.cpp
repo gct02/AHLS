@@ -67,4 +67,8 @@ struct RenameValues : ModulePass {
 }  // anonymous namespace
 
 char RenameValues::ID = 0;
-static RegisterPass<RenameValues> X("rename-vals", "Rename all variables in the module to op.<opID> if local or global.<globalID> if global. This pass should be used after `update-md`.", false, false);
+static RegisterPass<RenameValues> X(
+    "rename-vals", 
+    "Rename all variables in the module to op.<opID> if local or global.<globalID> if global. This pass should be used after `update-md`.", 
+    false, false
+);

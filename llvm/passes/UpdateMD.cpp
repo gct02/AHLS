@@ -60,8 +60,25 @@ struct UpdateMD : public ModulePass {
         }
     }
 
+    uint32_t MDOperandToInt(MDNode* md, uint32_t index) {
+        return cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(md->getOperand(index))->getValue())->getZExtValue();
+    }
+
+    uint32_t getMDOperandValue(Value& V, StringRef name, uint32_t index, uint32_t defaultValue=0) {
+        MDNode* md = nullptr;
+        if (Instruction* I = dyn_cast<Instruction>(&V)) {
+            md = I->getMetadata(name);
+        } else if (GlobalObject* G = dyn_cast<GlobalObject>(&V)) {
+            md = G->getMetadata(name);
+        } else if (Function* F = dyn_cast<Function>(&V)) {
+            md = F->getMetadata(name);
+        }
+        return md == nullptr ? defaultValue : MDOperandToInt(md, index);
+    }
+
     uint32_t getArrayNumDims(Type* arrayType) {
         uint32_t numDims = 0;
+
         if (arrayType->isPointerTy()) {
             arrayType = arrayType->getPointerElementType();
         }
@@ -120,7 +137,10 @@ struct UpdateMD : public ModulePass {
         setMetadata(V, "numElements", numElements);
     
         // Get element type of the array
-        Type* elementType;
+        Type* elementType = V.getType();
+        while (elementType->isPointerTy()) {
+            elementType = elementType->getPointerElementType();
+        }
         while (elementType->isArrayTy()) {
             elementType = elementType->getArrayElementType();
         }
@@ -146,29 +166,21 @@ struct UpdateMD : public ModulePass {
 
     // Set named metadata for all global objects in the module
     void setMetadataForGlobals(Module& M) {
-        int id = 1;
         for (GlobalObject& G : M.getGlobalList()) {
-            DEBUG(dbgs() << "Setting metadata for global: " << G << " (globalID = " << id << ")\n");
-            setMetadata(G, "globalID", id);
+            DEBUG(dbgs() << "Setting metadata for global: " << G << "\n");
             setMetadata(G, "bitwidth", G.getType()->getPointerElementType()->getPrimitiveSizeInBits());
             setMetadata(G, "type", (uint32_t)G.getType()->getPointerElementType()->getTypeID());
-            id++;
         }
     }
 
-    std::vector<uint32_t> getFunctionInfo(Function& F) {
-        uint32_t numOperands = F.getNumOperands();
+    void setFunctionMetadata(Function& F, LoopInfo& LI) {
+        uint32_t numOperands = F.arg_size();
         uint32_t numUses = F.getNumUses();
-        uint32_t entryCount = F.getEntryCount().getCount();
         uint32_t functionRetType = (uint32_t)F.getReturnType()->getTypeID();
         uint32_t functionRetTypeBitwidth = F.getReturnType()->getPrimitiveSizeInBits();
         uint32_t numInstsInFunction = 0;
         uint32_t numBBsInFunction = 0;
         uint32_t numLoopsInFunction = 0;
-
-        // Get LoopInfo and ScalarEvolution analyses
-        LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
-        ScalarEvolution& SE = getAnalysis<ScalarEvolutionWrapperPass>(F).getSE();
 
         for (BasicBlock& BB : F) {
             numBBsInFunction++;
@@ -177,30 +189,27 @@ struct UpdateMD : public ModulePass {
                 numLoopsInFunction++;
             }
         }
-
-        std::vector<uint32_t> functionInfo = {
-            numOperands, numUses, entryCount, functionRetType, functionRetTypeBitwidth,
-            numInstsInFunction, numBBsInFunction, numLoopsInFunction
-        };
-
-        return functionInfo;
+        setMetadata(F, "numOperands", numOperands);
+        setMetadata(F, "numUses", numUses);
+        setMetadata(F, "retType", functionRetType);
+        setMetadata(F, "retBitwidth", functionRetTypeBitwidth);
+        setMetadata(F, "numInsts", numInstsInFunction);
+        setMetadata(F, "numBBs", numBBsInFunction);
+        setMetadata(F, "numLoops", numLoopsInFunction);
     }
 
     // Set named metadata for all instructions in the module
     void setMetadataForInstructions(Module& M) {
-        int id = 1;
-        uint32_t functionID = 1, bbID = 1;
-
         for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
             Function& F = *FI;
             if (F.size() == 0) {
                 continue;
             }
-            std::vector<uint32_t> functionInfo = getFunctionInfo(F);
-
             // Get LoopInfo and ScalarEvolution analyses
             LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
             ScalarEvolution& SE = getAnalysis<ScalarEvolutionWrapperPass>(F).getSE();
+
+            setFunctionMetadata(F, LI);
 
             for (BasicBlock& BB : F) {
                 uint32_t bbSize = BB.size();
@@ -219,14 +228,10 @@ struct UpdateMD : public ModulePass {
                     }
                 }
                 for (Instruction& I : BB) {
-                    DEBUG(dbgs() << "Setting metadata for instruction: " << I << " (opID = " << id << ")\n");
-                    setInstructionMetadata(I, id, functionID, bbID, bbSize, inLoop, functionInfo,
-                                           loopDepth, (uint32_t)tripCountValue);
-                    id++;
+                    DEBUG(dbgs() << "Setting metadata for instruction: " << I << "\n");
+                    setInstructionMetadata(I, bbSize, inLoop, loopDepth, (uint32_t)tripCountValue);
                 }
-                bbID++;
             }
-            functionID++;
         }
     }
 
@@ -257,14 +262,8 @@ struct UpdateMD : public ModulePass {
     }
 
     // Set named metadata for an instruction
-    void setInstructionMetadata(Instruction& I, uint32_t opID, uint32_t functionID, uint32_t bbID, 
-                                uint32_t bbSize, uint32_t inLoop, std::vector<uint32_t> functionInfo, 
+    void setInstructionMetadata(Instruction& I, uint32_t bbSize, uint32_t inLoop, 
                                 uint32_t loopDepth=0, uint32_t tripCount=1) {
-        
-        
-        setMetadata(I, "opID", opID);
-        setMetadata(I, "functionID", functionID);
-        setMetadata(I, "bbID", bbID);
         setMetadata(I, "opcode", I.getOpcode());
         setMetadata(I, "bitwidth", I.getType()->getPrimitiveSizeInBits());
         setMetadata(I, "valueType", (uint32_t)I.getType()->getTypeID());
@@ -273,6 +272,8 @@ struct UpdateMD : public ModulePass {
         setMetadata(I, "numUses", I.getNumUses());
         setMetadata(I, "numOperands", I.getNumOperands());
         setMetadata(I, "inLoop", inLoop);
+
+        uint32_t opID = getMDOperandValue(I, "opID", 0);
         setMetadata(I, "ID." + std::to_string(opID), opID);
 
         if (instructionModifiesMemory(I)) {
@@ -296,46 +297,8 @@ struct UpdateMD : public ModulePass {
         // Set metadata about the basic block that the instruction belongs to
         // to facilitate recovering this information from the ProGraML graph
         setMetadata(I, "bbSize", bbSize);
-        
-        // Set metadata about the function that the instruction belongs to
-        // to facilitate recovering this information from the ProGraML graph
-        setMetadata(I, "numOperandsInFunction", functionInfo[0]);
-        setMetadata(I, "numUsesInFunction", functionInfo[1]);
-        setMetadata(I, "entryCountInFunction", functionInfo[2]);
-        setMetadata(I, "functionRetType", functionInfo[3]);
-        setMetadata(I, "functionRetTypeBitwidth", functionInfo[4]);
-        setMetadata(I, "numInstsInFunction", functionInfo[3]);
-        setMetadata(I, "numBBsInFunction", functionInfo[4]);
-        setMetadata(I, "numLoopsInFunction", functionInfo[5]);
+        setMetadata(I, "inLoop", inLoop);
     }
-
-    // Set loop-specific metadata for all instructions that reside in a loop
-    // void setLoopMetadata(Function& F) {
-    //     // Get LoopInfo and ScalarEvolution analyses
-    //     LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
-    //     ScalarEvolution& SE = getAnalysis<ScalarEvolutionWrapperPass>(F).getSE();
-    //     for (BasicBlock& BB : F) {
-    //         uint32_t loopDepth = 0;
-    //         uint32_t tripCount = 1;
-    //         Loop* L = LI.getLoopFor(&BB);
-    //         if (L) {
-	// 			loopDepth = L->getLoopDepth();
-    //             tripCount = getLoopTripCount(L, &SE);
-    //         }
-    //         for (Instruction& I : BB) {
-    //             setMetadata(I, "loopDepth", loopDepth);
-    //             setMetadata(I, "tripCount", tripCount);
-    //         }
-    //     }
-    // }
-
-    // uint32_t getLoopTripCount(Loop* L, ScalarEvolution* SE) {
-    //     BasicBlock* exitingBlock = getExitingBlock(L, SE);
-    //     if (exitingBlock) {
-    //         return SE->getSmallConstantTripCount(L, exitingBlock);
-    //     }
-    //     return 0;
-    // }
 
 	virtual void getAnalysisUsage(AnalysisUsage& AU) const override {
         AU.addRequired<LoopInfoWrapperPass>();
