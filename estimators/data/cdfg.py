@@ -14,16 +14,17 @@ NODE_TYPES = ['inst', 'var', 'const', 'array', 'bb', 'func', 'loop_pragma', 'arr
 EDGE_TYPES = [
     ('inst', 'prec', 'inst'), ('inst', 'succ', 'inst'), ('inst', 'calls', 'inst'),
     ('inst', 'called_by', 'inst'), ('inst', 'uses', 'var'), ('inst', 'prod', 'var'),
-    ('inst', 'uses', 'array'), ('inst', 'uses', 'const'), ('inst', 'belongs_to', 'bb'), 
-    ('inst', 'belongs_to', 'func'), ('inst', 'id', 'inst'), ('var', 'used_by', 'inst'), 
-    ('var', 'prod_by', 'inst'), ('var', 'id', 'var'), ('const', 'used_by', 'inst'), 
-    ('const', 'id', 'const'), ('array', 'used_by', 'inst'), ('array', 'transf_by', 'array_pragma'),
-    ('array', 'id', 'array'), ('bb', 'contains', 'inst'), ('bb', 'belongs_to', 'func'), 
-    ('bb', 'prec', 'bb'), ('bb', 'succ', 'bb'), ('bb', 'transf_by', 'loop_pragma'), 
-    ('bb', 'id', 'bb'), ('func', 'contains', 'bb'), ('func', 'contains', 'inst'), 
-    ('func', 'calls', 'func'), ('func', 'called_by', 'func'), ('func', 'transf_by', 'loop_pragma'), 
-    ('func', 'id', 'func'), ('loop_pragma', 'transf', 'bb'), ('loop_pragma', 'transf', 'func'), 
-    ('loop_pragma', 'id', 'loop_pragma'), ('array_pragma', 'transf', 'array'), ('array_pragma', 'id', 'array_pragma')
+    ('inst', 'prod', 'array'), ('inst', 'uses', 'array'), ('inst', 'uses', 'const'), 
+    ('inst', 'belongs_to', 'bb'), ('inst', 'belongs_to', 'func'), ('inst', 'id', 'inst'), 
+    ('var', 'used_by', 'inst'), ('var', 'prod_by', 'inst'), ('var', 'id', 'var'), 
+    ('const', 'used_by', 'inst'), ('const', 'id', 'const'), ('array', 'used_by', 'inst'), 
+    ('array', 'transf_by', 'array_pragma'), ('array', 'prod_by', 'inst'), ('array', 'id', 'array'), 
+    ('bb', 'contains', 'inst'), ('bb', 'belongs_to', 'func'), ('bb', 'prec', 'bb'), 
+    ('bb', 'succ', 'bb'), ('bb', 'transf_by', 'loop_pragma'), ('bb', 'id', 'bb'), 
+    ('func', 'contains', 'bb'), ('func', 'contains', 'inst'), ('func', 'calls', 'func'), 
+    ('func', 'called_by', 'func'), ('func', 'transf_by', 'loop_pragma'), ('func', 'id', 'func'), 
+    ('loop_pragma', 'transf', 'bb'), ('loop_pragma', 'transf', 'func'), ('loop_pragma', 'id', 'loop_pragma'), 
+    ('array_pragma', 'transf', 'array'), ('array_pragma', 'id', 'array_pragma')
 ]
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
@@ -254,7 +255,7 @@ def _get_array_info(md: Dict[str, Number]) -> List[int]:
     elem_bw = md["elementBitwidth"]
     dim_size = [0] * 4
 
-    for i in range(1, n_dims):
+    for i in range(1, n_dims + 1):
         curr_dim_size = md[f"numElements.{i}"]
         if i > 4:
             dim_size[-1] *= curr_dim_size
@@ -324,7 +325,7 @@ def _parse_literal_const_info(node_text: str) -> List[int]:
 def _build_nodes(
     programl_graph,
     metadata: Dict[str, Dict[str, Dict[str, str]]],
-    ir_instructions: Dict[int, str]
+    inst_dict: Dict[int, str]
 ):
     inst_bb_map, inst_func_map, bb_func_map = {}, {}, {}
     pragma_bb_map, pragma_func_map, pragma_array_map = {}, {}, {}
@@ -362,7 +363,7 @@ def _build_nodes(
                 continue
 
             id = int(node_full_text.split('!ID.')[1].split(' ')[0])
-            node_full_text = ir_instructions[id]
+            node_full_text = inst_dict[id]
             md = _process_metadata_entries(metadata["instruction"][str(id)])
 
             opcode = md["opcode"]
@@ -473,11 +474,10 @@ def _build_nodes(
                 indices["func"].append(function_id)
 
         elif node_type == NodeType.VAR or node_type == NodeType.CONST:
-            tokens = node_full_text.split(' ')
-            if node_full_text.startswith('@'): 
-                name = tokens[0].strip('@')
-            elif len(tokens) > 1 and tokens[1].startswith('%'):
-                name = tokens[1].strip('%')
+            if '@' in node_full_text:
+                name = node_full_text[node_full_text.find('@') + 1:].split(' ')[0]
+            elif '%' in node_full_text:
+                name = node_full_text[node_full_text.find('%') + 1:].split(' ')[0]
             else:
                 # Value does not have a name (e.g. literal constant)
                 if '*' in node_full_text:
@@ -491,6 +491,11 @@ def _build_nodes(
                 nodes[node_type_str].append(torch.tensor(features, dtype=torch.float32))
                 indices[node_type_str].append(i)
                 continue
+
+            if ',' in name:
+                name = name.split(',')[0]
+            if ')' in name:
+                name = name.split(')')[0]
 
             if name in metadata["value"]:
                 md = _process_metadata_entries(metadata["value"][name])
@@ -613,11 +618,18 @@ def _build_edges(
                     edge_dict[('inst', 'called_by', 'inst')].append(inv_edge_tensor)
             else:
                 # Variable destination
-                dst_idx = indices["var"].index(dst)
-                edge_tensor = _build_edge_tensor(src_idx, dst_idx)
-                inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
-                edge_dict[('inst', 'prod', 'var')].append(edge_tensor)
-                edge_dict[('var', 'prod_by', 'inst')].append(inv_edge_tensor)
+                if dst in indices["var"]:
+                    dst_idx = indices["var"].index(dst)
+                    edge_tensor = _build_edge_tensor(src_idx, dst_idx)
+                    inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
+                    edge_dict[('inst', 'prod', 'var')].append(edge_tensor)
+                    edge_dict[('var', 'prod_by', 'inst')].append(inv_edge_tensor)
+                elif dst in indices["array"]:
+                    dst_idx = indices["array"].index(dst)
+                    edge_tensor = _build_edge_tensor(src_idx, dst_idx)
+                    inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
+                    edge_dict[('inst', 'prod', 'array')].append(edge_tensor)
+                    edge_dict[('array', 'prod_by', 'inst')].append(inv_edge_tensor)
         elif src in indices["array"]:
             # Array source, only used by instructions
             src_idx = indices["array"].index(src)
@@ -899,6 +911,8 @@ def print_cdfg(
         cdfg: HeteroData,
         output_path: Optional[Path] = None
         ) -> None:
+    # Set print options to display the full tensor
+    torch.set_printoptions(profile="full", threshold=1e9, linewidth=200)
     cdfg_dict = cdfg.to_dict()
     if output_path is not None:
         with open(output_path, "w") as f:

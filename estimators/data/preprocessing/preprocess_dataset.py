@@ -84,7 +84,7 @@ def process_ir(
     tmp2 = ir_src_path.parent / "tmp2.ll"
     try:
         run_opt(ir_src_path, tmp1, "-strip-debug")
-        run_opt(tmp1, tmp2, "-strip-dead-prototypes")
+        run_opt(tmp1, tmp2, "-strip-dead-prototypes -mem2reg -indvars -loop-simplify -scalar-evolution")
         run_opt(tmp2, tmp1, "-instnamer")
         run_opt(tmp1, tmp2, "-indirectbr-expand")
         run_opt(tmp2, tmp1, "-lowerinvoke")

@@ -39,9 +39,9 @@ typedef struct {
     std::string functionName;
     std::string name;
     std::unordered_map<std::string, uint32_t> values;
-} Metadata;
+} AnalysisMetadata;
 
-using MetadataDict = std::unordered_map<std::string, std::vector<Metadata>>;
+using MetadataDict = std::unordered_map<std::string, std::vector<AnalysisMetadata>>;
 
 struct ExtractMD : public ModulePass {
     static char ID;
@@ -66,7 +66,7 @@ struct ExtractMD : public ModulePass {
             const auto& metadata = item.second;
 
             out << type << ":\n";
-            for (const Metadata& m : metadata) {
+            for (const AnalysisMetadata& m : metadata) {
                 out << "  " << m.name << ":\n";
                 if (!m.functionName.empty()) {
                     out << "    functionName: " << m.functionName << "\n";
@@ -100,7 +100,7 @@ struct ExtractMD : public ModulePass {
 
     void getGlobalValuesMD(MetadataDict& md, Module& M) {
         for (GlobalObject& G : M.getGlobalList()) {
-            Metadata m;
+            AnalysisMetadata m;
 
             errs() << "Global: " << G.getName() << "\n";
 
@@ -163,7 +163,7 @@ struct ExtractMD : public ModulePass {
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
                     // Get metadata from the instruction
-                    Metadata instMD;
+                    AnalysisMetadata instMD;
 
                     // For instructions, the key will be the instruction's opID
                     uint32_t opID = getMDOperandValue(I, "opID", 0);
@@ -226,7 +226,7 @@ struct ExtractMD : public ModulePass {
 
                     if (!I.getType()->isVoidTy()) {
                         // Get metadata for the value produced by the instruction
-                        Metadata valMD;
+                        AnalysisMetadata valMD;
 
                         valMD.name = I.getName().str();
                         valMD.functionName = F.hasName() ? F.getName().str() : "";

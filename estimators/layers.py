@@ -221,7 +221,7 @@ class HetSAGPooling(torch.nn.Module):
         attn = []
 
         for i, path in enumerate(self.aggr_paths):
-            path_edges = {k: edge_index[k] for k in path}
+            path_edges = {k: edge_index[k] for k in path if k in edge_index}
             path_attn = self.gnn[i](x, path_edges)
             path_attn = torch.cat([path_attn[k] for k in path_attn.keys()])
             attn.append(path_attn.flatten())
@@ -231,7 +231,7 @@ class HetSAGPooling(torch.nn.Module):
         perm = sel.node_index
         score = sel.weight
 
-        x_aggr = torch.cat([x[k] for k in x.keys()], dim=0)
-        x_aggr = x_aggr[perm] * score.view(-1, 1) * self.multiplier
+        x_out = torch.cat([x[k] for k in x.keys()], dim=0)
+        x_out = x_out[perm] * score.view(-1, 1) * self.multiplier
 
-        return x_aggr.flatten()
+        return x_out

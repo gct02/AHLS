@@ -88,7 +88,7 @@ class HGT_HLS(nn.Module):
 
         # Define Jumping Knowledge layer
         self.jkn = nn.ModuleDict({
-            nt: JumpingKnowledge('lstm', channels=hid_dim, num_layers=layers)
+            nt: JumpingKnowledge('max', channels=hid_dim, num_layers=layers)
             for nt in self.node_types
         })
 
@@ -97,7 +97,7 @@ class HGT_HLS(nn.Module):
 
         # Define fully connected layers
         hid_dim_fc = [hid_dim * pool_size]
-
+        hid_dim_fc.append(max(out_channels * 2, hid_dim_fc[-1] // 2))
         while hid_dim_fc[-1] // 2 > out_channels:
             hid_dim_fc.append(hid_dim_fc[-1] // 2)
 
@@ -161,7 +161,7 @@ class HGT_HLS(nn.Module):
         x = {k: self.jkn[k](outs[k]) for k in x.keys()}
 
         # Edge-wise aggregation
-        x_out = self.pool(x, edge_index)
+        x_out = self.pool(x, edge_index).flatten()
 
         # Fully connected layers
         x_out = self.mlp(x_out)
