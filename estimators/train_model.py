@@ -32,7 +32,7 @@ def evaluate(
     verbosity: int,
     mode: str,
     rel_error_threshold: float = 0.01,
-) -> Tuple[float, float, Optional[List[Tuple[float, float]]]]:
+) -> Tuple[float, float, float, List[Tuple[float, float]]]:
     if verbosity > 0:
         print(f"\nEvaluating on {mode} set\n")
 
@@ -472,7 +472,7 @@ def prepare_data_loaders(
     test_benches: Union[List[str], str],
     batch_size: int
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
-    # Don't normalize columns representing one-hot encoded categorical features
+    # Don't normalize columns representing one-hot encoded categorical features or boolean features
     # inst: 0: num_operands, 1: num_uses, inst_type: 2-13, mod_memory: 14, read_memory: 15, mod_cf: 16. 
     #     Filter out 2-13, 14, 15, 16
     # var: 0-4: var_type, 5: bitwidth. 
@@ -521,11 +521,6 @@ def prepare_data_loaders(
 
 
 def initialize_model() -> nn.Module:
-    hid_dim_conv = [32, 16, 16, 16, 16, 8]
-    heads = [8, 4, 4, 4, 4, 2]
-    hid_dim_fc = [64, 32, 16, 8]
-    out_channels = 1
-
     agg_paths = [
         [et for et in EDGE_TYPES if (et[0] == 'inst' and et[2] == 'inst') or et[1] == 'id'],
         [et for et in EDGE_TYPES if et[1] == 'prod' or et[1] == 'uses' or et[1] == 'used_by' or et[1] == 'prod_by' or et[1] == 'id'],
@@ -535,10 +530,9 @@ def initialize_model() -> nn.Module:
     ]
 
     return HGT_HLS(
-        METADATA, FEAT_SIZE_PER_NODE_TYPE, out_channels, hid_dim_conv, num_conv_layers=len(hid_dim_conv),
-        hid_dim_fc=hid_dim_fc, num_fc_layers=len(hid_dim_fc), num_heads=heads, fc_dropout=0.1, 
-        conv_dropout=0.0, apply_ln=True, pool_size=16, aggr_paths=agg_paths, device=DEVICE,
-        sep_pragmas=False
+        METADATA, FEAT_SIZE_PER_NODE_TYPE, 1, hid_dim=24, layers=6, heads=6, 
+        fc_dropout=0.1, conv_dropout=0.0, apply_ln=True, pool_size=16, 
+        aggr_paths=agg_paths, device=DEVICE,
     )
 
 

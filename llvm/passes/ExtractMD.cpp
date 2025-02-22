@@ -102,6 +102,8 @@ struct ExtractMD : public ModulePass {
         for (GlobalObject& G : M.getGlobalList()) {
             Metadata m;
 
+            errs() << "Global: " << G.getName() << "\n";
+
             // Check if the global variable is a parameter
             // that was extracted from a function by the
             // ´prep-gnn´ pass
@@ -122,7 +124,6 @@ struct ExtractMD : public ModulePass {
             m.values["type"] = getMDOperandValue(G, "type", 0);
 
             MDNode* isArray = G.getMetadata("isArray");
-
             if (isArray) {
                 m.values["isArray"] = 1;
 
@@ -178,17 +179,10 @@ struct ExtractMD : public ModulePass {
                     instMD.values["numUses"] = getMDOperandValue(I, "numUses", 0);
                     instMD.values["retType"] = getMDOperandValue(I, "valueType", 0);
                     instMD.values["bitwidth"] = getMDOperandValue(I, "bitwidth", 0);
-                    instMD.values["inLoop"] = getMDOperandValue(I, "inLoop", 0);
                     instMD.values["modifiesMemory"] = getMDOperandValue(I, "modifiesMemory", 0);
                     instMD.values["readsMemory"] = getMDOperandValue(I, "readsMemory", 0);
                     instMD.values["modifiesControlFlow"] = getMDOperandValue(I, "modifiesControlFlow", 0);
 
-                    if (MDNode* loopDepth = I.getMetadata("loopDepth")) {
-                        instMD.values["loopDepth"] = MDOperandToInt(loopDepth, 0);
-                    }
-                    if (MDNode* tripCount = I.getMetadata("tripCount")) {
-                        instMD.values["tripCount"] = MDOperandToInt(tripCount, 0);
-                    }
                     if (MDNode* pipelineMD = I.getMetadata("pipeline")) {
                         instMD.values["pipeline"] = 1;
                         instMD.values["pipelineID"] = MDOperandToInt(pipelineMD, 0);
@@ -214,7 +208,11 @@ struct ExtractMD : public ModulePass {
                     // Retrieve metadata about the basic block that contains the instruction
                     instMD.values["bbSize"] = getMDOperandValue(I, "bbSize", 0);
                     instMD.values["inLoop"] = getMDOperandValue(I, "inLoop", 0);
-                    
+                    // Default value is 0 for instructions outside loops
+                    instMD.values["loopDepth"] = getMDOperandValue(I, "loopDepth", 0);
+                    // Default value is 1 for instructions outside loops
+                    instMD.values["tripCount"] = getMDOperandValue(I, "tripCount", 0, 1);
+
                     // Retrieve metadata about the function that contains the instruction
                     instMD.values["funcNumOperands"] = getMDOperandValue(F, "numOperands", 0);
                     instMD.values["funcNumUses"] = getMDOperandValue(F, "numUses", 0);
@@ -233,7 +231,7 @@ struct ExtractMD : public ModulePass {
                         valMD.name = I.getName().str();
                         valMD.functionName = F.hasName() ? F.getName().str() : "";
 
-                        valMD.values["ID"] = getMDOperandValue(I, "opID", 0);
+                        valMD.values["ID"] = opID;
                         valMD.values["bitwidth"] = getMDOperandValue(I, "bitwidth", 0);
                         valMD.values["type"] = getMDOperandValue(I, "valueType", 0);
 

@@ -27,6 +27,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <utility>
 
 using namespace llvm;
 
@@ -213,13 +214,12 @@ struct UpdateMD : public ModulePass {
 
             for (BasicBlock& BB : F) {
                 uint32_t bbSize = BB.size();
-                uint32_t inLoop = 0;
-                uint32_t loopDepth = 0;
-                uint64_t tripCountValue = 1;
+                uint32_t inLoop = 0, loopDepth = 0, tripCountValue = 1;
                 if (Loop* L = LI.getLoopFor(&BB)) {
                     // The basic block is a loop
                     inLoop = 1;
-                    uint32_t loopDepth = L->getLoopDepth();
+                    loopDepth = L->getLoopDepth();
+                    DEBUG(dbgs() << "Loop depth: " << loopDepth << "\n");
                     const SCEV* tripCount = SE.getBackedgeTakenCount(L);
                     if (const SCEVConstant* tripCountConst = dyn_cast<SCEVConstant>(tripCount)) {
                         tripCountValue = tripCountConst->getValue()->getZExtValue();
@@ -235,7 +235,7 @@ struct UpdateMD : public ModulePass {
         }
     }
 
-    bool instructionModifiesMemory(Instruction& I) {
+    bool mayModifyMemory(Instruction& I) {
         if (I.mayWriteToMemory()) {
             return true;
         }
@@ -246,7 +246,7 @@ struct UpdateMD : public ModulePass {
         return false;
     }
 
-    bool instructionReadsMemory(Instruction& I) {
+    bool mayReadsMemory(Instruction& I) {
         if (I.mayReadFromMemory()) {
             return true;
         }
@@ -257,7 +257,7 @@ struct UpdateMD : public ModulePass {
         return false;
     }
 
-    bool instructionModifiesControlFlow(Instruction& I) {
+    bool mayModifyCF(Instruction& I) {
         return I.isTerminator() || I.getOpcode() == Instruction::Call;
     }
 
@@ -267,37 +267,22 @@ struct UpdateMD : public ModulePass {
         setMetadata(I, "opcode", I.getOpcode());
         setMetadata(I, "bitwidth", I.getType()->getPrimitiveSizeInBits());
         setMetadata(I, "valueType", (uint32_t)I.getType()->getTypeID());
-        setMetadata(I, "loopDepth", loopDepth);
-        setMetadata(I, "tripCount", (uint32_t)tripCount);
         setMetadata(I, "numUses", I.getNumUses());
         setMetadata(I, "numOperands", I.getNumOperands());
-        setMetadata(I, "inLoop", inLoop);
+
+        setMetadata(I, "modifiesMemory", mayModifyMemory(I) ? 1 : 0);
+        setMetadata(I, "readsMemory", mayReadsMemory(I) ? 1 : 0);
+        setMetadata(I, "modifiesControlFlow", mayModifyCF(I) ? 1 : 0);
 
         uint32_t opID = getMDOperandValue(I, "opID", 0);
         setMetadata(I, "ID." + std::to_string(opID), opID);
-
-        if (instructionModifiesMemory(I)) {
-            setMetadata(I, "modifiesMemory", 1);
-        } else {
-            setMetadata(I, "modifiesMemory", 0);
-        }
-
-        if (instructionReadsMemory(I)) {
-            setMetadata(I, "readsMemory", 1);
-        } else {
-            setMetadata(I, "readsMemory", 0);
-        }
-
-        if (instructionModifiesControlFlow(I)) {
-            setMetadata(I, "modifiesControlFlow", 1);
-        } else {
-            setMetadata(I, "modifiesControlFlow", 0);
-        }
 
         // Set metadata about the basic block that the instruction belongs to
         // to facilitate recovering this information from the ProGraML graph
         setMetadata(I, "bbSize", bbSize);
         setMetadata(I, "inLoop", inLoop);
+        setMetadata(I, "loopDepth", loopDepth);
+        setMetadata(I, "tripCount", tripCount);
     }
 
 	virtual void getAnalysisUsage(AnalysisUsage& AU) const override {
@@ -312,5 +297,7 @@ struct UpdateMD : public ModulePass {
 
 char UpdateMD::ID = 0;
 static RegisterPass<UpdateMD> X(
-    "update-md", "Update metadata for instructions and global objects", false, false
+    "update-md", 
+    "Update metadata for instructions and global objects", 
+    false, false
 );

@@ -21,20 +21,17 @@ class HLSDataset(Dataset):
         self.normalize = normalize
         self.benchmarks = benchmarks
         self.feature_stats = None
-        self.filter_rows = filter_cols
+        self.filter_cols = filter_cols
 
         self._load_data_paths()
 
         if self.normalize:
             if feature_stats is None:
-                self.compute_feature_stats(filter_cols)
+                self.compute_feature_stats()
             else:
                 self.feature_stats = feature_stats.copy()
 
-    def compute_feature_stats(
-        self,
-        filter_cols: Optional[Dict[str, List[int]]] = None
-    ):
+    def compute_feature_stats(self):
         """Compute mean and standard deviation of features for normalization."""
         
         feature_sums = defaultdict(lambda: torch.zeros(0))
@@ -42,7 +39,7 @@ class HLSDataset(Dataset):
         counts = defaultdict(lambda: 0)
         node_types = set()
 
-        for i, (cdfg_path, _) in enumerate(self.data_paths):
+        for cdfg_path, _ in self.data_paths:
             cdfg = torch.load(cdfg_path)
             for nt, features in cdfg.x_dict.items():
                 node_types.add(nt)
@@ -80,8 +77,8 @@ class HLSDataset(Dataset):
                 (feature_squares[nt] / counts[nt]) - mean**2
             ).clamp_min(1e-8)
 
-            if filter_cols is not None and nt in filter_cols:
-                for col in filter_cols[nt]:
+            if self.filter_cols is not None and nt in self.filter_cols:
+                for col in self.filter_cols[nt]:
                     mean[col] = 0
                     std[col] = 1
             
@@ -116,8 +113,8 @@ class HLSDataset(Dataset):
                     continue
                     
                 stats = self.feature_stats[nt]
-                cdfg.x_dict[nt] = ((cdfg.x_dict[nt] - stats['mean'].unsqueeze(0)) 
-                                   / stats['std'].unsqueeze(0))
+                cdfg[nt].x = ((cdfg.x_dict[nt] - stats['mean'].unsqueeze(0)) 
+                              / stats['std'].unsqueeze(0))
                 
         if not cdfg.is_sorted():
             cdfg = cdfg.sort()

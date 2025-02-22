@@ -27,7 +27,7 @@ def run_opt(
             opt_args += " -S"
         subprocess.check_output(
             f"{OPT} -load {DSE_LIB} {opt_args} < {ir_src_path.as_posix()} > {ir_dst_path.as_posix()};", 
-            shell=True
+            shell=True, stderr=subprocess.STDOUT
         )
     except subprocess.CalledProcessError as e:
         print(f"Error processing {ir_src_path}: {e}")
@@ -91,7 +91,7 @@ def process_ir(
         run_opt(tmp1, tmp2, "-lowerswitch")
         run_opt(tmp2, tmp1, "-prep-gnn")
         run_opt(tmp1, tmp2, "-update-md")
-        run_opt(tmp2, tmp1, "-set-hls-md -dir {}".format(directives_path.as_posix()))
+        run_opt(tmp2, tmp1, f"-set-hls-md -dir {directives_path.as_posix()}")
         run_opt(tmp1, tmp2, "-rename-vals")
         
         subprocess.check_output(
