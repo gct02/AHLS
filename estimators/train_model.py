@@ -340,11 +340,6 @@ def plot_benchmark_analysis(
     bench_name = bench_name.upper()
     metric = metric.upper()
 
-    if metric == 'LUT' or metric == 'FF':
-        rel_error_threshold = 1.0
-    else:
-        rel_error_threshold = 0.01
-
     best_epoch = np.argmin([np.mean(err) for err in test_rel_err_per_epoch])
 
     indices = list(range(len(test_preds_per_epoch)))
@@ -423,9 +418,9 @@ def save_training_artifacts(
             'final_pred': inst[-1][0],
             'best_pred': inst[best_epoch][0],
             'abs_error_final': abs(inst[-1][0] - inst[0][1]),
-            'rel_error_final': abs(inst[-1][0] - inst[0][1]) / (inst[0][1] + 1e-6),
+            'rel_error_final': rpd(inst[-1][0], inst[0][1]),
             'abs_error_best': abs(inst[best_epoch][0] - inst[0][1]),
-            'rel_error_best': abs(inst[best_epoch][0] - inst[0][1]) / (inst[0][1] + 1e-6)
+            'rel_error_best': rpd(inst[best_epoch][0], inst[0][1])
         }
         for i, inst in enumerate(test_preds_per_epoch)
     ])
@@ -519,7 +514,7 @@ def prepare_data_loaders(
 def initialize_model() -> nn.Module:
     return HGT(
         METADATA, FEAT_SIZE_PER_NODE_TYPE, 1, hid_dim=24, layers=6, heads=6,
-        dropout=0.1, apply_ln=False, pool_size=16, device=DEVICE,
+        dropout=0.1, pool_size=16, device=DEVICE,
     )
 
 
