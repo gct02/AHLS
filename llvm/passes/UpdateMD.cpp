@@ -216,7 +216,7 @@ struct UpdateMD : public ModulePass {
                 uint32_t bbSize = BB.size();
                 uint32_t inLoop = 0, loopDepth = 0, tripCountValue = 1;
                 if (Loop* L = LI.getLoopFor(&BB)) {
-                    // The basic block is a loop
+                    // The basic block is in a loop
                     inLoop = 1;
                     loopDepth = L->getLoopDepth();
                     DEBUG(dbgs() << "Loop depth: " << loopDepth << "\n");

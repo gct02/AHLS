@@ -16,6 +16,7 @@ void gradient_xy_calc(pixel_t frame[MAX_HEIGHT][MAX_WIDTH],
       y_grad = 0;
       if (r >= 4 && r < MAX_HEIGHT && c >= 4 && c < MAX_WIDTH)
       {
+        GradXY_Inner:
         for (int i = 0; i < 5; i++)
         {
           x_grad += frame[r-2][c-i] * GRAD_WEIGHTS[4-i];
@@ -76,6 +77,7 @@ void gradient_weight_y(pixel_t gradient_x[MAX_HEIGHT][MAX_WIDTH],
       acc.z = 0;
       if (r >= 6 && r < MAX_HEIGHT)
       { 
+        GradWeightY_Inner:
         for (int i = 0; i < 7; i ++)
         {
           acc.x += gradient_x[r-i][c] * GRAD_FILTER[i];
@@ -108,6 +110,7 @@ void gradient_weight_x(gradient_t y_filt[MAX_HEIGHT][MAX_WIDTH],
       acc.z = 0;
       if (c >= 6 && c < MAX_WIDTH)
       {
+        GradWeightX_Inner:
         for (int i = 0; i < 7; i ++)
         {
           acc.x += y_filt[r][c-i].x * GRAD_FILTER[i];
@@ -158,6 +161,8 @@ void tensor_weight_y(outer_t outer[MAX_HEIGHT][MAX_WIDTH],
     for(int c = 0; c < MAX_WIDTH; c ++)
     {
       tensor_t acc;
+
+      TensorWeightY_Acc:
       for (int k = 0; k < 6; k ++)
       {
         acc.val[k] = 0;
@@ -165,8 +170,10 @@ void tensor_weight_y(outer_t outer[MAX_HEIGHT][MAX_WIDTH],
 
       if (r >= 2 && r < MAX_HEIGHT) 
       {
+        TensorWeightY_I:
         for (int i = 0; i < 3; i ++)
         {
+          TensorWeightY_Component:
           for(int component = 0; component < 6; component ++)
           {
             acc.val[component] += outer[r-i][c].val[component] * TENSOR_FILTER[i];
@@ -192,14 +199,18 @@ void tensor_weight_x(tensor_t tensor_y[MAX_HEIGHT][MAX_WIDTH],
     for (int c = 0; c < MAX_WIDTH + 1; c ++)
     {
       tensor_t acc;
+
+      TensorWeightX_Acc:
       for(int k = 0; k < 6; k++)
       {
         acc.val[k] = 0;
       }
       if (c >= 2 && c < MAX_WIDTH) 
       {
+        TensorWeightX_I:
         for (int i = 0; i < 3; i ++)
         {
+          TensorWeightX_Component:
           for (int component = 0; component < 6; component ++)
           {
             acc.val[component] += tensor_y[r][c-i].val[component] * TENSOR_FILTER[i];

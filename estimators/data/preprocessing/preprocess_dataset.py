@@ -200,8 +200,7 @@ def main(args: Dict[str, str]):
                 f.write(f"lut={lut}\nff={ff}\ndsp={dsp}\nbram={bram}\nclb={clb}\nlatch={latch}\ncp={achieved_clk}\ncc={cc}")
 
             build_cdfg(
-                ir_mod, output_md_path, output_cfg_path, 
-                output_instance_folder
+                ir_mod, output_md_path, output_cfg_path, output_instance_folder
             )
 
 def parse_args():
@@ -223,7 +222,7 @@ if __name__ == "__main__":
         sys.path.insert(0, str(DIR.parent.parent))
         __package__ = DIR.name
 
-    from cdfg import build_cdfg, print_cdfg
+    from cdfg import build_cdfg
     from utils.parsers import extract_utilization, extract_timing_summary, extract_hls_cc_report
 
     args = parse_args()

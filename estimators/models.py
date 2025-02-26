@@ -131,20 +131,17 @@ class HGT(nn.Module):
             x = self.conv[i](x, edge_index)
             outs.append(torch.cat([v for v in x.values()], dim=0))
 
-        hom = self._to_homogeneous(x, edge_index)
-        x_hom, edge_index_hom = hom.x, hom.edge_index
-
         # Jumping Knowledge layer
-        x_hom = self.jkn(outs)
+        out = self.jkn(outs)
 
         # Pooling layer
-        aggr = self.pool(x_hom, edge_index_hom)[0].flatten()
+        hom = self._to_homogeneous(x, edge_index)
+        out = self.pool(out, hom.edge_index)[0].flatten()
 
         # Fully connected layers
-        aggr = self.mlp(aggr)
+        out = self.mlp(out)
 
         # Avoid NaNs (edge case handling)
-        aggr = torch.nan_to_num(aggr)
-        
-        return aggr
+        out = torch.nan_to_num(out)
+        return out
 

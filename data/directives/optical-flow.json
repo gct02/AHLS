@@ -116,6 +116,944 @@
             "function": "gradient_weight_x",
             "label": "GradWeightX_C",
             "directive_type": "unroll"
-        }
+        },
+        "unroll OuterProd_R": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"outer_product/OuterProd_R\"",
+                "set_directive_unroll -factor 4 \"outer_product/OuterProd_R\"",
+                "set_directive_unroll -factor 109 \"outer_product/OuterProd_R\"",
+                "set_directive_unroll -factor 218 \"outer_product/OuterProd_R\"",
+                "set_directive_unroll \"outer_product/OuterProd_R\""
+            ],
+            "function": "outer_product",
+            "label": "OuterProd_R",
+            "directive_type": "unroll"
+        },
+        "unroll OuterProd_C": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"outer_product/OuterProd_C\"",
+                "set_directive_unroll -factor 4 \"outer_product/OuterProd_C\"",
+                "set_directive_unroll -factor 8 \"outer_product/OuterProd_C\"",
+                "set_directive_unroll -factor 16 \"outer_product/OuterProd_C\"",
+                "set_directive_unroll -factor 32 \"outer_product/OuterProd_C\"",
+                "set_directive_unroll -factor 64 \"outer_product/OuterProd_C\"",
+                "set_directive_unroll -factor 128 \"outer_product/OuterProd_C\"",
+                "set_directive_unroll -factor 256 \"outer_product/OuterProd_C\"",
+                "set_directive_unroll -factor 512 \"outer_product/OuterProd_C\"",
+                "set_directive_unroll \"outer_product/OuterProd_C\""
+            ],
+            "function": "outer_product",
+            "label": "OuterProd_C",
+            "directive_type": "unroll"
+        },
+        "unroll TensorWeightY_R": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"tensor_weight_y/TensorWeightY_R\"",
+                "set_directive_unroll -factor 5 \"tensor_weight_y/TensorWeightY_R\"",
+                "set_directive_unroll -factor 19 \"tensor_weight_y/TensorWeightY_R\"",
+                "set_directive_unroll -factor 23 \"tensor_weight_y/TensorWeightY_R\"",
+                "set_directive_unroll \"tensor_weight_y/TensorWeightY_R\""
+            ],
+            "function": "tensor_weight_y",
+            "label": "TensorWeightY_R",
+            "directive_type": "unroll"
+        },
+        "unroll TensorWeightY_C": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"tensor_weight_y/TensorWeightY_C\"",
+                "set_directive_unroll -factor 4 \"tensor_weight_y/TensorWeightY_C\"",
+                "set_directive_unroll -factor 8 \"tensor_weight_y/TensorWeightY_C\"",
+                "set_directive_unroll -factor 16 \"tensor_weight_y/TensorWeightY_C\"",
+                "set_directive_unroll -factor 32 \"tensor_weight_y/TensorWeightY_C\"",
+                "set_directive_unroll -factor 64 \"tensor_weight_y/TensorWeightY_C\"",
+                "set_directive_unroll -factor 128 \"tensor_weight_y/TensorWeightY_C\"",
+                "set_directive_unroll -factor 256 \"tensor_weight_y/TensorWeightY_C\"",
+                "set_directive_unroll -factor 512 \"tensor_weight_y/TensorWeightY_C\"",
+                "set_directive_unroll \"tensor_weight_y/TensorWeightY_C\""
+            ],
+            "function": "tensor_weight_y",
+            "label": "TensorWeightY_C",
+            "directive_type": "unroll"
+        },
+        "unroll TensorWeightX_R": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"tensor_weight_x/TensorWeightX_R\"",
+                "set_directive_unroll -factor 4 \"tensor_weight_x/TensorWeightX_R\"",
+                "set_directive_unroll -factor 109 \"tensor_weight_x/TensorWeightX_R\"",
+                "set_directive_unroll -factor 218 \"tensor_weight_x/TensorWeightX_R\"",
+                "set_directive_unroll \"tensor_weight_x/TensorWeightX_R\""
+            ],
+            "function": "tensor_weight_x",
+            "label": "TensorWeightX_R",
+            "directive_type": "unroll"
+        },
+        "unroll TensorWeightX_C": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 5 \"tensor_weight_x/TensorWeightX_C\"",
+                "set_directive_unroll -factor 25 \"tensor_weight_x/TensorWeightX_C\"",
+                "set_directive_unroll -factor 41 \"tensor_weight_x/TensorWeightX_C\"",
+                "set_directive_unroll -factor 205 \"tensor_weight_x/TensorWeightX_C\"",
+                "set_directive_unroll \"tensor_weight_x/TensorWeightX_C\""
+            ],
+            "function": "tensor_weight_x",
+            "label": "TensorWeightX_C",
+            "directive_type": "unroll"
+        },
+        "unroll FlowCalc_R": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"flow_calc/FlowCalc_R\"",
+                "set_directive_unroll -factor 4 \"flow_calc/FlowCalc_R\"",
+                "set_directive_unroll -factor 109 \"flow_calc/FlowCalc_R\"",
+                "set_directive_unroll -factor 218 \"flow_calc/FlowCalc_R\"",
+                "set_directive_unroll \"flow_calc/FlowCalc_R\""
+            ],
+            "function": "flow_calc",
+            "label": "FlowCalc_R",
+            "directive_type": "unroll"
+        },
+        "unroll FlowCalc_C": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"flow_calc/FlowCalc_C\"",
+                "set_directive_unroll -factor 4 \"flow_calc/FlowCalc_C\"",
+                "set_directive_unroll -factor 8 \"flow_calc/FlowCalc_C\"",
+                "set_directive_unroll -factor 16 \"flow_calc/FlowCalc_C\"",
+                "set_directive_unroll -factor 32 \"flow_calc/FlowCalc_C\"",
+                "set_directive_unroll -factor 64 \"flow_calc/FlowCalc_C\"",
+                "set_directive_unroll -factor 128 \"flow_calc/FlowCalc_C\"",
+                "set_directive_unroll -factor 256 \"flow_calc/FlowCalc_C\"",
+                "set_directive_unroll -factor 512 \"flow_calc/FlowCalc_C\"",
+                "set_directive_unroll \"flow_calc/FlowCalc_C\""
+            ],
+            "function": "flow_calc",
+            "label": "FlowCalc_C",
+            "directive_type": "unroll"
+        },
+        "pipeline GradXY_R": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"gradient_xy_calc/GradXY_R\"",
+                "set_directive_pipeline \"gradient_xy_calc/GradXY_R\""
+            ],
+            "function": "gradient_xy_calc",
+            "label": "GradXY_R",
+            "directive_type": "pipeline"
+        },
+        "pipeline GradXY_C": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_pipeline \"gradient_xy_calc/GradXY_C\""
+            ],
+            "function": "gradient_xy_calc",
+            "label": "GradXY_C",
+            "directive_type": "pipeline"
+        },
+        "pipeline GradZ_R": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"gradient_z_calc/GradZ_R\"",
+                "set_directive_pipeline \"gradient_z_calc/GradZ_R\""
+            ],
+            "function": "gradient_z_calc",
+            "label": "GradZ_R",
+            "directive_type": "pipeline"
+        },
+        "pipeline GradZ_C": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"gradient_z_calc/GradZ_C\"",
+                "set_directive_pipeline \"gradient_z_calc/GradZ_C\""
+            ],
+            "function": "gradient_z_calc",
+            "label": "GradZ_C",
+            "directive_type": "pipeline"
+        },
+        "pipeline GradWeightY_R": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"gradient_weight_y/GradWeightY_R\"",
+                "set_directive_pipeline \"gradient_weight_y/GradWeightY_R\""
+            ],
+            "function": "gradient_weight_y",
+            "label": "GradWeightY_R",
+            "directive_type": "pipeline"
+        },
+        "pipeline GradWeightY_C": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"gradient_weight_y/GradWeightY_C\"",
+                "set_directive_pipeline \"gradient_weight_y/GradWeightY_C\""
+            ],
+            "function": "gradient_weight_y",
+            "label": "GradWeightY_C",
+            "directive_type": "pipeline"
+        },
+        "pipeline GradWeightX_R": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"gradient_weight_x/GradWeightX_R\"",
+                "set_directive_pipeline \"gradient_weight_x/GradWeightX_R\""
+            ],
+            "function": "gradient_weight_x",
+            "label": "GradWeightX_R",
+            "directive_type": "pipeline"
+        },
+        "pipeline GradWeightX_C": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"gradient_weight_x/GradWeightX_C\"",
+                "set_directive_pipeline \"gradient_weight_x/GradWeightX_C\""
+            ],
+            "function": "gradient_weight_x",
+            "label": "GradWeightX_C",
+            "directive_type": "pipeline"
+        },
+        "pipeline OuterProd_R": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"outer_product/OuterProd_R\"",
+                "set_directive_pipeline \"outer_product/OuterProd_R\""
+            ],
+            "function": "outer_product",
+            "label": "OuterProd_R",
+            "directive_type": "pipeline"
+        },
+        "pipeline OuterProd_C": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"outer_product/OuterProd_C\"",
+                "set_directive_pipeline \"outer_product/OuterProd_C\""
+            ],
+            "function": "outer_product",
+            "label": "OuterProd_C",
+            "directive_type": "pipeline"
+        },
+        "pipeline TensorWeightY_R": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"tensor_weight_y/TensorWeightY_R\"",
+                "set_directive_pipeline \"tensor_weight_y/TensorWeightY_R\""
+            ],
+            "function": "tensor_weight_y",
+            "label": "TensorWeightY_R",
+            "directive_type": "pipeline"
+        },
+        "pipeline TensorWeightY_C": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"tensor_weight_y/TensorWeightY_C\"",
+                "set_directive_pipeline \"tensor_weight_y/TensorWeightY_C\""
+            ],
+            "function": "tensor_weight_y",
+            "label": "TensorWeightY_C",
+            "directive_type": "pipeline"
+        },
+        "pipeline TensorWeightX_R": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"tensor_weight_x/TensorWeightX_R\"",
+                "set_directive_pipeline \"tensor_weight_x/TensorWeightX_R\""
+            ],
+            "function": "tensor_weight_x",
+            "label": "TensorWeightX_R",
+            "directive_type": "pipeline"
+        },
+        "pipeline TensorWeightX_C": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"tensor_weight_x/TensorWeightX_C\"",
+                "set_directive_pipeline \"tensor_weight_x/TensorWeightX_C\""
+            ],
+            "function": "tensor_weight_x",
+            "label": "TensorWeightX_C",
+            "directive_type": "pipeline"
+        },
+        "pipeline FlowCalc_R": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"flow_calc/FlowCalc_R\"",
+                "set_directive_pipeline \"flow_calc/FlowCalc_R\""
+            ],
+            "function": "flow_calc",
+            "label": "FlowCalc_R",
+            "directive_type": "pipeline"
+        },
+        "pipeline FlowCalc_C": {
+            "possible_directives": [
+                "set_directive_pipeline -off \"flow_calc/FlowCalc_C\"",
+                "set_directive_pipeline \"flow_calc/FlowCalc_C\""
+            ],
+            "function": "flow_calc",
+            "label": "FlowCalc_C",
+            "directive_type": "pipeline"
+        },
+        "array_partition optical_flow frame0": {
+            "possible_directives": [
+                "",
+                "set_directive_array_partition -type block -factor 2 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 4 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 8 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 16 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 32 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 64 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 128 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 256 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 512 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type complete -dim 0 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 2 -dim 1 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 4 -dim 1 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 109 -dim 1 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 218 -dim 1 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 109 -dim 1 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 218 -dim 1 \"optical_flow\" frame0",
+                "set_directive_array_partition -type complete -dim 1 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 2 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 4 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 8 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 16 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 32 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 64 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 128 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 256 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type block -factor 512 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 2 \"optical_flow\" frame0",
+                "set_directive_array_partition -type complete -dim 2 \"optical_flow\" frame0"
+            ],
+            "function": "optical_flow",
+            "label": "",
+            "variable": "frame0",
+            "directive_type": "pipeline"
+        },
+        "array_partition optical_flow frame1": {
+            "possible_directives": [
+                "",
+                "set_directive_array_partition -type block -factor 2 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 4 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 8 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 16 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 32 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 64 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 128 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 256 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 512 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type complete -dim 0 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 2 -dim 1 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 4 -dim 1 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 109 -dim 1 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 218 -dim 1 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 109 -dim 1 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 218 -dim 1 \"optical_flow\" frame1",
+                "set_directive_array_partition -type complete -dim 1 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 2 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 4 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 8 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 16 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 32 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 64 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 128 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 256 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type block -factor 512 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 2 \"optical_flow\" frame1",
+                "set_directive_array_partition -type complete -dim 2 \"optical_flow\" frame1"
+            ],
+            "function": "optical_flow",
+            "label": "",
+            "variable": "frame1",
+            "directive_type": "pipeline"
+        },
+        "array_partition optical_flow frame2": {
+            "possible_directives": [
+                "",
+                "set_directive_array_partition -type block -factor 2 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 4 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 8 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 16 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 32 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 64 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 128 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 256 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 512 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type complete -dim 0 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 2 -dim 1 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 4 -dim 1 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 109 -dim 1 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 218 -dim 1 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 109 -dim 1 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 218 -dim 1 \"optical_flow\" frame2",
+                "set_directive_array_partition -type complete -dim 1 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 2 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 4 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 8 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 16 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 32 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 64 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 128 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 256 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type block -factor 512 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 2 \"optical_flow\" frame2",
+                "set_directive_array_partition -type complete -dim 2 \"optical_flow\" frame2"
+            ],
+            "function": "optical_flow",
+            "label": "",
+            "variable": "frame2",
+            "directive_type": "pipeline"
+        },
+        "array_partition optical_flow frame3": {
+            "possible_directives": [
+                "",
+                "set_directive_array_partition -type block -factor 2 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 4 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 8 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 16 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 32 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 64 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 128 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 256 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 512 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type complete -dim 0 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 2 -dim 1 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 4 -dim 1 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 109 -dim 1 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 218 -dim 1 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 109 -dim 1 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 218 -dim 1 \"optical_flow\" frame3",
+                "set_directive_array_partition -type complete -dim 1 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 2 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 4 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 8 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 16 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 32 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 64 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 128 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 256 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type block -factor 512 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 2 \"optical_flow\" frame3",
+                "set_directive_array_partition -type complete -dim 2 \"optical_flow\" frame3"
+            ],
+            "function": "optical_flow",
+            "label": "",
+            "variable": "frame3",
+            "directive_type": "pipeline"
+        },
+        "array_partition optical_flow frame4": {
+            "possible_directives": [
+                "",
+                "set_directive_array_partition -type block -factor 2 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 4 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 8 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 16 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 32 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 64 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 128 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 256 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 512 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type complete -dim 0 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 2 -dim 1 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 4 -dim 1 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 109 -dim 1 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 218 -dim 1 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 109 -dim 1 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 218 -dim 1 \"optical_flow\" frame4",
+                "set_directive_array_partition -type complete -dim 1 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 2 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 4 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 8 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 16 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 32 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 64 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 128 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 256 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type block -factor 512 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 2 \"optical_flow\" frame4",
+                "set_directive_array_partition -type complete -dim 2 \"optical_flow\" frame4"
+            ],
+            "function": "optical_flow",
+            "label": "",
+            "variable": "frame4",
+            "directive_type": "pipeline"
+        },
+        "array_partition optical_flow gradient_x": {
+            "possible_directives": [
+                "",
+                "set_directive_array_partition -type block -factor 2 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 4 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 8 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 16 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 32 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 64 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 128 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 256 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 512 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type complete -dim 0 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 2 -dim 1 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 4 -dim 1 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 109 -dim 1 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 218 -dim 1 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 109 -dim 1 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 218 -dim 1 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type complete -dim 1 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 2 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 4 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 8 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 16 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 32 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 64 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 128 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 256 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type block -factor 512 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 2 \"optical_flow\" gradient_x",
+                "set_directive_array_partition -type complete -dim 2 \"optical_flow\" gradient_x"
+            ],
+            "function": "optical_flow",
+            "label": "",
+            "variable": "gradient_x",
+            "directive_type": "pipeline"
+        },
+        "array_partition optical_flow gradient_y": {
+            "possible_directives": [
+                "",
+                "set_directive_array_partition -type block -factor 2 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 4 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 8 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 16 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 32 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 64 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 128 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 256 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 512 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type complete -dim 0 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 2 -dim 1 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 4 -dim 1 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 109 -dim 1 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 218 -dim 1 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 109 -dim 1 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 218 -dim 1 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type complete -dim 1 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 2 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 4 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 8 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 16 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 32 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 64 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 128 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 256 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type block -factor 512 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 2 \"optical_flow\" gradient_y",
+                "set_directive_array_partition -type complete -dim 2 \"optical_flow\" gradient_y"
+            ],
+            "function": "optical_flow",
+            "label": "",
+            "variable": "gradient_y",
+            "directive_type": "pipeline"
+        },
+        "array_partition optical_flow gradient_z": {
+            "possible_directives": [
+                "",
+                "set_directive_array_partition -type block -factor 2 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 4 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 8 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 16 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 32 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 64 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 128 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 256 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 512 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type complete -dim 0 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 2 -dim 1 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 4 -dim 1 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 109 -dim 1 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 218 -dim 1 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 109 -dim 1 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 218 -dim 1 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type complete -dim 1 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 2 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 4 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 8 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 16 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 32 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 64 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 128 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 256 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type block -factor 512 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 2 \"optical_flow\" gradient_z",
+                "set_directive_array_partition -type complete -dim 2 \"optical_flow\" gradient_z"
+            ],
+            "function": "optical_flow",
+            "label": "",
+            "variable": "gradient_z",
+            "directive_type": "pipeline"
+        },
+        "array_partition optical_flow outputs": {
+            "possible_directives": [
+                "",
+                "set_directive_array_partition -type block -factor 2 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 4 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 8 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 16 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 32 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 64 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 128 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 256 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 512 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type complete -dim 0 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 2 -dim 1 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 4 -dim 1 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 109 -dim 1 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 218 -dim 1 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 109 -dim 1 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 218 -dim 1 \"optical_flow\" outputs",
+                "set_directive_array_partition -type complete -dim 1 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 2 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 4 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 8 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 16 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 32 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 64 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 128 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 256 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type block -factor 512 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 2 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 4 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 8 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 16 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 32 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 64 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 128 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 256 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type cyclic -factor 512 -dim 2 \"optical_flow\" outputs",
+                "set_directive_array_partition -type complete -dim 2 \"optical_flow\" outputs"
+            ],
+            "function": "optical_flow",
+            "label": "",
+            "variable": "outputs",
+            "directive_type": "pipeline"
+        },
+        "loop_merge GradXY_R": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"gradient_xy_calc/GradXY_R\""
+            ],
+            "function": "gradient_xy_calc",
+            "label": "GradXY_R",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge GradZ_R": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"gradient_z_calc/GradZ_R\""
+            ],
+            "function": "gradient_z_calc",
+            "label": "GradZ_R",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge GradWeightY_R": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"gradient_weight_y/GradWeightY_R\""
+            ],
+            "function": "gradient_weight_y",
+            "label": "GradWeightY_R",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge GradWeightX_R": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"gradient_weight_x/GradWeightX_R\""
+            ],
+            "function": "gradient_weight_x",
+            "label": "GradWeightX_R",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge OuterProd_R": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"outer_product/OuterProd_R\""
+            ],
+            "function": "outer_product",
+            "label": "OuterProd_R",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge TensorWeightY_R": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"tensor_weight_y/TensorWeightY_R\""
+            ],
+            "function": "tensor_weight_y",
+            "label": "TensorWeightY_R",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge TensorWeightX_R": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"tensor_weight_x/TensorWeightX_R\""
+            ],
+            "function": "tensor_weight_x",
+            "label": "TensorWeightX_R",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge FlowCalc_R": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"flow_calc/FlowCalc_R\""
+            ],
+            "function": "flow_calc",
+            "label": "FlowCalc_R",
+            "directive_type": "loop_merge"
+        },
+        "loop_flatten GradXY_C": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_flatten \"gradient_xy_calc/GradXY_C\""
+            ],
+            "function": "gradient_xy_calc",
+            "label": "GradXY_C",
+            "directive_type": "loop_flatten"
+        },
+        "loop_flatten GradZ_C": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_flatten \"gradient_z_calc/GradZ_C\""
+            ],
+            "function": "gradient_z_calc",
+            "label": "GradZ_C",
+            "directive_type": "loop_flatten"
+        },
+        "loop_flatten GradWeightY_C": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_flatten \"gradient_weight_y/GradWeightY_C\""
+            ],
+            "function": "gradient_weight_y",
+            "label": "GradWeightY_C",
+            "directive_type": "loop_flatten"
+        },
+        "loop_flatten GradWeightX_C": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_flatten \"gradient_weight_x/GradWeightX_C\""
+            ],
+            "function": "gradient_weight_x",
+            "label": "GradWeightX_C",
+            "directive_type": "loop_flatten"
+        },
+        "loop_flatten GradXY_Inner": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_flatten \"gradient_xy_calc/GradXY_Inner\""
+            ],
+            "function": "gradient_xy_calc",
+            "label": "GradXY_Inner",
+            "directive_type": "loop_flatten"
+        },
+        "loop_flatten GradWeightY_Inner": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_flatten \"gradient_weight_y/GradWeightY_Inner\""
+            ],
+            "function": "gradient_weight_y",
+            "label": "GradWeightY_Inner",
+            "directive_type": "loop_flatten"
+        },
+        "loop_flatten GradWeightX_Inner": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_flatten \"gradient_weight_x/GradWeightX_Inner\""
+            ],
+            "function": "gradient_weight_x",
+            "label": "GradWeightX_Inner",
+            "directive_type": "loop_flatten"
+        },
+        "loop_flatten OuterProd_C": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_flatten \"outer_product/OuterProd_C\""
+            ],
+            "function": "outer_product",
+            "label": "OuterProd_C",
+            "directive_type": "loop_flatten"
+        },
+        "loop_flatten TensorWeightY_C": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_flatten \"tensor_weight_y/TensorWeightY_C\""
+            ],
+            "function": "tensor_weight_y",
+            "label": "TensorWeightY_C",
+            "directive_type": "loop_flatten"
+        },
+        "loop_flatten TensorWeightX_C": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_flatten \"tensor_weight_x/TensorWeightX_C\""
+            ],
+            "function": "tensor_weight_x",
+            "label": "TensorWeightX_C",
+            "directive_type": "loop_flatten"
+        },
+        "loop_flatten FlowCalc_C": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_flatten \"flow_calc/FlowCalc_C\""
+            ],
+            "function": "flow_calc",
+            "label": "FlowCalc_C",
+            "directive_type": "loop_flatten"
+        }   
     }
 }

@@ -371,6 +371,10 @@ def _build_nodes(
 
     for i, node in enumerate(programl_graph.node):
         node_type, node_text = node.type, node.text
+
+        if len(node_text) == 0 or node_text == "[external]":
+            continue
+
         node_full_text = (node.features.feature["full_text"]
                           .bytes_list.value.__str__()[1:-1])
         if node_full_text[0] == 'b':
