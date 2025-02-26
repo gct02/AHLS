@@ -1,0 +1,121 @@
+{
+    "directives": {
+        "unroll GradXY_R": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"gradient_xy_calc/GradXY_R\"",
+                "set_directive_unroll -factor 3 \"gradient_xy_calc/GradXY_R\"",
+                "set_directive_unroll -factor 6 \"gradient_xy_calc/GradXY_R\"",
+                "set_directive_unroll -factor 73 \"gradient_xy_calc/GradXY_R\"",
+                "set_directive_unroll -factor 146 \"gradient_xy_calc/GradXY_R\"",
+                "set_directive_unroll -factor 219 \"gradient_xy_calc/GradXY_R\"",
+                "set_directive_unroll \"gradient_xy_calc/GradXY_R\""
+            ],
+            "function": "gradient_xy_calc",
+            "label": "GradXY_R",
+            "directive_type": "unroll"
+        },
+        "unroll GradXY_C": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_unroll -factor 3 \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_unroll -factor 6 \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_unroll -factor 171 \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_unroll -factor 342 \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_unroll -factor 513 \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_unroll \"gradient_xy_calc/GradXY_C\""
+            ],
+            "function": "gradient_xy_calc",
+            "label": "GradXY_C",
+            "directive_type": "unroll"
+        },
+        "unroll GradZ_R": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"gradient_z_calc/GradZ_R\"",
+                "set_directive_unroll -factor 4 \"gradient_z_calc/GradZ_R\"",
+                "set_directive_unroll -factor 109 \"gradient_z_calc/GradZ_R\"",
+                "set_directive_unroll -factor 218 \"gradient_z_calc/GradZ_R\"",
+                "set_directive_unroll \"gradient_z_calc/GradZ_R\""
+            ],
+            "function": "gradient_z_calc",
+            "label": "GradZ_R",
+            "directive_type": "unroll"
+        },
+        "unroll GradZ_C": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"gradient_z_calc/GradZ_C\"",
+                "set_directive_unroll -factor 4 \"gradient_z_calc/GradZ_C\"",
+                "set_directive_unroll -factor 8 \"gradient_z_calc/GradZ_C\"",
+                "set_directive_unroll -factor 16 \"gradient_z_calc/GradZ_C\"",
+                "set_directive_unroll -factor 32 \"gradient_z_calc/GradZ_C\"",
+                "set_directive_unroll -factor 64 \"gradient_z_calc/GradZ_C\"",
+                "set_directive_unroll -factor 128 \"gradient_z_calc/GradZ_C\"",
+                "set_directive_unroll -factor 256 \"gradient_z_calc/GradZ_C\"",
+                "set_directive_unroll -factor 512 \"gradient_z_calc/GradZ_C\"",
+                "set_directive_unroll \"gradient_z_calc/GradZ_C\""
+            ],
+            "function": "gradient_z_calc",
+            "label": "GradZ_C",
+            "directive_type": "unroll"
+        },
+        "unroll GradWeightY_R": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"gradient_weight_y/GradWeightY_R\"",
+                "set_directive_unroll -factor 4 \"gradient_weight_y/GradWeightY_R\"",
+                "set_directive_unroll -factor 8 \"gradient_weight_y/GradWeightY_R\"",
+                "set_directive_unroll -factor 16 \"gradient_weight_y/GradWeightY_R\"",
+                "set_directive_unroll \"gradient_weight_y/GradWeightY_R\""
+            ],
+            "function": "gradient_weight_y",
+            "label": "GradWeightY_R",
+            "directive_type": "unroll"
+        },
+        "unroll GradWeightY_C": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"gradient_weight_y/GradWeightY_C\"",
+                "set_directive_unroll -factor 4 \"gradient_weight_y/GradWeightY_C\"",
+                "set_directive_unroll -factor 8 \"gradient_weight_y/GradWeightY_C\"",
+                "set_directive_unroll -factor 16 \"gradient_weight_y/GradWeightY_C\"",
+                "set_directive_unroll -factor 32 \"gradient_weight_y/GradWeightY_C\"",
+                "set_directive_unroll -factor 64 \"gradient_weight_y/GradWeightY_C\"",
+                "set_directive_unroll -factor 128 \"gradient_weight_y/GradWeightY_C\"",
+                "set_directive_unroll -factor 256 \"gradient_weight_y/GradWeightY_C\"",
+                "set_directive_unroll -factor 512 \"gradient_weight_y/GradWeightY_C\"",
+                "set_directive_unroll \"gradient_weight_y/GradWeightY_C\""
+            ],
+            "function": "gradient_weight_y",
+            "label": "GradWeightY_C",
+            "directive_type": "unroll"
+        },
+        "unroll GradWeightX_R": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"gradient_weight_x/GradWeightX_R\"",
+                "set_directive_unroll -factor 4 \"gradient_weight_x/GradWeightX_R\"",
+                "set_directive_unroll -factor 109 \"gradient_weight_x/GradWeightX_R\"",
+                "set_directive_unroll -factor 218 \"gradient_weight_x/GradWeightX_R\"",
+                "set_directive_unroll \"gradient_weight_x/GradWeightX_R\""
+            ],
+            "function": "gradient_weight_x",
+            "label": "GradWeightX_R",
+            "directive_type": "unroll"
+        },
+        "unroll GradWeightX_C": {
+            "possible_directives": [
+                "",
+                "set_directive_unroll -factor 2 \"gradient_weight_x/GradWeightX_C\"",
+                "set_directive_unroll -factor 4 \"gradient_weight_x/GradWeightX_C\"",
+                "set_directive_unroll -factor 8 \"gradient_weight_x/GradWeightX_C\"",
+                "set_directive_unroll \"gradient_weight_x/GradWeightX_C\""
+            ],
+            "function": "gradient_weight_x",
+            "label": "GradWeightX_C",
+            "directive_type": "unroll"
+        }
+    }
+}
