@@ -4,7 +4,6 @@ from torch_geometric.typing import Metadata
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn import HGTConv, LayerNorm, SAGPooling
 from torch_geometric.data import HeteroData
@@ -26,14 +25,10 @@ class HGT(nn.Module):
         hid_dim (int): Hidden dimension for the convolutional layers.
         layers (int): Number of convolutional layers (default: :obj:`6`).
         heads (int): Number of attention heads (default: :obj:`1`).
-        fc_dropout (float): Dropout rate for fully connected layers
-            (default: :obj:`0.0`).
-        conv_dropout (float): Dropout rate for convolutional layers
+        dropout (float): Dropout rate for fully connected layers
             (default: :obj:`0.0`).
         pool_size (int): Number of nodes to keep after pooling.
             (default: :obj:`8`).
-        aggr_paths (List[List[EdgeType]], optional): List of edge type 
-            combinations to aggregate over (default: :obj:`None`).
         apply_ln (bool): Whether to use layer normalization
             (default: :obj:`True`).
         device (torch.device): Device to use for computation
@@ -44,7 +39,7 @@ class HGT(nn.Module):
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
         hid_dim: int,
-        layers: int = 6,
+        layers: int = 5,
         heads: int = 1,
         dropout: float = 0.0,
         pool_size: int = 16,
