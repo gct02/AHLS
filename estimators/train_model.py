@@ -472,23 +472,19 @@ def prepare_data_loaders(
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
     # Don't normalize columns representing one-hot encoded categorical features or boolean features
     # The features for each node type are as follows:
-    # inst:  0: num_operands, 1: num_uses, 2-13: inst_type, 14: mod_memory, 15: read_memory, 16: mod_cf; 
-    # var:   0-4: type, 5: bw;
-    # const: 0-4: type, 5: bw;
-    # array: 0: num_dims, 1-4: dim_sizes, 5-9: elem_type, 10: elem_bw;
-    # bb:    0: num_insts, 1: in_loop, 2: loop_depth, 3: trip_count;
-    # func:  0: num_operands, 1: num_uses, 3: num_insts, 4: num_bbs, 5: num_loops, 6-10: ret_type, 11: ret_bw;
-    # loop_pragma:  0-3: pragma_type, 4: complete_unroll, 5: unroll_factor;
-    # array_pragma: 0-2: partition_type, 3: full_partition, 3-7: partition_dims, 8: partition_factor
+    # inst:  0-11: type, 12: n_uses, 13: mod_mem, 14: read_mem, 15: mod_cf; 
+    # var:   0-5: type, 6: bw;
+    # const: 0-5: type, 6: bw;
+    # array: 0: n_dims, 1-4: dim_sizes, 5-9: elem_type, 10: elem_bw, 11: partitioned, 12-14: partition_type, 14-17: partition_dims, 18: partition_factor;
+    # bb:    0: n_insts, 1: loop_depth, 2: trip_count, 3: pipelined, 4: merged, 5: flattened, 6: unrolled, 7: complete_unroll, 8: unroll_factor;
+    # func:  0: n_operands, 1: n_uses, 3: n_insts, 4: n_bbs, 5: n_loops, 6-10: ret_type, 11: ret_bw, 12: pipelined, 13: merged.
     filter_cols = {
-        'inst': list(range(2, 17)),
-        'var': list(range(5)),
-        'const': list(range(5)),
-        'array': list(range(5, 10)),
-        'bb': [1],
-        'func': list(range(6, 11)),
-        'loop_pragma': list(range(5)),
-        'array_pragma': list(range(8))
+        'inst': list(range(12)) + [13, 14, 15],
+        'var': list(range(6)),
+        'const': list(range(6)),
+        'array': list(range(5, 10)) + list(range(11, 18)),
+        'bb': list(range(3, 8)),
+        'func': list(range(6, 11)) + [12, 13]
     }
 
     train_data = HLSDataset(
@@ -513,7 +509,7 @@ def prepare_data_loaders(
 
 def initialize_model() -> nn.Module:
     return HGT(
-        METADATA, FEAT_SIZE_PER_NODE_TYPE, 1, hid_dim=24, layers=6, heads=6,
+        METADATA, NODE_FEATURE_DIMS, 1, hid_dim=24, layers=6, heads=6,
         dropout=0.1, pool_size=16, device=DEVICE,
     )
 
@@ -542,7 +538,7 @@ def parse_arguments():
 
 if __name__ == '__main__':
     from data.dataset import HLSDataset
-    from data.cdfg import METADATA, FEAT_SIZE_PER_NODE_TYPE, EDGE_TYPES
+    from data.cdfg import METADATA, NODE_FEATURE_DIMS
 
     DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 

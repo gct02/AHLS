@@ -10,50 +10,70 @@ from torch_geometric.typing import NodeType
 from torch_geometric.data import HeteroData, Data
 from torch_geometric.utils import to_networkx
 
-NODE_TYPES = ['inst', 'var', 'const', 'array', 'bb', 'func', 'loop_pragma', 'array_pragma']
+NODE_TYPES = ['inst', 'var', 'const', 'array', 'bb', 'func']
 EDGE_TYPES = [
-    ('inst', 'prec', 'inst'), ('inst', 'succ', 'inst'), ('inst', 'calls', 'inst'),
-    ('inst', 'called_by', 'inst'), ('inst', 'uses', 'var'), ('inst', 'prod', 'var'),
-    ('inst', 'prod', 'array'), ('inst', 'uses', 'array'), ('inst', 'uses', 'const'), 
-    ('inst', 'belongs_to', 'bb'), ('inst', 'belongs_to', 'func'), ('inst', 'id', 'inst'), 
-    ('var', 'used_by', 'inst'), ('var', 'prod_by', 'inst'), ('var', 'id', 'var'), 
-    ('const', 'used_by', 'inst'), ('const', 'id', 'const'), ('array', 'used_by', 'inst'), 
-    ('array', 'transf_by', 'array_pragma'), ('array', 'prod_by', 'inst'), ('array', 'id', 'array'), 
-    ('bb', 'contains', 'inst'), ('bb', 'belongs_to', 'func'), ('bb', 'prec', 'bb'), 
-    ('bb', 'succ', 'bb'), ('bb', 'transf_by', 'loop_pragma'), ('bb', 'id', 'bb'), 
-    ('func', 'contains', 'bb'), ('func', 'contains', 'inst'), ('func', 'calls', 'func'), 
-    ('func', 'called_by', 'func'), ('func', 'transf_by', 'loop_pragma'), ('func', 'id', 'func'), 
-    ('loop_pragma', 'transf', 'bb'), ('loop_pragma', 'transf', 'func'), ('loop_pragma', 'id', 'loop_pragma'), 
-    ('array_pragma', 'transf', 'array'), ('array_pragma', 'id', 'array_pragma')
+        # Instruction-Instruction Edges
+        ('inst', 'control', 'inst'),       # Control-flow
+        ('inst', 'control_rev', 'inst'),   # Control-flow (reverse)
+        ('inst', 'call', 'inst'),          # Call-flow
+        ('inst', 'call_rev', 'inst'),      # Call-flow (reverse)
+
+        # Instruction-Variable Edges
+        ('inst', 'data_out', 'var'),       # Data-flow
+        ('var', 'data_in', 'inst'),        # Data-flow
+        ('inst', 'data_in_rev', 'var'),    # Data-flow (reverse)
+        ('var', 'data_out_rev', 'inst'),   # Data-flow (reverse)
+
+        # Instruction-Array Edges
+        ('inst', 'data_out', 'array'),     # Data-flow
+        ('array', 'data_in', 'inst'),      # Data-flow
+        ('inst', 'data_in_rev', 'array'),  # Data-flow (reverse)
+        ('array', 'data_out_rev', 'inst'), # Data-flow (reverse)
+
+        # Instruction-Constant Edges
+        ('const', 'data_in', 'inst'),      # Data-flow
+        ('inst', 'data_in_rev', 'const'),  # Data-flow (reverse)
+
+        # Instruction-Basic-Block Edges
+        ('inst', 'member', 'bb'),     # Membership relation
+
+        # Instruction-Function Edges
+        ('inst', 'member', 'func'),   # Membership relation
+
+        # Basic-Block Edges
+        ('bb', 'contains', 'inst'),   # Containment relation
+        ('bb', 'member', 'func'),     # Membership relation
+        ('bb', 'control', 'bb'),      # Control-flow
+        ('bb', 'control_rev', 'bb'),  # Control-flow (reverse)
+
+        # Function Edges
+        ('func', 'contains', 'bb'),   # Containment relation
+        ('func', 'contains', 'inst'), # Containment relation
+
+        # Self-loops
+        ('inst', 'self', 'inst'),
+        ('var', 'self', 'var'),
+        ('const', 'self', 'const'),
+        ('array', 'self', 'array'),
+        ('bb', 'self', 'bb'),
+        ('func', 'self', 'func')
 ]
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
-class LoopPragmaType(IntEnum):
-    UNROLL = 0
-    PIPELINE = 1
-    FLATTEN = 2
-    MERGE = 3
+INST_FEATURES = 16
+VAR_FEATURES = 7
+CONST_FEATURES = 7
+ARRAY_FEATURES = 19
+BB_FEATURES = 9
+FUNC_FEATURES = 14
 
-NUM_LOOP_PRAGMA_TYPES = 4
-
-INST_FEAT_SIZE = 17
-VAR_FEAT_SIZE = 6
-CONST_FEAT_SIZE = 6
-ARRAY_FEAT_SIZE = 11
-BB_FEAT_SIZE = 4
-FUNC_FEAT_SIZE = 11
-LOOP_PRAGMA_FEAT_SIZE = NUM_LOOP_PRAGMA_TYPES + 2
-ARRAY_PRAGMA_FEAT_SIZE = 9
-
-FEAT_SIZE_PER_NODE_TYPE = {
-    'inst': INST_FEAT_SIZE,
-    'var': VAR_FEAT_SIZE,
-    'const': CONST_FEAT_SIZE,
-    'array': ARRAY_FEAT_SIZE,
-    'bb': BB_FEAT_SIZE,
-    'func': FUNC_FEAT_SIZE,
-    'loop_pragma': LOOP_PRAGMA_FEAT_SIZE,
-    'array_pragma': ARRAY_PRAGMA_FEAT_SIZE
+NODE_FEATURE_DIMS = {
+    'inst': INST_FEATURES,
+    'var': VAR_FEATURES,
+    'const': CONST_FEATURES,
+    'array': ARRAY_FEATURES,
+    'bb': BB_FEATURES,
+    'func': FUNC_FEATURES
 }
 
 class NodeType(IntEnum):
@@ -85,7 +105,6 @@ class LLVMTypeID(IntEnum):
     VECTOR = 16
 
 # Opcodes from LLVM 7.0
-
 class LLVMOpcode(IntEnum):
     RET = 1
     BR = 2
@@ -123,7 +142,7 @@ class LLVMOpcode(IntEnum):
     PHI = 53
     CALL = 54
 
-# "One-hot-like" encoding of instructions (12 bits)
+# Hierarchical "one-hot-like" encoding of instructions (12 bits)
 # The first 5 bits represent the instruction category
 # The next 5 bits represent the instruction type
 # The 11th bit represents the instruction is a floating-point operation
@@ -176,26 +195,26 @@ INSTRUCTION_ENC = {
 INSTRUCTION_ENC_SIZE = 12
 
 TYPE_ENC = {
-    LLVMTypeID.INT:       [1,0,0,0,0],
-    LLVMTypeID.HALF:      [0,1,0,0,0],
-    LLVMTypeID.FLOAT:     [0,1,0,0,0],
-    LLVMTypeID.DOUBLE:    [0,1,0,0,0],
-    LLVMTypeID.X86_FP80:  [0,1,0,0,0],
-    LLVMTypeID.FP128:     [0,1,0,0,0],
-    LLVMTypeID.PPC_FP128: [0,1,0,0,0],
-    LLVMTypeID.POINTER:   [0,0,1,0,0],
-    LLVMTypeID.STRUCT:    [0,0,0,1,0],
+    LLVMTypeID.INT:       [1,0,0,0,0,0],
+    LLVMTypeID.HALF:      [0,1,0,0,0,0],
+    LLVMTypeID.FLOAT:     [0,1,0,0,0,0],
+    LLVMTypeID.DOUBLE:    [0,1,0,0,0,0],
+    LLVMTypeID.X86_FP80:  [0,1,0,0,0,0],
+    LLVMTypeID.FP128:     [0,1,0,0,0,0],
+    LLVMTypeID.PPC_FP128: [0,1,0,0,0,0],
+    LLVMTypeID.POINTER:   [0,0,1,0,0,0],
+    LLVMTypeID.STRUCT:    [0,0,0,1,0,0],
+    LLVMTypeID.VOID:      [0,0,0,0,1,0],
+    LLVMTypeID.VECTOR:    [0,0,0,0,0,1],
 
-    LLVMTypeID.VOID:      [0,0,0,0,1],
-    LLVMTypeID.VECTOR:    [0,0,0,0,1],
-    LLVMTypeID.ARRAY:     [0,0,0,0,1],
-    LLVMTypeID.LABEL:     [0,0,0,0,1],
-    LLVMTypeID.METADATA:  [0,0,0,0,1],
-    LLVMTypeID.X86_MMX:   [0,0,0,0,1],
-    LLVMTypeID.TOKEN:     [0,0,0,0,1],
-    LLVMTypeID.FUNCTION:  [0,0,0,0,1]
+    LLVMTypeID.ARRAY:     [0,0,0,0,0,1],
+    LLVMTypeID.LABEL:     [0,0,0,0,0,1],
+    LLVMTypeID.METADATA:  [0,0,0,0,0,1],
+    LLVMTypeID.X86_MMX:   [0,0,0,0,0,1],
+    LLVMTypeID.TOKEN:     [0,0,0,0,0,1],
+    LLVMTypeID.FUNCTION:  [0,0,0,0,0,1]
 }
-TYPE_ENC_SIZE = 5
+TYPE_ENC_SIZE = 6
 
 def _get_loop_depth(md: Dict[str, Number]) -> int:
     if "loopDepth" not in md:
@@ -209,45 +228,49 @@ def _get_trip_count(md: Dict[str, Number]) -> int:
     trip_count = md["tripCount"]
     return trip_count
 
-def _get_pipeline_info(md: Dict[str, Number]) -> Tuple[List[int], int]:
+def _get_pipeline_info(md: Dict[str, Number]) -> List[int]:
     if "pipeline" not in md or md["pipeline"] == 0:
-        return [0, 0], -1
+        return [0, -1]
     is_function_level = md["functionLevel"]
-    return [is_function_level], md["pipelineID"]
+    pragma_id = md["pipelineID"]
+    return [is_function_level, pragma_id]
 
-def _get_array_partition_info(md: Dict[str, Number]) -> Tuple[List[int], int]:
+def _get_array_partition_info(md: Dict[str, Number]) -> List[int]:
     if "arrayPartition" not in md or md["arrayPartition"] == 0:
-        return [0] * ARRAY_PRAGMA_FEAT_SIZE, -1
-    max_dims = 4 # Maximum number of dimensions (4D arrays) for now
+        return [0] * 9 + [-1]
+    MAX_ARRAY_DIMS = 4 # Maximum number of dimensions (4D arrays) for now
     dim = md["arrayPartitionDim"]
-    enc_dim = [0] * (max_dims + 1)
-    if dim > max_dims:
-        dim = max_dims
+    enc_dim = [0] * (MAX_ARRAY_DIMS + 1)
+    if dim > MAX_ARRAY_DIMS:
+        dim = MAX_ARRAY_DIMS
     enc_dim[dim] = 1
     partition_type = md["arrayPartitionType"]
     enc_partition_type = [0, 0, 0]
     enc_partition_type[partition_type - 1] = 1
     factor = md["arrayPartitionFactor"]
-    return enc_partition_type + enc_dim + [factor], md["arrayPartitionID"]
+    pragma_id = md["arrayPartitionID"]
+    return enc_partition_type + enc_dim + [factor, pragma_id]
 
-def _get_unroll_info(md: Dict[str, Number]) -> Tuple[List[int], int]:
+def _get_unroll_info(md: Dict[str, Number]) -> List[int]:
     if "unroll" not in md or md["unroll"] == 0:
-        return [0, 0, 0], -1
+        return [0, 0, -1]
     complete = md["unrollComplete"]
     factor = md["unrollFactor"]
-    return [complete, factor], md["unrollID"]
+    pragma_id = md["unrollID"]
+    return [complete, factor, pragma_id]
 
-def _get_loop_flatten_info(md: Dict[str, Number]) -> Tuple[List[int], int]:
-    if "loopFlatten" not in md:
-        return [0], -1
-    flattened = md["loopFlatten"]
-    return [flattened], md["loopFlattenID"]
+def _get_loop_flatten_info(md: Dict[str, Number]) -> List[int]:
+    if "loopFlatten" not in md or md["loopFlatten"] == 0:
+        return [-1]
+    pragma_id = md["loopFlattenID"]
+    return [pragma_id]
 
-def _get_loop_merge_info(md: Dict[str, Number]) -> Tuple[List[int], int]:
+def _get_loop_merge_info(md: Dict[str, Number]) -> List[int]:
     if "loopMerge" not in md or md["loopMerge"] == 0:
-        return [0, 0], -1
+        return [0, -1]
     is_function_level = md["functionLevel"]
-    return [is_function_level], md["loopMergeID"]
+    pragma_id = md["loopMergeID"]
+    return [is_function_level, pragma_id]
 
 def _get_array_info(md: Dict[str, Number]) -> List[int]:
     n_dims = md["numDims"]
@@ -322,35 +345,32 @@ def _parse_literal_const_info(node_text: str) -> List[int]:
     bitwidth = _get_bitwidth_from_text(node_text)
     return TYPE_ENC[type_id] + [bitwidth]
 
+def _build_edge_tensor(src: int, dst: int) -> Tensor:
+    return torch.tensor([src, dst], dtype=torch.int64)
+
 def _build_nodes(
     programl_graph,
     metadata: Dict[str, Dict[str, Dict[str, str]]],
     inst_dict: Dict[int, str]
-):
-    inst_bb_map, inst_func_map, bb_func_map = {}, {}, {}
-    pragma_bb_map, pragma_func_map, pragma_array_map = {}, {}, {}
+) -> Tuple[HeteroData, Dict[str, List[int]]]:
     nodes = {nt: [] for nt in NODE_TYPES}
     indices = {nt: [] for nt in NODE_TYPES}
+
+    additional_edges = {
+        ('inst', 'member', 'bb'): [], ('inst', 'member', 'func'): [],
+        ('bb', 'contains', 'inst'): [], ('func', 'contains', 'inst'): [],
+        ('bb', 'member', 'func'): [], ('func', 'contains', 'bb'): []
+    }
+
     graph = HeteroData()
 
-    # External functions are represented as a function, 
-    # a basic block, and an instruction node, all of them 
+    # External functions are represented an instruction node
     # with all-zero features and index 0
-    nodes['inst'].append(torch.zeros(INST_FEAT_SIZE, dtype=torch.float32))
-    nodes['bb'].append(torch.zeros(BB_FEAT_SIZE, dtype=torch.float32))
-    nodes['func'].append(torch.zeros(FUNC_FEAT_SIZE, dtype=torch.float32))
+    nodes['inst'].append(torch.zeros(INST_FEATURES, dtype=torch.float32))
     indices["inst"].append(0)
-    indices["bb"].append(0)
-    indices["func"].append(0)
-    inst_bb_map[0] = 0
-    inst_func_map[0] = 0
-    bb_func_map[0] = 0
 
     for i, node in enumerate(programl_graph.node):
         node_type, node_text = node.type, node.text
-        if len(node_text) == 0 or node_text == "[external]":
-            continue
-
         node_full_text = (node.features.feature["full_text"]
                           .bytes_list.value.__str__()[1:-1])
         if node_full_text[0] == 'b':
@@ -358,12 +378,11 @@ def _build_nodes(
 
         if node_type == NodeType.INST:
             if "!ID." not in node_full_text:
-                nodes['inst'].append(torch.zeros(INST_FEAT_SIZE, dtype=torch.float32))
-                indices["inst"].append(i)
                 continue
 
             id = int(node_full_text.split('!ID.')[1].split(' ')[0])
             node_full_text = inst_dict[id]
+
             md = _process_metadata_entries(metadata["instruction"][str(id)])
 
             opcode = md["opcode"]
@@ -373,104 +392,75 @@ def _build_nodes(
             else:
                 one_hot_inst = INSTRUCTION_ENC[opcode]
 
-            num_operands = md["numOperands"]
             num_uses = md["numUses"]
-            mod_memory = md["modifiesMemory"]
-            reads_memory = md["readsMemory"]
-            mod_cfg = md["modifiesControlFlow"]
+            mod_mem = md["modifiesMemory"]
+            reads_mem = md["readsMemory"]
+            mod_cf = md["modifiesControlFlow"]
 
-            inst_features = ([num_operands, num_uses] + one_hot_inst 
-                             + [mod_memory, reads_memory, mod_cfg])
+            inst_features = one_hot_inst + [num_uses, mod_mem, reads_mem, mod_cf]
             nodes['inst'].append(torch.tensor(inst_features, dtype=torch.float32))
             indices["inst"].append(i)
 
             bb_id = md["bbID"]
             function_id = md["functionID"]
 
-            inst_bb_map[i] = bb_id
-            inst_func_map[i] = function_id
+            additional_edges[('inst', 'member', 'bb')].append((i, bb_id))
+            additional_edges[('bb', 'contains', 'inst')].append((bb_id, i))
+            additional_edges[('inst', 'member', 'func')].append((i, function_id))
+            additional_edges[('func', 'contains', 'inst')].append((function_id, i))
 
-            loop_depth = _get_loop_depth(md)
-            trip_count = _get_trip_count(md)
+            pipeline_md = _get_pipeline_info(md)
+            unroll_md = _get_unroll_info(md)
+            merge_md = _get_loop_merge_info(md)
+            flatten_md = _get_loop_flatten_info(md)
 
-            pipeline_features, pipeline_id = _get_pipeline_info(md)
-            unroll_features, unroll_id = _get_unroll_info(md)
-            loop_merge_features, loop_merge_id = _get_loop_merge_info(md)
-            _, loop_flatten_id = _get_loop_flatten_info(md)
+            pipeline_id = pipeline_md[-1]
+            unroll_id = unroll_md[-1]
+            merge_id = merge_md[-1]
+            flatten_id = flatten_md[-1]
 
-            function_level_pipeline = pipeline_features[0] == 1
-            function_level_loop_merge = loop_merge_features[0] == 1
+            function_pipeline = pipeline_md[0] == 1
+            function_merge = merge_md[0] == 1
             
             if bb_id not in indices["bb"]:
                 bb_size = md["bbSize"]
-                in_loop = md["inLoop"]
+                depth = _get_loop_depth(md)
+                tc = _get_trip_count(md)
 
-                if (function_level_pipeline == 0 and pipeline_id != -1
-                    and pipeline_id not in indices["loop_pragma"]):
-                    features = torch.zeros(LOOP_PRAGMA_FEAT_SIZE, dtype=torch.float32)
-                    features[LoopPragmaType.PIPELINE] = 1
-                    nodes['loop_pragma'].append(features)
-                    indices["loop_pragma"].append(pipeline_id)
-                    pragma_bb_map[pipeline_id] = bb_id
-                
-                if (function_level_loop_merge == 0 and loop_merge_id != -1
-                    and loop_merge_id not in indices["loop_pragma"]):
-                    features = torch.zeros(LOOP_PRAGMA_FEAT_SIZE, dtype=torch.float32)
-                    features[LoopPragmaType.MERGE] = 1
-                    nodes['loop_pragma'].append(features)
-                    indices["loop_pragma"].append(loop_merge_id)
-                    pragma_bb_map[loop_merge_id] = bb_id
+                pipelined = 1 if pipeline_id != -1 and not function_pipeline else 0
+                unrolled = 1 if unroll_id != -1 else 0
+                merged = 1 if merge_id != -1 and not function_merge else 0
+                flattened = 1 if flatten_id != -1 else 0
+                if unrolled:
+                    unroll_feats = unroll_md[:-1]
+                else:
+                    unroll_feats = [0, 0]
 
-                if loop_flatten_id != -1 and loop_flatten_id not in indices["loop_pragma"]:
-                    features = torch.zeros(LOOP_PRAGMA_FEAT_SIZE, dtype=torch.float32)
-                    features[LoopPragmaType.FLATTEN] = 1
-                    nodes['loop_pragma'].append(features)
-                    indices["loop_pragma"].append(loop_flatten_id)
-                    pragma_bb_map[loop_flatten_id] = bb_id
-
-                if unroll_id != -1 and unroll_id not in indices["loop_pragma"]:
-                    features = torch.zeros(LOOP_PRAGMA_FEAT_SIZE, dtype=torch.float32)
-                    features[LoopPragmaType.UNROLL] = 1
-                    features[-1] = unroll_features[-1]
-                    features[-2] = unroll_features[-2]
-                    nodes['loop_pragma'].append(features)
-                    indices["loop_pragma"].append(unroll_id)
-                    pragma_bb_map[unroll_id] = bb_id
-                    
-                bb_features = [bb_size, in_loop, loop_depth, trip_count]
-                nodes['bb'].append(torch.tensor(bb_features, dtype=torch.float32))
+                features = ([bb_size, depth, tc, pipelined, merged, flattened, unrolled] 
+                            + unroll_feats)
+                nodes['bb'].append(torch.tensor(features, dtype=torch.float32))
                 indices["bb"].append(bb_id)
-                bb_func_map[bb_id] = function_id
+
+                additional_edges[('bb', 'member', 'func')].append((bb_id, function_id))
+                additional_edges[('func', 'contains', 'bb')].append((function_id, bb_id))
 
             if function_id not in indices["func"]:
                 n_operands = md["funcNumOperands"]
                 n_uses = md["funcNumUses"]
-                ret_type = md["funcRetType"]
-                ret_bw = md["funcRetBitwidth"]
                 n_insts = md["funcNumInsts"]
                 n_bbs = md["funcNumBBs"]
                 n_loops = md["funcNumLoops"]
+
+                ret_type = md["funcRetType"]
+                ret_bw = md["funcRetBitwidth"]
                 ret_type_features = TYPE_ENC[ret_type] + [ret_bw]
 
-                if (function_level_pipeline == 1 and pipeline_id != -1
-                    and pipeline_id not in indices["loop_pragma"]):
-                    features = torch.zeros(LOOP_PRAGMA_FEAT_SIZE, dtype=torch.float32)
-                    features[LoopPragmaType.PIPELINE] = 1
-                    nodes['loop_pragma'].append(features)
-                    indices["loop_pragma"].append(pipeline_id)
-                    pragma_func_map[pipeline_id] = function_id
+                pipelined = 1 if pipeline_id != -1 and function_pipeline else 0
+                merged = 1 if merge_id != -1 and function_merge else 0
 
-                if (function_level_loop_merge == 1 and loop_merge_id != -1
-                    and loop_merge_id not in indices["loop_pragma"]):
-                    features = torch.zeros(LOOP_PRAGMA_FEAT_SIZE, dtype=torch.float32)
-                    features[LoopPragmaType.MERGE] = 1
-                    nodes['loop_pragma'].append(features)
-                    indices["loop_pragma"].append(loop_merge_id)
-                    pragma_func_map[loop_merge_id] = function_id
-
-                function_features = ([n_operands, n_uses, n_insts, n_bbs, n_loops]
-                                     + ret_type_features)
-                nodes['func'].append(torch.tensor(function_features, dtype=torch.float32))
+                features = ([n_operands, n_uses, n_insts, n_bbs, n_loops]
+                            + ret_type_features + [pipelined, merged])
+                nodes['func'].append(torch.tensor(features, dtype=torch.float32))
                 indices["func"].append(function_id)
 
         elif node_type == NodeType.VAR or node_type == NodeType.CONST:
@@ -487,9 +477,9 @@ def _build_nodes(
                     # Value is a literal constant
                     features = _parse_literal_const_info(node_text)
 
-                node_type_str = 'var' if node_type == NodeType.VAR else 'const'
-                nodes[node_type_str].append(torch.tensor(features, dtype=torch.float32))
-                indices[node_type_str].append(i)
+                nt = 'var' if node_type == NodeType.VAR else 'const'
+                nodes[nt].append(torch.tensor(features, dtype=torch.float32))
+                indices[nt].append(i)
                 continue
 
             if ',' in name:
@@ -501,98 +491,61 @@ def _build_nodes(
                 md = _process_metadata_entries(metadata["value"][name])
             else:
                 function_id = node.function + 1
-
                 name = f"{name}.{function_id}"
                 if name in metadata["param"]:
                     md = _process_metadata_entries(metadata["param"][name])
                 else:
-                    md = {}
+                    continue
 
             if "isArray" in md and md["isArray"] == 1:
                 array_md = _get_array_info(md)
-                elem_type = array_md[5]
+                elem_type_id = array_md[5]
                 elem_bw = array_md[6]
+                elem_type_features = TYPE_ENC[elem_type_id] + [elem_bw]
 
-                elem_type_features = TYPE_ENC[elem_type] + [elem_bw]
-                partition_md, partition_id = _get_array_partition_info(md)
+                partition_md = _get_array_partition_info(md)
+                partition_id = partition_md[-1]
+                partitioned = 1 if partition_id != -1 else 0
+                if partitioned:
+                    partition_feats = partition_md[:-1]
+                else:
+                    partition_feats = [0] * 9
 
-                if partition_id != -1 and partition_id not in indices["array_pragma"]:
-                    nodes['array_pragma'].append(torch.tensor(partition_md, dtype=torch.float32))
-                    indices["array_pragma"].append(partition_id)
-                    pragma_array_map[partition_id] = i
+                features = array_md[:5] + elem_type_features + [partitioned] + partition_feats
+                nt = 'array'
+            else:
+                type_id = md["type"]
+                bw = md["bitwidth"]
+                features = TYPE_ENC[type_id] + [bw]
+                nt = 'var' if node_type == NodeType.VAR else 'const'
 
-                features = array_md[:5] + elem_type_features
-                nodes['array'].append(torch.tensor(features, dtype=torch.float32))
-                indices["array"].append(i)
-                continue
-            
-            type_id = md["type"]
-            bitwidth = md["bitwidth"]
-            features = TYPE_ENC[type_id] + [bitwidth]
-
-            node_type_str = 'var' if node_type == NodeType.VAR else 'const'
-            nodes[node_type_str].append(torch.tensor(features, dtype=torch.float32))
-            indices[node_type_str].append(i)
+            nodes[nt].append(torch.tensor(features, dtype=torch.float32))
+            indices[nt].append(i)
 
     for key in nodes.keys():
         if len(nodes[key]) > 0:
             graph[key].x = torch.stack(nodes[key])
         else:
-            feature_dim = FEAT_SIZE_PER_NODE_TYPE[key]
+            feature_dim = NODE_FEATURE_DIMS[key]
             graph[key].x = torch.empty((0, feature_dim), dtype=torch.float32)
 
-    return (graph, indices, inst_bb_map, inst_func_map, bb_func_map, 
-            pragma_bb_map, pragma_func_map, pragma_array_map)
+    for et, edge_list in additional_edges.items():
+        if len(edge_list) > 0:
+            edge_list_reindexed = [(indices[et[0]].index(src), indices[et[2]].index(dst))
+                                   for src, dst in edge_list]
+            graph[et].edge_index = torch.stack(
+                [_build_edge_tensor(src, dst) for src, dst in edge_list_reindexed]
+            ).transpose(0, 1)
+        else:
+            graph[et].edge_index = torch.empty((2, 0), dtype=torch.int64)
 
-def _build_edge_tensor(src: int, dst: int) -> Tensor:
-    return torch.tensor([src, dst], dtype=torch.int64)
-
-def _create_scope_edges(
-    mapping: Dict[int, int],
-    indices: Dict[str, List[int]],
-    containing_type: str,
-    contained_type: str
-) -> Tuple[List[Tensor], List[Tensor]]:
-    edges = []
-    inv_edges = []
-    for node_id, scope_id in mapping.items():
-        src_idx = indices[containing_type].index(scope_id)
-        dst_idx = indices[contained_type].index(node_id)
-        edge_tensor = _build_edge_tensor(src_idx, dst_idx)
-        inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
-        edges.append(edge_tensor)
-        inv_edges.append(inv_edge_tensor)
-    return edges, inv_edges
-
-def _create_pragma_edges(
-    mapping: Dict[int, int],
-    indices: Dict[str, List[int]],
-    pragma_type: str,
-    obj_type: str
-) -> List[Tensor]:
-    edges = []
-    inv_edges = []
-    for node_id, pragma_id in mapping.items():
-        src_idx = indices[pragma_type].index(node_id)
-        dst_idx = indices[obj_type].index(pragma_id)
-        edge_tensor = _build_edge_tensor(src_idx, dst_idx)
-        inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
-        edges.append(edge_tensor)
-        inv_edges.append(inv_edge_tensor)
-    return edges, inv_edges
-
+    return graph, indices
 
 def _build_edges(
     programl_graph,
     graph: HeteroData,
     indices: Dict[str, List[int]],
-    cfg_edges: List[List[int]],
-    inst_bb_map: Dict[int, int],
-    inst_func_map: Dict[int, int],
-    bb_func_map: Dict[int, int],
-    pragma_bb_map: Dict[int, int],
-    pragma_func_map: Dict[int, int],
-    pragma_array_map: Dict[int, int]
+    cfg_edges: List[Tuple[int, int]]
 ) -> HeteroData:
     edge_dict = {et: [] for et in EDGE_TYPES}
     
@@ -600,118 +553,60 @@ def _build_edges(
         src, dst = edge.source, edge.target
         src_type = programl_graph.node[src].type
         dst_type = programl_graph.node[dst].type
-        if src_type == 0: 
-            # Instruction source
+        if src_type == NodeType.INST and src in indices["inst"]: 
             src_idx = indices["inst"].index(src)
-            if dst_type == 0:
-                # Instruction destination
+            if dst_type == NodeType.INST and dst in indices["inst"]:
                 dst_idx = indices["inst"].index(dst)
                 edge_tensor = _build_edge_tensor(src_idx, dst_idx)
                 inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
-                if edge.flow == 0:
-                    # Control edge
-                    edge_dict[('inst', 'prec', 'inst')].append(edge_tensor)
-                    edge_dict[('inst', 'succ', 'inst')].append(inv_edge_tensor)
-                else:
-                    # Call edge
-                    edge_dict[('inst', 'calls', 'inst')].append(edge_tensor)
-                    edge_dict[('inst', 'called_by', 'inst')].append(inv_edge_tensor)
+                if edge.flow == 0: # Control edge
+                    edge_dict[('inst', 'control', 'inst')].append(edge_tensor)
+                    edge_dict[('inst', 'control_rev', 'inst')].append(inv_edge_tensor)
+                else: # Call edge
+                    edge_dict[('inst', 'call', 'inst')].append(edge_tensor)
+                    edge_dict[('inst', 'call_rev', 'inst')].append(inv_edge_tensor)
             else:
-                # Variable destination
-                if dst in indices["var"]:
-                    dst_idx = indices["var"].index(dst)
-                    edge_tensor = _build_edge_tensor(src_idx, dst_idx)
-                    inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
-                    edge_dict[('inst', 'prod', 'var')].append(edge_tensor)
-                    edge_dict[('var', 'prod_by', 'inst')].append(inv_edge_tensor)
-                elif dst in indices["array"]:
-                    dst_idx = indices["array"].index(dst)
-                    edge_tensor = _build_edge_tensor(src_idx, dst_idx)
-                    inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
-                    edge_dict[('inst', 'prod', 'array')].append(edge_tensor)
-                    edge_dict[('array', 'prod_by', 'inst')].append(inv_edge_tensor)
-        elif src in indices["array"]:
-            # Array source, only used by instructions
-            src_idx = indices["array"].index(src)
+                if dst in indices["array"]:
+                    dst_type_name = 'array'
+                elif dst_type == NodeType.VAR and dst in indices["var"]:
+                    dst_type_name = 'var'
+                else:
+                    continue
+                dst_idx = indices[dst_type_name].index(dst)
+                edge_tensor = _build_edge_tensor(src_idx, dst_idx)
+                inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
+                edge_dict[('inst', 'data_out', dst_type_name)].append(edge_tensor)
+                edge_dict[(dst_type_name, 'data_out_rev', 'inst')].append(inv_edge_tensor)
+        elif dst_type == NodeType.INST and dst in indices["inst"]:
+            if src in indices["array"]:
+                src_type_name = 'array'
+            elif src_type == NodeType.VAR and src in indices["var"]:
+                src_type_name = 'var'
+            elif src_type == NodeType.CONST and src in indices["const"]:
+                src_type_name = 'const'
+            else:
+                continue
+            src_idx = indices[src_type_name].index(src)
             dst_idx = indices["inst"].index(dst)
             edge_tensor = _build_edge_tensor(src_idx, dst_idx)
             inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
-            edge_dict[('array', 'used_by', 'inst')].append(edge_tensor)
-            edge_dict[('inst', 'uses', 'array')].append(inv_edge_tensor)
-        elif src_type == 1:
-            # Variable source, only used by instructions
-            src_idx = indices["var"].index(src)
-            dst_idx = indices["inst"].index(dst)
-            edge_tensor = _build_edge_tensor(src_idx, dst_idx)
-            inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
-            edge_dict[('var', 'used_by', 'inst')].append(edge_tensor)
-            edge_dict[('inst', 'uses', 'var')].append(inv_edge_tensor)
-        else:
-            # Constant source, only used by instructions
-            src_idx = indices["const"].index(src)
-            dst_idx = indices["inst"].index(dst)
-            edge_tensor = _build_edge_tensor(src_idx, dst_idx)
-            inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
-            edge_dict[('const', 'used_by', 'inst')].append(edge_tensor)
-            edge_dict[('inst', 'uses', 'const')].append(inv_edge_tensor)
-
-    inst_bb_edges, bb_inst_edges = _create_scope_edges(
-        inst_bb_map, indices, 'bb', 'inst'
-    )
-    inst_func_edges, func_inst_edges = _create_scope_edges(
-        inst_func_map, indices, 'func', 'inst'
-    )
-    bb_func_edges, func_bb_edges = _create_scope_edges(
-        bb_func_map, indices, 'func', 'bb'
-    )
-    edge_dict[('bb', 'contains', 'inst')] = inst_bb_edges
-    edge_dict[('inst', 'belongs_to', 'bb')] = bb_inst_edges
-    edge_dict[('func', 'contains', 'inst')] = inst_func_edges
-    edge_dict[('inst', 'belongs_to', 'func')] = func_inst_edges
-    edge_dict[('func', 'contains', 'bb')] = bb_func_edges
-    edge_dict[('bb', 'belongs_to', 'func')] = func_bb_edges
-
-    pragma_bb_edges, bb_pragma_edges = _create_pragma_edges(
-        pragma_bb_map, indices, 'loop_pragma', 'bb'
-    )
-    pragma_func_edges, func_pragma_edges = _create_pragma_edges(
-        pragma_func_map, indices, 'loop_pragma', 'func'
-    )
-    pragma_array_edges, array_pragma_edges = _create_pragma_edges(
-        pragma_array_map, indices, 'array_pragma', 'array'
-    )
-    edge_dict[('loop_pragma', 'transf', 'bb')] = pragma_bb_edges
-    edge_dict[('bb', 'transf_by', 'loop_pragma')] = bb_pragma_edges
-    edge_dict[('loop_pragma', 'transf', 'func')] = pragma_func_edges
-    edge_dict[('func', 'transf_by', 'loop_pragma')] = func_pragma_edges
-    edge_dict[('array_pragma', 'transf', 'array')] = pragma_array_edges
-    edge_dict[('array', 'transf_by', 'array_pragma')] = array_pragma_edges
-
-    for call_edges in edge_dict[('inst', 'calls', 'inst')]:
-        src_inst = indices['inst'][call_edges[0].item()]
-        dst_inst = indices['inst'][call_edges[1].item()]
-        if src_inst not in inst_func_map or dst_inst not in inst_func_map:
-            continue
-        src_function = indices['func'].index(inst_func_map[src_inst])
-        dst_function = indices['func'].index(inst_func_map[dst_inst])
-        edge_tensor = _build_edge_tensor(src_function, dst_function)
-        inv_edge_tensor = _build_edge_tensor(dst_function, src_function)
-        edge_dict[('func', 'calls', 'func')].append(edge_tensor)
-        edge_dict[('func', 'called_by', 'func')].append(inv_edge_tensor)
+            edge_dict[(src_type_name, 'data_in', 'inst')].append(edge_tensor)
+            edge_dict[('inst', 'data_in_rev', src_type_name)].append(inv_edge_tensor)
 
     for edge in cfg_edges:
-        src_bb_idx = indices["bb"].index(edge[0])
-        dst_bb_idx = indices["bb"].index(edge[1])
-        edge_tensor = _build_edge_tensor(src_bb_idx, dst_bb_idx)
-        inv_edge_tensor = _build_edge_tensor(dst_bb_idx, src_bb_idx)
-        edge_dict[('bb', 'prec', 'bb')].append(edge_tensor)
-        edge_dict[('bb', 'succ', 'bb')].append(inv_edge_tensor)
+        src_idx = indices["bb"].index(edge[0])
+        dst_idx = indices["bb"].index(edge[1])
+        edge_tensor = _build_edge_tensor(src_idx, dst_idx)
+        inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
+        edge_dict[('bb', 'control', 'bb')].append(edge_tensor)
+        edge_dict[('bb', 'control_rev', 'bb')].append(inv_edge_tensor)
 
+    # Add self-loops for all nodes
     for k, v in indices.items():
-        n_vals = len(v)
-        for i in range(n_vals):
+        num_nodes = len(v)
+        for i in range(num_nodes):
             edge_tensor = _build_edge_tensor(i, i)
-            edge_dict[(k, 'id', k)].append(edge_tensor)
+            edge_dict[(k, 'self', k)].append(edge_tensor)
 
     for et, edges in edge_dict.items():
         if len(edges) > 0:
@@ -802,15 +697,8 @@ def build_cdfg(
     metadata = _parse_md_file(metadata_path)
     cfg_edges = _parse_cfg_file(cfg_path)
 
-    ret = _build_nodes(programl_cdfg, metadata, inst_dict)
-    cdfg, node_indices, inst_bb_map, inst_func_map, bb_func_map, \
-        pragma_bb_map, pragma_func_map, pragma_array_map = ret
-    
-    cdfg = _build_edges(
-        programl_cdfg, cdfg, node_indices, cfg_edges, 
-        inst_bb_map, inst_func_map, bb_func_map,
-        pragma_bb_map, pragma_func_map, pragma_array_map
-    )
+    cdfg, indices = _build_nodes(programl_cdfg, metadata, inst_dict)
+    cdfg = _build_edges(programl_cdfg, cdfg, indices, cfg_edges)
 
     cdfg_pt_out_path = output_folder / f"cdfg.pt"
     cdfg_txt_out_path = output_folder / f"cdfg.txt"
@@ -842,10 +730,6 @@ def plot_cdfg(
             return 'B'
         elif node_type == 'func':
             return 'F'
-        elif node_type == 'loop_pragma':
-            return 'LP'
-        elif node_type == 'array_pragma':
-            return 'AP'
         return 'U'
         
     def get_label(type: NodeType, idx: int) -> str:
@@ -858,14 +742,12 @@ def plot_cdfg(
 
     # Define colors for the nodes
     node_type_colors = {
-        "inst": "#EA801C",
-        "var": "#3C99E6",
-        "const": "#954CD9",
-        "array": "#6DED8F",
-        "bb": "#FF0000",
-        "func": "#00FF00",
-        "loop_pragma": "#C3FF00",
-        "array_pragma": "#006EFF"
+        "inst": "#f28522",
+        "var": "#00cd6c",
+        "const": "#009ade",
+        "array": "#af58ba",
+        "bb": "#ffc61e",
+        "func": "#ff1f58"
     }
 
     node_colors = []
@@ -879,60 +761,50 @@ def plot_cdfg(
     # Define colors for the edges
     edge_type_colors = {
         # Instruction-Instruction Edges
-        ('inst', 'prec', 'inst'): "#CF2519",      # Control dependency
-        ('inst', 'succ', 'inst'): "#CF2519",      # Control dependency
-        ('inst', 'calls', 'inst'): "#8F19CF",     # Call relationship
-        ('inst', 'called_by', 'inst'): "#8F19CF", # Call relationship
-        ('inst', 'id', 'inst'): "#FFFFFF",        # Identity
+        ('inst', 'control', 'inst'): "#CF2519",       # Control-flow
+        ('inst', 'control_rev', 'inst'): "#FFFFFF",   # Control-flow (reverse)
+        ('inst', 'call', 'inst'): "#8F19CF",          # Call-flow
+        ('inst', 'call_rev', 'inst'): "#FFFFFF",      # Call-flow (reverse)
 
         # Instruction-Variable Edges
-        ('inst', 'uses', 'var'): "#1F1F1F",  # Data dependency
-        ('inst', 'prod', 'var'): "#1F1F1F",  # Data dependency
-        ('var', 'used_by', 'inst'): "#1F1F1F",  # Reverse data dependency
-        ('var', 'prod_by', 'inst'): "#1F1F1F",  # Reverse data dependency
-        ('var', 'id', 'var'): "#FFFFFF",  # Identity
+        ('inst', 'data_out', 'var'): "#1F1F1F",       # Data-flow
+        ('var', 'data_in', 'inst'): "#1F1F1F",        # Data-flow
+        ('inst', 'data_in_rev', 'var'): "#FFFFFF",    # Data-flow (reverse)
+        ('var', 'data_out_rev', 'inst'): "#FFFFFF",   # Data-flow (reverse)
 
         # Instruction-Array Edges
-        ('inst', 'prod', 'array'): "#1F1F1F",  # Data dependency
-        ('inst', 'uses', 'array'): "#1F1F1F",  # Data dependency
-        ('array', 'used_by', 'inst'): "#1F1F1F",  # Reverse data dependency
-        ('array', 'prod_by', 'inst'): "#1F1F1F",  # Reverse data dependency
-        ('array', 'id', 'array'): "#FFFFFF",  # Identity
+        ('inst', 'data_out', 'array'): "#1F1F1F",     # Data-flow
+        ('array', 'data_in', 'inst'): "#1F1F1F",      # Data-flow
+        ('inst', 'data_in_rev', 'array'): "#FFFFFF",  # Data-flow (reverse)
+        ('array', 'data_out_rev', 'inst'): "#FFFFFF", # Data-flow (reverse)
 
         # Instruction-Constant Edges
-        ('inst', 'uses', 'const'): "#1F1F1F",  # Data dependency
-        ('const', 'used_by', 'inst'): "#1F1F1F",  # Reverse data dependency
-        ('const', 'id', 'const'): "#FFFFFF",  # Identity
+        ('const', 'data_in', 'inst'): "#1F1F1F",      # Data-flow
+        ('inst', 'data_in_rev', 'const'): "#FFFFFF",  # Data-flow (reverse)
 
-        # Instruction-Basic Block Edges
-        ('inst', 'belongs_to', 'bb'): "#197BCF",  # Membership relation
+        # Instruction-Basic-Block Edges
+        ('inst', 'member', 'bb'): "#197BCF",     # Membership relation
 
         # Instruction-Function Edges
-        ('inst', 'belongs_to', 'func'): "#197BCF",  # Membership relation
+        ('inst', 'member', 'func'): "#197BCF",   # Membership relation
 
-        # Basic Block Edges
-        ('bb', 'contains', 'inst'): "#197BCF",  # Containment relation
-        ('bb', 'belongs_to', 'func'): "#197BCF",  # Membership relation
-        ('bb', 'prec', 'bb'): "#CF2519",  # Control flow
-        ('bb', 'succ', 'bb'): "#CF2519",  # Control flow
-        ('bb', 'transf_by', 'loop_pragma'): "#19CF8F",  # Transformation
-        ('bb', 'id', 'bb'): "#FFFFFF",  # Identity
+        # Basic-Block Edges
+        ('bb', 'contains', 'inst'): "#FFFFFF",   # Containment relation
+        ('bb', 'member', 'func'): "#197BCF",     # Membership relation
+        ('bb', 'control', 'bb'): "#CF2519",      # Control-flow
+        ('bb', 'control_rev', 'bb'): "#FFFFFF",  # Control-flow (reverse)
 
         # Function Edges
-        ('func', 'contains', 'bb'): "#197BCF",  # Containment relation
-        ('func', 'contains', 'inst'): "#197BCF",  # Containment relation
-        ('func', 'calls', 'func'): "#8F19CF",  # Function call relationship
-        ('func', 'called_by', 'func'): "#8F19CF",  # Function call relationship
-        ('func', 'transf_by', 'loop_pragma'): "#19CF8F",  # Transformation
-        ('func', 'id', 'func'): "#FFFFFF",  # Identity
+        ('func', 'contains', 'bb'): "#FFFFFF",   # Containment relation
+        ('func', 'contains', 'inst'): "#FFFFFF", # Containment relation
 
-        # Pragmas
-        ('loop_pragma', 'transf', 'bb'): "#19CF8F",  # Transformation
-        ('loop_pragma', 'transf', 'func'): "#19CF8F",  # Transformation
-        ('loop_pragma', 'id', 'loop_pragma'): "#FFFFFF",  # Identity
-
-        ('array_pragma', 'transf', 'array'): "#19CF8F",  # Transformation
-        ('array_pragma', 'id', 'array_pragma'): "#FFFFFF",  # Identity
+        # Self-Loops
+        ('inst', 'self', 'inst'): "#FFFFFF",
+        ('var', 'self', 'var'): "#FFFFFF",
+        ('array', 'self', 'array'): "#FFFFFF",
+        ('const', 'self', 'const'): "#FFFFFF",
+        ('bb', 'self', 'bb'): "#FFFFFF",
+        ('func', 'self', 'func'): "#FFFFFF"
     }
 
     edge_colors = []
@@ -955,6 +827,17 @@ def plot_cdfg(
         width=0.7,
         font_size=9
     )
+
+    edge_guide = {
+        "Control": "#CF2519",
+        "Call": "#8F19CF",
+        "Data": "#1F1F1F",
+        "Membership": "#197BCF"
+    }
+    for i, (edge_type, color) in enumerate(edge_guide.items()):
+        plt.text(0.1, 0.9 - i * 0.1, f"{edge_type}: ", color=color, fontsize=9)
+        plt.text(0.2, 0.9 - i * 0.1, f"{color}", color=color, fontsize=9)
+
     plt.axis("off")
     if output_path is not None:
         plt.savefig(output_path)
@@ -977,20 +860,11 @@ def print_cdfg(
 
 if __name__ == "__main__":
     # *** For debugging *** #
-    import programl
     from sys import argv
 
     ir_path = Path(argv[1])
     metadata_path = Path(argv[2])
-    output_path = Path(argv[3])
+    cfg_path = Path(argv[3])
+    output_path = Path(argv[4])
 
-    with open(ir_path, 'r') as ir_file:
-        ir_text = ir_file.read()
-
-    programl_cdfg = programl.from_llvm_ir(ir_text)
-    cdfg = build_cdfg(ir_path, metadata_path)
-
-    cdfg_dict = cdfg.to_dict()
-
-    with open(output_path, "w") as f:
-        f.write(str(cdfg_dict))
+    build_cdfg(ir_path, metadata_path, cfg_path, output_path)
