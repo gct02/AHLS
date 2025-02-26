@@ -1,19 +1,18 @@
-from typing import Dict, Union, Optional, List
+from typing import Dict, Union, Optional
 from torch.types import Device
-from torch_geometric.typing import EdgeType, Metadata
+from torch_geometric.typing import Metadata
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
-from torch_geometric.nn import HGTConv, LayerNorm
+from torch_geometric.nn import HGTConv, LayerNorm, SAGPooling
 from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
 from torch_geometric.nn.models import JumpingKnowledge
-from layers import HetSAGPooling
 
 
-class HGT_HLS(nn.Module):
+class HGT(nn.Module):
     r"""Module that uses the Heterogeneous Graph Transformer (HGT) operator from the
     `"Heterogeneous Graph Transformer" <https://arxiv.org/abs/2003.01332>`_ paper to
     perform graph-level regression.
@@ -47,53 +46,34 @@ class HGT_HLS(nn.Module):
         hid_dim: int,
         layers: int = 6,
         heads: int = 1,
-        conv_dropout: float = 0.0,
-        fc_dropout: float = 0.0,
-        pool_size: int = 8,
-        aggr_paths: Optional[List[List[EdgeType]]] = None,
+        dropout: float = 0.0,
+        pool_size: int = 16,
         apply_ln: bool = True,
         device: Optional[Device] = 'cpu'
     ):
         super().__init__()
 
-        if aggr_paths is None:
-            aggr_paths = [metadata[1]]
-
         self.device = device
-        self.node_types = metadata[0]
-        self.edge_types = metadata[1]
         self.layers = layers
         self.apply_ln = apply_ln
 
         # Define convolutional layers
         self.conv = nn.ModuleList([
-            HGTConv(in_channels, hid_dim, metadata, heads)
-        ])
-        self.conv.extend([
-            HGTConv(hid_dim, hid_dim, metadata, heads)
-            for _ in range(1, layers)
+            HGTConv(hid_dim if i > 0 else in_channels, hid_dim, metadata, heads)
+            for i in range(layers)
         ])
 
         # Define normalization layers (optional)
         if self.apply_ln:
-            self.norm = nn.ModuleDict({
-                nt: nn.ModuleList([
-                    LayerNorm(hid_dim) for _ in range(layers-1)
-                ])
-                for nt in self.node_types
-            })
-
-        # Define dropouts
-        self.conv_dropout = nn.Dropout(conv_dropout)
+            self.norm = nn.ModuleList([
+                LayerNorm(hid_dim) for _ in range(layers)
+            ])
 
         # Define Jumping Knowledge layer
-        self.jkn = nn.ModuleDict({
-            nt: JumpingKnowledge('max', channels=hid_dim, num_layers=layers)
-            for nt in self.node_types
-        })
+        self.jkn = JumpingKnowledge('lstm', channels=hid_dim, num_layers=layers)
 
         # Define pooling layer
-        self.pool = HetSAGPooling(metadata, hid_dim, aggr_paths, pool_size)
+        self.pool = SAGPooling(hid_dim, pool_size)
 
         # Define fully connected layers
         hid_dim_fc = [hid_dim * pool_size]
@@ -107,7 +87,7 @@ class HGT_HLS(nn.Module):
             self.mlp.extend([
                 nn.Linear(hid_dim_fc[i], hid_dim_fc[i+1]),
                 nn.GELU(),
-                nn.Dropout(fc_dropout)
+                nn.Dropout(dropout)
             ])
         self.mlp.append(nn.Linear(hid_dim_fc[-1], out_channels))
 
@@ -140,34 +120,28 @@ class HGT_HLS(nn.Module):
         Returns: :obj:`torch.Tensor` - The output prediction tensor.
         """
         x, edge_index = data.x_dict, data.edge_index_dict
-        outs = {nt: [] for nt in self.node_types}
+        outs = []
 
         # Convolutional layers
-        for i in range(self.layers-1):
+        for i in range(self.layers):
             x = self.conv[i](x, edge_index)
-
+            out = torch.cat([v for v in x.values()], dim=0)
             if self.apply_ln:
-                x = {k: self.norm[k][i](v) if v.numel() > 0 else v for k, v in x.items()}
-
-            x = {k: self.conv_dropout(F.gelu(v)) for k, v in x.items()}
-            for k, v in x.items():
-                outs[k].append(v)
-        
-        x = self.conv[-1](x, edge_index)
-        for k, v in x.items():
-            outs[k].append(v)
+                out = self.norm[i](out)
+            outs.append(out)
 
         # Jumping Knowledge layer
-        x = {k: self.jkn[k](outs[k]) for k in x.keys()}
+        x = self.jkn(outs)
 
         # Edge-wise aggregation
-        x_out = self.pool(x, edge_index).flatten()
+        edge_index = torch.cat([v for v in edge_index.values()], dim=1)
+        aggr = self.pool(x, edge_index)[0].flatten()
 
         # Fully connected layers
-        x_out = self.mlp(x_out)
+        aggr = self.mlp(aggr)
 
         # Avoid NaNs (edge case handling)
-        x_out = torch.nan_to_num(x_out)
-
-        return x_out
+        aggr = torch.nan_to_num(aggr)
+        
+        return aggr
 

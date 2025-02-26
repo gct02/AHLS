@@ -786,11 +786,11 @@ def _map_instruction_ids(
     return inst_dict
 
 def build_cdfg(
-        ir_path: Path,
-        metadata_path: Path,
-        cfg_path: Path,
-        output_folder: Optional[Path] = None
-        ) -> HeteroData:
+    ir_path: Path,
+    metadata_path: Path,
+    cfg_path: Path,
+    output_folder: Optional[Path] = None
+) -> HeteroData:
     import programl
 
     with open(ir_path, 'r') as ir_file:
@@ -824,9 +824,9 @@ def build_cdfg(
     return cdfg
 
 def plot_cdfg(
-        cdfg: Union[HeteroData, Data],
-        output_path: Optional[Path] = None
-        ) -> None:
+    cdfg: Union[HeteroData, Data],
+    output_path: Optional[Path] = None
+) -> None:
     import networkx as nx
 
     def get_short_type(node_type: NodeType) -> str:
@@ -838,8 +838,15 @@ def plot_cdfg(
             return 'C'
         elif node_type == 'array':
             return 'A'
-        else:
-            return 'U'
+        elif node_type == 'bb':
+            return 'B'
+        elif node_type == 'func':
+            return 'F'
+        elif node_type == 'loop_pragma':
+            return 'LP'
+        elif node_type == 'array_pragma':
+            return 'AP'
+        return 'U'
         
     def get_label(type: NodeType, idx: int) -> str:
         return f"{get_short_type(type)}{idx}"
@@ -855,6 +862,10 @@ def plot_cdfg(
         "var": "#3C99E6",
         "const": "#954CD9",
         "array": "#6DED8F",
+        "bb": "#FF0000",
+        "func": "#00FF00",
+        "loop_pragma": "#C3FF00",
+        "array_pragma": "#006EFF"
     }
 
     node_colors = []
@@ -867,17 +878,61 @@ def plot_cdfg(
 
     # Define colors for the edges
     edge_type_colors = {
-        ('inst','control','inst'): "#CF2519",
-        ('inst','call','inst'): "#8F19CF",
-        ('inst','data','var'): "#1F1F1F",
-        ('var','data','inst'): "#1F1F1F",
-        ('const','data','inst'): "#1F1F1F",
-        ('array','data','inst'): "#1F1F1F",
-        ('inst', 'data', 'array'): "#1F1F1F",
-        ('inst','id','inst'): "#FFFFFF",
-        ('var','id','var'): "#FFFFFF",
-        ('const','id','const'): "#FFFFFF",
-        ('array','id','array'): "#FFFFFF",
+        # Instruction-Instruction Edges
+        ('inst', 'prec', 'inst'): "#CF2519",      # Control dependency
+        ('inst', 'succ', 'inst'): "#CF2519",      # Control dependency
+        ('inst', 'calls', 'inst'): "#8F19CF",     # Call relationship
+        ('inst', 'called_by', 'inst'): "#8F19CF", # Call relationship
+        ('inst', 'id', 'inst'): "#FFFFFF",        # Identity
+
+        # Instruction-Variable Edges
+        ('inst', 'uses', 'var'): "#1F1F1F",  # Data dependency
+        ('inst', 'prod', 'var'): "#1F1F1F",  # Data dependency
+        ('var', 'used_by', 'inst'): "#1F1F1F",  # Reverse data dependency
+        ('var', 'prod_by', 'inst'): "#1F1F1F",  # Reverse data dependency
+        ('var', 'id', 'var'): "#FFFFFF",  # Identity
+
+        # Instruction-Array Edges
+        ('inst', 'prod', 'array'): "#1F1F1F",  # Data dependency
+        ('inst', 'uses', 'array'): "#1F1F1F",  # Data dependency
+        ('array', 'used_by', 'inst'): "#1F1F1F",  # Reverse data dependency
+        ('array', 'prod_by', 'inst'): "#1F1F1F",  # Reverse data dependency
+        ('array', 'id', 'array'): "#FFFFFF",  # Identity
+
+        # Instruction-Constant Edges
+        ('inst', 'uses', 'const'): "#1F1F1F",  # Data dependency
+        ('const', 'used_by', 'inst'): "#1F1F1F",  # Reverse data dependency
+        ('const', 'id', 'const'): "#FFFFFF",  # Identity
+
+        # Instruction-Basic Block Edges
+        ('inst', 'belongs_to', 'bb'): "#197BCF",  # Membership relation
+
+        # Instruction-Function Edges
+        ('inst', 'belongs_to', 'func'): "#197BCF",  # Membership relation
+
+        # Basic Block Edges
+        ('bb', 'contains', 'inst'): "#197BCF",  # Containment relation
+        ('bb', 'belongs_to', 'func'): "#197BCF",  # Membership relation
+        ('bb', 'prec', 'bb'): "#CF2519",  # Control flow
+        ('bb', 'succ', 'bb'): "#CF2519",  # Control flow
+        ('bb', 'transf_by', 'loop_pragma'): "#19CF8F",  # Transformation
+        ('bb', 'id', 'bb'): "#FFFFFF",  # Identity
+
+        # Function Edges
+        ('func', 'contains', 'bb'): "#197BCF",  # Containment relation
+        ('func', 'contains', 'inst'): "#197BCF",  # Containment relation
+        ('func', 'calls', 'func'): "#8F19CF",  # Function call relationship
+        ('func', 'called_by', 'func'): "#8F19CF",  # Function call relationship
+        ('func', 'transf_by', 'loop_pragma'): "#19CF8F",  # Transformation
+        ('func', 'id', 'func'): "#FFFFFF",  # Identity
+
+        # Pragmas
+        ('loop_pragma', 'transf', 'bb'): "#19CF8F",  # Transformation
+        ('loop_pragma', 'transf', 'func'): "#19CF8F",  # Transformation
+        ('loop_pragma', 'id', 'loop_pragma'): "#FFFFFF",  # Identity
+
+        ('array_pragma', 'transf', 'array'): "#19CF8F",  # Transformation
+        ('array_pragma', 'id', 'array_pragma'): "#FFFFFF",  # Identity
     }
 
     edge_colors = []
@@ -908,9 +963,9 @@ def plot_cdfg(
     plt.close()
 
 def print_cdfg(
-        cdfg: HeteroData,
-        output_path: Optional[Path] = None
-        ) -> None:
+    cdfg: HeteroData,
+    output_path: Optional[Path] = None
+) -> None:
     # Set print options to display the full tensor
     torch.set_printoptions(profile="full", threshold=1e9, linewidth=200)
     cdfg_dict = cdfg.to_dict()

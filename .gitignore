@@ -77,6 +77,10 @@ approx/
 
 # Test files and statistics
 model_analysis/
+test_dataset/
+pretrained/
+runs/
+test/
 
 # The dataset to train the estimator (too large for git)
 dataset/

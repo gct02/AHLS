@@ -82,24 +82,21 @@ def process_ir(
     """
     tmp1 = ir_src_path.parent / "tmp1.ll"
     tmp2 = ir_src_path.parent / "tmp2.ll"
+
+    default_opt = "-mem2reg -indvars -loop-simplify -scalar-evolution -indvars -mem2reg -lowerswitch -lowerinvoke -indirectbr-expand -instnamer -strip-dead-prototypes -strip-debug"
     try:
-        run_opt(ir_src_path, tmp1, "-strip-debug")
-        run_opt(tmp1, tmp2, "-strip-dead-prototypes -mem2reg -indvars -loop-simplify -scalar-evolution")
-        run_opt(tmp2, tmp1, "-instnamer")
-        run_opt(tmp1, tmp2, "-indirectbr-expand")
-        run_opt(tmp2, tmp1, "-lowerinvoke")
-        run_opt(tmp1, tmp2, "-lowerswitch")
-        run_opt(tmp2, tmp1, "-prep-gnn")
-        run_opt(tmp1, tmp2, "-update-md")
-        run_opt(tmp2, tmp1, f"-set-hls-md -dir {directives_path.as_posix()}")
-        run_opt(tmp1, tmp2, "-rename-vals")
+        run_opt(ir_src_path, tmp1, default_opt)
+        run_opt(tmp1, tmp2, "-prep-gnn")
+        run_opt(tmp2, tmp1, "-update-md")
+        run_opt(tmp1, tmp2, f"-set-hls-md -dir {directives_path.as_posix()}")
+        run_opt(tmp2, tmp1, "-rename-vals")
         
         subprocess.check_output(
-            f"{OPT} -load {DSE_LIB} -extract-md -out-md {output_md_path.as_posix()} < {tmp2.as_posix()};", 
+            f"{OPT} -load {DSE_LIB} -extract-md -out-md {output_md_path.as_posix()} < {tmp1.as_posix()};", 
             shell=True, stderr=subprocess.STDOUT
         )
         
-        run_opt(tmp2, ir_dst_path, "-rm-dummy-globals")
+        run_opt(tmp1, ir_dst_path, "-rm-dummy-globals")
 
         subprocess.check_output(
             f"{OPT} -load {DSE_LIB} -write-cfg -out-cfg {output_cfg_path.as_posix()} < {ir_dst_path.as_posix()};", 

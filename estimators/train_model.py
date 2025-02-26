@@ -10,10 +10,14 @@ import seaborn as sns
 import pandas as pd
 import torch
 import torch.nn as nn
+from torch.utils.tensorboard import SummaryWriter
+from torchinfo import summary
+from pytorch_warmup import RAdamWarmup, BaseWarmup
 from pathlib import Path
 from torch.utils.data import DataLoader
 from sklearn.metrics import r2_score
-from models import HGT_HLS
+from models import HGT
+
 
 def save_model(model, target_dir, model_name):
     target_dir_path = Path(target_dir)
@@ -23,6 +27,10 @@ def save_model(model, target_dir, model_name):
     model_save_path = target_dir_path / model_name
     print(f"[INFO] Saving model to: {model_save_path}")
     torch.save(obj=model.state_dict(), f=model_save_path)
+
+
+def rpd(pred: float, target: float) -> float:
+    return (pred - target) / max((abs(pred) + abs(target)) / 2, 1e-6) * 100
     
 
 def evaluate(
@@ -30,8 +38,7 @@ def evaluate(
     loader: DataLoader,
     loss_fn: nn.Module,
     verbosity: int,
-    mode: str,
-    rel_error_threshold: float = 0.01,
+    mode: str
 ) -> Tuple[float, float, float, List[Tuple[float, float]]]:
     if verbosity > 0:
         print(f"\nEvaluating on {mode} set\n")
@@ -53,15 +60,12 @@ def evaluate(
         pred_val = pred.item()
         target_val = target.item()
         abs_error = abs(pred_val - target_val)
-        if target_val != 0:
-            rel_error = abs_error / target_val * 100
-        else:
-            rel_error = 0 if abs_error <= rel_error_threshold else 100
+        rpd_val = rpd(pred_val, target_val)
 
         pred_vals.append(pred_val)
         target_vals.append(target_val)
         abs_errors.append(abs_error)
-        rel_errors.append(rel_error)
+        rel_errors.append(rpd_val)
 
     mean_abs_error = np.mean(abs_errors)
     mean_rel_error = np.mean(rel_errors)
@@ -89,8 +93,11 @@ def train_model(
     test_loader: DataLoader,
     epochs: int,
     scheduler: Optional[torch.optim.lr_scheduler._LRScheduler] = None,
+    warmup_scheduler: Optional[BaseWarmup] = None,
     verbosity: int = 1
 ) -> Tuple[List[float], List[float], List[float], List[List[Tuple[float, float]]]]:
+    writer = SummaryWriter("estimators/runs")
+
     train_error_per_epoch = []
     test_abs_error_per_epoch = []
     test_rel_error_per_epoch = []
@@ -125,24 +132,32 @@ def train_model(
                 train_batch_error += abs_error
 
                 if verbosity > 1:
-                    if target_val != 0:
-                        rel_error = abs_error / target_val * 100
-                    else:
-                        rel_error = 0 if abs_error <= 1e-2 else float('inf')
+                    rpd_val = rpd(pred_val, target_val)
                     print(f"Instance: {i}; Target: {target_val}; Prediction: {pred_val}; "
-                          + f"Abs. Error: {abs_error:.3f}; Rel. Error: {rel_error:.3f}%")
+                          + f"Abs. Error: {abs_error:.3f}; RPD: {rpd_val:.3f}%")
 
             batch_size = len(input_batch)
 
             preds = torch.stack(preds).view(batch_size, 1)
             targets = torch.stack(targets).view(batch_size, 1)
+
             loss_fn(preds, targets).backward()
+
             optimizer.step()
+
             if scheduler:
                 scheduler.step()
 
+            if warmup_scheduler:
+                warmup_scheduler.dampen()
+
             train_batch_error /= batch_size
             train_epoch_error += train_batch_error
+
+            params = model.named_parameters()
+            for tag, param in params:
+                if param.grad is not None:
+                    writer.add_histogram(tag, param.grad.data.cpu().numpy(), epoch)
 
         train_epoch_error /= num_batches
         train_error_per_epoch.append(train_epoch_error)
@@ -151,7 +166,7 @@ def train_model(
         model.eval()
         with torch.no_grad():
             _, test_abs_error, test_rel_error, test_preds = evaluate(
-                model, test_loader, loss_fn, verbosity, "test", rel_error_threshold=1.0
+                model, test_loader, loss_fn, verbosity, "test"
             )
             test_abs_error_per_epoch.append(test_abs_error)
             test_rel_error_per_epoch.append(test_rel_error)
@@ -202,19 +217,23 @@ def main(args: Dict[str, str]):
         )
 
         model = initialize_model()
-        loss_func = nn.HuberLoss(delta=1.345)
+        summary(model)
+
+        loss_func = nn.MSELoss()
+
         optimizer = torch.optim.AdamW(
-            model.parameters(), lr=1e-4, betas=(0.9, 0.999), weight_decay=1e-4
+            model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=1e-4
         )
 
         total_steps = epochs * len(train_loader)
-        scheduler = torch.optim.lr_scheduler.OneCycleLR(
-            optimizer, max_lr=5e-3, total_steps=total_steps
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+            optimizer, T_max=total_steps, eta_min=1e-6
         )
+        warmup_scheduler = RAdamWarmup(optimizer)
 
         train_errors, test_abs_errors, test_rel_errors, test_preds = train_model(
             model, loss_func, optimizer, train_loader, test_loader, 
-            epochs, scheduler, verbosity
+            epochs, scheduler, warmup_scheduler, verbosity
         )
         
         save_model(model, pretrained_dir, f"hgt_{target_metric}.pt")
@@ -349,11 +368,8 @@ def plot_benchmark_analysis(
     for inst in test_preds_per_epoch:
         best_epoch_pred = inst[best_epoch][0]
         target = inst[0][1]
-        if target != 0:
-            rel_error = (best_epoch_pred - target) / target * 100
-        else:
-            rel_error = 0 if abs(best_epoch_pred - target) <= rel_error_threshold else 100
-        rel_errors_per_inst.append(rel_error)
+        rpd_val = rpd(best_epoch_pred, target)
+        rel_errors_per_inst.append(rpd_val)
 
     bar_width = 0.35
     fig, ax = plt.subplots(figsize=(20, 8), dpi=150)
@@ -473,23 +489,15 @@ def prepare_data_loaders(
     batch_size: int
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
     # Don't normalize columns representing one-hot encoded categorical features or boolean features
-    # inst: 0: num_operands, 1: num_uses, inst_type: 2-13, mod_memory: 14, read_memory: 15, mod_cf: 16. 
-    #     Filter out 2-13, 14, 15, 16
-    # var: 0-4: var_type, 5: bitwidth. 
-    #     Filter out 0-4
-    # const: 0-4: const_type, 5: bitwidth. 
-    #     Filter out 0-4
-    # array: 0: num_dims, 1-4: dim_sizes, 5-9: elem_type, 10: elem_bitwidth.
-    #     Filter out 5-9
-    # bb: 0: num_instructions, 1: in_loop, 2: loop_depth, 3: trip_count.
-    #     Filter out 1
-    # func: 0: num_operands, 1: num_uses, 3: num_instructions, 4: num_bbs, 5: num_loops, 
-    #     6-10: ret_type, 11: ret_bitwidth.
-    #     Filter out 6-10
-    # loop_pragma: 0-3: pragma_type, 4: complete_unroll, 5: unroll_factor.
-    #     Filter out 0-4
+    # The features for each node type are as follows:
+    # inst:  0: num_operands, 1: num_uses, 2-13: inst_type, 14: mod_memory, 15: read_memory, 16: mod_cf; 
+    # var:   0-4: type, 5: bw;
+    # const: 0-4: type, 5: bw;
+    # array: 0: num_dims, 1-4: dim_sizes, 5-9: elem_type, 10: elem_bw;
+    # bb:    0: num_insts, 1: in_loop, 2: loop_depth, 3: trip_count;
+    # func:  0: num_operands, 1: num_uses, 3: num_insts, 4: num_bbs, 5: num_loops, 6-10: ret_type, 11: ret_bw;
+    # loop_pragma:  0-3: pragma_type, 4: complete_unroll, 5: unroll_factor;
     # array_pragma: 0-2: partition_type, 3: full_partition, 3-7: partition_dims, 8: partition_factor
-    #     Filter out 0-7
     filter_cols = {
         'inst': list(range(2, 17)),
         'var': list(range(5)),
@@ -517,22 +525,14 @@ def prepare_data_loaders(
         test_data, batch_size=1, shuffle=False, 
         collate_fn=lambda x: tuple(zip(*x))
     )
+
     return train_loader, test_loader
 
 
 def initialize_model() -> nn.Module:
-    agg_paths = [
-        [et for et in EDGE_TYPES if (et[0] == 'inst' and et[2] == 'inst') or et[1] == 'id'],
-        [et for et in EDGE_TYPES if et[1] == 'prod' or et[1] == 'uses' or et[1] == 'used_by' or et[1] == 'prod_by' or et[1] == 'id'],
-        [et for et in EDGE_TYPES if et[0] == 'bb' or et[2] == 'bb' or et[1] == 'id'],
-        [et for et in EDGE_TYPES if et[0] == 'func' or et[2] == 'func' or et[1] == 'id'],
-        [et for et in EDGE_TYPES if et[1] == 'transf' or et[1] == 'transf_by' or et[1] == 'id'],
-    ]
-
-    return HGT_HLS(
-        METADATA, FEAT_SIZE_PER_NODE_TYPE, 1, hid_dim=24, layers=6, heads=6, 
-        fc_dropout=0.1, conv_dropout=0.0, apply_ln=True, pool_size=16, 
-        aggr_paths=agg_paths, device=DEVICE,
+    return HGT(
+        METADATA, FEAT_SIZE_PER_NODE_TYPE, 1, hid_dim=20, layers=5, heads=4,
+        dropout=0.1, apply_ln=False, pool_size=16, device=DEVICE,
     )
 
 
