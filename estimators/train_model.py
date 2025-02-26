@@ -475,16 +475,16 @@ def prepare_data_loaders(
     # inst:  0-11: type, 12: n_uses, 13: mod_mem, 14: read_mem, 15: mod_cf; 
     # var:   0-5: type, 6: bw;
     # const: 0-5: type, 6: bw;
-    # array: 0: n_dims, 1-4: dim_sizes, 5-9: elem_type, 10: elem_bw, 11: partitioned, 12-14: partition_type, 14-17: partition_dims, 18: partition_factor;
+    # array: 0: n_dims, 1-4: dim_sizes, 5-10: elem_type, 11: elem_bw, 12: partitioned, 13-15: partition_type, 16: full_partition, 17-20: partition_dims, 21: partition_factor;
     # bb:    0: n_insts, 1: loop_depth, 2: trip_count, 3: pipelined, 4: merged, 5: flattened, 6: unrolled, 7: complete_unroll, 8: unroll_factor;
-    # func:  0: n_operands, 1: n_uses, 3: n_insts, 4: n_bbs, 5: n_loops, 6-10: ret_type, 11: ret_bw, 12: pipelined, 13: merged.
+    # func:  0: n_operands, 1: n_uses, 2: n_insts, 3: n_bbs, 4: n_loops, 5-10: ret_type, 11: ret_bw, 12: pipelined, 13: merged.
     filter_cols = {
         'inst': list(range(12)) + [13, 14, 15],
         'var': list(range(6)),
         'const': list(range(6)),
-        'array': list(range(5, 10)) + list(range(11, 18)),
+        'array': list(range(5, 11)) + list(range(12, 22)),
         'bb': list(range(3, 8)),
-        'func': list(range(6, 11)) + [12, 13]
+        'func': list(range(5, 11)) + [12, 13]
     }
 
     train_data = HLSDataset(
