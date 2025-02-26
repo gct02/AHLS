@@ -10,12 +10,10 @@ import seaborn as sns
 import pandas as pd
 import torch
 import torch.nn as nn
-from torch.utils.tensorboard import SummaryWriter
-from torchinfo import summary
-from pytorch_warmup import RAdamWarmup, BaseWarmup
 from pathlib import Path
 from torch.utils.data import DataLoader
 from sklearn.metrics import r2_score
+from torchinfo import summary
 from models import HGT
 
 
@@ -30,7 +28,9 @@ def save_model(model, target_dir, model_name):
 
 
 def rpd(pred: float, target: float) -> float:
-    return (pred - target) / max((abs(pred) + abs(target)) / 2, 1e-6) * 100
+    if target < 1e-6:
+        return abs(pred - target) / ((abs(pred) + abs(target)) / 2 + 1e-6) * 100
+    return abs(pred - target) / abs(target) * 100
     
 
 def evaluate(
@@ -93,11 +93,8 @@ def train_model(
     test_loader: DataLoader,
     epochs: int,
     scheduler: Optional[torch.optim.lr_scheduler._LRScheduler] = None,
-    warmup_scheduler: Optional[BaseWarmup] = None,
     verbosity: int = 1
 ) -> Tuple[List[float], List[float], List[float], List[List[Tuple[float, float]]]]:
-    writer = SummaryWriter("estimators/runs")
-
     train_error_per_epoch = []
     test_abs_error_per_epoch = []
     test_rel_error_per_epoch = []
@@ -134,7 +131,7 @@ def train_model(
                 if verbosity > 1:
                     rpd_val = rpd(pred_val, target_val)
                     print(f"Instance: {i}; Target: {target_val}; Prediction: {pred_val}; "
-                          + f"Abs. Error: {abs_error:.3f}; RPD: {rpd_val:.3f}%")
+                          + f"Abs. Error: {abs_error:.3f}; Rel. Error: {rpd_val:.3f}%")
 
             batch_size = len(input_batch)
 
@@ -144,20 +141,11 @@ def train_model(
             loss_fn(preds, targets).backward()
 
             optimizer.step()
-
             if scheduler:
                 scheduler.step()
 
-            if warmup_scheduler:
-                warmup_scheduler.dampen()
-
             train_batch_error /= batch_size
             train_epoch_error += train_batch_error
-
-            params = model.named_parameters()
-            for tag, param in params:
-                if param.grad is not None:
-                    writer.add_histogram(tag, param.grad.data.cpu().numpy(), epoch)
 
         train_epoch_error /= num_batches
         train_error_per_epoch.append(train_epoch_error)
@@ -226,14 +214,13 @@ def main(args: Dict[str, str]):
         )
 
         total_steps = epochs * len(train_loader)
-        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-            optimizer, T_max=total_steps, eta_min=1e-6
+        scheduler = torch.optim.lr_scheduler.OneCycleLR(
+            optimizer, max_lr=1e-3, total_steps=total_steps
         )
-        warmup_scheduler = RAdamWarmup(optimizer)
 
         train_errors, test_abs_errors, test_rel_errors, test_preds = train_model(
             model, loss_func, optimizer, train_loader, test_loader, 
-            epochs, scheduler, warmup_scheduler, verbosity
+            epochs, scheduler, verbosity
         )
         
         save_model(model, pretrained_dir, f"hgt_{target_metric}.pt")
@@ -531,7 +518,7 @@ def prepare_data_loaders(
 
 def initialize_model() -> nn.Module:
     return HGT(
-        METADATA, FEAT_SIZE_PER_NODE_TYPE, 1, hid_dim=20, layers=5, heads=4,
+        METADATA, FEAT_SIZE_PER_NODE_TYPE, 1, hid_dim=24, layers=6, heads=6,
         dropout=0.1, apply_ln=False, pool_size=16, device=DEVICE,
     )
 
