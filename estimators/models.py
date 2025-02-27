@@ -135,8 +135,8 @@ class HGT(nn.Module):
         out = self.jkn(outs)
 
         # Pooling layer
-        hom = self._to_homogeneous(x, edge_index)
-        out = self.pool(out, hom.edge_index)[0].flatten()
+        hom_edge_index = data.to_homogeneous().edge_index
+        out = self.pool(out, hom_edge_index)[0].flatten()
 
         # Fully connected layers
         out = self.mlp(out)

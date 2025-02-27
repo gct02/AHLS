@@ -13,7 +13,6 @@ import torch.nn as nn
 from pathlib import Path
 from torch.utils.data import DataLoader
 from sklearn.metrics import r2_score
-from torchinfo import summary
 from models import HGT
 
 
@@ -205,8 +204,6 @@ def main(args: Dict[str, str]):
         )
 
         model = initialize_model()
-        summary(model)
-
         loss_func = nn.MSELoss()
 
         optimizer = torch.optim.AdamW(
@@ -431,7 +428,7 @@ def save_training_artifacts(
 
     # Add error distribution plot
     plt.figure(figsize=(10, 6))
-    sns.histplot(predictions_df['absolute_error'], bins=20, kde=True)
+    sns.histplot(predictions_df['abs_error_best'], bins=20, kde=True)
     plt.title('Absolute Error Distribution')
     plt.savefig(f"{graphs_dir}/error_distribution.png")
     plt.close()
@@ -509,7 +506,7 @@ def prepare_data_loaders(
 
 def initialize_model() -> nn.Module:
     return HGT(
-        METADATA, NODE_FEATURE_DIMS, 1, hid_dim=24, layers=6, heads=6,
+        METADATA, NODE_FEATURE_DIMS, 1, hid_dim=32, layers=6, heads=8,
         dropout=0.1, pool_size=16, device=DEVICE,
     )
 

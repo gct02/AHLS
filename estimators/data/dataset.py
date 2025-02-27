@@ -102,8 +102,8 @@ class HLSDataset(Dataset):
                     target_value = float(line.split("=")[1].strip())
                     break
         
-        if target_value == -1:
-            raise ValueError(f"Invalid target in {targets_path}")
+        #if target_value == -1:
+        #    raise ValueError(f"Invalid target in {targets_path}")
 
         # Apply normalization
         if self.normalize:
@@ -161,7 +161,7 @@ class HLSDataset(Dataset):
                             target_value = float(line.split("=")[1])
                             break
 
-                if target_value == -1:
-                    continue
+                #if target_value == -1:
+                #    continue
 
                 self.data_paths.append((cdfg_path, targets_path))
