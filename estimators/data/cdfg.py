@@ -1,54 +1,54 @@
 from typing import List, Dict, Tuple, Union, Optional
 from torch.types import Number
+from torch_geometric.typing import NodeType, EdgeType
 
 import torch
 import matplotlib.pyplot as plt
 from pathlib import Path
 from enum import IntEnum
 from torch import Tensor
-from torch_geometric.typing import NodeType
 from torch_geometric.data import HeteroData, Data
 from torch_geometric.utils import to_networkx
 
 NODE_TYPES = ['inst', 'var', 'const', 'array', 'bb', 'func']
 EDGE_TYPES = [
         # Instruction-Instruction Edges
-        ('inst', 'control', 'inst'),       # Control-flow
-        ('inst', 'control_rev', 'inst'),   # Control-flow (reverse)
-        ('inst', 'call', 'inst'),          # Call-flow
-        ('inst', 'call_rev', 'inst'),      # Call-flow (reverse)
+        ('inst', 'control', 'inst'),     # Control-flow
+        ('inst', 'control_rev', 'inst'), # Control-flow (reverse)
+        ('inst', 'call', 'inst'),        # Call-flow
+        ('inst', 'call_rev', 'inst'),    # Call-flow (reverse)
 
         # Instruction-Variable Edges
-        ('inst', 'data_out', 'var'),       # Data-flow
-        ('var', 'data_in', 'inst'),        # Data-flow
-        ('inst', 'data_in_rev', 'var'),    # Data-flow (reverse)
-        ('var', 'data_out_rev', 'inst'),   # Data-flow (reverse)
+        ('inst', 'data', 'var'),       # Data-flow
+        ('var', 'data', 'inst'),       # Data-flow
+        ('inst', 'data_rev', 'var'),   # Data-flow (reverse)
+        ('var', 'data_rev', 'inst'),   # Data-flow (reverse)
 
         # Instruction-Array Edges
-        ('inst', 'data_out', 'array'),     # Data-flow
-        ('array', 'data_in', 'inst'),      # Data-flow
-        ('inst', 'data_in_rev', 'array'),  # Data-flow (reverse)
-        ('array', 'data_out_rev', 'inst'), # Data-flow (reverse)
+        ('inst', 'data', 'array'),     # Data-flow
+        ('array', 'data', 'inst'),     # Data-flow
+        ('inst', 'data_rev', 'array'), # Data-flow (reverse)
+        ('array', 'data_rev', 'inst'), # Data-flow (reverse)
 
         # Instruction-Constant Edges
-        ('const', 'data_in', 'inst'),      # Data-flow
-        ('inst', 'data_in_rev', 'const'),  # Data-flow (reverse)
+        ('const', 'data', 'inst'),     # Data-flow
+        ('inst', 'data_rev', 'const'), # Data-flow (reverse)
 
         # Instruction-Basic-Block Edges
-        ('inst', 'member', 'bb'),     # Membership relation
+        ('inst', 'member', 'bb'),      # Membership relation
 
         # Instruction-Function Edges
-        ('inst', 'member', 'func'),   # Membership relation
+        ('inst', 'member', 'func'),    # Membership relation
 
         # Basic-Block Edges
-        ('bb', 'contains', 'inst'),   # Containment relation
-        ('bb', 'member', 'func'),     # Membership relation
-        ('bb', 'control', 'bb'),      # Control-flow
-        ('bb', 'control_rev', 'bb'),  # Control-flow (reverse)
+        ('bb', 'contains', 'inst'),    # Containment relation
+        ('bb', 'member', 'func'),      # Membership relation
+        ('bb', 'control', 'bb'),       # Control-flow
+        ('bb', 'control_rev', 'bb'),   # Control-flow (reverse)
 
         # Function Edges
-        ('func', 'contains', 'bb'),   # Containment relation
-        ('func', 'contains', 'inst'), # Containment relation
+        ('func', 'contains', 'bb'),    # Containment relation
+        ('func', 'contains', 'inst'),  # Containment relation
 
         # Self-loops
         ('inst', 'self', 'inst'),
@@ -80,9 +80,11 @@ class NodeType(IntEnum):
     INST = 0
     VAR = 1
     CONST = 2
-    ARRAY = 3
-    BB = 4
-    FUNC = 5
+
+class EdgeFlow(IntEnum):
+    CONTROL = 0
+    DATA = 1
+    CALL = 2
 
 # Type IDs from LLVM 7.0
 class LLVMTypeID(IntEnum):
@@ -352,17 +354,18 @@ def _build_nodes(
     programl_graph,
     metadata: Dict[str, Dict[str, Dict[str, str]]],
     inst_dict: Dict[int, str]
-) -> Tuple[HeteroData, Dict[str, List[int]]]:
+) -> Tuple[HeteroData, Dict[NodeType, List[int]], Dict[EdgeType, Tensor]]:
     nodes = {nt: [] for nt in NODE_TYPES}
     indices = {nt: [] for nt in NODE_TYPES}
 
     additional_edges = {
-        ('inst', 'member', 'bb'): [], ('inst', 'member', 'func'): [],
-        ('bb', 'contains', 'inst'): [], ('func', 'contains', 'inst'): [],
-        ('bb', 'member', 'func'): [], ('func', 'contains', 'bb'): []
+        ('inst', 'member', 'bb'): [], 
+        ('inst', 'member', 'func'): [], 
+        ('bb', 'member', 'func'): [],
+        ('bb', 'contains', 'inst'): [], 
+        ('func', 'contains', 'inst'): [], 
+        ('func', 'contains', 'bb'): []
     }
-
-    graph = HeteroData()
 
     # External functions are represented an instruction node
     # with all-zero features and index 0
@@ -371,7 +374,6 @@ def _build_nodes(
 
     for i, node in enumerate(programl_graph.node):
         node_type, node_text = node.type, node.text
-
         if len(node_text) == 0 or node_text == "[external]":
             continue
 
@@ -444,7 +446,6 @@ def _build_nodes(
                             + unroll_feats)
                 nodes['bb'].append(torch.tensor(features, dtype=torch.float32))
                 indices["bb"].append(bb_id)
-
                 additional_edges[('bb', 'member', 'func')].append((bb_id, function_id))
                 additional_edges[('func', 'contains', 'bb')].append((function_id, bb_id))
 
@@ -526,6 +527,7 @@ def _build_nodes(
             nodes[nt].append(torch.tensor(features, dtype=torch.float32))
             indices[nt].append(i)
 
+    graph = HeteroData()
     for key in nodes.keys():
         if len(nodes[key]) > 0:
             graph[key].x = torch.stack(nodes[key])
@@ -533,77 +535,81 @@ def _build_nodes(
             feature_dim = NODE_FEATURE_DIMS[key]
             graph[key].x = torch.empty((0, feature_dim), dtype=torch.float32)
 
-    for et, edge_list in additional_edges.items():
-        if len(edge_list) > 0:
-            edge_list_reindexed = [(indices[et[0]].index(src), indices[et[2]].index(dst))
-                                   for src, dst in edge_list]
-            graph[et].edge_index = torch.stack(
-                [_build_edge_tensor(src, dst) for src, dst in edge_list_reindexed]
-            ).transpose(0, 1)
+    reindexed_edges = {}
+    for et, edges in additional_edges.items():
+        reindexed_edges[et] = []
+        for edge in edges:
+            src, dst = edge
+            src_idx = indices[et[0]].index(src)
+            dst_idx = indices[et[2]].index(dst)
+            reindexed_edges[et].append(_build_edge_tensor(src_idx, dst_idx))
+        if len(edges) > 0:
+            reindexed_edges[et] = torch.stack(reindexed_edges[et]).transpose(0, 1)
         else:
-            graph[et].edge_index = torch.empty((2, 0), dtype=torch.int64)
+            reindexed_edges[et] = torch.empty((2, 0), dtype=torch.int64)
 
-    return graph, indices
+    return graph, indices, reindexed_edges
 
 def _build_edges(
     programl_graph,
     graph: HeteroData,
     indices: Dict[str, List[int]],
-    cfg_edges: List[Tuple[int, int]]
+    cfg_edges: List[Tuple[int, int]],
+    additional_edges: Dict[EdgeType, Tensor]
 ) -> HeteroData:
     edge_dict = {et: [] for et in EDGE_TYPES}
     
     for edge in programl_graph.edge:
         src, dst = edge.source, edge.target
-        src_type = programl_graph.node[src].type
-        dst_type = programl_graph.node[dst].type
-        if src_type == NodeType.INST and src in indices["inst"]: 
+        if src in indices["inst"]: 
             src_idx = indices["inst"].index(src)
-            if dst_type == NodeType.INST and dst in indices["inst"]:
+            if dst in indices["inst"]:
                 dst_idx = indices["inst"].index(dst)
                 edge_tensor = _build_edge_tensor(src_idx, dst_idx)
-                inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
-                if edge.flow == 0: # Control edge
+                rev_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
+                if edge.flow == EdgeFlow.CONTROL:
                     edge_dict[('inst', 'control', 'inst')].append(edge_tensor)
-                    edge_dict[('inst', 'control_rev', 'inst')].append(inv_edge_tensor)
-                else: # Call edge
+                    edge_dict[('inst', 'control_rev', 'inst')].append(rev_edge_tensor)
+                else:
                     edge_dict[('inst', 'call', 'inst')].append(edge_tensor)
-                    edge_dict[('inst', 'call_rev', 'inst')].append(inv_edge_tensor)
+                    edge_dict[('inst', 'call_rev', 'inst')].append(rev_edge_tensor)
             else:
                 if dst in indices["array"]:
                     dst_type_name = 'array'
-                elif dst_type == NodeType.VAR and dst in indices["var"]:
+                elif dst in indices["var"]:
                     dst_type_name = 'var'
                 else:
                     continue
                 dst_idx = indices[dst_type_name].index(dst)
                 edge_tensor = _build_edge_tensor(src_idx, dst_idx)
-                inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
-                edge_dict[('inst', 'data_out', dst_type_name)].append(edge_tensor)
-                edge_dict[(dst_type_name, 'data_out_rev', 'inst')].append(inv_edge_tensor)
-        elif dst_type == NodeType.INST and dst in indices["inst"]:
+                rev_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
+                edge_dict[('inst', 'data', dst_type_name)].append(edge_tensor)
+                edge_dict[(dst_type_name, 'data_rev', 'inst')].append(rev_edge_tensor)
+        elif dst in indices["inst"]:
             if src in indices["array"]:
                 src_type_name = 'array'
-            elif src_type == NodeType.VAR and src in indices["var"]:
+            elif src in indices["var"]:
                 src_type_name = 'var'
-            elif src_type == NodeType.CONST and src in indices["const"]:
+            elif src in indices["const"]:
                 src_type_name = 'const'
             else:
                 continue
             src_idx = indices[src_type_name].index(src)
             dst_idx = indices["inst"].index(dst)
             edge_tensor = _build_edge_tensor(src_idx, dst_idx)
-            inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
-            edge_dict[(src_type_name, 'data_in', 'inst')].append(edge_tensor)
-            edge_dict[('inst', 'data_in_rev', src_type_name)].append(inv_edge_tensor)
+            rev_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
+            edge_dict[(src_type_name, 'data', 'inst')].append(edge_tensor)
+            edge_dict[('inst', 'data_rev', src_type_name)].append(rev_edge_tensor)
 
     for edge in cfg_edges:
+        if edge[0] not in indices["bb"] or edge[1] not in indices["bb"]:
+            continue
         src_idx = indices["bb"].index(edge[0])
         dst_idx = indices["bb"].index(edge[1])
         edge_tensor = _build_edge_tensor(src_idx, dst_idx)
-        inv_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
+        rev_edge_tensor = _build_edge_tensor(dst_idx, src_idx)
         edge_dict[('bb', 'control', 'bb')].append(edge_tensor)
-        edge_dict[('bb', 'control_rev', 'bb')].append(inv_edge_tensor)
+        edge_dict[('bb', 'control_rev', 'bb')].append(rev_edge_tensor)
 
     # Add self-loops for all nodes
     for k, v in indices.items():
@@ -617,6 +623,9 @@ def _build_edges(
             graph[et].edge_index = torch.stack(edges).transpose(0, 1)
         else:
             graph[et].edge_index = torch.empty((2, 0), dtype=torch.int64)
+
+    for et, edges in additional_edges.items():
+        graph[et].edge_index = edges
 
     return graph
 
@@ -664,7 +673,6 @@ def _parse_cfg_file(
     # ...
     with open(cfg_path, 'r') as f:
         lines = f.readlines()[1:]
-    
     edges = [tuple(map(int, l.strip().split(','))) for l in lines]
     return edges
 
@@ -701,8 +709,8 @@ def build_cdfg(
     metadata = _parse_md_file(metadata_path)
     cfg_edges = _parse_cfg_file(cfg_path)
 
-    cdfg, indices = _build_nodes(programl_cdfg, metadata, inst_dict)
-    cdfg = _build_edges(programl_cdfg, cdfg, indices, cfg_edges)
+    cdfg, indices, additional_edges = _build_nodes(programl_cdfg, metadata, inst_dict)
+    cdfg = _build_edges(programl_cdfg, cdfg, indices, cfg_edges, additional_edges)
 
     cdfg_pt_out_path = output_folder / f"cdfg.pt"
     cdfg_txt_out_path = output_folder / f"cdfg.txt"
@@ -721,6 +729,14 @@ def plot_cdfg(
 ) -> None:
     import networkx as nx
 
+    cdfg_cp = cdfg.clone()
+
+    n_insts = cdfg_cp['inst'].x.size(0)
+    n_vars = cdfg_cp['var'].x.size(0)
+    n_consts = cdfg_cp['const'].x.size(0)
+    n_arrays = cdfg_cp['array'].x.size(0)
+    n_bbs = cdfg_cp['bb'].x.size(0)
+
     def get_short_type(node_type: NodeType) -> str:
         if node_type == 'inst':
             return 'I'
@@ -737,10 +753,24 @@ def plot_cdfg(
         return 'U'
         
     def get_label(type: NodeType, idx: int) -> str:
+        if type == 'var':
+            idx -= n_insts
+        elif type == 'const':
+            idx -= n_insts + n_vars
+        elif type == 'array':
+            idx -= n_insts + n_vars + n_consts
+        elif type == 'bb':
+            idx -= n_insts + n_vars + n_consts + n_arrays
+        elif type == 'func':
+            idx -= n_insts + n_vars + n_consts + n_arrays + n_bbs
         return f"{get_short_type(type)}{idx}"
+    
+    for et in cdfg_cp.edge_index_dict.keys():
+        if "rev" in et[1] or et[1] == "self" or et[1] == "contains":
+            cdfg_cp[et].edge_index = torch.empty((2, 0), dtype=torch.int64)
 
     nx_cdfg = to_networkx(
-        cdfg, remove_self_loops=True,
+        cdfg_cp, remove_self_loops=True,
         to_undirected=False, node_attrs=['x']
     )
 
@@ -764,51 +794,17 @@ def plot_cdfg(
 
     # Define colors for the edges
     edge_type_colors = {
-        # Instruction-Instruction Edges
-        ('inst', 'control', 'inst'): "#CF2519",       # Control-flow
-        ('inst', 'control_rev', 'inst'): "#FFFFFF",   # Control-flow (reverse)
-        ('inst', 'call', 'inst'): "#8F19CF",          # Call-flow
-        ('inst', 'call_rev', 'inst'): "#FFFFFF",      # Call-flow (reverse)
-
-        # Instruction-Variable Edges
-        ('inst', 'data_out', 'var'): "#1F1F1F",       # Data-flow
-        ('var', 'data_in', 'inst'): "#1F1F1F",        # Data-flow
-        ('inst', 'data_in_rev', 'var'): "#FFFFFF",    # Data-flow (reverse)
-        ('var', 'data_out_rev', 'inst'): "#FFFFFF",   # Data-flow (reverse)
-
-        # Instruction-Array Edges
-        ('inst', 'data_out', 'array'): "#1F1F1F",     # Data-flow
-        ('array', 'data_in', 'inst'): "#1F1F1F",      # Data-flow
-        ('inst', 'data_in_rev', 'array'): "#FFFFFF",  # Data-flow (reverse)
-        ('array', 'data_out_rev', 'inst'): "#FFFFFF", # Data-flow (reverse)
-
-        # Instruction-Constant Edges
-        ('const', 'data_in', 'inst'): "#1F1F1F",      # Data-flow
-        ('inst', 'data_in_rev', 'const'): "#FFFFFF",  # Data-flow (reverse)
-
-        # Instruction-Basic-Block Edges
-        ('inst', 'member', 'bb'): "#197BCF",     # Membership relation
-
-        # Instruction-Function Edges
-        ('inst', 'member', 'func'): "#197BCF",   # Membership relation
-
-        # Basic-Block Edges
-        ('bb', 'contains', 'inst'): "#FFFFFF",   # Containment relation
-        ('bb', 'member', 'func'): "#197BCF",     # Membership relation
-        ('bb', 'control', 'bb'): "#CF2519",      # Control-flow
-        ('bb', 'control_rev', 'bb'): "#FFFFFF",  # Control-flow (reverse)
-
-        # Function Edges
-        ('func', 'contains', 'bb'): "#FFFFFF",   # Containment relation
-        ('func', 'contains', 'inst'): "#FFFFFF", # Containment relation
-
-        # Self-Loops
-        ('inst', 'self', 'inst'): "#FFFFFF",
-        ('var', 'self', 'var'): "#FFFFFF",
-        ('array', 'self', 'array'): "#FFFFFF",
-        ('const', 'self', 'const'): "#FFFFFF",
-        ('bb', 'self', 'bb'): "#FFFFFF",
-        ('func', 'self', 'func'): "#FFFFFF"
+        ('inst', 'control', 'inst'): "#CF2519", # Control-flow
+        ('inst', 'call', 'inst'): "#8F19CF",    # Call-flow
+        ('inst', 'data', 'var'): "#1F1F1F",     # Data-flow
+        ('var', 'data', 'inst'): "#1F1F1F",     # Data-flow
+        ('inst', 'data', 'array'): "#1F1F1F",   # Data-flow
+        ('array', 'data', 'inst'): "#1F1F1F",   # Data-flow
+        ('const', 'data', 'inst'): "#1F1F1F",   # Data-flow
+        ('inst', 'member', 'bb'): "#197BCF",    # Membership relation
+        ('inst', 'member', 'func'): "#197BCF",  # Membership relation
+        ('bb', 'member', 'func'): "#197BCF",    # Membership relation
+        ('bb', 'control', 'bb'): "#CF2519",     # Control-flow
     }
 
     edge_colors = []
@@ -827,9 +823,10 @@ def plot_cdfg(
         with_labels=True,
         node_color=node_colors,
         edge_color=edge_colors,
-        node_size=60,
-        width=0.7,
-        font_size=9
+        node_size=100,
+        font_size=10,
+        width=0.8,
+        arrowsize=7
     )
 
     edge_guide = {
@@ -839,8 +836,8 @@ def plot_cdfg(
         "Membership": "#197BCF"
     }
     for i, (edge_type, color) in enumerate(edge_guide.items()):
-        plt.text(0.1, 0.9 - i * 0.1, f"{edge_type}: ", color=color, fontsize=9)
-        plt.text(0.2, 0.9 - i * 0.1, f"{color}", color=color, fontsize=9)
+        plt.text(0.8, 1.2 - i * 0.1, f"{edge_type}: ", color=color, fontsize=9)
+        plt.text(0.95, 1.2 - i * 0.1, f"{color}", color=color, fontsize=9)
 
     plt.axis("off")
     if output_path is not None:
