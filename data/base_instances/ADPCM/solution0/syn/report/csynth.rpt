@@ -1,0 +1,369 @@
+
+
+================================================================
+== Synthesis Summary Report of 'adpcm_main'
+================================================================
++ General Information: 
+    * Date:           Thu Feb 27 23:43:47 2025
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        ADPCM
+    * Solution:       solution0 (Vivado IP Flow Target)
+    * Product family: virtexuplusHBM
+    * Target device:  xcu50-fsvh2104-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-----------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
+    |        Modules        | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |      |          |            |            |     |
+    |        & Loops        | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM |    DSP   |     FF     |     LUT    | URAM|
+    +-----------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
+    |+ adpcm_main           |     -|  0.63|    15303|  1.224e+05|         -|    15304|     -|        no|     -|  51 (~0%)|  3518 (~0%)|   9538 (1%)|    -|
+    | o reset_label4        |     -|  5.84|        6|     48.000|         1|        -|     6|        no|     -|         -|           -|           -|    -|
+    | o reset_label5        |     -|  5.84|        6|     48.000|         1|        -|     6|        no|     -|         -|           -|           -|    -|
+    | o reset_label6        |     -|  5.84|       24|    192.000|         1|        -|    24|        no|     -|         -|           -|           -|    -|
+    | o reset_label7        |     -|  5.84|       11|     88.000|         1|        -|    11|        no|     -|         -|           -|           -|    -|
+    | o adpcm_main_label12  |     -|  5.84|     9900|  7.920e+04|       198|        -|    50|        no|     -|         -|           -|           -|    -|
+    |  + encode             |     -|  0.63|      195|  1.560e+03|         -|      195|     -|        no|     -|  26 (~0%)|  1269 (~0%)|  4086 (~0%)|    -|
+    |   o encode_label0     |     -|  5.84|       20|    160.000|         2|        -|    10|        no|     -|         -|           -|           -|    -|
+    |   o encode_label1     |     -|  5.84|       44|    352.000|         2|        -|    22|        no|     -|         -|           -|           -|    -|
+    |   o filtez_label8     |     -|  5.84|       10|     80.000|         2|        -|     5|        no|     -|         -|           -|           -|    -|
+    |   o quantl_label9     |     -|  5.84|       61|    488.000|         2|        -|    30|        no|     -|         -|           -|           -|    -|
+    |   o upzero_label10    |     -|  5.84|       12|     96.000|         2|        -|     6|        no|     -|         -|           -|           -|    -|
+    |   o upzero_label11    |     -|  5.84|       12|     96.000|         2|        -|     6|        no|     -|         -|           -|           -|    -|
+    |   o filtez_label8     |     -|  5.84|       10|     80.000|         2|        -|     5|        no|     -|         -|           -|           -|    -|
+    |   o upzero_label10    |     -|  5.84|       12|     96.000|         2|        -|     6|        no|     -|         -|           -|           -|    -|
+    |   o upzero_label11    |     -|  5.84|       12|     96.000|         2|        -|     6|        no|     -|         -|           -|           -|    -|
+    | o adpcm_main_label13  |     -|  5.84|     5350|  4.280e+04|       107|        -|    50|        no|     -|         -|           -|           -|    -|
+    |  + decode             |     -|  0.63|      103|    824.000|         -|      103|     -|        no|     -|  25 (~0%)|   954 (~0%)|  3664 (~0%)|    -|
+    |   o filtez_label8     |     -|  5.84|       10|     80.000|         2|        -|     5|        no|     -|         -|           -|           -|    -|
+    |   o upzero_label10    |     -|  5.84|       12|     96.000|         2|        -|     6|        no|     -|         -|           -|           -|    -|
+    |   o upzero_label11    |     -|  5.84|       12|     96.000|         2|        -|     6|        no|     -|         -|           -|           -|    -|
+    |   o filtez_label8     |     -|  5.84|       10|     80.000|         2|        -|     5|        no|     -|         -|           -|           -|    -|
+    |   o upzero_label10    |     -|  5.84|       12|     96.000|         2|        -|     6|        no|     -|         -|           -|           -|    -|
+    |   o upzero_label11    |     -|  5.84|       12|     96.000|         2|        -|     6|        no|     -|         -|           -|           -|    -|
+    |   o decode_label2     |     -|  5.84|       20|    160.000|         2|        -|    10|        no|     -|         -|           -|           -|    -|
+    |   o decode_label3     |     -|  5.84|       20|    160.000|         2|        -|    10|        no|     -|         -|           -|           -|    -|
+    +-----------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++------------------+-----------+----------+
+| Port             | Direction | Bitwidth |
++------------------+-----------+----------+
+| decoded_address0 | out       | 7        |
+| decoded_address1 | out       | 7        |
+| decoded_d0       | out       | 32       |
+| decoded_d1       | out       | 32       |
+| encoded_address0 | out       | 6        |
+| encoded_d0       | out       | 32       |
+| encoded_q0       | in        | 32       |
+| in_data_address0 | out       | 7        |
+| in_data_address1 | out       | 7        |
+| in_data_q0       | in        | 32       |
+| in_data_q1       | in        | 32       |
++------------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+-------------+
+| Argument | Direction | Datatype    |
++----------+-----------+-------------+
+| in_data  | in        | int const * |
+| encoded  | inout     | int*        |
+| decoded  | out       | int*        |
++----------+-----------+-------------+
+
+* SW-to-HW Mapping
++----------+------------------+---------+----------+
+| Argument | HW Interface     | HW Type | HW Usage |
++----------+------------------+---------+----------+
+| in_data  | in_data_address0 | port    | offset   |
+| in_data  | in_data_ce0      | port    |          |
+| in_data  | in_data_q0       | port    |          |
+| in_data  | in_data_address1 | port    | offset   |
+| in_data  | in_data_ce1      | port    |          |
+| in_data  | in_data_q1       | port    |          |
+| encoded  | encoded_address0 | port    | offset   |
+| encoded  | encoded_ce0      | port    |          |
+| encoded  | encoded_we0      | port    |          |
+| encoded  | encoded_d0       | port    |          |
+| encoded  | encoded_q0       | port    |          |
+| decoded  | decoded_address0 | port    | offset   |
+| decoded  | decoded_ce0      | port    |          |
+| decoded  | decoded_we0      | port    |          |
+| decoded  | decoded_d0       | port    |          |
+| decoded  | decoded_address1 | port    | offset   |
+| decoded  | decoded_ce1      | port    |          |
+| decoded  | decoded_we1      | port    |          |
+| decoded  | decoded_d1       | port    |          |
++----------+------------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-----------------------------+-----+--------+-------------+-----+--------+---------+
+| Name                        | DSP | Pragma | Variable    | Op  | Impl   | Latency |
++-----------------------------+-----+--------+-------------+-----+--------+---------+
+| + adpcm_main                | 51  |        |             |     |        |         |
+|   add_ln427_fu_790_p2       |     |        | add_ln427   | add | fabric | 0       |
+|   add_ln436_fu_823_p2       |     |        | add_ln436   | add | fabric | 0       |
+|   add_ln445_fu_856_p2       |     |        | add_ln445   | add | fabric | 0       |
+|   add_ln451_fu_886_p2       |     |        | add_ln451   | add | fabric | 0       |
+|   add_ln217_fu_917_p2       |     |        | add_ln217   | add | fabric | 0       |
+|   add_ln223_fu_975_p2       |     |        | add_ln223   | add | fabric | 0       |
+|  + encode                   | 26  |        |             |     |        |         |
+|    xa_fu_869_p2             |     |        | xa          | sub | fabric | 0       |
+|    mul_32s_7s_39_1_1_U8     | 2   |        | xb          | mul | auto   | 0       |
+|    i_7_fu_907_p2            |     |        | i_7         | add | fabric | 0       |
+|    add_ln243_fu_916_p2      |     |        | add_ln243   | add | fabric | 0       |
+|    add_ln257_fu_928_p2      |     |        | add_ln257   | add | fabric | 0       |
+|    mul_15s_32s_47_1_1_U2    | 2   |        | mul_ln257   | mul | auto   | 0       |
+|    xa_3_fu_974_p2           |     |        | xa_3        | add | fabric | 0       |
+|    mul_15s_32s_47_1_1_U3    | 2   |        | mul_ln258   | mul | auto   | 0       |
+|    xb_3_fu_994_p2           |     |        | xb_3        | add | fabric | 0       |
+|    i_12_fu_1027_p2          |     |        | i_12        | add | fabric | 0       |
+|    add_ln243_1_fu_1040_p2   |     |        | add_ln243_1 | add | fabric | 0       |
+|    add_ln243_2_fu_1077_p2   |     |        | add_ln243_2 | add | fabric | 0       |
+|    add_ln269_fu_1051_p2     |     |        | add_ln269   | add | fabric | 0       |
+|    mul_16s_32s_48_1_1_U5    | 2   |        | zl          | mul | auto   | 0       |
+|    mul_16s_32s_48_1_1_U5    | 2   |        | mul_ln466   | mul | auto   | 0       |
+|    zl_2_fu_1299_p2          |     |        | zl_2        | add | fabric | 0       |
+|    i_14_fu_1124_p2          |     |        | i_14        | add | fabric | 0       |
+|    add_ln464_fu_1130_p2     |     |        | add_ln464   | add | fabric | 0       |
+|    mul_32s_7s_39_1_1_U8     | 2   |        | mul_ln262   | mul | auto   | 0       |
+|    xa_4_fu_1154_p2          |     |        | xa_4        | add | fabric | 0       |
+|    sub_ln263_fu_1181_p2     |     |        | sub_ln263   | sub | fabric | 0       |
+|    xb_4_fu_1191_p2          |     |        | xb_4        | add | fabric | 0       |
+|    add_ln278_fu_1196_p2     |     |        | add_ln278   | add | fabric | 0       |
+|    sub_ln279_fu_1202_p2     |     |        | sub_ln279   | sub | fabric | 0       |
+|    mul_16s_32s_47_1_1_U4    | 2   |        | mul_ln475   | mul | auto   | 0       |
+|    mul_15s_32s_47_1_1_U2    | 2   |        | mul_ln479   | mul | auto   | 0       |
+|    grp_fu_741_p2            |     |        | pl_1        | add | fabric | 0       |
+|    add_ln284_fu_1326_p2     |     |        | add_ln284   | add | fabric | 0       |
+|    sub_ln285_fu_1336_p2     |     |        | sub_ln285   | sub | fabric | 0       |
+|    m_fu_1353_p2             |     |        | m           | sub | fabric | 0       |
+|    add_ln493_fu_1384_p2     |     |        | add_ln493   | add | fabric | 0       |
+|    mul_15ns_15ns_30_1_1_U9  | 1   |        | mul_ln495   | mul | auto   | 0       |
+|    mul_16s_15ns_31_1_1_U10  | 1   |        | mul_ln287   | mul | auto   | 0       |
+|    sub_ln511_fu_1500_p2     |     |        | sub_ln511   | sub | fabric | 0       |
+|    add_ln512_fu_1524_p2     |     |        | add_ln512   | add | fabric | 0       |
+|    sub_ln525_fu_1610_p2     |     |        | sub_ln525   | sub | fabric | 0       |
+|    add_ln290_fu_1639_p2     |     |        | add_ln290   | add | fabric | 0       |
+|    grp_fu_769_p2            |     |        | add_ln543   | add | fabric | 0       |
+|    mul_16s_16s_32_1_1_U11   | 1   |        | mul_ln545   | mul | auto   | 0       |
+|    sub_ln549_fu_1908_p2     |     |        | sub_ln549   | sub | fabric | 0       |
+|    add_ln550_fu_1924_p2     |     |        | add_ln550   | add | fabric | 0       |
+|    grp_fu_769_p2            |     |        | add_ln537   | add | fabric | 0       |
+|    sub_ln539_fu_1943_p2     |     |        | sub_ln539   | sub | fabric | 0       |
+|    mul_32s_32s_64_1_1_U6    | 4   |        | mul_ln570   | mul | auto   | 0       |
+|    sub_ln571_fu_1699_p2     |     |        | sub_ln571   | sub | fabric | 0       |
+|    mul_32s_32s_64_1_1_U7    | 4   |        | mul_ln574   | mul | auto   | 0       |
+|    sub_ln580_fu_1756_p2     |     |        | sub_ln580   | sub | fabric | 0       |
+|    sub_ln597_fu_1798_p2     |     |        | sub_ln597   | sub | fabric | 0       |
+|    apl1_fu_1825_p2          |     |        | apl1        | add | fabric | 0       |
+|    wd3_2_fu_1996_p2         |     |        | wd3_2       | sub | fabric | 0       |
+|    apl1_2_fu_2026_p2        |     |        | apl1_2      | sub | fabric | 0       |
+|    add_ln294_fu_1831_p2     |     |        | add_ln294   | add | fabric | 0       |
+|    mul_14s_32s_46_1_1_U1    | 2   |        | zl_6        | mul | auto   | 0       |
+|    mul_14s_32s_46_1_1_U1    | 2   |        | mul_ln466_1 | mul | auto   | 0       |
+|    zl_7_fu_2181_p2          |     |        | zl_7        | add | fabric | 0       |
+|    i_18_fu_2093_p2          |     |        | i_18        | add | fabric | 0       |
+|    add_ln464_2_fu_2099_p2   |     |        | add_ln464_2 | add | fabric | 0       |
+|    mul_16s_32s_47_1_1_U4    | 2   |        | mul_ln475_1 | mul | auto   | 0       |
+|    mul_15s_32s_47_1_1_U2    | 2   |        | mul_ln479_1 | mul | auto   | 0       |
+|    grp_fu_741_p2            |     |        | pl_3        | add | fabric | 0       |
+|    add_ln303_fu_2202_p2     |     |        | add_ln303   | add | fabric | 0       |
+|    sub_ln304_fu_2212_p2     |     |        | sub_ln304   | sub | fabric | 0       |
+|    mul_15ns_11ns_25_1_1_U12 | 1   |        | mul_ln310   | mul | auto   | 0       |
+|    m_2_fu_2261_p2           |     |        | m_2         | sub | fabric | 0       |
+|    add_ln314_fu_2289_p2     |     |        | add_ln314   | add | fabric | 0       |
+|    mul_14s_15ns_29_1_1_U14  | 1   |        | mul_ln314   | mul | auto   | 0       |
+|    sub_ln620_fu_2351_p2     |     |        | sub_ln620   | sub | fabric | 0       |
+|    add_ln621_fu_2388_p2     |     |        | add_ln621   | add | fabric | 0       |
+|    sub_ln525_1_fu_2475_p2   |     |        | sub_ln525_1 | sub | fabric | 0       |
+|    add_ln317_fu_2504_p2     |     |        | add_ln317   | add | fabric | 0       |
+|    grp_fu_811_p2            |     |        | add_ln543_1 | add | fabric | 0       |
+|    mul_14s_14s_28_1_1_U16   | 1   |        | mul_ln545_1 | mul | auto   | 0       |
+|    sub_ln549_1_fu_2776_p2   |     |        | sub_ln549_1 | sub | fabric | 0       |
+|    add_ln550_1_fu_2792_p2   |     |        | add_ln550_1 | add | fabric | 0       |
+|    grp_fu_811_p2            |     |        | add_ln537_1 | add | fabric | 0       |
+|    sub_ln539_1_fu_2811_p2   |     |        | sub_ln539_1 | sub | fabric | 0       |
+|    mul_32s_32s_64_1_1_U6    | 4   |        | mul_ln570_1 | mul | auto   | 0       |
+|    sub_ln571_1_fu_2577_p2   |     |        | sub_ln571_1 | sub | fabric | 0       |
+|    mul_32s_32s_64_1_1_U7    | 4   |        | mul_ln574_1 | mul | auto   | 0       |
+|    sub_ln580_1_fu_2634_p2   |     |        | sub_ln580_1 | sub | fabric | 0       |
+|    sub_ln597_1_fu_2676_p2   |     |        | sub_ln597_1 | sub | fabric | 0       |
+|    apl1_4_fu_2703_p2        |     |        | apl1_4      | add | fabric | 0       |
+|    wd3_5_fu_2864_p2         |     |        | wd3_5       | sub | fabric | 0       |
+|    apl1_6_fu_2894_p2        |     |        | apl1_6      | sub | fabric | 0       |
+|    add_ln321_fu_2709_p2     |     |        | add_ln321   | add | fabric | 0       |
+|  + decode                   | 25  |        |             |     |        |         |
+|    mul_16s_32s_48_1_1_U66   | 2   |        | zl          | mul | auto   | 0       |
+|    mul_16s_32s_48_1_1_U66   | 2   |        | mul_ln466   | mul | auto   | 0       |
+|    zl_11_fu_884_p2          |     |        | zl_11       | add | fabric | 0       |
+|    i_23_fu_819_p2           |     |        | i_23        | add | fabric | 0       |
+|    add_ln464_fu_825_p2      |     |        | add_ln464   | add | fabric | 0       |
+|    mul_16s_32s_47_1_1_U65   | 2   |        | mul_ln475   | mul | auto   | 0       |
+|    mul_15s_32s_47_1_1_U63   | 2   |        | mul_ln479   | mul | auto   | 0       |
+|    grp_fu_675_p2            |     |        | pl_4        | add | fabric | 0       |
+|    add_ln344_fu_1091_p2     |     |        | add_ln344   | add | fabric | 0       |
+|    mul_16s_15ns_31_1_1_U70  | 1   |        | mul_ln345   | mul | auto   | 0       |
+|    mul_16s_15ns_31_1_1_U71  | 1   |        | mul_ln346   | mul | auto   | 0       |
+|    add_ln347_fu_1160_p2     |     |        | add_ln347   | add | fabric | 0       |
+|    sub_ln511_fu_976_p2      |     |        | sub_ln511   | sub | fabric | 0       |
+|    add_ln512_fu_1000_p2     |     |        | add_ln512   | add | fabric | 0       |
+|    sub_ln525_fu_1166_p2     |     |        | sub_ln525   | sub | fabric | 0       |
+|    add_ln350_fu_1195_p2     |     |        | add_ln350   | add | fabric | 0       |
+|    grp_fu_700_p2            |     |        | add_ln543   | add | fabric | 0       |
+|    mul_16s_16s_32_1_1_U72   | 1   |        | mul_ln545   | mul | auto   | 0       |
+|    sub_ln549_fu_1466_p2     |     |        | sub_ln549   | sub | fabric | 0       |
+|    add_ln550_fu_1482_p2     |     |        | add_ln550   | add | fabric | 0       |
+|    grp_fu_700_p2            |     |        | add_ln537   | add | fabric | 0       |
+|    sub_ln539_fu_1501_p2     |     |        | sub_ln539   | sub | fabric | 0       |
+|    mul_32s_32s_64_1_1_U67   | 4   |        | mul_ln570   | mul | auto   | 0       |
+|    sub_ln571_fu_1257_p2     |     |        | sub_ln571   | sub | fabric | 0       |
+|    mul_32s_32s_64_1_1_U68   | 4   |        | mul_ln574   | mul | auto   | 0       |
+|    sub_ln580_fu_1314_p2     |     |        | sub_ln580   | sub | fabric | 0       |
+|    sub_ln597_fu_1356_p2     |     |        | sub_ln597   | sub | fabric | 0       |
+|    apl1_fu_1383_p2          |     |        | apl1        | add | fabric | 0       |
+|    wd3_7_fu_1554_p2         |     |        | wd3_7       | sub | fabric | 0       |
+|    apl1_9_fu_1584_p2        |     |        | apl1_9      | sub | fabric | 0       |
+|    add_ln354_fu_1389_p2     |     |        | add_ln354   | add | fabric | 0       |
+|    mul_14s_32s_46_1_1_U62   | 2   |        | zl_12       | mul | auto   | 0       |
+|    mul_14s_32s_46_1_1_U62   | 2   |        | mul_ln466_2 | mul | auto   | 0       |
+|    zl_13_fu_1819_p2         |     |        | zl_13       | add | fabric | 0       |
+|    i_27_fu_1651_p2          |     |        | i_27        | add | fabric | 0       |
+|    add_ln464_4_fu_1657_p2   |     |        | add_ln464_4 | add | fabric | 0       |
+|    mul_16s_32s_47_1_1_U65   | 2   |        | mul_ln475_2 | mul | auto   | 0       |
+|    mul_15s_32s_47_1_1_U63   | 2   |        | mul_ln479_2 | mul | auto   | 0       |
+|    grp_fu_675_p2            |     |        | pl_6        | add | fabric | 0       |
+|    mul_14s_15ns_29_1_1_U75  | 1   |        | mul_ln364   | mul | auto   | 0       |
+|    sub_ln620_fu_1693_p2     |     |        | sub_ln620   | sub | fabric | 0       |
+|    add_ln621_fu_1730_p2     |     |        | add_ln621   | add | fabric | 0       |
+|    sub_ln525_2_fu_1945_p2   |     |        | sub_ln525_2 | sub | fabric | 0       |
+|    add_ln367_fu_1974_p2     |     |        | add_ln367   | add | fabric | 0       |
+|    grp_fu_742_p2            |     |        | add_ln543_2 | add | fabric | 0       |
+|    mul_14s_14s_28_1_1_U76   | 1   |        | mul_ln545_2 | mul | auto   | 0       |
+|    sub_ln549_2_fu_2264_p2   |     |        | sub_ln549_2 | sub | fabric | 0       |
+|    add_ln550_2_fu_2280_p2   |     |        | add_ln550_2 | add | fabric | 0       |
+|    grp_fu_742_p2            |     |        | add_ln537_2 | add | fabric | 0       |
+|    sub_ln539_2_fu_2299_p2   |     |        | sub_ln539_2 | sub | fabric | 0       |
+|    mul_32s_32s_64_1_1_U67   | 4   |        | mul_ln570_2 | mul | auto   | 0       |
+|    sub_ln571_2_fu_2050_p2   |     |        | sub_ln571_2 | sub | fabric | 0       |
+|    mul_32s_32s_64_1_1_U68   | 4   |        | mul_ln574_2 | mul | auto   | 0       |
+|    sub_ln580_2_fu_2107_p2   |     |        | sub_ln580_2 | sub | fabric | 0       |
+|    sub_ln597_2_fu_2149_p2   |     |        | sub_ln597_2 | sub | fabric | 0       |
+|    apl1_11_fu_2176_p2       |     |        | apl1_11     | add | fabric | 0       |
+|    wd3_10_fu_2352_p2        |     |        | wd3_10      | sub | fabric | 0       |
+|    apl1_13_fu_2382_p2       |     |        | apl1_13     | sub | fabric | 0       |
+|    add_ln371_fu_2182_p2     |     |        | add_ln371   | add | fabric | 0       |
+|    sub_ln378_fu_2412_p2     |     |        | sub_ln378   | sub | fabric | 0       |
+|    add_ln379_fu_2416_p2     |     |        | add_ln379   | add | fabric | 0       |
+|    xa1_fu_2444_p2           |     |        | xa1         | sub | fabric | 0       |
+|    mul_32s_7s_39_1_1_U69    | 2   |        | xa2         | mul | auto   | 0       |
+|    i_31_fu_2482_p2          |     |        | i_31        | add | fabric | 0       |
+|    add_ln335_fu_2497_p2     |     |        | add_ln335   | add | fabric | 0       |
+|    add_ln391_fu_2508_p2     |     |        | add_ln391   | add | fabric | 0       |
+|    mul_15s_32s_47_1_1_U63   | 2   |        | mul_ln391   | mul | auto   | 0       |
+|    xa1_5_fu_2553_p2         |     |        | xa1_5       | add | fabric | 0       |
+|    mul_15s_32s_47_1_1_U64   | 2   |        | mul_ln392   | mul | auto   | 0       |
+|    xa2_5_fu_2573_p2         |     |        | xa2_5       | add | fabric | 0       |
+|    mul_32s_7s_39_1_1_U69    | 2   |        | mul_ln395   | mul | auto   | 0       |
+|    xa1_4_fu_2606_p2         |     |        | xa1_4       | add | fabric | 0       |
+|    sub_ln396_fu_2636_p2     |     |        | sub_ln396   | sub | fabric | 0       |
+|    xa2_4_fu_2646_p2         |     |        | xa2_4       | add | fabric | 0       |
+|    i_33_fu_2693_p2          |     |        | i_33        | add | fabric | 0       |
+|    add_ln335_1_fu_2734_p2   |     |        | add_ln335_1 | add | fabric | 0       |
+|    add_ln335_2_fu_2706_p2   |     |        | add_ln335_2 | add | fabric | 0       |
+|    add_ln405_fu_2718_p2     |     |        | add_ln405   | add | fabric | 0       |
++-----------------------------+-----+--------+-------------+-----+--------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++----------------------+---------+------+------+------+--------+-----------------+------+---------+------------------+
+| Name                 | Usage   | Type | BRAM | URAM | Pragma | Variable        | Impl | Latency | Bitwidth, Depth, |
+|                      |         |      |      |      |        |                 |      |         | Banks            |
++----------------------+---------+------+------+------+--------+-----------------+------+---------+------------------+
+| + adpcm_main         |         |      | 0    | 0    |        |                 |      |         |                  |
+|   delay_dltx_U       | ram_t2p |      |      |      |        | delay_dltx      | auto | 1       | 16, 6, 1         |
+|   delay_dhx_U        | ram_t2p |      |      |      |        | delay_dhx       | auto | 1       | 14, 6, 1         |
+|   dec_del_dltx_U     | ram_t2p |      |      |      |        | dec_del_dltx    | auto | 1       | 16, 6, 1         |
+|   dec_del_dhx_U      | ram_t2p |      |      |      |        | dec_del_dhx     | auto | 1       | 14, 6, 1         |
+|   delay_bpl_U        | ram_1p  |      |      |      |        | delay_bpl       | auto | 1       | 32, 6, 1         |
+|   delay_bph_U        | ram_1p  |      |      |      |        | delay_bph       | auto | 1       | 32, 6, 1         |
+|   dec_del_bpl_U      | ram_1p  |      |      |      |        | dec_del_bpl     | auto | 1       | 32, 6, 1         |
+|   dec_del_bph_U      | ram_1p  |      |      |      |        | dec_del_bph     | auto | 1       | 32, 6, 1         |
+|   tqmf_U             | ram_t2p |      |      |      |        | tqmf            | auto | 1       | 32, 24, 1        |
+|   accumc_U           | ram_1p  |      |      |      |        | accumc          | auto | 1       | 32, 11, 1        |
+|   accumd_U           | ram_1p  |      |      |      |        | accumd          | auto | 1       | 32, 11, 1        |
+|   h_U                | rom_2p  |      |      |      |        | h               | auto | 1       | 15, 24, 1        |
+|   qq4_code4_table_U  | rom_1p  |      |      |      |        | qq4_code4_table | auto | 1       | 16, 16, 1        |
+|   wl_code_table_U    | rom_1p  |      |      |      |        | wl_code_table   | auto | 1       | 13, 16, 1        |
+|   ilb_table_U        | rom_1p  |      |      |      |        | ilb_table       | auto | 1       | 12, 32, 1        |
+|  + encode            |         |      | 0    | 0    |        |                 |      |         |                  |
+|    decis_levl_U      | rom_1p  |      |      |      |        | decis_levl      | auto | 1       | 15, 30, 1        |
+|    quant26bt_pos_U   | rom_1p  |      |      |      |        | quant26bt_pos   | auto | 1       | 6, 31, 1         |
+|    quant26bt_neg_U   | rom_1p  |      |      |      |        | quant26bt_neg   | auto | 1       | 6, 31, 1         |
+|  + decode            |         |      | 0    | 0    |        |                 |      |         |                  |
+|    qq6_code6_table_U | rom_1p  |      |      |      |        | qq6_code6_table | auto | 1       | 16, 64, 1        |
++----------------------+---------+------+------+------+--------+-----------------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++----------------+----------------------+-------------------------------------------------+
+| Type           | Options              | Location                                        |
++----------------+----------------------+-------------------------------------------------+
+| loop_tripcount | min=50 max=50 avg=50 | data/benchmarks/adpcm/adpcm.c:218 in adpcm_main |
+| loop_tripcount | min=50 max=50 avg=50 | data/benchmarks/adpcm/adpcm.c:224 in adpcm_main |
+| loop_tripcount | min=10 max=10 avg=10 | data/benchmarks/adpcm/adpcm.c:256 in encode     |
+| loop_tripcount | min=22 max=22 avg=22 | data/benchmarks/adpcm/adpcm.c:270 in encode     |
+| loop_tripcount | min=10 max=10 avg=10 | data/benchmarks/adpcm/adpcm.c:390 in decode     |
+| loop_tripcount | min=10 max=10 avg=10 | data/benchmarks/adpcm/adpcm.c:406 in decode     |
+| loop_tripcount | min=6 max=6 avg=6    | data/benchmarks/adpcm/adpcm.c:428 in reset      |
+| loop_tripcount | min=6 max=6 avg=6    | data/benchmarks/adpcm/adpcm.c:437 in reset      |
+| loop_tripcount | min=24 max=24 avg=24 | data/benchmarks/adpcm/adpcm.c:446 in reset      |
+| loop_tripcount | min=11 max=11 avg=11 | data/benchmarks/adpcm/adpcm.c:452 in reset      |
+| loop_tripcount | min=5 max=5 avg=5    | data/benchmarks/adpcm/adpcm.c:465 in filtez     |
+| loop_tripcount | min=30 max=30 avg=30 | data/benchmarks/adpcm/adpcm.c:494 in quantl     |
+| loop_tripcount | min=6 max=6 avg=6    | data/benchmarks/adpcm/adpcm.c:538 in upzero     |
+| loop_tripcount | min=6 max=6 avg=6    | data/benchmarks/adpcm/adpcm.c:544 in upzero     |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:22 in adpcm_main        |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:23 in adpcm_main        |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:12 in decode            |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:13 in decode            |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:10 in encode            |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:11 in encode            |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:18 in filtez            |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:19 in quantl            |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:14 in reset             |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:15 in reset             |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:16 in reset             |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:17 in reset             |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:20 in upzero            |
+| pipeline       | off=true             | ../../vitis/run_hls.tcl:21 in upzero            |
++----------------+----------------------+-------------------------------------------------+
+
+

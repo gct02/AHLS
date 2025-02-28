@@ -1,0 +1,88 @@
+import subprocess
+import argparse
+import os
+import sys
+from string import Template
+
+_TEMPLATE = """
+open_project $PRJ_NAME
+add_files { $SRC_FILES }
+set_top $TOP_FUNC
+open_solution -reset $SOL_NAME
+config_compile -pipeline_loops 999
+config_array_partition -throughput_driven off
+set_part $DEVICE
+create_clock -period $CLOCK_PERIOD -name default
+$DIRECTIVE
+csynth_design
+export_design -flow impl -format syn_dcp -rtl verilog
+exit
+"""
+
+def gen_tcl(
+    prj_name, src_files, top_func, sol_name, 
+    directive, device='xcu50-fsvh2104-2-e', clock_period='5'
+):
+    if isinstance(clock_period, int):
+        clock_period = str(clock_period)
+    if isinstance(src_files, list):
+        src_files = ' '.join(src_files)
+    if isinstance(directive, list):
+        if len(directive) == 0:
+            directive = ''
+        elif len(directive) == 1:
+            directive = directive[0]
+        else:
+            directive = '\n'.join(directive)
+    try:
+        with open(directive, 'r') as f:
+            directive = f.read()
+    except FileNotFoundError:
+        directive = ''
+        pass
+
+    substitutions = {
+        'PRJ_NAME': prj_name,
+        'SRC_FILES': src_files,
+        'TOP_FUNC': top_func,
+        'SOL_NAME': sol_name,
+        'DIRECTIVE': directive,
+        'DEVICE': device,
+        'CLOCK_PERIOD': clock_period
+    }
+
+    tcl_template = Template(_TEMPLATE)
+    tcl_script = tcl_template.substitute(substitutions)
+
+    tcl_path = os.path.join(os.path.dirname(sys.argv[0]), 'run_hls.tcl')
+    with open(tcl_path, 'w') as f:
+        f.write(tcl_script)
+
+    return tcl_path
+
+def run_vitis(
+    prj_name, src_files, top_func, sol_name, 
+    directive, device='xcu50-fsvh2104-2-e', clock_period='8'
+):
+    tcl_path = gen_tcl(prj_name, src_files, top_func, sol_name, directive, device, clock_period)
+    call_vitis_script_path = os.path.join(os.path.dirname(sys.argv[0]), 'call_vitis.sh')
+    subprocess.check_output("bash " + call_vitis_script_path, shell=True)
+    os.remove(tcl_path)
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('prj_name', type=str)
+    parser.add_argument('src_files', type=str, nargs='+')
+    parser.add_argument('-t', '--top-func', type=str)
+    parser.add_argument('-s', '--solution', type=str)
+    parser.add_argument('-d', '--directive', type=str, nargs='+')
+    parser.add_argument('--device', type=str, default='xcu50-fsvh2104-2-e')
+    parser.add_argument('--clock', type=str, default='8')
+    return parser.parse_args()
+
+if __name__ == '__main__':
+    args = parse_args()
+    run_vitis(
+        args.prj_name, args.src_files, args.top_func, args.solution, 
+        args.directive, args.device, args.clock,
+    )

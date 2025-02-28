@@ -1,0 +1,1733 @@
+<profile>
+    <ReportVersion>
+        <Version>2023.2</Version>
+    </ReportVersion>
+    <UserAssignments>
+        <unit>ns</unit>
+        <ProductFamily>virtexuplusHBM</ProductFamily>
+        <Part>xcu50-fsvh2104-2-e</Part>
+        <TopModelName>Gsm_LPC_Analysis</TopModelName>
+        <TargetClockPeriod>8.00</TargetClockPeriod>
+        <ClockUncertainty>2.16</ClockUncertainty>
+        <FlowTarget>vivado</FlowTarget>
+    </UserAssignments>
+    <PerformanceEstimates>
+        <PipelineType>no</PipelineType>
+        <SummaryOfTimingAnalysis>
+            <unit>ns</unit>
+            <EstimatedClockPeriod>5.672</EstimatedClockPeriod>
+        </SummaryOfTimingAnalysis>
+        <SummaryOfOverallLatency>
+            <unit>clock cycles</unit>
+            <Best-caseLatency>1003</Best-caseLatency>
+            <Average-caseLatency>1299</Average-caseLatency>
+            <Worst-caseLatency>1869</Worst-caseLatency>
+            <Best-caseRealTimeLatency>8.024 us</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>10.392 us</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>14.952 us</Worst-caseRealTimeLatency>
+            <Interval-min>1004</Interval-min>
+            <Interval-max>1870</Interval-max>
+        </SummaryOfOverallLatency>
+        <SummaryOfLoopLatency>
+            <VITIS_LOOP_237_1>
+                <Slack>5.84</Slack>
+                <TripCount>8</TripCount>
+                <Latency>8</Latency>
+                <AbsoluteTimeLatency>64</AbsoluteTimeLatency>
+                <PipelineII>1</PipelineII>
+                <PipelineDepth>2</PipelineDepth>
+                <InstanceList/>
+            </VITIS_LOOP_237_1>
+        </SummaryOfLoopLatency>
+        <SummaryOfViolations>
+            <IssueType>-</IssueType>
+            <ViolationType>-</ViolationType>
+            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:234~data/benchmarks/gsm/gsm.c:13</SourceLocation>
+            <SummaryOfLoopViolations>
+                <VITIS_LOOP_237_1>
+                    <Name>VITIS_LOOP_237_1</Name>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:237~data/benchmarks/gsm/gsm.c:13</SourceLocation>
+                </VITIS_LOOP_237_1>
+            </SummaryOfLoopViolations>
+        </SummaryOfViolations>
+    </PerformanceEstimates>
+    <AreaEstimates>
+        <Resources>
+            <BRAM_18K>0</BRAM_18K>
+            <DSP>45</DSP>
+            <FF>3059</FF>
+            <LUT>8033</LUT>
+            <URAM>0</URAM>
+        </Resources>
+        <AvailableResources>
+            <BRAM_18K>2688</BRAM_18K>
+            <DSP>5952</DSP>
+            <FF>1743360</FF>
+            <LUT>871680</LUT>
+            <URAM>640</URAM>
+        </AvailableResources>
+    </AreaEstimates>
+    <InterfaceSummary>
+        <RtlPorts>
+            <name>ap_clk</name>
+            <Object>Gsm_LPC_Analysis</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_rst</name>
+            <Object>Gsm_LPC_Analysis</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_start</name>
+            <Object>Gsm_LPC_Analysis</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_done</name>
+            <Object>Gsm_LPC_Analysis</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_idle</name>
+            <Object>Gsm_LPC_Analysis</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_ready</name>
+            <Object>Gsm_LPC_Analysis</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>indata_address0</name>
+            <Object>indata</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>8</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>indata_ce0</name>
+            <Object>indata</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>indata_we0</name>
+            <Object>indata</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>indata_d0</name>
+            <Object>indata</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>16</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>indata_q0</name>
+            <Object>indata</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>16</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>indata_address1</name>
+            <Object>indata</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>8</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>indata_ce1</name>
+            <Object>indata</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>indata_q1</name>
+            <Object>indata</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>16</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>LARc_address0</name>
+            <Object>LARc</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>3</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>LARc_ce0</name>
+            <Object>LARc</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>LARc_we0</name>
+            <Object>LARc</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>LARc_d0</name>
+            <Object>LARc</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>16</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>LARc_q0</name>
+            <Object>LARc</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>16</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>LARc_address1</name>
+            <Object>LARc</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>3</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>LARc_ce1</name>
+            <Object>LARc</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>LARc_we1</name>
+            <Object>LARc</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>LARc_d1</name>
+            <Object>LARc</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>16</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>LARc_q1</name>
+            <Object>LARc</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>16</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+    </InterfaceSummary>
+    <RTLDesignHierarchy>
+        <TopModule MAX_DEPTH="4">
+            <ModuleName>Gsm_LPC_Analysis</ModuleName>
+            <InstancesList>
+                <Instance>
+                    <InstName>grp_Autocorrelation_fu_103</InstName>
+                    <ModuleName>Autocorrelation</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>103</ID>
+                    <InstancesList>
+                        <Instance>
+                            <InstName>grp_Autocorrelation_Pipeline_Autocorrelation_label0_fu_359</InstName>
+                            <ModuleName>Autocorrelation_Pipeline_Autocorrelation_label0</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>359</ID>
+                            <BindInstances>add_ln49_fu_93_p2 sub_ln67_fu_126_p2</BindInstances>
+                        </Instance>
+                        <Instance>
+                            <InstName>grp_Autocorrelation_Pipeline_VITIS_LOOP_64_1_fu_366</InstName>
+                            <ModuleName>Autocorrelation_Pipeline_VITIS_LOOP_64_1</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>366</ID>
+                            <BindInstances>add_ln64_fu_89_p2 mac_muladd_16s_15ns_15ns_31_4_1_U3 mac_muladd_16s_15ns_15ns_31_4_1_U3</BindInstances>
+                        </Instance>
+                        <Instance>
+                            <InstName>grp_Autocorrelation_Pipeline_VITIS_LOOP_76_2_fu_373</InstName>
+                            <ModuleName>Autocorrelation_Pipeline_VITIS_LOOP_76_2</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>373</ID>
+                            <BindInstances>add_ln76_fu_69_p2</BindInstances>
+                        </Instance>
+                        <Instance>
+                            <InstName>grp_Autocorrelation_Pipeline_VITIS_LOOP_124_3_fu_379</InstName>
+                            <ModuleName>Autocorrelation_Pipeline_VITIS_LOOP_124_3</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>379</ID>
+                            <BindInstances>add_ln133_fu_578_p2 add_ln43_fu_395_p2 add_ln125_fu_406_p2 mul_16s_16s_32_1_1_U8 add_ln126_fu_448_p2 mul_16s_16s_32_1_1_U9 add_ln127_fu_468_p2 add_ln128_fu_474_p2 mul_16s_16s_32_1_1_U10 add_ln128_1_fu_523_p2 add_ln129_fu_484_p2 mul_16s_16s_32_1_1_U11 add_ln129_1_fu_542_p2 add_ln130_fu_548_p2 mul_16s_16s_32_1_1_U12 add_ln130_1_fu_602_p2 add_ln131_fu_558_p2 mul_16s_16s_32_1_1_U13 add_ln131_1_fu_621_p2 add_ln132_fu_627_p2 mul_16s_16s_32_1_1_U14 add_ln132_1_fu_680_p2 mul_16s_16s_32_1_1_U15 add_ln133_1_fu_699_p2 mul_16s_16s_32_1_1_U16 add_ln134_fu_731_p2 i_11_fu_417_p2</BindInstances>
+                        </Instance>
+                        <Instance>
+                            <InstName>grp_Autocorrelation_Pipeline_VITIS_LOOP_137_4_fu_404</InstName>
+                            <ModuleName>Autocorrelation_Pipeline_VITIS_LOOP_137_4</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>404</ID>
+                            <BindInstances>add_ln137_fu_74_p2</BindInstances>
+                        </Instance>
+                        <Instance>
+                            <InstName>grp_Autocorrelation_Pipeline_VITIS_LOOP_143_5_fu_410</InstName>
+                            <ModuleName>Autocorrelation_Pipeline_VITIS_LOOP_143_5</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>410</ID>
+                            <BindInstances>add_ln143_fu_81_p2</BindInstances>
+                        </Instance>
+                    </InstancesList>
+                    <BindInstances>add_ln112_fu_633_p2 add_ln112_4_fu_639_p2 add_ln112_5_fu_645_p2 add_ln112_6_fu_655_p2 scalauto_fu_707_p2 add_ln62_fu_726_p2 mul_16s_16s_32_1_1_U45 mul_16s_16s_32_1_1_U46 mac_muladd_16s_16s_32s_33_4_1_U60 mul_16s_16s_32_1_1_U47 mul_16s_16s_32_1_1_U48 mac_muladd_16s_16s_32s_33_4_1_U61 mul_16s_16s_32_1_1_U49 mac_muladd_16s_16s_33s_33_4_1_U62 mul_16s_16s_32_1_1_U50 mac_muladd_16s_16s_33s_33_4_1_U63 mul_16s_16s_32_1_1_U51 mul_16s_16s_32_1_1_U40 ama_addmuladd_16s_16s_16s_32s_33_4_1_U54 ama_addmuladd_16s_16s_16s_32s_33_4_1_U54 ama_addmuladd_16s_16s_16s_33s_34_4_1_U64 ama_addmuladd_16s_16s_16s_33s_34_4_1_U64 am_addmul_16s_16s_16s_33_4_1_U65 am_addmul_16s_16s_16s_33_4_1_U65 ama_addmuladd_16s_16s_16s_32s_33_4_1_U55 ama_addmuladd_16s_16s_16s_32s_33_4_1_U55 ama_addmuladd_16s_16s_16s_33s_34_4_1_U66 ama_addmuladd_16s_16s_16s_33s_34_4_1_U66 am_addmul_16s_16s_16s_33_4_1_U56 am_addmul_16s_16s_16s_33_4_1_U56 mul_16s_16s_32_1_1_U41 mul_16s_16s_32_1_1_U42 mul_16s_16s_32_1_1_U52 mac_muladd_16s_16s_32s_33_4_1_U57 add_ln115_1_fu_937_p2 mac_muladd_16s_16s_32s_33_4_1_U60 mac_muladd_16s_16s_32s_33_4_1_U61 mac_muladd_16s_16s_32s_33_4_1_U57 mac_muladd_16s_16s_33s_33_4_1_U62 add_ln115_7_fu_995_p2 mul_16s_16s_32_1_1_U43 ama_addmuladd_16s_16s_16s_32s_33_4_1_U54 ama_addmuladd_16s_16s_16s_33s_34_4_1_U64 mul_16s_16s_32_1_1_U44 ama_addmuladd_16s_16s_16s_32s_33_4_1_U55 ama_addmuladd_16s_16s_16s_33s_34_4_1_U66 ama_addmuladd_16s_16s_16s_33s_34_4_1_U67 ama_addmuladd_16s_16s_16s_33s_34_4_1_U67 ama_addmuladd_16s_16s_16s_33s_34_4_1_U67 mac_muladd_16s_16s_32s_33_4_1_U58 mac_muladd_16s_16s_32s_33_4_1_U58 mac_muladd_16s_16s_33s_33_4_1_U63 mac_muladd_16s_16s_32s_33_4_1_U59 mac_muladd_16s_16s_32s_33_4_1_U59 mac_muladd_16s_16s_32s_33_4_1_U68 mac_muladd_16s_16s_32s_33_4_1_U68 add_ln121_fu_1075_p2 mul_16s_16s_32_1_1_U53 add_ln122_fu_1085_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_Reflection_coefficients_fu_113</InstName>
+                    <ModuleName>Reflection_coefficients</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>113</ID>
+                    <InstancesList>
+                        <Instance>
+                            <InstName>grp_Reflection_coefficients_Pipeline_gsm_div_label0_fu_402</InstName>
+                            <ModuleName>Reflection_coefficients_Pipeline_gsm_div_label0</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>402</ID>
+                            <BindInstances>L_num_3_fu_156_p2 k_3_fu_188_p2</BindInstances>
+                        </Instance>
+                    </InstancesList>
+                    <BindInstances>ACF_U P_U K_U add_ln112_fu_673_p2 add_ln112_1_fu_683_p2 add_ln112_2_fu_689_p2 add_ln112_3_fu_699_p2 grp_fu_416_p2 add_ln181_fu_810_p2 add_ln187_fu_835_p2 add_ln194_1_fu_883_p2 sub_ln67_fu_910_p2 sub_ln210_fu_961_p2 mac_muladd_16s_16s_15ns_31_4_1_U81 mac_muladd_16s_16s_15ns_31_4_1_U81 add_ln39_fu_1024_p2 sum_fu_1029_p2 mac_muladd_16s_16s_15ns_31_4_1_U82 mac_muladd_16s_16s_15ns_31_4_1_U82 add_ln222_fu_1093_p2 add_ln39_2_fu_1185_p2 sum_1_fu_1190_p2 mac_muladd_16s_16s_15ns_31_4_1_U83 mac_muladd_16s_16s_15ns_31_4_1_U83 add_ln39_4_fu_1272_p2 sum_2_fu_1277_p2 add_ln194_fu_1104_p2 add_ln194_2_fu_1109_p2 add_ln194_3_fu_1115_p2 add_ln200_fu_1337_p2 add_ln155_fu_1347_p2 grp_fu_416_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_Quantization_and_coding_fu_122</InstName>
+                    <ModuleName>Quantization_and_coding</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>122</ID>
+                    <BindInstances>add_ln48_fu_237_p2 sum_fu_257_p2 add_ln277_fu_319_p2 add_ln48_1_fu_371_p2 sum_3_fu_391_p2 add_ln278_fu_453_p2 add_ln48_2_fu_505_p2 sum_4_fu_525_p2 sum_5_fu_563_p2 add_ln279_fu_625_p2 add_ln48_3_fu_677_p2 sum_6_fu_697_p2 sum_7_fu_725_p2 add_ln280_fu_787_p2 mul_16s_15ns_31_1_1_U89 sum_8_fu_839_p2 sum_9_fu_877_p2 add_ln282_fu_1107_p2 sub_ln48_fu_933_p2 sum_10_fu_953_p2 sum_11_fu_981_p2 add_ln283_fu_1043_p2 mul_16s_15ns_31_1_1_U90 sum_12_fu_1159_p2 sum_13_fu_1187_p2 add_ln284_fu_1339_p2 mul_16s_15ns_31_1_1_U91 sum_14_fu_1243_p2 sum_15_fu_1271_p2 add_ln285_fu_1395_p2</BindInstances>
+                </Instance>
+            </InstancesList>
+            <BindInstances>L_ACF_U add_ln237_fu_150_p2 sub_ln67_fu_191_p2 temp_30_fu_239_p2 temp_31_fu_251_p2 sub_ln250_fu_285_p2 i_9_fu_161_p2 bitoff_U</BindInstances>
+        </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+        <Module>
+            <Name>Autocorrelation_Pipeline_Autocorrelation_label0</Name>
+            <Loops>
+                <Autocorrelation_label0/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>3.620</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>162</Best-caseLatency>
+                    <Average-caseLatency>162</Average-caseLatency>
+                    <Worst-caseLatency>162</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>1.296 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>1.296 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>1.296 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>162</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <Autocorrelation_label0>
+                        <Name>Autocorrelation_label0</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>160</TripCount>
+                        <Latency>160</Latency>
+                        <AbsoluteTimeLatency>1.280 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>2</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </Autocorrelation_label0>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:41</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <Autocorrelation_label0>
+                            <Name>Autocorrelation_label0</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:49</SourceLocation>
+                        </Autocorrelation_label0>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>27</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>195</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Autocorrelation_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln49_fu_93_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:49" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln49"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Autocorrelation_label0" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln67_fu_126_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:67" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln67"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>Autocorrelation_Pipeline_VITIS_LOOP_64_1</Name>
+            <Loops>
+                <VITIS_LOOP_64_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>2.173</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>165</Best-caseLatency>
+                    <Average-caseLatency>165</Average-caseLatency>
+                    <Worst-caseLatency>165</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>1.320 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>1.320 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>1.320 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>165</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_64_1>
+                        <Name>VITIS_LOOP_64_1</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>160</TripCount>
+                        <Latency>163</Latency>
+                        <AbsoluteTimeLatency>1.304 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>5</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_64_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:39</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_64_1>
+                            <Name>VITIS_LOOP_64_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:64</SourceLocation>
+                        </VITIS_LOOP_64_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <DSP>1</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>104</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>100</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_64_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln64_fu_89_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:64" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln64"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_64_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_15ns_15ns_31_4_1_U3" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln59"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_64_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_15ns_15ns_31_4_1_U3" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="prod"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>Autocorrelation_Pipeline_VITIS_LOOP_76_2</Name>
+            <Loops>
+                <VITIS_LOOP_76_2/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>1.481</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>11</Best-caseLatency>
+                    <Average-caseLatency>11</Average-caseLatency>
+                    <Worst-caseLatency>11</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>88.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>88.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>88.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>11</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_76_2>
+                        <Name>VITIS_LOOP_76_2</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>9</TripCount>
+                        <Latency>9</Latency>
+                        <AbsoluteTimeLatency>72.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_76_2>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:39</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_76_2>
+                            <Name>VITIS_LOOP_76_2</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:76</SourceLocation>
+                        </VITIS_LOOP_76_2>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>7</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>39</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_76_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln76_fu_69_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:76" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln76"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>Autocorrelation_Pipeline_VITIS_LOOP_124_3</Name>
+            <Loops>
+                <VITIS_LOOP_124_3/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>4.651</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>765</Best-caseLatency>
+                    <Average-caseLatency>765</Average-caseLatency>
+                    <Worst-caseLatency>765</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>6.120 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>6.120 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>6.120 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>765</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_124_3>
+                        <Name>VITIS_LOOP_124_3</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>152</TripCount>
+                        <Latency>763</Latency>
+                        <AbsoluteTimeLatency>6.104 us</AbsoluteTimeLatency>
+                        <PipelineII>5</PipelineII>
+                        <PipelineDepth>6</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_124_3>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:39</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_124_3>
+                            <Name>VITIS_LOOP_124_3</Name>
+                            <IssueType>II Violation</IssueType>
+                            <ViolationType>Resource Limitation</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:43</SourceLocation>
+                        </VITIS_LOOP_124_3>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <DSP>9</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>641</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>1077</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln133_fu_578_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:133" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln133"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln43_fu_395_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:43" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln43"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln125_fu_406_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:125" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln125"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U8" SOURCE="data/benchmarks/gsm/gsm_lpc.c:126" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln126"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln126_fu_448_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:126" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln126"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U9" SOURCE="data/benchmarks/gsm/gsm_lpc.c:127" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln127"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln127_fu_468_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:127" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln127"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln128_fu_474_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:128" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln128"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U10" SOURCE="data/benchmarks/gsm/gsm_lpc.c:128" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln128"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln128_1_fu_523_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:128" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln128_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln129_fu_484_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:129" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln129"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U11" SOURCE="data/benchmarks/gsm/gsm_lpc.c:129" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln129"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln129_1_fu_542_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:129" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln129_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln130_fu_548_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:130" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln130"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U12" SOURCE="data/benchmarks/gsm/gsm_lpc.c:130" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln130"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln130_1_fu_602_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:130" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln130_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln131_fu_558_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:131" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln131"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U13" SOURCE="data/benchmarks/gsm/gsm_lpc.c:131" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln131"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln131_1_fu_621_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:131" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln131_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln132_fu_627_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:132" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln132"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U14" SOURCE="data/benchmarks/gsm/gsm_lpc.c:132" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln132"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln132_1_fu_680_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:132" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln132_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U15" SOURCE="data/benchmarks/gsm/gsm_lpc.c:133" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln133"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln133_1_fu_699_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:133" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln133_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U16" SOURCE="data/benchmarks/gsm/gsm_lpc.c:134" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln134"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln134_fu_731_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:134" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln134"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_124_3" OPTYPE="add" PRAGMA="" RTLNAME="i_11_fu_417_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:124" STORAGESUBTYPE="" URAM="0" VARIABLE="i_11"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>Autocorrelation_Pipeline_VITIS_LOOP_137_4</Name>
+            <Loops>
+                <VITIS_LOOP_137_4/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>1.481</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>11</Best-caseLatency>
+                    <Average-caseLatency>11</Average-caseLatency>
+                    <Worst-caseLatency>11</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>88.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>88.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>88.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>11</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_137_4>
+                        <Name>VITIS_LOOP_137_4</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>9</TripCount>
+                        <Latency>9</Latency>
+                        <AbsoluteTimeLatency>72.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>2</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_137_4>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:39</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_137_4>
+                            <Name>VITIS_LOOP_137_4</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:137</SourceLocation>
+                        </VITIS_LOOP_137_4>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>12</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>50</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_137_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln137_fu_74_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:137" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln137"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>Autocorrelation_Pipeline_VITIS_LOOP_143_5</Name>
+            <Loops>
+                <VITIS_LOOP_143_5/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>3.198</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>162</Best-caseLatency>
+                    <Average-caseLatency>162</Average-caseLatency>
+                    <Worst-caseLatency>162</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>1.296 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>1.296 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>1.296 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>162</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_143_5>
+                        <Name>VITIS_LOOP_143_5</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>160</TripCount>
+                        <Latency>160</Latency>
+                        <AbsoluteTimeLatency>1.280 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>2</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_143_5>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:143</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_143_5>
+                            <Name>VITIS_LOOP_143_5</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:143</SourceLocation>
+                        </VITIS_LOOP_143_5>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>22</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>103</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_143_5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln143_fu_81_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:143" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln143"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>Autocorrelation</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>4.651</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>971</Best-caseLatency>
+                    <Average-caseLatency>1135</Average-caseLatency>
+                    <Worst-caseLatency>1298</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>7.768 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>9.080 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>10.384 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>971 ~ 1298</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:35</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <DSP>39</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>2318</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>3602</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln112_fu_633_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:112" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln112"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln112_4_fu_639_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:112" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln112_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln112_5_fu_645_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:112" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln112_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln112_6_fu_655_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:112" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln112_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="scalauto_fu_707_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:60" STORAGESUBTYPE="" URAM="0" VARIABLE="scalauto"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln62_fu_726_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:62" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln62"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U45" SOURCE="data/benchmarks/gsm/gsm_lpc.c:80" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln80"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U46" SOURCE="data/benchmarks/gsm/gsm_lpc.c:82" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln82"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U60" SOURCE="data/benchmarks/gsm/gsm_lpc.c:85" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln85"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U47" SOURCE="data/benchmarks/gsm/gsm_lpc.c:87" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln87"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U48" SOURCE="data/benchmarks/gsm/gsm_lpc.c:89" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln89"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U61" SOURCE="data/benchmarks/gsm/gsm_lpc.c:94" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln94"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U49" SOURCE="data/benchmarks/gsm/gsm_lpc.c:98" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln98"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_33s_33_4_1_U62" SOURCE="data/benchmarks/gsm/gsm_lpc.c:100" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln100"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U50" SOURCE="data/benchmarks/gsm/gsm_lpc.c:103" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln103"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_33s_33_4_1_U63" SOURCE="data/benchmarks/gsm/gsm_lpc.c:104" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln104"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U51" SOURCE="data/benchmarks/gsm/gsm_lpc.c:105" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln105"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U40" SOURCE="data/benchmarks/gsm/gsm_lpc.c:107" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln107"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U54" SOURCE="data/benchmarks/gsm/gsm_lpc.c:107" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U54" SOURCE="data/benchmarks/gsm/gsm_lpc.c:107" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U64" SOURCE="data/benchmarks/gsm/gsm_lpc.c:94" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U64" SOURCE="data/benchmarks/gsm/gsm_lpc.c:94" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="am_addmul_16s_16s_16s_33_4_1_U65" SOURCE="data/benchmarks/gsm/gsm_lpc.c:85" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp21"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="am_addmul_16s_16s_16s_33_4_1_U65" SOURCE="data/benchmarks/gsm/gsm_lpc.c:85" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp22"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U55" SOURCE="data/benchmarks/gsm/gsm_lpc.c:107" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp23"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U55" SOURCE="data/benchmarks/gsm/gsm_lpc.c:107" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp24"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U66" SOURCE="data/benchmarks/gsm/gsm_lpc.c:100" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp25"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U66" SOURCE="data/benchmarks/gsm/gsm_lpc.c:100" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp26"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="am_addmul_16s_16s_16s_33_4_1_U56" SOURCE="data/benchmarks/gsm/gsm_lpc.c:107" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp27"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="am_addmul_16s_16s_16s_33_4_1_U56" SOURCE="data/benchmarks/gsm/gsm_lpc.c:107" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp28"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U41" SOURCE="data/benchmarks/gsm/gsm_lpc.c:111" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln111"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U42" SOURCE="data/benchmarks/gsm/gsm_lpc.c:112" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln112"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U52" SOURCE="data/benchmarks/gsm/gsm_lpc.c:113" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln113"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U57" SOURCE="data/benchmarks/gsm/gsm_lpc.c:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln115_1_fu_937_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U60" SOURCE="data/benchmarks/gsm/gsm_lpc.c:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U61" SOURCE="data/benchmarks/gsm/gsm_lpc.c:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U57" SOURCE="data/benchmarks/gsm/gsm_lpc.c:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_33s_33_4_1_U62" SOURCE="data/benchmarks/gsm/gsm_lpc.c:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln115_7_fu_995_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U43" SOURCE="data/benchmarks/gsm/gsm_lpc.c:116" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln116"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U54" SOURCE="data/benchmarks/gsm/gsm_lpc.c:116" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln116_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U64" SOURCE="data/benchmarks/gsm/gsm_lpc.c:116" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln116_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U44" SOURCE="data/benchmarks/gsm/gsm_lpc.c:117" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln117"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U55" SOURCE="data/benchmarks/gsm/gsm_lpc.c:117" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln117_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U66" SOURCE="data/benchmarks/gsm/gsm_lpc.c:117" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln117_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U67" SOURCE="data/benchmarks/gsm/gsm_lpc.c:115" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp29"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U67" SOURCE="data/benchmarks/gsm/gsm_lpc.c:115" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp30"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U67" SOURCE="data/benchmarks/gsm/gsm_lpc.c:118" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln118_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U58" SOURCE="data/benchmarks/gsm/gsm_lpc.c:119" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln119"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U58" SOURCE="data/benchmarks/gsm/gsm_lpc.c:119" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln119_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_33s_33_4_1_U63" SOURCE="data/benchmarks/gsm/gsm_lpc.c:119" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln119_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U59" SOURCE="data/benchmarks/gsm/gsm_lpc.c:120" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln120"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U59" SOURCE="data/benchmarks/gsm/gsm_lpc.c:120" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln120_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U68" SOURCE="data/benchmarks/gsm/gsm_lpc.c:121" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln121"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U68" SOURCE="data/benchmarks/gsm/gsm_lpc.c:121" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln121_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln121_fu_1075_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:121" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln121"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U53" SOURCE="data/benchmarks/gsm/gsm_lpc.c:122" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln122"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln122_fu_1085_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:122" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln122"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>Reflection_coefficients_Pipeline_gsm_div_label0</Name>
+            <Loops>
+                <gsm_div_label0/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>2.048</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>16</Best-caseLatency>
+                    <Average-caseLatency>16</Average-caseLatency>
+                    <Worst-caseLatency>16</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.128 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.128 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.128 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>16</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <gsm_div_label0>
+                        <Name>gsm_div_label0</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>15</TripCount>
+                        <Latency>14</Latency>
+                        <AbsoluteTimeLatency>0.112 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </gsm_div_label0>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/gsm/gsm_add.c:122~data/benchmarks/gsm/gsm_lpc.c:207</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <gsm_div_label0>
+                            <Name>gsm_div_label0</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_add.c:141~data/benchmarks/gsm/gsm_lpc.c:207</SourceLocation>
+                        </gsm_div_label0>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>212</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>308</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="gsm_div_label0" OPTYPE="sub" PRAGMA="" RTLNAME="L_num_3_fu_156_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:146" STORAGESUBTYPE="" URAM="0" VARIABLE="L_num_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="gsm_div_label0" OPTYPE="add" PRAGMA="" RTLNAME="k_3_fu_188_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:138" STORAGESUBTYPE="" URAM="0" VARIABLE="k_3"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>Reflection_coefficients</Name>
+            <Loops>
+                <Reflection_coefficients_label0/>
+                <Reflection_coefficients_label1/>
+                <Reflection_coefficients_label2/>
+                <Reflection_coefficients_label3/>
+                <Reflection_coefficients_label4>
+                    <Reflection_coefficients_label5/>
+                </Reflection_coefficients_label4>
+                <Reflection_coefficients_label6/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>3.530</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>11</Best-caseLatency>
+                    <Average-caseLatency>143</Average-caseLatency>
+                    <Worst-caseLatency>550</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>88.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>1.144 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>4.400 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>11 ~ 550</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <Reflection_coefficients_label0>
+                        <Name>Reflection_coefficients_label0</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>8</TripCount>
+                        <Latency>8</Latency>
+                        <AbsoluteTimeLatency>64.000 ns</AbsoluteTimeLatency>
+                        <IterationLatency>1</IterationLatency>
+                        <PipelineDepth>1</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </Reflection_coefficients_label0>
+                    <Reflection_coefficients_label1>
+                        <Name>Reflection_coefficients_label1</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>9</TripCount>
+                        <Latency>18</Latency>
+                        <AbsoluteTimeLatency>0.144 us</AbsoluteTimeLatency>
+                        <IterationLatency>2</IterationLatency>
+                        <PipelineDepth>2</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </Reflection_coefficients_label1>
+                    <Reflection_coefficients_label2>
+                        <Name>Reflection_coefficients_label2</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>7</TripCount>
+                        <Latency>14</Latency>
+                        <AbsoluteTimeLatency>0.112 us</AbsoluteTimeLatency>
+                        <IterationLatency>2</IterationLatency>
+                        <PipelineDepth>2</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </Reflection_coefficients_label2>
+                    <Reflection_coefficients_label3>
+                        <Name>Reflection_coefficients_label3</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>9</TripCount>
+                        <Latency>18</Latency>
+                        <AbsoluteTimeLatency>0.144 us</AbsoluteTimeLatency>
+                        <IterationLatency>2</IterationLatency>
+                        <PipelineDepth>2</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </Reflection_coefficients_label3>
+                    <Reflection_coefficients_label4>
+                        <Name>Reflection_coefficients_label4</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>
+                            <range>
+                                <min>1</min>
+                                <max>8</max>
+                            </range>
+                        </TripCount>
+                        <Latency>13 ~ 484</Latency>
+                        <AbsoluteTimeLatency>0.104 us ~ 3.872 us</AbsoluteTimeLatency>
+                        <IterationLatency>
+                            <range>
+                                <min>13</min>
+                                <max>60</max>
+                            </range>
+                        </IterationLatency>
+                        <PipelineDepth>13 ~ 60</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList>
+                            <Instance>grp_Reflection_coefficients_Pipeline_gsm_div_label0_fu_402</Instance>
+                        </InstanceList>
+                        <Reflection_coefficients_label5>
+                            <Name>Reflection_coefficients_label5</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>
+                                <range>
+                                    <min>1</min>
+                                    <max>7</max>
+                                </range>
+                            </TripCount>
+                            <Latency>5 ~ 35</Latency>
+                            <AbsoluteTimeLatency>40.000 ns ~ 0.280 us</AbsoluteTimeLatency>
+                            <IterationLatency>5</IterationLatency>
+                            <PipelineDepth>5</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </Reflection_coefficients_label5>
+                    </Reflection_coefficients_label4>
+                    <Reflection_coefficients_label6>
+                        <Name>Reflection_coefficients_label6</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>
+                            <range>
+                                <min>1</min>
+                                <max>8</max>
+                            </range>
+                        </TripCount>
+                        <Latency>1 ~ 8</Latency>
+                        <AbsoluteTimeLatency>8.000 ns ~ 64.000 ns</AbsoluteTimeLatency>
+                        <IterationLatency>1</IterationLatency>
+                        <PipelineDepth>1</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </Reflection_coefficients_label6>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:157</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <Reflection_coefficients_label0>
+                            <Name>Reflection_coefficients_label0</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:164</SourceLocation>
+                        </Reflection_coefficients_label0>
+                        <Reflection_coefficients_label1>
+                            <Name>Reflection_coefficients_label1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:174</SourceLocation>
+                        </Reflection_coefficients_label1>
+                        <Reflection_coefficients_label2>
+                            <Name>Reflection_coefficients_label2</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:181</SourceLocation>
+                        </Reflection_coefficients_label2>
+                        <Reflection_coefficients_label3>
+                            <Name>Reflection_coefficients_label3</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:187</SourceLocation>
+                        </Reflection_coefficients_label3>
+                        <Reflection_coefficients_label4>
+                            <Name>Reflection_coefficients_label4</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:194</SourceLocation>
+                            <Reflection_coefficients_label5>
+                                <Name>Reflection_coefficients_label5</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:222</SourceLocation>
+                            </Reflection_coefficients_label5>
+                        </Reflection_coefficients_label4>
+                        <Reflection_coefficients_label6>
+                            <Name>Reflection_coefficients_label6</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:200</SourceLocation>
+                        </Reflection_coefficients_label6>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>3</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>558</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>2206</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="ACF_U" SOURCE="data/benchmarks/gsm/gsm_lpc.c:157" STORAGESIZE="16 9 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="ACF"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="P_U" SOURCE="data/benchmarks/gsm/gsm_lpc.c:158" STORAGESIZE="16 9 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="P"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="K_U" SOURCE="data/benchmarks/gsm/gsm_lpc.c:159" STORAGESIZE="16 9 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="K"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln112_fu_673_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:112" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln112"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln112_1_fu_683_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:112" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln112_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln112_2_fu_689_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:112" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln112_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln112_3_fu_699_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:112" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln112_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label1" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_416_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:174" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln174"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln181_fu_810_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:181" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln181"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln187_fu_835_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:187" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln187"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln194_1_fu_883_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:194" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln194_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label4" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln67_fu_910_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:67" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln67"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label4" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln210_fu_961_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:210" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln210"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="Reflection_coefficients_label4" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_15ns_31_4_1_U81" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln59"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="Reflection_coefficients_label4" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_15ns_31_4_1_U81" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="prod"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln39_fu_1024_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln39"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label4" OPTYPE="add" PRAGMA="" RTLNAME="sum_fu_1029_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="Reflection_coefficients_label5" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_15ns_31_4_1_U82" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln59_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="Reflection_coefficients_label5" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_15ns_31_4_1_U82" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="prod_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln222_fu_1093_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:222" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln222"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln39_2_fu_1185_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln39_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label5" OPTYPE="add" PRAGMA="" RTLNAME="sum_1_fu_1190_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="Reflection_coefficients_label5" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_15ns_31_4_1_U83" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln59_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="Reflection_coefficients_label5" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_15ns_31_4_1_U83" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="prod_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln39_4_fu_1272_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln39_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label5" OPTYPE="add" PRAGMA="" RTLNAME="sum_2_fu_1277_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln194_fu_1104_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:194" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln194"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln194_2_fu_1109_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:194" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln194_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln194_3_fu_1115_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:194" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln194_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln200_fu_1337_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:200" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln200"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln155_fu_1347_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:155" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln155"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="Reflection_coefficients_label0" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_416_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:164" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln164"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>Quantization_and_coding</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>5.672</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>7</Best-caseLatency>
+                    <Average-caseLatency>7</Average-caseLatency>
+                    <Worst-caseLatency>7</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>56.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>56.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>56.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>7</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:277</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <DSP>3</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>88</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>1500</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln48_fu_237_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln48"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_fu_257_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln277_fu_319_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:277" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln277"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln48_1_fu_371_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln48_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_3_fu_391_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln278_fu_453_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:278" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln278"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln48_2_fu_505_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln48_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_4_fu_525_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_5_fu_563_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln279_fu_625_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:279" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln279"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln48_3_fu_677_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln48_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_6_fu_697_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_7_fu_725_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln280_fu_787_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:280" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln280"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U89" SOURCE="data/benchmarks/gsm/gsm_add.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln48"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_8_fu_839_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_9_fu_877_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln282_fu_1107_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:282" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln282"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln48_fu_933_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln48"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_10_fu_953_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_10"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_11_fu_981_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln283_fu_1043_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:283" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln283"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U90" SOURCE="data/benchmarks/gsm/gsm_add.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln48_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_12_fu_1159_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_12"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_13_fu_1187_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln284_fu_1339_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:284" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln284"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U91" SOURCE="data/benchmarks/gsm/gsm_add.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln48_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_14_fu_1243_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_14"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="sum_15_fu_1271_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln285_fu_1395_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:285" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln285"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>Gsm_LPC_Analysis</Name>
+            <Loops>
+                <VITIS_LOOP_237_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>5.672</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>1003</Best-caseLatency>
+                    <Average-caseLatency>1299</Average-caseLatency>
+                    <Worst-caseLatency>1869</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>8.024 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>10.392 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>14.952 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>1004 ~ 1870</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_237_1>
+                        <Name>VITIS_LOOP_237_1</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>8</TripCount>
+                        <Latency>8</Latency>
+                        <AbsoluteTimeLatency>64.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>2</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </VITIS_LOOP_237_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:234~data/benchmarks/gsm/gsm.c:13</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_237_1>
+                            <Name>VITIS_LOOP_237_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/gsm/gsm_lpc.c:237~data/benchmarks/gsm/gsm.c:13</SourceLocation>
+                        </VITIS_LOOP_237_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>45</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>3059</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>8033</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="L_ACF_U" SOURCE="data/benchmarks/gsm/gsm.c:9" STORAGESIZE="64 9 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p array" URAM="0" VARIABLE="L_ACF"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_237_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln237_fu_150_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:237" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln237"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_237_1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln67_fu_191_p2" SOURCE="data/benchmarks/gsm/gsm_add.c:67" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln67"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_237_1" OPTYPE="add" PRAGMA="" RTLNAME="temp_30_fu_239_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:244" STORAGESUBTYPE="" URAM="0" VARIABLE="temp_30"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_237_1" OPTYPE="add" PRAGMA="" RTLNAME="temp_31_fu_251_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:247" STORAGESUBTYPE="" URAM="0" VARIABLE="temp_31"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_237_1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln250_fu_285_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:250" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln250"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_237_1" OPTYPE="add" PRAGMA="" RTLNAME="i_9_fu_161_p2" SOURCE="data/benchmarks/gsm/gsm_lpc.c:237" STORAGESUBTYPE="" URAM="0" VARIABLE="i_9"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_np" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_np" PRAGMA="" RTLNAME="bitoff_U" SOURCE="" STORAGESIZE="4 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_np" URAM="0" VARIABLE="bitoff"/>
+            </BindNodes>
+        </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+    <UserConfigCommands>
+        <config_array_partition throughput_driven="off"/>
+        <config_compile pipeline_loops="999"/>
+    </UserConfigCommands>
+    <Args>
+        <Arg ArgName="indata" index="0" direction="inout" srcType="short*" srcSize="16">
+            <hwRefs>
+                <hwRef type="port" interface="indata_address0" name="indata_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="indata_ce0" name="indata_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="indata_we0" name="indata_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="indata_d0" name="indata_d0" usage="data" direction="out"/>
+                <hwRef type="port" interface="indata_q0" name="indata_q0" usage="data" direction="in"/>
+                <hwRef type="port" interface="indata_address1" name="indata_address1" usage="address" direction="out"/>
+                <hwRef type="port" interface="indata_ce1" name="indata_ce1" usage="control" direction="out"/>
+                <hwRef type="port" interface="indata_q1" name="indata_q1" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="LARc" index="1" direction="inout" srcType="short*" srcSize="16">
+            <hwRefs>
+                <hwRef type="port" interface="LARc_address0" name="LARc_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="LARc_ce0" name="LARc_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="LARc_we0" name="LARc_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="LARc_d0" name="LARc_d0" usage="data" direction="out"/>
+                <hwRef type="port" interface="LARc_q0" name="LARc_q0" usage="data" direction="in"/>
+                <hwRef type="port" interface="LARc_address1" name="LARc_address1" usage="address" direction="out"/>
+                <hwRef type="port" interface="LARc_ce1" name="LARc_ce1" usage="control" direction="out"/>
+                <hwRef type="port" interface="LARc_we1" name="LARc_we1" usage="control" direction="out"/>
+                <hwRef type="port" interface="LARc_d1" name="LARc_d1" usage="data" direction="out"/>
+                <hwRef type="port" interface="LARc_q1" name="LARc_q1" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+    </Args>
+    <Interfaces>
+        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
+            <busParams>
+                <busParam busParamName="ASSOCIATED_RESET">ap_rst</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_clk">CLK</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_clk</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_HIGH</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_ctrl" type="ap_ctrl" busTypeName="acc_handshake" mode="slave">
+            <portMaps>
+                <portMap portMapName="ap_start">start</portMap>
+                <portMap portMapName="ap_done">done</portMap>
+                <portMap portMapName="ap_idle">idle</portMap>
+                <portMap portMapName="ap_ready">ready</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_done</port>
+                <port>ap_idle</port>
+                <port>ap_ready</port>
+                <port>ap_start</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="indata_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="8">
+            <portMaps>
+                <portMap portMapName="indata_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>indata_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="indata"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="indata_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="16">
+            <portMaps>
+                <portMap portMapName="indata_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>indata_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="indata"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="indata_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="16">
+            <portMaps>
+                <portMap portMapName="indata_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>indata_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="indata"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="indata_address1" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="8">
+            <portMaps>
+                <portMap portMapName="indata_address1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>indata_address1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="indata"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="indata_q1" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="16">
+            <portMaps>
+                <portMap portMapName="indata_q1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>indata_q1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="indata"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="LARc_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="3">
+            <portMaps>
+                <portMap portMapName="LARc_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>LARc_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="LARc"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="LARc_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="16">
+            <portMaps>
+                <portMap portMapName="LARc_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>LARc_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="LARc"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="LARc_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="16">
+            <portMaps>
+                <portMap portMapName="LARc_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>LARc_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="LARc"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="LARc_address1" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="3">
+            <portMaps>
+                <portMap portMapName="LARc_address1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>LARc_address1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="LARc"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="LARc_d1" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="16">
+            <portMaps>
+                <portMap portMapName="LARc_d1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>LARc_d1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="LARc"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="LARc_q1" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="16">
+            <portMaps>
+                <portMap portMapName="LARc_q1">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>LARc_q1</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="LARc"/>
+            </constraints>
+        </Interface>
+    </Interfaces>
+    <ReportHWInterface>
+        <section name="HW Interfaces" level="0">
+            <item name="AP_MEMORY">
+                <table>
+                    <keys size="3">Port, Direction, Bitwidth</keys>
+                    <column name="LARc_address0">out, 3</column>
+                    <column name="LARc_address1">out, 3</column>
+                    <column name="LARc_d0">out, 16</column>
+                    <column name="LARc_d1">out, 16</column>
+                    <column name="LARc_q0">in, 16</column>
+                    <column name="LARc_q1">in, 16</column>
+                    <column name="indata_address0">out, 8</column>
+                    <column name="indata_address1">out, 8</column>
+                    <column name="indata_d0">out, 16</column>
+                    <column name="indata_q0">in, 16</column>
+                    <column name="indata_q1">in, 16</column>
+                </table>
+            </item>
+            <item name="TOP LEVEL CONTROL">
+                <table>
+                    <keys size="3">Interface, Type, Ports</keys>
+                    <column name="ap_clk">clock, ap_clk</column>
+                    <column name="ap_rst">reset, ap_rst</column>
+                    <column name="ap_ctrl">ap_ctrl_hs, ap_done ap_idle ap_ready ap_start</column>
+                </table>
+            </item>
+        </section>
+    </ReportHWInterface>
+    <ReportSWInterface>
+        <section name="SW I/O Information" level="0">
+            <item name="Top Function Arguments">
+                <table>
+                    <keys size="3">Argument, Direction, Datatype</keys>
+                    <column name="indata">inout, short*</column>
+                    <column name="LARc">inout, short*</column>
+                </table>
+            </item>
+            <item name="SW-to-HW Mapping">
+                <table>
+                    <keys size="4">Argument, HW Interface, HW Type, HW Usage</keys>
+                    <column name="indata">indata_address0, port, offset</column>
+                    <column name="indata">indata_ce0, port, </column>
+                    <column name="indata">indata_we0, port, </column>
+                    <column name="indata">indata_d0, port, </column>
+                    <column name="indata">indata_q0, port, </column>
+                    <column name="indata">indata_address1, port, offset</column>
+                    <column name="indata">indata_ce1, port, </column>
+                    <column name="indata">indata_q1, port, </column>
+                    <column name="LARc">LARc_address0, port, offset</column>
+                    <column name="LARc">LARc_ce0, port, </column>
+                    <column name="LARc">LARc_we0, port, </column>
+                    <column name="LARc">LARc_d0, port, </column>
+                    <column name="LARc">LARc_q0, port, </column>
+                    <column name="LARc">LARc_address1, port, offset</column>
+                    <column name="LARc">LARc_ce1, port, </column>
+                    <column name="LARc">LARc_we1, port, </column>
+                    <column name="LARc">LARc_d1, port, </column>
+                    <column name="LARc">LARc_q1, port, </column>
+                </table>
+            </item>
+        </section>
+    </ReportSWInterface>
+    <ResolutionUrl key="ZZZ">docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
+    <PragmaReport>
+        <Pragma type="loop_tripcount" location="data/benchmarks/gsm/gsm_add.c:140" status="valid" parentFunction="gsm_div" variable="" isDirective="0" options="min=15 max=15 avg=15"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/gsm/gsm_lpc.c:50" status="valid" parentFunction="autocorrelation" variable="" isDirective="0" options="min=160 max=160 avg=160"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/gsm/gsm_lpc.c:165" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="0" options="min=8 max=8 avg=8"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/gsm/gsm_lpc.c:175" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="0" options="min=9 max=9 avg=9"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/gsm/gsm_lpc.c:182" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="0" options="min=7 max=7 avg=7"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/gsm/gsm_lpc.c:188" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="0" options="min=9 max=9 avg=9"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/gsm/gsm_lpc.c:195" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="0" options="min=1 max=8"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/gsm/gsm_lpc.c:201" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="0" options="min=1 max=8"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/gsm/gsm_lpc.c:220" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="0" options="min=1 max=7"/>
+        <Pragma type="pipeline" location="../../vitis/run_hls.tcl:10" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../../vitis/run_hls.tcl:11" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../../vitis/run_hls.tcl:12" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../../vitis/run_hls.tcl:13" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../../vitis/run_hls.tcl:14" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../../vitis/run_hls.tcl:15" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../../vitis/run_hls.tcl:16" status="valid" parentFunction="reflection_coefficients" variable="" isDirective="1" options="off=true"/>
+    </PragmaReport>
+</profile>
+

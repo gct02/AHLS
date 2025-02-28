@@ -1,0 +1,153 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:24:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="adpcm_main" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=adpcm_main" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:22:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="adpcm_main" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:218:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="adpcm_main" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=50 max=50 avg=50" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:23:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="adpcm_main" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:224:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="adpcm_main" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=50 max=50 avg=50" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:10:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="encode" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:256:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="encode" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=10 max=10 avg=10" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:11:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="encode" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:270:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="encode" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=22 max=22 avg=22" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:12:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="decode" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:390:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="decode" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=10 max=10 avg=10" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:13:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="decode" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:406:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="decode" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=10 max=10 avg=10" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:14:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="reset" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:428:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="reset" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=6 max=6 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:15:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="reset" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:437:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="reset" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=6 max=6 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:16:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="reset" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:446:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="reset" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=24 max=24 avg=24" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:17:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="reset" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:452:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="reset" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=11 max=11 avg=11" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:18:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="filtez" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:465:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="filtez" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=5 max=5 avg=5" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:19:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="quantl" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:494:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="quantl" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=30 max=30 avg=30" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:20:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="upzero" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:538:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="upzero" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=6 max=6 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/vitis/run_hls.tcl:21:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="upzero" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:544:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="upzero" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=6 max=6 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:484:0" msg_body="Inlining function 'abs' into 'quantl'">
+        <args Callee="abs" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 231 Column 0" Caller="quantl" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 484 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:240:0" msg_body="Inlining function 'filtez' into 'encode'">
+        <args Callee="filtez" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 458 Column 0" Caller="encode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 240 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:240:0" msg_body="Inlining function 'filtep' into 'encode'">
+        <args Callee="filtep" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 474 Column 0" Caller="encode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 240 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:240:0" msg_body="Inlining function 'quantl' into 'encode'">
+        <args Callee="quantl" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 484 Column 0" Caller="encode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 240 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:240:0" msg_body="Inlining function 'logscl' into 'encode'">
+        <args Callee="logscl" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 509 Column 0" Caller="encode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 240 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:240:0" msg_body="Inlining function 'scalel' into 'encode'">
+        <args Callee="scalel" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 521 Column 0" Caller="encode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 240 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:240:0" msg_body="Inlining function 'upzero' into 'encode'">
+        <args Callee="upzero" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 531 Column 0" Caller="encode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 240 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:240:0" msg_body="Inlining function 'uppol2' into 'encode'">
+        <args Callee="uppol2" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 565 Column 0" Caller="encode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 240 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:240:0" msg_body="Inlining function 'uppol1' into 'encode'">
+        <args Callee="uppol1" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 593 Column 0" Caller="encode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 240 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:240:0" msg_body="Inlining function 'abs' into 'encode'">
+        <args Callee="abs" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 231 Column 0" Caller="encode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 240 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:240:0" msg_body="Inlining function 'logsch' into 'encode'">
+        <args Callee="logsch" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 617 Column 0" Caller="encode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 240 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:331:0" msg_body="Inlining function 'filtez' into 'decode'">
+        <args Callee="filtez" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 458 Column 0" Caller="decode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 331 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:331:0" msg_body="Inlining function 'filtep' into 'decode'">
+        <args Callee="filtep" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 474 Column 0" Caller="decode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 331 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:331:0" msg_body="Inlining function 'logscl' into 'decode'">
+        <args Callee="logscl" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 509 Column 0" Caller="decode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 331 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:331:0" msg_body="Inlining function 'scalel' into 'decode'">
+        <args Callee="scalel" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 521 Column 0" Caller="decode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 331 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:331:0" msg_body="Inlining function 'upzero' into 'decode'">
+        <args Callee="upzero" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 531 Column 0" Caller="decode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 331 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:331:0" msg_body="Inlining function 'uppol2' into 'decode'">
+        <args Callee="uppol2" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 565 Column 0" Caller="decode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 331 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:331:0" msg_body="Inlining function 'uppol1' into 'decode'">
+        <args Callee="uppol1" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 593 Column 0" Caller="decode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 331 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:331:0" msg_body="Inlining function 'logsch' into 'decode'">
+        <args Callee="logsch" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 617 Column 0" Caller="decode" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 331 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/adpcm/adpcm.c:211:0" msg_body="Inlining function 'reset' into 'adpcm_main'">
+        <args Callee="reset" Callee-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 416 Column 0" Caller="adpcm_main" Caller-DebugLoc="File data/benchmarks/adpcm/adpcm.c Line 211 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-167" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:258:22" msg_body="The program may have out of bound array access"/>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-167" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:258:38" msg_body="The program may have out of bound array access"/>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-167" msg_severity="WARNING" msg_loc="data/benchmarks/adpcm/adpcm.c:392:37" msg_body="The program may have out of bound array access"/>
+</xilinx:hls_fe_msgs>
+

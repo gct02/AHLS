@@ -5,6 +5,7 @@ import torch
 from collections import defaultdict
 from pathlib import Path
 from torch.utils.data import Dataset
+from torch import Tensor
 
 class HLSDataset(Dataset):
     def __init__(
@@ -13,15 +14,16 @@ class HLSDataset(Dataset):
         target_metric: str,
         normalize: bool = False,
         benchmarks: Optional[Union[str, List[str]]] = None,
-        feature_stats: Optional[Dict[str, Dict[str, torch.Tensor]]] = None,
+        feature_stats: Optional[Dict[str, Dict[str, Tensor]]] = None,
         filter_cols: Optional[Dict[str, List[int]]] = None
     ):
         self.target = target_metric
         self.dataset_path = dataset_path
         self.normalize = normalize
         self.benchmarks = benchmarks
-        self.feature_stats = None
         self.filter_cols = filter_cols
+        self.feature_stats = None
+        self.base_instances = None
 
         self._load_data_paths()
 
@@ -86,24 +88,31 @@ class HLSDataset(Dataset):
                 'std': std
             }
 
+    def get_base_instances(self):
+        if self.base_instances is not None:
+            return self.base_instances
+
+        self.base_instances = {}
+        for cdfg_path, targets_path in self.base_data_paths.values():
+            cdfg, target, bench = self._load_instance(cdfg_path, targets_path)
+            self.base_instances[bench] = (cdfg, target)
+
+        return self.base_instances
+
     def __len__(self):
         return len(self.data_paths)
 
     def __getitem__(self, idx: int):
         cdfg_path, targets_path = self.data_paths[idx]
+        return self._load_instance(cdfg_path, targets_path)
+    
+    def _load_instance(self, cdfg_path: str, targets_path: str):
+        bench = cdfg_path.split("/")[-3]
+        base_target = self.base_targets[bench]
+        target_value = self._get_target_value(targets_path) - base_target
         
-        # Load CDFG and target value from disk
+        # Load CDFG from disk
         cdfg = torch.load(cdfg_path)
-        
-        target_value = -1
-        with open(targets_path, 'r') as f:
-            for line in f:
-                if line.startswith(self.target):
-                    target_value = float(line.split("=")[1].strip())
-                    break
-        
-        #if target_value == -1:
-        #    raise ValueError(f"Invalid target in {targets_path}")
 
         # Apply normalization
         if self.normalize:
@@ -114,11 +123,18 @@ class HLSDataset(Dataset):
                 stats = self.feature_stats[nt]
                 cdfg[nt].x = ((cdfg.x_dict[nt] - stats['mean'].unsqueeze(0)) 
                               / stats['std'].unsqueeze(0))
-                
-        if not cdfg.is_sorted():
-            cdfg = cdfg.sort()
 
-        return cdfg, torch.tensor([target_value])
+        return cdfg, torch.tensor([target_value]), bench
+    
+    def _get_target_value(self, targets_path: str) -> float:
+        target_value = -1
+        with open(targets_path, 'r') as f:
+            for line in f:
+                if line.startswith(self.target):
+                    target_value = float(line.split("=")[1].strip())
+                    break
+
+        return target_value
 
     def _load_data_paths(self):
         if not os.path.exists(self.dataset_path):
@@ -131,37 +147,53 @@ class HLSDataset(Dataset):
             if not isinstance(self.benchmarks, list):
                 self.benchmarks = [self.benchmarks]
 
-            for benchmark in self.benchmarks:
-                if benchmark not in available_benchmarks:
-                    raise FileNotFoundError(f"Benchmark {benchmark} not found in {self.dataset_path}")
+            for bench in self.benchmarks:
+                if bench not in available_benchmarks:
+                    raise FileNotFoundError(f"Benchmark {bench} not found in {self.dataset_path}")
                 
         self.benchmarks = sorted(self.benchmarks)
         self.data_paths = []
-        for benchmark_name in self.benchmarks:
-            benchmark_path = os.path.join(self.dataset_path, benchmark_name)
+        self.base_targets = {}
+        self.base_data_paths = {}
+
+        for bench in self.benchmarks:
+            benchmark_path = os.path.join(self.dataset_path, bench)
             if not os.path.isdir(benchmark_path):
                 continue
 
             solutions = sorted(os.listdir(benchmark_path))
-            for solution_name in solutions:
-                instance_path = os.path.join(benchmark_path, solution_name)
+            base_solution = solutions[0]
+            solutions = solutions[1:]
 
+            base_instance_path = os.path.join(benchmark_path, base_solution)
+
+            base_targets_path = os.path.join(base_instance_path, "targets.txt")
+            if not os.path.exists(base_targets_path):
+                raise FileNotFoundError(f"Base targets file not found in {base_targets_path}")
+            
+            base_cdfg_path = os.path.join(base_instance_path, "cdfg.pt")
+            if not os.path.exists(base_cdfg_path):
+                raise FileNotFoundError(f"Base CDFG file not found in {base_cdfg_path}")
+            
+            base_target = self._get_target_value(base_targets_path)
+            if base_target == -1:
+                raise ValueError(f"Invalid target in {base_targets_path}")
+            
+            self.base_targets[bench] = base_target
+            self.base_data_paths[bench] = (base_cdfg_path, base_targets_path)
+
+            for sol in solutions:
+                instance_path = os.path.join(benchmark_path, sol)
                 targets_path = os.path.join(instance_path, "targets.txt")
                 if not os.path.exists(targets_path):
+                    continue
+
+                target_value = self._get_target_value(targets_path)
+                if target_value == -1:
                     continue
 
                 cdfg_path = os.path.join(instance_path, "cdfg.pt")
                 if not os.path.exists(cdfg_path):
                     continue
-
-                target_value = -1
-                with open(os.path.join(instance_path, f"targets.txt"), 'r') as f:
-                    while (line := f.readline()):
-                        if line.startswith(self.target):
-                            target_value = float(line.split("=")[1])
-                            break
-
-                #if target_value == -1:
-                #    continue
 
                 self.data_paths.append((cdfg_path, targets_path))

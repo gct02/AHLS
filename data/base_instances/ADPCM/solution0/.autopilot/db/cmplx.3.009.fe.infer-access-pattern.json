@@ -1,0 +1,49 @@
+{
+  "0": {
+    "basicblocks": 13,
+    "calls": "2 1",
+    "file": "adpcm.c",
+    "fileloc": 207,
+    "instructions": 105,
+    "loads": {
+      "G": 2,
+      "T": 3
+    },
+    "name": "adpcm_main",
+    "stores": {
+      "G": 43,
+      "T": 3
+    },
+    "total_instructions": 945
+  },
+  "1": {
+    "basicblocks": 23,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 331,
+    "instructions": 406,
+    "loads": {
+      "G": 54
+    },
+    "name": "decode",
+    "stores": {
+      "G": 38
+    },
+    "total_instructions": 406
+  },
+  "2": {
+    "basicblocks": 31,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 240,
+    "instructions": 434,
+    "loads": {
+      "G": 56
+    },
+    "name": "encode",
+    "stores": {
+      "G": 36
+    },
+    "total_instructions": 434
+  }
+}

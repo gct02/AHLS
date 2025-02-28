@@ -1,0 +1,344 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 484, Column: 0 }
+Function:        quantl
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          abs
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 231, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          quantl
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 484, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          filtez
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 458, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          filtep
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 474, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          quantl
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 484, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          logscl
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 509, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          scalel
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 521, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          upzero
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 531, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          uppol2
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 565, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          uppol1
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 593, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          abs
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 231, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, Column: 0 }
+Function:        encode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          logsch
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 617, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          encode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 240, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          filtez
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 458, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          filtep
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 474, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          logscl
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 509, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          scalel
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 521, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          upzero
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 531, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          uppol2
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 565, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          uppol1
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 593, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, Column: 0 }
+Function:        decode
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          logsch
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 617, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          decode
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 331, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 211, Column: 0 }
+Function:        adpcm_main
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          reset
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 416, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          adpcm_main
+    DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 211, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Failure
+Pass:            reflow-syncheck
+Name:            WarningOutOfBoundArrayAccess
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 258, Column: 22 }
+Function:        encode
+Args:            
+  - String:          The program may have out of bound array access
+...
+--- !Failure
+Pass:            reflow-syncheck
+Name:            WarningOutOfBoundArrayAccess
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 258, Column: 38 }
+Function:        encode
+Args:            
+  - String:          The program may have out of bound array access
+...
+--- !Failure
+Pass:            reflow-syncheck
+Name:            WarningOutOfBoundArrayAccess
+DebugLoc:        { File: data/benchmarks/adpcm/adpcm.c, Line: 392, Column: 37 }
+Function:        decode
+Args:            
+  - String:          The program may have out of bound array access
+...

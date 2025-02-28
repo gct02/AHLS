@@ -14,6 +14,7 @@ from pathlib import Path
 from torch.utils.data import DataLoader
 from sklearn.metrics import r2_score
 from models import HGT
+from loss import BaseAwareMSELoss
 
 
 def save_model(model, target_dir, model_name):
@@ -94,6 +95,8 @@ def train_model(
     scheduler: Optional[torch.optim.lr_scheduler._LRScheduler] = None,
     verbosity: int = 1
 ) -> Tuple[List[float], List[float], List[float], List[List[Tuple[float, float]]]]:
+    base_instances = train_loader.dataset.get_base_instances()
+
     train_error_per_epoch = []
     test_abs_error_per_epoch = []
     test_rel_error_per_epoch = []
@@ -110,17 +113,25 @@ def train_model(
         # Training
         model.train()
         train_epoch_error = 0
-        for i, (input_batch, target_batch) in enumerate(train_loader):
+        for i, (input_batch, target_batch, benches) in enumerate(train_loader):
             preds, targets = [], []
+            base_preds = []
+
+            base_preds_dict = {}
+            for bench, (base_cdfg, _) in base_instances.items():
+                base_preds_dict[bench] = model(base_cdfg.to(DEVICE))
+                base_cdfg = base_cdfg.cpu()
+
             optimizer.zero_grad()
             train_batch_error = 0
-            for cdfg, target in zip(input_batch, target_batch):
+            for cdfg, target, bench in zip(input_batch, target_batch, benches):
                 cdfg, target = cdfg.to(DEVICE), target.to(DEVICE)
                 pred = model(cdfg)
                 cdfg = cdfg.cpu()
 
                 preds.append(pred)
                 targets.append(target)
+                base_preds.append(base_preds_dict[bench])
 
                 pred_val = pred.item()
                 target_val = target.item()
@@ -136,8 +147,9 @@ def train_model(
 
             preds = torch.stack(preds).view(batch_size, 1)
             targets = torch.stack(targets).view(batch_size, 1)
+            base_preds = torch.stack(base_preds).view(batch_size, 1)
 
-            loss_fn(preds, targets).backward()
+            loss_fn(preds, targets, base_preds).backward()
 
             optimizer.step()
             if scheduler:
@@ -171,6 +183,7 @@ def main(args: Dict[str, str]):
     dataset_path = args['dataset']
     target_metric = args['target']
     selected_test_bench = args['testbench']
+    residual_std = float(args['residual'])
     verbosity = int(args['verbose'])
 
     matplotlib.use('Agg')
@@ -204,7 +217,8 @@ def main(args: Dict[str, str]):
         )
 
         model = initialize_model()
-        loss_func = nn.MSELoss()
+
+        loss_func = BaseAwareMSELoss(base_penalty=0.5, residual_std=residual_std)
 
         optimizer = torch.optim.AdamW(
             model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=1e-4
@@ -518,6 +532,7 @@ def parse_arguments():
     parser.add_argument('--epoch', default=300, help='The number of training epochs (default: 300).')
     parser.add_argument('--seed', default=42, help='Random seed for repeatability (default: 42).')
     parser.add_argument('--batch', default=16, help='The size of the training batch (default: 16).')
+    parser.add_argument('--residual', default=1.0, help='The standard deviation of the residual error (default: 1.0).')
     parser.add_argument(
         '--testbench', default=None, 
         help='The name of the benchmark to use for test. If not specified, a cross-validation is performed.'

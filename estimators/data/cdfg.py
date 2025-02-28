@@ -10,7 +10,7 @@ from torch import Tensor
 from torch_geometric.data import HeteroData, Data
 from torch_geometric.utils import to_networkx
 
-NODE_TYPES = ['inst', 'var', 'const', 'array', 'bb', 'func']
+NODE_TYPES = ['inst', 'var', 'const', 'array', 'bb', 'func', 'base_metrics']
 EDGE_TYPES = [
         # Instruction-Instruction Edges
         ('inst', 'control', 'inst'),     # Control-flow
@@ -34,13 +34,13 @@ EDGE_TYPES = [
         ('const', 'data', 'inst'),     # Data-flow
         ('inst', 'data_rev', 'const'), # Data-flow (reverse)
 
-        # Instruction-Basic-Block Edges
+        # Instruction-Basic Block Edges
         ('inst', 'member', 'bb'),      # Membership relation
 
         # Instruction-Function Edges
         ('inst', 'member', 'func'),    # Membership relation
 
-        # Basic-Block Edges
+        # Basic Block Edges
         ('bb', 'contains', 'inst'),    # Containment relation
         ('bb', 'member', 'func'),      # Membership relation
         ('bb', 'control', 'bb'),       # Control-flow
@@ -50,13 +50,23 @@ EDGE_TYPES = [
         ('func', 'contains', 'bb'),    # Containment relation
         ('func', 'contains', 'inst'),  # Containment relation
 
+        # Base Metrics Edges
+        ('base_metrics', 'edge', 'inst'),
+        ('base_metrics', 'edge', 'var'),
+        ('base_metrics', 'edge', 'const'),
+        ('base_metrics', 'edge', 'array'),
+        ('base_metrics', 'edge', 'bb'),
+        ('base_metrics', 'edge', 'func'),
+        ('base_metrics', 'edge', 'base_metrics'),
+
         # Self-loops
         ('inst', 'self', 'inst'),
         ('var', 'self', 'var'),
         ('const', 'self', 'const'),
         ('array', 'self', 'array'),
         ('bb', 'self', 'bb'),
-        ('func', 'self', 'func')
+        ('func', 'self', 'func'),
+        ('base_metrics', 'self', 'base_metrics')
 ]
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
@@ -66,6 +76,7 @@ CONST_FEATURES = 7
 ARRAY_FEATURES = 22
 BB_FEATURES = 9
 FUNC_FEATURES = 14
+BASE_METRICS_FEATURES = 8
 
 NODE_FEATURE_DIMS = {
     'inst': INST_FEATURES,
@@ -73,7 +84,8 @@ NODE_FEATURE_DIMS = {
     'const': CONST_FEATURES,
     'array': ARRAY_FEATURES,
     'bb': BB_FEATURES,
-    'func': FUNC_FEATURES
+    'func': FUNC_FEATURES,
+    'base_metrics': BASE_METRICS_FEATURES
 }
 
 class NodeType(IntEnum):
@@ -629,6 +641,26 @@ def _build_edges(
 
     return graph
 
+def include_base_metrics(
+    graph: HeteroData,
+    base_metrics: List[Union[int, float]]
+) -> HeteroData:
+    graph['base_metrics'].x = torch.tensor(
+        base_metrics, dtype=torch.float32
+    ).unsqueeze(0)
+
+    for nt, nodes in graph.x_dict.items():
+        num_nodes = nodes.size(0)
+        if num_nodes == 0:
+            graph[('base_metrics', 'edge', nt)].edge_index = torch.empty((2, 0), dtype=torch.int64)
+            continue
+        src_idx = torch.zeros(num_nodes, dtype=torch.int64).view(1, -1)
+        dst_idx = torch.arange(num_nodes, dtype=torch.int64).view(1, -1)
+        edge_index = torch.cat([src_idx, dst_idx], dim=0)
+        graph[('base_metrics', 'edge', nt)].edge_index = edge_index
+
+    return graph
+
 def _parse_md_file(
     metadata_path: Path
 ) -> Dict[str, Dict[str, Dict[str, str]]]:
@@ -696,6 +728,7 @@ def build_cdfg(
     ir_path: Path,
     metadata_path: Path,
     cfg_path: Path,
+    base_metrics: Optional[List[Union[int, float]]] = None,
     output_folder: Optional[Path] = None
 ) -> HeteroData:
     import programl
@@ -712,6 +745,9 @@ def build_cdfg(
     cdfg, indices, additional_edges = _build_nodes(programl_cdfg, metadata, inst_dict)
     cdfg = _build_edges(programl_cdfg, cdfg, indices, cfg_edges, additional_edges)
 
+    if base_metrics is not None:
+        cdfg = include_base_metrics(cdfg, base_metrics)
+
     cdfg_pt_out_path = output_folder / f"cdfg.pt"
     cdfg_txt_out_path = output_folder / f"cdfg.txt"
     programl_out_path = output_folder / f"pgml_cdfg.pbtxt"
@@ -720,6 +756,8 @@ def build_cdfg(
     print_cdfg(cdfg, cdfg_txt_out_path)
     with open(programl_out_path, 'w') as f:
         f.write(str(programl_cdfg))
+
+    plot_cdfg(cdfg)
 
     return cdfg
 
@@ -753,6 +791,9 @@ def plot_cdfg(
         return 'U'
         
     def get_label(type: NodeType, idx: int) -> str:
+        if type == 'base_metrics':
+            return "Base Metrics"
+        
         if type == 'var':
             idx -= n_insts
         elif type == 'const':
@@ -763,10 +804,12 @@ def plot_cdfg(
             idx -= n_insts + n_vars + n_consts + n_arrays
         elif type == 'func':
             idx -= n_insts + n_vars + n_consts + n_arrays + n_bbs
+
         return f"{get_short_type(type)}{idx}"
     
     for et in cdfg_cp.edge_index_dict.keys():
-        if "rev" in et[1] or et[1] == "self" or et[1] == "contains":
+        if ("rev" in et[1] or et[1] == "self" or et[1] == "contains" 
+            or (et[2] == "base_metrics" and et[1] == "edge")):
             cdfg_cp[et].edge_index = torch.empty((2, 0), dtype=torch.int64)
 
     nx_cdfg = to_networkx(
@@ -781,7 +824,8 @@ def plot_cdfg(
         "const": "#009ade",
         "array": "#af58ba",
         "bb": "#ffc61e",
-        "func": "#ff1f58"
+        "func": "#ff1f58",
+        "base_metrics": "#919191"
     }
 
     node_colors = []
@@ -805,6 +849,12 @@ def plot_cdfg(
         ('inst', 'member', 'func'): "#197BCF",  # Membership relation
         ('bb', 'member', 'func'): "#197BCF",    # Membership relation
         ('bb', 'control', 'bb'): "#CF2519",     # Control-flow
+        ('base_metrics', 'edge', 'inst'): "#919191",
+        ('base_metrics', 'edge', 'var'): "#919191",
+        ('base_metrics', 'edge', 'const'): "#919191",
+        ('base_metrics', 'edge', 'array'): "#919191",
+        ('base_metrics', 'edge', 'bb'): "#919191",
+        ('base_metrics', 'edge', 'func'): "#919191"
     }
 
     edge_colors = []

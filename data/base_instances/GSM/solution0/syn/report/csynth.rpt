@@ -1,0 +1,340 @@
+
+
+================================================================
+== Synthesis Summary Report of 'Gsm_LPC_Analysis'
+================================================================
++ General Information: 
+    * Date:           Fri Feb 28 00:23:43 2025
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        GSM
+    * Solution:       solution0 (Vivado IP Flow Target)
+    * Product family: virtexuplusHBM
+    * Target device:  xcu50-fsvh2104-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
+    |                        Modules                       | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |      |          |            |            |     |
+    |                        & Loops                       | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM |    DSP   |     FF     |     LUT    | URAM|
+    +------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
+    |+ Gsm_LPC_Analysis                                    |     -|  0.17|     1869|  1.495e+04|         -|     1870|     -|        no|     -|  45 (~0%)|  3059 (~0%)|  8033 (~0%)|    -|
+    | + Autocorrelation                                    |     -|  1.19|     1298|  1.038e+04|         -|     1298|     -|        no|     -|  39 (~0%)|  2318 (~0%)|  3602 (~0%)|    -|
+    |  + Autocorrelation_Pipeline_Autocorrelation_label0   |     -|  2.22|      162|  1.296e+03|         -|      162|     -|        no|     -|         -|    27 (~0%)|   195 (~0%)|    -|
+    |   o Autocorrelation_label0                           |     -|  5.84|      160|  1.280e+03|         2|        1|   160|       yes|     -|         -|           -|           -|    -|
+    |  + Autocorrelation_Pipeline_VITIS_LOOP_64_1          |     -|  3.67|      165|  1.320e+03|         -|      165|     -|        no|     -|   1 (~0%)|   104 (~0%)|   100 (~0%)|    -|
+    |   o VITIS_LOOP_64_1                                  |     -|  5.84|      163|  1.304e+03|         5|        1|   160|       yes|     -|         -|           -|           -|    -|
+    |  + Autocorrelation_Pipeline_VITIS_LOOP_76_2          |     -|  4.36|       11|     88.000|         -|       11|     -|        no|     -|         -|     7 (~0%)|    39 (~0%)|    -|
+    |   o VITIS_LOOP_76_2                                  |     -|  5.84|        9|     72.000|         1|        1|     9|       yes|     -|         -|           -|           -|    -|
+    |  + Autocorrelation_Pipeline_VITIS_LOOP_124_3         |     -|  1.19|      765|  6.120e+03|         -|      765|     -|        no|     -|   9 (~0%)|   641 (~0%)|  1077 (~0%)|    -|
+    |   o VITIS_LOOP_124_3                                 |    II|  5.84|      763|  6.104e+03|         6|        5|   152|       yes|     -|         -|           -|           -|    -|
+    |  + Autocorrelation_Pipeline_VITIS_LOOP_137_4         |     -|  4.36|       11|     88.000|         -|       11|     -|        no|     -|         -|    12 (~0%)|    50 (~0%)|    -|
+    |   o VITIS_LOOP_137_4                                 |     -|  5.84|        9|     72.000|         2|        1|     9|       yes|     -|         -|           -|           -|    -|
+    |  + Autocorrelation_Pipeline_VITIS_LOOP_143_5         |     -|  2.64|      162|  1.296e+03|         -|      162|     -|        no|     -|         -|    22 (~0%)|   103 (~0%)|    -|
+    |   o VITIS_LOOP_143_5                                 |     -|  5.84|      160|  1.280e+03|         2|        1|   160|       yes|     -|         -|           -|           -|    -|
+    | + Reflection_coefficients                            |     -|  2.31|      550|  4.400e+03|         -|      550|     -|        no|     -|   3 (~0%)|   558 (~0%)|  2206 (~0%)|    -|
+    |  o Reflection_coefficients_label0                    |     -|  5.84|        8|     64.000|         1|        -|     8|        no|     -|         -|           -|           -|    -|
+    |  o Reflection_coefficients_label1                    |     -|  5.84|       18|    144.000|         2|        -|     9|        no|     -|         -|           -|           -|    -|
+    |  o Reflection_coefficients_label2                    |     -|  5.84|       14|    112.000|         2|        -|     7|        no|     -|         -|           -|           -|    -|
+    |  o Reflection_coefficients_label3                    |     -|  5.84|       18|    144.000|         2|        -|     9|        no|     -|         -|           -|           -|    -|
+    |  o Reflection_coefficients_label4                    |     -|  5.84|      484|  3.872e+03|        60|        -|     8|        no|     -|         -|           -|           -|    -|
+    |   + Reflection_coefficients_Pipeline_gsm_div_label0  |     -|  3.79|       16|    128.000|         -|       16|     -|        no|     -|         -|   212 (~0%)|   308 (~0%)|    -|
+    |    o gsm_div_label0                                  |     -|  5.84|       14|    112.000|         1|        1|    15|       yes|     -|         -|           -|           -|    -|
+    |   o Reflection_coefficients_label5                   |     -|  5.84|       35|    280.000|         5|        -|     7|        no|     -|         -|           -|           -|    -|
+    |  o Reflection_coefficients_label6                    |     -|  5.84|        8|     64.000|         1|        -|     8|        no|     -|         -|           -|           -|    -|
+    | + Quantization_and_coding                            |     -|  0.17|        7|     56.000|         -|        7|     -|        no|     -|   3 (~0%)|    88 (~0%)|  1500 (~0%)|    -|
+    | o VITIS_LOOP_237_1                                   |     -|  5.84|        8|     64.000|         2|        1|     8|       yes|     -|         -|           -|           -|    -|
+    +------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++-----------------+-----------+----------+
+| Port            | Direction | Bitwidth |
++-----------------+-----------+----------+
+| LARc_address0   | out       | 3        |
+| LARc_address1   | out       | 3        |
+| LARc_d0         | out       | 16       |
+| LARc_d1         | out       | 16       |
+| LARc_q0         | in        | 16       |
+| LARc_q1         | in        | 16       |
+| indata_address0 | out       | 8        |
+| indata_address1 | out       | 8        |
+| indata_d0       | out       | 16       |
+| indata_q0       | in        | 16       |
+| indata_q1       | in        | 16       |
++-----------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| indata   | inout     | short*   |
+| LARc     | inout     | short*   |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+-----------------+---------+----------+
+| Argument | HW Interface    | HW Type | HW Usage |
++----------+-----------------+---------+----------+
+| indata   | indata_address0 | port    | offset   |
+| indata   | indata_ce0      | port    |          |
+| indata   | indata_we0      | port    |          |
+| indata   | indata_d0       | port    |          |
+| indata   | indata_q0       | port    |          |
+| indata   | indata_address1 | port    | offset   |
+| indata   | indata_ce1      | port    |          |
+| indata   | indata_q1       | port    |          |
+| LARc     | LARc_address0   | port    | offset   |
+| LARc     | LARc_ce0        | port    |          |
+| LARc     | LARc_we0        | port    |          |
+| LARc     | LARc_d0         | port    |          |
+| LARc     | LARc_q0         | port    |          |
+| LARc     | LARc_address1   | port    | offset   |
+| LARc     | LARc_ce1        | port    |          |
+| LARc     | LARc_we1        | port    |          |
+| LARc     | LARc_d1         | port    |          |
+| LARc     | LARc_q1         | port    |          |
++----------+-----------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-----------------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+| Name                                                | DSP | Pragma | Variable    | Op  | Impl      | Latency |
++-----------------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+| + Gsm_LPC_Analysis                                  | 45  |        |             |     |           |         |
+|   add_ln237_fu_150_p2                               |     |        | add_ln237   | add | fabric    | 0       |
+|   sub_ln67_fu_191_p2                                |     |        | sub_ln67    | sub | fabric    | 0       |
+|   temp_30_fu_239_p2                                 |     |        | temp_30     | add | fabric    | 0       |
+|   temp_31_fu_251_p2                                 |     |        | temp_31     | add | fabric    | 0       |
+|   sub_ln250_fu_285_p2                               |     |        | sub_ln250   | sub | fabric    | 0       |
+|   i_9_fu_161_p2                                     |     |        | i_9         | add | fabric    | 0       |
+|  + Autocorrelation                                  | 39  |        |             |     |           |         |
+|    add_ln112_fu_633_p2                              |     |        | add_ln112   | add | fabric    | 0       |
+|    add_ln112_4_fu_639_p2                            |     |        | add_ln112_4 | add | fabric    | 0       |
+|    add_ln112_5_fu_645_p2                            |     |        | add_ln112_5 | add | fabric    | 0       |
+|    add_ln112_6_fu_655_p2                            |     |        | add_ln112_6 | add | fabric    | 0       |
+|    scalauto_fu_707_p2                               |     |        | scalauto    | sub | fabric    | 0       |
+|    add_ln62_fu_726_p2                               |     |        | add_ln62    | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U45                           | 1   |        | mul_ln80    | mul | auto      | 0       |
+|    mul_16s_16s_32_1_1_U46                           | 1   |        | mul_ln82    | mul | auto      | 0       |
+|    mac_muladd_16s_16s_32s_33_4_1_U60                | 1   |        | mul_ln85    | mul | dsp_slice | 3       |
+|    mul_16s_16s_32_1_1_U47                           | 1   |        | mul_ln87    | mul | auto      | 0       |
+|    mul_16s_16s_32_1_1_U48                           | 1   |        | mul_ln89    | mul | auto      | 0       |
+|    mac_muladd_16s_16s_32s_33_4_1_U61                | 1   |        | mul_ln94    | mul | dsp_slice | 3       |
+|    mul_16s_16s_32_1_1_U49                           | 1   |        | mul_ln98    | mul | auto      | 0       |
+|    mac_muladd_16s_16s_33s_33_4_1_U62                | 1   |        | mul_ln100   | mul | dsp_slice | 3       |
+|    mul_16s_16s_32_1_1_U50                           | 1   |        | mul_ln103   | mul | auto      | 0       |
+|    mac_muladd_16s_16s_33s_33_4_1_U63                | 1   |        | mul_ln104   | mul | dsp_slice | 3       |
+|    mul_16s_16s_32_1_1_U51                           | 1   |        | mul_ln105   | mul | auto      | 0       |
+|    mul_16s_16s_32_1_1_U40                           | 1   |        | mul_ln107   | mul | auto      | 0       |
+|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U54         | 1   |        | tmp         | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U54         | 1   |        | tmp18       | mul | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U64         | 1   |        | tmp19       | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U64         | 1   |        | tmp20       | mul | dsp_slice | 3       |
+|    am_addmul_16s_16s_16s_33_4_1_U65                 | 1   |        | tmp21       | add | dsp_slice | 3       |
+|    am_addmul_16s_16s_16s_33_4_1_U65                 | 1   |        | tmp22       | mul | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U55         | 1   |        | tmp23       | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U55         | 1   |        | tmp24       | mul | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U66         | 1   |        | tmp25       | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U66         | 1   |        | tmp26       | mul | dsp_slice | 3       |
+|    am_addmul_16s_16s_16s_33_4_1_U56                 | 1   |        | tmp27       | add | dsp_slice | 3       |
+|    am_addmul_16s_16s_16s_33_4_1_U56                 | 1   |        | tmp28       | mul | dsp_slice | 3       |
+|    mul_16s_16s_32_1_1_U41                           | 1   |        | mul_ln111   | mul | auto      | 0       |
+|    mul_16s_16s_32_1_1_U42                           | 1   |        | mul_ln112   | mul | auto      | 0       |
+|    mul_16s_16s_32_1_1_U52                           | 1   |        | mul_ln113   | mul | auto      | 0       |
+|    mac_muladd_16s_16s_32s_33_4_1_U57                | 1   |        | mul_ln115   | mul | dsp_slice | 3       |
+|    add_ln115_1_fu_937_p2                            |     |        | add_ln115_1 | add | fabric    | 0       |
+|    mac_muladd_16s_16s_32s_33_4_1_U60                | 1   |        | add_ln115_2 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U61                | 1   |        | add_ln115_4 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U57                | 1   |        | add_ln115_5 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_33s_33_4_1_U62                | 1   |        | add_ln115_6 | add | dsp_slice | 3       |
+|    add_ln115_7_fu_995_p2                            |     |        | add_ln115_7 | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U43                           | 1   |        | mul_ln116   | mul | auto      | 0       |
+|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U54         | 1   |        | add_ln116_2 | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U64         | 1   |        | add_ln116_3 | add | dsp_slice | 3       |
+|    mul_16s_16s_32_1_1_U44                           | 1   |        | mul_ln117   | mul | auto      | 0       |
+|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U55         | 1   |        | add_ln117_2 | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U66         | 1   |        | add_ln117_3 | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U67         | 1   |        | tmp29       | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U67         | 1   |        | tmp30       | mul | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U67         | 1   |        | add_ln118_2 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U58                | 1   |        | mul_ln119   | mul | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U58                | 1   |        | add_ln119_2 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_33s_33_4_1_U63                | 1   |        | add_ln119_3 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U59                | 1   |        | mul_ln120   | mul | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U59                | 1   |        | add_ln120_2 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U68                | 1   |        | mul_ln121   | mul | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U68                | 1   |        | add_ln121_1 | add | dsp_slice | 3       |
+|    add_ln121_fu_1075_p2                             |     |        | add_ln121   | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U53                           | 1   |        | mul_ln122   | mul | auto      | 0       |
+|    add_ln122_fu_1085_p2                             |     |        | add_ln122   | add | fabric    | 0       |
+|   + Autocorrelation_Pipeline_Autocorrelation_label0 | 0   |        |             |     |           |         |
+|     add_ln49_fu_93_p2                               |     |        | add_ln49    | add | fabric    | 0       |
+|     sub_ln67_fu_126_p2                              |     |        | sub_ln67    | sub | fabric    | 0       |
+|   + Autocorrelation_Pipeline_VITIS_LOOP_64_1        | 1   |        |             |     |           |         |
+|     add_ln64_fu_89_p2                               |     |        | add_ln64    | add | fabric    | 0       |
+|     mac_muladd_16s_15ns_15ns_31_4_1_U3              | 1   |        | mul_ln59    | mul | dsp_slice | 3       |
+|     mac_muladd_16s_15ns_15ns_31_4_1_U3              | 1   |        | prod        | add | dsp_slice | 3       |
+|   + Autocorrelation_Pipeline_VITIS_LOOP_76_2        | 0   |        |             |     |           |         |
+|     add_ln76_fu_69_p2                               |     |        | add_ln76    | add | fabric    | 0       |
+|   + Autocorrelation_Pipeline_VITIS_LOOP_124_3       | 9   |        |             |     |           |         |
+|     add_ln133_fu_578_p2                             |     |        | add_ln133   | add | fabric    | 0       |
+|     add_ln43_fu_395_p2                              |     |        | add_ln43    | add | fabric    | 0       |
+|     add_ln125_fu_406_p2                             |     |        | add_ln125   | add | fabric    | 0       |
+|     mul_16s_16s_32_1_1_U8                           | 1   |        | mul_ln126   | mul | auto      | 0       |
+|     add_ln126_fu_448_p2                             |     |        | add_ln126   | add | fabric    | 0       |
+|     mul_16s_16s_32_1_1_U9                           | 1   |        | mul_ln127   | mul | auto      | 0       |
+|     add_ln127_fu_468_p2                             |     |        | add_ln127   | add | fabric    | 0       |
+|     add_ln128_fu_474_p2                             |     |        | add_ln128   | add | fabric    | 0       |
+|     mul_16s_16s_32_1_1_U10                          | 1   |        | mul_ln128   | mul | auto      | 0       |
+|     add_ln128_1_fu_523_p2                           |     |        | add_ln128_1 | add | fabric    | 0       |
+|     add_ln129_fu_484_p2                             |     |        | add_ln129   | add | fabric    | 0       |
+|     mul_16s_16s_32_1_1_U11                          | 1   |        | mul_ln129   | mul | auto      | 0       |
+|     add_ln129_1_fu_542_p2                           |     |        | add_ln129_1 | add | fabric    | 0       |
+|     add_ln130_fu_548_p2                             |     |        | add_ln130   | add | fabric    | 0       |
+|     mul_16s_16s_32_1_1_U12                          | 1   |        | mul_ln130   | mul | auto      | 0       |
+|     add_ln130_1_fu_602_p2                           |     |        | add_ln130_1 | add | fabric    | 0       |
+|     add_ln131_fu_558_p2                             |     |        | add_ln131   | add | fabric    | 0       |
+|     mul_16s_16s_32_1_1_U13                          | 1   |        | mul_ln131   | mul | auto      | 0       |
+|     add_ln131_1_fu_621_p2                           |     |        | add_ln131_1 | add | fabric    | 0       |
+|     add_ln132_fu_627_p2                             |     |        | add_ln132   | add | fabric    | 0       |
+|     mul_16s_16s_32_1_1_U14                          | 1   |        | mul_ln132   | mul | auto      | 0       |
+|     add_ln132_1_fu_680_p2                           |     |        | add_ln132_1 | add | fabric    | 0       |
+|     mul_16s_16s_32_1_1_U15                          | 1   |        | mul_ln133   | mul | auto      | 0       |
+|     add_ln133_1_fu_699_p2                           |     |        | add_ln133_1 | add | fabric    | 0       |
+|     mul_16s_16s_32_1_1_U16                          | 1   |        | mul_ln134   | mul | auto      | 0       |
+|     add_ln134_fu_731_p2                             |     |        | add_ln134   | add | fabric    | 0       |
+|     i_11_fu_417_p2                                  |     |        | i_11        | add | fabric    | 0       |
+|   + Autocorrelation_Pipeline_VITIS_LOOP_137_4       | 0   |        |             |     |           |         |
+|     add_ln137_fu_74_p2                              |     |        | add_ln137   | add | fabric    | 0       |
+|   + Autocorrelation_Pipeline_VITIS_LOOP_143_5       | 0   |        |             |     |           |         |
+|     add_ln143_fu_81_p2                              |     |        | add_ln143   | add | fabric    | 0       |
+|  + Reflection_coefficients                          | 3   |        |             |     |           |         |
+|    add_ln112_fu_673_p2                              |     |        | add_ln112   | add | fabric    | 0       |
+|    add_ln112_1_fu_683_p2                            |     |        | add_ln112_1 | add | fabric    | 0       |
+|    add_ln112_2_fu_689_p2                            |     |        | add_ln112_2 | add | fabric    | 0       |
+|    add_ln112_3_fu_699_p2                            |     |        | add_ln112_3 | add | fabric    | 0       |
+|    grp_fu_416_p2                                    |     |        | add_ln174   | add | fabric    | 0       |
+|    add_ln181_fu_810_p2                              |     |        | add_ln181   | add | fabric    | 0       |
+|    add_ln187_fu_835_p2                              |     |        | add_ln187   | add | fabric    | 0       |
+|    add_ln194_1_fu_883_p2                            |     |        | add_ln194_1 | add | fabric    | 0       |
+|    sub_ln67_fu_910_p2                               |     |        | sub_ln67    | sub | fabric    | 0       |
+|    sub_ln210_fu_961_p2                              |     |        | sub_ln210   | sub | fabric    | 0       |
+|    mac_muladd_16s_16s_15ns_31_4_1_U81               | 1   |        | mul_ln59    | mul | dsp_slice | 3       |
+|    mac_muladd_16s_16s_15ns_31_4_1_U81               | 1   |        | prod        | add | dsp_slice | 3       |
+|    add_ln39_fu_1024_p2                              |     |        | add_ln39    | add | fabric    | 0       |
+|    sum_fu_1029_p2                                   |     |        | sum         | add | fabric    | 0       |
+|    mac_muladd_16s_16s_15ns_31_4_1_U82               | 1   |        | mul_ln59_1  | mul | dsp_slice | 3       |
+|    mac_muladd_16s_16s_15ns_31_4_1_U82               | 1   |        | prod_1      | add | dsp_slice | 3       |
+|    add_ln222_fu_1093_p2                             |     |        | add_ln222   | add | fabric    | 0       |
+|    add_ln39_2_fu_1185_p2                            |     |        | add_ln39_2  | add | fabric    | 0       |
+|    sum_1_fu_1190_p2                                 |     |        | sum_1       | add | fabric    | 0       |
+|    mac_muladd_16s_16s_15ns_31_4_1_U83               | 1   |        | mul_ln59_2  | mul | dsp_slice | 3       |
+|    mac_muladd_16s_16s_15ns_31_4_1_U83               | 1   |        | prod_2      | add | dsp_slice | 3       |
+|    add_ln39_4_fu_1272_p2                            |     |        | add_ln39_4  | add | fabric    | 0       |
+|    sum_2_fu_1277_p2                                 |     |        | sum_2       | add | fabric    | 0       |
+|    add_ln194_fu_1104_p2                             |     |        | add_ln194   | add | fabric    | 0       |
+|    add_ln194_2_fu_1109_p2                           |     |        | add_ln194_2 | add | fabric    | 0       |
+|    add_ln194_3_fu_1115_p2                           |     |        | add_ln194_3 | add | fabric    | 0       |
+|    add_ln200_fu_1337_p2                             |     |        | add_ln200   | add | fabric    | 0       |
+|    add_ln155_fu_1347_p2                             |     |        | add_ln155   | add | fabric    | 0       |
+|    grp_fu_416_p2                                    |     |        | add_ln164   | add | fabric    | 0       |
+|   + Reflection_coefficients_Pipeline_gsm_div_label0 | 0   |        |             |     |           |         |
+|     L_num_3_fu_156_p2                               |     |        | L_num_3     | sub | fabric    | 0       |
+|     k_3_fu_188_p2                                   |     |        | k_3         | add | fabric    | 0       |
+|  + Quantization_and_coding                          | 3   |        |             |     |           |         |
+|    add_ln48_fu_237_p2                               |     |        | add_ln48    | add | fabric    | 0       |
+|    sum_fu_257_p2                                    |     |        | sum         | add | fabric    | 0       |
+|    add_ln277_fu_319_p2                              |     |        | add_ln277   | add | fabric    | 0       |
+|    add_ln48_1_fu_371_p2                             |     |        | add_ln48_1  | add | fabric    | 0       |
+|    sum_3_fu_391_p2                                  |     |        | sum_3       | add | fabric    | 0       |
+|    add_ln278_fu_453_p2                              |     |        | add_ln278   | add | fabric    | 0       |
+|    add_ln48_2_fu_505_p2                             |     |        | add_ln48_2  | add | fabric    | 0       |
+|    sum_4_fu_525_p2                                  |     |        | sum_4       | add | fabric    | 0       |
+|    sum_5_fu_563_p2                                  |     |        | sum_5       | add | fabric    | 0       |
+|    add_ln279_fu_625_p2                              |     |        | add_ln279   | add | fabric    | 0       |
+|    add_ln48_3_fu_677_p2                             |     |        | add_ln48_3  | add | fabric    | 0       |
+|    sum_6_fu_697_p2                                  |     |        | sum_6       | add | fabric    | 0       |
+|    sum_7_fu_725_p2                                  |     |        | sum_7       | add | fabric    | 0       |
+|    add_ln280_fu_787_p2                              |     |        | add_ln280   | add | fabric    | 0       |
+|    mul_16s_15ns_31_1_1_U89                          | 1   |        | mul_ln48    | mul | auto      | 0       |
+|    sum_8_fu_839_p2                                  |     |        | sum_8       | add | fabric    | 0       |
+|    sum_9_fu_877_p2                                  |     |        | sum_9       | add | fabric    | 0       |
+|    add_ln282_fu_1107_p2                             |     |        | add_ln282   | add | fabric    | 0       |
+|    sub_ln48_fu_933_p2                               |     |        | sub_ln48    | sub | fabric    | 0       |
+|    sum_10_fu_953_p2                                 |     |        | sum_10      | add | fabric    | 0       |
+|    sum_11_fu_981_p2                                 |     |        | sum_11      | add | fabric    | 0       |
+|    add_ln283_fu_1043_p2                             |     |        | add_ln283   | add | fabric    | 0       |
+|    mul_16s_15ns_31_1_1_U90                          | 1   |        | mul_ln48_1  | mul | auto      | 0       |
+|    sum_12_fu_1159_p2                                |     |        | sum_12      | add | fabric    | 0       |
+|    sum_13_fu_1187_p2                                |     |        | sum_13      | add | fabric    | 0       |
+|    add_ln284_fu_1339_p2                             |     |        | add_ln284   | add | fabric    | 0       |
+|    mul_16s_15ns_31_1_1_U91                          | 1   |        | mul_ln48_2  | mul | auto      | 0       |
+|    sum_14_fu_1243_p2                                |     |        | sum_14      | add | fabric    | 0       |
+|    sum_15_fu_1271_p2                                |     |        | sum_15      | add | fabric    | 0       |
+|    add_ln285_fu_1395_p2                             |     |        | add_ln285   | add | fabric    | 0       |
++-----------------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++----------------------------+---------------+------+------+------+--------+----------+------+---------+------------------+
+| Name                       | Usage         | Type | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                            |               |      |      |      |        |          |      |         | Banks            |
++----------------------------+---------------+------+------+------+--------+----------+------+---------+------------------+
+| + Gsm_LPC_Analysis         |               |      | 0    | 0    |        |          |      |         |                  |
+|   L_ACF_U                  | ram_t2p array |      |      |      |        | L_ACF    | auto | 1       | 64, 9, 1         |
+|   bitoff_U                 | rom_np        |      |      |      |        | bitoff   | auto | 1       | 4, 256, 1        |
+|  + Reflection_coefficients |               |      | 0    | 0    |        |          |      |         |                  |
+|    ACF_U                   | ram_1p array  |      |      |      |        | ACF      | auto | 1       | 16, 9, 1         |
+|    P_U                     | ram_1p array  |      |      |      |        | P        | auto | 1       | 16, 9, 1         |
+|    K_U                     | ram_1p array  |      |      |      |        | K        | auto | 1       | 16, 9, 1         |
++----------------------------+---------------+------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++----------------+-------------------------+--------------------------------------------------------------+
+| Type           | Options                 | Location                                                     |
++----------------+-------------------------+--------------------------------------------------------------+
+| loop_tripcount | min=15 max=15 avg=15    | data/benchmarks/gsm/gsm_add.c:140 in gsm_div                 |
+| loop_tripcount | min=160 max=160 avg=160 | data/benchmarks/gsm/gsm_lpc.c:50 in autocorrelation          |
+| loop_tripcount | min=8 max=8 avg=8       | data/benchmarks/gsm/gsm_lpc.c:165 in reflection_coefficients |
+| loop_tripcount | min=9 max=9 avg=9       | data/benchmarks/gsm/gsm_lpc.c:175 in reflection_coefficients |
+| loop_tripcount | min=7 max=7 avg=7       | data/benchmarks/gsm/gsm_lpc.c:182 in reflection_coefficients |
+| loop_tripcount | min=9 max=9 avg=9       | data/benchmarks/gsm/gsm_lpc.c:188 in reflection_coefficients |
+| loop_tripcount | min=1 max=8             | data/benchmarks/gsm/gsm_lpc.c:195 in reflection_coefficients |
+| loop_tripcount | min=1 max=8             | data/benchmarks/gsm/gsm_lpc.c:201 in reflection_coefficients |
+| loop_tripcount | min=1 max=7             | data/benchmarks/gsm/gsm_lpc.c:220 in reflection_coefficients |
+| pipeline       | off=true                | ../../vitis/run_hls.tcl:10 in reflection_coefficients        |
+| pipeline       | off=true                | ../../vitis/run_hls.tcl:11 in reflection_coefficients        |
+| pipeline       | off=true                | ../../vitis/run_hls.tcl:12 in reflection_coefficients        |
+| pipeline       | off=true                | ../../vitis/run_hls.tcl:13 in reflection_coefficients        |
+| pipeline       | off=true                | ../../vitis/run_hls.tcl:14 in reflection_coefficients        |
+| pipeline       | off=true                | ../../vitis/run_hls.tcl:15 in reflection_coefficients        |
+| pipeline       | off=true                | ../../vitis/run_hls.tcl:16 in reflection_coefficients        |
++----------------+-------------------------+--------------------------------------------------------------+
+
+

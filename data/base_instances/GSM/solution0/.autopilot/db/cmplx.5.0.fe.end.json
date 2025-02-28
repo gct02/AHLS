@@ -1,0 +1,207 @@
+{
+    "1": {
+        "name": "Autocorrelation_Pipeline_VITIS_LOOP_137_4",
+        "file": "data\/benchmarks\/gsm\/gsm_lpc.c",
+        "fileloc": "39",
+        "instructions": "18",
+        "total_instructions": "18",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "Autocorrelation_Pipeline_VITIS_LOOP_64_1",
+        "file": "data\/benchmarks\/gsm\/gsm_lpc.c",
+        "fileloc": "39",
+        "instructions": "24",
+        "total_instructions": "24",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "1"
+        },
+        "stores": {
+            "L": "2",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "Autocorrelation_Pipeline_VITIS_LOOP_124_3",
+        "file": "data\/benchmarks\/gsm\/gsm_lpc.c",
+        "fileloc": "39",
+        "instructions": "152",
+        "total_instructions": "152",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "20",
+            "T": "9"
+        },
+        "stores": {
+            "L": "22"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "4": {
+        "name": "Reflection_coefficients",
+        "file": "gsm_lpc.c",
+        "fileloc": "150",
+        "instructions": "280",
+        "total_instructions": "317",
+        "calls": "7",
+        "basicblocks": "32",
+        "loads": {
+            "G": "4",
+            "L": "19"
+        },
+        "stores": {
+            "L": "24",
+            "T": "3"
+        },
+        "loops": {
+            "L": "6",
+            "N": "1"
+        }
+    },
+    "5": {
+        "name": "Autocorrelation",
+        "file": "gsm_lpc.c",
+        "fileloc": "34",
+        "instructions": "263",
+        "total_instructions": "524",
+        "calls": "8 2 10 3 1 6",
+        "basicblocks": "5",
+        "loads": {
+            "G": "3",
+            "L": "19",
+            "T": "8"
+        },
+        "stores": {
+            "L": "9"
+        }
+    },
+    "6": {
+        "name": "Autocorrelation_Pipeline_VITIS_LOOP_143_5",
+        "file": "data\/benchmarks\/gsm\/gsm_lpc.c",
+        "fileloc": "143",
+        "instructions": "21",
+        "total_instructions": "21",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "1"
+        },
+        "stores": {
+            "L": "2",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "7": {
+        "name": "Reflection_coefficients_Pipeline_gsm_div_label0",
+        "file": "data\/benchmarks\/gsm\/gsm_lpc.c",
+        "fileloc": "207",
+        "instructions": "37",
+        "total_instructions": "37",
+        "calls": "",
+        "basicblocks": "3",
+        "loads": {
+            "L": "3"
+        },
+        "stores": {
+            "L": "6"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "8": {
+        "name": "Autocorrelation_Pipeline_Autocorrelation_label0",
+        "file": "data\/benchmarks\/gsm\/gsm_lpc.c",
+        "fileloc": "39",
+        "instructions": "30",
+        "total_instructions": "30",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "3",
+            "T": "1"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "9": {
+        "name": "Quantization_and_coding",
+        "file": "gsm_lpc.c",
+        "fileloc": "255",
+        "instructions": "209",
+        "total_instructions": "209",
+        "calls": "",
+        "basicblocks": "1",
+        "loads": {
+            "T": "8"
+        },
+        "stores": {
+            "T": "8"
+        }
+    },
+    "0": {
+        "name": "Gsm_LPC_Analysis",
+        "file": "gsm.c",
+        "fileloc": "7",
+        "instructions": "49",
+        "total_instructions": "1099",
+        "calls": "5 4 9",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2",
+            "T": "1"
+        },
+        "stores": {
+            "L": "4",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "10": {
+        "name": "Autocorrelation_Pipeline_VITIS_LOOP_76_2",
+        "file": "data\/benchmarks\/gsm\/gsm_lpc.c",
+        "fileloc": "39",
+        "instructions": "16",
+        "total_instructions": "16",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

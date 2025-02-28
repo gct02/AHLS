@@ -1,0 +1,141 @@
+{
+    "1": {
+        "name": "sha_transform",
+        "file": "sha.c",
+        "fileloc": "93",
+        "instructions": "238",
+        "total_instructions": "238",
+        "calls": "",
+        "basicblocks": "19",
+        "loads": {
+            "G": "6",
+            "L": "30"
+        },
+        "stores": {
+            "G": "5",
+            "L": "42"
+        },
+        "loops": {
+            "L": "6"
+        }
+    },
+    "2": {
+        "name": "sha_stream_Pipeline_local_memset_label12",
+        "file": "data\/benchmarks\/sha\/sha.c",
+        "fileloc": "217",
+        "instructions": "21",
+        "total_instructions": "21",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1"
+        },
+        "stores": {
+            "G": "1",
+            "L": "2"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "sha_stream_Pipeline_VITIS_LOOP_219_3",
+        "file": "data\/benchmarks\/sha\/sha.c",
+        "fileloc": "198",
+        "instructions": "19",
+        "total_instructions": "19",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "G": "1",
+            "L": "1"
+        },
+        "stores": {
+            "L": "2",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "4": {
+        "name": "sha_stream_Pipeline_VITIS_LOOP_201_1_VITIS_LOOP_202_2",
+        "file": "data\/benchmarks\/sha\/sha.c",
+        "fileloc": "198",
+        "instructions": "35",
+        "total_instructions": "35",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "3",
+            "T": "1"
+        },
+        "stores": {
+            "G": "1",
+            "L": "6"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "5": {
+        "name": "sha_stream_Pipeline_local_memset_label11",
+        "file": "data\/benchmarks\/sha\/sha.c",
+        "fileloc": "217",
+        "instructions": "16",
+        "total_instructions": "16",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1"
+        },
+        "stores": {
+            "G": "1",
+            "L": "2"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "0": {
+        "name": "sha_stream",
+        "file": "data\/benchmarks\/sha\/sha.c",
+        "fileloc": "193",
+        "instructions": "182",
+        "total_instructions": "1006",
+        "calls": "4 1 6 1 5 2 1 3",
+        "basicblocks": "18",
+        "loads": {
+            "G": "13",
+            "L": "1",
+            "T": "1"
+        },
+        "stores": {
+            "G": "15",
+            "L": "2"
+        },
+        "loops": {
+            "L": "1",
+            "N": "3"
+        }
+    },
+    "6": {
+        "name": "sha_stream_Pipeline_local_memset_label1",
+        "file": "data\/benchmarks\/sha\/sha.c",
+        "fileloc": "217",
+        "instructions": "19",
+        "total_instructions": "19",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1"
+        },
+        "stores": {
+            "G": "1",
+            "L": "2"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

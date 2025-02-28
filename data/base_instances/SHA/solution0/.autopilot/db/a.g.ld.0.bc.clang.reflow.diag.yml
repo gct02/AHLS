@@ -1,0 +1,144 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 151, Column: 0 }
+Function:        sha_update
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          local_memcpy
+    DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 73, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          sha_update
+    DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 151, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 170, Column: 0 }
+Function:        sha_final
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          local_memset
+    DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 55, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          sha_final
+    DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 170, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 197, Column: 0 }
+Function:        sha_stream
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          sha_init
+    DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 140, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          sha_stream
+    DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 197, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 197, Column: 0 }
+Function:        sha_stream
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          sha_update
+    DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 151, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          sha_stream
+    DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 197, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 197, Column: 0 }
+Function:        sha_stream
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          sha_final
+    DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 170, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          sha_stream
+    DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 197, Column: 0 }
+  - String:          ''''
+...
+--- !Failure
+Pass:            reflow-syncheck
+Name:            WarningOutOfBoundArrayAccess
+DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 84, Column: 24 }
+Function:        sha_stream
+Args:            
+  - String:          The program may have out of bound array access
+...
+--- !Failure
+Pass:            reflow-syncheck
+Name:            WarningOutOfBoundArrayAccess
+DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 85, Column: 24 }
+Function:        sha_stream
+Args:            
+  - String:          The program may have out of bound array access
+...
+--- !Failure
+Pass:            reflow-syncheck
+Name:            WarningOutOfBoundArrayAccess
+DebugLoc:        { File: data/benchmarks/sha/sha.c, Line: 86, Column: 24 }
+Function:        sha_stream
+Args:            
+  - String:          The program may have out of bound array access
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_202_2
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/sha/sha.c:202:27'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        local_memset_label1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/sha/sha.c:66:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        local_memset_label1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/sha/sha.c:66:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        local_memset_label1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/sha/sha.c:66:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_219_3
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/sha/sha.c:219:23'
+  - String:          ' '
+...

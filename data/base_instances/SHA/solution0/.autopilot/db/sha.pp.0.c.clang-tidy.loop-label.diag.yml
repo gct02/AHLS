@@ -1,0 +1,31 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/.autopilot/db/sha.pp.0.c
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_201_1:  '
+    FileOffset:      201
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/sha/sha.c
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/.autopilot/db/sha.pp.0.c
+        Offset:          12109
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_201_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_202_2:  '
+    FileOffset:      202
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/sha/sha.c
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/.autopilot/db/sha.pp.0.c
+        Offset:          12143
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_202_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_219_3:  '
+    FileOffset:      219
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/sha/sha.c
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/.autopilot/db/sha.pp.0.c
+        Offset:          12453
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_219_3: '
+...

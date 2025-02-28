@@ -1,0 +1,128 @@
+{
+  "0": {
+    "basicblocks": 1,
+    "calls": "3 2 5 7",
+    "file": "gsm.c",
+    "fileloc": 7,
+    "instructions": 12,
+    "name": "Gsm_LPC_Analysis",
+    "total_instructions": 1625
+  },
+  "1": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 65,
+    "instructions": 17,
+    "name": "gsm_abs",
+    "total_instructions": 17
+  },
+  "10": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 51,
+    "instructions": 17,
+    "name": "gsm_mult_r",
+    "total_instructions": 17
+  },
+  "2": {
+    "basicblocks": 47,
+    "calls": "9 1 6 10 4 10 4 10 4",
+    "file": "gsm_lpc.c",
+    "fileloc": 150,
+    "instructions": 179,
+    "loads": {
+      "L": 19
+    },
+    "name": "Reflection_coefficients",
+    "stores": {
+      "L": 10
+    },
+    "total_instructions": 374
+  },
+  "3": {
+    "basicblocks": 41,
+    "calls": "1 9 10",
+    "file": "gsm_lpc.c",
+    "fileloc": 34,
+    "instructions": 533,
+    "loads": {
+      "L": 103
+    },
+    "name": "Autocorrelation",
+    "stores": {
+      "L": 49
+    },
+    "total_instructions": 620
+  },
+  "4": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 36,
+    "instructions": 15,
+    "name": "gsm_add",
+    "total_instructions": 15
+  },
+  "5": {
+    "basicblocks": 15,
+    "calls": "1",
+    "file": "gsm_lpc.c",
+    "fileloc": 231,
+    "instructions": 49,
+    "loads": {
+      "L": 2
+    },
+    "name": "Transformation_to_Log_Area_Ratios",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 66
+  },
+  "6": {
+    "basicblocks": 10,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 118,
+    "instructions": 29,
+    "name": "gsm_div",
+    "total_instructions": 29
+  },
+  "7": {
+    "basicblocks": 49,
+    "calls": "8 4 4 8 4 4 8 4 4 8 4 4 8 4 4 8 4 4 8 4 4 8 4 4",
+    "file": "gsm_lpc.c",
+    "fileloc": 255,
+    "instructions": 193,
+    "loads": {
+      "L": 8
+    },
+    "name": "Quantization_and_coding",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 553
+  },
+  "8": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 43,
+    "instructions": 15,
+    "name": "gsm_mult",
+    "total_instructions": 15
+  },
+  "9": {
+    "basicblocks": 15,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 70,
+    "instructions": 53,
+    "loads": {
+      "G": 4
+    },
+    "name": "gsm_norm",
+    "total_instructions": 53
+  }
+}

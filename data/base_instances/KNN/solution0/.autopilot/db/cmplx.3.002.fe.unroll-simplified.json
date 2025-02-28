@@ -1,0 +1,17 @@
+{
+  "0": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "md.c",
+    "fileloc": 10,
+    "instructions": 60,
+    "loads": {
+      "T": 7
+    },
+    "name": "md_kernel",
+    "stores": {
+      "T": 3
+    },
+    "total_instructions": 60
+  }
+}

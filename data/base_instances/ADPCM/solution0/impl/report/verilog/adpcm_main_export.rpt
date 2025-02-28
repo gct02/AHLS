@@ -1,0 +1,24 @@
+
+
+Implementation tool: Xilinx Vivado v.2023.2
+Project:             ADPCM
+Solution:            solution0
+Device target:       xcu50-fsvh2104-2-e
+Report date:         Thu Feb 27 23:49:49 -03 2025
+
+#=== Post-Implementation Resource usage ===
+SLICE:            0
+LUT:           4156
+FF:            3002
+DSP:             47
+BRAM:             6
+URAM:             0
+LATCH:            0
+SRL:              0
+CLB:            772
+
+#=== Final timing ===
+CP required:                     8.000
+CP achieved post-synthesis:      4.592
+CP achieved post-implementation: 6.065
+Timing met

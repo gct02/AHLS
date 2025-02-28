@@ -1,0 +1,36 @@
+{
+  "0": {
+    "basicblocks": 36,
+    "calls": "1 1 1",
+    "file": "sha.c",
+    "fileloc": 193,
+    "instructions": 223,
+    "loads": {
+      "G": 14,
+      "T": 2
+    },
+    "name": "sha_stream",
+    "stores": {
+      "G": 19,
+      "T": 1
+    },
+    "total_instructions": 745
+  },
+  "1": {
+    "basicblocks": 19,
+    "calls": "",
+    "file": "sha.c",
+    "fileloc": 93,
+    "instructions": 174,
+    "loads": {
+      "G": 6,
+      "L": 8
+    },
+    "name": "sha_transform",
+    "stores": {
+      "G": 5,
+      "L": 2
+    },
+    "total_instructions": 174
+  }
+}

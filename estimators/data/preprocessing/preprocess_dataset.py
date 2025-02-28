@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List, Union
 
 import subprocess
 import argparse
@@ -121,19 +121,65 @@ def create_directives_tcl(directives_json: Path, output_path: Path):
         directives_tcl = "\n".join(directives_tcl)
         f.write(directives_tcl)
 
+def get_base_metrics(
+    dataset: Path,
+    filtered: bool = False
+) -> Dict[str, List[Union[int, float]]]:
+    """
+    Extract the base metrics from the dataset.
+
+    Parameters:
+    ----------
+    dataset: Path
+        Path to the dataset folder
+
+    Returns:
+    -------
+    Dict[str, List[Union[int, float]]]
+        Dictionary containing the base metrics for each benchmark
+    """
+    base_metrics = {}
+
+    for bench in dataset.iterdir():
+        if not bench.is_dir():
+            continue
+        base_solution = bench / "solution0"
+        bench_name = bench.stem
+        if not base_solution.exists():
+            continue
+
+        lut, bram, ff, dsp, clb, latch = extract_utilization(
+            dataset, bench_name, "solution0", filtered
+        )
+        _, _, _, achieved_clk = extract_timing_summary(
+            dataset, bench_name, "solution0", filtered
+        )
+        cc = extract_hls_cc_report(
+            dataset, bench_name, "solution0", filtered
+        )
+        base_metrics[bench_name] = [lut, bram, ff, dsp, clb, latch, achieved_clk, cc]
+        
+    return base_metrics
+
 def main(args: Dict[str, str]):
     dataset = Path(args['dataset'])
     output_folder_path = Path(args['output'])
     filtered = args['filtered']
     benchmarks = args['benchmarks']
+    base_aware = args['base_aware']
+
+    if base_aware:
+        base_metrics = get_base_metrics(dataset, filtered)
+    else:
+        base_metrics = None
 
     if benchmarks is None:
         # Process all benchmarks in the dataset
         benchmarks = [b.stem for b in list(dataset.iterdir())]
 
-    for benchmark in benchmarks:
-        benchmark_dir = dataset / benchmark
-        output_bench_folder = output_folder_path / benchmark
+    for bench in benchmarks:
+        benchmark_dir = dataset / bench
+        output_bench_folder = output_folder_path / bench
         output_bench_folder.mkdir(parents=True, exist_ok=True)
         solutions = list(benchmark_dir.iterdir())
 
@@ -187,20 +233,26 @@ def main(args: Dict[str, str]):
             shutil.copy(ir_mod, output_instance_folder / "ir.ll")
 
             lut, bram, ff, dsp, clb, latch = extract_utilization(
-                dataset, benchmark, solution.stem, filtered
+                dataset, bench, solution.stem, filtered
             )
             _, _, _, achieved_clk = extract_timing_summary(
-                dataset, benchmark, solution.stem, filtered
+                dataset, bench, solution.stem, filtered
             )
             cc = extract_hls_cc_report(
-                dataset, benchmark, solution.stem, filtered
+                dataset, bench, solution.stem, filtered
             )
             
             with open(output_instance_folder / "targets.txt", "w") as f:
                 f.write(f"lut={lut}\nff={ff}\ndsp={dsp}\nbram={bram}\nclb={clb}\nlatch={latch}\ncp={achieved_clk}\ncc={cc}")
 
+            if base_aware:
+                base_metrics_bench = base_metrics[bench]
+            else:
+                base_metrics_bench = None
+
             build_cdfg(
-                ir_mod, output_md_path, output_cfg_path, output_instance_folder
+                ir_mod, output_md_path, output_cfg_path, 
+                base_metrics_bench, output_instance_folder
             )
 
 def parse_args():
@@ -211,6 +263,7 @@ def parse_args():
     parser.add_argument("-o", "--output", help="Path where the processed dataset should be written", required=True)
     parser.add_argument("-f", "--filtered", help="Signal that the dataset is filtered", action="store_true")
     parser.add_argument("-b", "--benchmarks", help="List of benchmarks to process", nargs="+", default=None)
+    parser.add_argument("-x", "--base-aware", help="Signal that the model should be base-aware", action="store_true")
     return vars(parser.parse_args())
 
 if __name__ == "__main__":

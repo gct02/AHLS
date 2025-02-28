@@ -1,0 +1,126 @@
+{
+  "0": {
+    "basicblocks": 1,
+    "calls": "7 1",
+    "file": "aes.c",
+    "fileloc": 66,
+    "instructions": 3,
+    "name": "aes_main",
+    "total_instructions": 1969
+  },
+  "1": {
+    "basicblocks": 6,
+    "calls": "2 6 4 5 4 6",
+    "file": "aes_dec.c",
+    "fileloc": 66,
+    "instructions": 15,
+    "name": "decrypt",
+    "total_instructions": 957
+  },
+  "2": {
+    "basicblocks": 17,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 480,
+    "instructions": 148,
+    "loads": {
+      "G": 18,
+      "L": 2
+    },
+    "name": "KeySchedule",
+    "stores": {
+      "G": 2,
+      "L": 8
+    },
+    "total_instructions": 148
+  },
+  "3": {
+    "basicblocks": 27,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 319,
+    "instructions": 349,
+    "loads": {
+      "G": 4,
+      "L": 38
+    },
+    "name": "MixColumn_AddRoundKey",
+    "stores": {
+      "L": 24
+    },
+    "total_instructions": 349
+  },
+  "4": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 199,
+    "instructions": 192,
+    "loads": {
+      "G": 16,
+      "L": 32
+    },
+    "name": "InversShiftRow_ByteSub",
+    "stores": {
+      "L": 16
+    },
+    "total_instructions": 192
+  },
+  "5": {
+    "basicblocks": 36,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 375,
+    "instructions": 298,
+    "loads": {
+      "G": 4,
+      "L": 22
+    },
+    "name": "AddRoundKey_InversMixColumn",
+    "stores": {
+      "L": 12
+    },
+    "total_instructions": 298
+  },
+  "6": {
+    "basicblocks": 6,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 447,
+    "instructions": 56,
+    "loads": {
+      "G": 4,
+      "L": 4
+    },
+    "name": "AddRoundKey",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 56
+  },
+  "7": {
+    "basicblocks": 6,
+    "calls": "2 6 8 3 8 6",
+    "file": "aes_enc.c",
+    "fileloc": 66,
+    "instructions": 16,
+    "name": "encrypt",
+    "total_instructions": 1009
+  },
+  "8": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 79,
+    "instructions": 192,
+    "loads": {
+      "G": 16,
+      "L": 32
+    },
+    "name": "ByteSub_ShiftRow",
+    "stores": {
+      "L": 16
+    },
+    "total_instructions": 192
+  }
+}
