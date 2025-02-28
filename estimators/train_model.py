@@ -33,11 +33,13 @@ def rpd(pred: float, target: float) -> float:
     
 
 def evaluate(
+    epoch: int,
     model: nn.Module,
     loader: DataLoader,
     loss_fn: nn.Module,
     verbosity: int,
-    mode: str
+    mode: str,
+    log_dir: Optional[str] = None
 ) -> Tuple[float, float, float, List[Tuple[float, float]]]:
     if verbosity > 0:
         print(f"\nEvaluating on {mode} set\n")
@@ -47,7 +49,7 @@ def evaluate(
     abs_errors, rel_errors = [], []
     
     # Assumption: Only one instance per batch
-    for input_batch, target_batch in loader:
+    for i, (input_batch, target_batch) in enumerate(loader):
         cdfg = input_batch[0].to(DEVICE)
         target = target_batch[0].to(DEVICE)
         pred = model(cdfg)
@@ -60,6 +62,11 @@ def evaluate(
         target_val = target.item()
         abs_error = abs(pred_val - target_val)
         rpd_val = rpd(pred_val, target_val)
+
+        if log_dir:
+            residual = target_val - pred_val
+            with open(f"{log_dir}/{mode}.log", 'a') as log_file:
+                log_file.write(f"{epoch},{i},{target_val},{pred_val},{residual},{abs_error},{rpd_val}\n")
 
         pred_vals.append(pred_val)
         target_vals.append(target_val)
@@ -92,7 +99,8 @@ def train_model(
     test_loader: DataLoader,
     epochs: int,
     scheduler: Optional[torch.optim.lr_scheduler._LRScheduler] = None,
-    verbosity: int = 1
+    verbosity: int = 1,
+    log_dir: Optional[str] = None
 ) -> Tuple[List[float], List[float], List[float], List[List[Tuple[float, float]]]]:
     train_error_per_epoch = []
     test_abs_error_per_epoch = []
@@ -131,6 +139,10 @@ def train_model(
                     rpd_val = rpd(pred_val, target_val)
                     print(f"Instance: {i}; Target: {target_val}; Prediction: {pred_val}; "
                           + f"Abs. Error: {abs_error:.3f}; Rel. Error: {rpd_val:.3f}%")
+                    if log_dir:
+                        residual = target_val - pred_val
+                        with open(f"{log_dir}/training.log", 'a') as log_file:
+                            log_file.write(f"{epoch},{i},{target_val},{pred_val},{residual},{abs_error},{rpd_val}\n")
 
             batch_size = len(input_batch)
 
@@ -153,7 +165,7 @@ def train_model(
         model.eval()
         with torch.no_grad():
             _, test_abs_error, test_rel_error, test_preds = evaluate(
-                model, test_loader, loss_fn, verbosity, "test"
+                epoch, model, test_loader, loss_fn, verbosity, "test", log_dir
             )
             test_abs_error_per_epoch.append(test_abs_error)
             test_rel_error_per_epoch.append(test_rel_error)
@@ -164,10 +176,21 @@ def train_model(
             test_rel_error_per_epoch, test_preds_per_instance)
 
 
+def get_current_run_number(stats_dir: str) -> int:
+    run_numbers = [int(f.split('_')[-1]) 
+                   for f in os.listdir(stats_dir) if (f.startswith('run_') 
+                                                      and f.split('_')[-1].isdigit())]
+    if len(run_numbers) == 0:
+        return 1
+    return max(run_numbers) + 1
+
+
 def main(args: Dict[str, str]):
     epochs = int(args['epoch'])
     batch_size = int(args['batch'])
     seed = int(args['seed'])
+    loss = args['loss']
+    residual = float(args['residual'])
     dataset_path = args['dataset']
     target_metric = args['target']
     selected_test_bench = args['testbench']
@@ -175,7 +198,7 @@ def main(args: Dict[str, str]):
 
     matplotlib.use('Agg')
 
-    torch.backends.cudnn.benchmark = True
+    # torch.backends.cudnn.benchmark = True
     torch.set_printoptions(
         precision=6, threshold=1000, edgeitems=20, linewidth=200, sci_mode=False
     )
@@ -185,6 +208,9 @@ def main(args: Dict[str, str]):
 
     base_stats_dir = f"estimators/model_analysis/{target_metric}"
     base_pretrained_dir = f"estimators/pretrained/{target_metric}"
+
+    run_number = get_current_run_number(base_stats_dir)
+    log_dir = f"{base_stats_dir}/logs/run_{run_number}"
 
     benchmarks = sorted(os.listdir(dataset_path))
 
@@ -204,7 +230,14 @@ def main(args: Dict[str, str]):
         )
 
         model = initialize_model()
-        loss_func = nn.MSELoss()
+        if loss == 'huber':
+            loss_fn = nn.HuberLoss(delta=1.5*residual)
+        elif loss == 'mse':
+            loss_fn = nn.MSELoss()
+        elif loss == 'mae':
+            loss_fn = nn.L1Loss()
+        else:
+            raise ValueError(f"Unknown loss function: {loss}")
 
         optimizer = torch.optim.AdamW(
             model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=1e-4
@@ -216,8 +249,8 @@ def main(args: Dict[str, str]):
         )
 
         train_errors, test_abs_errors, test_rel_errors, test_preds = train_model(
-            model, loss_func, optimizer, train_loader, test_loader, 
-            epochs, scheduler, verbosity
+            model, loss_fn, optimizer, train_loader, test_loader, 
+            epochs, scheduler, verbosity, log_dir
         )
         
         save_model(model, pretrained_dir, f"hgt_{target_metric}.pt")
@@ -514,22 +547,24 @@ def initialize_model() -> nn.Module:
 def parse_arguments():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--dataset', required=True, help='Path to the dataset.')
-    parser.add_argument('--epoch', default=300, help='The number of training epochs (default: 300).')
-    parser.add_argument('--seed', default=42, help='Random seed for repeatability (default: 42).')
-    parser.add_argument('--batch', default=16, help='The size of the training batch (default: 16).')
-    parser.add_argument(
-        '--testbench', default=None, 
-        help='The name of the benchmark to use for test. If not specified, a cross-validation is performed.'
-    )
-    parser.add_argument(
-        '--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp'],
-        help='The target resource metric.'
-    )
-    parser.add_argument(
-        '--verbose', nargs='?', const=1, type=int, default=0, 
-        help='Set verbosity level (default: 0). Use without value for level 1, or specify a level.'
-    )
+    parser.add_argument('--dataset', required=True, 
+                        help='Path to the dataset.')
+    parser.add_argument('--epoch', default=300, 
+                        help='The number of training epochs (default: 300).')
+    parser.add_argument('--seed', default=42, 
+                        help='Random seed for repeatability (default: 42).')
+    parser.add_argument('--batch', default=16, 
+                        help='The size of the training batch (default: 16).')
+    parser.add_argument('--residual', default=1.0, 
+                        help='The standard deviation of the residual from previous training (default: 1.0).')
+    parser.add_argument('--loss', default='huber', choices=['huber', 'mse', 'mae'],
+                        help='The loss function to use for training (default: Huber loss).')
+    parser.add_argument('--testbench', default=None, 
+                        help='The name of the benchmark to use for test. If not specified, a cross-validation is performed.')
+    parser.add_argument('--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp'],
+                        help='The target resource metric.')
+    parser.add_argument('--verbose', nargs='?', const=1, type=int, default=0, 
+                        help='Set verbosity level (default: 0). Use without value for level 1, or specify a level.')
 
     return vars(parser.parse_args())
 

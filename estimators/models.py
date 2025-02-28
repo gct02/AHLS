@@ -41,6 +41,7 @@ class HGT(nn.Module):
         heads: int = 1,
         dropout: float = 0.0,
         pool_size: int = 16,
+        jk_mode: str = 'lstm',
         device: Optional[Device] = 'cpu'
     ):
         super().__init__()
@@ -55,7 +56,7 @@ class HGT(nn.Module):
         ])
 
         # Define Jumping Knowledge layer
-        self.jkn = JumpingKnowledge(mode='lstm', channels=hid_dim, num_layers=layers)
+        self.jk = JumpingKnowledge(mode=jk_mode, channels=hid_dim, num_layers=layers)
 
         # Define pooling layer
         self.pool = SAGPooling(hid_dim, pool_size)
@@ -132,7 +133,7 @@ class HGT(nn.Module):
             outs.append(torch.cat([v for v in x.values()], dim=0))
 
         # Jumping Knowledge layer
-        out = self.jkn(outs)
+        out = self.jk(outs)
 
         # Pooling layer
         hom_edge_index = data.to_homogeneous().edge_index

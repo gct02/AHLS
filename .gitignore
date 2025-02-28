@@ -84,3 +84,4 @@ test/
 
 # The dataset to train the estimator (too large for git)
 dataset/
+data/base_instances/
