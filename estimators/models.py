@@ -1,12 +1,12 @@
 from typing import Dict, Union, Optional
 from torch.types import Device
-from torch_geometric.typing import Metadata, OptTensor, NodeType, EdgeType
+from torch_geometric.typing import Metadata
 
 import torch
 import torch.nn as nn
 from torch import Tensor
 from torch_geometric.nn import HGTConv, SAGPooling
-from torch_geometric.data import HeteroData, Data
+from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
 from torch_geometric.nn.models import JumpingKnowledge
 
@@ -28,7 +28,9 @@ class HGT(nn.Module):
         dropout (float): Dropout rate for fully connected layers.
             (default: :obj:`0.0`)
         pool_size (int): Number of nodes to keep after pooling.
-            (default: :obj:`8`)
+            (default: :obj:`16`)
+        jk_mode (str): Mode for the Jumping Knowledge layer.
+            (default: :obj:`"max"`)
         device (torch.device): Device to use for computation.
             (default: :obj:`"cpu"`)
     """
@@ -41,7 +43,7 @@ class HGT(nn.Module):
         heads: int = 1,
         dropout: float = 0.0,
         pool_size: int = 16,
-        jk_mode: str = 'lstm',
+        jk_mode: str = 'max',
         device: Optional[Device] = 'cpu'
     ):
         super().__init__()
@@ -94,26 +96,6 @@ class HGT(nn.Module):
         else:
             reset(m)
 
-    def _to_homogeneous(
-        self,
-        x: Dict[NodeType, OptTensor],
-        edge_index: Dict[EdgeType, OptTensor]
-    ) -> Data:
-        r"""Converts a heterogeneous graph to a homogeneous graph.
-
-        Args:
-            x (Dict[NodeType, OptTensor]): The input node features.
-            edge_index (Dict[EdgeType, OptTensor]): The input edge indices.
-
-        Returns: :class:`torch_geometric.data.Data` - The homogeneous graph.
-        """
-        het = HeteroData()
-        for k, v in x.items():
-            het[k].x = v
-        for k, v in edge_index.items():
-            het[k].edge_index = v
-        return het.to_homogeneous()
-
     def forward(self, data: HeteroData) -> Tensor:
         r"""Runs the forward pass of the module.
 
@@ -135,14 +117,17 @@ class HGT(nn.Module):
         # Jumping Knowledge layer
         out = self.jk(outs)
 
+        hom = data.to_homogeneous()
+        num_batches = hom.batch.max().item() + 1
+
         # Pooling layer
-        hom_edge_index = data.to_homogeneous().edge_index
-        out = self.pool(out, hom_edge_index)[0].flatten()
+        out = self.pool(out, hom.edge_index, hom.edge_attr, hom.batch)[0]
+        out = out.view(num_batches, -1)
 
         # Fully connected layers
         out = self.mlp(out)
 
         # Avoid NaNs (edge case handling)
         out = torch.nan_to_num(out)
-        return out
+        return out.flatten()
 

@@ -815,7 +815,7 @@ def plot_cdfg(
         edge_colors.append(color)
 
     # Draw the graph
-    pos = nx.kamada_kawai_layout(nx_cdfg)
+    pos = nx.spring_layout(nx_cdfg, seed=42)
     nx.draw_networkx(
         nx_cdfg,
         pos=pos,
@@ -823,9 +823,9 @@ def plot_cdfg(
         with_labels=True,
         node_color=node_colors,
         edge_color=edge_colors,
-        node_size=100,
-        font_size=10,
-        width=0.8,
+        node_size=70,
+        font_size=8,
+        width=0.7,
         arrowsize=7
     )
 

@@ -11,7 +11,7 @@ import pandas as pd
 import torch
 import torch.nn as nn
 from pathlib import Path
-from torch.utils.data import DataLoader
+from torch_geometric.loader import DataLoader
 from sklearn.metrics import r2_score
 from models import HGT
 
@@ -26,10 +26,8 @@ def save_model(model, target_dir, model_name):
     torch.save(obj=model.state_dict(), f=model_save_path)
 
 
-def rpd(pred: float, target: float) -> float:
-    if target < 1e-6:
-        return abs(pred - target) / ((abs(pred) + abs(target)) / 2 + 1e-6) * 100
-    return abs(pred - target) / abs(target) * 100
+def rpd(pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
+    return torch.abs(pred - target) / ((torch.abs(pred) + torch.abs(target)) / 2) * 100
     
 
 def evaluate(
@@ -44,51 +42,44 @@ def evaluate(
     if verbosity > 0:
         print(f"\nEvaluating on {mode} set\n")
 
-    pred_tensors, target_tensors = [], []
-    pred_vals, target_vals = [], []
+    preds, targets = [], []
     abs_errors, rel_errors = [], []
     
     # Assumption: Only one instance per batch
-    for i, (input_batch, target_batch) in enumerate(loader):
-        cdfg = input_batch[0].to(DEVICE)
-        target = target_batch[0].to(DEVICE)
-        pred = model(cdfg)
-        cdfg = cdfg.cpu()
-        
-        pred_tensors.append(pred)
-        target_tensors.append(target)
+    for i, batch in enumerate(loader):
+        pred = model(batch.to(DEVICE))
+        target = batch.y.to(DEVICE)
 
         pred_val = pred.item()
         target_val = target.item()
-        abs_error = abs(pred_val - target_val)
-        rpd_val = rpd(pred_val, target_val)
+        abs_error = torch.abs(pred - target).item()
+        rel_error = rpd(pred, target).item()
 
         if log_dir:
-            residual = target_val - pred_val
             with open(f"{log_dir}/{mode}.log", 'a') as log_file:
-                log_file.write(f"{epoch},{i},{target_val},{pred_val},{residual},{abs_error},{rpd_val}\n")
+                log_file.write(f"{epoch},{i},{target_val},{pred_val}\n")
 
-        pred_vals.append(pred_val)
-        target_vals.append(target_val)
+        if verbosity > 0:
+            print(f"Instance {i}: Target: {target_val}; Prediction: {pred_val}; "
+                  + f"Abs. Error: {abs_error:.3f}; Rel. Error: {rel_error:.3f}")
+
+        preds.append(pred_val)
+        targets.append(target_val)
         abs_errors.append(abs_error)
-        rel_errors.append(rpd_val)
+        rel_errors.append(rel_error)
 
     mean_abs_error = np.mean(abs_errors)
     mean_rel_error = np.mean(rel_errors)
-    if verbosity > 0:
-        for i, (p, t, a, r) in enumerate(zip(pred_vals, target_vals, abs_errors, rel_errors)):
-            print(f"Instance {i}: Target: {t}; Prediction: {p}; "
-                  + f"Abs. Error: {a:.3f}; Rel. Error: {r:.3f}")
 
+    if verbosity > 0:
         print(f"\nMean Absolute Error on {mode} set: {mean_abs_error:.3f}")
         print(f"Mean Relative Error on {mode} set: {mean_rel_error:.3f}\n")
 
-    pred_tensor = torch.stack(pred_tensors)
-    target_tensor = torch.stack(target_tensors)
+    pred_tensor = torch.tensor(preds)
+    target_tensor = torch.tensor(targets)
     loss = loss_fn(pred_tensor, target_tensor).item()
 
-    return (loss, mean_abs_error, mean_rel_error, 
-            list(zip(pred_vals, target_vals)))
+    return loss, mean_abs_error, mean_rel_error, list(zip(preds, targets))
 
 
 def train_model(
@@ -100,16 +91,13 @@ def train_model(
     epochs: int,
     scheduler: Optional[torch.optim.lr_scheduler._LRScheduler] = None,
     verbosity: int = 1,
-    log_dir: Optional[str] = None
+    log_dir: Optional[str] = None,
+    collect_residuals: bool = False
 ) -> Tuple[List[float], List[float], List[float], List[List[Tuple[float, float]]]]:
-    train_error_per_epoch = []
-    test_abs_error_per_epoch = []
-    test_rel_error_per_epoch = []
+    train_abs_errs = []
+    test_abs_errs, test_rel_errs = [], []
 
-    num_batches = len(train_loader)
-    num_instances = len(test_loader)
-
-    test_preds_per_instance = [[] for _ in range(num_instances)]
+    test_instance_preds = [[] for _ in range(len(test_loader))]
 
     for epoch in range(epochs):
         if verbosity > 0:
@@ -117,49 +105,37 @@ def train_model(
         
         # Training
         model.train()
-        train_epoch_error = 0
-        for i, (input_batch, target_batch) in enumerate(train_loader):
-            preds, targets = [], []
+        preds, targets = [], []
+        for batch in train_loader:
             optimizer.zero_grad()
-            train_batch_error = 0
-            for cdfg, target in zip(input_batch, target_batch):
-                cdfg, target = cdfg.to(DEVICE), target.to(DEVICE)
-                pred = model(cdfg)
-                cdfg = cdfg.cpu()
 
-                preds.append(pred)
-                targets.append(target)
+            pred = model(batch.to(DEVICE))
+            target = batch.y.to(DEVICE)
 
-                pred_val = pred.item()
-                target_val = target.item()
-                abs_error = abs(pred_val - target_val)
-                train_batch_error += abs_error
-
-                if verbosity > 1:
-                    rpd_val = rpd(pred_val, target_val)
-                    print(f"Instance: {i}; Target: {target_val}; Prediction: {pred_val}; "
-                          + f"Abs. Error: {abs_error:.3f}; Rel. Error: {rpd_val:.3f}%")
-                    if log_dir:
-                        residual = target_val - pred_val
-                        with open(f"{log_dir}/training.log", 'a') as log_file:
-                            log_file.write(f"{epoch},{i},{target_val},{pred_val},{residual},{abs_error},{rpd_val}\n")
-
-            batch_size = len(input_batch)
-
-            preds = torch.stack(preds).view(batch_size, 1)
-            targets = torch.stack(targets).view(batch_size, 1)
-
-            loss_fn(preds, targets).backward()
+            loss_fn(pred, target).backward()
 
             optimizer.step()
+
             if scheduler:
                 scheduler.step()
 
-            train_batch_error /= batch_size
-            train_epoch_error += train_batch_error
+            targets.append(target)
+            preds.append(pred)
 
-        train_epoch_error /= num_batches
-        train_error_per_epoch.append(train_epoch_error)
+            if verbosity > 1:
+                print(f"Target: {target.tolist()}; Prediction: {pred.tolist()}")
+
+        targets = torch.cat(targets)
+        preds = torch.cat(preds)
+        train_error = torch.abs(targets - preds).mean().item()
+        train_abs_errs.append(train_error)
+
+        if collect_residuals and log_dir:
+            residuals = targets - preds
+            targets, preds, residuals = targets.tolist(), preds.tolist(), residuals.tolist()
+            with open(f"{log_dir}/training.log", 'a') as log_file:
+                for i, (t, p, r) in enumerate(zip(targets, preds, residuals)):
+                    log_file.write(f"{epoch},{i},{t},{p},{r}\n")
 
         # Evaluation
         model.eval()
@@ -167,19 +143,22 @@ def train_model(
             _, test_abs_error, test_rel_error, test_preds = evaluate(
                 epoch, model, test_loader, loss_fn, verbosity, "test", log_dir
             )
-            test_abs_error_per_epoch.append(test_abs_error)
-            test_rel_error_per_epoch.append(test_rel_error)
+            test_abs_errs.append(test_abs_error)
+            test_rel_errs.append(test_rel_error)
             for i, instance_pred in enumerate(test_preds):
-                test_preds_per_instance[i].append(instance_pred)
+                test_instance_preds[i].append(instance_pred)
 
-    return (train_error_per_epoch, test_abs_error_per_epoch, 
-            test_rel_error_per_epoch, test_preds_per_instance)
+    return train_abs_errs, test_abs_errs, test_rel_errs, test_instance_preds
 
 
 def get_current_run_number(stats_dir: str) -> int:
-    run_numbers = [int(f.split('_')[-1]) 
-                   for f in os.listdir(stats_dir) if (f.startswith('run_') 
-                                                      and f.split('_')[-1].isdigit())]
+    if not os.path.exists(stats_dir):
+        return 1
+    files = os.listdir(stats_dir)
+    run_numbers = [
+        int(f.split('_')[-1]) 
+        for f in files if f.startswith('run_') and f.split('_')[-1].isdigit()
+    ]
     if len(run_numbers) == 0:
         return 1
     return max(run_numbers) + 1
@@ -191,6 +170,7 @@ def main(args: Dict[str, str]):
     seed = int(args['seed'])
     loss = args['loss']
     residual = float(args['residual'])
+    collect_residuals = args['collect_residuals']
     dataset_path = args['dataset']
     target_metric = args['target']
     selected_test_bench = args['testbench']
@@ -206,11 +186,8 @@ def main(args: Dict[str, str]):
     # Set random seeds for reproducibility
     set_random_seeds(seed)
 
-    base_stats_dir = f"estimators/model_analysis/{target_metric}"
-    base_pretrained_dir = f"estimators/pretrained/{target_metric}"
-
-    run_number = get_current_run_number(base_stats_dir)
-    log_dir = f"{base_stats_dir}/logs/run_{run_number}"
+    base_stats_dir = f"estimators/model_analysis"
+    base_pretrained_dir = f"estimators/pretrained"
 
     benchmarks = sorted(os.listdir(dataset_path))
 
@@ -220,11 +197,11 @@ def main(args: Dict[str, str]):
         test_benches = [selected_test_bench]
 
     for test_bench in test_benches:
-        stats_dir, graphs_dir, pretrained_dir = make_output_dirs(
-            base_stats_dir, base_pretrained_dir, test_bench
+        run_analysis_dir, stats_dir, graphs_dir, pretrained_dir = make_output_dirs(
+            base_stats_dir, base_pretrained_dir, test_bench, target_metric
         )
-        train_benches = [b for b in benchmarks if b != test_bench]
 
+        train_benches = [b for b in benchmarks if b != test_bench]
         train_loader, test_loader = prepare_data_loaders(
             dataset_path, target_metric, train_benches, test_bench, batch_size
         )
@@ -240,26 +217,30 @@ def main(args: Dict[str, str]):
             raise ValueError(f"Unknown loss function: {loss}")
 
         optimizer = torch.optim.AdamW(
-            model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=1e-4
+            model.parameters(), lr=1e-3, betas=(0.9, 0.95), weight_decay=1e-4
         )
 
         total_steps = epochs * len(train_loader)
         scheduler = torch.optim.lr_scheduler.OneCycleLR(
-            optimizer, max_lr=1e-3, total_steps=total_steps
+            optimizer, max_lr=5e-3, total_steps=total_steps
         )
 
         train_errors, test_abs_errors, test_rel_errors, test_preds = train_model(
-            model, loss_fn, optimizer, train_loader, test_loader, 
-            epochs, scheduler, verbosity, log_dir
+            model, loss_fn, optimizer, train_loader, test_loader, epochs, 
+            scheduler=scheduler, verbosity=verbosity, log_dir=run_analysis_dir, 
+            collect_residuals=collect_residuals
         )
         
-        save_model(model, pretrained_dir, f"hgt_{target_metric}.pt")
-        save_training_artifacts(
-            train_errors, test_abs_errors, test_rel_errors, test_preds,
-            stats_dir, graphs_dir
-        )
+        run_number = run_analysis_dir.split('_')[-1]
+        model_name = f"hgt_{run_number}.pt"
+        save_model(model, pretrained_dir, model_name)
+
         plot_benchmark_analysis(
             test_preds, test_rel_errors, test_bench, target_metric, graphs_dir
+        )
+        save_training_artifacts(
+            train_errors, test_abs_errors, test_rel_errors, 
+            test_preds, stats_dir, graphs_dir
         )
 
 
@@ -314,12 +295,12 @@ def plot_learning_curves(
 
 
 def plot_predictions(
-    test_preds_per_epoch: List[List[Tuple[float, float]]],
+    epoch_preds: List[List[Tuple[float, float]]],
     save_path: str,
     epoch: int = -1
 ):
-    targets = [inst[0][1] for inst in test_preds_per_epoch]
-    preds = [inst[epoch][0] for inst in test_preds_per_epoch]
+    targets = [inst[0][1] for inst in epoch_preds]
+    preds = [inst[epoch][0] for inst in epoch_preds]
 
     plt.figure(figsize=(10, 10), dpi=150)
     sns.set_style("whitegrid")
@@ -360,24 +341,24 @@ def plot_predictions(
 
 
 def plot_benchmark_analysis(
-    test_preds_per_epoch: List[List[Tuple[float, float]]],
-    test_rel_err_per_epoch: List[float],
-    bench_name: str,
+    test_epoch_preds: List[List[Tuple[float, float]]],
+    test_epoch_rel_err: List[float],
+    testbench: str,
     metric: str,
     save_dir: str
 ):
     """Plot per-benchmark instance-level predictions and errors"""
-    bench_name = bench_name.upper()
+    testbench = testbench.upper()
     metric = metric.upper()
 
-    best_epoch = np.argmin([np.mean(err) for err in test_rel_err_per_epoch])
+    best_epoch = np.argmin([np.mean(err) for err in test_epoch_rel_err])
 
-    indices = list(range(len(test_preds_per_epoch)))
-    targets = [inst[0][1] for inst in test_preds_per_epoch]
-    preds = [inst[best_epoch][0] for inst in test_preds_per_epoch]
+    indices = list(range(len(test_epoch_preds)))
+    targets = [inst[0][1] for inst in test_epoch_preds]
+    preds = [inst[best_epoch][0] for inst in test_epoch_preds]
 
     rel_errors_per_inst = []
-    for inst in test_preds_per_epoch:
+    for inst in test_epoch_preds:
         best_epoch_pred = inst[best_epoch][0]
         target = inst[0][1]
         rpd_val = rpd(best_epoch_pred, target)
@@ -407,37 +388,37 @@ def plot_benchmark_analysis(
     ax.set_xticks(indices)
     ax.set_xticklabels(indices, rotation=90, fontsize=6)
 
-    ax.set_title(f'Instance-Level {metric} Predictions for {bench_name}', fontsize=16)
+    ax.set_title(f'Instance-Level {metric} Predictions for {testbench}', fontsize=16)
     ax.set_xlabel('Instance', fontsize=12)
     ax.set_ylabel(metric, fontsize=12)
     ax.legend()
 
     plt.tight_layout()
-    plt.savefig(f"{save_dir}/{bench_name}_predictions.png", bbox_inches='tight')
+    plt.savefig(f"{save_dir}/{testbench}_predictions.png", bbox_inches='tight')
     plt.close()
 
 
 def save_training_artifacts(
-    train_err_per_epoch: List[float],
-    test_abs_err_per_epoch: List[float],
-    test_rel_err_per_epoch: List[float],
-    test_preds_per_epoch: List[List[Tuple[float, float]]],
+    train_epoch_err: List[float],
+    test_epoch_abs_err: List[float],
+    test_epoch_rel_err: List[float],
+    test_epoch_preds: List[List[Tuple[float, float]]],
     stats_dir: str,
     graphs_dir: str
 ):
-    assert len(train_err_per_epoch) == len(test_abs_err_per_epoch), \
+    assert len(train_epoch_err) == len(test_epoch_abs_err), \
         "Mismatch in number of training and test epochs"
     
     # Save metrics
     metrics_df = pd.DataFrame({
-        'epoch': list(range(len(test_abs_err_per_epoch))),
-        'train_error': train_err_per_epoch,
-        'test_abs_error': test_abs_err_per_epoch,
-        'test_rel_error': test_rel_err_per_epoch
+        'epoch': list(range(len(test_epoch_abs_err))),
+        'train_error': train_epoch_err,
+        'test_abs_error': test_epoch_abs_err,
+        'test_rel_error': test_epoch_rel_err
     })
     metrics_df.to_csv(f"{stats_dir}/metrics.csv", index=False)
 
-    best_epoch = np.argmin(test_rel_err_per_epoch)
+    best_epoch = np.argmin(test_epoch_rel_err)
 
     # Save predictions with metadata
     predictions_df = pd.DataFrame([
@@ -452,16 +433,16 @@ def save_training_artifacts(
             'abs_error_best': abs(inst[best_epoch][0] - inst[0][1]),
             'rel_error_best': rpd(inst[best_epoch][0], inst[0][1])
         }
-        for i, inst in enumerate(test_preds_per_epoch)
+        for i, inst in enumerate(test_epoch_preds)
     ])
     predictions_df.to_csv(f"{stats_dir}/test_predictions.csv", index=False)
 
-    plot_learning_curves(train_err_per_epoch, test_abs_err_per_epoch, f"{graphs_dir}/learning_curve.png")
-    plot_predictions(test_preds_per_epoch, f"{graphs_dir}/test_predictions.png", epoch=best_epoch)
+    plot_learning_curves(train_epoch_err, test_epoch_abs_err, f"{graphs_dir}/learning_curve.png")
+    plot_predictions(test_epoch_preds, f"{graphs_dir}/test_predictions.png", epoch=best_epoch)
 
     # Add error distribution plot
     plt.figure(figsize=(10, 6))
-    sns.histplot(predictions_df['abs_error_best'], bins=20, kde=True)
+    sns.histplot(predictions_df['abs_error_best'], kde=True)
     plt.title('Absolute Error Distribution')
     plt.savefig(f"{graphs_dir}/error_distribution.png")
     plt.close()
@@ -476,21 +457,40 @@ def set_random_seeds(seed: int):
 
 
 def make_output_dirs(
-    base_stats_dir: str,
+    base_analysis_dir: str,
     base_pretrained_dir: str,
-    test_bench: str
-) -> Tuple[str, str, str]:
-    stats_dir = f"{base_stats_dir}/{test_bench}/stats"
-    graphs_dir = f"{base_stats_dir}/{test_bench}/graphs"
-    pretrained_dir = f"{base_pretrained_dir}/{test_bench}"
+    test_bench: str,
+    metric: str
+) -> Tuple[str, str, str, str]:
+    if not os.path.exists(base_analysis_dir):
+        os.makedirs(base_analysis_dir)
+    if not os.path.exists(base_pretrained_dir):
+        os.makedirs(base_pretrained_dir)
 
-    os.makedirs(base_stats_dir, exist_ok=True)
+    test_bench = test_bench.upper()
+    metric = metric.upper()
+
+    metric_dir = f"{base_analysis_dir}/{metric}"
+    if not os.path.exists(metric_dir):
+        os.makedirs(metric_dir)
+
+    tb_dir = f"{metric_dir}/{test_bench}"
+    if not os.path.exists(tb_dir):
+        os.makedirs(tb_dir)
+        run_number = 1
+    else:
+        run_number = get_current_run_number(tb_dir)
+
+    run_analysis_dir = f"{tb_dir}/run_{run_number}"
+    stats_dir = f"{run_analysis_dir}/stats"
+    graphs_dir = f"{run_analysis_dir}/graphs"
+    pretrained_dir = f"{base_pretrained_dir}/{metric}/{test_bench}"
+
     os.makedirs(stats_dir, exist_ok=True)
     os.makedirs(graphs_dir, exist_ok=True)
-    os.makedirs(base_pretrained_dir, exist_ok=True)
     os.makedirs(pretrained_dir, exist_ok=True)
 
-    return stats_dir, graphs_dir, pretrained_dir
+    return run_analysis_dir, stats_dir, graphs_dir, pretrained_dir
 
 
 def prepare_data_loaders(
@@ -516,23 +516,21 @@ def prepare_data_loaders(
         'bb': list(range(3, 8)),
         'func': list(range(5, 11)) + [12, 13]
     }
+    stats = compute_stats(dataset_dir, target_metric, train_benches, filter_cols)
+
+    train_dataset_dir = "estimators/dataset/train"
+    test_dataset_dir = "estimators/dataset/test"
 
     train_data = HLSDataset(
-        dataset_dir, target_metric, normalize=True, benchmarks=train_benches,
-        filter_cols=filter_cols
+        train_dataset_dir, target_metric, dataset_dir, 
+        copy_data=False, benches=train_benches, stats=stats
     )
     test_data = HLSDataset(
-        dataset_dir, target_metric, normalize=True, benchmarks=test_benches,
-        feature_stats=train_data.feature_stats
+        test_dataset_dir, target_metric, dataset_dir, 
+        copy_data=False, benches=test_benches, stats=stats
     )
-    train_loader = DataLoader(
-        train_data, batch_size=batch_size, shuffle=True, 
-        collate_fn=lambda x: tuple(zip(*x))
-    )
-    test_loader = DataLoader(
-        test_data, batch_size=1, shuffle=False, 
-        collate_fn=lambda x: tuple(zip(*x))
-    )
+    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
+    test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
 
     return train_loader, test_loader
 
@@ -561,6 +559,8 @@ def parse_arguments():
                         help='The loss function to use for training (default: Huber loss).')
     parser.add_argument('--testbench', default=None, 
                         help='The name of the benchmark to use for test. If not specified, a cross-validation is performed.')
+    parser.add_argument('--collect-residuals', action='store_true',
+                        help='Collect residuals for analysis.')
     parser.add_argument('--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp'],
                         help='The target resource metric.')
     parser.add_argument('--verbose', nargs='?', const=1, type=int, default=0, 
@@ -569,7 +569,7 @@ def parse_arguments():
     return vars(parser.parse_args())
 
 if __name__ == '__main__':
-    from data.dataset import HLSDataset
+    from data.dataset import HLSDataset, compute_stats
     from data.cdfg import METADATA, NODE_FEATURE_DIMS
 
     DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
