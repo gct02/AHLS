@@ -26,8 +26,13 @@ def save_model(model, target_dir, model_name):
     torch.save(obj=model.state_dict(), f=model_save_path)
 
 
-def rpd(pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
-    return torch.abs(pred - target) / ((torch.abs(pred) + torch.abs(target)) / 2) * 100
+def rpd(pred, target):
+    if isinstance(pred, float):
+        pred = torch.tensor(pred)
+    if isinstance(target, float):
+        target = torch.tensor(target)
+    return (torch.abs(pred - target) / 
+            ((torch.abs(pred) + torch.abs(target)) / 2) * 100)
     
 
 def evaluate(
@@ -518,16 +523,15 @@ def prepare_data_loaders(
     }
     stats = compute_stats(dataset_dir, target_metric, train_benches, filter_cols)
 
-    train_dataset_dir = "estimators/dataset/train"
-    test_dataset_dir = "estimators/dataset/test"
-
     train_data = HLSDataset(
-        train_dataset_dir, target_metric, dataset_dir, 
-        copy_data=False, benches=train_benches, stats=stats
+        "estimators/dataset/train", target_metric, dataset_dir, 
+        copy_data=False, process_data=False, 
+        benches=train_benches, stats=stats
     )
     test_data = HLSDataset(
-        test_dataset_dir, target_metric, dataset_dir, 
-        copy_data=False, benches=test_benches, stats=stats
+        "estimators/dataset/test", target_metric, dataset_dir, 
+        copy_data=False, process_data=False,
+        benches=test_benches, stats=stats
     )
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=1, shuffle=False)

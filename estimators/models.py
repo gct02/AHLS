@@ -5,7 +5,7 @@ from torch_geometric.typing import Metadata
 import torch
 import torch.nn as nn
 from torch import Tensor
-from torch_geometric.nn import HGTConv, SAGPooling
+from torch_geometric.nn import HGTConv, ASAPooling, GraphConv
 from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
 from torch_geometric.nn.models import JumpingKnowledge
@@ -30,7 +30,7 @@ class HGT(nn.Module):
         pool_size (int): Number of nodes to keep after pooling.
             (default: :obj:`16`)
         jk_mode (str): Mode for the Jumping Knowledge layer.
-            (default: :obj:`"max"`)
+            (default: :obj:`"lstm"`)
         device (torch.device): Device to use for computation.
             (default: :obj:`"cpu"`)
     """
@@ -43,7 +43,7 @@ class HGT(nn.Module):
         heads: int = 1,
         dropout: float = 0.0,
         pool_size: int = 16,
-        jk_mode: str = 'max',
+        jk_mode: str = 'lstm',
         device: Optional[Device] = 'cpu'
     ):
         super().__init__()
@@ -57,11 +57,18 @@ class HGT(nn.Module):
             for i in range(layers)
         ])
 
+        if layers == 1:
+            self.jk_layers = [0]
+        elif layers == 2:
+            self.jk_layers = [0, 1]
+        else:
+            self.jk_layers = [0, layers // 2, layers - 1]
+
         # Define Jumping Knowledge layer
-        self.jk = JumpingKnowledge(mode=jk_mode, channels=hid_dim, num_layers=layers)
+        self.jk = JumpingKnowledge(mode=jk_mode, channels=hid_dim, num_layers=len(self.jk_layers))
 
         # Define pooling layer
-        self.pool = SAGPooling(hid_dim, pool_size)
+        self.pool = ASAPooling(hid_dim, pool_size, GNN=GraphConv)
 
         # Define fully connected layers
         hid_dim_fc = [hid_dim * pool_size]
@@ -85,6 +92,7 @@ class HGT(nn.Module):
     def reset_parameters(self):
         r"""Reinitializes the model parameters."""
         self.conv.apply(self._init_weights)
+        self.jk.apply(self._init_weights)
         self.pool.apply(self._init_weights)
         self.mlp.apply(self._init_weights)
 
@@ -112,7 +120,8 @@ class HGT(nn.Module):
         # Convolutional layers
         for i in range(self.layers):
             x = self.conv[i](x, edge_index)
-            outs.append(torch.cat([v for v in x.values()], dim=0))
+            if i in self.jk_layers:
+                outs.append(torch.cat([v for v in x.values()], dim=0))
 
         # Jumping Knowledge layer
         out = self.jk(outs)
@@ -121,7 +130,7 @@ class HGT(nn.Module):
         num_batches = hom.batch.max().item() + 1
 
         # Pooling layer
-        out = self.pool(out, hom.edge_index, hom.edge_attr, hom.batch)[0]
+        out = self.pool(out, edge_index=hom.edge_index, batch=hom.batch)[0]
         out = out.view(num_batches, -1)
 
         # Fully connected layers

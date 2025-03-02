@@ -5,7 +5,7 @@ import os
 import torch
 import shutil
 from collections import defaultdict
-from torch_geometric.data import Dataset, HeteroData
+from torch_geometric.data import Dataset
 from torch import Tensor
 
 def compute_stats(
@@ -108,8 +108,9 @@ class HLSDataset(Dataset):
         metric: str,
         dataset_dir_path: Optional[str] = None,
         copy_data: bool = False,
-        benches: Optional[List[str]] = None,
+        process_data: bool = True,
         stats: Optional[Dict[NodeType, Dict[str, Tensor]]] = None,
+        benches: Optional[List[str]] = None,
         **kwargs
     ):
         self.dataset_dir_path = dataset_dir_path if dataset_dir_path else root
@@ -117,6 +118,7 @@ class HLSDataset(Dataset):
         self.stats = stats
         self.metric = metric
         self.copy_data = copy_data
+        self.process_data = process_data
             
         if benches is None:
             self.benches = sorted(os.listdir(self.dataset_dir_path))
@@ -153,7 +155,7 @@ class HLSDataset(Dataset):
             dst = os.path.join(self.raw_dir, bench)
             shutil.copytree(src, dst)
     
-    def process(self):   
+    def process(self):
         if not os.path.exists(self.raw_dir):
             raise FileNotFoundError(f"Raw directory {self.raw_dir} does not exist.")
         
@@ -187,28 +189,29 @@ class HLSDataset(Dataset):
                 if not os.path.exists(cdfg_path):
                     continue
 
-                data = torch.load(cdfg_path)
-                processed_data = data.clone()
+                if self.process_data:
+                    data = torch.load(cdfg_path)
+                    processed_data = data.clone()
 
-                for nt in data.x_dict.keys():
-                    if nt not in self.stats:
-                        continue
+                    for nt in data.x_dict.keys():
+                        if nt not in self.stats:
+                            continue
 
-                    stats = self.stats[nt]
-                    processed_data.x_dict[nt] = ((data.x_dict[nt] - stats['mean'].unsqueeze(0))
-                                                 / stats['std'].unsqueeze(0))
-                
-                # TODO: Rebuild the graphs without the base_metrics node type
-                if 'base_metrics' in processed_data.x_dict:
-                    for et in processed_data.edge_index_dict.keys():
-                        if et[0] == 'base_metrics' or et[2] == 'base_metrics':
-                            del processed_data[et]
-                    del processed_data['base_metrics']
+                        stats = self.stats[nt]
+                        processed_data.x_dict[nt] = ((data.x_dict[nt] - stats['mean'].unsqueeze(0))
+                                                     / stats['std'].unsqueeze(0))
                     
-                processed_data.y = torch.tensor([target_value])
+                    # TODO: Rebuild the graphs without the base_metrics node type
+                    if 'base_metrics' in processed_data.x_dict:
+                        for et in processed_data.edge_index_dict.keys():
+                            if et[0] == 'base_metrics' or et[2] == 'base_metrics':
+                                del processed_data[et]
+                        del processed_data['base_metrics']
+                        
+                    processed_data.y = torch.tensor([target_value])
 
-                processed_path = os.path.join(self.processed_dir, f"{bench}_{sol}.pt")
-                torch.save(processed_data, processed_path)
+                    processed_path = os.path.join(self.processed_dir, f"{bench}_{sol}.pt")
+                    torch.save(processed_data, processed_path)
 
                 self._processed_file_names.append(f"{bench}_{sol}.pt")
                 self._raw_file_names.append((f"{bench}/{sol}/cdfg.pt", f"{bench}/{sol}/targets.txt"))
