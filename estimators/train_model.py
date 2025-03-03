@@ -222,12 +222,12 @@ def main(args: Dict[str, str]):
             raise ValueError(f"Unknown loss function: {loss}")
 
         optimizer = torch.optim.AdamW(
-            model.parameters(), lr=1e-3, betas=(0.9, 0.95), weight_decay=1e-4
+            model.parameters(), lr=1e-3, betas=(0.9, 0.999), weight_decay=1e-4
         )
 
         total_steps = epochs * len(train_loader)
-        scheduler = torch.optim.lr_scheduler.OneCycleLR(
-            optimizer, max_lr=5e-3, total_steps=total_steps
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
+            optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-6
         )
 
         train_errors, test_abs_errors, test_rel_errors, test_preds = train_model(
