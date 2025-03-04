@@ -1,14 +1,15 @@
+from pathlib import Path
+from enum import IntEnum
 from typing import List, Dict, Tuple, Union, Optional
-from torch.types import Number
-from torch_geometric.typing import NodeType, EdgeType
 
 import torch
 import matplotlib.pyplot as plt
-from pathlib import Path
-from enum import IntEnum
 from torch import Tensor
 from torch_geometric.data import HeteroData, Data
 from torch_geometric.utils import to_networkx
+from torch.types import Number
+from torch_geometric.typing import NodeType, EdgeType
+
 
 NODE_TYPES = ['inst', 'var', 'const', 'array', 'bb', 'func']
 EDGE_TYPES = [

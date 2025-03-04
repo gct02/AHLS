@@ -16,17 +16,18 @@ NODE_TYPE_ENCODING = {
 }
 
 EDGE_TYPE_ENCODING = {
-    "INPUT": [1, 0, 0, 0],  # Data flow edges
-    "OUTPUT": [1, 0, 0, 0],
-    "CAST": [0, 1, 0, 0],   # Type conversion edges
-    "LOAD": [0, 0, 1, 0],   # Memory access edges
-    "STORE": [0, 0, 1, 0],
-    "LOOP": [0, 0, 0, 1],   # Membership and containment edges
-    "FUNCTION": [0, 0, 0, 1],
+    "INPUT": [1, 0, 0, 0, 0],  # Data flow edges
+    "OUTPUT": [1, 0, 0, 0, 0],
+    "CAST": [0, 1, 0, 0, 0],   # Type conversion edges
+    "LOAD": [0, 0, 1, 0, 0],   # Memory access edges
+    "STORE": [0, 0, 1, 0, 0],
+    "LOOP": [0, 0, 0, 1, 0],   # Membership and containment edges
+    "FUNCTION": [0, 0, 0, 1, 0],
+    "SELF": [0, 0, 0, 0, 1],   # Self-loop edges
 }
 
-NODE_FEATURE_DIM = 23
-EDGE_FEATURE_DIM = 3
+NODE_FEATURE_DIM = 24
+EDGE_FEATURE_DIM = 5
 
 def load_dfg_from_json(filename):
     with open(filename, "r") as file:
@@ -34,7 +35,7 @@ def load_dfg_from_json(filename):
     return dfg_dict
 
 def build_node_features(dfg_dict):
-    LLVM_NUM_BIN_OPS = 17
+    LLVM_NUM_BIN_OPS = 18
     LLVM_FIRST_BIN_OP = 11
     LLVM_LAST_BIN_OP = 28
 
@@ -139,10 +140,11 @@ def build_node_features(dfg_dict):
         pipelined = 1 if node["Pipelined"] else 0
         flattened = 1 if node["Flattened"] else 0
         merged = 1 if node["Merged"] else 0
-        fully_unrolled = 1 if node["FullyUnrolled"] else 0
-        unroll_factor = trip_count if fully_unrolled else node["UnrollFactor"]
-        features = enc_node_type + [depth, trip_count, unrolled, unroll_factor, 
-                                    pipelined, flattened, merged, fully_unrolled]
+        factor = node["UnrollFactor"]
+        if factor == 0:
+            factor = trip_count
+        features = enc_node_type + [depth, trip_count, unrolled, factor, 
+                                    pipelined, flattened, merged]
         features += [0] * (NODE_FEATURE_DIM - len(features))
         node_index = node["ID"]
         node_features[node_index] = features
@@ -165,14 +167,23 @@ def build_edges(dfg_dict):
     edge_list = dfg_dict["Edges"]
     edge_features = []
     edge_index = []
+
     for edge in edge_list:
         src = edge["Source"]
         dst = edge["Target"]
         enc_edge_type = EDGE_TYPE_ENCODING[edge["EdgeType"]]
         edge_features.append(torch.tensor(enc_edge_type, dtype=torch.float))
         edge_index.append(torch.tensor([src, dst], dtype=torch.long))
+
+    # Add self-loop edges
+    num_nodes = dfg_dict["NumNodes"]
+    for i in range(num_nodes):
+        edge_features.append(torch.tensor(EDGE_TYPE_ENCODING["SELF"], dtype=torch.float))
+        edge_index.append(torch.tensor([i, i], dtype=torch.long))
+    
     edge_features = torch.stack(edge_features, dim=0)
     edge_index = torch.stack(edge_index, dim=0).transpose(0, 1)
+    
     return edge_index, edge_features
 
 def build_dfg_from_dict(dfg_dict):
@@ -188,7 +199,7 @@ def build_dfg(dfg_file):
 def plot_dfg(dfg, seed=42):
     if isinstance(dfg, dict):
         dfg = build_dfg_from_dict(dfg)
-    G = to_networkx(dfg)
+    G = to_networkx(dfg, remove_self_loops=True)
     pos = nx.spring_layout(G, seed=seed)
     nx.draw(
         G, pos=pos, with_labels=True, node_size=80, 

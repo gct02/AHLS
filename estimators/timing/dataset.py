@@ -1,12 +1,13 @@
-from typing import Union, Optional, List, Dict
-from torch_geometric.typing import NodeType
-
 import os
-import torch
 import shutil
 from collections import defaultdict
+from typing import Union, Optional, List, Dict
+
+import torch
 from torch_geometric.data import Dataset
 from torch import Tensor
+from torch_geometric.typing import NodeType
+
 
 def compute_stats(
     dataset_dir_path: str, 

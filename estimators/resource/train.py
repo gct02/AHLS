@@ -1,8 +1,9 @@
-from typing import List, Dict, Tuple, Optional, Union
-
 import os
 import argparse
 import random
+from pathlib import Path
+from typing import List, Dict, Tuple, Optional, Union
+
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
@@ -10,10 +11,12 @@ import seaborn as sns
 import pandas as pd
 import torch
 import torch.nn as nn
-from pathlib import Path
 from torch_geometric.loader import DataLoader
 from sklearn.metrics import r2_score
-from estimators.timing.models import HGT
+
+from models import GNN
+from dataset import HLSDataset, compute_stats
+from graph import NODE_FEATURE_DIM, EDGE_FEATURE_DIM
 
 
 def save_model(model, target_dir, model_name):
@@ -111,16 +114,14 @@ def train_model(
         # Training
         model.train()
         preds, targets = [], []
-        for batch in train_loader:
+        for data in train_loader:
             optimizer.zero_grad()
 
-            pred = model(batch.to(DEVICE))
-            target = batch.y.to(DEVICE)
+            pred = model(data.to(DEVICE))
+            target = data.y.to(DEVICE)
 
             loss_fn(pred, target).backward()
-
             optimizer.step()
-
             if scheduler:
                 scheduler.step()
 
@@ -191,8 +192,8 @@ def main(args: Dict[str, str]):
     # Set random seeds for reproducibility
     set_random_seeds(seed)
 
-    base_stats_dir = f"estimators/model_analysis"
-    base_pretrained_dir = f"estimators/pretrained"
+    base_stats_dir = f"model_analysis"
+    base_pretrained_dir = f"pretrained"
 
     benchmarks = sorted(os.listdir(dataset_path))
 
@@ -211,9 +212,14 @@ def main(args: Dict[str, str]):
             dataset_path, target_metric, train_benches, test_bench, batch_size
         )
 
-        model = initialize_model()
+        deg = train_loader.dataset.stats['deg']
+        model = GNN(
+            in_channels=NODE_FEATURE_DIM, out_channels=1, hid_dim=32, deg=deg, 
+            aggregators=['mean', 'std', 'max', 'min'], scalers=['identity', 'amplification'], 
+            edge_dim=EDGE_FEATURE_DIM, layers=6, dropout=0.0, pooling_size=16, jk_mode='lstm', device=DEVICE
+        )
         if loss == 'huber':
-            loss_fn = nn.HuberLoss(delta=1.5*residual)
+            loss_fn = nn.HuberLoss(delta=residual)
         elif loss == 'mse':
             loss_fn = nn.MSELoss()
         elif loss == 'mae':
@@ -222,7 +228,7 @@ def main(args: Dict[str, str]):
             raise ValueError(f"Unknown loss function: {loss}")
 
         optimizer = torch.optim.AdamW(
-            model.parameters(), lr=1e-3, betas=(0.9, 0.999), weight_decay=1e-4
+            model.parameters(), lr=1e-3, betas=(0.9, 0.999), weight_decay=5e-4
         )
 
         total_steps = epochs * len(train_loader)
@@ -370,21 +376,18 @@ def plot_benchmark_analysis(
         rel_errors_per_inst.append(rpd_val)
 
     bar_width = 0.35
-    fig, ax = plt.subplots(figsize=(20, 8), dpi=150)
+    _, ax = plt.subplots(figsize=(20, 8), dpi=150)
 
     # Plot bars
-    bars_target = ax.bar(
-        [i - bar_width/2 for i in indices], targets, bar_width, 
-        label='Target', color='blue', alpha=0.7
-    )
-    bars_pred = ax.bar(
-        [i + bar_width/2 for i in indices], preds, bar_width,
-        label='Prediction', color='orange', alpha=0.7
-    )
+    ax.bar([i - bar_width/2 for i in indices], targets, bar_width, 
+           label='Target', color='blue', alpha=0.7)
+    ax.bar([i + bar_width/2 for i in indices], preds, bar_width,
+           label='Prediction', color='orange', alpha=0.7)
 
     # Add relative error on top of each pair of bars
     for i, (t, p, err) in enumerate(zip(targets, preds, rel_errors_per_inst)):
-        ax.text(i, max(t, p) + 0.02 * max(targets), f'{err:.2f}%', ha='center', fontsize=6, rotation=90)
+        ax.text(i, max(t, p) + 0.02 * max(targets), f'{err:.2f}%', 
+                ha='center', fontsize=6, rotation=90)
 
     # Add gridlines for better readability
     ax.grid(axis='y', linestyle='--', alpha=0.7)
@@ -505,31 +508,15 @@ def prepare_data_loaders(
     test_benches: Union[List[str], str],
     batch_size: int
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
-    # Don't normalize columns representing one-hot encoded categorical features or boolean features
-    # The features for each node type are as follows:
-    # inst:  0-11: type, 12: n_uses, 13: mod_mem, 14: read_mem, 15: mod_cf; 
-    # var:   0-5: type, 6: bw;
-    # const: 0-5: type, 6: bw;
-    # array: 0: n_dims, 1-4: dim_sizes, 5-10: elem_type, 11: elem_bw, 12: partitioned, 13-15: partition_type, 16: full_partition, 17-20: partition_dims, 21: partition_factor;
-    # bb:    0: n_insts, 1: loop_depth, 2: trip_count, 3: pipelined, 4: merged, 5: flattened, 6: unrolled, 7: complete_unroll, 8: unroll_factor;
-    # func:  0: n_operands, 1: n_uses, 2: n_insts, 3: n_bbs, 4: n_loops, 5-10: ret_type, 11: ret_bw, 12: pipelined, 13: merged.
-    filter_cols = {
-        'inst': list(range(12)) + [13, 14, 15],
-        'var': list(range(6)),
-        'const': list(range(6)),
-        'array': list(range(5, 11)) + list(range(12, 22)),
-        'bb': list(range(3, 8)),
-        'func': list(range(5, 11)) + [12, 13]
-    }
-    stats = compute_stats(dataset_dir, target_metric, train_benches, filter_cols)
+    stats = compute_stats(dataset_dir, target_metric, train_benches)
 
     train_data = HLSDataset(
-        "estimators/dataset/train", target_metric, dataset_dir, 
+        "estimators/resource/dataset/train", target_metric, dataset_dir, 
         copy_data=False, process_data=False, 
         benches=train_benches, stats=stats
     )
     test_data = HLSDataset(
-        "estimators/dataset/test", target_metric, dataset_dir, 
+        "estimators/resource/dataset/test", target_metric, dataset_dir, 
         copy_data=False, process_data=False,
         benches=test_benches, stats=stats
     )
@@ -537,13 +524,6 @@ def prepare_data_loaders(
     test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
 
     return train_loader, test_loader
-
-
-def initialize_model() -> nn.Module:
-    return HGT(
-        METADATA, NODE_FEATURE_DIMS, 1, hid_dim=32, layers=6, heads=8,
-        dropout=0.1, pool_size=16, device=DEVICE,
-    )
 
 
 def parse_arguments():
@@ -573,10 +553,6 @@ def parse_arguments():
     return vars(parser.parse_args())
 
 if __name__ == '__main__':
-    from data.dataset import HLSDataset, compute_stats
-    from data.cdfg import METADATA, NODE_FEATURE_DIMS
-
     DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
     args = parse_arguments()
     main(args)

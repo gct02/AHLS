@@ -1,15 +1,14 @@
 from typing import Dict, Union, Optional
-from torch.types import Device
-from torch_geometric.typing import Metadata
 
 import torch
 import torch.nn as nn
 from torch import Tensor
-from torch_geometric.nn import HGTConv, GraphConv
-from torch_geometric.data import HeteroData
+from torch_geometric.nn import HGTConv, GraphConv, ASAPooling
 from torch_geometric.nn.inits import reset
 from torch_geometric.nn.models import JumpingKnowledge
-from estimators.timing.layers import CustomSAGPooling
+from torch_geometric.data import HeteroData
+from torch.types import Device
+from torch_geometric.typing import Metadata
 
 
 class HGT(nn.Module):
@@ -70,7 +69,7 @@ class HGT(nn.Module):
         self.jk = JumpingKnowledge(mode=jk_mode, channels=hid_dim, num_layers=len(self.jk_layers))
 
         # Define pooling layer
-        self.pool = CustomSAGPooling(hid_dim, ratio=pool_size, GNN=GraphConv)
+        self.pool = ASAPooling(hid_dim, ratio=pool_size, GNN=GraphConv)
 
         # Define fully connected layers
         hid_dim_fc = [hid_dim * pool_size]
