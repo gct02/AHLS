@@ -16,12 +16,13 @@ NODE_TYPE_ENCODING = {
 }
 
 EDGE_TYPE_ENCODING = {
-    "INPUT": [1, 0, 0],  # Data flow edges
-    "OUTPUT": [1, 0, 0],
-    "LOAD": [0, 1, 0],   # Memory access edges
-    "STORE": [0, 1, 0],
-    "LOOP": [0, 0, 1],   # Membership and containment edges
-    "FUNCTION": [0, 0, 1],
+    "INPUT": [1, 0, 0, 0],  # Data flow edges
+    "OUTPUT": [1, 0, 0, 0],
+    "CAST": [0, 1, 0, 0],   # Type conversion edges
+    "LOAD": [0, 0, 1, 0],   # Memory access edges
+    "STORE": [0, 0, 1, 0],
+    "LOOP": [0, 0, 0, 1],   # Membership and containment edges
+    "FUNCTION": [0, 0, 0, 1],
 }
 
 NODE_FEATURE_DIM = 23

@@ -55,6 +55,7 @@ enum class EdgeType {
     STORE,
     INPUT,
     OUTPUT,
+    CAST,
     LOOP,
     FUNCTION
 };
@@ -197,6 +198,7 @@ struct EdgeTypeStr {
             case EdgeType::STORE: return "STORE";
             case EdgeType::INPUT: return "INPUT";
             case EdgeType::OUTPUT: return "OUTPUT";
+            case EdgeType::CAST: return "CAST";
             case EdgeType::LOOP: return "LOOP";
             case EdgeType::FUNCTION: return "FUNCTION";
         }
@@ -332,12 +334,6 @@ struct DFGForHLS : public ModulePass {
     DFGForHLS() : ModulePass(ID) {}
 
     DFG dfg;
-    
-    std::vector<ArrayṔartitionDirective> arrayPartitionDirectives;
-    std::vector<LoopDirective> unrollDirectives;
-    std::vector<LoopDirective> loopFlattenDirectives;
-    std::vector<LoopDirective> loopMergeDirectives;
-    std::vector<LoopDirective> pipelineDirectives;
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "hls-dfg"
@@ -365,31 +361,126 @@ struct DFGForHLS : public ModulePass {
         buildEdges();
     }
 
-    std::vector<std::string> tokenize(
-        const std::string& str, const std::string& delim=" "
-    ) {
-        std::vector<std::string> tokens;
-        std::size_t start = 0, end = 0;
-        if (str.empty()) {
-            return tokens;
-        }
-        if (str.find(delim) == std::string::npos) {
-            tokens.push_back(str);
-            return tokens;
-        }
-        while ((end = str.find(delim, start)) != std::string::npos) {
-            if (end != start) {
-                tokens.push_back(str.substr(start, end - start));
-            }
-            start = end + 1;
-        }
-        if (end != start) {
-            tokens.push_back(str.substr(start));
-        }
-        return tokens;
+    void buildEdges() {
+        buildDataFlowEdges();
+        buildFunctionEdges();
+        buildLoopEdges();
     }
 
-    Value* getArray(Module& M, const std::string& arrayName, const std::string& functionName) {
+    void buildNodes(Module& M) {
+        buildNodesFromArrays(M);
+        std::vector<Instruction*> binaryOps = getBinaryOps(M);
+        buildNodesFromBinaryOps(binaryOps);
+        buildNodesFromLoopsAndFunctions(M);
+        parseTclAndSetDirectiveInfo(M); // May add extra nodes
+    }
+
+    void buildDataFlowEdges() {
+        for (InstructionNode* instructionNode : dfg.instructions) {
+            if (instructionNode->LHS) {
+                Edge edge;
+                edge.ID = dfg.numEdges++;
+                edge.type = EdgeType::INPUT;
+                edge.src = instructionNode->LHS;
+                edge.dst = instructionNode;
+                dfg.edges.push_back(edge);
+
+                if (instructionNode->LHS->loadedFromArray) {
+                    edge.ID = dfg.numEdges++;
+                    edge.type = EdgeType::LOAD;
+                    edge.src = instructionNode->LHS->loadedArrayRef;
+                    edge.dst = instructionNode->LHS;
+                    dfg.edges.push_back(edge);
+                }
+            }
+            if (instructionNode->RHS) {
+                Edge edge;
+                edge.ID = dfg.numEdges++;
+                edge.type = EdgeType::INPUT;
+                edge.src = instructionNode->RHS;
+                edge.dst = instructionNode;
+                dfg.edges.push_back(edge);
+
+                if (instructionNode->RHS->loadedFromArray) {
+                    edge.ID = dfg.numEdges++;
+                    edge.type = EdgeType::LOAD;
+                    edge.src = instructionNode->RHS->loadedArrayRef;
+                    edge.dst = instructionNode->RHS;
+                    dfg.edges.push_back(edge);
+                }
+            }
+            if (instructionNode->result) {
+                Edge edge;
+                edge.ID = dfg.numEdges++;
+                edge.type = EdgeType::OUTPUT;
+                edge.src = instructionNode;
+                edge.dst = instructionNode->result;
+                dfg.edges.push_back(edge);
+
+                for (ArrayNode* arrayNode : instructionNode->result->storedArrayRefs) {
+                    edge.ID = dfg.numEdges++;
+                    edge.type = EdgeType::STORE;
+                    edge.src = instructionNode->result;
+                    edge.dst = arrayNode;
+                    dfg.edges.push_back(edge);
+                }
+
+                std::vector<CastInst*> casts = findCastUsers(instructionNode->result->ref);
+                for (CastInst* cast : casts) {
+                    DEBUG(dbgs() << "Found cast: " << *cast << " for " << *instructionNode->result->ref << "\n");
+                    VariableOrConstNode* castedValue = getVariableOrConstNodeFromValue(cast);
+                    if (castedValue) {
+                        DEBUG(dbgs() << "Casted value: " << castedValue->name << "\n");
+                        edge.ID = dfg.numEdges++;
+                        edge.type = EdgeType::CAST;
+                        edge.src = instructionNode->result;
+                        edge.dst = castedValue;
+                        dfg.edges.push_back(edge);
+                    }
+                }
+            }
+        }
+    }
+
+    void buildFunctionEdges() {
+        for (FunctionNode* functionNode : dfg.functions) {
+            for (InstructionNode* instructionNode : functionNode->instructions) {
+                Edge edge;
+                edge.ID = dfg.numEdges++;
+                edge.type = EdgeType::FUNCTION;
+                edge.src = functionNode;
+                edge.dst = instructionNode;
+                dfg.edges.push_back(edge);
+            }
+            for (LoopNode* loopNode : functionNode->loops) {
+                Edge edge;
+                edge.ID = dfg.numEdges++;
+                edge.type = EdgeType::FUNCTION;
+                edge.src = functionNode;
+                edge.dst = loopNode;
+                dfg.edges.push_back(edge);
+            }
+        }
+    }
+
+    void buildLoopEdges() {
+        for (LoopNode* loopNode : dfg.loops) {
+            for (InstructionNode* instructionNode : loopNode->instructions) {
+                Edge edge;
+                edge.ID = dfg.numEdges++;
+                edge.type = EdgeType::LOOP;
+                edge.src = loopNode;
+                edge.dst = instructionNode;
+                dfg.edges.push_back(edge);
+            }
+        }
+    }
+
+    Value* getArray(
+        Module& M, 
+        const std::string& arrayName, 
+        const std::string& functionName
+    ) {
         if (GlobalVariable* GV = M.getGlobalVariable(arrayName, true)) {
             return GV;
         }
@@ -415,7 +506,11 @@ struct DFGForHLS : public ModulePass {
         return nullptr;
     }
 
-    std::tuple<LoopNode*, BasicBlock*, bool> getLoop(Module& M, std::string& loopLabel, std::string& functionName) {
+    std::tuple<LoopNode*, BasicBlock*, bool> getLoop(
+        Module& M, 
+        std::string& loopLabel, 
+        std::string& functionName
+    ) {
         bool isWhileLoop = false;
 
         Function* F = M.getFunction(functionName);
@@ -451,7 +546,9 @@ struct DFGForHLS : public ModulePass {
     }
 
     void setLoopDirective(
-        Module& M, LoopDirective& directive, uint32_t& directiveIndex, 
+        Module& M, 
+        LoopDirective& directive, 
+        uint32_t& directiveIndex, 
         bool mayBeFunctionLevel=true
     ) {
         if (directive.location.empty()) {
@@ -476,12 +573,10 @@ struct DFGForHLS : public ModulePass {
             }
             if (directive.type == DirectiveType::LOOP_MERGE) {
                 directive.directiveID = directiveIndex++;
-                loopMergeDirectives.push_back(directive);
                 functionNode->hasMergeDirective = true;
                 functionNode->mergeDirective = directive;
             } else if (directive.type == DirectiveType::PIPELINE) {
                 directive.directiveID = directiveIndex++;
-                pipelineDirectives.push_back(directive);
                 functionNode->hasPipelineDirective = true;
                 functionNode->pipelineDirective = directive;
             } else {
@@ -489,7 +584,6 @@ struct DFGForHLS : public ModulePass {
             }
         } else {
             std::tuple<LoopNode*, BasicBlock*, bool> loop = getLoop(M, directive.label, directive.location);
-            
             LoopNode* loopNode = std::get<0>(loop);
             BasicBlock* loopHeader = std::get<1>(loop);
 
@@ -507,12 +601,13 @@ struct DFGForHLS : public ModulePass {
                 newLoopNode->parentFunction = function;
                 newLoopNode->depth = 1;  // Placeholder value
                 newLoopNode->tripCount = 0;  // Placeholder value
-                newLoopNode->instructions = {};
+
                 newLoopNode->hasUnrollDirective = false;
                 newLoopNode->hasMergeDirective = false;
                 newLoopNode->hasFlattenDirective = false;
                 newLoopNode->hasPipelineDirective = false;
 
+                newLoopNode->instructions = {};
                 for (Instruction& I : *loopHeader) {
                     InstructionNode* instructionNode = getInstructionNodeFromInstruction(&I);
                     if (instructionNode) {
@@ -542,22 +637,18 @@ struct DFGForHLS : public ModulePass {
                     directive.directiveID = directiveIndex++;
                     newLoopNode->hasMergeDirective = true;
                     newLoopNode->mergeDirective = directive;
-                    loopMergeDirectives.push_back(directive);
                 } else if (directive.type == DirectiveType::PIPELINE) {
                     directive.directiveID = directiveIndex++;
                     newLoopNode->hasPipelineDirective = true;
                     newLoopNode->pipelineDirective = directive;
-                    pipelineDirectives.push_back(directive);
                 } else if (directive.type == DirectiveType::LOOP_FLATTEN) {
                     directive.directiveID = directiveIndex++;
                     newLoopNode->hasFlattenDirective = true;
                     newLoopNode->flattenDirective = directive;
-                    loopFlattenDirectives.push_back(directive);
                 } else if (directive.type == DirectiveType::UNROLL) {
                     directive.directiveID = directiveIndex++;
                     newLoopNode->hasUnrollDirective = true;
                     newLoopNode->unrollDirective = directive;
-                    unrollDirectives.push_back(directive);
                 } else {
                     errs() << "Invalid directive type\n";
                 }
@@ -569,22 +660,18 @@ struct DFGForHLS : public ModulePass {
                     directive.directiveID = directiveIndex++;
                     loopNode->hasMergeDirective = true;
                     loopNode->mergeDirective = directive;
-                    loopMergeDirectives.push_back(directive);
                 } else if (directive.type == DirectiveType::PIPELINE) {
                     directive.directiveID = directiveIndex++;
                     loopNode->hasPipelineDirective = true;
                     loopNode->pipelineDirective = directive;
-                    pipelineDirectives.push_back(directive);
                 } else if (directive.type == DirectiveType::LOOP_FLATTEN) {
                     directive.directiveID = directiveIndex++;
                     loopNode->hasFlattenDirective = true;
                     loopNode->flattenDirective = directive;
-                    loopFlattenDirectives.push_back(directive);
                 } else if (directive.type == DirectiveType::UNROLL) {
                     directive.directiveID = directiveIndex++;
                     loopNode->hasUnrollDirective = true;
                     loopNode->unrollDirective = directive;
-                    unrollDirectives.push_back(directive);
                 } else {
                     errs() << "Invalid directive type\n";
                 }
@@ -656,7 +743,6 @@ struct DFGForHLS : public ModulePass {
                 directive.directiveID = directiveIndex++;
                 arrayNode->hasPartitionDirective = true;
                 arrayNode->partitionDirective = directive;
-                arrayPartitionDirectives.push_back(directive);
 
             } else if (directiveName == "set_directive_pipeline") {
                 // Format: set_directive_pipeline <location> [-off=true]
@@ -773,116 +859,6 @@ struct DFGForHLS : public ModulePass {
         return 0;
     }
 
-    void buildDataFlowEdges() {
-        for (InstructionNode* instructionNode : dfg.instructions) {
-            if (instructionNode->LHS) {
-                DEBUG(dbgs() << "LHS: " << instructionNode->LHS->name << "\n");
-                Edge edge;
-                edge.ID = dfg.numEdges++;
-                edge.type = EdgeType::INPUT;
-                edge.src = instructionNode->LHS;
-                edge.dst = instructionNode;
-                dfg.edges.push_back(edge);
-
-                if (instructionNode->LHS->loadedFromArray) {
-                    edge.ID = dfg.numEdges++;
-                    edge.type = EdgeType::LOAD;
-                    edge.src = instructionNode->LHS->loadedArrayRef;
-                    edge.dst = instructionNode->LHS;
-                    dfg.edges.push_back(edge);
-                }
-            } else {
-                DEBUG(dbgs() << "LHS: nullptr\n");
-            }
-            if (instructionNode->RHS) {
-                DEBUG(dbgs() << "RHS: " << instructionNode->RHS->name << "\n");
-                Edge edge;
-                edge.ID = dfg.numEdges++;
-                edge.type = EdgeType::INPUT;
-                edge.src = instructionNode->RHS;
-                edge.dst = instructionNode;
-                dfg.edges.push_back(edge);
-
-                if (instructionNode->RHS->loadedFromArray) {
-                    edge.ID = dfg.numEdges++;
-                    edge.type = EdgeType::LOAD;
-                    edge.src = instructionNode->RHS->loadedArrayRef;
-                    edge.dst = instructionNode->RHS;
-                    dfg.edges.push_back(edge);
-                }
-            } else {
-                DEBUG(dbgs() << "RHS: nullptr\n");
-            }
-            if (instructionNode->result) {
-                Edge edge;
-                edge.ID = dfg.numEdges++;
-                edge.type = EdgeType::OUTPUT;
-                edge.src = instructionNode;
-                edge.dst = instructionNode->result;
-                dfg.edges.push_back(edge);
-
-                for (ArrayNode* arrayNode : instructionNode->result->storedArrayRefs) {
-                    edge.ID = dfg.numEdges++;
-                    edge.type = EdgeType::STORE;
-                    edge.src = instructionNode->result;
-                    edge.dst = arrayNode;
-                    dfg.edges.push_back(edge);
-                }
-            }
-        }
-    }
-
-    void buildFunctionEdges() {
-        for (FunctionNode* functionNode : dfg.functions) {
-            for (InstructionNode* instructionNode : functionNode->instructions) {
-                Edge edge;
-                edge.ID = dfg.numEdges++;
-                edge.type = EdgeType::FUNCTION;
-                edge.src = functionNode;
-                edge.dst = instructionNode;
-                dfg.edges.push_back(edge);
-            }
-            for (LoopNode* loopNode : functionNode->loops) {
-                Edge edge;
-                edge.ID = dfg.numEdges++;
-                edge.type = EdgeType::FUNCTION;
-                edge.src = functionNode;
-                edge.dst = loopNode;
-                dfg.edges.push_back(edge);
-            }
-        }
-    }
-
-    void buildLoopEdges() {
-        for (LoopNode* loopNode : dfg.loops) {
-            for (InstructionNode* instructionNode : loopNode->instructions) {
-                Edge edge;
-                edge.ID = dfg.numEdges++;
-                edge.type = EdgeType::LOOP;
-                edge.src = loopNode;
-                edge.dst = instructionNode;
-                dfg.edges.push_back(edge);
-            }
-        }
-    }
-
-    void buildEdges() {
-        buildDataFlowEdges();
-        buildFunctionEdges();
-        buildLoopEdges();
-    }
-
-    void buildNodes(Module& M) {
-        buildNodesFromArrays(M);
-
-        std::vector<Instruction*> binaryOps = getBinaryOps(M);
-        buildNodesFromBinaryOps(binaryOps);
-
-        buildNodesFromLoopsAndFunctions(M);
-
-        parseTclAndSetDirectiveInfo(M); // May add extra nodes
-    }
-
     std::vector<Instruction*> getBinaryOps(Module& M) {
         std::vector<Instruction*> binaryOps;
         for (Function& F : M) {
@@ -895,13 +871,6 @@ struct DFGForHLS : public ModulePass {
             }
         }
         return binaryOps;
-    }
-
-    bool isArray(Type* Ty) {
-        while (Ty->isPointerTy()) {
-            Ty = Ty->getPointerElementType();
-        }
-        return Ty->isArrayTy();
     }
 
     uint64_t getDecayedDimSize(const Argument* arg) {
@@ -1015,8 +984,6 @@ struct DFGForHLS : public ModulePass {
     }
 
     ArrayNode* buildArrayNode(Value* V, Function* parentFunction, Type* decayedType=nullptr) {
-        DEBUG(dbgs() << "Building array node for: " << V->getName() << "\n");
-
         Type* Ty = decayedType ? decayedType : V->getType();
         while (Ty->isPointerTy()) {
             Ty = Ty->getPointerElementType();
@@ -1048,6 +1015,13 @@ struct DFGForHLS : public ModulePass {
         arrayNode->hasPartitionDirective = false;
         dfg.arrays.push_back(arrayNode);
         return arrayNode;
+    }
+
+    bool isArray(Type* Ty) {
+        while (Ty->isPointerTy()) {
+            Ty = Ty->getPointerElementType();
+        }
+        return Ty->isArrayTy();
     }
 
     void buildNodesFromArrays(Module& M) {
@@ -1121,41 +1095,45 @@ struct DFGForHLS : public ModulePass {
 
     void buildNodesFromBinaryOps(std::vector<Instruction*>& binaryOps) {
         for (auto* I : binaryOps) {
-            DEBUG(dbgs() << "Building nodes for binary operation: " << *I << "\n");
-
-            VariableOrConstNode* lhsNode = getVariableOrConstNodeFromValue(I->getOperand(0));
+            Value* LHS = I->getOperand(0);
+            VariableOrConstNode* lhsNode = getVariableOrConstNodeFromValue(LHS);
             if (!lhsNode) {
-                DEBUG(dbgs() << "Creating node for LHS: " << *I->getOperand(0) << "\n");
                 lhsNode = new VariableOrConstNode();
                 lhsNode->ID = dfg.numNodes++;
-                lhsNode->name = I->getOperand(0)->hasName() ? I->getOperand(0)->getName().str() : "";
-                lhsNode->type = isa<Constant>(I->getOperand(0)) ? NodeType::CONSTANT : NodeType::VARIABLE;
-                lhsNode->ref = I->getOperand(0);
-                lhsNode->typeID = I->getOperand(0)->getType()->getTypeID();
-                lhsNode->bitwidth = I->getOperand(0)->getType()->getPrimitiveSizeInBits();
+                lhsNode->name = LHS->hasName() ? LHS->getName().str() : "";
 
-                lhsNode->loadedArrayRef = locateLoadedArrayReference(I->getOperand(0));
+                bool isConstant = isa<Constant>(LHS);
+                lhsNode->type = isConstant ? NodeType::CONSTANT : NodeType::VARIABLE;
+
+                lhsNode->ref = LHS;
+                lhsNode->typeID = LHS->getType()->getTypeID();
+                lhsNode->bitwidth = LHS->getType()->getPrimitiveSizeInBits();
+
+                lhsNode->loadedArrayRef = locateLoadedArrayReference(LHS);
                 lhsNode->loadedFromArray = lhsNode->loadedArrayRef != nullptr;
                 lhsNode->storedInArray = false;
 
                 dfg.variablesAndConsts.push_back(lhsNode);
             }
 
-            VariableOrConstNode* rhsNode = getVariableOrConstNodeFromValue(I->getOperand(1));
+            Value* RHS = I->getOperand(1);
+            VariableOrConstNode* rhsNode = getVariableOrConstNodeFromValue(RHS);
             if (!rhsNode) {
-                DEBUG(dbgs() << "Creating node for RHS: " << *I->getOperand(1) << "\n");
                 rhsNode = new VariableOrConstNode();
                 rhsNode->ID = dfg.numNodes++;
-                rhsNode->name = I->getOperand(1)->hasName() ? I->getOperand(1)->getName().str() : "";
-                rhsNode->type = isa<Constant>(I->getOperand(1)) ? NodeType::CONSTANT : NodeType::VARIABLE;
-                rhsNode->ref = I->getOperand(1);
-                rhsNode->typeID = I->getOperand(1)->getType()->getTypeID();
-                rhsNode->bitwidth = I->getOperand(1)->getType()->getPrimitiveSizeInBits();
+                rhsNode->name = RHS->hasName() ? RHS->getName().str() : "";
 
-                rhsNode->loadedArrayRef = locateLoadedArrayReference(I->getOperand(1));
+                bool isConstant = isa<Constant>(RHS);
+                rhsNode->type = isConstant ? NodeType::CONSTANT : NodeType::VARIABLE;
+
+                rhsNode->ref = RHS;
+                rhsNode->typeID = RHS->getType()->getTypeID();
+                rhsNode->bitwidth = RHS->getType()->getPrimitiveSizeInBits();
+
+                rhsNode->loadedArrayRef = locateLoadedArrayReference(RHS);
                 rhsNode->loadedFromArray = rhsNode->loadedArrayRef != nullptr;
                 rhsNode->storedInArray = false;
-
+ 
                 dfg.variablesAndConsts.push_back(rhsNode);
             }
 
@@ -1176,12 +1154,11 @@ struct DFGForHLS : public ModulePass {
 
                 dfg.variablesAndConsts.push_back(resultNode);
             }
-
             createInstructionNode(I, lhsNode, rhsNode, resultNode);
         }
     }
 
-    std::vector<StoreInst*> findStoreInsts(Value* V) {
+    std::vector<StoreInst*> findStoreUsers(Value* V) {
         std::vector<StoreInst*> stores;
         for (User* U : V->users()) {
             if (auto* SI = dyn_cast<StoreInst>(U)) {
@@ -1191,76 +1168,64 @@ struct DFGForHLS : public ModulePass {
         return stores;
     }
 
-    std::vector<CastInst*> findCastInsts(Value* V) {
+    std::vector<CastInst*> findCastUsers(Value* V) {
         std::vector<CastInst*> casts;
         for (User* U : V->users()) {
             if (auto* CI = dyn_cast<CastInst>(U)) {
                 casts.push_back(CI);
-                while (auto* nextCI = dyn_cast<CastInst>(CI->getOperand(0))) {
-                    casts.push_back(nextCI);
-                    CI = nextCI;
-                }
             }
         }
         return casts;
     }
 
+    std::vector<BinaryOperator*> findBinaryOpUsers(Value* V) {
+        std::vector<BinaryOperator*> binaryOps;
+        for (User* U : V->users()) {
+            if (auto* BO = dyn_cast<BinaryOperator>(U)) {
+                binaryOps.push_back(BO);
+            }
+        }
+        return binaryOps;
+    }
+
     ArrayNode* locateLoadedArrayReference(Value* V) {
         ArrayNode* array = nullptr;
 
-        while (auto* CI = dyn_cast<CastInst>(V)) {
+        if (auto* CI = dyn_cast<CastInst>(V)) {
+            DEBUG(dbgs() << "Found cast: " << *CI << " for " << *V << "\n");
             V = CI->getOperand(0);
         }
 
         if (auto* LI = dyn_cast<LoadInst>(V)) {
             Value* ptr = LI->getPointerOperand();
+            DEBUG(dbgs() << "Found load: " << *LI << " for " << *ptr << "\n");
             array = getArrayNodeFromValue(ptr);
-            if (!array) {
-                if (auto* GEP = dyn_cast<GetElementPtrInst>(ptr)) {
-                    array = getArrayNodeFromValue(GEP->getPointerOperand());
-                    while (!array) {
-                        GEP = dyn_cast<GetElementPtrInst>(GEP->getPointerOperand());
-                        if (!GEP) {
-                            break;
-                        }
-                        array = getArrayNodeFromValue(GEP->getPointerOperand());
-                    }
-                }
-            }
-        } else if (auto* GEP = dyn_cast<GetElementPtrInst>(V)) {
-            array = getArrayNodeFromValue(GEP->getPointerOperand());
             while (!array) {
-                GEP = dyn_cast<GetElementPtrInst>(GEP->getPointerOperand());
-                if (!GEP) {
-                    break;
-                }
-                array = getArrayNodeFromValue(GEP->getPointerOperand());
+                auto* GEP = dyn_cast<GetElementPtrInst>(ptr);
+                if (!GEP) break;
+                ptr = GEP->getPointerOperand();
+                array = getArrayNodeFromValue(ptr);
             }
-        } else if (auto* AI = dyn_cast<AllocaInst>(V)) {
-            array = getArrayNodeFromValue(AI);
+            if (array) {
+                DEBUG(dbgs() << "Found array: " << array->name << "\n");
+            }
         }
         return array;
     }
 
     std::vector<ArrayNode*> locateStoredArrayReferences(Value* V) {
-        std::vector<CastInst*> casts = findCastInsts(V);
-        std::vector<StoreInst*> stores = findStoreInsts(V);
+        std::vector<ArrayNode*> arrays;
+        std::vector<StoreInst*> stores = findStoreUsers(V);
+        std::vector<CastInst*> casts = findCastUsers(V);
 
         for (auto* CI : casts) {
-            std::vector<StoreInst*> castStores = findStoreInsts(CI);
+            std::vector<StoreInst*> castStores = findStoreUsers(CI);
             stores.insert(stores.end(), castStores.begin(), castStores.end());
         }
-        std::vector<ArrayNode*> arrays;
 
         for (auto* SI : stores) {
             Value* ptr = SI->getPointerOperand();
-            ArrayNode* array = getArrayNodeFromValue(ptr);
-            if (!array) {
-                if (auto* GEP = dyn_cast<GetElementPtrInst>(ptr)) {
-                    array = getArrayNodeFromValue(GEP->getPointerOperand());
-                }
-            }
-            if (array) {
+            if (ArrayNode* array = getArrayNodeFromValue(ptr)) {
                 arrays.push_back(array);
             }
         }
@@ -1310,6 +1275,31 @@ struct DFGForHLS : public ModulePass {
             }
         }
         return nullptr;
+    }
+
+    std::vector<std::string> tokenize(
+        const std::string& str, 
+        const std::string& delim=" "
+    ) {
+        std::vector<std::string> tokens;
+        std::size_t start = 0, end = 0;
+        if (str.empty()) {
+            return tokens;
+        }
+        if (str.find(delim) == std::string::npos) {
+            tokens.push_back(str);
+            return tokens;
+        }
+        while ((end = str.find(delim, start)) != std::string::npos) {
+            if (end != start) {
+                tokens.push_back(str.substr(start, end - start));
+            }
+            start = end + 1;
+        }
+        if (end != start) {
+            tokens.push_back(str.substr(start));
+        }
+        return tokens;
     }
 
     virtual void getAnalysisUsage(AnalysisUsage& AU) const override {
