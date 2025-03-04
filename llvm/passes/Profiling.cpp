@@ -17,7 +17,7 @@
 
 using namespace llvm;
 
-static cl::opt<std::string> outputFileName("pf", cl::desc("Specify output filename for profiling results"), cl::value_desc("filename"));
+static cl::opt<std::string> outputFilePath("pf", cl::desc("Specify output filename for profiling results"), cl::value_desc("filename"));
 
 namespace {
 
@@ -42,8 +42,8 @@ struct ProfilingPass : public ModulePass {
         FunctionType *saveProfileType = FunctionType::get(Type::getVoidTy(ctx), paramTypesSaveProfile, false);
         Function *saveProfile = Function::Create(saveProfileType, Function::ExternalLinkage, "saveProfile", &M);
 
-        GlobalVariable* profileFileName = new GlobalVariable(M, ArrayType::get(Type::getInt8Ty(ctx), outputFileName.length() + 1), true, 
-                                                             GlobalValue::PrivateLinkage, ConstantDataArray::getString(ctx, outputFileName, true), 
+        GlobalVariable* profileFileName = new GlobalVariable(M, ArrayType::get(Type::getInt8Ty(ctx), outputFilePath.length() + 1), true, 
+                                                             GlobalValue::PrivateLinkage, ConstantDataArray::getString(ctx, outputFilePath, true), 
                                                              "profileFileName");
         Constant* zero = ConstantInt::get(Type::getInt32Ty(ctx), 0);
         Constant* index[] = { zero, zero };

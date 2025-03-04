@@ -9,7 +9,7 @@ from torch_geometric.nn import HGTConv, GraphConv
 from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
 from torch_geometric.nn.models import JumpingKnowledge
-from layers import CustomSAGPooling
+from estimators.timing.layers import CustomSAGPooling
 
 
 class HGT(nn.Module):

@@ -21,7 +21,7 @@
 
 using namespace llvm;
 
-static cl::opt<std::string> outputFileName(
+static cl::opt<std::string> outputFilePath(
     "out-cfg", 
     cl::desc("Specify the file where the DFG should be written"), 
     cl::value_desc("filename")
@@ -39,9 +39,9 @@ struct WriteCFG : public ModulePass {
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "write-cfg"
 
-        std::ofstream outputFile(outputFileName);
+        std::ofstream outputFile(outputFilePath);
         if (!outputFile.is_open()) {
-            errs() << "Error opening file " << outputFileName << "\n";
+            errs() << "Error opening file " << outputFilePath << "\n";
             return false;
         }
 

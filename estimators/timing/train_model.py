@@ -13,7 +13,7 @@ import torch.nn as nn
 from pathlib import Path
 from torch_geometric.loader import DataLoader
 from sklearn.metrics import r2_score
-from models import HGT
+from estimators.timing.models import HGT
 
 
 def save_model(model, target_dir, model_name):
