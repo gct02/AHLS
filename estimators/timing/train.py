@@ -1,4 +1,5 @@
 import os
+import sys
 import argparse
 import random
 from pathlib import Path
@@ -194,8 +195,9 @@ def main(args: Dict[str, str]):
     # Set random seeds for reproducibility
     set_random_seeds(seed)
 
-    base_stats_dir = f"estimators/model_analysis"
-    base_pretrained_dir = f"estimators/pretrained"
+    current_dir = Path(sys.argv[0]).parent
+    base_stats_dir = f"{current_dir}/analysis/model"
+    base_pretrained_dir = f"{current_dir}/pretrained"
 
     benchmarks = sorted(os.listdir(dataset_path))
 
