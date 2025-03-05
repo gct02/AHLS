@@ -5,7 +5,6 @@ add_llvm_loadable_module(libDSE
 	SetHLSDirectivesMD.cpp
 	ExtractMD.cpp
 	WriteCFG.cpp
-	ModuleDFGBuilder.cpp
 	RenameValues.cpp
 	RemoveDummyGlobals.cpp
 	Profiling.cpp

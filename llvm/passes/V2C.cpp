@@ -18,8 +18,14 @@
 
 using namespace llvm;
 
-static cl::opt<std::string> opToPrune("opid", cl::desc("Specify the ID of the operation to be pruned."), cl::value_desc("operationID"));
-static cl::opt<std::string> opValue("const", cl::desc("Specify the constant value to replace the operation."), cl::value_desc("operationValue"));
+static cl::opt<std::string> opToPrune(
+    "opid", 
+    cl::desc("Specify the ID of the operation to be pruned.")
+);
+static cl::opt<std::string> opValue(
+    "const", 
+    cl::desc("Specify the constant value to replace the operation.")
+);
 
 namespace {
 

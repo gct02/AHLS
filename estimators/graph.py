@@ -8,7 +8,7 @@ from pathlib import Path
 from enum import IntEnum
 from torch import Tensor
 from torch_geometric.data import HeteroData, Data
-from torch_geometric.utils import to_networkx
+from torch_geometric.utils import to_networkx, remove_isolated_nodes
 
 NODE_TYPES = ['inst', 'var', 'const', 'array', 'bb', 'func']
 EDGE_TYPES = [
@@ -632,16 +632,20 @@ def _build_edges(
 def _parse_md_file(
     metadata_path: Path
 ) -> Dict[str, Dict[str, Dict[str, str]]]:
-    # The format of the metadata file is as follows:
-    # <node_type_1>:
-    #   <node_name_1>:
-    #     <metadata_name_1>: <metadata_value_1>
-    #     <metadata_name_2>: <metadata_value_2>
-    #     ...
-    #   <node_name_2>:
-    #   ...
-    # <node_type_2>:
-    # ...
+    """
+    The format of the metadata file is as follows:
+
+    node_type_1:
+      node_name_1:
+        metadata_name_1: value
+        metadata_name_2: value
+        ...
+      node_name_2:
+      ...
+    node_type_2:
+    ...
+    
+    """
     with open(metadata_path, 'r') as f:
         lines = f.readlines()
 
@@ -696,7 +700,7 @@ def build_cdfg(
     ir_path: Path,
     metadata_path: Path,
     cfg_path: Path,
-    output_folder: Optional[Path] = None
+    output_folder: Optional[Path] = None,
 ) -> HeteroData:
     import programl
 

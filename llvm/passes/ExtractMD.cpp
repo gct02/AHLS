@@ -4,7 +4,6 @@
 #include "llvm/Analysis/ScalarEvolutionExpressions.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/IR/LLVMContext.h"
-#include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/Metadata.h"
 #include "llvm/IR/Module.h"
 #include "llvm/IR/Function.h"
@@ -39,9 +38,9 @@ typedef struct {
     std::string functionName;
     std::string name;
     std::unordered_map<std::string, uint32_t> values;
-} AnalysisMetadata;
+} MetadataCollection;
 
-using MetadataDict = std::unordered_map<std::string, std::vector<AnalysisMetadata>>;
+using MetadataDict = std::unordered_map<std::string, std::vector<MetadataCollection>>;
 
 struct ExtractMD : public ModulePass {
     static char ID;
@@ -52,7 +51,7 @@ struct ExtractMD : public ModulePass {
 
         MetadataDict md;
 
-        getGlobalValuesMD(md, M);
+        getGlobalValuesMetadata(md, M);
         getInstructionsMD(md, M);
 
         std::ofstream out(outputFile);
@@ -66,7 +65,7 @@ struct ExtractMD : public ModulePass {
             const auto& metadata = item.second;
 
             out << type << ":\n";
-            for (const AnalysisMetadata& m : metadata) {
+            for (const MetadataCollection& m : metadata) {
                 out << "  " << m.name << ":\n";
                 if (!m.functionName.empty()) {
                     out << "    functionName: " << m.functionName << "\n";
@@ -83,10 +82,17 @@ struct ExtractMD : public ModulePass {
     }
 
     uint32_t MDOperandToInt(MDNode* md, uint32_t index) {
-        return cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(md->getOperand(index))->getValue())->getZExtValue();
+        return cast<ConstantInt>(
+            dyn_cast<ConstantAsMetadata>(
+                md->getOperand(index)
+            )->getValue()
+        )->getZExtValue();
     }
 
-    uint32_t getMDOperandValue(Value& V, StringRef name, uint32_t index, uint32_t defaultValue=0) {
+    uint32_t getMDOperandValue(
+        Value& V, StringRef name, uint32_t index, 
+        uint32_t defaultValue=0
+    ) {
         MDNode* md = nullptr;
         if (Instruction* I = dyn_cast<Instruction>(&V)) {
             md = I->getMetadata(name);
@@ -98,9 +104,9 @@ struct ExtractMD : public ModulePass {
         return md == nullptr ? defaultValue : MDOperandToInt(md, index);
     }
 
-    void getGlobalValuesMD(MetadataDict& md, Module& M) {
+    void getGlobalValuesMetadata(MetadataDict& md, Module& M) {
         for (GlobalObject& G : M.getGlobalList()) {
-            AnalysisMetadata m;
+            MetadataCollection m;
 
             errs() << "Global: " << G.getName() << "\n";
 
@@ -131,22 +137,21 @@ struct ExtractMD : public ModulePass {
                 m.values["numDims"] = numDims;
 
                 for (uint32_t i = 1; i <= numDims; i++) {
-                    m.values["numElements." + std::to_string(i)] = getMDOperandValue(
-                        G, "numElements." + std::to_string(i), 0
-                    );
+                    std::string mdName = "numElements." + std::to_string(i);
+                    m.values[mdName] = getMDOperandValue(G, mdName, 0);
                 }
                 m.values["numElements"] = getMDOperandValue(G, "numElements", 0);
                 m.values["elementType"] = getMDOperandValue(G, "elementType", 0);
                 m.values["elementBitwidth"] = getMDOperandValue(G, "elementBitwidth", 0);
 
-                if (MDNode* arrayPartitionMD = G.getMetadata("arrayPartition")) {
+                if (MDNode* APMD = G.getMetadata("arrayPartition")) {
                     m.values["arrayPartition"] = 1;
-                    m.values["arrayPartitionID"] = MDOperandToInt(arrayPartitionMD, 0);
-                    m.values["arrayPartitionType"] = MDOperandToInt(arrayPartitionMD, 1);
-                    m.values["arrayPartitionDim"] = MDOperandToInt(arrayPartitionMD, 2);
-                    m.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartitionMD, 3);
-                    m.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartitionMD, 4);
-                    m.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartitionMD, 5);
+                    m.values["arrayPartitionID"] = MDOperandToInt(APMD, 0);
+                    m.values["arrayPartitionType"] = MDOperandToInt(APMD, 1);
+                    m.values["arrayPartitionDim"] = MDOperandToInt(APMD, 2);
+                    m.values["arrayPartitionFactor"] = MDOperandToInt(APMD, 3);
+                    m.values["arrayPartitionDimSize"] = MDOperandToInt(APMD, 4);
+                    m.values["arrayPartitionNumPartitions"] = MDOperandToInt(APMD, 5);
                 }
             }
 
@@ -163,7 +168,7 @@ struct ExtractMD : public ModulePass {
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
                     // Get metadata from the instruction
-                    AnalysisMetadata instMD;
+                    MetadataCollection instMD;
 
                     // For instructions, the key will be the instruction's opID
                     uint32_t opID = getMDOperandValue(I, "opID", 0);
@@ -226,7 +231,7 @@ struct ExtractMD : public ModulePass {
 
                     if (!I.getType()->isVoidTy()) {
                         // Get metadata for the value produced by the instruction
-                        AnalysisMetadata valMD;
+                        MetadataCollection valMD;
 
                         valMD.name = I.getName().str();
                         valMD.functionName = F.hasName() ? F.getName().str() : "";
@@ -251,14 +256,14 @@ struct ExtractMD : public ModulePass {
                             valMD.values["elementType"] = getMDOperandValue(I, "elementType", 0);
                             valMD.values["elementBitwidth"] = getMDOperandValue(I, "elementBitwidth", 0);
 
-                            if (MDNode* arrayPartition = I.getMetadata("arrayPartition")) {
+                            if (MDNode* APMD = I.getMetadata("arrayPartition")) {
                                 valMD.values["arrayPartition"] = 1;
-                                valMD.values["arrayPartitionID"] = MDOperandToInt(arrayPartition, 0);
-                                valMD.values["arrayPartitionType"] = MDOperandToInt(arrayPartition, 1);
-                                valMD.values["arrayPartitionDim"] = MDOperandToInt(arrayPartition, 2);
-                                valMD.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartition, 3);
-                                valMD.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartition, 4);
-                                valMD.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartition, 5);
+                                valMD.values["arrayPartitionID"] = MDOperandToInt(APMD, 0);
+                                valMD.values["arrayPartitionType"] = MDOperandToInt(APMD, 1);
+                                valMD.values["arrayPartitionDim"] = MDOperandToInt(APMD, 2);
+                                valMD.values["arrayPartitionFactor"] = MDOperandToInt(APMD, 3);
+                                valMD.values["arrayPartitionDimSize"] = MDOperandToInt(APMD, 4);
+                                valMD.values["arrayPartitionNumPartitions"] = MDOperandToInt(APMD, 5);
                             }
                         }
                         md["value"].push_back(valMD);
@@ -277,4 +282,8 @@ struct ExtractMD : public ModulePass {
 }  // anonymous namespace
 
 char ExtractMD::ID = 0;
-static RegisterPass<ExtractMD> X("extract-md", "Extract metadata from the module", false, false);
+static RegisterPass<ExtractMD> X(
+    "extract-md", 
+    "Extract metadata from the module", 
+    false, false
+);

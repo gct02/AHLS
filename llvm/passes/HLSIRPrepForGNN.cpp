@@ -55,7 +55,7 @@ struct HLSIRPrepForGNN : ModulePass {
         auto argIdx = arg->getArgNo();
         const auto &attr = attrs.getParamAttr(argIdx, attrName);
         auto attrStr = attr.getValueAsString();
-        if (attrStr.empty())
+        if (attrStr.empty()) 
             return 0;
 
         unsigned size;
@@ -84,7 +84,11 @@ struct HLSIRPrepForGNN : ModulePass {
     }
 
     uint32_t MDOperandToInt(MDNode* md, uint32_t index) {
-        return cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(md->getOperand(index))->getValue())->getZExtValue();
+        return cast<ConstantInt>(
+            dyn_cast<ConstantAsMetadata>(
+                md->getOperand(index)
+            )->getValue()
+        )->getZExtValue();
     }
 
     uint32_t getMDOperandValue(Value& V, StringRef name, uint32_t index, uint32_t defaultValue=0) {
@@ -128,13 +132,11 @@ struct HLSIRPrepForGNN : ModulePass {
         }
     }
 
-    /*
-     * Create a global variable <func>.<arg> for each argument arg
-     * of each function func in the module M.
-     * Note: If the argument is a decayed array, the global variable
-     * will have the same type as the original array if the 
-     * "fpga.decayed.dim.hint" attribute is set.
-     */
+    // Create a global variable <func>.<arg> for each argument arg
+    // of each function func in the module M.
+    // Note: If the argument is a decayed array, the global variable
+    // will have the same type as the original array if the 
+    // "fpga.decayed.dim.hint" attribute is set.
     void extractParamsAsGlobals(Module& M) {
         for (Function& F : M) {
             if (!F.hasName() || F.isIntrinsic()) {
@@ -318,11 +320,12 @@ struct HLSIRPrepForGNN : ModulePass {
         int counter = 0;
         for (Function* F : partSetIntrinsics) {
             std::string newFuncName = "part_set_" + std::to_string(++counter);
-            FunctionType* funcType = FunctionType::get(
-                F->getReturnType(), 
-                {F->getArg(0)->getType(), F->getArg(1)->getType(), F->getArg(2)->getType(), F->getArg(3)->getType()}, 
-                false
-            );
+            ArrayRef<Type*> argTypes = {
+                F->getArg(0)->getType(), 
+                F->getArg(1)->getType(), 
+                F->getArg(2)->getType()
+            };
+            FunctionType* funcType = FunctionType::get(F->getReturnType(), argTypes, false);
             Function* partSetFunction = Function::Create(
                 funcType, 
                 GlobalValue::LinkageTypes::ExternalLinkage, 
@@ -363,8 +366,11 @@ struct HLSIRPrepForGNN : ModulePass {
         }
     }
 
-    void replaceIntrinsicWithFunction(Module& M, LLVMContext& ctx, Function* intrinsic, 
-                                      Function* newFunction) {
+    void replaceIntrinsicWithFunction(
+        Module& M, LLVMContext& ctx, 
+        Function* intrinsic, 
+        Function* newFunction
+    ) {
         // Replace uses of the intrinsic with calls to the new function
         for (auto it = intrinsic->use_begin(); it != intrinsic->use_end(); ) {
             Use& U = *it++;
@@ -389,5 +395,7 @@ struct HLSIRPrepForGNN : ModulePass {
 
 char HLSIRPrepForGNN::ID = 0;
 static RegisterPass<HLSIRPrepForGNN> X(
-    "prep-gnn", "Preprocess Vitis IR to use it as input to a GNN model", false, false
+    "prep-gnn", 
+    "Preprocess Vitis IR to use it as input to a GNN model", 
+    false, false
 );

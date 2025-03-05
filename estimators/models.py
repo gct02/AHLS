@@ -1,15 +1,14 @@
-from typing import Dict, Union, Optional
-from torch.types import Device
-from torch_geometric.typing import Metadata
+from typing import Dict, Union, Optional, List
 
 import torch
 import torch.nn as nn
 from torch import Tensor
-from torch_geometric.nn import HGTConv, GraphConv
+from torch_geometric.nn import HGTConv, ASAPooling, GraphConv
 from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
 from torch_geometric.nn.models import JumpingKnowledge
-from layers import CustomSAGPooling
+from torch.types import Device
+from torch_geometric.typing import Metadata
 
 
 class HGT(nn.Module):
@@ -40,18 +39,26 @@ class HGT(nn.Module):
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
         hid_dim: int,
+        batch_size: int,
         layers: int = 6,
         heads: int = 1,
         dropout: float = 0.0,
         pool_size: int = 16,
         jk_mode: str = 'lstm',
+        jk_layers: Optional[List[int]] = None,
         device: Optional[Device] = 'cpu'
     ):
         super().__init__()
 
         self.device = device
         self.layers = layers
+        self.batch_size = batch_size
         self.pool_size = pool_size
+
+        if jk_layers:
+            self.jk_layers = jk_layers
+        else:
+            self.jk_layers = list(range(layers))
 
         # Define convolutional layers
         self.conv = nn.ModuleList([
@@ -59,18 +66,11 @@ class HGT(nn.Module):
             for i in range(layers)
         ])
 
-        if layers == 1:
-            self.jk_layers = [0]
-        elif layers == 2:
-            self.jk_layers = [0, 1]
-        else:
-            self.jk_layers = [0, layers // 2, layers - 1]
-
         # Define Jumping Knowledge layer
         self.jk = JumpingKnowledge(mode=jk_mode, channels=hid_dim, num_layers=len(self.jk_layers))
 
         # Define pooling layer
-        self.pool = CustomSAGPooling(hid_dim, ratio=pool_size, GNN=GraphConv)
+        self.pool = ASAPooling(hid_dim, ratio=pool_size, GNN=GraphConv, dropout=dropout)
 
         # Define fully connected layers
         hid_dim_fc = [hid_dim * pool_size]
@@ -128,18 +128,18 @@ class HGT(nn.Module):
         # Jumping Knowledge layer
         out = self.jk(outs)
 
-        hom = data.to_homogeneous()
-        num_batches = hom.batch.max().item() + 1
+        edge_index_hom = torch.cat([edge_index[et] for et in edge_index.keys()], dim=1)
+        batch_hom = torch.cat([data.batch_dict[nt] for nt in data.batch_dict.keys()], dim=0)
 
         # Pooling layer
-        out = self.pool(out, edge_index=hom.edge_index, batch=hom.batch)[0]
-        out = out.view(num_batches, -1)
-
-        # Fully connected layers
-        out = self.mlp(out)
+        out = self.pool(out, edge_index=edge_index_hom, batch=batch_hom)[0]
+        out = out.view(self.batch_size, -1)
 
         # Avoid NaNs (edge case handling)
         out = torch.nan_to_num(out)
+
+        # Fully connected layers
+        out = self.mlp(out)
 
         return out.flatten()
 
