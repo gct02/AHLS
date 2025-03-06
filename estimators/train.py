@@ -230,9 +230,8 @@ def main(args: Dict[str, str]):
         )
 
         model = HGT(
-            METADATA, NODE_FEATURE_DIMS, 1, hid_dim=32, batch_size=batch_size,
-            layers=4, heads=8, dropout=0.1, pool_size=16, jk_mode='lstm', 
-            device=DEVICE   
+            METADATA, NODE_FEATURE_DIMS, 1, hid_dim=32, layers=4, heads=8, 
+            dropout=0.1, pool_size=16, jk_mode='lstm', device=DEVICE   
         )
         if loss == 'huber':
             loss_fn = nn.HuberLoss(delta=residual)

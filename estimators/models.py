@@ -40,7 +40,6 @@ class HGT(nn.Module):
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
         hid_dim: int,
-        batch_size: int,
         layers: int = 6,
         heads: int = 1,
         dropout: float = 0.0,
@@ -53,7 +52,6 @@ class HGT(nn.Module):
 
         self.device = device
         self.layers = layers
-        self.batch_size = batch_size
         self.pool_size = pool_size
 
         # Define convolutional layers
@@ -131,12 +129,14 @@ class HGT(nn.Module):
             out = self.pool[i](out, edge_index=edge_index_hom, batch=batch_hom)[0]
             outs.append(out)
 
-        # Jumping Knowledge layer
-        out = self.jk(outs)
-        out = out.view(self.batch_size, -1)
-
         # Avoid NaNs (edge case handling)
         out = torch.nan_to_num(out)
+
+        # Jumping Knowledge layer
+        out = self.jk(outs)
+
+        batch_size = batch_hom.max().item() + 1
+        out = out.view(batch_size, -1)
 
         # Fully connected layers
         out = self.mlp(out)

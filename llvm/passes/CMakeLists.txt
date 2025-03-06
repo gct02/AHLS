@@ -1,12 +1,13 @@
-add_llvm_loadable_module(libDSE
+add_llvm_loadable_module(libHLSDSE
+	HLSDSEUtils.cpp
+	TransformForCDFGExtraction.cpp
 	UpdateMD.cpp
-	HLSIRPrepForGNN.cpp
-	HLSIRPrepForX86.cpp
 	SetHLSDirectivesMD.cpp
 	ExtractMD.cpp
-	WriteCFG.cpp
+	ExtractLoopHierarchy.cpp
 	RenameValues.cpp
-	RemoveDummyGlobals.cpp
+	CleanupExtractedParams.cpp
+	TransformForX86.cpp
 	Profiling.cpp
 	RemoveIOFCall.cpp
 	V2C.cpp

@@ -7,7 +7,7 @@ HLS_LLVM_DIR="${HOME}/Documents/hls-llvm-project" # Change this to the path of t
 HLS_LLVM_BUILD_DIR="${HLS_LLVM_DIR}/hls-build"
 
 # Set the HLS LLVM environment variables
-export DSE_LIB="${HLS_LLVM_BUILD_DIR}/lib/libDSE.so"
+export DSE_LIB="${HLS_LLVM_BUILD_DIR}/lib/libHLSDSE.so"
 export OPT="${HLS_LLVM_BUILD_DIR}/bin/opt"
 export LLI="${HLS_LLVM_BUILD_DIR}/bin/lli"
 export LLC="${HLS_LLVM_BUILD_DIR}/bin/llc"
