@@ -82,21 +82,23 @@ def process_ir(
     tmp1 = ir_src.parent / "tmp1.ll"
     tmp2 = ir_src.parent / "tmp2.ll"
 
-    default_opt = ("-loop-simplify -scalar-evolution -indvars -mem2reg -lowerswitch -lowerinvoke "
-                   + "-indirectbr-expand -instnamer -strip-dead-prototypes -strip-debug")
+    clean_opt = "-strip-debug -strip-dead-prototypes -instnamer -indirectbr-expand -lowerinvoke -lowerswitch"
+    transform_opt = "-mem2reg -indvars -loop-simplify -scalar-evolution"
+
     try:
-        run_opt(ir_src, tmp1, default_opt)
-        run_opt(tmp1, tmp2, "-prep-gnn")
-        run_opt(tmp2, tmp1, "-update-md")
-        run_opt(tmp1, tmp2, f"-set-hls-md -dir {directives.as_posix()}")
-        run_opt(tmp2, tmp1, "-rename-vals")
+        run_opt(ir_src, tmp1, clean_opt)
+        run_opt(tmp1, tmp2, transform_opt)
+        run_opt(tmp2, tmp1, "-prep-gnn")
+        run_opt(tmp1, tmp2, "-update-md")
+        run_opt(tmp2, tmp1, f"-set-hls-md -dir {directives.as_posix()}")
+        run_opt(tmp1, tmp2, "-rename-vals")
         
         subprocess.check_output(
-            f"{OPT} -load {DSE_LIB} -extract-md -out-md {out_md.as_posix()} < {tmp1.as_posix()};", 
+            f"{OPT} -load {DSE_LIB} -extract-md -out-md {out_md.as_posix()} < {tmp2.as_posix()};", 
             shell=True, stderr=subprocess.STDOUT
         )
         
-        run_opt(tmp1, ir_dst, "-rm-dummy-globals")
+        run_opt(tmp2, ir_dst, "-rm-dummy-globals")
 
         subprocess.check_output(
             f"{OPT} -load {DSE_LIB} -write-cfg -out-cfg {out_cfg.as_posix()} < {ir_dst.as_posix()};", 

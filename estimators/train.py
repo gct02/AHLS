@@ -231,8 +231,8 @@ def main(args: Dict[str, str]):
 
         model = HGT(
             METADATA, NODE_FEATURE_DIMS, 1, hid_dim=32, batch_size=batch_size,
-            layers=8, heads=8, dropout=0.1, pool_size=16, jk_mode='lstm', 
-            jk_layers=[1, 3, 5, 7], device=DEVICE
+            layers=4, heads=8, dropout=0.1, pool_size=16, jk_mode='lstm', 
+            device=DEVICE   
         )
         if loss == 'huber':
             loss_fn = nn.HuberLoss(delta=residual)
@@ -582,12 +582,12 @@ def prepare_data_loaders(
 
     train_data = HLSDataset(
         f"{Path(sys.argv[0]).parent}/dataset/train", target_metric, dataset_dir, 
-        copy_data=False, process_data=True, 
+        copy_data=True, process_data=True, 
         benches=train_benches, stats=stats
     )
     test_data = HLSDataset(
         f"{Path(sys.argv[0]).parent}/dataset/test", target_metric, dataset_dir, 
-        copy_data=False, process_data=True,
+        copy_data=True, process_data=True,
         benches=test_benches, stats=stats
     )
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
