@@ -47,15 +47,13 @@ struct TransformForCDFGExtraction : ModulePass {
     void setIDMetadataToInstructions(Module& M) {
         uint32_t opID = 1, bbID = 1, funcID = 1;
         for (Function& F : M) {
-            if (!F.hasName() || F.isIntrinsic() || F.size() == 0) {
+            if (F.isIntrinsic() || F.size() == 0) {
                 funcID++;
                 continue;
             }
             setIntMetadata(F, "functionID", funcID);
             for (BasicBlock& BB : F) {
-                if (BB.size() == 0) {
-                    continue;
-                }
+                if (BB.size() == 0) continue;
                 for (Instruction& I : BB) {
                     setIntMetadata(I, "opID", opID++);
                     setIntMetadata(I, "bbID", bbID);
@@ -85,24 +83,25 @@ struct TransformForCDFGExtraction : ModulePass {
             if (!F.hasName() || F.isIntrinsic() || F.size() == 0) {
                 continue;
             }
+            uint32_t functionID = getIntMetadata(F, "functionID", 0);
+            if (functionID == 0) {
+                errs() << "Error: Function " << F.getName() << " does not have a functionID\n";
+                continue;
+            }
             for (Argument& A : F.args()) {
                 std::string globalName = F.getName().str() + "." + A.getName().str();
                 uint32_t decayedDimSize = getDecayedDimSize(&A);
-
                 Type* argTy = A.getType();
                 Type* Ty;
-                if (decayedDimSize > 0) {
+                if (decayedDimSize != 0) {
                     Ty = ArrayType::get(argTy->getPointerElementType(), decayedDimSize);
                 } else {
                     Ty = argTy;
                 }
-
                 GlobalVariable* GV = new GlobalVariable(
                     M, Ty, true, GlobalValue::ExternalLinkage, nullptr, globalName
                 );
                 setIntMetadata(*GV, "param", 1);
-
-                uint32_t functionID = getIntMetadata(F, "functionID", 0);
                 setIntMetadata(*GV, "functionID", functionID);
             }
         }

@@ -83,17 +83,16 @@ struct ExtractMD : public ModulePass {
     static char ID;
     ExtractMD() : ModulePass(ID) {}
 
-    uint32_t maxLoopID = 0;
     std::unordered_set<uint32_t> loopIDs;
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "extract-md"
 
-        findMaxLoopID(M);
-
         MetadataDict md;
 
         getMetadataFromGlobals(md, M);
+        getMetadataFromFunctions(md, M);
+        getMetadataFromLoops(md, M);
         getMetadataFromInstructions(md, M);
 
         writeMDToFile(md);
@@ -122,22 +121,6 @@ struct ExtractMD : public ModulePass {
                     const auto& key = mdEntry.first;
                     const auto& value = mdEntry.second;
                     out << "    " << key << ": " << value << "\n";
-                }
-            }
-        }
-    }
-
-    void findMaxLoopID(Module& M) {
-        maxLoopID = 0;
-        for (Function& F : M) {
-            if (F.size() == 0) continue;
-            for (BasicBlock& BB : F) {
-                if (BB.size() == 0) continue;
-                if (MDNode* loopMD = BB.getTerminator()->getMetadata("loopID")) {
-                    uint32_t loopID = getIntMDOperand(loopMD, 0);
-                    if (loopID > maxLoopID) {
-                        maxLoopID = loopID;
-                    }
                 }
             }
         }
@@ -187,23 +170,24 @@ struct ExtractMD : public ModulePass {
         }
     }
 
-    void getLoopDirectiveMD(MDCollection& loopMD, Instruction& I) {
-        if (MDNode* loopFlattenMD = I.getMetadata("loopFlatten")) {
+    void getLoopDirectiveMD(MDCollection& loopMD, BasicBlock* loopHeader) {
+        auto* term = loopHeader->getTerminator();
+        if (MDNode* loopFlattenMD = term->getMetadata("loopFlatten")) {
             loopMD["loopFlatten"] = 1;
             loopMD["loopFlattenID"] = getIntMDOperand(loopFlattenMD, 0);
         }
-        if (MDNode* loopMergeMD = I.getMetadata("loopMerge")) {
+        if (MDNode* loopMergeMD = term->getMetadata("loopMerge")) {
             loopMD["loopMerge"] = 1;
             loopMD["loopMergeID"] = getIntMDOperand(loopMergeMD, 0);
             loopMD["functionLevel"] = getIntMDOperand(loopMergeMD, 1);
         }
-        if (MDNode* pipelineMD = I.getMetadata("pipeline")) {
+        if (MDNode* pipelineMD = term->getMetadata("pipeline")) {
             loopMD["pipeline"] = 1;
             loopMD["pipelineID"] = getIntMDOperand(pipelineMD, 0);
             loopMD["pipelineII"] = getIntMDOperand(pipelineMD, 1);
             loopMD["functionLevel"] = getIntMDOperand(pipelineMD, 2);
         }
-        if (MDNode* unrollMD = I.getMetadata("unroll")) {
+        if (MDNode* unrollMD = term->getMetadata("unroll")) {
             loopMD["unroll"] = 1;
             loopMD["unrollID"] = getIntMDOperand(unrollMD, 0);
             loopMD["unrollComplete"] = getIntMDOperand(unrollMD, 1);
@@ -211,88 +195,33 @@ struct ExtractMD : public ModulePass {
         }
     }
 
-    void getLoopMD(MetadataDict& mdDict, Function& F, BasicBlock& BB) {
-        auto* term = BB.getTerminator();
-        if (MDNode* loopIDMD = term->getMetadata("loopID")) {
-            uint32_t loopID = getIntMDOperand(loopIDMD);
-            if (loopID == 0) {
-                return;
-            }
-            if (loopIDs.find(loopID) != loopIDs.end()) {
-                return;
-            }
-            loopIDs.insert(loopID);
+    void getLoopMD(MetadataDict& mdDict, Loop* L) {
+        BasicBlock* header = L->getHeader();
+        uint32_t loopID = getIntMetadata(*header, "loopID");
 
-            MDCollection loopMD(
-                "loop." + std::to_string(loopID),
-                F.hasName() ? F.getName().str() : ""
-            );
-            loopMD["ID"] = loopID;
-            loopMD["functionID"] = getIntMetadata(F, "functionID");
-            loopMD["depth"] = getIntMetadata(*term, "loopDepth");
-            loopMD["tripCount"] = getIntMetadata(*term, "tripCount");
+        if (loopID == 0) {
+            return;
+        }
+        if (loopIDs.find(loopID) != loopIDs.end()) {
+            return;
+        }
+        loopIDs.insert(loopID);
 
-            getLoopDirectiveMD(loopMD, *term);
+        MDCollection loopMD(
+            "loop." + std::to_string(loopID),
+            header->getParent()->getName().str()
+        );
+        loopMD["ID"] = loopID;
+        loopMD["functionID"] = getIntMetadata(*header, "functionID");
+        loopMD["depth"] = getIntMetadata(*header, "loopDepth");
+        loopMD["tripCount"] = getIntMetadata(*header, "tripCount");
+        getLoopDirectiveMD(loopMD, header);
 
-            mdDict["loop"].push_back(loopMD);
-        } else if (term->getMetadata("loopFlatten") != nullptr
-                   || term->getMetadata("loopMerge") != nullptr
-                   || term->getMetadata("pipeline") != nullptr
-                   || term->getMetadata("unroll") != nullptr) {
-            // The loop has directives but no loopID
-            maxLoopID++;
-            MDCollection loopMD(
-                "loop." + std::to_string(maxLoopID),
-                F.hasName() ? F.getName().str() : ""
-            );
-            loopMD["ID"] = maxLoopID;
-            loopMD["functionID"] = getIntMetadata(F, "functionID");
+        mdDict["loop"].push_back(loopMD);
 
-            // Get LoopInfo and ScalarEvolution analysis results
-            LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
-            ScalarEvolution& SE = getAnalysis<ScalarEvolutionWrapperPass>(F).getSE();
-
-            if (Loop* L = LI.getLoopFor(&BB)) {
-                const SCEV* btcSCEV = SE.getBackedgeTakenCount(L);
-                uint64_t tripCount = 0;
-                if (const SCEVConstant* btc = dyn_cast<SCEVConstant>(btcSCEV)) {
-                    tripCount = btc->getValue()->getZExtValue();
-                }
-                uint32_t depth = L->getLoopDepth();
-                loopMD["tripCount"] = tripCount;
-                loopMD["depth"] = depth;
-
-                BasicBlock* header = L->getHeader();
-                setIntMetadata(*header, "loopDepth", depth);
-                setIntMetadata(*header, "tripCount", tripCount);
-
-                for (BasicBlock* BB : L->getBlocks()) {
-                    for (Instruction& I : *BB) {
-                        setIntMetadata(I, "loopID", maxLoopID);
-                    }
-                }
-            } else {
-                // This case should not happen in practice
-                loopMD["tripCount"] = 0;
-                loopMD["depth"] = 0;
-
-                setIntMetadata(BB, "loopDepth", 0);
-                setIntMetadata(BB, "tripCount", 0);
-
-                for (Instruction& I : BB) {
-                    setIntMetadata(I, "loopID", maxLoopID);
-                }
-                BasicBlock* exiting = term->getSuccessor(0);
-                for (Instruction& I : *exiting) {
-                    setIntMetadata(I, "loopID", maxLoopID);
-                }
-                BasicBlock* latch = term->getSuccessor(0);
-                for (Instruction& I : *latch) {
-                    setIntMetadata(I, "loopID", maxLoopID);
-                }
-            }
-            getLoopDirectiveMD(loopMD, *term);
-            mdDict["loop"].push_back(loopMD);
+        // Recursively get metadata for subloops
+        for (Loop* SL : L->getSubLoops()) {
+            getLoopMD(mdDict, SL);
         }
     }
 
@@ -376,13 +305,30 @@ struct ExtractMD : public ModulePass {
         }
     }
 
-    void getMetadataFromInstructions(MetadataDict& mdDict, Module& M) {
+    void getMetadataFromFunctions(MetadataDict& mdDict, Module& M) {
         for (Function& F : M) {
             if (F.size() == 0) continue;
             getFunctionMD(mdDict, F);
+        }
+    }
+
+    void getMetadataFromLoops(MetadataDict& mdDict, Module& M) {
+        for (Function& F : M) {
+            if (F.size() == 0) continue;
+            LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
+            for (Loop* L : LI) {
+                if (!L->getParentLoop()) {
+                    getLoopMD(mdDict, L);
+                }
+            }
+        }
+    }
+
+    void getMetadataFromInstructions(MetadataDict& mdDict, Module& M) {
+        for (Function& F : M) {
+            if (F.size() == 0) continue;
             for (BasicBlock& BB : F) {
                 if (BB.size() == 0) continue;
-                getLoopMD(mdDict, F, BB);
                 for (Instruction& I : BB) {
                     getInstructionMD(mdDict, F, I);
                     getValueMD(mdDict, F, I);

@@ -159,6 +159,8 @@ struct SetHLSDirectivesMD : public ModulePass {
                 if (header) {
                     header->getTerminator()->setMetadata("loopMerge", md);
                 } else {
+                    errs() << "Loop header not found for loop merge directive in label: " 
+                           << directive.label << "\n";
                     BB->getTerminator()->setMetadata("loopMerge", md);
                 }
                 return 0;
@@ -194,6 +196,8 @@ struct SetHLSDirectivesMD : public ModulePass {
             if (header) {
                 header->getTerminator()->setMetadata("loopFlatten", md);
             } else {
+                errs() << "Loop header not found for loop flatten directive in label: " 
+                       << directive.label << "\n";
                 BB->getTerminator()->setMetadata("loopFlatten", md);
             }
             return 0;
@@ -223,8 +227,15 @@ struct SetHLSDirectivesMD : public ModulePass {
             if (!BB->hasName() || BB->getName().str() != directive.label) {
                 continue;
             }
+            BasicBlock* target;
             BasicBlock* header = BB->getSingleSuccessor();
-            BasicBlock* target = header == nullptr ? BB : header;
+            if (header == nullptr) {
+                errs() << "Loop header not found for unroll directive in label: " 
+                       << directive.label << "\n";
+                target = BB;
+            } else {
+                target = header;
+            }
             auto* term = target->getTerminator();
 
             if (complete) {
@@ -281,6 +292,8 @@ struct SetHLSDirectivesMD : public ModulePass {
             if (header) {
                 header->getTerminator()->setMetadata("pipeline", md);
             } else {
+                errs() << "Loop header not found for pipeline directive in label: " 
+                       << directive.label << "\n";
                 BB->getTerminator()->setMetadata("pipeline", md);
             }
             return 0;

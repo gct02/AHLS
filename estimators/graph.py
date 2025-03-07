@@ -12,7 +12,7 @@ from torch_geometric.typing import NodeType, EdgeType
 
 NODE_TYPES = [
     'inst', 'var', 'const', 'array', 'loop', 
-    'loop-pragma', 'array-pragma'
+    'partition', 'unroll', 'pipeline', 'loop-opt'
 ]
 
 EDGE_TYPES = [
@@ -34,8 +34,10 @@ EDGE_TYPES = [
     ('loop', 'hierarchy', 'inst'),
 
     # Pragmas
-    ('loop-pragma', 'transform', 'loop'),
-    ('array-pragma', 'transform', 'array'),
+    ('partition', 'transform', 'array'),
+    ('unroll', 'transform', 'loop'),
+    ('pipeline', 'transform', 'loop'),
+    ('loop-opt', 'transform', 'loop'),
 
     # Self-loops
     ('inst', 'self', 'inst'),
@@ -43,8 +45,10 @@ EDGE_TYPES = [
     ('const', 'self', 'const'),
     ('array', 'self', 'array'),
     ('loop', 'self', 'loop'),
-    ('loop-pragma', 'self', 'loop-pragma'),
-    ('array-pragma', 'self', 'array-pragma')
+    ('partition', 'self', 'partition'),
+    ('unroll', 'self', 'unroll'),
+    ('pipeline', 'self', 'pipeline'),
+    ('loop-opt', 'self', 'loop-opt')
 ]
 
 METADATA = (NODE_TYPES, EDGE_TYPES)
@@ -54,8 +58,10 @@ VAR_FEATURES = 7
 CONST_FEATURES = 7
 ARRAY_FEATURES = 7
 LOOP_FEATURES = 2
-ARRAY_PRAGMA_FEATURES = 9
-LOOP_PRAGMA_FEATURES = 5
+PARTITION_FEATURES = 9
+UNROLL_FEATURES = 2
+PIPELINE_FEATURES = 1
+LOOP_OPT_FEATURES = 2
 
 NODE_FEATURE_DIMS = {
     'inst': INST_FEATURES,
@@ -63,8 +69,10 @@ NODE_FEATURE_DIMS = {
     'const': CONST_FEATURES,
     'array': ARRAY_FEATURES,
     'loop': LOOP_FEATURES,
-    'loop-pragma': LOOP_PRAGMA_FEATURES,
-    'array-pragma': ARRAY_PRAGMA_FEATURES
+    'partition': PARTITION_FEATURES,
+    'unroll': UNROLL_FEATURES,
+    'pipeline': PIPELINE_FEATURES,
+    'loop-opt': LOOP_OPT_FEATURES
 }
 
 
@@ -80,10 +88,10 @@ def build_cdfg(
         programl_graph = programl.from_llvm_ir(ir_file.read())
 
     metadata = _parse_md_file(metadata_path)
-    loop_hierarchy = _parse_loop_hierarchy(loop_hierarchy_path)
+    loop_hierarchy, top_level_loops = _parse_loop_hierarchy(loop_hierarchy_path)
 
     cdfg, indices, additional_edges = _build_nodes(
-        programl_graph, metadata, loop_hierarchy
+        programl_graph, metadata, loop_hierarchy, top_level_loops
     )
     cdfg = _build_edges(programl_graph, cdfg, indices, additional_edges)
 
@@ -116,7 +124,9 @@ def plot_cdfg(
     n_consts = cdfg_cp['const'].x.size(0)
     n_arrays = cdfg_cp['array'].x.size(0)
     n_loops = cdfg_cp['loop'].x.size(0)
-    n_loop_pragmas = cdfg_cp['loop-pragma'].x.size(0)
+    n_partitions = cdfg_cp['partition'].x.size(0)
+    n_loop_opts = cdfg_cp['loop-opt'].x.size(0)
+    n_unrolls = cdfg_cp['unroll'].x.size(0)
 
     def get_short_type(node_type: _PGMLNodeType) -> str:
         if node_type == 'inst':
@@ -129,9 +139,9 @@ def plot_cdfg(
             return 'A'
         elif node_type == 'loop':
             return 'L'
-        elif node_type == 'loop-pragma':
+        elif node_type == 'loop-opt':
             return 'LP'
-        elif node_type == 'array-pragma':
+        elif node_type == 'partition':
             return 'AP'
         return 'U'
         
@@ -144,10 +154,17 @@ def plot_cdfg(
             idx -= n_insts + n_vars + n_consts
         elif type == 'loop':
             idx -= n_insts + n_vars + n_consts + n_arrays
-        elif type == 'loop-pragma':
+        elif type == 'loop-opt':
             idx -= n_insts + n_vars + n_consts + n_arrays + n_loops
-        elif type == 'array-pragma':
-            idx -= n_insts + n_vars + n_consts + n_arrays + n_loops + n_loop_pragmas
+        elif type == 'partition':
+            idx -= (n_insts + n_vars + n_consts + n_arrays + n_loops 
+                    + n_loop_opts)
+        elif type == 'unroll':
+            idx -= (n_insts + n_vars + n_consts + n_arrays + n_loops 
+                    + n_loop_opts + n_partitions)
+        elif type == 'pipeline':
+            idx -= (n_insts + n_vars + n_consts + n_arrays + n_loops 
+                    + n_loop_opts + n_partitions + n_unrolls)
         return f"{get_short_type(type)}{idx}"
     
     for et in cdfg_cp.edge_index_dict.keys():
@@ -166,8 +183,10 @@ def plot_cdfg(
         "const": "#009ade",
         "array": "#af58ba",
         "loop": "#fa5252",
-        "loop-pragma": "#b8b8b8",
-        "array-pragma": "#b8b8b8"
+        "loop-opt": "#b8b8b8",
+        "partition": "#b8b8b8",
+        "unroll": "#b8b8b8",
+        "pipeline": "#b8b8b8"
     }
 
     node_colors = []
@@ -189,8 +208,10 @@ def plot_cdfg(
         ('const', 'data', 'inst'): "#1f1f1f", 
         ('loop', 'hierarchy', 'loop'): "#14a60f",
         ('loop', 'hierarchy', 'inst'): "#14a60f",
-        ('loop-pragma', 'transform', 'loop'): "#f216a5",
-        ('array-pragma', 'transform', 'array'): "#f216a5"
+        ('loop-opt', 'transform', 'loop'): "#f216a5",
+        ('unroll', 'transform', 'loop'): "#f216a5",
+        ('pipeline', 'transform', 'loop'): "#f216a5",
+        ('partition', 'transform', 'array'): "#f216a5"
     }
 
     edge_colors = []
@@ -386,18 +407,11 @@ _TYPE_ENC = {
     _LLVMTypeID.FUNCTION:  [0,0,0,0,0,1]
 }
 
-_LOOP_PRAGMA_ENC = {
-    "unroll": [1,0,0,0],
-    "flatten": [0,1,0,0],
-    "pipeline": [0,0,1,0],
-    "merge": [0,0,0,1]
-}
-
-
 def _build_nodes(
     programl_graph,
     metadata: Dict[str, Dict[str, Dict[str, str]]],
-    loop_hierarchy: Dict[int, List[int]]
+    loop_hierarchy: Dict[int, List[int]],
+    top_level_loops: Dict[int, List[int]]
 ) -> Tuple[HeteroData, Dict[NodeType, List[int]], Dict[EdgeType, Tensor]]:
     nodes = {nt: [] for nt in NODE_TYPES}
     indices = {nt: [] for nt in NODE_TYPES}
@@ -405,10 +419,11 @@ def _build_nodes(
     additional_edges = {
         ('loop', 'hierarchy', 'loop'): [],
         ('loop', 'hierarchy', 'inst'): [],
-        ('loop-pragma', 'transform', 'loop'): [],
-        ('array-pragma', 'transform', 'array'): []
+        ('partition', 'transform', 'array'): [],
+        ('unroll', 'transform', 'loop'): [],
+        ('pipeline', 'transform', 'loop'): [],
+        ('loop-opt', 'transform', 'loop'): []
     }
-    loops_in_function = {}
 
     for i, node in enumerate(programl_graph.node):
         node_type, node_text = node.type, node.text
@@ -424,9 +439,8 @@ def _build_nodes(
             if "!ID." not in node_full_text:
                 continue
 
-            op_id = int(node_full_text.split('!ID.')[1].split(' ')[0])
-            md = _to_numeric_md(metadata["instruction"][str(op_id)])
-
+            op_id = node_full_text.split('!ID.')[1].split(' ')[0]
+            md = _to_numeric_md(metadata["instruction"][op_id])
             opcode = md["opcode"]
             if opcode not in _INSTRUCTION_ENC:
                 one_hot_inst = [0] * 12
@@ -439,7 +453,6 @@ def _build_nodes(
             if "loopID" in md:
                 loop_id = md["loopID"]
                 additional_edges[('loop', 'hierarchy', 'inst')].append((loop_id, i))
-
         elif node_type == _PGMLNodeType.VAR or node_type == _PGMLNodeType.CONST:
             if '@' in node_full_text:
                 name = node_full_text[node_full_text.find('@') + 1:].split(' ')[0]
@@ -447,13 +460,10 @@ def _build_nodes(
                 name = node_full_text[node_full_text.find('%') + 1:].split(' ')[0]
             else:
                 # Value does not have a name (e.g. literal constant)
-                if '*' in node_full_text:
-                    # Value is a pointer
+                if '*' in node_full_text: # Value is a pointer
                     features = _TYPE_ENC[_LLVMTypeID.POINTER] + [0]
-                else:
-                    # Value is a literal constant
+                else: # Value is a literal constant
                     features = _parse_literal_const_info(node_text)
-
                 nt = 'var' if node_type == _PGMLNodeType.VAR else 'const'
                 nodes[nt].append(torch.tensor(features, dtype=torch.float32))
                 indices[nt].append(i)
@@ -479,21 +489,22 @@ def _build_nodes(
                 elem_type_id = array_md[5]
                 elem_bw = array_md[6]
                 features = array_md[:5] + _TYPE_ENC[elem_type_id] + [elem_bw]
+
                 nodes['array'].append(torch.tensor(features, dtype=torch.float32))
                 indices['array'].append(i)
 
                 if "partition" in md:
                     pragma_id = md["partitionID"]
-                    additional_edges[('array-pragma', 'transform', 'array')].append(
+                    additional_edges[('partition', 'transform', 'array')].append(
                         (pragma_id, i)
                     )
-                    if pragma_id in indices['array-pragma']:
+                    if pragma_id in indices['partition']:
                         continue
                     partition_feats = _get_partition_features(md)
-                    nodes['array-pragma'].append(
+                    nodes['partition'].append(
                         torch.tensor(partition_feats, dtype=torch.float32)
                     )
-                    indices['array-pragma'].append(pragma_id)
+                    indices['partition'].append(pragma_id)
             else:
                 type_id = md["type"]
                 bw = md["bitwidth"]
@@ -514,95 +525,79 @@ def _build_nodes(
         nodes['loop'].append(torch.tensor(features, dtype=torch.float32))
         indices['loop'].append(loop_id)
 
-        function_id = loop_md["functionID"]
-        if function_id not in loops_in_function:
-            loops_in_function[function_id] = []
-        loops_in_function[function_id].append(loop_id)
-
         if "unroll" in loop_md:
             pragma_id = loop_md["unrollID"]
-            additional_edges[('loop-pragma', 'transform', 'loop')].append(
+            additional_edges[('unroll', 'transform', 'loop')].append(
                 (pragma_id, loop_id)
             )
-            if pragma_id in indices['loop-pragma']:
+            if pragma_id in indices['unroll']:
                 continue
-
+            complete_unroll = loop_md["unrollComplete"]
             factor = loop_md["unrollFactor"]
-            unroll_features = _LOOP_PRAGMA_ENC["unroll"] + [factor]
-            nodes['loop-pragma'].append(
+            unroll_features = [complete_unroll, factor]
+            nodes['unroll'].append(
                 torch.tensor(unroll_features, dtype=torch.float32)
             )
-            indices['loop-pragma'].append(pragma_id)
+            indices['unroll'].append(pragma_id)
         if "flatten" in loop_md:
             pragma_id = loop_md["flattenID"]
-            additional_edges[('loop-pragma', 'transform', 'loop')].append(
+            additional_edges[('loop-opt', 'transform', 'loop')].append(
                 (pragma_id, loop_id)
             )
-            if pragma_id in indices['loop-pragma']:
+            if pragma_id in indices['loop-opt']:
                 continue
-
-            flatten_features = _LOOP_PRAGMA_ENC["flatten"] + [0]
-            nodes['loop-pragma'].append(
+            flatten_features = [0, 1]
+            nodes['loop-opt'].append(
                 torch.tensor(flatten_features, dtype=torch.float32)
             )
-            indices['loop-pragma'].append(pragma_id)
+            indices['loop-opt'].append(pragma_id)
         if "merge" in loop_md:
             pragma_id = loop_md["mergeID"]
-            additional_edges[('loop-pragma', 'transform', 'loop')].append(
-                (pragma_id, loop_id)
-            )
-            if pragma_id in indices['loop-pragma']:
+            for subloop_id in loop_hierarchy[loop_id]:
+                additional_edges[('loop-opt', 'transform', 'loop')].append(
+                    (pragma_id, subloop_id)
+                )
+            if pragma_id in indices['loop-opt']:
                 continue
-            
-            merge_features = _LOOP_PRAGMA_ENC["merge"] + [0]
-            nodes['loop-pragma'].append(
+            merge_features = [1, 0]
+            nodes['loop-opt'].append(
                 torch.tensor(merge_features, dtype=torch.float32)
             )
-            indices['loop-pragma'].append(pragma_id)
+            indices['loop-opt'].append(pragma_id)
         if "pipeline" in loop_md:
             pragma_id = loop_md["pipelineID"]
-            additional_edges[('loop-pragma', 'transform', 'loop')].append(
+            additional_edges[('pipeline', 'transform', 'loop')].append(
                 (pragma_id, loop_id)
             )
-            if pragma_id in indices['loop-pragma']:
+            if pragma_id in indices['pipeline']:
                 continue
-
-            pipeline_features = _LOOP_PRAGMA_ENC["pipeline"] + [0]
-            nodes['loop-pragma'].append(
+            pipeline_features = [1]
+            nodes['pipeline'].append(
                 torch.tensor(pipeline_features, dtype=torch.float32)
             )
-            indices['loop-pragma'].append(pragma_id)
+            indices['pipeline'].append(pragma_id)
 
     for function_md in metadata["function"].values():
         function_md = _to_numeric_md(function_md)
         function_id = function_md["ID"]
-        if function_id not in loops_in_function:
-            continue
         if "merge" in function_md:
             pragma_id = function_md["mergeID"]
-            merge_features = _LOOP_PRAGMA_ENC["merge"] + [1]
-            nodes['loop-pragma'].append(
+            for loop_id in top_level_loops[function_id]:
+                additional_edges[('loop-opt', 'transform', 'loop')].append(
+                    (pragma_id, loop_id)
+                )
+            if pragma_id in indices['loop-opt']:
+                continue
+            merge_features = [1, 0]
+            nodes['loop-opt'].append(
                 torch.tensor(merge_features, dtype=torch.float32)
             )
-            indices['loop-pragma'].append(pragma_id)
-            for loop_id in loops_in_function[function_id]:
-                additional_edges[('loop-pragma', 'transform', 'loop')].append(
-                    (pragma_id, loop_id)
-                )
-        if "pipeline" in function_md:
-            pragma_id = function_md["pipelineID"]
-            pipeline_features = _LOOP_PRAGMA_ENC["pipeline"] + [1]
-            nodes['loop-pragma'].append(
-                torch.tensor(pipeline_features, dtype=torch.float32)
-            )
-            indices['loop-pragma'].append(pragma_id)
-            for loop_id in loops_in_function[function_id]:
-                additional_edges[('loop-pragma', 'transform', 'loop')].append(
-                    (pragma_id, loop_id)
-                )
+            indices['loop-opt'].append(pragma_id)
 
     for loop_id, children in loop_hierarchy.items():
         for child_id in children:
+            if loop_id not in indices['loop'] or child_id not in indices['loop']:
+                continue
             additional_edges[('loop', 'hierarchy', 'loop')].append((loop_id, child_id))
 
     graph = HeteroData()
@@ -618,6 +613,8 @@ def _build_nodes(
         reindexed_edges[et] = []
         for edge in edges:
             src, dst = edge
+            if src not in indices[et[0]] or dst not in indices[et[2]]:
+                continue
             src_idx = indices[et[0]].index(src)
             dst_idx = indices[et[2]].index(dst)
             reindexed_edges[et].append(_build_edge_tensor(src_idx, dst_idx))
@@ -828,13 +825,28 @@ def _parse_md_file(
 
 def _parse_loop_hierarchy(
     loop_hierarchy_path: Path
-) -> Dict[int, List[int]]:
-    # Format: parent_id: child_id1, child_id2, ...
+) -> Tuple[Dict[int, List[int]], Dict[int, List[int]]]:
+    # File format: 
+    #
+    # Loop hierarchy:
+    # parent_id1: child_id11, child_id12, ...
+    # ...
+    # parent_idN: child_idN1, child_idN2, ...
+    #
+    # Top-level loops:
+    # function_id1: loop_id11, loop_id12, ...
+    # ...
+    # function_idN: loop_idN1, loop_idN2, ...
     with open(loop_hierarchy_path, 'r') as f:
         lines = f.readlines()
 
+    lines = lines[1:]
+    empty_line_idx = lines.index('\n')
+    loop_hierarchy_lines = lines[:empty_line_idx]
+    top_level_loops_lines = lines[empty_line_idx + 2:]
+
     loop_hierarchy = {}
-    for line in lines:
+    for line in loop_hierarchy_lines:
         parent_id, children = line.strip().split(':')
         parent_id = int(parent_id)
         if parent_id == 0 or children == '':
@@ -842,7 +854,14 @@ def _parse_loop_hierarchy(
         children = [int(c) for c in children.split(',')]
         loop_hierarchy[parent_id] = children
 
-    return loop_hierarchy
+    top_level_loops = {}
+    for line in top_level_loops_lines:
+        function_id, loops = line.strip().split(':')
+        function_id = int(function_id)
+        loops = [int(l) for l in loops.split(',')]
+        top_level_loops[function_id] = loops
+
+    return loop_hierarchy, top_level_loops
 
 
 if __name__ == "__main__":

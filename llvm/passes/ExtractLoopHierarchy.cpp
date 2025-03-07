@@ -22,7 +22,6 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include <unordered_set>
 
 #include "HLSDSEUtils.h"
 
@@ -41,12 +40,10 @@ struct ExtractLoopHierarchy : public ModulePass {
     ExtractLoopHierarchy() : ModulePass(ID) {}
 
     std::unordered_map<uint32_t, std::vector<uint32_t>> loopHierarchy;
-    std::unordered_map<Loop*, uint32_t> loopIDs;
+    std::unordered_map<uint32_t, std::vector<uint32_t>> topLevelLoops; // Function ID -> Loop IDs
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "loop-hierarchy"
-
-        collectLoopIDs(M);
 
         for (Function& F : M) {
             if (F.size() == 0) continue;
@@ -57,6 +54,7 @@ struct ExtractLoopHierarchy : public ModulePass {
                 }
             }
         }
+        getTopLevelLoops(M);
 
         std::ofstream out(outputFile);
         if (!out.is_open()) {
@@ -64,6 +62,7 @@ struct ExtractLoopHierarchy : public ModulePass {
             return false;
         }
 
+        out << "Loop hierarchy:\n";
         for (const auto& item : loopHierarchy) {
             uint32_t parentID = item.first;
             if (parentID == 0) continue;
@@ -77,32 +76,45 @@ struct ExtractLoopHierarchy : public ModulePass {
             out << "\n";
         }
 
+        out << "\nTop-level loops:\n";
+        for (const auto& item : topLevelLoops) {
+            uint32_t functionID = item.first;
+            const auto& loops = item.second;
+            out << functionID << ": ";
+            size_t numLoops = loops.size();
+            for (size_t i = 0; i < numLoops; i++) {
+                out << loops[i];
+                if (i < numLoops - 1) out << ", ";
+            }
+            out << "\n";
+        }
+
         return false;
     }
 
-    void collectLoopIDs(Module& M) {
+    void getLoopHierarchy(Loop* L, uint32_t parentID) {
+        uint32_t loopID = getIntMetadata(*L->getHeader(), "loopID");
+        if (loopID == 0) return;
+        loopHierarchy[parentID].push_back(loopID);
+        for (Loop* SL : L->getSubLoops()) {
+            DEBUG(dbgs() << "Parent: " << (L->getHeader()->hasName() ? L->getHeader()->getName() : "")
+                         << ", Child: " << (SL->getHeader()->hasName() ? SL->getHeader()->getName() : "")
+                         << "\n");
+            getLoopHierarchy(SL, loopID);
+        }
+    }
+
+    void getTopLevelLoops(Module& M) {
         for (Function& F : M) {
             if (F.size() == 0) continue;
             LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
             for (Loop* L : LI) {
-                Instruction* I = L->getHeader()->getTerminator();
-                uint32_t loopID = getIntMetadata(*I, "loopID");
-                if (loopID == 0) {
-                    continue;
+                if (!L->getParentLoop()) {
+                    uint32_t functionID = getIntMetadata(F, "functionID");
+                    uint32_t loopID = getIntMetadata(*L->getHeader(), "loopID");
+                    topLevelLoops[functionID].push_back(loopID);
                 }
-                if (loopIDs.find(L) != loopIDs.end()) {
-                    continue;
-                }
-                loopIDs[L] = loopID;
             }
-        }
-    }
-
-    void getLoopHierarchy(Loop* L, uint32_t parentID) {
-        uint32_t loopID = loopIDs[L];
-        loopHierarchy[parentID].push_back(loopID);
-        for (Loop* SL : L->getSubLoops()) {
-            getLoopHierarchy(SL, loopID);
         }
     }
 

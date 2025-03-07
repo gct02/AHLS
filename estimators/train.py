@@ -2,6 +2,7 @@ import os
 import sys
 import argparse
 import random
+import math
 from pathlib import Path
 from typing import List, Dict, Tuple, Optional, Union
 
@@ -523,10 +524,6 @@ def prepare_data_loaders(
     # 
     # - **inst (instruction)**  
     #   - 0-11: type  
-    #   - 12: n_uses  
-    #   - 13: mod_mem  
-    #   - 14: read_mem  
-    #   - 15: mod_cf  
     # 
     # - **var (variable)**  
     #   - 0-5: type  
@@ -541,43 +538,105 @@ def prepare_data_loaders(
     #   - 1-4: dim_sizes (dimension sizes)  
     #   - 5-10: elem_type (element type)  
     #   - 11: elem_bw (element bitwidth)  
-    #   - 12: partitioned  
-    #   - 13-15: partition_type  
-    #   - 16: full_partition  
-    #   - 17-20: partition_dims  
-    #   - 21: partition_factor  
+    #   
+    # - **array-pragma**
+    #   - 0-2: partition_type  
+    #   - 3: full_partition  
+    #   - 4-7: partition_dims  
+    #   - 8: partition_factor  
     # 
-    # - **bb (basic block)**  
-    #   - 0: n_insts (number of instructions)  
-    #   - 1: loop_depth  
-    #   - 2: trip_count  
-    #   - 3: pipelined  
-    #   - 4: merged  
-    #   - 5: flattened  
-    #   - 6: unrolled  
-    #   - 7: complete_unroll  
-    #   - 8: unroll_factor  
+    # - **loop**  
+    #   - 0: depth  
+    #   - 1: trip_count  
     # 
-    # - **func (function)**  
-    #   - 0: n_operands  
-    #   - 1: n_uses  
-    #   - 2: n_insts (number of instructions)  
-    #   - 3: n_bbs (number of basic blocks)  
-    #   - 4: n_loops (number of loops)  
-    #   - 5-10: ret_type (return type)  
-    #   - 11: ret_bw (return bitwidth)  
-    #   - 12: pipelined  
-    #   - 13: merged  
+    # - **loop-pragma**  
+    #   - 0-3: pragma_type
+    #   - 4: function_level or unroll_factor (depending on pragma type)
 
     filter_cols = {
-        'inst': list(range(12)) + [13, 14, 15],
         'var': list(range(6)),
         'const': list(range(6)),
-        'array': list(range(5, 11)) + list(range(12, 22)),
-        'bb': list(range(3, 8)),
-        'func': list(range(5, 11)) + [12, 13]
+        'array': [0, 1, 2, 3, 4, 11],
+        'array-pragma': [8]
     }
     stats = compute_stats(dataset_dir, target_metric, train_benches, filter_cols)
+
+    factor_sum, factor_squares, unroll_count = 0, 0, 0
+    tc_sum, tc_squares, tc_count = 0, 0, 0
+    depth_sum, depth_squares, depth_count = 0, 0, 0
+    for bench in train_benches:
+        bench_path = os.path.join(dataset_dir, bench)
+        if not os.path.isdir(bench_path):
+            continue
+        sols = os.listdir(bench_path)
+        sols = sorted(sols, key=lambda s: int(s.split("solution")[1]))
+        for sol in sols:
+            sol_path = os.path.join(bench_path, sol)
+            targets_path = os.path.join(sol_path, "targets.txt")
+            if not os.path.exists(targets_path):
+                continue
+
+            target_value = -1
+            with open(targets_path, 'r') as f:
+                for line in f:
+                    if line.startswith(target_metric):
+                        target_value = float(line.split("=")[1].strip())
+                        break
+
+            if target_value == -1:
+                continue
+
+            cdfg_path = os.path.join(sol_path, "cdfg.pt")
+            if not os.path.exists(cdfg_path):
+                continue
+
+            cdfg = torch.load(cdfg_path)
+            if 'loop-pragma' in cdfg.x_dict:
+                loop_pragma_feats = cdfg.x_dict['loop-pragma']
+                factor = loop_pragma_feats[:, -1]
+                zero_feats = factor == 0
+                one_feats = factor == 1
+                factor_sum += factor[~(zero_feats | one_feats)].sum().item()
+                factor_squares += (factor[~(zero_feats | one_feats)]**2).sum().item()
+                unroll_count += factor[~(zero_feats | one_feats)].numel()
+
+            if 'loop' in cdfg.x_dict:
+                loop_feats = cdfg.x_dict['loop']
+                tc = loop_feats[:, 1]
+                zero_feats = tc == 0
+                tc_sum += tc[~zero_feats].sum().item()
+                tc_squares += (tc[~zero_feats]**2).sum().item()
+                tc_count += tc[~zero_feats].numel()
+
+                depth = loop_feats[:, 0]
+                depth_sum += depth.sum().item()
+                depth_squares += (depth**2).sum().item()
+                depth_count += depth.numel()
+    
+    loop_pragma_feat_mean = torch.zeros(NODE_FEATURE_DIMS['loop-pragma'])
+    loop_pragma_feat_std = torch.ones(NODE_FEATURE_DIMS['loop-pragma'])
+    if unroll_count > 0:
+        loop_pragma_feat_mean[-1] = factor_sum / unroll_count
+        loop_pragma_feat_std[-1] = math.sqrt((factor_squares / unroll_count) 
+                                             - (loop_pragma_feat_mean**2))
+        
+    tc_mean = torch.zeros(NODE_FEATURE_DIMS['loop'])
+    tc_std = torch.ones(NODE_FEATURE_DIMS['loop'])
+    if tc_count > 0:
+        tc_mean[1] = tc_sum / tc_count
+        tc_std[1] = math.sqrt((tc_squares / tc_count) - (tc_mean[1]**2))
+
+    depth_mean = torch.zeros(NODE_FEATURE_DIMS['loop'])
+    depth_std = torch.ones(NODE_FEATURE_DIMS['loop'])
+    if depth_count > 0:
+        depth_mean[0] = depth_sum / depth_count
+        depth_std[0] = math.sqrt((depth_squares / depth_count) - (depth_mean[0]**2))
+
+    loop_feat_mean = torch.cat([depth_mean, tc_mean])
+    loop_feat_std = torch.cat([depth_std, tc_std])
+
+    stats['loop-pragma'] = {'mean': loop_pragma_feat_mean, 'std': loop_pragma_feat_std}
+    stats['loop'] = {'mean': loop_feat_mean, 'std': loop_feat_std}
 
     train_data = HLSDataset(
         f"{Path(sys.argv[0]).parent}/dataset/train", target_metric, dataset_dir, 
