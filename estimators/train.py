@@ -2,7 +2,7 @@ import os
 import sys
 import argparse
 import random
-import math
+import shutil
 from pathlib import Path
 from typing import List, Dict, Tuple, Optional, Union
 
@@ -48,7 +48,7 @@ def evaluate(
     loader: DataLoader,
     loss_fn: nn.Module,
     verbosity: int,
-    mode: str,
+    mode: str = 'test',
     log_dir: Optional[str] = None
 ) -> Tuple[float, float, float, List[Tuple[float, float]]]:
     if verbosity > 0:
@@ -112,9 +112,7 @@ def train_model(
     test_bench: Optional[str] = None,
     metric: Optional[str] = None
 ) -> None:
-    train_abs_errs = []
-    test_abs_errs, test_rel_errs = [], []
-
+    train_abs_errs, test_abs_errs, test_rel_errs = [], [], []
     test_instance_preds = [[] for _ in range(len(test_loader))]
 
     for epoch in range(epochs):
@@ -201,6 +199,7 @@ def main(args: Dict[str, str]):
     target_metric = args['target']
     selected_test_bench = args['testbench']
     verbosity = int(args['verbose'])
+    process_data = args['process_data']
 
     matplotlib.use('Agg')
 
@@ -227,7 +226,8 @@ def main(args: Dict[str, str]):
         )
         train_benches = [b for b in benchmarks if b != test_bench]
         train_loader, test_loader = prepare_data_loaders(
-            dataset_path, target_metric, train_benches, test_bench, batch_size
+            dataset_path, target_metric, train_benches, 
+            test_bench, batch_size, process_data
         )
 
         model = HGT(
@@ -509,12 +509,14 @@ def make_output_dirs(
 
     return run_analysis_dir, stats_dir, graphs_dir, pretrained_dir
 
+
 def prepare_data_loaders(
-    dataset_dir: str, 
+    original_dataset_dir: str, 
     target_metric: str,
     train_benches: Union[List[str], str],
     test_benches: Union[List[str], str],
-    batch_size: int
+    batch_size: int,
+    process_data: bool = False
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
     
     # Do not normalize columns representing one-hot encoded 
@@ -538,120 +540,70 @@ def prepare_data_loaders(
     #   - 1-4: dim_sizes (dimension sizes)  
     #   - 5-10: elem_type (element type)  
     #   - 11: elem_bw (element bitwidth)  
-    #   
-    # - **array-pragma**
-    #   - 0-2: partition_type  
-    #   - 3: full_partition  
-    #   - 4-7: partition_dims  
-    #   - 8: partition_factor  
-    # 
+    #
     # - **loop**  
     #   - 0: depth  
     #   - 1: trip_count  
+    #   
+    # - **partition**
+    #   - 0-2: type (complete, cyclic, block)
+    #   - 3-7: one_hot_dim (one-hot encoded dimension)  
+    #   - 8: factor  
     # 
-    # - **loop-pragma**  
-    #   - 0-3: pragma_type
-    #   - 4: function_level or unroll_factor (depending on pragma type)
+    # - **unroll**
+    #   - 0: full_unroll
+    #   - 1: factor
+    #
+    # - **pipeline**
+    #   - 0: on
+    #
+    # - **loop-opt**
+    #   - 0-1: type (merge, flatten)
 
     filter_cols = {
-        'var': list(range(6)),
-        'const': list(range(6)),
-        'array': [0, 1, 2, 3, 4, 11],
-        'array-pragma': [8]
+        'var': [0, 1, 2, 3, 4, 5],
+        'const': [0, 1, 2, 3, 4, 5],
+        'array': [5, 6, 7, 8, 9, 10],
+        'partition': [0, 1, 2, 3, 4, 5, 6, 7],
+        'unroll': [0],
+        'pipeline': [0],
+        'loop-opt': [0, 1]
     }
-    stats = compute_stats(dataset_dir, target_metric, train_benches, filter_cols)
+    stats = compute_stats(original_dataset_dir, target_metric, train_benches, filter_cols)
 
-    factor_sum, factor_squares, unroll_count = 0, 0, 0
-    tc_sum, tc_squares, tc_count = 0, 0, 0
-    depth_sum, depth_squares, depth_count = 0, 0, 0
-    for bench in train_benches:
-        bench_path = os.path.join(dataset_dir, bench)
-        if not os.path.isdir(bench_path):
-            continue
-        sols = os.listdir(bench_path)
-        sols = sorted(sols, key=lambda s: int(s.split("solution")[1]))
-        for sol in sols:
-            sol_path = os.path.join(bench_path, sol)
-            targets_path = os.path.join(sol_path, "targets.txt")
-            if not os.path.exists(targets_path):
-                continue
+    dataset_dir = f"{Path(sys.argv[0]).parent}/dataset"
+    train_dir = f"{dataset_dir}/train"
+    test_dir = f"{dataset_dir}/test"
 
-            target_value = -1
-            with open(targets_path, 'r') as f:
-                for line in f:
-                    if line.startswith(target_metric):
-                        target_value = float(line.split("=")[1].strip())
-                        break
-
-            if target_value == -1:
-                continue
-
-            cdfg_path = os.path.join(sol_path, "cdfg.pt")
-            if not os.path.exists(cdfg_path):
-                continue
-
-            cdfg = torch.load(cdfg_path)
-            if 'loop-pragma' in cdfg.x_dict:
-                loop_pragma_feats = cdfg.x_dict['loop-pragma']
-                factor = loop_pragma_feats[:, -1]
-                zero_feats = factor == 0
-                one_feats = factor == 1
-                factor_sum += factor[~(zero_feats | one_feats)].sum().item()
-                factor_squares += (factor[~(zero_feats | one_feats)]**2).sum().item()
-                unroll_count += factor[~(zero_feats | one_feats)].numel()
-
-            if 'loop' in cdfg.x_dict:
-                loop_feats = cdfg.x_dict['loop']
-                tc = loop_feats[:, 1]
-                zero_feats = tc == 0
-                tc_sum += tc[~zero_feats].sum().item()
-                tc_squares += (tc[~zero_feats]**2).sum().item()
-                tc_count += tc[~zero_feats].numel()
-
-                depth = loop_feats[:, 0]
-                depth_sum += depth.sum().item()
-                depth_squares += (depth**2).sum().item()
-                depth_count += depth.numel()
+    if process_data:
+        data_dirs = [
+            f"{train_dir}/raw", f"{test_dir}/raw", 
+            f"{train_dir}/processed", f"{test_dir}/processed"
+        ]
+        clean_up_dirs(data_dirs, recreate=True)
     
-    loop_pragma_feat_mean = torch.zeros(NODE_FEATURE_DIMS['loop-pragma'])
-    loop_pragma_feat_std = torch.ones(NODE_FEATURE_DIMS['loop-pragma'])
-    if unroll_count > 0:
-        loop_pragma_feat_mean[-1] = factor_sum / unroll_count
-        loop_pragma_feat_std[-1] = math.sqrt((factor_squares / unroll_count) 
-                                             - (loop_pragma_feat_mean**2))
-        
-    tc_mean = torch.zeros(NODE_FEATURE_DIMS['loop'])
-    tc_std = torch.ones(NODE_FEATURE_DIMS['loop'])
-    if tc_count > 0:
-        tc_mean[1] = tc_sum / tc_count
-        tc_std[1] = math.sqrt((tc_squares / tc_count) - (tc_mean[1]**2))
-
-    depth_mean = torch.zeros(NODE_FEATURE_DIMS['loop'])
-    depth_std = torch.ones(NODE_FEATURE_DIMS['loop'])
-    if depth_count > 0:
-        depth_mean[0] = depth_sum / depth_count
-        depth_std[0] = math.sqrt((depth_squares / depth_count) - (depth_mean[0]**2))
-
-    loop_feat_mean = torch.cat([depth_mean, tc_mean])
-    loop_feat_std = torch.cat([depth_std, tc_std])
-
-    stats['loop-pragma'] = {'mean': loop_pragma_feat_mean, 'std': loop_pragma_feat_std}
-    stats['loop'] = {'mean': loop_feat_mean, 'std': loop_feat_std}
-
     train_data = HLSDataset(
-        f"{Path(sys.argv[0]).parent}/dataset/train", target_metric, dataset_dir, 
-        copy_data=True, process_data=True, 
+        train_dir, target_metric, original_dataset_dir, 
+        copy_data=process_data, process_data=process_data, 
         benches=train_benches, stats=stats
     )
     test_data = HLSDataset(
-        f"{Path(sys.argv[0]).parent}/dataset/test", target_metric, dataset_dir, 
-        copy_data=True, process_data=True,
+        test_dir, target_metric, original_dataset_dir, 
+        copy_data=process_data, process_data=process_data, 
         benches=test_benches, stats=stats
     )
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
 
     return train_loader, test_loader
+
+
+def clean_up_dirs(dirs: List[str], recreate: bool = False):
+    for dir in dirs:
+        if os.path.exists(dir):
+            shutil.rmtree(dir)
+        if recreate:
+            os.makedirs(dir)
 
 
 def parse_arguments():
@@ -675,6 +627,8 @@ def parse_arguments():
                         help='Collect residuals for analysis.')
     parser.add_argument('--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp'],
                         help='The target resource metric.')
+    parser.add_argument('--process-data', action='store_true',
+                        help='Process the dataset for training.')
     parser.add_argument('--verbose', nargs='?', const=1, type=int, default=0, 
                         help='Set verbosity level (default: 0). Use without value for level 1, or specify a level.')
 

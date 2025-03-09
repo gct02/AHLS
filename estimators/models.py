@@ -2,7 +2,6 @@ from typing import Dict, Union, Optional, List
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn import HGTConv, ASAPooling, GraphConv
 from torch_geometric.data import HeteroData
@@ -60,14 +59,14 @@ class HGT(nn.Module):
             for i in range(layers)
         ])
 
-        # Define pooling layers
-        self.pool = nn.ModuleList([
-            ASAPooling(hid_dim, ratio=pool_size, GNN=GraphConv, dropout=dropout)
-            for _ in range(layers)
-        ])
-
         # Define Jumping Knowledge layer
         self.jk = JumpingKnowledge(mode=jk_mode, channels=hid_dim, num_layers=layers)
+
+        # Define pooling layer
+        self.pool = ASAPooling(
+            hid_dim, ratio=pool_size, GNN=GraphConv, dropout=dropout,
+            negative_slope=0.1, add_self_loops=False
+        )
 
         # Define fully connected layers
         if mlp_layers is None:
@@ -116,30 +115,30 @@ class HGT(nn.Module):
     
         Returns: :obj:`torch.Tensor` - The output prediction tensor.
         """
-        x, edge_index = data.x_dict, data.edge_index_dict
+        x_dict, edge_index_dict, batch_dict = data.x_dict, data.edge_index_dict, data.batch_dict
         outs = []
 
-        edge_index_hom = torch.cat([edge_index[et] for et in edge_index.keys()], dim=1)
-        batch_hom = torch.cat([data.batch_dict[nt] for nt in data.batch_dict.keys()], dim=0)
+        edge_index= torch.cat([v for v in edge_index_dict.values()], dim=1)
+        batch = torch.cat([v for v in batch_dict.values()])
 
         # Convolutional layers
         for i in range(self.layers):
-            x = self.conv[i](x, edge_index)
-            out = torch.cat([v for v in x.values()], dim=0)
-            out = self.pool[i](out, edge_index=edge_index_hom, batch=batch_hom)[0]
-            outs.append(out)
-
-        # Avoid NaNs (edge case handling)
-        out = torch.nan_to_num(out)
+            x_dict = self.conv[i](x_dict, edge_index_dict)
+            outs.append(torch.cat([v for v in x_dict.values()]))
 
         # Jumping Knowledge layer
-        out = self.jk(outs)
+        x = self.jk(outs)
 
-        batch_size = batch_hom.max().item() + 1
-        out = out.view(batch_size, -1)
+        # Avoid NaNs (edge case handling)
+        x = torch.nan_to_num(x)
+
+        # Pooling layer
+        x = self.pool(x, edge_index=edge_index, batch=batch)[0]
+
+        batch_size = batch.max().item() + 1
+        x = x.view(batch_size, -1)
 
         # Fully connected layers
-        out = self.mlp(out)
-
-        return out.flatten()
+        x = self.mlp(x).flatten()
+        return x
 
