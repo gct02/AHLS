@@ -70,7 +70,12 @@ struct SetHLSDirectivesMD : public ModulePass {
 
         // Parse the TCL script containing the HLS directives
         DirectiveDict directives;
-        parseTclDirectives(directives, M);
+        std::string topFunctionName;
+
+        parseTclDirectives(M, directives, topFunctionName);
+
+        setTopLevelMD(M, topFunctionName);
+
         if (directives.empty()) {
             errs() << "No directives found\n";
             return false;
@@ -80,6 +85,21 @@ struct SetHLSDirectivesMD : public ModulePass {
         setDirectivesMD(M, directives);
 
         return false;
+    }
+
+    void setTopLevelMD(Module& M, const std::string& topFunctionName) {
+        if (Function* F = M.getFunction(topFunctionName)) {
+            setIntMetadata(*F, "topLevel", 1);
+
+            // Search for global variables named after the function's arguments
+            for (Function::arg_iterator AI = F->arg_begin(), AE = F->arg_end(); AI != AE; ++AI) {
+                Argument* arg = &*AI;
+                std::string argName = topFunctionName + "." + arg->getName().str();
+                if (GlobalVariable* GV = M.getGlobalVariable(argName, true)) {
+                    setIntMetadata(*GV, "topLevelParam", 1);
+                }
+            }
+        }
     }
 
     void setDirectivesMD(Module& M, const DirectiveDict& directives) {
@@ -399,7 +419,11 @@ struct SetHLSDirectivesMD : public ModulePass {
 
     // Parse the TCL script containing the HLS directives
     // and populate the directives dictionary
-    int parseTclDirectives(DirectiveDict& directives, Module& M) {
+    int parseTclDirectives(
+        Module& M,
+        DirectiveDict& directives, 
+        std::string& topFunctionName
+    ) {
         std::ifstream file(directivesFilePath);
         if (!file.is_open()) {
             errs() << "Error opening file\n";
@@ -578,6 +602,8 @@ struct SetHLSDirectivesMD : public ModulePass {
                 directive.options["functionLevel"] = directive.label.empty() ? "1" : "0";
                 directive.name = "loopMerge";
                 directives["loopMerge"].push_back(directive);
+            } else if (directiveName == "set_directive_top") {
+                topFunctionName = arguments.substr(0, arguments.find(" "));
             }
         }
         file.close();

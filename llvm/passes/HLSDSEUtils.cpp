@@ -80,6 +80,10 @@ void setIntMetadata(Value& V, StringRef name, uint32_t value) {
     }
 }
 
+void setIntMetadata(Loop& L, StringRef name, uint32_t value) {
+    setIntMetadata(*L.getHeader(), name, value);
+}
+
 Type* getPointedType(Type* ptrTy) {
     while (ptrTy->isPointerTy()) {
         ptrTy = ptrTy->getPointerElementType();

@@ -231,8 +231,10 @@ def main(args: Dict[str, str]):
         )
 
         model = HGT(
-            METADATA, NODE_FEATURE_DIMS, 1, hid_dim=32, layers=4, heads=8, 
-            dropout=0.1, pool_size=16, jk_mode='lstm', device=DEVICE   
+            METADATA, NODE_FEATURE_DIMS, 1, hid_dim=64, 
+            num_conv_layers=5, num_pooling_layers=5,
+            heads=8, dropout=0.2, jk_mode='max', 
+            device=DEVICE   
         )
         if loss == 'huber':
             loss_fn = nn.HuberLoss(delta=residual)
@@ -540,34 +542,34 @@ def prepare_data_loaders(
     #   - 1-4: dim_sizes (dimension sizes)  
     #   - 5-10: elem_type (element type)  
     #   - 11: elem_bw (element bitwidth)  
+    #   - 12-14: impl (RTL port, BRAM/LUTRAM/URAM, shift register)
+    #   - 15: partitioned
+    #   - 16-18: type (complete, cyclic, block)
+    #   - 19-23: one_hot_dim (one-hot encoded dimension)  
+    #   - 24: factor  
     #
     # - **loop**  
     #   - 0: depth  
     #   - 1: trip_count  
+    #   - 2: unrolled
+    #   - 3: unroll_factor
+    #   - 4: pipelined
+    #   - 5: merged
+    #   - 6: flattened
     #   
-    # - **partition**
-    #   - 0-2: type (complete, cyclic, block)
-    #   - 3-7: one_hot_dim (one-hot encoded dimension)  
-    #   - 8: factor  
-    # 
-    # - **unroll**
-    #   - 0: full_unroll
-    #   - 1: factor
-    #
-    # - **pipeline**
-    #   - 0: on
-    #
-    # - **loop-opt**
-    #   - 0-1: type (merge, flatten)
+    # - **func (function)**
+    #   - 0: top_level
+    #   - 1: pipelined
+    #   - 2: merged
 
     filter_cols = {
-        'var': [0, 1, 2, 3, 4, 5],
-        'const': [0, 1, 2, 3, 4, 5],
-        'array': [5, 6, 7, 8, 9, 10],
-        'partition': [0, 1, 2, 3, 4, 5, 6, 7],
-        'unroll': [0],
-        'pipeline': [0],
-        'loop-opt': [0, 1]
+        'inst': list(range(12)),
+        'var': list(range(6)),
+        'const': list(range(6)),
+        'array': list(range(5, 11)) + list(range(12, 24)),
+        'partition': list(range(8)),
+        'loop': [2, 4, 5, 6],
+        'func': [0, 1, 2]
     }
     stats = compute_stats(original_dataset_dir, target_metric, train_benches, filter_cols)
 
@@ -584,12 +586,12 @@ def prepare_data_loaders(
     
     train_data = HLSDataset(
         train_dir, target_metric, original_dataset_dir, 
-        copy_data=process_data, process_data=process_data, 
+        copy_data=process_data, process_data=True, 
         benches=train_benches, stats=stats
     )
     test_data = HLSDataset(
         test_dir, target_metric, original_dataset_dir, 
-        copy_data=process_data, process_data=process_data, 
+        copy_data=process_data, process_data=True, 
         benches=test_benches, stats=stats
     )
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)

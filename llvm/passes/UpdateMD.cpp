@@ -18,6 +18,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
+#include "llvm/Transforms/Utils/LoopUtils.h"
+
+#include "llvm/Analysis/XILINXLoopInfoUtils.h"
 
 #include <iostream>
 #include <string>
@@ -33,8 +36,6 @@ namespace {
 struct UpdateMD : public ModulePass {
     static char ID;
     UpdateMD() : ModulePass(ID) {}
-
-    uint32_t currentLoopID;
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "update-md"
@@ -89,40 +90,23 @@ struct UpdateMD : public ModulePass {
         }
     }
 
-    void setLoopMetadata(Loop* L, Function& F, uint32_t parentLoopID) {
-        uint32_t loopID = currentLoopID++;
-
-        DEBUG(dbgs() << "Loop ID: " << loopID << "\n");
-        
-        uint32_t functionID = getIntMetadata(F, "functionID");
-
-        BasicBlock* loopHeader = L->getHeader();
-        setIntMetadata(*loopHeader, "loopID", loopID);
-        setIntMetadata(*loopHeader, "parentLoopID", parentLoopID);
-        setIntMetadata(*loopHeader, "functionID", functionID);
-
-        DEBUG(dbgs() << "Setting loop depth and trip count metadata\n");
-
-        uint32_t depth = L->getLoopDepth();
-        uint64_t tripCount = 0;
-
-        DEBUG(dbgs() << "Getting backedge taken count\n");
-
-        ScalarEvolution& SE = getAnalysis<ScalarEvolutionWrapperPass>(F).getSE();
-        if (SE.hasLoopInvariantBackedgeTakenCount(L)) {
-            const SCEV* btcSCEV = SE.getBackedgeTakenCount(L);
-            if (const SCEVConstant* btc = dyn_cast<SCEVConstant>(btcSCEV)) {
-                tripCount = btc->getValue()->getZExtValue();
+    uint32_t getExactOrMaxTripCount(Loop* L, ScalarEvolution* SE) {
+        uint32_t tripCount = 0;
+        if (BasicBlock* exitingBlock = getExitingBlock(L, SE)) {
+            tripCount = SE->getSmallConstantTripCount(L, exitingBlock);
+            if (tripCount > 0) {
+                return tripCount;
             }
         }
-        DEBUG(dbgs() << "Loop depth: " << depth << ", trip count: " << tripCount << "\n");
-
-        setIntMetadata(*loopHeader, "loopDepth", depth);
-        setIntMetadata(*loopHeader, "tripCount", (uint32_t)tripCount);
-
-        for (Loop* SL : L->getSubLoops()) {
-            setLoopMetadata(SL, F, loopID);
+        Optional<LoopTripCountMDInfo> tripCountInfo = getLoopTripCount(L);
+        if (tripCountInfo.hasValue()) {
+            tripCount = (uint32_t)tripCountInfo->getMax();
+            if (tripCount > 0) {
+                return tripCount;
+            }
         }
+        Optional<uint32_t> estimatedTripCount = getLoopEstimatedTripCount(L);
+        return estimatedTripCount.hasValue() ? estimatedTripCount.getValue() : 0;
     }
 
     void setMetadataForLoops(Module& M) {
@@ -131,7 +115,7 @@ struct UpdateMD : public ModulePass {
             uint32_t parentID;
         };
 
-        currentLoopID = 1;
+        uint32_t currLoopID = 1;
         for (Function& F : M) {
             if (F.size() == 0) continue;
 
@@ -155,32 +139,21 @@ struct UpdateMD : public ModulePass {
                         uint32_t currParentID = frame.parentID;
                         
                         DEBUG(dbgs() << "Setting metadata for loop " 
-                                    << (currLoop->getHeader()->hasName() ? currLoop->getHeader()->getName() : "") 
-                                    << "\n");
-                        uint32_t loopID = currentLoopID++;
+                                     << (currLoop->getHeader()->hasName() ? currLoop->getHeader()->getName() : "") 
+                                     << "\n");
+                        uint32_t loopID = currLoopID++;
                         
-                        DEBUG(dbgs() << "Loop ID: " << loopID << "\n");
-                        
-                        BasicBlock* loopHeader = currLoop->getHeader();
-                        setIntMetadata(*loopHeader, "loopID", loopID);
-                        setIntMetadata(*loopHeader, "parentLoopID", currParentID);
-                        setIntMetadata(*loopHeader, "functionID", functionID);
-                        
-                        DEBUG(dbgs() << "Setting loop depth and trip count metadata\n");
+                        setIntMetadata(*currLoop, "loopID", loopID);
+                        setIntMetadata(*currLoop, "parentLoopID", currParentID);
+                        setIntMetadata(*currLoop, "functionID", functionID);
                         
                         uint32_t depth = currLoop->getLoopDepth();
-                        uint64_t tripCount = 0;
-                        
-                        DEBUG(dbgs() << "Getting backedge taken count\n");
-                        
-                        const SCEV* btcSCEV = SE.getBackedgeTakenCount(currLoop);
-                        if (const SCEVConstant* btc = dyn_cast<SCEVConstant>(btcSCEV)) {
-                            tripCount = btc->getValue()->getZExtValue();
-                        }
+                        uint32_t tripCount = getExactOrMaxTripCount(currLoop, &SE);
+
                         DEBUG(dbgs() << "Loop depth: " << depth << ", trip count: " << tripCount << "\n");
                         
-                        setIntMetadata(*loopHeader, "loopDepth", depth);
-                        setIntMetadata(*loopHeader, "tripCount", (uint32_t)tripCount);
+                        setIntMetadata(*currLoop, "depth", depth);
+                        setIntMetadata(*currLoop, "tripCount", tripCount);
                         
                         for (auto it = currLoop->getSubLoops().rbegin(); it != currLoop->getSubLoops().rend(); ++it) {
                             loopStack.push({*it, loopID});

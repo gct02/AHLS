@@ -144,6 +144,10 @@ struct ExtractMD : public ModulePass {
                 m["numElements"] = getIntMetadata(G, "numElements");
                 m["elementType"] = getIntMetadata(G, "elementType");
                 m["elementBitwidth"] = getIntMetadata(G, "elementBitwidth");
+                
+                if (MDNode* topLevelParamMD = G.getMetadata("topLevelParam")) {
+                    m["topLevelParam"] = getIntMDOperand(topLevelParamMD, 0);
+                }
 
                 if (MDNode* apmd = G.getMetadata("arrayPartition")) {
                     m["partition"] = 1;
@@ -236,6 +240,7 @@ struct ExtractMD : public ModulePass {
         funcMD["numInsts"] = getIntMetadata(F, "numInsts");
         funcMD["numBBs"] = getIntMetadata(F, "numBBs");
         funcMD["numLoops"] = getIntMetadata(F, "numLoops");
+        funcMD["topLevel"] = getIntMetadata(F, "topLevel");
 
         if (MDNode* pipelineMD = F.getMetadata("pipeline")) {
             funcMD["pipeline"] = 1;

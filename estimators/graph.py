@@ -5,15 +5,12 @@ from typing import List, Dict, Tuple, Union, Optional
 import torch
 import matplotlib.pyplot as plt
 from torch import Tensor
-from torch_geometric.data import HeteroData, Data
+from torch_geometric.data import HeteroData
 from torch_geometric.utils import to_networkx
 from torch_geometric.typing import NodeType, EdgeType
 
 
-NODE_TYPES = [
-    'inst', 'var', 'const', 'array', 'loop', 
-    'partition', 'unroll', 'pipeline', 'loop-opt'
-]
+NODE_TYPES = ['inst', 'var', 'const', 'array', 'loop', 'func']
 
 EDGE_TYPES = [
     # Data flow
@@ -29,15 +26,15 @@ EDGE_TYPES = [
     # Call flow
     ('inst', 'call', 'inst'),
 
-    # Loop hierarchy
+    # Loop hierarchy and function scope
     ('loop', 'hierarchy', 'loop'),
     ('loop', 'hierarchy', 'inst'),
+    ('func', 'hierarchy', 'loop'),
+    ('func', 'hierarchy', 'inst'),
 
-    # Pragmas
-    ('partition', 'transform', 'array'),
-    ('unroll', 'transform', 'loop'),
-    ('pipeline', 'transform', 'loop'),
-    ('loop-opt', 'transform', 'loop'),
+    # Function parameters
+    ('var', 'param', 'func'),
+    ('array', 'param', 'func'),
 
     # Self-loops
     ('inst', 'self', 'inst'),
@@ -45,10 +42,7 @@ EDGE_TYPES = [
     ('const', 'self', 'const'),
     ('array', 'self', 'array'),
     ('loop', 'self', 'loop'),
-    ('partition', 'self', 'partition'),
-    ('unroll', 'self', 'unroll'),
-    ('pipeline', 'self', 'pipeline'),
-    ('loop-opt', 'self', 'loop-opt')
+    ('func', 'self', 'func'),
 ]
 
 METADATA = (NODE_TYPES, EDGE_TYPES)
@@ -56,12 +50,9 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 INST_FEATURES = 12
 VAR_FEATURES = 7
 CONST_FEATURES = 7
-ARRAY_FEATURES = 12
-LOOP_FEATURES = 2
-PARTITION_FEATURES = 9
-UNROLL_FEATURES = 2
-PIPELINE_FEATURES = 1
-LOOP_OPT_FEATURES = 2
+ARRAY_FEATURES = 25
+LOOP_FEATURES = 7
+FUNCTION_FEATURES = 3
 
 NODE_FEATURE_DIMS = {
     'inst': INST_FEATURES,
@@ -69,10 +60,7 @@ NODE_FEATURE_DIMS = {
     'const': CONST_FEATURES,
     'array': ARRAY_FEATURES,
     'loop': LOOP_FEATURES,
-    'partition': PARTITION_FEATURES,
-    'unroll': UNROLL_FEATURES,
-    'pipeline': PIPELINE_FEATURES,
-    'loop-opt': LOOP_OPT_FEATURES
+    'func': FUNCTION_FEATURES,
 }
 
 
@@ -111,22 +99,40 @@ def build_cdfg(
     return cdfg
 
 
-def plot_cdfg(
-    cdfg: Union[HeteroData, Data],
-    output_path: Optional[Path] = None
-) -> None:
+def plot_cdfg(cdfg: HeteroData) -> None:
     import networkx as nx
 
-    cdfg_cp = cdfg.clone()
-
-    n_insts = cdfg_cp['inst'].x.size(0)
-    n_vars = cdfg_cp['var'].x.size(0)
-    n_consts = cdfg_cp['const'].x.size(0)
-    n_arrays = cdfg_cp['array'].x.size(0)
-    n_loops = cdfg_cp['loop'].x.size(0)
-    n_partitions = cdfg_cp['partition'].x.size(0)
-    n_loop_opts = cdfg_cp['loop-opt'].x.size(0)
-    n_unrolls = cdfg_cp['unroll'].x.size(0)
+    node_type_colors = {
+        "inst": "#009ade",
+        "var": "#00cd6c",
+        "const": "#ff6bd3",
+        "array": "#9052fa",
+        "loop": "#fc9d38",
+        "func": "#fa4141"
+    }
+    edge_type_colors = {
+        ('inst', 'control', 'inst'): "#009ade", 
+        ('inst', 'call', 'inst'): "#f720cc", 
+        ('inst', 'data', 'var'): "#1f1f1f", 
+        ('var', 'data', 'inst'): "#1f1f1f", 
+        ('inst', 'data', 'array'): "#1f1f1f", 
+        ('array', 'data', 'inst'): "#1f1f1f", 
+        ('const', 'data', 'inst'): "#1f1f1f", 
+        ('loop', 'hierarchy', 'loop'): "#e84141",
+        ('loop', 'hierarchy', 'inst'): "#e84141",
+        ('func', 'hierarchy', 'loop'): "#e84141",
+        ('func', 'hierarchy', 'inst'): "#6fabd6",
+        ('var', 'param', 'func'): "#30cf9a",
+        ('array', 'param', 'func'): "#30cf9a",
+    }
+    edge_color_guide = {
+        "Control": "#009ade",
+        "Call": "#f720cc",
+        "Data": "#1f1f1f",
+        "Loop Hierarchy": "#e84141",
+        "Parameter": "#30cf9a",
+        "Scope": "#6fabd6"
+    }
 
     def get_short_type(node_type: _PGMLNodeType) -> str:
         if node_type == 'inst':
@@ -139,121 +145,107 @@ def plot_cdfg(
             return 'A'
         elif node_type == 'loop':
             return 'L'
-        elif node_type == 'loop-opt':
-            return 'LP'
-        elif node_type == 'partition':
-            return 'AP'
-        return 'U'
+        elif node_type == 'func':
+            return 'F'
+        else:
+            return 'U'
         
     def get_label(type: _PGMLNodeType, idx: int) -> str:
-        if type == 'var':
-            idx -= n_insts
-        elif type == 'const':
-            idx -= n_insts + n_vars
-        elif type == 'array':
-            idx -= n_insts + n_vars + n_consts
-        elif type == 'loop':
-            idx -= n_insts + n_vars + n_consts + n_arrays
-        elif type == 'loop-opt':
-            idx -= n_insts + n_vars + n_consts + n_arrays + n_loops
-        elif type == 'partition':
-            idx -= (n_insts + n_vars + n_consts + n_arrays + n_loops 
-                    + n_loop_opts)
-        elif type == 'unroll':
-            idx -= (n_insts + n_vars + n_consts + n_arrays + n_loops 
-                    + n_loop_opts + n_partitions)
-        elif type == 'pipeline':
-            idx -= (n_insts + n_vars + n_consts + n_arrays + n_loops 
-                    + n_loop_opts + n_partitions + n_unrolls)
         return f"{get_short_type(type)}{idx}"
     
+    def gen_graph(
+        cdfg: HeteroData, 
+        node_type_colors: Dict[str, str] = node_type_colors,
+        edge_type_colors: Dict[Tuple[str, str], str] = edge_type_colors,
+        layout: str = "spring", 
+        seed: int = 42
+    ) -> None:
+        nx_cdfg = to_networkx(
+            cdfg, remove_self_loops=True,
+            to_undirected=False, node_attrs=['x']
+        )
+        node_colors = []
+        labels = {}
+        indices = {k: 1 for k in NODE_TYPES}
+        for node, attrs in nx_cdfg.nodes(data=True):
+            node_type = attrs["type"]
+            color = node_type_colors[node_type]
+            node_colors.append(color)
+            index = indices[node_type]
+            indices[node_type] += 1
+            labels[node] = get_label(node_type, index)
+
+        edge_colors = []
+        for from_node, to_node, attrs in nx_cdfg.edges(data=True):
+            edge_type = attrs["type"]
+            color = edge_type_colors[edge_type]
+            nx_cdfg.edges[from_node, to_node]["color"] = color
+            edge_colors.append(color)
+
+        if layout == "spring":
+            pos = nx.spring_layout(nx_cdfg, seed=seed)
+        elif layout == "kamada_kawai":
+            pos = nx.kamada_kawai_layout(nx_cdfg)
+        elif layout == "circular":
+            pos = nx.circular_layout(nx_cdfg)
+        elif layout == "planar":
+            pos = nx.planar_layout(nx_cdfg)
+        else:
+            pos = nx.random_layout(nx_cdfg, seed=seed)
+
+        plt.figure(figsize=(12, 8))
+        nx.draw_networkx(
+            nx_cdfg, pos=pos, labels=labels, with_labels=True,
+            node_color=node_colors, edge_color=edge_colors, style='dashed',
+            node_size=100, font_size=10, width=0.8, arrowsize=10
+        )
+        
+        for i, (edge_type, color) in enumerate(edge_color_guide.items()):
+            plt.text(0.8, 1 - i * 0.1, f"{edge_type}: ", color=color, fontsize=9)
+            plt.text(0.95, 1 - i * 0.1, f"{color}", color=color, fontsize=9)
+
+        plt.axis("off")
+        plt.show()
+        plt.close()
+    
+    cdfg_cp = cdfg.clone()
     for et in cdfg_cp.edge_index_dict.keys():
         if et[1] == "self":
             cdfg_cp[et].edge_index = torch.empty((2, 0), dtype=torch.int64)
 
-    nx_cdfg = to_networkx(
-        cdfg_cp, remove_self_loops=True,
-        to_undirected=False, node_attrs=['x']
-    )
+    gen_graph(cdfg_cp, layout="kamada_kawai")
+    del cdfg_cp
 
-    # Define colors for the nodes
-    node_type_colors = {
-        "inst": "#f28522",
-        "var": "#00cd6c",
-        "const": "#009ade",
-        "array": "#af58ba",
-        "loop": "#fa5252",
-        "loop-opt": "#b8b8b8",
-        "partition": "#b8b8b8",
-        "unroll": "#b8b8b8",
-        "pipeline": "#b8b8b8"
-    }
+    call_control_flow_graph = cdfg.clone()
+    for et in call_control_flow_graph.edge_index_dict.keys():
+        if et[1] != "call" and et[1] != "control":
+            call_control_flow_graph[et].edge_index = torch.empty((2, 0), dtype=torch.int64)
+    for nt in call_control_flow_graph.x_dict.keys():
+        if nt != "inst":
+            call_control_flow_graph[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
 
-    node_colors = []
-    labels = {}
-    for node, attrs in nx_cdfg.nodes(data=True):
-        node_type = attrs["type"]
-        color = node_type_colors[node_type]
-        node_colors.append(color)
-        labels[node] = get_label(node_type, node)
+    gen_graph(call_control_flow_graph, layout="spring")
+    del call_control_flow_graph
 
-    # Define colors for the edges
-    edge_type_colors = {
-        ('inst', 'control', 'inst'): "#009ade", 
-        ('inst', 'call', 'inst'): "#2044f7", 
-        ('inst', 'data', 'var'): "#1f1f1f", 
-        ('var', 'data', 'inst'): "#1f1f1f", 
-        ('inst', 'data', 'array'): "#1f1f1f", 
-        ('array', 'data', 'inst'): "#1f1f1f", 
-        ('const', 'data', 'inst'): "#1f1f1f", 
-        ('loop', 'hierarchy', 'loop'): "#14a60f",
-        ('loop', 'hierarchy', 'inst'): "#14a60f",
-        ('loop-opt', 'transform', 'loop'): "#f216a5",
-        ('unroll', 'transform', 'loop'): "#f216a5",
-        ('pipeline', 'transform', 'loop'): "#f216a5",
-        ('partition', 'transform', 'array'): "#f216a5"
-    }
+    loop_hierarchy_graph = cdfg.clone()
+    for et in loop_hierarchy_graph.edge_index_dict.keys():
+        if et[1] != "hierarchy":
+            loop_hierarchy_graph[et].edge_index = torch.empty((2, 0), dtype=torch.int64)
+    for nt in loop_hierarchy_graph.x_dict.keys():
+        if nt != "loop" and nt != "func" and nt != "inst":
+            loop_hierarchy_graph[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
 
-    edge_colors = []
-    for from_node, to_node, attrs in nx_cdfg.edges(data=True):
-        edge_type = attrs["type"]
-        color = edge_type_colors[edge_type]
-        nx_cdfg.edges[from_node, to_node]["color"] = color
-        edge_colors.append(color)
+    gen_graph(loop_hierarchy_graph, layout="kamada_kawai")
+    del loop_hierarchy_graph
 
-    # Draw the graph
-    pos = nx.kamada_kawai_layout(nx_cdfg)
-    plt.figure(figsize=(12, 8))
-    nx.draw_networkx(
-        nx_cdfg,
-        pos=pos,
-        labels=labels,
-        with_labels=True,
-        node_color=node_colors,
-        edge_color=edge_colors,
-        node_size=80,
-        font_size=9,
-        width=0.8,
-        arrowsize=8
-    )
+    data_flow_graph = cdfg.clone()
+    for et in data_flow_graph.edge_index_dict.keys():
+        if et[1] != "data" and et[1] != "param":
+            data_flow_graph[et].edge_index = torch.empty((2, 0), dtype=torch.int64)
+    data_flow_graph["loop"].x = torch.empty((0, LOOP_FEATURES), dtype=torch.float32)
 
-    edge_guide = {
-        "Control": "#009ade",
-        "Call": "#2044f7",
-        "Data": "#1f1f1f",
-        "Loop Hierarchy": "#14a60f",
-        "Pragma": "#f216a5"
-    }
-    for i, (edge_type, color) in enumerate(edge_guide.items()):
-        plt.text(0.8, 1 - i * 0.1, f"{edge_type}: ", color=color, fontsize=9)
-        plt.text(0.95, 1 - i * 0.1, f"{color}", color=color, fontsize=9)
-
-    plt.axis("off")
-    if output_path is not None:
-        plt.savefig(output_path)
-    else:
-        plt.show()
-    plt.close()
+    gen_graph(data_flow_graph, layout="kamada_kawai")
+    del data_flow_graph
 
 
 def print_cdfg(cdfg: HeteroData, output_path: Optional[Path] = None):
@@ -419,10 +411,10 @@ def _build_nodes(
     additional_edges = {
         ('loop', 'hierarchy', 'loop'): [],
         ('loop', 'hierarchy', 'inst'): [],
-        ('partition', 'transform', 'array'): [],
-        ('unroll', 'transform', 'loop'): [],
-        ('pipeline', 'transform', 'loop'): [],
-        ('loop-opt', 'transform', 'loop'): []
+        ('func', 'hierarchy', 'loop'): [],
+        ('func', 'hierarchy', 'inst'): [],
+        ('var', 'param', 'func'): [],
+        ('array', 'param', 'func'): [],
     }
 
     for i, node in enumerate(programl_graph.node):
@@ -448,11 +440,16 @@ def _build_nodes(
                 one_hot_inst = _INSTRUCTION_ENC[opcode]
 
             nodes['inst'].append(torch.tensor(one_hot_inst, dtype=torch.float32))
-            indices["inst"].append(i)
+            indices['inst'].append(i)
 
             if "loopID" in md:
                 loop_id = md["loopID"]
                 additional_edges[('loop', 'hierarchy', 'inst')].append((loop_id, i))
+
+            if "functionID" in md:
+                function_id = md["functionID"]
+                additional_edges[('func', 'hierarchy', 'inst')].append((function_id, i))
+
         elif node_type == _PGMLNodeType.VAR or node_type == _PGMLNodeType.CONST:
             if '@' in node_full_text:
                 name = node_full_text[node_full_text.find('@') + 1:].split(' ')[0]
@@ -460,9 +457,11 @@ def _build_nodes(
                 name = node_full_text[node_full_text.find('%') + 1:].split(' ')[0]
             else:
                 # Value does not have a name (e.g. literal constant)
-                if '*' in node_full_text: # Value is a pointer
+                if '*' in node_full_text: 
+                    # Value is a pointer
                     features = _TYPE_ENC[_LLVMTypeID.POINTER] + [0]
-                else: # Value is a literal constant
+                else: 
+                    # Value is a literal constant
                     features = _parse_literal_const_info(node_text)
                 nt = 'var' if node_type == _PGMLNodeType.VAR else 'const'
                 nodes[nt].append(torch.tensor(features, dtype=torch.float32))
@@ -474,12 +473,19 @@ def _build_nodes(
             if ')' in name:
                 name = name.split(')')[0]
 
+            if node_full_text.startswith('@global.'):
+                function_id = -1
+            else:
+                function_id = node.function + 1
+
+            is_param = False
+
             if name in metadata["value"]:
                 md = _to_numeric_md(metadata["value"][name])
             else:
-                function_id = node.function + 1
                 name = f"{name}.{function_id}"
                 if name in metadata["param"]:
+                    is_param = True
                     md = _to_numeric_md(metadata["param"][name])
                 else:
                     continue
@@ -488,117 +494,75 @@ def _build_nodes(
                 array_md = _get_array_info(md)
                 elem_type_id = array_md[5]
                 elem_bw = array_md[6]
-                features = array_md[:5] + _TYPE_ENC[elem_type_id] + [elem_bw]
+                impl = array_md[-3:]
+                features = array_md[:5] + _TYPE_ENC[elem_type_id] + [elem_bw] + impl
 
-                nodes['array'].append(torch.tensor(features, dtype=torch.float32))
-                indices['array'].append(i)
+                partition_feats = _get_partition_features(md)
+                features += partition_feats
 
-                if "partition" in md:
-                    pragma_id = md["partitionID"]
-                    additional_edges[('partition', 'transform', 'array')].append(
-                        (pragma_id, i)
-                    )
-                    if pragma_id in indices['partition']:
-                        continue
-                    partition_feats = _get_partition_features(md)
-                    nodes['partition'].append(
-                        torch.tensor(partition_feats, dtype=torch.float32)
-                    )
-                    indices['partition'].append(pragma_id)
+                node_type_name = 'array'
             else:
                 type_id = md["type"]
                 bw = md["bitwidth"]
                 features = _TYPE_ENC[type_id] + [bw]
-                if node_type == _PGMLNodeType.VAR:
-                    nodes['var'].append(torch.tensor(features, dtype=torch.float32))
-                    indices['var'].append(i)
-                else:
-                    nodes['const'].append(torch.tensor(features, dtype=torch.float32))
-                    indices['const'].append(i)
 
-    for loop_md in metadata["loop"].values():
-        loop_md = _to_numeric_md(loop_md)
+                node_type_name = 'var' if node_type == _PGMLNodeType.VAR else 'const'
+
+            nodes[node_type_name].append(torch.tensor(features, dtype=torch.float32))
+            indices[node_type_name].append(i)
+
+            if is_param:
+                additional_edges[(node_type_name, 'param', 'func')].append((i, function_id))
+
+    loop_mds = [_to_numeric_md(md) for md in metadata["loop"].values()]
+    for loop_md in loop_mds:
         loop_id = loop_md["ID"]
         loop_depth = loop_md["depth"]
         trip_count = loop_md["tripCount"]
         features = [loop_depth, trip_count]
+
+        if "unroll" in loop_md:
+            factor = loop_md["unrollFactor"]
+            unroll_features = [1, factor]
+        else:
+            # Assuming unroll factor of 1 for loops that are not unrolled
+            unroll_features = [0, 1]
+
+        flatten_features = [1] if "flatten" in loop_md else [0]
+        pipeline_features = [1] if "pipeline" in loop_md else [0]
+        merge_features = [1] if "merge" in loop_md else [0]
+
+        features += unroll_features + flatten_features + pipeline_features + merge_features
         nodes['loop'].append(torch.tensor(features, dtype=torch.float32))
         indices['loop'].append(loop_id)
 
-        if "unroll" in loop_md:
-            pragma_id = loop_md["unrollID"]
-            additional_edges[('unroll', 'transform', 'loop')].append(
-                (pragma_id, loop_id)
-            )
-            if pragma_id in indices['unroll']:
-                continue
-            complete_unroll = loop_md["unrollComplete"]
-            factor = loop_md["unrollFactor"]
-            unroll_features = [complete_unroll, factor]
-            nodes['unroll'].append(
-                torch.tensor(unroll_features, dtype=torch.float32)
-            )
-            indices['unroll'].append(pragma_id)
-        if "flatten" in loop_md:
-            pragma_id = loop_md["flattenID"]
-            additional_edges[('loop-opt', 'transform', 'loop')].append(
-                (pragma_id, loop_id)
-            )
-            if pragma_id in indices['loop-opt']:
-                continue
-            flatten_features = [0, 1]
-            nodes['loop-opt'].append(
-                torch.tensor(flatten_features, dtype=torch.float32)
-            )
-            indices['loop-opt'].append(pragma_id)
-        if "merge" in loop_md:
-            pragma_id = loop_md["mergeID"]
-            for subloop_id in loop_hierarchy[loop_id]:
-                additional_edges[('loop-opt', 'transform', 'loop')].append(
-                    (pragma_id, subloop_id)
-                )
-            if pragma_id in indices['loop-opt']:
-                continue
-            merge_features = [1, 0]
-            nodes['loop-opt'].append(
-                torch.tensor(merge_features, dtype=torch.float32)
-            )
-            indices['loop-opt'].append(pragma_id)
-        if "pipeline" in loop_md:
-            pragma_id = loop_md["pipelineID"]
-            additional_edges[('pipeline', 'transform', 'loop')].append(
-                (pragma_id, loop_id)
-            )
-            if pragma_id in indices['pipeline']:
-                continue
-            pipeline_features = [1]
-            nodes['pipeline'].append(
-                torch.tensor(pipeline_features, dtype=torch.float32)
-            )
-            indices['pipeline'].append(pragma_id)
-
-    for function_md in metadata["function"].values():
-        function_md = _to_numeric_md(function_md)
+    function_mds = [_to_numeric_md(md) for md in metadata["function"].values()]
+    for function_md in function_mds:
         function_id = function_md["ID"]
-        if "merge" in function_md:
-            pragma_id = function_md["mergeID"]
-            for loop_id in top_level_loops[function_id]:
-                additional_edges[('loop-opt', 'transform', 'loop')].append(
-                    (pragma_id, loop_id)
-                )
-            if pragma_id in indices['loop-opt']:
-                continue
-            merge_features = [1, 0]
-            nodes['loop-opt'].append(
-                torch.tensor(merge_features, dtype=torch.float32)
-            )
-            indices['loop-opt'].append(pragma_id)
+
+        if "topLevel" in function_md and function_md["topLevel"] == 1:
+            features = [1]
+        else:
+            features = [0]
+
+        pipeline_features = [1] if "pipeline" in function_md else [0]
+        merge_features = [1] if "merge" in function_md else [0]
+
+        features += pipeline_features + merge_features
+        nodes['func'].append(torch.tensor(features, dtype=torch.float32))
+        indices['func'].append(function_id)
 
     for loop_id, children in loop_hierarchy.items():
         for child_id in children:
             if loop_id not in indices['loop'] or child_id not in indices['loop']:
                 continue
             additional_edges[('loop', 'hierarchy', 'loop')].append((loop_id, child_id))
+
+    for function_id, loops in top_level_loops.items():
+        for loop_id in loops:
+            if loop_id not in indices['loop'] or function_id not in indices['func']:
+                continue
+            additional_edges[('func', 'hierarchy', 'loop')].append((function_id, loop_id))
 
     graph = HeteroData()
     for nt in nodes.keys():
@@ -689,6 +653,10 @@ def _build_edges(
 
 
 def _get_partition_features(md: Dict[str, int]) -> List[int]:
+    if "partition" not in md:
+        # Assuming partition factor of 1 for arrays that are not partitioned
+        return [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+    
     dim = md["partitionDim"]
     if dim > 4:
         # Use the last dimension for higher-dimensional arrays
@@ -697,8 +665,8 @@ def _get_partition_features(md: Dict[str, int]) -> List[int]:
     enc_dim[dim] = 1
 
     partition_type = md["partitionType"]
-    enc_partition_type = [0, 0, 0]
-    enc_partition_type[partition_type - 1] = 1
+    enc_partition_type = [1, 0, 0, 0]
+    enc_partition_type[partition_type] = 1
 
     factor = md["partitionFactor"]
     return enc_partition_type + enc_dim + [factor]
@@ -710,14 +678,23 @@ def _get_array_info(md: Dict[str, int]) -> List[int]:
     elem_bw = md["elementBitwidth"]
     dim_size = [0] * 4
 
+    array_size = 1
     for i in range(1, n_dims + 1):
         curr_dim_size = md[f"numElements.{i}"]
         if i > 4:
             dim_size[-1] *= curr_dim_size
         else:
             dim_size[i - 1] = curr_dim_size
+        array_size *= curr_dim_size
 
-    return [n_dims] + dim_size + [elem_type, elem_bw]
+    if "topLevelParam" in md and md["topLevelParam"] == 1:
+        impl = [1, 0, 0]
+    elif array_size > 1024:
+        impl = [0, 1, 0]
+    else:
+        impl = [0, 0, 1]
+
+    return [n_dims] + dim_size + [elem_type, elem_bw] + impl
 
 
 def _to_numeric_md(md: Dict[str, str]) -> Dict[str, Union[int, float]]:
@@ -870,7 +847,8 @@ if __name__ == "__main__":
 
     ir_path = Path(argv[1])
     metadata_path = Path(argv[2])
-    cfg_path = Path(argv[3])
+    loop_hierarchy_path = Path(argv[3])
     output_path = Path(argv[4])
 
-    build_cdfg(ir_path, metadata_path, cfg_path, output_path)
+    cdfg = build_cdfg(ir_path, metadata_path, loop_hierarchy_path, output_path)
+    plot_cdfg(cdfg)

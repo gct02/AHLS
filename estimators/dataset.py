@@ -73,10 +73,6 @@ def compute_stats(
                 else:
                     counts[nt] += feats.shape[0]
 
-                if nt == 'inst':
-                    zero_feats = feats.sum(dim=1) == 0
-                    counts[nt] -= zero_feats.sum().item()
-
     stats = {}
     for nt in node_types:
         if nt not in counts or counts[nt] == 0:
@@ -159,7 +155,8 @@ class HLSDataset(Dataset):
         if not os.path.exists(self.raw_dir):
             raise FileNotFoundError(f"Raw directory {self.raw_dir} does not exist.")
         
-        if not os.path.exists(self.processed_dir):
+        if os.path.exists(self.processed_dir):
+            shutil.rmtree(self.processed_dir)
             os.makedirs(self.processed_dir)
 
         for bench in self.benches:
@@ -198,15 +195,8 @@ class HLSDataset(Dataset):
                             continue
 
                         stats = self.stats[nt]
-                        processed_data.x_dict[nt] = ((data.x_dict[nt] - stats['mean'].unsqueeze(0))
-                                                     / stats['std'].unsqueeze(0))
-                    
-                    # TODO: Rebuild the graphs without the base_metrics node type
-                    if 'base_metrics' in processed_data.x_dict:
-                        for et in processed_data.edge_index_dict.keys():
-                            if et[0] == 'base_metrics' or et[2] == 'base_metrics':
-                                del processed_data[et]
-                        del processed_data['base_metrics']
+                        processed_data[nt].x = ((data.x_dict[nt] - stats['mean'].unsqueeze(0))
+                                                / stats['std'].unsqueeze(0))
                         
                     processed_data.y = torch.tensor([target_value])
 

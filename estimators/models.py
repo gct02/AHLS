@@ -2,8 +2,9 @@ from typing import Dict, Union, Optional, List
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from torch import Tensor
-from torch_geometric.nn import HGTConv, ASAPooling, GraphConv
+from torch_geometric.nn import HGTConv, ASAPooling, GraphConv, global_max_pool
 from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
 from torch_geometric.nn.models import JumpingKnowledge
@@ -23,15 +24,18 @@ class HGT(nn.Module):
             for each node type.
         out_channels (int): Number of output channels.
         hid_dim (int): Hidden dimension for the convolutional layers.
-        layers (int): Number of convolutional layers. (default: :obj:`6`)
-        heads (int): Number of attention heads (default: :obj:`1`).
-        dropout (float): Dropout rate for fully connected layers.
+        num_conv_layers (int): Number of convolutional layers. 
+            (default: :obj:`6`)
+        num_pooling_layers (int, optional): Number of pooling layers. 
+            (default: :obj:`None`)
+        heads (int): Number of attention heads. (default: :obj:`1`)
+        dropout (float): Dropout rate for fully connected layers. 
             (default: :obj:`0.0`)
-        pool_size (int): Number of nodes to keep after pooling.
-            (default: :obj:`16`)
-        jk_mode (str): Mode for the Jumping Knowledge layer.
+        jk_mode (str): Mode for the Jumping Knowledge layer. 
             (default: :obj:`"lstm"`)
-        device (torch.device): Device to use for computation.
+        mlp_layers (List[int], optional): List of hidden layer sizes for the MLP.
+            (default: :obj:`None`)
+        device (torch.device): Device to use for computation. 
             (default: :obj:`"cpu"`)
     """
     def __init__(self, 
@@ -39,47 +43,50 @@ class HGT(nn.Module):
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
         hid_dim: int,
-        layers: int = 6,
+        num_conv_layers: int = 6,
+        num_pooling_layers: Optional[int] = None,
         heads: int = 1,
         dropout: float = 0.0,
-        pool_size: int = 16,
         mlp_layers: Optional[List[int]] = None,
         jk_mode: str = 'lstm',
-        device: Optional[Device] = 'cpu'
+        device: Device = 'cpu'
     ):
         super().__init__()
 
         self.device = device
-        self.layers = layers
-        self.pool_size = pool_size
+
+        if num_pooling_layers is None:
+            num_pooling_layers = num_conv_layers
 
         # Define convolutional layers
-        self.conv = nn.ModuleList([
+        self.conv_layers = nn.ModuleList([
             HGTConv(hid_dim if i > 0 else in_channels, hid_dim, metadata, heads)
-            for i in range(layers)
+            for i in range(num_conv_layers)
         ])
 
         # Define Jumping Knowledge layer
-        self.jk = JumpingKnowledge(mode=jk_mode, channels=hid_dim, num_layers=layers)
-
-        # Define pooling layer
-        self.pool = ASAPooling(
-            hid_dim, ratio=pool_size, GNN=GraphConv, dropout=dropout,
-            negative_slope=0.1, add_self_loops=False
+        self.jk = JumpingKnowledge(
+            mode=jk_mode, channels=hid_dim, num_layers=num_conv_layers
         )
+
+        # Define pooling layers
+        self.pooling_layers = nn.ModuleList([
+            ASAPooling(hid_dim, ratio=0.5, GNN=GraphConv, dropout=dropout)
+            for _ in range(num_pooling_layers)
+        ])
 
         # Define fully connected layers
         if mlp_layers is None:
-            mlp_layers = [hid_dim * pool_size]
+            mlp_layers = [hid_dim]
             mlp_layers.append(max(out_channels * 2, mlp_layers[-1] // 2))
             while mlp_layers[-1] // 2 > out_channels:
                 mlp_layers.append(mlp_layers[-1] // 2)
         else:
-            mlp_layers = [hid_dim * pool_size] + mlp_layers
+            mlp_layers = [hid_dim] + mlp_layers
 
         self.mlp = nn.Sequential()
-        n_mlp_layers = len(mlp_layers) - 1
-        for i in range(n_mlp_layers):
+        num_mlp_layers = len(mlp_layers) - 1
+        for i in range(num_mlp_layers):
             self.mlp.extend([
                 nn.Linear(mlp_layers[i], mlp_layers[i+1]),
                 nn.GELU(),
@@ -92,9 +99,9 @@ class HGT(nn.Module):
 
     def reset_parameters(self):
         r"""Reinitializes the model parameters."""
-        self.conv.apply(self._init_weights)
+        self.conv_layers.apply(self._init_weights)
         self.jk.apply(self._init_weights)
-        self.pool.apply(self._init_weights)
+        self.pooling_layers.apply(self._init_weights)
         self.mlp.apply(self._init_weights)
 
     def _init_weights(self, m):
@@ -109,36 +116,39 @@ class HGT(nn.Module):
         r"""Runs the forward pass of the module.
 
         Args:
-            data (:class:`torch_geometric.data.HeteroData`):
-                A data object containing input node features and graph 
-                connectivity information for each individual edge type.
+            data (torch_geometric.data.HeteroData): A data object containing
+                input node features and graph  connectivity information for 
+                each individual edge type.
     
-        Returns: :obj:`torch.Tensor` - The output prediction tensor.
+        :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
-        x_dict, edge_index_dict, batch_dict = data.x_dict, data.edge_index_dict, data.batch_dict
+        x_dict = data.x_dict
         outs = []
 
-        edge_index= torch.cat([v for v in edge_index_dict.values()], dim=1)
-        batch = torch.cat([v for v in batch_dict.values()])
-
         # Convolutional layers
-        for i in range(self.layers):
-            x_dict = self.conv[i](x_dict, edge_index_dict)
+        for conv in self.conv_layers:
+            x_dict = conv(x_dict, data.edge_index_dict)
             outs.append(torch.cat([v for v in x_dict.values()]))
 
         # Jumping Knowledge layer
         x = self.jk(outs)
 
-        # Avoid NaNs (edge case handling)
-        x = torch.nan_to_num(x)
+        # Pooling layers
+        edge_index = torch.cat([v for v in data.edge_index_dict.values()], dim=1)
+        batch = torch.cat([v for v in data.batch_dict.values()])
+        if 'edge_attr' in data.keys():
+            edge_attr = torch.cat([v for v in data.edge_attr_dict.values()])
+        else:
+            edge_attr = None
 
-        # Pooling layer
-        x = self.pool(x, edge_index=edge_index, batch=batch)[0]
+        for pool in self.pooling_layers:
+            x, edge_index, edge_attr, batch, _ = pool(x, edge_index, edge_attr, batch)
+            x = F.gelu(x)
 
-        batch_size = batch.max().item() + 1
-        x = x.view(batch_size, -1)
+        # Aggregating nodes
+        x = global_max_pool(x, batch)
 
         # Fully connected layers
-        x = self.mlp(x).flatten()
+        x = self.mlp(x).squeeze(1)
         return x
 
