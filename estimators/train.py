@@ -3,6 +3,7 @@ import sys
 import argparse
 import random
 import shutil
+import gc
 from pathlib import Path
 from typing import List, Dict, Tuple, Optional, Union
 
@@ -59,13 +60,20 @@ def evaluate(
     
     # Assumption: Only one instance per batch
     for i, batch in enumerate(loader):
-        pred = model(batch.to(DEVICE))
-        target = batch.y.to(DEVICE)
+        torch.cuda.empty_cache()
+
+        batch = batch.to(DEVICE)
+        pred = model(batch)
+        target = batch.y
 
         pred_val = pred.item()
         target_val = target.item()
         abs_error = torch.abs(pred - target).item()
         rel_error = rpd(pred, target).item()
+
+        batch = batch.to('cpu')
+        target = target.to('cpu')
+        pred = pred.to('cpu')
 
         if log_dir:
             with open(f"{log_dir}/{mode}.log", 'a') as log_file:
@@ -123,15 +131,22 @@ def train_model(
         model.train()
         preds, targets = [], []
         for batch in train_loader:
+            torch.cuda.empty_cache()
+            
             optimizer.zero_grad()
 
-            pred = model(batch.to(DEVICE))
-            target = batch.y.to(DEVICE)
+            batch = batch.to(DEVICE)
+            pred = model(batch)
+            target = batch.y
 
             loss_fn(pred, target).backward()
             optimizer.step()
             if scheduler:
                 scheduler.step()
+
+            batch = batch.to('cpu')
+            target = target.to('cpu')
+            pred = pred.to('cpu')
 
             targets.append(target)
             preds.append(pred)
@@ -231,10 +246,10 @@ def main(args: Dict[str, str]):
         )
 
         model = HGT(
-            METADATA, NODE_FEATURE_DIMS, 1, hid_dim=64, 
-            num_conv_layers=5, num_pooling_layers=5,
-            heads=8, dropout=0.2, jk_mode='max', 
-            device=DEVICE   
+            METADATA, NODE_FEATURE_DIMS, 1, num_layers=7,
+            hid_dim=[64, 32, 16, 8, 4, 2, 1], heads=[8, 8, 4, 4, 2, 1, 1], 
+            dropout=0.2, jk_mode='lstm', mlp_layers=[4, 2],
+            device=DEVICE
         )
         if loss == 'huber':
             loss_fn = nn.HuberLoss(delta=residual)
@@ -531,36 +546,36 @@ def prepare_data_loaders(
     # 
     # - **var (variable)**  
     #   - 0-5: type  
-    #   - 6: bw (bitwidth)  
+    #   - 6: bitwidth  
     # 
     # - **const (constant)**  
     #   - 0-5: type  
-    #   - 6: bw (bitwidth)  
+    #   - 6: bitwidth  
     # 
     # - **array**  
-    #   - 0: n_dims (number of dimensions)  
-    #   - 1-4: dim_sizes (dimension sizes)  
-    #   - 5-10: elem_type (element type)  
-    #   - 11: elem_bw (element bitwidth)  
-    #   - 12-14: impl (RTL port, BRAM/LUTRAM/URAM, shift register)
-    #   - 15: partitioned
-    #   - 16-18: type (complete, cyclic, block)
-    #   - 19-23: one_hot_dim (one-hot encoded dimension)  
-    #   - 24: factor  
+    #   - 0: num_dims  
+    #   - 1-4: dim_sizes  
+    #   - 5-10: elem_type  
+    #   - 11: elem_bitwidth  
+    #   - 12-14: implementation (RTL port, BRAM/LUTRAM/URAM, shift register)  
+    #   - 15: partitioned  
+    #   - 16-18: partition_type (complete, cyclic, block)  
+    #   - 19-23: partition_dim  
+    #   - 24: partition_factor  
     #
     # - **loop**  
     #   - 0: depth  
     #   - 1: trip_count  
     #   - 2: unrolled
     #   - 3: unroll_factor
-    #   - 4: pipelined
-    #   - 5: merged
-    #   - 6: flattened
+    #   - 4: pipelined  
+    #   - 5: merged  
+    #   - 6: flattened  
     #   
     # - **func (function)**
-    #   - 0: top_level
-    #   - 1: pipelined
-    #   - 2: merged
+    #   - 0: top_level  
+    #   - 1: pipelined  
+    #   - 2: merged  
 
     filter_cols = {
         'inst': list(range(12)),
@@ -637,6 +652,7 @@ def parse_arguments():
     return vars(parser.parse_args())
 
 if __name__ == '__main__':
+    gc.collect()
     DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     args = parse_arguments()
     main(args)
