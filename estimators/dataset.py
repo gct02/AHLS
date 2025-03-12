@@ -1,12 +1,13 @@
-from typing import Union, Optional, List, Dict
-from torch_geometric.typing import NodeType
-
 import os
 import torch
 import shutil
 from collections import defaultdict
-from torch_geometric.data import Dataset
+from typing import Union, Optional, List, Dict
+
 from torch import Tensor
+from torch_geometric.data import Dataset
+from torch_geometric.typing import NodeType, Metadata
+
 
 def compute_stats(
     dataset_dir_path: str, 
@@ -17,8 +18,9 @@ def compute_stats(
     """Compute mean and standard deviation of features."""
 
     if not os.path.exists(dataset_dir_path):
-        raise FileNotFoundError(f"Directory {dataset_dir_path} does not exist.")
-
+        raise FileNotFoundError(
+            f"Directory {dataset_dir_path} does not exist."
+        )
     if benches is None:
         benches = sorted(os.listdir(dataset_dir_path))
     elif isinstance(benches, str):
@@ -102,19 +104,27 @@ class HLSDataset(Dataset):
         self,
         root: str,
         metric: str,
+        metadata: Optional[Metadata] = None,
         dataset_dir_path: Optional[str] = None,
         copy_data: bool = False,
         process_data: bool = True,
         stats: Optional[Dict[NodeType, Dict[str, Tensor]]] = None,
         benches: Optional[List[str]] = None,
+        num_virtual_nodes: Optional[Union[int, Dict[NodeType, int]]] = None,
         **kwargs
     ):
         self.dataset_dir_path = dataset_dir_path if dataset_dir_path else root
         self.root = root
         self.stats = stats
         self.metric = metric
+
         self.copy_data = copy_data
         self.process_data = process_data
+        
+        if num_virtual_nodes and metadata and isinstance(num_virtual_nodes, int):
+            self.num_virtual_nodes = {nt: num_virtual_nodes for nt in metadata[0]}
+        else:
+            self.num_virtual_nodes = num_virtual_nodes
             
         if benches is None:
             self.benches = sorted(os.listdir(self.dataset_dir_path))
@@ -141,8 +151,9 @@ class HLSDataset(Dataset):
             return
         
         if not os.path.exists(self.dataset_dir_path):
-            raise FileNotFoundError(f"Dataset directory {self.dataset_dir_path} does not exist.")
-        
+            raise FileNotFoundError(
+                f"Dataset directory {self.dataset_dir_path} does not exist."
+            )
         if not os.path.exists(self.raw_dir):
             os.makedirs(self.raw_dir)
         
@@ -153,8 +164,9 @@ class HLSDataset(Dataset):
     
     def process(self):
         if not os.path.exists(self.raw_dir):
-            raise FileNotFoundError(f"Raw directory {self.raw_dir} does not exist.")
-        
+            raise FileNotFoundError(
+                f"Raw directory {self.raw_dir} does not exist."
+            )
         if os.path.exists(self.processed_dir):
             shutil.rmtree(self.processed_dir)
             os.makedirs(self.processed_dir)
@@ -190,15 +202,43 @@ class HLSDataset(Dataset):
                     data = torch.load(cdfg_path)
                     processed_data = data.clone()
 
+                    processed_data.y = torch.tensor([target_value])
+
                     for nt in data.x_dict.keys():
                         if nt not in self.stats:
                             continue
 
                         stats = self.stats[nt]
-                        processed_data[nt].x = ((data.x_dict[nt] - stats['mean'].unsqueeze(0))
-                                                / stats['std'].unsqueeze(0))
+                        mean = stats['mean'].unsqueeze(0)
+                        std = stats['std'].unsqueeze(0)
+                        node_feats = data.x_dict[nt]
+                        processed_data[nt].x = (node_feats - mean) / std
                         
-                    processed_data.y = torch.tensor([target_value])
+                if self.num_virtual_nodes:
+                    if isinstance(self.num_virtual_nodes, int):
+                        self.num_virtual_nodes = {nt: self.num_virtual_nodes 
+                                                  for nt in data.x_dict.keys()}
+
+                    for nt, n_virt in self.num_virtual_nodes.items():
+                        if n_virt == 0:
+                            continue
+
+                        n_nodes = data[nt].x.shape[0]
+                        feat_dim = data[nt].x.shape[1]
+
+                        virt_type = f"virtual_{nt}"
+                        processed_data[virt_type].x = torch.zeros((n_virt, feat_dim))
+
+                        # Connect the virtual node to all the nodes of the original type
+                        virt_edge_index = torch.zeros((2, n_nodes * n_virt), dtype=torch.long)
+                        virt_edge_index[0] = torch.arange(n_nodes).repeat(n_virt)
+                        virt_edge_index[1] = torch.arange(n_virt).repeat(n_nodes)
+                        processed_data[(nt, "aggr", virt_type)].edge_index = virt_edge_index
+
+                        virt_self_edge_index = torch.zeros((2, n_virt), dtype=torch.long)
+                        virt_self_edge_index[0] = torch.arange(n_virt)
+                        virt_self_edge_index[1] = torch.arange(n_virt)
+                        processed_data[(virt_type, "self", virt_type)].edge_index = virt_self_edge_index
 
                     processed_path = os.path.join(self.processed_dir, f"{bench}_{sol}.pt")
                     torch.save(processed_data, processed_path)

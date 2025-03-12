@@ -8,9 +8,7 @@ from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
 from torch_geometric.nn.models import JumpingKnowledge
 from torch.types import Device
-from torch_geometric.typing import Metadata
-
-from layers import HetSAGPooling
+from torch_geometric.typing import Metadata, NodeType
 
 
 class HGT(nn.Module):
@@ -34,6 +32,8 @@ class HGT(nn.Module):
             (default: :obj:`"lstm"`)
         mlp_layers (List[int], optional): List of hidden layer sizes for the MLP.
             (default: :obj:`None`)
+        num_virtual_nodes (int or Dict[int], optional): Number of virtual nodes to
+            use for each node type. (default: :obj:`None`)
         device (torch.device): Device to use for computation. 
             (default: :obj:`"cpu"`)
     """
@@ -45,6 +45,7 @@ class HGT(nn.Module):
         num_layers: int = 6,
         heads: Union[int, List[int]] = 1,
         dropout: float = 0.0,
+        num_virtual_nodes: Optional[Union[int, Dict[NodeType, int]]] = None,
         mlp_layers: Optional[List[int]] = None,
         jk_mode: str = 'lstm',
         device: Device = 'cpu'
@@ -59,6 +60,13 @@ class HGT(nn.Module):
         if isinstance(heads, int):
             heads = [heads] * num_layers
 
+        if num_virtual_nodes is None:
+            num_virtual_nodes = {nt: 1 for nt in metadata[0]}
+        elif isinstance(num_virtual_nodes, int):
+            num_virtual_nodes = {nt: num_virtual_nodes for nt in metadata[0]}
+
+        self.virtual_types = [f'virtual_{k}' for k in num_virtual_nodes.keys()]
+
         # Define convolutional layers
         self.in_conv_layers = nn.ModuleList([
             HGTConv(hid_dim[i-1] if i > 0 else in_channels, hid_dim[i], metadata, heads[i])
@@ -72,21 +80,27 @@ class HGT(nn.Module):
         # Define Jumping Knowledge layer
         self.jk = nn.ModuleDict({
             nt: JumpingKnowledge(jk_mode, 1, num_layers)
-            for nt in metadata[0]
+            for nt in self.virtual_types
         })
 
-        # Define pooling layer
-        self.pool = HetSAGPooling(1, metadata).to(device)
+        # Define type-specific fully connected layer
+        self.node_fc = nn.ModuleDict({
+            f'virtual_{k}': nn.Sequential(
+                nn.Linear(v * hid_dim[-1], out_channels),
+                nn.GELU()
+            )
+            for k, v in num_virtual_nodes.items()
+        })
 
         # Define fully connected layers
-        num_node_types = len(metadata[0])
+        num_virtual_types = len(num_virtual_nodes)
         if mlp_layers is None:
-            mlp_layers = [num_node_types]
+            mlp_layers = [num_virtual_types]
             mlp_layers.append(max(out_channels * 2, mlp_layers[-1] // 2))
             while mlp_layers[-1] // 2 > out_channels:
                 mlp_layers.append(mlp_layers[-1] // 2)
         else:
-            mlp_layers = [num_node_types] + mlp_layers
+            mlp_layers = [num_virtual_types] + mlp_layers
 
         self.mlp = nn.Sequential()
         num_mlp_layers = len(mlp_layers) - 1
@@ -105,8 +119,8 @@ class HGT(nn.Module):
         r"""Reinitializes the model parameters."""
         self.in_conv_layers.apply(self._init_weights)
         self.out_conv_layers.apply(self._init_weights)
-        self.pool.reset_parameters()
         self.jk.apply(self._init_weights)
+        self.node_fc.apply(self._init_weights)
         self.mlp.apply(self._init_weights)
 
     def _init_weights(self, m):
@@ -116,6 +130,10 @@ class HGT(nn.Module):
                 nn.init.zeros_(m.bias)
         else:
             reset(m)
+
+    def _get_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
+        r"""Computes the batch size from the batch dictionary."""
+        return torch.cat([v for v in batch_dict.values()], dim=0).max().item() + 1
 
     def forward(self, data: HeteroData) -> Tensor:
         r"""Runs the forward pass of the module.
@@ -127,26 +145,29 @@ class HGT(nn.Module):
     
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
-        x_dict = data.x_dict
-        outs = {nt: [] for nt in x_dict.keys()}
+        x_dict, edge_index_dict = data.x_dict, data.edge_index_dict
+        outs = {nt: [] for nt in self.virtual_types}
+
+        virtual_edge_index_dict = {
+            k: v for k, v in edge_index_dict.items() if k[2].startswith('virtual')
+        }
 
         # Convolutional layers
         for in_conv, out_conv in zip(self.in_conv_layers, self.out_conv_layers):
-            x_dict = in_conv(x_dict, data.edge_index_dict)
-            out_dict = out_conv(x_dict, data.edge_index_dict)
-            for nt in x_dict.keys():
+            x_dict = in_conv(x_dict, edge_index_dict)
+            out_dict = out_conv(x_dict, virtual_edge_index_dict)
+            for nt in self.virtual_types:
                 outs[nt].append(out_dict[nt])
 
         # Jumping Knowledge layer
-        x = {nt: self.jk[nt](outs[nt]) for nt in x_dict.keys()}
+        batch_size = self._get_batch_size(data.batch_dict)
+        out_dict = {nt: self.jk[nt](outs[nt]).view(batch_size, -1) 
+                    for nt in self.virtual_types}
 
-        # Pooling layer
-        x = self.pool(x, data.edge_index_dict, data.batch_dict)
-        
-        batch_size = torch.cat([v for v in data.batch_dict.values()], dim=0).max().item() + 1
-        x = {nt: x[nt].view(batch_size, -1) for nt in x.keys()}
-        x = torch.cat([x[nt] for nt in x.keys()], dim=-1)
+        # Type-specific fully connected layer
+        out = torch.cat([self.node_fc[nt](out_dict[nt]) 
+                         for nt in self.virtual_types], dim=-1)
 
         # Fully connected layers
-        return self.mlp(x).squeeze(1)
+        return self.mlp(out).squeeze(1)
 

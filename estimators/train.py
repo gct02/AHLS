@@ -14,8 +14,9 @@ import seaborn as sns
 import pandas as pd
 import torch
 import torch.nn as nn
-from torch_geometric.loader import DataLoader
 from sklearn.metrics import r2_score
+from torch_geometric.loader import DataLoader
+from torch_geometric.typing import NodeType
 
 from models import HGT
 from dataset import HLSDataset, compute_stats
@@ -230,6 +231,14 @@ def main(args: Dict[str, str]):
     base_pretrained_dir = f"{Path(sys.argv[0]).parent}/pretrained"
     benchmarks = sorted(os.listdir(dataset_path))
 
+    virtual_nodes = [f"virtual_{nt}" for nt in METADATA[0]]
+    virtual_edges = [(nt, 'aggr', vnt) for nt, vnt in zip(METADATA[0], virtual_nodes)]
+    virtual_edges += [(vnt, 'self', vnt) for vnt in virtual_nodes]
+    virtual_node_dims = {vnt: NODE_FEATURE_DIMS[nt] for nt, vnt in zip(METADATA[0], virtual_nodes)}
+
+    metadata = (METADATA[0] + virtual_nodes, METADATA[1] + virtual_edges)
+    node_feature_dims = {**NODE_FEATURE_DIMS, **virtual_node_dims}
+
     if selected_test_bench is None:
         test_benches = benchmarks
     else:
@@ -240,17 +249,22 @@ def main(args: Dict[str, str]):
             base_stats_dir, base_pretrained_dir, test_bench, target_metric
         )
         train_benches = [b for b in benchmarks if b != test_bench]
+
+        num_virtual_nodes = {nt: 2 for nt in METADATA[0]}
+
         train_loader, test_loader = prepare_data_loaders(
-            dataset_path, target_metric, train_benches, 
-            test_bench, batch_size, process_data
+            dataset_path, target_metric, train_benches, test_bench, 
+            batch_size, num_virtual_nodes, process_data
         )
 
         model = HGT(
-            METADATA, NODE_FEATURE_DIMS, 1, num_layers=7,
-            hid_dim=[64, 32, 16, 8, 4, 2, 1], heads=[8, 8, 4, 4, 2, 1, 1], 
+            metadata, node_feature_dims, 1, num_layers=8,
+            hid_dim=[64, 64, 32, 16, 8, 4, 2, 1], 
+            heads=[8, 8, 8, 4, 4, 2, 1, 1], 
             dropout=0.2, jk_mode='lstm', mlp_layers=[4, 2],
-            device=DEVICE
+            num_virtual_nodes=num_virtual_nodes, device=DEVICE
         )
+
         if loss == 'huber':
             loss_fn = nn.HuberLoss(delta=residual)
         elif loss == 'mse':
@@ -533,6 +547,7 @@ def prepare_data_loaders(
     train_benches: Union[List[str], str],
     test_benches: Union[List[str], str],
     batch_size: int,
+    num_virtual_nodes: Optional[Union[int, Dict[NodeType, int]]] = None,
     process_data: bool = False
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
     
@@ -592,22 +607,27 @@ def prepare_data_loaders(
     train_dir = f"{dataset_dir}/train"
     test_dir = f"{dataset_dir}/test"
 
+    if num_virtual_nodes is None:
+        num_virtual_nodes = {nt: 1 for nt in METADATA[0]}
+
     if process_data:
         data_dirs = [
             f"{train_dir}/raw", f"{test_dir}/raw", 
             f"{train_dir}/processed", f"{test_dir}/processed"
         ]
         clean_up_dirs(data_dirs, recreate=True)
-    
+
     train_data = HLSDataset(
-        train_dir, target_metric, original_dataset_dir, 
-        copy_data=process_data, process_data=True, 
-        benches=train_benches, stats=stats
+        train_dir, target_metric, 
+        metadata=METADATA, dataset_dir_path=original_dataset_dir, 
+        benches=train_benches, copy_data=process_data, process_data=True, 
+        stats=stats, num_virtual_nodes=num_virtual_nodes
     )
     test_data = HLSDataset(
-        test_dir, target_metric, original_dataset_dir, 
-        copy_data=process_data, process_data=True, 
-        benches=test_benches, stats=stats
+        test_dir, target_metric, 
+        metadata=METADATA, dataset_dir_path=original_dataset_dir, 
+        benches=test_benches, copy_data=process_data, process_data=True, 
+        stats=stats, num_virtual_nodes=num_virtual_nodes
     )
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=1, shuffle=False)

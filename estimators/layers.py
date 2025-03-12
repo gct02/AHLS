@@ -24,9 +24,8 @@ class HetSAGPooling(torch.nn.Module):
 
         self.gnn = HGTConv(in_channels, 1, metadata)
 
-        node_types = metadata[0]
-        self.w = {nt: nn.Parameter(torch.empty(1, in_channels)) for nt in node_types}
-        self.b = {nt: nn.Parameter(torch.empty(1)) for nt in node_types}
+        self.w = {nt: nn.Parameter(torch.empty(1, in_channels)) for nt in metadata[0]}
+        self.b = {nt: nn.Parameter(torch.empty(1)) for nt in metadata[0]}
 
         self.reset_parameters()
 
@@ -59,11 +58,11 @@ class HetSAGPooling(torch.nn.Module):
             batch = {k: edge_index[k].new_zeros(x[k].size(0)) for k in x.keys()}
 
         attn = self.gnn(x, edge_index)
+
         for k in attn.keys():
             self.w[k] = self.w[k].to(x[k].device)
             self.b[k] = self.b[k].to(x[k].device)
-            attn[k] = softmax((attn[k] * self.w[k] + self.b[k]).sum(dim=-1), 
-                              batch[k])
+            attn[k] = softmax((attn[k] * self.w[k] + self.b[k]).sum(dim=-1), batch[k])
         
         # Multiply attention scores with node features and sum them up.
         x = {k: x[k] * attn[k].view(-1, 1) for k in x.keys()}
