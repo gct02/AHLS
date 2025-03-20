@@ -21,7 +21,7 @@ from torch_geometric.typing import NodeType
 from models import HGT
 from dataset import HLSDataset, compute_stats
 from graph import METADATA, NODE_FEATURE_DIMS
-# from utils.parsers import extract_metrics
+
 
 def save_model(model, target_dir, model_name):
     target_dir_path = Path(target_dir)
@@ -582,28 +582,22 @@ def get_base_solution_values(
     base_values = {}
 
     for bench in os.listdir(dataset_dir):
-        bench = Path(bench)
-        if not bench.is_dir():
+        bench_dir = Path(dataset_dir) / bench
+        if not bench_dir.is_dir():
             continue
 
-        if (bench / "solution0").exists():
-            base_solution = "solution0"
-        elif (bench / "solution1").exists():
-            base_solution = "solution1"
+        if (bench_dir / "solution0").exists():
+            base_sol = "solution0"
+        elif (bench_dir / "solution1").exists():
+            base_sol = "solution1"
         else:
             continue
-
-        bench_name = bench.stem
         
-        metrics = extract_metrics(
-            dataset_dir, bench_name, base_solution, filtered
-        )
-        if target_metric not in metrics:
-            print(f"Target metric {target_metric} not found for {bench_name}")
-            base_values[bench_name] = None
-            continue
+        metrics = extract_metrics(dataset_dir, bench, base_sol, filtered)
+        assert target_metric in metrics, \
+            f"Target metric {target_metric} not found in base solution metrics"
 
-        base_values[bench_name] = metrics[target_metric]
+        base_values[bench] = metrics[target_metric]
 
     return base_values
 

@@ -255,7 +255,7 @@ class HLSDataset(Dataset):
                     processed_data["base"].x = torch.tensor([base_target]).unsqueeze(0)
 
                     for nt in processed_data.x_dict.keys():
-                        if nt == "base":
+                        if nt == "base" or nt.startswith("virtual"):
                             continue
                         num_nodes = processed_data[nt].x.shape[0]
                         processed_data[("base", "base", nt)].edge_index = torch.stack([
