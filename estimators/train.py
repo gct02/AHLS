@@ -48,59 +48,50 @@ def evaluate(
     epoch: int,
     model: nn.Module,
     loader: DataLoader,
-    loss_fn: nn.Module,
-    verbosity: int,
-    mode: str = 'test',
-    log_dir: Optional[str] = None
-) -> Tuple[float, float, float, List[Tuple[float, float]]]:
+    verbosity: int = 1,
+    log_dir: Optional[str] = None,
+    loss_fn: Optional[nn.Module] = None,
+    mode: str = 'test'
+) -> Union[float, List[Tuple[float, float]]]:
     if verbosity > 0:
         print(f"\nEvaluating on {mode} set\n")
 
     preds, targets = [], []
-    abs_errors, rel_errors = [], []
     
     # Assumption: Only one instance per batch
     for i, batch in enumerate(loader):
         torch.cuda.empty_cache()
 
-        batch = batch.to(DEVICE)
-        pred = model(batch)
+        pred = model(batch.to(DEVICE))
         target = batch.y
 
-        pred_val = pred.item()
-        target_val = target.item()
-        abs_error = torch.abs(pred - target).item()
-        rel_error = rpd(pred, target).item()
-
-        batch = batch.to('cpu')
-        target = target.to('cpu')
-        pred = pred.to('cpu')
+        batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
+        preds.append(pred)
+        targets.append(target)
 
         if log_dir:
             with open(f"{log_dir}/{mode}.log", 'a') as log_file:
-                log_file.write(f"{epoch},{i},{target_val},{pred_val}\n")
+                log_file.write(f"{epoch},{i},{target.item()},{pred.item()}\n")
 
         if verbosity > 0:
-            print(f"Instance {i}: Target: {target_val}; Prediction: {pred_val}; "
-                  + f"Abs. Error: {abs_error:.3f}; Rel. Error: {rel_error:.3f}")
+            print(f"Instance {i}: Target: {target.item()}; Prediction: {pred.item()}")
 
-        preds.append(pred_val)
-        targets.append(target_val)
-        abs_errors.append(abs_error)
-        rel_errors.append(rel_error)
-
-    mean_abs_error = np.mean(abs_errors)
-    mean_rel_error = np.mean(rel_errors)
+    preds = torch.cat(preds)
+    targets = torch.cat(targets)
 
     if verbosity > 0:
-        print(f"\nMean Absolute Error on {mode} set: {mean_abs_error:.3f}")
-        print(f"Mean Relative Error on {mode} set: {mean_rel_error:.3f}\n")
+        mean_abs_error = torch.abs(preds - targets).mean().item()
+        mean_rel_error = rpd(preds, targets).mean().item()
+        print(f"\nMean Absolute Error on {mode} set: {mean_abs_error:.2f}")
+        print(f"Mean Relative Error on {mode} set: {mean_rel_error:.2f}\n")
 
-    pred_tensor = torch.tensor(preds)
-    target_tensor = torch.tensor(targets)
-    loss = loss_fn(pred_tensor, target_tensor).item()
+    pred_target_pairs = list(zip(preds.tolist(), targets.tolist()))
 
-    return loss, mean_abs_error, mean_rel_error, list(zip(preds, targets))
+    if loss_fn:
+        loss = loss_fn(preds, targets).item()
+        return loss, pred_target_pairs
+    
+    return pred_target_pairs
 
 
 def train_model(
@@ -121,23 +112,23 @@ def train_model(
     test_bench: Optional[str] = None,
     metric: Optional[str] = None
 ) -> None:
-    train_abs_errs, test_abs_errs, test_rel_errs = [], [], []
-    test_instance_preds = [[] for _ in range(len(test_loader))]
+    test_preds = [[] for _ in range(len(test_loader))]
+    train_rel_errs = []
 
     for epoch in range(epochs):
         if verbosity > 0:
             print(f"Epoch {epoch + 1}/{epochs}\n")
+
+        preds, targets = [], []
         
         # Training
         model.train()
-        preds, targets = [], []
         for batch in train_loader:
             torch.cuda.empty_cache()
             
             optimizer.zero_grad()
 
-            batch = batch.to(DEVICE)
-            pred = model(batch)
+            pred = model(batch.to(DEVICE))
             target = batch.y
 
             loss_fn(pred, target).backward()
@@ -145,10 +136,7 @@ def train_model(
             if scheduler:
                 scheduler.step()
 
-            batch = batch.to('cpu')
-            target = target.to('cpu')
-            pred = pred.to('cpu')
-
+            batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
             targets.append(target)
             preds.append(pred)
 
@@ -157,38 +145,27 @@ def train_model(
 
         targets = torch.cat(targets)
         preds = torch.cat(preds)
-        train_error = torch.abs(targets - preds).mean().item()
-        train_abs_errs.append(train_error)
+        train_rel_errs.append(rpd(preds, targets).mean().item())
 
         if collect_residuals and log_dir:
-            residuals = targets - preds
+            residuals = (targets - preds).tolist()
             targets, preds = targets.tolist(), preds.tolist()
-            residuals = residuals.tolist()
-            with open(f"{log_dir}/training.log", 'a') as log_file:
-                for i, (t, p, r) in enumerate(zip(targets, preds, residuals)):
-                    log_file.write(f"{epoch},{i},{t},{p},{r}\n")
+            with open(f"{log_dir}/train.log", 'a') as log_file:
+                for t, p, r in zip(targets, preds, residuals):
+                    log_file.write(f"{epoch},{t},{p},{r}\n")
 
         # Evaluation
         model.eval()
         with torch.no_grad():
-            _, test_abs_error, test_rel_error, test_preds = evaluate(
-                epoch, model, test_loader, loss_fn, verbosity, "test", log_dir
-            )
-            test_abs_errs.append(test_abs_error)
-            test_rel_errs.append(test_rel_error)
-            for i, instance_pred in enumerate(test_preds):
-                test_instance_preds[i].append(instance_pred)
-
-    if save_artifacts:
-        save_training_artifacts(
-            train_abs_errs, test_abs_errs, test_rel_errs, test_instance_preds, 
-            stats_dir, graphs_dir
-        )
+            preds = evaluate(epoch, model, test_loader, verbosity, log_dir)
+            for i, p in enumerate(preds):
+                test_preds[i].append(p)
 
     if generate_plots:
-        plot_benchmark_analysis(
-            test_instance_preds, test_rel_errs, test_bench, metric, graphs_dir
-        )
+        plot_prediction_bars(test_preds, test_bench, metric, graphs_dir)
+
+    if save_artifacts:
+        save_training_artifacts(train_rel_errs, test_preds, stats_dir, graphs_dir)
 
 
 def get_current_run_number(stats_dir: str) -> int:
@@ -232,9 +209,11 @@ def main(args: Dict[str, str]):
     benchmarks = sorted(os.listdir(dataset_path))
 
     virtual_nodes = [f"virtual_{nt}" for nt in METADATA[0]]
-    virtual_edges = [(nt, 'aggr', vnt) for nt, vnt in zip(METADATA[0], virtual_nodes)]
-    virtual_edges += [(vnt, 'self', vnt) for vnt in virtual_nodes]
-    virtual_node_dims = {vnt: NODE_FEATURE_DIMS[nt] for nt, vnt in zip(METADATA[0], virtual_nodes)}
+    virtual_node_dims = {vt: NODE_FEATURE_DIMS[nt] 
+                         for nt, vt in zip(METADATA[0], virtual_nodes)}
+
+    virtual_edges = [(nt, 'virtual', vt) for nt, vt in zip(METADATA[0], virtual_nodes)]
+    virtual_edges += [(vt, 'self', vt) for vt in virtual_nodes]
 
     metadata = (METADATA[0] + virtual_nodes, METADATA[1] + virtual_edges)
     node_feature_dims = {**NODE_FEATURE_DIMS, **virtual_node_dims}
@@ -244,26 +223,32 @@ def main(args: Dict[str, str]):
     else:
         test_benches = [selected_test_bench]
 
+    num_virtual_nodes = {vt: 4 for vt in virtual_nodes}
+
+    model_params = {
+        'metadata': metadata,
+        'in_channels': node_feature_dims,
+        'out_channels': 1,
+        'num_layers': 6,
+        'hid_dim': 64,
+        'heads': 8,
+        'dropout': 0.1,
+        'num_virtual_nodes': num_virtual_nodes,
+        'device': DEVICE
+    }
+
     for test_bench in test_benches:
         run_analysis_dir, stats_dir, graphs_dir, pretrained_dir = make_output_dirs(
             base_stats_dir, base_pretrained_dir, test_bench, target_metric
         )
         train_benches = [b for b in benchmarks if b != test_bench]
 
-        num_virtual_nodes = {nt: 2 for nt in METADATA[0]}
-
         train_loader, test_loader = prepare_data_loaders(
-            dataset_path, target_metric, train_benches, test_bench, 
-            batch_size, num_virtual_nodes, process_data
+            dataset_path, target_metric, train_benches, test_bench, batch_size, 
+            num_virtual_nodes=num_virtual_nodes, process_data=process_data
         )
 
-        model = HGT(
-            metadata, node_feature_dims, 1, num_layers=8,
-            hid_dim=[64, 64, 32, 16, 8, 4, 2, 1], 
-            heads=[8, 8, 8, 4, 4, 2, 1, 1], 
-            dropout=0.2, jk_mode='lstm', mlp_layers=[4, 2],
-            num_virtual_nodes=num_virtual_nodes, device=DEVICE
-        )
+        model = HGT(**model_params)
 
         if loss == 'huber':
             loss_fn = nn.HuberLoss(delta=residual)
@@ -275,7 +260,7 @@ def main(args: Dict[str, str]):
             raise ValueError(f"Unknown loss function: {loss}")
 
         optimizer = torch.optim.AdamW(
-            model.parameters(), lr=1e-3, betas=(0.9, 0.999), weight_decay=5e-4
+            model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=5e-4
         )
 
         total_steps = epochs * len(train_loader)
@@ -296,21 +281,21 @@ def main(args: Dict[str, str]):
 
 
 def plot_learning_curves(
-    train_losses: List[float], 
-    test_losses: List[float], 
-    save_path: Optional[str] = None
+    train_errors: List[float], 
+    test_errors: List[float], 
+    save_path: str
 ):
-    assert len(train_losses) == len(test_losses), \
+    assert len(train_errors) == len(test_errors), \
         "Mismatch in number of training and test losses"
 
     plt.figure(figsize=(12, 6), dpi=150)
     sns.set_style("whitegrid")
 
-    num_epochs = len(train_losses)
+    num_epochs = len(train_errors)
 
     df = pd.DataFrame({
         'Epoch': list(range(num_epochs)) * 2,
-        'Loss': train_losses + test_losses,
+        'Loss': train_errors + test_errors,
         'Type': ['Train'] * num_epochs + ['Test'] * num_epochs
     })
 
@@ -320,38 +305,35 @@ def plot_learning_curves(
         linewidth=2.5, marker='o'
     )
 
-    plt.title(f'Training Progress (Final Test Loss: {test_losses[-1]:.4f})', fontsize=14)
+    plt.title(f'Training Progress (Final Test Loss: {test_errors[-1]:.4f})', fontsize=14)
     plt.xlabel('Epoch', fontsize=12)
     plt.ylabel('Huber Loss', fontsize=12)
     plt.legend()
 
     # Highlight best epoch
-    best_epoch = np.argmin(test_losses)
+    best_epoch = np.argmin(test_errors)
     ax.axvline(best_epoch, color='blue', linestyle='--', alpha=0.7)
     ax.text(
-        best_epoch+0.5, np.max(test_losses), f'Best Epoch: {best_epoch}', 
+        best_epoch + 0.5, np.max(test_errors), f'Best Epoch: {best_epoch}', 
         color='blue', fontsize=10
     )
 
     # Set y-axis to log scale if necessary
-    if np.max(test_losses) / np.min(test_losses) > 100:
+    if np.max(test_errors) / np.min(test_errors) > 100:
         plt.yscale('log')
 
     plt.tight_layout()
-    if save_path:
-        plt.savefig(save_path, bbox_inches='tight')
-    else:
-        plt.show()
+    plt.savefig(save_path, bbox_inches='tight')
     plt.close()
 
 
-def plot_predictions(
-    epoch_preds: List[List[Tuple[float, float]]],
+def plot_prediction_scatter(
+    test_preds: List[List[Tuple[float, float]]],
     save_path: str,
     epoch: int = -1
 ):
-    targets = [inst[0][1] for inst in epoch_preds]
-    preds = [inst[epoch][0] for inst in epoch_preds]
+    targets = [inst[0][1] for inst in test_preds]
+    preds = [inst[epoch][0] for inst in test_preds]
 
     plt.figure(figsize=(10, 10), dpi=150)
     sns.set_style("whitegrid")
@@ -367,18 +349,17 @@ def plot_predictions(
 
     # Regression line
     sns.regplot(
-        x=targets, y=preds, scatter=False, 
-        color='blue', label='Trend Line'
+        x=targets, y=preds, scatter=False, color='blue', label='Trend Line'
     )
     
     # Scatter plot
     sns.scatterplot(x=targets, y=preds, alpha=0.6, edgecolor='w', label='Predictions')
     
     # Error metrics
-    mae = np.mean(np.abs(np.array(targets) - np.array(preds)))
+    mean_rel_error = rpd(torch.tensor(preds), torch.tensor(targets)).mean().item()
     r2 = r2_score(targets, preds)
     plt.text(
-        min_val*1.05, max_val*0.9, f'MAE: {mae:.2f}\nR²: {r2:.2f}', 
+        min_val*1.05, max_val*0.9, f'Mean Relative Error: {mean_rel_error:.2f}\nR²: {r2:.2f}', 
         bbox=dict(facecolor='white', alpha=0.8)
     )
     
@@ -386,14 +367,36 @@ def plot_predictions(
     plt.xlabel('Actual Values', fontsize=12)
     plt.ylabel('Predictions', fontsize=12)
     plt.legend()
+
     plt.tight_layout()
     plt.savefig(save_path)
     plt.close()
 
 
-def plot_benchmark_analysis(
-    test_epoch_preds: List[List[Tuple[float, float]]],
-    test_epoch_rel_err: List[float],
+def get_mean_rel_error(
+    test_preds: List[List[Tuple[float, float]]],
+    epoch: int
+) -> float:
+    targets = torch.tensor([inst[0][1] for inst in test_preds])
+    preds = torch.tensor([inst[epoch][0] for inst in test_preds])
+    return rpd(preds, targets).mean().item()
+
+
+def get_mean_rel_errors(
+    test_preds: List[List[Tuple[float, float]]]
+) -> List[float]:
+    epochs = len(test_preds[0])
+    return [get_mean_rel_error(test_preds, i) for i in range(epochs)]
+
+
+def get_min_error_epoch(
+    test_preds: List[List[Tuple[float, float]]]
+) -> int:
+    return np.argmin(get_mean_rel_errors(test_preds))
+
+
+def plot_prediction_bars(
+    test_preds: List[List[Tuple[float, float]]],
     testbench: str,
     metric: str,
     save_dir: str
@@ -402,71 +405,86 @@ def plot_benchmark_analysis(
     testbench = testbench.upper()
     metric = metric.upper()
 
-    best_epoch = np.argmin([np.mean(err) for err in test_epoch_rel_err])
+    best_epoch = get_min_error_epoch(test_preds)
 
-    indices = list(range(len(test_epoch_preds)))
-    targets = [inst[0][1] for inst in test_epoch_preds]
-    preds = [inst[best_epoch][0] for inst in test_epoch_preds]
+    indices = list(range(len(test_preds)))
+    targets = [inst[0][1] for inst in test_preds]
+    preds = [inst[best_epoch][0] for inst in test_preds]
+    rel_errors = [rpd(p, t).item() for p, t in zip(preds, targets)]
 
-    rel_errors_per_inst = []
-    for inst in test_epoch_preds:
-        best_epoch_pred = inst[best_epoch][0]
-        target = inst[0][1]
-        rpd_val = rpd(best_epoch_pred, target)
-        rel_errors_per_inst.append(rpd_val)
+    mean_rel_error = np.mean(rel_errors)
 
-    bar_width = 0.35
-    _, ax = plt.subplots(figsize=(20, 8), dpi=150)
+    rel_errors = [-r if t > p else r for r, t, p in zip(rel_errors, targets, preds)]
 
-    # Plot bars
-    ax.bar([i - bar_width/2 for i in indices], targets, bar_width, 
-           label='Target', color='blue', alpha=0.7)
-    ax.bar([i + bar_width/2 for i in indices], preds, bar_width,
-           label='Prediction', color='orange', alpha=0.7)
+    df = pd.DataFrame({
+        'index': indices,
+        'target': targets,
+        'prediction': preds,
+        'relative_error': rel_errors
+    })
+    df = df.sort_values(by=['relative_error'], ascending=True, ignore_index=True)
 
-    # Add relative error on top of each pair of bars
-    for i, (t, p, err) in enumerate(zip(targets, preds, rel_errors_per_inst)):
-        ax.text(i, max(t, p) + 0.02 * max(targets), f'{err:.2f}%', 
-                ha='center', fontsize=6, rotation=90)
+    _, ax = plt.subplots(figsize=(16, 6), dpi=180)
+    sns.set_style("whitegrid")
 
-    # Add gridlines for better readability
-    ax.grid(axis='y', linestyle='--', alpha=0.7)
+    ax.bar(indices, df['target'], color='blue', alpha=0.5, label='Targets')
+    ax.bar(indices, df['prediction'], color='darkorange', alpha=0.5, label='Predictions')
+
+    max_val = max(df['target'].max(), df['prediction'].max())
+    ax.set_ylim(0, max_val * 1.2)
+    ax.set_xlim(indices[0] - 1, indices[-1] + 1)
     
-    # Rotate x-axis labels to prevent overlap
-    ax.set_xticks(indices)
-    ax.set_xticklabels(indices, rotation=90, fontsize=6)
 
-    ax.set_title(f'Instance-Level {metric} Predictions for {testbench}', fontsize=16)
-    ax.set_xlabel('Instance', fontsize=12)
-    ax.set_ylabel(metric, fontsize=12)
+    for i, row in df.iterrows():
+        p, t, r = row['prediction'], row['target'], row['relative_error']
+        ax.text(
+        	i, max(p, t) + 0.005 * max_val, f"{r:.2f}%", 
+        	rotation=90, ha='center', fontsize=4, alpha=0.9
+        )
+
+    ax.grid(axis='y', linestyle='--', alpha=0.7)
+
+    ax.set_xticks(indices)
+    ax.set_xticklabels(
+        df['index'], rotation=90, ha='center', va='top', fontsize=4, alpha=0.9
+    )
+
+    ax.text(
+        0.12, 0.95, f"Mean Relative Error: {mean_rel_error:.2f}%", 
+        transform=ax.transAxes, fontsize=11, ha='center'
+    )
+
+    ax.set_title(f"Predictions for {testbench} ({metric})", fontsize=14)
+    ax.set_xlabel('Instance Index', fontsize=12)
+    ax.set_ylabel(f'{metric}', fontsize=12)
     ax.legend()
 
     plt.tight_layout()
-    plt.savefig(f"{save_dir}/{testbench}_predictions.png", bbox_inches='tight')
+    plt.savefig(f"{save_dir}/test_prediction_bars.png")
     plt.close()
 
 
 def save_training_artifacts(
-    train_epoch_err: List[float],
-    test_epoch_abs_err: List[float],
-    test_epoch_rel_err: List[float],
-    test_epoch_preds: List[List[Tuple[float, float]]],
+    train_rel_errors: List[float],
+    test_preds: List[List[Tuple[float, float]]],
     stats_dir: str,
     graphs_dir: str
 ):
-    assert len(train_epoch_err) == len(test_epoch_abs_err), \
+    num_epochs = len(train_rel_errors)
+    test_rel_errors = get_mean_rel_errors(test_preds)
+
+    assert num_epochs == len(test_rel_errors), \
         "Mismatch in number of training and test epochs"
     
     # Save metrics
     metrics_df = pd.DataFrame({
-        'epoch': list(range(len(test_epoch_abs_err))),
-        'train_error': train_epoch_err,
-        'test_abs_error': test_epoch_abs_err,
-        'test_rel_error': test_epoch_rel_err
+        'epoch': list(range(num_epochs)),
+        'train_rel_error': train_rel_errors,
+        'test_rel_error': test_rel_errors
     })
     metrics_df.to_csv(f"{stats_dir}/metrics.csv", index=False)
 
-    best_epoch = np.argmin(test_epoch_rel_err)
+    best_epoch = np.argmin(test_rel_errors)
 
     # Save predictions with metadata
     predictions_df = pd.DataFrame([
@@ -476,21 +494,19 @@ def save_training_artifacts(
             'preds': [p[0] for p in inst],
             'final_pred': inst[-1][0],
             'best_pred': inst[best_epoch][0],
-            'abs_error_final': abs(inst[-1][0] - inst[0][1]),
-            'rel_error_final': rpd(inst[-1][0], inst[0][1]),
-            'abs_error_best': abs(inst[best_epoch][0] - inst[0][1]),
-            'rel_error_best': rpd(inst[best_epoch][0], inst[0][1])
+            'final_rel_error': rpd(inst[-1][0], inst[0][1]),
+            'min_rel_error': rpd(inst[best_epoch][0], inst[0][1])
         }
-        for i, inst in enumerate(test_epoch_preds)
+        for i, inst in enumerate(test_preds)
     ])
     predictions_df.to_csv(f"{stats_dir}/test_predictions.csv", index=False)
 
-    plot_learning_curves(train_epoch_err, test_epoch_abs_err, f"{graphs_dir}/learning_curve.png")
-    plot_predictions(test_epoch_preds, f"{graphs_dir}/test_predictions.png", epoch=best_epoch)
+    plot_learning_curves(train_rel_errors, test_rel_errors, f"{graphs_dir}/learning_curve.png")
+    plot_prediction_scatter(test_preds, f"{graphs_dir}/test_prediction_scatter.png", epoch=best_epoch)
 
     # Add error distribution plot
     plt.figure(figsize=(10, 6))
-    sns.histplot(predictions_df['abs_error_best'], kde=True)
+    sns.histplot(predictions_df['min_rel_error'], kde=True)
     plt.title('Absolute Error Distribution')
     plt.savefig(f"{graphs_dir}/error_distribution.png")
     plt.close()
