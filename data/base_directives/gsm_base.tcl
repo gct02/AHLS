@@ -1,7 +1,0 @@
-set_directive_pipeline -off "Reflection_coefficients/Reflection_coefficients_label0"
-set_directive_pipeline -off "Reflection_coefficients/Reflection_coefficients_label1"
-set_directive_pipeline -off "Reflection_coefficients/Reflection_coefficients_label2"
-set_directive_pipeline -off "Reflection_coefficients/Reflection_coefficients_label3"
-set_directive_pipeline -off "Reflection_coefficients/Reflection_coefficients_label4"
-set_directive_pipeline -off "Reflection_coefficients/Reflection_coefficients_label5"
-set_directive_pipeline -off "Reflection_coefficients/Reflection_coefficients_label6"

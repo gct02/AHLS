@@ -5,7 +5,12 @@
                 "",
                 "set_directive_unroll -factor 2 \"gradient_xy_calc/GradXY_R\"",
                 "set_directive_unroll -factor 3 \"gradient_xy_calc/GradXY_R\"",
+                "set_directive_unroll -factor 4 \"gradient_xy_calc/GradXY_R\"",
                 "set_directive_unroll -factor 6 \"gradient_xy_calc/GradXY_R\"",
+                "set_directive_unroll -factor 8 \"gradient_xy_calc/GradXY_R\"",
+                "set_directive_unroll -factor 16 \"gradient_xy_calc/GradXY_R\"",
+                "set_directive_unroll -factor 32 \"gradient_xy_calc/GradXY_R\"",
+                "set_directive_unroll -factor 64 \"gradient_xy_calc/GradXY_R\"",
                 "set_directive_unroll -factor 73 \"gradient_xy_calc/GradXY_R\"",
                 "set_directive_unroll -factor 146 \"gradient_xy_calc/GradXY_R\"",
                 "set_directive_unroll -factor 219 \"gradient_xy_calc/GradXY_R\"",
@@ -20,7 +25,13 @@
                 "",
                 "set_directive_unroll -factor 2 \"gradient_xy_calc/GradXY_C\"",
                 "set_directive_unroll -factor 3 \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_unroll -factor 4 \"gradient_xy_calc/GradXY_C\"",
                 "set_directive_unroll -factor 6 \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_unroll -factor 8 \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_unroll -factor 16 \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_unroll -factor 32 \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_unroll -factor 64 \"gradient_xy_calc/GradXY_C\"",
+                "set_directive_unroll -factor 128 \"gradient_xy_calc/GradXY_C\"",
                 "set_directive_unroll -factor 171 \"gradient_xy_calc/GradXY_C\"",
                 "set_directive_unroll -factor 342 \"gradient_xy_calc/GradXY_C\"",
                 "set_directive_unroll -factor 513 \"gradient_xy_calc/GradXY_C\"",
@@ -35,6 +46,10 @@
                 "",
                 "set_directive_unroll -factor 2 \"gradient_z_calc/GradZ_R\"",
                 "set_directive_unroll -factor 4 \"gradient_z_calc/GradZ_R\"",
+                "set_directive_unroll -factor 8 \"gradient_z_calc/GradZ_R\"",
+                "set_directive_unroll -factor 16 \"gradient_z_calc/GradZ_R\"",
+                "set_directive_unroll -factor 32 \"gradient_z_calc/GradZ_R\"",
+                "set_directive_unroll -factor 64 \"gradient_z_calc/GradZ_R\"",
                 "set_directive_unroll -factor 109 \"gradient_z_calc/GradZ_R\"",
                 "set_directive_unroll -factor 218 \"gradient_z_calc/GradZ_R\"",
                 "set_directive_unroll \"gradient_z_calc/GradZ_R\""
@@ -97,6 +112,10 @@
                 "",
                 "set_directive_unroll -factor 2 \"gradient_weight_x/GradWeightX_R\"",
                 "set_directive_unroll -factor 4 \"gradient_weight_x/GradWeightX_R\"",
+                "set_directive_unroll -factor 8 \"gradient_weight_x/GradWeightX_R\"",
+                "set_directive_unroll -factor 16 \"gradient_weight_x/GradWeightX_R\"",
+                "set_directive_unroll -factor 32 \"gradient_weight_x/GradWeightX_R\"",
+                "set_directive_unroll -factor 64 \"gradient_weight_x/GradWeightX_R\"",
                 "set_directive_unroll -factor 109 \"gradient_weight_x/GradWeightX_R\"",
                 "set_directive_unroll -factor 218 \"gradient_weight_x/GradWeightX_R\"",
                 "set_directive_unroll \"gradient_weight_x/GradWeightX_R\""
@@ -122,6 +141,10 @@
                 "",
                 "set_directive_unroll -factor 2 \"outer_product/OuterProd_R\"",
                 "set_directive_unroll -factor 4 \"outer_product/OuterProd_R\"",
+                "set_directive_unroll -factor 8 \"outer_product/OuterProd_R\"",
+                "set_directive_unroll -factor 16 \"outer_product/OuterProd_R\"",
+                "set_directive_unroll -factor 32 \"outer_product/OuterProd_R\"",
+                "set_directive_unroll -factor 64 \"outer_product/OuterProd_R\"",
                 "set_directive_unroll -factor 109 \"outer_product/OuterProd_R\"",
                 "set_directive_unroll -factor 218 \"outer_product/OuterProd_R\"",
                 "set_directive_unroll \"outer_product/OuterProd_R\""
@@ -152,7 +175,10 @@
             "possible_directives": [
                 "",
                 "set_directive_unroll -factor 2 \"tensor_weight_y/TensorWeightY_R\"",
+                "set_directive_unroll -factor 4 \"tensor_weight_y/TensorWeightY_R\"",
                 "set_directive_unroll -factor 5 \"tensor_weight_y/TensorWeightY_R\"",
+                "set_directive_unroll -factor 8 \"tensor_weight_y/TensorWeightY_R\"",
+                "set_directive_unroll -factor 16 \"tensor_weight_y/TensorWeightY_R\"",
                 "set_directive_unroll -factor 19 \"tensor_weight_y/TensorWeightY_R\"",
                 "set_directive_unroll -factor 23 \"tensor_weight_y/TensorWeightY_R\"",
                 "set_directive_unroll \"tensor_weight_y/TensorWeightY_R\""
@@ -184,6 +210,10 @@
                 "",
                 "set_directive_unroll -factor 2 \"tensor_weight_x/TensorWeightX_R\"",
                 "set_directive_unroll -factor 4 \"tensor_weight_x/TensorWeightX_R\"",
+                "set_directive_unroll -factor 8 \"tensor_weight_x/TensorWeightX_R\"",
+                "set_directive_unroll -factor 16 \"tensor_weight_x/TensorWeightX_R\"",
+                "set_directive_unroll -factor 32 \"tensor_weight_x/TensorWeightX_R\"",
+                "set_directive_unroll -factor 64 \"tensor_weight_x/TensorWeightX_R\"",
                 "set_directive_unroll -factor 109 \"tensor_weight_x/TensorWeightX_R\"",
                 "set_directive_unroll -factor 218 \"tensor_weight_x/TensorWeightX_R\"",
                 "set_directive_unroll \"tensor_weight_x/TensorWeightX_R\""
@@ -195,9 +225,15 @@
         "unroll TensorWeightX_C": {
             "possible_directives": [
                 "",
+                "set_directive_unroll -factor 2 \"tensor_weight_x/TensorWeightX_C\"",
+                "set_directive_unroll -factor 4 \"tensor_weight_x/TensorWeightX_C\"",
                 "set_directive_unroll -factor 5 \"tensor_weight_x/TensorWeightX_C\"",
+                "set_directive_unroll -factor 8 \"tensor_weight_x/TensorWeightX_C\"",
+                "set_directive_unroll -factor 16 \"tensor_weight_x/TensorWeightX_C\"",
                 "set_directive_unroll -factor 25 \"tensor_weight_x/TensorWeightX_C\"",
+                "set_directive_unroll -factor 32 \"tensor_weight_x/TensorWeightX_C\"",
                 "set_directive_unroll -factor 41 \"tensor_weight_x/TensorWeightX_C\"",
+                "set_directive_unroll -factor 64 \"tensor_weight_x/TensorWeightX_C\"",
                 "set_directive_unroll -factor 205 \"tensor_weight_x/TensorWeightX_C\"",
                 "set_directive_unroll \"tensor_weight_x/TensorWeightX_C\""
             ],
@@ -210,6 +246,10 @@
                 "",
                 "set_directive_unroll -factor 2 \"flow_calc/FlowCalc_R\"",
                 "set_directive_unroll -factor 4 \"flow_calc/FlowCalc_R\"",
+                "set_directive_unroll -factor 8 \"flow_calc/FlowCalc_R\"",
+                "set_directive_unroll -factor 16 \"flow_calc/FlowCalc_R\"",
+                "set_directive_unroll -factor 32 \"flow_calc/FlowCalc_R\"",
+                "set_directive_unroll -factor 64 \"flow_calc/FlowCalc_R\"",
                 "set_directive_unroll -factor 109 \"flow_calc/FlowCalc_R\"",
                 "set_directive_unroll -factor 218 \"flow_calc/FlowCalc_R\"",
                 "set_directive_unroll \"flow_calc/FlowCalc_R\""
@@ -884,6 +924,24 @@
             "variable": "outputs",
             "directive_type": "pipeline"
         },
+        "loop_merge TensorWeightY_C": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"tensor_weight_y/TensorWeightY_C\""
+            ],
+            "function": "tensor_weight_y",
+            "label": "TensorWeightY_C",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge TensorWeightX_C": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"tensor_weight_x/TensorWeightX_C\""
+            ],
+            "function": "tensor_weight_x",
+            "label": "TensorWeightX_C",
+            "directive_type": "loop_merge"
+        },
         "loop_merge GradXY_R": {
             "possible_directives": [
                 "",
@@ -956,6 +1014,78 @@
             "label": "FlowCalc_R",
             "directive_type": "loop_merge"
         },
+        "loop_merge gradient_xy_calc": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"gradient_xy_calc\""
+            ],
+            "function": "gradient_xy_calc",
+            "label": "",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge gradient_z_calc": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"gradient_z_calc\""
+            ],
+            "function": "gradient_z_calc",
+            "label": "",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge gradient_weight_y": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"gradient_weight_y\""
+            ],
+            "function": "gradient_weight_y",
+            "label": "",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge gradient_weight_x": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"gradient_weight_x\""
+            ],
+            "function": "gradient_weight_x",
+            "label": "",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge outer_product": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"outer_product\""
+            ],
+            "function": "outer_product",
+            "label": "",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge tensor_weight_y": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"tensor_weight_y\""
+            ],
+            "function": "tensor_weight_y",
+            "label": "",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge tensor_weight_x": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"tensor_weight_x\""
+            ],
+            "function": "tensor_weight_x",
+            "label": "",
+            "directive_type": "loop_merge"
+        },
+        "loop_merge flow_calc": {
+            "possible_directives": [
+                "",
+                "set_directive_loop_merge \"flow_calc\""
+            ],
+            "function": "flow_calc",
+            "label": "",
+            "directive_type": "loop_merge"
+        },
         "loop_flatten GradXY_C": {
             "possible_directives": [
                 "",
@@ -990,33 +1120,6 @@
             ],
             "function": "gradient_weight_x",
             "label": "GradWeightX_C",
-            "directive_type": "loop_flatten"
-        },
-        "loop_flatten GradXY_Inner": {
-            "possible_directives": [
-                "",
-                "set_directive_loop_flatten \"gradient_xy_calc/GradXY_Inner\""
-            ],
-            "function": "gradient_xy_calc",
-            "label": "GradXY_Inner",
-            "directive_type": "loop_flatten"
-        },
-        "loop_flatten GradWeightY_Inner": {
-            "possible_directives": [
-                "",
-                "set_directive_loop_flatten \"gradient_weight_y/GradWeightY_Inner\""
-            ],
-            "function": "gradient_weight_y",
-            "label": "GradWeightY_Inner",
-            "directive_type": "loop_flatten"
-        },
-        "loop_flatten GradWeightX_Inner": {
-            "possible_directives": [
-                "",
-                "set_directive_loop_flatten \"gradient_weight_x/GradWeightX_Inner\""
-            ],
-            "function": "gradient_weight_x",
-            "label": "GradWeightX_Inner",
             "directive_type": "loop_flatten"
         },
         "loop_flatten OuterProd_C": {

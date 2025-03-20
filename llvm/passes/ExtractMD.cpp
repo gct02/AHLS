@@ -4,7 +4,6 @@
 #include "llvm/Analysis/ScalarEvolutionExpressions.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/IR/LLVMContext.h"
-#include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/Metadata.h"
 #include "llvm/IR/Module.h"
 #include "llvm/IR/Function.h"
@@ -23,7 +22,9 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include <utility>
+#include <unordered_set>
+
+#include "HLSDSEUtils.h"
 
 using namespace llvm;
 
@@ -35,30 +36,75 @@ static cl::opt<std::string> outputFile(
 
 namespace {
 
-typedef struct {
-    std::string functionName;
-    std::string name;
-    std::unordered_map<std::string, uint32_t> values;
-} AnalysisMetadata;
+using MDValues = std::unordered_map<std::string, uint32_t>;
 
-using MetadataDict = std::unordered_map<std::string, std::vector<AnalysisMetadata>>;
+struct MDCollection {
+    std::string functionName;
+    std::string entityName;
+    MDValues values;
+
+    MDCollection() : functionName(""), entityName("") {}
+    MDCollection(const std::string& name) : functionName(""), entityName(name) {}
+    MDCollection(const std::string& name, const std::string& funcName) 
+        : functionName(funcName), entityName(name) {}
+    
+    void set(const std::string& key, uint32_t value) {
+        values[key] = value;
+    }
+
+    uint32_t get(const std::string& key) const {
+        return values.at(key);
+    }
+
+    bool has(const std::string& key) const {
+        return values.find(key) != values.end();
+    }
+
+    bool empty() const {
+        return values.empty();
+    }
+
+    void clear() {
+        values.clear();
+    }
+
+    void erase(const std::string& key) {
+        values.erase(key);
+    }
+
+    uint32_t& operator[](const std::string& key) {
+        return values[key];
+    }
+};
+
+using MetadataDict = std::unordered_map<std::string, std::vector<MDCollection>>;
 
 struct ExtractMD : public ModulePass {
     static char ID;
     ExtractMD() : ModulePass(ID) {}
+
+    std::unordered_set<uint32_t> loopIDs;
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "extract-md"
 
         MetadataDict md;
 
-        getGlobalValuesMD(md, M);
-        getInstructionsMD(md, M);
+        getMetadataFromGlobals(md, M);
+        getMetadataFromFunctions(md, M);
+        getMetadataFromLoops(md, M);
+        getMetadataFromInstructions(md, M);
 
+        writeMDToFile(md);
+        
+        return false; // Module is not modified
+    }
+
+    void writeMDToFile(const MetadataDict& md) {
         std::ofstream out(outputFile);
         if (!out.is_open()) {
             errs() << "Error opening file: " << outputFile << "\n";
-            return false;
+            return;
         }
 
         for (auto& item : md) {
@@ -66,215 +112,248 @@ struct ExtractMD : public ModulePass {
             const auto& metadata = item.second;
 
             out << type << ":\n";
-            for (const AnalysisMetadata& m : metadata) {
-                out << "  " << m.name << ":\n";
+            for (const MDCollection& m : metadata) {
+                out << "  " << m.entityName << ":\n";
                 if (!m.functionName.empty()) {
                     out << "    functionName: " << m.functionName << "\n";
                 }
-                for (const auto& key_value_pair : m.values) {
-                    const auto& key = key_value_pair.first;
-                    const auto& value = key_value_pair.second;
+                for (const auto& mdEntry : m.values) {
+                    const auto& key = mdEntry.first;
+                    const auto& value = mdEntry.second;
                     out << "    " << key << ": " << value << "\n";
                 }
             }
         }
-
-        return false; // Module is not modified
     }
 
-    uint32_t MDOperandToInt(MDNode* md, uint32_t index) {
-        return cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(md->getOperand(index))->getValue())->getZExtValue();
-    }
-
-    uint32_t getMDOperandValue(Value& V, StringRef name, uint32_t index, uint32_t defaultValue=0) {
-        MDNode* md = nullptr;
-        if (Instruction* I = dyn_cast<Instruction>(&V)) {
-            md = I->getMetadata(name);
-        } else if (GlobalObject* G = dyn_cast<GlobalObject>(&V)) {
-            md = G->getMetadata(name);
-        } else if (Function* F = dyn_cast<Function>(&V)) {
-            md = F->getMetadata(name);
-        }
-        return md == nullptr ? defaultValue : MDOperandToInt(md, index);
-    }
-
-    void getGlobalValuesMD(MetadataDict& md, Module& M) {
+    void getMetadataFromGlobals(MetadataDict& mdDict, Module& M) {
         for (GlobalObject& G : M.getGlobalList()) {
-            AnalysisMetadata m;
+            MDCollection m;
+            m["ID"] = getIntMetadata(G, "globalID");
+            m["bitwidth"] = getIntMetadata(G, "bitwidth");
+            m["type"] = getIntMetadata(G, "type");
 
-            errs() << "Global: " << G.getName() << "\n";
+            if (MDNode* isArray = G.getMetadata("isArray")) {
+                m["isArray"] = 1;
+                uint32_t numDims = getIntMetadata(G, "numDims");
+                for (uint32_t i = 1; i <= numDims; i++) {
+                    std::string mdName = "numElements." + std::to_string(i);
+                    m[mdName] = getIntMetadata(G, mdName);
+                }
+                m["numDims"] = numDims;
+                m["numElements"] = getIntMetadata(G, "numElements");
+                m["elementType"] = getIntMetadata(G, "elementType");
+                m["elementBitwidth"] = getIntMetadata(G, "elementBitwidth");
+                
+                if (MDNode* topLevelParamMD = G.getMetadata("topLevelParam")) {
+                    m["topLevelParam"] = getIntMDOperand(topLevelParamMD, 0);
+                }
 
-            // Check if the global variable is a parameter
-            // that was extracted from a function by the
-            // ´prep-gnn´ pass
-            MDNode* isParam = G.getMetadata("param");
-            if (isParam) {
-                uint32_t functionID = getMDOperandValue(G, "functionID", 0);
+                if (MDNode* apmd = G.getMetadata("arrayPartition")) {
+                    m["partition"] = 1;
+                    m["partitionID"] = getIntMDOperand(apmd, 0);
+                    m["partitionType"] = getIntMDOperand(apmd, 1);
+                    m["partitionDim"] = getIntMDOperand(apmd, 2);
+                    m["partitionFactor"] = getIntMDOperand(apmd, 3);
+                }
+            }
+            // Check if the global variable is an extracted parameter 
+            // (see `TransformForCDFGExtraction.cpp`)
+            if (MDNode* isParam = G.getMetadata("param")) {
+                uint32_t functionID = getIntMetadata(G, "functionID");
                 std::string variableName = G.getName().str();
                 m.functionName = variableName.substr(0, variableName.find("."));
-                m.name = variableName.substr(variableName.find(".") + 1) 
-                         + "." + std::to_string(functionID);
+                m.entityName = variableName.substr(variableName.find(".") + 1) 
+                               + "." + std::to_string(functionID);
+                mdDict["param"].push_back(m);
             } else {
                 m.functionName = "";
-                m.name = G.getName().str();
+                m.entityName = G.getName().str();
+                mdDict["value"].push_back(m);
             }
+        }
+    }
 
-            m.values["ID"] = getMDOperandValue(G, "globalID", 0);
-            m.values["bitwidth"] = getMDOperandValue(G, "bitwidth", 0);
-            m.values["type"] = getMDOperandValue(G, "type", 0);
+    void getLoopDirectiveMD(MDCollection& loopMD, BasicBlock* loopHeader) {
+        auto* term = loopHeader->getTerminator();
+        if (MDNode* loopFlattenMD = term->getMetadata("loopFlatten")) {
+            loopMD["loopFlatten"] = 1;
+            loopMD["loopFlattenID"] = getIntMDOperand(loopFlattenMD, 0);
+        }
+        if (MDNode* loopMergeMD = term->getMetadata("loopMerge")) {
+            loopMD["loopMerge"] = 1;
+            loopMD["loopMergeID"] = getIntMDOperand(loopMergeMD, 0);
+            loopMD["functionLevel"] = getIntMDOperand(loopMergeMD, 1);
+        }
+        if (MDNode* pipelineMD = term->getMetadata("pipeline")) {
+            loopMD["pipeline"] = 1;
+            loopMD["pipelineID"] = getIntMDOperand(pipelineMD, 0);
+            loopMD["pipelineII"] = getIntMDOperand(pipelineMD, 1);
+            loopMD["functionLevel"] = getIntMDOperand(pipelineMD, 2);
+        }
+        if (MDNode* unrollMD = term->getMetadata("unroll")) {
+            loopMD["unroll"] = 1;
+            loopMD["unrollID"] = getIntMDOperand(unrollMD, 0);
+            loopMD["unrollComplete"] = getIntMDOperand(unrollMD, 1);
+            loopMD["unrollFactor"] = getIntMDOperand(unrollMD, 2);
+        }
+    }
 
-            MDNode* isArray = G.getMetadata("isArray");
-            if (isArray) {
-                m.values["isArray"] = 1;
+    void getLoopMD(MetadataDict& mdDict, Loop* L) {
+        BasicBlock* header = L->getHeader();
+        uint32_t loopID = getIntMetadata(*header, "loopID");
 
-                uint32_t numDims = getMDOperandValue(G, "numDims", 0);
-                m.values["numDims"] = numDims;
+        if (loopID == 0) {
+            return;
+        }
+        if (loopIDs.find(loopID) != loopIDs.end()) {
+            return;
+        }
+        loopIDs.insert(loopID);
 
+        MDCollection loopMD(
+            "loop." + std::to_string(loopID),
+            header->getParent()->getName().str()
+        );
+        loopMD["ID"] = loopID;
+        loopMD["functionID"] = getIntMetadata(*header, "functionID");
+        loopMD["depth"] = getIntMetadata(*header, "loopDepth");
+        loopMD["tripCount"] = getIntMetadata(*header, "tripCount");
+        getLoopDirectiveMD(loopMD, header);
+
+        mdDict["loop"].push_back(loopMD);
+
+        // Recursively get metadata for subloops
+        for (Loop* SL : L->getSubLoops()) {
+            getLoopMD(mdDict, SL);
+        }
+    }
+
+    void getFunctionMD(MetadataDict& mdDict, Function& F) {
+        MDCollection funcMD(F.hasName() ? F.getName().str() : "");
+
+        funcMD["ID"] = getIntMetadata(F, "functionID");
+        funcMD["numOperands"] = getIntMetadata(F, "numOperands");
+        funcMD["numUses"] = getIntMetadata(F, "numUses");
+        funcMD["retType"] = getIntMetadata(F, "retType");
+        funcMD["retBitwidth"] = getIntMetadata(F, "retBitwidth");
+        funcMD["numInsts"] = getIntMetadata(F, "numInsts");
+        funcMD["numBBs"] = getIntMetadata(F, "numBBs");
+        funcMD["numLoops"] = getIntMetadata(F, "numLoops");
+        funcMD["topLevel"] = getIntMetadata(F, "topLevel");
+
+        if (MDNode* pipelineMD = F.getMetadata("pipeline")) {
+            funcMD["pipeline"] = 1;
+            funcMD["pipelineID"] = getIntMDOperand(pipelineMD, 0);
+            funcMD["pipelineII"] = getIntMDOperand(pipelineMD, 1);
+            funcMD["functionLevel"] = getIntMDOperand(pipelineMD, 2);
+        }
+        if (MDNode* mergeMD = F.getMetadata("loopMerge")) {
+            funcMD["merge"] = 1;
+            funcMD["mergeID"] = getIntMDOperand(mergeMD, 0);
+            funcMD["functionLevel"] = getIntMDOperand(mergeMD, 1);
+        }
+        mdDict["function"].push_back(funcMD);
+    }
+
+    void getInstructionMD(MetadataDict& mdDict, Function& F, Instruction& I) {
+        uint32_t opID = getIntMetadata(I, "opID");
+        MDCollection instMD(
+            std::to_string(opID),
+            F.hasName() ? F.getName().str() : ""
+        );
+        instMD["ID"] = opID;
+        instMD["functionID"] = getIntMetadata(I, "functionID");
+        instMD["bbID"] = getIntMetadata(I, "bbID");
+        if (MDNode* loopIDMD = I.getMetadata("loopID")) {
+            instMD["loopID"] = getIntMDOperand(loopIDMD);
+        }
+        instMD["opcode"] = getIntMetadata(I, "opcode");
+        instMD["retType"] = getIntMetadata(I, "valueType");
+        instMD["bitwidth"] = getIntMetadata(I, "bitwidth");
+        mdDict["instruction"].push_back(instMD);
+    }
+
+    void getValueMD(MetadataDict& mdDict, Function& F, Instruction& I) {
+        if (!I.getType()->isVoidTy()) {
+            // Get metadata for the value produced by the instruction
+            uint32_t opID = getIntMetadata(I, "opID");
+            MDCollection valMD(
+                I.getName().str(),
+                F.hasName() ? F.getName().str() : ""
+            );
+            valMD["ID"] = opID;
+            valMD["bitwidth"] = getIntMetadata(I, "bitwidth");
+            valMD["type"] = getIntMetadata(I, "valueType");
+            
+            if (MDNode* isArray = I.getMetadata("isArray")) {
+                valMD["isArray"] = 1;
+                uint32_t numDims = getIntMetadata(I, "numDims");
                 for (uint32_t i = 1; i <= numDims; i++) {
-                    m.values["numElements." + std::to_string(i)] = getMDOperandValue(
-                        G, "numElements." + std::to_string(i), 0
-                    );
+                    std::string mdName = "numElements." + std::to_string(i);
+                    valMD[mdName] = getIntMetadata(I, mdName);
                 }
-                m.values["numElements"] = getMDOperandValue(G, "numElements", 0);
-                m.values["elementType"] = getMDOperandValue(G, "elementType", 0);
-                m.values["elementBitwidth"] = getMDOperandValue(G, "elementBitwidth", 0);
+                valMD["numDims"] = numDims;
+                valMD["numElements"] = getIntMetadata(I, "numElements");
+                valMD["elementType"] = getIntMetadata(I, "elementType");
+                valMD["elementBitwidth"] = getIntMetadata(I, "elementBitwidth");
 
-                if (MDNode* arrayPartitionMD = G.getMetadata("arrayPartition")) {
-                    m.values["arrayPartition"] = 1;
-                    m.values["arrayPartitionID"] = MDOperandToInt(arrayPartitionMD, 0);
-                    m.values["arrayPartitionType"] = MDOperandToInt(arrayPartitionMD, 1);
-                    m.values["arrayPartitionDim"] = MDOperandToInt(arrayPartitionMD, 2);
-                    m.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartitionMD, 3);
-                    m.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartitionMD, 4);
-                    m.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartitionMD, 5);
+                if (MDNode* apmd = I.getMetadata("arrayPartition")) {
+                    valMD["partition"] = 1;
+                    valMD["partitionID"] = getIntMDOperand(apmd, 0);
+                    valMD["partitionType"] = getIntMDOperand(apmd, 1);
+                    valMD["partitionDim"] = getIntMDOperand(apmd, 2);
+                    valMD["partitionFactor"] = getIntMDOperand(apmd, 3);
                 }
             }
-
-            if (isParam) {
-                md["param"].push_back(m);
-            } else {
-                md["value"].push_back(m);
-            }
+            mdDict["value"].push_back(valMD);
         }
     }
 
-    void getInstructionsMD(MetadataDict& md, Module& M) {
+    void getMetadataFromFunctions(MetadataDict& mdDict, Module& M) {
         for (Function& F : M) {
-            for (BasicBlock& BB : F) {
-                for (Instruction& I : BB) {
-                    // Get metadata from the instruction
-                    AnalysisMetadata instMD;
+            if (F.size() == 0) continue;
+            getFunctionMD(mdDict, F);
+        }
+    }
 
-                    // For instructions, the key will be the instruction's opID
-                    uint32_t opID = getMDOperandValue(I, "opID", 0);
-
-                    instMD.name = std::to_string(opID);
-                    instMD.functionName = F.hasName() ? F.getName().str() : "";
-
-                    instMD.values["ID"] = opID;
-                    instMD.values["functionID"] = getMDOperandValue(I, "functionID", 0);
-                    instMD.values["bbID"] = getMDOperandValue(I, "bbID", 0);
-                    instMD.values["opcode"] = getMDOperandValue(I, "opcode", 0);
-                    instMD.values["numOperands"] = getMDOperandValue(I, "numOperands", 0);
-                    instMD.values["numUses"] = getMDOperandValue(I, "numUses", 0);
-                    instMD.values["retType"] = getMDOperandValue(I, "valueType", 0);
-                    instMD.values["bitwidth"] = getMDOperandValue(I, "bitwidth", 0);
-                    instMD.values["modifiesMemory"] = getMDOperandValue(I, "modifiesMemory", 0);
-                    instMD.values["readsMemory"] = getMDOperandValue(I, "readsMemory", 0);
-                    instMD.values["modifiesControlFlow"] = getMDOperandValue(I, "modifiesControlFlow", 0);
-
-                    if (MDNode* pipelineMD = I.getMetadata("pipeline")) {
-                        instMD.values["pipeline"] = 1;
-                        instMD.values["pipelineID"] = MDOperandToInt(pipelineMD, 0);
-                        instMD.values["pipelineII"] = MDOperandToInt(pipelineMD, 1);
-                        instMD.values["functionLevel"] = MDOperandToInt(pipelineMD, 2);
-                    }
-                    if (MDNode* unrollMD = I.getMetadata("unroll")) {
-                        instMD.values["unroll"] = 1;
-                        instMD.values["unrollID"] = MDOperandToInt(unrollMD, 0);
-                        instMD.values["unrollComplete"] = MDOperandToInt(unrollMD, 1);
-                        instMD.values["unrollFactor"] = MDOperandToInt(unrollMD, 2);
-                    }
-                    if (MDNode* loopFlattenMD = I.getMetadata("loopFlatten")) {
-                        instMD.values["loopFlatten"] = 1;
-                        instMD.values["loopFlattenID"] = MDOperandToInt(loopFlattenMD, 0);
-                    }
-                    if (MDNode* loopMergeMD = I.getMetadata("loopMerge")) {
-                        instMD.values["loopMerge"] = 1;
-                        instMD.values["loopMergeID"] = MDOperandToInt(loopMergeMD, 0);
-                        instMD.values["functionLevel"] = MDOperandToInt(loopMergeMD, 1);
-                    }
-
-                    // Retrieve metadata about the basic block that contains the instruction
-                    instMD.values["bbSize"] = getMDOperandValue(I, "bbSize", 0);
-                    instMD.values["inLoop"] = getMDOperandValue(I, "inLoop", 0);
-                    // Default value is 0 for instructions outside loops
-                    instMD.values["loopDepth"] = getMDOperandValue(I, "loopDepth", 0);
-                    // Default value is 1 for instructions outside loops
-                    instMD.values["tripCount"] = getMDOperandValue(I, "tripCount", 0, 1);
-
-                    // Retrieve metadata about the function that contains the instruction
-                    instMD.values["funcNumOperands"] = getMDOperandValue(F, "numOperands", 0);
-                    instMD.values["funcNumUses"] = getMDOperandValue(F, "numUses", 0);
-                    instMD.values["funcRetType"] = getMDOperandValue(F, "retType", 0);
-                    instMD.values["funcRetBitwidth"] = getMDOperandValue(F, "retBitwidth", 0);
-                    instMD.values["funcNumInsts"] = getMDOperandValue(F, "numInsts", 0);
-                    instMD.values["funcNumBBs"] = getMDOperandValue(F, "numBBs", 0);
-                    instMD.values["funcNumLoops"] = getMDOperandValue(F, "numLoops", 0);
-
-                    md["instruction"].push_back(instMD);
-
-                    if (!I.getType()->isVoidTy()) {
-                        // Get metadata for the value produced by the instruction
-                        AnalysisMetadata valMD;
-
-                        valMD.name = I.getName().str();
-                        valMD.functionName = F.hasName() ? F.getName().str() : "";
-
-                        valMD.values["ID"] = opID;
-                        valMD.values["bitwidth"] = getMDOperandValue(I, "bitwidth", 0);
-                        valMD.values["type"] = getMDOperandValue(I, "valueType", 0);
-
-                        MDNode* isArray = I.getMetadata("isArray");
-                        if (isArray) {
-                            valMD.values["isArray"] = 1;
-
-                            uint32_t numDims = getMDOperandValue(I, "numDims", 0);
-                            valMD.values["numDims"] = numDims;
-
-                            for (uint32_t i = 1; i <= numDims; i++) {
-                                valMD.values["numElements." + std::to_string(i)] = getMDOperandValue(
-                                    I, "numElements." + std::to_string(i), 0
-                                );
-                            }
-                            valMD.values["numElements"] = getMDOperandValue(I, "numElements", 0);
-                            valMD.values["elementType"] = getMDOperandValue(I, "elementType", 0);
-                            valMD.values["elementBitwidth"] = getMDOperandValue(I, "elementBitwidth", 0);
-
-                            if (MDNode* arrayPartition = I.getMetadata("arrayPartition")) {
-                                valMD.values["arrayPartition"] = 1;
-                                valMD.values["arrayPartitionID"] = MDOperandToInt(arrayPartition, 0);
-                                valMD.values["arrayPartitionType"] = MDOperandToInt(arrayPartition, 1);
-                                valMD.values["arrayPartitionDim"] = MDOperandToInt(arrayPartition, 2);
-                                valMD.values["arrayPartitionFactor"] = MDOperandToInt(arrayPartition, 3);
-                                valMD.values["arrayPartitionDimSize"] = MDOperandToInt(arrayPartition, 4);
-                                valMD.values["arrayPartitionNumPartitions"] = MDOperandToInt(arrayPartition, 5);
-                            }
-                        }
-                        md["value"].push_back(valMD);
-                    }
+    void getMetadataFromLoops(MetadataDict& mdDict, Module& M) {
+        for (Function& F : M) {
+            if (F.size() == 0) continue;
+            LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
+            for (Loop* L : LI) {
+                if (!L->getParentLoop()) {
+                    getLoopMD(mdDict, L);
                 }
             }
         }
     }
 
-    void getAnalysisUsage(AnalysisUsage& AU) const override {
-        AU.setPreservesAll();
+    void getMetadataFromInstructions(MetadataDict& mdDict, Module& M) {
+        for (Function& F : M) {
+            if (F.size() == 0) continue;
+            for (BasicBlock& BB : F) {
+                if (BB.size() == 0) continue;
+                for (Instruction& I : BB) {
+                    getInstructionMD(mdDict, F, I);
+                    getValueMD(mdDict, F, I);
+                }
+            }
+        }
     }
 
+    virtual void getAnalysisUsage(AnalysisUsage& AU) const override {
+        AU.addRequired<LoopInfoWrapperPass>();
+		AU.addRequired<ScalarEvolutionWrapperPass>();
+		AU.setPreservesAll();
+    }
 }; // struct ExtractMD
 
-}  // anonymous namespace
+} // anonymous namespace
 
 char ExtractMD::ID = 0;
-static RegisterPass<ExtractMD> X("extract-md", "Extract metadata from the module", false, false);
+static RegisterPass<ExtractMD> X(
+    "extract-md", 
+    "Extract metadata from the module", 
+    false, false
+);

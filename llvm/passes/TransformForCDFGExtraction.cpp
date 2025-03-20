@@ -12,29 +12,23 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
-#include "llvm/Analysis/IVDescriptors.h"
-#include "llvm/Analysis/LoopAccessAnalysis.h"
-
-#include "llvm/Analysis/XILINXLoopInfoUtils.h"
-#include "llvm/Analysis/XILINXInterfaceAnalysis.h"
-#include "llvm/IR/XILINXFPGAIntrinsicInst.h"
 
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <vector>
-#include <utility>
+
+#include "HLSDSEUtils.h"
 
 using namespace llvm;
 
 namespace {
 
-struct HLSIRPrepForGNN : ModulePass {
+struct TransformForCDFGExtraction : ModulePass {
     static char ID;
-    HLSIRPrepForGNN() : ModulePass(ID) {}
+    TransformForCDFGExtraction() : ModulePass(ID) {}
 
     bool runOnModule(Module& M) override {
-        #define DEBUG_TYPE "prep-gnn"
+        #define DEBUG_TYPE "base-transform"
 
         implementPartSelect(M);
         implementPartSet(M);
@@ -43,122 +37,72 @@ struct HLSIRPrepForGNN : ModulePass {
         removeLifetimeIntrinsics(M);
         removeSpecIntrinsics(M);
 
-        setIDMetadata(M);
+        setIDMetadataToInstructions(M);
         extractParamsAsGlobals(M);
         setIDMetadataToGlobals(M);
 
         return true;
     }
 
-    uint64_t getArgAttributeValue(const Argument *arg, StringRef attrName) {
-        AttributeList attrs = arg->getParent()->getAttributes();
-        auto argIdx = arg->getArgNo();
-        const auto &attr = attrs.getParamAttr(argIdx, attrName);
-        auto attrStr = attr.getValueAsString();
-        if (attrStr.empty())
-            return 0;
-
-        unsigned size;
-        if (to_integer(attrStr, size))
-            return size;
-
-        return 0;
-    }
-
-    uint64_t getDecayedDimSize(const Argument *arg) {
-        return getArgAttributeValue(arg, "fpga.decayed.dim.hint");
-    }
-
-    // Set named metadata for an instruction, global object or function
-    void setMetadata(Value& V, StringRef name, uint32_t value) {
-        LLVMContext& ctx = V.getContext();
-        ConstantInt* valueCI = ConstantInt::get(Type::getInt32Ty(ctx), value);
-        MDNode* md = MDNode::get(ctx, {ConstantAsMetadata::get(valueCI)});
-        if (Instruction* I = dyn_cast<Instruction>(&V)) {
-            I->setMetadata(name, md);
-        } else if (GlobalObject* G = dyn_cast<GlobalObject>(&V)) {
-            G->setMetadata(name, md);
-        } else if (Function* F = dyn_cast<Function>(&V)) {
-            F->setMetadata(name, md);
-        }
-    }
-
-    uint32_t MDOperandToInt(MDNode* md, uint32_t index) {
-        return cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(md->getOperand(index))->getValue())->getZExtValue();
-    }
-
-    uint32_t getMDOperandValue(Value& V, StringRef name, uint32_t index, uint32_t defaultValue=0) {
-        MDNode* md = nullptr;
-        if (Instruction* I = dyn_cast<Instruction>(&V)) {
-            md = I->getMetadata(name);
-        } else if (GlobalObject* G = dyn_cast<GlobalObject>(&V)) {
-            md = G->getMetadata(name);
-        } else if (Function* F = dyn_cast<Function>(&V)) {
-            md = F->getMetadata(name);
-        }
-        return md == nullptr ? defaultValue : MDOperandToInt(md, index);
-    }
-
-    void setIDMetadata(Module& M) {
-        uint32_t opID = 1, bbID = 1, functionID = 1;
-
+    void setIDMetadataToInstructions(Module& M) {
+        uint32_t opID = 1, bbID = 1, funcID = 1;
         for (Function& F : M) {
-            if (!F.hasName() || F.isIntrinsic()) {
-                functionID++;
+            if (F.isIntrinsic() || F.size() == 0) {
+                funcID++;
                 continue;
             }
-            setMetadata(F, "functionID", functionID);
+            setIntMetadata(F, "functionID", funcID);
             for (BasicBlock& BB : F) {
+                if (BB.size() == 0) continue;
                 for (Instruction& I : BB) {
-                    setMetadata(I, "opID", opID++);
-                    setMetadata(I, "bbID", bbID);
-                    setMetadata(I, "functionID", functionID);
+                    setIntMetadata(I, "opID", opID++);
+                    setIntMetadata(I, "bbID", bbID);
+                    setIntMetadata(I, "functionID", funcID);
                 }
                 bbID++;
             }
-            functionID++;
+            funcID++;
         }
     }
 
     void setIDMetadataToGlobals(Module& M) {
         uint32_t globalID = 1;
-
         for (GlobalObject& G : M.getGlobalList()) {
-            setMetadata(G, "globalID", globalID++);
+            setIntMetadata(G, "globalID", globalID++);
         }
     }
 
-    /*
-     * Create a global variable <func>.<arg> for each argument arg
-     * of each function func in the module M.
-     * Note: If the argument is a decayed array, the global variable
-     * will have the same type as the original array if the 
-     * "fpga.decayed.dim.hint" attribute is set.
-     */
+    // Create a global variable <func>.<arg> for each argument arg
+    // of each function func in the module M.
+    // Note: If the argument is a decayed array, the global variable
+    // will have the same type as the original array if the 
+    // "fpga.decayed.dim.hint" attribute is set; otherwise, the global
+    // variable will have the same type as the decayed array itself.
     void extractParamsAsGlobals(Module& M) {
         for (Function& F : M) {
-            if (!F.hasName() || F.isIntrinsic()) {
+            if (!F.hasName() || F.isIntrinsic() || F.size() == 0) {
+                continue;
+            }
+            uint32_t functionID = getIntMetadata(F, "functionID", 0);
+            if (functionID == 0) {
+                errs() << "Error: Function " << F.getName() << " does not have a functionID\n";
                 continue;
             }
             for (Argument& A : F.args()) {
+                std::string globalName = F.getName().str() + "." + A.getName().str();
+                uint32_t decayedDimSize = getDecayedDimSize(&A);
                 Type* argTy = A.getType();
                 Type* Ty;
-                std::string globalName = F.getName().str() + "." + A.getName().str();
-                uint64_t decayedDimSize = getDecayedDimSize(&A);
-
                 if (decayedDimSize != 0) {
                     Ty = ArrayType::get(argTy->getPointerElementType(), decayedDimSize);
                 } else {
                     Ty = argTy;
                 }
-
                 GlobalVariable* GV = new GlobalVariable(
                     M, Ty, true, GlobalValue::ExternalLinkage, nullptr, globalName
                 );
-                setMetadata(*GV, "param", 1);
-
-                uint32_t functionID = getMDOperandValue(F, "functionID", 0);
-                setMetadata(*GV, "functionID", functionID);
+                setIntMetadata(*GV, "param", 1);
+                setIntMetadata(*GV, "functionID", functionID);
             }
         }
     }
@@ -224,7 +168,8 @@ struct HLSIRPrepForGNN : ModulePass {
                 }
             }
         }
-        // Remove all '_ssdm_op_Spec.*' and '_ssdm_Spec.*' intrinsics from the module
+        // Remove all '_ssdm_op_Spec.*' and '_ssdm_Spec.*' 
+        // intrinsics from the module
         for (Function* F : ssdmSpecIntrinsics) {
             if (!F->use_empty()) {
                 for (auto it = F->use_begin(); it != F->use_end(); ) {
@@ -253,17 +198,18 @@ struct HLSIRPrepForGNN : ModulePass {
                 partSelectIntrinsics.push_back(&F);
             }
         }
-
-        // Replace 'llvm.fpga.legacy.part.select.*' intrinsics with their implementation
+        // Replace 'llvm.fpga.legacy.part.select.*' intrinsics
+        // with their implementation
         int counter = 0;
         for (Function* F : partSelectIntrinsics) {
             std::string newFuncName = "part_select_" + std::to_string(++counter);
-
-            FunctionType* funcType = FunctionType::get(
-                F->getReturnType(), 
-                {F->getArg(0)->getType(), F->getArg(1)->getType(), F->getArg(2)->getType()}, 
-                false
-            );
+            Type* retType = F->getReturnType();
+            ArrayRef<Type*> argTypes = {
+                F->getArg(0)->getType(), 
+                F->getArg(1)->getType(), 
+                F->getArg(2)->getType()
+            };
+            FunctionType* funcType = FunctionType::get(retType, argTypes, false);
             Function* partSelectFunction = Function::Create(
                 funcType, 
                 GlobalValue::LinkageTypes::ExternalLinkage, 
@@ -314,15 +260,17 @@ struct HLSIRPrepForGNN : ModulePass {
                 partSetIntrinsics.push_back(&F);
             }
         }
-        // Replace 'llvm.fpga.legacy.part.set.*' intrinsics with their implementation
+        // Replace 'llvm.fpga.legacy.part.set.*' intrinsics 
+        // with their implementation
         int counter = 0;
         for (Function* F : partSetIntrinsics) {
             std::string newFuncName = "part_set_" + std::to_string(++counter);
-            FunctionType* funcType = FunctionType::get(
-                F->getReturnType(), 
-                {F->getArg(0)->getType(), F->getArg(1)->getType(), F->getArg(2)->getType(), F->getArg(3)->getType()}, 
-                false
-            );
+            ArrayRef<Type*> argTypes = {
+                F->getArg(0)->getType(), 
+                F->getArg(1)->getType(), 
+                F->getArg(2)->getType()
+            };
+            FunctionType* funcType = FunctionType::get(F->getReturnType(), argTypes, false);
             Function* partSetFunction = Function::Create(
                 funcType, 
                 GlobalValue::LinkageTypes::ExternalLinkage, 
@@ -363,8 +311,11 @@ struct HLSIRPrepForGNN : ModulePass {
         }
     }
 
-    void replaceIntrinsicWithFunction(Module& M, LLVMContext& ctx, Function* intrinsic, 
-                                      Function* newFunction) {
+    void replaceIntrinsicWithFunction(
+        Module& M, LLVMContext& ctx, 
+        Function* intrinsic, 
+        Function* newFunction
+    ) {
         // Replace uses of the intrinsic with calls to the new function
         for (auto it = intrinsic->use_begin(); it != intrinsic->use_end(); ) {
             Use& U = *it++;
@@ -380,14 +331,15 @@ struct HLSIRPrepForGNN : ModulePass {
                 callInst->eraseFromParent();
             }
         }
-        intrinsic->eraseFromParent(); // Remove the intrinsic from the module
+        intrinsic->eraseFromParent();
     }
-
 }; // struct HLSIRPrepForGNN
 
-}  // anonymous namespace
+} // anonymous namespace
 
-char HLSIRPrepForGNN::ID = 0;
-static RegisterPass<HLSIRPrepForGNN> X(
-    "prep-gnn", "Preprocess Vitis IR to use it as input to a GNN model", false, false
+char TransformForCDFGExtraction::ID = 0;
+static RegisterPass<TransformForCDFGExtraction> X(
+    "base-transform", 
+    "Preprocess the IR generated by Vitis HLS for later CDFG extraction", 
+    false, false
 );

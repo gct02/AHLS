@@ -1,12 +1,12 @@
-from typing import List, Tuple, Union, Any
-from numpy.typing import NDArray
+import json
+import re
+from pathlib import Path
+from typing import List, Tuple, Union, Dict, Any
 
 import numpy as np
 import pandas as pd
-import json
-import re
 import xml.etree.ElementTree as ET
-from pathlib import Path
+from numpy.typing import NDArray
 
 def parse_utilization_rpt_xml(rpt_path: Path):
     tree = ET.parse(rpt_path)
@@ -19,7 +19,15 @@ def parse_utilization_rpt_xml(rpt_path: Path):
     clb = root.find('AreaReport/Resources/CLB').text
     latch = root.find('AreaReport/Resources/LATCH').text
 
-    return lut, bram, ff, dsp, clb, latch
+    metrics = {
+        'lut': float(lut),
+        'bram': float(bram),
+        'ff': float(ff),
+        'dsp': float(dsp),
+        'clb': float(clb),
+        'latch': float(latch)
+    }
+    return metrics
 
 def parse_timing_rpt_xml(rpt_path: Path):
     tree = ET.parse(rpt_path)
@@ -30,7 +38,13 @@ def parse_timing_rpt_xml(rpt_path: Path):
     target_clk = root.find('TimingReport/TargetClockPeriod').text
     achieved_clk = root.find('TimingReport/AchievedClockPeriod').text
 
-    return wns, tns, target_clk, achieved_clk
+    metrics = {
+        'wns': wns,
+        'tns': tns,
+        'target_clk': target_clk,
+        'achieved_clk': achieved_clk
+    }
+    return metrics
 
 def parse_utilization_rpt_txt(rpt_path: Path):
     numeric_const_pattern = '-?\d+'
@@ -62,8 +76,16 @@ def parse_utilization_rpt_txt(rpt_path: Path):
         if lut != -1 and bram != -1 and ff != -1 and \
            dsp != -1 and clb != -1 and latch != -1:
             break
-
-    return lut, bram, ff, dsp, clb, latch
+        
+    metrics = {
+        'lut': float(lut),
+        'bram': float(bram),
+        'ff': float(ff),
+        'dsp': float(dsp),
+        'clb': float(clb),
+        'latch': float(latch)
+    }
+    return metrics
 
 def parse_timing_rpt_txt(rpt_path: Path):
     numeric_const_pattern = '-?[0-9]\d*(\.\d+)?'
@@ -88,7 +110,13 @@ def parse_timing_rpt_txt(rpt_path: Path):
             break
         i += 1
 
-    return wns, tns, target_clk, achieved_clk
+    metrics = {
+        'wns': wns,
+        'tns': tns,
+        'target_clk': target_clk,
+        'achieved_clk': achieved_clk
+    }
+    return metrics
 
 def directives_to_one_hot(
     directive_index: int, 
@@ -228,7 +256,7 @@ def extract_timing_summary(
     bench_name: str, 
     solution: str,
     filtered: bool = False
-) -> Tuple[float, float, float, float]:
+) -> Dict[str, float]:
     if filtered:
         path = f'{dataset_path}/{bench_name}/{solution}/reports/'
     else:
@@ -238,20 +266,25 @@ def extract_timing_summary(
     if rpt_path.is_file() == False:
         rpt_path = Path(f'{path}impl_timing_summary.rpt')
         if rpt_path.is_file() == False:
-            return -1.0, -1.0, -1.0, -1.0
-        
-        wns, tns, target_clk, achieved_clk = parse_timing_rpt_txt(rpt_path)
+            metrics = {
+                'wns': -1.0,
+                'tns': -1.0,
+                'target_clk': -1.0,
+                'achieved_clk': -1.0
+            }
+        else:
+            metrics = parse_timing_rpt_txt(rpt_path)
     else:
-        wns, tns, target_clk, achieved_clk = parse_timing_rpt_xml(rpt_path)
+        metrics = parse_timing_rpt_xml(rpt_path)
 
-    return float(wns), float(tns), float(target_clk), float(achieved_clk)
+    return metrics
 
 def extract_utilization(
     dataset_path: Union[Path, str], 
     bench_name: str, 
     solution: str,
     filtered: bool = False
-) -> Tuple[int, int, int, int, int, int]:
+) -> Dict[str, float]:
     if filtered:
         path = f'{dataset_path}/{bench_name}/{solution}/reports/'
     else:
@@ -261,26 +294,34 @@ def extract_utilization(
     if rpt_path.is_file() == False:
         rpt_path = Path(f'{path}impl_utilization_placed.rpt')
         if rpt_path.is_file() == False:
-            return -1, -1, -1, -1, -1, -1
-        lut, bram, ff, dsp, clb, latch = parse_utilization_rpt_txt(rpt_path)
+            metrics = {
+                'lut': -1.0,
+                'bram': -1.0,
+                'ff': -1.0,
+                'dsp': -1.0,
+                'clb': -1.0,
+                'latch': -1.0
+            }
+        else:
+            metrics = parse_utilization_rpt_txt(rpt_path)
     else:
-        lut, bram, ff, dsp, clb, latch = parse_utilization_rpt_xml(rpt_path)
+        metrics = parse_utilization_rpt_xml(rpt_path)
 
-    return int(lut), int(bram), int(ff), int(dsp), int(clb), int(latch)
+    return metrics
 
 def extract_hls_cc_report(
     dataset_path: Union[Path, str],
     bench_name: str, 
     solution: str,
     filtered: bool = False
-) -> int:
+) -> Dict[str, float]:
     if filtered:
         rpt_path = f'{dataset_path}/{bench_name}/{solution}/reports/csynth.xml'
     else:
         rpt_path = f'{dataset_path}/{bench_name}/{solution}/syn/report/csynth.xml'
 
     if Path(rpt_path).is_file() == False:
-        return -1
+        return {'cc': -1.0}
 
     tree = ET.parse(rpt_path)
     root = tree.getroot()
@@ -289,7 +330,18 @@ def extract_hls_cc_report(
         'PerformanceEstimates/SummaryOfOverallLatency/Average-caseLatency'
     ).text
 
-    return int(cc)
+    return {'cc': float(cc)}
+
+def extract_metrics(
+    dataset_path: Union[Path, str],
+    bench_name: str,
+    solution: str,
+    filtered: bool = False
+) -> Dict[str, float]:
+    metrics = extract_timing_summary(dataset_path, bench_name, solution, filtered)
+    metrics.update(extract_utilization(dataset_path, bench_name, solution, filtered))
+    metrics.update(extract_hls_cc_report(dataset_path, bench_name, solution, filtered))
+    return metrics
 
 def organize_data(
     dataset_path: Union[Path, str], 
@@ -319,32 +371,20 @@ def organize_data(
                 else:
                     one_hot_directives_list.append(np.zeros(10))
 
-            wns, tns, target_clk, achieved_clk = extract_timing_summary(
-                dataset_path, 
-                bench_name, 
-                sol_dir, 
-                filtered
-            )
-            lut, bram, ff, dsp, clb, latch  = extract_utilization(
-                dataset_path, 
-                bench_name, 
-                sol_dir, 
-                filtered
-            )
-            cc = extract_hls_cc_report(
-                dataset_path, 
-                bench_name, 
-                sol_dir, 
-                filtered
-            )
-            if achieved_clk == -1.0 or cc == -1:
-                timing = -1.0
+            timing = extract_timing_summary(dataset_path, bench_name, sol_dir, filtered)
+            utilization  = extract_utilization(dataset_path, bench_name, sol_dir, filtered)
+            cc = extract_hls_cc_report(dataset_path, bench_name, sol_dir, filtered)['cc']
+            
+            achieved_clk = timing['achieved_clk']
+            if achieved_clk == -1.0 or cc == -1.0:
+                time = -1.0
             else:
-                timing = achieved_clk * cc
+                time = achieved_clk * cc
 
-            metrics = [sol_dir, lut, bram, ff, dsp, clb, latch, 
-                        target_clk, achieved_clk, wns, tns, cc, timing]
-
+            metrics = ([sol_dir] + list(utilization.values())
+                       + [timing['target_clk'], achieved_clk]
+                       + [time] + [cc])
+            
             list_to_df.append(metrics)
 
     cols = ['solution', 'lut', 'bram', 'ff', 'dsp', 'clb', 'latch', 

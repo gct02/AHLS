@@ -1,5 +1,7 @@
 #include "llvm/Analysis/LoopInfo.h"
 #include "llvm/Analysis/LoopPass.h"
+#include "llvm/Analysis/IVDescriptors.h"
+#include "llvm/Analysis/LoopAccessAnalysis.h"
 #include "llvm/Analysis/ScalarEvolution.h"
 #include "llvm/Analysis/ScalarEvolutionExpressions.h"
 #include "llvm/ADT/SmallVector.h"
@@ -16,18 +18,16 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
-#include "llvm/Analysis/IVDescriptors.h"
-#include "llvm/Analysis/LoopAccessAnalysis.h"
+#include "llvm/Transforms/Utils/LoopUtils.h"
 
 #include "llvm/Analysis/XILINXLoopInfoUtils.h"
-#include "llvm/Analysis/XILINXInterfaceAnalysis.h"
-#include "llvm/IR/XILINXFPGAIntrinsicInst.h"
 
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <vector>
-#include <utility>
+#include <stack>
+
+#include "HLSDSEUtils.h"
 
 using namespace llvm;
 
@@ -40,249 +40,194 @@ struct UpdateMD : public ModulePass {
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "update-md"
 
+        setMetadataForFunctions(M);
+        setMetadataForLoops(M);
         setMetadataForInstructions(M);
         setMetadataForArrays(M);
         setMetadataForGlobals(M);
 
+        associateInstructionsWithLoops(M);
+
         return false; // Module is not modified
     }
 
-    // Set named metadata for an instruction, global object or function
-    void setMetadata(Value& V, StringRef name, uint32_t value) {
-        LLVMContext& ctx = V.getContext();
-        ConstantInt* valueCI = ConstantInt::get(Type::getInt32Ty(ctx), value);
-        MDNode* md = MDNode::get(ctx, {ConstantAsMetadata::get(valueCI)});
-        if (Instruction* I = dyn_cast<Instruction>(&V)) {
-            I->setMetadata(name, md);
-        } else if (GlobalObject* G = dyn_cast<GlobalObject>(&V)) {
-            G->setMetadata(name, md);
-        } else if (Function* F = dyn_cast<Function>(&V)) {
-            F->setMetadata(name, md);
+    void associateInstructionsWithLoops(Module& M) {
+        for (Function& F : M) {
+            if (F.size() == 0) continue;
+            LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
+            for (BasicBlock& BB : F) {
+                if (Loop* L = LI.getLoopFor(&BB)) {
+                    uint32_t loopID = getIntMetadata(*L->getHeader(), "loopID");
+                    if (loopID == 0) continue;
+                    for (Instruction& I : BB) {
+                        setIntMetadata(I, "loopID", loopID);
+                    }
+                }
+            }
         }
-    }
-
-    uint32_t MDOperandToInt(MDNode* md, uint32_t index) {
-        return cast<ConstantInt>(dyn_cast<ConstantAsMetadata>(md->getOperand(index))->getValue())->getZExtValue();
-    }
-
-    uint32_t getMDOperandValue(Value& V, StringRef name, uint32_t index, uint32_t defaultValue=0) {
-        MDNode* md = nullptr;
-        if (Instruction* I = dyn_cast<Instruction>(&V)) {
-            md = I->getMetadata(name);
-        } else if (GlobalObject* G = dyn_cast<GlobalObject>(&V)) {
-            md = G->getMetadata(name);
-        } else if (Function* F = dyn_cast<Function>(&V)) {
-            md = F->getMetadata(name);
-        }
-        return md == nullptr ? defaultValue : MDOperandToInt(md, index);
-    }
-
-    uint32_t getArrayNumDims(Type* arrayType) {
-        uint32_t numDims = 0;
-
-        if (arrayType->isPointerTy()) {
-            arrayType = arrayType->getPointerElementType();
-        }
-        while (arrayType->isArrayTy()) {
-            numDims++;
-            arrayType = arrayType->getArrayElementType();
-        }
-        return numDims;
-    }
-
-    uint32_t getArrayNumElements(Type* arrayType) {
-        uint32_t numElements = 1;
-        if (arrayType->isPointerTy()) {
-            arrayType = arrayType->getPointerElementType();
-        }
-        while (arrayType->isArrayTy()) {
-            numElements *= arrayType->getArrayNumElements();
-            arrayType = arrayType->getArrayElementType();
-        }
-        return numElements;
-    }
-
-    uint32_t getArrayDimNumElements(Type* arrayType, uint32_t dim) {
-        if (arrayType->isPointerTy()) {
-            arrayType = arrayType->getPointerElementType();
-        }
-        for (size_t i = 1; i < dim; i++) {
-            arrayType = arrayType->getArrayElementType();
-        }
-        return arrayType->getArrayNumElements();
-    }
-
-    int setArrayMD(Value& V) {
-        Type* valueType = V.getType();
-        if (!valueType->isArrayTy() && !valueType->isPointerTy()) {
-            return -1; // Not an array or pointer
-        }
-
-        while (valueType->isPointerTy()) {
-            valueType = valueType->getPointerElementType();
-        }
-        if (!valueType->isArrayTy()) {
-            return -1; // Not an array
-        }
-
-        setMetadata(V, "isArray", 1);
-
-        uint32_t numDims = getArrayNumDims(V.getType());
-        for (uint32_t i = 1; i <= numDims; i++) {
-            uint32_t dimNumElements = getArrayDimNumElements(V.getType(), i);
-            setMetadata(V, "numElements." + std::to_string(i), dimNumElements);
-        }
-        uint32_t numElements = getArrayNumElements(V.getType());
-
-        setMetadata(V, "numDims", numDims);
-        setMetadata(V, "numElements", numElements);
-    
-        // Get element type of the array
-        Type* elementType = V.getType();
-        while (elementType->isPointerTy()) {
-            elementType = elementType->getPointerElementType();
-        }
-        while (elementType->isArrayTy()) {
-            elementType = elementType->getArrayElementType();
-        }
-        setMetadata(V, "elementType", (uint32_t)elementType->getTypeID());
-        setMetadata(V, "elementBitwidth", elementType->getPrimitiveSizeInBits());
-
-        return 0;
     }
 
     // Set array-specific metadata for all arrays in the module
     void setMetadataForArrays(Module& M) {
         for (GlobalObject& G : M.getGlobalList()) {
-            setArrayMD(G);
+            setArrayMetadata(G);
         }
         for (Function& F : M) {
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
-                    setArrayMD(I);
+                    setArrayMetadata(I);
                 }
             }
         }
     }
 
-    // Set named metadata for all global objects in the module
+    // Set metadata for all global objects in the module
     void setMetadataForGlobals(Module& M) {
         for (GlobalObject& G : M.getGlobalList()) {
-            DEBUG(dbgs() << "Setting metadata for global: " << G << "\n");
-            setMetadata(G, "bitwidth", G.getType()->getPointerElementType()->getPrimitiveSizeInBits());
-            setMetadata(G, "type", (uint32_t)G.getType()->getPointerElementType()->getTypeID());
+            Type* Ty = G.getType()->getPointerElementType();
+            setIntMetadata(G, "bitwidth", Ty->getPrimitiveSizeInBits());
+            setIntMetadata(G, "type", (uint32_t)Ty->getTypeID());
         }
     }
 
-    void setFunctionMetadata(Function& F, LoopInfo& LI) {
-        uint32_t numOperands = F.arg_size();
-        uint32_t numUses = F.getNumUses();
-        uint32_t functionRetType = (uint32_t)F.getReturnType()->getTypeID();
-        uint32_t functionRetTypeBitwidth = F.getReturnType()->getPrimitiveSizeInBits();
-        uint32_t numInstsInFunction = 0;
-        uint32_t numBBsInFunction = 0;
-        uint32_t numLoopsInFunction = 0;
-
-        for (BasicBlock& BB : F) {
-            numBBsInFunction++;
-            numInstsInFunction += BB.size();
-            if (Loop* L = LI.getLoopFor(&BB)) {
-                numLoopsInFunction++;
+    uint32_t getExactOrMaxTripCount(Loop* L, ScalarEvolution* SE) {
+        uint32_t tripCount = 0;
+        if (BasicBlock* exitingBlock = getExitingBlock(L, SE)) {
+            tripCount = SE->getSmallConstantTripCount(L, exitingBlock);
+            if (tripCount > 0) {
+                return tripCount;
             }
         }
-        setMetadata(F, "numOperands", numOperands);
-        setMetadata(F, "numUses", numUses);
-        setMetadata(F, "retType", functionRetType);
-        setMetadata(F, "retBitwidth", functionRetTypeBitwidth);
-        setMetadata(F, "numInsts", numInstsInFunction);
-        setMetadata(F, "numBBs", numBBsInFunction);
-        setMetadata(F, "numLoops", numLoopsInFunction);
+        Optional<LoopTripCountMDInfo> tripCountInfo = getLoopTripCount(L);
+        if (tripCountInfo.hasValue()) {
+            tripCount = (uint32_t)tripCountInfo->getMax();
+            if (tripCount > 0) {
+                return tripCount;
+            }
+        }
+        Optional<uint32_t> estimatedTripCount = getLoopEstimatedTripCount(L);
+        return estimatedTripCount.hasValue() ? estimatedTripCount.getValue() : 0;
     }
 
-    // Set named metadata for all instructions in the module
-    void setMetadataForInstructions(Module& M) {
-        for (Module::iterator FI = M.begin(), FE = M.end(); FI != FE; ++FI) {
-            Function& F = *FI;
-            if (F.size() == 0) {
-                continue;
-            }
-            // Get LoopInfo and ScalarEvolution analyses
+    void setMetadataForLoops(Module& M) {
+        struct StackFrame {
+            Loop* loop;
+            uint32_t parentID;
+        };
+
+        uint32_t currLoopID = 1;
+        for (Function& F : M) {
+            if (F.size() == 0) continue;
+
+            DEBUG(dbgs() << "Setting metadata for loops in function " 
+                         << (F.hasName() ? F.getName() : "") << "\n");
+
             LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
             ScalarEvolution& SE = getAnalysis<ScalarEvolutionWrapperPass>(F).getSE();
+            uint32_t functionID = getIntMetadata(F, "functionID");
 
-            setFunctionMetadata(F, LI);
+            for (Loop* L : LI) {
+                if (!L->getParentLoop()) {
+                    std::stack<StackFrame> loopStack;
+                    loopStack.push({L, 0});
+                    
+                    while (!loopStack.empty()) {
+                        StackFrame frame = loopStack.top();
+                        loopStack.pop();
+                        
+                        Loop* currLoop = frame.loop;
+                        uint32_t currParentID = frame.parentID;
+                        
+                        DEBUG(dbgs() << "Setting metadata for loop " 
+                                     << (currLoop->getHeader()->hasName() ? currLoop->getHeader()->getName() : "") 
+                                     << "\n");
+                        uint32_t loopID = currLoopID++;
+                        
+                        setIntMetadata(*currLoop, "loopID", loopID);
+                        setIntMetadata(*currLoop, "parentLoopID", currParentID);
+                        setIntMetadata(*currLoop, "functionID", functionID);
+                        
+                        uint32_t depth = currLoop->getLoopDepth();
+                        uint32_t tripCount = getExactOrMaxTripCount(currLoop, &SE);
 
-            for (BasicBlock& BB : F) {
-                uint32_t bbSize = BB.size();
-                uint32_t inLoop = 0, loopDepth = 0, tripCountValue = 1;
-                if (Loop* L = LI.getLoopFor(&BB)) {
-                    // The basic block is in a loop
-                    inLoop = 1;
-                    loopDepth = L->getLoopDepth();
-                    DEBUG(dbgs() << "Loop depth: " << loopDepth << "\n");
-                    const SCEV* tripCount = SE.getBackedgeTakenCount(L);
-                    if (const SCEVConstant* tripCountConst = dyn_cast<SCEVConstant>(tripCount)) {
-                        tripCountValue = tripCountConst->getValue()->getZExtValue();
-                    } else {
-                        tripCountValue = 0;
+                        DEBUG(dbgs() << "Loop depth: " << depth << ", trip count: " << tripCount << "\n");
+                        
+                        setIntMetadata(*currLoop, "depth", depth);
+                        setIntMetadata(*currLoop, "tripCount", tripCount);
+                        
+                        for (auto it = currLoop->getSubLoops().rbegin(); it != currLoop->getSubLoops().rend(); ++it) {
+                            loopStack.push({*it, loopID});
+                        }
                     }
-                }
-                for (Instruction& I : BB) {
-                    DEBUG(dbgs() << "Setting metadata for instruction: " << I << "\n");
-                    setInstructionMetadata(I, bbSize, inLoop, loopDepth, (uint32_t)tripCountValue);
                 }
             }
         }
     }
 
-    bool mayModifyMemory(Instruction& I) {
-        if (I.mayWriteToMemory()) {
-            return true;
+    void setMetadataForFunctions(Module& M) {
+        for (Function& F : M) {
+            if (F.size() == 0) continue;
+            
+            setIntMetadata(F, "numOperands", (uint32_t)F.arg_size());
+            setIntMetadata(F, "numUses", F.getNumUses());
+
+            Type* retTy = F.getReturnType();
+            setIntMetadata(F, "retType", (uint32_t)retTy->getTypeID());
+            setIntMetadata(F, "retBitwidth", retTy->getPrimitiveSizeInBits());
+
+            uint32_t instructions = 0, bbs = 0, loops = 0;
+            for (BasicBlock& BB : F) {
+                bbs++;
+                instructions += BB.size();
+            }
+            setIntMetadata(F, "numInsts", instructions);
+            setIntMetadata(F, "numBBs", bbs);
+            setIntMetadata(F, "numLoops", loops);
         }
-        if (I.getOpcode() == Instruction::Call) {
-            CallInst* CI = cast<CallInst>(&I);
-            return CI->mayWriteToMemory();
-        }
-        return false;
     }
 
-    bool mayReadsMemory(Instruction& I) {
-        if (I.mayReadFromMemory()) {
-            return true;
+    void setMetadataForInstructions(Module& M) {
+        for (Function& F : M) {
+            for (BasicBlock& BB : F) {
+                for (Instruction& I : BB) {
+                    setInstructionMetadata(I);
+                }
+            }
         }
-        if (I.getOpcode() == Instruction::Call) {
-            CallInst* CI = cast<CallInst>(&I);
-            return CI->mayReadFromMemory();
-        }
-        return false;
     }
 
-    bool mayModifyCF(Instruction& I) {
-        return I.isTerminator() || I.getOpcode() == Instruction::Call;
+    int setArrayMetadata(Value& V) {
+        Type* valueType = V.getType();
+        if (!valueType->isArrayTy() && !valueType->isPointerTy()) {
+            return -1; // Not an array or pointer
+        }
+        valueType = getPointedType(valueType);
+        if (!valueType->isArrayTy()) {
+            return -1; // Not an array
+        }
+        setIntMetadata(V, "isArray", 1);
+
+        uint32_t dims = getArrayDims(V.getType());
+        for (uint32_t i = 1; i <= dims; i++) {
+            uint32_t dimSize = getArrayDimSize(V.getType(), i);
+            setIntMetadata(V, "numElements." + std::to_string(i), dimSize);
+        }
+        setIntMetadata(V, "numDims", dims);
+        setIntMetadata(V, "numElements", getTotalArrayElements(V.getType()));
+    
+        Type* innerType = getArrayInnermostType(getPointedType(V.getType()));
+        setIntMetadata(V, "elementType", (uint32_t)innerType->getTypeID());
+        setIntMetadata(V, "elementBitwidth", innerType->getPrimitiveSizeInBits());
+        return 0;
     }
 
-    // Set named metadata for an instruction
-    void setInstructionMetadata(Instruction& I, uint32_t bbSize, uint32_t inLoop, 
-                                uint32_t loopDepth=0, uint32_t tripCount=1) {
-        setMetadata(I, "opcode", I.getOpcode());
-        setMetadata(I, "bitwidth", I.getType()->getPrimitiveSizeInBits());
-        setMetadata(I, "valueType", (uint32_t)I.getType()->getTypeID());
-        setMetadata(I, "numUses", I.getNumUses());
-        setMetadata(I, "numOperands", I.getNumOperands());
+    void setInstructionMetadata(Instruction& I) {
+        setIntMetadata(I, "opcode", I.getOpcode());
+        setIntMetadata(I, "bitwidth", I.getType()->getPrimitiveSizeInBits());
+        setIntMetadata(I, "valueType", (uint32_t)I.getType()->getTypeID());
 
-        setMetadata(I, "modifiesMemory", mayModifyMemory(I) ? 1 : 0);
-        setMetadata(I, "readsMemory", mayReadsMemory(I) ? 1 : 0);
-        setMetadata(I, "modifiesControlFlow", mayModifyCF(I) ? 1 : 0);
-
-        uint32_t opID = getMDOperandValue(I, "opID", 0);
-        setMetadata(I, "ID." + std::to_string(opID), opID);
-
-        // Set metadata about the basic block that the instruction belongs to
-        // to facilitate recovering this information from the ProGraML graph
-        setMetadata(I, "bbSize", bbSize);
-        setMetadata(I, "inLoop", inLoop);
-        setMetadata(I, "loopDepth", loopDepth);
-        setMetadata(I, "tripCount", tripCount);
+        uint32_t opID = getIntMetadata(I, "opID", 0);
+        setIntMetadata(I, "ID." + std::to_string(opID), opID);
     }
 
 	virtual void getAnalysisUsage(AnalysisUsage& AU) const override {
@@ -290,14 +235,13 @@ struct UpdateMD : public ModulePass {
 		AU.addRequired<ScalarEvolutionWrapperPass>();
 		AU.setPreservesAll();
     }
-    
 }; // struct UpdateMD
 
-}  // anonymous namespace
+} // anonymous namespace
 
 char UpdateMD::ID = 0;
 static RegisterPass<UpdateMD> X(
     "update-md", 
-    "Update metadata for instructions and global objects", 
+    "Update metadata for instructions, functions, basic blocks, and global objects",
     false, false
 );

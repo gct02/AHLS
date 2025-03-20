@@ -1,2 +1,0 @@
-set_directive_pipeline -off "md_kernel/loop_i"
-set_directive_pipeline -off "md_kernel/loop_j"
