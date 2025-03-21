@@ -196,6 +196,7 @@ def main(args: Dict[str, str]):
     base_aware = args['base_aware']
     filtered = args['filtered']
     raw_dataset_dir = args['raw_dataset']
+    base_metrics_dir = args['base_metrics']
 
     matplotlib.use('Agg')
 
@@ -222,10 +223,10 @@ def main(args: Dict[str, str]):
     node_feature_dims = {**NODE_FEATURE_DIMS, **virtual_node_dims}
 
     if base_aware:
-        assert raw_dataset_dir is not None, \
-            "Raw dataset directory must be provided for base-aware training"
+        assert not (raw_dataset_dir is None and base_metrics_dir is None), \
+            "Either raw_dataset_dir or base_metrics_dir must be provided"
         base_targets = get_base_solution_values(
-            raw_dataset_dir, target_metric, filtered
+            target_metric, raw_dataset_dir, base_metrics_dir, filtered
         )
         base_edges = ([('base', 'base', nt) for nt in METADATA[0]]
                       + [('base', 'self', 'base')])
@@ -575,11 +576,25 @@ def make_output_dirs(
 
 
 def get_base_solution_values(
-    dataset_dir: str,
     target_metric: str,
+    dataset_dir: Optional[str] = None,
+    base_metrics_dir: Optional[str] = None,
     filtered: bool = False
 ) -> Dict[str, float]:
     base_values = {}
+
+    assert not (dataset_dir is None and base_metrics_dir is None), \
+        "Either dataset_dir or base_metrics_dir must be provided"
+    
+    if base_metrics_dir is not None:
+        for bench in os.listdir(base_metrics_dir):
+            bench_name = bench.split('.')[0]
+            with open(f"{base_metrics_dir}/{bench}", 'r') as f:
+                metric, value = f.readline().strip().split('=')
+                if metric == target_metric:
+                    base_values[bench_name] = float(value)
+
+        return base_values
 
     for bench in os.listdir(dataset_dir):
         bench_dir = Path(dataset_dir) / bench
@@ -594,6 +609,8 @@ def get_base_solution_values(
             continue
         
         metrics = extract_metrics(dataset_dir, bench, base_sol, filtered)
+
+        # TODO: Handle case where target metric is not found
         assert target_metric in metrics, \
             f"Target metric {target_metric} not found in base solution metrics"
 
@@ -730,6 +747,8 @@ def parse_arguments():
                         help='Path to the "raw" dataset folder (i.e., the dataset containing the original HLS solutions).')
     parser.add_argument('--filtered', action='store_true',
                         help='Signal that the (raw) dataset is filtered')
+    parser.add_argument('--base-metrics', default=None,
+                        help='Path to the folder containing the metrics of each benchmark\'s base solution.')
     parser.add_argument('--collect-residuals', action='store_true',
                         help='Collect residuals for analysis.')
     parser.add_argument('--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp'],

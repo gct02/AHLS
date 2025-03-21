@@ -8,6 +8,7 @@ import pandas as pd
 import xml.etree.ElementTree as ET
 from numpy.typing import NDArray
 
+
 def parse_utilization_rpt_xml(rpt_path: Path):
     tree = ET.parse(rpt_path)
     root = tree.getroot()
@@ -29,6 +30,7 @@ def parse_utilization_rpt_xml(rpt_path: Path):
     }
     return metrics
 
+
 def parse_timing_rpt_xml(rpt_path: Path):
     tree = ET.parse(rpt_path)
     root = tree.getroot()
@@ -45,6 +47,7 @@ def parse_timing_rpt_xml(rpt_path: Path):
         'achieved_clk': achieved_clk
     }
     return metrics
+
 
 def parse_utilization_rpt_txt(rpt_path: Path):
     numeric_const_pattern = '-?\d+'
@@ -87,6 +90,7 @@ def parse_utilization_rpt_txt(rpt_path: Path):
     }
     return metrics
 
+
 def parse_timing_rpt_txt(rpt_path: Path):
     numeric_const_pattern = '-?[0-9]\d*(\.\d+)?'
     rx = re.compile(numeric_const_pattern, re.VERBOSE)
@@ -118,6 +122,7 @@ def parse_timing_rpt_txt(rpt_path: Path):
     }
     return metrics
 
+
 def directives_to_one_hot(
     directive_index: int, 
     num_directives: int
@@ -135,6 +140,7 @@ def find_directive_arg(
         return index, arg_list[index + 1]
     except ValueError:
         return -1, None
+
 
 def parse_directive_tcl_cmd(directive_tcl_cmd: str) -> List[str]:
     dir_type = directive_tcl_cmd.split(' ')[0]
@@ -184,8 +190,9 @@ def parse_directive_tcl_cmd(directive_tcl_cmd: str) -> List[str]:
         location = dir_args[-2].strip('\"')
         return [dir_type, location, partition_array, partition_type,
                 partition_factor, partition_dim]
-
+    
     return []
+
 
 def finc_directive_in_list(
     directive: List[Union[str, int]],
@@ -195,6 +202,7 @@ def finc_directive_in_list(
         if directive == directive_in_list:
             return True
     return False
+
 
 def get_one_hot_directives(
     directives_file: Path, 
@@ -243,6 +251,7 @@ def get_one_hot_directives(
 
     return one_hot_directives
 
+
 def extract_solution_directives(
     solution_data_json: Union[Path, str]
 ) -> List[str]:
@@ -250,6 +259,7 @@ def extract_solution_directives(
         data = json.load(f)
     directives = data["HlsSolution"]["DirectiveTcl"]
     return directives
+
 
 def extract_timing_summary(
     dataset_path: Union[Path, str], 
@@ -278,6 +288,7 @@ def extract_timing_summary(
         metrics = parse_timing_rpt_xml(rpt_path)
 
     return metrics
+
 
 def extract_utilization(
     dataset_path: Union[Path, str], 
@@ -309,6 +320,7 @@ def extract_utilization(
 
     return metrics
 
+
 def extract_hls_cc_report(
     dataset_path: Union[Path, str],
     bench_name: str, 
@@ -332,6 +344,7 @@ def extract_hls_cc_report(
 
     return {'cc': float(cc)}
 
+
 def extract_metrics(
     dataset_path: Union[Path, str],
     bench_name: str,
@@ -342,6 +355,7 @@ def extract_metrics(
     metrics.update(extract_utilization(dataset_path, bench_name, solution, filtered))
     metrics.update(extract_hls_cc_report(dataset_path, bench_name, solution, filtered))
     return metrics
+
 
 def organize_data(
     dataset_path: Union[Path, str], 

@@ -1,0 +1,8 @@
+lut=2856
+ff=2189
+dsp=40
+bram=4
+clb=504
+latch=0
+cp=3.456
+cc=1299

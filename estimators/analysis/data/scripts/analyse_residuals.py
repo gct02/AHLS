@@ -2,6 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from argparse import ArgumentParser
 
+
+def mad(residuals):
+    median = np.median(residuals)
+    return np.mean(np.abs(residuals - median))
+
+
 def get_last_epoch_residuals(log_file):
     with open(log_file, 'r') as f:
         lines = f.readlines()
@@ -9,6 +15,7 @@ def get_last_epoch_residuals(log_file):
     last_epoch_lines = [l for l in lines if l.startswith(f'{last_epoch_idx},')]
     last_epoch_residuals = [float(l.split(',')[-1]) for l in last_epoch_lines]
     return last_epoch_residuals
+
 
 def plot_residuals(residuals):
     residuals = np.array(residuals).flatten()
@@ -19,16 +26,14 @@ def plot_residuals(residuals):
     plt.show()
     plt.close()
 
+
 def parse_args():
     parser = ArgumentParser()
     parser.add_argument('-l', '--log_file', required=True, help='Path to log file')
     args = parser.parse_args()
     return args
-
-def mad(residuals):
-    median = np.median(residuals)
-    return np.mean(np.abs(residuals - median))
     
+
 if __name__ == '__main__':
     args = parse_args()
 

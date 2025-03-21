@@ -10,6 +10,7 @@ from sklearn.cluster import KMeans, AgglomerativeClustering
 from sklearn.metrics import silhouette_score
 from sklearn.decomposition import PCA
 
+
 def cluster_solutions_by_directives(
     directive_groups: List[NDArray[Any]],
     n_clusters: int,
@@ -42,6 +43,7 @@ def cluster_solutions_by_directives(
         print(f'Silhouette score: {sil_score:.2f}')
 
     return clusters
+
 
 def build_graphs(
     resources_data: pd.DataFrame, 
@@ -140,6 +142,7 @@ def save_cluster_stats(data: pd.DataFrame, output_dir: Path, bench_name: str):
         )
         directives_file = output_dir / f'{bench_name}_directive_profiles.csv'
         directive_profiles.to_csv(directives_file, index=False)
+
 
 if __name__ == '__main__':
     def parse_args():

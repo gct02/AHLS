@@ -8,6 +8,7 @@ import seaborn as sns
 from pathlib import Path
 from argparse import ArgumentParser
 
+
 def extract_metric_from_data(
     dataset_path: str, metric: str, 
     filtered: bool = False, benches: str = None
@@ -23,6 +24,7 @@ def extract_metric_from_data(
         bench_reports = [x for x in bench_reports if x >= 0]
         reports.extend(bench_reports)
     return np.array(reports)
+
 
 def plot_distribution(dataset_path: str, metric: str, filtered=False):
     reports = extract_metric_from_data(dataset_path, metric, filtered)
@@ -65,6 +67,7 @@ def plot_distribution(dataset_path: str, metric: str, filtered=False):
     plt.show()
     plt.close()
 
+
 def parse_args():
     parser = ArgumentParser()
     parser.add_argument('-d', '--dataset', required=True, 
@@ -74,6 +77,7 @@ def parse_args():
     parser.add_argument('-f', '--filtered', action='store_true',
                         help='Sinalize if the dataset is filtered')
     return parser.parse_args()
+
 
 if __name__ == '__main__':
     import sys

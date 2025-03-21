@@ -1,0 +1,11 @@
+wns=0.377
+tns=0.0
+target_clk=8.0
+achieved_clk=7.623
+lut=421.0
+bram=0.0
+ff=407.0
+dsp=3.0
+clb=2.0
+latch=0.0
+cc=8561.0

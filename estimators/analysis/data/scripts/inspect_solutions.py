@@ -4,7 +4,9 @@ import pandas as pd
 from pathlib import Path
 from argparse import ArgumentParser
 
+
 _DEFAULT_LUT_THRESHOLD = 400
+
 
 def separate_solutions(
     solution_data: pd.DataFrame, 
@@ -26,6 +28,7 @@ def separate_solutions(
                 one_hot_directives_above.append(one_hot_directives[i])
         return lut_below, lut_above, one_hot_directives_below, one_hot_directives_above
     return lut_below, lut_above
+
 
 def get_most_common_directives(
     dataset_path: Union[Path, str],
@@ -53,6 +56,7 @@ def get_most_common_directives(
         directives_count.items(), key=lambda x: x[1], reverse=True
     )
     return directives_sorted
+
 
 def parse_args():
     parser = ArgumentParser()
@@ -82,6 +86,7 @@ def parse_args():
         help='Sinalize to include information about directives'
     )
     return parser.parse_args()
+
 
 if __name__ == '__main__':
     import sys

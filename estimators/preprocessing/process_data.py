@@ -193,22 +193,15 @@ def main(args: Dict[str, str]):
             # Copy the modified IR to the output folder
             shutil.copy(ir_mod, output_instance_folder / "ir.ll")
 
-            lut, bram, ff, dsp, clb, latch = extract_utilization(
-                dataset, benchmark, solution.stem, filtered
-            )
-            _, _, _, achieved_clk = extract_timing_summary(
-                dataset, benchmark, solution.stem, filtered
-            )
-            cc = extract_hls_cc_report(
-                dataset, benchmark, solution.stem, filtered
-            )
+            metrics = extract_metrics(dataset, benchmark, solution.stem, filtered)
             
             with open(output_instance_folder / "targets.txt", "w") as f:
-                f.write(f"lut={lut}\nff={ff}\ndsp={dsp}\nbram={bram}\n" + 
-                        f"clb={clb}\nlatch={latch}\ncp={achieved_clk}\ncc={cc}")
+                for key, value in metrics.items():
+                    f.write(f"{key}={value}\n")
 
             build_cdfg(
-                ir_mod, output_md_path, output_loop_hierarchy_path, 
+                ir_mod, output_md_path, 
+                output_loop_hierarchy_path, 
                 output_instance_folder
             )
 
@@ -238,11 +231,7 @@ if __name__ == "__main__":
         __package__ = DIR.name
 
     from estimators.graph import build_cdfg
-    from utils.parsers import (
-        extract_utilization, 
-        extract_timing_summary, 
-        extract_hls_cc_report
-    )
+    from utils.parsers import extract_metrics
 
     args = parse_args()
     main(args)
