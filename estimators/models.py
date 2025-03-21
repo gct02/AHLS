@@ -1,4 +1,4 @@
-from typing import Dict, Union, Optional, List
+from typing import Dict, Union, List
 
 import torch
 import torch.nn as nn
@@ -24,16 +24,14 @@ class HGT(nn.Module):
         out_channels (int): Number of output channels.
         num_layers (int, optional): Number of convolutional layers.
             (default: :obj:`6`)
-        hid_dim (int or List[int], optional): Hidden dimension of the convolutional
+        hid_dim (int, optional): Hidden dimension of the convolutional 
             layers. (default: :obj:`64`)
-        heads (int or List[int], optional): Number of attention heads for the
+        num_heads (int, optional): Number of attention heads for the 
             convolutional layers. (default: :obj:`8`)
         dropout (float): Dropout rate for fully connected layers. 
             (default: :obj:`0.0`)
         num_virtual_nodes (int, optional): Number of virtual nodes to use.
             (default: :obj:`1`)
-        mlp_hid_dim (List[int], optional): List of hidden layer sizes for the MLP.
-            (default: :obj:`None`)
         device (torch.device): Device to use for computation. 
             (default: :obj:`"cpu"`)
     """
@@ -42,8 +40,8 @@ class HGT(nn.Module):
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
         num_layers: int = 6,
-        hid_dim: Union[int, List[int]] = 64,
-        heads: Union[int, List[int]] = 8,
+        hid_dim: int = 64,
+        num_heads: int = 8,
         dropout: float = 0.0,
         num_virtual_nodes: int = 1,
         device: Device = 'cpu'
@@ -54,25 +52,19 @@ class HGT(nn.Module):
         self.dropout = dropout
         self.num_layers = num_layers
 
-        if isinstance(hid_dim, int):
-            hid_dim = [hid_dim] * num_layers
-
-        if isinstance(heads, int):
-            heads = [heads] * num_layers
-
         # Define convolutional layers
         self.conv = nn.ModuleList([
-            HGTConv(hid_dim[i-1] if i > 0 else in_channels, hid_dim[i], metadata, heads[i])
+            HGTConv(hid_dim if i > 0 else in_channels, hid_dim, metadata, num_heads)
             for i in range(num_layers)
         ])
 
         # Define jumping knowledge layer
-        self.attn_jk = nn.MultiheadAttention(hid_dim[-1], heads[-1], dropout=dropout)
+        self.attn_jk = nn.MultiheadAttention(hid_dim, num_heads, dropout=dropout)
 
         # Define graph-level fully connected layers
         self.mlp = nn.Sequential()
 
-        mlp_hid_dim = self._get_mlp_layer_dims(hid_dim[-1] * num_virtual_nodes, out_channels)
+        mlp_hid_dim = self._get_mlp_layer_dims(hid_dim * num_virtual_nodes, out_channels)
         depth = len(mlp_hid_dim) - 1
         for i in range(depth):
             self.mlp.extend([
@@ -129,16 +121,17 @@ class HGT(nn.Module):
         # Convolutional layers
         for i in range(self.num_layers):
             x_dict = self.conv[i](x_dict, edge_index_dict)
-            outs.append(
-                F.dropout(x_dict["virtual"], p=self.dropout, training=self.training)
-            )
+            x_dict = {k: F.dropout(v, p=self.dropout, training=self.training) 
+                      for k, v in x_dict.items()}
+            if i > 0:
+                outs.append(x_dict["virtual"])
 
         # Jumping knowledge layer
         out = torch.stack(outs)
         out = self.attn_jk(out, out, out)[0]
-        out = out.mean(dim=0).view(batch_size, -1)
+        out = out.sum(dim=0).view(batch_size, -1)
 
         # Graph-level MLP
-        out = self.mlp(out)
-    
-        return out.squeeze(1)
+        out = self.mlp(out).squeeze(1)
+
+        return out

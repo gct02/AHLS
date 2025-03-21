@@ -237,7 +237,9 @@ def main(args: Dict[str, str]):
         ('inst', 'virtual', 'virtual'), 
         ('virtual', 'virtual', 'virtual')
     ]
-    metadata = (METADATA[0] + virtual_nodes, METADATA[1] + virtual_edges)
+    node_types = METADATA[0] + virtual_nodes
+    edge_types = METADATA[1] + virtual_edges
+    metadata = (node_types, edge_types)
     node_feature_dims = {**NODE_FEATURE_DIMS, **virtual_dims}
     num_virtual_nodes = 32
 
@@ -245,7 +247,7 @@ def main(args: Dict[str, str]):
         base_targets = get_base_solution_values(
             target_metric, base_metrics_dir, source_dataset_dir, filtered
         )
-        base_edges = ([('base', 'base', nt) for nt in METADATA[0]]
+        base_edges = ([('base', 'base', nt) for nt in node_types]
                       + [('base', 'self', 'base')])
         metadata = (metadata[0] + ['base'], metadata[1] + base_edges)
         node_feature_dims['base'] = 1
@@ -262,8 +264,8 @@ def main(args: Dict[str, str]):
         'in_channels': node_feature_dims,
         'out_channels': 1,
         'num_layers': 6,
-        'hid_dim': 32,
-        'heads': 8,
+        'hid_dim': 64,
+        'num_heads': 8,
         'dropout': 0.1,
         'num_virtual_nodes': num_virtual_nodes,
         'device': DEVICE

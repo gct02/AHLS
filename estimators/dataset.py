@@ -7,7 +7,7 @@ from typing import Union, Optional, List, Dict
 
 from torch import Tensor
 from torch_geometric.data import Dataset, HeteroData
-from torch_geometric.typing import NodeType, Metadata
+from torch_geometric.typing import NodeType
 
 
 def compute_stats(
@@ -186,6 +186,7 @@ class HLSDataset(Dataset):
             else:
                 base_solution_target = -1
 
+            virtual_edges = None
             solutions = os.listdir(bench_path)
             solutions = sorted(solutions, key=lambda s: int(s.split("solution")[1]))
             for sol in solutions:
@@ -203,8 +204,13 @@ class HLSDataset(Dataset):
                 if target_value == -1:
                     continue
 
-                data = self._load_and_process_data(
-                    cdfg_path, target_value, base_solution_target
+                data = torch.load(cdfg_path)
+
+                if virtual_edges is None and self.num_virtual_nodes > 0:
+                    virtual_edges = self._get_virtual_edges(data)
+
+                data = self._process_graph(
+                    data, target_value, base_solution_target, virtual_edges
                 )
                 output_path = os.path.join(self.processed_dir, f"{bench}_{sol}.pt")
                 torch.save(data, output_path)
@@ -245,41 +251,60 @@ class HLSDataset(Dataset):
             normalized_x_dict[nt] = (feats - mean) / std
         return normalized_x_dict
     
-    def _load_and_process_data(
+    def _get_virtual_edges(self, data: HeteroData) -> Tensor:
+        # Add virtual nodes and connect them to instruction ('inst') nodes
+        inst_count = data["inst"].x.shape[0]
+
+        # Compute the input degree of each instruction node
+        in_degrees = torch.zeros(inst_count, dtype=torch.long)
+        for edge_type, edge_index in data.edge_index_dict.items():
+            if edge_type[2] == "inst":
+                in_degrees += torch.bincount(edge_index[1], minlength=inst_count)
+
+        # Transform the input degrees into probabilities
+        in_degrees = in_degrees.float()
+        in_degrees = in_degrees.softmax(dim=0).clamp_min(1e-8)
+
+        # Connect each virtual node to half of the instruction nodes
+        # with a probability proportional to their input degree
+        edges_per_virtual = math.ceil(inst_count / 4.0)
+        virtual_edges = []
+        for i in range(self.num_virtual_nodes):
+            sampled_nodes = torch.multinomial(in_degrees, edges_per_virtual, replacement=False)
+            virtual_edges.append(torch.stack([
+                sampled_nodes,
+                torch.tensor([i] * edges_per_virtual)
+            ]))
+
+            # Decrease the input degree of the sampled nodes by a small amount
+            in_degrees[sampled_nodes] -= in_degrees[sampled_nodes] * 0.1
+
+            # Normalize the input degrees again
+            in_degrees = in_degrees.clamp_min(1e-8)
+            in_degrees = in_degrees.softmax(dim=0).clamp_min(1e-8)
+
+        virtual_edges = torch.cat(virtual_edges, dim=1)
+        return virtual_edges
+    
+    def _process_graph(
         self, 
-        data_path: str, 
+        data: HeteroData,
         target_value: float, 
-        base_solution_target: float = -1.0
+        base_solution_target: float = -1.0,
+        virtual_edges: Optional[Tensor] = None
     ) -> HeteroData:
-        data = torch.load(data_path)
         data.y = torch.tensor([target_value])
 
         if self.normalize_features:
             normalized_x_dict = self._get_normalized_node_features(data.x_dict)
             for nt, feats in normalized_x_dict.items():
                 data[nt].x = feats
-                
-        if self.num_virtual_nodes > 0:
-            # Add virtual nodes and connect them to instruction ('inst') nodes
-            inst_count = data["inst"].x.shape[0]
-            feature_dim = data["inst"].x.shape[1]
 
-            data["virtual"].x = torch.zeros((self.num_virtual_nodes, feature_dim))
-
-            edges_per_virtual_node = math.ceil(inst_count / float(self.num_virtual_nodes))
-            virtual_edges = []
-            for i in range(self.num_virtual_nodes):
-                start = i * edges_per_virtual_node
-                end = (i + 1) * edges_per_virtual_node
-                if end > inst_count:
-                    start = inst_count - edges_per_virtual_node
-                    end = inst_count
-                virtual_edges.append(torch.stack([
-                    torch.arange(start, end),
-                    torch.tensor([i] * (end - start))
-                ]))
-
-            data[("inst", "virtual", "virtual")].edge_index = torch.cat(virtual_edges, dim=1)
+        if virtual_edges is not None:
+            data["virtual"].x = torch.zeros(
+                (self.num_virtual_nodes, data["inst"].x.shape[1])
+            )
+            data[("inst", "virtual", "virtual")].edge_index = virtual_edges
             data[("virtual", "virtual", "virtual")].edge_index = torch.stack([
                 torch.arange(self.num_virtual_nodes),
                 torch.arange(self.num_virtual_nodes)
@@ -292,7 +317,7 @@ class HLSDataset(Dataset):
 
             # Connect the "base" node to all the nodes of the other types
             for nt in data.x_dict.keys():
-                if nt == "base" or nt.startswith("virtual"):
+                if nt == "base":
                     continue
                 num_nodes = data[nt].x.shape[0]
                 data[("base", "base", nt)].edge_index = torch.stack([
