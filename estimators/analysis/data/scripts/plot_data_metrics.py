@@ -144,120 +144,124 @@ def save_cluster_stats(data: pd.DataFrame, output_dir: Path, bench_name: str):
         directive_profiles.to_csv(directives_file, index=False)
 
 
+def parse_args():
+    parser = ArgumentParser()
+    parser.add_argument(
+        '-d', '--dataset', required=True,
+        help='Dataset directory path'
+    )
+    parser.add_argument(
+        '-b', '--benchmark', required=True,
+        help='benchmark name (if not provided, use all benchmarks available)',
+    )
+    parser.add_argument(
+        '-o', '--output', required=False, default=None, 
+        help='Output file path', 
+    )
+    parser.add_argument(
+        '-a', '--available', required=False, default=None,
+        help='Available directives file path'
+    )
+    parser.add_argument(
+        '-x', '--xdata', required=False, default='lut',
+        help='X axis data (default: "lut")'
+    )
+    parser.add_argument(
+        '-y', '--ydata', required=False, default='time',
+        help='Y axis data (default: "time")'
+    )
+    parser.add_argument(
+        '-s', '--seed', required=False, default=42,
+        help='Random seed for clustering (default: 42)'
+    )
+    parser.add_argument(
+        '-c', '--clusters', required=False, default=4,
+        help='Number of clusters to group solutions (default: 4)'
+    )
+    parser.add_argument(
+        '-cm', '--cluster-method', choices=['kmeans', 'agglomerative'], default='kmeans',
+        help='Clustering method (default: kmeans)'
+    )
+    parser.add_argument(
+        '-f', '--filtered', required=False, action='store_true', default=False,
+        help='Sinalize if the dataset is filtered (default: False)'
+    )
+    parser.add_argument(
+        '-dr', '--directives', required=False, action='store_true', default=False,
+        help='Sinalize to plot information about directives (default: False)'
+    )
+    parser.add_argument(
+        '-p', '--plot-type', choices=['scatter', 'hexbin'], default='scatter',
+        help='Visualization type (default: scatter)'
+    )
+    parser.add_argument(
+        '-r', '--dim-reduction', action='store_true',
+        help='Use PCA for dimensionality reduction'
+    )
+    return parser.parse_args()
+
+
+def main(args):
+    dataset_path = args.dataset
+    bench_name = args.benchmark
+    directives_file = args.available
+    x_data = args.xdata
+    y_data = args.ydata
+    output = args.output
+    is_filtered = args.filtered
+    analyse_directives = args.directives
+    dim_reduction = args.dim_reduction
+    plot_type = args.plot_type
+    cluster_method = args.cluster_method
+    clusters = int(args.clusters)
+    seed = int(args.seed)
+
+    assert Path(f'{dataset_path}/{bench_name}').is_dir()
+
+    np.random.seed(seed)
+    sklearn.random.seed(seed)
+
+    if directives_file is not None:
+        directives_file = Path(directives_file)
+        assert directives_file.exists()
+
+    if output is not None:
+        output = Path(output)
+        if not output.exists():
+            output.mkdir(parents=True)
+
+    if directives_file is not None and analyse_directives:
+        data, directive_groups = organize_data(
+            dataset_path, bench_name, directives_file, 
+            is_filtered, analyse_directives
+        )
+        build_graphs(
+            data, bench_name, x_data, y_data, directive_groups, 
+            output, analyse_directives, clusters, cluster_method,
+            dim_reduction, plot_type
+        )
+    else:   
+        data = organize_data(
+            dataset_path, bench_name, filtered=is_filtered
+        )
+        build_graphs(
+            data, bench_name, x_data, y_data, output_dir=output,
+            dim_reduction=dim_reduction, plot_type=plot_type
+        )
+
+
 if __name__ == '__main__':
-    def parse_args():
-        parser = ArgumentParser()
-        parser.add_argument(
-            '-d', '--dataset', required=True,
-            help='Dataset directory path'
-        )
-        parser.add_argument(
-            '-b', '--benchmark', required=True,
-            help='benchmark name (if not provided, use all benchmarks available)',
-        )
-        parser.add_argument(
-            '-o', '--output', required=False, default=None, 
-            help='Output file path', 
-        )
-        parser.add_argument(
-            '-a', '--available', required=False, default=None,
-            help='Available directives file path'
-        )
-        parser.add_argument(
-            '-x', '--xdata', required=False, default='lut',
-            help='X axis data (default: "lut")'
-        )
-        parser.add_argument(
-            '-y', '--ydata', required=False, default='time',
-            help='Y axis data (default: "time")'
-        )
-        parser.add_argument(
-            '-s', '--seed', required=False, default=42,
-            help='Random seed for clustering (default: 42)'
-        )
-        parser.add_argument(
-            '-c', '--clusters', required=False, default=4,
-            help='Number of clusters to group solutions (default: 4)'
-        )
-        parser.add_argument(
-            '-cm', '--cluster-method', choices=['kmeans', 'agglomerative'], default='kmeans',
-            help='Clustering method (default: kmeans)'
-        )
-        parser.add_argument(
-            '-f', '--filtered', required=False, action='store_true', default=False,
-            help='Sinalize if the dataset is filtered (default: False)'
-        )
-        parser.add_argument(
-            '-dr', '--directives', required=False, action='store_true', default=False,
-            help='Sinalize to plot information about directives (default: False)'
-        )
-        parser.add_argument(
-            '-p', '--plot-type', choices=['scatter', 'hexbin'], default='scatter',
-            help='Visualization type (default: scatter)'
-        )
-        parser.add_argument(
-            '-r', '--dim-reduction', action='store_true',
-            help='Use PCA for dimensionality reduction'
-        )
-        return parser.parse_args()
+    import sys
 
-    def main(args):
-        import sys
-
-        if __package__ is None:                  
-            DIR = Path(__file__).resolve().parent
-            sys.path.insert(0, str(DIR.parent))
-            sys.path.insert(0, str(DIR.parent.parent))
-            __package__ = DIR.name
-            
-        from utils.parsers import organize_data
-
-        dataset_path = args.dataset
-        bench_name = args.benchmark
-        directives_file = args.available
-        x_data = args.xdata
-        y_data = args.ydata
-        output = args.output
-        is_filtered = args.filtered
-        analyse_directives = args.directives
-        dim_reduction = args.dim_reduction
-        plot_type = args.plot_type
-        cluster_method = args.cluster_method
-        clusters = int(args.clusters)
-        seed = int(args.seed)
-
-        assert Path(f'{dataset_path}/{bench_name}').is_dir()
-
-        np.random.seed(seed)
-        sklearn.random.seed(seed)
-
-        if directives_file is not None:
-            directives_file = Path(directives_file)
-            assert directives_file.exists()
-
-        if output is not None:
-            output = Path(output)
-            if not output.exists():
-                output.mkdir(parents=True)
-
-        if directives_file is not None and analyse_directives:
-            data, directive_groups = organize_data(
-                dataset_path, bench_name, directives_file, 
-                is_filtered, analyse_directives
-            )
-            build_graphs(
-                data, bench_name, x_data, y_data, directive_groups, 
-                output, analyse_directives, clusters, cluster_method,
-                dim_reduction, plot_type
-            )
-        else:   
-            data = organize_data(
-                dataset_path, bench_name, filtered=is_filtered
-            )
-            build_graphs(
-                data, bench_name, x_data, y_data, output_dir=output,
-                dim_reduction=dim_reduction, plot_type=plot_type
-            )
+    if __package__ is None:                  
+        DIR = Path(__file__).resolve().parent
+        sys.path.insert(0, str(DIR.parent))
+        sys.path.insert(0, str(DIR.parent.parent))
+        sys.path.insert(0, str(DIR.parent.parent.parent))
+        sys.path.insert(0, str(DIR.parent.parent.parent.parent))
+        __package__ = DIR.name
+        
+    from utils.parsers import organize_data
 
     args = parse_args()
     main(args)

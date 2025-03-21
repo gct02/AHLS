@@ -30,8 +30,8 @@ class HGT(nn.Module):
             convolutional layers. (default: :obj:`8`)
         dropout (float): Dropout rate for fully connected layers. 
             (default: :obj:`0.0`)
-        num_virtual_nodes (int or Dict[int], optional): Number of virtual nodes to
-            use for each node type. (default: :obj:`None`)
+        num_virtual_nodes (int, optional): Number of virtual nodes to use.
+            (default: :obj:`1`)
         mlp_hid_dim (List[int], optional): List of hidden layer sizes for the MLP.
             (default: :obj:`None`)
         device (torch.device): Device to use for computation. 
@@ -45,7 +45,7 @@ class HGT(nn.Module):
         hid_dim: Union[int, List[int]] = 64,
         heads: Union[int, List[int]] = 8,
         dropout: float = 0.0,
-        num_virtual_nodes: Optional[Union[int, Dict[NodeType, int]]] = None,
+        num_virtual_nodes: int = 1,
         device: Device = 'cpu'
     ):
         super().__init__()
@@ -53,14 +53,6 @@ class HGT(nn.Module):
         self.device = device
         self.dropout = dropout
         self.num_layers = num_layers
-
-        if num_virtual_nodes is None:
-            num_virtual_nodes = {f"virtual_{nt}": 1 for nt in metadata[0]}
-        elif isinstance(num_virtual_nodes, int):
-            num_virtual_nodes = {f"virtual_{nt}": num_virtual_nodes for nt in metadata[0]}
-
-        self.virtual_node_types = [nt for nt in metadata[0] if nt.startswith('virtual_')]
-        self.virtual_edge_types = [et for et in metadata[1] if et[2].startswith('virtual_')]
 
         if isinstance(hid_dim, int):
             hid_dim = [hid_dim] * num_layers
@@ -71,40 +63,25 @@ class HGT(nn.Module):
         # Define convolutional layers
         self.conv = nn.ModuleList([
             HGTConv(hid_dim[i-1] if i > 0 else in_channels, hid_dim[i], metadata, heads[i])
-            for i in range(self.num_layers)
+            for i in range(num_layers)
         ])
 
         # Define jumping knowledge layer
-        self.attn_jk = nn.ModuleDict({
-            nt: nn.MultiheadAttention(hid_dim[-1], heads[-1], dropout=dropout)
-            for nt in self.virtual_node_types
-        })
-
-        # Define type-specific fully connected layers
-        self.node_mlp = nn.ModuleDict()
-        for vt, num in num_virtual_nodes.items():
-            self.node_mlp[vt] = nn.Sequential()
-            mlp_hid_dim = self._get_mlp_layer_dims(hid_dim[-1] * num, out_channels)
-            depth = len(mlp_hid_dim) - 1
-            for i in range(depth):
-                self.node_mlp[vt].extend([
-                    nn.Linear(mlp_hid_dim[i], mlp_hid_dim[i+1]),
-                    nn.GELU(),
-                    nn.Dropout(dropout)
-                ])
-            self.node_mlp[vt].append(nn.Linear(mlp_hid_dim[-1], out_channels))
+        self.attn_jk = nn.MultiheadAttention(hid_dim[-1], heads[-1], dropout=dropout)
 
         # Define graph-level fully connected layers
-        self.graph_mlp = nn.Sequential()
-        mlp_hid_dim = self._get_mlp_layer_dims(len(num_virtual_nodes), out_channels)
+        self.mlp = nn.Sequential()
+
+        mlp_hid_dim = self._get_mlp_layer_dims(hid_dim[-1] * num_virtual_nodes, out_channels)
         depth = len(mlp_hid_dim) - 1
         for i in range(depth):
-            self.graph_mlp.extend([
+            self.mlp.extend([
                 nn.Linear(mlp_hid_dim[i], mlp_hid_dim[i+1]),
                 nn.GELU(),
                 nn.Dropout(dropout)
             ])
-        self.graph_mlp.append(nn.Linear(mlp_hid_dim[-1], out_channels))
+
+        self.mlp.append(nn.Linear(mlp_hid_dim[-1], out_channels))
 
         self.reset_parameters()
         self.to(device)
@@ -113,8 +90,7 @@ class HGT(nn.Module):
         r"""Reinitializes the model parameters."""
         self.conv.apply(self._init_weights)
         self.attn_jk.apply(self._init_weights)
-        self.node_mlp.apply(self._init_weights)
-        self.graph_mlp.apply(self._init_weights)
+        self.mlp.apply(self._init_weights)
 
     def _init_weights(self, m):
         if isinstance(m, nn.Linear):
@@ -147,27 +123,22 @@ class HGT(nn.Module):
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
         x_dict, edge_index_dict = data.x_dict, data.edge_index_dict
-        outs = {nt: [] for nt in self.virtual_node_types}
+        batch_size = self._get_batch_size(data.batch_dict)
+        outs = []
 
         # Convolutional layers
         for i in range(self.num_layers):
             x_dict = self.conv[i](x_dict, edge_index_dict)
-            for nt in self.virtual_node_types:
-                out = F.dropout(x_dict[nt], p=self.dropout, training=self.training)
-                outs[nt].append(out)
+            outs.append(
+                F.dropout(x_dict["virtual"], p=self.dropout, training=self.training)
+            )
 
         # Jumping knowledge layer
-        x_dict = {k: torch.stack(v) for k, v in outs.items()}
-        x_dict = {k: self.attn_jk[k](v, v, v)[0] for k, v in x_dict.items()}
-
-        # Sum over all virtual nodes of the same type
-        batch_size = self._get_batch_size(data.batch_dict)
-        x_dict = {k: v.sum(dim=0).view(batch_size, -1) for k, v in x_dict.items()}
-
-        # Type-specific MLP
-        out = torch.cat([self.node_mlp[k](v) for k, v in x_dict.items()], dim=-1)
+        out = torch.stack(outs)
+        out = self.attn_jk(out, out, out)[0]
+        out = out.mean(dim=0).view(batch_size, -1)
 
         # Graph-level MLP
-        out = self.graph_mlp(out)
+        out = self.mlp(out)
     
         return out.squeeze(1)

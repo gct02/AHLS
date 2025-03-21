@@ -15,12 +15,21 @@ import pandas as pd
 import torch
 import torch.nn as nn
 from sklearn.metrics import r2_score
+from torch import Tensor
 from torch_geometric.loader import DataLoader
 from torch_geometric.typing import NodeType
 
 from models import HGT
 from dataset import HLSDataset, compute_stats
 from graph import METADATA, NODE_FEATURE_DIMS
+
+
+def static_vars(**kwargs):
+    def decorate(func):
+        for k in kwargs:
+            setattr(func, k, kwargs[k])
+        return func
+    return decorate
 
 
 def save_model(model, target_dir, model_name):
@@ -44,6 +53,7 @@ def rpd(pred, target):
     return (torch.abs(pred - target) / torch.abs(target)) * 100
 
 
+@static_vars(min_mape=1e10, min_mape_epoch=0)
 def evaluate(
     epoch: int,
     model: nn.Module,
@@ -80,10 +90,13 @@ def evaluate(
     targets = torch.cat(targets)
 
     if verbosity > 0:
-        mean_abs_error = torch.abs(preds - targets).mean().item()
-        mean_rel_error = rpd(preds, targets).mean().item()
-        print(f"\nMean Absolute Error on {mode} set: {mean_abs_error:.2f}")
-        print(f"Mean Relative Error on {mode} set: {mean_rel_error:.2f}\n")
+        mape = rpd(preds, targets).mean().item()
+        if mape < evaluate.min_mape:
+            evaluate.min_mape = mape
+            evaluate.min_mape_epoch = epoch
+
+        print(f"MAPE on {mode} set: {mape:.2f}% (Min: "
+              + f"{evaluate.min_mape:.2f}% at epoch {evaluate.min_mape_epoch})")
 
     pred_target_pairs = list(zip(preds.tolist(), targets.tolist()))
 
@@ -103,6 +116,7 @@ def train_model(
     epochs: int,
     scheduler: Optional[torch.optim.lr_scheduler._LRScheduler] = None,
     verbosity: int = 1,
+    save_dir: Optional[str] = None,
     log_dir: Optional[str] = None,
     collect_residuals: bool = False,
     save_artifacts: bool = False,
@@ -167,6 +181,11 @@ def train_model(
     if save_artifacts:
         save_training_artifacts(train_rel_errs, test_preds, stats_dir, graphs_dir)
 
+    if save_dir:
+        run_number = get_current_run_number(stats_dir)
+        model_name = f"hgt_{run_number}.pt"
+        save_model(model, save_dir, model_name)
+
 
 def get_current_run_number(stats_dir: str) -> int:
     if not os.path.exists(stats_dir):
@@ -190,12 +209,12 @@ def main(args: Dict[str, str]):
     collect_residuals = args['collect_residuals']
     dataset_path = args['dataset']
     target_metric = args['target']
-    selected_test_bench = args['testbench']
+    test_bench = args['testbench']
     verbosity = int(args['verbose'])
-    process_data = args['process_data']
+    separate_data = args['separate_data']
     base_aware = args['base_aware']
     filtered = args['filtered']
-    raw_dataset_dir = args['raw_dataset']
+    source_dataset_dir = args['src_dataset']
     base_metrics_dir = args['base_metrics']
 
     matplotlib.use('Agg')
@@ -212,21 +231,19 @@ def main(args: Dict[str, str]):
     base_pretrained_dir = f"{Path(sys.argv[0]).parent}/pretrained"
     benchmarks = sorted(os.listdir(dataset_path))
 
-    virtual_nodes = [f"virtual_{nt}" for nt in METADATA[0]]
-    virtual_node_dims = {vt: NODE_FEATURE_DIMS[nt] 
-                         for nt, vt in zip(METADATA[0], virtual_nodes)}
-
-    virtual_edges = [(nt, 'virtual', vt) for nt, vt in zip(METADATA[0], virtual_nodes)]
-    virtual_edges += [(vt, 'self', vt) for vt in virtual_nodes]
-
+    virtual_nodes = ['virtual']
+    virtual_dims = {'virtual': NODE_FEATURE_DIMS['inst']}
+    virtual_edges = [
+        ('inst', 'virtual', 'virtual'), 
+        ('virtual', 'virtual', 'virtual')
+    ]
     metadata = (METADATA[0] + virtual_nodes, METADATA[1] + virtual_edges)
-    node_feature_dims = {**NODE_FEATURE_DIMS, **virtual_node_dims}
+    node_feature_dims = {**NODE_FEATURE_DIMS, **virtual_dims}
+    num_virtual_nodes = 32
 
     if base_aware:
-        assert not (raw_dataset_dir is None and base_metrics_dir is None), \
-            "Either raw_dataset_dir or base_metrics_dir must be provided"
         base_targets = get_base_solution_values(
-            target_metric, raw_dataset_dir, base_metrics_dir, filtered
+            target_metric, base_metrics_dir, source_dataset_dir, filtered
         )
         base_edges = ([('base', 'base', nt) for nt in METADATA[0]]
                       + [('base', 'self', 'base')])
@@ -235,34 +252,28 @@ def main(args: Dict[str, str]):
     else:
         base_targets = None
 
-    if selected_test_bench is None:
+    if test_bench is None:
         test_benches = benchmarks
     else:
-        test_benches = [selected_test_bench]
-
-    num_virtual_nodes = {vt: 4 for vt in virtual_nodes}
+        test_benches = [test_bench]
 
     model_params = {
         'metadata': metadata,
         'in_channels': node_feature_dims,
         'out_channels': 1,
         'num_layers': 6,
-        'hid_dim': 64,
+        'hid_dim': 32,
         'heads': 8,
         'dropout': 0.1,
         'num_virtual_nodes': num_virtual_nodes,
         'device': DEVICE
     }
 
-    for test_bench in test_benches:
-        run_analysis_dir, stats_dir, graphs_dir, pretrained_dir = make_output_dirs(
-            base_stats_dir, base_pretrained_dir, test_bench, target_metric
-        )
-        train_benches = [b for b in benchmarks if b != test_bench]
-
+    for bench in test_benches:
+        train_benches = [b for b in benchmarks if b != bench]
         train_loader, test_loader = prepare_data_loaders(
-            dataset_path, target_metric, train_benches, test_bench, batch_size, 
-            num_virtual_nodes=num_virtual_nodes, process_data=process_data,
+            dataset_path, target_metric, train_benches, bench, batch_size, 
+            separate_data=separate_data, num_virtual_nodes=num_virtual_nodes,
             base_targets=base_targets
         )
 
@@ -286,16 +297,17 @@ def main(args: Dict[str, str]):
             optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-6
         )
 
+        log_dir, stats_dir, graphs_dir, save_dir = make_output_dirs(
+            base_stats_dir, base_pretrained_dir, bench, target_metric
+        )
+
         train_model(
             model, loss_fn, optimizer, train_loader, test_loader, epochs, 
-            scheduler=scheduler, verbosity=verbosity, log_dir=run_analysis_dir, 
-            collect_residuals=collect_residuals, save_artifacts=True, 
-            stats_dir=stats_dir, graphs_dir=graphs_dir, generate_plots=True,
-            test_bench=test_bench, metric=target_metric
+            scheduler=scheduler, verbosity=verbosity, save_dir=save_dir,
+            log_dir=log_dir, collect_residuals=collect_residuals, 
+            save_artifacts=True, stats_dir=stats_dir, graphs_dir=graphs_dir, 
+            generate_plots=True, test_bench=bench, metric=target_metric
         )
-        run_number = run_analysis_dir.split('_')[-1]
-        model_name = f"hgt_{run_number}.pt"
-        save_model(model, pretrained_dir, model_name)
 
 
 def plot_learning_curves(
@@ -577,8 +589,8 @@ def make_output_dirs(
 
 def get_base_solution_values(
     target_metric: str,
-    dataset_dir: Optional[str] = None,
     base_metrics_dir: Optional[str] = None,
+    dataset_dir: Optional[str] = None,
     filtered: bool = False
 ) -> Dict[str, float]:
     base_values = {}
@@ -620,57 +632,100 @@ def get_base_solution_values(
 
 
 def prepare_data_loaders(
-    original_dataset_dir: str, 
-    target_metric: str,
+    source_dataset_dir: str, 
+    metric: str,
     train_benches: Union[List[str], str],
     test_benches: Union[List[str], str],
     batch_size: int,
-    num_virtual_nodes: Optional[Union[int, Dict[NodeType, int]]] = None,
-    process_data: bool = False,
+    separate_data: bool = False,
+    num_virtual_nodes: int = 1,
     base_targets: Optional[Dict[str, float]] = None
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
-    
-    # Do not normalize columns representing one-hot encoded 
-    # categorical or boolean features.
-    # 
-    # Feature indices for each node type:
-    # 
-    # - **inst (instruction)**  
-    #   - 0-11: type  
-    # 
-    # - **var (variable)**  
-    #   - 0-5: type  
-    #   - 6: bitwidth  
-    # 
-    # - **const (constant)**  
-    #   - 0-5: type  
-    #   - 6: bitwidth  
-    # 
-    # - **array**  
-    #   - 0: num_dims  
-    #   - 1-4: dim_sizes  
-    #   - 5-10: elem_type  
-    #   - 11: elem_bitwidth  
-    #   - 12-14: implementation (RTL port, BRAM/LUTRAM/URAM, shift register)  
-    #   - 15: partitioned  
-    #   - 16-18: partition_type (complete, cyclic, block)  
-    #   - 19-23: partition_dim  
-    #   - 24: partition_factor  
-    #
-    # - **loop**  
-    #   - 0: depth  
-    #   - 1: trip_count  
-    #   - 2: unrolled
-    #   - 3: unroll_factor
-    #   - 4: pipelined  
-    #   - 5: merged  
-    #   - 6: flattened  
-    #   
-    # - **func (function)**
-    #   - 0: top_level  
-    #   - 1: pipelined  
-    #   - 2: merged  
+    dataset_dir = f"{Path(sys.argv[0]).parent}/dataset"
+    train_dir = f"{dataset_dir}/train"
+    test_dir = f"{dataset_dir}/test"
 
+    if separate_data:
+        data_dirs = [
+            f"{train_dir}/raw", f"{test_dir}/raw", 
+            f"{train_dir}/processed", f"{test_dir}/processed"
+        ]
+        clean_up_dirs(data_dirs, recreate=True)
+
+    stats = compute_filtered_stats(source_dataset_dir, metric, train_benches)
+
+    train_data = HLSDataset(
+        train_dir, metric, 
+        separate_data=separate_data, normalize_features=True, 
+        source_dataset_dir=source_dataset_dir, benchmarks=train_benches,
+        feature_stats=stats, num_virtual_nodes=num_virtual_nodes,
+        base_targets=base_targets
+    )
+    test_data = HLSDataset(
+        test_dir, metric, 
+        separate_data=separate_data, normalize_features=True, 
+        source_dataset_dir=source_dataset_dir, benchmarks=test_benches,
+        feature_stats=stats, num_virtual_nodes=num_virtual_nodes,
+        base_targets=base_targets
+    )
+
+    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
+    test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
+
+    return train_loader, test_loader
+
+
+def compute_filtered_stats(
+    dataset_dir: str,
+    metric: str,
+    train_benches: List[str]
+) -> Dict[NodeType, Dict[str, Tensor]]:
+    """
+    Compute statistics for the dataset, excluding the test benches
+    and filtering out features representing one-hot encoded 
+    categorical or boolean features.
+    
+    The statistics are computed for each node type and feature
+    column. The statistics include the mean and standard deviation.
+
+    The feature indices for each node type are as follows:
+    
+    - **inst (instruction)**  
+      - 0-11: type  
+    
+    - **var (variable)**  
+      - 0-5: type  
+      - 6: bitwidth  
+    
+    - **const (constant)**  
+      - 0-5: type  
+      - 6: bitwidth  
+    
+    - **array**  
+      - 0: num_dims  
+      - 1-4: dim_sizes  
+      - 5-10: elem_type  
+      - 11: elem_bitwidth  
+      - 12-14: implementation (RTL port, BRAM/LUTRAM/URAM, shift register)  
+      - 15: partitioned  
+      - 16-18: partition_type (complete, cyclic, block)  
+      - 19-23: partition_dim  
+      - 24: partition_factor  
+    
+    - **loop**  
+      - 0: depth  
+      - 1: trip_count  
+      - 2: unrolled
+      - 3: unroll_factor
+      - 4: pipelined  
+      - 5: merged  
+      - 6: flattened  
+      
+    - **func (function)**
+      - 0: top_level  
+      - 1: pipelined  
+      - 2: merged  
+    """
     filter_cols = {
         'inst': list(range(12)),
         'var': list(range(6)),
@@ -680,41 +735,7 @@ def prepare_data_loaders(
         'loop': [2, 4, 5, 6],
         'func': [0, 1, 2]
     }
-    stats = compute_stats(original_dataset_dir, target_metric, train_benches, filter_cols)
-
-    dataset_dir = f"{Path(sys.argv[0]).parent}/dataset"
-    train_dir = f"{dataset_dir}/train"
-    test_dir = f"{dataset_dir}/test"
-
-    if num_virtual_nodes is None:
-        num_virtual_nodes = {nt: 1 for nt in METADATA[0]}
-
-    if process_data:
-        data_dirs = [
-            f"{train_dir}/raw", f"{test_dir}/raw", 
-            f"{train_dir}/processed", f"{test_dir}/processed"
-        ]
-        clean_up_dirs(data_dirs, recreate=True)
-
-    train_data = HLSDataset(
-        train_dir, target_metric, 
-        metadata=METADATA, dataset_dir_path=original_dataset_dir, 
-        benches=train_benches, copy_data=process_data, process_data=True, 
-        stats=stats, num_virtual_nodes=num_virtual_nodes,
-        base_targets=base_targets
-    )
-    test_data = HLSDataset(
-        test_dir, target_metric, 
-        metadata=METADATA, dataset_dir_path=original_dataset_dir, 
-        benches=test_benches, copy_data=process_data, process_data=True, 
-        stats=stats, num_virtual_nodes=num_virtual_nodes,
-        base_targets=base_targets
-    )
-    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
-    test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
-
-    return train_loader, test_loader
-
+    return compute_stats(dataset_dir, metric, train_benches, filter_cols)
 
 def clean_up_dirs(dirs: List[str], recreate: bool = False):
     for dir in dirs:
@@ -743,8 +764,8 @@ def parse_arguments():
                         help='The name of the benchmark to use for test. If not specified, a cross-validation is performed.')
     parser.add_argument('--base-aware', action='store_true',
                         help='Include the target value of the base solution as a feature.')
-    parser.add_argument('--raw-dataset', default=None,
-                        help='Path to the "raw" dataset folder (i.e., the dataset containing the original HLS solutions).')
+    parser.add_argument('--src-dataset', default=None,
+                        help='Path to the source dataset folder (i.e., the dataset containing the original HLS solutions).')
     parser.add_argument('--filtered', action='store_true',
                         help='Signal that the (raw) dataset is filtered')
     parser.add_argument('--base-metrics', default=None,
@@ -753,8 +774,8 @@ def parse_arguments():
                         help='Collect residuals for analysis.')
     parser.add_argument('--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp'],
                         help='The target resource metric.')
-    parser.add_argument('--process-data', action='store_true',
-                        help='Process the dataset for training.')
+    parser.add_argument('--separate-data', action='store_true',
+                        help='Separate the training and test data into raw and processed directories.')
     parser.add_argument('--verbose', nargs='?', const=1, type=int, default=0, 
                         help='Set verbosity level (default: 0). Use without value for level 1, or specify a level.')
 

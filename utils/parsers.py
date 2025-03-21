@@ -41,10 +41,10 @@ def parse_timing_rpt_xml(rpt_path: Path):
     achieved_clk = root.find('TimingReport/AchievedClockPeriod').text
 
     metrics = {
-        'wns': wns,
-        'tns': tns,
-        'target_clk': target_clk,
-        'achieved_clk': achieved_clk
+        'wns': float(wns),
+        'tns': float(tns),
+        'target_clk': float(target_clk),
+        'achieved_clk': float(achieved_clk)
     }
     return metrics
 
@@ -276,6 +276,7 @@ def extract_timing_summary(
     if rpt_path.is_file() == False:
         rpt_path = Path(f'{path}impl_timing_summary.rpt')
         if rpt_path.is_file() == False:
+            print(f'Timing report not found for {bench_name}/{solution}')
             metrics = {
                 'wns': -1.0,
                 'tns': -1.0,
@@ -305,6 +306,7 @@ def extract_utilization(
     if rpt_path.is_file() == False:
         rpt_path = Path(f'{path}impl_utilization_placed.rpt')
         if rpt_path.is_file() == False:
+            print(f'Utilization report not found for {bench_name}/{solution}')
             metrics = {
                 'lut': -1.0,
                 'bram': -1.0,
@@ -326,13 +328,14 @@ def extract_hls_cc_report(
     bench_name: str, 
     solution: str,
     filtered: bool = False
-) -> Dict[str, float]:
+) -> float:
     if filtered:
         rpt_path = f'{dataset_path}/{bench_name}/{solution}/reports/csynth.xml'
     else:
         rpt_path = f'{dataset_path}/{bench_name}/{solution}/syn/report/csynth.xml'
 
     if Path(rpt_path).is_file() == False:
+        print(f'CC report not found for {bench_name}/{solution}')
         return {'cc': -1.0}
 
     tree = ET.parse(rpt_path)
@@ -342,7 +345,7 @@ def extract_hls_cc_report(
         'PerformanceEstimates/SummaryOfOverallLatency/Average-caseLatency'
     ).text
 
-    return {'cc': float(cc)}
+    return float(cc)
 
 
 def extract_metrics(
@@ -353,7 +356,9 @@ def extract_metrics(
 ) -> Dict[str, float]:
     metrics = extract_timing_summary(dataset_path, bench_name, solution, filtered)
     metrics.update(extract_utilization(dataset_path, bench_name, solution, filtered))
-    metrics.update(extract_hls_cc_report(dataset_path, bench_name, solution, filtered))
+    metrics.update({
+        'cc': extract_hls_cc_report(dataset_path, bench_name, solution, filtered)
+    })
     return metrics
 
 
@@ -385,25 +390,24 @@ def organize_data(
                 else:
                     one_hot_directives_list.append(np.zeros(10))
 
-            timing = extract_timing_summary(dataset_path, bench_name, sol_dir, filtered)
-            utilization  = extract_utilization(dataset_path, bench_name, sol_dir, filtered)
-            cc = extract_hls_cc_report(dataset_path, bench_name, sol_dir, filtered)['cc']
+            timing_rpt = extract_timing_summary(dataset_path, bench_name, sol_dir, filtered)
+            utilization_rpt  = extract_utilization(dataset_path, bench_name, sol_dir, filtered)
+            cc = extract_hls_cc_report(dataset_path, bench_name, sol_dir, filtered)
             
-            achieved_clk = timing['achieved_clk']
+            achieved_clk = timing_rpt['achieved_clk']
             if achieved_clk == -1.0 or cc == -1.0:
-                time = -1.0
+                total_time = -1.0
             else:
-                time = achieved_clk * cc
+                total_time = achieved_clk * cc
 
-            metrics = ([sol_dir] + list(utilization.values())
-                       + [timing['target_clk'], achieved_clk]
-                       + [time] + [cc])
-            
+            timing_rpt = list(timing_rpt.values())
+            utilization_rpt = list(utilization_rpt.values())
+
+            metrics = [sol_dir] + utilization_rpt + timing_rpt + [cc] + [total_time]
             list_to_df.append(metrics)
 
     cols = ['solution', 'lut', 'bram', 'ff', 'dsp', 'clb', 'latch', 
-            'target_clk', 'achieved_clk', 'wns', 'tns', 'cycles', 
-            'time']
+            'target_clk', 'achieved_clk', 'wns', 'tns', 'cc', 'time']
     
     bench_dataframe = pd.DataFrame(list_to_df, columns=cols)
     

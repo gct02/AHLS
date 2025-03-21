@@ -81,11 +81,15 @@ def parse_args():
 
 if __name__ == '__main__':
     import sys
+
     if __package__ is None:                  
         DIR = Path(__file__).resolve().parent
         sys.path.insert(0, str(DIR.parent))
         sys.path.insert(0, str(DIR.parent.parent))
+        sys.path.insert(0, str(DIR.parent.parent.parent))
+        sys.path.insert(0, str(DIR.parent.parent.parent.parent))
         __package__ = DIR.name
+
     from utils.parsers import organize_data
 
     args = parse_args()
