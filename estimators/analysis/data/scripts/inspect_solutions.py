@@ -41,7 +41,7 @@ def get_most_common_directives(
             f'{dataset_path}/{benchmark_name}/{solution}/{solution}_data.json'
         )
         if solution_data_json.exists():
-            directives += extract_solution_directives(solution_data_json)
+            directives += extract_hls_directive_cmds(solution_data_json)
     
     # Count the number of occurrences of each directive
     directives_count = {}
@@ -98,7 +98,7 @@ if __name__ == '__main__':
         __package__ = DIR.name
 
     from utils.parsers import (
-        extract_solution_directives, organize_data
+        extract_hls_directive_cmds, organize_data
     )
 
     args = parse_args()

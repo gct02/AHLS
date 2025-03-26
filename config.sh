@@ -19,4 +19,4 @@ export CLANGXX="${HLS_LLVM_BUILD_DIR}/bin/clang++"
 export LLVM_CMAKE_DIR="${HLS_LLVM_DIR}/llvm/cmake/modules"
 
 # Set PYTHONPATH to main code directory
-# export PYTHONPATH=.
+export PYTHONPATH=.
