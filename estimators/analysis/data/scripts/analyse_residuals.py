@@ -37,13 +37,11 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()
 
-    last_epoch_residuals = get_last_epoch_residuals(args.log_file)
-    last_epoch_residuals = np.array(last_epoch_residuals)
+    last_residuals = np.array(get_last_epoch_residuals(args.log_file))
+    print(f'Mean residual: {np.mean(last_residuals)}')
+    print(f'Median residual: {np.median(last_residuals)}')
+    print(f'Std residual: {np.std(last_residuals)}')
+    print(f'Median absolute deviation: {mad(last_residuals)}')
 
-    print(f'Mean residual: {np.mean(last_epoch_residuals)}')
-    print(f'Median residual: {np.median(last_epoch_residuals)}')
-    print(f'Std residual: {np.std(last_epoch_residuals)}')
-    print(f'Median absolute deviation: {mad(last_epoch_residuals)}')
-
-    plot_residuals(last_epoch_residuals)
+    plot_residuals(last_residuals)
     

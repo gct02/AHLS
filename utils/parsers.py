@@ -1,362 +1,91 @@
-import json
 import re
+import os
+import json
 from pathlib import Path
-from collections import defaultdict
-from typing import List, Tuple, Union, Dict, Any
+from typing import List, Tuple, Union, Dict, Optional
 
 import numpy as np
 import pandas as pd
 import xml.etree.ElementTree as ET
 from numpy.typing import NDArray
 
+from utils.xmlutils import findint, findfloat
 
-def parse_utilization_rpt_xml(rpt_path: Path):
+
+Number = Union[int, float]
+Report = Dict[str, Number] 
+
+
+def extract_timing_summary(solution_dir, filtered=False) -> Report:
+    try:
+        rpt_dir = _find_report_folder(solution_dir, filtered)
+    except ValueError as e:
+        print(e)
+        return None
+
+    rpt_path = rpt_dir + 'export_impl.xml'
+    if os.path.exists(rpt_path):
+        return _parse_timing_report_xml(rpt_path)
+    
+    rpt_path = rpt_dir + 'impl_timing_summary.rpt'
+    if os.path.exists(rpt_path):
+        return _parse_timing_report_txt(rpt_path)
+    
+    print(f'Timing report not found in {solution_dir}')
+    return None
+
+
+def extract_utilization(solution_dir, filtered=False) -> Report:
+    try:
+        rpt_dir = _find_report_folder(solution_dir, filtered)
+    except ValueError as e:
+        print(e)
+        return None
+
+    rpt_path = rpt_dir + 'export_impl.xml'
+    if os.path.exists(rpt_path):
+        return _parse_utilization_report_xml(rpt_path)
+    
+    rpt_path = rpt_dir + 'impl_utilization_placed.rpt'
+    if os.path.exists(rpt_path):
+        return _parse_utilization_report_txt(rpt_path)
+
+    print(f'Utilization report not found in {solution_dir}')
+    return None
+
+
+def extract_hls_cc_report(solution_dir, filtered=False) -> int:
+    if filtered:
+        rpt_path = f'{solution_dir}/reports/csynth.xml'
+    else:
+        rpt_path = f'{solution_dir}/syn/report/csynth.xml'
+
+    if not os.path.exists(rpt_path):
+        print(f'CC report not found in {solution_dir}')
+        return -1
+
     tree = ET.parse(rpt_path)
     root = tree.getroot()
-
-    lut = root.find('AreaReport/Resources/LUT').text
-    bram = root.find('AreaReport/Resources/BRAM').text
-    ff = root.find('AreaReport/Resources/FF').text
-    dsp = root.find('AreaReport/Resources/DSP').text
-    clb = root.find('AreaReport/Resources/CLB').text
-    latch = root.find('AreaReport/Resources/LATCH').text
-
-    metrics = {
-        'lut': float(lut),
-        'bram': float(bram),
-        'ff': float(ff),
-        'dsp': float(dsp),
-        'clb': float(clb),
-        'latch': float(latch)
-    }
-    return metrics
+    return findint(
+        root, 'PerformanceEstimates/SummaryOfOverallLatency/Average-caseLatency', -1
+    )
 
 
-def parse_timing_rpt_xml(rpt_path: Path):
-    tree = ET.parse(rpt_path)
-    root = tree.getroot()
+def extract_power_report(solution_dir, filtered=False) -> Report:
+    if filtered:
+        rpt_path = f'{solution_dir}/reports/impl_power.rpt'
+    else:
+        rpt_path = f'{solution_dir}/impl/verilog/project.runs/impl_1/bd_0_wrapper_power_routed.rpt'
 
-    wns = root.find('TimingReport/WNS_FINAL').text
-    tns = root.find('TimingReport/TNS_FINAL').text
-    target_clk = root.find('TimingReport/TargetClockPeriod').text
-    achieved_clk = root.find('TimingReport/AchievedClockPeriod').text
-
-    metrics = {
-        'wns': float(wns),
-        'tns': float(tns),
-        'target_clk': float(target_clk),
-        'achieved_clk': float(achieved_clk)
-    }
-    return metrics
-
-
-def parse_utilization_rpt_txt(rpt_path: Path):
-    numeric_const_pattern = '-?\d+'
-    rx = re.compile(numeric_const_pattern, re.VERBOSE)
-
-    lut = bram = ff = dsp = clb = latch = -1
-        
+    if not Path(rpt_path).is_file():
+        print(f'Power report not found in {solution_dir}')
+        return {'total_power': -1.0, 'dynamic_power': -1.0, 'static_power': -1.0}
+    
     with open(rpt_path, "r") as rpt:
         lines = rpt.readlines()
 
-    for line in lines:
-        if lut != -1 and ff != -1 and latch != -1:
-            if clb == -1:
-                if line.find('CLB') != -1:
-                    clb = int((rx.findall(line))[0])
-            else:
-                if line.find('Block RAM Tile') != -1 and bram == -1:
-                    bram = int((rx.findall(line))[0])
-                elif line.find('DSPs') != -1 and dsp == -1:
-                    dsp = int((rx.findall(line))[0])
-        else:
-            if line.find('CLB LUTs') != -1 and lut == -1:
-                lut = int((rx.findall(line))[0])
-            elif line.find('Register as Flip Flop') != -1 and ff == -1:
-                ff = int((rx.findall(line))[0])
-            elif line.find('Register as Latch') != -1 and latch == -1:
-                latch = int((rx.findall(line))[0])
-        
-        if lut != -1 and bram != -1 and ff != -1 and \
-           dsp != -1 and clb != -1 and latch != -1:
-            break
-        
-    metrics = {
-        'lut': float(lut),
-        'bram': float(bram),
-        'ff': float(ff),
-        'dsp': float(dsp),
-        'clb': float(clb),
-        'latch': float(latch)
-    }
-    return metrics
-
-
-def parse_timing_rpt_txt(rpt_path: Path):
-    numeric_const_pattern = '-?[0-9]\d*(\.\d+)?'
-    rx = re.compile(numeric_const_pattern, re.VERBOSE)
-
-    wns = tns = achieved_clk = -1.0
-    target_clk = 8.0
-
-    with open(rpt_path, "r") as rpt:
-        lines = rpt.readlines()
-
-    n_lines = len(lines)
-    i = 0
-    while i < n_lines and \
-        (wns == -1.0 or tns == -1.0 or achieved_clk == -1.0):
-        line = lines[i]
-        if line.find('WNS(ns)') != -1 and line.find('TNS(ns)') != -1:
-            line = lines[i+2]
-            wns = float((rx.findall(line))[0])
-            tns = float((rx.findall(line))[1])
-            achieved_clk = target_clk - wns
-            break
-        i += 1
-
-    metrics = {
-        'wns': wns,
-        'tns': tns,
-        'target_clk': target_clk,
-        'achieved_clk': achieved_clk
-    }
-    return metrics
-
-
-def directives_to_one_hot(
-    directive_index: int, 
-    num_directives: int
-) -> NDArray[Any]:
-    one_hot = np.zeros(num_directives)
-    one_hot[directive_index] = 1
-    return one_hot
-    
-
-def parse_directive_cmd_args(
-    args: List[str], 
-    is_json: bool = False
-) -> Dict[str, str]:
-    parsed_args = {}
-    nargs = len(args)
-    location_found = False
-    for i in range(nargs):
-        if args[i].startswith('-'):
-            if args[i].find('=') != -1:
-                key, value = args[i].split('=')
-                parsed_args[key] = value
-            else:
-                parsed_args[args[i][1:]] = args[i + 1]
-                i += 1
-        elif not location_found:
-            if is_json:
-                parsed_args['location'] = args[i].replace('"', '')
-            else:
-                parsed_args['location'] = args[i]
-            location_found = True
-        else:
-            parsed_args['array'] = args[i]
-    return parsed_args
-
-
-def parse_directive_cmd(
-    directive_cmd: str,
-    is_json: bool = False
-) -> Tuple[str, Dict[str, str]]:
-    cmd = directive_cmd.split(' ')[0].strip("set_directive_")
-    args = directive_cmd.split(' ')[1:]
-    parsed_args = parse_directive_cmd_args(args, is_json)
-    return cmd, parsed_args
-
-
-def parse_directive_tcl(
-    directive_tcl_path: str
-) -> List[Tuple[str, Dict[str, str]]]:
-    with open(directive_tcl_path, "r") as f:
-        lines = f.readlines()
-    directives = [parse_directive_cmd(l) for l in lines]
-    return directives
-
-
-def finc_directive_in_list(
-    directive: List[Union[str, int]],
-    directive_list: List[List[Union[str, int]]]
-) -> bool:
-    for directive_in_list in directive_list:
-        if directive == directive_in_list:
-            return True
-    return False
-
-
-# def get_one_hot_directives(
-#     directive_config_file: Path, 
-#     hls_json_path: Path
-# ) -> NDArray[Any]:
-#     sol_directive_cmds = extract_hls_directive_cmds(hls_json_path)
-#     sol_directives = []
-#     for directive_cmd in sol_directive_cmds:
-#         cmd, args = parse_directive_cmd(directive_cmd, is_json=True)
-#         if cmd != "set_directive_top":
-#             sol_directives.append((cmd, args))
-
-#     with open(directive_config_file, "r") as f:
-#         directive_groups = json.load(f)
-
-#     one_hot_directives = []
-
-#     for gp in directive_groups.values():
-#         if not isinstance(gp, dict):
-#             continue
-#         for directive_dict in gp.values():
-#             directives = directive_dict["possible_directives"][1:]
-#             index = 0
-#             for i, directive in enumerate(directives):
-#                 directive_data = parse_directive_cmd(directive)
-#                 if len(directive_data) == 0:
-#                     continue
-#                 if finc_directive_in_list(directive_data, 
-#                                           sol_directives):
-#                     index = i + 1
-#                     break
-#             num_directives = len(directives) + 1
-#             one_hot_directive = directives_to_one_hot(index, 
-#                                                       num_directives)
-#             one_hot_directives.append(one_hot_directive)
-
-#     max_directives = max(len(directive) for directive in one_hot_directives)
-#     for i, directive in enumerate(one_hot_directives):
-#         if len(directive) < max_directives:
-#             one_hot_directives[i] = np.pad(directive, (0, max_directives - len(directive)))
-            
-#     one_hot_directives = np.ndarray(
-#         shape=(len(one_hot_directives), max_directives), 
-#         buffer=np.array(one_hot_directives)
-#     )
-
-#     return one_hot_directives
-
-
-def extract_hls_directive_cmds(
-    hls_json_path: Union[Path, str]
-) -> List[str]:
-    with open(hls_json_path, "r") as f:
-        data = json.load(f)
-    directives = data["HlsSolution"]["DirectiveTcl"]
-    return directives
-
-
-def extract_timing_summary(
-    dataset_path: Union[Path, str], 
-    bench_name: str, 
-    solution: str,
-    filtered: bool = False
-) -> Dict[str, float]:
-    if filtered:
-        path = f'{dataset_path}/{bench_name}/{solution}/reports/'
-    else:
-        path = f'{dataset_path}/{bench_name}/{solution}/impl/report/verilog/'
-
-    rpt_path = Path(f'{path}export_impl.xml')
-    if rpt_path.is_file() == False:
-        rpt_path = Path(f'{path}impl_timing_summary.rpt')
-        if rpt_path.is_file() == False:
-            print(f'Timing report not found for {bench_name}/{solution}')
-            metrics = {
-                'wns': -1.0,
-                'tns': -1.0,
-                'target_clk': -1.0,
-                'achieved_clk': -1.0
-            }
-        else:
-            metrics = parse_timing_rpt_txt(rpt_path)
-    else:
-        metrics = parse_timing_rpt_xml(rpt_path)
-
-    return metrics
-
-
-def extract_utilization(
-    dataset_path: Union[Path, str], 
-    bench_name: str, 
-    solution: str,
-    filtered: bool = False
-) -> Dict[str, float]:
-    if filtered:
-        path = f'{dataset_path}/{bench_name}/{solution}/reports/'
-    else:
-        path = f'{dataset_path}/{bench_name}/{solution}/impl/report/verilog/'
-
-    rpt_path = Path(f'{path}export_impl.xml')
-    if rpt_path.is_file() == False:
-        rpt_path = Path(f'{path}impl_utilization_placed.rpt')
-        if rpt_path.is_file() == False:
-            print(f'Utilization report not found for {bench_name}/{solution}')
-            metrics = {
-                'lut': -1.0,
-                'bram': -1.0,
-                'ff': -1.0,
-                'dsp': -1.0,
-                'clb': -1.0,
-                'latch': -1.0
-            }
-        else:
-            metrics = parse_utilization_rpt_txt(rpt_path)
-    else:
-        metrics = parse_utilization_rpt_xml(rpt_path)
-
-    return metrics
-
-
-def extract_hls_cc_report(
-    dataset_path: Union[Path, str],
-    bench_name: str, 
-    solution: str,
-    filtered: bool = False
-) -> float:
-    if filtered:
-        rpt_path = f'{dataset_path}/{bench_name}/{solution}/reports/csynth.xml'
-    else:
-        rpt_path = f'{dataset_path}/{bench_name}/{solution}/syn/report/csynth.xml'
-
-    if Path(rpt_path).is_file() == False:
-        print(f'CC report not found for {bench_name}/{solution}')
-        return {'cc': -1.0}
-
-    tree = ET.parse(rpt_path)
-    root = tree.getroot()
-
-    cc = root.find(
-        'PerformanceEstimates/SummaryOfOverallLatency/Average-caseLatency'
-    ).text
-
-    return float(cc)
-
-
-def extract_power_report(
-    dataset_path: Union[Path, str],
-    bench_name: str, 
-    solution: str,
-    filtered: bool = False
-) -> Dict[str, float]:
-    solution_path = f'{dataset_path}/{bench_name}/{solution}'
-    if filtered:
-        power_report_path = f'{solution_path}/reports/impl_power.rpt'
-    else:
-        power_report_path = f'{solution_path}/impl/verilog/project.runs/impl_1/bd_0_wrapper_power_routed.rpt'
-
-    if not Path(power_report_path).is_file():
-        print(f'Power report not found for {bench_name}/{solution}')
-        return {
-            'total_power': -1.0,
-            'dynamic_power': -1.0,
-            'static_power': -1.0
-        }
-    
-    with open(power_report_path, "r") as rpt:
-        lines = rpt.readlines()
-
-    numeric_const_pattern = '[-+]? (?: (?: \d* \. \d+ ) | (?: \d+ \.? ) )(?: [Ee] [+-]? \d+ ) ?'
-    rx = re.compile(numeric_const_pattern, re.VERBOSE)
+    numeric_pattern = '[-+]? (?: (?: \d* \. \d+ ) | (?: \d+ \.? ) )(?: [Ee] [+-]? \d+ ) ?'
+    rx = re.compile(numeric_pattern, re.VERBOSE)
 
     total_power = dynamic_power = static_power = -1.0
     for line in lines:
@@ -368,82 +97,286 @@ def extract_power_report(
             static_power = float((rx.findall(line))[0])
 
     return {
-        'total_power': total_power,
-        'dynamic_power': dynamic_power,
+        'total_power': total_power, 
+        'dynamic_power': dynamic_power, 
         'static_power': static_power
     }
 
 
 def extract_metrics(
-    dataset_path: Union[Path, str],
-    bench_name: str,
-    solution: str,
-    filtered: bool = False
-) -> Dict[str, float]:
-    metrics = extract_timing_summary(dataset_path, bench_name, solution, filtered)
-    metrics.update(extract_utilization(dataset_path, bench_name, solution, filtered))
-    metrics.update({'cc': extract_hls_cc_report(dataset_path, bench_name, solution, filtered)})
-    metrics.update(extract_power_report(dataset_path, bench_name, solution, filtered))
+    solution_dir, filtered=False
+) -> Dict[str, Union[Report, Number]]:
+    def extend_metrics(metrics_dict, other_metrics):
+        for key, value in other_metrics.items():
+            metrics_dict[key] = max(0, value)
+
+    timing = extract_timing_summary(solution_dir, filtered)
+    if timing is None:
+        print(f'Timing report not found in {solution_dir}')
+        return None
+    utilization = extract_utilization(solution_dir, filtered)
+    if utilization is None:
+        print(f'Utilization report not found in {solution_dir}')
+        return None
+    cc = extract_hls_cc_report(solution_dir, filtered)
+    if cc == -1:
+        print(f'CC report not found in {solution_dir}')
+        return None
+    power = extract_power_report(solution_dir, filtered)
+    if power is None:
+        print(f'Power report not found in {solution_dir}')
+        return None
+    
+    metrics = {}
+    extend_metrics(metrics, utilization)
+    extend_metrics(metrics, timing)
+    extend_metrics(metrics, power)
+    metrics['cc'] = cc
+    metrics['time'] = timing['achieved_clk'] * cc
+
     return metrics
 
 
-def organize_data(
-    dataset_path: Union[Path, str], 
-    bench_name: str, 
-    available_directives: Union[Union[Path, str], None] = None,
+def extract_impl_report(solution_dir, filtered=False) -> Dict[str, Union[Report, Number]]:
+    reports = {}
+    reports['timing'] = extract_timing_summary(solution_dir, filtered)
+    reports['utilization'] = extract_utilization(solution_dir, filtered)
+    reports['power'] = extract_power_report(solution_dir, filtered)
+    reports['cc'] = extract_hls_cc_report(solution_dir, filtered)
+    reports['time'] = reports['timing']['achieved_clk'] * reports['cc']
+
+    try:
+        rpt_dir = _find_report_folder(solution_dir, filtered)
+    except ValueError as e:
+        print(e)
+        return None
+    
+    rpt_path = rpt_dir + 'export_impl.xml'
+    if not os.path.exists(rpt_path):
+        print(f'Implementation report not found in {solution_dir}')
+        return None
+    
+    tree = ET.parse(rpt_path)
+    root = tree.getroot()
+
+    module_data = {}
+    for module in root.find('RtlModules').findall('RtlModule'):
+        name = module.attrib['DISPNAME']
+        data = {"LUT": 0, "FF": 0, "BRAM": 0, "DSP": 0}
+        resources = module.find('Resources')
+        if resources is not None:
+            data['LUT'] = int(resources.attrib.get('LUT', 0))
+            data['FF'] = int(resources.attrib.get('FF', 0))
+            data['BRAM'] = int(resources.attrib.get('BRAM', 0))
+            data['DSP'] = int(resources.attrib.get('DSP', 0))
+        module_data[name] = data
+    
+    reports['module_data'] = module_data
+    return reports
+
+
+def parse_tcl_directives_file(tcl_path) -> List[Tuple[str, Dict[str, str]]]:
+    if not os.path.exists(tcl_path):
+        raise ValueError(f"Directives file not found: {tcl_path}")
+    with open(tcl_path, "r") as f:
+        lines = f.readlines()
+    directives = [_parse_directive_cmd(l) for l in lines]
+    return directives
+
+
+def _parse_utilization_report_xml(rpt_path):
+    tree = ET.parse(rpt_path)
+    root = tree.getroot()
+    return {
+        'lut': findint(root, 'AreaReport/Resources/LUT', -1),
+        'bram': findint(root, 'AreaReport/Resources/BRAM', -1),
+        'ff': findint(root, 'AreaReport/Resources/FF', -1),
+        'dsp': findint(root, 'AreaReport/Resources/DSP', -1),
+    }
+
+
+def _parse_timing_report_xml(rpt_path):
+    tree = ET.parse(rpt_path)
+    root = tree.getroot()
+    return {
+        'wns': findfloat(root, 'TimingReport/WNS_FINAL', -1.0),
+        'tns': findfloat(root, 'TimingReport/TNS_FINAL', -1.0),
+        'target_clk': findfloat(root, 'TimingReport/TargetClockPeriod', -1.0),
+        'achieved_clk': findfloat(root, 'TimingReport/AchievedClockPeriod', -1.0)
+    }
+
+
+def _parse_utilization_report_txt(rpt_path):
+    integer_pattern = '-?\d+'
+    rx = re.compile(integer_pattern, re.VERBOSE)
+    
+    lut = bram = ff = dsp = -1
+        
+    with open(rpt_path, "r") as rpt:
+        lines = rpt.readlines()
+
+    lut_line = _find_line_containing(lines, 'CLB LUTs')
+    ff_line = _find_line_containing(lines, 'Register as Flip Flop')
+    dsp_line = _find_line_containing(lines, 'DSPs')
+    bram_line = _find_line_containing(lines, 'Block RAM Tile')
+
+    if lut_line != -1:
+        lut = int((rx.findall(lines[lut_line]))[0])
+    if ff_line != -1:
+        ff = int((rx.findall(lines[ff_line]))[0])
+    if dsp_line != -1:
+        dsp = int((rx.findall(lines[dsp_line]))[0])
+    if bram_line != -1:
+        bram = int((rx.findall(lines[bram_line]))[0])
+        
+    return {'lut': lut, 'ff': ff, 'dsp': dsp, 'bram': bram}
+
+
+def _parse_timing_report_txt(rpt_path):
+    decimal_pattern = '-?[0-9]\d*(\.\d+)?'
+    rx = re.compile(decimal_pattern, re.VERBOSE)
+
+    wns = tns = -1.0
+    target_clk = 8.0
+
+    with open(rpt_path, "r") as rpt:
+        lines = rpt.readlines()
+
+    start_idx = _find_line_containing(lines, 'WNS(ns)', 'TNS(ns)')
+    if start_idx == -1:
+        raise ValueError("WNS and TNS not found in the report file")
+    
+    rpt_line = lines[start_idx + 2]
+    wns = float((rx.findall(rpt_line))[0])
+    tns = float((rx.findall(rpt_line))[1])
+    
+    return {
+        'wns': wns,
+        'tns': tns,
+        'target_clk': target_clk,
+        'achieved_clk': target_clk - wns
+    }
+
+
+def collate_data_for_analysis(
+    data_path: str, 
+    benchmark: str, 
     filtered: bool = False,
-    directives: bool = False
-) -> Union[Tuple[pd.DataFrame, List[NDArray[Any]]], pd.DataFrame]:
-    dset_dir = f'{dataset_path}/{bench_name}'
-    max_solutions = 300
+    directive_config_path: Optional[str] = None
+) -> Tuple[pd.DataFrame, Optional[NDArray[np.int_]]]:
+    metrics = []
+    directives = [] if directive_config_path else None
+    bench_dir = f"{data_path}/{benchmark}"
+    for solution in os.listdir(bench_dir):
+        solution_dir = os.path.join(bench_dir, solution)
+        report = extract_metrics(solution_dir, filtered)
+        if report is None:
+            continue
+        report['benchmark'] = benchmark
+        report['solution'] = solution
+        metrics.append(report)
+        if directive_config_path is not None:
+            tcl_path = f'{solution_dir}/directives.tcl'
+            directives.append(
+                parse_and_encode_directives(directive_config_path, tcl_path)
+            )
+    if directives is not None:
+        directives = np.stack(directives)
+    metrics = pd.pd.DataFrame(metrics)
+    return metrics, directives
+    
 
-    list_to_df = []
-    if directives:
-        one_hot_directives_list = []
+def parse_and_encode_directives(directive_config_path, tcl_path) -> NDArray[np.int_]:
+    if not os.path.exists(tcl_path):
+        raise ValueError(f"Directives file not found: {tcl_path}")
+    if not os.path.exists(directive_config_path):
+        raise ValueError(f"Directive configuration file not found: {directive_config_path}")
+    
+    with open(directive_config_path, "r") as f:
+        directive_groups = json.load(f)
 
-    for i in range(1, max_solutions + 1):
-        sol_dir = f'solution{i}'
-        if Path(f'{dset_dir}/{sol_dir}').is_dir():
-            # if directives:
-            #     solution_data_json = Path(f'{dset_dir}/{sol_dir}/solution{i}_data.json')
-            #     if solution_data_json.exists():
-            #         one_hot_directives = get_one_hot_directives(
-            #             available_directives, 
-            #             solution_data_json
-            #         )
-            #         one_hot_directives_list.append(one_hot_directives)
-            #     else:
-            #         one_hot_directives_list.append(np.zeros(10))
+    available_directives = {
+        "pipeline", "unroll", "loop_merge", "loop_flatten", "array_partition"
+    }
+    directives = parse_tcl_directives_file(tcl_path)
+    directives = [d for d in directives if d[0] in available_directives]
 
-            timing_rpt = extract_timing_summary(dataset_path, bench_name, sol_dir, filtered)
-            utilization_rpt  = extract_utilization(dataset_path, bench_name, sol_dir, filtered)
-            cc = extract_hls_cc_report(dataset_path, bench_name, sol_dir, filtered)
-            
-            achieved_clk = timing_rpt['achieved_clk']
-            if achieved_clk == -1.0 or cc == -1.0:
-                total_time = -1.0
+    directive_configs = []
+    for group in directive_groups["directives"].values():
+        if len(group["possible_directives"]) <= 1:
+            continue
+        group_directives = []
+        for directive_cmd in group["possible_directives"][1:]:
+            dir_type, dir_args = _parse_directive_cmd(directive_cmd)
+            if dir_type in available_directives:
+                group_directives.append((dir_type, dir_args))
+        directive_configs.append(group_directives)
+
+    max_group_size = max(len(group) for group in directive_configs)
+    directive_indices = [[0] * max_group_size for _ in range(len(directive_configs))]
+
+    for dir_type, dir_args in directives:
+        for i, group in enumerate(directive_configs):
+            found = False
+            for j, (group_dir_type, group_dir_args) in enumerate(group):
+                if group_dir_type == dir_type and group_dir_args == dir_args:
+                    directive_indices[i][j] = 1
+                    found = True
+            if found:
+                break
+
+    return np.array(directive_indices, dtype=np.int_)
+
+
+def _find_report_folder(solution_dir, filtered=False) -> str:
+    rpt_dir = f'{solution_dir}/' + ('reports/' if filtered else 'impl/report/verilog/')
+    if not os.path.exists(rpt_dir):
+        raise ValueError(f'Report directory not found in {solution_dir}')
+    return rpt_dir
+
+
+def _find_line_containing(lines: List[str], *search_string) -> int:
+    for i, line in enumerate(lines):
+        if all(s in line for s in search_string):
+            return i
+    return -1
+
+
+def _parse_directive_cmd(directive_cmd, is_json=False) -> Tuple[str, Dict[str, str]]:
+    cmd = directive_cmd.split(' ')[0].split('set_directive_')[1]
+    args = directive_cmd.split(' ')[1:]
+    parsed_args = _parse_directive_options(args, is_json)
+    return cmd, parsed_args
+
+
+def _parse_directive_options(args: List[str], is_json=False) -> Dict[str, str]:
+    parsed_args = {}
+
+    is_loc_parsed = False
+    i = 0
+    while i < len(args):
+        if not args[i]:
+            i += 1
+            continue
+        if args[i].startswith('-'):
+            if args[i].find('=') != -1:
+                key, value = args[i].split('=')
+                parsed_args[key] = value
             else:
-                total_time = achieved_clk * cc
+                parsed_args[args[i][1:]] = args[i + 1]
+                i += 1
+        elif not is_loc_parsed:
+            if is_json:
+                parsed_args['location'] = args[i]
+            else:
+                parsed_args['location'] = args[i]
+            is_loc_parsed = True
+        else:
+            parsed_args['variable'] = args[i]
+        i += 1
 
-            timing_rpt = list(timing_rpt.values())
-            utilization_rpt = list(utilization_rpt.values())
+    for key, value in parsed_args.items():
+        parsed_args[key] = value.strip('"').strip()
 
-            metrics = [sol_dir] + utilization_rpt + timing_rpt + [cc] + [total_time]
-            list_to_df.append(metrics)
+    return parsed_args
 
-    cols = ['solution', 'lut', 'bram', 'ff', 'dsp', 'clb', 'latch', 
-            'target_clk', 'achieved_clk', 'wns', 'tns', 'cc', 'time']
-    
-    bench_dataframe = pd.DataFrame(list_to_df, columns=cols)
-    
-    if directives:
-        max_0 = max(one_hot_directives_list, key=lambda x: x.shape[0]).shape[0]
-        max_1 = max(one_hot_directives_list, key=lambda x: x.shape[1] if len(x.shape) > 1 else 0).shape[1]
-
-        for i, one_hot_directives in enumerate(one_hot_directives_list):
-            if len(one_hot_directives.shape) < 2:
-                one_hot_directives_list[i] = np.zeros((max_0, max_1))
-
-        return bench_dataframe, one_hot_directives_list
-    else:
-        return bench_dataframe

@@ -1,33 +1,37 @@
-from numpy.typing import ArrayLike
-
 import os
+from pathlib import Path
+from argparse import ArgumentParser
+from typing import Optional, Union, List
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from pathlib import Path
-from argparse import ArgumentParser
+from numpy.typing import NDArray
 
 
 def extract_metric_from_data(
-    dataset_path: str, metric: str, 
-    filtered: bool = False, benches: str = None
-) -> ArrayLike:
+    dataset_dir: str, 
+    metric: str, 
+    filtered: bool = False, 
+    benchmarks: Optional[Union[List[str], str]] = None
+) -> NDArray[np.float32]:
     reports = []
-    if isinstance(benches, str):
-        benches = [benches]
-    elif benches is None:
-        benches = os.listdir(dataset_path)
-    for bench in benches:
-        reports_df = organize_data(dataset_path, bench, filtered=filtered)
-        bench_reports = reports_df[metric].values
-        bench_reports = [x for x in bench_reports if x >= 0]
-        reports.extend(bench_reports)
-    return np.array(reports)
+    if benchmarks is None:
+        benchmarks = os.listdir(dataset_dir)
+    elif isinstance(benchmarks, str):
+        benchmarks = [benchmarks]
+    for benchmark in benchmarks:
+        metrics, _ = collate_data_for_analysis(
+            dataset_dir, benchmark, filtered=filtered
+        )
+        filtered_report = [float(x) for x in metrics[metric].values if x >= 0]
+        reports.extend(filtered_report)
+    return np.array(reports, dtype=np.float32)
 
 
-def plot_distribution(dataset_path: str, metric: str, filtered=False):
-    reports = extract_metric_from_data(dataset_path, metric, filtered)
+def plot_distribution(dataset_dir: str, metric: str, filtered: bool = False):
+    reports = extract_metric_from_data(dataset_dir, metric, filtered)
     stats = {
         'mean': np.mean(reports),
         'std': np.std(reports),
@@ -86,18 +90,14 @@ if __name__ == '__main__':
         DIR = Path(__file__).resolve().parent
         sys.path.insert(0, str(DIR.parent))
         sys.path.insert(0, str(DIR.parent.parent))
-        sys.path.insert(0, str(DIR.parent.parent.parent))
-        sys.path.insert(0, str(DIR.parent.parent.parent.parent))
-        __package__ = DIR.name
+        __package__ = DIR.name 
 
-    from utils.parsers import organize_data
+    from utils.parsers import collate_data_for_analysis
 
     args = parse_args()
-    dataset_path = args.dataset
+    dataset_dir = args.dataset
     metric = args.metric
     filtered = args.filtered
 
-    assert Path(dataset_path).is_dir()
-
-    plot_distribution(dataset_path, metric, filtered)
+    plot_distribution(dataset_dir, metric, filtered)
 

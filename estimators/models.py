@@ -7,8 +7,8 @@ from torch import Tensor
 from torch_geometric.nn import HGTConv
 from torch_geometric.data import HeteroData
 from torch_geometric.nn.inits import reset
-from torch.types import Device
 from torch_geometric.typing import Metadata, NodeType
+from torch.types import Device
 
 
 class HGT(nn.Module):
@@ -22,16 +22,14 @@ class HGT(nn.Module):
         in_channels (int or Dict[str, int]): Number of input channels 
             for each node type.
         out_channels (int): Number of output channels.
-        num_layers (int, optional): Number of convolutional layers.
+        n_layers (int): Number of convolutional layers.
             (default: :obj:`6`)
-        hid_dim (int, optional): Hidden dimension of the convolutional 
+        hid_dim (int): Hidden dimension of the convolutional 
             layers. (default: :obj:`64`)
-        num_heads (int, optional): Number of attention heads for the 
+        n_heads (int): Number of attention heads for the 
             convolutional layers. (default: :obj:`8`)
         dropout (float): Dropout rate for fully connected layers. 
             (default: :obj:`0.0`)
-        num_virtual_nodes (int, optional): Number of virtual nodes to use.
-            (default: :obj:`1`)
         device (torch.device): Device to use for computation. 
             (default: :obj:`"cpu"`)
     """
@@ -39,36 +37,35 @@ class HGT(nn.Module):
         metadata: Metadata,
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
-        num_layers: int = 6,
+        n_layers: int = 6,
         hid_dim: int = 64,
-        num_heads: int = 8,
+        n_heads: int = 8,
         dropout: float = 0.0,
-        num_virtual_nodes: int = 1,
         device: Device = 'cpu'
     ):
         super().__init__()
 
         self.device = device
         self.dropout = dropout
-        self.num_layers = num_layers
+        self.n_layers = n_layers
 
         # Define convolutional layers
         self.conv = nn.ModuleList([
-            HGTConv(hid_dim if i > 0 else in_channels, hid_dim, metadata, num_heads)
-            for i in range(num_layers)
+            HGTConv(hid_dim if i > 0 else in_channels, hid_dim, metadata, n_heads)
+            for i in range(n_layers)
         ])
 
         # Define jumping knowledge layer
-        self.attn_jk = nn.MultiheadAttention(hid_dim, num_heads, dropout=dropout)
+        self.attn_jk = nn.MultiheadAttention(hid_dim, n_heads, dropout=dropout)
 
         # Define graph-level fully connected layers
         self.mlp = nn.Sequential()
-
-        mlp_hid_dim = self._get_mlp_layer_dims(hid_dim * num_virtual_nodes, out_channels)
+        
+        mlp_hid_dim = self._get_mlp_layer_dims(hid_dim, out_channels)
         depth = len(mlp_hid_dim) - 1
         for i in range(depth):
             self.mlp.extend([
-                nn.Linear(mlp_hid_dim[i], mlp_hid_dim[i+1]),
+                nn.Linear(mlp_hid_dim[i], mlp_hid_dim[i + 1]),
                 nn.GELU(),
                 nn.Dropout(dropout)
             ])
@@ -94,11 +91,11 @@ class HGT(nn.Module):
 
     def _get_mlp_layer_dims(self, in_channels: int, out_channels: int) -> List[int]:
         r"""Computes the sizes of the hidden layers for the MLP."""
-        mlp_hid_dim = [in_channels]
-        mlp_hid_dim.append(max(out_channels * 2, mlp_hid_dim[-1] // 2))
-        while mlp_hid_dim[-1] // 2 > out_channels:
-            mlp_hid_dim.append(mlp_hid_dim[-1] // 2)
-        return mlp_hid_dim
+        hid_dim = [in_channels]
+        hid_dim.append(max(out_channels * 2, hid_dim[-1] // 2))
+        while hid_dim[-1] // 2 > out_channels:
+            hid_dim.append(hid_dim[-1] // 2)
+        return hid_dim
 
     def _get_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
         r"""Computes the batch size from the batch dictionary."""
@@ -119,12 +116,12 @@ class HGT(nn.Module):
         outs = []
 
         # Convolutional layers
-        for i in range(self.num_layers):
+        for i in range(self.n_layers):
             x_dict = self.conv[i](x_dict, edge_index_dict)
             x_dict = {k: F.dropout(v, p=self.dropout, training=self.training) 
                       for k, v in x_dict.items()}
             if i > 0:
-                outs.append(x_dict["virtual"])
+                outs.append(x_dict["instr"])
 
         # Jumping knowledge layer
         out = torch.stack(outs)

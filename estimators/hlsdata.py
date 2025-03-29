@@ -1,384 +1,336 @@
 import xml.etree.ElementTree as ET
 import re
 import os
+from collections import defaultdict
 from typing import Optional, Dict
 
 try:
     from utils.xmlutils import findint, findfloat
+    from utils.parsers import extract_impl_report
 except ImportError:
     print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
     pass
 
 
-RESOURCES_CONSIDERED = {'FF', 'LUT', 'DSP', 'BRAM'}
+AVAILABLE_METRICS = {'FF', 'LUT', 'DSP', 'BRAM'}
 
 
 ResourceMapper = Dict[str, Dict[str, int]]
 
 
 class BaseNode:
-    def __init__(
-        self, node: ET.Element, 
-        rtl_resources: Optional[ResourceMapper] = None
-    ):
-        value = node.find('Value')
-        obj = node.find('Obj') if value is None else value.find('Obj')
-
-        self.id = findint(obj, 'id')
-        self.type = findint(obj, 'type')
-        self.name = obj.findtext('name')
-        self.rtl_name = obj.findtext('rtlName')
-
-        self.resources = None
+    def __init__(self, element: ET.Element, rtl_resources=None):
+        self.id, self.name, self.rtl_name = self._extract_basic_info(element)
+        self.attributes = {}
+        
         if rtl_resources is not None:
             self._assign_resources(rtl_resources)
 
+    def _extract_basic_info(self, element):
+        value = element.find('Value')
+        obj = element.find('Obj') if value is None else value.find('Obj')
+        return findint(obj, 'id'), obj.findtext('name'), obj.findtext('rtlName')
+
     def _assign_resources(self, rtl_resources):
-        if (self.rtl_name is not None 
-            and self.rtl_name in rtl_resources):
-            self.resources = rtl_resources[self.rtl_name]
-        else:
-            self.resources = {res: 0 for res in RESOURCES_CONSIDERED}
+        self.attributes.update(
+            rtl_resources.get(self.rtl_name, {res: 0 for res in AVAILABLE_METRICS})
+        )
 
 
 class PortNode(BaseNode):
-    def __init__(self, node: ET.Element):
-        super().__init__(node)
-
-        self.bitwidth = findint(node, 'Value/bitwidth')
-        self.direction = findint(node, 'direction') 
-        self.port_type = findint(node, 'if_type') 
-        self.array_size = findint(node, 'array_size')
+    def __init__(self, element: ET.Element):
+        super().__init__(element)
+        self.type = 'port'
+        self.attributes.update({
+            'bitwidth': findint(element, 'Value/bitwidth'),
+            'direction': findint(element, 'direction'),
+            'port_type': findint(element, 'if_type'),
+            'array_size': findint(element, 'array_size')
+        })
 
 
 class InstructionNode(BaseNode):
     def __init__(
-        self, node: ET.Element, 
-        rtl_resources: Optional[ResourceMapper] = None
-    ):
-        super().__init__(node, rtl_resources)
+        self, element: ET.Element, rtl_resources=None):
+        super().__init__(element, rtl_resources)
+        self.type = 'instr'
+        self.attributes.update({
+            'core_name': element.findtext('Value/Obj/coreName'),
+            'storage_depth': findint(element, 'Value/Obj/storageDepth'),
+            'bitwidth': findint(element, 'Value/bitwidth'),
+            'opcode': element.findtext('opcode'),
+            'critical': findint(element, 'm_isOnCriticalPath'),
+            'delay': findfloat(element, 'm_delay')
+        })
+        self.operand_edges = self._extract_operand_edges(element)
 
-        self.core = node.findtext('Value/Obj/coreName') 
-        self.is_storage = findint(node, 'Value/Obj/isStorage')
-        self.storage_depth = findint(node, 'Value/Obj/storageDepth')
-        self.bitwidth = findint(node, 'Value/bitwidth')
-        self.opcode = node.findtext('opcode') 
-        self.is_on_critical_path = findint(node, 'm_isOnCriticalPath')
-        self.delay = findfloat(node, 'm_delay')
-
-        self.operand_edges = []
-        for edge in node.find('oprand_edges').findall('item'):
-            self.operand_edges.append(int(edge.text))
+    def _extract_operand_edges(self, element):
+        return [int(edge.text) for edge in element.find('oprand_edges').findall('item')]
 
 
 class ConstantNode(BaseNode):
-    def __init__(self, node: ET.Element):
-        super().__init__(node)
-
-        self.bitwidth = findint(node, 'Value/bitwidth')
-        self.const_type = findint(node, 'const_type') 
-        self.const_value = node.findtext('content')
+    def __init__(self, element: ET.Element):
+        super().__init__(element)
+        self.type = 'const'
+        self.attributes.update({
+            'bitwidth': findint(element, 'Value/bitwidth'),
+            'const_type': findint(element, 'const_type')
+        })
 
 
 class BlockNode(BaseNode):
-    def __init__(
-        self, node: ET.Element, 
-        rtl_resources: Optional[ResourceMapper] = None
-    ):
-        super().__init__(node, rtl_resources)
+    def __init__(self, element: ET.Element, rtl_resources=None):
+        super().__init__(element, rtl_resources)
+        self.type = 'block'
+        self.instrs = self._extract_instructions(element)
 
-        self.instrs = []
-        for instr in node.find('node_objs').findall('item'):
-            self.instrs.append(int(instr.text))
+    def _extract_instructions(self, element):
+        return [int(instr.text) for instr in element.find('node_objs').findall('item')]
 
 
-class Edge:
-    def __init__(self, edge: ET.Element):
-        self.id = findint(edge, 'id')
-        self.type = edge.findtext('edge_type')
-        self.src = findint(edge, 'source_obj')
-        self.dst = findint(edge, 'sink_obj')
-        self.is_backedge = findint(edge, 'is_back_edge')
+class RegionNode:
+    def __init__(self, element: ET.Element):
+        self.id = findint(element, 'mId') - 1
+        self.name = element.findtext('mTag')
+        self.type = 'region'
+        self.attributes = self._extract_attributes(element)
+        self.sub_regions = self._extract_items(element, 'sub_regions', -1)
+        self.blocks = self._extract_items(element, 'basic_blocks')
 
-
-class CDFGRegion:
-    def __init__(self, region: ET.Element):
-        self.id = findint(region, 'mId')
-        self.name = region.findtext('mTag')
-        self.region_type = findint(region, 'mType')
-        self.ii = findint(region, 'mII')
-        self.depth = findint(region, 'mDepth')
-        self.min_trip_count = findint(region, 'mMinTripCount')
-        self.max_trip_count = findint(region, 'mMaxTripCount')
-        self.min_latency = findint(region, 'mMinLatency')
-        self.max_latency = findint(region, 'mMaxLatency')
-        
-        # Attributes for optimization directives
-        self.pipeline = 0
-        self.unroll = 0
-        self.loop_flatten = 0
-        self.loop_merge = 0
-        self.unroll_factor = 0
-
-        self.sub_regions = []
-        for sub_region in region.find('sub_regions').findall('item'):
-            self.sub_regions.append(int(sub_region.text))
-
-        self.blocks = []
-        for block in region.find('basic_blocks').findall('item'):
-            self.blocks.append(int(block.text))
+    def _extract_attributes(self, element):
+        return {
+            'region_type': element.findtext('mType'),
+            'ii': findint(element, 'mII', 0),
+            'depth': findint(element, 'mDepth', 0),
+            'min_trip_count': findint(element, 'mMinTripCount', 0),
+            'max_trip_count': findint(element, 'mMaxTripCount', 0),
+            'min_latency': findint(element, 'mMinLatency', 0),
+            'max_latency': findint(element, 'mMaxLatency', 0),
+            "unroll": 0,
+            "pipeline": 0,
+            "loop_flatten": 0,
+            "loop_merge": 0,
+            "unroll_factor": 0
+        }
+    
+    def _extract_items(self, element, tag, offset=0):
+        return [int(item.text) + offset for item in element.find(tag).findall('item')]
 
 
 class CDFG:
     def __init__(
         self, root: ET.Element, 
-        include_rtl_resources=True
+        offsets: Optional[Dict[str, int]] = None,
+        rtl_resources=None
     ):
+        self.nodes = defaultdict(list)
+        self.edges = defaultdict(list)
+        self._node_id_map = defaultdict(dict)
+        self._offsets = offsets if offsets else defaultdict(int)
+        self._indices = defaultdict(int)
+        self._edge_id_map = defaultdict(dict)
+
         cdfg = root.find('syndb/cdfg')
         self.name = cdfg.findtext('name')
         self.ret_bitwidth = findint(cdfg, 'ret_bitwidth')
+        self._resources = rtl_resources
 
-        if include_rtl_resources:
-            rtl_resources = self._get_rtl_resources(root)
-        else:
-            rtl_resources = None
+        self._complement_resource_info(root)
 
-        self.instr_nodes = {}
-        for instr in cdfg.find('nodes').findall('item'):
-            instr_node = InstructionNode(instr, rtl_resources)
-            self.instr_nodes[instr_node.id] = instr_node
+        self._parse_nodes(cdfg, root)
+        self._parse_edges(cdfg)
+        self._build_hierarchy_edges()
 
-        self.block_nodes = {}
-        for block in cdfg.find('blocks').findall('item'):
-            block_node = BlockNode(block, rtl_resources)
-            self.block_nodes[block_node.id] = block_node
+    def _parse_nodes(self, cdfg, root):
+        self._process_constants(cdfg.find('consts'))
+        self._process_node_type(cdfg.find('nodes'), 'instr', InstructionNode, self._resources)
+        self._process_node_type(cdfg.find('ports'), 'port', PortNode)
+        self._process_blocks(cdfg.find('blocks'))
+        self._process_regions(root.find('syndb/cdfg_regions'))
 
-        self.const_nodes = {}
-        for const in cdfg.find('consts').findall('item'):
-            const_node = ConstantNode(const)
-            self.const_nodes[const_node.id] = const_node
+    def _process_constants(self, consts):
+        dummy_consts = []
+        # Insert the constant nodes with const_type = 6 at the end
+		# as they will be removed later
+        for elem in consts.findall('item'):
+            node = ConstantNode(elem)
+            if node.attributes['const_type'] == 6:
+                dummy_consts.append(node)
+            else:
+                self.nodes['const'].append(node)
+        self.nodes['const'].extend(dummy_consts)
+        self._map_node_ids('const')
 
-        self.port_nodes = {}
-        for port in cdfg.find('ports').findall('item'):
-            port_node = PortNode(port)
-            self.port_nodes[port_node.id] = port_node
+    def _process_node_type(self, section, ntype, node_class, resources=None):
+        offset = self._offsets[ntype]
+        for i, elem in enumerate(section.findall('item')):
+            node = node_class(elem, resources) if resources else node_class(elem)
+            self._node_id_map[ntype][node.id] = i + offset
+            node.id = i + offset
+            self.nodes[ntype].append(node)
 
-        self.edges = {}
-        for edge in cdfg.find('edges').findall('item'):
-            edge = Edge(edge)
-            self.edges[edge.id] = edge
+    def _process_blocks(self, blocks):
+        offset = self._offsets['block']
+        for i, elem in enumerate(blocks.findall('item')):
+            node = BlockNode(elem, self._resources)
+            self._node_id_map['block'][node.id] = i + offset
+            node.id = i + offset
+            node.instrs = [self._node_id_map['instr'][instr] for instr in node.instrs]
+            self.nodes['block'].append(node)
 
-        self._build_region_nodes(root)
-        self._build_region_edges()
+    def _process_regions(self, regions):
+        offset = self._offsets['region']
+        for elem in regions.findall('item'):
+            node = RegionNode(elem)
+            node.id += offset
+            node.sub_regions = [sr + offset for sr in node.sub_regions]
+            node.blocks = [self._node_id_map['block'][b] for b in node.blocks]
+            self.nodes['region'].append(node)
 
-    def _get_rtl_resources(self, root):
+    def _map_node_ids(self, ntype):
+        offset = self._offsets[ntype]
+        for i, node in enumerate(self.nodes[ntype]):
+            self._node_id_map[ntype][node.id] = i + offset
+            node.id = i + offset
+
+    def _parse_edges(self, cdfg):
+        for elem in cdfg.find('edges').findall('item'):
+            etype = self._map_edge_type(elem.findtext('edge_type', ''))
+            if etype == '':
+                continue
+            src = findint(elem, 'source_obj')
+            dst = findint(elem, 'sink_obj')
+            if src is None or dst is None:
+                continue
+            src, stype = self._get_id_and_type(src)
+            dst, dtype = self._get_id_and_type(src)
+            if src is None or dst is None:
+                continue
+            etype = (stype, etype, dtype)
+            self.edges[etype].append((src, dst))
+            self._edge_id_map[findint(elem, 'id')] = self._indices[etype]
+            self._indices[etype] += 1
+
+        for instr in self.nodes['instr']:
+            instr.operand_edges = [self._edge_id_map[eid] for eid in instr.operand_edges]
+
+    def _get_id_and_type(self, original_id):
+        for ntype, nmap in self._node_id_map.items():
+            if original_id in nmap:
+                return nmap[original_id], ntype
+        return None, None
+
+    def _map_edge_type(self, etype):
+        return {'1': 'operand', '2': 'pred', '4': 'mem'}.get(etype, '')
+
+    def _build_hierarchy_edges(self):
+        for reg in self.nodes['region']:
+            for rid in reg.sub_regions:
+                self.edges[('region', 'hrchy', 'region')].append((reg.id, rid))
+            for bid in reg.blocks:
+                self.edges[('region', 'hrchy', 'block')].append((reg.id, bid))
+                for iid in self.nodes['block'][bid - self._offsets['block']].instrs:
+                    self.edges[('block', 'hrchy', 'instr')].append((bid, iid))
+
+    def _complement_resource_info(self, root):
         res_items = root.findall('*/res/*/item')
         rx = re.compile(' \(.*\)')
-        node_res_map = {}
-
+        
         for item in res_items:
             rtl_name = re.sub(rx, '', item.find('first').text).strip()
-            if rtl_name in node_res_map:
-                continue
-
             rtl_resources = item.find('second')
-            if rtl_resources is None:
+            if rtl_name in self._resources or rtl_resources is None:
                 continue
-
-            res_map = {res: 0 for res in RESOURCES_CONSIDERED}
+            res_map = {res: 0 for res in AVAILABLE_METRICS}
             for res in rtl_resources.iter('item'):
                 res_name = res.findtext('first')
-                if res_name not in RESOURCES_CONSIDERED:
-                    continue
-
-                res_count = findint(res, 'second')
-                res_map[res_name] = res_count
-
-            node_res_map[rtl_name] = res_map
-            
-        return node_res_map
-    
-    def _build_region_nodes(self, root):
-        cdfg_regions = root.find('syndb/cdfg_regions')
-        self.region_nodes = {}
-        max_node_id = max(
-            max(self.instr_nodes.keys()),
-            max(self.const_nodes.keys()),
-            max(self.port_nodes.keys()),
-            max(self.block_nodes.keys())
-        )
-        for region in cdfg_regions.findall('item'):
-            region_node = CDFGRegion(region)
-            region_node.id += max_node_id
-            for i in range(len(region_node.sub_regions)):
-                region_node.sub_regions[i] += max_node_id
-            self.region_nodes[region_node.id] = region_node
-    
-    def _build_region_edges(self):
-        self.region_edges = {
-            ("region", "hierarchy", "region"): [],
-            ("region", "hierarchy", "block"): [],
-            ("region", "hierarchy", "instr"): [],
-            ("block", "hierarchy", "instr"): []
-        }
-        for reg in self.region_nodes.values():
-            for rid in reg.sub_regions:
-                self.region_edges[("region", "hierarchy", "region")].append((reg.id, rid))
-            for bid in reg.blocks:
-                self.region_edges[("region", "hierarchy", "block")].append((reg.id, bid))
-                block = self.block_nodes[bid]
-                for iid in block.instrs:
-                    self.region_edges[("region", "hierarchy", "instr")].append((reg.id, iid))
-                    self.region_edges[("block", "hierarchy", "instr")].append((bid, iid))
-
-
-class FSMStateOperation:
-    def __init__(self, op: ET.Element):
-        self.id = findint(op, 'id')
-        self.stage = findint(op, 'stage')
-        self.latency = findint(op, 'latency')
-
-
-class FSMState:
-    def __init__(self, state: ET.Element):
-        self.id = findint(state, 'id')
-        self.operations = []
-        for op in state.find('operations').findall('item'):
-            op = FSMStateOperation(op)
-            self.operations.append(op)
-
-
-class FSMTransition:
-    def __init__(self, transition: ET.Element):
-        self.src = findint(transition, 'inState')
-        self.dst = findint(transition, 'outState')
-
-
-class FSM:
-    def __init__(self, root: ET.Element):
-        fsm = root.find('syndb/fsm')
-        self.states = {}
-        for state in fsm.find('states').findall('item'):
-            state = FSMState(state)
-            self.states[state.id] = state
-
-        self.transitions = []
-        for transition in fsm.find('transitions').findall('item'):
-            transition = FSMTransition(transition)
-            self.transitions.append(transition)
-
-
-class HLSFunctionData:
-    def __init__(self, file_path: str):
-        tree = ET.parse(file_path)
-        root = tree.getroot()
-
-        self.cdfg = CDFG(root)
-        self.fsm = FSM(root)
-
-        self.name = self.cdfg.name
-        self.ret_bitwidth = self.cdfg.ret_bitwidth
-
-    def reindex_cdfg(self, offset):        
-        def adjust_node_ids(nodes):
-            adjusted_nodes = {}
-            for node in nodes.values():
-                node.id += offset
-                adjusted_nodes[node.id] = node
-            return adjusted_nodes
-
-        self.cdfg.instr_nodes = adjust_node_ids(self.cdfg.instr_nodes)
-        self.cdfg.const_nodes = adjust_node_ids(self.cdfg.const_nodes)
-        self.cdfg.port_nodes = adjust_node_ids(self.cdfg.port_nodes)
-
-        adjusted_block_nodes = {}
-        for block in self.cdfg.block_nodes.values():
-            block.id += offset
-            for i in range(len(block.instrs)):
-                block.instrs[i] += offset
-            adjusted_block_nodes[block.id] = block
-        self.cdfg.block_nodes = adjusted_block_nodes
-
-        adjusted_region_nodes = {}
-        for region in self.cdfg.region_nodes.values():
-            region.id += offset
-            for i in range(len(region.sub_regions)):
-                region.sub_regions[i] += offset
-            for i in range(len(region.blocks)):
-                region.blocks[i] += offset
-            adjusted_region_nodes[region.id] = region
-        self.cdfg.region_nodes = adjusted_region_nodes
-
-        for edge in self.cdfg.edges.values():
-            edge.src += offset
-            edge.dst += offset
-
-        for edge in self.cdfg.region_edges.values():
-            for i in range(len(edge)):
-                edge[i] = (edge[i][0] + offset, edge[i][1] + offset)
-
-    def reindex_fsm(self, base_index):
-        adjusted_states = {}
-        for state in self.fsm.states.values():
-            state.id += base_index
-            for i in range(len(state.operations)):
-                state.operations[i].id += base_index
-            adjusted_states[state.id] = state
-        self.fsm.states = adjusted_states
-
-        for i in range(len(self.fsm.transitions)):
-            self.fsm.transitions[i].src += base_index
-            self.fsm.transitions[i].dst += base_index
-
-    def reindex(self, base_index_cdfg, base_index_fsm):
-        self.reindex_cdfg(base_index_cdfg)
-        self.reindex_fsm(base_index_fsm)
-
-    def get_max_node_id(self):
-        return max(self.cdfg.region_nodes.keys())
-        
-    def get_max_state_id(self):
-        return max(self.fsm.states.keys())
+                if res_name in res_map:
+                    res_map[res_name] = findint(res, 'second')
+            self._resources[rtl_name] = res_map
 
 
 class HLSData:
     def __init__(self, solution_dir, filtered=False, name=''):
         self.name = name
-        self.function_data = {}
+        self.nodes = defaultdict(list)
+        self.edges = defaultdict(list)
+        self._offsets = defaultdict(int)
+        self._cdfgs = {}
 
-        file_paths = collect_adb_files(solution_dir, filtered)
-        max_node_id, max_state_id = -1, -1
+        rpt = extract_impl_report(solution_dir, filtered=filtered)
+        self._get_metrics(rpt)
+        
+        self._process_adb_files(solution_dir, filtered, rpt['module_data'])
+        self._include_call_flow()
 
-        for path in file_paths:
+    def _get_metrics(self, report):
+        self.metrics = {}
+        for key, value in report['timing'].items():
+            self.metrics[key] = value
+        for key, value in report['utilization'].items():
+            self.metrics[key] = value
+        for key, value in report['power'].items():
+            self.metrics[key] = value
+        self.metrics['cc'] = report['cc']
+
+    def _process_adb_files(self, solution_dir, filtered, rtl_resources=None):
+        adb_file_list = collect_adb_files(solution_dir, filtered)
+        
+        for path in adb_file_list:
             print(f"Processing file: {path}")
-            func_data = HLSFunctionData(path)
+            tree = ET.parse(path)
+            root = tree.getroot()
+            cdfg = CDFG(root, offsets=self._offsets, rtl_resources=rtl_resources)
+            self._cdfgs[cdfg.name] = cdfg
+            
+            self._merge_cdfg_data(cdfg)
 
-            # The reindexing of the first iteration is done to make the minimum
-            # node (and state) id 0. The reindexing of the subsequent iterations
-            # are done to ensure that the node ids are unique across all functions
-            func_data.reindex(max_node_id, max_state_id)
-            max_node_id = func_data.get_max_node_id()
-            max_state_id = func_data.get_max_state_id()
+    def _merge_cdfg_data(self, cdfg):
+        for ntype, nodes in cdfg.nodes.items():
+            self.nodes[ntype].extend(nodes)
+            self._offsets[ntype] += len(nodes)
+        
+        for etype, edges in cdfg.edges.items():
+            self.edges[etype].extend(edges)
 
-            self.function_data[func_data.name] = func_data
-
-        self._build_call_edges()
-
-    def _build_call_edges(self):
-        self.call_edges = []
-        for caller_data in self.function_data.values():
-            cdfg = caller_data.cdfg
-            for instr in cdfg.instr_nodes.values():
-                if instr.opcode != "call":
+    def _include_call_flow(self):
+        def get_dummy_constant(cdfg, idx):
+            for node in cdfg.nodes['const']:
+                if node.id == idx:
+                    return node
+            return None
+        
+        call_etype = ('instr', 'call', 'instr')
+        dummy_etype = ('const', 'operand', 'instr')
+        
+        for cdfg in self._cdfgs.values():
+            for instr in cdfg.nodes['instr']:
+                if instr.attributes["opcode"] != "call":
                     continue
-                # The name of the called function is stored in 
-                # the source node of the first operand edge
-                op1 = instr.operand_edges[0]
-                callee_name = cdfg.const_nodes[cdfg.edges[op1].src].name
-                callee_instrs = self.function_data[callee_name].cdfg.instr_nodes
-                callee_first_instr = next(iter(callee_instrs.values()))
+                # The source node of the first operand edge 
+                # contains the name of the called function
+                eid = instr.operand_edges[0]
+                dummy_edge = cdfg.edges[dummy_etype][eid]
+                dummy_node = get_dummy_constant(cdfg, dummy_edge[0])
+                if dummy_node is None:
+                    continue
+                callee = self._cdfgs[dummy_node.name]
+                callee_start = callee.nodes['instr'][0]
+                
+                self.edges[call_etype].append((instr.id, callee_start.id))
+        
+        self._remove_dummy_constants(dummy_etype)
 
-                self.call_edges.append((instr.id, callee_first_instr.id))
+    def _remove_dummy_constants(self, dummy_etype):
+        """ Remove constant nodes that were used to represent call edges """
+        for i, node in enumerate(self.nodes['const']):
+            if node.attributes["const_type"] == 6:
+                del self.nodes['const'][i:]
+                self.edges[dummy_etype] = [
+                    (src, dst) for src, dst in self.edges[dummy_etype] 
+                    if src < i
+                ]
+                break
 
 
 def collect_adb_files(solution_dir, filtered=False):
@@ -399,21 +351,3 @@ def collect_adb_files(solution_dir, filtered=False):
             file_paths.append(os.path.join(hls_db_dir, file_name))
 
     return file_paths
-
-
-if __name__ == "__main__":
-    """For testing purposes"""
-    import sys
-    from pathlib import Path
-    from sys import argv
-
-    if __package__ is None:                  
-        DIR = Path(__file__).resolve().parent
-        sys.path.insert(0, str(DIR.parent))
-        sys.path.insert(0, str(DIR.parent.parent))
-        __package__ = DIR.name
-
-    from utils.xmlutils import findint, findfloat
-
-    hlsdata = HLSData(argv[1])
-    print(hlsdata.call_edges)
