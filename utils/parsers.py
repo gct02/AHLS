@@ -244,7 +244,7 @@ def _parse_timing_report_txt(rpt_path):
 
     start_idx = _find_line_containing(lines, 'WNS(ns)', 'TNS(ns)')
     if start_idx == -1:
-        raise ValueError("WNS and TNS not found in the report file")
+        return None
     
     rpt_line = lines[start_idx + 2]
     wns = float((rx.findall(rpt_line))[0])
@@ -262,12 +262,15 @@ def collate_data_for_analysis(
     data_path: str, 
     benchmark: str, 
     filtered: bool = False,
-    directive_config_path: Optional[str] = None
+    directive_config_path: Optional[str] = None,
+    process_base_solution: bool = False
 ) -> Tuple[pd.DataFrame, Optional[NDArray[np.int_]]]:
     metrics = []
     directives = [] if directive_config_path else None
     bench_dir = f"{data_path}/{benchmark}"
     for solution in os.listdir(bench_dir):
+        if not process_base_solution and solution == 'solution0':
+            continue
         solution_dir = os.path.join(bench_dir, solution)
         report = extract_metrics(solution_dir, filtered)
         if report is None:
@@ -282,7 +285,7 @@ def collate_data_for_analysis(
             )
     if directives is not None:
         directives = np.stack(directives)
-    metrics = pd.pd.DataFrame(metrics)
+    metrics = pd.DataFrame(metrics)
     return metrics, directives
     
 
@@ -342,14 +345,14 @@ def _find_line_containing(lines: List[str], *search_string) -> int:
     return -1
 
 
-def _parse_directive_cmd(directive_cmd, is_json=False) -> Tuple[str, Dict[str, str]]:
+def _parse_directive_cmd(directive_cmd) -> Tuple[str, Dict[str, str]]:
     cmd = directive_cmd.split(' ')[0].split('set_directive_')[1]
     args = directive_cmd.split(' ')[1:]
-    parsed_args = _parse_directive_options(args, is_json)
+    parsed_args = _parse_directive_options(args)
     return cmd, parsed_args
 
 
-def _parse_directive_options(args: List[str], is_json=False) -> Dict[str, str]:
+def _parse_directive_options(args: List[str]) -> Dict[str, str]:
     parsed_args = {}
 
     is_loc_parsed = False
@@ -361,22 +364,16 @@ def _parse_directive_options(args: List[str], is_json=False) -> Dict[str, str]:
         if args[i].startswith('-'):
             if args[i].find('=') != -1:
                 key, value = args[i].split('=')
-                parsed_args[key] = value
+                parsed_args[key[1:]] = value.strip('" \n')
             else:
-                parsed_args[args[i][1:]] = args[i + 1]
+                parsed_args[args[i][1:]] = args[i + 1].strip('" \n')
                 i += 1
         elif not is_loc_parsed:
-            if is_json:
-                parsed_args['location'] = args[i]
-            else:
-                parsed_args['location'] = args[i]
+            parsed_args['location'] = args[i].strip('" \n')
             is_loc_parsed = True
         else:
-            parsed_args['variable'] = args[i]
+            parsed_args['variable'] = args[i].strip('" \n')
         i += 1
-
-    for key, value in parsed_args.items():
-        parsed_args[key] = value.strip('"').strip()
 
     return parsed_args
 

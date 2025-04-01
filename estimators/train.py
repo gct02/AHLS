@@ -159,15 +159,14 @@ def main(args: Dict[str, str]):
     epochs = int(args['epoch'])
     batch_size = int(args['batch'])
     seed = int(args['seed'])
-    loss = args['loss']
-    residual = float(args['residual'])
-    collect_residuals = args['collect_residuals']
     dataset_dir = args['dataset_dir']
     target_metric = args['target']
     test_bench = args['testbench']
     verbosity = int(args['verbose'])
-    separate_data = args['separate_data']
-    source_data_dir = args['source_data']
+    loss = args['loss']
+    residual = float(args['residual'])
+    collect_residuals = args['collect_residuals']
+    split_data = args['split']
 
     matplotlib.use('Agg')
 
@@ -185,15 +184,13 @@ def main(args: Dict[str, str]):
     train_benches = [b for b in benchmarks if b != test_bench]
     train_loader, test_loader = prepare_data_loaders(
         target_metric, test_bench, train_benches, batch_size,
-        separate_data=separate_data, source_data_dir=source_data_dir
+        split_data=split_data, source_data_dir=dataset_dir
     )
-    metadata = (NODE_TYPES + BASE_METRICS_NODE_TYPES,
-                EDGE_TYPES + BASE_METRICS_EDGE_TYPES)
     
     model = HGT(
-        metadata, NODE_FEATURE_DIMS, 1, 
-        n_layers=6, hid_dim=128, n_heads=8,
-        dropout=0.1, device=DEVICE
+        (NODE_TYPES, EDGE_TYPES), NODE_FEATURE_DIMS, 1, 
+        n_layers=5, hid_dim=256, n_heads=8,
+        dropout=0.1, pool_size=16, device=DEVICE
     )
 
     if loss == 'huber':
@@ -206,7 +203,7 @@ def main(args: Dict[str, str]):
         raise ValueError(f"Unknown loss function: {loss}")
 
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=5e-4
+        model.parameters(), lr=3e-4, betas=(0.9, 0.95), weight_decay=1e-4
     )
 
     total_steps = epochs * len(train_loader)
@@ -491,27 +488,30 @@ def prepare_data_loaders(
     test_bench: str,
     train_benches: Union[List[str], str],
     batch_size: int = 16,
-    separate_data: bool = False,
+    split_data: bool = False, 
     source_data_dir: Optional[str] = None
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
     dataset_dir = f"{Path(sys.argv[0]).parent}/dataset"
     train_dir = f"{dataset_dir}/train"
     test_dir = f"{dataset_dir}/test"
-    if separate_data:
+    if split_data:
         data_dirs = [
             f"{train_dir}/raw", f"{test_dir}/raw", 
             f"{train_dir}/processed", f"{test_dir}/processed"
         ]
         cleanup_dirs(data_dirs, recreate=True)
     train_data = HLSDataset(
-        train_dir, metric, separate_data=separate_data, 
+        train_dir, metric, split_data=split_data, 
         source_data_dir=source_data_dir, 
-        benchmarks=train_benches
+        benchmarks=train_benches, 
+        normalize=True
     )
     test_data = HLSDataset(
-        test_dir, metric, separate_data=separate_data,  
+        test_dir, metric, split_data=split_data,  
         source_data_dir=source_data_dir, 
         benchmarks=test_bench,
+        normalize=True,
+        feature_range=train_data.feature_range
     )
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
@@ -528,31 +528,29 @@ def cleanup_dirs(dirs: List[str], recreate: bool = False):
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', required=True, 
+    parser.add_argument('-d', '--dataset-dir', required=True, 
                         help='Path to the dataset.')
-    parser.add_argument('--epoch', default=300, 
+    parser.add_argument('-e', '--epoch', default=300, 
                         help='The number of training epochs (default: 300).')
-    parser.add_argument('--seed', default=42, 
+    parser.add_argument('-r', '--seed', default=42, 
                         help='Random seed for repeatability (default: 42).')
-    parser.add_argument('--batch', default=16, 
+    parser.add_argument('-b', '--batch', default=16, 
                         help='The size of the training batch (default: 16).')
-    parser.add_argument('--loss', default='huber', choices=['huber', 'mse', 'mae'],
+    parser.add_argument('-l', '--loss', default='huber', choices=['huber', 'mse', 'mae'],
                         help='The loss function to use for training (default: Huber loss).')
-    parser.add_argument('--testbench', required=True, 
+    parser.add_argument('-tb', '--testbench', required=True, 
                         help='The name of the benchmark to use for test.')
-    parser.add_argument('--source-data', default=None,
-                        help='Path to the source dataset folder (i.e., the dataset containing the original HLS solutions).')
-    parser.add_argument('--filtered', action='store_true',
+    parser.add_argument('-f', '--filtered', action='store_true',
                         help='Signal that the (raw) dataset is filtered')
-    parser.add_argument('--collect-residuals', action='store_true',
+    parser.add_argument('-rc', '--collect-residuals', action='store_true',
                         help='Collect residuals for analysis.')
-    parser.add_argument('--residual', default=1.0, 
-                        help='The standard deviation of the residual from previous training (default: 1.0).')
-    parser.add_argument('--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp'],
+    parser.add_argument('-rs', '--residual', default=1.0, type=float,
+                        help='Some measure of variability (e.g., standard deviation or MAD) of the residuals for Huber loss (default: 1.0).')
+    parser.add_argument('-t', '--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp'],
                         help='The target resource metric.')
-    parser.add_argument('--separate-data', action='store_true',
-                        help='Separate the training and test data into raw and processed directories.')
-    parser.add_argument('--verbose', nargs='?', const=1, type=int, default=0, 
+    parser.add_argument('-s', '--split', action='store_true',
+                        help='Split the dataset into train and test.')
+    parser.add_argument('-v', '--verbose', nargs='?', const=1, type=int, default=0, 
                         help='Set verbosity level (default: 0). Use without value for level 1, or specify a level.')
     return vars(parser.parse_args())
 
@@ -567,12 +565,7 @@ if __name__ == '__main__':
 
     from estimators.models import HGT
     from estimators.dataset import HLSDataset
-    from estimators.graph import (
-        NODE_TYPES, EDGE_TYPES,
-        BASE_METRICS_NODE_TYPES,
-        BASE_METRICS_EDGE_TYPES, 
-        NODE_FEATURE_DIMS
-    )
+    from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 
     gc.collect()
     DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')

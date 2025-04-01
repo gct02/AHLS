@@ -2,7 +2,6 @@ import pickle
 from pathlib import Path
 from collections import defaultdict
 from typing import Dict, Optional
-from math import sqrt
 
 import torch
 import matplotlib.pyplot as plt
@@ -10,79 +9,98 @@ from torch_geometric.data import HeteroData
 from sklearn.preprocessing import OneHotEncoder
 
 try:
-    from hlsdata import HLSData, AVAILABLE_METRICS
+    from hlsdata import HLSData
     from utils.parsers import parse_tcl_directives_file
 except ImportError:
     print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
     pass
 
 
-NODE_TYPES = ["instr", "port", "const", "block", "region", "ap_pragma"]
-EDGE_TYPES = [
-    ("const" "operand", "instr"), ("instr", "operand", "instr"),
-    ("port", "operand", "instr"), ("block", "pred", "instr"), 
-    ("block", "pred", "block"), ("instr", "mem", "instr"),
-    ("region", "hrchy", "region"), ("region", "hrchy", "block"),
-    ("block", "hrchy", "instr"), ("instr", "call", "instr"),
-    ("ap_pragma", "opt", "instr"), ("ap_pragma", "opt", "port")
+NODE_TYPES = [
+    "instr", "port", "const", "block", 
+    "region", "ap_pragma", "base"
 ]
-NODE_FEATURE_DIMS = {
-    "instr": 42, "port": 7, "const": 3,
-    "block": 4, "region": 13, "ap_pragma": 8
-}
+EDGE_TYPES = [
+    # Edges from the Vitis HLS CDFG
+    ("const", "data", "instr"), ("instr", "data", "instr"),
+    ("port", "data", "instr"), ("block", "succ", "instr"), 
+    ("block", "succ", "block"), ("instr", "mem", "instr"),
 
-BASE_METRICS_NODE_TYPES = {"base"}
-BASE_METRICS_EDGE_TYPES = {
+    # Edges representing the hierarchy of the CDFG constructs
+    ("region", "hrchy", "region"), ("region", "hrchy", "block"),
+    ("block", "hrchy", "instr"), 
+    
+    # Edges representing the call flow of the CDFG
+    ("instr", "call", "instr"),
+
+    # Edges representing the array partition directives applied to the CDFG
+    ("ap_pragma", "opt", "instr"), ("ap_pragma", "opt", "port"),
+
+    # Edges connecting metrics of the base solution to the nodes
     ("base", "base", "region"), ("base", "base", "block"),
     ("base", "base", "instr"), ("base", "base", "const"),
-    ("base", "base", "port"), ("base", "base", "ap_pragma")
+    ("base", "base", "port"),
+
+    # Self edges
+    ("instr", "self", "instr"), ("port", "self", "port"),
+    ("const", "self", "const"), ("block", "self", "block"),
+    ("region", "self", "region"), ("ap_pragma", "self", "ap_pragma"),
+]
+NODE_FEATURE_DIMS = {
+    "instr": 55, "port": 7, "const": 4, "block": 4, 
+    "region": 12, "ap_pragma": 8, "base": 8
 }
 
 
 def build_base_graphs(
     base_solutions: Dict[str, str],
     encoder_save_path: Optional[str] = None,
-    filtered: bool = False
+    filtered: bool = False,
 ):
-    nodes, edges, metrics = {}, {}, {}
+    metrics_to_include = {
+        "lut", "bram", "ff", "dsp", "achieved_clk", 
+        "cc", "dynamic_power", "static_power"
+    }
+    nodes, edges, features, metrics = {}, {}, {}, {}
+
     for bench_name, sol_dir in base_solutions.items():
         data = HLSData(sol_dir, filtered=filtered, name=bench_name)
+        data.dump(f"{bench_name}_data.json")
         nodes[bench_name] = data.nodes
         edges[bench_name] = data.edges
-        metrics[bench_name] = data.metrics
+        metrics[bench_name] = {
+            k: v for k, v in data.metrics.items() 
+            if k in metrics_to_include
+        }
+        features[bench_name] = {
+            nt: [node.attributes for node in nodes]
+            for nt, nodes in data.nodes.items()
+        }
 
-    feats = get_base_features(nodes, normalize=True)
-
-    encoders = fit_one_hot_encoders(feats)
+    encoders = fit_one_hot_encoders(features)
     if encoder_save_path:
         save_encoders(encoders, encoder_save_path)
 
-    one_hot_encode(feats, encoders)
-    return nodes, edges, feats, metrics
+    one_hot_encode(features, encoders)
+    return nodes, edges, features, metrics
 
 
 def build_opt_graph(
-    base_nodes, base_edges, base_features, 
+    base_node_dict, base_edge_dict, base_feature_dict, 
     base_metrics=None, directives_tcl=None, 
-    target_metric=None, output_hetero_data=False
+    output_hetero_data=True
 ):
-    nodes = base_nodes.copy()
-    edges = base_edges.copy()
-    feats = base_features.copy()
-
-    if directives_tcl is not None:
-        include_directive_info(nodes, edges, feats, directives_tcl)
+    nodes = base_node_dict.copy()
+    edges = base_edge_dict.copy()
+    feats = base_feature_dict.copy()
 
     if base_metrics is not None:
-        if target_metric is None:
-            feats["base"] = [[v] for v in base_metrics.values()]
-        else:
-            feats["base"] = [base_metrics[target_metric]]
-
+        feats["base"] = [{k: [v] for k, v in base_metrics.items()}]
         for nt, node_list in nodes.items():
-            edges[("base", "base", nt)] = [
-                (0, i) for i in range(len(node_list))
-            ]
+            edges[("base", "base", nt)] = [(0, i) for i in range(len(node_list))]
+
+    if directives_tcl is not None:
+        feats, edges = include_directive_info(nodes, edges, feats, directives_tcl)
     
     if output_hetero_data:
         return to_hetero_data(feats, edges)
@@ -90,20 +108,22 @@ def build_opt_graph(
         return feats, edges
 
 
-def to_hetero_data(feat_dict, edge_dict):
+def to_hetero_data(feature_dict, edge_dict, add_self_edges=True):
     data = HeteroData()
     for nt in NODE_TYPES:
-        if nt in feat_dict and feat_dict[nt]:
-            feat_tensors = []
-            for feats in feat_dict[nt]:
-                feat_vector = []
-                for value in feats.values():
-                    if isinstance(value, list):
-                        feat_vector.extend(value)
-                    else:
-                        feat_vector.append(value)
-                feat_tensors.append(torch.tensor(feat_vector, dtype=torch.float32))
-            data[nt].x = torch.stack(feat_tensors, dim=0)
+        node_list = feature_dict.get(nt, [])
+        tensor_list = []
+        for node_features in node_list:
+            features = []
+            for value in node_features.values():
+                if isinstance(value, list):
+                    features.extend(value)
+                else:
+                    features.append(value)
+            tensor_list.append(torch.tensor(features, dtype=torch.float32))
+
+        if tensor_list:
+            data[nt].x = torch.stack(tensor_list, dim=0)
         else:
             data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
 
@@ -116,40 +136,50 @@ def to_hetero_data(feat_dict, edge_dict):
         else:
             data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
 
+    if add_self_edges:
+        for nt, nodes in feature_dict.items():
+            if nt == "base":
+                continue
+            src = torch.arange(len(nodes), dtype=torch.long)
+            dst = src.clone()
+            data[nt, "self", nt].edge_index = torch.stack([src, dst], dim=0)
+
     return data
             
 
-def include_directive_info(nodes, edges, features, directives_tcl):
+def include_directive_info(node_dict, edge_dict, feature_dict, directives_tcl):
     def get_node_by_name(nodes, name):
         for node in nodes:
             if node.name == name:
                 return node
         return None
-
-    features["ap_pragma"] = []
-    edges.update({
-        ("ap_pragma", "opt", "instr"): [], 
-        ("ap_pragma", "opt", "port"): []
-    })
+    
     available_directives = {
         "pipeline", "unroll", "loop_merge",
         "loop_flatten", "array_partition"
     }
+    ap_pragma_count = 0
+    feature_dict["ap_pragma"] = []
+    edge_dict.update({
+        ("ap_pragma", "opt", "instr"): [],
+        ("ap_pragma", "opt", "port"): []
+    })
+
     directives = parse_tcl_directives_file(directives_tcl)
     directives = [d for d in directives if d[0] in available_directives]
 
     for dtype, dargs in directives:
         if dtype == "array_partition":
             var = dargs["variable"]
-
-            node = get_node_by_name(nodes["instr"], var)
+            node = get_node_by_name(node_dict["instr"], var)
             if node is not None:
                 etype = ("ap_pragma", "opt", "instr")
                 array_size = node.attributes["storage_depth"]
-            elif (node := get_node_by_name(nodes["port"], var)) is not None:
+            elif (node := get_node_by_name(node_dict["port"], var)) is not None:
                 etype = ("ap_pragma", "opt", "port")
                 array_size = node.attributes["array_size"]
             else:
+                print(f"Warning: Variable '{var}' not found in nodes.")
                 continue
 
             ap_type = dargs.get("type", "complete")
@@ -164,34 +194,43 @@ def include_directive_info(nodes, edges, features, directives_tcl):
             dim_enc = [0] * 4
             dim_enc[ap_dim] = 1
 
-            ap_factor = int(dargs.get("factor", array_size))
+            ap_factor = dargs.get("factor")
+            if ap_factor is not None:
+                ap_factor = [int(ap_factor)]
+            else:
+                ap_factor = array_size
 
-            features["ap_pragma"].append({
+            feature_dict["ap_pragma"].append({
                 "ap_type": ap_type_enc, 
                 "ap_dim": dim_enc, 
-                "ap_factor": [ap_factor]
+                "ap_factor": ap_factor
             })
-            edges[etype].append((len(features["ap_pragma"]) - 1, node.id))
+            edge_dict[etype].append((ap_pragma_count, node.id))
+            ap_pragma_count += 1
         elif "off" not in dargs:
-            loc = dargs["location"]
-
-            node = get_node_by_name(nodes["region"], loc)
+            loc = dargs["location"].split("/")[-1]
+            node = get_node_by_name(node_dict["region"], loc)
             if node is None:
                 continue
-            node_feats = features["region"][node.id]
+
+            node_features = feature_dict["region"][node.id]
         
             if dtype == "unroll":
-                node_feats["unroll"] = 1
-                if "factor" in dargs:
-                    node_feats["unroll_factor"] = int(dargs["factor"])
-                else:
-                    node_feats["unroll_factor"] = node.attributes["max_trip_count"]
+                node_features["unroll"] = [1]
+                factor = int(dargs.get("factor", 0))
+                if factor <= 0:
+                    factor = max(node.attributes["max_trip_count"][0], 1)
+                node_features["unroll_factor"] = [factor]
             elif dtype == "pipeline":
-                node_feats["pipeline"] = 1
+                ii = int(dargs.get("ii", 1))
+                node_features["pipeline"] = [1]
+                node_features["ii"] = [ii]
             elif dtype == "loop_flatten":
-                node_feats["loop_flatten"] = 1
+                node_features["loop_flatten"] = [1]
             else:
-                node_feats["loop_merge"] = 1
+                node_features["loop_merge"] = [1]
+
+    return feature_dict, edge_dict
 
 
 def save_encoders(encoders, path):
@@ -205,22 +244,21 @@ def load_encoders(path):
     return encoders 
 
 
-def fit_one_hot_encoders(bench_features_map):
+def fit_one_hot_encoders(bench_feature_dict):
     categorical_feats = {
-        "core_name": set(), "opcode": set(),
-        "port_type": set(), "direction": set(),
-        "const_type": set(), "region_type": set()
+        "core_name": set(), "opcode": set(), "port_type": set(), 
+        "direction": set(), "const_type": set()
     }
     encoders = {
         key: OneHotEncoder(handle_unknown='ignore') 
         for key in categorical_feats.keys()
     }
-    for feat_dict in bench_features_map.values():
-        for feat_list in feat_dict.values():
-            for feats in feat_list:
+    for feature_dict in bench_feature_dict.values():
+        for node_features in feature_dict.values():
+            for features in node_features:
                 for key in categorical_feats.keys():
-                    if key in feats:
-                        categorical_feats[key].add(feats[key])
+                    if key in features:
+                        categorical_feats[key].add(features[key])
 
     for key, values in categorical_feats.items():
         if values:
@@ -229,65 +267,16 @@ def fit_one_hot_encoders(bench_features_map):
     return encoders
 
 
-def one_hot_encode(bench_features_map, encoders):
-    for feat_dict in bench_features_map.values():
-        for feat_list in feat_dict.values():
-            for feats in feat_list:
-                for key, value in feats.items():
+def one_hot_encode(bench_feature_dict, encoders):
+    for feature_dict in bench_feature_dict.values():
+        for node_features in feature_dict.values():
+            for features in node_features:
+                for key, value in features.items():
                     if key in encoders:
                         encoded = encoders[key].transform([[value]]).toarray()
-                        feats[key] = encoded[0].flatten().tolist()
+                        features[key] = encoded[0].flatten().tolist()
                     else:
-                        feats[key] = [value]
-
-
-def get_base_features(base_solutions_nodes, normalize=True):
-    bench_features_map = {
-        bench_name: {
-            nt: [node.attributes for node in nodes]
-            for nt, nodes in node_dict.items()
-        }
-        for bench_name, node_dict in base_solutions_nodes.items()
-    }
-    if normalize:
-        feats_to_normalize = {
-            "ii", "depth", "delay", "min_trip_count", 
-            "max_trip_count", "min_latency", "max_latency", 
-            "bitwidth", "array_size", "storage_depth"
-        } | AVAILABLE_METRICS
-        normalize_features(bench_features_map, feats_to_normalize)
-    return bench_features_map
-
-
-def normalize_features(bench_features_map, feats_to_normalize, eps=1e-6):
-    stats = collect_stats(bench_features_map, feats_to_normalize)
-    for key, stat in stats.items():
-        count = stat["count"]
-        if count > 1:
-            mean = stat["mean"]
-            variance = stat["M2"] / (count - 1)
-            std = max(sqrt(variance), eps)
-            for node_dict in bench_features_map.values():
-                for node_list in node_dict.values():
-                    for feats in node_list:
-                        if key in feats:
-                            feats[key] = (feats[key] - mean) / std
-
-
-def collect_stats(bench_features_map, stats_filter=None):
-    stats = defaultdict(lambda: {"mean": 0.0, "M2": 0.0, "count": 0})
-    for node_dict in bench_features_map.values():
-        for node_list in node_dict.values():
-            for feats in node_list:
-                for key, value in feats.items():
-                    if stats_filter and key not in stats_filter:
-                        continue
-                    s = stats[key]
-                    s["count"] += 1
-                    delta = value - s["mean"]
-                    s["mean"] += delta / s["count"]
-                    s["M2"] += delta * (value - s["mean"])
-    return stats
+                        features[key] = [value]
 
 
 def plot_graph(data: HeteroData):
@@ -303,16 +292,21 @@ def plot_graph(data: HeteroData):
         "ap_pragma": "#8c564b"
     }
     et_colors = {
-        ("const", "operand", "instr"): "#2ca02c",
-        ("instr", "operand", "instr"): "#2ca02c",
-        ("port", "operand", "instr"): "#2ca02c",
-        ("block", "pred", "instr"): "#ff7f0e",
-        ("block", "pred", "block"): "#ff7f0e",
+        ("const", "data", "instr"): "#2ca02c",
+        ("instr", "data", "instr"): "#2ca02c",
+        ("port", "data", "instr"): "#2ca02c",
+
+        ("block", "succ", "instr"): "#ff7f0e",
+        ("block", "succ", "block"): "#ff7f0e",
+
         ("instr", "mem", "instr"): "#8c564b",
+
         ("region", "hrchy", "region"): "#1f77b4",
         ("region", "hrchy", "block"): "#1f77b4",
         ("block", "hrchy", "instr"): "#1f77b4",
+
         ("instr", "call", "instr"): "#b41fa8",
+
         ("ap_pragma", "opt", "instr"): "#d62728",
         ("ap_pragma", "opt", "port"): "#d62728"
     }
@@ -321,7 +315,20 @@ def plot_graph(data: HeteroData):
         short_nt = nt[0] if nt != "ap_pragma" else "ap"
         return f"{short_nt}{index}"
     
-    def plot_subgraph(data_sub, use_kamada_kawai=False):
+    def plot_subgraph(data, node_types=None, edge_types=None, 
+                      use_kamada_kawai=False):
+        data_sub = data.clone()
+        if node_types:
+            for ntype in data_sub.x_dict.keys():
+                if ntype not in node_types:
+                    data_sub[ntype].x = torch.empty(
+                        (0, NODE_FEATURE_DIMS[ntype]), dtype=torch.float32
+                    )
+        if edge_types:
+            for etype in data_sub.edge_index_dict.keys():
+                if etype not in edge_types:
+                    data_sub[etype].edge_index = torch.empty((2, 0), dtype=torch.long)
+
         G = to_networkx(
             data_sub, remove_self_loops=False,
             to_undirected=False, node_attrs=['x']
@@ -356,19 +363,27 @@ def plot_graph(data: HeteroData):
         )
         plt.show()
 
-    plot_subgraph(data, use_kamada_kawai=True)
-
-    call_flow = data.clone()
-
-    for etype in call_flow.edge_index_dict.keys():
-        if etype[1] != "call":
-            call_flow[etype].edge_index = torch.empty((2, 0), dtype=torch.long)
-
-    for ntype in call_flow.x_dict.keys():
-        if ntype != "instr":
-            call_flow[ntype].x = torch.empty((0, NODE_FEATURE_DIMS[ntype]), dtype=torch.float32)
-
-    plot_subgraph(call_flow, use_kamada_kawai=True)
+    # Plot the entire graph
+    plot_subgraph(
+        data, use_kamada_kawai=True,
+        node_types=[nt for nt in NODE_TYPES if nt != "base"],
+        edge_types=[e for e in EDGE_TYPES if e[1] != "base" and e[1] != "self"]
+    )
+    # Plot call flow graph
+    plot_subgraph(
+        data, node_types=["instr"], 
+        edge_types=[e for e in EDGE_TYPES if e[1] == "call"]
+    )
+    # Plot control flow graph
+    plot_subgraph(
+        data, node_types=["block"], 
+        edge_types=[e for e in EDGE_TYPES if e[1] == "succ"]
+    )
+    # Plot pragma flow graph
+    plot_subgraph(
+        data, node_types=["ap_pragma", "instr", "port"], 
+        edge_types=[e for e in EDGE_TYPES if e[1] == "opt"]
+    )
 
 
 if __name__ == "__main__":
@@ -386,24 +401,46 @@ if __name__ == "__main__":
 
     parser = ArgumentParser()
     parser.add_argument("solution_dirs", nargs="+")
+    parser.add_argument("-b", "--benchmark", default=None)
+    parser.add_argument("-d", "--directives", default=None)
     args = parser.parse_args()
 
     base_solutions = {
         Path(sol_dir).parent.name: sol_dir
         for sol_dir in args.solution_dirs
     }
-    nodes, edges, feats = build_base_graphs(base_solutions)
-    graphs = {}
+    nodes, edges, feats, metrics = build_base_graphs(base_solutions)
 
     print("Graphs built successfully.")
-    for bench_name, feat_dict in feats.items():
-        print(f"{bench_name}:\n")
-        for i, feats in enumerate(feat_dict['instr']):
-            print(f"    Node {i}:")
-            for key, value in feats.items():
-                print(f"      {key}: {value}")
+    for bench_name, feature_dict in feats.items():
+        # print(f"{bench_name}:\n")
+        # for i, feats in enumerate(feat_dict['instr']):
+        #     print(f"    Node {i}:")
+        #     for key, value in feats.items():
+        #         print(f"      {key}: {value}")
         
-        graphs[bench_name] = to_hetero_data(feat_dict, edges[bench_name])
-        print(graphs[bench_name])
+        data = to_hetero_data(feature_dict, edges[bench_name])
+        print(f"\n{data}")
+        # plot_graph(data)
+
+    if args.benchmark and args.directives:
+        bench = args.benchmark
+        directives = args.directives
+        if bench not in base_solutions:
+            print(f"Benchmark '{bench}' not found in base solutions.")
+            sys.exit(1)
+
+        nodes_opt, edges_opt = build_opt_graph(
+            nodes[bench], edges[bench], feats[bench],
+            base_metrics=metrics[bench], directives_tcl=directives,
+            output_hetero_data=False
+        )
+
+        for node_features in nodes_opt["region"]:
+            if node_features["is_loop"][0] == 1:
+                print(node_features)
+
+        data = to_hetero_data(nodes_opt, edges_opt)
+        # plot_graph(data)
 
     

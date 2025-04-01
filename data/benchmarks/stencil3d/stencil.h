@@ -5,8 +5,8 @@ K. Datta, M. Murphy, V. Volkov, S. Williams, J. Carter, L. Oliker, D. Patterson,
 SC 2008
 */
 
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 //Define input sizes
 #define height_size 16 //originally 32

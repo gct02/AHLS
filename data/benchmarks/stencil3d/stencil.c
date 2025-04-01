@@ -13,19 +13,25 @@ void stencil3d(TYPE C[2], TYPE orig[SIZE], TYPE sol[SIZE]) {
 
     // Handle boundary conditions by filling with original values
     height_bound_col : for(j=0; j<col_size; j++) {
+        #pragma HLS LOOP_TRIPCOUNT min=16 max=16 avg=16
         height_bound_row : for(k=0; k<row_size; k++) {
+            #pragma HLS LOOP_TRIPCOUNT min=8 max=8 avg=8
             sol[INDX(row_size, col_size, k, j, 0)] = orig[INDX(row_size, col_size, k, j, 0)];
             sol[INDX(row_size, col_size, k, j, height_size-1)] = orig[INDX(row_size, col_size, k, j, height_size-1)];
         }
     }
     col_bound_height : for(i=1; i<height_size-1; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=14 max=14 avg=14
         col_bound_row : for(k=0; k<row_size; k++) {
+            #pragma HLS LOOP_TRIPCOUNT min=8 max=8 avg=8
             sol[INDX(row_size, col_size, k, 0, i)] = orig[INDX(row_size, col_size, k, 0, i)];
             sol[INDX(row_size, col_size, k, col_size-1, i)] = orig[INDX(row_size, col_size, k, col_size-1, i)];
         }
     }
     row_bound_height : for(i=1; i<height_size-1; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=14 max=14 avg=14
         row_bound_col : for(j=1; j<col_size-1; j++) {
+            #pragma HLS LOOP_TRIPCOUNT min=14 max=14 avg=14
             sol[INDX(row_size, col_size, 0, j, i)] = orig[INDX(row_size, col_size, 0, j, i)];
             sol[INDX(row_size, col_size, row_size-1, j, i)] = orig[INDX(row_size, col_size, row_size-1, j, i)];
         }
@@ -34,8 +40,11 @@ void stencil3d(TYPE C[2], TYPE orig[SIZE], TYPE sol[SIZE]) {
 
     // Stencil computation
     loop_height : for(i = 1; i < height_size - 1; i++){
+        #pragma HLS LOOP_TRIPCOUNT min=14 max=14 avg=14
         loop_col : for(j = 1; j < col_size - 1; j++){
+            #pragma HLS LOOP_TRIPCOUNT min=14 max=14 avg=14
             loop_row : for(k = 1; k < row_size - 1; k++){
+                #pragma HLS LOOP_TRIPCOUNT min=6 max=6 avg=6
                 sum0 = orig[INDX(row_size, col_size, k, j, i)];
                 sum1 = orig[INDX(row_size, col_size, k, j, i + 1)] +
                        orig[INDX(row_size, col_size, k, j, i - 1)] +

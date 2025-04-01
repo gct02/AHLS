@@ -1,8 +1,0 @@
-lut=847
-ff=988
-dsp=11
-bram=0
-clb=177
-latch=0
-cp=5.694
-cc=2990225

@@ -1,4 +1,5 @@
 import os
+import json
 from argparse import ArgumentParser
 from typing import Optional
 
@@ -6,8 +7,9 @@ import numpy as np
 import pandas as pd
 import sklearn
 import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans, AgglomerativeClustering
+from sklearn.cluster import KMeans, AgglomerativeClustering, MeanShift, DBSCAN, OPTICS, AffinityPropagation
 from sklearn.metrics import silhouette_score
+from sklearn.decomposition import PCA
 from numpy.typing import NDArray
 
 try:
@@ -20,18 +22,29 @@ except ImportError:
 def cluster_by_directive(
     directives: NDArray[np.int_],
     n_clusters: int,
-    max_iter: int = 100,
-    cluster_method: str = 'kmeans'
+    max_iter: int = 1000,
+    cluster_method: str = 'kmeans',
+    n_components: int = 2
 ) -> NDArray[np.int_]:
     if directives.ndim > 2:
         directives = directives.reshape(directives.shape[0], -1)
 
+    # Perform PCA for dimensionality reduction
+    pca = PCA(n_components=n_components)
+    directives = pca.fit_transform(directives)
+
     if cluster_method == 'kmeans':
-        model = KMeans(n_clusters=n_clusters, max_iter=max_iter, n_init=10)
+        model = KMeans(n_clusters=n_clusters, max_iter=max_iter, n_init=20, tol=1e-8)
     elif cluster_method == 'aggl':
-        model = AgglomerativeClustering(n_clusters=n_clusters)
+        model = AgglomerativeClustering(n_clusters=n_clusters, linkage='complete', compute_full_tree=True)
+    elif cluster_method == 'mean_shift':
+        model = MeanShift(bandwidth=0.5, bin_seeding=True, max_iter=max_iter)
+    elif cluster_method == 'dbscan':
+        model = DBSCAN(eps=0.5, min_samples=5)
+    elif cluster_method == 'optics':
+        model = OPTICS(min_samples=5, max_eps=0.5)
     else:
-        raise ValueError(f'Unknown clustering method: {cluster_method}')
+        raise ValueError(f"Unknown clustering method: {cluster_method}")
     
     clusters = model.fit_predict(directives)
 
@@ -49,12 +62,14 @@ def generate_metrics_plot(
     x_metric: str,
     y_metric: str, 
     directives: Optional[NDArray[np.int_]] = None,
+    directive_config_path: Optional[str] = None,
     output_dir: Optional[str] = None,
     n_clusters: int = 5,
     cluster_method: str = 'kmeans',
+    n_components: int = 2,
     plot_type: str = 'scatter'
 ):
-    plt.figure(figsize=(12, 8), dpi=150)
+    plt.figure(figsize=(10, 6), dpi=150)
 
     metrics = metrics.copy()
     metrics[x_metric] = metrics[x_metric].astype(float)
@@ -62,13 +77,47 @@ def generate_metrics_plot(
     metrics = metrics.dropna(subset=[x_metric, y_metric])
     metrics = metrics[(metrics[x_metric] > 0) & (metrics[y_metric] > 0)]
 
+    if directive_config_path is not None:
+        with open(directive_config_path, 'r') as f:
+            directive_config = json.load(f)["directives"]
+            directive_config = [
+                (group_name, group["possible_directives"]) 
+                for group_name, group in directive_config.items() 
+                if group.get("possible_directives")
+            ]
+
     if directives is not None:
         if len(directives) != len(metrics):
             raise ValueError("Number of directives must match number of metric entries.")
         
         clusters = cluster_by_directive(
-            directives, n_clusters, cluster_method=cluster_method
+            directives, n_clusters, cluster_method=cluster_method, n_components=n_components
         )
+        output_file = f'{output_dir}/{benchmark}_{x_metric}_{y_metric}_clusters.json'
+        output_data = {"clusters": []}
+
+        n_clusters = len(np.unique(clusters))
+
+        for i in range(n_clusters):
+            cluster_directives = directives[clusters == i]
+            if len(cluster_directives) == 0:
+                continue
+            mean_directive = np.mean(cluster_directives, axis=0)
+            cluster_info = {"id": i, "groups": []}
+            
+            for j, directive in enumerate(mean_directive):
+                group_name = directive_config[j][0]
+                group_directives = directive_config[j][1]
+                group_info = {group_name: []}
+                for k in range(len(group_directives) - 1):
+                    group_info[group_name].append({group_directives[k + 1]: directive[k]})
+
+                cluster_info["groups"].append(group_info)
+            
+            output_data["clusters"].append(cluster_info)
+            
+        with open(output_file, 'w') as f:
+            json.dump(output_data, f, indent=2)
 
         if plot_type == 'scatter':
             cmap = plt.get_cmap('viridis')
@@ -130,12 +179,14 @@ def parse_args():
                         help='Random seed for clustering (default: 42)')
     parser.add_argument('-c', '--num-clusters', required=False, default=5,
                         help='Number of clusters to group solutions (default: 5)')
-    parser.add_argument('-cm', '--cluster-method', choices=['kmeans', 'aggl'], default='kmeans',
+    parser.add_argument('-cm', '--cluster-method', choices=['kmeans', 'aggl', 'mean_shift', 'dbscan', 'optics'], default='kmeans',
                         help='Clustering method (default: kmeans)')
     parser.add_argument('-f', '--filtered', required=False, action='store_true', default=False,
                         help='Sinalize if the dataset is filtered (default: False)')
     parser.add_argument('-p', '--plot-type', choices=['scatter', 'hexbin'], default='scatter',
                         help='Visualization type (default: scatter)')
+    parser.add_argument('-pc', '--principal-components', required=False, default=2,
+                        help='Number of principal components for PCA (default: 2)')
     return parser.parse_args()
 
 
@@ -151,6 +202,7 @@ def main(args):
     cluster_method = args.cluster_method
     n_clusters = int(args.num_clusters)
     seed = int(args.seed)
+    principal_components = int(args.principal_components)
 
     benchmark_path = f'{dataset_dir}/{benchmark}'
     if not os.path.exists(benchmark_path):
@@ -176,7 +228,8 @@ def main(args):
     generate_metrics_plot(
         metrics, benchmark, x_data, y_data, directives=directives,
         output_dir=output_dir, n_clusters=n_clusters, 
-        cluster_method=cluster_method, plot_type=plot_type
+        cluster_method=cluster_method, n_components=principal_components,
+        plot_type=plot_type, directive_config_path=directive_config_path
     )
 
 

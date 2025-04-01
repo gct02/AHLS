@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import re
 import os
+import json
 from collections import defaultdict
 from typing import Optional, Dict
 
@@ -35,6 +36,20 @@ class BaseNode:
         self.attributes.update(
             rtl_resources.get(self.rtl_name, {res: 0 for res in AVAILABLE_METRICS})
         )
+
+    def __dict__(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'rtl_name': self.rtl_name,
+            'attributes': self.attributes
+        }
+    
+    def __str__(self):
+        return json.dumps(self.__dict__(), indent=2)
+    
+    def __repr__(self):
+        return self.__str__()
 
 
 class PortNode(BaseNode):
@@ -90,22 +105,33 @@ class BlockNode(BaseNode):
 
 class RegionNode:
     def __init__(self, element: ET.Element):
+        self.type = 'region'
         self.id = findint(element, 'mId') - 1
         self.name = element.findtext('mTag')
-        self.type = 'region'
+
         self.attributes = self._extract_attributes(element)
+        if self.attributes['is_loop'] == 1:
+            if self.attributes['min_trip_count'] == 0:
+                self.attributes['min_trip_count'] = 1
+            if self.attributes['max_trip_count'] == 0:
+                self.attributes['max_trip_count'] = 1
+            if self.attributes['ii'] == 0:
+                self.attributes['ii'] = self.attributes['max_latency']
+            if self.attributes['depth'] == 0:
+                self.attributes['depth'] = 1
+
         self.sub_regions = self._extract_items(element, 'sub_regions', -1)
         self.blocks = self._extract_items(element, 'basic_blocks')
 
     def _extract_attributes(self, element):
         return {
-            'region_type': element.findtext('mType'),
-            'ii': findint(element, 'mII', 0),
-            'depth': findint(element, 'mDepth', 0),
-            'min_trip_count': findint(element, 'mMinTripCount', 0),
-            'max_trip_count': findint(element, 'mMaxTripCount', 0),
-            'min_latency': findint(element, 'mMinLatency', 0),
-            'max_latency': findint(element, 'mMaxLatency', 0),
+            'is_loop': findint(element, 'mType'),
+            'ii': max(0, findint(element, 'mII', 0)),
+            'depth': max(0, findint(element, 'mDepth', 0)),
+            'min_trip_count': max(0, findint(element, 'mMinTripCount', 0)),
+            'max_trip_count': max(0, findint(element, 'mMaxTripCount', 0)),
+            'min_latency': max(0, findint(element, 'mMinLatency', 0)),
+            'max_latency': max(0, findint(element, 'mMaxLatency', 0)),
             "unroll": 0,
             "pipeline": 0,
             "loop_flatten": 0,
@@ -115,6 +141,19 @@ class RegionNode:
     
     def _extract_items(self, element, tag, offset=0):
         return [int(item.text) + offset for item in element.find(tag).findall('item')]
+    
+    def __dict__(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'attributes': self.attributes
+        }
+    
+    def __str__(self):
+        return json.dumps(self.__dict__(), indent=2)
+    
+    def __repr__(self):
+        return self.__str__()
 
 
 class CDFG:
@@ -125,10 +164,8 @@ class CDFG:
     ):
         self.nodes = defaultdict(list)
         self.edges = defaultdict(list)
-        self._node_id_map = defaultdict(dict)
         self._offsets = offsets if offsets else defaultdict(int)
-        self._indices = defaultdict(int)
-        self._edge_id_map = defaultdict(dict)
+        self._node_id_map = {}
 
         cdfg = root.find('syndb/cdfg')
         self.name = cdfg.findtext('name')
@@ -165,7 +202,7 @@ class CDFG:
         offset = self._offsets[ntype]
         for i, elem in enumerate(section.findall('item')):
             node = node_class(elem, resources) if resources else node_class(elem)
-            self._node_id_map[ntype][node.id] = i + offset
+            self._node_id_map[node.id] = (i + offset, ntype)
             node.id = i + offset
             self.nodes[ntype].append(node)
 
@@ -173,9 +210,9 @@ class CDFG:
         offset = self._offsets['block']
         for i, elem in enumerate(blocks.findall('item')):
             node = BlockNode(elem, self._resources)
-            self._node_id_map['block'][node.id] = i + offset
+            self._node_id_map[node.id] = (i + offset, 'block')
             node.id = i + offset
-            node.instrs = [self._node_id_map['instr'][instr] for instr in node.instrs]
+            node.instrs = [self._node_id_map[i][0] for i in node.instrs]
             self.nodes['block'].append(node)
 
     def _process_regions(self, regions):
@@ -184,16 +221,20 @@ class CDFG:
             node = RegionNode(elem)
             node.id += offset
             node.sub_regions = [sr + offset for sr in node.sub_regions]
-            node.blocks = [self._node_id_map['block'][b] for b in node.blocks]
+            node.blocks = [self._node_id_map[b][0] for b in node.blocks]
             self.nodes['region'].append(node)
 
     def _map_node_ids(self, ntype):
         offset = self._offsets[ntype]
         for i, node in enumerate(self.nodes[ntype]):
-            self._node_id_map[ntype][node.id] = i + offset
-            node.id = i + offset
+            self._node_id_map[node.id] = (i + offset, ntype)
+            self.nodes[ntype][i].id = i + offset
 
     def _parse_edges(self, cdfg):
+        edge_id_map = {}
+        indices = 0
+        const_etype = ('const', 'data', 'instr')
+
         for elem in cdfg.find('edges').findall('item'):
             etype = self._map_edge_type(elem.findtext('edge_type', ''))
             if etype == '':
@@ -202,26 +243,28 @@ class CDFG:
             dst = findint(elem, 'sink_obj')
             if src is None or dst is None:
                 continue
-            src, stype = self._get_id_and_type(src)
-            dst, dtype = self._get_id_and_type(src)
+            src, stype = self._node_id_map.get(src, (None, None))
+            dst, dtype = self._node_id_map.get(dst, (None, None))
             if src is None or dst is None:
                 continue
             etype = (stype, etype, dtype)
             self.edges[etype].append((src, dst))
-            self._edge_id_map[findint(elem, 'id')] = self._indices[etype]
-            self._indices[etype] += 1
 
-        for instr in self.nodes['instr']:
-            instr.operand_edges = [self._edge_id_map[eid] for eid in instr.operand_edges]
+            if etype == const_etype:
+                edge_id_map[findint(elem, 'id')] = indices
+                indices += 1
 
-    def _get_id_and_type(self, original_id):
-        for ntype, nmap in self._node_id_map.items():
-            if original_id in nmap:
-                return nmap[original_id], ntype
-        return None, None
+        for i, instr in enumerate(self.nodes['instr']):
+            filtered_edges = []
+            for old_id in instr.operand_edges:
+                new_id = edge_id_map.get(old_id)
+                if new_id is None:
+                    continue
+                filtered_edges.append(self.edges[const_etype][new_id])
+            self.nodes['instr'][i].operand_edges = filtered_edges
 
     def _map_edge_type(self, etype):
-        return {'1': 'operand', '2': 'pred', '4': 'mem'}.get(etype, '')
+        return {'1': 'data', '2': 'succ', '4': 'mem'}.get(etype, '')
 
     def _build_hierarchy_edges(self):
         for reg in self.nodes['region']:
@@ -294,30 +337,20 @@ class HLSData:
             self.edges[etype].extend(edges)
 
     def _include_call_flow(self):
-        def get_dummy_constant(cdfg, idx):
-            for node in cdfg.nodes['const']:
-                if node.id == idx:
-                    return node
-            return None
-        
         call_etype = ('instr', 'call', 'instr')
-        dummy_etype = ('const', 'operand', 'instr')
+        dummy_etype = ('const', 'data', 'instr')
         
-        for cdfg in self._cdfgs.values():
-            for instr in cdfg.nodes['instr']:
-                if instr.attributes["opcode"] != "call":
-                    continue
-                # The source node of the first operand edge 
-                # contains the name of the called function
-                eid = instr.operand_edges[0]
-                dummy_edge = cdfg.edges[dummy_etype][eid]
-                dummy_node = get_dummy_constant(cdfg, dummy_edge[0])
-                if dummy_node is None:
-                    continue
-                callee = self._cdfgs[dummy_node.name]
-                callee_start = callee.nodes['instr'][0]
-                
-                self.edges[call_etype].append((instr.id, callee_start.id))
+        for instr in self.nodes['instr']:
+            if instr.attributes["opcode"] != "call" or not instr.operand_edges:
+                continue
+            # The source node of the first operand edge 
+            # contains the name of the called function
+            dummy_edge = instr.operand_edges[0]
+            dummy_node = self.nodes['const'][dummy_edge[0]]
+            callee = self._cdfgs[dummy_node.name]
+            callee_start = callee.nodes['instr'][0]
+            
+            self.edges[call_etype].append((instr.id, callee_start.id))
         
         self._remove_dummy_constants(dummy_etype)
 
@@ -331,6 +364,24 @@ class HLSData:
                     if src < i
                 ]
                 break
+
+    def dump(self, filepath):
+        with open(filepath, 'w') as f:
+            json.dump(self.__dict__(), f, indent=2)
+
+    def __dict__(self):
+        return {
+            'name': self.name,
+            'metrics': self.metrics,
+            'nodes': {nt: [node.__dict__() for node in nodes] for nt, nodes in self.nodes.items()},
+            'edges': {f"{et[0]}__{et[1]}__{et[2]}": edges for et, edges in self.edges.items()}
+        }
+    
+    def __str__(self):
+        return json.dumps(self.__dict__(), indent=2)
+    
+    def __repr__(self):
+        return self.__str__()
 
 
 def collect_adb_files(solution_dir, filtered=False):

@@ -26,6 +26,7 @@ void twiddles8(TYPE a_x[8], TYPE a_y[8], int i, int n){
     TYPE phi, tmp, phi_x, phi_y;
 
     twiddles:for(j=1; j < 8; j++){
+        #pragma HLS LOOP_TRIPCOUNT min=7 max=7 avg=7
         phi = ((-2*PI*reversed8[j]/n)*i);
         phi_x = cos(phi);
         phi_y = sin(phi);
@@ -125,6 +126,7 @@ void fft1D_512(TYPE work_x[512], TYPE work_y[512]){
 
     //Do it all at once...
 loop1 : for(tid = 0; tid < THREADS; tid++){
+            #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
             //GLOBAL_LOAD...
             data_x[0] = work_x[0*stride+tid];
             data_x[1] = work_x[1*stride+tid];
@@ -172,6 +174,7 @@ loop1 : for(tid = 0; tid < THREADS; tid++){
         int sx, offset;
         sx = 66;
 loop2 : for(tid = 0; tid < 64; tid++){
+            #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
             hi = tid>>3;
             lo = tid&7;
             offset = hi*8+lo;
@@ -186,6 +189,7 @@ loop2 : for(tid = 0; tid < 64; tid++){
         }
         sx = 8;
 loop3 : for(tid = 0; tid < 64; tid++){
+            #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
             hi = tid>>3;
             lo = tid&7;
             offset = lo*66+hi;
@@ -202,6 +206,7 @@ loop3 : for(tid = 0; tid < 64; tid++){
 
         sx = 66;
 loop4 : for(tid = 0; tid < 64; tid++){
+            #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
             hi = tid>>3;
             lo = tid&7;
             offset = hi*8+lo;
@@ -217,6 +222,7 @@ loop4 : for(tid = 0; tid < 64; tid++){
         }
 
 loop5 : for(tid = 0; tid < 64; tid++){
+            #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
             data_y[0] = DATA_y[tid*8 + 0];
             data_y[1] = DATA_y[tid*8 + 1];
             data_y[2] = DATA_y[tid*8 + 2];
@@ -242,6 +248,7 @@ loop5 : for(tid = 0; tid < 64; tid++){
         }
 
 loop6 : for(tid = 0; tid < 64; tid++){
+            #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
             data_x[0] = DATA_x[tid*8 + 0];
             data_x[1] = DATA_x[tid*8 + 1];
             data_x[2] = DATA_x[tid*8 + 2];
@@ -292,6 +299,7 @@ loop6 : for(tid = 0; tid < 64; tid++){
         //Transpose..
         sx = 72;
 loop7 : for(tid = 0; tid < 64; tid++){
+            #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
             hi = tid>>3;
             lo = tid&7;
             offset = hi*8+lo;
@@ -307,6 +315,7 @@ loop7 : for(tid = 0; tid < 64; tid++){
 
         sx = 8;
 loop8 : for(tid = 0; tid < 64; tid++){
+            #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
             hi = tid>>3;
             lo = tid&7;
             offset = hi*72+lo;
@@ -323,6 +332,7 @@ loop8 : for(tid = 0; tid < 64; tid++){
 
         sx = 72;
 loop9 : for(tid = 0; tid < 64; tid++){
+            #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
             hi = tid>>3;
             lo = tid&7;
             offset = hi*8+lo;
@@ -338,6 +348,7 @@ loop9 : for(tid = 0; tid < 64; tid++){
         }
 
 loop10 : for(tid = 0; tid < 64; tid++){
+            #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
              data_y[0] = DATA_y[tid*8 + 0];
              data_y[1] = DATA_y[tid*8 + 1];
              data_y[2] = DATA_y[tid*8 + 2];
@@ -363,6 +374,7 @@ loop10 : for(tid = 0; tid < 64; tid++){
          }
 
 loop11 : for(tid = 0; tid < 64; tid++){
+            #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
              //Load post-trans
              data_y[0] = DATA_y[tid*8];
              data_y[1] = DATA_y[tid*8 + 1];

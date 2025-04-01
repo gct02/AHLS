@@ -63,8 +63,7 @@ def main(args: Dict[str, str]):
                 base_edges[benchmark.name],
                 base_feats[benchmark.name],
                 base_metrics[benchmark.name],
-                directives_tcl=tcl_path, 
-                output_hetero_data=True
+                directives_tcl=tcl_path
             )
             torch.save(graph, solution_out / "graph.pt")
 
