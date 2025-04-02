@@ -45,6 +45,7 @@ EDGE_TYPES = [
     ("instr", "self", "instr"), ("port", "self", "port"),
     ("const", "self", "const"), ("block", "self", "block"),
     ("region", "self", "region"), ("ap_pragma", "self", "ap_pragma"),
+    ("base", "self", "base")
 ]
 NODE_FEATURE_DIMS = {
     "instr": 55, "port": 7, "const": 4, "block": 4, 
@@ -138,8 +139,6 @@ def to_hetero_data(feature_dict, edge_dict, add_self_edges=True):
 
     if add_self_edges:
         for nt, nodes in feature_dict.items():
-            if nt == "base":
-                continue
             src = torch.arange(len(nodes), dtype=torch.long)
             dst = src.clone()
             data[nt, "self", nt].edge_index = torch.stack([src, dst], dim=0)

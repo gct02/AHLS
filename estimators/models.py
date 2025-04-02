@@ -1,11 +1,13 @@
-from typing import Dict, Union, Tuple
+from typing import Dict, Union
 
 import torch
 import torch.nn as nn
-from torch.nn import functional as F
+import torch.nn.functional as F
 from torch import Tensor
-from torch_geometric.nn import HeteroDictLinear, HGTConv, SAGPooling
-from torch_geometric.data import HeteroData
+from torch_geometric.nn import (
+    HGTConv, LayerNorm, HeteroDictLinear, 
+    JumpingKnowledge, global_add_pool
+)
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 from torch.types import Device
 
@@ -21,9 +23,7 @@ class HGT(nn.Module):
         in_channels (int or Dict[str, int]): Number of input channels 
             for each node type.
         out_channels (int): Number of output channels.
-        dropout_conv (float): Dropout rate for convolutional layers.
-            (default: :obj:`0.0`)
-        dropout_fc (float): Dropout rate for fully connected layers. 
+        dropout (float): Dropout rate for fully connected layers. 
             (default: :obj:`0.1`)
         device (torch.device): Device to use for computation. 
             (default: :obj:`"cpu"`)
@@ -32,122 +32,152 @@ class HGT(nn.Module):
         metadata: Metadata,
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
-        dropout_conv: float = 0.0,
-        dropout_fc: float = 0.1,
+        dropout: float = 0.1,
         device: Device = 'cpu'
     ):
         super().__init__()
 
         self.node_types = metadata[0]
         self.edge_types = metadata[1]
+        self.dropout = dropout
         self.device = device
-        self.dropout_conv = dropout_conv
-        self.dropout_fc = dropout_fc
 
-        # Define projection layers
-        self.proj = nn.ModuleList([
-            HeteroDictLinear(in_channels, 128, self.node_types),
-            HeteroDictLinear(128, 256, self.node_types),
-            HeteroDictLinear(256, 512, self.node_types),
-        ])
-
-        updated_metadata = (
-            [nt for nt in metadata[0] if nt != "base"],
-            [et for et in metadata[1] if et[1] != "base"]
+        # Define projection layer
+        proj_dim = 256
+        self.proj = HeteroDictLinear(
+            in_channels, proj_dim, 
+            types=self.node_types,
+            weight_initializer='kaiming_uniform',
+            bias_initializer='zeros'
         )
 
         # Define convolutional layers
-        self.conv = nn.ModuleList([
-            HGTConv(512, 512, metadata, 8),
-            HGTConv(512, 256, updated_metadata, 8),
-            HGTConv(256, 128, updated_metadata, 8),
-            HGTConv(128, 64, updated_metadata, 4),
-            HGTConv(64, 32, updated_metadata, 4)
-        ])
-        self.n_conv_layers = len(self.conv)
+        hid_dims = [128, 96, 64, 48, 32]
+        heads = [8, 8, 8, 4, 4]
+        self.n_conv_layers = len(hid_dims)
 
-        # Define pooling layer
-        self.pool = SAGPooling(32, ratio=16)
+        self.conv = nn.ModuleList()
+        self.norm = nn.ModuleList()
+        
+        for i in range(self.n_conv_layers):
+            self.conv.append(
+                HGTConv(
+                    proj_dim if i == 0 else hid_dims[i-1], 
+                    hid_dims[i], metadata, heads=heads[i]
+                )
+            )
+            self.norm.append(
+                nn.ModuleDict({
+                    nt: LayerNorm(hid_dims[i])
+                    for nt in self.node_types
+                })
+            )
 
-        # Define graph-level fully connected layers
-        hid_dims = [512, 256, 128, 64, 32, 16, 8, 4]
-        self.mlp = nn.Sequential()
-        for i in range(len(hid_dims) - 1):
-            self.mlp.extend([
-                nn.Linear(hid_dims[i], hid_dims[i + 1]),
-                nn.GELU(),
-                nn.Dropout(dropout_fc)
-            ])
-        self.mlp.extend([nn.Linear(hid_dims[-1], out_channels)])
+        # Define JK layer
+        self.jk = nn.ModuleDict({
+            nt: JumpingKnowledge(mode='cat')
+            for nt in self.node_types
+        })
+
+        # Define node type-wise linear layers
+        jk_dim = sum(hid_dims)
+        self.node_lin = HeteroDictLinear(
+            jk_dim, 128, 
+            types=self.node_types,
+            weight_initializer='kaiming_uniform',
+            bias_initializer='zeros'
+        )
+
+        # Define graph-level MLP
+        n_types = len(self.node_types)
+        self.graph_mlp = nn.Sequential(
+            nn.Linear(128 * n_types, 256), nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
+            nn.Linear(256, 128), nn.BatchNorm1d(128), nn.GELU(), nn.Dropout(dropout),
+            nn.Linear(128, 64), nn.BatchNorm1d(64), nn.GELU(), nn.Dropout(dropout),
+            nn.Linear(64, out_channels)
+        )
 
         self.reset_parameters()
         self.to(device)
 
     def reset_parameters(self):
         """Reinitializes model parameters."""
-        for m in self.modules():
-            self._init_weights(m)
+        self.proj.reset_parameters()
+        
+        for conv, norm in zip(self.conv, self.norm):
+            conv.reset_parameters()
+            for nt in self.node_types:
+                norm[nt].reset_parameters()
+        
+        self.node_lin.reset_parameters()
+        
+        for m in self.graph_mlp.modules():
+            if isinstance(m, nn.Linear):
+                if m.out_features == self.out_channels:
+                    nn.init.xavier_uniform_(m.weight)
+                else:
+                    nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
+                if m.bias is not None:
+                    nn.init.zeros_(m.bias)
+            elif isinstance(m, nn.BatchNorm1d):
+                m.reset_parameters()
 
-    def _init_weights(self, m):
-        if isinstance(m, nn.Linear):
-            nn.init.xavier_uniform_(m.weight)
-            if m.bias is not None:
-                nn.init.zeros_(m.bias)
-        elif isinstance(m, nn.LayerNorm):
-            nn.init.ones_(m.weight)
-            nn.init.zeros_(m.bias)
-        elif isinstance(m, HGTConv) or isinstance(m, SAGPooling):
-            m.reset_parameters()
-
-    def forward(self, data: HeteroData) -> Tensor:
+    def forward(
+        self,
+        x_dict: Dict[NodeType, Tensor],
+        edge_index_dict: Dict[EdgeType, Tensor],
+        batch_dict: Dict[NodeType, Tensor]
+    ) -> Tensor:
         r"""Runs the forward pass of the module.
 
         Args:
-            data (torch_geometric.data.HeteroData): A data object containing
-                input node features and graph  connectivity information for 
-                each individual edge type.
+            x_dict (Dict[NodeType, Tensor]): Dictionary of node features for each node type.
+            edge_index_dict (Dict[EdgeType, Tensor]): Dictionary of edge indices for each edge type.
+            batch_dict (Dict[NodeType, Tensor]): Dictionary of batch indices for each node type.
     
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
-        x_dict, edge_index_dict = data.x_dict, data.edge_index_dict
+        # Projection layer
+        x_dict = self.proj(x_dict)
+        x_dict = {
+            nt: F.dropout(F.gelu(x), p=self.dropout, training=self.training)
+            for nt, x in x_dict.items()
+        }
 
-        # Projection layers
-        for proj in self.proj:
-            x_dict = proj(x_dict)
-            for k, v in x_dict.items():
-                x_dict[k] = F.gelu(v)
-                if k != "base":
-                    x_dict[k] = F.dropout(v, p=self.dropout_fc, training=self.training)
-
-        # First convolutional layer
-        x_dict = self.conv[0](x_dict, edge_index_dict)
-
-        for k in list(x_dict.keys()):
-            if k == "base":
-                x_dict.pop(k)
-        for k in list(edge_index_dict.keys()):
-            if k[1] == "base":
-                edge_index_dict.pop(k)
-
-        # Subsequent convolutional layers
-        for i in range(1, self.n_conv_layers):
-            x_dict = {
-                k: F.dropout(v, p=self.dropout_conv, training=self.training) 
-                for k, v in x_dict.items()
-            }
+        # Convolutional layers
+        xs_dict = {nt: [] for nt in self.node_types}
+        for i in range(self.n_conv_layers):
             x_dict = self.conv[i](x_dict, edge_index_dict)
+            x_dict = {nt: self.norm[i][nt](x) for nt, x in x_dict.items()}
+            for nt, x in x_dict.items():
+                xs_dict[nt].append(x)
+
+        # JK layer
+        x_dict = {nt: self.jk[nt](xs) for nt, xs in xs_dict.items()}
+
+        # Node type-wise linear layer
+        x_dict = self.node_lin(x_dict)
+        x_dict = {
+            nt: F.dropout(F.gelu(x), p=self.dropout, training=self.training)
+            for nt, x in x_dict.items()
+        }
 
         # Pooling layer
-        instr_edge_index = torch.cat([
-            v for k, v in edge_index_dict.items() if k[0] == "instr" and k[2] == "instr"
-        ], dim=1)
-        instr_batch = data.batch_dict["instr"]
-        batch_size = instr_batch.max().item() + 1
-
-        out = self.pool(
-            x_dict["instr"], instr_edge_index, batch=instr_batch
-        )[0].view(batch_size, -1)
+        batch_size = self._get_batch_size(batch_dict)
+        x_list = []
+        for nt, x in x_dict.items():
+            x = global_add_pool(x, batch_dict[nt], size=batch_size)
+            x_list.append(x.view(batch_size, -1))
 
         # Graph-level MLP
-        out = self.mlp(out).squeeze(1)
+        out = self.graph_mlp(torch.cat(x_list, dim=1)).squeeze(1)
+
         return out
+    
+    def _get_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
+        """Returns the batch size."""
+        max_size = 0
+        for batch in batch_dict.values():
+            if batch.numel() > 0:
+                max_size = max(max_size, batch.max().item())
+        return max_size + 1

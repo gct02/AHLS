@@ -67,8 +67,6 @@ class HLSDataset(Dataset):
         **kwargs
     ):
         self.root = root
-        self.raw_dir = os.path.join(root, "raw")
-        self.processed_dir = os.path.join(root, "processed")
         self.full_data_dir = full_data_dir if separate else None
         self.metric = metric
         

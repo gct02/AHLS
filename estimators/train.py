@@ -188,7 +188,7 @@ def main(args: Dict[str, str]):
     
     model = HGT(
         (NODE_TYPES, EDGE_TYPES), NODE_FEATURE_DIMS, 1, 
-        dropout_conv=0.0, dropout_fc=0.1, device=DEVICE
+        dropout_conv=0.0, dropout=0.1, device=DEVICE
     )
 
     if loss == 'huber':
