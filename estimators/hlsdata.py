@@ -20,7 +20,11 @@ ResourceMapper = Dict[str, Dict[str, int]]
 
 
 class BaseNode:
-    def __init__(self, element: ET.Element, rtl_resources=None):
+    def __init__(
+        self, 
+        element: ET.Element, 
+        rtl_resources: Optional[ResourceMapper] = None
+    ):
         self.id, self.name, self.rtl_name = self._extract_basic_info(element)
         self.attributes = {}
         
@@ -38,12 +42,8 @@ class BaseNode:
         )
 
     def __dict__(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'rtl_name': self.rtl_name,
-            'attributes': self.attributes
-        }
+        return {'id': self.id, 'name': self.name, 'rtl_name': self.rtl_name, 
+                'attributes': self.attributes}
     
     def __str__(self):
         return json.dumps(self.__dict__(), indent=2)
@@ -57,10 +57,10 @@ class PortNode(BaseNode):
         super().__init__(element)
         self.type = 'port'
         self.attributes.update({
-            'bitwidth': findint(element, 'Value/bitwidth'),
-            'direction': findint(element, 'direction'),
-            'port_type': findint(element, 'if_type'),
-            'array_size': findint(element, 'array_size')
+            'bitwidth': findint(element, 'Value/bitwidth', 0),
+            'direction': findint(element, 'direction', 2),
+            'port_type': element.findtext('port_type', ''),
+            'array_size': findint(element, 'array_size', 0)
         })
 
 
@@ -70,17 +70,20 @@ class InstructionNode(BaseNode):
         super().__init__(element, rtl_resources)
         self.type = 'instr'
         self.attributes.update({
-            'core_name': element.findtext('Value/Obj/coreName'),
-            'storage_depth': findint(element, 'Value/Obj/storageDepth'),
-            'bitwidth': findint(element, 'Value/bitwidth'),
-            'opcode': element.findtext('opcode'),
-            'critical': findint(element, 'm_isOnCriticalPath'),
-            'delay': findfloat(element, 'm_delay')
+            'core_name': element.findtext('Value/Obj/coreName', ''),
+            'storage_depth': findint(element, 'Value/Obj/storageDepth', 0),
+            'bitwidth': findint(element, 'Value/bitwidth', 0),
+            'opcode': element.findtext('opcode', ''),
+            'critical': findint(element, 'm_isOnCriticalPath', 0),
+            'delay': findfloat(element, 'm_delay', 0.0)
         })
         self.operand_edges = self._extract_operand_edges(element)
 
     def _extract_operand_edges(self, element):
-        return [int(edge.text) for edge in element.find('oprand_edges').findall('item')]
+        return [
+            int(edge.text) 
+            for edge in element.find('oprand_edges').findall('item')
+        ]
 
 
 class ConstantNode(BaseNode):
@@ -88,8 +91,8 @@ class ConstantNode(BaseNode):
         super().__init__(element)
         self.type = 'const'
         self.attributes.update({
-            'bitwidth': findint(element, 'Value/bitwidth'),
-            'const_type': findint(element, 'const_type')
+            'bitwidth': findint(element, 'Value/bitwidth', 0),
+            'const_type': findint(element, 'const_type', 0),
         })
 
 
@@ -100,7 +103,10 @@ class BlockNode(BaseNode):
         self.instrs = self._extract_instructions(element)
 
     def _extract_instructions(self, element):
-        return [int(instr.text) for instr in element.find('node_objs').findall('item')]
+        return [
+            int(instr.text) 
+            for instr in element.find('node_objs').findall('item')
+        ]
 
 
 class RegionNode:
@@ -108,46 +114,43 @@ class RegionNode:
         self.type = 'region'
         self.id = findint(element, 'mId') - 1
         self.name = element.findtext('mTag')
-
         self.attributes = self._extract_attributes(element)
-        if self.attributes['is_loop'] == 1:
-            if self.attributes['min_trip_count'] == 0:
-                self.attributes['min_trip_count'] = 1
-            if self.attributes['max_trip_count'] == 0:
-                self.attributes['max_trip_count'] = 1
-            if self.attributes['ii'] == 0:
-                self.attributes['ii'] = self.attributes['max_latency']
-            if self.attributes['depth'] == 0:
-                self.attributes['depth'] = 1
-
         self.sub_regions = self._extract_items(element, 'sub_regions', -1)
         self.blocks = self._extract_items(element, 'basic_blocks')
 
     def _extract_attributes(self, element):
+        is_loop = findint(element, 'mType', 0)
+        if is_loop == 1:
+            min_lat = max(1, findint(element, 'mMinLatency', 0))
+            max_lat = max(min_lat, findint(element, 'mMaxLatency', 0))
+            min_tc = max(1, findint(element, 'mMinTripCount', 0))
+            max_tc = max(min_tc, findint(element, 'mMaxTripCount', 0))
+            depth = max(1, findint(element, 'mDepth', 0))
+            ii = findint(element, 'mII', 0)
+            if ii <= 0:
+                ii = min_lat
+        else:
+            min_lat = max(0, findint(element, 'mMinLatency', 0))
+            max_lat = max(0, findint(element, 'mMaxLatency', 0))
+            min_tc = max_tc = depth = ii = 0
+
         return {
-            'is_loop': findint(element, 'mType'),
-            'ii': max(0, findint(element, 'mII', 0)),
-            'depth': max(0, findint(element, 'mDepth', 0)),
-            'min_trip_count': max(0, findint(element, 'mMinTripCount', 0)),
-            'max_trip_count': max(0, findint(element, 'mMaxTripCount', 0)),
-            'min_latency': max(0, findint(element, 'mMinLatency', 0)),
-            'max_latency': max(0, findint(element, 'mMaxLatency', 0)),
-            "unroll": 0,
-            "pipeline": 0,
-            "loop_flatten": 0,
-            "loop_merge": 0,
-            "unroll_factor": 0
+            'is_loop': is_loop, 'ii': ii, 'depth': depth,
+            'min_trip_count': min_tc, 'max_trip_count': max_tc,
+            'min_latency': min_lat, 'max_latency': max_lat,
+            "unroll": 0, "pipeline": 0, "loop_flatten": 0,
+            "loop_merge": 0, "unroll_factor": 0
         }
     
     def _extract_items(self, element, tag, offset=0):
-        return [int(item.text) + offset for item in element.find(tag).findall('item')]
+        return [
+            int(item.text) + offset 
+            for item in element.find(tag).findall('item')
+        ]
     
     def __dict__(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'attributes': self.attributes
-        }
+        return {'id': self.id, 'name': self.name, 
+                'attributes': self.attributes}
     
     def __str__(self):
         return json.dumps(self.__dict__(), indent=2)
@@ -160,17 +163,19 @@ class CDFG:
     def __init__(
         self, root: ET.Element, 
         offsets: Optional[Dict[str, int]] = None,
-        rtl_resources=None
+        rtl_resources: Optional[ResourceMapper] = None
     ):
         self.nodes = defaultdict(list)
         self.edges = defaultdict(list)
+
         self._offsets = offsets if offsets else defaultdict(int)
         self._node_id_map = {}
 
         cdfg = root.find('syndb/cdfg')
+
         self.name = cdfg.findtext('name')
         self.ret_bitwidth = findint(cdfg, 'ret_bitwidth')
-        self._resources = rtl_resources
+        self._resources = rtl_resources if rtl_resources else {}
 
         self._complement_resource_info(root)
 
@@ -187,8 +192,8 @@ class CDFG:
 
     def _process_constants(self, consts):
         dummy_consts = []
-        # Insert the constant nodes with const_type = 6 at the end
-		# as they will be removed later
+        # Constant nodes with type 6 are used to represent call edges
+        # and will be removed later
         for elem in consts.findall('item'):
             node = ConstantNode(elem)
             if node.attributes['const_type'] == 6:
@@ -293,7 +298,12 @@ class CDFG:
 
 
 class HLSData:
-    def __init__(self, solution_dir, filtered=False, name=''):
+    def __init__(
+        self, 
+        solution_dir: str, 
+        filtered: bool = False, 
+        name: str = 'solution'
+    ):
         self.name = name
         self.nodes = defaultdict(list)
         self.edges = defaultdict(list)
@@ -325,7 +335,7 @@ class HLSData:
             root = tree.getroot()
             cdfg = CDFG(root, offsets=self._offsets, rtl_resources=rtl_resources)
             self._cdfgs[cdfg.name] = cdfg
-            
+
             self._merge_cdfg_data(cdfg)
 
     def _merge_cdfg_data(self, cdfg):
@@ -360,8 +370,8 @@ class HLSData:
             if node.attributes["const_type"] == 6:
                 del self.nodes['const'][i:]
                 self.edges[dummy_etype] = [
-                    (src, dst) for src, dst in self.edges[dummy_etype] 
-                    if src < i
+                    (src, dst) 
+                    for src, dst in self.edges[dummy_etype] if src < i
                 ]
                 break
 
@@ -373,8 +383,14 @@ class HLSData:
         return {
             'name': self.name,
             'metrics': self.metrics,
-            'nodes': {nt: [node.__dict__() for node in nodes] for nt, nodes in self.nodes.items()},
-            'edges': {f"{et[0]}__{et[1]}__{et[2]}": edges for et, edges in self.edges.items()}
+            'nodes': {
+                nt: [node.__dict__() for node in nodes] 
+                for nt, nodes in self.nodes.items()
+            },
+            'edges': {
+                f"{et[0]}__{et[1]}__{et[2]}": edges 
+                for et, edges in self.edges.items()
+            }
         }
     
     def __str__(self):
