@@ -1,2996 +1,1162 @@
 {
-  "clusters": [
-    {
-      "id": 0,
-      "groups": [
-        {
-          "pipeline encode_label0": [
-            {
-              "set_directive_pipeline \"encode/encode_label0\"": 0.0
-            }
-          ]
-        },
-        {
-          "pipeline encode_label1": [
-            {
-              "set_directive_pipeline \"encode/encode_label1\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "pipeline decode_label2": [
-            {
-              "set_directive_pipeline \"decode/decode_label2\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "pipeline decode_label3": [
-            {
-              "set_directive_pipeline \"decode/decode_label3\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "pipeline reset_label4": [
-            {
-              "set_directive_pipeline \"reset/reset_label4\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "pipeline reset_label5": [
-            {
-              "set_directive_pipeline \"reset/reset_label5\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "pipeline reset_label6": [
-            {
-              "set_directive_pipeline \"reset/reset_label6\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "pipeline reset_label7": [
-            {
-              "set_directive_pipeline \"reset/reset_label7\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "pipeline filtez_label8": [
-            {
-              "set_directive_pipeline \"filtez/filtez_label8\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "pipeline quantl_label9": [
-            {
-              "set_directive_pipeline \"quantl/quantl_label9\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label10": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label10\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label11": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label11\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label12": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label13": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll encode_label0": [
-            {
-              "set_directive_unroll \"encode/encode_label0\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll encode_label1": [
-            {
-              "set_directive_unroll \"encode/encode_label1\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll decode_label2": [
-            {
-              "set_directive_unroll \"decode/decode_label2\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll decode_label3": [
-            {
-              "set_directive_unroll \"decode/decode_label3\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll reset_label4": [
-            {
-              "set_directive_unroll \"reset/reset_label4\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll reset_label5": [
-            {
-              "set_directive_unroll \"reset/reset_label5\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll reset_label6": [
-            {
-              "set_directive_unroll \"reset/reset_label6\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll reset_label7": [
-            {
-              "set_directive_unroll \"reset/reset_label7\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll filtez_label8": [
-            {
-              "set_directive_unroll \"filtez/filtez_label8\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll quantl_label9": [
-            {
-              "set_directive_unroll \"quantl/quantl_label9\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll upzero_label10": [
-            {
-              "set_directive_unroll \"upzero/upzero_label10\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll upzero_label11": [
-            {
-              "set_directive_unroll \"upzero/upzero_label11\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label12": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label13": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.012195121951219513
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.012195121951219513
-            }
-          ]
-        },
-        {
-          "array_partition adpcm_main encoded": [
-            {
-              "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            }
-          ]
-        },
-        {
-          "loop_merge reset": [
-            {
-              "set_directive_loop_merge \"reset\"": 0.012195121951219513
-            }
-          ]
-        }
-      ]
+  "Cluster 0": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.35
     },
-    {
-      "id": 1,
-      "groups": [
-        {
-          "pipeline encode_label0": [
-            {
-              "set_directive_pipeline \"encode/encode_label0\"": 0.4375
-            }
-          ]
-        },
-        {
-          "pipeline encode_label1": [
-            {
-              "set_directive_pipeline \"encode/encode_label1\"": 0.5625
-            }
-          ]
-        },
-        {
-          "pipeline decode_label2": [
-            {
-              "set_directive_pipeline \"decode/decode_label2\"": 0.625
-            }
-          ]
-        },
-        {
-          "pipeline decode_label3": [
-            {
-              "set_directive_pipeline \"decode/decode_label3\"": 0.75
-            }
-          ]
-        },
-        {
-          "pipeline reset_label4": [
-            {
-              "set_directive_pipeline \"reset/reset_label4\"": 0.53125
-            }
-          ]
-        },
-        {
-          "pipeline reset_label5": [
-            {
-              "set_directive_pipeline \"reset/reset_label5\"": 0.625
-            }
-          ]
-        },
-        {
-          "pipeline reset_label6": [
-            {
-              "set_directive_pipeline \"reset/reset_label6\"": 0.5
-            }
-          ]
-        },
-        {
-          "pipeline reset_label7": [
-            {
-              "set_directive_pipeline \"reset/reset_label7\"": 0.53125
-            }
-          ]
-        },
-        {
-          "pipeline filtez_label8": [
-            {
-              "set_directive_pipeline \"filtez/filtez_label8\"": 0.5
-            }
-          ]
-        },
-        {
-          "pipeline quantl_label9": [
-            {
-              "set_directive_pipeline \"quantl/quantl_label9\"": 0.4375
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label10": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label10\"": 0.5
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label11": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label11\"": 0.34375
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label12": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.46875
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label13": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.59375
-            }
-          ]
-        },
-        {
-          "unroll encode_label0": [
-            {
-              "set_directive_unroll \"encode/encode_label0\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.09375
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.28125
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.1875
-            }
-          ]
-        },
-        {
-          "unroll encode_label1": [
-            {
-              "set_directive_unroll \"encode/encode_label1\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.1875
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.1875
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.125
-            }
-          ]
-        },
-        {
-          "unroll decode_label2": [
-            {
-              "set_directive_unroll \"decode/decode_label2\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.125
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.15625
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.1875
-            }
-          ]
-        },
-        {
-          "unroll decode_label3": [
-            {
-              "set_directive_unroll \"decode/decode_label3\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.21875
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.375
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.125
-            }
-          ]
-        },
-        {
-          "unroll reset_label4": [
-            {
-              "set_directive_unroll \"reset/reset_label4\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.15625
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.28125
-            }
-          ]
-        },
-        {
-          "unroll reset_label5": [
-            {
-              "set_directive_unroll \"reset/reset_label5\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.25
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.21875
-            }
-          ]
-        },
-        {
-          "unroll reset_label6": [
-            {
-              "set_directive_unroll \"reset/reset_label6\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.25
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.15625
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.1875
-            }
-          ]
-        },
-        {
-          "unroll reset_label7": [
-            {
-              "set_directive_unroll \"reset/reset_label7\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.21875
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.1875
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.21875
-            }
-          ]
-        },
-        {
-          "unroll filtez_label8": [
-            {
-              "set_directive_unroll \"filtez/filtez_label8\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.1875
-            },
-            {
-              "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.46875
-            }
-          ]
-        },
-        {
-          "unroll quantl_label9": [
-            {
-              "set_directive_unroll \"quantl/quantl_label9\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.40625
-            },
-            {
-              "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.0625
-            },
-            {
-              "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.125
-            }
-          ]
-        },
-        {
-          "unroll upzero_label10": [
-            {
-              "set_directive_unroll \"upzero/upzero_label10\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.28125
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.28125
-            }
-          ]
-        },
-        {
-          "unroll upzero_label11": [
-            {
-              "set_directive_unroll \"upzero/upzero_label11\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.34375
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.25
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label12": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.0625
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.09375
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.21875
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.125
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.125
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label13": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.15625
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.09375
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.1875
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.09375
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.125
-            }
-          ]
-        },
-        {
-          "array_partition adpcm_main encoded": [
-            {
-              "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            }
-          ]
-        },
-        {
-          "loop_merge reset": [
-            {
-              "set_directive_loop_merge \"reset\"": 0.4375
-            }
-          ]
-        }
-      ]
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.65
     },
-    {
-      "id": 2,
-      "groups": [
-        {
-          "pipeline encode_label0": [
-            {
-              "set_directive_pipeline \"encode/encode_label0\"": 0.2903225806451613
-            }
-          ]
-        },
-        {
-          "pipeline encode_label1": [
-            {
-              "set_directive_pipeline \"encode/encode_label1\"": 0.6129032258064516
-            }
-          ]
-        },
-        {
-          "pipeline decode_label2": [
-            {
-              "set_directive_pipeline \"decode/decode_label2\"": 0.7419354838709677
-            }
-          ]
-        },
-        {
-          "pipeline decode_label3": [
-            {
-              "set_directive_pipeline \"decode/decode_label3\"": 0.3225806451612903
-            }
-          ]
-        },
-        {
-          "pipeline reset_label4": [
-            {
-              "set_directive_pipeline \"reset/reset_label4\"": 0.5161290322580645
-            }
-          ]
-        },
-        {
-          "pipeline reset_label5": [
-            {
-              "set_directive_pipeline \"reset/reset_label5\"": 0.5483870967741935
-            }
-          ]
-        },
-        {
-          "pipeline reset_label6": [
-            {
-              "set_directive_pipeline \"reset/reset_label6\"": 0.8064516129032258
-            }
-          ]
-        },
-        {
-          "pipeline reset_label7": [
-            {
-              "set_directive_pipeline \"reset/reset_label7\"": 0.3225806451612903
-            }
-          ]
-        },
-        {
-          "pipeline filtez_label8": [
-            {
-              "set_directive_pipeline \"filtez/filtez_label8\"": 0.5161290322580645
-            }
-          ]
-        },
-        {
-          "pipeline quantl_label9": [
-            {
-              "set_directive_pipeline \"quantl/quantl_label9\"": 0.5806451612903226
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label10": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label10\"": 0.6451612903225806
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label11": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label11\"": 0.6774193548387096
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label12": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.3225806451612903
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label13": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.2903225806451613
-            }
-          ]
-        },
-        {
-          "unroll encode_label0": [
-            {
-              "set_directive_unroll \"encode/encode_label0\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.1935483870967742
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.22580645161290322
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.1935483870967742
-            }
-          ]
-        },
-        {
-          "unroll encode_label1": [
-            {
-              "set_directive_unroll \"encode/encode_label1\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.0967741935483871
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.4838709677419355
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.03225806451612903
-            }
-          ]
-        },
-        {
-          "unroll decode_label2": [
-            {
-              "set_directive_unroll \"decode/decode_label2\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.22580645161290322
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.41935483870967744
-            }
-          ]
-        },
-        {
-          "unroll decode_label3": [
-            {
-              "set_directive_unroll \"decode/decode_label3\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.2903225806451613
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.1935483870967742
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.0967741935483871
-            }
-          ]
-        },
-        {
-          "unroll reset_label4": [
-            {
-              "set_directive_unroll \"reset/reset_label4\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.03225806451612903
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.5806451612903226
-            }
-          ]
-        },
-        {
-          "unroll reset_label5": [
-            {
-              "set_directive_unroll \"reset/reset_label5\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.41935483870967744
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.03225806451612903
-            }
-          ]
-        },
-        {
-          "unroll reset_label6": [
-            {
-              "set_directive_unroll \"reset/reset_label6\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.12903225806451613
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.25806451612903225
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.22580645161290322
-            }
-          ]
-        },
-        {
-          "unroll reset_label7": [
-            {
-              "set_directive_unroll \"reset/reset_label7\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.0967741935483871
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.2903225806451613
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.3225806451612903
-            }
-          ]
-        },
-        {
-          "unroll filtez_label8": [
-            {
-              "set_directive_unroll \"filtez/filtez_label8\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.25806451612903225
-            },
-            {
-              "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.3870967741935484
-            }
-          ]
-        },
-        {
-          "unroll quantl_label9": [
-            {
-              "set_directive_unroll \"quantl/quantl_label9\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.4838709677419355
-            },
-            {
-              "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.16129032258064516
-            },
-            {
-              "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.12903225806451613
-            }
-          ]
-        },
-        {
-          "unroll upzero_label10": [
-            {
-              "set_directive_unroll \"upzero/upzero_label10\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.22580645161290322
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.25806451612903225
-            }
-          ]
-        },
-        {
-          "unroll upzero_label11": [
-            {
-              "set_directive_unroll \"upzero/upzero_label11\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.4838709677419355
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.16129032258064516
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label12": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.12903225806451613
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.3548387096774194
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.22580645161290322
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.0967741935483871
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label13": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.0967741935483871
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.06451612903225806
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.22580645161290322
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.12903225806451613
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.22580645161290322
-            }
-          ]
-        },
-        {
-          "array_partition adpcm_main encoded": [
-            {
-              "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            }
-          ]
-        },
-        {
-          "loop_merge reset": [
-            {
-              "set_directive_loop_merge \"reset\"": 0.3870967741935484
-            }
-          ]
-        }
-      ]
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.85
     },
-    {
-      "id": 3,
-      "groups": [
-        {
-          "pipeline encode_label0": [
-            {
-              "set_directive_pipeline \"encode/encode_label0\"": 0.7391304347826086
-            }
-          ]
-        },
-        {
-          "pipeline encode_label1": [
-            {
-              "set_directive_pipeline \"encode/encode_label1\"": 0.6086956521739131
-            }
-          ]
-        },
-        {
-          "pipeline decode_label2": [
-            {
-              "set_directive_pipeline \"decode/decode_label2\"": 0.043478260869565216
-            }
-          ]
-        },
-        {
-          "pipeline decode_label3": [
-            {
-              "set_directive_pipeline \"decode/decode_label3\"": 0.7391304347826086
-            }
-          ]
-        },
-        {
-          "pipeline reset_label4": [
-            {
-              "set_directive_pipeline \"reset/reset_label4\"": 0.30434782608695654
-            }
-          ]
-        },
-        {
-          "pipeline reset_label5": [
-            {
-              "set_directive_pipeline \"reset/reset_label5\"": 0.6086956521739131
-            }
-          ]
-        },
-        {
-          "pipeline reset_label6": [
-            {
-              "set_directive_pipeline \"reset/reset_label6\"": 0.34782608695652173
-            }
-          ]
-        },
-        {
-          "pipeline reset_label7": [
-            {
-              "set_directive_pipeline \"reset/reset_label7\"": 0.5652173913043478
-            }
-          ]
-        },
-        {
-          "pipeline filtez_label8": [
-            {
-              "set_directive_pipeline \"filtez/filtez_label8\"": 0.6956521739130435
-            }
-          ]
-        },
-        {
-          "pipeline quantl_label9": [
-            {
-              "set_directive_pipeline \"quantl/quantl_label9\"": 0.17391304347826086
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label10": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label10\"": 0.2608695652173913
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label11": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label11\"": 0.391304347826087
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label12": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.782608695652174
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label13": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.391304347826087
-            }
-          ]
-        },
-        {
-          "unroll encode_label0": [
-            {
-              "set_directive_unroll \"encode/encode_label0\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.21739130434782608
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.21739130434782608
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.0
-            }
-          ]
-        },
-        {
-          "unroll encode_label1": [
-            {
-              "set_directive_unroll \"encode/encode_label1\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.34782608695652173
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.34782608695652173
-            }
-          ]
-        },
-        {
-          "unroll decode_label2": [
-            {
-              "set_directive_unroll \"decode/decode_label2\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.6086956521739131
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.13043478260869565
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.0
-            }
-          ]
-        },
-        {
-          "unroll decode_label3": [
-            {
-              "set_directive_unroll \"decode/decode_label3\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.043478260869565216
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.13043478260869565
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.2608695652173913
-            }
-          ]
-        },
-        {
-          "unroll reset_label4": [
-            {
-              "set_directive_unroll \"reset/reset_label4\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.4782608695652174
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.13043478260869565
-            }
-          ]
-        },
-        {
-          "unroll reset_label5": [
-            {
-              "set_directive_unroll \"reset/reset_label5\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.043478260869565216
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.6521739130434783
-            }
-          ]
-        },
-        {
-          "unroll reset_label6": [
-            {
-              "set_directive_unroll \"reset/reset_label6\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.21739130434782608
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.13043478260869565
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.391304347826087
-            }
-          ]
-        },
-        {
-          "unroll reset_label7": [
-            {
-              "set_directive_unroll \"reset/reset_label7\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.2608695652173913
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.391304347826087
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.08695652173913043
-            }
-          ]
-        },
-        {
-          "unroll filtez_label8": [
-            {
-              "set_directive_unroll \"filtez/filtez_label8\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.4782608695652174
-            },
-            {
-              "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.17391304347826086
-            }
-          ]
-        },
-        {
-          "unroll quantl_label9": [
-            {
-              "set_directive_unroll \"quantl/quantl_label9\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.08695652173913043
-            },
-            {
-              "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.30434782608695654
-            },
-            {
-              "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.2608695652173913
-            }
-          ]
-        },
-        {
-          "unroll upzero_label10": [
-            {
-              "set_directive_unroll \"upzero/upzero_label10\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.2608695652173913
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.2608695652173913
-            }
-          ]
-        },
-        {
-          "unroll upzero_label11": [
-            {
-              "set_directive_unroll \"upzero/upzero_label11\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.08695652173913043
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.391304347826087
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label12": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.13043478260869565
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.043478260869565216
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.21739130434782608
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.043478260869565216
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label13": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.21739130434782608
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.21739130434782608
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.08695652173913043
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.08695652173913043
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.17391304347826086
-            }
-          ]
-        },
-        {
-          "array_partition adpcm_main encoded": [
-            {
-              "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            }
-          ]
-        },
-        {
-          "loop_merge reset": [
-            {
-              "set_directive_loop_merge \"reset\"": 0.6086956521739131
-            }
-          ]
-        }
-      ]
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.35
     },
-    {
-      "id": 4,
-      "groups": [
-        {
-          "pipeline encode_label0": [
-            {
-              "set_directive_pipeline \"encode/encode_label0\"": 0.5263157894736842
-            }
-          ]
-        },
-        {
-          "pipeline encode_label1": [
-            {
-              "set_directive_pipeline \"encode/encode_label1\"": 0.42105263157894735
-            }
-          ]
-        },
-        {
-          "pipeline decode_label2": [
-            {
-              "set_directive_pipeline \"decode/decode_label2\"": 0.15789473684210525
-            }
-          ]
-        },
-        {
-          "pipeline decode_label3": [
-            {
-              "set_directive_pipeline \"decode/decode_label3\"": 0.3684210526315789
-            }
-          ]
-        },
-        {
-          "pipeline reset_label4": [
-            {
-              "set_directive_pipeline \"reset/reset_label4\"": 0.2631578947368421
-            }
-          ]
-        },
-        {
-          "pipeline reset_label5": [
-            {
-              "set_directive_pipeline \"reset/reset_label5\"": 0.47368421052631576
-            }
-          ]
-        },
-        {
-          "pipeline reset_label6": [
-            {
-              "set_directive_pipeline \"reset/reset_label6\"": 0.21052631578947367
-            }
-          ]
-        },
-        {
-          "pipeline reset_label7": [
-            {
-              "set_directive_pipeline \"reset/reset_label7\"": 0.42105263157894735
-            }
-          ]
-        },
-        {
-          "pipeline filtez_label8": [
-            {
-              "set_directive_pipeline \"filtez/filtez_label8\"": 0.631578947368421
-            }
-          ]
-        },
-        {
-          "pipeline quantl_label9": [
-            {
-              "set_directive_pipeline \"quantl/quantl_label9\"": 0.2631578947368421
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label10": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label10\"": 0.05263157894736842
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label11": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label11\"": 0.3157894736842105
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label12": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.42105263157894735
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label13": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.631578947368421
-            }
-          ]
-        },
-        {
-          "unroll encode_label0": [
-            {
-              "set_directive_unroll \"encode/encode_label0\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.2631578947368421
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.21052631578947367
-            }
-          ]
-        },
-        {
-          "unroll encode_label1": [
-            {
-              "set_directive_unroll \"encode/encode_label1\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.10526315789473684
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.3684210526315789
-            }
-          ]
-        },
-        {
-          "unroll decode_label2": [
-            {
-              "set_directive_unroll \"decode/decode_label2\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.15789473684210525
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.05263157894736842
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.05263157894736842
-            }
-          ]
-        },
-        {
-          "unroll decode_label3": [
-            {
-              "set_directive_unroll \"decode/decode_label3\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.15789473684210525
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.2631578947368421
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.15789473684210525
-            }
-          ]
-        },
-        {
-          "unroll reset_label4": [
-            {
-              "set_directive_unroll \"reset/reset_label4\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.2631578947368421
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.15789473684210525
-            }
-          ]
-        },
-        {
-          "unroll reset_label5": [
-            {
-              "set_directive_unroll \"reset/reset_label5\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.10526315789473684
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.42105263157894735
-            }
-          ]
-        },
-        {
-          "unroll reset_label6": [
-            {
-              "set_directive_unroll \"reset/reset_label6\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.2631578947368421
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.10526315789473684
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.21052631578947367
-            }
-          ]
-        },
-        {
-          "unroll reset_label7": [
-            {
-              "set_directive_unroll \"reset/reset_label7\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.15789473684210525
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.21052631578947367
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.21052631578947367
-            }
-          ]
-        },
-        {
-          "unroll filtez_label8": [
-            {
-              "set_directive_unroll \"filtez/filtez_label8\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.15789473684210525
-            },
-            {
-              "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.42105263157894735
-            }
-          ]
-        },
-        {
-          "unroll quantl_label9": [
-            {
-              "set_directive_unroll \"quantl/quantl_label9\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.05263157894736842
-            },
-            {
-              "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.15789473684210525
-            },
-            {
-              "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.3684210526315789
-            }
-          ]
-        },
-        {
-          "unroll upzero_label10": [
-            {
-              "set_directive_unroll \"upzero/upzero_label10\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.2631578947368421
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.21052631578947367
-            }
-          ]
-        },
-        {
-          "unroll upzero_label11": [
-            {
-              "set_directive_unroll \"upzero/upzero_label11\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.10526315789473684
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.3157894736842105
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label12": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.21052631578947367
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.2631578947368421
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.05263157894736842
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.2631578947368421
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label13": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.15789473684210525
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.21052631578947367
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.10526315789473684
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.3157894736842105
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.10526315789473684
-            }
-          ]
-        },
-        {
-          "array_partition adpcm_main encoded": [
-            {
-              "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            }
-          ]
-        },
-        {
-          "loop_merge reset": [
-            {
-              "set_directive_loop_merge \"reset\"": 0.5789473684210527
-            }
-          ]
-        }
-      ]
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.55
     },
-    {
-      "id": 5,
-      "groups": [
-        {
-          "pipeline encode_label0": [
-            {
-              "set_directive_pipeline \"encode/encode_label0\"": 0.3333333333333333
-            }
-          ]
-        },
-        {
-          "pipeline encode_label1": [
-            {
-              "set_directive_pipeline \"encode/encode_label1\"": 0.23809523809523808
-            }
-          ]
-        },
-        {
-          "pipeline decode_label2": [
-            {
-              "set_directive_pipeline \"decode/decode_label2\"": 0.5714285714285714
-            }
-          ]
-        },
-        {
-          "pipeline decode_label3": [
-            {
-              "set_directive_pipeline \"decode/decode_label3\"": 0.47619047619047616
-            }
-          ]
-        },
-        {
-          "pipeline reset_label4": [
-            {
-              "set_directive_pipeline \"reset/reset_label4\"": 0.47619047619047616
-            }
-          ]
-        },
-        {
-          "pipeline reset_label5": [
-            {
-              "set_directive_pipeline \"reset/reset_label5\"": 0.09523809523809523
-            }
-          ]
-        },
-        {
-          "pipeline reset_label6": [
-            {
-              "set_directive_pipeline \"reset/reset_label6\"": 0.23809523809523808
-            }
-          ]
-        },
-        {
-          "pipeline reset_label7": [
-            {
-              "set_directive_pipeline \"reset/reset_label7\"": 0.47619047619047616
-            }
-          ]
-        },
-        {
-          "pipeline filtez_label8": [
-            {
-              "set_directive_pipeline \"filtez/filtez_label8\"": 0.38095238095238093
-            }
-          ]
-        },
-        {
-          "pipeline quantl_label9": [
-            {
-              "set_directive_pipeline \"quantl/quantl_label9\"": 0.42857142857142855
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label10": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label10\"": 0.42857142857142855
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label11": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label11\"": 0.3333333333333333
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label12": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.3333333333333333
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label13": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.47619047619047616
-            }
-          ]
-        },
-        {
-          "unroll encode_label0": [
-            {
-              "set_directive_unroll \"encode/encode_label0\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.09523809523809523
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.19047619047619047
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.23809523809523808
-            }
-          ]
-        },
-        {
-          "unroll encode_label1": [
-            {
-              "set_directive_unroll \"encode/encode_label1\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.047619047619047616
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.14285714285714285
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.3333333333333333
-            }
-          ]
-        },
-        {
-          "unroll decode_label2": [
-            {
-              "set_directive_unroll \"decode/decode_label2\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.2857142857142857
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.14285714285714285
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.09523809523809523
-            }
-          ]
-        },
-        {
-          "unroll decode_label3": [
-            {
-              "set_directive_unroll \"decode/decode_label3\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.3333333333333333
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.2857142857142857
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.14285714285714285
-            }
-          ]
-        },
-        {
-          "unroll reset_label4": [
-            {
-              "set_directive_unroll \"reset/reset_label4\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.047619047619047616
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.2857142857142857
-            }
-          ]
-        },
-        {
-          "unroll reset_label5": [
-            {
-              "set_directive_unroll \"reset/reset_label5\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.23809523809523808
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.0
-            }
-          ]
-        },
-        {
-          "unroll reset_label6": [
-            {
-              "set_directive_unroll \"reset/reset_label6\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.14285714285714285
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.2857142857142857
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.09523809523809523
-            }
-          ]
-        },
-        {
-          "unroll reset_label7": [
-            {
-              "set_directive_unroll \"reset/reset_label7\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.14285714285714285
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.19047619047619047
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.3333333333333333
-            }
-          ]
-        },
-        {
-          "unroll filtez_label8": [
-            {
-              "set_directive_unroll \"filtez/filtez_label8\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.09523809523809523
-            },
-            {
-              "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.42857142857142855
-            }
-          ]
-        },
-        {
-          "unroll quantl_label9": [
-            {
-              "set_directive_unroll \"quantl/quantl_label9\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.14285714285714285
-            },
-            {
-              "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.19047619047619047
-            },
-            {
-              "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.09523809523809523
-            }
-          ]
-        },
-        {
-          "unroll upzero_label10": [
-            {
-              "set_directive_unroll \"upzero/upzero_label10\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.2857142857142857
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.09523809523809523
-            }
-          ]
-        },
-        {
-          "unroll upzero_label11": [
-            {
-              "set_directive_unroll \"upzero/upzero_label11\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.14285714285714285
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.2857142857142857
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label12": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.23809523809523808
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.047619047619047616
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.14285714285714285
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.23809523809523808
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label13": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.19047619047619047
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.14285714285714285
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.09523809523809523
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.09523809523809523
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.19047619047619047
-            }
-          ]
-        },
-        {
-          "array_partition adpcm_main encoded": [
-            {
-              "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            }
-          ]
-        },
-        {
-          "loop_merge reset": [
-            {
-              "set_directive_loop_merge \"reset\"": 0.19047619047619047
-            }
-          ]
-        }
-      ]
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.6
     },
-    {
-      "id": 6,
-      "groups": [
-        {
-          "pipeline encode_label0": [
-            {
-              "set_directive_pipeline \"encode/encode_label0\"": 0.72
-            }
-          ]
-        },
-        {
-          "pipeline encode_label1": [
-            {
-              "set_directive_pipeline \"encode/encode_label1\"": 0.6
-            }
-          ]
-        },
-        {
-          "pipeline decode_label2": [
-            {
-              "set_directive_pipeline \"decode/decode_label2\"": 0.44
-            }
-          ]
-        },
-        {
-          "pipeline decode_label3": [
-            {
-              "set_directive_pipeline \"decode/decode_label3\"": 0.72
-            }
-          ]
-        },
-        {
-          "pipeline reset_label4": [
-            {
-              "set_directive_pipeline \"reset/reset_label4\"": 0.6
-            }
-          ]
-        },
-        {
-          "pipeline reset_label5": [
-            {
-              "set_directive_pipeline \"reset/reset_label5\"": 0.68
-            }
-          ]
-        },
-        {
-          "pipeline reset_label6": [
-            {
-              "set_directive_pipeline \"reset/reset_label6\"": 0.68
-            }
-          ]
-        },
-        {
-          "pipeline reset_label7": [
-            {
-              "set_directive_pipeline \"reset/reset_label7\"": 0.6
-            }
-          ]
-        },
-        {
-          "pipeline filtez_label8": [
-            {
-              "set_directive_pipeline \"filtez/filtez_label8\"": 0.84
-            }
-          ]
-        },
-        {
-          "pipeline quantl_label9": [
-            {
-              "set_directive_pipeline \"quantl/quantl_label9\"": 0.64
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label10": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label10\"": 0.64
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label11": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label11\"": 0.32
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label12": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.76
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label13": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.56
-            }
-          ]
-        },
-        {
-          "unroll encode_label0": [
-            {
-              "set_directive_unroll \"encode/encode_label0\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.36
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.2
-            }
-          ]
-        },
-        {
-          "unroll encode_label1": [
-            {
-              "set_directive_unroll \"encode/encode_label1\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.36
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.08
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.16
-            }
-          ]
-        },
-        {
-          "unroll decode_label2": [
-            {
-              "set_directive_unroll \"decode/decode_label2\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.16
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.16
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.12
-            }
-          ]
-        },
-        {
-          "unroll decode_label3": [
-            {
-              "set_directive_unroll \"decode/decode_label3\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.12
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.12
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.32
-            }
-          ]
-        },
-        {
-          "unroll reset_label4": [
-            {
-              "set_directive_unroll \"reset/reset_label4\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.36
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.2
-            }
-          ]
-        },
-        {
-          "unroll reset_label5": [
-            {
-              "set_directive_unroll \"reset/reset_label5\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.24
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.44
-            }
-          ]
-        },
-        {
-          "unroll reset_label6": [
-            {
-              "set_directive_unroll \"reset/reset_label6\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.24
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.04
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.32
-            }
-          ]
-        },
-        {
-          "unroll reset_label7": [
-            {
-              "set_directive_unroll \"reset/reset_label7\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.16
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.16
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.12
-            }
-          ]
-        },
-        {
-          "unroll filtez_label8": [
-            {
-              "set_directive_unroll \"filtez/filtez_label8\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.16
-            },
-            {
-              "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.28
-            }
-          ]
-        },
-        {
-          "unroll quantl_label9": [
-            {
-              "set_directive_unroll \"quantl/quantl_label9\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.16
-            },
-            {
-              "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.16
-            },
-            {
-              "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.12
-            }
-          ]
-        },
-        {
-          "unroll upzero_label10": [
-            {
-              "set_directive_unroll \"upzero/upzero_label10\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.36
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.24
-            }
-          ]
-        },
-        {
-          "unroll upzero_label11": [
-            {
-              "set_directive_unroll \"upzero/upzero_label11\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.24
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.24
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label12": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.16
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.16
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.28
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.12
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label13": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.2
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.16
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.12
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.16
-            }
-          ]
-        },
-        {
-          "array_partition adpcm_main encoded": [
-            {
-              "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            }
-          ]
-        },
-        {
-          "loop_merge reset": [
-            {
-              "set_directive_loop_merge \"reset\"": 0.56
-            }
-          ]
-        }
-      ]
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.8
     },
-    {
-      "id": 7,
-      "groups": [
-        {
-          "pipeline encode_label0": [
-            {
-              "set_directive_pipeline \"encode/encode_label0\"": 0.7272727272727273
-            }
-          ]
-        },
-        {
-          "pipeline encode_label1": [
-            {
-              "set_directive_pipeline \"encode/encode_label1\"": 0.7272727272727273
-            }
-          ]
-        },
-        {
-          "pipeline decode_label2": [
-            {
-              "set_directive_pipeline \"decode/decode_label2\"": 0.5454545454545454
-            }
-          ]
-        },
-        {
-          "pipeline decode_label3": [
-            {
-              "set_directive_pipeline \"decode/decode_label3\"": 0.7272727272727273
-            }
-          ]
-        },
-        {
-          "pipeline reset_label4": [
-            {
-              "set_directive_pipeline \"reset/reset_label4\"": 0.8181818181818182
-            }
-          ]
-        },
-        {
-          "pipeline reset_label5": [
-            {
-              "set_directive_pipeline \"reset/reset_label5\"": 0.9090909090909091
-            }
-          ]
-        },
-        {
-          "pipeline reset_label6": [
-            {
-              "set_directive_pipeline \"reset/reset_label6\"": 0.8181818181818182
-            }
-          ]
-        },
-        {
-          "pipeline reset_label7": [
-            {
-              "set_directive_pipeline \"reset/reset_label7\"": 0.7272727272727273
-            }
-          ]
-        },
-        {
-          "pipeline filtez_label8": [
-            {
-              "set_directive_pipeline \"filtez/filtez_label8\"": 0.8181818181818182
-            }
-          ]
-        },
-        {
-          "pipeline quantl_label9": [
-            {
-              "set_directive_pipeline \"quantl/quantl_label9\"": 0.6363636363636364
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label10": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label10\"": 0.8181818181818182
-            }
-          ]
-        },
-        {
-          "pipeline upzero_label11": [
-            {
-              "set_directive_pipeline \"upzero/upzero_label11\"": 0.8181818181818182
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label12": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.5454545454545454
-            }
-          ]
-        },
-        {
-          "pipeline adpcm_main_label13": [
-            {
-              "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.8181818181818182
-            }
-          ]
-        },
-        {
-          "unroll encode_label0": [
-            {
-              "set_directive_unroll \"encode/encode_label0\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.36363636363636365
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.18181818181818182
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.09090909090909091
-            }
-          ]
-        },
-        {
-          "unroll encode_label1": [
-            {
-              "set_directive_unroll \"encode/encode_label1\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.36363636363636365
-            },
-            {
-              "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.18181818181818182
-            }
-          ]
-        },
-        {
-          "unroll decode_label2": [
-            {
-              "set_directive_unroll \"decode/decode_label2\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.36363636363636365
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.2727272727272727
-            }
-          ]
-        },
-        {
-          "unroll decode_label3": [
-            {
-              "set_directive_unroll \"decode/decode_label3\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.2727272727272727
-            },
-            {
-              "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.36363636363636365
-            },
-            {
-              "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.09090909090909091
-            }
-          ]
-        },
-        {
-          "unroll reset_label4": [
-            {
-              "set_directive_unroll \"reset/reset_label4\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.09090909090909091
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.36363636363636365
-            }
-          ]
-        },
-        {
-          "unroll reset_label5": [
-            {
-              "set_directive_unroll \"reset/reset_label5\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.18181818181818182
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.18181818181818182
-            }
-          ]
-        },
-        {
-          "unroll reset_label6": [
-            {
-              "set_directive_unroll \"reset/reset_label6\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.2727272727272727
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.2727272727272727
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.09090909090909091
-            }
-          ]
-        },
-        {
-          "unroll reset_label7": [
-            {
-              "set_directive_unroll \"reset/reset_label7\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.5454545454545454
-            },
-            {
-              "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.18181818181818182
-            },
-            {
-              "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.09090909090909091
-            }
-          ]
-        },
-        {
-          "unroll filtez_label8": [
-            {
-              "set_directive_unroll \"filtez/filtez_label8\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.45454545454545453
-            }
-          ]
-        },
-        {
-          "unroll quantl_label9": [
-            {
-              "set_directive_unroll \"quantl/quantl_label9\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.09090909090909091
-            },
-            {
-              "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.2727272727272727
-            },
-            {
-              "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.2727272727272727
-            }
-          ]
-        },
-        {
-          "unroll upzero_label10": [
-            {
-              "set_directive_unroll \"upzero/upzero_label10\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.2727272727272727
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.2727272727272727
-            }
-          ]
-        },
-        {
-          "unroll upzero_label11": [
-            {
-              "set_directive_unroll \"upzero/upzero_label11\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.45454545454545453
-            },
-            {
-              "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.09090909090909091
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label12": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.09090909090909091
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.2727272727272727
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.2727272727272727
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.18181818181818182
-            }
-          ]
-        },
-        {
-          "unroll adpcm_main_label13": [
-            {
-              "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0
-            },
-            {
-              "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.09090909090909091
-            },
-            {
-              "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.09090909090909091
-            },
-            {
-              "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.2727272727272727
-            },
-            {
-              "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.09090909090909091
-            },
-            {
-              "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.0
-            }
-          ]
-        },
-        {
-          "array_partition adpcm_main encoded": [
-            {
-              "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0
-            },
-            {
-              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
-            }
-          ]
-        },
-        {
-          "loop_merge reset": [
-            {
-              "set_directive_loop_merge \"reset\"": 0.6363636363636364
-            }
-          ]
-        }
-      ]
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.45
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.7
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.65
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.55
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.75
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.3
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.4
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.2,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.15,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.25
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.1,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.45,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.05
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.3,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.45
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.35,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.25,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.15
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.1,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.6
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.45,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.0
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.1,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.2,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.4
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.1,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.2,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.35
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.3,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.45
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.6,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.15,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.1
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.1,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.4
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.55,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.2
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.15,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.35,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.3,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.05
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.15,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.1,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.25,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.15,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.15
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.5
     }
-  ]
+  },
+  "Cluster 1": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.667
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.593
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.0
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.667
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.333
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.556
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.259
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.481
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.704
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.185
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.259
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.333
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.704
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.444
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.259,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.148,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.074
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.259,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.37
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.593,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.111,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.0
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.074,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.148,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.259
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.444,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.148
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.667
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.296,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.074,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.296
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.296,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.296,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.111
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.481,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.185
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.111,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.185,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.296
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.222,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.296
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.111,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.407
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.111,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.111,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.148,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.148
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.222,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.259,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.074,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.111,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.185
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.556
+    }
+  },
+  "Cluster 2": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.718
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.564
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.385
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.615
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.462
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.615
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.641
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.59
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.769
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.487
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.462
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.333
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.641
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.564
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.282,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.026,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.205
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.282,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.051,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.205
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.128,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.128,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.103
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.128,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.205,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.282
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.308,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.205
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.179,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.41
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.231,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.128,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.308
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.154,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.231,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.154
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.179,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.359
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.128,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.231,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.179
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.333,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.256
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.179,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.282
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.154,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.154,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.051,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.231,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.154
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.205,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.154,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.026,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.205,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.128
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.615
+    }
+  },
+  "Cluster 3": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.364
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.5
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.659
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.614
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.523
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.523
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.545
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.432
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.432
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.523
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.591
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.409
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.409
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.5
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.136,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.273,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.136
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.159,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.273,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.136
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.091,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.182,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.205
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.227,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.273,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.091
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.114,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.273
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.318,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.136
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.227,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.159,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.182
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.159,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.227,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.318
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.159,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.409
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.318,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.136,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.114
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.273,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.159
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.295,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.25
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.068,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.091,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.25,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.091,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.114
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.114,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.091,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.205,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.045,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.182
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.318
+    }
+  },
+  "Cluster 4": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.3
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.3
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.4
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.5
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.5
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.25
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.1
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.5
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.4
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.3
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.25
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.3
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.45
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.5
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.1,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.2,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.25
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.1,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.05,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.3
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.3,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.1,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.1
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.3,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.3,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.1
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.1,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.3
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.25,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.1
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.1,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.3,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.05
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.2,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.2,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.15
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.05,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.45
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.2,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.1,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.2
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.35,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.15
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.2,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.15
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.3,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.1,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.1,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.2
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.15,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.15,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.1,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.15,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.15
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.3
+    }
+  },
+  "Cluster 5": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.7
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.7
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.5
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.8
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.8
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.9
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.8
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.7
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.8
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.6
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.8
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.8
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.6
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.8
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.4,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.2,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.1
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.4,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.2
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.3,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.3
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.3,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.4,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.1
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.4
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.1,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.2
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.3,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.3,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.0
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.5,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.2,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.1
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.4
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.3,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.3
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.3,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.2
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.4,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.1
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.1,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.2,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.3,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.2
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.1,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.3,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.1,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.0
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.7
+    }
+  },
+  "Cluster 6": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.5
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.5
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 1.0
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.0
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.0
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.5
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 1.0
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.0
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.0
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.5
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 1.0
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 1.0
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.0
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.0
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.5,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.0
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 1.0,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.0
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.5
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.0
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 1.0
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.5,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.0
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.5,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.0
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.5,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.0
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.5
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.5,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.0
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 1.0,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.0
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 1.0,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.0
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.5,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.5
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.5,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.5
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.0
+    }
+  },
+  "Cluster 7": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.0
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.012
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.012
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.012
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.012
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.012
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.012
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.012
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.012
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.012
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.012
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.012
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.012
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.012
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.012,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.012,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.012,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.012
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.012,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.012,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.012,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.012
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.012,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.012,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.012,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.012
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.012,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.012,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.012,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.012
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.012,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.012,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.012
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.012,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.012,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.012
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.012,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.012,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.012,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.012
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.012,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.012,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.012,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.012
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.012,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.012,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.012
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.012,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.012,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.012,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.012
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.012,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.012,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.012
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.012,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.012,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.012
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.012,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.012,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.012,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.012,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.012,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.012
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.012,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.012,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.012,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.012,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.012,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.012
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.012
+    }
+  }
 }

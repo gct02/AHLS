@@ -78,7 +78,7 @@ def evaluate(
     targets = torch.cat(targets)
 
     if verbosity > 0:
-        mre = mre(preds, targets).mean().item()
+        mre = relative_percent_diff(preds, targets).mean().item()
         if mre < evaluate.min_mre:
             evaluate.min_mre = mre
             evaluate.best_epoch = epoch
@@ -156,17 +156,18 @@ def train_model(
 
 
 def main(args: Dict[str, str]):
+    dataset_dir = args['dataset_dir']
     epochs = int(args['epoch'])
     batch_size = int(args['batch'])
     seed = int(args['seed'])
-    dataset_dir = args['dataset_dir']
     target_metric = args['target']
     test_bench = args['testbench']
+    separate = args['separate']
     verbosity = int(args['verbose'])
     loss = args['loss']
     residual = float(args['residual'])
     collect_residuals = args['collect_residuals']
-    split_data = args['split']
+    output_dir = args['output_dir']
 
     matplotlib.use('Agg')
 
@@ -174,36 +175,33 @@ def main(args: Dict[str, str]):
     torch.set_printoptions(
         precision=6, threshold=1000, edgeitems=20, linewidth=200, sci_mode=False
     )
-    # Set random seeds for reproducibility
     set_random_seeds(seed)
 
-    base_analysis_dir = f"{Path(sys.argv[0]).parent}/analysis/model"
-    base_pretrained_dir = f"{Path(sys.argv[0]).parent}/pretrained"
-    benchmarks = sorted(os.listdir(dataset_dir))
-
+    full_data_dir = f"{dataset_dir}/full"
+    benchmarks = sorted(os.listdir(full_data_dir))
     train_benches = [b for b in benchmarks if b != test_bench]
+
     train_loader, test_loader = prepare_data_loaders(
-        target_metric, test_bench, train_benches, batch_size,
-        split_data=split_data, source_data_dir=dataset_dir
+        dataset_dir, target_metric, test_bench, train_benches, 
+        batch_size=batch_size, separate=separate
     )
     
     model = HGT(
         (NODE_TYPES, EDGE_TYPES), NODE_FEATURE_DIMS, 1, 
-        n_layers=5, hid_dim=256, n_heads=8,
-        dropout=0.1, pool_size=16, device=DEVICE
+        dropout_conv=0.0, dropout_fc=0.1, device=DEVICE
     )
 
     if loss == 'huber':
         loss_fn = nn.HuberLoss(delta=residual)
     elif loss == 'mse':
         loss_fn = nn.MSELoss()
-    elif loss == 'mae':
+    elif loss == 'l1':
         loss_fn = nn.L1Loss()
     else:
         raise ValueError(f"Unknown loss function: {loss}")
 
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=3e-4, betas=(0.9, 0.95), weight_decay=1e-4
+        model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=1e-4
     )
 
     total_steps = epochs * len(train_loader)
@@ -211,23 +209,17 @@ def main(args: Dict[str, str]):
         optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-6
     )
 
-    analysis_dir, stats_dir, graphs_dir, save_dir = make_output_dirs(
-        base_analysis_dir, base_pretrained_dir, test_bench, target_metric
-    )
+    dirs = make_output_dirs(output_dir, test_bench, target_metric)
+    run_dir, stats_dir, graphs_dir, pretrained_dir = dirs
 
     preds_per_epoch, train_errors = train_model(
         model, loss_fn, optimizer, train_loader, test_loader, epochs, 
-        scheduler=scheduler, verbosity=verbosity, log_dir=analysis_dir, 
+        scheduler=scheduler, verbosity=verbosity, log_dir=run_dir, 
         collect_residuals=collect_residuals
     )
-
-    plot_prediction_bars(
-        preds_per_epoch, test_bench, target_metric, graphs_dir
-    )
-    save_training_artifacts(
-        train_errors, preds_per_epoch, stats_dir, graphs_dir
-    )
-    save_model(model, save_dir, f"{test_bench}_{target_metric}.pth")
+    plot_prediction_bars(preds_per_epoch, test_bench, target_metric, graphs_dir)
+    save_training_artifacts(train_errors, preds_per_epoch, stats_dir, graphs_dir)
+    save_model(model, pretrained_dir, f"{test_bench}_{target_metric}.pth")
 
 
 def plot_learning_curves(
@@ -295,7 +287,7 @@ def plot_prediction_scatter(
     # Scatter plot
     sns.scatterplot(x=targets, y=preds, alpha=0.6, edgecolor='w', label='Predictions')
 
-    mre = mre(torch.tensor(preds), torch.tensor(targets)).mean().item()
+    mre = relative_percent_diff(torch.tensor(preds), torch.tensor(targets)).mean().item()
     r2 = r2_score(targets, preds)
     plt.text(
         min_val*1.05, max_val*0.9, f'Mean Relative Error: {mre:.2f}\nR²: {r2:.2f}', 
@@ -321,14 +313,14 @@ def plot_prediction_bars(
     indices = list(range(len(preds_per_epoch)))
     targets = [inst[0][1] for inst in preds_per_epoch]
     preds = [inst[best_epoch][0] for inst in preds_per_epoch]
-    rel_errors = [mre(p, t).item() for p, t in zip(preds, targets)]
-    mre = np.mean(rel_errors)
+    errors = [relative_percent_diff(p, t).item() for p, t in zip(preds, targets)]
+    mre = np.mean(errors)
 
     df = pd.DataFrame({
         'index': indices,
         'target': targets,
         'prediction': preds,
-        'relative_error': rel_errors
+        'relative_error': errors
     })
     df = df.sort_values(by=['relative_error'], ascending=True, ignore_index=True)
 
@@ -392,9 +384,9 @@ def save_training_artifacts(
         {
             'instance': i,
             'target': inst[0][1],
-            'preds': [p[0] for p in inst],
-            'final_pred': inst[-1][0],
-            'best_pred': inst[best_epoch][0],
+            'predictions': [p[0] for p in inst],
+            'final_prediction': inst[-1][0],
+            'best_prediction': inst[best_epoch][0],
             'final_error': relative_percent_diff(inst[-1][0], inst[0][1]),
             'min_error': relative_percent_diff(inst[best_epoch][0], inst[0][1])
         }
@@ -412,22 +404,14 @@ def save_training_artifacts(
     plt.close()
 
 
-def get_mean_rel_error(
-    test_preds: List[List[Tuple[float, float]]], epoch: int
-) -> float:
-    targets = torch.tensor([inst[0][1] for inst in test_preds])
-    preds = torch.tensor([inst[epoch][0] for inst in test_preds])
-    return relative_percent_diff(preds, targets).mean().item()
-
-
 def get_mre_over_epochs(
     preds_per_epoch: List[List[Tuple[float, float]]]
 ) -> List[float]:
     mre_list = []
     for epoch in range(len(preds_per_epoch[0])):
         targets = torch.tensor([inst[0][1] for inst in preds_per_epoch])
-        preds_per_epoch = torch.tensor([inst[epoch][0] for inst in preds_per_epoch])
-        mre = mre(preds_per_epoch, targets).mean().item()
+        preds = torch.tensor([inst[epoch][0] for inst in preds_per_epoch])
+        mre = relative_percent_diff(preds, targets).mean().item()
         mre_list.append(mre)
     return mre_list
     
@@ -440,10 +424,10 @@ def set_random_seeds(seed: int):
     random.seed(seed)
 
 
-def make_output_dirs(
-    base_analysis_dir: str, base_pretrained_dir: str,
-    test_bench: str, metric: str
-) -> Tuple[str, str, str, str]:
+def make_output_dirs(root_dir, test_bench, metric) -> Tuple[str, str, str, str]:
+    base_analysis_dir = f"{root_dir}/analysis/model"
+    base_pretrained_dir = f"{root_dir}/pretrained"
+
     if not os.path.exists(base_analysis_dir):
         os.makedirs(base_analysis_dir)
     if not os.path.exists(base_pretrained_dir):
@@ -460,16 +444,16 @@ def make_output_dirs(
     else:
         run = get_current_run_number(tb_dir)
 
-    analysis_dir = f"{tb_dir}/run_{run}"
-    stats_dir = f"{analysis_dir}/stats"
-    graphs_dir = f"{analysis_dir}/graphs"
+    run_dir = f"{tb_dir}/run_{run}"
+    stats_dir = f"{run_dir}/stats"
+    graphs_dir = f"{run_dir}/graphs"
     pretrained_dir = f"{base_pretrained_dir}/{metric}/{test_bench}"
 
     os.makedirs(stats_dir, exist_ok=True)
     os.makedirs(graphs_dir, exist_ok=True)
     os.makedirs(pretrained_dir, exist_ok=True)
 
-    return analysis_dir, stats_dir, graphs_dir, pretrained_dir
+    return run_dir, stats_dir, graphs_dir, pretrained_dir
 
 
 def get_current_run_number(results_directory: str) -> int:
@@ -484,74 +468,62 @@ def get_current_run_number(results_directory: str) -> int:
 
 
 def prepare_data_loaders(
+    dataset_dir: str,
     metric: str,
-    test_bench: str,
-    train_benches: Union[List[str], str],
+    test_benchmarks: Union[List[str], str],
+    train_benchmarks: Union[List[str], str],
     batch_size: int = 16,
-    split_data: bool = False, 
-    source_data_dir: Optional[str] = None
-) -> Tuple[DataLoader, DataLoader, DataLoader]:
-    dataset_dir = f"{Path(sys.argv[0]).parent}/dataset"
-    train_dir = f"{dataset_dir}/train"
-    test_dir = f"{dataset_dir}/test"
-    if split_data:
-        data_dirs = [
-            f"{train_dir}/raw", f"{test_dir}/raw", 
-            f"{train_dir}/processed", f"{test_dir}/processed"
-        ]
-        cleanup_dirs(data_dirs, recreate=True)
+    separate: bool = False
+) -> Tuple[DataLoader, DataLoader]:
+    full_data_dir = f"{dataset_dir}/full"
+    train_data_dir = f"{dataset_dir}/train"
+    test_data_dir = f"{dataset_dir}/test"
+
     train_data = HLSDataset(
-        train_dir, metric, split_data=split_data, 
-        source_data_dir=source_data_dir, 
-        benchmarks=train_benches, 
-        normalize=True
+        train_data_dir, metric, scale_features=True,
+        separate=separate, full_data_dir=full_data_dir,
+        benchmarks=train_benchmarks
     )
     test_data = HLSDataset(
-        test_dir, metric, split_data=split_data,  
-        source_data_dir=source_data_dir, 
-        benchmarks=test_bench,
-        normalize=True,
-        feature_range=train_data.feature_range
+        test_data_dir, metric, scale_features=True,
+        feature_bounds=train_data.feature_bounds,
+        separate=separate, full_data_dir=full_data_dir,
+        benchmarks=test_benchmarks
     )
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
+
     return train_loader, test_loader
-
-
-def cleanup_dirs(dirs: List[str], recreate: bool = False):
-    for dir in dirs:
-        if os.path.exists(dir):
-            shutil.rmtree(dir)
-        if recreate:
-            os.makedirs(dir)
 
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--dataset-dir', required=True, 
-                        help='Path to the dataset.')
+                        help='The root directory of the dataset.')
     parser.add_argument('-e', '--epoch', default=300, 
                         help='The number of training epochs (default: 300).')
     parser.add_argument('-r', '--seed', default=42, 
                         help='Random seed for repeatability (default: 42).')
     parser.add_argument('-b', '--batch', default=16, 
                         help='The size of the training batch (default: 16).')
-    parser.add_argument('-l', '--loss', default='huber', choices=['huber', 'mse', 'mae'],
-                        help='The loss function to use for training (default: Huber loss).')
+    parser.add_argument('-l', '--loss', default='l1', choices=['huber', 'mse', 'l1'],
+                        help='The loss function to use for training (default: l1).')
     parser.add_argument('-tb', '--testbench', required=True, 
                         help='The name of the benchmark to use for test.')
+    parser.add_argument('-t', '--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp', 'power'],
+                        help='The target metric.')
+    parser.add_argument('-s', '--separate', action='store_true',
+                        help='Separate the dataset into raw and processed versions.')
+    parser.add_argument('-v', '--verbose', nargs='?', const=1, type=int, default=0, 
+                        help='Set verbosity level (default: 0). Use without value for level 1, or specify a level.')
     parser.add_argument('-f', '--filtered', action='store_true',
                         help='Signal that the (raw) dataset is filtered')
     parser.add_argument('-rc', '--collect-residuals', action='store_true',
                         help='Collect residuals for analysis.')
     parser.add_argument('-rs', '--residual', default=1.0, type=float,
                         help='Some measure of variability (e.g., standard deviation or MAD) of the residuals for Huber loss (default: 1.0).')
-    parser.add_argument('-t', '--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp'],
-                        help='The target resource metric.')
-    parser.add_argument('-s', '--split', action='store_true',
-                        help='Split the dataset into train and test.')
-    parser.add_argument('-v', '--verbose', nargs='?', const=1, type=int, default=0, 
-                        help='Set verbosity level (default: 0). Use without value for level 1, or specify a level.')
+    parser.add_argument('-o', '--output-dir', default='.',
+                        help='Directory to save the output files (default: current directory).')
     return vars(parser.parse_args())
 
 if __name__ == '__main__':

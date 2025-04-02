@@ -218,8 +218,9 @@ def include_directive_info(node_dict, edge_dict, feature_dict, directives_tcl):
             if dtype == "unroll":
                 node_features["unroll"] = [1]
                 factor = int(dargs.get("factor", 0))
-                if factor <= 0:
-                    factor = max(node.attributes["max_trip_count"][0], 1)
+                if factor == 0:
+                    max_trip_count = node.attributes["max_trip_count"][0]
+                    factor = max(max_trip_count, 1)
                 node_features["unroll_factor"] = [factor]
             elif dtype == "pipeline":
                 ii = int(dargs.get("ii", 1))
@@ -414,9 +415,9 @@ if __name__ == "__main__":
     print("Graphs built successfully.")
     for bench_name, feature_dict in feats.items():
         # print(f"{bench_name}:\n")
-        # for i, feats in enumerate(feat_dict['instr']):
+        # for i, node_features in enumerate(feature_dict['instr']):
         #     print(f"    Node {i}:")
-        #     for key, value in feats.items():
+        #     for key, value in node_features.items():
         #         print(f"      {key}: {value}")
         
         data = to_hetero_data(feature_dict, edges[bench_name])
@@ -430,17 +431,17 @@ if __name__ == "__main__":
             print(f"Benchmark '{bench}' not found in base solutions.")
             sys.exit(1)
 
-        nodes_opt, edges_opt = build_opt_graph(
+        opt_feats, opt_edges = build_opt_graph(
             nodes[bench], edges[bench], feats[bench],
             base_metrics=metrics[bench], directives_tcl=directives,
             output_hetero_data=False
         )
 
-        for node_features in nodes_opt["region"]:
+        for node_features in opt_feats["region"]:
             if node_features["is_loop"][0] == 1:
                 print(node_features)
 
-        data = to_hetero_data(nodes_opt, edges_opt)
+        data = to_hetero_data(opt_feats, opt_edges)
         # plot_graph(data)
 
     

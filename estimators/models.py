@@ -1,12 +1,12 @@
-from typing import Dict, Union, List, Optional
+from typing import Dict, Union, Tuple
 
 import torch
 import torch.nn as nn
+from torch.nn import functional as F
 from torch import Tensor
-from torch_geometric.nn import HGTConv, SAGPooling
+from torch_geometric.nn import HeteroDictLinear, HGTConv, SAGPooling
 from torch_geometric.data import HeteroData
-from torch_geometric.nn.inits import reset
-from torch_geometric.typing import Metadata
+from torch_geometric.typing import Metadata, NodeType, EdgeType
 from torch.types import Device
 
 
@@ -21,19 +21,10 @@ class HGT(nn.Module):
         in_channels (int or Dict[str, int]): Number of input channels 
             for each node type.
         out_channels (int): Number of output channels.
-        n_layers (int): Number of convolutional layers.
-            (default: :obj:`6`)
-        hid_dim (int): Hidden dimension of the convolutional 
-            layers. (default: :obj:`64`)
-        n_heads (int): Number of attention heads for the 
-            convolutional layers. (default: :obj:`8`)
-        dropout (float): Dropout rate for fully connected layers. 
+        dropout_conv (float): Dropout rate for convolutional layers.
             (default: :obj:`0.0`)
-        types_to_aggregate (str or List[str], optional): Node types to 
-            aggregate for the jumping knowledge layer. If :obj:`None`, 
-            all node types are aggregated. (default: :obj:`None`)
-        pool_size (int): Number of nodes to keep after pooling.
-            (default: :obj:`16`)
+        dropout_fc (float): Dropout rate for fully connected layers. 
+            (default: :obj:`0.1`)
         device (torch.device): Device to use for computation. 
             (default: :obj:`"cpu"`)
     """
@@ -41,51 +32,53 @@ class HGT(nn.Module):
         metadata: Metadata,
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
-        n_layers: int = 5,
-        hid_dim: int = 64,
-        n_heads: int = 4,
-        dropout: float = 0.0,
-        pool_size: int = 16,
+        dropout_conv: float = 0.0,
+        dropout_fc: float = 0.1,
         device: Device = 'cpu'
     ):
         super().__init__()
 
+        self.node_types = metadata[0]
+        self.edge_types = metadata[1]
         self.device = device
-        self.n_layers = n_layers
+        self.dropout_conv = dropout_conv
+        self.dropout_fc = dropout_fc
 
-        # Define convolutional layers
-        self.conv = nn.ModuleList([HGTConv(in_channels, hid_dim, metadata, n_heads)])
-        
+        # Define projection layers
+        self.proj = nn.ModuleList([
+            HeteroDictLinear(in_channels, 128, self.node_types),
+            HeteroDictLinear(128, 256, self.node_types),
+            HeteroDictLinear(256, 512, self.node_types),
+        ])
+
         updated_metadata = (
             [nt for nt in metadata[0] if nt != "base"],
             [et for et in metadata[1] if et[1] != "base"]
         )
-        self.conv.extend([
-            HGTConv(hid_dim, hid_dim, updated_metadata, n_heads)
-            for _ in range(n_layers - 1)
+
+        # Define convolutional layers
+        self.conv = nn.ModuleList([
+            HGTConv(512, 512, metadata, 8),
+            HGTConv(512, 256, updated_metadata, 8),
+            HGTConv(256, 128, updated_metadata, 8),
+            HGTConv(128, 64, updated_metadata, 4),
+            HGTConv(64, 32, updated_metadata, 4)
         ])
-
-        self.dropout = nn.Dropout(dropout)
-
-        # Define jumping knowledge layer
-        self.attn_jk = nn.MultiheadAttention(hid_dim, n_heads, dropout=dropout)
+        self.n_conv_layers = len(self.conv)
 
         # Define pooling layer
-        self.pool = SAGPooling(hid_dim, ratio=pool_size)
+        self.pool = SAGPooling(32, ratio=16)
 
         # Define graph-level fully connected layers
+        hid_dims = [512, 256, 128, 64, 32, 16, 8, 4]
         self.mlp = nn.Sequential()
-        
-        hid_dim *= pool_size
-        while (next_dim := hid_dim // 2) > out_channels:
+        for i in range(len(hid_dims) - 1):
             self.mlp.extend([
-                nn.Linear(hid_dim, next_dim),
+                nn.Linear(hid_dims[i], hid_dims[i + 1]),
                 nn.GELU(),
-                nn.Dropout(dropout)
+                nn.Dropout(dropout_fc)
             ])
-            hid_dim = next_dim
-
-        self.mlp.append(nn.Linear(hid_dim, out_channels))
+        self.mlp.extend([nn.Linear(hid_dims[-1], out_channels)])
 
         self.reset_parameters()
         self.to(device)
@@ -100,14 +93,6 @@ class HGT(nn.Module):
             nn.init.xavier_uniform_(m.weight)
             if m.bias is not None:
                 nn.init.zeros_(m.bias)
-        elif isinstance(m, nn.MultiheadAttention):
-            for param in [m.in_proj_weight, m.out_proj.weight]:
-                if param is not None:
-                    nn.init.xavier_uniform_(param)
-            if m.in_proj_bias is not None:
-                nn.init.zeros_(m.in_proj_bias)
-            if m.out_proj.bias is not None:
-                nn.init.zeros_(m.out_proj.bias)
         elif isinstance(m, nn.LayerNorm):
             nn.init.ones_(m.weight)
             nn.init.zeros_(m.bias)
@@ -125,34 +110,43 @@ class HGT(nn.Module):
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
         x_dict, edge_index_dict = data.x_dict, data.edge_index_dict
-        outs = []
 
+        # Projection layers
+        for proj in self.proj:
+            x_dict = proj(x_dict)
+            for k, v in x_dict.items():
+                x_dict[k] = F.gelu(v)
+                if k != "base":
+                    x_dict[k] = F.dropout(v, p=self.dropout_fc, training=self.training)
+
+        # First convolutional layer
         x_dict = self.conv[0](x_dict, edge_index_dict)
-        x_dict = {k: self.dropout(v) for k, v in x_dict.items() if k != "base"}
-        edge_index_dict = {k: v for k, v in edge_index_dict.items() if k[1] != "base"}
-        outs.append(x_dict["instr"])
 
-        # Convolutional layers
-        for i in range(1, self.n_layers):
+        for k in list(x_dict.keys()):
+            if k == "base":
+                x_dict.pop(k)
+        for k in list(edge_index_dict.keys()):
+            if k[1] == "base":
+                edge_index_dict.pop(k)
+
+        # Subsequent convolutional layers
+        for i in range(1, self.n_conv_layers):
+            x_dict = {
+                k: F.dropout(v, p=self.dropout_conv, training=self.training) 
+                for k, v in x_dict.items()
+            }
             x_dict = self.conv[i](x_dict, edge_index_dict)
-            x_dict = {k: self.dropout(v) for k, v in x_dict.items()}
-            outs.append(x_dict["instr"])
-
-        # Jumping knowledge layer
-        out = torch.stack(outs, dim=0)
-        out, _ = self.attn_jk(out, out, out)
-        out = out.mean(dim=0)
 
         # Pooling layer
-        batch = data.batch_dict["instr"]
-        edge_index = torch.cat(
-            [v for k, v in edge_index_dict.items() if k[0] == "instr" and k[2] == "instr"], 
-            dim=1
-        )
-        out = self.pool(out, edge_index, batch=batch)[0]
+        instr_edge_index = torch.cat([
+            v for k, v in edge_index_dict.items() if k[0] == "instr" and k[2] == "instr"
+        ], dim=1)
+        instr_batch = data.batch_dict["instr"]
+        batch_size = instr_batch.max().item() + 1
 
-        batch_size = batch.max().item() + 1
-        out = out.view(batch_size, -1)
+        out = self.pool(
+            x_dict["instr"], instr_edge_index, batch=instr_batch
+        )[0].view(batch_size, -1)
 
         # Graph-level MLP
         out = self.mlp(out).squeeze(1)

@@ -80,6 +80,7 @@ analysis/model/
 pretrained/
 runs/
 test/
+sanity_check*
 
 hls/
 

@@ -259,7 +259,7 @@ def _parse_timing_report_txt(rpt_path):
 
 
 def collate_data_for_analysis(
-    data_path: str, 
+    data_dir: str, 
     benchmark: str, 
     filtered: bool = False,
     directive_config_path: Optional[str] = None,
@@ -267,8 +267,12 @@ def collate_data_for_analysis(
 ) -> Tuple[pd.DataFrame, Optional[NDArray[np.int_]]]:
     metrics = []
     directives = [] if directive_config_path else None
-    bench_dir = f"{data_path}/{benchmark}"
-    for solution in os.listdir(bench_dir):
+    bench_dir = f"{data_dir}/{benchmark}"
+
+    solutions = os.listdir(bench_dir)
+    solutions = sorted(solutions, key=lambda s: int(s.split("solution")[1]))
+
+    for solution in solutions:
         if not process_base_solution and solution == 'solution0':
             continue
         solution_dir = os.path.join(bench_dir, solution)
