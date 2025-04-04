@@ -1,0 +1,413 @@
+
+
+================================================================
+== Vitis HLS Report for 'sha_init'
+================================================================
+* Date:           Thu Apr  3 20:46:14 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        SHA
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  0.699 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        2|        2|  16.000 ns|  16.000 ns|    2|    2|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.69>
+ST_1 : Operation 4 [1/1] (0.69ns)   --->   "%store_ln145 = store i32 1732584193, i32 0" [data/benchmarks/sha/sha.c:145]   --->   Operation 4 'store' 'store_ln145' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+
+State 2 <SV = 1> <Delay = 0.69>
+ST_2 : Operation 5 [1/1] (0.69ns)   --->   "%store_ln146 = store i32 4023233417, i32 1" [data/benchmarks/sha/sha.c:146]   --->   Operation 5 'store' 'store_ln146' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_2 : Operation 6 [1/1] (0.69ns)   --->   "%store_ln147 = store i32 2562383102, i32 2" [data/benchmarks/sha/sha.c:147]   --->   Operation 6 'store' 'store_ln147' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+
+State 3 <SV = 2> <Delay = 0.69>
+ST_3 : Operation 7 [1/1] (0.00ns)   --->   "%specpipeline_ln20 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_1" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl:20]   --->   Operation 7 'specpipeline' 'specpipeline_ln20' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 8 [1/1] (0.69ns)   --->   "%store_ln148 = store i32 271733878, i32 3" [data/benchmarks/sha/sha.c:148]   --->   Operation 8 'store' 'store_ln148' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_3 : Operation 9 [1/1] (0.69ns)   --->   "%store_ln149 = store i32 3285377520, i32 4" [data/benchmarks/sha/sha.c:149]   --->   Operation 9 'store' 'store_ln149' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_3 : Operation 10 [1/1] (0.00ns)   --->   "%store_ln150 = store i32 0, i32 %sha_info_count_lo" [data/benchmarks/sha/sha.c:150]   --->   Operation 10 'store' 'store_ln150' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 11 [1/1] (0.00ns)   --->   "%store_ln151 = store i32 0, i32 %sha_info_count_hi" [data/benchmarks/sha/sha.c:151]   --->   Operation 11 'store' 'store_ln151' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 12 [1/1] (0.00ns)   --->   "%ret_ln152 = ret" [data/benchmarks/sha/sha.c:152]   --->   Operation 12 'ret' 'ret_ln152' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 0
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+Port [ sha_info_count_lo]:  wired=1; compound=0; hidden=0; nouse=0; global=1; static=1; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=ap_vld:ce=0
+Port [ sha_info_count_hi]:  wired=1; compound=0; hidden=0; nouse=0; global=1; static=1; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=ap_vld:ce=0
+Port [ sha_info_digest]:  wired=1; compound=1; hidden=0; nouse=0; global=1; static=1; extern=0; dir=1; type=1; pingpong=0; private_global=0; MemPort=[00]; IO mode=ap_memory:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+store_ln145       (store       ) [ 0000]
+store_ln146       (store       ) [ 0000]
+store_ln147       (store       ) [ 0000]
+specpipeline_ln20 (specpipeline) [ 0000]
+store_ln148       (store       ) [ 0000]
+store_ln149       (store       ) [ 0000]
+store_ln150       (store       ) [ 0000]
+store_ln151       (store       ) [ 0000]
+ret_ln152         (ret         ) [ 0000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="sha_info_count_lo">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="sha_info_count_lo"/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="sha_info_count_hi">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="sha_info_count_hi"/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1000" name="sha_info_digest">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="sha_info_digest"/><MemPortTyVec>0 0 </MemPortTyVec>
+</StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1001" name="const_6">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1001" name="const_8">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1001" name="const_10">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1001" name="const_12">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1001" name="const_14">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1001" name="const_16">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1001" name="const_18">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecPipeline"/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1001" name="const_20">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1001" name="const_22">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1001" name="const_24">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1001" name="const_26">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1001" name="const_28">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1001" name="const_30">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1001" name="const_32">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1004" name="grp_access_fu_34">
+<pin_list>
+<pin id="35" dir="0" index="0" bw="32" slack="0"/>
+<pin id="36" dir="0" index="1" bw="32" slack="0"/>
+<pin id="37" dir="0" index="2" bw="0" slack="0"/>
+<pin id="41" dir="0" index="4" bw="32" slack="0"/>
+<pin id="42" dir="0" index="5" bw="32" slack="2147483647"/>
+<pin id="43" dir="0" index="6" bw="0" slack="2147483647"/>
+<pin id="38" dir="1" index="3" bw="32" slack="2147483647"/>
+<pin id="44" dir="1" index="7" bw="32" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln145/1 store_ln146/2 store_ln147/2 store_ln148/3 store_ln149/3 "/>
+</bind>
+</comp>
+
+<comp id="53" class="1004" name="store_ln150_store_fu_53">
+<pin_list>
+<pin id="54" dir="0" index="0" bw="1" slack="0"/>
+<pin id="55" dir="0" index="1" bw="32" slack="0"/>
+<pin id="56" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln150/3 "/>
+</bind>
+</comp>
+
+<comp id="59" class="1004" name="store_ln151_store_fu_59">
+<pin_list>
+<pin id="60" dir="0" index="0" bw="1" slack="0"/>
+<pin id="61" dir="0" index="1" bw="32" slack="0"/>
+<pin id="62" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="store_ln151/3 "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="39"><net_src comp="6" pin="0"/><net_sink comp="34" pin=1"/></net>
+
+<net id="40"><net_src comp="8" pin="0"/><net_sink comp="34" pin=0"/></net>
+
+<net id="45"><net_src comp="10" pin="0"/><net_sink comp="34" pin=4"/></net>
+
+<net id="46"><net_src comp="12" pin="0"/><net_sink comp="34" pin=2"/></net>
+
+<net id="47"><net_src comp="14" pin="0"/><net_sink comp="34" pin=1"/></net>
+
+<net id="48"><net_src comp="16" pin="0"/><net_sink comp="34" pin=0"/></net>
+
+<net id="49"><net_src comp="26" pin="0"/><net_sink comp="34" pin=1"/></net>
+
+<net id="50"><net_src comp="28" pin="0"/><net_sink comp="34" pin=0"/></net>
+
+<net id="51"><net_src comp="30" pin="0"/><net_sink comp="34" pin=4"/></net>
+
+<net id="52"><net_src comp="32" pin="0"/><net_sink comp="34" pin=2"/></net>
+
+<net id="57"><net_src comp="20" pin="0"/><net_sink comp="53" pin=0"/></net>
+
+<net id="58"><net_src comp="0" pin="0"/><net_sink comp="53" pin=1"/></net>
+
+<net id="63"><net_src comp="20" pin="0"/><net_sink comp="59" pin=0"/></net>
+
+<net id="64"><net_src comp="2" pin="0"/><net_sink comp="59" pin=1"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+	Port: sha_info_count_lo | {3 }
+	Port: sha_info_count_hi | {3 }
+	Port: sha_info_digest | {1 2 3 }
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|----------------|
+| Operation| Functional Unit|
+|----------|----------------|
+|   Total  |                |
+|----------|----------------|
+
+Memories:
+N/A
+
+* Register list:
+N/A
+
+* Multiplexer (MUX) list: 
+|------------------|------|------|------|--------||---------|
+|       Comp       |  Pin | Size |  BW  | S x BW ||  Delay  |
+|------------------|------|------|------|--------||---------|
+| grp_access_fu_34 |  p0  |   3  |  32  |   96   |
+| grp_access_fu_34 |  p1  |   3  |  32  |   96   |
+| grp_access_fu_34 |  p2  |   2  |   0  |    0   |
+| grp_access_fu_34 |  p4  |   2  |  32  |   64   |
+|------------------|------|------|------|--------||---------|
+|       Total      |      |      |      |   256  || 1.61371 |
+|------------------|------|------|------|--------||---------|
+
+
+
+* Summary:
++-----------+--------+
+|           |  Delay |
++-----------+--------+
+|  Function |    -   |
+|   Memory  |    -   |
+|Multiplexer|    1   |
+|  Register |    -   |
++-----------+--------+
+|   Total   |    1   |
++-----------+--------+

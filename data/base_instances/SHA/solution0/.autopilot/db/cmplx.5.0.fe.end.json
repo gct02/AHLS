@@ -1,0 +1,149 @@
+{
+    "1": {
+        "name": "local_memcpy",
+        "file": "data\/benchmarks\/sha\/sha.c",
+        "fileloc": "74",
+        "instructions": "56",
+        "total_instructions": "56",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "G": "4",
+            "L": "2"
+        },
+        "stores": {
+            "G": "1",
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "sha_init",
+        "file": "sha.c",
+        "fileloc": "144",
+        "instructions": "9",
+        "total_instructions": "9",
+        "calls": "",
+        "basicblocks": "1",
+        "stores": {
+            "G": "7"
+        }
+    },
+    "3": {
+        "name": "sha_stream_Pipeline_VITIS_LOOP_208_1",
+        "file": "data\/benchmarks\/sha\/sha.c",
+        "fileloc": "202",
+        "instructions": "21",
+        "total_instructions": "21",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "1"
+        },
+        "stores": {
+            "G": "1",
+            "L": "2"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "4": {
+        "name": "sha_final",
+        "file": "sha.c",
+        "fileloc": "174",
+        "instructions": "25",
+        "total_instructions": "596",
+        "calls": "6 7 6 6 7",
+        "basicblocks": "4",
+        "loads": {
+            "G": "2"
+        },
+        "stores": {
+            "G": "3"
+        }
+    },
+    "0": {
+        "name": "sha_stream",
+        "file": "data\/benchmarks\/sha\/sha.c",
+        "fileloc": "197",
+        "instructions": "57",
+        "total_instructions": "1079",
+        "calls": "3 2 5 4",
+        "basicblocks": "10",
+        "loads": {
+            "G": "1",
+            "L": "3",
+            "T": "1"
+        },
+        "stores": {
+            "L": "6",
+            "T": "1"
+        },
+        "loops": {
+            "L": "3"
+        }
+    },
+    "5": {
+        "name": "sha_update",
+        "file": "\/home\/gabriel\/Documents\/UFRGS\/RAISE\/AHLS\/AHLS\/data\/base_directives\/sha.tcl",
+        "fileloc": "17",
+        "instructions": "45",
+        "total_instructions": "396",
+        "calls": "1 7 1",
+        "basicblocks": "4",
+        "loads": {
+            "G": "2",
+            "L": "2"
+        },
+        "stores": {
+            "G": "2",
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "6": {
+        "name": "local_memset",
+        "file": "sha.c",
+        "fileloc": "55",
+        "instructions": "31",
+        "total_instructions": "31",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1"
+        },
+        "stores": {
+            "G": "1",
+            "L": "2"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "7": {
+        "name": "sha_transform",
+        "file": "sha.c",
+        "fileloc": "93",
+        "instructions": "239",
+        "total_instructions": "239",
+        "calls": "",
+        "basicblocks": "19",
+        "loads": {
+            "G": "6",
+            "L": "30"
+        },
+        "stores": {
+            "G": "5",
+            "L": "42"
+        },
+        "loops": {
+            "L": "6"
+        }
+    }
+}

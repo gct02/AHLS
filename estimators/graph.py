@@ -138,19 +138,24 @@ def to_pyg(
         else:
             data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
 
-    if add_self_loops:
-        for nt, nodes in hls_data.nodes.items():
-            src = torch.arange(len(nodes), dtype=torch.long)
-            dst = src.clone()
-            data[nt, "to", nt].edge_index = torch.stack([src, dst], dim=0)
-
     if add_reversed_edges:
-        for et, edges in hls_data.edges.items():
-            if et[1] == "hrchy":
-                src, dst = zip(*edges)
-                src = torch.tensor(dst, dtype=torch.long)
-                dst = torch.tensor(src, dtype=torch.long)
-                data[et[2], "hrchy_rev", et[0]].edge_index = torch.stack([src, dst], dim=0)
+        hrchy_edges = {k: v for k, v in data.edge_index_dict.items() if k[1] == "hrchy"}
+        for et, edge_index in hrchy_edges.items():
+            if edge_index.size(1) == 0:
+                data[et[2], "hrchy_rev", et[0]].edge_index = torch.empty((2, 0), dtype=torch.long)
+            else:
+                src, dst = edge_index[0], edge_index[1]
+                data[et[2], "hrchy_rev", et[0]].edge_index = torch.stack([dst, src], dim=0)
+
+    if add_self_loops:
+        for nt in NODE_TYPES:
+            nodes = hls_data.nodes.get(nt)
+            if nodes:
+                src = torch.arange(len(nodes), dtype=torch.long)
+                dst = src.clone()
+                data[nt, "to", nt].edge_index = torch.stack([src, dst], dim=0)
+            else:
+                data[nt, "to", nt].edge_index = torch.empty((2, 0), dtype=torch.long)
 
     return data
             

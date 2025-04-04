@@ -1,0 +1,73 @@
+{
+  "0": {
+    "basicblocks": 1,
+    "calls": "4 2 1 3",
+    "file": "gsm.c",
+    "fileloc": 7,
+    "instructions": 7,
+    "name": "Gsm_LPC_Analysis",
+    "total_instructions": 867
+  },
+  "1": {
+    "basicblocks": 11,
+    "calls": "",
+    "file": "gsm_lpc.c",
+    "fileloc": 241,
+    "instructions": 44,
+    "loads": {
+      "L": 1
+    },
+    "name": "Transformation_to_Log_Area_Ratios",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 44
+  },
+  "2": {
+    "basicblocks": 49,
+    "calls": "",
+    "file": "gsm_lpc.c",
+    "fileloc": 160,
+    "instructions": 254,
+    "loads": {
+      "G": 4,
+      "L": 11
+    },
+    "name": "Reflection_coefficients",
+    "stores": {
+      "L": 10
+    },
+    "total_instructions": 254
+  },
+  "3": {
+    "basicblocks": 17,
+    "calls": "",
+    "file": "gsm_lpc.c",
+    "fileloc": 267,
+    "instructions": 236,
+    "loads": {
+      "L": 8
+    },
+    "name": "Quantization_and_coding",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 236
+  },
+  "4": {
+    "basicblocks": 35,
+    "calls": "",
+    "file": "gsm_lpc.c",
+    "fileloc": 34,
+    "instructions": 326,
+    "loads": {
+      "G": 4,
+      "L": 37
+    },
+    "name": "Autocorrelation",
+    "stores": {
+      "L": 21
+    },
+    "total_instructions": 326
+  }
+}

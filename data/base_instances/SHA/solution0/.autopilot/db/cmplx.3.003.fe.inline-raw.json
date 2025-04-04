@@ -1,0 +1,105 @@
+{
+  "0": {
+    "basicblocks": 9,
+    "calls": "5 1 4",
+    "file": "sha.c",
+    "fileloc": 197,
+    "instructions": 35,
+    "loads": {
+      "G": 1,
+      "T": 2
+    },
+    "name": "sha_stream",
+    "stores": {
+      "G": 1,
+      "T": 1
+    },
+    "total_instructions": 703
+  },
+  "1": {
+    "basicblocks": 7,
+    "calls": "3 6 3",
+    "file": "sha.c",
+    "fileloc": 155,
+    "instructions": 38,
+    "loads": {
+      "G": 3
+    },
+    "name": "sha_update",
+    "stores": {
+      "G": 3
+    },
+    "total_instructions": 260
+  },
+  "2": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "sha.c",
+    "fileloc": 55,
+    "instructions": 22,
+    "name": "local_memset",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 22
+  },
+  "3": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "sha.c",
+    "fileloc": 73,
+    "instructions": 33,
+    "loads": {
+      "L": 4
+    },
+    "name": "local_memcpy",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 33
+  },
+  "4": {
+    "basicblocks": 4,
+    "calls": "2 6 2 2 6",
+    "file": "sha.c",
+    "fileloc": 174,
+    "instructions": 22,
+    "loads": {
+      "G": 2
+    },
+    "name": "sha_final",
+    "stores": {
+      "G": 3
+    },
+    "total_instructions": 400
+  },
+  "5": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "sha.c",
+    "fileloc": 144,
+    "instructions": 8,
+    "name": "sha_init",
+    "stores": {
+      "G": 7
+    },
+    "total_instructions": 8
+  },
+  "6": {
+    "basicblocks": 13,
+    "calls": "",
+    "file": "sha.c",
+    "fileloc": 93,
+    "instructions": 156,
+    "loads": {
+      "G": 6,
+      "L": 8
+    },
+    "name": "sha_transform",
+    "stores": {
+      "G": 5,
+      "L": 2
+    },
+    "total_instructions": 156
+  }
+}

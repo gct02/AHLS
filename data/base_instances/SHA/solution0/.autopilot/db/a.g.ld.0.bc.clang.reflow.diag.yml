@@ -1,0 +1,10 @@
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_208_1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/sha/sha.c:208:20'
+  - String:          ' '
+...

@@ -12,6 +12,7 @@ from torch_geometric.typing import NodeType
 
 def extract_feature_boundaries(
     dataset_dir: str, 
+    metric: str,
     benchmarks: Optional[Union[str, List[str]]] = None
 ) -> Dict[NodeType, Dict[str, Tensor]]:
     bounds = {}
@@ -46,8 +47,9 @@ def extract_feature_boundaries(
             with open(metrics_path, 'r') as f:
                 metrics = json.load(f)
 
-            if not metrics:
-                print(f"Skipping {sol} (metrics file empty)")
+            target = float(metrics.get(metric, -1.0)) if metrics else -1.0
+            if target < 0:
+                print(f"Skipping {sol} (target value not found)")
                 continue
 
             data = torch.load(graph_path)
@@ -56,14 +58,14 @@ def extract_feature_boundaries(
                 if x.size(0) == 0:
                     continue
 
-                min = torch.min(x, dim=0).values
-                max = torch.max(x, dim=0).values
+                min_value = torch.min(x, dim=0).values
+                max_value = torch.max(x, dim=0).values
                 if nt not in bounds:
-                    bounds[nt] = {"min": min, "max": max}
+                    bounds[nt] = {"min": min_value, "max": max_value}
                     continue
 
-                bounds[nt]["min"] = torch.minimum(bounds[nt]["min"], min)
-                bounds[nt]["max"] = torch.maximum(bounds[nt]["max"], max)
+                bounds[nt]["min"] = torch.minimum(bounds[nt]["min"], min_value)
+                bounds[nt]["max"] = torch.maximum(bounds[nt]["max"], max_value)
 
     return bounds
 
@@ -95,8 +97,10 @@ class HLSDataset(Dataset):
             self.benchmarks = benchmarks
 
         if scale_features:
-            if feature_bounds is None:
-                self.feature_bounds = extract_feature_boundaries(self._full_dir, self.benchmarks)
+            if not feature_bounds:
+                self.feature_bounds = extract_feature_boundaries(
+                    self._full_dir, metric, self.benchmarks
+                )
             else:
                 self.feature_bounds = feature_bounds
         else:
@@ -189,8 +193,8 @@ class HLSDataset(Dataset):
 
                 data = torch.load(graph_path)
 
-                data.y = torch.tensor([math.log(target)])
-                data.y_base = torch.tensor([math.log(base_target)])
+                data.y = torch.tensor([math.log(target + 1e-6)])
+                data.y_base = torch.tensor([math.log(base_target + 1e-6)])
 
                 if self.feature_bounds is not None:
                     data = self._scale_features(data)
@@ -215,11 +219,11 @@ class HLSDataset(Dataset):
             if x.size(0) == 0:
                 continue
 
-            min = self.feature_bounds[nt]["min"]
-            max = self.feature_bounds[nt]["max"]
-            range = max - min
-            range[range == 0] = 1
+            min_value = self.feature_bounds[nt]["min"]
+            max_value = self.feature_bounds[nt]["max"]
+            value_range = max_value - min_value
+            value_range[value_range == 0] = 1
 
-            data.x_dict[nt] = (x - min) / range
+            data.x_dict[nt] = (x - min_value) / value_range
 
         return data

@@ -1,0 +1,275 @@
+[
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 0,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 1,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 1,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loopjj",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 2,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 2,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loopkk",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 3,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 3,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loopi",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 4,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 4,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loopk",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 5,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 5,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loopj",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 6,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 6,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 7,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 7,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loopjj",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 8,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 8,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loopkk",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 9,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 9,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loopi",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 10,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 10,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loopk",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 11,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 11,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loopj",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 12,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 12,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "bbgemm"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/run_hls.tcl",
+    "sourceLine": 10,
+    "success": true
+  }
+]

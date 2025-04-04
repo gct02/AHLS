@@ -78,12 +78,7 @@ approx/
 # Test files and statistics
 analysis/model/
 pretrained/
-runs/
-test/
-sanity_check*
+test*/
 
-hls/
-
-# The dataset to train the estimator (too large for git)
+# The dataset to train the estimator
 dataset/
-data/base_instances/

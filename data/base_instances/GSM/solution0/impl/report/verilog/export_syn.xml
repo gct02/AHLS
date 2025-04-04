@@ -1,0 +1,354 @@
+<profile>
+  <RunData>
+    <RUN_TYPE>synth</RUN_TYPE>
+    <VIVADO_VERSION>v.2023.2</VIVADO_VERSION>
+    <ROOT_MODULE_CELL>bd_0_i/hls_inst</ROOT_MODULE_CELL>
+  </RunData>
+  <TimingReport>
+    <TargetClockPeriod>8.000</TargetClockPeriod>
+    <AchievedClockPeriod>3.518</AchievedClockPeriod>
+    <CLOCK_NAME>ap_clk</CLOCK_NAME>
+    <CP_FINAL>3.518</CP_FINAL>
+    <CP_ROUTE>NA</CP_ROUTE>
+    <CP_SYNTH>3.518</CP_SYNTH>
+    <CP_TARGET>8.000</CP_TARGET>
+    <SLACK_FINAL>4.482</SLACK_FINAL>
+    <SLACK_ROUTE/>
+    <SLACK_SYNTH>4.482</SLACK_SYNTH>
+    <TIMING_MET>TRUE</TIMING_MET>
+    <TNS_FINAL>0.000</TNS_FINAL>
+    <TNS_ROUTE>NA</TNS_ROUTE>
+    <TNS_SYNTH>0.000</TNS_SYNTH>
+    <WNS_FINAL>4.482</WNS_FINAL>
+    <WNS_ROUTE>NA</WNS_ROUTE>
+    <WNS_SYNTH>4.482</WNS_SYNTH>
+  </TimingReport>
+  <AreaReport>
+    <Resources>
+      <BRAM>4</BRAM>
+      <CLB>0</CLB>
+      <DSP>40</DSP>
+      <FF>1635</FF>
+      <LATCH>0</LATCH>
+      <LUT>2654</LUT>
+      <SRL>9</SRL>
+      <URAM>0</URAM>
+    </Resources>
+    <AvailableResources>
+      <BRAM>2688</BRAM>
+      <CLB>0</CLB>
+      <DSP>5952</DSP>
+      <FF>1743360</FF>
+      <LUT>871680</LUT>
+      <URAM>640</URAM>
+    </AvailableResources>
+  </AreaReport>
+  <RtlModules>
+    <RtlModule CELL="inst" DEPTH="0" IS_TOP="1" TYPE="function" MODULENAME="Gsm_LPC_Analysis" DISPNAME="inst" RTLNAME="Gsm_LPC_Analysis">
+      <SubModules count="6">L_ACF_U bitoff_U grp_Autocorrelation_fu_40 grp_Quantization_and_coding_fu_65 grp_Reflection_coefficients_fu_50 grp_Transformation_to_Log_Area_Ratios_fu_59</SubModules>
+      <Resources BRAM="4" DSP="40" FF="1635" LUT="2654"/>
+      <LocalResources FF="12" LUT="1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/L_ACF_U" BINDMODULE="Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="L_ACF_RAM_AUTO_1R1W" DISPNAME="L_ACF_U" RTLNAME="Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W">
+      <Resources BRAM="4" LUT="194"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="L_ACF_U" SOURCE="data/benchmarks/gsm/gsm.c:9" STORAGESIZE="64 9 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p array" URAM="0" VARIABLE="L_ACF"/>
+    </RtlModule>
+    <RtlModule CELL="inst/bitoff_U" BINDMODULE="Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R" DEPTH="1" TYPE="resource" MODULENAME="bitoff_ROM_AUTO_1R" DISPNAME="bitoff_U" RTLNAME="Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R">
+      <Resources FF="16" LUT="27"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_np" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_np" PRAGMA="" RTLNAME="bitoff_U" SOURCE="" STORAGESIZE="4 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_np" URAM="0" VARIABLE="bitoff"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40" DEPTH="1" TYPE="function" MODULENAME="Autocorrelation" DISPNAME="grp_Autocorrelation_fu_40" RTLNAME="Gsm_LPC_Analysis_Autocorrelation">
+      <SubModules count="22">am_addmul_16s_16s_16s_33_4_1_U30 am_addmul_16s_16s_16s_33_4_1_U39 ama_addmuladd_16s_16s_16s_32s_33_4_1_U28 ama_addmuladd_16s_16s_16s_32s_33_4_1_U29 ama_addmuladd_16s_16s_16s_33s_34_4_1_U38 ama_addmuladd_16s_16s_16s_33s_34_4_1_U40 ama_addmuladd_16s_16s_16s_33s_34_4_1_U41 grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_532 mac_muladd_16s_16s_32s_33_4_1_U31 mac_muladd_16s_16s_32s_33_4_1_U32 mac_muladd_16s_16s_32s_33_4_1_U33 mac_muladd_16s_16s_32s_33_4_1_U34 mac_muladd_16s_16s_32s_33_4_1_U35 mac_muladd_16s_16s_32s_33_4_1_U42 mac_muladd_16s_16s_33s_33_4_1_U36 mac_muladd_16s_16s_33s_33_4_1_U37 mul_16s_16s_32_1_1_U10 mul_16s_16s_32_1_1_U16 mul_16s_16s_32_1_1_U20 mul_16s_16s_32_1_1_U21 mul_16s_16s_32_1_1_U22 mul_16s_16s_32_1_1_U23</SubModules>
+      <Resources DSP="34" FF="1195" LUT="1569"/>
+      <LocalResources DSP="4" FF="1165" LUT="824"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/am_addmul_16s_16s_16s_33_4_1_U30" BINDMODULE="Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1" DEPTH="2" TYPE="resource" MODULENAME="am_addmul_16s_16s_16s_33_4_1" DISPNAME="am_addmul_16s_16s_16s_33_4_1_U30" RTLNAME="Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1">
+      <Resources DSP="1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="am_addmul_16s_16s_16s_33_4_1_U30" SOURCE="data/benchmarks/gsm/gsm_lpc.c:111" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp27"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="am_addmul_16s_16s_16s_33_4_1_U30" SOURCE="data/benchmarks/gsm/gsm_lpc.c:111" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp28"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/am_addmul_16s_16s_16s_33_4_1_U39" BINDMODULE="Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1" DEPTH="2" TYPE="resource" MODULENAME="am_addmul_16s_16s_16s_33_4_1" DISPNAME="am_addmul_16s_16s_16s_33_4_1_U39" RTLNAME="Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1">
+      <Resources DSP="1" LUT="67"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="am_addmul_16s_16s_16s_33_4_1_U39" SOURCE="data/benchmarks/gsm/gsm_lpc.c:89" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp21"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="am_addmul_16s_16s_16s_33_4_1_U39" SOURCE="data/benchmarks/gsm/gsm_lpc.c:89" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp22"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/ama_addmuladd_16s_16s_16s_32s_33_4_1_U28" BINDMODULE="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1" DEPTH="2" TYPE="resource" MODULENAME="ama_addmuladd_16s_16s_16s_32s_33_4_1" DISPNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U28" RTLNAME="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1">
+      <Resources DSP="2"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U28" SOURCE="data/benchmarks/gsm/gsm_lpc.c:111" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U28" SOURCE="data/benchmarks/gsm/gsm_lpc.c:111" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp18"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U28" SOURCE="data/benchmarks/gsm/gsm_lpc.c:120" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln120_2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/ama_addmuladd_16s_16s_16s_32s_33_4_1_U29" BINDMODULE="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1" DEPTH="2" TYPE="resource" MODULENAME="ama_addmuladd_16s_16s_16s_32s_33_4_1" DISPNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U29" RTLNAME="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1">
+      <Resources DSP="2"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U29" SOURCE="data/benchmarks/gsm/gsm_lpc.c:111" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp23"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U29" SOURCE="data/benchmarks/gsm/gsm_lpc.c:111" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp24"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_32s_33_4_1_U29" SOURCE="data/benchmarks/gsm/gsm_lpc.c:121" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln121_2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/ama_addmuladd_16s_16s_16s_33s_34_4_1_U38" BINDMODULE="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1" DEPTH="2" TYPE="resource" MODULENAME="ama_addmuladd_16s_16s_16s_33s_34_4_1" DISPNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U38" RTLNAME="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1">
+      <Resources DSP="1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U38" SOURCE="data/benchmarks/gsm/gsm_lpc.c:98" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp19"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U38" SOURCE="data/benchmarks/gsm/gsm_lpc.c:98" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp20"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U38" SOURCE="data/benchmarks/gsm/gsm_lpc.c:120" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln120_3"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/ama_addmuladd_16s_16s_16s_33s_34_4_1_U40" BINDMODULE="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1" DEPTH="2" TYPE="resource" MODULENAME="ama_addmuladd_16s_16s_16s_33s_34_4_1" DISPNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U40" RTLNAME="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1">
+      <Resources DSP="1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U40" SOURCE="data/benchmarks/gsm/gsm_lpc.c:104" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp25"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U40" SOURCE="data/benchmarks/gsm/gsm_lpc.c:104" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp26"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U40" SOURCE="data/benchmarks/gsm/gsm_lpc.c:121" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln121_3"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/ama_addmuladd_16s_16s_16s_33s_34_4_1_U41" BINDMODULE="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1" DEPTH="2" TYPE="resource" MODULENAME="ama_addmuladd_16s_16s_16s_33s_34_4_1" DISPNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U41" RTLNAME="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1">
+      <Resources DSP="1" LUT="20"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U41" SOURCE="data/benchmarks/gsm/gsm_lpc.c:119" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp29"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U41" SOURCE="data/benchmarks/gsm/gsm_lpc.c:119" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp30"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ama_addmuladd_16s_16s_16s_33s_34_4_1_U41" SOURCE="data/benchmarks/gsm/gsm_lpc.c:122" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln122_2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_532" DEPTH="2" TYPE="function" MODULENAME="Autocorrelation_Pipeline_VITIS_LOOP_65_1" DISPNAME="grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_532" RTLNAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1">
+      <SubModules count="2">flow_control_loop_pipe_sequential_init_U mac_muladd_16s_15ns_15ns_31_4_1_U1</SubModules>
+      <Resources DSP="1" FF="30" LUT="65"/>
+      <LocalResources FF="28" LUT="33"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_532/flow_control_loop_pipe_sequential_init_U" BINDMODULE="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init" DEPTH="3" TYPE="rtl" MODULENAME="flow_control_loop_pipe_sequential_init" DISPNAME="flow_control_loop_pipe_sequential_init_U" RTLNAME="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init">
+      <Resources FF="2" LUT="32"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_532/mac_muladd_16s_15ns_15ns_31_4_1_U1" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1" DEPTH="3" TYPE="resource" MODULENAME="mac_muladd_16s_15ns_15ns_31_4_1" DISPNAME="mac_muladd_16s_15ns_15ns_31_4_1_U1" RTLNAME="Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1">
+      <Resources DSP="1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_65_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_15ns_15ns_31_4_1_U1" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln59"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_65_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_15ns_15ns_31_4_1_U1" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="prod"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mac_muladd_16s_16s_32s_33_4_1_U31" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1" DEPTH="2" TYPE="resource" MODULENAME="mac_muladd_16s_16s_32s_33_4_1" DISPNAME="mac_muladd_16s_16s_32s_33_4_1_U31" RTLNAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1">
+      <Resources DSP="2" LUT="1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U31" SOURCE="data/benchmarks/gsm/gsm_lpc.c:119" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln119"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U31" SOURCE="data/benchmarks/gsm/gsm_lpc.c:119" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln119_5"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mac_muladd_16s_16s_32s_33_4_1_U32" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1" DEPTH="2" TYPE="resource" MODULENAME="mac_muladd_16s_16s_32s_33_4_1" DISPNAME="mac_muladd_16s_16s_32s_33_4_1_U32" RTLNAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1">
+      <Resources DSP="2" LUT="1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U32" SOURCE="data/benchmarks/gsm/gsm_lpc.c:123" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln123"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U32" SOURCE="data/benchmarks/gsm/gsm_lpc.c:123" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln123_2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mac_muladd_16s_16s_32s_33_4_1_U33" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1" DEPTH="2" TYPE="resource" MODULENAME="mac_muladd_16s_16s_32s_33_4_1" DISPNAME="mac_muladd_16s_16s_32s_33_4_1_U33" RTLNAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1">
+      <Resources DSP="2" LUT="26"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U33" SOURCE="data/benchmarks/gsm/gsm_lpc.c:124" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln124"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U33" SOURCE="data/benchmarks/gsm/gsm_lpc.c:124" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln124_2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mac_muladd_16s_16s_32s_33_4_1_U34" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1" DEPTH="2" TYPE="resource" MODULENAME="mac_muladd_16s_16s_32s_33_4_1" DISPNAME="mac_muladd_16s_16s_32s_33_4_1_U34" RTLNAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1">
+      <Resources DSP="2" LUT="4"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U34" SOURCE="data/benchmarks/gsm/gsm_lpc.c:89" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln89"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U34" SOURCE="data/benchmarks/gsm/gsm_lpc.c:119" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln119_2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mac_muladd_16s_16s_32s_33_4_1_U35" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1" DEPTH="2" TYPE="resource" MODULENAME="mac_muladd_16s_16s_32s_33_4_1" DISPNAME="mac_muladd_16s_16s_32s_33_4_1_U35" RTLNAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1">
+      <Resources DSP="2" LUT="8"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U35" SOURCE="data/benchmarks/gsm/gsm_lpc.c:98" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln98"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U35" SOURCE="data/benchmarks/gsm/gsm_lpc.c:119" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln119_4"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mac_muladd_16s_16s_32s_33_4_1_U42" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1" DEPTH="2" TYPE="resource" MODULENAME="mac_muladd_16s_16s_32s_33_4_1" DISPNAME="mac_muladd_16s_16s_32s_33_4_1_U42" RTLNAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1">
+      <Resources DSP="2" LUT="63"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U42" SOURCE="data/benchmarks/gsm/gsm_lpc.c:125" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln125"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_32s_33_4_1_U42" SOURCE="data/benchmarks/gsm/gsm_lpc.c:125" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln125_1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mac_muladd_16s_16s_33s_33_4_1_U36" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1" DEPTH="2" TYPE="resource" MODULENAME="mac_muladd_16s_16s_33s_33_4_1" DISPNAME="mac_muladd_16s_16s_33s_33_4_1_U36" RTLNAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1">
+      <Resources DSP="1" LUT="33"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_33s_33_4_1_U36" SOURCE="data/benchmarks/gsm/gsm_lpc.c:104" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln104"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_33s_33_4_1_U36" SOURCE="data/benchmarks/gsm/gsm_lpc.c:119" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln119_6"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mac_muladd_16s_16s_33s_33_4_1_U37" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1" DEPTH="2" TYPE="resource" MODULENAME="mac_muladd_16s_16s_33s_33_4_1" DISPNAME="mac_muladd_16s_16s_33s_33_4_1_U37" RTLNAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1">
+      <Resources DSP="1" LUT="5"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_33s_33_4_1_U37" SOURCE="data/benchmarks/gsm/gsm_lpc.c:108" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln108"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_33s_33_4_1_U37" SOURCE="data/benchmarks/gsm/gsm_lpc.c:123" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln123_3"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U10" BINDMODULE="Gsm_LPC_Analysis_mul_16s_16s_32_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_16s_32_1_1" DISPNAME="mul_16s_16s_32_1_1_U10" RTLNAME="Gsm_LPC_Analysis_mul_16s_16s_32_1_1">
+      <Resources DSP="1" LUT="109"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U10" SOURCE="data/benchmarks/gsm/gsm_lpc.c:84" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln84"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U16" BINDMODULE="Gsm_LPC_Analysis_mul_16s_16s_32_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_16s_32_1_1" DISPNAME="mul_16s_16s_32_1_1_U16" RTLNAME="Gsm_LPC_Analysis_mul_16s_16s_32_1_1">
+      <Resources DSP="1" LUT="67"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U16" SOURCE="data/benchmarks/gsm/gsm_lpc.c:109" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln109"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U20" BINDMODULE="Gsm_LPC_Analysis_mul_16s_16s_32_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_16s_32_1_1" DISPNAME="mul_16s_16s_32_1_1_U20" RTLNAME="Gsm_LPC_Analysis_mul_16s_16s_32_1_1">
+      <Resources DSP="1" LUT="4"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="Autocorrelation_label3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U20" SOURCE="data/benchmarks/gsm/gsm_lpc.c:133" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln133"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U21" BINDMODULE="Gsm_LPC_Analysis_mul_16s_16s_32_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_16s_32_1_1" DISPNAME="mul_16s_16s_32_1_1_U21" RTLNAME="Gsm_LPC_Analysis_mul_16s_16s_32_1_1">
+      <Resources DSP="1" LUT="72"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="Autocorrelation_label3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U21" SOURCE="data/benchmarks/gsm/gsm_lpc.c:134" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln134"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22" BINDMODULE="Gsm_LPC_Analysis_mul_16s_16s_32_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_16s_32_1_1" DISPNAME="mul_16s_16s_32_1_1_U22" RTLNAME="Gsm_LPC_Analysis_mul_16s_16s_32_1_1">
+      <Resources DSP="1" LUT="70"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="Autocorrelation_label3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U22" SOURCE="data/benchmarks/gsm/gsm_lpc.c:135" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln135"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U23" BINDMODULE="Gsm_LPC_Analysis_mul_16s_16s_32_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_16s_32_1_1" DISPNAME="mul_16s_16s_32_1_1_U23" RTLNAME="Gsm_LPC_Analysis_mul_16s_16s_32_1_1">
+      <Resources DSP="1" LUT="193"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="Autocorrelation_label3" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U23" SOURCE="data/benchmarks/gsm/gsm_lpc.c:136" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln136"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Quantization_and_coding_fu_65" DEPTH="1" TYPE="function" MODULENAME="Quantization_and_coding" DISPNAME="grp_Quantization_and_coding_fu_65" RTLNAME="Gsm_LPC_Analysis_Quantization_and_coding">
+      <SubModules count="3">mul_16s_15ns_31_1_1_U61 mul_16s_15ns_31_1_1_U62 mul_16s_15ns_31_1_1_U63</SubModules>
+      <Resources DSP="3" FF="76" LUT="217"/>
+      <LocalResources FF="76" LUT="173"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Quantization_and_coding_fu_65/mul_16s_15ns_31_1_1_U61" BINDMODULE="Gsm_LPC_Analysis_mul_16s_15ns_31_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_15ns_31_1_1" DISPNAME="mul_16s_15ns_31_1_1_U61" RTLNAME="Gsm_LPC_Analysis_mul_16s_15ns_31_1_1">
+      <Resources DSP="1" LUT="13"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U61" SOURCE="data/benchmarks/gsm/gsm_add.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln48"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Quantization_and_coding_fu_65/mul_16s_15ns_31_1_1_U62" BINDMODULE="Gsm_LPC_Analysis_mul_16s_15ns_31_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_15ns_31_1_1" DISPNAME="mul_16s_15ns_31_1_1_U62" RTLNAME="Gsm_LPC_Analysis_mul_16s_15ns_31_1_1">
+      <Resources DSP="1" LUT="14"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U62" SOURCE="data/benchmarks/gsm/gsm_add.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln48_1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Quantization_and_coding_fu_65/mul_16s_15ns_31_1_1_U63" BINDMODULE="Gsm_LPC_Analysis_mul_16s_15ns_31_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_15ns_31_1_1" DISPNAME="mul_16s_15ns_31_1_1_U63" RTLNAME="Gsm_LPC_Analysis_mul_16s_15ns_31_1_1">
+      <Resources DSP="1" LUT="17"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U63" SOURCE="data/benchmarks/gsm/gsm_add.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln48_2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Reflection_coefficients_fu_50" DEPTH="1" TYPE="function" MODULENAME="Reflection_coefficients" DISPNAME="grp_Reflection_coefficients_fu_50" RTLNAME="Gsm_LPC_Analysis_Reflection_coefficients">
+      <SubModules count="6">ACF_U K_U P_U mac_muladd_16s_16s_15ns_31_4_1_U52 mac_muladd_16s_16s_15ns_31_4_1_U53 mac_muladd_16s_16s_15ns_31_4_1_U54</SubModules>
+      <Resources DSP="3" FF="323" LUT="535"/>
+      <LocalResources FF="275" LUT="214"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Reflection_coefficients_fu_50/ACF_U" BINDMODULE="Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W" DEPTH="2" TYPE="resource" MODULENAME="Reflection_coefficients_ACF_RAM_AUTO_1R1W" DISPNAME="ACF_U" RTLNAME="Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W">
+      <Resources FF="16" LUT="21"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="ACF_U" SOURCE="data/benchmarks/gsm/gsm_lpc.c:167" STORAGESIZE="16 9 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="ACF"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Reflection_coefficients_fu_50/K_U" BINDMODULE="Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W" DEPTH="2" TYPE="resource" MODULENAME="Reflection_coefficients_ACF_RAM_AUTO_1R1W" DISPNAME="K_U" RTLNAME="Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W">
+      <Resources FF="16" LUT="26"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="K_U" SOURCE="data/benchmarks/gsm/gsm_lpc.c:169" STORAGESIZE="16 9 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="K"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Reflection_coefficients_fu_50/P_U" BINDMODULE="Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W" DEPTH="2" TYPE="resource" MODULENAME="Reflection_coefficients_ACF_RAM_AUTO_1R1W" DISPNAME="P_U" RTLNAME="Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W">
+      <Resources FF="16" LUT="72"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="P_U" SOURCE="data/benchmarks/gsm/gsm_lpc.c:168" STORAGESIZE="16 9 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="P"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Reflection_coefficients_fu_50/mac_muladd_16s_16s_15ns_31_4_1_U52" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1" DEPTH="2" TYPE="resource" MODULENAME="mac_muladd_16s_16s_15ns_31_4_1" DISPNAME="mac_muladd_16s_16s_15ns_31_4_1_U52" RTLNAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1">
+      <Resources DSP="1" LUT="60"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="Reflection_coefficients_label4" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_15ns_31_4_1_U52" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln59"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="Reflection_coefficients_label4" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_15ns_31_4_1_U52" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="prod"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Reflection_coefficients_fu_50/mac_muladd_16s_16s_15ns_31_4_1_U53" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1" DEPTH="2" TYPE="resource" MODULENAME="mac_muladd_16s_16s_15ns_31_4_1" DISPNAME="mac_muladd_16s_16s_15ns_31_4_1_U53" RTLNAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1">
+      <Resources DSP="1" LUT="92"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="Reflection_coefficients_label5" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_15ns_31_4_1_U53" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln59_1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="Reflection_coefficients_label5" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_15ns_31_4_1_U53" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="prod_1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Reflection_coefficients_fu_50/mac_muladd_16s_16s_15ns_31_4_1_U54" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1" DEPTH="2" TYPE="resource" MODULENAME="mac_muladd_16s_16s_15ns_31_4_1" DISPNAME="mac_muladd_16s_16s_15ns_31_4_1_U54" RTLNAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1">
+      <Resources DSP="1" LUT="50"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="Reflection_coefficients_label5" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_15ns_31_4_1_U54" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln59_2"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="Reflection_coefficients_label5" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_15ns_31_4_1_U54" SOURCE="data/benchmarks/gsm/gsm_add.c:59" STORAGESUBTYPE="" URAM="0" VARIABLE="prod_2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_Transformation_to_Log_Area_Ratios_fu_59" DEPTH="1" TYPE="function" MODULENAME="Transformation_to_Log_Area_Ratios" DISPNAME="grp_Transformation_to_Log_Area_Ratios_fu_59" RTLNAME="Gsm_LPC_Analysis_Transformation_to_Log_Area_Ratios">
+      <Resources FF="13" LUT="111"/>
+    </RtlModule>
+  </RtlModules>
+  <TimingPaths>
+    <TPATH DATAPATH_DELAY="3.469" DATAPATH_LOGIC_DELAY="2.876" DATAPATH_NET_DELAY="0.593" ENDPOINT_PIN="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[63]/D" LOGIC_LEVELS="13" MAX_FANOUT="63" SLACK="4.482" STARTPOINT_PIN="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_A_B_DATA_INST/CLK">
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_C_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204[32]_i_8" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="1136"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[32]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[40]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[48]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[56]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[63]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1136"/>
+    </TPATH>
+    <TPATH DATAPATH_DELAY="3.468" DATAPATH_LOGIC_DELAY="2.876" DATAPATH_NET_DELAY="0.592" ENDPOINT_PIN="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[61]/D" LOGIC_LEVELS="13" MAX_FANOUT="63" SLACK="4.483" STARTPOINT_PIN="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_A_B_DATA_INST/CLK">
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_C_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204[32]_i_8" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="1136"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[32]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[40]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[48]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[56]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[61]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1136"/>
+    </TPATH>
+    <TPATH DATAPATH_DELAY="3.456" DATAPATH_LOGIC_DELAY="2.863" DATAPATH_NET_DELAY="0.593" ENDPOINT_PIN="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[62]/D" LOGIC_LEVELS="13" MAX_FANOUT="63" SLACK="4.495" STARTPOINT_PIN="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_A_B_DATA_INST/CLK">
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_C_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204[32]_i_8" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="1136"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[32]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[40]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[48]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[56]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[62]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1136"/>
+    </TPATH>
+    <TPATH DATAPATH_DELAY="3.442" DATAPATH_LOGIC_DELAY="2.854" DATAPATH_NET_DELAY="0.588" ENDPOINT_PIN="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[55]/D" LOGIC_LEVELS="12" MAX_FANOUT="63" SLACK="4.509" STARTPOINT_PIN="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_A_B_DATA_INST/CLK">
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_C_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204[32]_i_8" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="1136"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[32]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[40]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[48]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[55]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1136"/>
+    </TPATH>
+    <TPATH DATAPATH_DELAY="3.441" DATAPATH_LOGIC_DELAY="2.854" DATAPATH_NET_DELAY="0.587" ENDPOINT_PIN="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[53]/D" LOGIC_LEVELS="12" MAX_FANOUT="63" SLACK="4.510" STARTPOINT_PIN="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_A_B_DATA_INST/CLK">
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_16s_16s_32_1_1_U22/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_C_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/mul_ln126_reg_2439_reg/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204[32]_i_8" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="1136"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[32]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[40]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[48]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="231"/>
+      <CELL NAME="grp_Autocorrelation_fu_40/empty_88_fu_204_reg[53]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1136"/>
+    </TPATH>
+  </TimingPaths>
+  <VivadoReportFiles>
+    <ReportFile TYPE="design_analysis" PATH="verilog/report/Gsm_LPC_Analysis_design_analysis_synth.rpt"/>
+    <ReportFile TYPE="failfast" PATH="verilog/report/Gsm_LPC_Analysis_failfast_synth.rpt"/>
+    <ReportFile TYPE="timing" PATH="verilog/report/Gsm_LPC_Analysis_timing_synth.rpt"/>
+    <ReportFile TYPE="timing_paths" PATH="verilog/report/Gsm_LPC_Analysis_timing_paths_synth.rpt"/>
+    <ReportFile TYPE="utilization" PATH="verilog/report/Gsm_LPC_Analysis_utilization_synth.rpt"/>
+    <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/Gsm_LPC_Analysis_utilization_hierarchical_synth.rpt"/>
+  </VivadoReportFiles>
+  <GeneralInfo NAME="General Information">
+    <item NAME="Date" VALUE="Mon Mar 31 15:39:04 -03 2025"/>
+    <item NAME="Version" VALUE="2023.2 (Build 4023990 on Oct 11 2023)"/>
+    <item NAME="Project" VALUE="GSM"/>
+    <item NAME="Solution" VALUE="solution0 (Vivado IP Flow Target)"/>
+    <item NAME="Product family" VALUE="virtexuplusHBM"/>
+    <item NAME="Target device" VALUE="xcu50-fsvh2104-2-e"/>
+  </GeneralInfo>
+  <RunOptions NAME="Run Constraints &amp; Options">
+    <General NAME="Design Constraints &amp; Options">
+      <item NAME="RTL Synthesis target clock" VALUE="8 ns"/>
+      <item NAME="C-Synthesis target clock" VALUE="8 ns"/>
+      <item NAME="C-Synthesis uncertainty" VALUE="27%"/>
+      <item NAME="config_export -ip_xdc_file" VALUE=""/>
+      <item NAME="config_export -ip_xdc_ooc_file" VALUE=""/>
+    </General>
+    <Syn NAME="RTL Synthesis Options">
+      <item NAME="config_export -vivado_synth_strategy" VALUE="default"/>
+      <item NAME="config_export -vivado_synth_design_args" VALUE="-directive sdx_optimization_effort_high"/>
+    </Syn>
+    <Reporting NAME="Reporting Options">
+      <item NAME="config_export -vivado_report_level" VALUE="2"/>
+      <item NAME="config_export -vivado_max_timing_paths" VALUE="10"/>
+    </Reporting>
+  </RunOptions>
+</profile>
+

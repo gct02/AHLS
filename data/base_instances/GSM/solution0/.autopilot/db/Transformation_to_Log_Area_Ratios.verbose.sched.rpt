@@ -1,0 +1,178 @@
+
+
+================================================================
+== Vitis HLS Report for 'Transformation_to_Log_Area_Ratios'
+================================================================
+* Date:           Mon Mar 31 15:33:05 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        GSM
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  4.450 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       17|       17|  0.136 us|  0.136 us|   17|   17|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                                            |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |                  Loop Name                 |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Transformation_to_Log_Area_Ratios_label0  |       16|       16|         2|          -|          -|     8|        no|
+        +--------------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 2 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.38>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%idx = alloca i32 1"   --->   Operation 4 'alloca' 'idx' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [data/benchmarks/gsm/gsm_lpc.c:244]   --->   Operation 5 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %LARc, void @empty_9, i32 0, i32 0, void @empty, i32 4294967295, i32 0, void @empty, void @empty, void @empty, i32 0, i32 0, i32 0, i32 0, void @empty, void @empty, i32 4294967295, i32 0"   --->   Operation 6 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%specpipeline_ln16 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:16]   --->   Operation 7 'specpipeline' 'specpipeline_ln16' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.38ns)   --->   "%store_ln244 = store i4 1, i4 %i" [data/benchmarks/gsm/gsm_lpc.c:244]   --->   Operation 8 'store' 'store_ln244' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 9 [1/1] (0.38ns)   --->   "%store_ln0 = store i4 0, i4 %idx"   --->   Operation 9 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%br_ln248 = br void %for.body" [data/benchmarks/gsm/gsm_lpc.c:248]   --->   Operation 10 'br' 'br_ln248' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 1.09>
+ST_2 : Operation 11 [1/1] (0.00ns)   --->   "%idx_load = load i4 %idx" [data/benchmarks/gsm/gsm_lpc.c:248]   --->   Operation 11 'load' 'idx_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%i_2 = load i4 %i" [data/benchmarks/gsm/gsm_lpc.c:248]   --->   Operation 12 'load' 'i_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 13 [1/1] (0.70ns)   --->   "%icmp_ln248 = icmp_eq  i4 %i_2, i4 9" [data/benchmarks/gsm/gsm_lpc.c:248]   --->   Operation 13 'icmp' 'icmp_ln248' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 14 [1/1] (0.70ns)   --->   "%add_ln248 = add i4 %idx_load, i4 1" [data/benchmarks/gsm/gsm_lpc.c:248]   --->   Operation 14 'add' 'add_ln248' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%br_ln248 = br i1 %icmp_ln248, void %for.body.split_ifconv, void %for.end" [data/benchmarks/gsm/gsm_lpc.c:248]   --->   Operation 15 'br' 'br_ln248' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%zext_ln248 = zext i4 %idx_load" [data/benchmarks/gsm/gsm_lpc.c:248]   --->   Operation 16 'zext' 'zext_ln248' <Predicate = (!icmp_ln248)> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%LARc_addr = getelementptr i16 %LARc, i64 0, i64 %zext_ln248" [data/benchmarks/gsm/gsm_lpc.c:250]   --->   Operation 17 'getelementptr' 'LARc_addr' <Predicate = (!icmp_ln248)> <Delay = 0.00>
+ST_2 : Operation 18 [2/2] (0.68ns)   --->   "%temp_1 = load i3 %LARc_addr" [data/benchmarks/gsm/gsm_lpc.c:250]   --->   Operation 18 'load' 'temp_1' <Predicate = (!icmp_ln248)> <Delay = 0.68> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.68> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 8> <RAM>
+ST_2 : Operation 19 [1/1] (0.70ns)   --->   "%i_3 = add i4 %i_2, i4 1" [data/benchmarks/gsm/gsm_lpc.c:248]   --->   Operation 19 'add' 'i_3' <Predicate = (!icmp_ln248)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 20 [1/1] (0.38ns)   --->   "%store_ln244 = store i4 %i_3, i4 %i" [data/benchmarks/gsm/gsm_lpc.c:244]   --->   Operation 20 'store' 'store_ln244' <Predicate = (!icmp_ln248)> <Delay = 0.38>
+ST_2 : Operation 21 [1/1] (0.38ns)   --->   "%store_ln248 = store i4 %add_ln248, i4 %idx" [data/benchmarks/gsm/gsm_lpc.c:248]   --->   Operation 21 'store' 'store_ln248' <Predicate = (!icmp_ln248)> <Delay = 0.38>
+ST_2 : Operation 22 [1/1] (0.00ns)   --->   "%ret_ln264 = ret" [data/benchmarks/gsm/gsm_lpc.c:264]   --->   Operation 22 'ret' 'ret_ln264' <Predicate = (icmp_ln248)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 4.45>
+ST_3 : Operation 23 [1/1] (0.00ns)   --->   "%speclooptripcount_ln249 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 8, i64 8, i64 8" [data/benchmarks/gsm/gsm_lpc.c:249]   --->   Operation 23 'speclooptripcount' 'speclooptripcount_ln249' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 24 [1/1] (0.00ns)   --->   "%specloopname_ln263 = specloopname void @_ssdm_op_SpecLoopName, void @empty_12" [data/benchmarks/gsm/gsm_lpc.c:263]   --->   Operation 24 'specloopname' 'specloopname_ln263' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 25 [1/2] (0.68ns)   --->   "%temp_1 = load i3 %LARc_addr" [data/benchmarks/gsm/gsm_lpc.c:250]   --->   Operation 25 'load' 'temp_1' <Predicate = true> <Delay = 0.68> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.68> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 8> <RAM>
+ST_3 : Operation 26 [1/1] (0.00ns)   --->   "%tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %temp_1, i32 15" [data/benchmarks/gsm/gsm_add.c:67->data/benchmarks/gsm/gsm_lpc.c:251]   --->   Operation 26 'bitselect' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 27 [1/1] (0.78ns)   --->   "%icmp_ln67 = icmp_eq  i16 %temp_1, i16 32768" [data/benchmarks/gsm/gsm_add.c:67->data/benchmarks/gsm/gsm_lpc.c:251]   --->   Operation 27 'icmp' 'icmp_ln67' <Predicate = true> <Delay = 0.78> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 28 [1/1] (0.78ns)   --->   "%sub_ln67 = sub i16 0, i16 %temp_1" [data/benchmarks/gsm/gsm_add.c:67->data/benchmarks/gsm/gsm_lpc.c:251]   --->   Operation 28 'sub' 'sub_ln67' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 29 [1/1] (0.00ns) (grouped into LUT with out node temp)   --->   "%select_ln67 = select i1 %icmp_ln67, i16 32767, i16 %sub_ln67" [data/benchmarks/gsm/gsm_add.c:67->data/benchmarks/gsm/gsm_lpc.c:251]   --->   Operation 29 'select' 'select_ln67' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 30 [1/1] (0.24ns) (out node of the LUT)   --->   "%temp = select i1 %tmp, i16 %select_ln67, i16 %temp_1" [data/benchmarks/gsm/gsm_add.c:67->data/benchmarks/gsm/gsm_lpc.c:251]   --->   Operation 30 'select' 'temp' <Predicate = true> <Delay = 0.24> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 31 [1/1] (0.78ns)   --->   "%icmp_ln253 = icmp_slt  i16 %temp, i16 22118" [data/benchmarks/gsm/gsm_lpc.c:253]   --->   Operation 31 'icmp' 'icmp_ln253' <Predicate = true> <Delay = 0.78> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 32 [1/1] (0.00ns) (grouped into LUT with out node temp_6)   --->   "%temp_2 = partselect i15 @_ssdm_op_PartSelect.i15.i16.i32.i32, i16 %temp, i32 1, i32 15" [data/benchmarks/gsm/gsm_lpc.c:254]   --->   Operation 32 'partselect' 'temp_2' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 33 [1/1] (0.00ns) (grouped into LUT with out node temp_6)   --->   "%sext_ln254 = sext i15 %temp_2" [data/benchmarks/gsm/gsm_lpc.c:254]   --->   Operation 33 'sext' 'sext_ln254' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 34 [1/1] (0.78ns)   --->   "%icmp_ln255 = icmp_slt  i16 %temp, i16 31130" [data/benchmarks/gsm/gsm_lpc.c:255]   --->   Operation 34 'icmp' 'icmp_ln255' <Predicate = true> <Delay = 0.78> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 35 [1/1] (0.78ns)   --->   "%temp_3 = add i16 %temp, i16 54477" [data/benchmarks/gsm/gsm_lpc.c:256]   --->   Operation 35 'add' 'temp_3' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 36 [1/1] (0.00ns) (grouped into LUT with out node temp_4)   --->   "%shl_ln259 = shl i16 %temp, i16 2" [data/benchmarks/gsm/gsm_lpc.c:259]   --->   Operation 36 'shl' 'shl_ln259' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 37 [1/1] (0.78ns) (out node of the LUT)   --->   "%temp_4 = add i16 %shl_ln259, i16 26624" [data/benchmarks/gsm/gsm_lpc.c:259]   --->   Operation 37 'add' 'temp_4' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 38 [1/1] (0.00ns) (grouped into LUT with out node temp_6)   --->   "%temp_5 = select i1 %icmp_ln253, i16 %sext_ln254, i16 %temp_4" [data/benchmarks/gsm/gsm_lpc.c:253]   --->   Operation 38 'select' 'temp_5' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 39 [1/1] (0.00ns) (grouped into LUT with out node temp_6)   --->   "%xor_ln253 = xor i1 %icmp_ln253, i1 1" [data/benchmarks/gsm/gsm_lpc.c:253]   --->   Operation 39 'xor' 'xor_ln253' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 40 [1/1] (0.00ns) (grouped into LUT with out node temp_6)   --->   "%and_ln255 = and i1 %icmp_ln255, i1 %xor_ln253" [data/benchmarks/gsm/gsm_lpc.c:255]   --->   Operation 40 'and' 'and_ln255' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 41 [1/1] (0.24ns) (out node of the LUT)   --->   "%temp_6 = select i1 %and_ln255, i16 %temp_3, i16 %temp_5" [data/benchmarks/gsm/gsm_lpc.c:255]   --->   Operation 41 'select' 'temp_6' <Predicate = true> <Delay = 0.24> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 42 [1/1] (0.78ns)   --->   "%sub_ln262 = sub i16 0, i16 %temp_6" [data/benchmarks/gsm/gsm_lpc.c:262]   --->   Operation 42 'sub' 'sub_ln262' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 43 [1/1] (0.24ns)   --->   "%select_ln262 = select i1 %tmp, i16 %sub_ln262, i16 %temp_6" [data/benchmarks/gsm/gsm_lpc.c:262]   --->   Operation 43 'select' 'select_ln262' <Predicate = true> <Delay = 0.24> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 44 [1/1] (0.68ns)   --->   "%store_ln262 = store i16 %select_ln262, i3 %LARc_addr" [data/benchmarks/gsm/gsm_lpc.c:262]   --->   Operation 44 'store' 'store_ln262' <Predicate = true> <Delay = 0.68> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.68> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 8> <RAM>
+ST_3 : Operation 45 [1/1] (0.00ns)   --->   "%br_ln248 = br void %for.body" [data/benchmarks/gsm/gsm_lpc.c:248]   --->   Operation 45 'br' 'br_ln248' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 0.387ns
+The critical path consists of the following:
+	'alloca' operation 4 bit ('i', data/benchmarks/gsm/gsm_lpc.c:244) [3]  (0.000 ns)
+	'store' operation 0 bit ('store_ln244', data/benchmarks/gsm/gsm_lpc.c:244) of constant 1 on local variable 'i', data/benchmarks/gsm/gsm_lpc.c:244 [6]  (0.387 ns)
+
+ <State 2>: 1.095ns
+The critical path consists of the following:
+	'load' operation 4 bit ('i', data/benchmarks/gsm/gsm_lpc.c:248) on local variable 'i', data/benchmarks/gsm/gsm_lpc.c:244 [11]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln248', data/benchmarks/gsm/gsm_lpc.c:248) [12]  (0.708 ns)
+	'store' operation 0 bit ('store_ln244', data/benchmarks/gsm/gsm_lpc.c:244) of variable 'i', data/benchmarks/gsm/gsm_lpc.c:248 on local variable 'i', data/benchmarks/gsm/gsm_lpc.c:244 [41]  (0.387 ns)
+
+ <State 3>: 4.450ns
+The critical path consists of the following:
+	'load' operation 16 bit ('temp', data/benchmarks/gsm/gsm_lpc.c:250) on array 'LARc' [20]  (0.683 ns)
+	'icmp' operation 1 bit ('icmp_ln67', data/benchmarks/gsm/gsm_add.c:67->data/benchmarks/gsm/gsm_lpc.c:251) [22]  (0.785 ns)
+	'select' operation 16 bit ('select_ln67', data/benchmarks/gsm/gsm_add.c:67->data/benchmarks/gsm/gsm_lpc.c:251) [24]  (0.000 ns)
+	'select' operation 16 bit ('temp', data/benchmarks/gsm/gsm_add.c:67->data/benchmarks/gsm/gsm_lpc.c:251) [25]  (0.243 ns)
+	'add' operation 16 bit ('temp', data/benchmarks/gsm/gsm_lpc.c:256) [30]  (0.785 ns)
+	'select' operation 16 bit ('temp', data/benchmarks/gsm/gsm_lpc.c:255) [36]  (0.243 ns)
+	'sub' operation 16 bit ('sub_ln262', data/benchmarks/gsm/gsm_lpc.c:262) [37]  (0.785 ns)
+	'select' operation 16 bit ('select_ln262', data/benchmarks/gsm/gsm_lpc.c:262) [38]  (0.243 ns)
+	'store' operation 0 bit ('store_ln262', data/benchmarks/gsm/gsm_lpc.c:262) of variable 'select_ln262', data/benchmarks/gsm/gsm_lpc.c:262 on array 'LARc' [39]  (0.683 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,24 @@
+
+
+Implementation tool: Xilinx Vivado v.2023.2
+Project:             GEMM
+Solution:            solution0
+Device target:       xcu50-fsvh2104-2-e
+Report date:         Sat Mar 29 15:48:40 -03 2025
+
+#=== Post-Implementation Resource usage ===
+SLICE:            0
+LUT:            847
+FF:             988
+DSP:             11
+BRAM:             0
+URAM:             0
+LATCH:            0
+SRL:              0
+CLB:            177
+
+#=== Final timing ===
+CP required:                     8.000
+CP achieved post-synthesis:      4.555
+CP achieved post-implementation: 5.694
+Timing met

@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Mar 31 15:33:34 2025" VIVADOVERSION="2023.2">
+
+  <SYSTEMINFO ARCH="virtexuplusHBM" DEVICE="xcu50" NAME="bd_0" PACKAGE="fsvh2104" SPEEDGRADE="-2"/>
+
+  <EXTERNALPORTS>
+    <PORT DIR="O" LEFT="2" NAME="LARc_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_LARc_address0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="LARc_address0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="2" NAME="LARc_address1" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_LARc_address1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="LARc_address1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="LARc_ce0" SIGIS="undef" SIGNAME="hls_inst_LARc_ce0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="LARc_ce0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="LARc_ce1" SIGIS="undef" SIGNAME="hls_inst_LARc_ce1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="LARc_ce1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="15" NAME="LARc_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_LARc_d0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="LARc_d0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="15" NAME="LARc_d1" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_LARc_d1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="LARc_d1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="15" NAME="LARc_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_LARc_q0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="LARc_q0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="15" NAME="LARc_q1" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_LARc_q1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="LARc_q1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="LARc_we0" SIGIS="undef" SIGNAME="hls_inst_LARc_we0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="LARc_we0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="LARc_we1" SIGIS="undef" SIGNAME="hls_inst_LARc_we1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="LARc_we1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="125000000.0" DIR="I" NAME="ap_clk" SIGIS="clk" SIGNAME="External_Ports_ap_clk">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="ap_clk"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="ap_ctrl_done" SIGIS="undef" SIGNAME="hls_inst_ap_done">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="ap_done"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="ap_ctrl_idle" SIGIS="undef" SIGNAME="hls_inst_ap_idle">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="ap_idle"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="ap_ctrl_ready" SIGIS="undef" SIGNAME="hls_inst_ap_ready">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="ap_ready"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="ap_ctrl_start" SIGIS="undef" SIGNAME="hls_inst_ap_start">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="ap_start"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="ap_rst" POLARITY="ACTIVE_HIGH" SIGIS="rst" SIGNAME="External_Ports_ap_rst">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="ap_rst"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="7" NAME="indata_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_indata_address0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="indata_address0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="7" NAME="indata_address1" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_indata_address1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="indata_address1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="indata_ce0" SIGIS="undef" SIGNAME="hls_inst_indata_ce0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="indata_ce0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="indata_ce1" SIGIS="undef" SIGNAME="hls_inst_indata_ce1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="indata_ce1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="15" NAME="indata_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_indata_d0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="indata_d0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="15" NAME="indata_d1" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_indata_d1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="indata_d1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="15" NAME="indata_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_indata_q0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="indata_q0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="15" NAME="indata_q1" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_indata_q1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="indata_q1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="indata_we0" SIGIS="undef" SIGNAME="hls_inst_indata_we0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="indata_we0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="indata_we1" SIGIS="undef" SIGNAME="hls_inst_indata_we1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="indata_we1"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES>
+    <BUSINTERFACE BUSNAME="External_Interface_ap_ctrl" NAME="ap_ctrl" TYPE="TARGET">
+      <PORTMAPS>
+        <PORTMAP LOGICAL="done" PHYSICAL="ap_ctrl_done"/>
+        <PORTMAP LOGICAL="idle" PHYSICAL="ap_ctrl_idle"/>
+        <PORTMAP LOGICAL="ready" PHYSICAL="ap_ctrl_ready"/>
+        <PORTMAP LOGICAL="start" PHYSICAL="ap_ctrl_start"/>
+      </PORTMAPS>
+    </BUSINTERFACE>
+  </EXTERNALINTERFACES>
+
+  <MODULES>
+    <MODULE COREREVISION="2114019693" FULLNAME="/hls_inst" HWVERSION="1.0" INSTANCE="hls_inst" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Gsm_LPC_Analysis" VLNV="xilinx.com:hls:Gsm_LPC_Analysis:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="bd_0_hls_inst_0"/>
+        <PARAMETER NAME="II" VALUE="x"/>
+        <PARAMETER NAME="clk_period" VALUE="8"/>
+        <PARAMETER NAME="combinational" VALUE="0"/>
+        <PARAMETER NAME="latency" VALUE="1321"/>
+        <PARAMETER NAME="machine" VALUE="64"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="2" NAME="LARc_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_LARc_address0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="LARc_address0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="LARc_address1" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_LARc_address1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="LARc_address1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="LARc_ce0" SIGIS="undef" SIGNAME="hls_inst_LARc_ce0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="LARc_ce0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="LARc_ce1" SIGIS="undef" SIGNAME="hls_inst_LARc_ce1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="LARc_ce1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="LARc_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_LARc_d0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="LARc_d0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="LARc_d1" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_LARc_d1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="LARc_d1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="LARc_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_LARc_q0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="LARc_q0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="LARc_q1" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_LARc_q1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="LARc_q1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="LARc_we0" SIGIS="undef" SIGNAME="hls_inst_LARc_we0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="LARc_we0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="LARc_we1" SIGIS="undef" SIGNAME="hls_inst_LARc_we1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="LARc_we1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="125000000.0" DIR="I" NAME="ap_clk" SIGIS="clk" SIGNAME="External_Ports_ap_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="ap_clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="ap_done" SIGIS="undef" SIGNAME="hls_inst_ap_done">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_0_imp" PORT="ap_ctrl_done"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="ap_idle" SIGIS="undef" SIGNAME="hls_inst_ap_idle">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_0_imp" PORT="ap_ctrl_idle"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="ap_ready" SIGIS="undef" SIGNAME="hls_inst_ap_ready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_0_imp" PORT="ap_ctrl_ready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="ap_rst" POLARITY="ACTIVE_HIGH" SIGIS="rst" SIGNAME="External_Ports_ap_rst">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="ap_rst"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="ap_start" SIGIS="undef" SIGNAME="hls_inst_ap_start">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_0_imp" PORT="ap_ctrl_start"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="indata_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_indata_address0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="indata_address0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="indata_address1" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_indata_address1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="indata_address1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="indata_ce0" SIGIS="undef" SIGNAME="hls_inst_indata_ce0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="indata_ce0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="indata_ce1" SIGIS="undef" SIGNAME="hls_inst_indata_ce1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="indata_ce1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="indata_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_indata_d0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="indata_d0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="indata_d1" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_indata_d1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="indata_d1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="indata_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_indata_q0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="indata_q0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="indata_q1" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_indata_q1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="indata_q1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="indata_we0" SIGIS="undef" SIGNAME="hls_inst_indata_we0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="indata_we0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="indata_we1" SIGIS="undef" SIGNAME="hls_inst_indata_we1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="indata_we1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="External_Interface_ap_ctrl" NAME="ap_ctrl" TYPE="TARGET" VLNV="xilinx.com:interface:acc_handshake:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="done" PHYSICAL="ap_done"/>
+            <PORTMAP LOGICAL="idle" PHYSICAL="ap_idle"/>
+            <PORTMAP LOGICAL="ready" PHYSICAL="ap_ready"/>
+            <PORTMAP LOGICAL="start" PHYSICAL="ap_start"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

@@ -1,0 +1,49 @@
+<pragmas>
+<pragma file="data/benchmarks/sha/sha.c" line="19" pragmaType="pipeline" parentfunction="sha_stream" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="13" pragmaType="pipeline" parentfunction="sha_stream" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="33" pragmaType="loop_flatten" parentfunction="sha_stream" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="227" pragmaType="loop_tripcount" parentfunction="sha_stream" min="5" max="5" avg="5"/>
+<pragma file="data/benchmarks/sha/sha.c" line="11" pragmaType="pipeline" parentfunction="sha_stream" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="31" pragmaType="loop_flatten" parentfunction="sha_stream" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="218" pragmaType="loop_tripcount" parentfunction="sha_stream" min="2" max="2" avg="2"/>
+<pragma file="data/benchmarks/sha/sha.c" line="12" pragmaType="pipeline" parentfunction="sha_stream" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="32" pragmaType="loop_flatten" parentfunction="sha_stream" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="207" pragmaType="loop_tripcount" parentfunction="sha_stream" min="2" max="2" avg="2"/>
+<pragma file="data/benchmarks/sha/sha.c" line="209" pragmaType="loop_tripcount" parentfunction="sha_stream" min="8192" max="8192" avg="8192"/>
+<pragma file="data/benchmarks/sha/sha.c" line="18" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="10" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="30" pragmaType="loop_flatten" parentfunction="sha_transform" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="131" pragmaType="loop_tripcount" parentfunction="sha_transform" min="20" max="20" avg="20"/>
+<pragma file="data/benchmarks/sha/sha.c" line="9" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="29" pragmaType="loop_flatten" parentfunction="sha_transform" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="127" pragmaType="loop_tripcount" parentfunction="sha_transform" min="20" max="20" avg="20"/>
+<pragma file="data/benchmarks/sha/sha.c" line="8" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="28" pragmaType="loop_flatten" parentfunction="sha_transform" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="123" pragmaType="loop_tripcount" parentfunction="sha_transform" min="20" max="20" avg="20"/>
+<pragma file="data/benchmarks/sha/sha.c" line="7" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="27" pragmaType="loop_flatten" parentfunction="sha_transform" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="119" pragmaType="loop_tripcount" parentfunction="sha_transform" min="20" max="20" avg="20"/>
+<pragma file="data/benchmarks/sha/sha.c" line="6" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="26" pragmaType="loop_flatten" parentfunction="sha_transform" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="106" pragmaType="loop_tripcount" parentfunction="sha_transform" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/sha/sha.c" line="5" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="25" pragmaType="loop_flatten" parentfunction="sha_transform" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="100" pragmaType="loop_tripcount" parentfunction="sha_transform" min="16" max="16" avg="16"/>
+<pragma file="data/benchmarks/sha/sha.c" line="14" pragmaType="pipeline" parentfunction="sha_final" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="16" pragmaType="pipeline" parentfunction="local_memcpy" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="3" pragmaType="pipeline" parentfunction="local_memcpy" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="23" pragmaType="loop_flatten" parentfunction="local_memcpy" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="81" pragmaType="loop_tripcount" parentfunction="local_memcpy" min="0" max="16" avg="8"/>
+<pragma file="data/benchmarks/sha/sha.c" line="20" pragmaType="pipeline" parentfunction="sha_init" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="17" pragmaType="pipeline" parentfunction="sha_update" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="4" pragmaType="pipeline" parentfunction="sha_update" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="24" pragmaType="loop_flatten" parentfunction="sha_update" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="164" pragmaType="loop_tripcount" parentfunction="sha_update" min="127" max="128" avg="127"/>
+<pragma file="data/benchmarks/sha/sha.c" line="15" pragmaType="pipeline" parentfunction="local_memset" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="2" pragmaType="pipeline" parentfunction="local_memset" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="22" pragmaType="loop_flatten" parentfunction="local_memset" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="67" pragmaType="loop_tripcount" parentfunction="local_memset" min="0" max="16" avg="8"/>
+<pragma file="data/benchmarks/sha/sha.c" line="1" pragmaType="pipeline" parentfunction="local_memset" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="21" pragmaType="loop_flatten" parentfunction="local_memset" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="62" pragmaType="loop_tripcount" parentfunction="local_memset" min="0" max="63" avg="31"/>
+</pragmas>

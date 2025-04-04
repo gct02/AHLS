@@ -1,0 +1,146 @@
+<profile>
+<RunData>
+  <RUN_TYPE>impl</RUN_TYPE>
+  <VIVADO_VERSION>v.2023.2</VIVADO_VERSION>
+  <ROOT_MODULE_CELL>bd_0_i/hls_inst</ROOT_MODULE_CELL>
+</RunData>
+<TimingReport>
+  <TargetClockPeriod>8.000</TargetClockPeriod>
+  <AchievedClockPeriod>3.348</AchievedClockPeriod>
+  <CLOCK_NAME>ap_clk</CLOCK_NAME>
+  <CP_FINAL>3.348</CP_FINAL>
+  <CP_ROUTE>3.348</CP_ROUTE>
+  <CP_SYNTH>2.617</CP_SYNTH>
+  <CP_TARGET>8.000</CP_TARGET>
+  <SLACK_FINAL>4.652</SLACK_FINAL>
+  <SLACK_ROUTE>4.652</SLACK_ROUTE>
+  <SLACK_SYNTH>5.383</SLACK_SYNTH>
+  <TIMING_MET>TRUE</TIMING_MET>
+  <TNS_FINAL>0.000</TNS_FINAL>
+  <TNS_ROUTE>0.000</TNS_ROUTE>
+  <TNS_SYNTH>0.000</TNS_SYNTH>
+  <WNS_FINAL>4.652</WNS_FINAL>
+  <WNS_ROUTE>4.652</WNS_ROUTE>
+  <WNS_SYNTH>5.383</WNS_SYNTH>
+</TimingReport>
+<AreaReport>
+  <Resources>
+    <BRAM>16</BRAM>
+    <CLB>503</CLB>
+    <DSP>0</DSP>
+    <FF>2650</FF>
+    <LATCH>0</LATCH>
+    <LUT>2843</LUT>
+    <SRL>0</SRL>
+    <URAM>0</URAM>
+  </Resources>
+  <AvailableResources>
+    <BRAM>2688</BRAM>
+    <CLB>108960</CLB>
+    <DSP>5952</DSP>
+    <FF>1743360</FF>
+    <LUT>871680</LUT>
+    <URAM>640</URAM>
+  </AvailableResources>
+</AreaReport>
+<RtlModules>
+  <RtlModule CELL="inst" DEPTH="0" FILE_NAME="bd_0_hls_inst_0.v" ORIG_REF_NAME="sha_stream" TOP_CELL="bd_0_i/hls_inst/inst">
+    <SubModules count="7">grp_sha_final_fu_147 grp_sha_init_fu_137 grp_sha_stream_Pipeline_VITIS_LOOP_208_1_fu_128 grp_sha_update_fu_159 local_indata_U sha_info_data_U sha_info_digest_U</SubModules>
+    <Resources BRAM="16" FF="2650" LUT="2843" LogicLUT="2843" RAMB36="8"/>
+    <LocalResources FF="121" LUT="13" LogicLUT="13"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sha_final_fu_147" DEPTH="1" FILE_NAME="sha_stream.v" ORIG_REF_NAME="sha_stream_sha_final">
+    <SubModules count="2">grp_local_memset_fu_64 grp_sha_transform_fu_74</SubModules>
+    <Resources BRAM="2" FF="1195" LUT="1251" LogicLUT="1251" RAMB36="1"/>
+    <LocalResources FF="33" LUT="14" LogicLUT="14"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sha_final_fu_147/grp_local_memset_fu_64" DEPTH="2" FILE_NAME="sha_stream_sha_final.v" ORIG_REF_NAME="sha_stream_local_memset">
+    <Resources FF="39" LUT="48" LogicLUT="48"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sha_final_fu_147/grp_sha_transform_fu_74" DEPTH="2" FILE_NAME="sha_stream_sha_final.v" ORIG_REF_NAME="sha_stream_sha_transform">
+    <SubModules count="1">W_U</SubModules>
+    <Resources BRAM="2" FF="1123" LUT="1189" LogicLUT="1189" RAMB36="1"/>
+    <LocalResources FF="1123" LUT="898" LogicLUT="898"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sha_final_fu_147/grp_sha_transform_fu_74/W_U" BINDMODULE="sha_stream_sha_transform_W_RAM_AUTO_1R1W" DEPTH="3" FILE_NAME="sha_stream_sha_transform.v" ORIG_REF_NAME="sha_stream_sha_transform_W_RAM_AUTO_1R1W">
+    <Resources BRAM="2" LUT="291" LogicLUT="291" RAMB36="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sha_init_fu_137" DEPTH="1" FILE_NAME="sha_stream.v" ORIG_REF_NAME="sha_stream_sha_init">
+    <Resources FF="3" LUT="7" LogicLUT="7"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sha_stream_Pipeline_VITIS_LOOP_208_1_fu_128" DEPTH="1" FILE_NAME="sha_stream.v" ORIG_REF_NAME="sha_stream_sha_stream_Pipeline_VITIS_LOOP_208_1">
+    <SubModules count="1">flow_control_loop_pipe_sequential_init_U</SubModules>
+    <Resources FF="31" LUT="33" LogicLUT="33"/>
+    <LocalResources FF="29" LUT="2" LogicLUT="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sha_stream_Pipeline_VITIS_LOOP_208_1_fu_128/flow_control_loop_pipe_sequential_init_U" BINDMODULE="sha_stream_flow_control_loop_pipe_sequential_init" DEPTH="2" FILE_NAME="sha_stream_sha_stream_Pipeline_VITIS_LOOP_208_1.v" ORIG_REF_NAME="sha_stream_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="31" LogicLUT="31"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sha_update_fu_159" DEPTH="1" FILE_NAME="sha_stream.v" ORIG_REF_NAME="sha_stream_sha_update">
+    <SubModules count="2">grp_local_memcpy_fu_88 grp_sha_transform_fu_100</SubModules>
+    <Resources BRAM="2" FF="1300" LUT="1527" LogicLUT="1527" RAMB36="1"/>
+    <LocalResources FF="92" LUT="151" LogicLUT="151"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sha_update_fu_159/grp_local_memcpy_fu_88" DEPTH="2" FILE_NAME="sha_stream_sha_update.v" ORIG_REF_NAME="sha_stream_local_memcpy">
+    <Resources FF="85" LUT="173" LogicLUT="173"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sha_update_fu_159/grp_sha_transform_fu_100" DEPTH="2" FILE_NAME="sha_stream_sha_update.v" ORIG_REF_NAME="sha_stream_sha_transform">
+    <SubModules count="1">W_U</SubModules>
+    <Resources BRAM="2" FF="1123" LUT="1203" LogicLUT="1203" RAMB36="1"/>
+    <LocalResources FF="1123" LUT="912" LogicLUT="912"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/W_U" BINDMODULE="sha_stream_sha_transform_W_RAM_AUTO_1R1W" DEPTH="3" FILE_NAME="sha_stream_sha_transform.v" ORIG_REF_NAME="sha_stream_sha_transform_W_RAM_AUTO_1R1W">
+    <Resources BRAM="2" LUT="291" LogicLUT="291" RAMB36="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/local_indata_U" BINDMODULE="sha_stream_local_indata_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="sha_stream.v" ORIG_REF_NAME="sha_stream_local_indata_RAM_AUTO_1R1W">
+    <Resources BRAM="8" LUT="16" LogicLUT="16" RAMB36="4"/>
+  </RtlModule>
+  <RtlModule CELL="inst/sha_info_data_U" BINDMODULE="sha_stream_sha_info_data_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="sha_stream.v" ORIG_REF_NAME="sha_stream_sha_info_data_RAM_AUTO_1R1W">
+    <Resources BRAM="2" RAMB36="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/sha_info_digest_U" BINDMODULE="sha_stream_sha_info_digest_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="sha_stream.v" ORIG_REF_NAME="sha_stream_sha_info_digest_RAM_AUTO_1R1W">
+    <Resources BRAM="2" LUT="1" LogicLUT="1" RAMB36="1"/>
+  </RtlModule>
+</RtlModules>
+<TimingPaths>
+  <TPATH DATAPATH_DELAY="3.244" DATAPATH_LOGIC_DELAY="0.246" DATAPATH_NET_DELAY="2.998" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/C_3_fu_136_reg[5]/CE" LOGIC_LEVELS="2" MAX_FANOUT="170" SLACK="4.652" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/ap_CS_fsm_reg[9]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/ap_CS_fsm_reg[9]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="307"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/i_3_fu_132[5]_i_1__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="322"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/D_2_fu_140[31]_i_1__0" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="386"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/C_3_fu_136_reg[5]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="387"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="3.244" DATAPATH_LOGIC_DELAY="0.246" DATAPATH_NET_DELAY="2.998" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/E_2_fu_144_reg[3]/CE" LOGIC_LEVELS="2" MAX_FANOUT="170" SLACK="4.652" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/ap_CS_fsm_reg[9]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/ap_CS_fsm_reg[9]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="307"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/i_3_fu_132[5]_i_1__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="322"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/D_2_fu_140[31]_i_1__0" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="386"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/E_2_fu_144_reg[3]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="443"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="3.244" DATAPATH_LOGIC_DELAY="0.246" DATAPATH_NET_DELAY="2.998" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/E_2_fu_144_reg[7]/CE" LOGIC_LEVELS="2" MAX_FANOUT="170" SLACK="4.652" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/ap_CS_fsm_reg[9]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/ap_CS_fsm_reg[9]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="307"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/i_3_fu_132[5]_i_1__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="322"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/D_2_fu_140[31]_i_1__0" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="386"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/E_2_fu_144_reg[7]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="443"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="3.242" DATAPATH_LOGIC_DELAY="0.246" DATAPATH_NET_DELAY="2.996" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/C_3_fu_136_reg[4]/CE" LOGIC_LEVELS="2" MAX_FANOUT="170" SLACK="4.654" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/ap_CS_fsm_reg[9]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/ap_CS_fsm_reg[9]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="307"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/i_3_fu_132[5]_i_1__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="322"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/D_2_fu_140[31]_i_1__0" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="386"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/C_3_fu_136_reg[4]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="387"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="3.242" DATAPATH_LOGIC_DELAY="0.246" DATAPATH_NET_DELAY="2.996" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/E_2_fu_144_reg[2]/CE" LOGIC_LEVELS="2" MAX_FANOUT="170" SLACK="4.654" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/ap_CS_fsm_reg[9]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/ap_CS_fsm_reg[9]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="307"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/i_3_fu_132[5]_i_1__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="322"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/D_2_fu_140[31]_i_1__0" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="386"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sha_update_fu_159/grp_sha_transform_fu_100/E_2_fu_144_reg[2]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="443"/>
+  </TPATH>
+</TimingPaths>
+<VivadoReportFiles>
+  <ReportFile TYPE="design_analysis" PATH="verilog/report/sha_stream_design_analysis_routed.rpt"/>
+  <ReportFile TYPE="failfast" PATH="verilog/report/sha_stream_failfast_routed.rpt"/>
+  <ReportFile TYPE="status" PATH="verilog/report/sha_stream_status_routed.rpt"/>
+  <ReportFile TYPE="timing" PATH="verilog/report/sha_stream_timing_routed.rpt"/>
+  <ReportFile TYPE="timing_paths" PATH="verilog/report/sha_stream_timing_paths_routed.rpt"/>
+  <ReportFile TYPE="utilization" PATH="verilog/report/sha_stream_utilization_routed.rpt"/>
+  <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/sha_stream_utilization_hierarchical_routed.rpt"/>
+</VivadoReportFiles>
+</profile>

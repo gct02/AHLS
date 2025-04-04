@@ -1,0 +1,264 @@
+
+
+================================================================
+== Synthesis Summary Report of 'sha_stream'
+================================================================
++ General Information: 
+    * Date:           Thu Apr  3 20:46:15 2025
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        SHA
+    * Solution:       solution0 (Vivado IP Flow Target)
+    * Product family: virtexuplusHBM
+    * Target device:  xcu50-fsvh2104-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+----+------------+------------+-----+
+    |                  Modules                 | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |         |    |            |            |     |
+    |                  & Loops                 | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   | DSP|     FF     |     LUT    | URAM|
+    +------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+----+------------+------------+-----+
+    |+ sha_stream                              |     -|  2.50|   132038|  1.056e+06|         -|   132039|     -|        no|  8 (~0%)|   -|  2865 (~0%)|  5973 (~0%)|    -|
+    | + sha_init                               |     -|  5.14|        2|     16.000|         -|        2|     -|        no|        -|   -|     3 (~0%)|    88 (~0%)|    -|
+    | + sha_final                              |     -|  2.60|      833|  6.664e+03|         -|      833|     -|        no|        -|   -|  1255 (~0%)|  2390 (~0%)|    -|
+    |  + local_memset                          |     -|  4.01|       17|    136.000|         -|       17|     -|        no|        -|   -|    63 (~0%)|   193 (~0%)|    -|
+    |   o local_memset_label1                  |     -|  5.84|       16|    128.000|         1|        -|    16|        no|        -|   -|           -|           -|    -|
+    |  + sha_transform                         |     -|  4.12|      395|  3.160e+03|         -|      395|     -|        no|        -|   -|  1155 (~0%)|  1932 (~0%)|    -|
+    |   o sha_transform_label1                 |     -|  5.84|       32|    256.000|         2|        -|    16|        no|        -|   -|           -|           -|    -|
+    |   o sha_transform_label2                 |     -|  5.84|      192|  1.536e+03|         3|        -|    64|        no|        -|   -|           -|           -|    -|
+    |   o sha_transform_label3                 |     -|  5.84|       40|    320.000|         2|        -|    20|        no|        -|   -|           -|           -|    -|
+    |   o sha_transform_label4                 |     -|  5.84|       40|    320.000|         2|        -|    20|        no|        -|   -|           -|           -|    -|
+    |   o sha_transform_label5                 |     -|  5.84|       40|    320.000|         2|        -|    20|        no|        -|   -|           -|           -|    -|
+    |   o sha_transform_label6                 |     -|  5.84|       40|    320.000|         2|        -|    20|        no|        -|   -|           -|           -|    -|
+    | o sha_stream_label1                      |     -|  5.84|    16392|  1.311e+05|      8196|        -|     2|        no|        -|   -|           -|           -|    -|
+    |  + sha_stream_Pipeline_VITIS_LOOP_208_1  |     -|  3.34|     8194|  6.555e+04|         -|     8194|     -|        no|        -|   -|    31 (~0%)|   102 (~0%)|    -|
+    |   o VITIS_LOOP_208_1                     |     -|  5.84|     8192|  6.554e+04|         2|        1|  8192|       yes|        -|   -|           -|           -|    -|
+    | o sha_stream_label0                      |     -|  5.84|   114796|  9.184e+05|     57398|        -|     2|        no|        -|   -|           -|           -|    -|
+    |  + sha_update                            |     -|  3.00|    57395|  4.592e+05|         -|    57395|     -|        no|        -|   -|  1390 (~0%)|  2873 (~0%)|    -|
+    |   o sha_update_label4                    |     -|  5.84|    57344|  4.588e+05|       448|        -|   128|        no|        -|   -|           -|           -|    -|
+    |    + local_memcpy                        |     -|  3.06|       49|    392.000|         -|       49|     -|        no|        -|   -|   108 (~0%)|   407 (~0%)|    -|
+    |     o local_memcpy_label3                |     -|  5.84|       48|    384.000|         3|        -|    16|        no|        -|   -|           -|           -|    -|
+    |    + sha_transform                       |     -|  4.12|      395|  3.160e+03|         -|      395|     -|        no|        -|   -|  1155 (~0%)|  1932 (~0%)|    -|
+    |     o sha_transform_label1               |     -|  5.84|       32|    256.000|         2|        -|    16|        no|        -|   -|           -|           -|    -|
+    |     o sha_transform_label2               |     -|  5.84|      192|  1.536e+03|         3|        -|    64|        no|        -|   -|           -|           -|    -|
+    |     o sha_transform_label3               |     -|  5.84|       40|    320.000|         2|        -|    20|        no|        -|   -|           -|           -|    -|
+    |     o sha_transform_label4               |     -|  5.84|       40|    320.000|         2|        -|    20|        no|        -|   -|           -|           -|    -|
+    |     o sha_transform_label5               |     -|  5.84|       40|    320.000|         2|        -|    20|        no|        -|   -|           -|           -|    -|
+    |     o sha_transform_label6               |     -|  5.84|       40|    320.000|         2|        -|    20|        no|        -|   -|           -|           -|    -|
+    | o sha_stream_label2                      |     -|  5.84|       10|     80.000|         2|        -|     5|        no|        -|   -|           -|           -|    -|
+    +------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+----+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++------------------+-----------+----------+
+| Port             | Direction | Bitwidth |
++------------------+-----------+----------+
+| in_i_address0    | out       | 1        |
+| in_i_q0          | in        | 32       |
+| indata_address0  | out       | 14       |
+| indata_q0        | in        | 8        |
+| outdata_address0 | out       | 3        |
+| outdata_d0       | out       | 32       |
++------------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+-----------------------+
+| Argument | Direction | Datatype              |
++----------+-----------+-----------------------+
+| indata   | in        | unsigned char const * |
+| in_i     | in        | int const *           |
+| outdata  | out       | unsigned int*         |
++----------+-----------+-----------------------+
+
+* SW-to-HW Mapping
++----------+------------------+---------+----------+
+| Argument | HW Interface     | HW Type | HW Usage |
++----------+------------------+---------+----------+
+| indata   | indata_address0  | port    | offset   |
+| indata   | indata_ce0       | port    |          |
+| indata   | indata_q0        | port    |          |
+| in_i     | in_i_address0    | port    | offset   |
+| in_i     | in_i_ce0         | port    |          |
+| in_i     | in_i_q0          | port    |          |
+| outdata  | outdata_address0 | port    | offset   |
+| outdata  | outdata_ce0      | port    |          |
+| outdata  | outdata_we0      | port    |          |
+| outdata  | outdata_d0       | port    |          |
++----------+------------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++----------------------------------------------+-----+--------+-------------+-----+--------+---------+
+| Name                                         | DSP | Pragma | Variable    | Op  | Impl   | Latency |
++----------------------------------------------+-----+--------+-------------+-----+--------+---------+
+| + sha_stream                                 | 0   |        |             |     |        |         |
+|   add_ln206_fu_194_p2                        |     |        | add_ln206   | add | fabric | 0       |
+|   add_ln217_fu_228_p2                        |     |        | add_ln217   | add | fabric | 0       |
+|   add_ln226_fu_262_p2                        |     |        | add_ln226   | add | fabric | 0       |
+|  + sha_stream_Pipeline_VITIS_LOOP_208_1      | 0   |        |             |     |        |         |
+|    add_ln208_fu_89_p2                        |     |        | add_ln208   | add | fabric | 0       |
+|    add_ln210_fu_95_p2                        |     |        | add_ln210   | add | fabric | 0       |
+|  + sha_final                                 | 0   |        |             |     |        |         |
+|    count_1_fu_108_p2                         |     |        | count_1     | add | fabric | 0       |
+|    sub_ln187_fu_125_p2                       |     |        | sub_ln187   | sub | fabric | 0       |
+|   + local_memset                             | 0   |        |             |     |        |         |
+|     sub_ln58_fu_84_p2                        |     |        | sub_ln58    | sub | fabric | 0       |
+|     sub_ln58_1_fu_108_p2                     |     |        | sub_ln58_1  | sub | fabric | 0       |
+|     add_ln66_fu_157_p2                       |     |        | add_ln66    | add | fabric | 0       |
+|     add_ln57_fu_167_p2                       |     |        | add_ln57    | add | fabric | 0       |
+|   + sha_transform (grp_sha_transform_fu_74)  | 0   |        |             |     |        |         |
+|     add_ln99_fu_382_p2                       |     |        | add_ln99    | add | fabric | 0       |
+|     add_ln107_fu_412_p2                      |     |        | add_ln107   | add | fabric | 0       |
+|     add_ln107_1_fu_423_p2                    |     |        | add_ln107_1 | add | fabric | 0       |
+|     add_ln107_2_fu_450_p2                    |     |        | add_ln107_2 | add | fabric | 0       |
+|     add_ln107_3_fu_460_p2                    |     |        | add_ln107_3 | add | fabric | 0       |
+|     add_ln105_fu_434_p2                      |     |        | add_ln105   | add | fabric | 0       |
+|     add_ln118_fu_524_p2                      |     |        | add_ln118   | add | fabric | 0       |
+|     add_ln122_fu_735_p2                      |     |        | add_ln122   | add | fabric | 0       |
+|     add_ln126_fu_895_p2                      |     |        | add_ln126   | add | fabric | 0       |
+|     add_ln130_fu_1053_p2                     |     |        | add_ln130   | add | fabric | 0       |
+|     add_ln136_fu_1084_p2                     |     |        | add_ln136   | add | fabric | 0       |
+|     add_ln137_fu_1090_p2                     |     |        | add_ln137   | add | fabric | 0       |
+|     add_ln138_fu_1096_p2                     |     |        | add_ln138   | add | fabric | 0       |
+|     add_ln139_fu_1101_p2                     |     |        | add_ln139   | add | fabric | 0       |
+|     add_ln140_fu_1142_p2                     |     |        | add_ln140   | add | fabric | 0       |
+|  + sha_update                                | 0   |        |             |     |        |         |
+|    add_ln156_fu_118_p2                       |     |        | add_ln156   | add | fabric | 0       |
+|    add_ln157_fu_134_p2                       |     |        | add_ln157   | add | fabric | 0       |
+|    add_ln160_fu_168_p2                       |     |        | add_ln160   | add | fabric | 0       |
+|    add_ln168_fu_233_p2                       |     |        | add_ln168   | add | fabric | 0       |
+|    add_ln163_fu_239_p2                       |     |        | add_ln163   | add | fabric | 0       |
+|   + local_memcpy                             | 0   |        |             |     |        |         |
+|     sub_ln77_fu_160_p2                       |     |        | sub_ln77    | sub | fabric | 0       |
+|     sub_ln77_1_fu_180_p2                     |     |        | sub_ln77_1  | sub | fabric | 0       |
+|     add_ln80_1_fu_230_p2                     |     |        | add_ln80_1  | add | fabric | 0       |
+|     add_ln74_fu_243_p2                       |     |        | add_ln74    | add | fabric | 0       |
+|     add_ln74_1_fu_248_p2                     |     |        | add_ln74_1  | add | fabric | 0       |
+|     add_ln80_fu_274_p2                       |     |        | add_ln80    | add | fabric | 0       |
+|   + sha_transform (grp_sha_transform_fu_100) | 0   |        |             |     |        |         |
+|     add_ln99_fu_382_p2                       |     |        | add_ln99    | add | fabric | 0       |
+|     add_ln107_fu_412_p2                      |     |        | add_ln107   | add | fabric | 0       |
+|     add_ln107_1_fu_423_p2                    |     |        | add_ln107_1 | add | fabric | 0       |
+|     add_ln107_2_fu_450_p2                    |     |        | add_ln107_2 | add | fabric | 0       |
+|     add_ln107_3_fu_460_p2                    |     |        | add_ln107_3 | add | fabric | 0       |
+|     add_ln105_fu_434_p2                      |     |        | add_ln105   | add | fabric | 0       |
+|     add_ln118_fu_524_p2                      |     |        | add_ln118   | add | fabric | 0       |
+|     add_ln122_fu_735_p2                      |     |        | add_ln122   | add | fabric | 0       |
+|     add_ln126_fu_895_p2                      |     |        | add_ln126   | add | fabric | 0       |
+|     add_ln130_fu_1053_p2                     |     |        | add_ln130   | add | fabric | 0       |
+|     add_ln136_fu_1084_p2                     |     |        | add_ln136   | add | fabric | 0       |
+|     add_ln137_fu_1090_p2                     |     |        | add_ln137   | add | fabric | 0       |
+|     add_ln138_fu_1096_p2                     |     |        | add_ln138   | add | fabric | 0       |
+|     add_ln139_fu_1101_p2                     |     |        | add_ln139   | add | fabric | 0       |
+|     add_ln140_fu_1142_p2                     |     |        | add_ln140   | add | fabric | 0       |
++----------------------------------------------+-----+--------+-------------+-----+--------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++----------------------------------------------+---------------+------+------+------+--------+-----------------+------+---------+------------------+
+| Name                                         | Usage         | Type | BRAM | URAM | Pragma | Variable        | Impl | Latency | Bitwidth, Depth, |
+|                                              |               |      |      |      |        |                 |      |         | Banks            |
++----------------------------------------------+---------------+------+------+------+--------+-----------------+------+---------+------------------+
+| + sha_stream                                 |               |      | 8    | 0    |        |                 |      |         |                  |
+|   local_indata_U                             | ram_s2p       |      | 8    |      |        | local_indata    | auto | 1       | 8, 16384, 1      |
+|   sha_info_digest_U                          | ram_t2p       |      |      |      |        | sha_info_digest | auto | 1       | 32, 5, 1         |
+|   sha_info_data_U                            | ram_t2p       |      |      |      |        | sha_info_data   | auto | 1       | 32, 16, 1        |
+|  + sha_final                                 |               |      | 0    | 0    |        |                 |      |         |                  |
+|   + sha_transform (grp_sha_transform_fu_74)  |               |      | 0    | 0    |        |                 |      |         |                  |
+|     W_U                                      | ram_t2p array |      |      |      |        | W               | auto | 1       | 32, 80, 1        |
+|  + sha_update                                |               |      | 0    | 0    |        |                 |      |         |                  |
+|   + sha_transform (grp_sha_transform_fu_100) |               |      | 0    | 0    |        |                 |      |         |                  |
+|     W_U                                      | ram_t2p array |      |      |      |        | W               | auto | 1       | 32, 80, 1        |
++----------------------------------------------+---------------+------+------+------+--------+-----------------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Pragmas with Warnings
++--------------+----------+--------------------------------------------------+-----------------------------------------------------------------+
+| Type         | Options  | Location                                         | Messages                                                        |
++--------------+----------+--------------------------------------------------+-----------------------------------------------------------------+
+| loop_flatten | off=true | data/base_directives/sha.tcl:36 in local_memcpy  | '#pragma HLS loop_flatten' can only be applied inside loop body |
+| loop_flatten | off=true | data/base_directives/sha.tcl:35 in local_memset  | '#pragma HLS loop_flatten' can only be applied inside loop body |
+| loop_flatten | off=true | data/base_directives/sha.tcl:34 in sha_final     | '#pragma HLS loop_flatten' can only be applied inside loop body |
+| loop_flatten | off=true | data/base_directives/sha.tcl:39 in sha_stream    | '#pragma HLS loop_flatten' can only be applied inside loop body |
+| loop_flatten | off=true | data/base_directives/sha.tcl:38 in sha_transform | '#pragma HLS loop_flatten' can only be applied inside loop body |
+| loop_flatten | off=true | data/base_directives/sha.tcl:37 in sha_update    | '#pragma HLS loop_flatten' can only be applied inside loop body |
++--------------+----------+--------------------------------------------------+-----------------------------------------------------------------+
+
+* Valid Pragma Syntax
++----------------+----------------------------+--------------------------------------------------+
+| Type           | Options                    | Location                                         |
++----------------+----------------------------+--------------------------------------------------+
+| loop_tripcount | max=63                     | data/benchmarks/sha/sha.c:62 in local_memset     |
+| loop_tripcount | max=16                     | data/benchmarks/sha/sha.c:67 in local_memset     |
+| loop_tripcount | max=16                     | data/benchmarks/sha/sha.c:81 in local_memcpy     |
+| loop_tripcount | min=16 max=16 avg=16       | data/benchmarks/sha/sha.c:100 in sha_transform   |
+| loop_tripcount | min=64 max=64 avg=64       | data/benchmarks/sha/sha.c:106 in sha_transform   |
+| loop_tripcount | min=20 max=20 avg=20       | data/benchmarks/sha/sha.c:119 in sha_transform   |
+| loop_tripcount | min=20 max=20 avg=20       | data/benchmarks/sha/sha.c:123 in sha_transform   |
+| loop_tripcount | min=20 max=20 avg=20       | data/benchmarks/sha/sha.c:127 in sha_transform   |
+| loop_tripcount | min=20 max=20 avg=20       | data/benchmarks/sha/sha.c:131 in sha_transform   |
+| loop_tripcount | min=127 max=128            | data/benchmarks/sha/sha.c:164 in sha_update      |
+| loop_tripcount | min=2 max=2 avg=2          | data/benchmarks/sha/sha.c:207 in sha_stream      |
+| loop_tripcount | min=8192 max=8192 avg=8192 | data/benchmarks/sha/sha.c:209 in sha_stream      |
+| loop_tripcount | min=2 max=2 avg=2          | data/benchmarks/sha/sha.c:218 in sha_stream      |
+| loop_tripcount | min=5 max=5 avg=5          | data/benchmarks/sha/sha.c:227 in sha_stream      |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:23 in local_memcpy  |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:3 in local_memcpy   |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:16 in local_memcpy  |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:21 in local_memset  |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:22 in local_memset  |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:1 in local_memset   |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:2 in local_memset   |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:15 in local_memset  |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:14 in sha_final     |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:20 in sha_init      |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:31 in sha_stream    |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:32 in sha_stream    |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:33 in sha_stream    |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:11 in sha_stream    |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:12 in sha_stream    |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:13 in sha_stream    |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:19 in sha_stream    |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:25 in sha_transform |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:26 in sha_transform |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:27 in sha_transform |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:28 in sha_transform |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:29 in sha_transform |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:30 in sha_transform |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:5 in sha_transform  |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:6 in sha_transform  |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:7 in sha_transform  |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:8 in sha_transform  |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:9 in sha_transform  |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:10 in sha_transform |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:18 in sha_transform |
+| loop_flatten   | off=true                   | data/base_directives/sha.tcl:24 in sha_update    |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:4 in sha_update     |
+| pipeline       | off=true                   | data/base_directives/sha.tcl:17 in sha_update    |
++----------------+----------------------------+--------------------------------------------------+
+
+
