@@ -39,10 +39,12 @@ class HGT(nn.Module):
 
         self.node_types = metadata[0]
         self.edge_types = metadata[1]
+        self.in_channels = in_channels
+        self.out_channels = out_channels
         self.dropout = dropout
         self.device = device
 
-        # Define projection layer
+        # Projection layer
         proj_dim = 256
         self.proj = HeteroDictLinear(
             in_channels, proj_dim, 
@@ -51,7 +53,7 @@ class HGT(nn.Module):
             bias_initializer='zeros'
         )
 
-        # Define convolutional layers
+        # Convolutional layers
         hid_dims = [128, 96, 64, 48, 32]
         heads = [8, 8, 8, 4, 4]
         self.n_conv_layers = len(hid_dims)
@@ -73,13 +75,13 @@ class HGT(nn.Module):
                 })
             )
 
-        # Define JK layer
+        # JK layer
         self.jk = nn.ModuleDict({
             nt: JumpingKnowledge(mode='cat')
             for nt in self.node_types
         })
 
-        # Define node type-wise linear layers
+        # Type-wise linear layer
         jk_dim = sum(hid_dims)
         self.node_lin = HeteroDictLinear(
             jk_dim, 128, 
@@ -88,10 +90,10 @@ class HGT(nn.Module):
             bias_initializer='zeros'
         )
 
-        # Define graph-level MLP
+        # Graph-level MLP
         n_types = len(self.node_types)
         self.graph_mlp = nn.Sequential(
-            nn.Linear(128 * n_types, 256), nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
+            nn.Linear(128 * n_types + 1, 256), nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(256, 128), nn.BatchNorm1d(128), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(128, 64), nn.BatchNorm1d(64), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(64, out_channels)
@@ -126,7 +128,8 @@ class HGT(nn.Module):
         self,
         x_dict: Dict[NodeType, Tensor],
         edge_index_dict: Dict[EdgeType, Tensor],
-        batch_dict: Dict[NodeType, Tensor]
+        batch_dict: Dict[NodeType, Tensor],
+        y_base: Tensor
     ) -> Tensor:
         r"""Runs the forward pass of the module.
 
@@ -134,6 +137,7 @@ class HGT(nn.Module):
             x_dict (Dict[NodeType, Tensor]): Dictionary of node features for each node type.
             edge_index_dict (Dict[EdgeType, Tensor]): Dictionary of edge indices for each edge type.
             batch_dict (Dict[NodeType, Tensor]): Dictionary of batch indices for each node type.
+            y_base (Tensor): The target values of the base solutions.
     
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
@@ -155,7 +159,7 @@ class HGT(nn.Module):
         # JK layer
         x_dict = {nt: self.jk[nt](xs) for nt, xs in xs_dict.items()}
 
-        # Node type-wise linear layer
+        # Type-wise linear layer
         x_dict = self.node_lin(x_dict)
         x_dict = {
             nt: F.dropout(F.gelu(x), p=self.dropout, training=self.training)
@@ -169,10 +173,13 @@ class HGT(nn.Module):
             x = global_add_pool(x, batch_dict[nt], size=batch_size)
             x_list.append(x.view(batch_size, -1))
 
-        # Graph-level MLP
-        out = self.graph_mlp(torch.cat(x_list, dim=1)).squeeze(1)
+        x = torch.cat(x_list, dim=1)
+        x = torch.cat([x, y_base.unsqueeze(1)], dim=1)
 
-        return out
+        # Graph-level MLP
+        out = self.graph_mlp(x)
+        
+        return out.squeeze(1)
     
     def _get_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
         """Returns the batch size."""

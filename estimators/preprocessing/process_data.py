@@ -27,9 +27,7 @@ def main(args: Dict[str, str]):
         benchmark.name: dataset_dir / benchmark / "solution0"
         for benchmark in dataset_dir.iterdir() if benchmark.is_dir()
     }
-    base_nodes, base_edges, base_feats, base_metrics = build_base_graphs(
-        base_solutions, filtered=False
-    )
+    base_graphs = build_base_graphs(base_solutions, filtered=False)
 
     for benchmark in dataset_dir.iterdir():
         if not benchmark.is_dir():
@@ -38,6 +36,10 @@ def main(args: Dict[str, str]):
 
         benchmark_out = output_dir / benchmark.name
         benchmark_out.mkdir(parents=True, exist_ok=True)
+
+        base_metrics = base_graphs[benchmark.name].metrics
+        with open(benchmark_out / "base_metrics.json", "w") as f:
+            json.dump(base_metrics, f, indent=2)
 
         for solution in benchmark.iterdir():
             if not solution.is_dir() or solution.name == "solution0":
@@ -58,14 +60,8 @@ def main(args: Dict[str, str]):
             with open(solution_out / "metrics.json", "w") as f:
                 json.dump(metrics, f, indent=2)
 
-            graph = build_opt_graph(
-                base_nodes[benchmark.name],
-                base_edges[benchmark.name],
-                base_feats[benchmark.name],
-                base_metrics[benchmark.name],
-                directives_tcl=tcl_path
-            )
-            torch.save(graph, solution_out / "graph.pt")
+            data = build_opt_graph(base_graphs[benchmark.name], tcl_path)
+            torch.save(data, solution_out / "graph.pt")
 
 
 def parse_args():

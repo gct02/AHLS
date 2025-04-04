@@ -60,8 +60,13 @@ def evaluate(
     for i, batch in enumerate(loader):
         torch.cuda.empty_cache()
 
-        pred = model(batch.to(DEVICE))
+        batch = batch.to(DEVICE)
+        x_dict, edge_index_dict = batch.x_dict, batch.edge_index_dict
+        batch_dict = batch.batch_dict
         target = batch.y
+        base_target = batch.y_base
+
+        pred = model(x_dict, edge_index_dict, batch_dict, base_target)
 
         batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
         preds.append(pred)
@@ -121,8 +126,14 @@ def train_model(
         for batch in train_loader:
             torch.cuda.empty_cache()
             optimizer.zero_grad()
-            pred = model(batch.to(DEVICE))
+
+            batch = batch.to(DEVICE)
+            x_dict, edge_index_dict = batch.x_dict, batch.edge_index_dict
+            batch_dict = batch.batch_dict
             target = batch.y
+            base_target = batch.y_base
+
+            pred = model(x_dict, edge_index_dict, batch_dict, base_target)
 
             loss_fn(pred, target).backward()
             optimizer.step()
@@ -157,17 +168,17 @@ def train_model(
 
 def main(args: Dict[str, str]):
     dataset_dir = args['dataset_dir']
+    target_metric = args['target']
+    test_bench = args['testbench']
     epochs = int(args['epoch'])
     batch_size = int(args['batch'])
     seed = int(args['seed'])
-    target_metric = args['target']
-    test_bench = args['testbench']
-    separate = args['separate']
+    output_dir = args['output_dir']
     verbosity = int(args['verbose'])
     loss = args['loss']
     residual = float(args['residual'])
     collect_residuals = args['collect_residuals']
-    output_dir = args['output_dir']
+    skip_separation = args['skip_separation']
 
     matplotlib.use('Agg')
 
@@ -183,13 +194,12 @@ def main(args: Dict[str, str]):
 
     train_loader, test_loader = prepare_data_loaders(
         dataset_dir, target_metric, test_bench, train_benches, 
-        batch_size=batch_size, separate=separate
+        batch_size=batch_size, separate=not skip_separation
     )
+
+    metadata = (NODE_TYPES, EDGE_TYPES)
     
-    model = HGT(
-        (NODE_TYPES, EDGE_TYPES), NODE_FEATURE_DIMS, 1, 
-        dropout_conv=0.0, dropout=0.1, device=DEVICE
-    )
+    model = HGT(metadata, NODE_FEATURE_DIMS, 1, dropout=0.1, device=DEVICE)
 
     if loss == 'huber':
         loss_fn = nn.HuberLoss(delta=residual)
@@ -473,22 +483,16 @@ def prepare_data_loaders(
     test_benchmarks: Union[List[str], str],
     train_benchmarks: Union[List[str], str],
     batch_size: int = 16,
-    separate: bool = False
+    separate: bool = True
 ) -> Tuple[DataLoader, DataLoader]:
-    full_data_dir = f"{dataset_dir}/full"
-    train_data_dir = f"{dataset_dir}/train"
-    test_data_dir = f"{dataset_dir}/test"
-
     train_data = HLSDataset(
-        train_data_dir, metric, scale_features=True,
-        separate=separate, full_data_dir=full_data_dir,
-        benchmarks=train_benchmarks
+        dataset_dir, metric, mode="train", scale_features=True, 
+        benchmarks=train_benchmarks, separate=separate
     )
     test_data = HLSDataset(
-        test_data_dir, metric, scale_features=True,
+        dataset_dir, metric, mode="test", scale_features=True,
         feature_bounds=train_data.feature_bounds,
-        separate=separate, full_data_dir=full_data_dir,
-        benchmarks=test_benchmarks
+        benchmarks=test_benchmarks, separate=separate
     )
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
@@ -512,8 +516,8 @@ def parse_arguments():
                         help='The name of the benchmark to use for test.')
     parser.add_argument('-t', '--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp', 'power'],
                         help='The target metric.')
-    parser.add_argument('-s', '--separate', action='store_true',
-                        help='Separate the dataset into raw and processed versions.')
+    parser.add_argument('-s', '--skip-separation', action='store_true',
+                        help='Skip the separation of the dataset into raw and processed versions.')
     parser.add_argument('-v', '--verbose', nargs='?', const=1, type=int, default=0, 
                         help='Set verbosity level (default: 0). Use without value for level 1, or specify a level.')
     parser.add_argument('-f', '--filtered', action='store_true',
