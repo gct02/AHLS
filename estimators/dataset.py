@@ -2,6 +2,7 @@ import os
 import torch
 import shutil
 import json
+import math
 from typing import Union, Optional, List, Dict
 
 from torch import Tensor
@@ -188,8 +189,8 @@ class HLSDataset(Dataset):
 
                 data = torch.load(graph_path)
 
-                data.y = torch.tensor([target])
-                data.y_base = torch.tensor([base_target])
+                data.y = torch.tensor([math.log(target)])
+                data.y_base = torch.tensor([math.log(base_target)])
 
                 if self.feature_bounds is not None:
                     data = self._scale_features(data)

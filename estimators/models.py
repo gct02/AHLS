@@ -54,8 +54,8 @@ class HGT(nn.Module):
         )
 
         # Convolutional layers
-        hid_dims = [128, 96, 64, 48, 32]
-        heads = [8, 8, 8, 4, 4]
+        hid_dims = [256, 128, 96, 64, 48]
+        heads = [8, 8, 8, 8, 6]
         self.n_conv_layers = len(hid_dims)
 
         self.conv = nn.ModuleList()
@@ -90,10 +90,18 @@ class HGT(nn.Module):
             bias_initializer='zeros'
         )
 
+        # Small MLP to process y_base
+        self.y_base_mlp = nn.Sequential(
+            nn.Linear(1, 16),
+            nn.ReLU(),
+            nn.Linear(16, 16),
+            nn.ReLU()
+        )
+
         # Graph-level MLP
         n_types = len(self.node_types)
         self.graph_mlp = nn.Sequential(
-            nn.Linear(128 * n_types + 1, 256), nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
+            nn.Linear(128 * n_types + 16, 256), nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(256, 128), nn.BatchNorm1d(128), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(128, 64), nn.BatchNorm1d(64), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(64, out_channels)
@@ -174,7 +182,10 @@ class HGT(nn.Module):
             x_list.append(x.view(batch_size, -1))
 
         x = torch.cat(x_list, dim=1)
-        x = torch.cat([x, y_base.unsqueeze(1)], dim=1)
+
+        # Process y_base
+        y_base_processed = self.y_base_mlp(y_base.unsqueeze(1))
+        x = torch.cat([x, y_base_processed], dim=1)
 
         # Graph-level MLP
         out = self.graph_mlp(x)

@@ -40,6 +40,11 @@ EDGE_TYPES = [
     ("region", "hrchy", "region"), 
     ("region", "hrchy", "block"),
     ("block", "hrchy", "instr"),
+
+    # Reversed hierarchical edges
+    ("region", "hrchy_rev", "region"),
+    ("instr", "hrchy_rev", "block"),
+    ("block", "hrchy_rev", "region"),
 ] + [
     # Self-loops for each node type
     (nt, "to", nt) for nt in NODE_TYPES
@@ -80,17 +85,27 @@ def build_base_graphs(
 def build_opt_graph(
     base_hls_data: HLSData,
     directives_tcl: str, 
+    output_pyg: bool = True,
     add_self_loops: bool = True,
-    output_pyg: bool = True
+    add_reversed_edges: bool = True
 ) -> Union[HeteroData, HLSData]:
     hls_data = deepcopy(base_hls_data)
     include_directives(hls_data, directives_tcl)
-    return to_pyg(hls_data, add_self_loops) if output_pyg else hls_data
+    if output_pyg:
+        data = to_pyg(
+            hls_data, 
+            add_self_loops=add_self_loops,
+            add_reversed_edges=add_reversed_edges
+        )
+        return data
+    else:
+        return hls_data
 
 
 def to_pyg(
     hls_data: HLSData, 
-    add_self_loops: bool = True
+    add_self_loops: bool = True,
+    add_reversed_edges: bool = True
 ) -> HeteroData:
     data = HeteroData()
     
@@ -128,6 +143,14 @@ def to_pyg(
             src = torch.arange(len(nodes), dtype=torch.long)
             dst = src.clone()
             data[nt, "to", nt].edge_index = torch.stack([src, dst], dim=0)
+
+    if add_reversed_edges:
+        for et, edges in hls_data.edges.items():
+            if et[1] == "hrchy":
+                src, dst = zip(*edges)
+                src = torch.tensor(dst, dtype=torch.long)
+                dst = torch.tensor(src, dtype=torch.long)
+                data[et[2], "hrchy_rev", et[0]].edge_index = torch.stack([src, dst], dim=0)
 
     return data
             

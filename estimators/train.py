@@ -77,13 +77,13 @@ def evaluate(
                 log_file.write(f"{epoch},{i},{target.item()},{pred.item()}\n")
 
         if verbosity > 0:
-            print(f"Instance {i}: Target: {target.item()}; Prediction: {pred.item()}")
+            print(f"Instance {i}: Target: {target.exp().item()}; Prediction: {pred.exp().item()}")
 
     preds = torch.cat(preds)
     targets = torch.cat(targets)
 
     if verbosity > 0:
-        mre = relative_percent_diff(preds, targets).mean().item()
+        mre = relative_percent_diff(preds.exp(), targets.exp()).mean().item()
         if mre < evaluate.min_mre:
             evaluate.min_mre = mre
             evaluate.best_epoch = epoch
@@ -91,7 +91,7 @@ def evaluate(
         print(f"MRE on {mode} set: {mre:.2f}% (Min: "
               + f"{evaluate.min_mre:.2f}% at epoch {evaluate.best_epoch})")
 
-    pred_target_pairs = list(zip(preds.tolist(), targets.tolist()))
+    pred_target_pairs = list(zip(preds.exp().tolist(), targets.exp().tolist()))
 
     if loss_fn:
         loss = loss_fn(preds, targets).item()
@@ -144,11 +144,11 @@ def train_model(
             targets.append(target)
             preds.append(pred)
             if verbosity > 1:
-                print(f"Target: {target.tolist()}; Prediction: {pred.tolist()}")
+                print(f"Target: {target.exp().tolist()}; Prediction: {pred.exp().tolist()}")
 
         targets = torch.cat(targets)
         preds = torch.cat(preds)
-        train_errors.append(relative_percent_diff(preds, targets).mean().item())
+        train_errors.append(relative_percent_diff(preds.exp(), targets.exp()).mean().item())
 
         if collect_residuals:
             residuals = (targets - preds).tolist()
@@ -275,7 +275,7 @@ def plot_learning_curves(
 
 def plot_prediction_scatter(
     preds_per_epoch: List[List[Tuple[float, float]]],
-    save_path: str, epoch: int = -1
+    output_path: str, epoch: int = -1
 ):
     targets = [inst[0][1] for inst in preds_per_epoch]
     preds = [inst[epoch][0] for inst in preds_per_epoch]
@@ -310,13 +310,13 @@ def plot_prediction_scatter(
     plt.legend()
 
     plt.tight_layout()
-    plt.savefig(save_path)
+    plt.savefig(output_path)
     plt.close()
 
 
 def plot_prediction_bars(
     preds_per_epoch: List[List[Tuple[float, float]]],
-    test_bench: str, metric: str, save_dir: str
+    test_bench: str, metric: str, output_dir: str
 ):
     """Plot per-benchmark instance-level predictions and errors"""
     best_epoch = np.argmin(get_mre_over_epochs(preds_per_epoch))
@@ -366,7 +366,7 @@ def plot_prediction_bars(
     ax.legend()
 
     plt.tight_layout()
-    plt.savefig(f"{save_dir}/test_results_bars.png")
+    plt.savefig(f"{output_dir}/test_results_bars.png")
     plt.close()
 
 
