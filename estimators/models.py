@@ -24,7 +24,7 @@ class HGT(nn.Module):
             for each node type.
         out_channels (int): Number of output channels.
         dropout (float): Dropout rate for fully connected layers. 
-            (default: :obj:`0.1`)
+            (default: :obj:`0.0`)
         device (torch.device): Device to use for computation. 
             (default: :obj:`"cpu"`)
     """
@@ -32,7 +32,7 @@ class HGT(nn.Module):
         metadata: Metadata,
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
-        dropout: float = 0.1,
+        dropout: float = 0.0,
         device: Device = 'cpu'
     ):
         super().__init__()
@@ -54,8 +54,8 @@ class HGT(nn.Module):
         )
 
         # Convolutional layers
-        hid_dims = [256, 128, 96, 64, 48]
-        heads = [8, 8, 8, 8, 6]
+        hid_dims = [128, 96, 64, 48]
+        heads = [8, 8, 8, 6]
         self.n_conv_layers = len(hid_dims)
 
         self.conv = nn.ModuleList()

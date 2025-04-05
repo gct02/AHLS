@@ -27,8 +27,8 @@ EDGE_TYPES = [
     ("port", "data", "instr"), 
 
     # Control flow edges
-    ("block", "succ", "instr"), 
-    ("block", "succ", "block"), 
+    ("block", "control", "instr"), 
+    ("block", "control", "block"), 
 
     # Call flow edges
     ("instr", "call", "instr"),
@@ -125,8 +125,7 @@ def to_pyg(
         if features:
             data[nt].x = torch.stack(features, dim=0)
         else:
-            data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), 
-                                     dtype=torch.float32)
+            data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
 
     for et in EDGE_TYPES:
         edges = hls_data.edges.get(et)
@@ -276,77 +275,90 @@ def plot_data(
 ):
     import networkx as nx
     from torch_geometric.utils import to_networkx
+    from matplotlib.lines import Line2D
+    from matplotlib.patches import Patch
 
     node_colors = {
-        "instr": "#167dc7",
-        "port": "#ff7f0e",
-        "const": "#1a9b1a",
-        "block": "#d62728",
-        "region": "#ac63ce",
+        "instr": "#419ada",
+        "port": "#1ecf89",
+        "const": "#aa6df0",
+        "block": "#f4a93f",
+        "region": "#e05858",
     }
     edge_colors = {
-        ("const", "data", "instr"): "#3ec08a",
-        ("instr", "data", "instr"): "#3ec08a",
-        ("port", "data", "instr"): "#3ec08a",
-        ("block", "succ", "instr"): "#d4b55d",
-        ("block", "succ", "block"): "#d4b55d",
-        ("instr", "mem", "instr"): "#c43737",
-        ("region", "hrchy", "region"): "#1cbcc7",
-        ("region", "hrchy", "block"): "#1cbcc7",
-        ("block", "hrchy", "instr"): "#1cbcc7",
-        ("instr", "call", "instr"): "#c17add"
+        ("const", "data", "instr"): "#5fdde0",
+        ("instr", "data", "instr"): "#00bcd4",
+        ("port", "data", "instr"): "#00a1b3",
+        ("block", "control", "instr"): "#ddb753",
+        ("block", "control", "block"): "#ddb753",
+        ("instr", "mem", "instr"): "#e73939",
+        ("region", "hrchy", "region"): "#aab2b9",
+        ("region", "hrchy", "block"): "#aab2b9",
+        ("block", "hrchy", "instr"): "#aab2b9",
+        ("instr", "call", "instr"): "#ba68c8"
     }
     
     def plot(plot_type="full"):
         if plot_type == "full":
-            ntypes = etypes = None
+            ntypes = node_colors.keys()
+            etypes = edge_colors.keys()
         elif plot_type == "call":
             ntypes = ["instr"]
-            etypes = [e for e in EDGE_TYPES if e[1] == "call"]
+            etypes = [et for et in EDGE_TYPES if et[1] == "call"]
         elif plot_type == "control":
-            ntypes = ["instr"]
-            etypes = [e for e in EDGE_TYPES if e[1] == "succ"]
+            ntypes = ["instr", "block"]
+            etypes = [et for et in EDGE_TYPES if et[1] in ["control", "call"]]
         elif plot_type == "data":
             ntypes = ["instr", "const", "port"]
-            etypes = [e for e in EDGE_TYPES if e[1] == "data"]
+            etypes = [et for et in EDGE_TYPES if et[1] in ["data", "mem"]]
         elif plot_type == "hrchy":
             ntypes = ["region", "block", "instr"]
-            etypes = [e for e in EDGE_TYPES if e[1] == "hrchy"]
+            etypes = [et for et in EDGE_TYPES if et[1] == "hrchy"]
         else:
             raise ValueError(f"Unknown plot_type: {plot_type}")
 
-        data_cp = data.clone()
-        if ntypes:
-            if not isinstance(ntypes, list):
-                ntypes = [ntypes]
-            for nt in data_cp.x_dict.keys():
-                if nt not in ntypes:
-                    data_cp[nt].x = torch.empty(
-                        (0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32
-                    )
-        if etypes:
-            if not isinstance(etypes, list):
-                etypes = [etypes]
-            for et in data_cp.edge_index_dict.keys():
-                if et not in etypes:
-                    data_cp[et].edge_index = torch.empty((2, 0), dtype=torch.long)
+        data_trans = HeteroData()
 
-        data_cp = T.RemoveIsolatedNodes()(data_cp)
-        G = to_networkx(data_cp, remove_self_loops=True, node_attrs=['x'])
+        for nt, x in data.x_dict.items():
+            if nt not in ntypes:
+                data_trans[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
+            else:
+                data_trans[nt].x = x
+
+        for et, edge_index in data.edge_index_dict.items():
+            if et not in etypes:
+                data_trans[et].edge_index = torch.empty((2, 0), dtype=torch.long)
+            else:
+                data_trans[et].edge_index = edge_index
+
+        data_trans = T.RemoveIsolatedNodes()(data_trans)
+
+        G = to_networkx(data_trans, remove_self_loops=True, node_attrs=['x'])
         
         indices = defaultdict(int)
         ncolors, nlabels = [], {}
         for node, attrs in G.nodes(data=True):
-            nt = attrs["type"]
+            nt = attrs.get("type")
+            if nt is None or nt not in ntypes:
+                continue
             ncolors.append(node_colors[nt])
             nlabels[node] = f"{nt[0].upper()}{indices[nt]}"
             indices[nt] += 1
 
         ecolors = []
         for src, dst, attrs in G.edges(data=True):
-            ecolor = edge_colors[attrs["type"]]
+            et = attrs.get("type")
+            if et is None or et not in etypes:
+                continue
+            ecolor = edge_colors[et]
             ecolors.append(ecolor)
             G.edges[src, dst]["color"] = ecolor
+
+        node_legend = [Patch(color=color, label=nt) for nt, color in node_colors.items()]
+        edge_legend = [
+            Line2D([0], [0], color=color, lw=2, label=f"{et[1]}: {et[0]}→{et[2]}")
+            for et, color in edge_colors.items() if et in etypes
+        ]
 
         if plot_type in ["full", "data", "hrchy"] and not batched:
             pos = nx.kamada_kawai_layout(G, scale=2)
@@ -358,6 +370,10 @@ def plot_data(
             G, pos, labels=nlabels, node_color=ncolors, 
             edge_color=ecolors, style="dashed", node_size=150, 
             font_size=9, arrowsize=9, width=.8, alpha=.8
+        )
+        plt.legend(
+            handles=node_legend + edge_legend, loc='lower center', 
+            bbox_to_anchor=(0.5, -0.1), ncol=3, fontsize=8, frameon=False
         )
         plt.show()
 
@@ -394,6 +410,7 @@ if __name__ == "__main__":
     hls_data_dict = build_base_graphs(base_solutions)
 
     print("Graphs built successfully.")
+
     # for benchmark, hls_data in hls_data_dict.items():
     #     print(f"{benchmark}:\n")
     #     for i, node in enumerate(hls_data.nodes['instr']):
@@ -419,6 +436,6 @@ if __name__ == "__main__":
         #         print(node)
 
         data = to_pyg(hls_data)
-        plot_data(data)
+        plot_data(data, ["control", "data", "hrchy"], batched=False)
 
     

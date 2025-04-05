@@ -3,7 +3,6 @@ import sys
 import argparse
 import random
 import gc
-from math import exp
 from pathlib import Path
 from collections import defaultdict
 from typing import List, Dict, Tuple, Optional, Union
@@ -30,11 +29,8 @@ def save_model(model, output_dir, model_name):
     torch.save(obj=model.state_dict(), f=f"{output_dir}/{model_name}")
 
 
-def rpd(pred, target, invert_log=False, eps=1e-6):
+def rpd(pred, target):
     pred, target = map(torch.as_tensor, (pred, target))
-    if invert_log:
-        pred = torch.exp(pred).sub(eps)
-        target = torch.exp(target).sub(eps)
     avg = (torch.abs(pred) + torch.abs(target)) / 2
     return torch.where(
         target == 0, 
@@ -64,7 +60,6 @@ def evaluate(
         print(f"\nEvaluating on {mode} set\n")
 
     preds, targets = [], []
-    results = []
     
     # Assumption: Only one instance per batch
     for batch in loader:
@@ -82,26 +77,27 @@ def evaluate(
         preds.append(pred)
         targets.append(target)
 
-    preds = torch.cat(preds)
-    targets = torch.cat(targets)
-    results = list(zip(preds.tolist(), targets.tolist()))
-
     if log_dir:
         with open(f"{log_dir}/{mode}.log", 'a') as f:
-            for p, t in results:
-                f.write(f"{epoch},{t},{p},{t-p}\n")
+            for p, t in zip(preds, targets):
+                f.write(f"{epoch},{t.item()},{p.item()},{(t-p).item()}\n")
+
+    preds = torch.cat(preds).expm1()
+    targets = torch.cat(targets).expm1()
+
+    mre = rpd(preds, targets).mean().item()
+    if mre < evaluate.min_mre:
+        evaluate.min_mre = mre
+        evaluate.best_epoch = epoch
+
+    results = list(zip(preds.tolist(), targets.tolist()))
 
     if verbosity > 0:
         for p, t in results:
-            print(f"Target: {exp(t)}; Prediction: {exp(p)}")
-
-        mre = rpd(preds, targets, invert_log=True).mean().item()
-        if mre < evaluate.min_mre:
-            evaluate.min_mre = mre
-            evaluate.best_epoch = epoch
-
-        print(f"MRE on {mode} set: {mre:.2f}%")
-        print(f"Best MRE so far: {evaluate.min_mre:.2f}% at epoch {evaluate.best_epoch}")
+            print(f"Target: {t}; Prediction: {p}")
+            
+        print(f"\nMRE on {mode} set: {mre:.2f}%")
+        print(f"Best MRE so far: {evaluate.min_mre:.2f}% at epoch {evaluate.best_epoch}\n")
     
     return results
 
@@ -123,7 +119,8 @@ def train_model(
         if verbosity > 0:
             print(f"Epoch {epoch}/{epochs}\n")
 
-        epoch_results = []
+        preds, targets = [], []
+        preds_exp, targets_exp = [], []
         
         model.train()
         for batch in train_loader:
@@ -144,31 +141,31 @@ def train_model(
                 scheduler.step()
 
             batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
-            epoch_results.extend(list(zip(pred.tolist(), target.tolist())))
+
+            preds.extend(pred.tolist())
+            targets.extend(target.tolist())
+            
+            pred_exp = pred.expm1().tolist()
+            target_exp = target.expm1().tolist()
+
+            preds_exp.extend(pred_exp)
+            targets_exp.extend(target_exp)
     
-        if verbosity > 1:
-            for p, t in epoch_results:
-                print(f"Target: {exp(t)}; Prediction: {exp(p)}")
+            if verbosity > 1:
+                for p, t in zip(pred_exp, target_exp):
+                    print(f"Target: {t}; Prediction: {p}")
 
         if log_dir:
             with open(f"{log_dir}/train.log", 'a') as f:
-                for p, t in epoch_results:
-                    f.write(f"{epoch},{t},{p},{t-p}\n")
+                for p, t in zip(preds, targets):
+                    f.write(f"{epoch},{t},{p},{(t-p)}\n")
 
-        results['train'].append(epoch_results)
+        results['train'].append(list(zip(preds_exp, targets_exp)))
 
         model.eval()
         with torch.no_grad():
             test_results = evaluate(epoch, model, test_loader, verbosity, log_dir)
             results['test'].append(test_results)
-
-    for i, test_results in enumerate(results['test']):
-        for j, (p, t) in enumerate(test_results):
-            results['test'][i][j] = (exp(p) - 1e-6, exp(t) - 1e-6)
-
-    for i, train_results in enumerate(results['train']):
-        for j, (p, t) in enumerate(train_results):
-            results['train'][i][j] = (exp(p) - 1e-6, exp(t) - 1e-6)
 
     return results
 
@@ -207,7 +204,7 @@ def main(args: Dict[str, str]):
 
     metadata = (NODE_TYPES, EDGE_TYPES)
     
-    model = HGT(metadata, NODE_FEATURE_DIMS, 1, dropout=0.2, device=DEVICE)
+    model = HGT(metadata, NODE_FEATURE_DIMS, 1, device=DEVICE)
 
     if loss == 'huber':
         loss_fn = nn.HuberLoss(delta=residual)
@@ -219,13 +216,13 @@ def main(args: Dict[str, str]):
         raise ValueError(f"Unknown loss function: {loss}")
 
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=3e-4, betas=(0.9, 0.95), weight_decay=1e-4
+        model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=5e-4
     )
 
-    # total_steps = epochs * len(train_loader)
-    # scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-    #     optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-6
-    # )
+    total_steps = epochs * len(train_loader)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
+        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-6
+    )
     scheduler = None
 
     results = train_model(

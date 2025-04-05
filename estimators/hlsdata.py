@@ -13,7 +13,7 @@ except ImportError:
     pass
 
 
-AVAILABLE_METRICS = {'FF', 'LUT', 'DSP', 'BRAM'}
+RESOURCES_CONSIDERED = {'FF', 'LUT', 'DSP', 'BRAM'}
 
 
 ResourceMapper = Dict[str, Dict[str, int]]
@@ -31,12 +31,12 @@ class BaseNode:
         
         if ground_truth_resources is not None:
             resources = ground_truth_resources.get(self.rtl_name, {})
-            for res in AVAILABLE_METRICS:
+            for res in RESOURCES_CONSIDERED:
                 self.attrs["ground_truth_" + res] = resources.get(res, 0)
 
         if estimated_resources is not None:
             resources = estimated_resources.get(self.rtl_name, {})
-            for res in AVAILABLE_METRICS:
+            for res in RESOURCES_CONSIDERED:
                 self.attrs["estimated_" + res] = resources.get(res, 0)
 
     def _extract_basic_info(self, element):
@@ -314,7 +314,7 @@ class CDFG:
             self.nodes['instr'][i].operand_edges = filtered_edges
 
     def _map_edge_type(self, etype):
-        return {'1': 'data', '2': 'succ', '4': 'mem'}.get(etype, '')
+        return {'1': 'data', '2': 'control', '4': 'mem'}.get(etype, '')
 
     def _build_hierarchy_edges(self):
         for reg in self.nodes['region']:
@@ -339,7 +339,7 @@ class CDFG:
             res_map = {}
             for res in rtl_resources.iter('item'):
                 res_name = res.findtext('first')
-                if res_name in AVAILABLE_METRICS:
+                if res_name in RESOURCES_CONSIDERED:
                     res_map[res_name] = findint(res, 'second', 0)
             estimated_resources[rtl_name] = res_map
         

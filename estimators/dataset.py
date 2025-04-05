@@ -2,7 +2,6 @@ import os
 import torch
 import shutil
 import json
-import math
 from typing import Union, Optional, List, Dict
 
 from torch import Tensor
@@ -15,12 +14,12 @@ def extract_feature_boundaries(
     metric: str,
     benchmarks: Optional[Union[str, List[str]]] = None
 ) -> Dict[NodeType, Dict[str, Tensor]]:
-    bounds = {}
-
     if benchmarks is None:
         benchmarks = sorted(os.listdir(dataset_dir))
     elif isinstance(benchmarks, str):
         benchmarks = [benchmarks]
+
+    bounds = {}
 
     for bench in benchmarks:
         bench_dir = os.path.join(dataset_dir, bench)
@@ -28,8 +27,7 @@ def extract_feature_boundaries(
             print(f"Skipping {bench} (directory not found)")
             continue
 
-        solutions = os.listdir(bench_dir)
-        solutions = [s for s in solutions if "solution" in s]
+        solutions = [s for s in os.listdir(bench_dir) if "solution" in s]
         solutions = sorted(solutions, key=lambda s: int(s.split("solution")[1]))
 
         for sol in solutions:
@@ -163,8 +161,7 @@ class HLSDataset(Dataset):
                 print(f"Skipping {bench} (base target value not found)")
                 continue
 
-            solutions = os.listdir(bench_dir)
-            solutions = [s for s in solutions if "solution" in s]
+            solutions = [s for s in os.listdir(bench_dir) if "solution" in s]
             solutions = sorted(solutions, key=lambda s: int(s.split("solution")[1]))
 
             for sol in solutions:
@@ -193,8 +190,8 @@ class HLSDataset(Dataset):
 
                 data = torch.load(graph_path)
 
-                data.y = torch.tensor([math.log(target + 1e-6)])
-                data.y_base = torch.tensor([math.log(base_target + 1e-6)])
+                data.y = torch.tensor([target]).log1p()
+                data.y_base = torch.tensor([base_target]).log1p()
 
                 if self.feature_bounds is not None:
                     data = self._scale_features(data)

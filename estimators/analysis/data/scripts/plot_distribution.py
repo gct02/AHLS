@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.preprocessing import power_transform
 from numpy.typing import NDArray
 
 
@@ -16,22 +17,29 @@ def extract_metric_from_data(
     filtered: bool = False, 
     benchmarks: Optional[Union[List[str], str]] = None
 ) -> NDArray[np.float32]:
-    reports = []
     if benchmarks is None:
         benchmarks = os.listdir(dataset_dir)
     elif isinstance(benchmarks, str):
         benchmarks = [benchmarks]
-    for benchmark in benchmarks:
-        metrics, _ = collate_data_for_analysis(
-            dataset_dir, benchmark, filtered=filtered
-        )
-        filtered_report = [float(x) for x in metrics[metric].values if x >= 0]
-        reports.extend(filtered_report)
+
+    reports = []
+    for bench in benchmarks:
+        rpt, _ = collate_data_for_analysis(dataset_dir, bench, filtered=filtered)
+        for v in rpt[metric].values:
+            if v >= 0:
+                reports.append(float(v))
+
     return np.array(reports, dtype=np.float32)
 
 
-def plot_distribution(dataset_dir: str, metric: str, filtered: bool = False):
-    reports = extract_metric_from_data(dataset_dir, metric, filtered)
+def plot_distribution(
+    dataset_dir: str, 
+    metric: str, 
+    filtered: bool = False, 
+    benchmarks: Optional[Union[List[str], str]] = None
+):
+    reports = extract_metric_from_data(dataset_dir, metric, filtered, benchmarks)
+    reports = power_transform(reports.reshape(-1, 1), method='yeo-johnson').flatten()
     stats = {
         'mean': np.mean(reports),
         'std': np.std(reports),
@@ -80,6 +88,8 @@ def parse_args():
                         help='Metric to analyze')
     parser.add_argument('-f', '--filtered', action='store_true',
                         help='Sinalize if the dataset is filtered')
+    parser.add_argument('-b', '--benchmarks', nargs='+',
+                        help='List of benchmarks to analyze')
     return parser.parse_args()
 
 
@@ -95,9 +105,11 @@ if __name__ == '__main__':
     from utils.parsers import collate_data_for_analysis
 
     args = parse_args()
+
     dataset_dir = args.dataset
     metric = args.metric
     filtered = args.filtered
+    benchmarks = args.benchmarks
 
-    plot_distribution(dataset_dir, metric, filtered)
+    plot_distribution(dataset_dir, metric, filtered, benchmarks)
 
