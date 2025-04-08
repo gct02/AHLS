@@ -1,0 +1,13 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/AES/solution0/.autopilot/db/aes_test.pp.0.c
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_22_1:  '
+    FileOffset:      22
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/aes/aes_test.c
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/AES/solution0/.autopilot/db/aes_test.pp.0.c
+        Offset:          25277
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_22_1: '
+...

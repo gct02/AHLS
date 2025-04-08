@@ -1,0 +1,45 @@
+Begin Function 'adpcm_main'
+
+RTL state condition: (1'b1 == ap_CS_fsm_state2)
+# ST_2
+
+RTL state condition: (1'b1 == ap_CS_fsm_state3)
+# ST_3
+local i_18 <load_217> <integer> <> 'load' <data/benchmarks/adpcm/adpcm.c:217>
+i_18 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:217
+reg: i_18_reg_597[5:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state4)
+# ST_4
+local in_data_load <load_219> <integer> <ArrayAccess><ArrayLoad><MultiCycle> 'load' <data/benchmarks/adpcm/adpcm.c:219>
+in_data_load /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:219
+reg: in_data_load_reg_622[31:0] lv
+
+local in_data_load_1 <load_219> <integer> <ArrayAccess><ArrayLoad><MultiCycle> 'load' <data/benchmarks/adpcm/adpcm.c:219>
+in_data_load_1 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:219
+reg: in_data_load_1_reg_627[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state5)
+# ST_5
+
+RTL state condition: (1'b1 == ap_CS_fsm_state6)
+# ST_6
+local i_19 <load_223> <integer> <> 'load' <data/benchmarks/adpcm/adpcm.c:223>
+i_19 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:223
+reg: i_19_reg_632[5:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state7)
+# ST_7
+local trunc_ln225 <trunc_225> <integer> <> 'trunc' <data/benchmarks/adpcm/adpcm.c:225>
+trunc_ln225 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:225
+reg: trunc_ln225_reg_645[7:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state8)
+# ST_8
+
+End Function 'adpcm_main'
+

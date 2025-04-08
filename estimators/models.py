@@ -6,7 +6,8 @@ import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn import (
     HGTConv, LayerNorm, HeteroDictLinear, 
-    JumpingKnowledge, global_add_pool
+    JumpingKnowledge, GraphMultisetTransformer,
+    global_add_pool
 )
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 from torch.types import Device
@@ -83,12 +84,23 @@ class HGT(nn.Module):
 
         # Type-wise linear layer
         jk_dim = sum(hid_dims)
+        emb_dim = 128
         self.node_lin = HeteroDictLinear(
-            jk_dim, 128, 
+            jk_dim, emb_dim, 
             types=self.node_types,
             weight_initializer='kaiming_uniform',
             bias_initializer='zeros'
         )
+
+        # Pooling layer 
+        k = 16
+        self.pool = nn.ModuleDict({
+            nt: GraphMultisetTransformer(
+                emb_dim, k, num_encoder_blocks=4, 
+                heads=4, layer_norm=True
+            )
+            for nt in self.node_types
+        })
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
@@ -178,13 +190,13 @@ class HGT(nn.Module):
         batch_size = self._get_batch_size(batch_dict)
         x_list = []
         for nt, x in x_dict.items():
-            x = global_add_pool(x, batch_dict[nt], size=batch_size)
+            x = self.pool[nt](x, index=batch_dict[nt])
             x_list.append(x.view(batch_size, -1))
 
         x = torch.cat(x_list, dim=1)
 
         # Process y_base
-        y_base_processed = self.y_base_mlp(y_base)
+        y_base_processed = self.y_base_mlp(y_base.unsqueeze(1))
         x = torch.cat([x, y_base_processed], dim=1)
 
         # Graph-level MLP

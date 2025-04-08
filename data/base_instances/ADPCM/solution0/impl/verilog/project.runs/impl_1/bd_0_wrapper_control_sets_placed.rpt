@@ -1,0 +1,161 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
+| Date         : Tue Mar 25 17:22:23 2025
+| Host         : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_control_sets -verbose -file bd_0_wrapper_control_sets_placed.rpt
+| Design       : bd_0_wrapper
+| Device       : xcu50
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    83 |
+|    Minimum number of control sets                        |    83 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    79 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    83 |
+| >= 0 to < 4        |    12 |
+| >= 4 to < 6        |     5 |
+| >= 6 to < 8        |    10 |
+| >= 8 to < 10       |     4 |
+| >= 10 to < 12      |     3 |
+| >= 12 to < 14      |     1 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    48 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               3 |            3 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              83 |           41 |
+| Yes          | No                    | No                     |            1717 |          314 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             830 |          230 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++--------------+---------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+| Clock Signal |                                           Enable Signal                                           |                                      Set/Reset Signal                                      | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------+---------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_CS_fsm_state2                                           |                                                                                            |                1 |              2 |         2.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/CEA2                                                        |                                                                                            |                2 |              2 |         1.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/ap_CS_fsm_reg[0]_2                                          |                                                                                            |                2 |              2 |         1.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/i_fu_6402_out                            | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/i_fu_640                          |                1 |              3 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_461/ap_CS_fsm_state2                         |                                                                                            |                2 |              3 |         1.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_461/i_fu_6402_out                            | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_461/i_fu_640                          |                2 |              3 |         1.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_452/i_fu_6402_out                            | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_452/i_fu_640                          |                2 |              3 |         1.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_452/ap_CS_fsm_state2                         |                                                                                            |                2 |              3 |         1.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/ap_CS_fsm_state2                         |                                                                                            |                2 |              3 |         1.50 |
+|  ap_clk      |                                                                                                   |                                                                                            |                3 |              3 |         1.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/E[0]                                                        | bd_0_i/hls_inst/inst/grp_reset_fu_243/grp_reset_fu_243_dec_nbh_ap_vld                      |                1 |              3 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/grp_reset_fu_243_dec_del_bph_we0                            | bd_0_i/hls_inst/inst/grp_reset_fu_243/ap_NS_fsm11_out                                      |                1 |              3 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_CS_fsm_state10                                          |                                                                                            |                1 |              4 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/i_4_fu_154[3]_i_2_n_20                                      | bd_0_i/hls_inst/inst/grp_reset_fu_243/i_4_fu_154[3]_i_1_n_20                               |                1 |              4 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_quantl_fu_440/mul_15ns_15ns_30_1_1_U48/E[0]            | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_quantl_fu_440/ap_NS_fsm10_out                   |                1 |              5 |         5.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_quantl_fu_440/mul_15ns_15ns_30_1_1_U48/mil_02_reg_1031 | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_quantl_fu_440/mil_02_reg_1030                   |                1 |              5 |         5.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/grp_reset_fu_243_tqmf_we0                                   | bd_0_i/hls_inst/inst/grp_reset_fu_243/ap_NS_fsm10_out                                      |                2 |              5 |         2.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_quantl_fu_440/ap_CS_fsm_state2                         |                                                                                            |                2 |              6 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/ap_NS_fsm[6]                                                                 | bd_0_i/hls_inst/inst/i_11_fu_168[5]_i_1_n_20                                               |                1 |              6 |         6.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_quantl_fu_440/grp_quantl_fu_440_ap_ready               | ap_rst                                                                                     |                4 |              6 |         1.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_filtez_fu_433/i_02_fu_400                              | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_filtez_fu_433/ap_NS_fsm1                        |                2 |              6 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_quantl_fu_440/ap_CS_fsm_reg[0]_0[0]                    |                                                                                            |                5 |              6 |         1.20 |
+|  ap_clk      | bd_0_i/hls_inst/inst/ap_NS_fsm[3]                                                                 | bd_0_i/hls_inst/inst/ap_NS_fsm12_out                                                       |                1 |              6 |         6.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/in_data_ce1                                                                  |                                                                                            |                1 |              6 |         6.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/ap_CS_fsm_state7                                                             |                                                                                            |                4 |              6 |         1.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/ap_CS_fsm_state6                                                             |                                                                                            |                1 |              6 |         6.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_filtez_fu_430/i_02_fu_400                              | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_filtez_fu_430/ap_NS_fsm1                        |                2 |              6 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/Q[0]                                                       |                                                                                            |                4 |              8 |         2.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/ap_NS_fsm[3]                                               | bd_0_i/hls_inst/inst/grp_encode_fu_333/ap_NS_fsm[1]                                        |                2 |              8 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_NS_fsm[10]                                              | bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_NS_fsm[8]                                        |                3 |              8 |         2.67 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_NS_fsm[7]                                               | bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_NS_fsm1                                          |                2 |              8 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/ap_NS_fsm[6]                                               | bd_0_i/hls_inst/inst/grp_encode_fu_333/ap_NS_fsm[4]                                        |                3 |             10 |         3.33 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_quantl_fu_440/ap_CS_fsm_state3                         |                                                                                            |                3 |             11 |         3.67 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_filtez_fu_433/E[0]                                     |                                                                                            |                3 |             11 |         3.67 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/CEA2                                                       |                                                                                            |                7 |             12 |         1.71 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_452/ap_CS_fsm_reg[7]_0[1]                    |                                                                                            |                6 |             16 |         2.67 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_461/ap_CS_fsm_reg[7]_0[2]                    |                                                                                            |                7 |             16 |         2.29 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/reg_180[15]_i_1__1_n_20                  |                                                                                            |                7 |             16 |         2.29 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/ap_CS_fsm_state5                         |                                                                                            |                5 |             16 |         3.20 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_461/reg_180[15]_i_1__0_n_20                  |                                                                                            |                8 |             16 |         2.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_452/ap_CS_fsm_state5                         |                                                                                            |                5 |             16 |         3.20 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/Q[2]                                     |                                                                                            |                5 |             16 |         3.20 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_452/reg_180[15]_i_1_n_20                     |                                                                                            |                4 |             16 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_461/ap_CS_fsm_state5                         |                                                                                            |                7 |             16 |         2.29 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/ap_CS_fsm_reg[9]_0[0]                                      |                                                                                            |                6 |             22 |         3.67 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/ap_CS_fsm_reg[0]_4                                          | bd_0_i/hls_inst/inst/grp_reset_fu_243/grp_reset_fu_243_ap_start_reg_reg_2                  |               10 |             30 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/ap_CS_fsm_reg[0]_3                                          | bd_0_i/hls_inst/inst/grp_reset_fu_243/grp_reset_fu_243_ap_start_reg_reg_1                  |               11 |             31 |         2.82 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/ap_CS_fsm_reg[0]_1                                          | bd_0_i/hls_inst/inst/grp_reset_fu_243/grp_reset_fu_243_ap_start_reg_reg_0                  |               11 |             31 |         2.82 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/ap_CS_fsm_reg[0]_0                                          | bd_0_i/hls_inst/inst/grp_reset_fu_243/grp_reset_fu_243_ap_start_reg_reg                    |               12 |             31 |         2.58 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/ap_CS_fsm_reg[3]_3[0]                    |                                                                                            |                7 |             32 |         4.57 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_461/ap_CS_fsm_reg[4]_0                       |                                                                                            |                2 |             32 |        16.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/ap_CS_fsm_reg[5]_0[0]                    |                                                                                            |                7 |             32 |         4.57 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_461/ap_CS_fsm_reg[4]_1[0]                    |                                                                                            |                6 |             32 |         5.33 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_452/ap_CS_fsm_reg[4]_0[0]                    |                                                                                            |               11 |             32 |         2.91 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/E[0]                                     |                                                                                            |                8 |             32 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_upzero_fu_452/p_0_in                                   |                                                                                            |                2 |             32 |        16.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/ap_CS_fsm_reg[7]_2                       |                                                                                            |                2 |             32 |        16.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/p_0_in                                   |                                                                                            |                2 |             32 |        16.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_filtez_fu_430/E[0]                                     |                                                                                            |                5 |             32 |         6.40 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_quantl_fu_440/ap_CS_fsm_state1                         |                                                                                            |                5 |             33 |         6.60 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/Q[4]                                                       |                                                                                            |                8 |             36 |         4.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/grp_filtez_fu_430/ap_NS_fsm[2]                             |                                                                                            |                6 |             46 |         7.67 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_filtez_fu_433/ap_NS_fsm[2]                             |                                                                                            |                6 |             46 |         7.67 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/Q[1]                                                       |                                                                                            |                8 |             50 |         6.25 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/ap_CS_fsm_reg[0]_6                                          | bd_0_i/hls_inst/inst/grp_reset_fu_243/grp_reset_fu_243_ap_start_reg_reg_3                  |               27 |             62 |         2.30 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/p_0_in                                                      |                                                                                            |                4 |             64 |        16.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/ap_CS_fsm_state4                                                             |                                                                                            |               15 |             64 |         4.27 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/Q[3]                                                       |                                                                                            |                8 |             64 |         8.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/CEB2                                                       |                                                                                            |               16 |             64 |         4.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_CS_fsm_reg[8]_0[0]                                      |                                                                                            |               10 |             64 |         6.40 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/Q[2]                                                       |                                                                                            |               19 |             71 |         3.74 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/ap_CS_fsm_state6                                           |                                                                                            |               17 |             80 |         4.71 |
+|  ap_clk      |                                                                                                   | ap_rst                                                                                     |               41 |             83 |         2.02 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/D[3]                                     |                                                                                            |               12 |             92 |         7.67 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/ap_CS_fsm_reg[0]_7                                          | bd_0_i/hls_inst/inst/grp_reset_fu_243/grp_reset_fu_243_ap_start_reg_reg_4                  |               30 |             92 |         3.07 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/ap_NS_fsm[2]                                               |                                                                                            |               12 |             94 |         7.83 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_decode_fu_399/Q[2]                                                       |                                                                                            |               17 |             96 |         5.65 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/Q[3]                                                       |                                                                                            |               24 |            104 |         4.33 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/ap_CS_fsm_state8                                           |                                                                                            |               20 |            106 |         5.30 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/ap_CS_fsm_reg[0]_2                                          | bd_0_i/hls_inst/inst/grp_decode_fu_399/grp_upzero_fu_443/grp_reset_fu_243_ap_start_reg_reg |               48 |            117 |         2.44 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/CEA2                                                        | bd_0_i/hls_inst/inst/grp_reset_fu_243/RSTA                                                 |               23 |            150 |         6.52 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_encode_fu_333/ap_CS_fsm_state5                                           |                                                                                            |               42 |            158 |         3.76 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_reset_fu_243/ap_CS_fsm_reg[0]_5                                          | bd_0_i/hls_inst/inst/grp_reset_fu_243/ap_CS_fsm_reg[0]_8                                   |               72 |            188 |         2.61 |
++--------------+---------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+
+

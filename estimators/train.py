@@ -70,24 +70,25 @@ def evaluate(
         batch = batch.to(DEVICE)
         x_dict, edge_index_dict = batch.x_dict, batch.edge_index_dict
         batch_dict = batch.batch_dict
-        y_base = batch.y_base
-        y = batch.y
+        base_target = batch.y_base
+        target = batch.y
 
-        out = model(x_dict, edge_index_dict, batch_dict, y_base)
+        pred = model(x_dict, edge_index_dict, batch_dict, base_target)
 
-        batch, out, y = batch.cpu(), out.cpu(), y.cpu()
+        batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
+        base_target = base_target.cpu()
 
-        preds_log.append(out.item())
-        targets_log.append(y.item())
+        preds_log.append(pred.item())
+        targets_log.append(target.item())
 
-        y_base_expm1 = y_base.expm1()
-        preds.append(out.expm1() * y_base_expm1)
-        targets.append(y.expm1() * y_base_expm1)
+        y_base_expm1 = base_target.expm1()
+        preds.append(pred.expm1() * y_base_expm1)
+        targets.append(target.expm1() * y_base_expm1)
 
     if log_dir:
         with open(f"{log_dir}/{mode}.log", 'a') as f:
             for p, t in zip(preds_log, targets_log):
-                f.write(f"{epoch},{t.item()},{p.item()},{(t-p).item()}\n")
+                f.write(f"{epoch},{t},{p},{t-p}\n")
 
     preds = torch.cat(preds)
     targets = torch.cat(targets)
@@ -152,6 +153,7 @@ def train_model(
                 scheduler.step()
 
             batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
+            base_target = base_target.cpu()
 
             preds_log.extend(pred.tolist())
             targets_log.extend(target.tolist())
@@ -159,8 +161,8 @@ def train_model(
             base_target_exp = base_target.expm1()
             pred = (pred.expm1() * base_target_exp).tolist()
             target = (target.expm1() * base_target_exp).tolist()
-            preds.append(pred)
-            targets.append(target)
+            preds.extend(pred)
+            targets.extend(target)
 
             if verbosity > 1:
                 for p, t in zip(pred, target):
@@ -169,7 +171,7 @@ def train_model(
         if log_dir:
             with open(f"{log_dir}/train.log", 'a') as f:
                 for p, t in zip(preds_log, targets_log):
-                    f.write(f"{epoch},{t},{p},{(t-p)}\n")
+                    f.write(f"{epoch},{t},{p},{t-p}\n")
 
         results['train'].append(list(zip(preds, targets)))
 
@@ -230,10 +232,11 @@ def main(args: Dict[str, str]):
         model.parameters(), lr=5e-4, betas=(0.9, 0.95), weight_decay=5e-4
     )
 
-    total_steps = epochs * len(train_loader)
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-5
-    )
+    # total_steps = epochs * len(train_loader)
+    # scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
+    #     optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-5
+    # )
+    scheduler = None
 
     results = train_model(
         model, loss_fn, optimizer, train_loader, test_loader, epochs, 

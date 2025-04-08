@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Messages>
+	<Message severity="INFO" prefix="[SIM 211-2]" key="SIM_2_1569" tag="" content="*************** CSIM start ***************" resolution=""/>
+	<Message severity="INFO" prefix="[SIM 211-4]" key="SIM_4_1577" tag="" content="CSIM will launch GCC as the compiler." resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-2036]" key="HLS 200-2036" tag="" content="Building debug C Simulation binaries" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1427" tag="" content="Running &apos;/tools/Xilinx/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/apcc&apos;" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1428" tag="" content="For user &apos;gabriel&apos; on host &apos;gabriel-Inspiron-15-3511&apos; (Linux_x86_64 version 6.8.0-52-generic) on Tue Mar 25 17:16:15 -03 2025" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1429" tag="" content="On os Ubuntu 22.04.5 LTS" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1430" tag="" content="In directory &apos;/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/ADPCM/solution0/csim/build&apos;" resolution=""/>
+	<Message severity="INFO" prefix="[APCC 202-3]" key="APCC_3_1610" tag="" content="Tmp directory is /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/ADPCM/solution0/csim/build/apcc_db_gabriel/161861742933775677443" resolution=""/>
+	<Message severity="INFO" prefix="[APCC 202-1]" key="APCC_1_1611" tag="" content="APCC is done." resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1427" tag="" content="Running &apos;/tools/Xilinx/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/apcc&apos;" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1428" tag="" content="For user &apos;gabriel&apos; on host &apos;gabriel-Inspiron-15-3511&apos; (Linux_x86_64 version 6.8.0-52-generic) on Tue Mar 25 17:16:18 -03 2025" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1429" tag="" content="On os Ubuntu 22.04.5 LTS" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1430" tag="" content="In directory &apos;/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/ADPCM/solution0/csim/build&apos;" resolution=""/>
+	<Message severity="INFO" prefix="[APCC 202-3]" key="APCC_3_1610" tag="" content="Tmp directory is /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/ADPCM/solution0/csim/build/apcc_db_gabriel/162641742933778520752" resolution=""/>
+	<Message severity="INFO" prefix="[APCC 202-1]" key="APCC_1_1611" tag="" content="APCC is done." resolution=""/>
+	<Message severity="INFO" prefix="[SIM 211-1]" key="SIM_1_1586" tag="" content="CSim done with 0 errors." resolution=""/>
+	<Message severity="INFO" prefix="[SIM 211-3]" key="SIM_3_1588" tag="" content="*************** CSIM finish ***************" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished Command csim_design CPU user time: 5.97 seconds. CPU system time: 0.45 seconds. Elapsed time: 6.05 seconds; current allocated memory: 0.809 MB." resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: config_array_partition -throughput_driven off" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: config_debug -enable" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: config_compile -pipeline_loops 999999" resolution=""/>
+	<Message severity="INFO" prefix="[XFORM 203-1171]" key="XFORM_PIPELINE_THRESHOLD_STATUS_529" tag="" content="Pipeline the innermost loop with trip count more than 999999 or its parent loop when its trip count is less than or equal 999999." resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_part xcu50-fsvh2104-2-e" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1611]" key="HLS 200-1611" tag="" content="Setting target device to &apos;xcu50-fsvh2104-2-e&apos;" resolution=""/>
+	<Message severity="INFO" prefix="[XFORM 203-1171]" key="XFORM_PIPELINE_THRESHOLD_STATUS_529" tag="" content="Pipeline the innermost loop with trip count more than 999999 or its parent loop when its trip count is less than or equal 999999." resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: create_clock -period 8 -name default" resolution=""/>
+	<Message severity="INFO" prefix="[SYN 201-201]" key="ASSGN_CLOCK_INFO_459" tag="" content="Setting up clock &apos;default&apos; with a period of 8ns." resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off adpcm_main" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off encode" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off decode" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off reset" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off filtez" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off quantl" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off upzero" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off encode/encode_label0" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off encode/encode_label1" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off decode/decode_label2" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off decode/decode_label3" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off reset/reset_label4" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off reset/reset_label5" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off reset/reset_label6" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off reset/reset_label7" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off filtez/filtez_label8" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off quantl/quantl_label9" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off upzero/upzero_label10" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off upzero/upzero_label11" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off adpcm_main/adpcm_main_label12" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_pipeline -off adpcm_main/adpcm_main_label13" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off adpcm_main" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off encode" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off decode" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off reset" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off filtez" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off quantl" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off upzero" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off encode/encode_label0" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off encode/encode_label1" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off decode/decode_label2" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off decode/decode_label3" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off reset/reset_label4" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off reset/reset_label5" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off reset/reset_label6" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off reset/reset_label7" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off filtez/filtez_label8" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off quantl/quantl_label9" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off upzero/upzero_label10" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off upzero/upzero_label11" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off adpcm_main/adpcm_main_label12" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_loop_flatten -off adpcm_main/adpcm_main_label13" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: set_directive_top adpcm_main -name adpcm_main" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-1510]" key="HLS 200-1510" tag="" content="Running: csynth_design" resolution=""/>
+</Messages>

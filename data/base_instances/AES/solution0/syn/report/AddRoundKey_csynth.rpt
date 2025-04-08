@@ -1,0 +1,173 @@
+
+
+================================================================
+== Vitis HLS Report for 'AddRoundKey'
+================================================================
+* Date:           Sat Mar 29 15:36:28 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        AES
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  2.607 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       17|       17|  0.136 us|  0.136 us|   17|   17|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                      |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |       Loop Name      |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- AddRoundKey_label0  |       16|       16|         4|          -|          -|     4|        no|
+        +----------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        0|     158|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        -|     -|        -|       -|    -|
+|Memory               |        -|     -|        -|       -|    -|
+|Multiplexer          |        -|     -|        -|     120|    -|
+|Register             |        -|     -|       92|       -|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        0|     0|       92|     278|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |        0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln469_fu_192_p2   |         +|   0|  0|  10|           3|           1|
+    |add_ln471_fu_202_p2   |         +|   0|  0|  13|           6|           6|
+    |add_ln472_fu_216_p2   |         +|   0|  0|  15|           8|           7|
+    |add_ln473_fu_263_p2   |         +|   0|  0|  16|           9|           8|
+    |add_ln474_fu_274_p2   |         +|   0|  0|  16|           9|           9|
+    |icmp_ln469_fu_186_p2  |      icmp|   0|  0|  12|           3|           4|
+    |or_ln472_fu_244_p2    |        or|   0|  0|   4|           4|           1|
+    |or_ln473_fu_285_p2    |        or|   0|  0|   4|           4|           2|
+    |or_ln474_fu_295_p2    |        or|   0|  0|   4|           4|           2|
+    |grp_fu_148_p2         |       xor|   0|  0|  32|          32|          32|
+    |grp_fu_154_p2         |       xor|   0|  0|  32|          32|          32|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0| 158|         114|         104|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------+----+-----------+-----+-----------+
+    |       Name       | LUT| Input Size| Bits| Total Bits|
+    +------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm         |  31|          6|    1|          6|
+    |j_fu_56           |   9|          2|    3|          6|
+    |statemt_address0  |  26|          5|    5|         25|
+    |statemt_address1  |  26|          5|    5|         25|
+    |word_address0     |  14|          3|    9|         27|
+    |word_address1     |  14|          3|    9|         27|
+    +------------------+----+-----------+-----+-----------+
+    |Total             | 120|         24|   32|        116|
+    +------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |add_ln471_reg_320        |   6|   0|    6|          0|
+    |ap_CS_fsm                |   5|   0|    5|          0|
+    |j_fu_56                  |   3|   0|    3|          0|
+    |mul_reg_312              |   4|   0|    6|          2|
+    |reg_160                  |  32|   0|   32|          0|
+    |reg_165                  |  32|   0|   32|          0|
+    |shl_ln_reg_335           |   2|   0|    4|          2|
+    |statemt_addr_49_reg_346  |   2|   0|    5|          3|
+    |statemt_addr_50_reg_361  |   2|   0|    5|          3|
+    |statemt_addr_51_reg_366  |   2|   0|    5|          3|
+    |statemt_addr_reg_341     |   2|   0|    5|          3|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  92|   0|  108|         16|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------+-----+-----+------------+--------------+--------------+
+|     RTL Ports    | Dir | Bits|  Protocol  | Source Object|    C Type    |
++------------------+-----+-----+------------+--------------+--------------+
+|ap_clk            |   in|    1|  ap_ctrl_hs|   AddRoundKey|  return value|
+|ap_rst            |   in|    1|  ap_ctrl_hs|   AddRoundKey|  return value|
+|ap_start          |   in|    1|  ap_ctrl_hs|   AddRoundKey|  return value|
+|ap_done           |  out|    1|  ap_ctrl_hs|   AddRoundKey|  return value|
+|ap_idle           |  out|    1|  ap_ctrl_hs|   AddRoundKey|  return value|
+|ap_ready          |  out|    1|  ap_ctrl_hs|   AddRoundKey|  return value|
+|statemt_address0  |  out|    5|   ap_memory|       statemt|         array|
+|statemt_ce0       |  out|    1|   ap_memory|       statemt|         array|
+|statemt_we0       |  out|    1|   ap_memory|       statemt|         array|
+|statemt_d0        |  out|   32|   ap_memory|       statemt|         array|
+|statemt_q0        |   in|   32|   ap_memory|       statemt|         array|
+|statemt_address1  |  out|    5|   ap_memory|       statemt|         array|
+|statemt_ce1       |  out|    1|   ap_memory|       statemt|         array|
+|statemt_we1       |  out|    1|   ap_memory|       statemt|         array|
+|statemt_d1        |  out|   32|   ap_memory|       statemt|         array|
+|statemt_q1        |   in|   32|   ap_memory|       statemt|         array|
+|n                 |   in|    4|     ap_none|             n|        scalar|
+|word_address0     |  out|    9|   ap_memory|          word|         array|
+|word_ce0          |  out|    1|   ap_memory|          word|         array|
+|word_q0           |   in|   32|   ap_memory|          word|         array|
+|word_address1     |  out|    9|   ap_memory|          word|         array|
+|word_ce1          |  out|    1|   ap_memory|          word|         array|
+|word_q1           |   in|   32|   ap_memory|          word|         array|
++------------------+-----+-----+------------+--------------+--------------+
+

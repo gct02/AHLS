@@ -190,8 +190,8 @@ class HLSDataset(Dataset):
 
                 data = torch.load(graph_path)
 
-                data.y = torch.tensor([target / base_target]).log1p().view(-1, 1)
-                data.y_base = torch.tensor([base_target]).log1p().view(-1, 1)
+                data.y = torch.tensor([target / base_target]).log1p()
+                data.y_base = torch.tensor([base_target]).log1p()
 
                 if self.feature_bounds is not None:
                     data = self._scale_features(data)

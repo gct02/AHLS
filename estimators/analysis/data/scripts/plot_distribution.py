@@ -7,7 +7,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.preprocessing import power_transform
 from numpy.typing import NDArray
 
 
@@ -39,14 +38,17 @@ def plot_distribution(
     benchmarks: Optional[Union[List[str], str]] = None
 ):
     reports = extract_metric_from_data(dataset_dir, metric, filtered, benchmarks)
-    reports = power_transform(reports.reshape(-1, 1), method='yeo-johnson').flatten()
+    reports = np.float_power(reports, 0.2)
     stats = {
         'mean': np.mean(reports),
         'std': np.std(reports),
         'skew': pd.Series(reports).skew(),
         'kurtosis': pd.Series(reports).kurtosis(),
         'min': np.min(reports),
-        'max': np.max(reports)
+        'max': np.max(reports),
+        'median': np.median(reports),
+        'q1': np.percentile(reports, 25),
+        'q3': np.percentile(reports, 75)
     }
 
     metric = metric.upper()
@@ -56,6 +58,9 @@ def plot_distribution(
     print(f'{metric} skewness: {stats["skew"]:.2f}')
     print(f'{metric} min: {stats["min"]:.2f}')
     print(f'{metric} max: {stats["max"]:.2f}')
+    print(f'{metric} median: {stats["median"]:.2f}')
+    print(f'{metric} Q1: {stats["q1"]:.2f}')
+    print(f'{metric} Q3: {stats["q3"]:.2f}')
 
     plt.figure(figsize=(12, 8), dpi=150)
     

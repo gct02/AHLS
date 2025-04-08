@@ -1,0 +1,141 @@
+Begin Function 'encode'
+
+RTL state condition: (1'b1 == ap_CS_fsm_state10)
+# ST_10
+local trunc_ln5 <partselect_287> <integer> <> 'partselect' <data/benchmarks/adpcm/adpcm.c:287>
+trunc_ln5 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:287
+reg: trunc_ln5_reg_2326[15:0] lv
+
+local trunc_ln8 <partselect_289> <integer> <> 'partselect' <data/benchmarks/adpcm/adpcm.c:522->data/benchmarks/adpcm/adpcm.c:289>
+trunc_ln8 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:522
+trunc_ln8 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:289
+reg: trunc_ln8_reg_2331[3:0] lv
+
+local add_ln290 <add_290> <integer> <Arithmetic> 'add' <data/benchmarks/adpcm/adpcm.c:290>
+add_ln290 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:290
+reg: add_ln290_reg_2341[31:0] lv
+
+local add_ln314 <add_314> <integer> <Arithmetic> 'add' <data/benchmarks/adpcm/adpcm.c:314>
+add_ln314 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:314
+reg: add_ln314_reg_2347[1:0] lv
+
+local sext_ln620_1 <sext_315> <integer> <> 'sext' <data/benchmarks/adpcm/adpcm.c:620->data/benchmarks/adpcm/adpcm.c:315>
+sext_ln620_1 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:620
+sext_ln620_1 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:315
+reg: sext_ln620_1_reg_2352[15:0] lv
+
+local trunc_ln522_1 <partselect_316> <integer> <> 'partselect' <data/benchmarks/adpcm/adpcm.c:522->data/benchmarks/adpcm/adpcm.c:316>
+trunc_ln522_1 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:522
+trunc_ln522_1 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:316
+reg: trunc_ln522_1_reg_2357[3:0] lv
+
+local add_ln317 <add_317> <integer> <Arithmetic> 'add' <data/benchmarks/adpcm/adpcm.c:317>
+add_ln317 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:317
+reg: add_ln317_reg_2367[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state11)
+# ST_11
+local tmp_7 <bitselect_292> <integer> <> 'bitselect' <data/benchmarks/adpcm/adpcm.c:570->data/benchmarks/adpcm/adpcm.c:292>
+tmp_7 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:570
+tmp_7 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:292
+reg: tmp_7_reg_2373[0:0] lv
+
+local apl2 <add_292> <integer> <Arithmetic> 'add' <data/benchmarks/adpcm/adpcm.c:580->data/benchmarks/adpcm/adpcm.c:292>
+apl2 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:580
+apl2 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:292
+reg: apl2_reg_2378[16:0] lv
+
+local tmp_13 <bitselect_319> <integer> <> 'bitselect' <data/benchmarks/adpcm/adpcm.c:570->data/benchmarks/adpcm/adpcm.c:319>
+tmp_13 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:570
+tmp_13 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:319
+reg: tmp_13_reg_2384[0:0] lv
+
+local apl2_3 <add_319> <integer> <Arithmetic> 'add' <data/benchmarks/adpcm/adpcm.c:580->data/benchmarks/adpcm/adpcm.c:319>
+apl2 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:580
+apl2_3 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:319
+reg: apl2_3_reg_2389[16:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state5)
+# ST_5
+local trunc_ln255 <trunc_255> <integer> <> 'trunc' <data/benchmarks/adpcm/adpcm.c:255>
+trunc_ln255 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:255
+reg: trunc_ln255_reg_2204[46:0] lv
+
+local trunc_ln255_1 <trunc_255> <integer> <> 'trunc' <data/benchmarks/adpcm/adpcm.c:255>
+trunc_ln255_1 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:255
+reg: trunc_ln255_1_reg_2209[46:0] lv
+
+local tqmf_load_2 <load_262> <integer> <ArrayAccess><ArrayLoad><MultiCycle> 'load' <data/benchmarks/adpcm/adpcm.c:262>
+tqmf_load_2 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:262
+reg: tqmf_load_2_reg_2214[31:0] lv
+
+local tqmf_load_3 <load_263> <integer> <ArrayAccess><ArrayLoad><MultiCycle> 'load' <data/benchmarks/adpcm/adpcm.c:263>
+tqmf_load_3 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:263
+reg: tqmf_load_3_reg_2219[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state6)
+# ST_6
+local trunc_ln269 <trunc_269> <integer> <> 'trunc' <data/benchmarks/adpcm/adpcm.c:269>
+trunc_ln269 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:269
+reg: trunc_ln269_reg_2228[4:0] lv
+
+local trunc_ln1 <partselect_278> <integer> <> 'partselect' <data/benchmarks/adpcm/adpcm.c:278>
+trunc_ln1 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:278
+reg: trunc_ln1_reg_2238[31:0] lv
+
+local trunc_ln2 <partselect_279> <integer> <> 'partselect' <data/benchmarks/adpcm/adpcm.c:279>
+trunc_ln2 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:279
+reg: trunc_ln2_reg_2243[31:0] lv
+
+local trunc_ln3 <partselect_283> <integer> <> 'partselect' <data/benchmarks/adpcm/adpcm.c:480->data/benchmarks/adpcm/adpcm.c:283>
+trunc_ln3 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:480
+trunc_ln3 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:283
+reg: reg_525[31:0] lv
+
+local tmp_5 <partselect_292> <integer> <> 'partselect' <data/benchmarks/adpcm/adpcm.c:572->data/benchmarks/adpcm/adpcm.c:292>
+tmp_5 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:572
+tmp_5 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:292
+reg: tmp_5_reg_2254[10:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state8)
+# ST_8
+local trunc_ln285 <trunc_285> <integer> <> 'trunc' <data/benchmarks/adpcm/adpcm.c:285>
+trunc_ln285 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:285
+reg: trunc_ln285_reg_2264[30:0] lv
+
+local sub_ln285 <sub_285> <integer> <Arithmetic> 'sub' <data/benchmarks/adpcm/adpcm.c:285>
+sub_ln285 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:285
+reg: sub_ln285_reg_2269[31:0] lv
+
+local trunc_ln480_1 <partselect_302> <integer> <> 'partselect' <data/benchmarks/adpcm/adpcm.c:480->data/benchmarks/adpcm/adpcm.c:302>
+trunc_ln480_1 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:480
+trunc_ln480_1 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:302
+reg: reg_525[31:0] lv
+
+local tmp_8 <partselect_319> <integer> <> 'partselect' <data/benchmarks/adpcm/adpcm.c:572->data/benchmarks/adpcm/adpcm.c:319>
+tmp_8 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:572
+tmp_8 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:319
+reg: tmp_8_reg_2283[10:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state9)
+# ST_9
+local trunc_ln304 <trunc_304> <integer> <> 'trunc' <data/benchmarks/adpcm/adpcm.c:304>
+trunc_ln304 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:304
+reg: trunc_ln304_reg_2308[30:0] lv
+
+local tmp_11 <bitselect_305> <integer> <> 'bitselect' <data/benchmarks/adpcm/adpcm.c:305>
+tmp_11 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:305
+reg: tmp_11_reg_2313[0:0] lv
+
+local icmp_ln311 <icmp_311> <integer> <Comparator> 'icmp' <data/benchmarks/adpcm/adpcm.c:311>
+icmp_ln311 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/adpcm/adpcm.c:311
+reg: icmp_ln311_reg_2321[0:0] lv
+
+
+End Function 'encode'
+
