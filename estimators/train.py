@@ -14,6 +14,7 @@ import seaborn as sns
 import pandas as pd
 import torch
 import torch.nn as nn
+from torch.nn.utils import clip_grad_norm_
 from sklearn.metrics import r2_score
 from torch_geometric.loader import DataLoader
 
@@ -60,6 +61,7 @@ def evaluate(
         print(f"\nEvaluating on {mode} set\n")
 
     preds, targets = [], []
+    preds_log, targets_log = [], []
     
     # Assumption: Only one instance per batch
     for batch in loader:
@@ -68,22 +70,27 @@ def evaluate(
         batch = batch.to(DEVICE)
         x_dict, edge_index_dict = batch.x_dict, batch.edge_index_dict
         batch_dict = batch.batch_dict
-        base_target = batch.y_base
-        target = batch.y
+        y_base = batch.y_base
+        y = batch.y
 
-        pred = model(x_dict, edge_index_dict, batch_dict, base_target)
+        out = model(x_dict, edge_index_dict, batch_dict, y_base)
 
-        batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
-        preds.append(pred)
-        targets.append(target)
+        batch, out, y = batch.cpu(), out.cpu(), y.cpu()
+
+        preds_log.append(out.item())
+        targets_log.append(y.item())
+
+        y_base_expm1 = y_base.expm1()
+        preds.append(out.expm1() * y_base_expm1)
+        targets.append(y.expm1() * y_base_expm1)
 
     if log_dir:
         with open(f"{log_dir}/{mode}.log", 'a') as f:
-            for p, t in zip(preds, targets):
+            for p, t in zip(preds_log, targets_log):
                 f.write(f"{epoch},{t.item()},{p.item()},{(t-p).item()}\n")
 
-    preds = torch.cat(preds).expm1()
-    targets = torch.cat(targets).expm1()
+    preds = torch.cat(preds)
+    targets = torch.cat(targets)
 
     mre = rpd(preds, targets).mean().item()
     if mre < evaluate.min_mre:
@@ -120,7 +127,7 @@ def train_model(
             print(f"Epoch {epoch}/{epochs}\n")
 
         preds, targets = [], []
-        preds_exp, targets_exp = [], []
+        preds_log, targets_log = [], []
         
         model.train()
         for batch in train_loader:
@@ -135,32 +142,36 @@ def train_model(
 
             pred = model(x_dict, edge_index_dict, batch_dict, base_target)
 
-            loss_fn(pred, target).backward()
+            loss = loss_fn(pred, target)
+            loss.backward()
+            clip_grad_norm_(model.parameters(), max_norm=10.0)
+
             optimizer.step()
+
             if scheduler:
                 scheduler.step()
 
             batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
 
-            preds.extend(pred.tolist())
-            targets.extend(target.tolist())
-            
-            pred_exp = pred.expm1().tolist()
-            target_exp = target.expm1().tolist()
+            preds_log.extend(pred.tolist())
+            targets_log.extend(target.tolist())
 
-            preds_exp.extend(pred_exp)
-            targets_exp.extend(target_exp)
-    
+            base_target_exp = base_target.expm1()
+            pred = (pred.expm1() * base_target_exp).tolist()
+            target = (target.expm1() * base_target_exp).tolist()
+            preds.append(pred)
+            targets.append(target)
+
             if verbosity > 1:
-                for p, t in zip(pred_exp, target_exp):
+                for p, t in zip(pred, target):
                     print(f"Target: {t}; Prediction: {p}")
 
         if log_dir:
             with open(f"{log_dir}/train.log", 'a') as f:
-                for p, t in zip(preds, targets):
+                for p, t in zip(preds_log, targets_log):
                     f.write(f"{epoch},{t},{p},{(t-p)}\n")
 
-        results['train'].append(list(zip(preds_exp, targets_exp)))
+        results['train'].append(list(zip(preds, targets)))
 
         model.eval()
         with torch.no_grad():
@@ -216,14 +227,13 @@ def main(args: Dict[str, str]):
         raise ValueError(f"Unknown loss function: {loss}")
 
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=5e-4
+        model.parameters(), lr=5e-4, betas=(0.9, 0.95), weight_decay=5e-4
     )
 
     total_steps = epochs * len(train_loader)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-6
+        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-5
     )
-    scheduler = None
 
     results = train_model(
         model, loss_fn, optimizer, train_loader, test_loader, epochs, 

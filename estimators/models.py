@@ -54,8 +54,8 @@ class HGT(nn.Module):
         )
 
         # Convolutional layers
-        hid_dims = [128, 96, 64, 48]
-        heads = [8, 8, 8, 6]
+        hid_dims = [256, 256, 128, 128]
+        heads = [8, 8, 4, 4]
         self.n_conv_layers = len(hid_dims)
 
         self.conv = nn.ModuleList()
@@ -184,13 +184,13 @@ class HGT(nn.Module):
         x = torch.cat(x_list, dim=1)
 
         # Process y_base
-        y_base_processed = self.y_base_mlp(y_base.unsqueeze(1))
+        y_base_processed = self.y_base_mlp(y_base)
         x = torch.cat([x, y_base_processed], dim=1)
 
         # Graph-level MLP
-        out = self.graph_mlp(x)
+        out = self.graph_mlp(x).squeeze(1)
         
-        return out.squeeze(1)
+        return out
     
     def _get_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
         """Returns the batch size."""

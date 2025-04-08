@@ -94,7 +94,6 @@ class InstructionNode(BaseNode):
             'size': findint(element, 'Value/Obj/storageDepth', 0),
             'bitwidth': findint(element, 'Value/bitwidth', 0),
             'opcode': element.findtext('opcode', ''),
-            'critical': findint(element, 'm_isOnCriticalPath', 0),
             'delay': findfloat(element, 'm_delay', 0.0),
             'array_partition': 0,
             'partition_type': [0, 0, 0],
