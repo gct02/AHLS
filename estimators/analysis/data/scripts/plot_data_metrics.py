@@ -7,57 +7,13 @@ import numpy as np
 import pandas as pd
 import sklearn
 import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans, AgglomerativeClustering
-from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
-from sklearn.decomposition import PCA
 from numpy.typing import NDArray
 
 try:
-    from utils.parsers import collate_data_for_analysis
+    from utils.data_analysis import *
 except ImportError:
     print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
     pass
-
-
-def cluster_by_directive(
-    directives: NDArray[np.int_],
-    n_clusters: int = 8,
-    max_iter: int = 1000,
-    cluster_method: str = 'kmeans',
-    n_components: Union[int, float] = 0.85
-) -> NDArray[np.int_]:
-    if directives.ndim > 2:
-        directives = directives.reshape(directives.shape[0], -1)
-
-    # Perform PCA for dimensionality reduction
-    pca = PCA(n_components=n_components)
-    directives = pca.fit_transform(directives)
-
-    if cluster_method == 'kmeans':
-        model = KMeans(n_clusters=n_clusters, max_iter=max_iter, n_init=20, tol=1e-8)
-    elif cluster_method == 'aggl':
-        model = AgglomerativeClustering(n_clusters=n_clusters, linkage='complete', compute_full_tree=True)
-    else:
-        raise ValueError(f"Unknown clustering method: {cluster_method}")
-    
-    clusters = model.fit_predict(directives)
-
-    if len(np.unique(clusters)) > 1:
-        sil_score = silhouette_score(directives, clusters)
-        print(f'Silhouette score: {sil_score:.2f}')
-
-        db_score = davies_bouldin_score(directives, clusters)
-        print(f'Davies-Bouldin score: {db_score:.2f}')
-
-        ch_score = calinski_harabasz_score(directives, clusters)
-        print(f'Calinski-Harabasz score: {ch_score:.2f}')
-
-    # Calculate inertia for KMeans
-    if cluster_method == 'kmeans':
-        inertia = model.inertia_
-        print(f'Inertia: {inertia:.2f}')
-
-    return clusters
 
 
 def generate_metrics_plot(
@@ -84,11 +40,11 @@ def generate_metrics_plot(
         with open(directive_config_path, 'r') as f:
             directive_config_dict = json.load(f)["directives"]
             directive_config = []
-            for group_name, group in directive_config_dict.items():
-                group_directives = group.get("possible_directives")
-                if group_directives is not None:
-                    group_directives = [d for d in group_directives if d and "-off" not in d]
-                    directive_config.append((group_name, group_directives))
+            for gp_name, gp in directive_config_dict.items():
+                gp_directives = gp.get("possible_directives")
+                if gp_directives is not None:
+                    gp_directives = [d for d in gp_directives if d and "-off" not in d]
+                    directive_config.append((gp_name, gp_directives))
 
     if directives is not None:
         if len(directives) != len(metrics):
@@ -112,13 +68,13 @@ def generate_metrics_plot(
             cluster_mean_directives = np.mean(cluster_directives, axis=0)
             cluster_directive_info = {}
             
-            for averages, group in zip(cluster_mean_directives, directive_config):
-                group_name, group_directives = group
+            for averages, gp in zip(cluster_mean_directives, directive_config):
+                gp_name, gp_directives = gp
                 group_data = {
                     directive: round(avg, 3) 
-                    for avg, directive in zip(averages, group_directives)
+                    for avg, directive in zip(averages, gp_directives)
                 }
-                cluster_directive_info[group_name] = group_data
+                cluster_directive_info[gp_name] = group_data
             
             output_data[f"Cluster {i}"] = cluster_directive_info
             
@@ -239,7 +195,7 @@ if __name__ == '__main__':
         sys.path.insert(0, str(DIR.parent.parent))
         __package__ = DIR.name 
 
-    from utils.parsers import collate_data_for_analysis
+    from utils.data_analysis import *
     
     args = parse_args()
     main(args)

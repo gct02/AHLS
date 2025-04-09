@@ -1,4 +1,4 @@
-from typing import Dict, Union
+from typing import Union, Dict, List, Optional
 
 import torch
 import torch.nn as nn
@@ -6,15 +6,14 @@ import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn import (
     HGTConv, LayerNorm, HeteroDictLinear, 
-    JumpingKnowledge, GraphMultisetTransformer,
-    global_add_pool
+    JumpingKnowledge, GraphMultisetTransformer
 )
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 from torch.types import Device
 
 
-class HGT(nn.Module):
-    r"""Module that uses the Heterogeneous Graph Transformer (HGT) operator from the
+class HGTRModel(nn.Module):
+    r"""Model that uses the Heterogeneous Graph Transformer (HGT) operator from the
     `"Heterogeneous Graph Transformer" <https://arxiv.org/abs/2003.01332>`_ paper to
     perform graph-level regression.
 
@@ -24,6 +23,22 @@ class HGT(nn.Module):
         in_channels (int or Dict[str, int]): Number of input channels 
             for each node type.
         out_channels (int): Number of output channels.
+        proj_dim (int): Dimension of the projection layer.
+            (default: :obj:`256`)
+        hid_dims (int or List[int]): Hidden dimensions for each conv layer.
+            (default: :obj:`128`)
+        heads (int or List[int]): Number of attention heads for each conv layer.
+            (default: :obj:`4`)
+        num_layers (int, optional): Number of convolutional layers.
+            If :obj:`None`, the number of layers is set to the length of
+            :obj:`hid_dims` or the number of node types.
+            (default: :obj:`None`)
+        gmt_k (int or Dict[str, int]): Number of representative nodes to keep after 
+            pooling for each node type on the GMT. (default: :obj:`1`)
+        gmt_encoder_blocks (int or Dict[str, int]): Number of encoder blocks for each 
+            node type on the GMT. (default: :obj:`1`)
+        gmt_heads (int or Dict[str, int]): Number of attention heads for each node type
+            on the GMT. (default: :obj:`1`)
         dropout (float): Dropout rate for fully connected layers. 
             (default: :obj:`0.0`)
         device (torch.device): Device to use for computation. 
@@ -33,7 +48,14 @@ class HGT(nn.Module):
         metadata: Metadata,
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
+        proj_dim: int = 256,
+        hid_dims: Union[List[int], int] = 128,
+        heads: Union[List[int], int] = 4,
+        num_layers: Optional[int] = None,
         dropout: float = 0.0,
+        gmt_k: Union[Dict[str, int], int] = 1,
+        gmt_encoder_blocks: Union[Dict[str, int], int] = 1,
+        gmt_heads: Union[Dict[str, int], int] = 1,
         device: Device = 'cpu'
     ):
         super().__init__()
@@ -42,11 +64,27 @@ class HGT(nn.Module):
         self.edge_types = metadata[1]
         self.in_channels = in_channels
         self.out_channels = out_channels
+        self.num_layers = num_layers
         self.dropout = dropout
         self.device = device
 
+        if num_layers is None:
+            num_layers = len(hid_dims) if isinstance(hid_dims, list) \
+                else len(self.node_types)
+
+        if isinstance(hid_dims, int):
+            hid_dims = [hid_dims] * num_layers
+
+        if isinstance(heads, int):
+            heads = [heads] * num_layers
+
+        if len(hid_dims) != len(heads):
+            raise ValueError(
+                f"Expected `hid_dims` and `heads` to have the same length, "
+                f"but got {len(hid_dims)} and {len(heads)}."
+            )
+
         # Projection layer
-        proj_dim = 256
         self.proj = HeteroDictLinear(
             in_channels, proj_dim, 
             types=self.node_types,
@@ -55,14 +93,9 @@ class HGT(nn.Module):
         )
 
         # Convolutional layers
-        hid_dims = [256, 256, 128, 128]
-        heads = [8, 8, 4, 4]
-        self.n_conv_layers = len(hid_dims)
-
         self.conv = nn.ModuleList()
         self.norm = nn.ModuleList()
-        
-        for i in range(self.n_conv_layers):
+        for i in range(num_layers):
             self.conv.append(
                 HGTConv(
                     proj_dim if i == 0 else hid_dims[i-1], 
@@ -82,22 +115,29 @@ class HGT(nn.Module):
             for nt in self.node_types
         })
 
+        aggr_dim = sum(hid_dims)
+
         # Type-wise linear layer
-        jk_dim = sum(hid_dims)
-        emb_dim = 128
         self.node_lin = HeteroDictLinear(
-            jk_dim, emb_dim, 
+            aggr_dim, hid_dims[-1], 
             types=self.node_types,
             weight_initializer='kaiming_uniform',
             bias_initializer='zeros'
         )
 
+        if isinstance(gmt_k, int):
+            gmt_k = {nt: gmt_k for nt in self.node_types}
+        if isinstance(gmt_encoder_blocks, int):
+            gmt_encoder_blocks = {nt: gmt_encoder_blocks for nt in self.node_types}
+        if isinstance(gmt_heads, int):
+            gmt_heads = {nt: gmt_heads for nt in self.node_types}
+
         # Pooling layer 
-        k = 16
         self.pool = nn.ModuleDict({
             nt: GraphMultisetTransformer(
-                emb_dim, k, num_encoder_blocks=4, 
-                heads=4, layer_norm=True
+                hid_dims[-1], gmt_k[nt], 
+                num_encoder_blocks=gmt_encoder_blocks[nt],
+                heads=gmt_heads[nt]
             )
             for nt in self.node_types
         })
@@ -111,9 +151,9 @@ class HGT(nn.Module):
         )
 
         # Graph-level MLP
-        n_types = len(self.node_types)
+        num_types = len(self.node_types)
         self.graph_mlp = nn.Sequential(
-            nn.Linear(128 * n_types + 16, 256), nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
+            nn.Linear(hid_dims[-1] * num_types + 16, 256), nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(256, 128), nn.BatchNorm1d(128), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(128, 64), nn.BatchNorm1d(64), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(64, out_channels)
@@ -132,6 +172,9 @@ class HGT(nn.Module):
                 norm[nt].reset_parameters()
         
         self.node_lin.reset_parameters()
+
+        for nt in self.node_types:
+            self.pool[nt].reset_parameters()
         
         for m in self.graph_mlp.modules():
             if isinstance(m, nn.Linear):
@@ -170,7 +213,7 @@ class HGT(nn.Module):
 
         # Convolutional layers
         xs_dict = {nt: [] for nt in self.node_types}
-        for i in range(self.n_conv_layers):
+        for i in range(self.num_layers):
             x_dict = self.conv[i](x_dict, edge_index_dict)
             x_dict = {nt: self.norm[i][nt](x) for nt, x in x_dict.items()}
             for nt, x in x_dict.items():

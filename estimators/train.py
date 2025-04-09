@@ -61,7 +61,6 @@ def evaluate(
         print(f"\nEvaluating on {mode} set\n")
 
     preds, targets = [], []
-    preds_log, targets_log = [], []
     
     # Assumption: Only one instance per batch
     for batch in loader:
@@ -78,27 +77,20 @@ def evaluate(
         batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
         base_target = base_target.cpu()
 
-        preds_log.append(pred.item())
-        targets_log.append(target.item())
-
-        y_base_expm1 = base_target.expm1()
-        preds.append(pred.expm1() * y_base_expm1)
-        targets.append(target.expm1() * y_base_expm1)
+        preds.append(pred.item())
+        targets.append(target.item())
 
     if log_dir:
         with open(f"{log_dir}/{mode}.log", 'a') as f:
-            for p, t in zip(preds_log, targets_log):
+            for p, t in zip(preds, targets):
                 f.write(f"{epoch},{t},{p},{t-p}\n")
 
-    preds = torch.cat(preds)
-    targets = torch.cat(targets)
-
-    mre = rpd(preds, targets).mean().item()
+    mre = rpd(torch.tensor(preds), torch.tensor(targets)).mean().item()
     if mre < evaluate.min_mre:
         evaluate.min_mre = mre
         evaluate.best_epoch = epoch
 
-    results = list(zip(preds.tolist(), targets.tolist()))
+    results = list(zip(preds, targets))
 
     if verbosity > 0:
         for p, t in results:
@@ -128,8 +120,7 @@ def train_model(
             print(f"Epoch {epoch}/{epochs}\n")
 
         preds, targets = [], []
-        preds_log, targets_log = [], []
-        
+                
         model.train()
         for batch in train_loader:
             torch.cuda.empty_cache()
@@ -145,7 +136,7 @@ def train_model(
 
             loss = loss_fn(pred, target)
             loss.backward()
-            clip_grad_norm_(model.parameters(), max_norm=10.0)
+            clip_grad_norm_(model.parameters(), max_norm=1.0)
 
             optimizer.step()
 
@@ -155,12 +146,8 @@ def train_model(
             batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
             base_target = base_target.cpu()
 
-            preds_log.extend(pred.tolist())
-            targets_log.extend(target.tolist())
-
-            base_target_exp = base_target.expm1()
-            pred = (pred.expm1() * base_target_exp).tolist()
-            target = (target.expm1() * base_target_exp).tolist()
+            pred = pred.tolist()
+            target = target.tolist()
             preds.extend(pred)
             targets.extend(target)
 
@@ -170,7 +157,7 @@ def train_model(
 
         if log_dir:
             with open(f"{log_dir}/train.log", 'a') as f:
-                for p, t in zip(preds_log, targets_log):
+                for p, t in zip(preds, targets):
                     f.write(f"{epoch},{t},{p},{t-p}\n")
 
         results['train'].append(list(zip(preds, targets)))
@@ -216,8 +203,42 @@ def main(args: Dict[str, str]):
     )
 
     metadata = (NODE_TYPES, EDGE_TYPES)
+    in_channels = NODE_FEATURE_DIMS
+    out_channels = 1
+
+    gmt_k = {
+        "port": 1,
+        "const": 1,
+        "region": 2,
+        "block": 4,
+        "instr": 16
+    }
+    gmt_encoder_blocks = {
+        "port": 1,
+        "const": 1,
+        "region": 1,
+        "block": 1,
+        "instr": 2
+    }
+    gmt_heads = {
+        "port": 1,
+        "const": 1,
+        "region": 1,
+        "block": 1,
+        "instr": 2
+    }
     
-    model = HGT(metadata, NODE_FEATURE_DIMS, 1, device=DEVICE)
+    model = HGTRModel(
+        metadata, in_channels, out_channels,
+        proj_dim=256,
+        hid_dims=[256, 256, 128, 128],
+        heads=[8, 8, 4, 4],
+        num_layers=4,
+        gmt_k=gmt_k,
+        gmt_encoder_blocks=gmt_encoder_blocks,
+        gmt_heads=gmt_heads,
+        device=DEVICE
+    )
 
     if loss == 'huber':
         loss_fn = nn.HuberLoss(delta=residual)
@@ -229,14 +250,13 @@ def main(args: Dict[str, str]):
         raise ValueError(f"Unknown loss function: {loss}")
 
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=5e-4, betas=(0.9, 0.95), weight_decay=5e-4
+        model.parameters(), lr=3e-4, betas=(0.9, 0.95), weight_decay=5e-4
     )
 
-    # total_steps = epochs * len(train_loader)
-    # scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-    #     optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-5
-    # )
-    scheduler = None
+    total_steps = epochs * len(train_loader)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
+        optimizer, T_0=total_steps // 5, T_mult=1, eta_min=5e-6
+    )
 
     results = train_model(
         model, loss_fn, optimizer, train_loader, test_loader, epochs, 
@@ -502,8 +522,8 @@ def parse_arguments():
                         help='The number of training epochs (default: 300).')
     parser.add_argument('-r', '--seed', default=42, 
                         help='Random seed for repeatability (default: 42).')
-    parser.add_argument('-b', '--batch', default=16, 
-                        help='The size of the training batch (default: 16).')
+    parser.add_argument('-b', '--batch', default=32, 
+                        help='The size of the training batch (default: 32).')
     parser.add_argument('-l', '--loss', default='mse', choices=['mse', 'l1', 'huber'],
                         help='The loss function to use for training (default: mse).')
     parser.add_argument('-tb', '--testbench', required=True, 
@@ -529,7 +549,7 @@ if __name__ == '__main__':
         sys.path.insert(0, str(DIR.parent.parent))
         __package__ = DIR.name 
 
-    from estimators.models import HGT
+    from estimators.models import HGTRModel
     from estimators.dataset import HLSDataset
     from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 
