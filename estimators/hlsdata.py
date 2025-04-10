@@ -20,24 +20,9 @@ ResourceMapper = Dict[str, Dict[str, int]]
 
 
 class BaseNode:
-    def __init__(
-        self, 
-        element: ET.Element, 
-        ground_truth_resources: Optional[ResourceMapper] = None,
-        estimated_resources: Optional[ResourceMapper] = None
-    ):
+    def __init__(self, element: ET.Element):
         self.id, self.name, self.rtl_name = self._extract_basic_info(element)
         self.attrs = {}
-        
-        if ground_truth_resources is not None:
-            resources = ground_truth_resources.get(self.rtl_name, {})
-            for res in RESOURCES_CONSIDERED:
-                self.attrs["ground_truth_" + res] = resources.get(res, 0)
-
-        if estimated_resources is not None:
-            resources = estimated_resources.get(self.rtl_name, {})
-            for res in RESOURCES_CONSIDERED:
-                self.attrs["estimated_" + res] = resources.get(res, 0)
 
     def _extract_basic_info(self, element):
         value = element.find('Value')
@@ -88,7 +73,18 @@ class InstructionNode(BaseNode):
         ground_truth_resources: Optional[ResourceMapper] = None,
         estimated_resources: Optional[ResourceMapper] = None
     ):
-        super().__init__(element, ground_truth_resources, estimated_resources)
+        super().__init__(element)
+
+        if ground_truth_resources is not None:
+            resources = ground_truth_resources.get(self.rtl_name, {})
+            for res in RESOURCES_CONSIDERED:
+                self.attrs["ground_truth_" + res] = resources.get(res, 0)
+
+        if estimated_resources is not None:
+            resources = estimated_resources.get(self.rtl_name, {})
+            for res in RESOURCES_CONSIDERED:
+                self.attrs["estimated_" + res] = resources.get(res, 0)
+
         self.attrs.update({
             'impl': element.findtext('Value/Obj/coreName', ''),
             'size': findint(element, 'Value/Obj/storageDepth', 0),
@@ -119,13 +115,8 @@ class ConstantNode(BaseNode):
 
 
 class BlockNode(BaseNode):
-    def __init__(
-        self, 
-        element: ET.Element, 
-        ground_truth_resources: Optional[ResourceMapper] = None,
-        estimated_resources: Optional[ResourceMapper] = None
-    ):
-        super().__init__(element, ground_truth_resources, estimated_resources)
+    def __init__(self, element: ET.Element):
+        super().__init__(element)
         self.instrs = self._extract_instructions(element)
 
     def _extract_instructions(self, element):
@@ -145,27 +136,21 @@ class RegionNode:
 
     def _extract_attrs(self, element):
         is_loop = findint(element, 'mType', 0)
+        min_lat = max(1, findint(element, 'mMinLatency', 0))
+        max_lat = max(min_lat, findint(element, 'mMaxLatency', 0))
         if is_loop == 1:
-            min_lat = max(1, findint(element, 'mMinLatency', 0))
-            max_lat = max(min_lat, findint(element, 'mMaxLatency', 0))
             min_tc = max(1, findint(element, 'mMinTripCount', 0))
             max_tc = max(min_tc, findint(element, 'mMaxTripCount', 0))
             depth = max(1, findint(element, 'mDepth', 0))
-            ii = findint(element, 'mII', 0)
-            if ii <= 0:
-                ii = min_lat
         else:
-            min_lat = max(0, findint(element, 'mMinLatency', 0))
-            max_lat = max(0, findint(element, 'mMaxLatency', 0))
+            min_tc = max_tc = 0
             depth = max(0, findint(element, 'mDepth', 0))
-            min_tc = max_tc = ii = 0
 
         return {
-            'is_loop': is_loop, 'ii': ii, 'depth': depth,
-            'min_trip_count': min_tc, 'max_trip_count': max_tc,
-            'min_latency': min_lat, 'max_latency': max_lat,
-            'pipeline': 0, 'loop_merge': 0, 'loop_flatten': 0,
-            'unroll': 0, 'unroll_factor': 0
+            'is_loop': is_loop, 'depth': depth, 'min_latency': min_lat, 
+            'max_latency': max_lat, 'min_trip_count': min_tc, 
+            'max_trip_count': max_tc, 'pipeline': 0, 'loop_merge': 0, 
+            'loop_flatten': 0, 'unroll': 0, 'unroll_factor': 0
         }
     
     def _extract_items(self, element, tag, offset=0):
@@ -213,6 +198,8 @@ class CDFG:
         self._parse_edges(cdfg)
         self._build_hierarchy_edges()
 
+        self._prune_blocks()
+
     def _parse_nodes(self, cdfg, root):
         self._process_constants(cdfg.find('consts'))
         self._process_node_type(
@@ -256,9 +243,7 @@ class CDFG:
     def _process_blocks(self, blocks):
         offset = self._offsets['block']
         for i, elem in enumerate(blocks.findall('item')):
-            node = BlockNode(
-                elem, self._ground_truth_resources, self._estimated_resources
-            )
+            node = BlockNode(elem)
             self._node_id_map[node.id] = (i + offset, 'block')
             node.id = i + offset
             node.instrs = [self._node_id_map[i][0] for i in node.instrs]
@@ -316,13 +301,35 @@ class CDFG:
         return {'1': 'data', '2': 'control', '4': 'mem'}.get(etype, '')
 
     def _build_hierarchy_edges(self):
-        for reg in self.nodes['region']:
-            for rid in reg.sub_regions:
-                self.edges[('region', 'hrchy', 'region')].append((reg.id, rid))
-            for bid in reg.blocks:
-                self.edges[('region', 'hrchy', 'block')].append((reg.id, bid))
-                for iid in self.nodes['block'][bid - self._offsets['block']].instrs:
-                    self.edges[('block', 'hrchy', 'instr')].append((bid, iid))
+        for region in self.nodes['region']:
+            for sri in region.sub_regions:
+                self.edges[('region', 'hrchy', 'region')].append((region.id, sri))
+            for bi in region.blocks:
+                for ii in self.nodes['block'][bi - self._offsets['block']].instrs:
+                    self.edges[('region', 'hrchy', 'instr')].append((region.id, ii))
+
+    def _prune_blocks(self):
+        block_region_map = {}
+        for region in self.nodes['region']:
+            for bi in region.blocks:
+                block_region_map[bi] = region.id
+
+        for src, dst in self.edges[('block', 'control', 'block')]:
+            src_region = block_region_map.get(src)
+            dst_region = block_region_map.get(dst)
+            if src_region is not None and dst_region is not None:
+                self.edges[('region', 'control', 'region')].append((src_region, dst_region))
+        
+        for src, dst in self.edges[('block', 'control', 'instr')]:
+            src_region = block_region_map.get(src)
+            if src_region is not None:
+                self.edges[('region', 'control', 'instr')].append((src_region, dst))
+
+        self.edges = {
+            et: edges for et, edges in self.edges.items()
+            if et[0] != 'block' and et[2] != 'block'
+        }
+        del self.nodes['block']
 
     def _get_estimated_resources(self, root):
         res_items = root.findall('*/res/*/item')

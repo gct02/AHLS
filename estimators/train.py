@@ -206,37 +206,16 @@ def main(args: Dict[str, str]):
     in_channels = NODE_FEATURE_DIMS
     out_channels = 1
 
-    gmt_k = {
-        "port": 1,
-        "const": 1,
-        "region": 2,
-        "block": 4,
-        "instr": 16
-    }
-    gmt_encoder_blocks = {
-        "port": 1,
-        "const": 1,
-        "region": 1,
-        "block": 1,
-        "instr": 2
-    }
-    gmt_heads = {
-        "port": 1,
-        "const": 1,
-        "region": 1,
-        "block": 1,
-        "instr": 2
-    }
+    hid_dims = [256, 256, 128, 128]
+    heads = [8, 8, 4, 4]
+    num_layers = len(hid_dims)
     
     model = HGTRModel(
         metadata, in_channels, out_channels,
         proj_dim=256,
-        hid_dims=[256, 256, 128, 128],
-        heads=[8, 8, 4, 4],
-        num_layers=4,
-        gmt_k=gmt_k,
-        gmt_encoder_blocks=gmt_encoder_blocks,
-        gmt_heads=gmt_heads,
+        hid_dims=hid_dims,
+        heads=heads,
+        num_layers=num_layers,
         device=DEVICE
     )
 
@@ -255,7 +234,7 @@ def main(args: Dict[str, str]):
 
     total_steps = epochs * len(train_loader)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-        optimizer, T_0=total_steps // 5, T_mult=1, eta_min=5e-6
+        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-5
     )
 
     results = train_model(

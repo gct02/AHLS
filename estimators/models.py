@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn import (
     HGTConv, LayerNorm, HeteroDictLinear, 
-    JumpingKnowledge, GraphMultisetTransformer
+    JumpingKnowledge, global_add_pool
 )
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 from torch.types import Device
@@ -33,12 +33,6 @@ class HGTRModel(nn.Module):
             If :obj:`None`, the number of layers is set to the length of
             :obj:`hid_dims` or the number of node types.
             (default: :obj:`None`)
-        gmt_k (int or Dict[str, int]): Number of representative nodes to keep after 
-            pooling for each node type on the GMT. (default: :obj:`1`)
-        gmt_encoder_blocks (int or Dict[str, int]): Number of encoder blocks for each 
-            node type on the GMT. (default: :obj:`1`)
-        gmt_heads (int or Dict[str, int]): Number of attention heads for each node type
-            on the GMT. (default: :obj:`1`)
         dropout (float): Dropout rate for fully connected layers. 
             (default: :obj:`0.0`)
         device (torch.device): Device to use for computation. 
@@ -53,9 +47,6 @@ class HGTRModel(nn.Module):
         heads: Union[List[int], int] = 4,
         num_layers: Optional[int] = None,
         dropout: float = 0.0,
-        gmt_k: Union[Dict[str, int], int] = 1,
-        gmt_encoder_blocks: Union[Dict[str, int], int] = 1,
-        gmt_heads: Union[Dict[str, int], int] = 1,
         device: Device = 'cpu'
     ):
         super().__init__()
@@ -115,32 +106,13 @@ class HGTRModel(nn.Module):
             for nt in self.node_types
         })
 
-        aggr_dim = sum(hid_dims)
-
         # Type-wise linear layer
         self.node_lin = HeteroDictLinear(
-            aggr_dim, hid_dims[-1], 
+            sum(hid_dims), hid_dims[-1], 
             types=self.node_types,
             weight_initializer='kaiming_uniform',
             bias_initializer='zeros'
         )
-
-        if isinstance(gmt_k, int):
-            gmt_k = {nt: gmt_k for nt in self.node_types}
-        if isinstance(gmt_encoder_blocks, int):
-            gmt_encoder_blocks = {nt: gmt_encoder_blocks for nt in self.node_types}
-        if isinstance(gmt_heads, int):
-            gmt_heads = {nt: gmt_heads for nt in self.node_types}
-
-        # Pooling layer 
-        self.pool = nn.ModuleDict({
-            nt: GraphMultisetTransformer(
-                hid_dims[-1], gmt_k[nt], 
-                num_encoder_blocks=gmt_encoder_blocks[nt],
-                heads=gmt_heads[nt]
-            )
-            for nt in self.node_types
-        })
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
@@ -229,14 +201,14 @@ class HGTRModel(nn.Module):
             for nt, x in x_dict.items()
         }
 
-        # Pooling layer
+        # Global pooling
         batch_size = self._get_batch_size(batch_dict)
-        x_list = []
+        xs = []
         for nt, x in x_dict.items():
-            x = self.pool[nt](x, index=batch_dict[nt])
-            x_list.append(x.view(batch_size, -1))
+            x = global_add_pool(x, batch=batch_dict[nt], size=batch_size)
+            xs.append(x.view(batch_size, -1))
 
-        x = torch.cat(x_list, dim=1)
+        x = torch.cat(xs, dim=1)
 
         # Process y_base
         y_base_processed = self.y_base_mlp(y_base.unsqueeze(1))

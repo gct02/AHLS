@@ -59,12 +59,11 @@ void local_memset(unsigned int *s, int c, int n, int e) {
 
     local_memset_label0:
     while (e-- > 0) {
-        #pragma HLS LOOP_TRIPCOUNT max=63
         p++;
     }
     local_memset_label1:
     while (m-- > 0) {
-        #pragma HLS LOOP_TRIPCOUNT max=16
+        #pragma HLS LOOP_TRIPCOUNT max=14
         *p++ = uc;
     }
 }
@@ -90,7 +89,7 @@ void local_memcpy(unsigned int *s1, const unsigned char *s2, int n) {
 }
 
 /* Perform SHA transformation */
-static void sha_transform() {
+void sha_transform() {
     int i;
     unsigned int temp, A, B, C, D, E, W[80];
 

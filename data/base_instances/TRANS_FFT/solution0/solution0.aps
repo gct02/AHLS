@@ -1,0 +1,24 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <name>
+        <value string="solution0"/>
+    </name>
+    <project>
+        <value string="TRANS_FFT"/>
+    </project>
+    <flowTarget value="vivado"/>
+    <config>
+        <config_array_partition throughput_driven="off"/>
+        <config_compile pipeline_loops="999999"/>
+        <config_export flow="impl" format="syn_dcp" rtl="verilog"/>
+    </config>
+    <targetInfo>
+        <TargetInfo value="xcu50:-fsvh2104:-2-e"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/virtexuplus/virtexuplus" name="DefaultPlatform"/>
+    </libraryList>
+    <clockList>
+        <clock name="default" period="8" default="false"/>
+    </clockList>
+</AutoPilot:solution>
+

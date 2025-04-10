@@ -18,7 +18,7 @@ except ImportError:
     pass
 
 
-NODE_TYPES = ["instr", "port", "const", "block", "region"]
+NODE_TYPES = ["instr", "port", "const", "region"]
 
 EDGE_TYPES = [
     # Data flow edges
@@ -27,8 +27,8 @@ EDGE_TYPES = [
     ("port", "data", "instr"), 
 
     # Control flow edges
-    ("block", "control", "instr"), 
-    ("block", "control", "block"), 
+    ("region", "control", "instr"), 
+    ("region", "control", "region"), 
 
     # Call flow edges
     ("instr", "call", "instr"),
@@ -38,13 +38,11 @@ EDGE_TYPES = [
 
     # Hierarchical edges (representing CDFG structure)
     ("region", "hrchy", "region"), 
-    ("region", "hrchy", "block"),
-    ("block", "hrchy", "instr"),
+    ("region", "hrchy", "instr"),
 
     # Reversed hierarchical edges
     ("region", "hrchy_rev", "region"),
-    ("instr", "hrchy_rev", "block"),
-    ("block", "hrchy_rev", "region"),
+    ("instr", "hrchy_rev", "region"),
 ] + [
     # Self-loops for each node type
     (nt, "to", nt) for nt in NODE_TYPES
@@ -55,8 +53,7 @@ NODE_FEATURE_DIMS = {
     "instr": 68, 
     "port": 14, 
     "const": 4, 
-    "block": 8, 
-    "region": 12
+    "region": 20
 }
 
 def build_base_graphs(
@@ -92,14 +89,12 @@ def build_opt_graph(
     hls_data = deepcopy(base_hls_data)
     include_directives(hls_data, directives_tcl)
     if output_pyg:
-        data = to_pyg(
+        return to_pyg(
             hls_data, 
             add_self_loops=add_self_loops,
             add_reversed_edges=add_reversed_edges
         )
-        return data
-    else:
-        return hls_data
+    return hls_data
 
 
 def to_pyg(
@@ -217,8 +212,6 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 factor = args.get("factor")
                 factor = int(factor) if factor else node.attrs["max_trip_count"]
                 node.attrs["unroll_factor"] = factor
-            elif directive == "pipeline":
-                node.attrs["ii"] = int(args.get("ii", 1))
             
         node.attrs[directive] = 1
 
@@ -282,19 +275,17 @@ def plot_data(
         "instr": "#419ada",
         "port": "#1ecf89",
         "const": "#aa6df0",
-        "block": "#f4a93f",
-        "region": "#e05858",
+        "region": "#e07765"
     }
     edge_colors = {
         ("const", "data", "instr"): "#5fdde0",
         ("instr", "data", "instr"): "#00bcd4",
         ("port", "data", "instr"): "#00a1b3",
-        ("block", "control", "instr"): "#ddb753",
-        ("block", "control", "block"): "#ddb753",
+        ("region", "control", "instr"): "#c7a141",
+        ("region", "control", "region"): "#c7a141",
         ("instr", "mem", "instr"): "#e73939",
         ("region", "hrchy", "region"): "#aab2b9",
-        ("region", "hrchy", "block"): "#aab2b9",
-        ("block", "hrchy", "instr"): "#aab2b9",
+        ("region", "hrchy", "instr"): "#aab2b9",
         ("instr", "call", "instr"): "#ba68c8"
     }
     
@@ -306,13 +297,13 @@ def plot_data(
             ntypes = ["instr"]
             etypes = [et for et in EDGE_TYPES if et[1] == "call"]
         elif plot_type == "control":
-            ntypes = ["instr", "block"]
+            ntypes = ["instr", "region"]
             etypes = [et for et in EDGE_TYPES if et[1] in ["control", "call"]]
         elif plot_type == "data":
             ntypes = ["instr", "const", "port"]
             etypes = [et for et in EDGE_TYPES if et[1] in ["data", "mem"]]
         elif plot_type == "hrchy":
-            ntypes = ["region", "block", "instr"]
+            ntypes = ["region", "instr"]
             etypes = [et for et in EDGE_TYPES if et[1] == "hrchy"]
         else:
             raise ValueError(f"Unknown plot_type: {plot_type}")
@@ -331,7 +322,7 @@ def plot_data(
             else:
                 data_trans[et].edge_index = edge_index
 
-        data_trans = T.RemoveIsolatedNodes()(data_trans)
+        # data_trans = T.RemoveIsolatedNodes()(data_trans)
 
         G = to_networkx(data_trans, remove_self_loops=True, node_attrs=['x'])
         
@@ -436,6 +427,6 @@ if __name__ == "__main__":
         #         print(node)
 
         data = to_pyg(hls_data)
-        plot_data(data, ["control", "data", "hrchy"], batched=False)
+        plot_data(data, ["hrchy"], batched=False)
 
     

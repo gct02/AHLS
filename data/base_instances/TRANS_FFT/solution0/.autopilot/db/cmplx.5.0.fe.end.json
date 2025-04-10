@@ -1,0 +1,72 @@
+{
+    "0": {
+        "name": "fft1D_512",
+        "file": "transposed_fft.c",
+        "fileloc": "114",
+        "instructions": "1411",
+        "total_instructions": "2253",
+        "calls": "1 3",
+        "basicblocks": "34",
+        "loads": {
+            "L": "151",
+            "T": "16"
+        },
+        "stores": {
+            "L": "182",
+            "T": "16"
+        },
+        "loops": {
+            "L": "11"
+        }
+    },
+    "1": {
+        "name": "fft1D_512_Pipeline_twiddles",
+        "file": "data\/benchmarks\/transposed_fft\/transposed_fft.c",
+        "fileloc": "153",
+        "instructions": "35",
+        "total_instructions": "421",
+        "calls": "2 2",
+        "basicblocks": "4",
+        "loads": {
+            "G": "1",
+            "L": "3"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "sin_or_cos<double>",
+        "file": "hls_hotbm.h",
+        "fileloc": "209",
+        "instructions": "193",
+        "total_instructions": "193",
+        "calls": "",
+        "basicblocks": "1",
+        "loads": {
+            "G": "6"
+        }
+    },
+    "3": {
+        "name": "fft1D_512_Pipeline_twiddles1",
+        "file": "data\/benchmarks\/transposed_fft\/transposed_fft.c",
+        "fileloc": "277",
+        "instructions": "35",
+        "total_instructions": "421",
+        "calls": "2 2",
+        "basicblocks": "4",
+        "loads": {
+            "G": "1",
+            "L": "3"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}
