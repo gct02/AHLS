@@ -119,7 +119,7 @@ class HGTRModel(nn.Module):
             nn.Linear(512, 256), nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(256, 128), nn.BatchNorm1d(128), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(128, 64), nn.BatchNorm1d(64), nn.GELU(), nn.Dropout(dropout),
-            nn.Linear(32, out_channels)
+            nn.Linear(64, out_channels)
         )
 
         self.reset_parameters()
