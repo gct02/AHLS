@@ -4,12 +4,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
-from torch_geometric.nn import (
-    HGTConv, LayerNorm, HeteroDictLinear, 
-    JumpingKnowledge, global_add_pool
-)
+from torch_geometric.nn import HeteroDictLinear, JumpingKnowledge
 from torch_geometric.typing import Metadata, NodeType, EdgeType
-from torch.types import Device
+
+from layers import HetSAGPooling, HGTConv
 
 
 class HGTRModel(nn.Module):
@@ -17,10 +15,10 @@ class HGTRModel(nn.Module):
     `"Heterogeneous Graph Transformer" <https://arxiv.org/abs/2003.01332>`_ paper to
     perform graph-level regression.
 
-    Args:
+        Args:
         metadata (Tuple[List[str], List[Tuple[str, str, str]]]):
             Metadata object containing node and edge types.
-        in_channels (int or Dict[str, int]): Number of input channels 
+        in_channels (int or Dict[str, int]): Number of input channels
             for each node type.
         out_channels (int): Number of output channels.
         proj_dim (int): Dimension of the projection layer.
@@ -33,12 +31,13 @@ class HGTRModel(nn.Module):
             If :obj:`None`, the number of layers is set to the length of
             :obj:`hid_dims` or the number of node types.
             (default: :obj:`None`)
-        dropout (float): Dropout rate for fully connected layers. 
+        dropout (float): Dropout rate for fully connected layers.
             (default: :obj:`0.0`)
-        device (torch.device): Device to use for computation. 
-            (default: :obj:`"cpu"`)
+        pool_size (int): Number of nodes to keep after pooling.
+            (default: :obj:`16`)
     """
-    def __init__(self, 
+    def __init__(
+        self,
         metadata: Metadata,
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
@@ -47,7 +46,7 @@ class HGTRModel(nn.Module):
         heads: Union[List[int], int] = 4,
         num_layers: Optional[int] = None,
         dropout: float = 0.0,
-        device: Device = 'cpu'
+        pool_size: int = 16
     ):
         super().__init__()
 
@@ -55,13 +54,13 @@ class HGTRModel(nn.Module):
         self.edge_types = metadata[1]
         self.in_channels = in_channels
         self.out_channels = out_channels
-        self.num_layers = num_layers
         self.dropout = dropout
-        self.device = device
 
         if num_layers is None:
-            num_layers = len(hid_dims) if isinstance(hid_dims, list) \
-                else len(self.node_types)
+            if isinstance(hid_dims, list):
+                num_layers = len(hid_dims)
+            else:
+                num_layers = len(self.node_types)
 
         if isinstance(hid_dims, int):
             hid_dims = [hid_dims] * num_layers
@@ -74,90 +73,78 @@ class HGTRModel(nn.Module):
                 f"Expected `hid_dims` and `heads` to have the same length, "
                 f"but got {len(hid_dims)} and {len(heads)}."
             )
+        self.num_layers = num_layers
+        self.hid_dims = hid_dims
+        self.heads = heads
 
         # Projection layer
         self.proj = HeteroDictLinear(
-            in_channels, proj_dim, 
+            in_channels, proj_dim,
             types=self.node_types,
             weight_initializer='kaiming_uniform',
             bias_initializer='zeros'
         )
 
         # Convolutional layers
-        self.conv = nn.ModuleList()
-        self.norm = nn.ModuleList()
-        for i in range(num_layers):
-            self.conv.append(
-                HGTConv(
-                    proj_dim if i == 0 else hid_dims[i-1], 
-                    hid_dims[i], metadata, heads=heads[i]
-                )
+        self.conv = nn.ModuleList([
+            HGTConv(
+                proj_dim if i == 0 else hid_dims[i-1], hid_dims[i], metadata,
+                heads=heads[i], norm=True, dropout=dropout
             )
-            self.norm.append(
-                nn.ModuleDict({
-                    nt: LayerNorm(hid_dims[i])
-                    for nt in self.node_types
-                })
-            )
+            for i in range(num_layers)
+        ])
 
-        # JK layer
-        self.jk = nn.ModuleDict({
-            nt: JumpingKnowledge(mode='cat')
-            for nt in self.node_types
-        })
-
-        # Type-wise linear layer
-        self.node_lin = HeteroDictLinear(
-            sum(hid_dims), hid_dims[-1], 
-            types=self.node_types,
-            weight_initializer='kaiming_uniform',
-            bias_initializer='zeros'
+        # Jumping knowledge layer
+        num_layers_jk = min(3, num_layers)
+        self.first_jk = num_layers - num_layers_jk
+        self.jk = JumpingKnowledge(
+            mode='lstm', 
+            channels=hid_dims[-1], 
+            num_layers=num_layers_jk
         )
+
+        # Pooling layer
+        self.pool = HetSAGPooling(hid_dims[-1], pool_size, metadata)
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
-            nn.Linear(1, 16),
-            nn.ReLU(),
-            nn.Linear(16, 16),
-            nn.ReLU()
+            nn.Linear(1, 32), 
+            nn.LeakyReLU(negative_slope=0.2),
+            nn.Linear(32, 32)
         )
 
         # Graph-level MLP
-        num_types = len(self.node_types)
         self.graph_mlp = nn.Sequential(
-            nn.Linear(hid_dims[-1] * num_types + 16, 256), nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
+            nn.Linear(hid_dims[-1] * pool_size + 32, 512), nn.BatchNorm1d(512), nn.GELU(), nn.Dropout(dropout),
+            nn.Linear(512, 256), nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(256, 128), nn.BatchNorm1d(128), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(128, 64), nn.BatchNorm1d(64), nn.GELU(), nn.Dropout(dropout),
-            nn.Linear(64, out_channels)
+            nn.Linear(32, out_channels)
         )
 
         self.reset_parameters()
-        self.to(device)
 
     def reset_parameters(self):
         """Reinitializes model parameters."""
         self.proj.reset_parameters()
         
-        for conv, norm in zip(self.conv, self.norm):
-            conv.reset_parameters()
-            for nt in self.node_types:
-                norm[nt].reset_parameters()
-        
-        self.node_lin.reset_parameters()
+        for i in range(len(self.conv)):
+            self.conv[i].reset_parameters()
 
-        for nt in self.node_types:
-            self.pool[nt].reset_parameters()
-        
-        for m in self.graph_mlp.modules():
+        self.jk.reset_parameters()
+        self.pool.reset_parameters()
+
+        for m in self.y_base_mlp.modules():
             if isinstance(m, nn.Linear):
-                if m.out_features == self.out_channels:
-                    nn.init.xavier_uniform_(m.weight)
-                else:
-                    nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
+                nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
                 if m.bias is not None:
                     nn.init.zeros_(m.bias)
-            elif isinstance(m, nn.BatchNorm1d):
-                m.reset_parameters()
+
+        for m in self.graph_mlp.modules():
+            if isinstance(m, nn.Linear):
+                nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
+                if m.bias is not None:
+                    nn.init.zeros_(m.bias)
 
     def forward(
         self,
@@ -173,7 +160,7 @@ class HGTRModel(nn.Module):
             edge_index_dict (Dict[EdgeType, Tensor]): Dictionary of edge indices for each edge type.
             batch_dict (Dict[NodeType, Tensor]): Dictionary of batch indices for each node type.
             y_base (Tensor): The target values of the base solutions.
-    
+
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
         # Projection layer
@@ -183,32 +170,32 @@ class HGTRModel(nn.Module):
             for nt, x in x_dict.items()
         }
 
+        offset = {}
+        cumsum = 0
+        for nt, x in x_dict.items():
+            offset[nt] = cumsum
+            cumsum += x.size(0)
+
         # Convolutional layers
-        xs_dict = {nt: [] for nt in self.node_types}
+        xs = []
         for i in range(self.num_layers):
             x_dict = self.conv[i](x_dict, edge_index_dict)
-            x_dict = {nt: self.norm[i][nt](x) for nt, x in x_dict.items()}
-            for nt, x in x_dict.items():
-                xs_dict[nt].append(x)
+            if i >= self.first_jk:
+                xs.append(torch.cat(list(x_dict.values()), dim=0))
 
-        # JK layer
-        x_dict = {nt: self.jk[nt](xs) for nt, xs in xs_dict.items()}
+        x = self.jk(xs)
 
-        # Type-wise linear layer
-        x_dict = self.node_lin(x_dict)
-        x_dict = {
-            nt: F.dropout(F.gelu(x), p=self.dropout, training=self.training)
-            for nt, x in x_dict.items()
-        }
+        cumsum = 0
+        for nt in self.node_types:
+            N = x_dict[nt].size(0)
+            x_dict[nt] = x[cumsum:cumsum + N]
+            cumsum += N
 
-        # Global pooling
+        # Pooling layer
+        x = self.pool(x_dict, edge_index_dict, batch_dict)
+
         batch_size = self._get_batch_size(batch_dict)
-        xs = []
-        for nt, x in x_dict.items():
-            x = global_add_pool(x, batch=batch_dict[nt], size=batch_size)
-            xs.append(x.view(batch_size, -1))
-
-        x = torch.cat(xs, dim=1)
+        x = x.view(batch_size, -1)
 
         # Process y_base
         y_base_processed = self.y_base_mlp(y_base.unsqueeze(1))
@@ -216,13 +203,19 @@ class HGTRModel(nn.Module):
 
         # Graph-level MLP
         out = self.graph_mlp(x).squeeze(1)
-        
+
         return out
     
     def _get_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
-        """Returns the batch size."""
+        r"""Returns the batch size of the input batch_dict.
+
+        Args:
+            batch_dict (Dict[NodeType, Tensor]): Dictionary of batch indices for each node type.
+
+        :rtype: :obj:`int` - The batch size.
+        """
         max_size = 0
         for batch in batch_dict.values():
-            if batch.numel() > 0:
-                max_size = max(max_size, batch.max().item())
-        return max_size + 1
+            max_size = max(max_size, batch.max().item() + 1)
+        return max_size
+        

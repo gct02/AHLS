@@ -50,10 +50,10 @@ EDGE_TYPES = [
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 68, 
+    "instr": 76, 
     "port": 14, 
     "const": 4, 
-    "region": 20
+    "region": 12
 }
 
 def build_base_graphs(

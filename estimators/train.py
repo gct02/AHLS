@@ -2,7 +2,6 @@ import os
 import sys
 import argparse
 import random
-import gc
 from pathlib import Path
 from collections import defaultdict
 from typing import List, Dict, Tuple, Optional, Union
@@ -17,6 +16,17 @@ import torch.nn as nn
 from torch.nn.utils import clip_grad_norm_
 from sklearn.metrics import r2_score
 from torch_geometric.loader import DataLoader
+
+try:
+    from estimators.models import HGTRModel
+    from estimators.dataset import HLSDataset
+    from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
+except ImportError:
+    print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
+    pass
+
+
+DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 
 PredTargetPair = Tuple[
@@ -136,7 +146,7 @@ def train_model(
 
             loss = loss_fn(pred, target)
             loss.backward()
-            clip_grad_norm_(model.parameters(), max_norm=1.0)
+            clip_grad_norm_(model.parameters(), max_norm=5.0)
 
             optimizer.step()
 
@@ -205,19 +215,16 @@ def main(args: Dict[str, str]):
     metadata = (NODE_TYPES, EDGE_TYPES)
     in_channels = NODE_FEATURE_DIMS
     out_channels = 1
-
-    hid_dims = [256, 256, 128, 128]
-    heads = [8, 8, 4, 4]
-    num_layers = len(hid_dims)
     
     model = HGTRModel(
         metadata, in_channels, out_channels,
         proj_dim=256,
-        hid_dims=hid_dims,
-        heads=heads,
-        num_layers=num_layers,
-        device=DEVICE
-    )
+        hid_dims=128,
+        heads=4,
+        num_layers=6,
+        dropout=0.1,
+        pool_size=32
+    ).to(DEVICE)
 
     if loss == 'huber':
         loss_fn = nn.HuberLoss(delta=residual)
@@ -229,7 +236,7 @@ def main(args: Dict[str, str]):
         raise ValueError(f"Unknown loss function: {loss}")
 
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=3e-4, betas=(0.9, 0.95), weight_decay=5e-4
+        model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=1e-4
     )
 
     total_steps = epochs * len(train_loader)
@@ -339,9 +346,14 @@ def plot_prediction_bars(
     benchmark: str, metric: str, output_dir: str
 ):
     """Plot per-benchmark instance-level predictions and errors"""
-    targets, preds, errors = extract_best_epoch_results(test_results)
+    best_epoch = evaluate.best_epoch
+
+    targets = [r[1] for r in test_results[0]]
+    preds = [r[0] for r in test_results[best_epoch]]
+    errors = [rpd(p, t).item() for p, t in zip(preds, targets)]
+
     indices = list(range(len(targets)))
-    mre = np.mean(errors)
+    mre = evaluate.min_mre
 
     df = pd.DataFrame({
         'index': indices,
@@ -397,29 +409,15 @@ def save_training_artifacts(
         train_errors.append(np.mean([rpd(p, t) for p, t in train_results]))
         test_errors.append(np.mean([rpd(p, t) for p, t in test_results]))
 
-    targets, preds, errors = extract_best_epoch_results(results['test'])
+    best_epoch = evaluate.best_epoch
+    test_results = results['test']
+
+    targets = [r[1] for r in test_results[0]]
+    preds = [r[0] for r in test_results[best_epoch]]
+    errors = [rpd(p, t).item() for p, t in zip(preds, targets)]
 
     plot_learning_curves(train_errors, test_errors, f"{output_dir}/learning_curve.png")
     plot_prediction_scatter(targets, preds, f"{output_dir}/test_results_scatter.png", errors=errors)
-
-
-def extract_best_epoch_results(
-    results: List[List[PredTargetPair]]
-) -> Tuple[List[float], List[float], List[float]]:
-    targets = [r[1] for r in results[0]]
-    targets_tensor = torch.tensor(targets)
-
-    mre_per_epoch = []
-    for epoch_results in results:
-        epoch_preds = torch.tensor([r[0] for r in epoch_results])
-        mre = rpd(epoch_preds, targets_tensor).mean().item()
-        mre_per_epoch.append(mre)
-
-    best_epoch_idx = np.argmin(mre_per_epoch)
-    best_epoch_preds = [r[0] for r in results[best_epoch_idx]]
-    best_epoch_errors = [rpd(p, t).item() for p, t in zip(best_epoch_preds, targets)]
-
-    return targets, best_epoch_preds, best_epoch_errors
     
 
 def set_random_seeds(seed: int):
@@ -532,7 +530,5 @@ if __name__ == '__main__':
     from estimators.dataset import HLSDataset
     from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 
-    gc.collect()
-    DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     args = parse_arguments()
     main(args)
