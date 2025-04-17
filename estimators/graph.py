@@ -152,7 +152,6 @@ def to_pyg(
                 data[nt, "to", nt].edge_index = torch.empty((2, 0), dtype=torch.long)
 
     return data
-            
 
 def include_directives(hls_data: HLSData, directives_tcl: str):
     def get_node_by_name(node_type, name):
@@ -161,12 +160,24 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 return node
         return None
     
-    DIRECTIVES = {
-        "pipeline", "unroll", "loop_merge",
-        "loop_flatten", "array_partition"
-    }
+    def unroll_subloops(node):
+        for sub_region_idx in node.sub_regions:
+            sub_region = hls_data.nodes["region"][sub_region_idx]
+            if sub_region.attrs["is_loop"][0] == 1:
+                sub_region.attrs["unroll"][0] = 1
+                sub_region.attrs["loop_flatten"][0] = 0
+                sub_region.attrs["loop_merge"][0] = 0
+                sub_region.attrs["pipeline"][0] = 0
+                sub_region.attrs["unroll_factor"] = sub_region.attrs["max_trip_count"]
+                unroll_subloops(sub_region)
+    
+    DIRECTIVES = {"unroll", "loop_merge", "loop_flatten", "array_partition"}
     directives = parse_tcl_directives_file(directives_tcl)
-    directives = [d for d in directives if d[0] in DIRECTIVES]
+    directives = [
+        d for d in directives if d[0] in DIRECTIVES
+    ] + [
+        d for d in directives if d[0] == "pipeline"
+    ]
 
     for directive, args in directives:
         if "off" in args:
@@ -185,8 +196,8 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 print(f"Warning: Variable '{var}' not found in nodes.")
                 continue
 
-            factor = args.get("factor")
-            factor = int(factor) if factor else node.attrs["size"]
+            factor = int(args.get("factor", 0))
+            factor = [factor] if factor != 0 else node.attrs["size"]
             dim = [0] * 4
             dim[int(args.get("dim", 0))] = 1
             partition_type = args.get("type", "complete")
@@ -209,11 +220,16 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 continue
         
             if directive == "unroll":
-                factor = args.get("factor")
-                factor = int(factor) if factor else node.attrs["max_trip_count"]
+                if node.attrs["unroll"][0] == 1:
+                    continue
+                factor = int(args.get("factor", 0))
+                factor = [factor] if factor != 0 else node.attrs["max_trip_count"]
                 node.attrs["unroll_factor"] = factor
+            elif directive == "pipeline":
+                # Pipeline in a loop induces a complete unroll in all of its subloops
+                unroll_subloops(node)
             
-        node.attrs[directive] = 1
+        node.attrs[directive][0] = 1
 
 
 def fit_one_hot_encoders(hls_data_dict: Dict[str, HLSData]):

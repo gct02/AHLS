@@ -18,7 +18,7 @@ from sklearn.metrics import r2_score
 from torch_geometric.loader import DataLoader
 
 try:
-    from estimators.models import HGTRModel
+    from estimators.models import HGT
     from estimators.dataset import HLSDataset
     from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 except ImportError:
@@ -216,14 +216,12 @@ def main(args: Dict[str, str]):
     in_channels = NODE_FEATURE_DIMS
     out_channels = 1
     
-    model = HGTRModel(
+    model = HGT(
         metadata, in_channels, out_channels,
         hid_dim=512,
         heads=8,
-        num_layers=8,
-        num_layers_jk=4,
-        dropout=0.1,
-        pool_size=32
+        num_layers=6,
+        dropout=0.1
     ).to(DEVICE)
 
     if loss == 'huber':
@@ -241,7 +239,7 @@ def main(args: Dict[str, str]):
 
     total_steps = epochs * len(train_loader)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-        optimizer, T_0=total_steps // 5, T_mult=2, eta_min=1e-6
+        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=5e-6
     )
 
     results = train_model(
@@ -526,7 +524,7 @@ if __name__ == '__main__':
         sys.path.insert(0, str(DIR.parent.parent))
         __package__ = DIR.name 
 
-    from estimators.models import HGTRModel
+    from estimators.models import HGT
     from estimators.dataset import HLSDataset
     from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 
