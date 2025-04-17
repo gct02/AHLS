@@ -289,7 +289,7 @@ class HetSAGPooling(nn.Module):
         self.in_channels = in_channels
         self.pool_size = pool_size
 
-        self.gnn = HGTConv(in_channels, 1, metadata, **kwargs)
+        self.gnn = HGTConv(in_channels, 1, metadata, norm=False, **kwargs)
         self.select = SelectTopK(1, pool_size)
         self.connect = FilterEdges()
 
@@ -326,6 +326,4 @@ class HetSAGPooling(nn.Module):
         perm = sel.node_index
         score = sel.weight
 
-        x = x[perm] * score.view(-1, 1)
-
-        return x
+        return x[perm] * score.view(-1, 1)

@@ -41,10 +41,10 @@ class HGTRModel(nn.Module):
         metadata: Metadata,
         in_channels: Union[int, Dict[str, int]],
         out_channels: int,
-        proj_dim: int = 256,
-        hid_dims: Union[List[int], int] = 128,
-        heads: Union[List[int], int] = 4,
-        num_layers: Optional[int] = None,
+        hid_dim: int = 256,
+        heads: int = 4,
+        num_layers: int = 6,
+        num_layers_jk: Optional[int] = None,
         dropout: float = 0.0,
         pool_size: int = 16
     ):
@@ -55,31 +55,11 @@ class HGTRModel(nn.Module):
         self.in_channels = in_channels
         self.out_channels = out_channels
         self.dropout = dropout
-
-        if num_layers is None:
-            if isinstance(hid_dims, list):
-                num_layers = len(hid_dims)
-            else:
-                num_layers = len(self.node_types)
-
-        if isinstance(hid_dims, int):
-            hid_dims = [hid_dims] * num_layers
-
-        if isinstance(heads, int):
-            heads = [heads] * num_layers
-
-        if len(hid_dims) != len(heads):
-            raise ValueError(
-                f"Expected `hid_dims` and `heads` to have the same length, "
-                f"but got {len(hid_dims)} and {len(heads)}."
-            )
         self.num_layers = num_layers
-        self.hid_dims = hid_dims
-        self.heads = heads
 
         # Projection layer
         self.proj = HeteroDictLinear(
-            in_channels, proj_dim,
+            in_channels, hid_dim,
             types=self.node_types,
             weight_initializer='kaiming_uniform',
             bias_initializer='zeros'
@@ -88,23 +68,30 @@ class HGTRModel(nn.Module):
         # Convolutional layers
         self.conv = nn.ModuleList([
             HGTConv(
-                proj_dim if i == 0 else hid_dims[i-1], hid_dims[i], metadata,
-                heads=heads[i], norm=True, dropout=dropout
+                hid_dim, hid_dim, metadata,
+                heads=heads, norm=True, dropout=dropout
             )
-            for i in range(num_layers)
+            for _ in range(num_layers)
         ])
 
         # Jumping knowledge layer
-        num_layers_jk = min(3, num_layers)
+        if num_layers_jk is None:
+            num_layers_jk = num_layers
+
+        if num_layers_jk > num_layers:
+            raise ValueError(
+                f"'num_layers_jk' ({num_layers_jk}) cannot be greater "
+                f"than 'num_layers' ({num_layers})."
+            )
         self.first_jk = num_layers - num_layers_jk
         self.jk = JumpingKnowledge(
             mode='lstm', 
-            channels=hid_dims[-1], 
+            channels=hid_dim, 
             num_layers=num_layers_jk
         )
 
         # Pooling layer
-        self.pool = HetSAGPooling(hid_dims[-1], pool_size, metadata)
+        self.pool = HetSAGPooling(hid_dim, pool_size, metadata)
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
@@ -115,7 +102,7 @@ class HGTRModel(nn.Module):
 
         # Graph-level MLP
         self.graph_mlp = nn.Sequential(
-            nn.Linear(hid_dims[-1] * pool_size + 32, 512), nn.BatchNorm1d(512), nn.GELU(), nn.Dropout(dropout),
+            nn.Linear(hid_dim * pool_size + 32, 512), nn.BatchNorm1d(512), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(512, 256), nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(256, 128), nn.BatchNorm1d(128), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(128, 64), nn.BatchNorm1d(64), nn.GELU(), nn.Dropout(dropout),
@@ -170,12 +157,6 @@ class HGTRModel(nn.Module):
             for nt, x in x_dict.items()
         }
 
-        offset = {}
-        cumsum = 0
-        for nt, x in x_dict.items():
-            offset[nt] = cumsum
-            cumsum += x.size(0)
-
         # Convolutional layers
         xs = []
         for i in range(self.num_layers):
@@ -186,7 +167,7 @@ class HGTRModel(nn.Module):
         x = self.jk(xs)
 
         cumsum = 0
-        for nt in self.node_types:
+        for nt in x_dict.keys():
             N = x_dict[nt].size(0)
             x_dict[nt] = x[cumsum:cumsum + N]
             cumsum += N

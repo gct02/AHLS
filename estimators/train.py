@@ -218,10 +218,10 @@ def main(args: Dict[str, str]):
     
     model = HGTRModel(
         metadata, in_channels, out_channels,
-        proj_dim=256,
-        hid_dims=128,
-        heads=4,
-        num_layers=6,
+        hid_dim=512,
+        heads=8,
+        num_layers=8,
+        num_layers_jk=4,
         dropout=0.1,
         pool_size=32
     ).to(DEVICE)
@@ -236,12 +236,12 @@ def main(args: Dict[str, str]):
         raise ValueError(f"Unknown loss function: {loss}")
 
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=1e-4
+        model.parameters(), lr=1e-4, betas=(0.9, 0.9999), weight_decay=1e-4
     )
 
     total_steps = epochs * len(train_loader)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-5
+        optimizer, T_0=total_steps // 5, T_mult=2, eta_min=1e-6
     )
 
     results = train_model(
