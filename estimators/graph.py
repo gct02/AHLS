@@ -53,7 +53,7 @@ NODE_FEATURE_DIMS = {
     "instr": 76, 
     "port": 14, 
     "const": 4, 
-    "region": 12
+    "region": 11
 }
 
 def build_base_graphs(

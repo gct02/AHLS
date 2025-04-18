@@ -82,3 +82,6 @@ test*/
 
 # The dataset to train the estimator
 dataset/
+
+# Scripts
+scripts/*.sh
