@@ -6,7 +6,6 @@ from typing import Dict, Union, Optional
 
 import torch
 import matplotlib.pyplot as plt
-import torch_geometric.transforms as T
 from torch_geometric.data import HeteroData
 from sklearn.preprocessing import OneHotEncoder
 
@@ -53,8 +52,14 @@ NODE_FEATURE_DIMS = {
     "instr": 76, 
     "port": 14, 
     "const": 4, 
-    "region": 11
+    "region": 9
 }
+
+DIRECTIVES = {
+    "unroll", "pipeline", "loop_merge", 
+    "loop_flatten", "array_partition"
+}
+
 
 def build_base_graphs(
     base_solutions: Dict[str, str],
@@ -153,34 +158,115 @@ def to_pyg(
 
     return data
 
+
+def get_node_by_name(hls_data, node_type, name):
+    for node in hls_data.nodes[node_type]:
+        if node.name == name:
+            return node
+    return None
+
+
+def partition_array(hls_data, array, partition_type, factor, dim):
+    if partition_type == "complete":
+        partition_type = [1, 0, 0]
+    elif partition_type == "block":
+        partition_type = [0, 1, 0]
+    else:
+        partition_type = [0, 0, 1]
+
+    node = get_node_by_name(hls_data, "instr", array)
+    if node is None:
+        print(f"Warning: Array '{array}' not found in nodes.")
+        return
+
+    node.attrs["partition_type"] = partition_type
+    node.attrs["partition_factor"] = factor
+    node.attrs["partition_dim"] = dim
+    node.attrs["size"] = [factor] + node.attrs["size"][1:]
+
+
+def unroll_loop(hls_data, loop_label, factor=0):
+    def update_loop_attrs(node, new_tc, new_lat):
+        node.attrs["max_trip_count"] = [new_tc]
+        node.attrs["min_trip_count"] = [new_tc]
+        node.attrs["min_latency"] = [new_lat]
+        node.attrs["max_latency"] = [new_lat]
+
+    loop_node = get_node_by_name(hls_data, "region", loop_label)
+    if loop_node is None:
+        print(f"Warning: Loop '{loop_label}' not found in nodes.")
+        return
+    if not loop_node.is_loop:
+        print(f"Warning: Node '{loop_label}' is not a loop.")
+        return
+
+    tc = loop_node.attrs["max_trip_count"][0]
+
+    if factor <= 0:
+        if tc <= 1:
+            print("Warning: Trying to completely unroll loop "
+                  f"{loop_node.name} with unknown trip count.")
+            return
+        factor = tc
+    elif factor > tc or factor <= 1:
+        print("Warning: Invalid unroll factor for loop "
+              f"{loop_node.name}: {factor}.")
+        return
+    
+    ii = loop_node.attrs["ii"][0]
+    new_tc = max(1, tc // factor)
+    new_lat = ii * new_tc
+
+    rem_loops = tc % factor
+    rem_tc = tc - new_tc * factor
+    rem_lat = ii * rem_tc
+
+    n_loop_copies = factor + rem_loops
+    n_regions = len(hls_data.nodes["region"])
+    loop_id = loop_node.id
+    new_loop_ids = range(n_regions, n_regions + n_loop_copies)
+
+    for et, edge_index in hls_data.edges.items():
+        if et[0] == "region":
+            for src, dst in edge_index:
+                if src == loop_id:
+                    for i in range(n_loop_copies):
+                        hls_data.edges[et].append((new_loop_ids[i], dst))
+        if et[2] == "region":
+            for src, dst in edge_index:
+                if dst == loop_id:
+                    for i in range(n_loop_copies):
+                        hls_data.edges[et].append((src, new_loop_ids[i]))
+
+    update_loop_attrs(loop_node, new_tc, new_lat)
+    loop_node.name = f"{loop_label}_0"
+
+    for i in range(1, n_loop_copies):
+        new_loop_node = deepcopy(loop_node)
+        new_loop_node.name = f"{loop_label}_{i}"
+        new_loop_node.id = new_loop_ids[i-1]
+        tc = new_tc if i < factor else rem_tc
+        lat = new_lat if i < factor else rem_lat
+        update_loop_attrs(new_loop_node, tc, lat)
+        hls_data.nodes["region"].append(new_loop_node)
+        
+
 def include_directives(hls_data: HLSData, directives_tcl: str):
-    def get_node_by_name(node_type, name):
-        for node in hls_data.nodes[node_type]:
-            if node.name == name:
-                return node
-        return None
-    
-    def unroll_subloops(node):
-        for sub_region_idx in node.sub_regions:
-            sub_region = hls_data.nodes["region"][sub_region_idx]
-            if sub_region.attrs["is_loop"][0] == 1:
-                sub_region.attrs["unroll"][0] = 1
-                sub_region.attrs["loop_flatten"][0] = 0
-                sub_region.attrs["loop_merge"][0] = 0
-                sub_region.attrs["pipeline"][0] = 0
-                sub_region.attrs["unroll_factor"] = sub_region.attrs["max_trip_count"]
-                unroll_subloops(sub_region)
-    
-    DIRECTIVES = {"unroll", "loop_merge", "loop_flatten", "array_partition"}
+    def unroll_subloops(subregs):
+        for subreg_id in subregs:
+            subreg = hls_data.nodes["region"][subreg_id]
+            # Start unrolling the inner-most loops
+            unroll_subloops(subreg.sub_regions)
+            if subreg.is_loop:
+                unroll_loop(hls_data, subreg.name)
+
     directives = parse_tcl_directives_file(directives_tcl)
-    directives = [
-        d for d in directives if d[0] in DIRECTIVES
-    ] + [
-        d for d in directives if d[0] == "pipeline"
-    ]
+
+    # Sort by directive type (pipeline -> unroll > others)
+    directives.sort(key=lambda x: (x[0] != "pipeline", x[0] != "unroll"))
 
     for directive, args in directives:
-        if "off" in args:
+        if directive not in DIRECTIVES:
             continue
 
         if directive == "array_partition":
@@ -190,7 +276,7 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 continue
 
             for nt in ["instr", "port"]:
-                if (node := get_node_by_name(nt, var)) is not None:
+                if (node := get_node_by_name(hls_data, nt, var)) is not None:
                     break
             else:
                 print(f"Warning: Variable '{var}' not found in nodes.")
@@ -214,22 +300,29 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
             node.attrs["partition_dim"] = dim
         else:
             loc = args["location"].split("/")[-1]
-            node = get_node_by_name("region", loc)
+            node = get_node_by_name(hls_data, "region", loc)
             if node is None:
                 print(f"Warning: Location '{loc}' not found in nodes.")
                 continue
         
             if directive == "unroll":
-                if node.attrs["unroll"][0] == 1:
-                    continue
                 factor = int(args.get("factor", 0))
-                factor = [factor] if factor != 0 else node.attrs["max_trip_count"]
-                node.attrs["unroll_factor"] = factor
+                unroll_loop(hls_data, loc, factor)
             elif directive == "pipeline":
-                # Pipeline in a loop induces a complete unroll in all of its subloops
-                unroll_subloops(node)
-            
-        node.attrs[directive][0] = 1
+                if "off" in args:
+                    continue
+
+                ii = max(1, int(args.get("ii", 0)))
+                node.attrs["ii"] = [ii]
+                node.attrs["min_latency"] = [ii * node.attrs["min_trip_count"][0]]
+                node.attrs["max_latency"] = [ii * node.attrs["max_trip_count"][0]]
+                node.attrs["pipeline"] = [1]
+
+                # Pipeline in a loop induces a complete 
+                # unroll in all of its subloops
+                unroll_subloops(node.sub_regions)
+            else:
+                node.attrs[directive] = [1]
 
 
 def fit_one_hot_encoders(hls_data_dict: Dict[str, HLSData]):

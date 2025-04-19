@@ -133,24 +133,27 @@ class RegionNode:
         self.attrs = self._extract_attrs(element)
         self.sub_regions = self._extract_items(element, 'sub_regions', -1)
         self.blocks = self._extract_items(element, 'basic_blocks')
+        self.instrs = []  # Placeholder for instructions
 
     def _extract_attrs(self, element):
-        is_loop = findint(element, 'mType', 0)
+        self.is_loop = True if findint(element, 'mType', 0) == 1 else False
+
         min_lat = max(1, findint(element, 'mMinLatency', 0))
         max_lat = max(min_lat, findint(element, 'mMaxLatency', 0))
-        if is_loop == 1:
-            min_tc = max(1, findint(element, 'mMinTripCount', 0))
-            max_tc = max(min_tc, findint(element, 'mMaxTripCount', 0))
-            depth = max(1, findint(element, 'mDepth', 0))
-        else:
-            min_tc = max_tc = 0
-            depth = max(0, findint(element, 'mDepth', 0))
+        min_tc = max(1, findint(element, 'mMinTripCount', 0))
+        max_tc = max(min_tc, findint(element, 'mMaxTripCount', 0))
+
+        if (ii := findint(element, 'mII', 0)) <= 0:
+            ii = max(1, max_lat / float(max_tc))
+
+        depth = findint(element, 'mDepth', 0)
+        if self.is_loop:
+            depth = max(1, depth)
 
         return {
-            'is_loop': is_loop, 'depth': depth, 'min_latency': min_lat, 
-            'max_latency': max_lat, 'min_trip_count': min_tc, 
-            'max_trip_count': max_tc, 'pipeline': 0, 'loop_merge': 0, 
-            'loop_flatten': 0, 'unroll': 0, 'unroll_factor': 0
+            'depth': depth, 'min_latency': min_lat, 'max_latency': max_lat, 
+            'min_trip_count': min_tc, 'max_trip_count': max_tc, 'ii': ii,
+            'loop_merge': 0, 'loop_flatten': 0, 'pipeline': 0
         }
     
     def _extract_items(self, element, tag, offset=0):
@@ -301,11 +304,12 @@ class CDFG:
         return {'1': 'data', '2': 'control', '4': 'mem'}.get(etype, '')
 
     def _build_hierarchy_edges(self):
-        for region in self.nodes['region']:
+        for i, region in enumerate(self.nodes['region']):
             for sri in region.sub_regions:
                 self.edges[('region', 'hrchy', 'region')].append((region.id, sri))
             for bi in region.blocks:
                 for ii in self.nodes['block'][bi - self._offsets['block']].instrs:
+                    self.nodes['region'][i].instrs.append(ii)
                     self.edges[('region', 'hrchy', 'instr')].append((region.id, ii))
 
     def _prune_blocks(self):

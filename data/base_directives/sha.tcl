@@ -30,10 +30,3 @@ set_directive_pipeline -off sha_transform/sha_transform_label6
 set_directive_pipeline -off sha_stream/sha_stream_label0
 set_directive_pipeline -off sha_stream/sha_stream_label1
 set_directive_pipeline -off sha_stream/sha_stream_label2
-set_directive_pipeline -off sha_final
-set_directive_pipeline -off local_memset
-set_directive_pipeline -off local_memcpy
-set_directive_pipeline -off sha_update
-set_directive_pipeline -off sha_transform
-set_directive_pipeline -off sha_stream
-set_directive_pipeline -off sha_init
