@@ -146,9 +146,10 @@ class RegionNode:
         if (ii := findint(element, 'mII', 0)) <= 0:
             ii = max(1, max_lat / float(max_tc))
 
-        depth = findint(element, 'mDepth', 0)
         if self.is_loop:
-            depth = max(1, depth)
+            depth = max(1, findint(element, 'mDepth', 0))
+        else:
+            depth = max(0, findint(element, 'mDepth', 0))
 
         return {
             'depth': depth, 'min_latency': min_lat, 'max_latency': max_lat, 

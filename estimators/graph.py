@@ -1,7 +1,6 @@
 import pickle
 from pathlib import Path
 from copy import deepcopy
-from collections import defaultdict
 from typing import Dict, Union, Optional
 
 import torch
@@ -120,6 +119,7 @@ def to_pyg(
                 else:
                     attrs.append(attr)
 
+            print(attrs)
             features.append(torch.tensor(attrs, dtype=torch.float32))
 
         if features:
@@ -187,13 +187,102 @@ def partition_array(hls_data, array, partition_type, factor, dim):
     node.attrs["size"] = [factor] + node.attrs["size"][1:]
 
 
-def unroll_loop(hls_data, loop_label, factor=0):
-    def update_loop_attrs(node, new_tc, new_lat):
-        node.attrs["max_trip_count"] = [new_tc]
-        node.attrs["min_trip_count"] = [new_tc]
-        node.attrs["min_latency"] = [new_lat]
-        node.attrs["max_latency"] = [new_lat]
+def update_unrolled_loop_attrs(node, new_tc, new_lat):
+    node.attrs["max_trip_count"] = [new_tc]
+    node.attrs["min_trip_count"] = [new_tc]
+    node.attrs["min_latency"] = [new_lat]
+    node.attrs["max_latency"] = [new_lat]
 
+
+def create_loop_replica(
+    hls_data, loop_node, 
+    new_tc=None, new_lat=None, 
+    replica_id=None,
+    replica_name=None
+):
+    if replica_id is None:
+        replica_id = len(hls_data.nodes["region"])
+    if new_tc is None:
+        new_tc = loop_node.attrs["max_trip_count"][0]
+    if new_lat is None:
+        new_lat = loop_node.attrs["max_latency"][0]
+
+    replica = deepcopy(loop_node)
+    if new_tc is not None and new_lat is not None:
+        update_unrolled_loop_attrs(replica, new_tc, new_lat)
+    if replica_name is None:
+        replica_name = f"{loop_node.name}.{replica_id}"
+    replica.name = replica_name
+    replica.id = replica_id
+    replica.instrs = []
+    replica.sub_regions = []
+    hls_data.nodes["region"].append(replica)
+
+    instr_id_map = {}
+    region_id_map = {}
+
+    n_instrs = len(hls_data.nodes["instr"])
+    for i, instr_id in enumerate(loop_node.instrs):
+        instr_node = hls_data.nodes["instr"][instr_id]
+        new_instr_node = deepcopy(instr_node)
+        new_instr_node.name = f"{instr_node.name}.{replica_id}"
+        new_instr_id = n_instrs + i
+        new_instr_node.id = new_instr_id
+        hls_data.nodes["instr"].append(new_instr_node)
+        replica.instrs.append(new_instr_id)
+        instr_id_map[instr_id] = new_instr_id
+        hls_data.edges["region", "hrchy", "instr"].append((replica_id, new_instr_id))
+
+    for i, region_id in enumerate(loop_node.sub_regions):
+        region_node = hls_data.nodes["region"][region_id]
+        new_region_id = replica_id + i
+        new_region_name = f"{region_node.name}.{replica_id}"
+        create_loop_replica(
+            hls_data, region_node, 
+            replica_id=new_region_id, 
+            replica_name=new_region_name
+        )
+        region_id_map[region_id] = new_region_id
+        replica.sub_regions.append(new_region_id)
+        hls_data.edges["region", "hrchy", "region"].append((replica_id, new_region_id))
+    
+    for instr_id, new_instr_id in instr_id_map.items():
+        for et, edge_index in hls_data.edges.items():
+            if et[1] == "hrchy":
+                continue
+            if et[0] == "instr":
+                for src, dst in edge_index:
+                    if src == instr_id:
+                        if et[2] == "instr" and dst in loop_node.instrs:
+                            dst = instr_id_map[dst]
+                        elif et[2] == "region" and dst in loop_node.sub_regions:
+                            dst = region_id_map[dst]
+                        hls_data.edges[et].append((new_instr_id, dst))
+            if et[2] == "instr":
+                for src, dst in edge_index:
+                    if dst == instr_id:
+                        if et[0] == "instr" and src in loop_node.instrs:
+                            src = instr_id_map[src]
+                        elif et[0] == "region" and src in loop_node.sub_regions:
+                            src = region_id_map[src]
+                        hls_data.edges[et].append((src, new_instr_id))
+
+    for et, edge_index in hls_data.edges.items():
+        if et[1] == "hrchy":
+                continue
+        if et[0] == "region":
+            for src, dst in edge_index:
+                if src == loop_node.id:
+                    if dst not in loop_node.sub_regions and dst not in loop_node.instrs:
+                        hls_data.edges[et].append((replica_id, dst))
+        if et[2] == "region":
+            for src, dst in edge_index:
+                if dst == loop_node.id:
+                    if src not in loop_node.sub_regions and src not in loop_node.instrs:
+                        hls_data.edges[et].append((src, replica_id))
+
+
+def unroll_loop(hls_data, loop_label, factor=0):
     loop_node = get_node_by_name(hls_data, "region", loop_label)
     if loop_node is None:
         print(f"Warning: Loop '{loop_label}' not found in nodes.")
@@ -222,35 +311,25 @@ def unroll_loop(hls_data, loop_label, factor=0):
     rem_tc = tc - new_tc * factor
     rem_lat = ii * rem_tc
 
-    n_loop_copies = factor + rem_loops - 1
-    n_regions = len(hls_data.nodes["region"])
-    loop_id = loop_node.id
-    new_loop_ids = range(n_regions, n_regions + n_loop_copies)
+    update_unrolled_loop_attrs(loop_node, new_tc, new_lat)
+    loop_node.name = f"{loop_label}.{loop_node.id}"
 
-    for et, edge_index in hls_data.edges.items():
-        if et[0] == "region":
-            for src, dst in edge_index:
-                if src == loop_id:
-                    for i in range(n_loop_copies):
-                        hls_data.edges[et].append((new_loop_ids[i], dst))
-        if et[2] == "region":
-            for src, dst in edge_index:
-                if dst == loop_id:
-                    for i in range(n_loop_copies):
-                        hls_data.edges[et].append((src, new_loop_ids[i]))
+    outer_regions = []
+    for src, dst in hls_data.edges["region", "hrchy", "region"]:
+        if dst == loop_node.id:
+            outer_regions.append(src)
 
-    update_loop_attrs(loop_node, new_tc, new_lat)
-    loop_node.name = f"{loop_label}.unroll.0"
-
-    for i in range(1, n_loop_copies + 1):
-        new_loop_node = deepcopy(loop_node)
-        new_loop_node.name = f"{loop_label}.unroll.{i}"
-        new_loop_node.id = new_loop_ids[i-1]
+    n_replicas = factor + rem_loops - 1
+    for i in range(n_replicas):
         tc = new_tc if i < factor else rem_tc
         lat = new_lat if i < factor else rem_lat
-        update_loop_attrs(new_loop_node, tc, lat)
-        hls_data.nodes["region"].append(new_loop_node)
-        
+        replica_id = len(hls_data.nodes["region"])
+        replica_name = f"{loop_label}.{replica_id}"
+        create_loop_replica(hls_data, loop_node, tc, lat, 
+                            replica_id, replica_name)
+        for region_id in outer_regions:
+            hls_data.edges["region", "hrchy", "region"].append((region_id, replica_id))
+
 
 def include_directives(hls_data: HLSData, directives_tcl: str):
     def unroll_subloops(subregs):
@@ -263,8 +342,14 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
 
     directives = parse_tcl_directives_file(directives_tcl)
 
-    # Sort by directive type (pipeline -> unroll > others)
-    directives.sort(key=lambda x: (x[0] != "pipeline", x[0] != "unroll"))
+    # Sort by directive type (array_partition -> loop_flatten -> loop_merge -> pipeline -> unroll)
+    directives.sort(key=lambda x: (
+        x[0] == "array_partition",
+        x[0] == "loop_flatten",
+        x[0] == "loop_merge",
+        x[0] == "pipeline",
+        x[0] == "unroll"
+    ))
 
     for directive, args in directives:
         if directive not in DIRECTIVES:
@@ -473,7 +558,7 @@ def plot_data(
         nx.draw_networkx(
             G, pos, labels=nlabels, node_color=ncolors, 
             edge_color=ecolors, style="dashed", node_size=150, 
-            font_size=7, arrowsize=9, width=.8, alpha=.8
+            font_size=8, arrowsize=9, width=.8, alpha=.8
         )
         plt.legend(
             handles=node_legend + edge_legend, loc='lower center', 
