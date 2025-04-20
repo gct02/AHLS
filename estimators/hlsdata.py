@@ -153,7 +153,8 @@ class RegionNode:
         return {
             'depth': depth, 'min_latency': min_lat, 'max_latency': max_lat, 
             'min_trip_count': min_tc, 'max_trip_count': max_tc, 'ii': ii,
-            'loop_merge': 0, 'loop_flatten': 0, 'pipeline': 0
+            'loop_merge': 0, 'loop_flatten': 0, 'pipeline': 0, 
+            'pipeline_off': 0, 'loop_flatten_off': 0
         }
     
     def _extract_items(self, element, tag, offset=0):

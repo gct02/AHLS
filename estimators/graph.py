@@ -52,7 +52,7 @@ NODE_FEATURE_DIMS = {
     "instr": 76, 
     "port": 14, 
     "const": 4, 
-    "region": 9
+    "region": 11
 }
 
 DIRECTIVES = {
@@ -126,6 +126,8 @@ def to_pyg(
             data[nt].x = torch.stack(features, dim=0)
         else:
             data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
+
+        data[nt].node_name = [node.name for node in nodes]
 
     for et in EDGE_TYPES:
         edges = hls_data.edges.get(et)
@@ -201,7 +203,6 @@ def unroll_loop(hls_data, loop_label, factor=0):
         return
 
     tc = loop_node.attrs["max_trip_count"][0]
-
     if factor <= 0:
         if tc <= 1:
             print("Warning: Trying to completely unroll loop "
@@ -221,7 +222,7 @@ def unroll_loop(hls_data, loop_label, factor=0):
     rem_tc = tc - new_tc * factor
     rem_lat = ii * rem_tc
 
-    n_loop_copies = factor + rem_loops
+    n_loop_copies = factor + rem_loops - 1
     n_regions = len(hls_data.nodes["region"])
     loop_id = loop_node.id
     new_loop_ids = range(n_regions, n_regions + n_loop_copies)
@@ -239,11 +240,11 @@ def unroll_loop(hls_data, loop_label, factor=0):
                         hls_data.edges[et].append((src, new_loop_ids[i]))
 
     update_loop_attrs(loop_node, new_tc, new_lat)
-    loop_node.name = f"{loop_label}_0"
+    loop_node.name = f"{loop_label}.unroll.0"
 
-    for i in range(1, n_loop_copies):
+    for i in range(1, n_loop_copies + 1):
         new_loop_node = deepcopy(loop_node)
-        new_loop_node.name = f"{loop_label}_{i}"
+        new_loop_node.name = f"{loop_label}.unroll.{i}"
         new_loop_node.id = new_loop_ids[i-1]
         tc = new_tc if i < factor else rem_tc
         lat = new_lat if i < factor else rem_lat
@@ -310,6 +311,7 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 unroll_loop(hls_data, loc, factor)
             elif directive == "pipeline":
                 if "off" in args:
+                    node.attrs["pipeline_off"] = [1]
                     continue
 
                 ii = max(1, int(args.get("ii", 0)))
@@ -321,6 +323,9 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 # Pipeline in a loop induces a complete 
                 # unroll in all of its subloops
                 unroll_subloops(node.sub_regions)
+            elif directive == "loop_flatten" and "off" in args:
+                node.attrs["loop_flatten_off"] = [1]
+                continue
             else:
                 node.attrs[directive] = [1]
 
@@ -412,7 +417,7 @@ def plot_data(
             ntypes = ["instr", "const", "port"]
             etypes = [et for et in EDGE_TYPES if et[1] in ["data", "mem"]]
         elif plot_type == "hrchy":
-            ntypes = ["region", "instr"]
+            ntypes = ["instr", "region"]
             etypes = [et for et in EDGE_TYPES if et[1] == "hrchy"]
         else:
             raise ValueError(f"Unknown plot_type: {plot_type}")
@@ -425,6 +430,8 @@ def plot_data(
             else:
                 data_trans[nt].x = x
 
+            data_trans[nt].node_name = data[nt].node_name
+
         for et, edge_index in data.edge_index_dict.items():
             if et not in etypes:
                 data_trans[et].edge_index = torch.empty((2, 0), dtype=torch.long)
@@ -432,18 +439,15 @@ def plot_data(
                 data_trans[et].edge_index = edge_index
 
         # data_trans = T.RemoveIsolatedNodes()(data_trans)
-
-        G = to_networkx(data_trans, remove_self_loops=True, node_attrs=['x'])
+        G = to_networkx(data_trans, remove_self_loops=True, node_attrs=['x', 'node_name'])
         
-        indices = defaultdict(int)
         ncolors, nlabels = [], {}
         for node, attrs in G.nodes(data=True):
             nt = attrs.get("type")
             if nt is None or nt not in ntypes:
                 continue
             ncolors.append(node_colors[nt])
-            nlabels[node] = f"{nt[0].upper()}{indices[nt]}"
-            indices[nt] += 1
+            nlabels[node] = attrs["node_name"]
 
         ecolors = []
         for src, dst, attrs in G.edges(data=True):
@@ -463,13 +467,13 @@ def plot_data(
         if plot_type in ["full", "data", "hrchy"] and not batched:
             pos = nx.kamada_kawai_layout(G, scale=2)
         else:
-            pos = nx.spring_layout(G, iterations=100, threshold=1e-8, scale=2)
+            pos = nx.spring_layout(G)
 
         plt.figure(figsize=(12, 8))
         nx.draw_networkx(
             G, pos, labels=nlabels, node_color=ncolors, 
             edge_color=ecolors, style="dashed", node_size=150, 
-            font_size=9, arrowsize=9, width=.8, alpha=.8
+            font_size=7, arrowsize=9, width=.8, alpha=.8
         )
         plt.legend(
             handles=node_legend + edge_legend, loc='lower center', 
@@ -498,44 +502,23 @@ if __name__ == "__main__":
     from estimators.hlsdata import HLSData
 
     parser = ArgumentParser()
-    parser.add_argument("solution_dirs", nargs="+")
+    parser.add_argument("base_solution_dir", nargs=1, type=str)
     parser.add_argument("-b", "--benchmark", default=None)
     parser.add_argument("-d", "--directives", default=None)
     args = parser.parse_args()
 
-    base_solutions = {
-        Path(sol_dir).parent.name: sol_dir
-        for sol_dir in args.solution_dirs
-    }
-    hls_data_dict = build_base_graphs(base_solutions)
+    base_solution_dir = args.base_solution_dir[0]
+    if (benchmark := args.benchmark) is None:
+        benchmark = base_solution_dir
 
-    print("Graphs built successfully.")
+    base_solutions = {benchmark: base_solution_dir}
+    base_hls_data = build_base_graphs(base_solutions)[benchmark]
 
-    # for benchmark, hls_data in hls_data_dict.items():
-    #     print(f"{benchmark}:\n")
-    #     for i, node in enumerate(hls_data.nodes['instr']):
-    #         print(f"    Node {i}:")
-    #         for key, value in node.items():
-    #             print(f"      {key}: {value}")
+    base_data = to_pyg(base_hls_data)
+    plot_data(base_data, ["hrchy"], batched=False)
 
-    if args.benchmark and args.directives:
-        benchmark = args.benchmark
-        directives = args.directives
-        if benchmark not in base_solutions:
-            print(f"Benchmark '{benchmark}' not found in base solutions.")
-            sys.exit(1)
-
-        hls_data = build_opt_graph(
-            hls_data_dict[benchmark], 
-            directives_tcl=directives,
-            output_pyg=False
-        )
-
-        # for node in hls_data.nodes["region"]:
-        #     if node["is_loop"][0] == 1:
-        #         print(node)
-
-        data = to_pyg(hls_data)
+    if (directives := args.directives) is not None:
+        data = build_opt_graph(base_hls_data, directives)
         plot_data(data, ["hrchy"], batched=False)
 
     

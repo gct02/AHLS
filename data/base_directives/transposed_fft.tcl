@@ -14,7 +14,6 @@ set_directive_pipeline -off twiddles8
 set_directive_pipeline -off twiddles8/twiddles
 set_directive_pipeline -off loadx8
 set_directive_pipeline -off loady8
-set_directive_loop_flatten -off fft1D_512
 set_directive_loop_flatten -off fft1D_512/loop1
 set_directive_loop_flatten -off fft1D_512/loop2
 set_directive_loop_flatten -off fft1D_512/loop3
@@ -26,5 +25,4 @@ set_directive_loop_flatten -off fft1D_512/loop8
 set_directive_loop_flatten -off fft1D_512/loop9
 set_directive_loop_flatten -off fft1D_512/loop10
 set_directive_loop_flatten -off fft1D_512/loop11
-set_directive_loop_flatten -off twiddles8
 set_directive_loop_flatten -off twiddles8/twiddles

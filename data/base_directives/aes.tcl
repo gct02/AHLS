@@ -28,11 +28,8 @@ set_directive_loop_flatten -off AddRoundKey_InversMixColumn/AddRoundKey_InversMi
 set_directive_loop_flatten -off AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3
 set_directive_loop_flatten -off AddRoundKey_InversMixColumn
 set_directive_loop_flatten -off encrypt/encrypt_label1
-set_directive_loop_flatten -off encrypt
 set_directive_loop_flatten -off decrypt/decrypt_label4
-set_directive_loop_flatten -off decrypt
 set_directive_loop_flatten -off AddRoundKey/AddRoundKey_label0
-set_directive_loop_flatten -off AddRoundKey
 set_directive_loop_flatten -off MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0
 set_directive_loop_flatten -off MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1
 set_directive_loop_flatten -off MixColumn_AddRoundKey/MixColumn_AddRoundKey_label2
@@ -43,6 +40,5 @@ set_directive_loop_flatten -off KeySchedule/KeySchedule_label6
 set_directive_loop_flatten -off KeySchedule/KeySchedule_label7
 set_directive_loop_flatten -off KeySchedule/KeySchedule_label8
 set_directive_loop_flatten -off KeySchedule/KeySchedule_label9
-set_directive_loop_flatten -off KeySchedule
 set_directive_loop_flatten -off InversShiftRow_ByteSub
 set_directive_loop_flatten -off ByteSub_ShiftRow
