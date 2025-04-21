@@ -119,7 +119,6 @@ def to_pyg(
                 else:
                     attrs.append(attr)
 
-            print(attrs)
             features.append(torch.tensor(attrs, dtype=torch.float32))
 
         if features:

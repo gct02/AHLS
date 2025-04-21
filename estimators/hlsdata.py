@@ -320,6 +320,15 @@ class CDFG:
             for bi in region.blocks:
                 block_region_map[bi] = region.id
 
+        # Map blocks that are not in any region to the top-level region
+        top_level_region = self.nodes['region'][0].id
+        for block in self.nodes['block']:
+            if block.id not in block_region_map:
+                block_region_map[block.id] = top_level_region
+                for instr in block.instrs:
+                    self.nodes['region'][0].instrs.append(instr)
+                    self.edges[('region', 'hrchy', 'instr')].append((top_level_region, instr))
+
         for src, dst in self.edges[('block', 'control', 'block')]:
             src_region = block_region_map.get(src)
             dst_region = block_region_map.get(dst)
