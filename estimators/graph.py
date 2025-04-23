@@ -16,7 +16,7 @@ except ImportError:
     pass
 
 
-NODE_TYPES = ["instr", "port", "const", "region"]
+NODE_TYPES = ["instr", "port", "const", "block", "region"]
 
 EDGE_TYPES = [
     # Data flow edges
@@ -25,8 +25,8 @@ EDGE_TYPES = [
     ("port", "data", "instr"), 
 
     # Control flow edges
-    ("region", "control", "instr"), 
-    ("region", "control", "region"), 
+    ("block", "control", "instr"), 
+    ("block", "control", "block"), 
 
     # Call flow edges
     ("instr", "call", "instr"),
@@ -36,11 +36,13 @@ EDGE_TYPES = [
 
     # Hierarchical edges (representing CDFG structure)
     ("region", "hrchy", "region"), 
-    ("region", "hrchy", "instr"),
+    ("region", "hrchy", "block"),
+    ("block", "hrchy", "instr"),
 
     # Reversed hierarchical edges
     ("region", "hrchy_rev", "region"),
-    ("instr", "hrchy_rev", "region"),
+    ("block", "hrchy_rev", "region"),
+    ("instr", "hrchy_rev", "block")
 ] + [
     # Self-loops for each node type
     (nt, "to", nt) for nt in NODE_TYPES
@@ -54,10 +56,10 @@ NODE_FEATURE_DIMS = {
     "region": 11
 }
 
-DIRECTIVES = {
+DIRECTIVES = [
     "unroll", "pipeline", "loop_merge", 
     "loop_flatten", "array_partition"
-}
+]
 
 
 def build_base_graphs(
@@ -119,7 +121,6 @@ def to_pyg(
                 else:
                     attrs.append(attr)
 
-            print(attrs)
             features.append(torch.tensor(attrs, dtype=torch.float32))
 
         if features:
@@ -127,7 +128,7 @@ def to_pyg(
         else:
             data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
 
-        data[nt].node_name = [node.name for node in nodes]
+        data[nt].label = [node.name for node in nodes]
 
     for et in EDGE_TYPES:
         edges = hls_data.edges.get(et)
@@ -166,25 +167,6 @@ def get_node_by_name(hls_data, node_type, name):
         if node.name == name:
             return node
     return None
-
-
-def partition_array(hls_data, array, partition_type, factor, dim):
-    if partition_type == "complete":
-        partition_type = [1, 0, 0]
-    elif partition_type == "block":
-        partition_type = [0, 1, 0]
-    else:
-        partition_type = [0, 0, 1]
-
-    node = get_node_by_name(hls_data, "instr", array)
-    if node is None:
-        print(f"Warning: Array '{array}' not found in nodes.")
-        return
-
-    node.attrs["partition_type"] = partition_type
-    node.attrs["partition_factor"] = factor
-    node.attrs["partition_dim"] = dim
-    node.attrs["size"] = [factor] + node.attrs["size"][1:]
 
 
 def update_unrolled_loop_attrs(node, new_tc, new_lat):
@@ -335,12 +317,14 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
     def unroll_subloops(subregs):
         for subreg_id in subregs:
             subreg = hls_data.nodes["region"][subreg_id]
-            # Start unrolling the inner-most loops
+            max_tc = subreg.attrs["max_trip_count"][0]
+            if subreg.is_loop and max_tc > 1:
+                subreg.attrs["unroll"] = [1]
+                subreg.attrs["unroll_factor"] = [max_tc]
             unroll_subloops(subreg.sub_regions)
-            if subreg.is_loop:
-                unroll_loop(hls_data, subreg.name)
 
     directives = parse_tcl_directives_file(directives_tcl)
+    directives = [d for d in directives if d[0] in DIRECTIVES]
 
     # Sort by directive type (array_partition -> loop_flatten -> loop_merge -> pipeline -> unroll)
     directives.sort(key=lambda x: (
@@ -351,12 +335,9 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
         x[0] == "unroll"
     ))
 
-    for directive, args in directives:
-        if directive not in DIRECTIVES:
-            continue
-
-        if directive == "array_partition":
-            var = args.get("variable")
+    for directive_type, directive_args in directives:
+        if directive_type == "array_partition":
+            var = directive_args.get("variable")
             if var is None:
                 print("Warning: No variable specified for array partition.")
                 continue
@@ -368,11 +349,11 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 print(f"Warning: Variable '{var}' not found in nodes.")
                 continue
 
-            factor = int(args.get("factor", 0))
-            factor = [factor] if factor != 0 else node.attrs["size"]
+            factor = int(directive_args.get("factor", 0))
+            factor = [factor] if factor > 0 else node.attrs["size"]
             dim = [0] * 4
-            dim[int(args.get("dim", 0))] = 1
-            partition_type = args.get("type", "complete")
+            dim[int(directive_args.get("dim", 0))] = 1
+            partition_type = directive_args.get("type", "complete")
 
             if partition_type == "complete":
                 partition_type = [1, 0, 0]
@@ -385,34 +366,36 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
             node.attrs["partition_factor"] = factor
             node.attrs["partition_dim"] = dim
         else:
-            loc = args["location"].split("/")[-1]
+            loc = directive_args["location"]
+            if '/' in loc:
+                loc = loc.split("/")[-1]
             node = get_node_by_name(hls_data, "region", loc)
             if node is None:
-                print(f"Warning: Location '{loc}' not found in nodes.")
+                print(f"Warning: loop '{loc}' not found in nodes.")
                 continue
         
-            if directive == "unroll":
-                factor = int(args.get("factor", 0))
-                unroll_loop(hls_data, loc, factor)
-            elif directive == "pipeline":
-                if "off" in args:
+            if directive_type == "unroll":
+                factor = int(directive_args.get("factor", 0))
+                factor = [factor] if factor > 0 else node.attrs["max_trip_count"]
+                node.attrs['unroll'] = [1]
+                node.attrs["unroll_factor"] = factor
+            elif directive_type == "pipeline":
+                if "off" in directive_args:
                     node.attrs["pipeline_off"] = [1]
-                    continue
+                else:
+                    ii = max(1, int(directive_args.get("ii", 0)))
+                    node.attrs["ii"] = [ii]
+                    node.attrs["min_latency"] = [ii * node.attrs["min_trip_count"][0]]
+                    node.attrs["max_latency"] = [ii * node.attrs["max_trip_count"][0]]
+                    node.attrs["pipeline"] = [1]
 
-                ii = max(1, int(args.get("ii", 0)))
-                node.attrs["ii"] = [ii]
-                node.attrs["min_latency"] = [ii * node.attrs["min_trip_count"][0]]
-                node.attrs["max_latency"] = [ii * node.attrs["max_trip_count"][0]]
-                node.attrs["pipeline"] = [1]
-
-                # Pipeline in a loop induces a complete 
-                # unroll in all of its subloops
-                unroll_subloops(node.sub_regions)
-            elif directive == "loop_flatten" and "off" in args:
+                    # Pipeline in a loop induces a complete unroll in all of 
+                    # its (bounded) subloops
+                    unroll_subloops(node.sub_regions)
+            elif directive_type == "loop_flatten" and "off" in directive_args:
                 node.attrs["loop_flatten_off"] = [1]
-                continue
             else:
-                node.attrs[directive] = [1]
+                node.attrs[directive_type] = [1]
 
 
 def fit_one_hot_encoders(hls_data_dict: Dict[str, HLSData]):
@@ -474,17 +457,19 @@ def plot_data(
         "instr": "#419ada",
         "port": "#1ecf89",
         "const": "#aa6df0",
-        "region": "#e07765"
+        "block": "#f4a93f",
+        "region": "#e05858",
     }
     edge_colors = {
         ("const", "data", "instr"): "#5fdde0",
         ("instr", "data", "instr"): "#00bcd4",
         ("port", "data", "instr"): "#00a1b3",
-        ("region", "control", "instr"): "#c7a141",
-        ("region", "control", "region"): "#c7a141",
+        ("block", "control", "instr"): "#ddb753",
+        ("block", "control", "block"): "#ddb753",
         ("instr", "mem", "instr"): "#e73939",
         ("region", "hrchy", "region"): "#aab2b9",
-        ("region", "hrchy", "instr"): "#aab2b9",
+        ("region", "hrchy", "block"): "#aab2b9",
+        ("block", "hrchy", "instr"): "#aab2b9",
         ("instr", "call", "instr"): "#ba68c8"
     }
     
@@ -515,7 +500,7 @@ def plot_data(
             else:
                 data_trans[nt].x = x
 
-            data_trans[nt].node_name = data[nt].node_name
+            data_trans[nt].label = data[nt].label
 
         for et, edge_index in data.edge_index_dict.items():
             if et not in etypes:
@@ -524,7 +509,7 @@ def plot_data(
                 data_trans[et].edge_index = edge_index
 
         # data_trans = T.RemoveIsolatedNodes()(data_trans)
-        G = to_networkx(data_trans, remove_self_loops=True, node_attrs=['x', 'node_name'])
+        G = to_networkx(data_trans, remove_self_loops=True, node_attrs=['x', 'label'])
         
         ncolors, nlabels = [], {}
         for node, attrs in G.nodes(data=True):
@@ -532,7 +517,7 @@ def plot_data(
             if nt is None or nt not in ntypes:
                 continue
             ncolors.append(node_colors[nt])
-            nlabels[node] = attrs["node_name"]
+            nlabels[node] = attrs["label"]
 
         ecolors = []
         for src, dst, attrs in G.edges(data=True):
@@ -552,7 +537,7 @@ def plot_data(
         if plot_type in ["full", "data", "hrchy"] and not batched:
             pos = nx.kamada_kawai_layout(G, scale=2)
         else:
-            pos = nx.spring_layout(G)
+            pos = nx.spring_layout(G, scale=2)
 
         plt.figure(figsize=(12, 8))
         nx.draw_networkx(

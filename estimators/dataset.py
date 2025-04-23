@@ -193,6 +193,9 @@ class HLSDataset(Dataset):
                 data.y = torch.tensor([target])
                 data.y_base = torch.tensor([base_target])
 
+                data.solution_index = int(sol.split("solution")[1])
+                data.benchmark = bench
+
                 if self.feature_bounds is not None:
                     data = self._scale_features(data)
 

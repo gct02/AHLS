@@ -133,7 +133,6 @@ class RegionNode:
         self.attrs = self._extract_attrs(element)
         self.sub_regions = self._extract_items(element, 'sub_regions', -1)
         self.blocks = self._extract_items(element, 'basic_blocks')
-        self.instrs = []  # Placeholder for instructions
 
     def _extract_attrs(self, element):
         self.is_loop = True if findint(element, 'mType', 0) == 1 else False
@@ -146,16 +145,12 @@ class RegionNode:
         if (ii := findint(element, 'mII', 0)) <= 0:
             ii = max(1, max_lat / float(max_tc))
 
-        if self.is_loop:
-            depth = max(1, findint(element, 'mDepth', 0))
-        else:
-            depth = max(0, findint(element, 'mDepth', 0))
-
         return {
-            'depth': depth, 'min_latency': min_lat, 'max_latency': max_lat, 
-            'min_trip_count': min_tc, 'max_trip_count': max_tc, 'ii': ii,
+            'min_latency': min_lat, 'max_latency': max_lat, 'ii': ii,
+            'min_trip_count': min_tc, 'max_trip_count': max_tc,
             'loop_merge': 0, 'loop_flatten': 0, 'pipeline': 0, 
-            'pipeline_off': 0, 'loop_flatten_off': 0
+            'unroll': 0, 'unroll_factor': 0, 'pipeline_off': 0, 
+            'loop_flatten_off': 0
         }
     
     def _extract_items(self, element, tag, offset=0):
@@ -202,8 +197,6 @@ class CDFG:
         self._parse_nodes(cdfg, root)
         self._parse_edges(cdfg)
         self._build_hierarchy_edges()
-
-        self._prune_blocks()
 
     def _parse_nodes(self, cdfg, root):
         self._process_constants(cdfg.find('consts'))
@@ -306,41 +299,17 @@ class CDFG:
         return {'1': 'data', '2': 'control', '4': 'mem'}.get(etype, '')
 
     def _build_hierarchy_edges(self):
-        for i, region in enumerate(self.nodes['region']):
+        for region in self.nodes['region']:
             for sri in region.sub_regions:
                 self.edges[('region', 'hrchy', 'region')].append((region.id, sri))
             for bi in region.blocks:
+                self.edges[('region', 'hrchy', 'block')].append((region.id, bi))
                 for ii in self.nodes['block'][bi - self._offsets['block']].instrs:
-                    self.nodes['region'][i].instrs.append(ii)
-                    self.edges[('region', 'hrchy', 'instr')].append((region.id, ii))
-
-    def _prune_blocks(self):
-        block_region_map = {}
-        for region in self.nodes['region']:
-            for bi in region.blocks:
-                block_region_map[bi] = region.id
-
-        for src, dst in self.edges[('block', 'control', 'block')]:
-            src_region = block_region_map.get(src)
-            dst_region = block_region_map.get(dst)
-            if src_region is not None and dst_region is not None:
-                self.edges[('region', 'control', 'region')].append((src_region, dst_region))
-        
-        for src, dst in self.edges[('block', 'control', 'instr')]:
-            src_region = block_region_map.get(src)
-            if src_region is not None:
-                self.edges[('region', 'control', 'instr')].append((src_region, dst))
-
-        self.edges = {
-            et: edges for et, edges in self.edges.items()
-            if et[0] != 'block' and et[2] != 'block'
-        }
-        del self.nodes['block']
+                    self.edges[('block', 'hrchy', 'instr')].append((bi, ii))
 
     def _get_estimated_resources(self, root):
         res_items = root.findall('*/res/*/item')
         rx = re.compile(' \(.*\)')
-
         estimated_resources = {}
         
         for item in res_items:
@@ -372,9 +341,6 @@ class HLSData:
 
         self._offsets = defaultdict(int)
         self._cdfgs = {}
-
-        if solution_dir == 'dummy':
-            return
 
         rpt = extract_impl_report(solution_dir, filtered=filtered)
         self._get_metrics(rpt)

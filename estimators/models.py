@@ -2,7 +2,6 @@ from typing import Union, Dict, Optional
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn import HeteroDictLinear, JumpingKnowledge, LayerNorm
 from torch_geometric.typing import Metadata, NodeType, EdgeType
@@ -21,8 +20,6 @@ class HGT(nn.Module):
         in_channels (int or Dict[str, int]): Number of input channels
             for each node type.
         out_channels (int): Number of output channels.
-        proj_dim (int): Dimension of the projection layer.
-            (default: :obj:`256`)
         hid_dims (int or List[int]): Hidden dimensions for each conv layer.
             (default: :obj:`128`)
         heads (int or List[int]): Number of attention heads for each conv layer.
@@ -30,6 +27,10 @@ class HGT(nn.Module):
         num_layers (int, optional): Number of convolutional layers.
             If :obj:`None`, the number of layers is set to the length of
             :obj:`hid_dims` or the number of node types.
+            (default: :obj:`None`)
+        num_layers_jk (int, optional): Number of layers to use for
+            Jumping Knowledge. If :obj:`None`, the number of layers is set
+            to the number of layers in the model.
             (default: :obj:`None`)
         dropout (float): Dropout rate for fully connected layers.
             (default: :obj:`0.0`)

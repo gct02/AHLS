@@ -42,7 +42,7 @@ def main(args: Dict[str, str]):
             json.dump(base_metrics, f, indent=2)
 
         for solution in benchmark.iterdir():
-            if not solution.is_dir() or solution.name == "solution0":
+            if not solution.is_dir():
                 continue
 
             hls_data_json = solution / f"{solution.stem}_data.json"

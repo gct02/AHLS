@@ -220,8 +220,8 @@ def main(args: Dict[str, str]):
         metadata, in_channels, out_channels,
         hid_dim=512,
         heads=8,
-        num_layers=6,
-        dropout=0.1
+        num_layers=5,
+        dropout=0.2
     ).to(DEVICE)
 
     if loss == 'huber':
@@ -234,7 +234,7 @@ def main(args: Dict[str, str]):
         raise ValueError(f"Unknown loss function: {loss}")
 
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=1e-4, betas=(0.9, 0.9999), weight_decay=1e-4
+        model.parameters(), lr=1e-4, betas=(0.9, 0.999), weight_decay=5e-4
     )
 
     total_steps = epochs * len(train_loader)
@@ -497,8 +497,8 @@ def parse_arguments():
                         help='The number of training epochs (default: 300).')
     parser.add_argument('-r', '--seed', default=42, 
                         help='Random seed for repeatability (default: 42).')
-    parser.add_argument('-b', '--batch', default=32, 
-                        help='The size of the training batch (default: 32).')
+    parser.add_argument('-b', '--batch', default=16, 
+                        help='The size of the training batch (default: 16).')
     parser.add_argument('-l', '--loss', default='mse', choices=['mse', 'l1', 'huber'],
                         help='The loss function to use for training (default: mse).')
     parser.add_argument('-tb', '--testbench', required=True, 
