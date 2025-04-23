@@ -8,10 +8,9 @@ from torch import Tensor
 from torch.nn import Parameter
 from torch_geometric.nn import MessagePassing
 from torch_geometric.nn.dense import HeteroDictLinear, HeteroLinear
-from torch_geometric.nn.inits import ones
+from torch_geometric.nn.inits import ones, uniform
 from torch_geometric.nn.parameter_dict import ParameterDict
-from torch_geometric.nn.pool import global_max_pool
-from torch_geometric.nn.pool.select import SelectTopK
+from torch_geometric.nn.pool import global_add_pool
 from torch_geometric.utils import softmax
 from torch_geometric.utils.hetero import construct_bipartite_edge_index
 from torch_geometric.typing import Metadata, NodeType, EdgeType
@@ -241,17 +240,13 @@ class HGTConv(MessagePassing):
 
         return q, k, v, src_offset, dst_offset
 
-    def __repr__(self) -> str:
-        return (f'{self.__class__.__name__}(-1, {self.out_channels}, '
-                f'heads={self.heads})')
 
-
-class CDFGPooling(nn.Module):
-    r"""A type-wise pooling layer for heterogeneous graphs. It uses the
-    Heterogeneous Graph Transformer (HGT) operator to compute attention
-    scores for each node type and then selects the top-k nodes based on
-    these scores. The selected nodes are averaged if the number of nodes
-    is not fixed, or concatenated otherwise.
+class HetSAGPooling(nn.Module):
+    r"""A type-wise attention-based pooling mechanism for heterogeneous graphs.
+    It uses the Heterogeneous Graph Transformer (HGT) operator to compute 
+    attention scores for each node type and then selects the top-k highest
+    scoring nodes for each type. The selected nodes are then pooled together
+    to form a single graph-level representation.
 
     Args:
         in_channels (Union[Dict[str, int], int],): Number of input channels
@@ -284,19 +279,15 @@ class CDFGPooling(nn.Module):
         self.in_channels = in_channels
         self.ratio = ratio
 
-        self.conv = HGTConv(in_channels, 1, metadata, **kwargs)
-        self.select = nn.ModuleDict({
-            nt: SelectTopK(1, ratio[nt])
-            for nt in self.node_types
-        })
+        self.gnn = HGTConv(in_channels, 1, metadata, **kwargs)
+        self.weight = torch.nn.Parameter(torch.empty(1, in_channels))
 
         self.reset_parameters()
 
     def reset_parameters(self):
         """Reinitializes model parameters."""
-        self.conv.reset_parameters()
-        for nt in self.node_types:
-            self.select[nt].reset_parameters()
+        self.gnn.reset_parameters()
+        uniform(self.in_channels, self.weight)
 
     def forward(
         self,
@@ -316,26 +307,25 @@ class CDFGPooling(nn.Module):
 
         :rtype: :obj:`torch.Tensor` - The pooled nodes.
         """
-        attn_dict = self.conv(x_dict, edge_index_dict)
+        attn_dict = self.gnn(x_dict, edge_index_dict)
 
-        # Assumption: all graphs have at least one region node
-        batch_size = max(batch_dict["region"]).max().item() + 1
-
+        batch_size = self._get_batch_size(batch_dict)
         outs = []
         for nt in self.node_types:
-            sel = self.select[nt](attn_dict[nt], batch_dict[nt])
-            perm = sel.node_index
-            score = sel.weight
-
-            x = x_dict[nt][perm] * score.view(-1, 1)
-            if isinstance(self.ratio[nt], float):
-                # In this case, the number of selected nodes is not fixed,
-                # se we take the element-wise maximum across the nodes
-                batch = batch_dict[nt][perm]
-                x = global_max_pool(x, batch)
-
+            batch = batch_dict[nt]
+            score = (attn_dict[nt] * self.weight).sum(dim=-1)
+            score = softmax(score, batch_dict[nt])
+            x = x_dict[nt] * score.view(-1, 1)
+            x = global_add_pool(x, batch)
             x = x.view(batch_size, -1, self.in_channels[nt])
             outs.append(x)
 
         outs = torch.cat(outs, dim=1)
         return outs.view(batch_size, -1)
+    
+    def _get_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
+        """Returns the batch size of the input data."""
+        batch_size = 0
+        for nt in self.node_types:
+            batch_size = max(batch_size, batch_dict[nt].max().item())
+        return batch_size + 1

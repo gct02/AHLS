@@ -52,8 +52,9 @@ EDGE_TYPES = [
 NODE_FEATURE_DIMS = {
     "instr": 76, 
     "port": 14, 
-    "const": 4, 
-    "region": 11
+    "const": 4,
+    "block": 8,
+    "region": 12
 }
 
 DIRECTIVES = [
@@ -169,164 +170,21 @@ def get_node_by_name(hls_data, node_type, name):
     return None
 
 
-def update_unrolled_loop_attrs(node, new_tc, new_lat):
-    node.attrs["max_trip_count"] = [new_tc]
-    node.attrs["min_trip_count"] = [new_tc]
-    node.attrs["min_latency"] = [new_lat]
-    node.attrs["max_latency"] = [new_lat]
-
-
-def create_loop_replica(
-    hls_data, loop_node, 
-    new_tc=None, new_lat=None, 
-    replica_id=None,
-    replica_name=None
-):
-    if replica_id is None:
-        replica_id = len(hls_data.nodes["region"])
-    if new_tc is None:
-        new_tc = loop_node.attrs["max_trip_count"][0]
-    if new_lat is None:
-        new_lat = loop_node.attrs["max_latency"][0]
-
-    replica = deepcopy(loop_node)
-    if new_tc is not None and new_lat is not None:
-        update_unrolled_loop_attrs(replica, new_tc, new_lat)
-    if replica_name is None:
-        replica_name = f"{loop_node.name}.{replica_id}"
-    replica.name = replica_name
-    replica.id = replica_id
-    replica.instrs = []
-    replica.sub_regions = []
-    hls_data.nodes["region"].append(replica)
-
-    instr_id_map = {}
-    region_id_map = {}
-
-    n_instrs = len(hls_data.nodes["instr"])
-    for i, instr_id in enumerate(loop_node.instrs):
-        instr_node = hls_data.nodes["instr"][instr_id]
-        new_instr_node = deepcopy(instr_node)
-        new_instr_node.name = f"{instr_node.name}.{replica_id}"
-        new_instr_id = n_instrs + i
-        new_instr_node.id = new_instr_id
-        hls_data.nodes["instr"].append(new_instr_node)
-        replica.instrs.append(new_instr_id)
-        instr_id_map[instr_id] = new_instr_id
-        hls_data.edges["region", "hrchy", "instr"].append((replica_id, new_instr_id))
-
-    for i, region_id in enumerate(loop_node.sub_regions):
-        region_node = hls_data.nodes["region"][region_id]
-        new_region_id = replica_id + i
-        new_region_name = f"{region_node.name}.{replica_id}"
-        create_loop_replica(
-            hls_data, region_node, 
-            replica_id=new_region_id, 
-            replica_name=new_region_name
-        )
-        region_id_map[region_id] = new_region_id
-        replica.sub_regions.append(new_region_id)
-        hls_data.edges["region", "hrchy", "region"].append((replica_id, new_region_id))
-    
-    for instr_id, new_instr_id in instr_id_map.items():
-        for et, edge_index in hls_data.edges.items():
-            if et[1] == "hrchy":
-                continue
-            if et[0] == "instr":
-                for src, dst in edge_index:
-                    if src == instr_id:
-                        if et[2] == "instr" and dst in loop_node.instrs:
-                            dst = instr_id_map[dst]
-                        elif et[2] == "region" and dst in loop_node.sub_regions:
-                            dst = region_id_map[dst]
-                        hls_data.edges[et].append((new_instr_id, dst))
-            if et[2] == "instr":
-                for src, dst in edge_index:
-                    if dst == instr_id:
-                        if et[0] == "instr" and src in loop_node.instrs:
-                            src = instr_id_map[src]
-                        elif et[0] == "region" and src in loop_node.sub_regions:
-                            src = region_id_map[src]
-                        hls_data.edges[et].append((src, new_instr_id))
-
-    for et, edge_index in hls_data.edges.items():
-        if et[1] == "hrchy":
-                continue
-        if et[0] == "region":
-            for src, dst in edge_index:
-                if src == loop_node.id:
-                    if dst not in loop_node.sub_regions and dst not in loop_node.instrs:
-                        hls_data.edges[et].append((replica_id, dst))
-        if et[2] == "region":
-            for src, dst in edge_index:
-                if dst == loop_node.id:
-                    if src not in loop_node.sub_regions and src not in loop_node.instrs:
-                        hls_data.edges[et].append((src, replica_id))
-
-
-def unroll_loop(hls_data, loop_label, factor=0):
-    loop_node = get_node_by_name(hls_data, "region", loop_label)
-    if loop_node is None:
-        print(f"Warning: Loop '{loop_label}' not found in nodes.")
-        return
-    if not loop_node.is_loop:
-        print(f"Warning: Node '{loop_label}' is not a loop.")
-        return
-
-    tc = loop_node.attrs["max_trip_count"][0]
-    if factor <= 0:
-        if tc <= 1:
-            print("Warning: Trying to completely unroll loop "
-                  f"{loop_node.name} with unknown trip count.")
-            return
-        factor = tc
-    elif factor > tc or factor <= 1:
-        print("Warning: Invalid unroll factor for loop "
-              f"{loop_node.name}: {factor}.")
-        return
-    
-    ii = loop_node.attrs["ii"][0]
-    new_tc = max(1, tc // factor)
-    new_lat = ii * new_tc
-
-    rem_loops = tc % factor
-    rem_tc = tc - new_tc * factor
-    rem_lat = ii * rem_tc
-
-    update_unrolled_loop_attrs(loop_node, new_tc, new_lat)
-    loop_node.name = f"{loop_label}.{loop_node.id}"
-
-    outer_regions = []
-    for src, dst in hls_data.edges["region", "hrchy", "region"]:
-        if dst == loop_node.id:
-            outer_regions.append(src)
-
-    n_replicas = factor + rem_loops - 1
-    for i in range(n_replicas):
-        tc = new_tc if i < factor else rem_tc
-        lat = new_lat if i < factor else rem_lat
-        replica_id = len(hls_data.nodes["region"])
-        replica_name = f"{loop_label}.{replica_id}"
-        create_loop_replica(hls_data, loop_node, tc, lat, 
-                            replica_id, replica_name)
-        for region_id in outer_regions:
-            hls_data.edges["region", "hrchy", "region"].append((region_id, replica_id))
-
-
 def include_directives(hls_data: HLSData, directives_tcl: str):
     def unroll_subloops(subregs):
         for subreg_id in subregs:
             subreg = hls_data.nodes["region"][subreg_id]
-            max_tc = subreg.attrs["max_trip_count"][0]
+            max_tc = subreg.attrs["max_trip_count"]
             if subreg.is_loop and max_tc > 1:
-                subreg.attrs["unroll"] = [1]
-                subreg.attrs["unroll_factor"] = [max_tc]
+                subreg.attrs["unroll"] = 1
+                subreg.attrs["unroll_factor"] = max_tc
             unroll_subloops(subreg.sub_regions)
 
     directives = parse_tcl_directives_file(directives_tcl)
     directives = [d for d in directives if d[0] in DIRECTIVES]
 
-    # Sort by directive type (array_partition -> loop_flatten -> loop_merge -> pipeline -> unroll)
+    # Sort by directive type 
+    # (array_partition -> loop_flatten -> loop_merge -> pipeline -> unroll)
     directives.sort(key=lambda x: (
         x[0] == "array_partition",
         x[0] == "loop_flatten",
@@ -350,7 +208,7 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 continue
 
             factor = int(directive_args.get("factor", 0))
-            factor = [factor] if factor > 0 else node.attrs["size"]
+            factor = factor if factor > 0 else node.attrs["size"]
             dim = [0] * 4
             dim[int(directive_args.get("dim", 0))] = 1
             partition_type = directive_args.get("type", "complete")
@@ -376,26 +234,26 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
         
             if directive_type == "unroll":
                 factor = int(directive_args.get("factor", 0))
-                factor = [factor] if factor > 0 else node.attrs["max_trip_count"]
-                node.attrs['unroll'] = [1]
+                factor = factor if factor > 0 else node.attrs["max_trip_count"]
+                node.attrs['unroll'] = 1
                 node.attrs["unroll_factor"] = factor
             elif directive_type == "pipeline":
                 if "off" in directive_args:
-                    node.attrs["pipeline_off"] = [1]
+                    node.attrs["pipeline_off"] = 1
                 else:
-                    ii = max(1, int(directive_args.get("ii", 0)))
-                    node.attrs["ii"] = [ii]
-                    node.attrs["min_latency"] = [ii * node.attrs["min_trip_count"][0]]
-                    node.attrs["max_latency"] = [ii * node.attrs["max_trip_count"][0]]
-                    node.attrs["pipeline"] = [1]
+                    ii = max(1, int(directive_args.get("ii", 1)))
+                    node.attrs["ii"] = ii
+                    node.attrs["min_latency"] = ii * node.attrs["min_trip_count"]
+                    node.attrs["max_latency"] = ii * node.attrs["max_trip_count"]
+                    node.attrs["pipeline"] = 1
 
                     # Pipeline in a loop induces a complete unroll in all of 
                     # its (bounded) subloops
                     unroll_subloops(node.sub_regions)
             elif directive_type == "loop_flatten" and "off" in directive_args:
-                node.attrs["loop_flatten_off"] = [1]
+                node.attrs["loop_flatten_off"] = 1
             else:
-                node.attrs[directive_type] = [1]
+                node.attrs[directive_type] = 1
 
 
 def fit_one_hot_encoders(hls_data_dict: Dict[str, HLSData]):
@@ -428,8 +286,6 @@ def one_hot_encode(hls_data: HLSData, encoders: Dict[str, OneHotEncoder]):
                 if key in encoders:
                     encoded = encoders[key].transform([[value]]).toarray()
                     node.attrs[key] = encoded[0].flatten().tolist()
-                elif not isinstance(value, list):
-                    node.attrs[key] = [value]
 
 
 def save_encoders(encoders: Dict[str, OneHotEncoder], path: str):

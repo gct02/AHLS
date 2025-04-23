@@ -68,8 +68,7 @@ class PortNode(BaseNode):
 
 class InstructionNode(BaseNode):
     def __init__(
-        self, 
-        element: ET.Element, 
+        self, element: ET.Element, 
         ground_truth_resources: Optional[ResourceMapper] = None,
         estimated_resources: Optional[ResourceMapper] = None
     ):
@@ -115,8 +114,23 @@ class ConstantNode(BaseNode):
 
 
 class BlockNode(BaseNode):
-    def __init__(self, element: ET.Element):
+    def __init__(
+        self, element: ET.Element, 
+        ground_truth_resources: Optional[ResourceMapper] = None,
+        estimated_resources: Optional[ResourceMapper] = None
+    ):
         super().__init__(element)
+
+        if ground_truth_resources is not None:
+            resources = ground_truth_resources.get(self.rtl_name, {})
+            for res in RESOURCES_CONSIDERED:
+                self.attrs["ground_truth_" + res] = resources.get(res, 0)
+
+        if estimated_resources is not None:
+            resources = estimated_resources.get(self.rtl_name, {})
+            for res in RESOURCES_CONSIDERED:
+                self.attrs["estimated_" + res] = resources.get(res, 0)
+
         self.instrs = self._extract_instructions(element)
 
     def _extract_instructions(self, element):
@@ -124,6 +138,7 @@ class BlockNode(BaseNode):
             int(instr.text) 
             for instr in element.find('node_objs').findall('item')
         ]
+
 
 
 class RegionNode:
@@ -173,8 +188,7 @@ class RegionNode:
 
 class CDFG:
     def __init__(
-        self, 
-        root: ET.Element, 
+        self, root: ET.Element, 
         offsets: Optional[Dict[str, int]] = None,
         ground_truth_resources: Optional[ResourceMapper] = None
     ):
@@ -329,8 +343,7 @@ class CDFG:
 
 class HLSData:
     def __init__(
-        self, 
-        solution_dir: str, 
+        self, solution_dir: str, 
         filtered: bool = False, 
         name: Optional[str] = None
     ):
