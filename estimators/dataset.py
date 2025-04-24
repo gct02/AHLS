@@ -191,7 +191,7 @@ class HLSDataset(Dataset):
                 data = torch.load(graph_path)
 
                 data.y = torch.tensor([target])
-                data.y_base = torch.tensor([base_target])
+                data.y_base = torch.tensor([base_target]).log1p().unsqueeze(0)
 
                 data.solution_index = int(sol.split("solution")[1])
                 data.benchmark = bench

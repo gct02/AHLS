@@ -2,7 +2,6 @@ from typing import Union, Dict
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn import HeteroDictLinear, JumpingKnowledge, LayerNorm
 from torch_geometric.typing import Metadata, NodeType, EdgeType
@@ -39,7 +38,7 @@ class HGT(nn.Module):
         out_channels: int,
         hid_dim: int = 256,
         heads: int = 4,
-        num_layers: int = 6,
+        num_layers: int = 5,
         dropout: float = 0.0
     ):
         super().__init__()
@@ -76,24 +75,15 @@ class HGT(nn.Module):
         jk_out_dim = hid_dim * num_layers
 
         # Output projection layer
-        proj_out_dim = hid_dim // 2
-        self.proj_out = nn.ModuleList([
-            HeteroDictLinear(
-                jk_out_dim, hid_dim,
-                types=self.node_types,
-                weight_initializer='kaiming_uniform',
-                bias_initializer='zeros'
-            ),
-            HeteroDictLinear(
-                hid_dim, proj_out_dim,
-                types=self.node_types,
-                weight_initializer='kaiming_uniform',
-                bias_initializer='zeros'
-            )
-        ])
+        self.proj_out = HeteroDictLinear(
+            jk_out_dim, hid_dim,
+            types=self.node_types,
+            weight_initializer='kaiming_uniform',
+            bias_initializer='zeros'
+        )
 
         # Pooling layer
-        self.pool = HetSAGPooling(proj_out_dim, 0.25, metadata)
+        self.pool = HetSAGPooling(hid_dim, metadata)
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
@@ -103,7 +93,7 @@ class HGT(nn.Module):
         )
 
         # Graph-level MLP
-        emb_dim = len(self.node_types) * proj_out_dim + 16
+        emb_dim = len(self.node_types) * hid_dim + 16
         self.graph_mlp = nn.Sequential(
             nn.Linear(emb_dim, 512), nn.GELU(), nn.Dropout(dropout),
             nn.Linear(512, 256), nn.GELU(), nn.Dropout(dropout),
@@ -122,8 +112,7 @@ class HGT(nn.Module):
         for nt in self.node_types:
             self.norm[nt].reset_parameters()
             self.jk[nt].reset_parameters()
-        for proj in self.proj_out:
-            proj.reset_parameters()
+        self.proj_out.reset_parameters()
         self.pool.reset_parameters()
         for m in self.y_base_mlp.modules():
             if isinstance(m, nn.Linear):
@@ -158,36 +147,27 @@ class HGT(nn.Module):
         """
         # Input projection layer
         x_dict = self.proj_in(x_dict)
-        x_dict = {
-            nt: F.dropout(F.gelu(x), p=self.dropout, training=self.training)
-            for nt, x in x_dict.items()
-        }
 
         # Convolutional layers
         xs_dict = {nt: [] for nt in self.node_types}
         for i in range(self.num_layers):
             x_dict = {nt: self.norm[nt](x) for nt, x in x_dict.items()}
             x_dict = self.conv[i](x_dict, edge_index_dict)
-            for nt, x in x_dict.items():
-                xs_dict[nt].append(x)
+            for nt, out in x_dict.items():
+                xs_dict[nt].append(out)
 
         # Jumping knowledge
         x_dict = {nt: self.jk[nt](xs_dict[nt]) for nt in self.node_types}
 
         # Output projection layers
-        for proj in self.proj_out:
-            x_dict = proj(x_dict, edge_index_dict)
-            x_dict = {
-                nt: F.dropout(F.gelu(x), p=self.dropout, training=self.training) 
-                for nt, x in x_dict.items()
-            }
+        x_dict = self.proj_out(x_dict)
 
         # Pooling layer
-        x = self.pool(x_dict, edge_index_dict, batch_dict)
-        x = torch.cat([x, self.y_base_mlp(y_base.unsqueeze(1))], dim=1)
+        out = self.pool(x_dict, edge_index_dict, batch_dict)
+        out = torch.cat([out, self.y_base_mlp(y_base)], dim=1)
 
         # Graph-level MLP
-        out = self.graph_mlp(x).squeeze(1)
+        out = self.graph_mlp(out).squeeze(1)
         return out
     
         

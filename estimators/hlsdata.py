@@ -29,14 +29,16 @@ class BaseNode:
         obj = element.find('Obj') if value is None else value.find('Obj')
         return findint(obj, 'id'), obj.findtext('name'), obj.findtext('rtlName')
     
-    def __str__(self):
-        data_dict = {
+    def as_dict(self):
+        return {
             'id': self.id, 
             'name': self.name, 
             'rtl_name': self.rtl_name, 
             'attrs': self.attrs
         }
-        return json.dumps(data_dict, indent=2)
+    
+    def __str__(self):
+        return json.dumps(self.as_dict(), indent=2)
     
     def __repr__(self):
         return self.__str__()
@@ -114,23 +116,8 @@ class ConstantNode(BaseNode):
 
 
 class BlockNode(BaseNode):
-    def __init__(
-        self, element: ET.Element, 
-        ground_truth_resources: Optional[ResourceMapper] = None,
-        estimated_resources: Optional[ResourceMapper] = None
-    ):
+    def __init__(self, element: ET.Element):
         super().__init__(element)
-
-        if ground_truth_resources is not None:
-            resources = ground_truth_resources.get(self.rtl_name, {})
-            for res in RESOURCES_CONSIDERED:
-                self.attrs["ground_truth_" + res] = resources.get(res, 0)
-
-        if estimated_resources is not None:
-            resources = estimated_resources.get(self.rtl_name, {})
-            for res in RESOURCES_CONSIDERED:
-                self.attrs["estimated_" + res] = resources.get(res, 0)
-
         self.instrs = self._extract_instructions(element)
 
     def _extract_instructions(self, element):
@@ -140,7 +127,6 @@ class BlockNode(BaseNode):
         ]
 
 
-
 class RegionNode:
     def __init__(self, element: ET.Element):
         self.id = findint(element, 'mId') - 1
@@ -148,6 +134,7 @@ class RegionNode:
         self.attrs = self._extract_attrs(element)
         self.sub_regions = self._extract_items(element, 'sub_regions', -1)
         self.blocks = self._extract_items(element, 'basic_blocks')
+        self.instrs = [] # Placeholder for instructions
 
     def _extract_attrs(self, element):
         self.is_loop = True if findint(element, 'mType', 0) == 1 else False
@@ -158,7 +145,7 @@ class RegionNode:
         max_tc = max(min_tc, findint(element, 'mMaxTripCount', 0))
 
         if (ii := findint(element, 'mII', 0)) <= 0:
-            ii = max(1, max_lat / float(max_tc))
+            ii = max(1, max_lat / max_tc)
 
         return {
             'min_latency': min_lat, 'max_latency': max_lat, 'ii': ii,
@@ -174,13 +161,17 @@ class RegionNode:
             for item in element.find(tag).findall('item')
         ]
     
-    def __str__(self):
-        data_dict = {
+    def as_dict(self):
+        return {
             'id': self.id, 
             'name': self.name, 
-            'attrs': self.attrs
+            'attrs': self.attrs,
+            'sub_regions': self.sub_regions,
+            'instrs': self.instrs
         }
-        return json.dumps(data_dict, indent=2)
+    
+    def __str__(self):
+        return json.dumps(self.as_dict(), indent=2)
     
     def __repr__(self):
         return self.__str__()
@@ -211,6 +202,8 @@ class CDFG:
         self._parse_nodes(cdfg, root)
         self._parse_edges(cdfg)
         self._build_hierarchy_edges()
+
+        self._remove_blocks()
 
     def _parse_nodes(self, cdfg, root):
         self._process_constants(cdfg.find('consts'))
@@ -313,13 +306,45 @@ class CDFG:
         return {'1': 'data', '2': 'control', '4': 'mem'}.get(etype, '')
 
     def _build_hierarchy_edges(self):
-        for region in self.nodes['region']:
+        for i, region in enumerate(self.nodes['region']):
             for sri in region.sub_regions:
                 self.edges[('region', 'hrchy', 'region')].append((region.id, sri))
             for bi in region.blocks:
-                self.edges[('region', 'hrchy', 'block')].append((region.id, bi))
                 for ii in self.nodes['block'][bi - self._offsets['block']].instrs:
-                    self.edges[('block', 'hrchy', 'instr')].append((bi, ii))
+                    self.nodes['region'][i].instrs.append(ii)
+                    self.edges[('region', 'hrchy', 'instr')].append((region.id, ii))
+
+    def _remove_blocks(self):
+        block_region_map = {}
+        for region in self.nodes['region']:
+            for bi in region.blocks:
+                block_region_map[bi] = region.id
+
+        # Map blocks that are not in any region to the top-level region
+        top_level_region = self.nodes['region'][0].id
+        for block in self.nodes['block']:
+            if block.id not in block_region_map:
+                block_region_map[block.id] = top_level_region
+                for instr in block.instrs:
+                    self.nodes['region'][0].instrs.append(instr)
+                    self.edges[('region', 'hrchy', 'instr')].append((top_level_region, instr))
+
+        for src, dst in self.edges[('block', 'control', 'block')]:
+            src_region = block_region_map.get(src)
+            dst_region = block_region_map.get(dst)
+            if src_region is not None and dst_region is not None:
+                self.edges[('region', 'control', 'region')].append((src_region, dst_region))
+        
+        for src, dst in self.edges[('block', 'control', 'instr')]:
+            src_region = block_region_map.get(src)
+            if src_region is not None:
+                self.edges[('region', 'control', 'instr')].append((src_region, dst))
+
+        self.edges = {
+            et: edges for et, edges in self.edges.items()
+            if et[0] != 'block' and et[2] != 'block'
+        }
+        del self.nodes['block']
 
     def _get_estimated_resources(self, root):
         res_items = root.findall('*/res/*/item')
@@ -339,7 +364,6 @@ class CDFG:
             estimated_resources[rtl_name] = res_map
         
         return estimated_resources
-
 
 class HLSData:
     def __init__(
@@ -419,16 +443,12 @@ class HLSData:
                 ]
                 break
 
-    def dump(self, filepath):
-        with open(filepath, 'w') as f:
-            json.dump(self.__dict__(), f, indent=2)
-    
-    def __str__(self):
-        data_dict = {
+    def as_dict(self):
+        return {
             'name': self.name,
             'metrics': self.metrics,
             'nodes': {
-                nt: [node.__dict__() for node in nodes] 
+                nt: [n.as_dict() for n in nodes] 
                 for nt, nodes in self.nodes.items()
             },
             'edges': {
@@ -436,7 +456,13 @@ class HLSData:
                 for et, edges in self.edges.items()
             }
         }
-        return json.dumps(data_dict, indent=2)
+
+    def dump(self, filepath):
+        with open(filepath, 'w') as f:
+            json.dump(self.as_dict(), f, indent=2)
+    
+    def __str__(self):
+        return json.dumps(self.as_dict(), indent=2)
     
     def __repr__(self):
         return self.__str__()

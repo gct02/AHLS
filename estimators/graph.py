@@ -16,7 +16,7 @@ except ImportError:
     pass
 
 
-NODE_TYPES = ["instr", "port", "const", "block", "region"]
+NODE_TYPES = ["instr", "port", "const", "region"]
 
 EDGE_TYPES = [
     # Data flow edges
@@ -25,8 +25,8 @@ EDGE_TYPES = [
     ("port", "data", "instr"), 
 
     # Control flow edges
-    ("block", "control", "instr"), 
-    ("block", "control", "block"), 
+    ("region", "control", "instr"), 
+    ("region", "control", "region"), 
 
     # Call flow edges
     ("instr", "call", "instr"),
@@ -36,13 +36,11 @@ EDGE_TYPES = [
 
     # Hierarchical edges (representing CDFG structure)
     ("region", "hrchy", "region"), 
-    ("region", "hrchy", "block"),
-    ("block", "hrchy", "instr"),
+    ("region", "hrchy", "instr"),
 
     # Reversed hierarchical edges
     ("region", "hrchy_rev", "region"),
-    ("block", "hrchy_rev", "region"),
-    ("instr", "hrchy_rev", "block")
+    ("instr", "hrchy_rev", "region"),
 ] + [
     # Self-loops for each node type
     (nt, "to", nt) for nt in NODE_TYPES
@@ -53,7 +51,6 @@ NODE_FEATURE_DIMS = {
     "instr": 76, 
     "port": 14, 
     "const": 4,
-    "block": 8,
     "region": 12
 }
 
@@ -313,19 +310,17 @@ def plot_data(
         "instr": "#419ada",
         "port": "#1ecf89",
         "const": "#aa6df0",
-        "block": "#f4a93f",
         "region": "#e05858",
     }
     edge_colors = {
         ("const", "data", "instr"): "#5fdde0",
         ("instr", "data", "instr"): "#00bcd4",
         ("port", "data", "instr"): "#00a1b3",
-        ("block", "control", "instr"): "#ddb753",
-        ("block", "control", "block"): "#ddb753",
+        ("region", "control", "instr"): "#ddb753",
+        ("region", "control", "region"): "#ddb753",
         ("instr", "mem", "instr"): "#e73939",
         ("region", "hrchy", "region"): "#aab2b9",
-        ("region", "hrchy", "block"): "#aab2b9",
-        ("block", "hrchy", "instr"): "#aab2b9",
+        ("region", "hrchy", "instr"): "#aab2b9",
         ("instr", "call", "instr"): "#ba68c8"
     }
     
@@ -355,7 +350,6 @@ def plot_data(
                 data_trans[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
             else:
                 data_trans[nt].x = x
-
             data_trans[nt].label = data[nt].label
 
         for et, edge_index in data.edge_index_dict.items():
@@ -364,13 +358,12 @@ def plot_data(
             else:
                 data_trans[et].edge_index = edge_index
 
-        # data_trans = T.RemoveIsolatedNodes()(data_trans)
         G = to_networkx(data_trans, remove_self_loops=True, node_attrs=['x', 'label'])
         
         ncolors, nlabels = [], {}
         for node, attrs in G.nodes(data=True):
             nt = attrs.get("type")
-            if nt is None or nt not in ntypes:
+            if nt is None:
                 continue
             ncolors.append(node_colors[nt])
             nlabels[node] = attrs["label"]
@@ -378,7 +371,7 @@ def plot_data(
         ecolors = []
         for src, dst, attrs in G.edges(data=True):
             et = attrs.get("type")
-            if et is None or et not in etypes:
+            if et is None:
                 continue
             ecolor = edge_colors[et]
             ecolors.append(ecolor)
@@ -441,10 +434,12 @@ if __name__ == "__main__":
     base_hls_data = build_base_graphs(base_solutions)[benchmark]
 
     base_data = to_pyg(base_hls_data)
-    plot_data(base_data, ["hrchy"], batched=False)
+    plot_data(base_data, ["data", "control", "call"], batched=False)
 
     if (directives := args.directives) is not None:
         data = build_opt_graph(base_hls_data, directives)
-        plot_data(data, ["hrchy"], batched=False)
+        torch.set_printoptions(threshold=1000)
+        print(data.x_dict["region"])
+        plot_data(data, ["data"], batched=False)
 
     
