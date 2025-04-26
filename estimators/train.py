@@ -20,6 +20,7 @@ from torch_geometric.loader import DataLoader
 try:
     from estimators.models import HGT
     from estimators.dataset import HLSDataset
+    from estimators.optimizers import Lion
     from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 except ImportError:
     print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
@@ -33,6 +34,15 @@ PredTargetPair = Tuple[
     Union[float, torch.Tensor], 
     Union[float, torch.Tensor]
 ]
+
+
+class RMSLELoss(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.mse = nn.MSELoss()
+        
+    def forward(self, pred, target):
+        return torch.sqrt(self.mse(torch.log(pred + 1), torch.log(target + 1)))
 
 
 def save_model(model, output_dir, model_name):
@@ -120,9 +130,12 @@ def train_model(
     test_loader: DataLoader,
     epochs: int,
     scheduler: Optional[torch.optim.lr_scheduler.LRScheduler] = None,
+    warmup_scheduler: Optional[torch.optim.lr_scheduler.LRScheduler] = None,
+    warmup_steps: int = 0,
     verbosity: int = 1,
     log_dir: Optional[str] = None
 ) -> Dict[str, List[List[Tuple[float, float]]]]:
+    step = 0
     results = defaultdict(list)
 
     for epoch in range(1, epochs + 1):
@@ -146,11 +159,19 @@ def train_model(
 
             loss = loss_fn(pred, target)
             loss.backward()
-            clip_grad_norm_(model.parameters(), max_norm=5.0)
 
+            clip_grad_norm_(model.parameters(), max_norm=10.0)
             optimizer.step()
 
-            if scheduler:
+            if warmup_scheduler:
+                if step < warmup_steps:
+                    warmup_scheduler.step()
+                    step += 1
+                elif step == warmup_steps:
+                    if verbosity > 0:
+                        print("Warmup completed, switching to cosine annealing scheduler")
+                    warmup_scheduler = None
+            elif scheduler:
                 scheduler.step()
 
             batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
@@ -224,7 +245,9 @@ def main(args: Dict[str, str]):
         dropout=0.1
     ).to(DEVICE)
 
-    if loss == 'huber':
+    if loss == 'rmsle':
+        loss_fn = RMSLELoss()
+    elif loss == 'huber':
         loss_fn = nn.HuberLoss(delta=residual)
     elif loss == 'mse':
         loss_fn = nn.MSELoss()
@@ -233,18 +256,25 @@ def main(args: Dict[str, str]):
     else:
         raise ValueError(f"Unknown loss function: {loss}")
 
-    optimizer = torch.optim.AdamW(
-        model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=5e-4
+    # optimizer = torch.optim.AdamW(
+    #     model.parameters(), lr=1e-3, betas=(0.9, 0.999), weight_decay=5e-4
+    # )
+    optimizer = Lion(model.parameters(), lr=1e-3, betas=(0.9, 0.999))
+
+    warmup_steps = (epochs * len(train_loader)) // 10
+    warmup_scheduler = torch.optim.lr_scheduler.LinearLR(
+        optimizer, start_factor=0.1, total_iters=warmup_steps
     )
 
-    total_steps = epochs * len(train_loader)
+    total_steps = epochs * len(train_loader) - warmup_steps
     scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-5
+        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-4
     )
 
     results = train_model(
         model, loss_fn, optimizer, train_loader, test_loader, epochs, 
-        scheduler=scheduler, verbosity=verbosity, log_dir=analysis_dir
+        scheduler=scheduler, warmup_scheduler=warmup_scheduler, 
+        warmup_steps=warmup_steps, verbosity=verbosity, log_dir=analysis_dir
     )
     plot_prediction_bars(results["test"], test_bench, target_metric, analysis_dir)
     save_training_artifacts(results, analysis_dir)
@@ -499,8 +529,8 @@ def parse_arguments():
                         help='Random seed for repeatability (default: 42).')
     parser.add_argument('-b', '--batch', default=16, 
                         help='The size of the training batch (default: 16).')
-    parser.add_argument('-l', '--loss', default='mse', choices=['mse', 'l1', 'huber'],
-                        help='The loss function to use for training (default: mse).')
+    parser.add_argument('-l', '--loss', default='mse', choices=['mse', 'rmsle', 'l1', 'huber'],
+                        help='The loss function to use for training (default: rmsle).')
     parser.add_argument('-tb', '--testbench', required=True, 
                         help='The name of the benchmark to use for test.')
     parser.add_argument('-t', '--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp', 'power'],
@@ -526,6 +556,7 @@ if __name__ == '__main__':
 
     from estimators.models import HGT
     from estimators.dataset import HLSDataset
+    from estimators.optimizers import Lion
     from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 
     args = parse_arguments()

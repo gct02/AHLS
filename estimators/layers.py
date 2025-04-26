@@ -54,9 +54,6 @@ class HGTConv(MessagePassing):
                 f"'out_channels' (got {out_channels}) must be "
                 f"divisible by the number of heads (got {heads})"
             )
-        
-        if not isinstance(in_channels, dict):
-            in_channels = {nt: in_channels for nt in metadata[0]}
 
         self.in_channels = in_channels
         self.out_channels = out_channels
@@ -70,15 +67,13 @@ class HGTConv(MessagePassing):
 
         self.kqv_lin = HeteroDictLinear(
             in_channels, out_channels * 3,
-            types=self.node_types,
-            weight_initializer='kaiming_uniform',
-            bias_initializer='zeros'
+            types=self.node_types, 
+            weight_initializer='kaiming_uniform'
         )
         self.out_lin = HeteroDictLinear(
             out_channels, out_channels, 
             types=self.node_types,
             weight_initializer='kaiming_uniform',
-            bias_initializer='zeros'
         )
 
         self.head_dim = out_channels // heads
@@ -86,15 +81,11 @@ class HGTConv(MessagePassing):
 
         self.k_rel = HeteroLinear(
             self.head_dim, self.head_dim, num_relation_types, 
-            is_sorted=True, bias=True,
-            weight_initializer='kaiming_uniform',
-            bias_initializer='zeros'
+            is_sorted=True, weight_initializer='kaiming_uniform'
         )
         self.v_rel = HeteroLinear(
             self.head_dim, self.head_dim, num_relation_types, 
-            is_sorted=True, bias=True,
-            weight_initializer='kaiming_uniform',
-            bias_initializer='zeros'
+            is_sorted=True, weight_initializer='kaiming_uniform'
         )
 
         self.skip = ParameterDict({
@@ -263,15 +254,8 @@ class HetSAGPooling(nn.Module):
         **kwargs
     ):
         super().__init__()
-
         self.node_types = metadata[0]
-        if not isinstance(in_channels, dict):
-            self.in_channels = {nt: in_channels for nt in self.node_types}
-        else:
-            self.in_channels = in_channels
-
-        self.gnn = HGTConv(self.in_channels, 1, metadata, **kwargs)
-
+        self.gnn = HGTConv(in_channels, 1, metadata, **kwargs)
         self.reset_parameters()
 
     def reset_parameters(self):

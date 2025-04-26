@@ -3,7 +3,10 @@ from typing import Union, Dict
 import torch
 import torch.nn as nn
 from torch import Tensor
-from torch_geometric.nn import HeteroDictLinear, JumpingKnowledge, LayerNorm
+from torch_geometric.nn import (
+    HeteroDictLinear, JumpingKnowledge, 
+    Linear, LayerNorm
+)
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 
 from layers import HetSAGPooling, HGTConv
@@ -52,10 +55,8 @@ class HGT(nn.Module):
 
         # Input projection layer
         self.proj_in = HeteroDictLinear(
-            in_channels, hid_dim,
-            types=self.node_types,
-            weight_initializer='kaiming_uniform',
-            bias_initializer='zeros'
+            in_channels, hid_dim, types=self.node_types, 
+            weight_initializer='kaiming_uniform'
         )
 
         # Convolutional layers
@@ -76,10 +77,8 @@ class HGT(nn.Module):
 
         # Output projection layer
         self.proj_out = HeteroDictLinear(
-            jk_out_dim, hid_dim,
-            types=self.node_types,
-            weight_initializer='kaiming_uniform',
-            bias_initializer='zeros'
+            jk_out_dim, hid_dim, types=self.node_types,
+            weight_initializer='kaiming_uniform'
         )
 
         # Pooling layer
@@ -87,19 +86,21 @@ class HGT(nn.Module):
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
-            nn.Linear(1, 16), 
+            Linear(1, 16, weight_initializer="kaiming_uniform"), 
             nn.LeakyReLU(negative_slope=0.2),
-            nn.Linear(16, 16)
+            Linear(16, 16, weight_initializer="uniform")
         )
 
         # Graph-level MLP
         emb_dim = len(self.node_types) * hid_dim + 16
         self.graph_mlp = nn.Sequential(
-            nn.Linear(emb_dim, 512), nn.GELU(), nn.Dropout(dropout),
-            nn.Linear(512, 256), nn.GELU(), nn.Dropout(dropout),
-            nn.Linear(256, 128), nn.GELU(), nn.Dropout(dropout),
-            nn.Linear(128, 64), nn.GELU(), nn.Dropout(dropout),
-            nn.Linear(64, out_channels)
+            Linear(emb_dim, 512, weight_initializer="kaiming_uniform"), 
+            nn.BatchNorm1d(512), nn.GELU(), nn.Dropout(dropout),
+            Linear(512, 256, weight_initializer="kaiming_uniform"), 
+            nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
+            Linear(256, 128, weight_initializer="kaiming_uniform"), 
+            nn.BatchNorm1d(128), nn.GELU(), nn.Dropout(dropout),
+            Linear(128, out_channels, weight_initializer="uniform")
         )
 
         self.reset_parameters()
@@ -115,15 +116,11 @@ class HGT(nn.Module):
         self.proj_out.reset_parameters()
         self.pool.reset_parameters()
         for m in self.y_base_mlp.modules():
-            if isinstance(m, nn.Linear):
-                nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
-                if m.bias is not None:
-                    nn.init.zeros_(m.bias)
+            if isinstance(m, Linear):
+                m.reset_parameters()
         for m in self.graph_mlp.modules():
-            if isinstance(m, nn.Linear):
-                nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
-                if m.bias is not None:
-                    nn.init.zeros_(m.bias)
+            if isinstance(m, Linear):
+                m.reset_parameters()
 
     def forward(
         self,

@@ -7,18 +7,16 @@ def mad(residuals):
     return np.mean(np.abs(residuals - np.median(residuals)))
 
 
-def parse_residuals(log_file, epoch=None):
-    with open(log_file, 'r') as f:
-        lines = f.readlines()
-    if epoch is None:
-        epoch = lines[-1].split(',')[0]
-    elif isinstance(epoch, int):
-        epoch = str(epoch)
-    residuals = [
-        float(l.split(',')[-1]) 
-        for l in lines if l.startswith(epoch)
-    ]
-    return np.array(residuals).flatten()
+def parse_residuals(log_file):
+    residuals = []
+    with open(log_file, 'r') as file:
+        for line in file:
+            parts = line.split(';')
+            target = float(parts[0].split(' ')[-1])
+            pred = float(parts[-1].split(' ')[-1])
+            residuals.append(target - pred)
+    residuals = np.array(residuals)
+    return residuals
 
 
 def plot_residuals(residuals):
