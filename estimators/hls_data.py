@@ -13,7 +13,7 @@ except ImportError:
     pass
 
 
-RESOURCES_CONSIDERED = {'FF', 'LUT', 'DSP', 'BRAM'}
+TARGET_RESOURCES = {'FF', 'LUT', 'DSP', 'BRAM'}
 
 
 ResourceMapper = Dict[str, Dict[str, int]]
@@ -48,6 +48,8 @@ class PortNode(BaseNode):
     def __init__(self, element: ET.Element):
         super().__init__(element)
 
+        self.label = self.name
+
         direction = findint(element, 'direction', 2)
         if direction == 0:
             direction = [0, 1]
@@ -76,21 +78,23 @@ class InstructionNode(BaseNode):
     ):
         super().__init__(element)
 
+        self.label = element.findtext('opcode', '')
+
         if ground_truth_resources is not None:
             resources = ground_truth_resources.get(self.rtl_name, {})
-            for res in RESOURCES_CONSIDERED:
+            for res in TARGET_RESOURCES:
                 self.attrs["ground_truth_" + res] = resources.get(res, 0)
 
         if estimated_resources is not None:
             resources = estimated_resources.get(self.rtl_name, {})
-            for res in RESOURCES_CONSIDERED:
+            for res in TARGET_RESOURCES:
                 self.attrs["estimated_" + res] = resources.get(res, 0)
 
         self.attrs.update({
+            'opcode': self.label,
             'impl': element.findtext('Value/Obj/coreName', ''),
             'size': findint(element, 'Value/Obj/storageDepth', 0),
             'bitwidth': findint(element, 'Value/bitwidth', 0),
-            'opcode': element.findtext('opcode', ''),
             'delay': findfloat(element, 'm_delay', 0.0),
             'array_partition': 0,
             'partition_type': [0, 0, 0],
@@ -109,6 +113,9 @@ class InstructionNode(BaseNode):
 class ConstantNode(BaseNode):
     def __init__(self, element: ET.Element):
         super().__init__(element)
+
+        self.label = element.findtext('content', '')
+
         self.attrs.update({
             'bitwidth': findint(element, 'Value/bitwidth', 0),
             'const_type': element.findtext('const_type', ''),
@@ -118,6 +125,9 @@ class ConstantNode(BaseNode):
 class BlockNode(BaseNode):
     def __init__(self, element: ET.Element):
         super().__init__(element)
+
+        self.label = self.name
+
         self.instrs = self._extract_instructions(element)
 
     def _extract_instructions(self, element):
@@ -131,6 +141,9 @@ class RegionNode:
     def __init__(self, element: ET.Element):
         self.id = findint(element, 'mId') - 1
         self.name = element.findtext('mTag')
+
+        self.label = self.name
+
         self.attrs = self._extract_attrs(element)
         self.sub_regions = self._extract_items(element, 'sub_regions', -1)
         self.blocks = self._extract_items(element, 'basic_blocks')
@@ -183,6 +196,8 @@ class CDFG:
         offsets: Optional[Dict[str, int]] = None,
         ground_truth_resources: Optional[ResourceMapper] = None
     ):
+        self.name = root.findtext('name')
+
         self.nodes = defaultdict(list)
         self.edges = defaultdict(list)
         self._offsets = offsets if offsets else defaultdict(int)
@@ -359,11 +374,54 @@ class CDFG:
             res_map = {}
             for res in rtl_resources.iter('item'):
                 res_name = res.findtext('first')
-                if res_name in RESOURCES_CONSIDERED:
+                if res_name in TARGET_RESOURCES:
                     res_map[res_name] = findint(res, 'second', 0)
             estimated_resources[rtl_name] = res_map
         
         return estimated_resources
+    
+
+class FSMState:
+    def __init__(self, element: ET.Element):
+        self.id  = findint(element, "id")
+        self.operations = self._extract_operations(element)
+
+    @property
+    def name(self):
+        return f"state_{self.id}"
+
+    def _extract_operations(self, element):
+        return [
+            {
+                "id": findint(op, "id"), 
+                "stage": findint(op, "stage"), 
+                "latency": findint(op, "latency")
+            }
+            for op in element.find('operations').findall('item')
+        ]
+
+
+class FSM:
+    def __init__(self, root: ET.Element):
+        self.states = self._extract_states(root)
+        self.transitions = self._extract_transitions(root)
+    
+    def _extract_states(self, element):
+        return [
+            FSMState(state)
+            for state in element.find('states').findall('item')
+        ]
+    
+    def _extract_transitions(self, element):
+        transitions = []
+        for transition in element.find('transitions').findall('item'):
+            src = findint(transition, 'inState')
+            dst = findint(transition, 'outState')
+            if src is None or dst is None:
+                continue
+            transitions.append((src, dst))
+        return transitions
+
 
 class HLSData:
     def __init__(

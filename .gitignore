@@ -77,11 +77,13 @@ approx/
 
 # Test files and statistics
 analysis/model/
-pretrained/
 test*/
 
 # The dataset to train the estimator
 dataset/
+
+# Pre-trained models
+pretrained/
 
 # Scripts
 scripts/*.sh

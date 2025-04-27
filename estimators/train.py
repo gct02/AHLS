@@ -181,7 +181,7 @@ def train_model(
 
             if verbosity > 1:
                 for p, t in zip(pred, target):
-                    print(f"Target: {t}; Prediction: {p}")
+                    print(f"Target: {np.expm1(t)}; Prediction: {np.expm1(p)}")
 
         if log_dir:
             with open(f"{log_dir}/train.log", 'a') as f:
@@ -196,7 +196,11 @@ def train_model(
 
         model.eval()
         with torch.no_grad():
-            test_results = evaluate(epoch, model, test_loader, verbosity, log_dir)
+            test_results = evaluate(
+                epoch, model, test_loader, 
+                verbosity=verbosity, log_dir=log_dir, 
+                log_transformed=log_transformed
+            )
             results['test'].append(test_results)
 
     return results

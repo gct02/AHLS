@@ -246,7 +246,7 @@ if __name__ == '__main__':
         __package__ = DIR.name 
 
     from utils.parsers import extract_metrics
-    from utils.data_analysis import collate_data_for_analysis
+    from utils.data import collate_data_for_analysis
     
 
     args = parse_args()

@@ -9,7 +9,7 @@ from torch_geometric.data import HeteroData
 from sklearn.preprocessing import OneHotEncoder
 
 try:
-    from hlsdata import HLSData
+    from estimators.hls_data import HLSData
     from utils.parsers import parse_tcl_directives_file
 except ImportError:
     print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
@@ -31,7 +31,7 @@ EDGE_TYPES = [
     # Call flow edges
     ("instr", "call", "instr"),
 
-    # Memory access edges
+    # Memory edges (load->store)
     ("instr", "mem", "instr"),
 
     # Hierarchical edges (representing CDFG structure)
@@ -42,7 +42,7 @@ EDGE_TYPES = [
     ("region", "hrchy_rev", "region"),
     ("instr", "hrchy_rev", "region"),
 ] + [
-    # Self-loops for each node type
+    # Self-loops
     (nt, "to", nt) for nt in NODE_TYPES
 ]
 
@@ -126,7 +126,7 @@ def to_pyg(
         else:
             data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
 
-        data[nt].label = [node.name for node in nodes]
+        data[nt].label = [node.label for node in nodes]
 
     for et in EDGE_TYPES:
         edges = hls_data.edges.get(et)
@@ -332,11 +332,14 @@ def plot_data(
             ntypes = ["instr"]
             etypes = [et for et in EDGE_TYPES if et[1] == "call"]
         elif plot_type == "control":
-            ntypes = ["instr", "region"]
-            etypes = [et for et in EDGE_TYPES if et[1] in ["control", "call"]]
+            ntypes = ["region"]
+            etypes = [et for et in EDGE_TYPES if et[1] in ["control"] and et[2] == "region"]
         elif plot_type == "data":
             ntypes = ["instr", "const", "port"]
             etypes = [et for et in EDGE_TYPES if et[1] in ["data", "mem"]]
+        elif plot_type == "mem":
+            ntypes = ["instr"]
+            etypes = [et for et in EDGE_TYPES if et[1] == "mem"]
         elif plot_type == "hrchy":
             ntypes = ["instr", "region"]
             etypes = [et for et in EDGE_TYPES if et[1] == "hrchy"]
@@ -344,7 +347,6 @@ def plot_data(
             raise ValueError(f"Unknown plot_type: {plot_type}")
 
         data_trans = HeteroData()
-
         for nt, x in data.x_dict.items():
             if nt not in ntypes:
                 data_trans[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
@@ -385,6 +387,8 @@ def plot_data(
 
         if plot_type in ["full", "data", "hrchy"] and not batched:
             pos = nx.kamada_kawai_layout(G, scale=2)
+        elif plot_type in ["mem", "call"]:
+            pos = nx.planar_layout(G, scale=2)
         else:
             pos = nx.spring_layout(G, scale=2)
 
@@ -418,28 +422,24 @@ if __name__ == "__main__":
 
     from argparse import ArgumentParser
     from utils.parsers import parse_tcl_directives_file
-    from estimators.hlsdata import HLSData
+    from estimators.hls_data import HLSData
 
     parser = ArgumentParser()
     parser.add_argument("base_solution_dir", nargs=1, type=str)
     parser.add_argument("-b", "--benchmark", default=None)
     parser.add_argument("-d", "--directives", default=None)
+    parser.add_argument("-p", "--plot", default="full")
     args = parser.parse_args()
 
     base_solution_dir = args.base_solution_dir[0]
     if (benchmark := args.benchmark) is None:
-        benchmark = base_solution_dir
+        benchmark = '_'
+    plot_type = args.plot
 
     base_solutions = {benchmark: base_solution_dir}
     base_hls_data = build_base_graphs(base_solutions)[benchmark]
 
     base_data = to_pyg(base_hls_data)
-    plot_data(base_data, ["data", "control", "call"], batched=False)
-
-    if (directives := args.directives) is not None:
-        data = build_opt_graph(base_hls_data, directives)
-        torch.set_printoptions(threshold=1000)
-        print(data.x_dict["region"])
-        plot_data(data, ["data"], batched=False)
+    plot_data(base_data, plot_type, batched=False)
 
     

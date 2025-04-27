@@ -1,13 +1,9 @@
 import re
 import os
-import json
 from pathlib import Path
-from typing import List, Tuple, Union, Dict, Optional
+from typing import List, Tuple, Union, Dict
 
-import numpy as np
-import pandas as pd
 import xml.etree.ElementTree as ET
-from numpy.typing import NDArray
 
 from utils.xmlutils import findint, findfloat
 

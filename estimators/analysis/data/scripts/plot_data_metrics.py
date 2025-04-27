@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from numpy.typing import NDArray
 
 try:
-    from utils.data_analysis import *
+    from utils.data import *
 except ImportError:
     print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
     pass
@@ -195,7 +195,7 @@ if __name__ == '__main__':
         sys.path.insert(0, str(DIR.parent.parent))
         __package__ = DIR.name 
 
-    from utils.data_analysis import *
+    from utils.data import *
     
     args = parse_args()
     main(args)
