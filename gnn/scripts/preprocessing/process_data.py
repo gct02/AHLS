@@ -88,7 +88,7 @@ if __name__ == "__main__":
         sys.path.insert(0, str(DIR.parent.parent))
         __package__ = DIR.name
 
-    from estimators.graph import build_base_graphs, build_opt_graph
+    from gnn.graph import build_base_graphs, build_opt_graph
     from utils.parsers import extract_metrics
     
     args = parse_args()

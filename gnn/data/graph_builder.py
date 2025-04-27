@@ -9,8 +9,8 @@ from torch_geometric.data import HeteroData
 from sklearn.preprocessing import OneHotEncoder
 
 try:
-    from estimators.hls_data import HLSData
-    from utils.parsers import parse_tcl_directives_file
+    from hls_data_collector import HLSData
+    from parsers import parse_tcl_directives_file
 except ImportError:
     print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
     pass
@@ -68,9 +68,7 @@ def build_base_graphs(
     hls_data_dict = {}
     for benchmark, solution_dir in base_solutions.items():
         hls_data_dict[benchmark] = HLSData(
-            solution_dir, 
-            filtered=filtered, 
-            name=benchmark
+            solution_dir, filtered=filtered, kernel_name=benchmark
         )
 
     encoders = fit_one_hot_encoders(hls_data_dict)
@@ -205,7 +203,7 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 continue
 
             factor = int(directive_args.get("factor", 0))
-            factor = factor if factor > 0 else node.attrs["size"]
+            factor = factor if factor > 0 else node.attrs["array_size"]
             dim = [0] * 4
             dim[int(directive_args.get("dim", 0))] = 1
             partition_type = directive_args.get("type", "complete")
@@ -413,6 +411,7 @@ def plot_data(
 
 if __name__ == "__main__":
     import sys
+    from argparse import ArgumentParser
 
     if __package__ is None:                  
         DIR = Path(__file__).resolve().parent
@@ -420,9 +419,8 @@ if __name__ == "__main__":
         sys.path.insert(0, str(DIR.parent.parent))
         __package__ = DIR.name
 
-    from argparse import ArgumentParser
-    from utils.parsers import parse_tcl_directives_file
-    from estimators.hls_data import HLSData
+    from hls_data_collector import HLSData
+    from parsers import parse_tcl_directives_file
 
     parser = ArgumentParser()
     parser.add_argument("base_solution_dir", nargs=1, type=str)

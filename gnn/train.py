@@ -18,10 +18,10 @@ from sklearn.metrics import r2_score
 from torch_geometric.loader import DataLoader
 
 try:
-    from estimators.models import HGT
-    from estimators.dataset import HLSDataset
-    from estimators.losses import RMSLELoss
-    from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
+    from models import HGT
+    from dataset import HLSDataset
+    from losses import RMSLELoss
+    from data.graph_builder import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 except ImportError:
     print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
     pass
@@ -462,15 +462,15 @@ def set_random_seeds(seed: int):
 
 
 def make_output_dirs(root_dir, test_bench, metric) -> Tuple[str, str]:
-    base_analysis_dir = f"{root_dir}/analysis/model"
+    base_run_info_dir = f"{root_dir}/run_info"
     base_pretrained_dir = f"{root_dir}/pretrained"
 
-    if not os.path.exists(base_analysis_dir):
-        os.makedirs(base_analysis_dir)
+    if not os.path.exists(base_run_info_dir):
+        os.makedirs(base_run_info_dir)
     if not os.path.exists(base_pretrained_dir):
         os.makedirs(base_pretrained_dir)
 
-    metric_dir = f"{base_analysis_dir}/{metric}"
+    metric_dir = f"{base_run_info_dir}/{metric}"
     if not os.path.exists(metric_dir):
         os.makedirs(metric_dir)
 
@@ -481,13 +481,13 @@ def make_output_dirs(root_dir, test_bench, metric) -> Tuple[str, str]:
     else:
         run = get_current_run_number(tb_dir)
 
-    analysis_dir = f"{tb_dir}/run_{run}"
+    run_info_dir = f"{tb_dir}/run_{run}"
     pretrained_dir = f"{base_pretrained_dir}/{metric}/{test_bench}"
 
-    os.makedirs(analysis_dir, exist_ok=True)
+    os.makedirs(run_info_dir, exist_ok=True)
     os.makedirs(pretrained_dir, exist_ok=True)
 
-    return analysis_dir, pretrained_dir
+    return run_info_dir, pretrained_dir
 
 
 def get_current_run_number(results_directory: str) -> int:
@@ -564,10 +564,10 @@ if __name__ == '__main__':
         sys.path.insert(0, str(DIR.parent.parent))
         __package__ = DIR.name 
 
-    from estimators.models import HGT
-    from estimators.dataset import HLSDataset
-    from estimators.losses import RMSLELoss
-    from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
+    from models import HGT
+    from dataset import HLSDataset
+    from losses import RMSLELoss
+    from data.graph_builder import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 
     args = parse_arguments()
     main(args)

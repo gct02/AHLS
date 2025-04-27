@@ -76,8 +76,8 @@ build/
 approx/
 
 # Test files and statistics
-analysis/model/
 test*/
+run_info/
 
 # The dataset to train the estimator
 dataset/
