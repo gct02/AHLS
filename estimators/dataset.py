@@ -1,142 +1,81 @@
 import os
 import torch
 import shutil
+import json
 from collections import defaultdict
-from typing import Union, Optional, List, Dict
+from typing import Union, Optional, List, Dict, Tuple
 
 from torch import Tensor
-from torch_geometric.data import Dataset
-from torch_geometric.typing import NodeType, Metadata
-
-
-def compute_stats(
-    dataset_dir_path: str, 
-    metric: str, 
-    benches: Optional[Union[List[str], str]] = None,
-    filter_feats: Optional[Dict[NodeType, List[int]]] = None
-) -> Dict[NodeType, Dict[str, Tensor]]:
-    """Compute mean and standard deviation of features."""
-
-    if not os.path.exists(dataset_dir_path):
-        raise FileNotFoundError(
-            f"Directory {dataset_dir_path} does not exist."
-        )
-    if benches is None:
-        benches = sorted(os.listdir(dataset_dir_path))
-    elif isinstance(benches, str):
-        benches = [benches]
-
-    feat_sums = defaultdict(lambda: torch.zeros(0))
-    feat_squares = defaultdict(lambda: torch.zeros(0))
-    counts = defaultdict(lambda: 0)
-    node_types = set()
-
-    for bench in benches:
-        bench_path = os.path.join(dataset_dir_path, bench)
-        if not os.path.isdir(bench_path):
-            continue
-        sols = os.listdir(bench_path)
-        sols = sorted(sols, key=lambda s: int(s.split("solution")[1]))
-        for sol in sols:
-            sol_path = os.path.join(bench_path, sol)
-            targets_path = os.path.join(sol_path, "targets.txt")
-            if not os.path.exists(targets_path):
-                continue
-
-            target_value = -1
-            with open(targets_path, 'r') as f:
-                for line in f:
-                    if line.startswith(metric):
-                        target_value = float(line.split("=")[1].strip())
-                        break
-
-            if target_value == -1:
-                continue
-
-            cdfg_path = os.path.join(sol_path, "cdfg.pt")
-            if not os.path.exists(cdfg_path):
-                continue
-
-            cdfg = torch.load(cdfg_path)
-            for nt, feats in cdfg.x_dict.items():
-                node_types.add(nt)
-                if feats is None or feats.numel() == 0:
-                    continue
-
-                if nt not in feat_sums or feat_sums[nt].numel() == 0:
-                    feat_sums[nt] = feats.sum(dim=0)
-                    feat_squares[nt] = (feats**2).sum(dim=0)
-                else:
-                    feat_sums[nt] += feats.sum(dim=0)
-                    feat_squares[nt] += (feats**2).sum(dim=0)
-
-                if nt not in counts:
-                    counts[nt] = feats.shape[0]
-                else:
-                    counts[nt] += feats.shape[0]
-
-    stats = {}
-    for nt in node_types:
-        if nt not in counts or counts[nt] == 0:
-            stats[nt] = {'mean': 0, 'std': 1}
-            continue
-
-        if counts[nt] == 1:
-            mean = feat_sums[nt]
-            std = torch.ones_like(mean)
-        else:
-            mean = feat_sums[nt] / counts[nt]
-            std = torch.sqrt((feat_squares[nt] - (feat_sums[nt]**2) / counts[nt]) 
-                             / (counts[nt] - 1)).clamp_min(1e-8)
-        
-        if nt in filter_feats:
-            for col in filter_feats[nt]:
-                mean[col] = 0
-                std[col] = 1
-
-        stats[nt] = {'mean': mean, 'std': std}
-
-    return stats
+from torch_geometric.data import Dataset, HeteroData
+from torch_geometric.typing import NodeType
 
 
 class HLSDataset(Dataset):
     def __init__(
-        self,
-        root: str,
-        metric: str,
-        metadata: Optional[Metadata] = None,
-        dataset_dir_path: Optional[str] = None,
-        copy_data: bool = False,
-        process_data: bool = True,
-        stats: Optional[Dict[NodeType, Dict[str, Tensor]]] = None,
-        benches: Optional[List[str]] = None,
-        num_virtual_nodes: Optional[Union[int, Dict[NodeType, int]]] = None,
+        self, root: str, metric: str,
+        mode: str = "train",
+        scale_features: bool = False,
+        feature_ranges: Optional[Dict[NodeType, Tuple[Tensor, Tensor]]] = None,
+        benchmarks: Optional[Union[str, List[str]]] = None,
+        separate: bool = True,
+        log_transform: bool = False,
         **kwargs
     ):
-        self.dataset_dir_path = dataset_dir_path if dataset_dir_path else root
-        self.root = root
-        self.stats = stats
-        self.metric = metric
+        self._true_root = root
+        self._full_dir = os.path.join(root, "full")
+        self._metric = metric
+        self._separate = separate
 
-        self.copy_data = copy_data
-        self.process_data = process_data
-        
-        if num_virtual_nodes and metadata and isinstance(num_virtual_nodes, int):
-            self.num_virtual_nodes = {nt: num_virtual_nodes for nt in metadata[0]}
-        else:
-            self.num_virtual_nodes = num_virtual_nodes
+        self.log_transform = log_transform
+
+        self.root = os.path.join(root, mode)
+
+        if not benchmarks:
+            benchmarks = sorted(os.listdir(self._full_dir))
+        elif not isinstance(benchmarks, list):
+            benchmarks = [benchmarks]
+
+        # Filter out unavailable benchmarks
+        self.benchmarks = []
+        self.base_targets = {}
+        for benchmark in benchmarks:
+            benchmark_dir = os.path.join(self._full_dir, benchmark)
+            if not os.path.isdir(benchmark_dir):
+                print(f"Skipping {benchmark} (directory not found)")
+                continue
+
+            base_metrics_path = os.path.join(benchmark_dir, "base_metrics.json")
+            if not os.path.exists(base_metrics_path):
+                print(f"Skipping {benchmark} (base metrics file not found)")
+                continue
+
+            with open(base_metrics_path, 'r') as f:
+                base_metrics = json.load(f)
+
+            if not base_metrics:
+                print(f"Skipping {benchmark} (base metrics file is empty)")
+                continue
+
+            if (base_target := float(base_metrics.get(self._metric, -1.0))) < 0:
+                print(f"Skipping {benchmark} (base target value not found)")
+                continue
             
-        if benches is None:
-            self.benches = sorted(os.listdir(self.dataset_dir_path))
-        elif isinstance(benches, str):
-            self.benches = [benches]
+            self.benchmarks.append(benchmark)
+            self.base_targets[benchmark] = base_target
+
+        if scale_features:
+            if not feature_ranges:
+                self.feature_ranges = _compute_feature_ranges(
+                    self._full_dir, metric, self.benchmarks
+                )
+            else:
+                self.feature_ranges = feature_ranges
         else:
-            self.benches = benches
+            self.feature_ranges = None
 
         self._raw_file_names = []
         self._processed_file_names = []
-
-        super(HLSDataset, self).__init__(root, **kwargs)
+        super(HLSDataset, self).__init__(self.root, **kwargs)
     
     @property
     def raw_file_names(self):
@@ -147,104 +86,86 @@ class HLSDataset(Dataset):
         return self._processed_file_names
     
     def download(self):
-        if not self.copy_data:
+        if not self._separate:
             return
-        
-        if not os.path.exists(self.dataset_dir_path):
+        if not os.path.exists(self._full_dir):
             raise FileNotFoundError(
-                f"Dataset directory {self.dataset_dir_path} does not exist."
+                f"Directory {self._full_dir} does not exist."
             )
-        if not os.path.exists(self.raw_dir):
-            os.makedirs(self.raw_dir)
-        
-        for bench in self.benches:
-            src = os.path.join(self.dataset_dir_path, bench)
+        if os.path.exists(self.raw_dir):
+            shutil.rmtree(self.raw_dir)
+        os.makedirs(self.raw_dir)
+            
+        for bench in self.benchmarks:
+            src = os.path.join(self._full_dir, bench)
             dst = os.path.join(self.raw_dir, bench)
             shutil.copytree(src, dst)
     
     def process(self):
         if not os.path.exists(self.raw_dir):
             raise FileNotFoundError(
-                f"Raw directory {self.raw_dir} does not exist."
+                f"Raw dataset directory {self.raw_dir} does not exist."
             )
         if os.path.exists(self.processed_dir):
             shutil.rmtree(self.processed_dir)
-            os.makedirs(self.processed_dir)
+        os.makedirs(self.processed_dir)
 
-        for bench in self.benches:
-            bench_path = os.path.join(self.raw_dir, bench)
-            if not os.path.isdir(bench_path):
+        solution_dict = defaultdict(dict)
+        for benchmark in self.benchmarks:
+            benchmark_dir = os.path.join(self.raw_dir, benchmark)
+            for solution in os.listdir(benchmark_dir):
+                if not "solution" in solution:
+                    continue
+                solution_dir = os.path.join(benchmark_dir, solution)
+                if os.path.isdir(solution_dir):
+                    idx = int(solution.split("solution")[1])
+                    solution_dict[idx][benchmark] = solution_dir
+
+        for idx in sorted(solution_dict.keys()):
+            solution_dirs = solution_dict[idx]
+            if len(solution_dirs) == 0:
+                print(f"Skipping {idx} (no solution directories found)")
                 continue
 
-            sols = os.listdir(bench_path)
-            sols = sorted(sols, key=lambda s: int(s.split("solution")[1]))
-            for sol in sols:
-                sol_path = os.path.join(bench_path, sol)
-                targets_path = os.path.join(sol_path, "targets.txt")
-                if not os.path.exists(targets_path):
+            for benchmark, solution_dir in solution_dirs.items():
+                graph_path = os.path.join(solution_dir, "graph.pt")
+                if not os.path.exists(graph_path):
+                    print(f"Skipping {idx} (graph file not found)")
                     continue
 
-                target_value = -1
-                with open(targets_path, 'r') as f:
-                    for line in f:
-                        if line.startswith(self.metric):
-                            target_value = float(line.split("=")[1].strip())
-                            break
-
-                if target_value == -1:
+                metrics_path = os.path.join(solution_dir, "metrics.json")
+                if not os.path.exists(metrics_path):
+                    print(f"Skipping {idx} (metrics file not found)")
                     continue
 
-                cdfg_path = os.path.join(sol_path, "cdfg.pt")
-                if not os.path.exists(cdfg_path):
+                with open(metrics_path, 'r') as f:
+                    metrics = json.load(f)
+
+                target = float(metrics.get(self._metric, -1.0)) if metrics else -1.0
+                if target < 0:
+                    print(f"Skipping {idx} (target value not found)")
                     continue
 
-                if self.process_data:
-                    data = torch.load(cdfg_path)
-                    processed_data = data.clone()
+                data = torch.load(graph_path)
 
-                    processed_data.y = torch.tensor([target_value])
+                data.y = torch.tensor([target])
+                data.y_base = torch.tensor([self.base_targets[benchmark]]).unsqueeze(0)
+                if self.log_transform:
+                    data.y = torch.log1p(data.y)
+                    data.y_base = torch.log1p(data.y_base)
 
-                    for nt in data.x_dict.keys():
-                        if nt not in self.stats:
-                            continue
+                data.solution_index = idx
+                data.benchmark = benchmark
 
-                        stats = self.stats[nt]
-                        mean = stats['mean'].unsqueeze(0)
-                        std = stats['std'].unsqueeze(0)
-                        node_feats = data.x_dict[nt]
-                        processed_data[nt].x = (node_feats - mean) / std
-                        
-                if self.num_virtual_nodes:
-                    if isinstance(self.num_virtual_nodes, int):
-                        self.num_virtual_nodes = {nt: self.num_virtual_nodes 
-                                                  for nt in data.x_dict.keys()}
+                if self.feature_ranges is not None:
+                    data = self._scale_features(data)
 
-                    for nt, n_virt in self.num_virtual_nodes.items():
-                        if n_virt == 0:
-                            continue
-
-                        n_nodes = data[nt].x.shape[0]
-                        feat_dim = data[nt].x.shape[1]
-
-                        virt_type = f"virtual_{nt}"
-                        processed_data[virt_type].x = torch.zeros((n_virt, feat_dim))
-
-                        # Connect the virtual node to all the nodes of the original type
-                        virt_edge_index = torch.zeros((2, n_nodes * n_virt), dtype=torch.long)
-                        virt_edge_index[0] = torch.arange(n_nodes).repeat(n_virt)
-                        virt_edge_index[1] = torch.arange(n_virt).repeat(n_nodes)
-                        processed_data[(nt, "aggr", virt_type)].edge_index = virt_edge_index
-
-                        virt_self_edge_index = torch.zeros((2, n_virt), dtype=torch.long)
-                        virt_self_edge_index[0] = torch.arange(n_virt)
-                        virt_self_edge_index[1] = torch.arange(n_virt)
-                        processed_data[(virt_type, "self", virt_type)].edge_index = virt_self_edge_index
-
-                    processed_path = os.path.join(self.processed_dir, f"{bench}_{sol}.pt")
-                    torch.save(processed_data, processed_path)
-
-                self._processed_file_names.append(f"{bench}_{sol}.pt")
-                self._raw_file_names.append((f"{bench}/{sol}/cdfg.pt", f"{bench}/{sol}/targets.txt"))
+                output_path = os.path.join(self.processed_dir, f"{benchmark}_{idx}.pt")
+                torch.save(data, output_path)
+                self._processed_file_names.append(f"{benchmark}_{idx}.pt")
+                self._raw_file_names.append(
+                    (f"{benchmark}/{idx}/graph.pt", f"{benchmark}/{idx}/metrics.txt")
+                )
 
     def len(self):
         return len(self.processed_paths)
@@ -252,3 +173,72 @@ class HLSDataset(Dataset):
     def get(self, ind):
         data = torch.load(self.processed_paths[ind])
         return data 
+    
+    def _scale_features(self, data: HeteroData) -> HeteroData:
+        for nt, x in data.x_dict.items():
+            if x.size(0) == 0:
+                continue
+            mins, maxs = self.feature_ranges[nt]
+            diffs = maxs - mins
+            diffs[diffs == 0] = 1
+            data.x_dict[nt] = (x - mins) / diffs
+        return data
+
+
+def _compute_feature_ranges(
+    dataset_dir: str, metric: str,
+    benchmarks: Optional[Union[str, List[str]]] = None
+) -> Dict[NodeType, Dict[NodeType, Tuple[Tensor, Tensor]]]:
+    if benchmarks is None:
+        benchmarks = sorted(os.listdir(dataset_dir))
+    elif isinstance(benchmarks, str):
+        benchmarks = [benchmarks]
+
+    feature_ranges = {}
+    for bench in benchmarks:
+        bench_dir = os.path.join(dataset_dir, bench)
+        if not os.path.isdir(bench_dir):
+            print(f"Skipping {bench} (directory not found)")
+            continue
+
+        solutions = [s for s in os.listdir(bench_dir) if "solution" in s]
+        solutions = sorted(solutions, key=lambda s: int(s.split("solution")[1]))
+
+        for sol in solutions:
+            sol_dir = os.path.join(bench_dir, sol)
+            graph_path = os.path.join(sol_dir, "graph.pt")
+            if not os.path.exists(graph_path):
+                print(f"Skipping {sol} (graph file not found)")
+                continue
+
+            metrics_path = os.path.join(sol_dir, "metrics.json")
+            if not os.path.exists(metrics_path):
+                print(f"Skipping {sol} (metrics file not found)")
+                continue
+
+            with open(metrics_path, 'r') as f:
+                metrics = json.load(f)
+
+            target = float(metrics.get(metric, -1.0)) if metrics else -1.0
+            if target < 0:
+                print(f"Skipping {sol} (target value not found)")
+                continue
+
+            data = torch.load(graph_path)
+
+            for nt, x in data.x_dict.items():
+                if x.size(0) == 0:
+                    continue
+                mins = torch.min(x, dim=0).values
+                maxs = torch.max(x, dim=0).values
+                if nt not in feature_ranges:
+                    feature_ranges[nt] = [mins, maxs]
+                else:
+                    ranges = feature_ranges[nt]
+                    feature_ranges[nt][0] = torch.minimum(ranges[0], mins)
+                    feature_ranges[nt][1] = torch.maximum(ranges[1], maxs)
+
+    for nt, (mins, maxs) in feature_ranges.items():
+        feature_ranges[nt] = (mins, maxs)
+
+    return feature_ranges

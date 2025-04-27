@@ -83,3 +83,6 @@ test/
 
 # The dataset to train the estimator (too large for git)
 dataset/
+
+# Scripts
+scripts/*.sh

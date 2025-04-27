@@ -1,173 +1,170 @@
-from typing import Dict, Union, Optional, List
+from typing import Union, Dict
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from torch import Tensor
-from torch_geometric.nn import HGTConv
-from torch_geometric.data import HeteroData
-from torch_geometric.nn.inits import reset
-from torch.types import Device
-from torch_geometric.typing import Metadata, NodeType
+from torch_geometric.nn import (
+    HeteroDictLinear, JumpingKnowledge, 
+    Linear, LayerNorm
+)
+from torch_geometric.typing import Metadata, NodeType, EdgeType
+
+from layers import HetSAGPooling, HGTConv
 
 
 class HGT(nn.Module):
-    r"""Module that uses the Heterogeneous Graph Transformer (HGT) operator from the
+    r"""Model that uses the Heterogeneous Graph Transformer (HGT) operator from the
     `"Heterogeneous Graph Transformer" <https://arxiv.org/abs/2003.01332>`_ paper to
     perform graph-level regression.
 
     Args:
         metadata (Tuple[List[str], List[Tuple[str, str, str]]]):
             Metadata object containing node and edge types.
-        in_channels (int or Dict[str, int]): Number of input channels 
+        in_channels (int or Dict[str, int]): Number of input channels
             for each node type.
         out_channels (int): Number of output channels.
+        hid_dims (int or List[int]): Hidden dimensions for each conv layer.
+            (default: :obj:`128`)
+        heads (int or List[int]): Number of attention heads for each conv layer.
+            (default: :obj:`4`)
         num_layers (int, optional): Number of convolutional layers.
-            (default: :obj:`6`)
-        hid_dim (int or List[int], optional): Hidden dimension of the convolutional
-            layers. (default: :obj:`64`)
-        heads (int or List[int], optional): Number of attention heads for the
-            convolutional layers. (default: :obj:`8`)
-        dropout (float): Dropout rate for fully connected layers. 
-            (default: :obj:`0.0`)
-        num_virtual_nodes (int or Dict[int], optional): Number of virtual nodes to
-            use for each node type. (default: :obj:`None`)
-        mlp_hid_dim (List[int], optional): List of hidden layer sizes for the MLP.
+            If :obj:`None`, the number of layers is set to the length of
+            :obj:`hid_dims` or the number of node types.
             (default: :obj:`None`)
-        device (torch.device): Device to use for computation. 
-            (default: :obj:`"cpu"`)
+        dropout (float): Dropout rate for fully connected layers.
+            (default: :obj:`0.0`)
     """
-    def __init__(self, 
+    def __init__(
+        self,
         metadata: Metadata,
-        in_channels: Union[int, Dict[str, int]],
+        in_channels: Union[int, Dict[NodeType, int]],
         out_channels: int,
-        num_layers: int = 6,
-        hid_dim: Union[int, List[int]] = 64,
-        heads: Union[int, List[int]] = 8,
-        dropout: float = 0.0,
-        num_virtual_nodes: Optional[Union[int, Dict[NodeType, int]]] = None,
-        device: Device = 'cpu'
+        hid_dim: int = 256,
+        heads: int = 4,
+        num_layers: int = 5,
+        dropout: float = 0.0
     ):
         super().__init__()
 
-        self.device = device
+        self.node_types = metadata[0]
+        self.edge_types = metadata[1]
+        self.in_channels = in_channels
+        self.out_channels = out_channels
         self.dropout = dropout
         self.num_layers = num_layers
 
-        if num_virtual_nodes is None:
-            num_virtual_nodes = {f"virtual_{nt}": 1 for nt in metadata[0]}
-        elif isinstance(num_virtual_nodes, int):
-            num_virtual_nodes = {f"virtual_{nt}": num_virtual_nodes for nt in metadata[0]}
+        # Input projection layer
+        self.proj_in = HeteroDictLinear(
+            in_channels, hid_dim, types=self.node_types, 
+            weight_initializer='kaiming_uniform'
+        )
 
-        self.virtual_node_types = [nt for nt in metadata[0] if nt.startswith('virtual_')]
-        self.virtual_edge_types = [et for et in metadata[1] if et[2].startswith('virtual_')]
-
-        if isinstance(hid_dim, int):
-            hid_dim = [hid_dim] * num_layers
-
-        if isinstance(heads, int):
-            heads = [heads] * num_layers
-
-        # Define convolutional layers
+        # Convolutional layers
         self.conv = nn.ModuleList([
-            HGTConv(hid_dim[i-1] if i > 0 else in_channels, hid_dim[i], metadata, heads[i])
-            for i in range(self.num_layers)
+            HGTConv(hid_dim, hid_dim, metadata, heads=heads, dropout=dropout)
+            for _ in range(num_layers)
         ])
-
-        # Define jumping knowledge layer
-        self.attn_jk = nn.ModuleDict({
-            nt: nn.MultiheadAttention(hid_dim[-1], heads[-1], dropout=dropout)
-            for nt in self.virtual_node_types
+        self.norm = nn.ModuleDict({
+            nt: LayerNorm(hid_dim)
+            for nt in self.node_types
         })
 
-        # Define type-specific fully connected layers
-        self.node_mlp = nn.ModuleDict()
-        for vt, num in num_virtual_nodes.items():
-            self.node_mlp[vt] = nn.Sequential()
-            mlp_hid_dim = self._get_mlp_layer_dims(hid_dim[-1] * num, out_channels)
-            depth = len(mlp_hid_dim) - 1
-            for i in range(depth):
-                self.node_mlp[vt].extend([
-                    nn.Linear(mlp_hid_dim[i], mlp_hid_dim[i+1]),
-                    nn.GELU(),
-                    nn.Dropout(dropout)
-                ])
-            self.node_mlp[vt].append(nn.Linear(mlp_hid_dim[-1], out_channels))
+        self.jk = nn.ModuleDict({
+            nt: JumpingKnowledge(mode='cat', num_layers=num_layers)
+            for nt in self.node_types
+        })
+        jk_out_dim = hid_dim * num_layers
 
-        # Define graph-level fully connected layers
-        self.graph_mlp = nn.Sequential()
-        mlp_hid_dim = self._get_mlp_layer_dims(len(num_virtual_nodes), out_channels)
-        depth = len(mlp_hid_dim) - 1
-        for i in range(depth):
-            self.graph_mlp.extend([
-                nn.Linear(mlp_hid_dim[i], mlp_hid_dim[i+1]),
-                nn.GELU(),
-                nn.Dropout(dropout)
-            ])
-        self.graph_mlp.append(nn.Linear(mlp_hid_dim[-1], out_channels))
+        # Output projection layer
+        self.proj_out = HeteroDictLinear(
+            jk_out_dim, hid_dim, types=self.node_types,
+            weight_initializer='kaiming_uniform'
+        )
+
+        # Pooling layer
+        self.pool = HetSAGPooling(hid_dim, metadata, dropout=dropout)
+
+        # Small MLP to process y_base
+        self.y_base_mlp = nn.Sequential(
+            Linear(1, 16, weight_initializer="kaiming_uniform"), 
+            nn.LeakyReLU(negative_slope=0.2),
+            Linear(16, 16, weight_initializer="uniform")
+        )
+
+        # Graph-level MLP
+        emb_dim = len(self.node_types) * hid_dim + 16
+        self.graph_mlp = nn.Sequential(
+            Linear(emb_dim, 512, weight_initializer="kaiming_uniform"), 
+            nn.BatchNorm1d(512), nn.GELU(), nn.Dropout(dropout),
+            Linear(512, 256, weight_initializer="kaiming_uniform"), 
+            nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
+            Linear(256, 128, weight_initializer="kaiming_uniform"), 
+            nn.BatchNorm1d(128), nn.GELU(), nn.Dropout(dropout),
+            Linear(128, out_channels, weight_initializer="uniform")
+        )
 
         self.reset_parameters()
-        self.to(device)
 
     def reset_parameters(self):
-        r"""Reinitializes the model parameters."""
-        self.conv.apply(self._init_weights)
-        self.attn_jk.apply(self._init_weights)
-        self.node_mlp.apply(self._init_weights)
-        self.graph_mlp.apply(self._init_weights)
+        """Reinitializes model parameters."""
+        self.proj_in.reset_parameters()
+        for conv in self.conv:
+            conv.reset_parameters()
+        for nt in self.node_types:
+            self.norm[nt].reset_parameters()
+            self.jk[nt].reset_parameters()
+        self.proj_out.reset_parameters()
+        self.pool.reset_parameters()
+        for m in self.y_base_mlp.modules():
+            if isinstance(m, Linear):
+                m.reset_parameters()
+        for m in self.graph_mlp.modules():
+            if isinstance(m, Linear):
+                m.reset_parameters()
 
-    def _init_weights(self, m):
-        if isinstance(m, nn.Linear):
-            nn.init.kaiming_normal_(m.weight)
-            if m.bias is not None:
-                nn.init.zeros_(m.bias)
-        else:
-            reset(m)
-
-    def _get_mlp_layer_dims(self, in_channels: int, out_channels: int) -> List[int]:
-        r"""Computes the sizes of the hidden layers for the MLP."""
-        mlp_hid_dim = [in_channels]
-        mlp_hid_dim.append(max(out_channels * 2, mlp_hid_dim[-1] // 2))
-        while mlp_hid_dim[-1] // 2 > out_channels:
-            mlp_hid_dim.append(mlp_hid_dim[-1] // 2)
-        return mlp_hid_dim
-
-    def _get_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
-        r"""Computes the batch size from the batch dictionary."""
-        return torch.cat([v for v in batch_dict.values()], dim=0).max().item() + 1
-
-    def forward(self, data: HeteroData) -> Tensor:
+    def forward(
+        self,
+        x_dict: Dict[NodeType, Tensor],
+        edge_index_dict: Dict[EdgeType, Tensor],
+        batch_dict: Dict[NodeType, Tensor],
+        y_base: Tensor
+    ) -> Tensor:
         r"""Runs the forward pass of the module.
 
         Args:
-            data (torch_geometric.data.HeteroData): A data object containing
-                input node features and graph  connectivity information for 
-                each individual edge type.
-    
+            x_dict (Dict[NodeType, Tensor]): Dictionary of node features 
+                for each node type.
+            edge_index_dict (Dict[EdgeType, Tensor]): Dictionary of edge 
+                indices for each edge type.
+            batch_dict (Dict[NodeType, Tensor]): Dictionary of batch indices 
+                for each node type.
+            y_base (Tensor): The target values of the base solutions.
+
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
-        x_dict, edge_index_dict = data.x_dict, data.edge_index_dict
-        outs = {nt: [] for nt in self.virtual_node_types}
+        # Input projection layer
+        x_dict = self.proj_in(x_dict)
 
         # Convolutional layers
+        xs_dict = {nt: [] for nt in self.node_types}
         for i in range(self.num_layers):
+            x_dict = {nt: self.norm[nt](x) for nt, x in x_dict.items()}
             x_dict = self.conv[i](x_dict, edge_index_dict)
-            for nt in self.virtual_node_types:
-                out = F.dropout(x_dict[nt], p=self.dropout, training=self.training)
-                outs[nt].append(out)
+            for nt, out in x_dict.items():
+                xs_dict[nt].append(out)
 
-        # Jumping knowledge layer
-        x_dict = {k: torch.stack(v) for k, v in outs.items()}
-        x_dict = {k: self.attn_jk[k](v, v, v)[0] for k, v in x_dict.items()}
+        # Jumping knowledge
+        x_dict = {nt: self.jk[nt](xs_dict[nt]) for nt in self.node_types}
 
-        # Sum over all virtual nodes of the same type
-        batch_size = self._get_batch_size(data.batch_dict)
-        x_dict = {k: v.sum(dim=0).view(batch_size, -1) for k, v in x_dict.items()}
+        # Output projection layers
+        x_dict = self.proj_out(x_dict)
 
-        # Type-specific MLP
-        out = torch.cat([self.node_mlp[k](v) for k, v in x_dict.items()], dim=-1)
+        # Pooling layer
+        out = self.pool(x_dict, edge_index_dict, batch_dict)
+        out = torch.cat([out, self.y_base_mlp(y_base)], dim=1)
 
         # Graph-level MLP
-        out = self.graph_mlp(out)
+        out = self.graph_mlp(out).squeeze(1)
+        return out
     
-        return out.squeeze(1)
+        

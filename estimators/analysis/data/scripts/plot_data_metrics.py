@@ -1,260 +1,201 @@
+import os
+import json
+from argparse import ArgumentParser
+from typing import Optional, Union
+
 import numpy as np
 import pandas as pd
 import sklearn
 import matplotlib.pyplot as plt
-from typing import List, Union, Optional, Any
 from numpy.typing import NDArray
-from pathlib import Path
-from argparse import ArgumentParser
-from sklearn.cluster import KMeans, AgglomerativeClustering
-from sklearn.metrics import silhouette_score
-from sklearn.decomposition import PCA
 
-def cluster_solutions_by_directives(
-    directive_groups: List[NDArray[Any]],
-    n_clusters: int,
-    max_iter: int = 100,
-    method: str = 'kmeans'
-) -> NDArray[Any]:
-    
-    x = np.array(directive_groups)
+try:
+    from utils.data_analysis import *
+except ImportError:
+    print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
+    pass
 
-    samples, nx, ny = x.shape
-    x = x.reshape(samples, nx*ny)
 
-    # scaler = StandardScaler()
-    # x_scaled = scaler.fit_transform(x)
-    x_scaled = x
-
-    # Choose clustering method
-    if method == 'kmeans':
-        model = KMeans(n_clusters=n_clusters, max_iter=max_iter, n_init=10)
-    elif method == 'agglomerative':
-        model = AgglomerativeClustering(n_clusters=n_clusters)
-    else:
-        raise ValueError(f'Unknown clustering method: {method}')
-    
-    clusters = model.fit_predict(x_scaled)
-
-    # Calculate silhouette score
-    if len(np.unique(clusters)) > 1:
-        sil_score = silhouette_score(x_scaled, clusters)
-        print(f'Silhouette score: {sil_score:.2f}')
-
-    return clusters
-
-def build_graphs(
-    resources_data: pd.DataFrame, 
-    bench_name: str, 
-    x_data: str, 
-    y_data: str, 
-    directive_groups: Optional[List[NDArray[Any]]] = None,
-    output_dir: Union[Path, str] = None,
-    analyse_directives: bool = False,
-    n_clusters: int = 4,
+def generate_metrics_plot(
+    metrics: pd.DataFrame,
+    benchmark: str,
+    x_metric: str,
+    y_metric: str, 
+    directives: Optional[NDArray[np.int_]] = None,
+    directive_config_path: Optional[str] = None,
+    output_dir: Optional[str] = None,
+    n_clusters: int = 8,
     cluster_method: str = 'kmeans',
-    dim_reduction: bool = False,
-    plot_type: str = 'scatter'
+    n_components: Union[int, float] = 0.85
 ):
-    plt.figure(figsize=(12, 8), dpi=150)
+    plt.figure(figsize=(10, 6), dpi=150)
 
-    resources_data = resources_data[[x_data, y_data]].copy()
-    if analyse_directives and directive_groups is not None:
-        if dim_reduction:
-            pca = PCA(n_components=2)
-            reduced = pca.fit_transform(resources_data)
-            resources_data[x_data] = reduced[:, 0]
-            resources_data[y_data] = reduced[:, 1]
+    metrics = metrics.copy()
+    metrics[x_metric] = metrics[x_metric].astype(float)
+    metrics[y_metric] = metrics[y_metric].astype(float)
+    metrics = metrics.dropna(subset=[x_metric, y_metric])
+    metrics = metrics[(metrics[x_metric] >= 0) & (metrics[y_metric] >= 0)]
 
-        clusters = cluster_solutions_by_directives(
-            directive_groups, n_clusters, method=cluster_method
+    if directive_config_path is not None:
+        with open(directive_config_path, 'r') as f:
+            directive_config_dict = json.load(f)["directives"]
+            directive_config = []
+            for gp_name, gp in directive_config_dict.items():
+                gp_directives = gp.get("possible_directives")
+                if gp_directives is not None:
+                    gp_directives = [d for d in gp_directives if d and "-off" not in d]
+                    directive_config.append((gp_name, gp_directives))
+
+    if directives is not None:
+        if len(directives) != len(metrics):
+            raise ValueError("Number of directives must match number of metric entries.")
+        
+        clusters = cluster_by_directive(
+            directives, n_clusters, 
+            cluster_method=cluster_method, 
+            n_components=n_components
         )
-        resources_data['cluster'] = clusters
+        n_clusters = len(np.unique(clusters))
+
+        output_file = f'{output_dir}/{benchmark}_{x_metric}_{y_metric}_clusters.json'
+        output_data = {}
+
+        for i in range(n_clusters):
+            cluster_directives = directives[clusters == i]
+            if len(cluster_directives) == 0:
+                continue
+
+            cluster_mean_directives = np.mean(cluster_directives, axis=0)
+            cluster_directive_info = {}
+            
+            for averages, gp in zip(cluster_mean_directives, directive_config):
+                gp_name, gp_directives = gp
+                group_data = {
+                    directive: round(avg, 3) 
+                    for avg, directive in zip(averages, gp_directives)
+                }
+                cluster_directive_info[gp_name] = group_data
+            
+            output_data[f"Cluster {i}"] = cluster_directive_info
+            
+        with open(output_file, 'w') as f:
+            json.dump(output_data, f, indent=2)
 
         cmap = plt.get_cmap('viridis')
-        colors = [cmap(i / n_clusters) for i in range(n_clusters)]
-        
-        # Create plot based on type
-        if plot_type == 'scatter':
-            for i in range(n_clusters):
-                cluster_data = resources_data[resources_data['cluster'] == i]
-                plt.scatter(
-                    cluster_data[x_data], cluster_data[y_data],
-                    color=colors[i], label=f'Cluster {i}',
-                    edgecolor='w', alpha=0.7, s=100
-                )
-        elif plot_type == 'hexbin':
-            plt.hexbin(
-                resources_data[x_data], resources_data[y_data],
-                gridsize=20, cmap='viridis', mincnt=1
+        colors = cmap(np.linspace(0, 1, n_clusters))
+        for i in range(n_clusters):
+            cluster_data = metrics.loc[clusters == i]
+            plt.scatter(
+                cluster_data[x_metric], cluster_data[y_metric],
+                color=colors[i], label=f'Cluster {i}',
+                edgecolors="white", linewidth=0.7, alpha=0.6, s=60
             )
-            plt.colorbar(label='Counts')
-        else:
-            raise ValueError(f"Unknown plot type: {plot_type}")
-
-        save_cluster_stats(resources_data, output_dir, bench_name)
         
         plt.legend()
     else:
         plt.scatter(
-            resources_data[x_data], resources_data[y_data],
-            c='blue', alpha=0.5, edgecolor='w'
+            metrics[x_metric], metrics[y_metric], 
+            c='blue', alpha=0.6, edgecolors='black', s=60
         )
         
-    # Enhanced formatting
-    plt.xlabel(x_data.replace('_', ' ').title(), fontsize=12)
-    plt.ylabel(y_data.replace('_', ' ').title(), fontsize=12)
-    plt.title(
-        f'{bench_name}: {x_data} vs {y_data}\n', fontsize=14, pad=20
-    )
-    plt.grid(alpha=0.3)
+    plt.xlabel(x_metric.replace('_', ' ').title(), fontsize=14)
+    plt.ylabel(y_metric.replace('_', ' ').title(), fontsize=14)
+    plt.title(f'{benchmark}: {x_metric} vs {y_metric}\n', fontsize=16, pad=20)
+    plt.grid(True, linestyle="--", linewidth=0.5, alpha=0.5)
     plt.tight_layout()
 
-    # Save output with metadata
     if output_dir:
-        output_file = output_dir / f'{bench_name}_{x_data}_{y_data}.png'
-        plt.savefig(output_file, bbox_inches='tight', dpi=150)
+        output_file = f'{output_dir}/{benchmark}_{x_metric}_{y_metric}.png'
+        plt.savefig(output_file, bbox_inches='tight', dpi=150, transparent=True)
     else:
         plt.show()
     
     plt.close()
 
 
-def save_cluster_stats(data: pd.DataFrame, output_dir: Path, bench_name: str):
-    """Save cluster statistics and directive profiles"""
-    stats = data.groupby('cluster').agg({
-        'lut': ['mean', 'std'],
-        'time': ['mean', 'std'],
-        'cluster': 'size'
-    }).rename(columns={'size': 'count'})
-    
-    stats_file = output_dir / f'{bench_name}_cluster_stats.csv'
-    stats.to_csv(stats_file)
-    
-    # Save directive profiles for each cluster
-    if 'directives' in data.columns:
-        directive_profiles = (
-            data.groupby('cluster')['directives']
-            .apply(lambda x: x.value_counts().index[0])
-            .reset_index()
-        )
-        directives_file = output_dir / f'{bench_name}_directive_profiles.csv'
-        directive_profiles.to_csv(directives_file, index=False)
+def parse_args():
+    parser = ArgumentParser()
+    parser.add_argument('-d', '--dataset-dir', required=True,
+                        help='Path to the dataset directory')
+    parser.add_argument('-b', '--benchmark-name', required=True,
+                        help='The name of the benchmark to analyze')
+    parser.add_argument('-o', '--output-dir', required=False, default=None, 
+                        help='Path to the output directory')
+    parser.add_argument('-dc', '--directive-config', required=False, default=None,
+                        help='Path to the file containing the available directive configurations')
+    parser.add_argument('-x', '--x-data', required=False, default='lut',
+                        help='X axis data (default: "lut")')
+    parser.add_argument('-y', '--y-data', required=False, default='time',
+                        help='Y axis data (default: "time")')
+    parser.add_argument('-s', '--seed', required=False, default=42,
+                        help='Random seed for clustering (default: 42)')
+    parser.add_argument('-c', '--num-clusters', required=False, default=8,
+                        help='Number of clusters to group solutions (default: 8)')
+    parser.add_argument('-cm', '--cluster-method', choices=['kmeans', 'aggl'], default='kmeans',
+                        help='Clustering method (default: kmeans)')
+    parser.add_argument('-f', '--filtered', required=False, action='store_true', default=False,
+                        help='Sinalize if the dataset is filtered (default: False)')
+    parser.add_argument('-pc', '--principal-components', required=False, default=0.85,
+                        help='Number of principal components for PCA (default: 0.85)')
+    return parser.parse_args()
+
+
+def main(args):
+    dataset_dir = args.dataset_dir
+    benchmark = args.benchmark_name
+    directive_config_path = args.directive_config
+    x_data = args.x_data
+    y_data = args.y_data
+    output_dir = args.output_dir
+    filtered = args.filtered
+    cluster_method = args.cluster_method
+    n_clusters = int(args.num_clusters)
+    seed = int(args.seed)
+    principal_components = float(args.principal_components)
+
+    if principal_components >= 1.0:
+        principal_components = int(principal_components)
+
+    benchmark_path = f'{dataset_dir}/{benchmark}'
+    if not os.path.exists(benchmark_path):
+        raise FileNotFoundError(f"Benchmark path {benchmark_path} does not exist.")
+
+    np.random.seed(seed)
+    sklearn.random.seed(seed)
+
+    if directive_config_path is not None:
+        if not os.path.exists(directive_config_path):
+            raise FileNotFoundError(
+                f"Directive config file {directive_config_path} does not exist."
+            )
+
+    if output_dir is not None:
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+
+    metrics, directives = collate_data_for_analysis(
+        dataset_dir, benchmark, filtered=filtered,
+        directive_config_path=directive_config_path
+    )
+    generate_metrics_plot(
+        metrics, benchmark, x_data, y_data, directives=directives,
+        output_dir=output_dir, n_clusters=n_clusters, 
+        cluster_method=cluster_method, n_components=principal_components,
+        directive_config_path=directive_config_path
+    )
+
 
 if __name__ == '__main__':
-    def parse_args():
-        parser = ArgumentParser()
-        parser.add_argument(
-            '-d', '--dataset', required=True,
-            help='Dataset directory path'
-        )
-        parser.add_argument(
-            '-b', '--benchmark', required=True,
-            help='benchmark name (if not provided, use all benchmarks available)',
-        )
-        parser.add_argument(
-            '-o', '--output', required=False, default=None, 
-            help='Output file path', 
-        )
-        parser.add_argument(
-            '-a', '--available', required=False, default=None,
-            help='Available directives file path'
-        )
-        parser.add_argument(
-            '-x', '--xdata', required=False, default='lut',
-            help='X axis data (default: "lut")'
-        )
-        parser.add_argument(
-            '-y', '--ydata', required=False, default='time',
-            help='Y axis data (default: "time")'
-        )
-        parser.add_argument(
-            '-s', '--seed', required=False, default=42,
-            help='Random seed for clustering (default: 42)'
-        )
-        parser.add_argument(
-            '-c', '--clusters', required=False, default=4,
-            help='Number of clusters to group solutions (default: 4)'
-        )
-        parser.add_argument(
-            '-cm', '--cluster-method', choices=['kmeans', 'agglomerative'], default='kmeans',
-            help='Clustering method (default: kmeans)'
-        )
-        parser.add_argument(
-            '-f', '--filtered', required=False, action='store_true', default=False,
-            help='Sinalize if the dataset is filtered (default: False)'
-        )
-        parser.add_argument(
-            '-dr', '--directives', required=False, action='store_true', default=False,
-            help='Sinalize to plot information about directives (default: False)'
-        )
-        parser.add_argument(
-            '-p', '--plot-type', choices=['scatter', 'hexbin'], default='scatter',
-            help='Visualization type (default: scatter)'
-        )
-        parser.add_argument(
-            '-r', '--dim-reduction', action='store_true',
-            help='Use PCA for dimensionality reduction'
-        )
-        return parser.parse_args()
+    import sys
+    from pathlib import Path
 
-    def main(args):
-        import sys
+    if __package__ is None:                  
+        DIR = Path(__file__).resolve().parent
+        sys.path.insert(0, str(DIR.parent))
+        sys.path.insert(0, str(DIR.parent.parent))
+        __package__ = DIR.name 
 
-        if __package__ is None:                  
-            DIR = Path(__file__).resolve().parent
-            sys.path.insert(0, str(DIR.parent))
-            sys.path.insert(0, str(DIR.parent.parent))
-            __package__ = DIR.name
-            
-        from utils.parsers import organize_data
-
-        dataset_path = args.dataset
-        bench_name = args.benchmark
-        directives_file = args.available
-        x_data = args.xdata
-        y_data = args.ydata
-        output = args.output
-        is_filtered = args.filtered
-        analyse_directives = args.directives
-        dim_reduction = args.dim_reduction
-        plot_type = args.plot_type
-        cluster_method = args.cluster_method
-        clusters = int(args.clusters)
-        seed = int(args.seed)
-
-        assert Path(f'{dataset_path}/{bench_name}').is_dir()
-
-        np.random.seed(seed)
-        sklearn.random.seed(seed)
-
-        if directives_file is not None:
-            directives_file = Path(directives_file)
-            assert directives_file.exists()
-
-        if output is not None:
-            output = Path(output)
-            if not output.exists():
-                output.mkdir(parents=True)
-
-        if directives_file is not None and analyse_directives:
-            data, directive_groups = organize_data(
-                dataset_path, bench_name, directives_file, 
-                is_filtered, analyse_directives
-            )
-            build_graphs(
-                data, bench_name, x_data, y_data, directive_groups, 
-                output, analyse_directives, clusters, cluster_method,
-                dim_reduction, plot_type
-            )
-        else:   
-            data = organize_data(
-                dataset_path, bench_name, filtered=is_filtered
-            )
-            build_graphs(
-                data, bench_name, x_data, y_data, output_dir=output,
-                dim_reduction=dim_reduction, plot_type=plot_type
-            )
-
+    from utils.data_analysis import *
+    
     args = parse_args()
     main(args)

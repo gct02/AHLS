@@ -1,44 +1,60 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from argparse import ArgumentParser
+import seaborn as sns
 
-def get_last_epoch_residuals(log_file):
-    with open(log_file, 'r') as f:
-        lines = f.readlines()
-    last_epoch_idx = int(lines[-1].split(',')[0])
-    last_epoch_lines = [l for l in lines if l.startswith(f'{last_epoch_idx},')]
-    last_epoch_residuals = [float(l.split(',')[-1]) for l in last_epoch_lines]
-    return last_epoch_residuals
-
-def plot_residuals(residuals):
-    residuals = np.array(residuals).flatten()
-    plt.figure(figsize=(12, 8), dpi=150)
-    plt.hist(residuals, bins=100, color='blue', alpha=0.7)
-    plt.xlabel('Residual')
-    plt.ylabel('Frequency')
-    plt.show()
-    plt.close()
-
-def parse_args():
-    parser = ArgumentParser()
-    parser.add_argument('-l', '--log_file', required=True, help='Path to log file')
-    args = parser.parse_args()
-    return args
 
 def mad(residuals):
-    median = np.median(residuals)
-    return np.mean(np.abs(residuals - median))
+    return np.mean(np.abs(residuals - np.median(residuals)))
+
+
+def parse_residuals(log_file):
+    residuals = []
+    with open(log_file, 'r') as file:
+        for line in file:
+            parts = line.split(';')
+            target = float(parts[0].split(' ')[-1])
+            pred = float(parts[-1].split(' ')[-1])
+            residuals.append(target - pred)
+    residuals = np.array(residuals)
+    return residuals
+
+
+def plot_residuals(residuals):
+    plt.figure(figsize=(12, 8), dpi=150)
+    sns.histplot(residuals, bins=100, kde=True, color='royalblue', stat='density', alpha=0.6)
+
+    mean_res = np.mean(residuals)
+    median_res = np.median(residuals)
+
+    plt.axvline(mean_res, color='red', linestyle='--', label=f'Mean: {mean_res:.3f}')
+    plt.axvline(median_res, color='green', linestyle='--', label=f'Median: {median_res:.3f}')
+    plt.axvline(0, color='black', linestyle=':', linewidth=1, label='Zero Residual')
+
+    std_res = np.std(residuals)
+    mad_res = mad(residuals)
+
+    plt.text(
+        0.1, 0.98, f'Std: {std_res:.3f}\nMAD: {mad_res:.3f}',
+        horizontalalignment='right', verticalalignment='top',
+        transform=plt.gca().transAxes, fontsize=12,
+        bbox=dict(
+            facecolor='white', alpha=0.5, 
+            edgecolor='grey', boxstyle='round,pad=0.3'
+        )
+    )
+    plt.xlabel('Residual', fontsize=12)
+    plt.ylabel('Density', fontsize=12)
+    plt.title('Distribution of Residuals', fontsize=14)
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.tight_layout()
+    plt.show()
     
+
 if __name__ == '__main__':
-    args = parse_args()
+    from sys import argv
 
-    last_epoch_residuals = get_last_epoch_residuals(args.log_file)
-    last_epoch_residuals = np.array(last_epoch_residuals)
-
-    print(f'Mean residual: {np.mean(last_epoch_residuals)}')
-    print(f'Median residual: {np.median(last_epoch_residuals)}')
-    print(f'Std residual: {np.std(last_epoch_residuals)}')
-    print(f'Median absolute deviation: {mad(last_epoch_residuals)}')
-
-    plot_residuals(last_epoch_residuals)
+    log_file = argv[1]
+    residuals = parse_residuals(log_file)
+    plot_residuals(residuals)
     
