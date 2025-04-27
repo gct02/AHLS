@@ -82,7 +82,7 @@ class HGT(nn.Module):
         )
 
         # Pooling layer
-        self.pool = HetSAGPooling(hid_dim, metadata)
+        self.pool = HetSAGPooling(hid_dim, metadata, dropout=dropout)
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(

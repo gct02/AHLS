@@ -1,7 +1,4 @@
-from typing import cast, Callable, List, Optional, Tuple, Union
-
 import torch
-from torch import Tensor
 from torch.optim.optimizer import Optimizer
 
 

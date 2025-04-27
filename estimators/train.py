@@ -20,7 +20,7 @@ from torch_geometric.loader import DataLoader
 try:
     from estimators.models import HGT
     from estimators.dataset import HLSDataset
-    from estimators.optimizers import Lion
+    from estimators.losses import RMSLELoss
     from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 except ImportError:
     print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
@@ -34,15 +34,6 @@ PredTargetPair = Tuple[
     Union[float, torch.Tensor], 
     Union[float, torch.Tensor]
 ]
-
-
-class RMSLELoss(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.mse = nn.MSELoss()
-        
-    def forward(self, pred, target):
-        return torch.sqrt(self.mse(torch.log(pred + 1), torch.log(target + 1)))
 
 
 def save_model(model, output_dir, model_name):
@@ -75,7 +66,8 @@ def evaluate(
     loader: DataLoader,
     verbosity: int = 1,
     log_dir: Optional[str] = None,
-    mode: str = 'test'
+    mode: str = 'test',
+    log_transformed: bool = False
 ) -> List[Tuple[float, float]]:
     if verbosity > 1:
         print(f"\nEvaluating on {mode} set\n")
@@ -105,6 +97,10 @@ def evaluate(
             for p, t in zip(preds, targets):
                 f.write(f"{epoch},{t},{p},{t-p}\n")
 
+    if log_transformed:
+        preds = np.expm1(preds)
+        targets = np.expm1(targets)
+
     mre = rpd(torch.tensor(preds), torch.tensor(targets)).mean().item()
     if mre < evaluate.min_mre:
         evaluate.min_mre = mre
@@ -133,7 +129,8 @@ def train_model(
     warmup_scheduler: Optional[torch.optim.lr_scheduler.LRScheduler] = None,
     warmup_steps: int = 0,
     verbosity: int = 1,
-    log_dir: Optional[str] = None
+    log_dir: Optional[str] = None,
+    log_transformed: bool = False,
 ) -> Dict[str, List[List[Tuple[float, float]]]]:
     step = 0
     results = defaultdict(list)
@@ -191,6 +188,10 @@ def train_model(
                 for p, t in zip(preds, targets):
                     f.write(f"{epoch},{t},{p},{t-p}\n")
 
+        if log_transformed:
+            preds = np.expm1(preds)
+            targets = np.expm1(targets)
+
         results['train'].append(list(zip(preds, targets)))
 
         model.eval()
@@ -211,6 +212,7 @@ def main(args: Dict[str, str]):
     output_dir = args['output_dir']
     verbosity = int(args['verbose'])
     loss = args['loss']
+    log_transform = args['log_transform']
     residual = float(args['residual'])
     skip_separation = args['skip_separation']
 
@@ -230,7 +232,8 @@ def main(args: Dict[str, str]):
 
     train_loader, test_loader = prepare_data_loaders(
         dataset_dir, target_metric, test_bench, train_benches, 
-        batch_size=batch_size, separate=not skip_separation
+        batch_size=batch_size, separate=not skip_separation,
+        log_transform=log_transform
     )
 
     metadata = (NODE_TYPES, EDGE_TYPES)
@@ -239,9 +242,7 @@ def main(args: Dict[str, str]):
     
     model = HGT(
         metadata, in_channels, out_channels,
-        hid_dim=512,
-        heads=8,
-        num_layers=5,
+        hid_dim=512, heads=8, num_layers=5,
         dropout=0.1
     ).to(DEVICE)
 
@@ -256,10 +257,9 @@ def main(args: Dict[str, str]):
     else:
         raise ValueError(f"Unknown loss function: {loss}")
 
-    # optimizer = torch.optim.AdamW(
-    #     model.parameters(), lr=1e-3, betas=(0.9, 0.999), weight_decay=5e-4
-    # )
-    optimizer = Lion(model.parameters(), lr=1e-3, betas=(0.9, 0.999))
+    optimizer = torch.optim.AdamW(
+        model.parameters(), lr=1e-3, betas=(0.9, 0.999), weight_decay=1e-4
+    )
 
     warmup_steps = (epochs * len(train_loader)) // 10
     warmup_scheduler = torch.optim.lr_scheduler.LinearLR(
@@ -274,7 +274,8 @@ def main(args: Dict[str, str]):
     results = train_model(
         model, loss_fn, optimizer, train_loader, test_loader, epochs, 
         scheduler=scheduler, warmup_scheduler=warmup_scheduler, 
-        warmup_steps=warmup_steps, verbosity=verbosity, log_dir=analysis_dir
+        warmup_steps=warmup_steps, verbosity=verbosity, log_dir=analysis_dir,
+        log_transformed=log_transform
     )
     plot_prediction_bars(results["test"], test_bench, target_metric, analysis_dir)
     save_training_artifacts(results, analysis_dir)
@@ -502,18 +503,21 @@ def prepare_data_loaders(
     test_benchmarks: Union[List[str], str],
     train_benchmarks: Union[List[str], str],
     batch_size: int = 16,
-    separate: bool = True
+    separate: bool = True,
+    log_transform: bool = False
 ) -> Tuple[DataLoader, DataLoader]:
     train_data = HLSDataset(
         dataset_dir, metric, mode="train", scale_features=True, 
-        benchmarks=train_benchmarks, separate=separate
+        benchmarks=train_benchmarks, separate=separate,
+        log_transform=log_transform
     )
     test_data = HLSDataset(
         dataset_dir, metric, mode="test", scale_features=True,
-        feature_bounds=train_data.feature_bounds,
-        benchmarks=test_benchmarks, separate=separate
+        feature_ranges=train_data.feature_ranges,
+        benchmarks=test_benchmarks, separate=separate,
+        log_transform=log_transform
     )
-    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
+    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=False)
     test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
 
     return train_loader, test_loader
@@ -530,7 +534,9 @@ def parse_arguments():
     parser.add_argument('-b', '--batch', default=16, 
                         help='The size of the training batch (default: 16).')
     parser.add_argument('-l', '--loss', default='mse', choices=['mse', 'rmsle', 'l1', 'huber'],
-                        help='The loss function to use for training (default: rmsle).')
+                        help='The loss function to use for training (default: mse).')
+    parser.add_argument('-lt', '--log-transform', action='store_true',
+                        help='Apply log transformation to the target variable.')
     parser.add_argument('-tb', '--testbench', required=True, 
                         help='The name of the benchmark to use for test.')
     parser.add_argument('-t', '--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp', 'power'],
@@ -556,7 +562,7 @@ if __name__ == '__main__':
 
     from estimators.models import HGT
     from estimators.dataset import HLSDataset
-    from estimators.optimizers import Lion
+    from estimators.losses import RMSLELoss
     from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 
     args = parse_arguments()

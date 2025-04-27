@@ -5,7 +5,8 @@ from utils.data_analysis import *
 
 
 DIRECTIVES = {
-    "pipeline", "unroll", "loop_merge", "loop_flatten", "array_partition"
+    "pipeline", "unroll", "loop_merge", 
+    "loop_flatten", "array_partition"
 }
 
 
@@ -147,9 +148,6 @@ def find_topk_directives(sorted_results, k=15):
     # print(rel_gp_count)
 
 
-# --- Helper Functions ---
-
-
 def _load_metrics(path):
     if os.path.exists(path):
         with open(path, "r") as f:
@@ -169,8 +167,6 @@ def _sorted_solutions(base_dir):
         key=lambda s: int(s.split("solution")[1])
     )
 
-
-# --- Entry Point ---
 
 if __name__ == "__main__":
     import sys

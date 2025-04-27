@@ -6,11 +6,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 from torch.nn import Parameter
-from torch_geometric.nn import MessagePassing
+from torch_geometric.nn import MessagePassing, Linear
 from torch_geometric.nn.dense import HeteroDictLinear, HeteroLinear
 from torch_geometric.nn.inits import ones
 from torch_geometric.nn.parameter_dict import ParameterDict
-from torch_geometric.nn.pool import global_add_pool
+from torch_geometric.nn.pool import global_add_pool, global_max_pool
 from torch_geometric.utils import softmax
 from torch_geometric.utils.hetero import construct_bipartite_edge_index
 from torch_geometric.typing import Metadata, NodeType, EdgeType
@@ -251,16 +251,33 @@ class HetSAGPooling(nn.Module):
         self,
         in_channels: Union[Dict[NodeType, int], int],
         metadata: Metadata,
+        dropout: float = 0.0,
         **kwargs
     ):
         super().__init__()
+
         self.node_types = metadata[0]
+
+        if not isinstance(in_channels, dict):
+            in_channels = {nt: in_channels for nt in metadata[0]}
+
         self.gnn = HGTConv(in_channels, 1, metadata, **kwargs)
+        self.mlp = nn.ModuleDict({
+            nt: nn.Sequential(
+                Linear(2*d, d, weight_initializer="kaiming_uniform"),
+                nn.BatchNorm1d(d), nn.GELU(), nn.Dropout(dropout)
+            )
+            for nt, d in in_channels.items()
+        })
+        
         self.reset_parameters()
 
     def reset_parameters(self):
         """Reinitializes model parameters."""
         self.gnn.reset_parameters()
+        for m in self.mlp.modules():
+            if isinstance(m, Linear):
+                m.reset_parameters()
 
     def forward(
         self,
@@ -288,7 +305,10 @@ class HetSAGPooling(nn.Module):
             batch = batch_dict[nt]
             score = softmax(score_dict[nt], batch)
             x = x_dict[nt] * score.view(-1, 1)
-            x = global_add_pool(x, batch, size=batch_size)
+            x_add = global_add_pool(x, batch, size=batch_size)
+            x_max = global_max_pool(x, batch, size=batch_size)
+            x = torch.cat([x_add, x_max], dim=1)
+            x = self.mlp[nt](x)
             outs.append(x)
 
         return torch.cat(outs, dim=1)
