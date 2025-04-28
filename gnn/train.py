@@ -18,9 +18,9 @@ from sklearn.metrics import r2_score
 from torch_geometric.loader import DataLoader
 
 try:
-    from estimators.models import HGT
-    from estimators.dataset import HLSDataset
-    from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
+    from models import HGT
+    from dataset import HLSDataset
+    from data.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 except ImportError:
     print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
     pass
@@ -33,11 +33,6 @@ PredTargetPair = Tuple[
     Union[float, torch.Tensor], 
     Union[float, torch.Tensor]
 ]
-
-
-def save_model(model, output_dir, model_name):
-    os.makedirs(output_dir, exist_ok=True)
-    torch.save(obj=model.state_dict(), f=f"{output_dir}/{model_name}")
 
 
 def rpd(pred, target):
@@ -115,6 +110,11 @@ def evaluate(
         print(f"Best MRE so far: {evaluate.min_mre:.2f}% at epoch {evaluate.best_epoch}\n")
     
     return results
+
+
+def save_model(model, output_dir, model_name):
+    os.makedirs(output_dir, exist_ok=True)
+    torch.save(obj=model.state_dict(), f=f"{output_dir}/{model_name}")
 
 
 def train_model(
@@ -195,7 +195,11 @@ def train_model(
 
         model.eval()
         with torch.no_grad():
-            test_results = evaluate(epoch, model, test_loader, verbosity, log_dir)
+            test_results = evaluate(
+                epoch, model, test_loader, 
+                verbosity=verbosity, log_dir=log_dir,
+                log_transformed=log_transformed
+            )
             results['test'].append(test_results)
 
     return results
@@ -227,7 +231,7 @@ def main(args: Dict[str, str]):
     benchmarks = sorted(os.listdir(full_data_dir))
     train_benches = [b for b in benchmarks if b != test_bench]
 
-    analysis_dir, pretrained_dir = make_output_dirs(output_dir, test_bench, target_metric)
+    run_dir, pretrained_dir = make_output_dirs(output_dir, test_bench, target_metric)
 
     train_loader, test_loader = prepare_data_loaders(
         dataset_dir, target_metric, test_bench, train_benches, 
@@ -241,16 +245,16 @@ def main(args: Dict[str, str]):
     
     model = HGT(
         metadata, in_channels, out_channels,
-        hid_dim=512, heads=8, num_layers=5,
+        hid_dim=512, heads=8, num_layers=4,
         dropout=0.1
     ).to(DEVICE)
 
-    if loss == 'huber':
-        loss_fn = nn.HuberLoss(delta=residual)
-    elif loss == 'mse':
+    if loss == 'mse':
         loss_fn = nn.MSELoss()
     elif loss == 'l1':
         loss_fn = nn.L1Loss()
+    elif loss == 'huber':
+        loss_fn = nn.HuberLoss(delta=residual)
     else:
         raise ValueError(f"Unknown loss function: {loss}")
 
@@ -271,11 +275,11 @@ def main(args: Dict[str, str]):
     results = train_model(
         model, loss_fn, optimizer, train_loader, test_loader, epochs, 
         scheduler=scheduler, warmup_scheduler=warmup_scheduler, 
-        warmup_steps=warmup_steps, verbosity=verbosity, log_dir=analysis_dir,
+        warmup_steps=warmup_steps, verbosity=verbosity, log_dir=run_dir,
         log_transformed=log_transform
     )
-    plot_prediction_bars(results["test"], test_bench, target_metric, analysis_dir)
-    save_training_artifacts(results, analysis_dir)
+    plot_prediction_bars(results["test"], test_bench, target_metric, run_dir)
+    save_training_artifacts(results, run_dir)
     save_model(model, pretrained_dir, f"{test_bench}_{target_metric}.pth")
 
 
@@ -455,15 +459,15 @@ def set_random_seeds(seed: int):
 
 
 def make_output_dirs(root_dir, test_bench, metric) -> Tuple[str, str]:
-    base_analysis_dir = f"{root_dir}/analysis/model"
+    base_run_dir = f"{root_dir}/run_info"
     base_pretrained_dir = f"{root_dir}/pretrained"
 
-    if not os.path.exists(base_analysis_dir):
-        os.makedirs(base_analysis_dir)
+    if not os.path.exists(base_run_dir):
+        os.makedirs(base_run_dir)
     if not os.path.exists(base_pretrained_dir):
         os.makedirs(base_pretrained_dir)
 
-    metric_dir = f"{base_analysis_dir}/{metric}"
+    metric_dir = f"{base_run_dir}/{metric}"
     if not os.path.exists(metric_dir):
         os.makedirs(metric_dir)
 
@@ -472,26 +476,20 @@ def make_output_dirs(root_dir, test_bench, metric) -> Tuple[str, str]:
         os.makedirs(tb_dir)
         run = 1
     else:
-        run = get_current_run_number(tb_dir)
+        runs = [
+            int(f.split('_')[-1])
+            for f in os.listdir(tb_dir) 
+            if f.startswith('run_') and f.split('_')[-1].isdigit()
+        ]
+        run = max(runs) + 1 if runs else 1
 
-    analysis_dir = f"{tb_dir}/run_{run}"
+    run_dir = f"{tb_dir}/run_{run}"
     pretrained_dir = f"{base_pretrained_dir}/{metric}/{test_bench}"
 
-    os.makedirs(analysis_dir, exist_ok=True)
+    os.makedirs(run_dir, exist_ok=True)
     os.makedirs(pretrained_dir, exist_ok=True)
 
-    return analysis_dir, pretrained_dir
-
-
-def get_current_run_number(results_directory: str) -> int:
-    if not os.path.exists(results_directory):
-        return 1
-    files = os.listdir(results_directory)
-    runs = [
-        int(f.split('_')[-1])
-        for f in files if f.startswith('run_') and f.split('_')[-1].isdigit()
-    ]
-    return max(runs) + 1 if runs else 1
+    return run_dir, pretrained_dir
 
 
 def prepare_data_loaders(
@@ -557,9 +555,9 @@ if __name__ == '__main__':
         sys.path.insert(0, str(DIR.parent.parent))
         __package__ = DIR.name 
 
-    from estimators.models import HGT
-    from estimators.dataset import HLSDataset
-    from estimators.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
+    from gnn.models import HGT
+    from gnn.dataset import HLSDataset
+    from gnn.data.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 
     args = parse_arguments()
     main(args)

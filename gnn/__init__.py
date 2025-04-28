@@ -1,4 +1,4 @@
 from . import models
 from . import layers
 from . import dataset
-from . import graph
+from .data import graph

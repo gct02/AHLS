@@ -245,8 +245,8 @@ if __name__ == '__main__':
         sys.path.insert(0, str(DIR.parent.parent))
         __package__ = DIR.name 
 
-    from utils.parsers import extract_metrics
-    from utils.data_analysis import collate_data_for_analysis
+    from gnn.data.utils.parsers import extract_metrics
+    from gnn.data.scripts.analysis.analysis_utils import collate_data_for_analysis
     
 
     args = parse_args()

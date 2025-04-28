@@ -7,12 +7,15 @@ import torch
 import matplotlib.pyplot as plt
 from torch_geometric.data import HeteroData
 
-from utils.parsers import parse_tcl_directives
+try:
+    from utils.parsers import parse_tcl_directives
+except ImportError:
+    print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
+    pass
 
 
-NODE_TYPES = [
-    'instr', 'var', 'const', 'array', 'region'
-]
+NODE_TYPES = ['instr', 'var', 'const', 'array', 'region']
+
 EDGE_TYPES = [
     # Data flow
     ('instr', 'data', 'var'),
@@ -34,6 +37,7 @@ EDGE_TYPES = [
     # Self-loops
     (nt, 'self', nt) for nt in NODE_TYPES
 ]
+
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
 INSTR_FEATURE_DIMS = 12
@@ -53,25 +57,26 @@ NODE_FEATURE_DIMS = {
 
 class Node:
     def __init__(
-        self, index, node_type, programl_id,
+        self, index, node_type, 
+        programl_id=None, ir_id=None,
         text=None, full_text=None,
-        function_id=None, 
-        function_name=None, 
+        function_id=None, function_name=None, 
         features=None
     ):
         self.index = index
         self.type = node_type
         self.programl_id = programl_id
+        self.ir_id = ir_id
         self.text = text
         self.full_text = full_text
         self.function_id = function_id
         self.function_name = function_name
         self.features = features if features is not None else {}
 
-    def set(self, key, value):
+    def set_feature(self, key, value):
         self.features[key] = value
 
-    def get(self, key):
+    def get_feature(self, key):
         return self.features.get(key, None)
 
     def __repr__(self):
@@ -87,33 +92,32 @@ def build_graph(
     import programl
 
     with open(metadata_path, 'r') as f:
-        module_metadata = json.load(f)
-
-    metadata = module_metadata['metadata']
-    regions = module_metadata['regions']
+        metadata = json.load(f)
 
     with open(llvm_ir_path, 'r') as f:
-        programl_graph = programl.from_llvm(f.read())
+        programl_graph = programl.from_llvm_ir(f.read())
 
-    programl_nodes = programl_graph.nodes
-    programl_edges = programl_graph.edges
+    programl_graph_json = programl.to_json(programl_graph)
 
-    nodes, addit_edge_dict = build_nodes(programl_nodes, metadata, regions)
+    programl_nodes = programl_graph_json.get('nodes', [])
+    programl_edges = programl_graph_json.get('links', [])
+
+    nodes, hrchy_edge_dict = build_nodes(programl_nodes, metadata)
 
     if directive_file_path is not None:
         include_directives(nodes, directive_file_path)
 
     edge_dict = build_edges(programl_edges, nodes)
 
-    for et, addit_edges in addit_edge_dict.items():
+    for et, edges in hrchy_edge_dict.items():
         if et not in edge_dict:
             edge_dict[et] = []
-        edge_dict[et].extend(addit_edges)
+        edge_dict[et].extend(edges)
 
     hetero_data = HeteroData()
     for nt in NODE_TYPES:
         node_feature_list = []
-        for node in nodes[nt].values():
+        for node in nodes[nt]:
             feature_vector = []
             for feature in node.features.values():
                 if not isinstance(feature, list):
@@ -129,13 +133,7 @@ def build_graph(
             hetero_data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float)
 
         hetero_data[nt].num_nodes = hetero_data[nt].x.size(0)
-        hetero_data[nt].metadata = [
-            {
-                'text': n.text, 
-                'function': n.function_id, 
-            }
-            for n in nodes[nt].values()
-        ]
+        hetero_data[nt].label = [n.text for n in nodes[nt]]
 
     for et in EDGE_TYPES:
         if et[1] == 'self' and add_self_loops:
@@ -247,7 +245,7 @@ def get_instruction_metadata(
         key = 'id'
         query = node_id
     
-    for node in metadata['instructions']:
+    for node in metadata['instruction']:
         if node['functionID'] == function_id and node[key] == query:
             return node
     return None
@@ -256,6 +254,8 @@ def get_instruction_metadata(
 def get_variable_metadata(metadata, function_id, node_full_text):
     var_name = node_full_text.split(' ')[1].strip(' %@')
     for entity_type in ['arrayPort', 'port', 'array', 'var']:
+        if entity_type not in metadata:
+            continue
         for node in metadata[entity_type]:
             if node['functionID'] == function_id and node['name'] == var_name:
                 return node
@@ -285,27 +285,28 @@ def get_const_node_features(node_text):
     }
 
 
-def build_nodes(programl_nodes, metadata, regions):
+def build_nodes(programl_nodes, metadata):
     nodes = defaultdict(list)
     node_indices = defaultdict(int)
     hrchy_edges = {
         ('region', 'hrchy', 'region'): [], 
         ('region', 'hrchy', 'instr'): []
     }
+    ir_id_index_map = {"instr": {}, "region": {}}
 
     for node in programl_nodes:
         if (text := node['text']) == '[external]':
             continue
-        full_text = node['full_text']
+        full_text = node['features']['full_text'][0]
         programl_id = int(node['id'])
         function_id = int(node['function'])
         node_type = int(node['type'])
 
         if node_type == 0: # Instruction
-            ir_node_id = int(full_text.split('id.')[1].split(' ')[0].strip())
+            ir_instr_id = int(full_text.split('id.')[1].split(' ')[0].strip())
 
             node_metadata = get_instruction_metadata(
-                metadata, function_id, ir_node_id, full_text
+                metadata, function_id, ir_instr_id, full_text
             )
             if node_metadata is None:
                 continue
@@ -315,21 +316,17 @@ def build_nodes(programl_nodes, metadata, regions):
 
             node_index = node_indices['instr']
             node_indices['instr'] += 1
+            ir_id_index_map['instr'][ir_instr_id] = node_index
 
             function_name = node_metadata.get('functionName')
 
             nodes['instr'].append(Node(
-                node_index, 'instr', programl_id, 
+                node_index, 'instr', 
+                programl_id=programl_id, ir_id=ir_instr_id,
                 text=text, full_text=full_text, 
                 function_id=function_id, function_name=function_name, 
                 features={'opcode': opcode}
             ))
-
-            region_id = int(node_metadata.get('regionID', -1))
-            if region_id == -1:
-                region_id = function_id
-
-            hrchy_edges[('region', 'hrchy', 'instr')].append([region_id, node_index])
 
         elif node_type == 1: # Variable
             node_metadata = get_variable_metadata(metadata, function_id, full_text)
@@ -385,7 +382,8 @@ def build_nodes(programl_nodes, metadata, regions):
                 type_encoding = TYPE_ENCODING.get(var_type, [0] * TYPE_ENCODING_LEN)
 
                 nodes['var'].append(Node(
-                    node_index, 'var', programl_id,
+                    node_index, 'var', 
+                    programl_id=programl_id,
                     text=node_name, full_text=full_text, 
                     function_id=function_id, function_name=function_name,
                     features={'type': type_encoding, 'bitwidth': bitwidth}
@@ -396,17 +394,22 @@ def build_nodes(programl_nodes, metadata, regions):
             node_indices['const'] += 1
             features = get_const_node_features(text)
             nodes['const'].append(Node(
-                node_index, 'const', programl_id,
+                node_index, 'const', 
+                programl_id=programl_id,
                 text=text, full_text=full_text, 
                 function_id=function_id,
                 features=features
             ))
 
+    regions = metadata.get('region', [])
+
     for region in regions:
         node_index = node_indices['region']
         node_indices['region'] += 1
 
-        region_id = int(region['id'])
+        ir_region_id = int(region['id'])
+        ir_id_index_map['region'][ir_region_id] = node_index
+
         is_loop = int(region['isLoop'])
         trip_count = int(region['tripCount'])
 
@@ -425,14 +428,39 @@ def build_nodes(programl_nodes, metadata, regions):
         function_name = region.get('functionName')
 
         nodes['region'].append(Node(
-            node_index, 'region', -1, 
+            node_index, 'region',
+            ir_id=ir_region_id,
             text=name, full_text=name, 
             function_id=function_id, function_name=function_name, 
             features=features
         ))
+
+    # Ensure that regions with higher IDs are processed first
+    regions.sort(key=lambda x: int(x['id']), reverse=True)
+    instrs_seen = set()
+
+    for region in regions:
+        ir_region_id = int(region['id'])
+        node_index = ir_id_index_map['region'].get(ir_region_id)
+        if node_index is None:
+            continue
+
         for sub_region_id in region['subRegions']:
+            sub_region_index = ir_id_index_map['region'].get(sub_region_id)
+            if sub_region_index is None:
+                continue
             hrchy_edges[('region', 'hrchy', 'region')].append(
-                [region_id, sub_region_id]
+                [node_index, sub_region_index]
+            )
+        for instr_id in region['instructions']:
+            if instr_id in instrs_seen:
+                continue
+            instrs_seen.add(instr_id)
+            instr_index = ir_id_index_map['instr'].get(instr_id)
+            if instr_index is None:
+                continue
+            hrchy_edges[('region', 'hrchy', 'instr')].append(
+                [node_index, instr_index]
             )
         
     return nodes, hrchy_edges
@@ -449,14 +477,15 @@ def build_edges(programl_edges, nodes):
     edge_dict = defaultdict(list)
 
     for edge in programl_edges:
-        src = find_node(edge.source)
-        dst = find_node(edge.target)
+        src = find_node(edge['source'])
+        dst = find_node(edge['target'])
         if src is None or dst is None:
             continue
-
-        if edge.flow == 0:
+        
+        flow = edge['flow']
+        if flow == 0:
             flow = 'control'
-        elif edge.flow == 1:
+        elif flow == 1:
             flow = 'data'
         else:
             flow = 'call'
@@ -475,17 +504,17 @@ def plot_graph(hetero_data, plot_types=['full'], batched=False):
     from matplotlib.patches import Patch
 
     node_colors = {
-        "instr": "#419ada",
-        "var": "#1ecf89",
-        "const": "#aa6df0",
-        "array": "#f0a500",
-        "region": "#e07765"
+        "instr": "#2489d0",
+        "var": "#1fbfa2",
+        "const": "#8e6df0",
+        "array": "#c79037",
+        "region": "#c65551"
     }
     edge_colors = {
-        "data": "#19a073",
-        "control": "#117ebd",
-        "call": "#aa6df0",
-        "hrchy": "#80848a"
+        "data": "#0d7ca1",
+        "control": "#08924b",
+        "call": "#9148e4",
+        "hrchy": "#5c5f63"
     }
 
     def plot(plot_type):
@@ -497,10 +526,10 @@ def plot_graph(hetero_data, plot_types=['full'], batched=False):
             etypes = [et for et in EDGE_TYPES if et[1] == "call"]
         elif plot_type == "control":
             ntypes = ["instr"]
-            etypes = [et for et in EDGE_TYPES if et[1] in ["control", "call"]]
+            etypes = [et for et in EDGE_TYPES if et[1] == "control"]
         elif plot_type == "data":
             ntypes = ["instr", "const", "var", "array"]
-            etypes = [et for et in EDGE_TYPES if et[1] in ["data"]]
+            etypes = [et for et in EDGE_TYPES if et[1] == "data"]
         elif plot_type == "hrchy":
             ntypes = ["instr", "region"]
             etypes = [et for et in EDGE_TYPES if et[1] == "hrchy"]
@@ -514,7 +543,7 @@ def plot_graph(hetero_data, plot_types=['full'], batched=False):
             else:
                 data_trans[nt].x = x
 
-            data_trans[nt].label = hetero_data[nt].metadata['text']
+            data_trans[nt].label = hetero_data[nt].label
 
         for et, edge_index in hetero_data.edge_index_dict.items():
             if et not in etypes:
@@ -537,20 +566,20 @@ def plot_graph(hetero_data, plot_types=['full'], batched=False):
             et = attrs.get("type")
             if et is None or et not in etypes:
                 continue
-            ecolor = edge_colors[et]
+            ecolor = edge_colors[et[1]]
             ecolors.append(ecolor)
             G.edges[src, dst]["color"] = ecolor
 
         node_legend = [Patch(color=color, label=nt) for nt, color in node_colors.items()]
         edge_legend = [
-            Line2D([0], [0], color=color, lw=2, label=f"{et[1]}: {et[0]}→{et[2]}")
-            for et, color in edge_colors.items() if et in etypes
+            Line2D([0], [0], color=color, lw=2, label=et)
+            for et, color in edge_colors.items()
         ]
 
         if plot_type in ["full", "data", "hrchy"] and not batched:
             pos = nx.kamada_kawai_layout(G, scale=2)
         else:
-            pos = nx.spring_layout(G, scale=2, iterations=100, threshold=1e-6)
+            pos = nx.spring_layout(G, scale=2)
 
         plt.figure(figsize=(12, 8))
         nx.draw_networkx(
@@ -564,8 +593,8 @@ def plot_graph(hetero_data, plot_types=['full'], batched=False):
         )
         plt.show()
 
-    if not isinstance(plot_type, list):
-        plot_type = [plot_type]
+    if not isinstance(plot_types, list):
+        plot_types = [plot_types]
 
     for plot_type in plot_types:
         plot(plot_type)
@@ -706,9 +735,83 @@ MAX_ARRAY_DIMS = 4
 
 
 if __name__ == '__main__':
-    from sys import argv
+    import subprocess
+    from pathlib import Path
+    from os import environ
+    from sys import exit, argv
 
-    hetero_data = build_graph(argv[1], argv[2])
+    from utils.parsers import parse_tcl_directives
+
+    try:
+        DSE_LIB = environ['DSE_LIB']
+        OPT = environ['OPT']
+        CLANG = environ['CLANG']
+        LLVM_LINK = environ['LLVM_LINK']
+    except KeyError as error:
+        print(f"Error: environment variable {error.args[0]} not defined.")
+        exit(1)
+
+    def run_opt(src_path: Path, dst_path: Path, opt_args: Path, output_ll=True):
+        try:
+            if output_ll:
+                opt_args += " -S"
+            subprocess.check_output(
+                f"{OPT} -load {DSE_LIB} {opt_args} < {src_path.as_posix()} > {dst_path.as_posix()};", 
+                shell=True, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            print(f"Error processing {src_path}: {e}")
+            dst_path.unlink(missing_ok=True)
+            raise e
+
+    def process_ir(src_path: Path, dst_path: Path, metadata_path: Path):
+        tmp1 = src_path.parent / "tmp1.ll"
+        tmp2 = src_path.parent / "tmp2.ll"
+        default_clean = "-instnamer -lowerswitch -lowerinvoke -indirectbr-expand -strip-dead-prototypes -strip-debug"
+        default_opt = "-mem2reg -indvars -loop-simplify -scalar-evolution"
+        try:
+            run_opt(src_path, tmp1, default_clean)
+            run_opt(tmp1, tmp2, "-clear-intrinsics")
+            run_opt(tmp2, tmp1, default_opt)
+            run_opt(tmp1, dst_path, "-assign-ids")
+            subprocess.check_output(
+                f"{OPT} -load {DSE_LIB} -extract-md -out {metadata_path.as_posix()} < {dst_path.as_posix()};", 
+                shell=True, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            print(f"Error processing {src_path}: {e}")
+            tmp1.unlink(missing_ok=True)
+            tmp2.unlink(missing_ok=True)
+            dst_path.unlink(missing_ok=True)
+            metadata_path.unlink(missing_ok=True)
+            raise e
+        finally:
+            tmp1.unlink(missing_ok=True)
+            tmp2.unlink(missing_ok=True)
+
+    ir_path = Path(argv[1])
+    transformed_ir_path = ir_path.parent / "transformed.ll"
+    metadata_path = ir_path.parent / "metadata.json"
+
+    try:
+        process_ir(ir_path, transformed_ir_path, metadata_path)
+    except Exception as e:
+        print(f"Error processing {ir_path}: {e}")
+        exit(1)
+
+    if len(argv) > 2:
+        directive_file_path = Path(argv[2])
+        if not directive_file_path.exists():
+            print(f"Error: Directive file {directive_file_path} does not exist.")
+            exit(1)
+    else:
+        directive_file_path = None
+
+    hetero_data = build_graph(
+        transformed_ir_path, metadata_path, 
+        directive_file_path=directive_file_path,
+        output_path=ir_path.parent / "graph.pt"
+    )
     print(hetero_data)
 
     plot_graph(

@@ -76,9 +76,8 @@ build/
 approx/
 
 # Test files and statistics
-analysis/model/
 pretrained/
-runs/
+run_info/
 test/
 
 # The dataset to train the estimator (too large for git)

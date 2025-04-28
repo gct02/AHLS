@@ -5,6 +5,7 @@
 #include <stack>
 #include <unordered_map>
 #include <unordered_set>
+#include <utility>
 
 #include "llvm/Analysis/LoopInfo.h"
 #include "llvm/Analysis/LoopPass.h"
@@ -18,8 +19,6 @@
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 #include "llvm/Transforms/Utils/LoopUtils.h"
 
-#include "llvm/Analysis/XILINXLoopInfoUtils.h"
-
 using namespace llvm;
 
 namespace {
@@ -31,58 +30,28 @@ struct AssignIdentifiersPass : public ModulePass {
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "assign-ids"
 
-        if (M.empty()) return false;
-
-        setFunctionIDs(M);
-        setLoopIDs(M);
+        setRegionIDS(M);
         setInstructionIDs(M);
         setGlobalIDs(M);
 
-        return true; // Module is modified (instructions and globals renamed)
+        return false; // Module is not modified
     }
 
-    void setFunctionIDs(Module& M) {
+    void setRegionIDS(Module& M) {
         LLVMContext& ctx = M.getContext();
-        uint32_t id = 0;
+        uint32_t functionID = 0;
         for (Function& F : M) {
-            ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(ctx), id++);
+            DEBUG(dbgs() << "Function: " << F.getName() << "\n");
+            ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(ctx), functionID++);
             F.setMetadata("id", MDNode::get(ctx, {ConstantAsMetadata::get(CI)}));
         }
-    }
-
-    void setInstructionIDs(Module& M) {
-        LLVMContext& ctx = M.getContext();
-        uint32_t id = 0;
-        for (Function& F : M) {
-            for (BasicBlock& BB : F) {
-                for (Instruction& I : BB) {
-                    ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(ctx), id);
-                    I.setMetadata("id." + std::to_string(id), MDNode::get(ctx, {ConstantAsMetadata::get(CI)}));
-                    I.setMetadata("id", MDNode::get(ctx, {ConstantAsMetadata::get(CI)}));
-                    id++;
-                }
-            }
-        }
-    }
-
-    void setGlobalIDs(Module& M) {
-        LLVMContext& ctx = M.getContext();
-        uint32_t id = 0;
-        for (GlobalObject& G : M.getGlobalList()) {
-            ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(ctx), id);
-            G.setMetadata("id." + std::to_string(id), MDNode::get(ctx, {ConstantAsMetadata::get(CI)}));
-            G.setMetadata("id", MDNode::get(ctx, {ConstantAsMetadata::get(CI)}));
-            id++;
-        }
-    }
-
-    void setLoopIDs(Module& M) {
+        
         struct StackFrame {
             Loop* loop;
             uint32_t parentID;
         };
 
-        uint32_t loopID = M.getFunctionList().size() + 1;
+        uint32_t loopID = functionID;
 
         for (Function& F : M) {
             if (F.isIntrinsic() || F.size() == 0) continue;
@@ -96,6 +65,7 @@ struct AssignIdentifiersPass : public ModulePass {
 
             for (Loop* L : LI) {
                 if (!L->getParentLoop()) {
+                    DEBUG(dbgs() << "Loop: " << *L << "\n");
                     std::stack<StackFrame> loopStack;
                     loopStack.push({L, functionID});
 
@@ -107,7 +77,9 @@ struct AssignIdentifiersPass : public ModulePass {
                         uint32_t parentID = frame.parentID;
 
                         ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(M.getContext()), loopID);
-                        currLoop->setLoopID(MDNode::get(M.getContext(), {ConstantAsMetadata::get(CI)}));
+                        MDNode* idMD = MDNode::get(M.getContext(), {NULL, ConstantAsMetadata::get(CI)});
+                        idMD->replaceOperandWith(0, idMD);
+                        currLoop->setLoopID(idMD);
 
                         for (Loop* subLoop : currLoop->getSubLoops()) {
                             loopStack.push({subLoop, loopID});
@@ -119,15 +91,44 @@ struct AssignIdentifiersPass : public ModulePass {
         }
     }
 
+    void setInstructionIDs(Module& M) {
+        LLVMContext& ctx = M.getContext();
+        uint32_t id = 0;
+        for (Function& F : M) {
+            for (BasicBlock& BB : F) {
+                for (Instruction& I : BB) {
+                    DEBUG(dbgs() << "Instruction: " << I << "\n");
+                    ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(ctx), id);
+                    I.setMetadata("id." + std::to_string(id), MDNode::get(ctx, {ConstantAsMetadata::get(CI)}));
+                    I.setMetadata("id", MDNode::get(ctx, {ConstantAsMetadata::get(CI)}));
+                    id++;
+                }
+            }
+        }
+    }
+
+    void setGlobalIDs(Module& M) {
+        LLVMContext& ctx = M.getContext();
+        uint32_t id = 0;
+        for (GlobalObject& G : M.getGlobalList()) {
+            DEBUG(dbgs() << "Global: " << G.getName() << "\n");
+            ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(ctx), id);
+            G.setMetadata("id." + std::to_string(id), MDNode::get(ctx, {ConstantAsMetadata::get(CI)}));
+            G.setMetadata("id", MDNode::get(ctx, {ConstantAsMetadata::get(CI)}));
+            id++;
+        }
+    }
+
     void getAnalysisUsage(AnalysisUsage& AU) const override {
         AU.setPreservesAll();
         AU.addRequired<LoopInfoWrapperPass>();
         AU.addRequired<ScalarEvolutionWrapperPass>();
     }
+}; 
+// --- End Struct AssignIdentifiersPass ---
 
-}; // struct AssignIdentifiersPass
-
-} // anonymous namespace
+} 
+// --- End Namespace ---
 
 char AssignIdentifiersPass::ID = 0;
 static RegisterPass<AssignIdentifiersPass> X(
