@@ -30,35 +30,30 @@ struct AssignIdentifiersPass : public ModulePass {
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "assign-ids"
 
-        setRegionIDS(M);
+        setRegionIDs(M);
         setInstructionIDs(M);
         setGlobalIDs(M);
 
         return false; // Module is not modified
     }
 
-    void setRegionIDS(Module& M) {
-        LLVMContext& ctx = M.getContext();
-        uint32_t functionID = 0;
-        for (Function& F : M) {
-            DEBUG(dbgs() << "Function: " << F.getName() << "\n");
-            ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(ctx), functionID++);
-            F.setMetadata("id", MDNode::get(ctx, {ConstantAsMetadata::get(CI)}));
-        }
-        
+    void setRegionIDs(Module& M) {
         struct StackFrame {
             Loop* loop;
             uint32_t parentID;
         };
 
-        uint32_t loopID = functionID;
+        LLVMContext& ctx = M.getContext();
+        uint32_t regionID = 0;
 
         for (Function& F : M) {
             if (F.isIntrinsic() || F.size() == 0) continue;
 
-            uint32_t functionID = (uint32_t)cast<ConstantInt>(
-                dyn_cast<ConstantAsMetadata>(F.getMetadata("id")->getOperand(0))->getValue()
-            )->getZExtValue();
+            DEBUG(dbgs() << "Function: " << F.getName() << "\n");
+
+            uint32_t functionID = regionID++;
+            ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(ctx), functionID);
+            F.setMetadata("id", MDNode::get(ctx, {ConstantAsMetadata::get(CI)}));
 
             LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
             ScalarEvolution& SE = getAnalysis<ScalarEvolutionWrapperPass>(F).getSE();
@@ -76,15 +71,15 @@ struct AssignIdentifiersPass : public ModulePass {
                         Loop* currLoop = frame.loop;
                         uint32_t parentID = frame.parentID;
 
-                        ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(M.getContext()), loopID);
+                        ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(M.getContext()), regionID);
                         MDNode* idMD = MDNode::get(M.getContext(), {NULL, ConstantAsMetadata::get(CI)});
                         idMD->replaceOperandWith(0, idMD);
                         currLoop->setLoopID(idMD);
 
                         for (Loop* subLoop : currLoop->getSubLoops()) {
-                            loopStack.push({subLoop, loopID});
+                            loopStack.push({subLoop, regionID});
                         }
-                        loopID++;
+                        regionID++;
                     }
                 }
             }

@@ -109,6 +109,10 @@ def build_graph(
 
     edge_dict = build_edges(programl_edges, nodes)
 
+    for node_list in nodes.values():
+        for node in node_list:
+            print(f"Node: {node.text}, Type: {node.type}, Features: {node.features}")
+
     for et, edges in hrchy_edge_dict.items():
         if et not in edge_dict:
             edge_dict[et] = []
@@ -204,12 +208,12 @@ def include_directives(nodes, directive_file_path):
                       f"location {function_name} and variable {array_name}")
                 continue
 
-            partition_dim = min(int(directive_args.get('partition_dim', 0)),
+            partition_dim = min(int(directive_args.get('dim', 0)),
                                 MAX_ARRAY_DIMS)
             partition_dim_encoding = [0] * (MAX_ARRAY_DIMS + 1)
             partition_dim_encoding[partition_dim] = 1
 
-            partition_type = directive_args.get('partition_type', 'complete')
+            partition_type = directive_args.get('type', 'complete')
             if partition_type == 'complete':
                 partition_type_encoding = [1, 0, 0]
             elif partition_type == 'cyclic':
@@ -217,7 +221,7 @@ def include_directives(nodes, directive_file_path):
             else:
                 partition_type_encoding = [0, 0, 1]
 
-            partition_factor = int(directive_args.get('partition_factor', 0))
+            partition_factor = int(directive_args.get('factor', 0))
             if partition_factor <= 0:
                 array_dims = node.features['dims']
                 if partition_dim == 0:
@@ -253,12 +257,13 @@ def get_instruction_metadata(
 
 def get_variable_metadata(metadata, function_id, node_full_text):
     var_name = node_full_text.split(' ')[1].strip(' %@')
-    for entity_type in ['arrayPort', 'port', 'array', 'var']:
-        if entity_type not in metadata:
-            continue
-        for node in metadata[entity_type]:
+    for entity_type in ['port', 'variable']:
+        for node in metadata.get(entity_type, []):
             if node['functionID'] == function_id and node['name'] == var_name:
                 return node
+    for node in metadata.get('global', []):
+        if node['name'] == var_name:
+            return node
     return None
 
 
@@ -344,7 +349,7 @@ def build_nodes(programl_nodes, metadata):
                 base_type = int(node_metadata['baseType'])
                 type_encoding = TYPE_ENCODING.get(base_type, [0] * TYPE_ENCODING_LEN)
 
-                base_bitwidth = int(node_metadata['baseBitwidth'])
+                base_bitwidth = int(node_metadata['baseTypeBitwidth'])
                 n_dims = int(node_metadata['numDims'])
 
                 dims = [int(dim) for dim in node_metadata['dimensions']]
@@ -363,7 +368,7 @@ def build_nodes(programl_nodes, metadata):
                     'bitwidth': base_bitwidth,
                     'n_dims': n_dims,
                     'dims': dims,
-                    'partition_factor': 1,
+                    'partition_factor': 0,
                     'partition_dim': [0] * (MAX_ARRAY_DIMS + 1),
                     'partition_type': [0, 0, 0]
                 }

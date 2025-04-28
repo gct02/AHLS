@@ -96,7 +96,7 @@ struct ArrayMetadata : public EntityMetadata {
 
     ArrayMetadata(const std::string& entityName = "",
                   const std::string& functionName = "")
-        : EntityMetadata(MetadataKind::MK_Array, functionName) {}
+        : EntityMetadata(MetadataKind::MK_Array, entityName, functionName) {}
 
     void addDimension(uint32_t dimSize) {
         dimensions.push_back(dimSize);
@@ -178,8 +178,7 @@ struct ExtractMetadataPass : public ModulePass {
                     }
                     out << "]";
                 } else if (const auto* arrayMD = dyn_cast<const ArrayMetadata>(md)) {
-                     out << ",\n      \"isArray\": " << 1 << ",\n";
-                     out << "      \"dimensions\": [";
+                     out << ",\n      \"dimensions\": [";
                      bool firstDim = true;
                     for (const auto& dimSize : arrayMD->dimensions) {
                          if (!firstDim) out << ",";
@@ -209,13 +208,13 @@ struct ExtractMetadataPass : public ModulePass {
             if (isArrayType(type)) {
                 ArrayMetadata* md = getArrayMetadata(type, name);
                 md->set("id", id);
-                metadataDict["globalArray"].push_back(md);
+                metadataDict["global"].push_back(md);
             } else {
                 EntityMetadata* md = new EntityMetadata(name, "");
                 md->set("id", id);
                 md->set("bitwidth", type->getPrimitiveSizeInBits());
                 md->set("type", type->getTypeID());
-                metadataDict["globalVariable"].push_back(md);
+                metadataDict["global"].push_back(md);
             }
         }
     }
@@ -328,7 +327,8 @@ struct ExtractMetadataPass : public ModulePass {
                         type = ArrayType::get(type->getPointerElementType(), decayedDimSize);
                         ArrayMetadata* md = getArrayMetadata(type, paramName, functionName);
                         md->set("functionID", functionID);
-                        metadataDict["arrayPort"].push_back(md);
+                        md->set("isParam", 1);
+                        metadataDict["port"].push_back(md);
                     }
                 }
                 if (!isDecayed) {
@@ -336,6 +336,7 @@ struct ExtractMetadataPass : public ModulePass {
                     md->set("bitwidth", type->getPrimitiveSizeInBits());
                     md->set("type", type->getTypeID());
                     md->set("functionID", functionID);
+                    md->set("isParam", 1);
                     metadataDict["port"].push_back(md);
                 }
             }
@@ -378,7 +379,7 @@ struct ExtractMetadataPass : public ModulePass {
                             ArrayMetadata* arrayMD = getArrayMetadata(type, instrName, functionName);
                             arrayMD->set("id", instrID);
                             arrayMD->set("functionID", functionID);
-                            metadataDict["array"].push_back(md);
+                            metadataDict["variable"].push_back(md);
                         } else {
                             EntityMetadata* valMD = new EntityMetadata(instrName, functionName);
                             valMD->set("id", instrID);
@@ -454,6 +455,7 @@ struct ExtractMetadataPass : public ModulePass {
         ArrayMetadata* md = new ArrayMetadata(arrayName, functionName);
 
         Type* baseType = getArrayBaseType(arrayType);
+        md->set("isArray", 1);
         md->set("baseType", baseType->getTypeID());
         md->set("baseTypeBitwidth", baseType->getPrimitiveSizeInBits());
 
