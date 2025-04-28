@@ -5,7 +5,11 @@ from typing import List, Tuple, Union, Dict
 
 import xml.etree.ElementTree as ET
 
-from utils.xml_utils import findint, findfloat
+try:
+    from utils.xml_utils import findint, findfloat
+except ImportError:
+    print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
+    pass
 
 
 Number = Union[int, float]

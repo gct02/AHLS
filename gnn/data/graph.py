@@ -1,6 +1,5 @@
 import json
 from collections import defaultdict
-from enum import IntEnum
 from typing import Optional
 
 import torch
@@ -9,6 +8,7 @@ from torch_geometric.data import HeteroData
 
 try:
     from utils.parsers import parse_tcl_directives
+    from utils.llvm_defs import *
 except ImportError:
     print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
     pass
@@ -317,7 +317,7 @@ def build_nodes(programl_nodes, metadata):
                 continue
 
             opcode = int(node_metadata['opcode'])
-            opcode = OP_ENCODING.get(opcode, [0] * OP_ENCODING_LEN)
+            opcode = OP_ENCODING.get(opcode, [0] * OP_ENCODING_SIZE)
 
             node_index = node_indices['instr']
             node_indices['instr'] += 1
@@ -347,7 +347,7 @@ def build_nodes(programl_nodes, metadata):
                 node_indices['array'] += 1
 
                 base_type = int(node_metadata['baseType'])
-                type_encoding = TYPE_ENCODING.get(base_type, [0] * TYPE_ENCODING_LEN)
+                type_encoding = TYPE_ENCODING.get(base_type, [0] * TYPE_ENCODING_SIZE)
 
                 base_bitwidth = int(node_metadata['baseTypeBitwidth'])
                 n_dims = int(node_metadata['numDims'])
@@ -384,7 +384,7 @@ def build_nodes(programl_nodes, metadata):
 
                 var_type = int(node_metadata['type'])
                 bitwidth = int(node_metadata['bitwidth'])
-                type_encoding = TYPE_ENCODING.get(var_type, [0] * TYPE_ENCODING_LEN)
+                type_encoding = TYPE_ENCODING.get(var_type, [0] * TYPE_ENCODING_SIZE)
 
                 nodes['var'].append(Node(
                     node_index, 'var', 
@@ -603,140 +603,6 @@ def plot_graph(hetero_data, plot_types=['full'], batched=False):
 
     for plot_type in plot_types:
         plot(plot_type)
-
-
-# Opcodes from LLVM 7.0
-class Opcode(IntEnum):
-    RET = 1
-    BR = 2
-    ADD = 11
-    FADD = 12
-    SUB = 13
-    FSUB = 14
-    MUL = 15
-    FMUL = 16
-    UDIV = 17
-    SDIV = 18
-    FDIV = 19
-    UREM = 20
-    SREM = 21
-    FREM = 22
-    SHL = 23
-    LSHR = 24
-    ASHR = 25
-    AND = 26
-    OR = 27
-    XOR = 28
-    ALLOCA = 29
-    LOAD = 30
-    STORE = 31
-    GEP = 32
-    TRUNC = 36
-    ZEXT = 37
-    SEXT = 38
-    FPTRUNC = 43
-    FPEXT = 44
-    BITCAST = 47
-    ICMP = 51
-    FCMP = 52
-    PHI = 53
-    CALL = 54
-
-# Type IDs from LLVM 7.0
-class TypeID(IntEnum):
-    VOID = 0
-    HALF = 1
-    FLOAT = 2
-    DOUBLE = 3
-    X86_FP80 = 4
-    FP128 = 5
-    PPC_FP128 = 6
-    LABEL = 7
-    METADATA = 8
-    X86_MMX = 9
-    TOKEN = 10
-    INT = 11
-    FUNCTION = 12
-    STRUCT = 13
-    ARRAY = 14
-    POINTER = 15
-    VECTOR = 16
-
-# Hierarchical "one-hot-like" encoding of LLVM operations (12 bits)
-# The first 5 bits represent the instruction category
-# The next 5 bits represent the instruction type
-# The 11th bit represents the instruction is a floating-point operation
-# The 12th bit represents the instruction is signed
-OP_ENCODING = {
-    # Arithmetic
-    Opcode.ADD:     [1,0,0,0,0, 1,0,0,0,0, 0,1],
-    Opcode.FADD:    [1,0,0,0,0, 1,0,0,0,0, 1,0],
-    Opcode.SUB:     [1,0,0,0,0, 0,1,0,0,0, 0,1],
-    Opcode.FSUB:    [1,0,0,0,0, 0,1,0,0,0, 1,0],
-    Opcode.MUL:     [1,0,0,0,0, 0,0,1,0,0, 0,1],
-    Opcode.FMUL:    [1,0,0,0,0, 0,0,1,0,0, 1,0],
-    Opcode.SDIV:    [1,0,0,0,0, 0,0,0,1,0, 0,1],
-    Opcode.UDIV:    [1,0,0,0,0, 0,0,0,1,0, 0,0],
-    Opcode.FDIV:    [1,0,0,0,0, 0,0,0,1,0, 1,0],
-    Opcode.SREM:    [1,0,0,0,0, 0,0,0,0,1, 0,1],
-    Opcode.UREM:    [1,0,0,0,0, 0,0,0,0,1, 0,0],
-    Opcode.FREM:    [1,0,0,0,0, 0,0,0,0,1, 1,0],
-
-    # Logical
-    Opcode.SHL:     [0,1,0,0,0, 1,0,0,0,0, 0,0],
-    Opcode.LSHR:    [0,1,0,0,0, 0,1,0,0,0, 0,0],
-    Opcode.ASHR:    [0,1,0,0,0, 0,1,0,0,0, 0,1],
-    Opcode.AND:     [0,1,0,0,0, 0,0,1,0,0, 0,0],
-    Opcode.OR:      [0,1,0,0,0, 0,0,0,1,0, 0,0],
-    Opcode.XOR:     [0,1,0,0,0, 0,0,0,0,1, 0,0],
-
-    # Memory
-    Opcode.ALLOCA:  [0,0,1,0,0, 1,0,0,0,0, 0,0],
-    Opcode.LOAD:    [0,0,1,0,0, 0,1,0,0,0, 0,0],
-    Opcode.STORE:   [0,0,1,0,0, 0,0,1,0,0, 0,0],
-    Opcode.GEP:     [0,0,1,0,0, 0,0,0,1,0, 0,0],
-
-    # Casts
-    Opcode.TRUNC:   [0,0,0,1,0, 1,0,0,0,0, 0,0],
-    Opcode.FPTRUNC: [0,0,0,1,0, 1,0,0,0,0, 1,0],
-    Opcode.ZEXT:    [0,0,0,1,0, 0,1,0,0,0, 0,0],
-    Opcode.SEXT:    [0,0,0,1,0, 0,1,0,0,0, 0,1],
-    Opcode.FPEXT:   [0,0,0,1,0, 0,1,0,0,0, 1,0],
-    Opcode.BITCAST: [0,0,0,1,0, 0,0,1,0,0, 0,0],
-
-    # Control flow
-    Opcode.BR:      [0,0,0,0,1, 1,0,0,0,0, 0,0],
-    Opcode.RET:     [0,0,0,0,1, 0,1,0,0,0, 0,0],
-    Opcode.CALL:    [0,0,0,0,1, 0,0,1,0,0, 0,0],
-    Opcode.PHI:     [0,0,0,0,1, 0,0,0,1,0, 0,0],
-    Opcode.ICMP:    [0,0,0,0,1, 0,0,0,0,1, 0,0],
-    Opcode.FCMP:    [0,0,0,0,1, 0,0,0,0,1, 1,0]
-}
-OP_ENCODING_LEN = 12
-
-TYPE_ENCODING = {
-    TypeID.INT:       [1,0,0,0,0,0],
-    TypeID.HALF:      [0,1,0,0,0,0],
-    TypeID.FLOAT:     [0,1,0,0,0,0],
-    TypeID.DOUBLE:    [0,1,0,0,0,0],
-    TypeID.X86_FP80:  [0,1,0,0,0,0],
-    TypeID.FP128:     [0,1,0,0,0,0],
-    TypeID.PPC_FP128: [0,1,0,0,0,0],
-    TypeID.POINTER:   [0,0,1,0,0,0],
-    TypeID.STRUCT:    [0,0,0,1,0,0],
-    TypeID.VOID:      [0,0,0,0,1,0],
-    TypeID.VECTOR:    [0,0,0,0,0,1],
-
-    TypeID.ARRAY:     [0,0,0,0,0,1],
-    TypeID.LABEL:     [0,0,0,0,0,1],
-    TypeID.METADATA:  [0,0,0,0,0,1],
-    TypeID.X86_MMX:   [0,0,0,0,0,1],
-    TypeID.TOKEN:     [0,0,0,0,0,1],
-    TypeID.FUNCTION:  [0,0,0,0,0,1]
-}
-TYPE_ENCODING_LEN = 6
-
-MAX_ARRAY_DIMS = 4
 
 
 if __name__ == '__main__':

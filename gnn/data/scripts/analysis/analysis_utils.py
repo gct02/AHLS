@@ -9,18 +9,22 @@ from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_har
 from sklearn.decomposition import PCA
 from numpy.typing import NDArray
 
-from gnn.data.utils.parsers import (
-    extract_metrics,
-    parse_tcl_directives_file,
-    _parse_directive_cmd
-)
+try:
+    from gnn.data.utils.parsers import (
+        extract_metrics,
+        parse_tcl_directives_file,
+        _parse_directive_cmd
+    )
+except ImportError:
+    print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
+    pass
 
 def cluster_by_directive(
     directives: NDArray[np.int_],
     n_clusters: int = 8,
     max_iter: int = 1000,
     cluster_method: str = 'kmeans',
-    n_components: Union[int, float] = 0.85
+    n_components: Union[int, float] = 0.8
 ) -> NDArray[np.int_]:
     if directives.ndim > 2:
         directives = directives.reshape(directives.shape[0], -1)

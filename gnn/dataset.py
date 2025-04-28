@@ -27,7 +27,6 @@ class HLSDataset(Dataset):
         self._separate = separate
 
         self.log_transform = log_transform
-
         self.root = os.path.join(root, mode)
 
         if not benchmarks:
