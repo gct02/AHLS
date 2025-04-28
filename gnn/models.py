@@ -31,8 +31,7 @@ class HGT(nn.Module):
             If :obj:`None`, the number of layers is set to the length of
             :obj:`hid_dims` or the number of node types.
             (default: :obj:`None`)
-        dropout (float): Dropout rate for fully connected layers.
-            (default: :obj:`0.0`)
+        dropout (float): Dropout rate. (default: :obj:`0.0`)
     """
     def __init__(
         self,
@@ -41,7 +40,7 @@ class HGT(nn.Module):
         out_channels: int,
         hid_dim: int = 256,
         heads: int = 4,
-        num_layers: int = 5,
+        num_layers: int = 4,
         dropout: float = 0.0
     ):
         super().__init__()
@@ -64,10 +63,13 @@ class HGT(nn.Module):
             HGTConv(hid_dim, hid_dim, metadata, heads=heads, dropout=dropout)
             for _ in range(num_layers)
         ])
-        self.norm = nn.ModuleDict({
-            nt: LayerNorm(hid_dim)
-            for nt in self.node_types
-        })
+        self.norm = nn.ModuleList([
+            nn.ModuleDict({
+                nt: LayerNorm(hid_dim)
+                for nt in self.node_types
+            })
+            for _ in range(num_layers)
+        ])
 
         self.jk = nn.ModuleDict({
             nt: JumpingKnowledge(mode='cat', num_layers=num_layers)
@@ -94,11 +96,9 @@ class HGT(nn.Module):
         # Graph-level MLP
         emb_dim = len(self.node_types) * hid_dim + 16
         self.graph_mlp = nn.Sequential(
-            Linear(emb_dim, 512, weight_initializer="kaiming_uniform"), 
-            nn.BatchNorm1d(512), nn.GELU(), nn.Dropout(dropout),
-            Linear(512, 256, weight_initializer="kaiming_uniform"), 
-            nn.BatchNorm1d(256), nn.GELU(), nn.Dropout(dropout),
-            Linear(256, 128, weight_initializer="kaiming_uniform"), 
+            Linear(emb_dim, hid_dim, weight_initializer="kaiming_uniform"), 
+            nn.BatchNorm1d(hid_dim), nn.GELU(), nn.Dropout(dropout),
+            Linear(hid_dim, 128, weight_initializer="kaiming_uniform"),  
             nn.BatchNorm1d(128), nn.GELU(), nn.Dropout(dropout),
             Linear(128, out_channels, weight_initializer="uniform")
         )
@@ -148,7 +148,7 @@ class HGT(nn.Module):
         # Convolutional layers
         xs_dict = {nt: [] for nt in self.node_types}
         for i in range(self.num_layers):
-            x_dict = {nt: self.norm[nt](x) for nt, x in x_dict.items()}
+            x_dict = {nt: self.norm[i][nt](x) for nt, x in x_dict.items()}
             x_dict = self.conv[i](x_dict, edge_index_dict)
             for nt, out in x_dict.items():
                 xs_dict[nt].append(out)

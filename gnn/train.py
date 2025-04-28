@@ -245,7 +245,7 @@ def main(args: Dict[str, str]):
     
     model = HGT(
         metadata, in_channels, out_channels,
-        hid_dim=512, heads=8, num_layers=4,
+        hid_dim=256, heads=4, num_layers=4,
         dropout=0.1
     ).to(DEVICE)
 

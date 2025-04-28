@@ -160,7 +160,7 @@ def build_graph(
 
 def include_directives(nodes, directive_file_path):
     def find_node(node_type, node_name, function_name):
-        for node in nodes[node_type].values():
+        for node in nodes[node_type]:
             if ((node_name is None or node.text == node_name) 
                 and node.function_name == function_name):
                 return node
