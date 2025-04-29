@@ -154,15 +154,12 @@ def train_model(
             clip_grad_norm_(model.parameters(), max_norm=10.0)
             optimizer.step()
 
-            if warmup_scheduler:
-                if step < warmup_steps:
-                    warmup_scheduler.step()
-                    step += 1
-                elif step == warmup_steps:
-                    if verbosity > 0:
-                        print("Warmup completed, switching to cosine annealing scheduler")
-                    warmup_scheduler = None
-            elif scheduler:
+            if step < warmup_steps and warmup_scheduler is not None:
+                warmup_scheduler.step()
+                step += 1
+                if step == warmup_steps and verbosity > 0:
+                    print("Warmup completed, switching to cosine annealing scheduler")
+            elif scheduler is not None:
                 scheduler.step()
 
             batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
@@ -240,7 +237,7 @@ def main(args: Dict[str, str]):
     
     model = HGT(
         metadata, in_channels, out_channels,
-        hid_dim=512, heads=8, num_layers=5,
+        hid_dim=256, heads=4, num_layers=4,
         dropout=0.1
     ).to(DEVICE)
 
