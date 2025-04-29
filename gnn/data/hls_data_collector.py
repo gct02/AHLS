@@ -4,12 +4,8 @@ import xml.etree.ElementTree as ET
 from collections import defaultdict
 from typing import Optional, Dict
 
-try:
-    from xml_utils import findint, findfloat
-    from gnn.data.parsers import extract_impl_report
-except ImportError:
-    print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
-    pass
+from gnn.data.utils.xml_utils import findint, findfloat
+from gnn.data.utils.parsers import extract_impl_report
 
 
 TARGET_RESOURCES = ['FF', 'LUT', 'DSP', 'BRAM']
@@ -332,7 +328,7 @@ class CDFG:
 
             edge_type = (src_type, rel_type, dst_type)
             if edge_type == ('const', 'data', 'instr'):
-                src_node = self.nodes[src_type][src]
+                src_node = self.nodes[src_type][src - self._offsets[src_type]]
                 if src_node.attrs['const_type'] == '6':
                     callee_name = src_node.name
                     self.function_calls.append((dst, callee_name))
@@ -452,12 +448,12 @@ class HLSData:
 
         self.resource_usage = {
             key: value
-            for key, value in rpt['module_data'] if key in TARGET_RESOURCES
+            for key, value in rpt['module_data'].items() if key in TARGET_RESOURCES
         }
 
         self._offsets = {
-            'instr': -1, 'const': -1, 'port': -1, 
-            'block': -1, 'region': -1
+            'instr': 0, 'const': 0, 'port': 0, 
+            'block': 0, 'region': -1
         }
         self._cdfgs = {}
 

@@ -1,8 +1,8 @@
 import os
 import json
 import numpy as np
-from utils.data_analysis import *
 
+from gnn.data.analysis.analysis_utils import parse_and_encode_directives
 
 DIRECTIVES = {
     "pipeline", "unroll", "loop_merge", 
@@ -121,33 +121,6 @@ def process_results_and_directives(log_file, raw_test_dataset_dir, source_datase
     return sort_by_error(result_directive_dict)
 
 
-def find_topk_directives(sorted_results, k=15):
-    """Print top-k directive configurations by error."""
-    directives = [entry[1] for entry in sorted_results]
-    topk = directives[:k]
-    print(topk)
-
-    # clusters = cluster_by_directive(np.stack(directives), n_components=3)
-    # print(clusters)
-
-    # n_gps = len(topk[0])
-
-    # gp_count_total = [0 for _ in range(n_gps)]
-    # for gp in directives:
-    #     for i in range(len(gp)):
-    #         if gp[i] != 0:
-    #             gp_count_total[i] += 1
-
-    # gp_count_topk = [0 for _ in range(n_gps)]
-    # for gp in topk:
-    #     for i in range(len(gp)):
-    #         if gp[i] != 0:
-    #             gp_count_topk[i] += 1
-
-    # rel_gp_count = [c1/(c2+1e-6) for c1, c2 in zip(gp_count_topk, gp_count_total)]
-    # print(rel_gp_count)
-
-
 def _load_metrics(path):
     if os.path.exists(path):
         with open(path, "r") as f:
@@ -175,9 +148,12 @@ if __name__ == "__main__":
     raw_test_dataset_dir = sys.argv[2]
     directives_config_path = sys.argv[3]
     log_file = sys.argv[4]
+    k = int(sys.argv[5]) if len(sys.argv) > 5 else 15
 
     sorted_results = process_results_and_directives(
         log_file, raw_test_dataset_dir, source_dataset_dir, directives_config_path
     )
 
-    find_topk_directives(sorted_results)
+    directives = [entry[1] for entry in sorted_results]
+    topk = directives[:k]
+    print(topk)

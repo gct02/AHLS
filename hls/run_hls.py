@@ -4,6 +4,7 @@ import os
 import sys
 from string import Template
 
+
 _TEMPLATE = """open_project $PRJ_NAME
 add_files { $SRC_FILES }
 set_top $TOP_FUNC
@@ -18,6 +19,7 @@ csynth_design
 export_design -flow impl -format syn_dcp -rtl verilog
 exit
 """
+
 
 def gen_tcl(
     prj_name, src_files, top_func, sol_name, 
@@ -50,6 +52,7 @@ def gen_tcl(
 
     return tcl_path
 
+
 def run_vitis(
     prj_name, src_files, top_func, sol_name, 
     device='xcu50-fsvh2104-2-e', clock_period='8',
@@ -61,6 +64,7 @@ def run_vitis(
     subprocess.check_output("bash " + call_vitis_script_path, shell=True)
     os.remove(tcl_path)
 
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('prj_name', type=str)
@@ -71,6 +75,7 @@ def parse_args():
     parser.add_argument('--device', type=str, default='xcu50-fsvh2104-2-e')
     parser.add_argument('--clock', type=str, default='8')
     return parser.parse_args()
+
 
 if __name__ == '__main__':
     args = parse_args()

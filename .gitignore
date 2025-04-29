@@ -87,3 +87,6 @@ pretrained/
 
 # Scripts
 scripts/*.sh
+
+# LLVM passes and Clang plugins (not used anymore)
+llvm/

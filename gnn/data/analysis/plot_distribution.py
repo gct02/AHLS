@@ -1,6 +1,5 @@
 import os
 import logging
-from pathlib import Path
 from argparse import ArgumentParser
 from collections import defaultdict
 from typing import Optional, Union, List, Any, Set, Dict
@@ -10,6 +9,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from numpy.typing import NDArray
+
+from gnn.data.utils.parsers import extract_metrics
+from gnn.data.analysis.analysis_utils import collate_data_for_analysis
 
 
 # Configure logging
@@ -237,20 +239,7 @@ def parse_args():
 
 
 if __name__ == '__main__':
-    import sys
-
-    if __package__ is None:                  
-        DIR = Path(__file__).resolve().parent
-        sys.path.insert(0, str(DIR.parent))
-        sys.path.insert(0, str(DIR.parent.parent))
-        __package__ = DIR.name 
-
-    from utils.parsers import extract_metrics
-    from utils.data import collate_data_for_analysis
-    
-
     args = parse_args()
-
     dataset_dir = args.dataset
     metric = args.metric
     filtered = args.filtered

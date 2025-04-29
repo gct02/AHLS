@@ -1,10 +1,6 @@
 import json
 
-try:
-    from utils.c_json import file_to_dict
-except ImportError:
-    print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
-    pass
+from hls.c_json import file_to_dict
 
 
 def get_loop(node, ret_label=False):
@@ -245,7 +241,7 @@ if __name__ == '__main__':
 
     sys.path.extend(['.', '..'])
 
-    from utils.c_json import file_to_dict
+    from hls.c_json import file_to_dict
 
     ast_dict = file_to_dict(argv[1])
     funcs = extract_funcs_and_loops(ast_dict)

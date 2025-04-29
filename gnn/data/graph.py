@@ -1,5 +1,4 @@
 import pickle
-from pathlib import Path
 from copy import deepcopy
 from typing import Dict, Union, Optional
 
@@ -8,12 +7,8 @@ import matplotlib.pyplot as plt
 from torch_geometric.data import HeteroData
 from sklearn.preprocessing import OneHotEncoder
 
-try:
-    from hls_data_collector import HLSData
-    from parsers import parse_tcl_directives_file
-except ImportError:
-    print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
-    pass
+from gnn.data.hls_data_collector import HLSData
+from gnn.data.utils.parsers import parse_tcl_directives_file
 
 
 NODE_TYPES = ["instr", "port", "const", "region"]
@@ -48,9 +43,9 @@ EDGE_TYPES = [
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 76, 
+    "instr": 72, 
     "port": 14, 
-    "const": 4,
+    "const": 5,
     "region": 12
 }
 
@@ -410,17 +405,7 @@ def plot_data(
 
 
 if __name__ == "__main__":
-    import sys
     from argparse import ArgumentParser
-
-    if __package__ is None:                  
-        DIR = Path(__file__).resolve().parent
-        sys.path.insert(0, str(DIR.parent))
-        sys.path.insert(0, str(DIR.parent.parent))
-        __package__ = DIR.name
-
-    from hls_data_collector import HLSData
-    from parsers import parse_tcl_directives_file
 
     parser = ArgumentParser()
     parser.add_argument("base_solution_dir", nargs=1, type=str)

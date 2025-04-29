@@ -9,11 +9,10 @@ import sklearn
 import matplotlib.pyplot as plt
 from numpy.typing import NDArray
 
-try:
-    from utils.data import *
-except ImportError:
-    print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
-    pass
+from gnn.data.analysis.analysis_utils import (
+    cluster_by_directive,
+    collate_data_for_analysis
+)
 
 
 def generate_metrics_plot(
@@ -186,16 +185,5 @@ def main(args):
 
 
 if __name__ == '__main__':
-    import sys
-    from pathlib import Path
-
-    if __package__ is None:                  
-        DIR = Path(__file__).resolve().parent
-        sys.path.insert(0, str(DIR.parent))
-        sys.path.insert(0, str(DIR.parent.parent))
-        __package__ = DIR.name 
-
-    from utils.data import *
-    
     args = parse_args()
     main(args)

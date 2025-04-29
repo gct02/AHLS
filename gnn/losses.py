@@ -8,4 +8,4 @@ class RMSLELoss(nn.Module):
         self.mse = nn.MSELoss()
         
     def forward(self, pred, target):
-        return torch.sqrt(self.mse(torch.log(pred + 1), torch.log(target + 1)))
+        return torch.sqrt(self.mse(torch.log1p(pred), torch.log1p(target)))

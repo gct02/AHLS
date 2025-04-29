@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 from torch.nn import Parameter
-from torch_geometric.nn import MessagePassing, Linear
+from torch_geometric.nn import MessagePassing, Linear, LayerNorm
 from torch_geometric.nn.dense import HeteroDictLinear, HeteroLinear
 from torch_geometric.nn.inits import ones
 from torch_geometric.nn.parameter_dict import ParameterDict
@@ -67,13 +67,11 @@ class HGTConv(MessagePassing):
 
         self.kqv_lin = HeteroDictLinear(
             in_channels, out_channels * 3,
-            types=self.node_types, 
-            weight_initializer='kaiming_uniform'
+            types=self.node_types, weight_initializer='kaiming_uniform'
         )
         self.out_lin = HeteroDictLinear(
             out_channels, out_channels, 
-            types=self.node_types,
-            weight_initializer='kaiming_uniform',
+            types=self.node_types, weight_initializer='kaiming_uniform',
         )
 
         self.head_dim = out_channels // heads
@@ -245,6 +243,8 @@ class HetSAGPooling(nn.Module):
             for each node type.
         metadata (Tuple[List[str], List[Tuple[str, str, str]]]):
             Metadata object containing node and edge types.
+        dropout (float, optional): Dropout rate for the GNN.
+            (default: :obj:`0.0`)
         **kwargs (optional): Additional arguments of :class:`HGTConv`.
     """
     def __init__(
@@ -259,15 +259,18 @@ class HetSAGPooling(nn.Module):
         self.node_types = metadata[0]
 
         if not isinstance(in_channels, dict):
-            in_channels = {nt: in_channels for nt in metadata[0]}
+            self.in_channels = {nt: in_channels for nt in metadata[0]}
+        else:
+            self.in_channels = in_channels
 
-        self.gnn = HGTConv(in_channels, 1, metadata, **kwargs)
+        self.norm = nn.ModuleDict({
+            nt: LayerNorm(d) for nt, d in self.in_channels.items()
+        })
+        self.gnn = HGTConv(self.in_channels, 1, metadata, dropout=dropout, **kwargs)
+
         self.mlp = nn.ModuleDict({
-            nt: nn.Sequential(
-                Linear(2*d, d, weight_initializer="kaiming_uniform"),
-                nn.BatchNorm1d(d), nn.GELU(), nn.Dropout(dropout)
-            )
-            for nt, d in in_channels.items()
+            nt: Linear(2*d, d, weight_initializer="kaiming_uniform")
+            for nt, d in self.in_channels.items()
         })
         
         self.reset_parameters()
@@ -275,9 +278,9 @@ class HetSAGPooling(nn.Module):
     def reset_parameters(self):
         """Reinitializes model parameters."""
         self.gnn.reset_parameters()
-        for m in self.mlp.modules():
-            if isinstance(m, Linear):
-                m.reset_parameters()
+        for nt in self.node_types:
+            self.mlp[nt].reset_parameters()
+            self.norm[nt].reset_parameters()
 
     def forward(
         self,
@@ -297,6 +300,7 @@ class HetSAGPooling(nn.Module):
 
         :rtype: :obj:`torch.Tensor` - The pooled embeddings for the entire graph.
         """
+        x_dict = {nt: self.norm[nt](x) for nt, x in x_dict.items()}
         score_dict = self.gnn(x_dict, edge_index_dict)
 
         batch_size = self._get_batch_size(batch_dict)

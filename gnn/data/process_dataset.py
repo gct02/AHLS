@@ -5,6 +5,9 @@ from typing import Dict, Union
 
 import torch
 
+from gnn.data.graph import build_base_graphs, build_opt_graph
+from gnn.data.utils.parsers import extract_metrics
+
 
 def create_directives_tcl(
     hls_data_json: Union[str, Path],
@@ -66,7 +69,7 @@ def main(args: Dict[str, str]):
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Process the dataset, creating graphs and metrics to be used for training ML models."
+        description="Process dataset to extract metrics and build graphs"
     )
     parser.add_argument("-d", "--dataset-dir", required=True,
                         help="Path to the dataset directory")
@@ -80,17 +83,6 @@ def parse_args():
 
 
 if __name__ == "__main__":
-    import sys
-
-    if __package__ is None:                  
-        DIR = Path(__file__).resolve().parent
-        sys.path.insert(0, str(DIR.parent))
-        sys.path.insert(0, str(DIR.parent.parent))
-        __package__ = DIR.name
-
-    from gnn.graph import build_base_graphs, build_opt_graph
-    from utils.parsers import extract_metrics
-    
     args = parse_args()
     main(args)
 

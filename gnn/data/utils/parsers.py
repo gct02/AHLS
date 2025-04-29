@@ -5,7 +5,7 @@ from typing import List, Tuple, Union, Dict
 
 import xml.etree.ElementTree as ET
 
-from utils.xmlutils import findint, findfloat
+from gnn.data.utils.xml_utils import findint, findfloat
 
 
 Number = Union[int, float]

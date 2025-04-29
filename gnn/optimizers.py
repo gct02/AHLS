@@ -10,7 +10,6 @@ class Lion(Optimizer):
     
     Original implementation: "Lion" (https://github.com/google/automl).
     """
-
     def __init__(self, params, lr=1e-4, betas=(0.9, 0.99), weight_decay=0.0):
         """Initialize Lion optimizer hyperparameters.
 
@@ -50,22 +49,22 @@ class Lion(Optimizer):
             for p in group['params']:
                 if p.grad is None:
                     continue
-                
                 grad = p.grad
                 state = self.state[p]
+
                 # State initialization
                 if len(state) == 0:
                     state['exp_avg'] = torch.zeros_like(p)
-
                 exp_avg = state['exp_avg']
                 beta1, beta2 = group['betas']
 
                 # Apply weight decay
                 p.data.mul_(1 - group['lr'] * group['weight_decay'])
-                # Compute update
+
+                # Compute and apply update
                 update = exp_avg * beta1 + grad * (1 - beta1)
-                # Apply update
                 p.add_(update.sign_(), alpha=-group['lr'])
+
                 # Update exponential moving average
                 exp_avg.mul_(beta2).add_(grad, alpha=1 - beta2)
 
