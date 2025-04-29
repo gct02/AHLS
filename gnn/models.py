@@ -4,12 +4,12 @@ import torch
 import torch.nn as nn
 from torch import Tensor
 from torch_geometric.nn import (
-    HeteroDictLinear, JumpingKnowledge, 
-    Linear, LayerNorm
+    HeteroDictLinear, Linear, 
+    LayerNorm, JumpingKnowledge
 )
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 
-from layers import HetSAGPooling, HGTConv
+from gnn.layers import HetSAGPooling, HGTConv
 
 
 class HGT(nn.Module):

@@ -6,6 +6,9 @@ from os import environ
 from pathlib import Path
 from typing import Dict
 
+from gnn.data.graph import build_graph
+from gnn.data.utils.parsers import extract_metrics
+
 
 try:
     DSE_LIB = environ['DSE_LIB']
@@ -58,18 +61,19 @@ def process_ir(src_path: Path, dst_path: Path, metadata_path: Path):
     """
     tmp1 = src_path.parent / "tmp1.ll"
     tmp2 = src_path.parent / "tmp2.ll"
-    clean_opt = "-instnamer -lowerswitch -lowerinvoke -indirectbr-expand -strip-dead-prototypes -strip-debug"
+    clean_opt = "-lowerswitch -lowerinvoke -indirectbr-expand"
     transform_opt = "-mem2reg -indvars -loop-simplify -scalar-evolution"
 
     try:
         run_opt(src_path, tmp1, clean_opt)
         run_opt(tmp1, tmp2, "-clear-intrinsics")
         run_opt(tmp2, tmp1, transform_opt)
-        run_opt(tmp1, dst_path, "-assign-ids")
+        run_opt(tmp1, tmp2, "-assign-ids")
         subprocess.check_output(
-            f"{OPT} -load {DSE_LIB} -extract-md -out {metadata_path.as_posix()} < {dst_path.as_posix()};", 
+            f"{OPT} -load {DSE_LIB} -extract-md -out {metadata_path.as_posix()} < {tmp2.as_posix()};", 
             shell=True, stderr=subprocess.STDOUT
         )
+        run_opt(tmp2, dst_path, "-strip-debug")
     except subprocess.CalledProcessError as e:
         print(f"Error processing {src_path}: {e}")
         tmp1.unlink(missing_ok=True)
@@ -124,7 +128,7 @@ def main(args: Dict[str, str]):
             out_ir_path = ir_folder / "transformed_ir.ll"
             out_md_path = solution_out_dir / "metadata.json"
             try:
-                process_ir(ir_path, out_ir_path, directives_tcl, out_md_path)
+                process_ir(ir_path, out_ir_path, out_md_path)
             except subprocess.CalledProcessError:
                 print(f"Error processing {ir_path}")
                 shutil.rmtree(solution_out_dir)
@@ -137,7 +141,7 @@ def main(args: Dict[str, str]):
             build_graph(
                 out_ir_path, out_md_path, 
                 directive_file_path=directives_tcl,
-                output_path=solution_out_dir
+                output_path=solution_out_dir / "graph.pt"
             )
 
 
@@ -155,17 +159,6 @@ def parse_args():
 
 
 if __name__ == "__main__":
-    import sys
-
-    if __package__ is None:                  
-        DIR = Path(__file__).resolve().parent
-        sys.path.insert(0, str(DIR.parent))
-        sys.path.insert(0, str(DIR.parent.parent))
-        __package__ = DIR.name
-
-    from gnn.data.graph import build_graph
-    from gnn.data.utils.parsers import extract_metrics
-
     args = parse_args()
     main(args)
 

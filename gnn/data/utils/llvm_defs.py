@@ -107,8 +107,7 @@ OP_ENCODING = {
     Opcode.ICMP:    [0,0,0,0,1, 0,0,0,0,1, 0,0],
     Opcode.FCMP:    [0,0,0,0,1, 0,0,0,0,1, 1,0]
 }
-NUM_OPCODES = len(list(Opcode))  # Number of opcodes
-OP_ENCODING_SIZE = len(list(Opcode)[0])  # Size of the encoding
+OP_ENCODING_SIZE = len(OP_ENCODING[Opcode.ADD])
 
 TYPE_ENCODING = {
     TypeID.INT:       [1,0,0,0,0,0],
@@ -130,7 +129,6 @@ TYPE_ENCODING = {
     TypeID.TOKEN:     [0,0,0,0,0,1],
     TypeID.FUNCTION:  [0,0,0,0,0,1]
 }
-NUM_TYPES = len(list(TypeID))  # Number of types
-TYPE_ENCODING_SIZE = len(list(TypeID)[0])  # Size of the encoding
+TYPE_ENCODING_SIZE = len(TYPE_ENCODING[TypeID.INT])
 
 MAX_ARRAY_DIMS = 4 # Maximum number of dimensions for arrays

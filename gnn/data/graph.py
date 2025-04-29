@@ -6,12 +6,11 @@ import torch
 import matplotlib.pyplot as plt
 from torch_geometric.data import HeteroData
 
-try:
-    from utils.parsers import parse_tcl_directives
-    from utils.llvm_defs import *
-except ImportError:
-    print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
-    pass
+from gnn.data.utils.parsers import parse_tcl_directives
+from gnn.data.utils.llvm_defs import (
+    TYPE_ENCODING, TYPE_ENCODING_SIZE, OP_ENCODING, OP_ENCODING_SIZE,
+    MAX_ARRAY_DIMS, TypeID, Opcode
+)
 
 
 NODE_TYPES = ['instr', 'var', 'const', 'array', 'region']
@@ -101,17 +100,16 @@ def build_graph(
 
     programl_nodes = programl_graph_json.get('nodes', [])
     programl_edges = programl_graph_json.get('links', [])
+    functions = []
+    for function in programl_graph_json.get('graph', {}).get('function', []):
+        functions.append(function['name'])
 
-    nodes, hrchy_edge_dict = build_nodes(programl_nodes, metadata)
+    nodes, hrchy_edge_dict = build_nodes(programl_nodes, metadata, functions)
 
     if directive_file_path is not None:
         include_directives(nodes, directive_file_path)
 
     edge_dict = build_edges(programl_edges, nodes)
-
-    for node_list in nodes.values():
-        for node in node_list:
-            print(f"Node: {node.text}, Type: {node.type}, Features: {node.features}")
 
     for et, edges in hrchy_edge_dict.items():
         if et not in edge_dict:
@@ -255,14 +253,27 @@ def get_instruction_metadata(
     return None
         
 
-def get_variable_metadata(metadata, function_id, node_full_text):
-    var_name = node_full_text.split(' ')[1].strip(' %@')
+def get_variable_metadata(metadata, function_name, node_full_text):
+    var_name = node_full_text.split('%')[1]
+    if ' ' in var_name:
+        var_name = var_name.split(' ')[0]
+    var_name = var_name.strip()
     for entity_type in ['port', 'variable']:
         for node in metadata.get(entity_type, []):
-            if node['functionID'] == function_id and node['name'] == var_name:
-                return node
-    for node in metadata.get('global', []):
-        if node['name'] == var_name:
+            is_global = int(node.get('isGlobal', 0)) == 1
+            is_param = int(node.get('isParam', 0)) == 1
+            if is_global and not is_param:
+                if node['name'] == var_name:
+                    return node
+            else:
+                if node['functionName'] == function_name and node['name'] == var_name:
+                    return node
+    return None
+
+
+def get_internal_constant_metadata(metadata, function_name, const_name):
+    for node in metadata.get('variable', []):
+        if node['functionName'] == function_name and node['name'] == const_name:
             return node
     return None
 
@@ -290,7 +301,67 @@ def get_const_node_features(node_text):
     }
 
 
-def build_nodes(programl_nodes, metadata):
+def build_nodes(programl_nodes, metadata, functions):
+    def create_variable_node(
+        nodes, node_indices, node_metadata,
+        programl_id, function_id, function_name,
+        node_name, full_text
+    ):
+        is_array = int(node_metadata.get('isArray', 0)) == 1
+        if is_array:
+            node_index = node_indices['array']
+            node_indices['array'] += 1
+
+            base_type = int(node_metadata['baseType'])
+            type_encoding = TYPE_ENCODING.get(base_type, [0] * TYPE_ENCODING_SIZE)
+
+            base_bitwidth = int(node_metadata['baseTypeBitwidth'])
+            n_dims = int(node_metadata['numDims'])
+
+            dims = [int(dim) for dim in node_metadata['dimensions']]
+            if n_dims > MAX_ARRAY_DIMS:
+                n_dims = MAX_ARRAY_DIMS
+                remaining_dims = dims[n_dims-1:]
+                remaining_size = 1
+                for dim in remaining_dims:
+                    remaining_size *= dim
+                dims = dims[:n_dims-1] + [remaining_size]
+            elif n_dims < MAX_ARRAY_DIMS:
+                dims += [0] * (MAX_ARRAY_DIMS - n_dims)
+            
+            features = {
+                'type': type_encoding,
+                'bitwidth': base_bitwidth,
+                'n_dims': n_dims,
+                'dims': dims,
+                'partition_factor': 0,
+                'partition_dim': [0] * (MAX_ARRAY_DIMS + 1),
+                'partition_type': [0, 0, 0]
+            }
+            nodes['array'].append(Node(
+                node_index, 'array', programl_id, 
+                text=node_name, full_text=full_text, 
+                function_id=function_id, 
+                function_name=function_name,
+                features=features
+            ))
+        else:
+            node_index = node_indices['var']
+            node_indices['var'] += 1
+
+            var_type = int(node_metadata['type'])
+            bitwidth = int(node_metadata['bitwidth'])
+            type_encoding = TYPE_ENCODING.get(var_type, [0] * TYPE_ENCODING_SIZE)
+
+            nodes['var'].append(Node(
+                node_index, 'var', 
+                programl_id=programl_id,
+                text=node_name, full_text=full_text, 
+                function_id=function_id, 
+                function_name=function_name,
+                features={'type': type_encoding, 'bitwidth': bitwidth}
+            ))
+
     nodes = defaultdict(list)
     node_indices = defaultdict(int)
     hrchy_edges = {
@@ -308,7 +379,13 @@ def build_nodes(programl_nodes, metadata):
         node_type = int(node['type'])
 
         if node_type == 0: # Instruction
-            ir_instr_id = int(full_text.split('id.')[1].split(' ')[0].strip())
+            if '!id.' not in full_text:
+                continue
+            ir_instr_id = full_text.split('!id.')[1]
+            if ' ' in ir_instr_id:
+                ir_instr_id = ir_instr_id.split(' ')[0]
+            
+            ir_instr_id = int(ir_instr_id.strip())
 
             node_metadata = get_instruction_metadata(
                 metadata, function_id, ir_instr_id, full_text
@@ -329,72 +406,44 @@ def build_nodes(programl_nodes, metadata):
                 node_index, 'instr', 
                 programl_id=programl_id, ir_id=ir_instr_id,
                 text=text, full_text=full_text, 
-                function_id=function_id, function_name=function_name, 
+                function_id=function_id, 
+                function_name=function_name, 
                 features={'opcode': opcode}
             ))
 
         elif node_type == 1: # Variable
-            node_metadata = get_variable_metadata(metadata, function_id, full_text)
+            function_name = functions[function_id]
+            node_metadata = get_variable_metadata(metadata, function_name, full_text)
             if node_metadata is None:
                 continue
 
             function_name = node_metadata.get('functionName')
             node_name = node_metadata.get('name')
-            
-            is_array = int(node_metadata.get('isArray', 0))
-            if is_array == 1:
-                node_index = node_indices['array']
-                node_indices['array'] += 1
-
-                base_type = int(node_metadata['baseType'])
-                type_encoding = TYPE_ENCODING.get(base_type, [0] * TYPE_ENCODING_SIZE)
-
-                base_bitwidth = int(node_metadata['baseTypeBitwidth'])
-                n_dims = int(node_metadata['numDims'])
-
-                dims = [int(dim) for dim in node_metadata['dimensions']]
-                if n_dims > MAX_ARRAY_DIMS:
-                    n_dims = MAX_ARRAY_DIMS
-                    remaining_dims = dims[n_dims-1:]
-                    remaining_size = 1
-                    for dim in remaining_dims:
-                        remaining_size *= dim
-                    dims = dims[:n_dims-1] + [remaining_size]
-                elif n_dims < MAX_ARRAY_DIMS:
-                    dims += [0] * (MAX_ARRAY_DIMS - n_dims)
-                
-                features = {
-                    'type': type_encoding,
-                    'bitwidth': base_bitwidth,
-                    'n_dims': n_dims,
-                    'dims': dims,
-                    'partition_factor': 0,
-                    'partition_dim': [0] * (MAX_ARRAY_DIMS + 1),
-                    'partition_type': [0, 0, 0]
-                }
-                nodes['array'].append(Node(
-                    node_index, 'array', programl_id, 
-                    text=node_name, full_text=full_text, 
-                    function_id=function_id, function_name=function_name,
-                    features=features
-                ))
-            else:
-                node_index = node_indices['var']
-                node_indices['var'] += 1
-
-                var_type = int(node_metadata['type'])
-                bitwidth = int(node_metadata['bitwidth'])
-                type_encoding = TYPE_ENCODING.get(var_type, [0] * TYPE_ENCODING_SIZE)
-
-                nodes['var'].append(Node(
-                    node_index, 'var', 
-                    programl_id=programl_id,
-                    text=node_name, full_text=full_text, 
-                    function_id=function_id, function_name=function_name,
-                    features={'type': type_encoding, 'bitwidth': bitwidth}
-                ))
+            create_variable_node(
+                nodes, node_indices, node_metadata,
+                programl_id, function_id, function_name,
+                node_name, full_text
+            )
 
         elif node_type == 2: # Constant
+            # Check if internal
+            if '=' in full_text:
+                const_name, const_value = full_text.split('=')
+                if 'internal' in const_value:
+                    const_name = const_name.strip(' @')
+                    function_name, const_name = const_name.split('.')
+                    function_id = functions.index(function_name)
+                    node_metadata = get_internal_constant_metadata(
+                        metadata, function_name, const_name
+                    )
+                    if node_metadata is not None:
+                        create_variable_node(
+                            nodes, node_indices, node_metadata,
+                            programl_id, function_id, function_name,
+                            const_name, full_text
+                        )
+                        continue
+
             node_index = node_indices['const']
             node_indices['const'] += 1
             features = get_const_node_features(text)
@@ -436,7 +485,8 @@ def build_nodes(programl_nodes, metadata):
             node_index, 'region',
             ir_id=ir_region_id,
             text=name, full_text=name, 
-            function_id=function_id, function_name=function_name, 
+            function_id=function_id, 
+            function_name=function_name, 
             features=features
         ))
 
@@ -611,8 +661,6 @@ if __name__ == '__main__':
     from os import environ
     from sys import exit, argv
 
-    from utils.parsers import parse_tcl_directives
-
     try:
         DSE_LIB = environ['DSE_LIB']
         OPT = environ['OPT']
@@ -638,17 +686,18 @@ if __name__ == '__main__':
     def process_ir(src_path: Path, dst_path: Path, metadata_path: Path):
         tmp1 = src_path.parent / "tmp1.ll"
         tmp2 = src_path.parent / "tmp2.ll"
-        default_clean = "-instnamer -lowerswitch -lowerinvoke -indirectbr-expand -strip-dead-prototypes -strip-debug"
+        default_clean = "-lowerswitch -lowerinvoke -indirectbr-expand" 
         default_opt = "-mem2reg -indvars -loop-simplify -scalar-evolution"
         try:
             run_opt(src_path, tmp1, default_clean)
             run_opt(tmp1, tmp2, "-clear-intrinsics")
             run_opt(tmp2, tmp1, default_opt)
-            run_opt(tmp1, dst_path, "-assign-ids")
+            run_opt(tmp1, tmp2, "-assign-ids")
             subprocess.check_output(
-                f"{OPT} -load {DSE_LIB} -extract-md -out {metadata_path.as_posix()} < {dst_path.as_posix()};", 
+                f"{OPT} -load {DSE_LIB} -extract-md -out {metadata_path.as_posix()} < {tmp2.as_posix()};", 
                 shell=True, stderr=subprocess.STDOUT
             )
+            run_opt(tmp2, dst_path, "-debugify -strip-debug")
         except subprocess.CalledProcessError as e:
             print(f"Error processing {src_path}: {e}")
             tmp1.unlink(missing_ok=True)

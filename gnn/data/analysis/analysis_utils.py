@@ -9,15 +9,11 @@ from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_har
 from sklearn.decomposition import PCA
 from numpy.typing import NDArray
 
-try:
-    from gnn.data.utils.parsers import (
-        extract_metrics,
-        parse_tcl_directives_file,
-        _parse_directive_cmd
-    )
-except ImportError:
-    print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
-    pass
+from gnn.data.utils.parsers import (
+    extract_metrics,
+    parse_tcl_directives_file,
+    _parse_directive_cmd
+)
 
 def cluster_by_directive(
     directives: NDArray[np.int_],

@@ -13,12 +13,15 @@
 #include "llvm/Analysis/ScalarEvolutionExpressions.h"
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/IR/LLVMContext.h"
+#include "llvm/IR/DebugInfoMetadata.h"
+#include "llvm/IR/DebugInfo.h"
 #include "llvm/Pass.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 #include "llvm/Transforms/Utils/LoopUtils.h"
+#include "llvm/Transforms/Utils/Local.h"
 
 #include "llvm/Analysis/XILINXLoopInfoUtils.h"
 
@@ -48,10 +51,6 @@ struct EntityMetadata {
                    const std::string& entityName = "",
                    const std::string& functionName = "")
         : Kind(K), functionName(functionName), entityName(entityName) {}
-
-    EntityMetadata(const std::string& entityName = "",
-                   const std::string& functionName = "")
-        : Kind(MetadataKind::MK_BaseEntity), functionName(functionName), entityName(entityName) {}
 
     void set(const std::string& key, uint32_t value) {
         metadataDict[key] = value;
@@ -143,12 +142,12 @@ struct ExtractMetadataPass : public ModulePass {
              if (!firstType) out << ",\n";
              firstType = false;
 
-            const std::string& type = item.first;
-            const std::vector<EntityMetadata*>& metadata = item.second;
+            std::string type = item.first;
+            std::vector<EntityMetadata*> metadata = item.second;
 
             out << "  \"" << type << "\": [\n";
             bool firstMd = true;
-            for (const EntityMetadata* md : metadata) {
+            for (auto* md : metadata) {
                 if (!firstMd) out << ",\n";
                 firstMd = false;
 
@@ -156,14 +155,14 @@ struct ExtractMetadataPass : public ModulePass {
                 out << "      \"name\": \"" << md->entityName << "\",\n";
                 out << "      \"functionName\": \"" << md->functionName << "\"";
 
-                for (const auto& mdEntry : md->metadataDict) {
+                for (auto mdEntry : md->metadataDict) {
                     out << ",\n      \"" << mdEntry.first << "\": " << mdEntry.second;
                 }
 
-                if (const auto* regionMD = dyn_cast<const RegionMetadata>(md)) {
+                if (auto* regionMD = dyn_cast<RegionMetadata>(md)) {
                     out << ",\n      \"subRegions\": [";
                     bool firstSub = true;
-                    for (const auto& subRegionID : regionMD->subRegions) {
+                    for (auto subRegionID : regionMD->subRegions) {
                          if (!firstSub) out << ",";
                          firstSub = false;
                          out << subRegionID;
@@ -171,16 +170,16 @@ struct ExtractMetadataPass : public ModulePass {
                     out << "]";
                     out << ",\n      \"instructions\": [";
                     bool firstInstr = true;
-                    for (const auto& instrID : regionMD->instructions) {
+                    for (auto instrID : regionMD->instructions) {
                          if (!firstInstr) out << ",";
                          firstInstr = false;
                          out << instrID;
                     }
                     out << "]";
-                } else if (const auto* arrayMD = dyn_cast<const ArrayMetadata>(md)) {
-                     out << ",\n      \"dimensions\": [";
-                     bool firstDim = true;
-                    for (const auto& dimSize : arrayMD->dimensions) {
+                } else if (auto* arrayMD = dyn_cast<ArrayMetadata>(md)) {
+                    out << ",\n      \"dimensions\": [";
+                    bool firstDim = true;
+                    for (auto dimSize : arrayMD->dimensions) {
                          if (!firstDim) out << ",";
                          firstDim = false;
                          out << dimSize;
@@ -200,21 +199,39 @@ struct ExtractMetadataPass : public ModulePass {
         for (GlobalObject& G : M.getGlobalList()) {
             Type* type = G.getValueType();
             std::string name = G.getName().str();
+            std::string functionName = "";
+            uint32_t isParam = 0;
 
             Optional<uint32_t> idOpt = getGlobalID(&G);
             if (!idOpt.hasValue()) continue;
             uint32_t id = idOpt.getValue();
 
+            // Check if the global variable is a function parameter
+            if (auto* dbgVarExpr = dyn_cast<DIGlobalVariableExpression>(G.getMetadata("dbg"))) {
+                if (auto* dbgVar = dbgVarExpr->getVariable()) {
+                    name = dbgVar->getName().str();
+                    if (auto* func = dbgVar->getScope()) {
+                        functionName = func->getName().str();
+                        if (functionName.empty() == false) isParam = 1;
+                    }
+                }
+            }
+
             if (isArrayType(type)) {
-                ArrayMetadata* md = getArrayMetadata(type, name);
+                ArrayMetadata* md = getArrayMetadata(type, name, functionName);
                 md->set("id", id);
-                metadataDict["global"].push_back(md);
+                md->set("isParam", isParam);
+                md->set("isGlobal", 1);
+                metadataDict["variable"].push_back(md);
             } else {
-                EntityMetadata* md = new EntityMetadata(name, "");
+                EntityMetadata* md = new EntityMetadata(MetadataKind::MK_BaseEntity,
+                                                        name, functionName);
                 md->set("id", id);
                 md->set("bitwidth", type->getPrimitiveSizeInBits());
                 md->set("type", type->getTypeID());
-                metadataDict["global"].push_back(md);
+                md->set("isParam", isParam);
+                md->set("isGlobal", 1);
+                metadataDict["variable"].push_back(md);
             }
         }
     }
@@ -332,7 +349,8 @@ struct ExtractMetadataPass : public ModulePass {
                     }
                 }
                 if (!isDecayed) {
-                    EntityMetadata* md = new EntityMetadata(paramName, functionName);
+                    EntityMetadata* md = new EntityMetadata(MetadataKind::MK_BaseEntity, 
+                                                            paramName, functionName);
                     md->set("bitwidth", type->getPrimitiveSizeInBits());
                     md->set("type", type->getTypeID());
                     md->set("functionID", functionID);
@@ -364,24 +382,27 @@ struct ExtractMetadataPass : public ModulePass {
                                             : (std::string(I.getOpcodeName()) + "." 
                                                + std::to_string(instrID));
 
-                    EntityMetadata* md = getInstructionMetadata(I, instrName, functionName);
-                    md->set("id", instrID);
-                    md->set("functionID", functionID);
-                    metadataDict["instruction"].push_back(md);
+                    EntityMetadata* functionMD = getInstructionMetadata(I, instrName, functionName);
+                    functionMD->set("id", instrID);
+                    functionMD->set("functionID", functionID);
+                    metadataDict["instruction"].push_back(functionMD);
 
                     if (!I.getType()->isVoidTy()) {
+                        DEBUG(dbgs() << "Instruction: " << I << "\n");
+                        DEBUG(dbgs() << "Instruction type: " << I.getType()->getTypeID() << "\n");
                         Type* type = I.getType();
-                        if (I.getOpcode() == Instruction::Alloca) {
-                            type = I.getType()->getPointerElementType();
-                        }
-
                         if (isArrayType(type)) {
+                            DEBUG(dbgs() << "Array type found: " << type->getTypeID() << "\n");
+                            while (type->isPointerTy()) {
+                                type = type->getPointerElementType();
+                            }
                             ArrayMetadata* arrayMD = getArrayMetadata(type, instrName, functionName);
                             arrayMD->set("id", instrID);
                             arrayMD->set("functionID", functionID);
-                            metadataDict["variable"].push_back(md);
+                            metadataDict["variable"].push_back(arrayMD);
                         } else {
-                            EntityMetadata* valMD = new EntityMetadata(instrName, functionName);
+                            EntityMetadata* valMD = new EntityMetadata(MetadataKind::MK_BaseEntity,
+                                                                       instrName, functionName);
                             valMD->set("id", instrID);
                             valMD->set("bitwidth", type->getPrimitiveSizeInBits());
                             valMD->set("type", type->getTypeID());
@@ -408,7 +429,7 @@ struct ExtractMetadataPass : public ModulePass {
     }
 
     EntityMetadata* getInstructionMetadata(Instruction& I, std::string instrName, std::string functionName) {
-        EntityMetadata* md = new EntityMetadata(instrName, functionName);
+        EntityMetadata* md = new EntityMetadata(MetadataKind::MK_BaseEntity, instrName, functionName);
         md->set("bitwidth", I.getType()->getPrimitiveSizeInBits());
         md->set("type", I.getType()->getTypeID());
         md->set("opcode", I.getOpcode());
@@ -502,6 +523,9 @@ struct ExtractMetadataPass : public ModulePass {
     }
 
     bool isArrayType(Type* type) {
+        if (type->isArrayTy()) {
+            return true;
+        }
         while (type->isPointerTy()) {
             type = type->getPointerElementType();
         }
@@ -566,13 +590,13 @@ struct ExtractMetadataPass : public ModulePass {
         AU.addRequired<ScalarEvolutionWrapperPass>();
     }
 
-    ~ExtractMetadataPass() override {
-        for (auto &pair : metadataDict) {
-            for (EntityMetadata *ptr : pair.second) {
-                delete ptr;
-            }
-        }
-    } 
+    // ~ExtractMetadataPass() override {
+    //     for (auto& item : metadataDict) {
+    //         for (auto* md : item.second) {
+    //             delete md;
+    //         }
+    //     }
+    // }
 }; 
 // --- End Struct ExtractMetadataPass ---
 

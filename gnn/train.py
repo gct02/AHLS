@@ -1,8 +1,6 @@
 import os
-import sys
 import argparse
 import random
-from pathlib import Path
 from collections import defaultdict
 from typing import List, Dict, Tuple, Optional, Union
 
@@ -17,13 +15,9 @@ from torch.nn.utils import clip_grad_norm_
 from sklearn.metrics import r2_score
 from torch_geometric.loader import DataLoader
 
-try:
-    from models import HGT
-    from dataset import HLSDataset
-    from data.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
-except ImportError:
-    print("ImportError: Please make sure you have the required packages in your PYTHONPATH")
-    pass
+from gnn.models import HGT
+from gnn.dataset import HLSDataset
+from gnn.data.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -159,15 +153,12 @@ def train_model(
             clip_grad_norm_(model.parameters(), max_norm=10.0)
             optimizer.step()
 
-            if warmup_scheduler:
-                if step < warmup_steps:
-                    warmup_scheduler.step()
-                    step += 1
-                elif step == warmup_steps:
-                    if verbosity > 0:
-                        print("Warmup completed, switching to cosine annealing scheduler")
-                    warmup_scheduler = None
-            elif scheduler:
+            if step < warmup_steps and warmup_scheduler is not None:
+                warmup_scheduler.step()
+                step += 1
+                if step == warmup_steps and verbosity > 0:
+                    print("Warmup completed, switching to cosine annealing scheduler")
+            elif scheduler is not None:
                 scheduler.step()
 
             batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
@@ -547,17 +538,5 @@ def parse_arguments():
     return vars(parser.parse_args())
 
 if __name__ == '__main__':
-    import sys
-
-    if __package__ is None:                  
-        DIR = Path(__file__).resolve().parent
-        sys.path.insert(0, str(DIR.parent))
-        sys.path.insert(0, str(DIR.parent.parent))
-        __package__ = DIR.name 
-
-    from gnn.models import HGT
-    from gnn.dataset import HLSDataset
-    from gnn.data.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
-
     args = parse_arguments()
     main(args)
