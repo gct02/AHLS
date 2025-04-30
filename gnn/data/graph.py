@@ -1,6 +1,6 @@
 import pickle
 from copy import deepcopy
-from typing import Dict, Union, Optional
+from typing import Dict, Union, Optional, List, Tuple
 
 import torch
 import matplotlib.pyplot as plt
@@ -11,7 +11,7 @@ from gnn.data.hls_data_collector import HLSData
 from gnn.data.utils.parsers import parse_tcl_directives_file
 
 
-NODE_TYPES = ["instr", "port", "const", "region"]
+NODE_TYPES = ["instr", "port", "const", "block", "region"]
 
 EDGE_TYPES = [
     # Data flow edges
@@ -20,8 +20,8 @@ EDGE_TYPES = [
     ("port", "data", "instr"), 
 
     # Control flow edges
-    ("region", "control", "instr"), 
-    ("region", "control", "region"), 
+    ("block", "control", "instr"), 
+    ("block", "control", "block"), 
 
     # Call flow edges
     ("instr", "call", "instr"),
@@ -31,11 +31,15 @@ EDGE_TYPES = [
 
     # Hierarchical edges (representing CDFG structure)
     ("region", "hrchy", "region"), 
+    ("region", "hrchy", "block"),
     ("region", "hrchy", "instr"),
+    ("block", "hrchy", "instr"),
 
     # Reversed hierarchical edges
     ("region", "hrchy_rev", "region"),
+    ("block", "hrchy_rev", "region"),
     ("instr", "hrchy_rev", "region"),
+    ("instr", "hrchy_rev", "block"),
 ] + [
     # Self-loops
     (nt, "to", nt) for nt in NODE_TYPES
@@ -43,9 +47,10 @@ EDGE_TYPES = [
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 72, 
-    "port": 14, 
+    "instr": 75, 
+    "port": 16, 
     "const": 5,
+    "block": 7,
     "region": 12
 }
 
@@ -56,14 +61,16 @@ DIRECTIVES = [
 
 
 def build_base_graphs(
-    base_solutions: Dict[str, str],
+    base_solutions: List[Tuple[str, str, str]],
     filtered: bool = False,
     encoder_output_path: Optional[str] = None,
 ) -> Dict[str, HLSData]:
     hls_data_dict = {}
-    for benchmark, solution_dir in base_solutions.items():
+    for solution_dir, benchmark, top_level_name in base_solutions:
         hls_data_dict[benchmark] = HLSData(
-            solution_dir, filtered=filtered, kernel_name=benchmark
+            solution_dir, top_level_name, 
+            filtered=filtered, 
+            kernel_name=benchmark
         )
 
     encoders = fit_one_hot_encoders(hls_data_dict)
@@ -161,7 +168,7 @@ def get_node_by_name(hls_data, node_type, name):
 
 
 def include_directives(hls_data: HLSData, directives_tcl: str):
-    def unroll_subloops(subregs):
+    def unroll_subloops(subregs, blocks=None):
         for subreg_id in subregs:
             subreg = hls_data.nodes["region"][subreg_id]
             max_tc = subreg.attrs["max_trip_count"]
@@ -169,6 +176,12 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 subreg.attrs["unroll"] = 1
                 subreg.attrs["unroll_factor"] = max_tc
             unroll_subloops(subreg.sub_regions)
+        
+        if blocks:
+            for block_id in blocks:
+                block = hls_data.nodes["block"][block_id]
+                block.attrs["unroll"] = 1
+                block.attrs["unroll_factor"] = 1
 
     directives = parse_tcl_directives_file(directives_tcl)
     directives = [d for d in directives if d[0] in DIRECTIVES]
@@ -190,15 +203,28 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 print("Warning: No variable specified for array partition.")
                 continue
 
-            for nt in ["instr", "port"]:
+            for nt in ["port", "instr"]:
                 if (node := get_node_by_name(hls_data, nt, var)) is not None:
                     break
             else:
                 print(f"Warning: Variable '{var}' not found in nodes.")
                 continue
+            
+            array_size = node.attrs["array_size"]
+            array_impl = node.attrs["array_impl"]
 
             factor = int(directive_args.get("factor", 0))
-            factor = factor if factor > 0 else node.attrs["array_size"]
+            if factor > array_size:
+                print(f"Warning: Partition factor {factor} exceeds array size {array_size}.")
+                continue
+            elif factor <= 0:
+                factor = array_size
+
+            partition_size = array_size // factor
+            if partition_size <= 1024 and array_impl[1] == 1: 
+                # BRAM/LUTRAM/URAM -> shift register
+                node.attrs["array_impl"] = [0, 0, 1]
+
             dim = [0] * 4
             dim[int(directive_args.get("dim", 0))] = 1
             partition_type = directive_args.get("type", "complete")
@@ -217,14 +243,17 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
             loc = directive_args["location"]
             if '/' in loc:
                 loc = loc.split("/")[-1]
-            node = get_node_by_name(hls_data, "region", loc)
-            if node is None:
-                print(f"Warning: loop '{loc}' not found in nodes.")
+
+            for nt in ["region", "block"]:
+                if (node := get_node_by_name(hls_data, nt, loc)) is not None:
+                    break
+            else:
+                print(f"Warning: Region '{loc}' not found in nodes.")
                 continue
         
             if directive_type == "unroll":
                 factor = int(directive_args.get("factor", 0))
-                factor = factor if factor > 0 else node.attrs["max_trip_count"]
+                factor = factor if factor > 0 else node.attrs.get("max_trip_count", 1)
                 node.attrs['unroll'] = 1
                 node.attrs["unroll_factor"] = factor
             elif directive_type == "pipeline":
@@ -232,14 +261,15 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                     node.attrs["pipeline_off"] = 1
                 else:
                     ii = max(1, int(directive_args.get("ii", 1)))
-                    node.attrs["ii"] = ii
-                    node.attrs["min_latency"] = ii * node.attrs["min_trip_count"]
-                    node.attrs["max_latency"] = ii * node.attrs["max_trip_count"]
-                    node.attrs["pipeline"] = 1
+                    if "ii" in node.attrs: # Check if it is a Region
+                        node.attrs["ii"] = ii
+                        node.attrs["min_latency"] = ii * node.attrs["min_trip_count"]
+                        node.attrs["max_latency"] = ii * node.attrs["max_trip_count"]
+                        node.attrs["pipeline"] = 1
 
                     # Pipeline in a loop induces a complete unroll in all of 
                     # its (bounded) subloops
-                    unroll_subloops(node.sub_regions)
+                    unroll_subloops(node.sub_regions, node.blocks)
             elif directive_type == "loop_flatten" and "off" in directive_args:
                 node.attrs["loop_flatten_off"] = 1
             else:
@@ -409,18 +439,21 @@ if __name__ == "__main__":
 
     parser = ArgumentParser()
     parser.add_argument("base_solution_dir", nargs=1, type=str)
-    parser.add_argument("-b", "--benchmark", default=None)
+    parser.add_argument("-b", "--benchmark")
+    parser.add_argument("-t", "--top-level")
     parser.add_argument("-d", "--directives", default=None)
     parser.add_argument("-p", "--plot", default="full")
+    parser.add_argument("-f", "--filtered", action="store_true")
     args = parser.parse_args()
 
     base_solution_dir = args.base_solution_dir[0]
-    if (benchmark := args.benchmark) is None:
-        benchmark = '_'
+    benchmark = args.benchmark
+    top_level_name = args.top_level
     plot_type = args.plot
+    filtered = args.filtered
 
-    base_solutions = {benchmark: base_solution_dir}
-    base_hls_data = build_base_graphs(base_solutions)[benchmark]
+    base_solutions = [(base_solution_dir, benchmark, top_level_name)]
+    base_hls_data = build_base_graphs(base_solutions, filtered)[benchmark]
 
     base_data = to_pyg(base_hls_data)
     plot_data(base_data, plot_type, batched=False)

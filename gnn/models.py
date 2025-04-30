@@ -5,11 +5,12 @@ import torch.nn as nn
 from torch import Tensor
 from torch_geometric.nn import (
     HeteroDictLinear, Linear, 
-    LayerNorm, JumpingKnowledge
+    LayerNorm, JumpingKnowledge,
+    global_add_pool, global_max_pool
 )
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 
-from gnn.layers import HGTConv, HetSAGPooling
+from gnn.layers import HGTConv
 
 
 class HGT(nn.Module):
@@ -84,23 +85,23 @@ class HGT(nn.Module):
         )
 
         # Pooling layer
-        self.pool = HetSAGPooling(hid_dim, metadata, dropout=dropout)
+        # self.pool = HetSAGPooling(hid_dim, metadata, dropout=dropout)
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
             Linear(1, 16, weight_initializer="kaiming_uniform"), 
             nn.LeakyReLU(negative_slope=0.2),
-            Linear(16, 16, weight_initializer="uniform")
+            Linear(16, 16, weight_initializer="kaiming_uniform")
         )
 
         # Graph-level MLP
-        emb_dim = len(self.node_types) * hid_dim + 16
+        emb_dim = len(self.node_types) * hid_dim * 2 + 16
         self.graph_mlp = nn.Sequential(
             Linear(emb_dim, hid_dim, weight_initializer="kaiming_uniform"), 
             nn.BatchNorm1d(hid_dim), nn.GELU(), nn.Dropout(dropout),
             Linear(hid_dim, 128, weight_initializer="kaiming_uniform"),  
             nn.BatchNorm1d(128), nn.GELU(), nn.Dropout(dropout),
-            Linear(128, out_channels, weight_initializer="uniform")
+            Linear(128, out_channels, weight_initializer="kaiming_uniform")
         )
 
         self.reset_parameters()
@@ -116,7 +117,7 @@ class HGT(nn.Module):
         for nt in self.node_types:
             self.jk[nt].reset_parameters()
         self.proj_out.reset_parameters()
-        self.pool.reset_parameters()
+        # self.pool.reset_parameters()
         for m in self.y_base_mlp.modules():
             if isinstance(m, Linear):
                 m.reset_parameters()
@@ -162,11 +163,26 @@ class HGT(nn.Module):
         x_dict = self.proj_out(x_dict)
 
         # Pooling layer
-        out = self.pool(x_dict, edge_index_dict, batch_dict)
-        out = torch.cat([out, self.y_base_mlp(y_base)], dim=1)
+        # out = self.pool(x_dict, edge_index_dict, batch_dict)
+        batch_size = self._get_batch_size(batch_dict)
+        x_list = []
+        for nt, x in x_dict.items():
+            x_add = global_add_pool(x, batch_dict[nt], size=batch_size)
+            x_max = global_max_pool(x, batch_dict[nt], size=batch_size)
+            x = torch.cat([x_add, x_max], dim=1).view(batch_size, -1)
+            x_list.append(x)
+
+        y_base_processed = self.y_base_mlp(y_base)
+        x = torch.cat(x_list, dim=1)
+        x = torch.cat([x, y_base_processed], dim=1)
 
         # Graph-level MLP
-        out = self.graph_mlp(out)
+        out = self.graph_mlp(x)
         return out.squeeze(1)
     
-        
+    def _get_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
+        """Returns the batch size of the input data."""
+        batch_size = 0
+        for nt in self.node_types:
+            batch_size = max(batch_size, batch_dict[nt].max().item())
+        return batch_size + 1

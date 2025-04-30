@@ -49,7 +49,7 @@ class BaseNode:
 
 
 class PortNode(BaseNode):
-    def __init__(self, element: ET.Element):
+    def __init__(self, element: ET.Element, is_top_level: bool = False):
         super().__init__(element)
 
         self.label = self.name
@@ -63,14 +63,22 @@ class PortNode(BaseNode):
         else:
             direction = [1, 1]
 
+        array_size = findint(element, 'array_size', 0)
+        if is_top_level:
+            array_impl = [1, 0, 0] # RTL port
+        elif array_size > 1024:
+            array_impl = [0, 1, 0] # BRAM, LUTRAM or URAM
+        else:
+            array_impl = [0, 0, 1] # Shift register
+
         self.attrs.update({
             'direction': direction,
+            'array_size': array_size,
             'bitwidth': findint(element, 'Value/bitwidth', 0),
             'port_type': element.findtext('port_type', ''),
-            'array_size': findint(element, 'array_size', 0),
+            'array_impl': array_impl,
 
             # Placeholders for array partitioning attributes
-            'array_partition': 0,
             'partition_type': [0, 0, 0],
             'partition_dim': [0, 0, 0, 0],
             'partition_factor': 0
@@ -91,10 +99,19 @@ class InstructionNode(BaseNode):
         for resource_type in TARGET_RESOURCES:
             self.attrs[resource_type] = node_resources.get(resource_type, 0)
 
+        array_size = findint(element, 'Value/Obj/storageDepth', 0)
+        if array_size > 1024:
+            array_impl = [0, 1, 0]
+        elif array_size > 0:
+            array_impl = [0, 0, 1]
+        else:
+            array_impl = [0, 0, 0]
+
         self.attrs.update({
             'opcode': opcode,
             'impl': element.findtext('Value/Obj/coreName', ''),
-            'array_size': findint(element, 'Value/Obj/storageDepth', 0),
+            'array_size': array_size,
+            'array_impl': array_impl,
             'bitwidth': findint(element, 'Value/bitwidth', 0),
             'delay': findfloat(element, 'm_delay', 0.0),
 
@@ -129,6 +146,12 @@ class BlockNode(BaseNode):
 
         self.label = self.name
 
+        self.attrs = {
+            # Placeholders for region-level directives attributes
+            'loop_merge': 0, 'loop_flatten': 0, 'pipeline': 0, 
+            'unroll': 0, 'unroll_factor': 0, 'pipeline_off': 0, 
+            'loop_flatten_off': 0
+        }
         self.instrs = [
             int(instr.text) 
             for instr in element.find('node_objs').findall('item')
@@ -193,8 +216,8 @@ class CDFG:
     def __init__(
         self, root: ET.Element, 
         resource_usage_dict: Dict[str, Dict[str, int]],
+        top_level_name: str,
         offsets: Optional[Dict[str, int]] = None,
-        remove_blocks: bool = True
     ):
         self.nodes = defaultdict(list)
         self.edges = defaultdict(list)
@@ -213,6 +236,8 @@ class CDFG:
         self.function_name = cdfg.findtext('name')
         self.ret_bitwidth = findint(cdfg, 'ret_bitwidth')
 
+        self.is_top_level = self.function_name == top_level_name
+
         self.function_calls = []
 
         try:
@@ -223,8 +248,7 @@ class CDFG:
             print(f"Error parsing CDFG: {e}")
             raise
 
-        if remove_blocks:
-            self._remove_blocks()
+        # self._remove_blocks()
 
     def _parse_nodes(self, cdfg, cdfg_regions, resource_usage_dict):
         consts = cdfg.find('consts')
@@ -272,7 +296,9 @@ class CDFG:
     ):
         offset = self._offsets[node_type]
         for i, elem in enumerate(section.findall('item')):
-            if resource_usage_dict is not None:
+            if node_type == 'port':
+                node = PortNode(elem, is_top_level=self.is_top_level)
+            elif resource_usage_dict is not None:
                 node = node_class(elem, resource_usage_dict)
             else:
                 node = node_class(elem)
@@ -349,41 +375,43 @@ class CDFG:
             for sub_region_id in region.sub_regions:
                 self.edges[('region', 'hrchy', 'region')].append((region.id, sub_region_id))
             for block_id in region.blocks:
+                self.edges[('region', 'hrchy', 'block')].append((region.id, block_id))
                 for instr_id in self.nodes['block'][block_id - self._offsets['block']].instrs:
                     self.nodes['region'][i].instrs.append(instr_id)
                     self.edges[('region', 'hrchy', 'instr')].append((region.id, instr_id))
+                    self.edges[('block', 'hrchy', 'instr')].append((block_id, instr_id))
 
-    def _remove_blocks(self):
-        block_region_map = {}
-        for region in self.nodes['region']:
-            for block_id in region.blocks:
-                block_region_map[block_id] = region.id
+    # def _remove_blocks(self):
+    #     block_region_map = {}
+    #     for region in self.nodes['region']:
+    #         for block_id in region.blocks:
+    #             block_region_map[block_id] = region.id
 
-        # Map blocks that are not in any region to the top-level region
-        top_level_region = self.nodes['region'][0].id
-        for block in self.nodes['block']:
-            if block.id not in block_region_map:
-                block_region_map[block.id] = top_level_region
-                for instr_id in block.instrs:
-                    self.nodes['region'][0].instrs.append(instr_id)
-                    self.edges[('region', 'hrchy', 'instr')].append((top_level_region, instr_id))
+    #     # Map blocks that are not in any region to the top-level region
+    #     top_level_region = self.nodes['region'][0].id
+    #     for block in self.nodes['block']:
+    #         if block.id not in block_region_map:
+    #             block_region_map[block.id] = top_level_region
+    #             for instr_id in block.instrs:
+    #                 self.nodes['region'][0].instrs.append(instr_id)
+    #                 self.edges[('region', 'hrchy', 'instr')].append((top_level_region, instr_id))
 
-        for src, dst in self.edges[('block', 'control', 'block')]:
-            src_region = block_region_map.get(src)
-            dst_region = block_region_map.get(dst)
-            if src_region is not None and dst_region is not None:
-                self.edges[('region', 'control', 'region')].append((src_region, dst_region))
+    #     for src, dst in self.edges[('block', 'control', 'block')]:
+    #         src_region = block_region_map.get(src)
+    #         dst_region = block_region_map.get(dst)
+    #         if src_region is not None and dst_region is not None:
+    #             self.edges[('region', 'control', 'region')].append((src_region, dst_region))
         
-        for src, dst in self.edges[('block', 'control', 'instr')]:
-            src_region = block_region_map.get(src)
-            if src_region is not None:
-                self.edges[('region', 'control', 'instr')].append((src_region, dst))
+    #     for src, dst in self.edges[('block', 'control', 'instr')]:
+    #         src_region = block_region_map.get(src)
+    #         if src_region is not None:
+    #             self.edges[('region', 'control', 'instr')].append((src_region, dst))
 
-        self.edges = {
-            et: edges for et, edges in self.edges.items()
-            if et[0] != 'block' and et[2] != 'block'
-        }
-        del self.nodes['block']
+    #     self.edges = {
+    #         et: edges for et, edges in self.edges.items()
+    #         if et[0] != 'block' and et[2] != 'block'
+    #     }
+    #     del self.nodes['block']
     
 
 class FSMState:
@@ -430,10 +458,13 @@ class FSM:
 
 class HLSData:
     def __init__(
-        self, solution_dir: str, 
+        self, 
+        solution_dir: str, 
+        top_level_name: str,
         filtered: bool = False, 
         kernel_name: Optional[str] = None
     ):
+        self.top_level_name = top_level_name
         self.kernel_name = kernel_name
         self.nodes = defaultdict(list)
         self.edges = defaultdict(list)
@@ -479,7 +510,8 @@ class HLSData:
             print(f"Processing file: {path}")
             tree = ET.parse(path)
             root = tree.getroot()
-            cdfg = CDFG(root, self.resource_usage, offsets=self._offsets)
+            cdfg = CDFG(root, self.resource_usage, self.top_level_name,
+                        offsets=self._offsets)
             self._cdfgs[cdfg.function_name] = cdfg
             self._merge_cdfg_data(cdfg)
 
@@ -547,11 +579,12 @@ def collect_adb_files(solution_dir, filtered=False):
 
 def parse_adb(
     solution_dir, 
+    top_level_name,
     filtered=False,
     kernel_name=None,
     output_path=None
 ):
-    hls_data = HLSData(solution_dir, filtered=filtered, kernel_name=kernel_name)
+    hls_data = HLSData(solution_dir, top_level_name, filtered=filtered, kernel_name=kernel_name)
     if output_path:
         hls_data.dump(output_path)
     else:

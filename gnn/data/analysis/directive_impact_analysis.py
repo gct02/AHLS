@@ -1,8 +1,11 @@
 import os
 import json
+
+import torch
 import numpy as np
 
 from gnn.data.analysis.analysis_utils import parse_and_encode_directives
+from gnn.data.utils.parsers import parse_tcl_directives_file
 
 DIRECTIVES = {
     "pipeline", "unroll", "loop_merge", 
@@ -39,7 +42,6 @@ def create_index_map(raw_test_dataset_dir):
     for solution in _sorted_solutions(raw_test_dataset_dir):
         solution_idx = int(solution.split("solution")[1])
         solution_dir = os.path.join(raw_test_dataset_dir, solution)
-
         if not _valid_solution_dir(solution_dir):
             continue
 
@@ -121,6 +123,32 @@ def process_results_and_directives(log_file, raw_test_dataset_dir, source_datase
     return sort_by_error(result_directive_dict)
 
 
+def print_top_k_results(sorted_results, directive_config_path, k=15):
+    with open(directive_config_path, "r") as f:
+        directive_group_dict = json.load(f)["directives"]
+
+    directive_groups = []
+    for gp_name, gp in directive_group_dict.items():
+        gp_directives = gp.get("possible_directives")
+        if gp_directives is not None:
+            gp_directives = [d for d in gp_directives if d and "-off" not in d]
+            directive_groups.append((gp_name, gp_directives))
+
+    directives = [entry[1] for entry in sorted_results]
+    directives = directives[:k]
+
+    for i, directive_groups_enc in enumerate(directives):
+        print(f"{i}:")
+        for gp, gp_enc_dirs in zip(directive_groups, directive_groups_enc):
+            gp_name, gp_dirs = gp
+            # group_directives = [gp_dirs[j] for j in range(len(gp_enc_dirs)) if gp_enc_dirs[j] == 1]
+            # print(f"  {gp_name}: {group_directives}")
+            for j, directive in enumerate(gp_dirs):
+                if gp_enc_dirs[j] == 1:
+                    print(directive)
+        print(f"Mean Error: {sorted_results[i][2]}\n")
+    
+
 def _load_metrics(path):
     if os.path.exists(path):
         with open(path, "r") as f:
@@ -154,6 +182,7 @@ if __name__ == "__main__":
         log_file, raw_test_dataset_dir, source_dataset_dir, directives_config_path
     )
 
-    directives = [entry[1] for entry in sorted_results]
-    topk = directives[:k]
-    print(topk)
+    # directives = [entry[1] for entry in sorted_results]
+    # topk = directives[:k]
+    # print(topk)
+    print_top_k_results(sorted_results, directives_config_path, k)

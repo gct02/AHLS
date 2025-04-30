@@ -25,18 +25,33 @@ def main(args: Dict[str, str]):
     dataset_dir = Path(args['dataset_dir'])
     output_dir = Path(args['output_dir'])
     filtered = args['filtered']
+    config_path = args.get('config_path')
 
-    base_solutions = {
-        benchmark.name: dataset_dir / benchmark / "solution0"
-        for benchmark in dataset_dir.iterdir() if benchmark.is_dir()
-    }
-    base_graphs = build_base_graphs(base_solutions, filtered=False)
+    with open(config_path, "r") as f:
+        config = json.load(f)
 
+    base_solutions = []
+    benchmarks = []
     for benchmark in dataset_dir.iterdir():
         if not benchmark.is_dir():
-            print(f"Skipping {benchmark} (not a directory)")
             continue
+        benchmark_config = config.get(benchmark.name)
+        if not benchmark_config:
+            print(f"Configuration not found for {benchmark.name}")
+            continue
+        base_solution_dir = dataset_dir / benchmark / "solution0"
+        if not base_solution_dir.exists():
+            print(f"Base solution directory not found for {benchmark}")
+            continue
+        top_level_function = benchmark_config["top_level"]
+        base_solutions.append(
+            (base_solution_dir, benchmark.name, top_level_function)
+        )
+        benchmarks.append(benchmark)
 
+    base_graphs = build_base_graphs(base_solutions, filtered=False)
+
+    for benchmark in benchmarks:
         benchmark_out = output_dir / benchmark.name
         benchmark_out.mkdir(parents=True, exist_ok=True)
 
@@ -79,6 +94,8 @@ def parse_args():
                         help="Signal that the dataset is filtered")
     parser.add_argument("-b", "--benchmarks", nargs="+", default=None,
                         help="List of benchmarks to process")
+    parser.add_argument("-c", "--config-path", default=None,
+                        help="Path to the configuration file for kernel information")
     return vars(parser.parse_args())
 
 

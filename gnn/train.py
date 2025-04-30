@@ -253,7 +253,7 @@ def main(args: Dict[str, str]):
         raise ValueError(f"Unknown loss function: {loss}")
 
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=1e-3, betas=(0.9, 0.999), weight_decay=1e-4
+        model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=5e-4
     )
 
     warmup_steps = (epochs * len(train_loader)) // 10
@@ -263,7 +263,7 @@ def main(args: Dict[str, str]):
 
     total_steps = epochs * len(train_loader) - warmup_steps
     scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-4
+        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-5
     )
 
     results = train_model(

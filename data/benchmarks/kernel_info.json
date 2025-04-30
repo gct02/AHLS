@@ -1,0 +1,26 @@
+{
+    "ADPCM": {
+        "top_level": "adpcm_main"
+    },
+    "AES": {
+        "top_level": "aes_main"
+    },
+    "GEMM": {
+        "top_level": "bbgemm"
+    },
+    "GSM": {
+        "top_level": "Gsm_LPC_Analysis"
+    },
+    "KNN": {
+        "top_level": "md_kernel"
+    },
+    "SHA": {
+        "top_level": "sha_stream"
+    },
+    "STENCIL3D": {
+        "top_level": "stencil3d"
+    },
+    "TRANS_FFT": {
+        "top_level": "fft1D_512"
+    }
+}
