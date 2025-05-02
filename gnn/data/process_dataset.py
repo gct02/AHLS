@@ -1,5 +1,7 @@
 import argparse
+import subprocess
 import json
+from os import environ
 from pathlib import Path
 from typing import Dict, Union
 
@@ -7,6 +9,16 @@ import torch
 
 from gnn.data.graph import build_base_graphs, build_opt_graph
 from gnn.data.utils.parsers import extract_metrics
+
+
+try:
+    DSE_LIB = environ['DSE_LIB']
+    OPT = environ['OPT']
+    CLANG = environ['CLANG']
+    LLVM_LINK = environ['LLVM_LINK']
+except KeyError as error:
+    print(f"Error: environment variable {error.args[0]} not defined.")
+    raise
 
 
 def create_directives_tcl(
@@ -35,14 +47,32 @@ def main(args: Dict[str, str]):
     for benchmark in dataset_dir.iterdir():
         if not benchmark.is_dir():
             continue
+
         benchmark_config = config.get(benchmark.name)
         if not benchmark_config:
             print(f"Configuration not found for {benchmark.name}")
             continue
+
         base_solution_dir = dataset_dir / benchmark / "solution0"
         if not base_solution_dir.exists():
             print(f"Base solution directory not found for {benchmark}")
             continue
+
+        ir_path = base_solution_dir / ".autopilot/db/a.o.3.bc"
+        if not ir_path.exists():
+            print(f"IR file not found for {benchmark}")
+            continue
+
+        metadata_path = base_solution_dir / ".autopilot/db/metadata.json"
+        try:
+            subprocess.check_output(
+                f"{OPT} -load {DSE_LIB} -extract-md -out {metadata_path.as_posix()} < {ir_path.as_posix()};", 
+                shell=True, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            print(f"Error extracting metadata for {benchmark}: {e.output.decode()}")
+            continue
+
         top_level_function = benchmark_config["top_level"]
         base_solutions.append(
             (base_solution_dir, benchmark.name, top_level_function)
