@@ -2,43 +2,205 @@ import os
 import json
 import xml.etree.ElementTree as ET
 from collections import defaultdict
-from typing import Optional, Dict
+from abc import ABC, abstractmethod
+from enum import IntEnum
+from typing import Optional, Dict, Union, List
 
 from gnn.data.utils.xml_utils import findint, findfloat
 from gnn.data.utils.parsers import extract_impl_report
 
 
 TARGET_RESOURCES = ['FF', 'LUT', 'DSP', 'BRAM']
+MAX_ARRAY_DIM = 4
 
 
-class BaseNode:
-    def __init__(self, element: ET.Element, is_region: bool = False):
-        if is_region:
-            self.id = findint(element, 'mId')
-            if self.id is None:
-                raise ValueError("Element does not contain 'mId' tag")
-            self.name = element.findtext('mTag')
-            self.rtl_name = None
-        else:
-            value = element.find('Value')
-            obj = element.find('Obj') if value is None else value.find('Obj')
-            if obj is None:
-                raise ValueError("Element does not contain 'Obj' or 'Value/Obj' tag")
-            
-            self.id = findint(obj, 'id')
-            if self.id is None:
-                raise ValueError("Element does not contain 'id' tag")
-            self.name = obj.findtext('name')
-            self.rtl_name = obj.findtext('rtlName')
+MetadataEntry = Dict[str, Union[str, int, float, bool, List[int]]]
+MetadataDict = Dict[str, MetadataEntry]
 
+
+class PortDirection(IntEnum):
+    IN = 0
+    OUT = 1
+    BI = 2
+
+
+class Node(ABC):
+    @abstractmethod
+    def as_dict(self):
+        pass
+
+    @abstractmethod
+    def __str__(self):
+        pass
+
+    @abstractmethod
+    def __repr__(self):
+        pass
+
+
+class CDFGNode(Node):
+    def __init__(self, element: ET.Element, function_name: str):
+        value = element.find('Value')
+        obj = element.find('Obj') if value is None else value.find('Obj')
+        if obj is None:
+            raise ValueError("Element does not contain 'Obj' or 'Value/Obj' tag")
+        
+        self.id = findint(obj, 'id')
+        if self.id is None:
+            raise ValueError("Element does not contain 'id' tag")
+        self.name = obj.findtext('name', '')
+        self.rtl_name = obj.findtext('rtlName', '')
+
+        self.function_name = function_name
         self.attrs = {}
+        self.label = None
+
+    def as_dict(self):
+        return {'name': self.name, 'attributes': self.attrs}
+    
+    def __str__(self):
+        return json.dumps(self.as_dict(), indent=2)
+    
+    def __repr__(self):
+        return self.__str__()
+    
+
+class ArrayNode(Node):
+    def __init__(
+        self, 
+        array_metadata: MetadataEntry,
+        node_name: str,
+        node_id: int,
+        function_name: str,
+        is_top_level: bool,
+        direction: Optional[PortDirection] = None,
+        resources: Optional[Dict[str, int]] = None
+    ):
+        self.id = node_id
+        self.name = node_name
+        self.label = node_name
+        self.function_name = function_name
+
+        total_array_size = array_metadata['TotalSize']
+
+        if direction is not None and is_top_level:
+            array_impl = [1, 0, 0] # RTL port
+        elif total_array_size > 1024:
+            array_impl = [0, 1, 0] # BRAM, LUTRAM or URAM
+        else:
+            array_impl = [0, 0, 1] # Shift register
+
+        if direction is None:
+            direction_encoding = [0, 0, 0, 1]
+        elif direction == PortDirection.IN:
+            direction_encoding = [1, 0, 0, 0]
+        elif direction == PortDirection.OUT:
+            direction_encoding = [0, 1, 0, 0]
+        else:
+            direction_encoding = [0, 0, 1, 0]
+
+        dims = array_metadata.get('Dimensions', [])
+        num_dims = len(dims)
+        if num_dims > MAX_ARRAY_DIM:
+            # Truncate to MAX_ARRAY_DIM, multiplying the last dimension
+            # by the product of the remaining dimensions
+            for i in range(num_dims - 1, MAX_ARRAY_DIM - 1, -1):
+                dims[i - 1] *= dims[i]
+                dims.pop()
+        elif num_dims < MAX_ARRAY_DIM: # Pad with 1s
+            dims.extend([1] * (MAX_ARRAY_DIM - num_dims))
+
+        self.attrs = {
+            'dims': dims,
+            'num_dims': num_dims,
+            'total_size': total_array_size,
+            'base_type': array_metadata.get('BaseType', ''),
+            'base_bitwidth': array_metadata.get('BaseBitWidth', 0),
+            'direction': direction_encoding,
+            'array_impl': array_impl,
+
+            # Placeholders for array partitioning attributes
+            'partition_type': [0, 0, 0],
+            'partition_dim': [0, 0, 0, 0],
+            'partition_factor': 0
+        }
+
+        if resources is not None:
+            for resource_type in TARGET_RESOURCES:
+                self.attrs[resource_type] = resources.get(resource_type, 0)
+        else:
+            for resource_type in TARGET_RESOURCES:
+                self.attrs[resource_type] = 0
+
+    def as_dict(self):
+        return {'name': self.name, 'attributes': self.attrs}
+    
+    def __str__(self):
+        return json.dumps(self.as_dict(), indent=2)
+    
+    def __repr__(self):
+        return self.__str__()
+    
+
+class RegionNode(Node):
+    def __init__(
+        self, 
+        element: ET.Element, 
+        function_name: str, 
+        metadata: MetadataDict,
+    ):
+        self.id = findint(element, 'mId')
+        if self.id is None:
+            raise ValueError("Element does not contain 'mId' tag")
+        self.name = element.findtext('mTag')
+        self.label = self.name
+        self.function_name = function_name
+
+        self.is_loop = True if findint(element, 'mType', 0) == 1 else False
+
+        metadata_entry = find_in_metadata(
+            metadata, 'Loop', self.name, function_name
+        )
+        if metadata_entry is not None:
+            loop_depth = metadata_entry.get('LoopDepth', 0)
+        else:
+            loop_depth = findint(element, 'mDepth', 0)
+            if self.is_loop:
+                loop_depth = max(1, loop_depth)
+            
+        min_lat = max(1, findint(element, 'mMinLatency', 0))
+        max_lat = max(min_lat, findint(element, 'mMaxLatency', 0))
+        min_tc = max(1, findint(element, 'mMinTripCount', 0))
+        max_tc = max(min_tc, findint(element, 'mMaxTripCount', 0))
+        if (ii := findint(element, 'mII', 0)) <= 0:
+            ii = max(1, max_lat / max_tc)
+
+        self.attrs = {
+            'min_latency': min_lat, 'max_latency': max_lat,
+            'min_trip_count': min_tc, 'max_trip_count': max_tc,
+            'loop_depth': loop_depth, 'ii': ii, 
+
+            # Placeholders for directives attributes
+            'loop_merge': 0, 'loop_flatten': 0, 
+            'pipeline': 0, 'unroll': 0, 'unroll_factor': 0, 
+            'pipeline_off': 0, 'loop_flatten_off': 0
+        }
+        self.sub_regions = self._extract_items(element, 'sub_regions')
+        self.blocks = self._extract_items(element, 'basic_blocks')
+        self.instrs = [] # Placeholder for instructions
+    
+    def _extract_items(self, element, tag):
+        return [
+            int(item.text) for item in element.find(tag).findall('item')
+        ]
     
     def as_dict(self):
         return {
-            'id': self.id, 
             'name': self.name, 
-            'rtl_name': self.rtl_name, 
-            'attrs': self.attrs
+            'attributes': self.attrs,
+            'sub_regions': self.sub_regions,
+            'blocks': self.blocks,
+            'instructions': self.instrs
         }
     
     def __str__(self):
@@ -48,78 +210,57 @@ class BaseNode:
         return self.__str__()
 
 
-class PortNode(BaseNode):
-    def __init__(self, element: ET.Element, is_top_level: bool = False):
-        super().__init__(element)
+class PortNode(CDFGNode):
+    def __init__(
+        self, 
+        element: ET.Element, 
+        function_name: str,
+        is_top_level: bool
+    ):
+        super().__init__(element, function_name)
 
         self.label = self.name
 
-        # 0: input, 1: output, 2: bidirectional
-        direction = findint(element, 'direction', 2)
-        if direction == 0:
-            direction = [0, 1]
-        elif direction == 1:
-            direction = [1, 0]
+        direction = findint(element, 'direction', PortDirection.BI)
+        if direction == PortDirection.IN:
+            direction = [1, 0, 0]
+        elif direction == PortDirection.OUT:
+            direction = [0, 1, 0]
         else:
-            direction = [1, 1]
-
-        array_size = findint(element, 'array_size', 0)
-        if is_top_level:
-            array_impl = [1, 0, 0] # RTL port
-        elif array_size > 1024:
-            array_impl = [0, 1, 0] # BRAM, LUTRAM or URAM
-        else:
-            array_impl = [0, 0, 1] # Shift register
+            direction = [0, 0, 1]
 
         self.attrs.update({
             'direction': direction,
-            'array_size': array_size,
+            'top_level': int(is_top_level),
             'bitwidth': findint(element, 'Value/bitwidth', 0),
-            'port_type': element.findtext('port_type', ''),
-            'array_impl': array_impl,
-
-            # Placeholders for array partitioning attributes
-            'partition_type': [0, 0, 0],
-            'partition_dim': [0, 0, 0, 0],
-            'partition_factor': 0
+            'port_type': element.findtext('if_type', '')
         })
 
 
-class InstructionNode(BaseNode):
+class InstructionNode(CDFGNode):
     def __init__(
-        self, element: ET.Element, 
-        resource_usage_dict: Dict[str, Dict[str, int]],
+        self, 
+        element: ET.Element, 
+        function_name: str,
+        resources: Optional[Dict[str, int]] = None,
     ):
-        super().__init__(element)
+        super().__init__(element, function_name)
 
         opcode = element.findtext('opcode', '')
         self.label = opcode
 
-        node_resources = resource_usage_dict.get(self.rtl_name, {})
-        for resource_type in TARGET_RESOURCES:
-            self.attrs[resource_type] = node_resources.get(resource_type, 0)
-
-        array_size = findint(element, 'Value/Obj/storageDepth', 0)
-        if array_size > 1024:
-            array_impl = [0, 1, 0]
-        elif array_size > 0:
-            array_impl = [0, 0, 1]
+        if resources is not None:
+            for resource_type in TARGET_RESOURCES:
+                self.attrs[resource_type] = resources.get(resource_type, 0)
         else:
-            array_impl = [0, 0, 0]
+            for resource_type in TARGET_RESOURCES:
+                self.attrs[resource_type] = 0
 
         self.attrs.update({
             'opcode': opcode,
             'impl': element.findtext('Value/Obj/coreName', ''),
-            'array_size': array_size,
-            'array_impl': array_impl,
             'bitwidth': findint(element, 'Value/bitwidth', 0),
             'delay': findfloat(element, 'm_delay', 0.0),
-
-            # Placeholders for array partitioning attributes
-            'array_partition': 0,
-            'partition_type': [0, 0, 0],
-            'partition_dim': [0, 0, 0, 0],
-            'partition_factor': 0
         })
 
         self.operand_edges = [
@@ -128,9 +269,9 @@ class InstructionNode(BaseNode):
         ]
 
 
-class ConstantNode(BaseNode):
-    def __init__(self, element: ET.Element):
-        super().__init__(element)
+class ConstantNode(CDFGNode):
+    def __init__(self, element: ET.Element, function_name: str):
+        super().__init__(element, function_name)
 
         self.label = element.findtext('content', '')
 
@@ -140,69 +281,39 @@ class ConstantNode(BaseNode):
         })
 
 
-class BlockNode(BaseNode):
-    def __init__(self, element: ET.Element):
-        super().__init__(element)
+class BlockNode(CDFGNode):
+    def __init__(
+        self, 
+        element: ET.Element, 
+        function_name: str,
+        instruction_nodes: List[InstructionNode]
+    ):
+        super().__init__(element, function_name)
 
         self.label = self.name
+        self.attrs = {resource_type: 0 for resource_type in TARGET_RESOURCES}
 
-        self.attrs = {
-            # Placeholders for region-level directives attributes
-            'loop_merge': 0, 'loop_flatten': 0, 'pipeline': 0, 
-            'unroll': 0, 'unroll_factor': 0, 'pipeline_off': 0, 
-            'loop_flatten_off': 0
-        }
         self.instrs = [
             int(instr.text) 
             for instr in element.find('node_objs').findall('item')
         ]
-
-
-class RegionNode(BaseNode):
-    def __init__(self, element: ET.Element):
-        super().__init__(element, is_region=True)
-
-        self.label = self.name
-
-        self.is_loop = True if findint(element, 'mType', 0) == 1 else False
-        self.attrs = self._extract_attrs(element)
-
-        self.sub_regions = self._extract_items(element, 'sub_regions')
-        self.blocks = self._extract_items(element, 'basic_blocks')
-
-        self.instrs = [] # Placeholder for instructions
-
-    def _extract_attrs(self, element):
-        min_lat = max(1, findint(element, 'mMinLatency', 0))
-        max_lat = max(min_lat, findint(element, 'mMaxLatency', 0))
-        min_tc = max(1, findint(element, 'mMinTripCount', 0))
-        max_tc = max(min_tc, findint(element, 'mMaxTripCount', 0))
-        if (ii := findint(element, 'mII', 0)) <= 0:
-            ii = max(1, max_lat / max_tc)
-
-        return {
-            'min_latency': min_lat, 'max_latency': max_lat, 'ii': ii,
-            'min_trip_count': min_tc, 'max_trip_count': max_tc,
-
-            # Placeholders for region-level directives attributes
-            'loop_merge': 0, 'loop_flatten': 0, 'pipeline': 0, 
-            'unroll': 0, 'unroll_factor': 0, 'pipeline_off': 0, 
-            'loop_flatten_off': 0
-        }
+        self.attrs["num_instrs"] = len(self.instrs)
+        self._get_instruction_resources(instruction_nodes)
     
-    def _extract_items(self, element, tag):
-        return [
-            int(item.text) 
-            for item in element.find(tag).findall('item')
-        ]
-    
+    def _get_instruction_resources(self, instruction_nodes):
+        instr_dict = {instr.id: instr for instr in instruction_nodes}
+        for instr_id in self.instrs:
+            instr = instr_dict.get(instr_id)
+            if instr is None:
+                continue
+            for resource_type in TARGET_RESOURCES:
+                self.attrs[resource_type] += instr.attrs[resource_type]
+
     def as_dict(self):
         return {
-            'id': self.id, 
             'name': self.name, 
-            'attrs': self.attrs,
-            'sub_regions': self.sub_regions,
-            'instrs': self.instrs
+            'attributes': self.attrs,
+            'instructions': self.instrs
         }
     
     def __str__(self):
@@ -214,9 +325,11 @@ class RegionNode(BaseNode):
 
 class CDFG:
     def __init__(
-        self, root: ET.Element, 
-        resource_usage_dict: Dict[str, Dict[str, int]],
-        top_level_name: str,
+        self, 
+        root: ET.Element, 
+        top_level_name: str, 
+        metadata: MetadataDict,
+        resource_dict: Dict[str, Dict[str, int]],
         offsets: Optional[Dict[str, int]] = None,
     ):
         self.nodes = defaultdict(list)
@@ -235,54 +348,145 @@ class CDFG:
         # Extract function information
         self.function_name = cdfg.findtext('name')
         self.ret_bitwidth = findint(cdfg, 'ret_bitwidth')
-
         self.is_top_level = self.function_name == top_level_name
-
         self.function_calls = []
 
         try:
-            self._parse_nodes(cdfg, cdfg_regions, resource_usage_dict)
+            self._parse_nodes(cdfg, cdfg_regions, resource_dict, metadata)
             self._parse_edges(cdfg)
             self._build_hierarchy_edges()
         except Exception as e:
             print(f"Error parsing CDFG: {e}")
             raise
 
-        # self._remove_blocks()
-
-    def _parse_nodes(self, cdfg, cdfg_regions, resource_usage_dict):
+    def _parse_nodes(self, cdfg, regions, resource_dict, metadata):
         consts = cdfg.find('consts')
         if consts is None:
             raise ValueError("CDFG does not contain 'consts' section")
-        self._process_constants(consts)
+        self._process_consts(consts)
 
         # 'nodes' section contains instructions and global variables
         # (represented as instructions with 'GlobalMem' opcode)
         instrs = cdfg.find('nodes')
         if instrs is None:
             raise ValueError("CDFG does not contain 'nodes' section")
-        self._process_node_type(
-            instrs, 'instr', InstructionNode, resource_usage_dict
-        )
+        self._process_instrs(instrs, resource_dict, metadata)
 
         ports = cdfg.find('ports')
         if ports is None:
             raise ValueError("CDFG does not contain 'ports' section")
-        self._process_node_type(ports, 'port', PortNode)
+        self._process_ports(ports, metadata)
 
         blocks = cdfg.find('blocks')
         if blocks is None:
             raise ValueError("CDFG does not contain 'blocks' section")
         self._process_blocks(blocks)
 
-        self._process_regions(cdfg_regions)
+        self._process_regions(regions, metadata)
 
-    def _process_constants(self, consts):
+    def _process_instrs(self, instrs, resource_dict, metadata):
+        self._alloca_instrs = {}
+        instr_offset = self._offsets['instr']
+        array_offset = self._offsets['array']
+        instr_idx = array_idx = 0
+
+        for elem in instrs.findall('item'):
+            value = elem.find('Value')
+            obj = elem.find('Obj') if value is None else value.find('Obj')
+            if obj is None:
+                raise ValueError("Element does not contain 'Obj' or 'Value/Obj' tag")
+            
+            node_id = findint(obj, 'id')
+            if node_id is None:
+                raise ValueError("Element does not contain 'id' tag")
+            node_name = obj.findtext('name', '')
+            rtl_name = obj.findtext('rtlName', '')
+
+            resources = resource_dict.get(rtl_name) if rtl_name else None
+
+            metadata_entry = find_in_metadata(
+                metadata, 'Array', node_name, self.function_name
+            )
+            if metadata_entry is not None:
+                opcode = elem.findtext('opcode')
+                is_alloca_instr = opcode == 'alloca'
+
+                array_node = ArrayNode(
+                    metadata_entry, node_name, node_id, self.function_name,
+                    self.is_top_level, resources=resources
+                )
+                # These array nodes will not be added to the node_id_map and 
+                # will be handled using the self._alloca_instrs dictionary
+                # self._node_id_map[array_node.id] = (array_idx + array_offset, 'array')
+                array_node.id = array_idx + array_offset
+                array_idx += 1
+                self.nodes['array'].append(array_node)
+
+                if is_alloca_instr:
+                    instr_node = InstructionNode(
+                        elem, self.function_name, resources=resources
+                    )
+                    instr_node.id = instr_idx + instr_offset
+                    self._node_id_map[instr_node.id] = (instr_idx + instr_offset, 'instr')
+                    instr_idx += 1
+                    self.nodes['instr'].append(instr_node)
+
+                    self.edges[('instr', 'alloca', 'array')].append(
+                        (instr_node.id, array_node.id)
+                    )
+                    self._alloca_instrs[instr_node.id] = array_node.id
+            else:
+                instr_node = InstructionNode(
+                    elem, self.function_name, resources=resources
+                )
+                instr_node.id = instr_idx + instr_offset
+                self._node_id_map[instr_node.id] = (instr_idx + instr_offset, 'instr')
+                instr_idx += 1
+                self.nodes['instr'].append(instr_node)
+
+    def _process_ports(self, ports, metadata):
+        port_offset = self._offsets['port']
+        array_offset = self._offsets['array']
+        port_idx = 0
+        array_idx = len(self.nodes['array'])
+
+        for elem in ports.findall('item'):
+            value = elem.find('Value')
+            obj = elem.find('Obj') if value is None else value.find('Obj')
+            if obj is None:
+                raise ValueError("Element does not contain 'Obj' or 'Value/Obj' tag")
+            
+            node_id = findint(obj, 'id')
+            if node_id is None:
+                raise ValueError("Element does not contain 'id' tag")
+            node_name = obj.findtext('name', '')
+            direction = findint(elem, 'direction', PortDirection.BI)
+
+            metadata_entry = find_in_metadata(
+                metadata, 'Array', node_name, self.function_name
+            )
+            if metadata_entry is not None:
+                node = ArrayNode(
+                    metadata_entry, node_name, node_id, self.function_name,
+                    self.is_top_level, direction=direction
+                )
+                self._node_id_map[node.id] = (array_idx + array_offset, 'array')
+                node.id = array_idx + array_offset
+                array_idx += 1
+                self.nodes['array'].append(node)
+            else:
+                node = PortNode(elem, self.function_name, self.is_top_level)
+                node.id = port_idx + port_offset
+                self._node_id_map[node.id] = (port_idx + port_offset, 'port')
+                port_idx += 1
+                self.nodes['port'].append(node)
+
+    def _process_consts(self, consts):
         # Constant nodes with type 6 are used to represent 
         # call edges and will be removed later
         dummy_consts = []
         for elem in consts.findall('item'):
-            node = ConstantNode(elem)
+            node = ConstantNode(elem, self.function_name)
             if node.attrs['const_type'] == '6':
                 dummy_consts.append(node)
             else:
@@ -290,43 +494,25 @@ class CDFG:
         self.nodes['const'].extend(dummy_consts)
         self._map_node_ids('const')
 
-    def _process_node_type(
-        self, section, node_type, node_class, 
-        resource_usage_dict=None
-    ):
-        offset = self._offsets[node_type]
-        for i, elem in enumerate(section.findall('item')):
-            if node_type == 'port':
-                node = PortNode(elem, is_top_level=self.is_top_level)
-            elif resource_usage_dict is not None:
-                node = node_class(elem, resource_usage_dict)
-            else:
-                node = node_class(elem)
-            self._node_id_map[node.id] = (i + offset, node_type)
-            node.id = i + offset
-            self.nodes[node_type].append(node)
-
     def _process_blocks(self, blocks):
         offset = self._offsets['block']
         for i, elem in enumerate(blocks.findall('item')):
-            node = BlockNode(elem)
+            node = BlockNode(elem, self.function_name, self.nodes['instr'])
             self._node_id_map[node.id] = (i + offset, 'block')
             node.id = i + offset
             node.instrs = [self._node_id_map[i][0] for i in node.instrs]
             self.nodes['block'].append(node)
 
-    def _process_regions(self, regions):
-        offset = self._offsets['region']
+    def _process_regions(self, regions, metadata):
+        offset = self._offsets['region'] - 1
         for elem in regions.findall('item'):
-            node = RegionNode(elem)
+            node = RegionNode(elem, self.function_name, metadata)
             node.id += offset
             node.sub_regions = [
-                sub_region_id + offset 
-                for sub_region_id in node.sub_regions
+                sub_region_id + offset for sub_region_id in node.sub_regions
             ]
             node.blocks = [
-                self._node_id_map[block_id][0] 
-                for block_id in node.blocks
+                self._node_id_map[block_id][0] for block_id in node.blocks
             ]
             self.nodes['region'].append(node)
 
@@ -359,10 +545,15 @@ class CDFG:
                     callee_name = src_node.name
                     self.function_calls.append((dst, callee_name))
                     continue
+            elif edge_type == ('instr', 'data', 'instr'):
+                src_node = self.nodes[src_type][src - self._offsets[src_type]]
+                if src_node.id in self._alloca_instrs:
+                    src = self._alloca_instrs[src_node.id]
+                    edge_type = ('array', 'data', 'instr')
 
             self.edges[edge_type].append((src, dst))
 
-        # Remove dummy constant edges (representing call edges)
+        # Remove dummy constants (representing call edges)
         for i, node in enumerate(self.nodes['const']):
             if node.attrs['const_type'] == '6':
                 del self.nodes['const'][i:]
@@ -381,88 +572,36 @@ class CDFG:
                     self.edges[('region', 'hrchy', 'instr')].append((region.id, instr_id))
                     self.edges[('block', 'hrchy', 'instr')].append((block_id, instr_id))
 
-    # def _remove_blocks(self):
-    #     block_region_map = {}
-    #     for region in self.nodes['region']:
-    #         for block_id in region.blocks:
-    #             block_region_map[block_id] = region.id
-
-    #     # Map blocks that are not in any region to the top-level region
-    #     top_level_region = self.nodes['region'][0].id
-    #     for block in self.nodes['block']:
-    #         if block.id not in block_region_map:
-    #             block_region_map[block.id] = top_level_region
-    #             for instr_id in block.instrs:
-    #                 self.nodes['region'][0].instrs.append(instr_id)
-    #                 self.edges[('region', 'hrchy', 'instr')].append((top_level_region, instr_id))
-
-    #     for src, dst in self.edges[('block', 'control', 'block')]:
-    #         src_region = block_region_map.get(src)
-    #         dst_region = block_region_map.get(dst)
-    #         if src_region is not None and dst_region is not None:
-    #             self.edges[('region', 'control', 'region')].append((src_region, dst_region))
-        
-    #     for src, dst in self.edges[('block', 'control', 'instr')]:
-    #         src_region = block_region_map.get(src)
-    #         if src_region is not None:
-    #             self.edges[('region', 'control', 'instr')].append((src_region, dst))
-
-    #     self.edges = {
-    #         et: edges for et, edges in self.edges.items()
-    #         if et[0] != 'block' and et[2] != 'block'
-    #     }
-    #     del self.nodes['block']
-    
-
-class FSMState:
-    def __init__(self, element: ET.Element):
-        self.id  = findint(element, "id")
-        self.operations = self._extract_operations(element)
-
-    @property
-    def name(self):
-        return f"state_{self.id}"
-
-    def _extract_operations(self, element):
-        return [
-            {
-                "id": findint(op, "id"), 
-                "stage": findint(op, "stage"), 
-                "latency": findint(op, "latency")
+    def as_dict(self):
+        return {
+            'name': self.function_name,
+            'return_bitwidth': self.ret_bitwidth,
+            'nodes': {
+                nt: [n.as_dict() for n in nodes] 
+                for nt, nodes in self.nodes.items()
+            },
+            'edges': {
+                f"{et[0]}__{et[1]}__{et[2]}": edges 
+                for et, edges in self.edges.items()
             }
-            for op in element.find('operations').findall('item')
-        ]
-
-
-class FSM:
-    def __init__(self, root: ET.Element):
-        self.states = self._extract_states(root)
-        self.transitions = self._extract_transitions(root)
+        }
     
-    def _extract_states(self, element):
-        return [
-            FSMState(state)
-            for state in element.find('states').findall('item')
-        ]
-    
-    def _extract_transitions(self, element):
-        transitions = []
-        for transition in element.find('transitions').findall('item'):
-            src = findint(transition, 'inState')
-            dst = findint(transition, 'outState')
-            if src is None or dst is None:
-                continue
-            transitions.append((src, dst))
-        return transitions
+    def dump(self, filepath):
+        with open(filepath, 'w') as f:
+            json.dump(self.as_dict(), f, indent=2)
+
+    def __str__(self):
+        return json.dumps(self.as_dict(), indent=2)
 
 
 class HLSData:
     def __init__(
         self, 
         solution_dir: str, 
-        top_level_name: str,
-        filtered: bool = False, 
-        kernel_name: Optional[str] = None
+        top_level_name: str, 
+        metadata_path: str,
+        kernel_name: str,
+        filtered: bool = False
     ):
         self.top_level_name = top_level_name
         self.kernel_name = kernel_name
@@ -481,12 +620,11 @@ class HLSData:
             key: value
             for key, value in rpt['module_data'].items() if key in TARGET_RESOURCES
         }
-
-        self._offsets = {
-            'instr': 0, 'const': 0, 'port': 0, 
-            'block': 0, 'region': -1
-        }
+        self._offsets = defaultdict(int)
         self._cdfgs = {}
+
+        with open(metadata_path, 'r') as f:
+            self.metadata = json.load(f)
 
         try:
             self._process_adb_files(solution_dir, filtered)
@@ -510,8 +648,10 @@ class HLSData:
             print(f"Processing file: {path}")
             tree = ET.parse(path)
             root = tree.getroot()
-            cdfg = CDFG(root, self.resource_usage, self.top_level_name,
-                        offsets=self._offsets)
+            cdfg = CDFG(
+                root, self.top_level_name, self.metadata,
+                self.resource_usage, offsets=self._offsets
+            )
             self._cdfgs[cdfg.function_name] = cdfg
             self._merge_cdfg_data(cdfg)
 
@@ -555,6 +695,22 @@ class HLSData:
     
     def __repr__(self):
         return self.__str__()
+    
+
+def find_in_metadata(
+    metadata: MetadataDict,
+    entity_type: str,
+    node_name: str,
+    function_name: str
+) -> Optional[MetadataEntry]:
+    if entity_type not in metadata:
+        return None
+    
+    for entry in metadata[entity_type]:
+        if entry['Name'] == node_name and entry['FunctionName'] == function_name:
+            return entry
+        
+    return None
 
 
 def collect_adb_files(solution_dir, filtered=False):
@@ -578,13 +734,17 @@ def collect_adb_files(solution_dir, filtered=False):
 
 
 def parse_adb(
-    solution_dir, 
-    top_level_name,
-    filtered=False,
-    kernel_name=None,
-    output_path=None
-):
-    hls_data = HLSData(solution_dir, top_level_name, filtered=filtered, kernel_name=kernel_name)
+    solution_dir: str, 
+    top_level_name: str,
+    metadata_path: str,
+    kernel_name: str,
+    filtered: bool = False,
+    output_path: str = None
+) -> HLSData:
+    hls_data = HLSData(
+        solution_dir, top_level_name, metadata_path,
+        kernel_name, filtered=filtered,
+    )
     if output_path:
         hls_data.dump(output_path)
     else:

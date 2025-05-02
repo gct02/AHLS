@@ -11,13 +11,17 @@ from gnn.data.hls_data_collector import HLSData
 from gnn.data.utils.parsers import parse_tcl_directives_file
 
 
-NODE_TYPES = ["instr", "port", "const", "block", "region"]
+NODE_TYPES = [
+    "instr", "port", "array", 
+    "const", "block", "region"
+]
 
 EDGE_TYPES = [
     # Data flow edges
     ("const", "data", "instr"), 
     ("instr", "data", "instr"),
     ("port", "data", "instr"), 
+    ("array", "data", "instr"),
 
     # Control flow edges
     ("block", "control", "instr"), 
@@ -28,6 +32,9 @@ EDGE_TYPES = [
 
     # Memory edges (load->store)
     ("instr", "mem", "instr"),
+
+    # Array memory allocation edges
+    ("instr", "alloca", "array"),
 
     # Hierarchical edges (representing CDFG structure)
     ("region", "hrchy", "region"), 
@@ -49,6 +56,7 @@ EDGE_TYPES = [
 NODE_FEATURE_DIMS = {
     "instr": 75, 
     "port": 16, 
+    "array": 26,
     "const": 5,
     "block": 7,
     "region": 12
@@ -56,7 +64,8 @@ NODE_FEATURE_DIMS = {
 
 DIRECTIVES = [
     "unroll", "pipeline", "loop_merge", 
-    "loop_flatten", "array_partition"
+    "loop_flatten", "array_partition",
+    "dataflow", "inline"
 ]
 
 
@@ -160,28 +169,32 @@ def to_pyg(
     return data
 
 
-def get_node_by_name(hls_data, node_type, name):
-    for node in hls_data.nodes[node_type]:
-        if node.name == name:
-            return node
+def find_node(
+    hls_data, types_to_search, 
+    node_name, function_name,
+    match_function_only: bool = False
+):
+    if not isinstance(types_to_search, list):
+        types_to_search = [types_to_search]
+    for node_type in types_to_search:
+        for node in hls_data.nodes[node_type]:
+            if node.function_name == function_name:
+                if match_function_only:
+                    return node
+                if node.name == node_name:
+                    return node
     return None
 
 
 def include_directives(hls_data: HLSData, directives_tcl: str):
-    def unroll_subloops(subregs, blocks=None):
+    def unroll_subloops(subregs):
         for subreg_id in subregs:
             subreg = hls_data.nodes["region"][subreg_id]
             max_tc = subreg.attrs["max_trip_count"]
-            if subreg.is_loop and max_tc > 1:
+            if subreg.is_loop:
                 subreg.attrs["unroll"] = 1
                 subreg.attrs["unroll_factor"] = max_tc
             unroll_subloops(subreg.sub_regions)
-        
-        if blocks:
-            for block_id in blocks:
-                block = hls_data.nodes["block"][block_id]
-                block.attrs["unroll"] = 1
-                block.attrs["unroll_factor"] = 1
 
     directives = parse_tcl_directives_file(directives_tcl)
     directives = [d for d in directives if d[0] in DIRECTIVES]
@@ -198,29 +211,31 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
 
     for directive_type, directive_args in directives:
         if directive_type == "array_partition":
-            var = directive_args.get("variable")
-            if var is None:
+            node_name = directive_args.get("variable")
+            function_name = directive_args.get("location")
+            if node_name is None:
                 print("Warning: No variable specified for array partition.")
                 continue
+            if function_name is None:
+                print("Warning: No function name specified for array partition.")
+                continue
 
-            for nt in ["port", "instr"]:
-                if (node := get_node_by_name(hls_data, nt, var)) is not None:
-                    break
-            else:
-                print(f"Warning: Variable '{var}' not found in nodes.")
+            node = find_node(hls_data, "array", node_name, function_name)
+            if node is None:
+                print(f"Warning: Variable '{node_name}' not found in nodes.")
                 continue
             
-            array_size = node.attrs["array_size"]
+            total_array_size = node.attrs["total_size"]
             array_impl = node.attrs["array_impl"]
 
             factor = int(directive_args.get("factor", 0))
-            if factor > array_size:
-                print(f"Warning: Partition factor {factor} exceeds array size {array_size}.")
+            if factor > total_array_size:
+                print(f"Warning: Partition factor {factor} exceeds array size {total_array_size}.")
                 continue
             elif factor <= 0:
-                factor = array_size
+                factor = total_array_size
 
-            partition_size = array_size // factor
+            partition_size = total_array_size // factor
             if partition_size <= 1024 and array_impl[1] == 1: 
                 # BRAM/LUTRAM/URAM -> shift register
                 node.attrs["array_impl"] = [0, 0, 1]
@@ -240,15 +255,16 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
             node.attrs["partition_factor"] = factor
             node.attrs["partition_dim"] = dim
         else:
-            loc = directive_args["location"]
-            if '/' in loc:
-                loc = loc.split("/")[-1]
-
-            for nt in ["region", "block"]:
-                if (node := get_node_by_name(hls_data, nt, loc)) is not None:
-                    break
+            location = directive_args["location"]
+            if "/" in location:
+                function_name, node_name = location.split("/")
             else:
-                print(f"Warning: Region '{loc}' not found in nodes.")
+                function_name = location
+                node_name = location
+
+            node = find_node(hls_data, "region", node_name, function_name)
+            if node is None:
+                print(f"Warning: Region '{location}' not found in nodes.")
                 continue
         
             if directive_type == "unroll":
@@ -278,8 +294,8 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
 
 def fit_one_hot_encoders(hls_data_dict: Dict[str, HLSData]):
     categorical_attrs = {
-        "impl": set(), "opcode": set(), 
-        "port_type": set(), "const_type": set()
+        "impl": set(), "opcode": set(), "port_type": set(), 
+        "const_type": set(), "base_type": set()
     }
     encoders = {
         key: OneHotEncoder(handle_unknown='ignore') 
@@ -332,16 +348,20 @@ def plot_data(
     node_colors = {
         "instr": "#419ada",
         "port": "#1ecf89",
+        "array": "#ec3c94",
         "const": "#aa6df0",
-        "region": "#e05858",
+        "block": "#c9a24e",
+        "region": "#d84c4c",
     }
     edge_colors = {
         ("const", "data", "instr"): "#5fdde0",
         ("instr", "data", "instr"): "#00bcd4",
         ("port", "data", "instr"): "#00a1b3",
+        ("array", "data", "instr"): "#008c9e",
         ("region", "control", "instr"): "#ddb753",
         ("region", "control", "region"): "#ddb753",
         ("instr", "mem", "instr"): "#e73939",
+        ("instr", "alloca", "array"): "#824ac2",
         ("region", "hrchy", "region"): "#aab2b9",
         ("region", "hrchy", "instr"): "#aab2b9",
         ("instr", "call", "instr"): "#ba68c8"
@@ -355,16 +375,16 @@ def plot_data(
             ntypes = ["instr"]
             etypes = [et for et in EDGE_TYPES if et[1] == "call"]
         elif plot_type == "control":
-            ntypes = ["region"]
-            etypes = [et for et in EDGE_TYPES if et[1] in ["control"] and et[2] == "region"]
+            ntypes = ["block", "instr"]
+            etypes = [et for et in EDGE_TYPES if et[1] in ["control"] and et[2] == "block"]
         elif plot_type == "data":
-            ntypes = ["instr", "const", "port"]
-            etypes = [et for et in EDGE_TYPES if et[1] in ["data", "mem"]]
+            ntypes = ["instr", "const", "port", "array"]
+            etypes = [et for et in EDGE_TYPES if et[1] in ["data", "mem", "alloca"]]
         elif plot_type == "mem":
-            ntypes = ["instr"]
-            etypes = [et for et in EDGE_TYPES if et[1] == "mem"]
+            ntypes = ["instr", "array"]
+            etypes = [et for et in EDGE_TYPES if et[1] in ["mem", "alloca"]]
         elif plot_type == "hrchy":
-            ntypes = ["instr", "region"]
+            ntypes = ["instr", "block", "region"]
             etypes = [et for et in EDGE_TYPES if et[1] == "hrchy"]
         else:
             raise ValueError(f"Unknown plot_type: {plot_type}")

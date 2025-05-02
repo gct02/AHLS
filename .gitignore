@@ -80,13 +80,11 @@ test*/
 run_info/
 
 # The dataset to train the estimator
-dataset/
+dataset/test/
+dataset/train/
 
 # Pre-trained models
 pretrained/
 
 # Scripts
 scripts/*.sh
-
-# LLVM passes and Clang plugins (not used anymore)
-llvm/

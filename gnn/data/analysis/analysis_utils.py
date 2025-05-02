@@ -97,7 +97,7 @@ def parse_and_encode_directives(directive_config_path, tcl_path) -> NDArray[np.i
         directive_groups = json.load(f)
 
     available_directives = {
-        "pipeline", "unroll", "loop_merge", "loop_flatten", "array_partition"
+        "pipeline", "unroll", "loop_merge", "loop_flatten", "array_partition", "dataflow", "inline"
     }
     directives = parse_tcl_directives_file(tcl_path)
     directives = [d for d in directives if d[0] in available_directives]
