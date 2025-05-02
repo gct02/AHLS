@@ -1,3 +1,4 @@
+import os
 import pickle
 from copy import deepcopy
 from typing import Dict, Union, Optional, List, Tuple
@@ -76,10 +77,17 @@ def build_base_graphs(
 ) -> Dict[str, HLSData]:
     hls_data_dict = {}
     for solution_dir, benchmark, top_level_name in base_solutions:
+        if filtered:
+            metadata_path = f"{solution_dir}/IRs/metadata.json"
+        else:
+            metadata_path = f"{solution_dir}/.autopilot/db/metadata.json"
+        if not os.path.exists(metadata_path):
+            raise FileNotFoundError(f"Metadata file not found: {metadata_path}")
+
         hls_data_dict[benchmark] = HLSData(
             solution_dir, top_level_name, 
-            filtered=filtered, 
-            kernel_name=benchmark
+            metadata_path, benchmark,
+            filtered=filtered
         )
 
     encoders = fit_one_hot_encoders(hls_data_dict)
@@ -257,12 +265,15 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
         else:
             location = directive_args["location"]
             if "/" in location:
+                match_function_only = False
                 function_name, node_name = location.split("/")
             else:
+                match_function_only = True
                 function_name = location
                 node_name = location
 
-            node = find_node(hls_data, "region", node_name, function_name)
+            node = find_node(hls_data, "region", node_name, 
+                             function_name, match_function_only)
             if node is None:
                 print(f"Warning: Region '{location}' not found in nodes.")
                 continue
