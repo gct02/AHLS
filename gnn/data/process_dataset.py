@@ -63,13 +63,20 @@ def main(args: Dict[str, str]):
             print(f"IR file not found for {benchmark}")
             continue
 
+        ir_mod_path = base_solution_dir / ".autopilot/db/a.o.3.mod.bc"
         metadata_path = base_solution_dir / ".autopilot/db/metadata.json"
         try:
             subprocess.check_output(
-                f"{OPT} -load {DSE_LIB} -extract-md -out {metadata_path.as_posix()} < {ir_path.as_posix()};", 
+                f"{OPT} -mem2reg -indvars -loop-simplify -scalar-evolution -instnamer < {ir_path.as_posix()} > {ir_mod_path.as_posix()};", 
+                shell=True, stderr=subprocess.STDOUT
+            )
+            subprocess.check_output(
+                f"{OPT} -load {DSE_LIB} -extract-md -out {metadata_path.as_posix()} < {ir_mod_path.as_posix()};", 
                 shell=True, stderr=subprocess.STDOUT
             )
         except subprocess.CalledProcessError as e:
+            ir_mod_path.unlink(missing_ok=True)
+            metadata_path.unlink(missing_ok=True)
             print(f"Error extracting metadata for {benchmark}: {e.output.decode()}")
             continue
 

@@ -34,8 +34,9 @@ EDGE_TYPES = [
     # Memory edges (load->store)
     ("instr", "mem", "instr"),
 
-    # Array memory allocation edges
+    # Array memory allocation and load edges
     ("instr", "alloca", "array"),
+    ("instr", "load", "array"),
 
     # Hierarchical edges (representing CDFG structure)
     ("region", "hrchy", "region"), 
@@ -55,12 +56,12 @@ EDGE_TYPES = [
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 75, 
-    "port": 16, 
-    "array": 26,
+    "instr": 61, 
+    "port": 7, 
+    "array": 28,
     "const": 5,
-    "block": 7,
-    "region": 12
+    "block": 5,
+    "region": 15
 }
 
 DIRECTIVES = [
@@ -178,19 +179,15 @@ def to_pyg(
 
 
 def find_node(
-    hls_data, types_to_search, 
-    node_name, function_name,
-    match_function_only: bool = False
+    hls_data, types_to_search, node_name, function_name
 ):
     if not isinstance(types_to_search, list):
         types_to_search = [types_to_search]
     for node_type in types_to_search:
         for node in hls_data.nodes[node_type]:
-            if node.function_name == function_name:
-                if match_function_only:
-                    return node
-                if node.name == node_name:
-                    return node
+            if ((node.function_name == '' or node.function_name == function_name) and
+                node.name == node_name):
+                return node
     return None
 
 
@@ -208,13 +205,15 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
     directives = [d for d in directives if d[0] in DIRECTIVES]
 
     # Sort by directive type 
-    # (array_partition -> loop_flatten -> loop_merge -> pipeline -> unroll)
+    # (array_partition -> loop_flatten -> loop_merge -> pipeline -> unroll -> dataflow -> inline)
     directives.sort(key=lambda x: (
         x[0] == "array_partition",
         x[0] == "loop_flatten",
         x[0] == "loop_merge",
         x[0] == "pipeline",
-        x[0] == "unroll"
+        x[0] == "unroll",
+        x[0] == "dataflow",
+        x[0] == "inline"
     ))
 
     for directive_type, directive_args in directives:
@@ -230,7 +229,7 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
 
             node = find_node(hls_data, "array", node_name, function_name)
             if node is None:
-                print(f"Warning: Variable '{node_name}' not found in nodes.")
+                print(f"Warning: Variable '{node_name}' (function '{function_name}') not found in nodes.")
                 continue
             
             total_array_size = node.attrs["total_size"]
@@ -265,22 +264,19 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
         else:
             location = directive_args["location"]
             if "/" in location:
-                match_function_only = False
                 function_name, node_name = location.split("/")
             else:
-                match_function_only = True
                 function_name = location
                 node_name = location
 
-            node = find_node(hls_data, "region", node_name, 
-                             function_name, match_function_only)
+            node = find_node(hls_data, "region", node_name, function_name)
             if node is None:
                 print(f"Warning: Region '{location}' not found in nodes.")
                 continue
         
             if directive_type == "unroll":
-                factor = int(directive_args.get("factor", 0))
-                factor = factor if factor > 0 else node.attrs.get("max_trip_count", 1)
+                factor = int(directive_args.get("factor", 1))
+                factor = factor if factor > 1 else node.attrs.get("max_trip_count", 1)
                 node.attrs['unroll'] = 1
                 node.attrs["unroll_factor"] = factor
             elif directive_type == "pipeline":
@@ -296,7 +292,7 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
 
                     # Pipeline in a loop induces a complete unroll in all of 
                     # its (bounded) subloops
-                    unroll_subloops(node.sub_regions, node.blocks)
+                    unroll_subloops(node.sub_regions)
             elif directive_type == "loop_flatten" and "off" in directive_args:
                 node.attrs["loop_flatten_off"] = 1
             else:

@@ -45,7 +45,7 @@ struct EntityMetadata {
     MetadataKind Kind;
     std::string FunctionName;
     std::string Name;
-    std::unordered_map<std::string, uint32_t> Attributes;
+    std::map<std::string, uint32_t> Attributes;
 
     EntityMetadata(const std::string& Name,
                    const std::string& FunctionName = "",
@@ -64,7 +64,7 @@ struct EntityMetadata {
     }
     MetadataKind getKind() const { return Kind; }
     virtual ~EntityMetadata() = default;
-}
+};
 
 struct LoopMetadata : public EntityMetadata {
     std::set<std::string> SubLoops;
@@ -74,10 +74,10 @@ struct LoopMetadata : public EntityMetadata {
                  const std::string& FunctionName = "")
         : EntityMetadata(Name, FunctionName, MetadataKind::MK_Loop) {}
 
-    void addSubLoop(uint32_t SubLoopID) {
+    void addSubLoop(const std::string& SubLoopID) {
         SubLoops.insert(SubLoopID);
     }
-    void addBasicBlock(uint32_t BasicBlockID) {
+    void addBasicBlock(const std::string& BasicBlockID) {
         BasicBlocks.insert(BasicBlockID);
     }
     static bool classof(const EntityMetadata *E) {
@@ -104,27 +104,30 @@ struct ExtractMetadataPass : public ModulePass {
     static char ID;
     ExtractMetadataPass() : ModulePass(ID) {}
 
-    std::map<std::string, std::vector<EntityMetadata*> > ModuleMD;
+    std::map<std::string, std::vector<EntityMetadata*>> ModuleMD;
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "extract-md"
-
-        extractMetadataFromGlobals(M);
-        extractMetadataFromRegions(M);
-        extractMetadataFromParams(M);
-        extractMetadataFromInstrs(M);
 
         if (OutputPath.empty()) {
             errs() << "Output file not specified.\n";
             return false;
         }
+        DEBUG(errs() << "Extracting array metadata...\n");
+        extractModuleArrayInfo(M);
+        DEBUG(errs() << "Extracting loop metadata...\n");
+        extractModuleLoopInfo(M);
+
+        DEBUG(errs() << "Writing metadata to file...\n");
         writeMetadataToFile(M);
         
         return false; // Module is not modified
     }
 
     void extractModuleArrayInfo(Module& M) {
+        DEBUG(errs() << "Extracting metadata from global arrays...\n");
         extractModuleGlobalArrayInfo(M);
+        DEBUG(errs() << "Extracting metadata from local arrays...\n");
         extractModuleLocalArrayInfo(M);
     }
 
@@ -145,9 +148,10 @@ struct ExtractMetadataPass : public ModulePass {
                         LoopStack.pop();
 
                         std::string LoopName = getLoopName(CurrLoop);
+                        DEBUG(errs() << "Loop name: " << LoopName << "\n");
                         LoopMetadata* MD = new LoopMetadata(LoopName, FunctionName);
-                        MD->set("TripCount", getEstimatedLoopTripCount(CurrLoop, &SE));
-                        MD->set("LoopDepth", CurrLoop->getLoopDepth());
+                        MD->setAttribute("TripCount", getEstimatedLoopTripCount(CurrLoop, &SE));
+                        MD->setAttribute("LoopDepth", CurrLoop->getLoopDepth());
                         ModuleMD["Loop"].push_back(MD);
 
                         for (Loop* SL : CurrLoop->getSubLoops()) {
@@ -171,13 +175,19 @@ struct ExtractMetadataPass : public ModulePass {
             std::string GlobalName = G.getName().str();
             std::string FunctionName = "";
             uint32_t IsParam = 0;
+            DEBUG(errs() << "Global name: " << GlobalName << "\n");
 
             // Check if the global object represents a function parameter
-            if (auto* DIVarExpr = dyn_cast<DIGlobalVariableExpression>(G.getMetadata("dbg"))) {
-                if (auto* DIVar = DIVarExpr->getVariable()) {
-                    if (auto* DIS = DIVar->getScope()) {
-                        FunctionName = DIS->getName().str();
-                        if (functionName.empty() == false) IsParam = 1;
+            if (auto* DbgMDNode = G.getMetadata("dbg")) {
+                if (auto* DIVarExpr = dyn_cast<DIGlobalVariableExpression>(DbgMDNode)) {
+                    if (auto* DIVar = DIVarExpr->getVariable()) {
+                        if (DIVar->isLocalToUnit()) {
+                            if (auto* DIS = DIVar->getScope()) {
+                                FunctionName = DIS->getName().str();
+                                GlobalName = DIVar->getName().str();
+                                IsParam = 1;
+                            }
+                        }
                     }
                 }
             }
@@ -185,9 +195,10 @@ struct ExtractMetadataPass : public ModulePass {
                 GlobalTy = GlobalTy->getPointerElementType();
             }
             if (GlobalTy->isArrayTy()) {
+                DEBUG(errs() << GlobalName << " is a global array\n");
                 ArrayMetadata* MD = getArrayMetadata(GlobalTy, GlobalName, FunctionName);
-                MD->set("IsParam", IsParam);
-                MD->set("IsGlobal", 1);
+                MD->setAttribute("IsParam", IsParam);
+                MD->setAttribute("IsGlobal", 1);
                 ModuleMD["Array"].push_back(MD);
             }
         }
@@ -197,15 +208,16 @@ struct ExtractMetadataPass : public ModulePass {
         // Arrays allocated in the function body
         for (Function& F : M) {
             if (F.isIntrinsic() || F.size() == 0) continue;
-            std::string FunctionName = F.hasName() ? F.getName().str() : ""
+            std::string FunctionName = F.hasName() ? F.getName().str() : "";
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
-                    Type* Ty = I.getType()
+                    Type* Ty = I.getType();
                     if (Ty->isPointerTy()) {
                         Ty = Ty->getPointerElementType();
                     }
                     if (Ty->isArrayTy()) {
                         std::string Name = I.hasName() ? I.getName().str() : "";
+                        DEBUG(errs() << "Local array name: " << Name << "\n");
                         ArrayMetadata* MD = getArrayMetadata(Ty, Name, FunctionName);
                         ModuleMD["Array"].push_back(MD);
                     }
@@ -216,18 +228,22 @@ struct ExtractMetadataPass : public ModulePass {
         // Arrays passed as function parameters
         for (Function& F : M) {
             if (F.isIntrinsic() || F.size() == 0) continue;
-            std::string FunctionName = F.hasName() ? F.getName().str() : ""
+            std::string FunctionName = F.hasName() ? F.getName().str() : "";
             for (Argument& A : F.args()) {
                 Type* Ty = A.getType();
                 if (Ty->isPointerTy()) {
                     uint32_t DecayedDimSize = getDecayedDimSize(&A);
                     if (DecayedDimSize > 0) {
-                        std::string Name = A.getName().str();
-                        Type* ArrayTy = ArrayType::get(Ty->getPointerElementType(), DecayedDimSize);
-                        ArrayMetadata* MD = getArrayMetadata(ArrayTy, Name, FunctionName);
-                        MD->set("IsParam", 1);
-                        ModuleMD["Array"].push_back(MD);
+                        Ty = ArrayType::get(Ty->getPointerElementType(), DecayedDimSize);
+                    } else {
+                        Ty = Ty->getPointerElementType();
                     }
+                }
+                if (Ty->isArrayTy()) {
+                    std::string Name = A.getName().str();
+                    ArrayMetadata* MD = getArrayMetadata(Ty, Name, FunctionName);
+                    MD->setAttribute("IsParam", 1);
+                    ModuleMD["Array"].push_back(MD);
                 }
             }
         }
@@ -267,7 +283,7 @@ struct ExtractMetadataPass : public ModulePass {
                 OF << "      \"Name\": \"" << MD->Name << "\",\n";
                 OF << "      \"FunctionName\": \"" << MD->FunctionName << "\"";
 
-                for (auto MDItem : MD->metadataDict) {
+                for (auto MDItem : MD->Attributes) {
                     OF << ",\n      \"" << MDItem.first << "\": " << MDItem.second;
                 }
 
@@ -277,21 +293,21 @@ struct ExtractMetadataPass : public ModulePass {
                     for (auto SLName : LoopMD->SubLoops) {
                          if (!FirstSL) OF << ",";
                          FirstSL = false;
-                         OF << SLName;
+                         OF << "\"" << SLName << "\"";
                     }
                     OF << "]";
-                    OF << ",\n      \"Instructions\": [";
+                    OF << ",\n      \"BasicBlocks\": [";
                     bool FirstBB = true;
                     for (auto BBName : LoopMD->BasicBlocks) {
                          if (!FirstBB) OF << ",";
                          FirstBB = false;
-                         OF << BBName;
+                         OF << "\"" << BBName << "\"";
                     }
                     OF << "]";
                 } else if (auto* ArrayMD = dyn_cast<ArrayMetadata>(MD)) {
                     OF << ",\n      \"Dimensions\": [";
                     bool FirstDim = true;
-                    for (auto DimSize : ArrayMD->dimensions) {
+                    for (auto DimSize : ArrayMD->Dimensions) {
                          if (!FirstDim) OF << ",";
                          FirstDim = false;
                          OF << DimSize;
@@ -344,7 +360,7 @@ struct ExtractMetadataPass : public ModulePass {
 
     ArrayMetadata* getArrayMetadata(Type* ArrayTy, std::string ArrayName, 
                                     std::string FunctionName = "") {
-        if (!isArrayType(ArrayTy)) {
+        if (!ArrayTy->isArrayTy()) {
             errs() << "Error: Type is not an array type.\n";
             return nullptr;
         }
@@ -352,19 +368,19 @@ struct ExtractMetadataPass : public ModulePass {
 
         uint32_t NumDims = 1;
         uint32_t TotalSize = 1;
-        Type* BaseType = ArrayTy;
+        Type* BaseTy = ArrayTy;
         do {
-            uint32_t DimSize = BaseType->getArrayNumElements();
+            uint32_t DimSize = BaseTy->getArrayNumElements();
             MD->addDimension(DimSize);
             TotalSize *= DimSize;
             NumDims++;
-            BaseType = BaseType->getArrayElementType();
-        } while (BaseType->isArrayTy());
+            BaseTy = BaseTy->getArrayElementType();
+        } while (BaseTy->isArrayTy());
 
-        MD->set("BaseType", BaseTy->getTypeID());
-        MD->set("BaseBitwidth", BaseTy->getPrimitiveSizeInBits());
-        MD->set("NumDims", NumDims);
-        MD->set("TotalSize", TotalSize);
+        MD->setAttribute("BaseType", BaseTy->getTypeID());
+        MD->setAttribute("BaseBitwidth", BaseTy->getPrimitiveSizeInBits());
+        MD->setAttribute("NumDims", NumDims);
+        MD->setAttribute("TotalSize", TotalSize);
         return MD;
     }
 
