@@ -183,6 +183,8 @@ class HGT(nn.Module):
     def _get_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
         """Returns the batch size of the input data."""
         batch_size = 0
-        for nt in self.node_types:
-            batch_size = max(batch_size, batch_dict[nt].max().item())
+        for batch in batch_dict.values():
+            if batch is None or batch.numel() == 0:
+                continue
+            batch_size = max(batch_size, batch.max().item())
         return batch_size + 1
