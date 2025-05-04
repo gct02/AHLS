@@ -1,5 +1,6 @@
 import os
 import pickle
+import subprocess
 from copy import deepcopy
 from typing import Dict, Union, Optional, List, Tuple
 
@@ -24,6 +25,10 @@ EDGE_TYPES = [
     ("port", "data", "instr"), 
     ("array", "data", "instr"),
 
+    # Edges representing GEP instructions with globals
+    ("instr", "data", "const"),
+    ("array", "data", "const"),
+
     # Control flow edges
     ("block", "control", "instr"), 
     ("block", "control", "block"), 
@@ -34,9 +39,8 @@ EDGE_TYPES = [
     # Memory edges (load->store)
     ("instr", "mem", "instr"),
 
-    # Array memory allocation and load edges
+    # Array allocation edges
     ("instr", "alloca", "array"),
-    ("instr", "load", "array"),
 
     # Hierarchical edges (representing CDFG structure)
     ("region", "hrchy", "region"), 
@@ -78,16 +82,40 @@ def build_base_graphs(
 ) -> Dict[str, HLSData]:
     hls_data_dict = {}
     for solution_dir, benchmark, top_level_name in base_solutions:
-        if filtered:
-            metadata_path = f"{solution_dir}/IRs/metadata.json"
-        else:
-            metadata_path = f"{solution_dir}/.autopilot/db/metadata.json"
+        ir_dir = f"{solution_dir}/IRs" if filtered else f"{solution_dir}/.autopilot/db"
+        metadata_path = f"{ir_dir}/metadata.json"
+
         if not os.path.exists(metadata_path):
-            raise FileNotFoundError(f"Metadata file not found: {metadata_path}")
+            try:
+                DSE_LIB = os.environ['DSE_LIB']
+                OPT = os.environ['OPT']
+            except KeyError as error:
+                print(f"Error: environment variable {error.args[0]} not defined.")
+                raise
+
+            ir_path = f"{ir_dir}/a.g.ld.5.gdce.bc"
+            if not os.path.exists(ir_path):
+                print(f"Could not locate IR or metadata for {benchmark}.")
+                continue
+
+            ir_mod_path = f"{ir_dir}/a.g.ld.6.user.bc"
+            try:
+                subprocess.check_output(
+                    f"{OPT} -mem2reg -indvars -loop-simplify -scalar-evolution -instnamer < {ir_path} > {ir_mod_path};", 
+                    shell=True, stderr=subprocess.STDOUT
+                )
+                subprocess.check_output(
+                    f"{OPT} -load {DSE_LIB} -extract-md -out {metadata_path} < {ir_mod_path};", 
+                    shell=True, stderr=subprocess.STDOUT
+                )
+            except subprocess.CalledProcessError as e:
+                os.remove(ir_mod_path, ignore_errors=True)
+                os.remove(metadata_path, ignore_errors=True)
+                print(f"Error extracting metadata for {benchmark}: {e.output.decode()}")
+                continue
 
         hls_data_dict[benchmark] = HLSData(
-            solution_dir, top_level_name, 
-            metadata_path, benchmark,
+            solution_dir, top_level_name, metadata_path, benchmark,
             filtered=filtered
         )
 
@@ -185,9 +213,10 @@ def find_node(
         types_to_search = [types_to_search]
     for node_type in types_to_search:
         for node in hls_data.nodes[node_type]:
-            if ((node.function_name == '' or node.function_name == function_name) and
-                node.name == node_name):
-                return node
+            if node.name == node_name:
+                if (node.function_name == '' or node.function_name is None
+                    or node.function_name == function_name):
+                    return node
     return None
 
 
@@ -365,12 +394,15 @@ def plot_data(
         ("instr", "data", "instr"): "#00bcd4",
         ("port", "data", "instr"): "#00a1b3",
         ("array", "data", "instr"): "#008c9e",
+        ("instr", "data", "const"): "#38bd59",
+        ("array", "data", "const"): "#38bd59",
         ("region", "control", "instr"): "#ddb753",
         ("region", "control", "region"): "#ddb753",
         ("instr", "mem", "instr"): "#e73939",
         ("instr", "alloca", "array"): "#824ac2",
         ("region", "hrchy", "region"): "#aab2b9",
-        ("region", "hrchy", "instr"): "#aab2b9",
+        ("region", "hrchy", "block"): "#aab2b9",
+        ("block", "hrchy", "instr"): "#aab2b9",
         ("instr", "call", "instr"): "#ba68c8"
     }
     
@@ -466,16 +498,15 @@ if __name__ == "__main__":
 
     parser = ArgumentParser()
     parser.add_argument("base_solution_dir", nargs=1, type=str)
-    parser.add_argument("-b", "--benchmark")
     parser.add_argument("-t", "--top-level")
-    parser.add_argument("-d", "--directives", default=None)
+    parser.add_argument("-b", "--benchmark", default="")
     parser.add_argument("-p", "--plot", default="full")
     parser.add_argument("-f", "--filtered", action="store_true")
     args = parser.parse_args()
 
     base_solution_dir = args.base_solution_dir[0]
-    benchmark = args.benchmark
     top_level_name = args.top_level
+    benchmark = args.benchmark
     plot_type = args.plot
     filtered = args.filtered
 

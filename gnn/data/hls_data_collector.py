@@ -21,6 +21,10 @@ EDGE_TYPES = [
     ("port", "data", "instr"), 
     ("array", "data", "instr"),
 
+    # Edges representing GEP instructions with globals
+    ("instr", "data", "const"),
+    ("array", "data", "const"),
+
     # Control flow edges
     ("block", "control", "instr"), 
     ("block", "control", "block"), 
@@ -31,9 +35,8 @@ EDGE_TYPES = [
     # Memory edges (load->store)
     ("instr", "mem", "instr"),
 
-    # Array memory allocation and load edges
+    # Array allocation edges
     ("instr", "alloca", "array"),
-    ("instr", "load", "array"),
 
     # Hierarchical edges (representing CDFG structure)
     ("region", "hrchy", "region"), 
@@ -373,7 +376,7 @@ class CDFG:
         self.edges = {et: [] for et in EDGE_TYPES}
 
         self._offsets = offsets if offsets else {nt: 0 for nt in NODE_TYPES}
-        self._node_id_map = {nt: {} for nt in NODE_TYPES}
+        self._node_id_map = {}
 
         cdfg = root.find('syndb/cdfg')
         if cdfg is None:
@@ -423,7 +426,6 @@ class CDFG:
 
     def _process_instrs(self, instrs, resource_dict, metadata):
         self._alloca_instrs = {}
-        self._load_instrs = {}
         instr_offset = self._offsets['instr']
         array_offset = self._offsets['array']
         instr_idx, array_idx = 0, 0
@@ -447,6 +449,7 @@ class CDFG:
             metadata_entry = find_in_metadata(
                 metadata, 'Array', node_name, self.function_name
             )
+            array_node = None
             if metadata_entry is not None:
                 array_id = array_idx + array_offset
                 array_idx += 1
@@ -468,13 +471,10 @@ class CDFG:
             instr_idx += 1
             self.nodes['instr'].append(instr_node)
 
-            if metadata_entry is not None:
+            if array_node is not None:
                 if opcode == 'alloca':
-                    self.edges[('instr', 'alloca', 'array')].append((instr_node.id, array_id))
-                    self._alloca_instrs[instr_node.id] = array_id
-                elif opcode == 'load':
-                    self.edges[('instr', 'load', 'array')].append((instr_node.id, array_id))
-                    self._load_instrs[instr_node.id] = array_id
+                    self.edges[('instr', 'alloca', 'array')].append((instr_node.id, array_node.id))
+                    self._alloca_instrs[instr_node.id] = array_node.id
 
     def _process_ports(self, ports, metadata):
         port_offset = self._offsets['port']
@@ -538,14 +538,16 @@ class CDFG:
             node = BlockNode(elem, self.function_name, self.nodes['instr'], self._node_id_map)
             self._node_id_map[node.id] = (i + offset, 'block')
             node.id = i + offset
-            node.instrs = [
-                self._node_id_map[instr_id][0] 
-                for instr_id in node.instrs if instr_id in self._node_id_map
-            ]
+            instrs = []
+            for instr_id in node.instrs:
+                node_id, node_type = self._node_id_map.get(instr_id, (None, None))
+                if node_id is not None and node_type == 'instr':
+                    instrs.append(node_id)
+            node.instrs = instrs
             self.nodes['block'].append(node)
 
     def _process_regions(self, regions, metadata):
-        offset = self._offsets['region'] - 1
+        offset = self._offsets['region']
         for elem in regions.findall('item'):
             node = RegionNode(elem, self.function_name, metadata)
             node.id += offset
@@ -590,9 +592,6 @@ class CDFG:
                 src_node = self.nodes[src_type][src - self._offsets[src_type]]
                 if src_node.id in self._alloca_instrs:
                     src = self._alloca_instrs[src_node.id]
-                    edge_type = ('array', 'data', 'instr')
-                elif src_node.id in self._load_instrs:
-                    src = self._load_instrs[src_node.id]
                     edge_type = ('array', 'data', 'instr')
 
             if edge_type not in self.edges:
@@ -671,7 +670,7 @@ class HLSData:
             for key, value in rpt['module_data'].items() 
             if key in TARGET_RESOURCES
         }
-        self._offsets = {nt: 0 for nt in NODE_TYPES}
+        self._offsets = {nt: -1 if nt == "region" else 0 for nt in NODE_TYPES}
         self._cdfgs = {}
 
         with open(metadata_path, 'r') as f:
@@ -756,13 +755,12 @@ def find_in_metadata(
 ) -> Optional[MetadataEntry]:
     if entity_type not in metadata:
         return None
-    
     for entry in metadata[entity_type]:
         if entry['Name'] == node_name:
             entry_function_name = entry.get('FunctionName', '')
-            if len(entry_function_name) == 0 or entry_function_name == function_name:
+            if (entry_function_name == '' or entry_function_name is None
+                or entry_function_name == function_name):
                 return entry
-            
     return None
 
 

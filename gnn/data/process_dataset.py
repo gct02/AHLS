@@ -14,8 +14,6 @@ from gnn.data.utils.parsers import extract_metrics
 try:
     DSE_LIB = environ['DSE_LIB']
     OPT = environ['OPT']
-    CLANG = environ['CLANG']
-    LLVM_LINK = environ['LLVM_LINK']
 except KeyError as error:
     print(f"Error: environment variable {error.args[0]} not defined.")
     raise
@@ -58,12 +56,12 @@ def main(args: Dict[str, str]):
             print(f"Base solution directory not found for {benchmark}")
             continue
 
-        ir_path = base_solution_dir / ".autopilot/db/a.o.3.bc"
+        ir_path = base_solution_dir / ".autopilot/db/a.g.ld.5.gdce.bc"
         if not ir_path.exists():
             print(f"IR file not found for {benchmark}")
             continue
 
-        ir_mod_path = base_solution_dir / ".autopilot/db/a.o.3.mod.bc"
+        ir_mod_path = base_solution_dir / ".autopilot/db/a.g.ld.6.user.bc"
         metadata_path = base_solution_dir / ".autopilot/db/metadata.json"
         try:
             subprocess.check_output(
