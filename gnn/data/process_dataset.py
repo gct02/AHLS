@@ -1,12 +1,16 @@
 import subprocess
 import argparse
-import shutil
 import json
 from os import environ
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List
 
-from gnn.data.graph import build_graph
+import torch
+
+from gnn.data.graph import (
+    build_base_graph, to_pyg,
+    BaseGraph
+)
 from gnn.data.utils.parsers import extract_metrics
 
 
@@ -82,6 +86,60 @@ def process_ir(src_path: Path, dst_path: Path, metadata_path: Path):
         tmp2.unlink(missing_ok=True)
 
 
+def process_base_solutions(
+    dataset: Path, 
+    benchmarks: List[str], 
+    output_folder_path: Path
+) -> Dict[str, BaseGraph]:
+    base_graphs = {}
+    for benchmark in benchmarks:
+        if not (dataset / benchmark).is_dir():
+            print(f"Benchmark {benchmark} not found in dataset")
+            continue
+
+        benchmark_dir = dataset / benchmark
+        base_solution_dir = benchmark_dir / "solution0"
+        if not base_solution_dir.is_dir():
+            print(f"Base solution not found for {benchmark}")
+            continue
+
+        md_json_path = base_solution_dir / f"{base_solution_dir.stem}_data.json"
+        if not md_json_path.exists():
+            print(f"Directives JSON file not found for base solution on {benchmark}")
+            continue
+        directives_tcl = base_solution_dir / f"directives.tcl"
+        create_directives_tcl(md_json_path, directives_tcl)
+
+        ir_folder = base_solution_dir / ".autopilot/db"
+        ir_path = ir_folder / "a.g.ld.0.bc"
+        if not ir_path.exists():
+            print(f"Intermediate representation not found for base solution on {benchmark}")
+            continue
+
+        metrics = extract_metrics(base_solution_dir, filtered=False)
+        if metrics is None:
+            print(f"Metrics not found for base solution on {benchmark}")
+            continue
+
+        benchmark_out_dir = output_folder_path / benchmark
+        benchmark_out_dir.mkdir(parents=True, exist_ok=True)
+        with open(benchmark_out_dir / "base_metrics.json", "w") as f:
+            json.dump(metrics, f, indent=2)
+
+        ir_mod_path = ir_folder / "a.g.ld.0.mod.ll"
+        md_path = ir_folder / "metadata.json"
+        try:
+            process_ir(ir_path, ir_mod_path, md_path)
+        except subprocess.CalledProcessError:
+            print(f"Error processing {ir_path}")
+            continue
+
+        base_graph = build_base_graph(ir_mod_path, md_path)
+        base_graphs[benchmark] = base_graph
+
+    return base_graphs
+
+
 def create_directives_tcl(directives_json: Path, output_path: Path):
     with open(directives_json, "r") as f:
         data = json.load(f)
@@ -100,46 +158,30 @@ def main(args: Dict[str, str]):
     if benchmarks is None:
         benchmarks = [b.stem for b in list(dataset.iterdir()) if b.is_dir()]
 
-    for benchmark in benchmarks:
+    base_graphs = process_base_solutions(dataset, benchmarks, output_folder_path)
+
+    for benchmark, base_graph in base_graphs.items():
         benchmark_dir = dataset / benchmark
         benchmark_out_dir = output_folder_path / benchmark
-        benchmark_out_dir.mkdir(parents=True, exist_ok=True)
         solutions = [s for s in list(benchmark_dir.iterdir()) if s.is_dir()]
 
         for solution in solutions:
-            md_json_path = solution / f"{solution.stem}_data.json"
-            if not md_json_path.exists():
-                print(f"Directives JSON file not found for {solution}")
+            solution_dir = benchmark_dir / solution
+            filtered_solution = False if solution.stem == "solution0" else filtered
+            directives_tcl = solution_dir / "directives.tcl"
+            if not directives_tcl.exists():
+                print(f"Directives file not found for {solution}")
                 continue
-            directives_tcl = solution / f"directives.tcl"
-            create_directives_tcl(md_json_path, directives_tcl)
-
-            ir_folder = solution / ("IRs" if filtered else ".autopilot/db")
-            ir_path = ir_folder / "a.g.ld.0.bc"
-            if not ir_path.exists():
-                print(f"Intermediate representation not found for {solution}")
+            metrics = extract_metrics(solution, filtered=filtered_solution)
+            if metrics is None:
+                print(f"Metrics not found for {solution}")
                 continue
-
+            graph = to_pyg(base_graph, directive_file_path=directives_tcl)
             solution_out_dir = benchmark_out_dir / solution.stem
             solution_out_dir.mkdir(parents=True, exist_ok=True)
-            out_ir_path = ir_folder / "a.g.ld.0.mod.ll"
-            out_md_path = solution_out_dir / "metadata.json"
-            try:
-                process_ir(ir_path, out_ir_path, out_md_path)
-            except subprocess.CalledProcessError:
-                print(f"Error processing {ir_path}")
-                shutil.rmtree(solution_out_dir)
-                continue
-
-            metrics = extract_metrics(solution, filtered=filtered)
+            torch.save(graph, solution_out_dir / f"graph.pt")
             with open(solution_out_dir / "metrics.json", "w") as f:
                 json.dump(metrics, f, indent=2)
-
-            build_graph(
-                out_ir_path, out_md_path, 
-                directive_file_path=directives_tcl,
-                output_path=solution_out_dir / "graph.pt"
-            )
 
 
 def parse_args():

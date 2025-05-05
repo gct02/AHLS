@@ -1,15 +1,17 @@
 import json
 from collections import defaultdict
-from typing import Optional
+from typing import Optional, Tuple, Dict, List
 
 import torch
 import matplotlib.pyplot as plt
 from torch_geometric.data import HeteroData
+from torch_geometric.typing import NodeType, EdgeType
 
 from gnn.data.utils.parsers import parse_tcl_directives
 from gnn.data.utils.llvm_defs import (
-    TYPE_ENCODING, TYPE_ENCODING_SIZE, OP_ENCODING, OP_ENCODING_SIZE,
-    MAX_ARRAY_DIMS, TypeID, Opcode
+    TYPE_ENCODING, TYPE_ENCODING_SIZE, 
+    OP_ENCODING, OP_ENCODING_SIZE,
+    MAX_ARRAY_DIMS, TypeID
 )
 
 
@@ -86,6 +88,93 @@ class Node:
 
     def __repr__(self):
         return f"Node({self.type}, {self.index}, {self.text}, {self.function_id})"
+    
+
+BaseGraph = Tuple[Dict[NodeType, List[Node]], Dict[EdgeType, List[List[int]]]]
+
+
+def build_base_graph(llvm_ir_path: str, metadata_path: str) -> BaseGraph:
+    import programl
+
+    with open(metadata_path, 'r') as f:
+        metadata = json.load(f)
+
+    with open(llvm_ir_path, 'r') as f:
+        programl_graph = programl.from_llvm_ir(f.read())
+
+    programl_graph_json = programl.to_json(programl_graph)
+
+    programl_nodes = programl_graph_json.get('nodes', [])
+    programl_edges = programl_graph_json.get('links', [])
+    functions = []
+    for function in programl_graph_json.get('graph', {}).get('function', []):
+        functions.append(function['name'])
+
+    nodes, hrchy_edge_dict = build_nodes(programl_nodes, metadata, functions)
+    edge_dict = build_edges(programl_edges, nodes)
+
+    for et, edges in hrchy_edge_dict.items():
+        if et not in edge_dict:
+            edge_dict[et] = []
+        edge_dict[et].extend(edges)
+
+    return nodes, edge_dict
+
+
+def to_pyg(
+    base_graph: BaseGraph,
+    directive_file_path: Optional[str] = None,
+    add_self_loops: bool = True,
+    output_path: Optional[str] = None
+) -> HeteroData:
+    nodes, edge_dict = base_graph
+
+    if directive_file_path is not None:
+        include_directives(nodes, directive_file_path)
+
+    hetero_data = HeteroData()
+
+    for nt in NODE_TYPES:
+        node_feature_list = []
+        for node in nodes[nt]:
+            feature_vector = []
+            for feature in node.features.values():
+                if not isinstance(feature, list):
+                    feature_vector.append(feature)
+                else:
+                    feature_vector.extend(feature)
+            feature_vector = torch.tensor(feature_vector, dtype=torch.float)
+            node_feature_list.append(feature_vector)
+
+        if len(node_feature_list) > 0:
+            hetero_data[nt].x = torch.stack(node_feature_list).contiguous()
+        else:
+            hetero_data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float)
+
+        hetero_data[nt].num_nodes = hetero_data[nt].x.size(0)
+        hetero_data[nt].label = [n.text for n in nodes[nt]]
+
+    for et in EDGE_TYPES:
+        if et[1] == 'self' and add_self_loops:
+            hetero_data[et] = torch.arange(
+                hetero_data[et[0]].num_nodes, dtype=torch.long
+            ).view(1, -1).repeat(2, 1)
+        else:
+            edge_index = edge_dict.get(et, [])
+            if len(edge_index) > 0:
+                edge_index = torch.stack(
+                    [torch.tensor(e, dtype=torch.long) for e in edge_index]
+                ).t().contiguous()
+                hetero_data[et].edge_index = edge_index
+                hetero_data[et].num_edges = edge_index.size(1)
+            else:
+                hetero_data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
+                hetero_data[et].num_edges = 0
+
+    if output_path is not None:
+        torch.save(hetero_data, output_path)
+
+    return hetero_data
 
 
 def build_graph(

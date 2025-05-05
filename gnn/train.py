@@ -29,6 +29,11 @@ PredTargetPair = Tuple[
 ]
 
 
+def save_model(model, output_dir, model_name):
+    os.makedirs(output_dir, exist_ok=True)
+    torch.save(obj=model.state_dict(), f=f"{output_dir}/{model_name}")
+
+
 def rpd(pred, target):
     pred, target = map(torch.as_tensor, (pred, target))
     avg = (torch.abs(pred) + torch.abs(target)) / 2
@@ -106,11 +111,6 @@ def evaluate(
     return results
 
 
-def save_model(model, output_dir, model_name):
-    os.makedirs(output_dir, exist_ok=True)
-    torch.save(obj=model.state_dict(), f=f"{output_dir}/{model_name}")
-
-
 def train_model(
     model: nn.Module,
     loss_fn: nn.Module,
@@ -171,7 +171,7 @@ def train_model(
 
             if verbosity > 1:
                 for p, t in zip(pred, target):
-                    print(f"Target: {t}; Prediction: {p}")
+                    print(f"Target: {np.expm1(t)}; Prediction: {np.expm1(p)}")
 
         if log_dir:
             with open(f"{log_dir}/train.log", 'a') as f:
@@ -188,7 +188,7 @@ def train_model(
         with torch.no_grad():
             test_results = evaluate(
                 epoch, model, test_loader, 
-                verbosity=verbosity, log_dir=log_dir,
+                verbosity=verbosity, log_dir=log_dir, 
                 log_transformed=log_transformed
             )
             results['test'].append(test_results)
@@ -222,7 +222,7 @@ def main(args: Dict[str, str]):
     benchmarks = sorted(os.listdir(full_data_dir))
     train_benches = [b for b in benchmarks if b != test_bench]
 
-    run_dir, pretrained_dir = make_output_dirs(output_dir, test_bench, target_metric)
+    analysis_dir, pretrained_dir = make_output_dirs(output_dir, test_bench, target_metric)
 
     train_loader, test_loader = prepare_data_loaders(
         dataset_dir, target_metric, test_bench, train_benches, 
@@ -242,15 +242,15 @@ def main(args: Dict[str, str]):
 
     if loss == 'mse':
         loss_fn = nn.MSELoss()
-    elif loss == 'l1':
-        loss_fn = nn.L1Loss()
     elif loss == 'huber':
         loss_fn = nn.HuberLoss(delta=residual)
+    elif loss == 'l1':
+        loss_fn = nn.L1Loss()
     else:
         raise ValueError(f"Unknown loss function: {loss}")
 
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=1e-3, betas=(0.9, 0.999), weight_decay=1e-4
+        model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=5e-4
     )
 
     warmup_steps = (epochs * len(train_loader)) // 10
@@ -260,17 +260,17 @@ def main(args: Dict[str, str]):
 
     total_steps = epochs * len(train_loader) - warmup_steps
     scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-4
+        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-5
     )
 
     results = train_model(
         model, loss_fn, optimizer, train_loader, test_loader, epochs, 
         scheduler=scheduler, warmup_scheduler=warmup_scheduler, 
-        warmup_steps=warmup_steps, verbosity=verbosity, log_dir=run_dir,
+        warmup_steps=warmup_steps, verbosity=verbosity, log_dir=analysis_dir,
         log_transformed=log_transform
     )
-    plot_prediction_bars(results["test"], test_bench, target_metric, run_dir)
-    save_training_artifacts(results, run_dir)
+    plot_prediction_bars(results["test"], test_bench, target_metric, analysis_dir)
+    save_training_artifacts(results, analysis_dir)
     save_model(model, pretrained_dir, f"{test_bench}_{target_metric}.pth")
 
 
@@ -450,15 +450,15 @@ def set_random_seeds(seed: int):
 
 
 def make_output_dirs(root_dir, test_bench, metric) -> Tuple[str, str]:
-    base_run_dir = f"{root_dir}/run_info"
+    base_run_info_dir = f"{root_dir}/run_info"
     base_pretrained_dir = f"{root_dir}/pretrained"
 
-    if not os.path.exists(base_run_dir):
-        os.makedirs(base_run_dir)
+    if not os.path.exists(base_run_info_dir):
+        os.makedirs(base_run_info_dir)
     if not os.path.exists(base_pretrained_dir):
         os.makedirs(base_pretrained_dir)
 
-    metric_dir = f"{base_run_dir}/{metric}"
+    metric_dir = f"{base_run_info_dir}/{metric}"
     if not os.path.exists(metric_dir):
         os.makedirs(metric_dir)
 
@@ -467,20 +467,26 @@ def make_output_dirs(root_dir, test_bench, metric) -> Tuple[str, str]:
         os.makedirs(tb_dir)
         run = 1
     else:
-        runs = [
-            int(f.split('_')[-1])
-            for f in os.listdir(tb_dir) 
-            if f.startswith('run_') and f.split('_')[-1].isdigit()
-        ]
-        run = max(runs) + 1 if runs else 1
+        run = get_current_run_number(tb_dir)
 
-    run_dir = f"{tb_dir}/run_{run}"
+    run_info_dir = f"{tb_dir}/run_{run}"
     pretrained_dir = f"{base_pretrained_dir}/{metric}/{test_bench}"
 
-    os.makedirs(run_dir, exist_ok=True)
+    os.makedirs(run_info_dir, exist_ok=True)
     os.makedirs(pretrained_dir, exist_ok=True)
 
-    return run_dir, pretrained_dir
+    return run_info_dir, pretrained_dir
+
+
+def get_current_run_number(results_directory: str) -> int:
+    if not os.path.exists(results_directory):
+        return 1
+    files = os.listdir(results_directory)
+    runs = [
+        int(f.split('_')[-1])
+        for f in files if f.startswith('run_') and f.split('_')[-1].isdigit()
+    ]
+    return max(runs) + 1 if runs else 1
 
 
 def prepare_data_loaders(
@@ -519,7 +525,7 @@ def parse_arguments():
                         help='Random seed for repeatability (default: 42).')
     parser.add_argument('-b', '--batch', default=16, 
                         help='The size of the training batch (default: 16).')
-    parser.add_argument('-l', '--loss', default='mse', choices=['mse', 'l1', 'huber'],
+    parser.add_argument('-l', '--loss', default='mse', choices=['mse', 'rmsle', 'l1', 'huber'],
                         help='The loss function to use for training (default: mse).')
     parser.add_argument('-lt', '--log-transform', action='store_true',
                         help='Apply log transformation to the target variable.')
