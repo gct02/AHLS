@@ -103,13 +103,6 @@ def process_base_solutions(
             print(f"Base solution not found for {benchmark}")
             continue
 
-        md_json_path = base_solution_dir / f"{base_solution_dir.stem}_data.json"
-        if not md_json_path.exists():
-            print(f"Directives JSON file not found for base solution on {benchmark}")
-            continue
-        directives_tcl = base_solution_dir / f"directives.tcl"
-        create_directives_tcl(md_json_path, directives_tcl)
-
         ir_folder = base_solution_dir / ".autopilot/db"
         ir_path = ir_folder / "a.g.ld.0.bc"
         if not ir_path.exists():
@@ -168,10 +161,12 @@ def main(args: Dict[str, str]):
         for solution in solutions:
             solution_dir = benchmark_dir / solution
             filtered_solution = False if solution.stem == "solution0" else filtered
-            directives_tcl = solution_dir / "directives.tcl"
-            if not directives_tcl.exists():
-                print(f"Directives file not found for {solution}")
+            md_json_path = solution_dir / f"{solution_dir.stem}_data.json"
+            if not md_json_path.exists():
+                print(f"Directives JSON file not found for base solution on {benchmark}")
                 continue
+            directives_tcl = solution_dir / f"directives.tcl"
+            create_directives_tcl(md_json_path, directives_tcl)
             metrics = extract_metrics(solution, filtered=filtered_solution)
             if metrics is None:
                 print(f"Metrics not found for {solution}")
