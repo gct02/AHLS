@@ -40,9 +40,6 @@ def process_ir(src_path: Path, dst_path: Path, metadata_path: Path):
 
     The following passes are applied to the IR:
 
-    strip-debug: remove Vitis HLS debug information;
-    strip-dead-prototypes: remove unused function prototypes (e.g. llvm.sideeffect);
-    instnamer: assign names to anonymous values;
     indirectbr-expand: turn indirectbr into switch instructions;
     lowerinvoke: lower invoke instructions to call instructions;
     lowerswitch: lower switch instructions to branch instructions;
@@ -59,8 +56,8 @@ def process_ir(src_path: Path, dst_path: Path, metadata_path: Path):
         dst_path (Path): Path to the file where the processed IR should be written
         metadata_path (Path): Path to the file where the IR metadata should be written
     """
-    tmp1 = src_path.parent / "tmp1.ll"
-    tmp2 = src_path.parent / "tmp2.ll"
+    tmp1 = src_path.parent / "a.g.ld.0.tmp.1.ll"
+    tmp2 = src_path.parent / "a.g.ld.0.tmp.2.ll"
     clean_opt = "-lowerswitch -lowerinvoke -indirectbr-expand"
     transform_opt = "-mem2reg -indvars -loop-simplify -scalar-evolution"
 
@@ -125,7 +122,7 @@ def main(args: Dict[str, str]):
 
             solution_out_dir = benchmark_out_dir / solution.stem
             solution_out_dir.mkdir(parents=True, exist_ok=True)
-            out_ir_path = ir_folder / "transformed_ir.ll"
+            out_ir_path = ir_folder / "a.g.ld.0.mod.ll"
             out_md_path = solution_out_dir / "metadata.json"
             try:
                 process_ir(ir_path, out_ir_path, out_md_path)

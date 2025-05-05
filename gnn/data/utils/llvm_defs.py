@@ -119,10 +119,10 @@ TYPE_ENCODING = {
     TypeID.PPC_FP128: [0,1,0,0,0,0],
     TypeID.POINTER:   [0,0,1,0,0,0],
     TypeID.STRUCT:    [0,0,0,1,0,0],
-    TypeID.VOID:      [0,0,0,0,1,0],
-    TypeID.VECTOR:    [0,0,0,0,0,1],
-
+    TypeID.VECTOR:    [0,0,0,0,1,0],
+    
     TypeID.ARRAY:     [0,0,0,0,0,1],
+    TypeID.VOID:      [0,0,0,0,0,1],
     TypeID.LABEL:     [0,0,0,0,0,1],
     TypeID.METADATA:  [0,0,0,0,0,1],
     TypeID.X86_MMX:   [0,0,0,0,0,1],

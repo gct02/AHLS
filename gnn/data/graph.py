@@ -39,7 +39,7 @@ EDGE_TYPES = [
 
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
-INSTR_FEATURE_DIMS = 12
+INSTR_FEATURE_DIMS = 13
 VAR_FEATURE_DIMS = 7
 CONST_FEATURE_DIMS = 7
 ARRAY_FEATURE_DIMS = 21
@@ -52,6 +52,12 @@ NODE_FEATURE_DIMS = {
     'array': ARRAY_FEATURE_DIMS,
     'region': REGION_FEATURE_DIMS
 }
+
+DIRECTIVES = [
+    'pipeline', 'unroll', 'loop_flatten', 
+    'loop_merge', 'array_partition',
+    'dataflow', 'inline'
+]
 
 
 class Node:
@@ -161,26 +167,35 @@ def build_graph(
 
 
 def include_directives(nodes, directive_file_path):
-    def find_node(node_type, node_name, function_name):
-        for node in nodes[node_type]:
-            if ((node_name is None or node.text == node_name) 
-                and node.function_name == function_name):
+    def find_region(node_name, function_name):
+        for node in nodes['region']:
+            if (not node_name or node.text == node_name) and \
+               (not function_name or node.function_name == function_name):
                 return node
+        return None
+    
+    def find_array(node_name, function_name):
+        for node in nodes['array']:
+            if node.text == node_name:
+                if not node.function_name or node.function_name == function_name:
+                    return node
         return None
     
     directives = parse_tcl_directives(directive_file_path)
 
     for directive_type, directive_args in directives:
-        if directive_type in ['pipeline', 'unroll', 'loop_flatten', 'loop_merge']:
+        if directive_type not in DIRECTIVES:
+            continue
+        if directive_type != 'array_partition':
             location = directive_args.get('location')
             if location is None:
                 continue
             if '/' in location:
                 function_name, region_name = location.split('/')
             else:
-                function_name, region_name = location, None
+                function_name, region_name = location, ''
 
-            node = find_node('region', region_name, function_name)
+            node = find_region(region_name, function_name)
             if node is None:
                 print(f"Warning: Node not found for {directive_type} directive with location {location}")
                 continue
@@ -189,6 +204,7 @@ def include_directives(nodes, directive_file_path):
                 factor = int(directive_args.get('factor', 0))
                 if factor <= 0:
                     factor = max(1, node.features['trip_count'])
+                node.features['unroll'] = 1
                 node.features['unroll_factor'] = factor
             elif directive_type == 'pipeline' and 'off' in directive_args:
                 node.features['pipeline_off'] = 1
@@ -197,10 +213,10 @@ def include_directives(nodes, directive_file_path):
             else:
                 node.features[directive_type] = 1
             
-        elif directive_type == 'array_partition':
+        else:
             function_name = directive_args.get('location', '')
             array_name = directive_args.get('variable')
-            node = find_node('array', array_name, function_name)
+            node = find_array(array_name, function_name)
             if node is None:
                 print(f"Warning: Node not found for array partition directive with "
                       f"location {function_name} and variable {array_name}")
@@ -228,6 +244,7 @@ def include_directives(nodes, directive_file_path):
                         partition_factor *= dim
                 else:
                     partition_factor = array_dims[partition_dim-1]
+            partition_factor = max(1, partition_factor)
 
             node.features['partition_factor'] = partition_factor
             node.features['partition_dim'] = partition_dim_encoding
@@ -235,7 +252,7 @@ def include_directives(nodes, directive_file_path):
 
 
 def get_instruction_metadata(
-    metadata, function_id, 
+    metadata, function_name, 
     node_id=None, node_full_text=None
 ):
     if node_id is None:
@@ -248,7 +265,7 @@ def get_instruction_metadata(
         query = node_id
     
     for node in metadata['instruction']:
-        if node['functionID'] == function_id and node[key] == query:
+        if node['functionName'] == function_name and node[key] == query:
             return node
     return None
         
@@ -279,7 +296,10 @@ def get_internal_constant_metadata(metadata, function_name, const_name):
 
 
 def get_const_node_features(node_text):
-    if node_text[0] == 'i':
+    if '*' in node_text:
+        type_encoding = TYPE_ENCODING[TypeID.POINTER]
+        bitwidth = 0
+    elif node_text[0] == 'i':
         type_encoding = TYPE_ENCODING[TypeID.INT]
         bitwidth = int(node_text[1:])
     elif node_text == 'float':
@@ -291,14 +311,10 @@ def get_const_node_features(node_text):
     elif node_text == 'half':
         type_encoding = TYPE_ENCODING[TypeID.HALF]
         bitwidth = 16
-    else:
-        type_encoding = TYPE_ENCODING[TypeID.POINTER]
+    else: # Placeholder for other types
+        type_encoding = TYPE_ENCODING[TypeID.VOID]
         bitwidth = 0
-
-    return {
-        'type': type_encoding,
-        'bitwidth': bitwidth
-    }
+    return {'type': type_encoding, 'bitwidth': bitwidth}
 
 
 def build_nodes(programl_nodes, metadata, functions):
@@ -334,13 +350,15 @@ def build_nodes(programl_nodes, metadata, functions):
                 'bitwidth': base_bitwidth,
                 'n_dims': n_dims,
                 'dims': dims,
-                'partition_factor': 0,
+                'partition_factor': 1,
                 'partition_dim': [0] * (MAX_ARRAY_DIMS + 1),
                 'partition_type': [0, 0, 0]
             }
             nodes['array'].append(Node(
-                node_index, 'array', programl_id, 
-                text=node_name, full_text=full_text, 
+                node_index, 'array', 
+                programl_id=programl_id, 
+                text=node_name, 
+                full_text=full_text, 
                 function_id=function_id, 
                 function_name=function_name,
                 features=features
@@ -351,12 +369,13 @@ def build_nodes(programl_nodes, metadata, functions):
 
             var_type = int(node_metadata['type'])
             bitwidth = int(node_metadata['bitwidth'])
-            type_encoding = TYPE_ENCODING.get(var_type, [0] * TYPE_ENCODING_SIZE)
+            type_encoding = TYPE_ENCODING.get(var_type, TYPE_ENCODING[TypeID.VOID])
 
             nodes['var'].append(Node(
                 node_index, 'var', 
                 programl_id=programl_id,
-                text=node_name, full_text=full_text, 
+                text=node_name, 
+                full_text=full_text, 
                 function_id=function_id, 
                 function_name=function_name,
                 features={'type': type_encoding, 'bitwidth': bitwidth}
@@ -376,6 +395,7 @@ def build_nodes(programl_nodes, metadata, functions):
         full_text = node['features']['full_text'][0]
         programl_id = int(node['id'])
         function_id = int(node['function'])
+        function_name = functions[function_id]
         node_type = int(node['type'])
 
         if node_type == 0: # Instruction
@@ -388,7 +408,7 @@ def build_nodes(programl_nodes, metadata, functions):
             ir_instr_id = int(ir_instr_id.strip())
 
             node_metadata = get_instruction_metadata(
-                metadata, function_id, ir_instr_id, full_text
+                metadata, function_name, ir_instr_id, full_text
             )
             if node_metadata is None:
                 continue
@@ -400,19 +420,18 @@ def build_nodes(programl_nodes, metadata, functions):
             node_indices['instr'] += 1
             ir_id_index_map['instr'][ir_instr_id] = node_index
 
-            function_name = node_metadata.get('functionName')
-
             nodes['instr'].append(Node(
                 node_index, 'instr', 
-                programl_id=programl_id, ir_id=ir_instr_id,
-                text=text, full_text=full_text, 
+                programl_id=programl_id, 
+                ir_id=ir_instr_id,
+                text=text, 
+                full_text=full_text, 
                 function_id=function_id, 
                 function_name=function_name, 
                 features={'opcode': opcode}
             ))
 
         elif node_type == 1: # Variable
-            function_name = functions[function_id]
             node_metadata = get_variable_metadata(metadata, function_name, full_text)
             if node_metadata is None:
                 continue
@@ -429,13 +448,27 @@ def build_nodes(programl_nodes, metadata, functions):
             # Check if internal
             if '=' in full_text:
                 const_name, const_value = full_text.split('=')
+                const_name = const_name.strip(' @')
                 if 'internal' in const_value:
-                    const_name = const_name.strip(' @')
                     function_name, const_name = const_name.split('.')
                     function_id = functions.index(function_name)
                     node_metadata = get_internal_constant_metadata(
                         metadata, function_name, const_name
                     )
+                    if node_metadata is not None:
+                        create_variable_node(
+                            nodes, node_indices, node_metadata,
+                            programl_id, function_id, function_name,
+                            const_name, full_text
+                        )
+                        continue
+                else:
+                    node_metadata = None
+                    for entry in metadata.get('variable', []):
+                        if entry['name'] == const_name:
+                            node_metadata = entry
+                            break
+                    function_name = node_metadata.get('functionName', '')
                     if node_metadata is not None:
                         create_variable_node(
                             nodes, node_indices, node_metadata,
@@ -450,8 +483,10 @@ def build_nodes(programl_nodes, metadata, functions):
             nodes['const'].append(Node(
                 node_index, 'const', 
                 programl_id=programl_id,
-                text=text, full_text=full_text, 
+                text=text, 
+                full_text=full_text, 
                 function_id=function_id,
+                function_name=function_name,
                 features=features
             ))
 
@@ -466,16 +501,21 @@ def build_nodes(programl_nodes, metadata, functions):
 
         is_loop = int(region['isLoop'])
         trip_count = int(region['tripCount'])
+        depth = int(region['depth'])
 
         features = {
             'is_loop': is_loop,
             'trip_count': trip_count,
+            'depth': depth,
             'pipeline': 0,
             'pipeline_off': 0,
             'loop_flatten': 0,
             'loop_flatten_off': 0,
             'loop_merge': 0,
-            'unroll_factor': 0
+            'unroll': 0,
+            'unroll_factor': 1,
+            'dataflow': 0,
+            'inline': 0
         }
         name = region.get('name')
         function_id = int(region.get('functionID', -1))
@@ -484,7 +524,8 @@ def build_nodes(programl_nodes, metadata, functions):
         nodes['region'].append(Node(
             node_index, 'region',
             ir_id=ir_region_id,
-            text=name, full_text=name, 
+            text=name, 
+            full_text=name, 
             function_id=function_id, 
             function_name=function_name, 
             features=features
