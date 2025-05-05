@@ -34,6 +34,10 @@ EDGE_TYPES = [
     # Loop and function hierarchy
     ('region', 'hrchy', 'region'),
     ('region', 'hrchy', 'instr'),
+
+    # Loop and function hierarchy (reverse)
+    ('region', 'hrchy_rev', 'region'),
+    ('instr', 'hrchy_rev', 'region'),
 ] + [
     # Self-loops
     (nt, 'self', nt) for nt in NODE_TYPES
@@ -65,18 +69,13 @@ DIRECTIVES = [
 class Node:
     def __init__(
         self, index, node_type, 
-        programl_id=None, ir_id=None,
-        text=None, full_text=None,
-        function_id=None, function_name=None, 
-        features=None
+        programl_id=None,text=None,
+        function_name=None, features=None
     ):
         self.index = index
         self.type = node_type
         self.programl_id = programl_id
-        self.ir_id = ir_id
         self.text = text
-        self.full_text = full_text
-        self.function_id = function_id
         self.function_name = function_name
         self.features = features if features is not None else {}
 
@@ -87,7 +86,7 @@ class Node:
         return self.features.get(key, None)
 
     def __repr__(self):
-        return f"Node({self.type}, {self.index}, {self.text}, {self.function_id})"
+        return f"Node({self.type}, {self.index}, {self.text}, {self.function_name})"
     
 
 BaseGraph = Tuple[Dict[NodeType, List[Node]], Dict[EdgeType, List[Tuple[int, int]]]]
@@ -117,10 +116,12 @@ def build_base_graph(llvm_ir_path: str, metadata_path: str) -> BaseGraph:
         if et not in edge_dict:
             edge_dict[et] = []
         edge_dict[et].extend(edges)
-
-    for et, edges in edge_dict.items():
-        for i, edge in enumerate(edges):
-            edge_dict[et][i] = (edge[0], edge[1])
+        src_type, _, dst_type = et
+        rev_et = (dst_type, 'hrchy_rev', src_type)
+        if rev_et not in edge_dict:
+            edge_dict[rev_et] = []
+        rev_edges = [(dst, src) for src, dst in edges]
+        edge_dict[rev_et].extend(rev_edges)
 
     return nodes, edge_dict
 
@@ -186,7 +187,8 @@ def to_pyg(
 
 
 def build_graph(
-    llvm_ir_path: str, metadata_path: str, 
+    llvm_ir_path: str, 
+    metadata_path: str, 
     add_self_loops: bool = True,
     directive_file_path: Optional[str] = None,
     output_path: Optional[str] = None
@@ -207,12 +209,12 @@ def build_graph(
     for function in programl_graph_json.get('graph', {}).get('function', []):
         functions.append(function['name'])
 
-    nodes, hrchy_edge_dict = build_nodes(programl_nodes, metadata, functions)
+    node_dict, hrchy_edge_dict = build_nodes(programl_nodes, metadata, functions)
 
     if directive_file_path is not None:
-        include_directives(nodes, directive_file_path)
+        include_directives(node_dict, directive_file_path)
 
-    edge_dict = build_edges(programl_edges, nodes)
+    edge_dict = build_edges(programl_edges, node_dict)
 
     for et, edges in hrchy_edge_dict.items():
         if et not in edge_dict:
@@ -226,7 +228,7 @@ def build_graph(
     hetero_data = HeteroData()
     for nt in NODE_TYPES:
         node_feature_list = []
-        for node in nodes[nt]:
+        for node in node_dict[nt]:
             feature_vector = []
             for feature in node.features.values():
                 if not isinstance(feature, list):
@@ -241,7 +243,7 @@ def build_graph(
         else:
             hetero_data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float)
 
-        hetero_data[nt].label = [n.text for n in nodes[nt]]
+        hetero_data[nt].label = [n.text for n in node_dict[nt]]
 
     for et in EDGE_TYPES:
         if et[1] == 'self':
@@ -257,7 +259,7 @@ def build_graph(
 
     if add_self_loops:
         for nt in NODE_TYPES:
-            nodes = nodes.get(nt)
+            nodes = node_dict.get(nt)
             if nodes:
                 src = torch.arange(len(nodes), dtype=torch.long)
                 dst = src.clone()
@@ -422,70 +424,63 @@ def get_const_node_features(node_text):
     return {'type': type_encoding, 'bitwidth': bitwidth}
 
 
+def create_node_for_variable(
+    nodes, node_indices, node_metadata,
+    programl_id, function_name, node_name
+):
+    is_array = int(node_metadata.get('isArray', 0)) == 1
+    if is_array:
+        node_index = node_indices['array']
+        node_indices['array'] += 1
+
+        base_type = int(node_metadata['baseType'])
+        type_encoding = TYPE_ENCODING.get(base_type, [0] * TYPE_ENCODING_SIZE)
+
+        base_bitwidth = int(node_metadata['baseTypeBitwidth'])
+        n_dims = int(node_metadata['numDims'])
+
+        dims = [int(dim) for dim in node_metadata['dimensions']]
+        if n_dims > MAX_ARRAY_DIMS:
+            n_dims = MAX_ARRAY_DIMS
+            remaining_dims = dims[n_dims-1:]
+            remaining_size = 1
+            for dim in remaining_dims:
+                remaining_size *= dim
+            dims = dims[:n_dims-1] + [remaining_size]
+        elif n_dims < MAX_ARRAY_DIMS:
+            dims += [0] * (MAX_ARRAY_DIMS - n_dims)
+        
+        features = {
+            'type': type_encoding, 'bitwidth': base_bitwidth,
+            'n_dims': n_dims, 'dims': dims,
+            'partition_factor': 1, 'partition_type': [0, 0, 0],
+            'partition_dim': [0] * (MAX_ARRAY_DIMS + 1)
+        }
+        nodes['array'].append(Node(
+            node_index, 'array', 
+            programl_id=programl_id, 
+            text=node_name, 
+            function_name=function_name,
+            features=features
+        ))
+    else:
+        node_index = node_indices['var']
+        node_indices['var'] += 1
+
+        var_type = int(node_metadata['type'])
+        bitwidth = int(node_metadata['bitwidth'])
+        type_encoding = TYPE_ENCODING.get(var_type, TYPE_ENCODING[TypeID.VOID])
+
+        nodes['var'].append(Node(
+            node_index, 'var', 
+            programl_id=programl_id,
+            text=node_name, 
+            function_name=function_name,
+            features={'type': type_encoding, 'bitwidth': bitwidth}
+        ))
+
+
 def build_nodes(programl_nodes, metadata, functions):
-    def create_variable_node(
-        nodes, node_indices, node_metadata,
-        programl_id, function_id, function_name,
-        node_name, full_text
-    ):
-        is_array = int(node_metadata.get('isArray', 0)) == 1
-        if is_array:
-            node_index = node_indices['array']
-            node_indices['array'] += 1
-
-            base_type = int(node_metadata['baseType'])
-            type_encoding = TYPE_ENCODING.get(base_type, [0] * TYPE_ENCODING_SIZE)
-
-            base_bitwidth = int(node_metadata['baseTypeBitwidth'])
-            n_dims = int(node_metadata['numDims'])
-
-            dims = [int(dim) for dim in node_metadata['dimensions']]
-            if n_dims > MAX_ARRAY_DIMS:
-                n_dims = MAX_ARRAY_DIMS
-                remaining_dims = dims[n_dims-1:]
-                remaining_size = 1
-                for dim in remaining_dims:
-                    remaining_size *= dim
-                dims = dims[:n_dims-1] + [remaining_size]
-            elif n_dims < MAX_ARRAY_DIMS:
-                dims += [0] * (MAX_ARRAY_DIMS - n_dims)
-            
-            features = {
-                'type': type_encoding,
-                'bitwidth': base_bitwidth,
-                'n_dims': n_dims,
-                'dims': dims,
-                'partition_factor': 1,
-                'partition_dim': [0] * (MAX_ARRAY_DIMS + 1),
-                'partition_type': [0, 0, 0]
-            }
-            nodes['array'].append(Node(
-                node_index, 'array', 
-                programl_id=programl_id, 
-                text=node_name, 
-                full_text=full_text, 
-                function_id=function_id, 
-                function_name=function_name,
-                features=features
-            ))
-        else:
-            node_index = node_indices['var']
-            node_indices['var'] += 1
-
-            var_type = int(node_metadata['type'])
-            bitwidth = int(node_metadata['bitwidth'])
-            type_encoding = TYPE_ENCODING.get(var_type, TYPE_ENCODING[TypeID.VOID])
-
-            nodes['var'].append(Node(
-                node_index, 'var', 
-                programl_id=programl_id,
-                text=node_name, 
-                full_text=full_text, 
-                function_id=function_id, 
-                function_name=function_name,
-                features={'type': type_encoding, 'bitwidth': bitwidth}
-            ))
-
     nodes = defaultdict(list)
     node_indices = defaultdict(int)
     hrchy_edges = {
@@ -528,10 +523,7 @@ def build_nodes(programl_nodes, metadata, functions):
             nodes['instr'].append(Node(
                 node_index, 'instr', 
                 programl_id=programl_id, 
-                ir_id=ir_instr_id,
                 text=text, 
-                full_text=full_text, 
-                function_id=function_id, 
                 function_name=function_name, 
                 features={'opcode': opcode}
             ))
@@ -543,10 +535,9 @@ def build_nodes(programl_nodes, metadata, functions):
 
             function_name = node_metadata.get('functionName')
             node_name = node_metadata.get('name')
-            create_variable_node(
+            create_node_for_variable(
                 nodes, node_indices, node_metadata,
-                programl_id, function_id, function_name,
-                node_name, full_text
+                programl_id, function_name, node_name
             )
 
         elif node_type == 2: # Constant
@@ -555,48 +546,39 @@ def build_nodes(programl_nodes, metadata, functions):
                 const_name, const_value = full_text.split('=')
                 const_name = const_name.strip(' @')
                 if 'internal' in const_value:
+                    if '.' not in const_name:
+                        continue
                     function_name, const_name = const_name.split('.')
                     function_id = functions.index(function_name)
                     node_metadata = get_internal_constant_metadata(
                         metadata, function_name, const_name
                     )
-                    if node_metadata is not None:
-                        create_variable_node(
-                            nodes, node_indices, node_metadata,
-                            programl_id, function_id, function_name,
-                            const_name, full_text
-                        )
-                        continue
                 else:
                     node_metadata = None
                     for entry in metadata.get('variable', []):
                         if entry['name'] == const_name:
                             node_metadata = entry
                             break
+                if node_metadata is not None:
                     function_name = node_metadata.get('functionName', '')
-                    if node_metadata is not None:
-                        create_variable_node(
-                            nodes, node_indices, node_metadata,
-                            programl_id, function_id, function_name,
-                            const_name, full_text
-                        )
-                        continue
-
+                    create_node_for_variable(
+                        nodes, node_indices, node_metadata,
+                        programl_id, function_name, const_name
+                    )
+                    continue
+                    
             node_index = node_indices['const']
             node_indices['const'] += 1
             features = get_const_node_features(text)
             nodes['const'].append(Node(
                 node_index, 'const', 
                 programl_id=programl_id,
-                text=text, 
-                full_text=full_text, 
-                function_id=function_id,
+                text=text,
                 function_name=function_name,
                 features=features
             ))
 
     regions = metadata.get('region', [])
-
     for region in regions:
         node_index = node_indices['region']
         node_indices['region'] += 1
@@ -609,29 +591,20 @@ def build_nodes(programl_nodes, metadata, functions):
         depth = int(region['depth'])
 
         features = {
-            'is_loop': is_loop,
-            'trip_count': trip_count,
-            'depth': depth,
-            'pipeline': 0,
-            'pipeline_off': 0,
-            'loop_flatten': 0,
-            'loop_flatten_off': 0,
-            'loop_merge': 0,
-            'unroll': 0,
-            'unroll_factor': 1,
-            'dataflow': 0,
-            'inline': 0
+            'is_loop': is_loop, 'trip_count': trip_count, 'depth': depth,
+            'pipeline': 0, 'pipeline_off': 0, 
+            'loop_flatten': 0,'loop_flatten_off': 0,
+            'loop_merge': 0, 'unroll': 0, 'unroll_factor': 1,
+            'dataflow': 0, 'inline': 0
         }
         name = region.get('name')
-        function_id = int(region.get('functionID', -1))
         function_name = region.get('functionName')
+        if not function_name:
+            function_name = name # Region is a function
 
         nodes['region'].append(Node(
             node_index, 'region',
-            ir_id=ir_region_id,
             text=name, 
-            full_text=name, 
-            function_id=function_id, 
             function_name=function_name, 
             features=features
         ))
@@ -651,7 +624,7 @@ def build_nodes(programl_nodes, metadata, functions):
             if sub_region_index is None:
                 continue
             hrchy_edges[('region', 'hrchy', 'region')].append(
-                [node_index, sub_region_index]
+                (node_index, sub_region_index)
             )
         for instr_id in region['instructions']:
             if instr_id in instrs_seen:
@@ -661,7 +634,7 @@ def build_nodes(programl_nodes, metadata, functions):
             if instr_index is None:
                 continue
             hrchy_edges[('region', 'hrchy', 'instr')].append(
-                [node_index, instr_index]
+                (node_index, instr_index)
             )
         
     return nodes, hrchy_edges
@@ -692,7 +665,7 @@ def build_edges(programl_edges, nodes):
             flow = 'call'
 
         edge_dict[(src.type, flow, dst.type)].append(
-            [src.index, dst.index]
+            (src.index, dst.index)
         )
         
     return edge_dict
@@ -808,7 +781,7 @@ if __name__ == '__main__':
     from gnn.data.transforms import process_ir
 
     ir_path = Path(argv[1])
-    ir_mod_path = ir_path.parent / f"{ir_path.stem}.mod.bc"
+    ir_mod_path = ir_path.parent / f"{ir_path.stem}.mod.ll"
     metadata_path = ir_path.parent / "metadata.json"
 
     try:

@@ -68,8 +68,6 @@ def run_opt(
         cmd += f" < {src_path.as_posix()}"
         if dst_path:
             cmd += f" > {dst_path.as_posix()}"
-        else:
-            cmd += " > /dev/null"
         subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
         print(f"Error processing {src_path}: {e}")

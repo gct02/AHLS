@@ -14,16 +14,6 @@ from gnn.data.transforms import process_ir
 from gnn.data.utils.parsers import extract_metrics
 
 
-try:
-    DSE_LIB = environ['DSE_LIB']
-    OPT = environ['OPT']
-    CLANG = environ['CLANG']
-    LLVM_LINK = environ['LLVM_LINK']
-except KeyError as error:
-    print(f"Error: environment variable {error.args[0]} not defined.")
-    raise
-
-
 def process_base_solutions(
     dataset: Path, 
     benchmarks: List[str], 
