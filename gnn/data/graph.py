@@ -802,81 +802,32 @@ def plot_graph(hetero_data, plot_types=['full'], batched=False):
 
 
 if __name__ == '__main__':
-    import subprocess
+    from sys import argv
     from pathlib import Path
-    from os import environ
-    from sys import exit, argv
 
-    try:
-        DSE_LIB = environ['DSE_LIB']
-        OPT = environ['OPT']
-        CLANG = environ['CLANG']
-        LLVM_LINK = environ['LLVM_LINK']
-    except KeyError as error:
-        print(f"Error: environment variable {error.args[0]} not defined.")
-        exit(1)
-
-    def run_opt(src_path: Path, dst_path: Path, opt_args: Path, output_ll=True):
-        try:
-            if output_ll:
-                opt_args += " -S"
-            subprocess.check_output(
-                f"{OPT} -load {DSE_LIB} {opt_args} < {src_path.as_posix()} > {dst_path.as_posix()};", 
-                shell=True, stderr=subprocess.STDOUT
-            )
-        except subprocess.CalledProcessError as e:
-            print(f"Error processing {src_path}: {e}")
-            dst_path.unlink(missing_ok=True)
-            raise e
-
-    def process_ir(src_path: Path, dst_path: Path, metadata_path: Path):
-        tmp1 = src_path.parent / "tmp1.ll"
-        tmp2 = src_path.parent / "tmp2.ll"
-        default_clean = "-lowerswitch -lowerinvoke -indirectbr-expand" 
-        default_opt = "-mem2reg -indvars -loop-simplify -scalar-evolution"
-        try:
-            run_opt(src_path, tmp1, default_clean)
-            run_opt(tmp1, tmp2, "-clear-intrinsics")
-            run_opt(tmp2, tmp1, default_opt)
-            run_opt(tmp1, tmp2, "-assign-ids")
-            subprocess.check_output(
-                f"{OPT} -load {DSE_LIB} -extract-md -out {metadata_path.as_posix()} < {tmp2.as_posix()};", 
-                shell=True, stderr=subprocess.STDOUT
-            )
-            run_opt(tmp2, dst_path, "-debugify -strip-debug")
-        except subprocess.CalledProcessError as e:
-            print(f"Error processing {src_path}: {e}")
-            tmp1.unlink(missing_ok=True)
-            tmp2.unlink(missing_ok=True)
-            dst_path.unlink(missing_ok=True)
-            metadata_path.unlink(missing_ok=True)
-            raise e
-        finally:
-            tmp1.unlink(missing_ok=True)
-            tmp2.unlink(missing_ok=True)
+    from gnn.data.transforms import process_ir
 
     ir_path = Path(argv[1])
-    transformed_ir_path = ir_path.parent / "transformed.ll"
+    ir_mod_path = ir_path.parent / f"{ir_path.stem}.mod.bc"
     metadata_path = ir_path.parent / "metadata.json"
 
     try:
-        process_ir(ir_path, transformed_ir_path, metadata_path)
+        process_ir(ir_path, ir_mod_path, metadata_path)
     except Exception as e:
-        print(f"Error processing {ir_path}: {e}")
+        print(f"Error processing {ir_path.as_posix()}: {e}")
         exit(1)
 
     if len(argv) > 2:
-        directive_file_path = Path(argv[2])
-        if not directive_file_path.exists():
+        directive_file_path = argv[2]
+        if not Path(directive_file_path).exists():
             print(f"Error: Directive file {directive_file_path} does not exist.")
             exit(1)
     else:
         directive_file_path = None
 
     hetero_data = build_graph(
-        transformed_ir_path, metadata_path, 
+        ir_mod_path, metadata_path, 
         directive_file_path=directive_file_path,
-        output_path=ir_path.parent / "graph.pt"
     )
     print(hetero_data)
 
