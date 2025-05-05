@@ -171,7 +171,9 @@ def train_model(
 
             if verbosity > 1:
                 for p, t in zip(pred, target):
-                    print(f"Target: {np.expm1(t)}; Prediction: {np.expm1(p)}")
+                    if log_transformed:
+                        p, t = np.expm1(p), np.expm1(t)
+                    print(f"Target: {t}; Prediction: {p}")
 
         if log_dir:
             with open(f"{log_dir}/train.log", 'a') as f:

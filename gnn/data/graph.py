@@ -41,11 +41,11 @@ EDGE_TYPES = [
 
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
-INSTR_FEATURE_DIMS = 13
+INSTR_FEATURE_DIMS = 12
 VAR_FEATURE_DIMS = 7
 CONST_FEATURE_DIMS = 7
-ARRAY_FEATURE_DIMS = 21
-REGION_FEATURE_DIMS = 8
+ARRAY_FEATURE_DIMS = 20
+REGION_FEATURE_DIMS = 12
 
 NODE_FEATURE_DIMS = {
     'instr': INSTR_FEATURE_DIMS,
@@ -90,7 +90,7 @@ class Node:
         return f"Node({self.type}, {self.index}, {self.text}, {self.function_id})"
     
 
-BaseGraph = Tuple[Dict[NodeType, List[Node]], Dict[EdgeType, List[List[int]]]]
+BaseGraph = Tuple[Dict[NodeType, List[Node]], Dict[EdgeType, List[Tuple[int, int]]]]
 
 
 def build_base_graph(llvm_ir_path: str, metadata_path: str) -> BaseGraph:
@@ -118,6 +118,10 @@ def build_base_graph(llvm_ir_path: str, metadata_path: str) -> BaseGraph:
             edge_dict[et] = []
         edge_dict[et].extend(edges)
 
+    for et, edges in edge_dict.items():
+        for i, edge in enumerate(edges):
+            edge_dict[et][i] = (edge[0], edge[1])
+
     return nodes, edge_dict
 
 
@@ -127,49 +131,53 @@ def to_pyg(
     add_self_loops: bool = True,
     output_path: Optional[str] = None
 ) -> HeteroData:
-    nodes, edge_dict = base_graph
+    node_dict, edge_dict = base_graph
 
     if directive_file_path is not None:
-        include_directives(nodes, directive_file_path)
+        include_directives(node_dict, directive_file_path)
 
     hetero_data = HeteroData()
 
     for nt in NODE_TYPES:
         node_feature_list = []
-        for node in nodes[nt]:
+        for node in node_dict[nt]:
             feature_vector = []
             for feature in node.features.values():
                 if not isinstance(feature, list):
                     feature_vector.append(feature)
                 else:
                     feature_vector.extend(feature)
-            feature_vector = torch.tensor(feature_vector, dtype=torch.float)
+            feature_vector = torch.tensor(feature_vector, dtype=torch.float32)
             node_feature_list.append(feature_vector)
 
         if len(node_feature_list) > 0:
-            hetero_data[nt].x = torch.stack(node_feature_list).contiguous()
+            hetero_data[nt].x = torch.stack(node_feature_list, dim=0)
         else:
-            hetero_data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float)
+            hetero_data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
 
-        hetero_data[nt].num_nodes = hetero_data[nt].x.size(0)
-        hetero_data[nt].label = [n.text for n in nodes[nt]]
+        hetero_data[nt].label = [n.text for n in node_dict[nt]]
 
     for et in EDGE_TYPES:
-        if et[1] == 'self' and add_self_loops:
-            hetero_data[et] = torch.arange(
-                hetero_data[et[0]].num_nodes, dtype=torch.long
-            ).view(1, -1).repeat(2, 1)
+        if et[1] == 'self':
+            continue
+        edges = edge_dict.get(et)
+        if edges:
+            src, dst = zip(*edges)
+            src = torch.tensor(src, dtype=torch.long)
+            dst = torch.tensor(dst, dtype=torch.long)
+            hetero_data[et].edge_index = torch.stack([src, dst], dim=0)
         else:
-            edge_index = edge_dict.get(et, [])
-            if len(edge_index) > 0:
-                edge_index = torch.stack(
-                    [torch.tensor(e, dtype=torch.long) for e in edge_index]
-                ).t().contiguous()
-                hetero_data[et].edge_index = edge_index
-                hetero_data[et].num_edges = edge_index.size(1)
+            hetero_data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
+
+    if add_self_loops:
+        for nt in NODE_TYPES:
+            nodes = node_dict.get(nt)
+            if nodes:
+                src = torch.arange(len(nodes), dtype=torch.long)
+                dst = src.clone()
+                hetero_data[nt, "self", nt].edge_index = torch.stack([src, dst], dim=0)
             else:
-                hetero_data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
-                hetero_data[et].num_edges = 0
+                hetero_data[nt, "self", nt].edge_index = torch.empty((2, 0), dtype=torch.long)
 
     if output_path is not None:
         torch.save(hetero_data, output_path)
@@ -211,6 +219,10 @@ def build_graph(
             edge_dict[et] = []
         edge_dict[et].extend(edges)
 
+    for et, edges in edge_dict.items():
+        for i, edge in enumerate(edges):
+            edge_dict[et][i] = (edge[0], edge[1])
+
     hetero_data = HeteroData()
     for nt in NODE_TYPES:
         node_feature_list = []
@@ -229,25 +241,29 @@ def build_graph(
         else:
             hetero_data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float)
 
-        hetero_data[nt].num_nodes = hetero_data[nt].x.size(0)
         hetero_data[nt].label = [n.text for n in nodes[nt]]
 
     for et in EDGE_TYPES:
-        if et[1] == 'self' and add_self_loops:
-            hetero_data[et] = torch.arange(
-                hetero_data[et[0]].num_nodes, dtype=torch.long
-            ).view(1, -1).repeat(2, 1)
+        if et[1] == 'self':
+            continue
+        edges = edge_dict.get(et)
+        if edges:
+            src, dst = zip(*edges)
+            src = torch.tensor(src, dtype=torch.long)
+            dst = torch.tensor(dst, dtype=torch.long)
+            hetero_data[et].edge_index = torch.stack([src, dst], dim=0)
         else:
-            edge_index = edge_dict.get(et, [])
-            if len(edge_index) > 0:
-                edge_index = torch.stack(
-                    [torch.tensor(e, dtype=torch.long) for e in edge_index]
-                ).t().contiguous()
-                hetero_data[et].edge_index = edge_index
-                hetero_data[et].num_edges = edge_index.size(1)
+            hetero_data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
+
+    if add_self_loops:
+        for nt in NODE_TYPES:
+            nodes = nodes.get(nt)
+            if nodes:
+                src = torch.arange(len(nodes), dtype=torch.long)
+                dst = src.clone()
+                hetero_data[nt, "self", nt].edge_index = torch.stack([src, dst], dim=0)
             else:
-                hetero_data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
-                hetero_data[et].num_edges = 0
+                hetero_data[nt, "self", nt].edge_index = torch.empty((2, 0), dtype=torch.long)
 
     if output_path is not None:
         torch.save(hetero_data, output_path)

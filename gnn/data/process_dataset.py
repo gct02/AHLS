@@ -159,7 +159,7 @@ def main(args: Dict[str, str]):
         solutions = [s for s in list(benchmark_dir.iterdir()) if s.is_dir()]
 
         for solution in solutions:
-            solution_dir = benchmark_dir / solution
+            solution_dir = benchmark_dir / solution.stem
             filtered_solution = False if solution.stem == "solution0" else filtered
             md_json_path = solution_dir / f"{solution_dir.stem}_data.json"
             if not md_json_path.exists():
