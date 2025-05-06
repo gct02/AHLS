@@ -30,9 +30,8 @@ struct AssignIdentifiersPass : public ModulePass {
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "assign-ids"
 
+        setInstructionAndGlobalIDs(M);
         setRegionIDs(M);
-        setInstructionIDs(M);
-        setGlobalIDs(M);
 
         return false; // Module is not modified
     }
@@ -85,7 +84,7 @@ struct AssignIdentifiersPass : public ModulePass {
         }
     }
 
-    void setInstructionIDs(Module& M) {
+    void setInstructionAndGlobalIDs(Module& M) {
         LLVMContext& Ctx = M.getContext();
         uint32_t ID = 0;
         for (Function& F : M) {
@@ -99,11 +98,6 @@ struct AssignIdentifiersPass : public ModulePass {
                 }
             }
         }
-    }
-
-    void setGlobalIDs(Module& M) {
-        LLVMContext& Ctx = M.getContext();
-        uint32_t ID = 0;
         for (GlobalObject& G : M.getGlobalList()) {
             DEBUG(dbgs() << "Global: " << G.getName() << "\n");
             ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(Ctx), ID);

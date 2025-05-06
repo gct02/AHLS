@@ -17,15 +17,13 @@ class HLSDataset(Dataset):
         scale_features: bool = False,
         feature_ranges: Optional[Dict[NodeType, Tuple[Tensor, Tensor]]] = None,
         benchmarks: Optional[Union[str, List[str]]] = None,
-        separate: bool = True,
         log_transform: bool = False,
         **kwargs
     ):
         self._true_root = root
         self._full_dir = os.path.join(root, "full")
-        self._metric = metric
-        self._separate = separate
 
+        self.metric = metric
         self.log_transform = log_transform
         self.root = os.path.join(root, mode)
 
@@ -55,7 +53,7 @@ class HLSDataset(Dataset):
                 print(f"Skipping {benchmark} (base metrics file is empty)")
                 continue
 
-            if (base_target := float(base_metrics.get(self._metric, -1.0))) < 0:
+            if (base_target := float(base_metrics.get(self.metric, -1.0))) < 0:
                 print(f"Skipping {benchmark} (base target value not found)")
                 continue
             
@@ -85,8 +83,6 @@ class HLSDataset(Dataset):
         return self._processed_file_names
     
     def download(self):
-        if not self._separate:
-            return
         if not os.path.exists(self._full_dir):
             raise FileNotFoundError(
                 f"Directory {self._full_dir} does not exist."
@@ -140,7 +136,7 @@ class HLSDataset(Dataset):
                 with open(metrics_path, 'r') as f:
                     metrics = json.load(f)
 
-                target = float(metrics.get(self._metric, -1.0)) if metrics else -1.0
+                target = float(metrics.get(self.metric, -1.0)) if metrics else -1.0
                 if target < 0:
                     print(f"Skipping {idx} (target value not found)")
                     continue

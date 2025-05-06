@@ -1,7 +1,6 @@
 import subprocess
 import argparse
 import json
-from os import environ
 from pathlib import Path
 from typing import Dict, List
 
