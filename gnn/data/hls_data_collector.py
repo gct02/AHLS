@@ -9,12 +9,12 @@ from gnn.data.utils.xml_utils import findint, findfloat
 from gnn.data.utils.parsers import extract_impl_report
 
 
-NODE_TYPES = [
+BASIC_NODE_TYPES = [
     "instr", "port", "array", 
     "const", "block", "region"
 ]
 
-EDGE_TYPES = [
+BASIC_EDGE_TYPES = [
     # Data flow edges
     ("const", "data", "instr"), 
     ("instr", "data", "instr"),
@@ -52,6 +52,8 @@ MAX_ARRAY_DIM = 4
 MetadataEntry = Dict[str, Union[str, int, float, bool, List[int]]]
 MetadataDict = Dict[str, MetadataEntry]
 
+AttributeDict = Dict[str, Union[int, float, List[int]]]
+
 
 class PortDirection(IntEnum):
     IN = 0
@@ -71,6 +73,36 @@ class Node(ABC):
     @abstractmethod
     def __repr__(self):
         pass
+
+
+class DirectiveNode(Node):
+    def __init__(
+        self, directive_type: str,
+        function_name: Optional[str] = None,
+        target_name: Optional[str] = None,
+        node_id: Optional[int] = None,
+        attrs: Optional[AttributeDict] = None
+    ):
+        self.id = node_id
+        self.directive_type = directive_type
+        self.function_name = function_name if function_name else ''
+        self.target_name = target_name if target_name else ''
+        self.name = f"{directive_type} {self.function_name}/{self.target_name}"
+        self.label = self.name
+
+        self.attrs = attrs if attrs else {}
+
+    def as_dict(self):
+        return {
+            'name': self.name,
+            'attributes': self.attrs
+        }
+    
+    def __str__(self):
+        return json.dumps(self.as_dict(), indent=2)
+    
+    def __repr__(self):
+        return self.__str__()
 
 
 class CDFGNode(Node):
@@ -153,11 +185,6 @@ class ArrayNode(Node):
             'base_bitwidth': array_metadata.get('BaseBitWidth', 0),
             'direction': direction_encoding,
             'array_impl': array_impl,
-
-            # Placeholders for array partitioning attributes
-            'partition_type': [0, 0, 0],
-            'partition_dim': [0, 0, 0, 0],
-            'partition_factor': 1
         }
 
         if resources is not None:
@@ -214,12 +241,7 @@ class RegionNode(Node):
             'min_latency': min_lat, 'max_latency': max_lat,
             'min_trip_count': min_tc, 'max_trip_count': max_tc,
             'loop_depth': loop_depth, 'ii': ii, 
-
-            # Placeholders for directives attributes
-            'loop_merge': 0, 'loop_flatten': 0, 
-            'pipeline': 0, 'unroll': 0, 'unroll_factor': 1, 
-            'dataflow': 0, 'inline': 0,
-            'pipeline_off': 0, 'loop_flatten_off': 0
+            'dataflow': 0, 'inline': 0
         }
         self.sub_regions = self._extract_items(element, 'sub_regions')
         self.blocks = self._extract_items(element, 'basic_blocks')
@@ -372,10 +394,10 @@ class CDFG:
         resource_dict: Dict[str, Dict[str, int]],
         offsets: Optional[Dict[str, int]] = None,
     ):
-        self.nodes = {nt: [] for nt in NODE_TYPES}
-        self.edges = {et: [] for et in EDGE_TYPES}
+        self.nodes = {nt: [] for nt in BASIC_NODE_TYPES}
+        self.edges = {et: [] for et in BASIC_EDGE_TYPES}
 
-        self._offsets = offsets if offsets else {nt: 0 for nt in NODE_TYPES}
+        self._offsets = offsets if offsets else {nt: 0 for nt in BASIC_NODE_TYPES}
         self._node_id_map = {}
 
         cdfg = root.find('syndb/cdfg')
@@ -578,7 +600,7 @@ class CDFG:
                 continue
 
             edge_type = (src_type, rel_type, dst_type)
-            if edge_type not in EDGE_TYPES:
+            if edge_type not in BASIC_EDGE_TYPES:
                 print(f"Skipping edge type: {edge_type}")
                 continue
 
@@ -588,16 +610,16 @@ class CDFG:
                     callee_name = src_node.name
                     self.function_calls.append((dst, callee_name))
                     continue
-            elif edge_type == ('instr', 'data', 'instr'):
+            elif src_type == "instr" and rel_type == "data":
                 src_node = self.nodes[src_type][src - self._offsets[src_type]]
                 if src_node.id in self._alloca_instrs:
                     src = self._alloca_instrs[src_node.id]
-                    edge_type = ('array', 'data', 'instr')
+                    edge_type = ('array', 'data', dst_type)
+            
 
             if edge_type not in self.edges:
-                src_node = self.nodes[src_type][src - self._offsets[src_type]]
-                dst_node = self.nodes[dst_type][dst - self._offsets[dst_type]]
-                print(src_node, dst_node)
+                print(f"Unexpected edge type {edge_type} found on ADB file")
+                continue
 
             self.edges[edge_type].append((src, dst))
 
@@ -606,6 +628,25 @@ class CDFG:
             if node.attrs['const_type'] == '6':
                 del self.nodes['const'][i:]
                 break
+        
+        # Add a (array -> gep) edge for each (array -> const_ptr -> gep) path
+        array_ref_edges = self.edges.get(("array", "data", "const"), [])
+        for src_array_id, dst_const_id in array_ref_edges:
+            for src_const_id, dst_instr_id in self.edges.get(("const", "data", "instr"), []):
+                if src_const_id == dst_const_id:
+                    dst_instr = self.nodes['instr'][dst_instr_id - self._offsets['instr']]
+                    if dst_instr.attrs['opcode'] == 'getelementptr':
+                        self.edges[("array", "data", "instr")].append((src_array_id, dst_instr_id))
+
+        # Add a (array -> op) edge for each (array -> get -> op) path
+        for src_array_id, dst_instr_id in self.edges.get(("array", "data", "instr"), []):
+            if src_array_id == dst_const_id:
+                dst_instr = self.nodes['instr'][dst_instr_id - self._offsets['instr']]
+                if dst_instr.attrs['opcode'] == 'getelementptr':
+                    for src_instr_id, next_instr_id in self.edges.get(("instr", "data", "instr"), []):
+                        if src_instr_id == dst_instr_id:
+                            self.edges[("array", "data", "instr")].append((src_array_id, next_instr_id))
+                            break
 
     def _map_edge_type(self, edge_type):
         return {'1': 'data', '2': 'control', '4': 'mem'}.get(edge_type, '')
@@ -655,8 +696,8 @@ class HLSData:
     ):
         self.top_level_name = top_level_name
         self.kernel_name = kernel_name
-        self.nodes = {nt: [] for nt in NODE_TYPES}
-        self.edges = {et: [] for et in EDGE_TYPES}
+        self.nodes = {nt: [] for nt in BASIC_NODE_TYPES}
+        self.edges = {et: [] for et in BASIC_EDGE_TYPES}
         self.metrics = {}
 
         rpt = extract_impl_report(solution_dir, filtered=filtered)
@@ -670,7 +711,7 @@ class HLSData:
             for key, value in rpt['module_data'].items() 
             if key in TARGET_RESOURCES
         }
-        self._offsets = {nt: -1 if nt == "region" else 0 for nt in NODE_TYPES}
+        self._offsets = {nt: -1 if nt == "region" else 0 for nt in BASIC_NODE_TYPES}
         self._cdfgs = {}
 
         with open(metadata_path, 'r') as f:

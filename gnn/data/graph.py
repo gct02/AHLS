@@ -1,5 +1,6 @@
 import os
 import pickle
+import json
 from copy import deepcopy
 from typing import Dict, Union, Optional, List, Tuple
 
@@ -8,13 +9,26 @@ import matplotlib.pyplot as plt
 from torch_geometric.data import HeteroData
 from sklearn.preprocessing import OneHotEncoder
 
-from gnn.data.hls_data_collector import HLSData
+from gnn.data.hls_data_collector import HLSData, DirectiveNode
 from gnn.data.utils.parsers import parse_tcl_directives_file
 
+
+DIRECTIVE_NODE_TYPES = [
+    "array_partition", "loop_flatten",
+    "loop_merge", "pipeline", "unroll"
+]
 
 NODE_TYPES = [
     "instr", "port", "array", 
     "const", "block", "region"
+] + DIRECTIVE_NODE_TYPES
+
+DIRECTIVE_EDGE_TYPES = [
+    ("array_partition", "transform", "array"),
+    ("loop_flatten", "transform", "region"),
+    ("loop_merge", "transform", "region"),
+    ("pipeline", "transform", "region"),
+    ("unroll", "transform", "region")
 ]
 
 EDGE_TYPES = [
@@ -38,7 +52,7 @@ EDGE_TYPES = [
     # Memory edges (load->store)
     ("instr", "mem", "instr"),
 
-    # Array allocation edges
+    # Array allocation edgesprint(f"Warning: Directive config file '{directive_config_path}' not found.")
     ("instr", "alloca", "array"),
 
     # Hierarchical edges (representing CDFG structure)
@@ -52,19 +66,23 @@ EDGE_TYPES = [
     ("block", "hrchy_rev", "region"),
     ("instr", "hrchy_rev", "region"),
     ("instr", "hrchy_rev", "block"),
-] + [
-    # Self-loops
-    (nt, "to", nt) for nt in NODE_TYPES
-]
+] + [(nt, "to", nt) for nt in NODE_TYPES] + DIRECTIVE_EDGE_TYPES
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
     "instr": 62, 
     "port": 7, 
-    "array": 29,
+    "array": 20,
     "const": 5,
     "block": 5,
-    "region": 15
+    "region": 15,
+    "array_partition": 9,
+    "loop_flatten": 1,
+    "loop_merge": 1,
+    "pipeline": 1,
+    "unroll": 2,
+    "dataflow": 1,
+    "inline": 1
 }
 
 DIRECTIVES = [
@@ -76,6 +94,7 @@ DIRECTIVES = [
 
 def build_base_graphs(
     base_solutions: List[Tuple[str, str, str]],
+    directive_config_path: str,
     filtered: bool = False,
     encoder_output_path: Optional[str] = None,
 ) -> Dict[str, HLSData]:
@@ -92,11 +111,13 @@ def build_base_graphs(
             print(f"Metadata file not found: {metadata_path}")
             continue
 
-        hls_data_dict[benchmark] = HLSData(
+        hls_data = HLSData(
             solution_dir, top_level_name, metadata_path, benchmark,
             filtered=filtered
         )
-
+        include_directives(hls_data, directive_config_path)
+        hls_data_dict[benchmark] = hls_data
+            
     encoders = fit_one_hot_encoders(hls_data_dict)
     if encoder_output_path:
         save_encoders(encoders, encoder_output_path)
@@ -116,7 +137,7 @@ def build_opt_graph(
     feature_names_dict: Optional[Dict[str, List[str]]] = None
 ) -> Union[HeteroData, HLSData]:
     hls_data = deepcopy(base_hls_data)
-    include_directives(hls_data, directives_tcl)
+    update_directive_features(hls_data, directives_tcl)
     if output_pyg:
         return to_pyg(
             hls_data, 
@@ -200,86 +221,171 @@ def to_pyg(
     return data
 
 
-def include_directives(hls_data: HLSData, directives_tcl: str):
-    def unroll_subloops(subregs):
-        for subreg_id in subregs:
-            subreg = hls_data.nodes["region"][subreg_id]
-            max_tc = subreg.attrs["max_trip_count"]
-            if subreg.is_loop:
-                subreg.attrs["unroll"] = 1
-                subreg.attrs["unroll_factor"] = max_tc
-            unroll_subloops(subreg.sub_regions)
+def find_array(hls_data, array_name, function_name):
+    for node in hls_data.nodes.get('array', []):
+        if node.name == array_name:
+            if (not node.function_name 
+                or node.function_name == function_name):
+                return node
+    # If not found, search for array_name only
+    for node in hls_data.nodes.get('array', []):
+        if node.name == array_name:
+            return node
+    return None
 
-    def find_array(array_name, function_name):
-        for node in hls_data.nodes.get('array', []):
-            if node.name == array_name:
-                if (not node.function_name 
-                    or node.function_name == function_name):
-                    return node
-        # If not found, search for array_name only
-        for node in hls_data.nodes.get('array', []):
-            if node.name == array_name:
+
+def find_region(hls_data, region_name, function_name):
+    for node in hls_data.nodes.get('region', []):
+        if node.name == region_name:
+            if node.function_name == function_name:
                 return node
-        return None
+    # If not found, search for region_name only
+    for node in hls_data.nodes.get('region', []):
+        if node.name == region_name:
+            return node
+    return None
+
+
+def include_directives(hls_data, directive_config_path):
+    if not os.path.exists(directive_config_path):
+        raise FileNotFoundError(
+            f"Directive config file not found: {directive_config_path}"
+        )
     
-    def find_region(region_name, function_name):
-        for node in hls_data.nodes.get('region', []):
-            if node.name == region_name:
-                if node.function_name == function_name:
-                    return node
-        # If not found, search for region_name only
-        for node in hls_data.nodes.get('region', []):
-            if node.name == region_name:
+    with open(directive_config_path, "r") as f:
+        directive_config = json.load(f)
+    
+    directive_group_dict = directive_config.get("possible_directives")
+    if directive_group_dict is None:
+        raise ValueError(
+            f"Invalid directive config file: {directive_config_path}"
+        )
+
+    for directive_nt in DIRECTIVE_NODE_TYPES:
+        if directive_nt not in hls_data.nodes:
+            hls_data.nodes[directive_nt] = []
+
+    for directive_et in DIRECTIVE_EDGE_TYPES:
+        if directive_et not in hls_data.edges:
+            hls_data.edges[directive_et] = []
+
+    indices = {nt: 0 for nt in DIRECTIVE_NODE_TYPES}
+
+    for directive, directive_options in directive_group_dict.values():
+        if len(directive_options) <= 1:
+            continue
+        directive_type = directive.get("directive_type")
+        if directive_type is None or directive_type not in DIRECTIVE_NODE_TYPES:
+            print(f"Warning: Skipping directive with type '{directive_type}'")
+            continue
+        function = directive.get("function", "")
+        if directive_type == "array_partition":
+            variable = directive.get("variable")
+            if variable is None:
+                print("Warning: No variable specified for array partition.")
+                continue
+            node = find_array(hls_data, variable, function)
+            if node is None:
+                print(f"Warning: Variable '{variable}' (function '{function}') not found in nodes.")
+                continue
+            directive_id = indices[directive_type]
+            indices[directive_type] += 1
+            directive_attrs = {
+                "array_partition": 0,
+                "partition_factor": 0,
+                "partition_dim": [0, 0, 0, 0],
+                "partition_type": [0, 0, 0],
+            }
+            directive_node = DirectiveNode(
+                directive_type, function, variable, 
+                directive_id, directive_attrs
+            )
+            hls_data.nodes[directive_type].append(directive_node)
+            hls_data.edges[(directive_type, "transform", "array")].append(
+                (directive_node.id, node.id)
+            )
+        else:
+            location = directive.get("location")
+            if location is None:
+                print("Warning: No location specified for directive.")
+                continue
+            if "/" in location:
+                function_name, node_name = location.split("/")
+            else:
+                function_name = location
+                node_name = location
+
+            node = find_region(hls_data, node_name, function_name)
+            if node is None:
+                print(f"Warning: Region '{node_name}' (function '{function_name}') not found in nodes.")
+                continue
+
+            directive_id = indices[directive_type]
+            indices[directive_type] += 1
+            directive_attrs = {directive_type: 0}
+            if directive_type == "unroll":
+                directive_attrs["unroll_factor"] = 0
+            directive_node = DirectiveNode(
+                directive_type, function_name, node_name, 
+                directive_id, directive_attrs
+            )
+            hls_data.nodes[directive_type].append(directive_node)
+            hls_data.edges[(directive_type, "transform", "region")].append(
+                (directive_node.id, node.id)
+            )
+
+
+def update_directive_features(hls_data: HLSData, directives_tcl: str):
+    def find_directive_node(hls_data, directive_type, function_name, target_name):
+        for node in hls_data.nodes.get(directive_type, []):
+            if node.function_name == function_name and node.target_name == target_name:
                 return node
-        return None
 
     directives = parse_tcl_directives_file(directives_tcl)
     directives = [d for d in directives if d[0] in DIRECTIVES]
 
-    # Sort by directive type 
-    # (array_partition -> loop_flatten -> loop_merge -> pipeline -> unroll -> dataflow -> inline)
-    directives.sort(key=lambda x: (
-        x[0] == "array_partition",
-        x[0] == "loop_flatten",
-        x[0] == "loop_merge",
-        x[0] == "pipeline",
-        x[0] == "unroll",
-        x[0] == "dataflow",
-        x[0] == "inline"
-    ))
-
     for directive_type, directive_args in directives:
-        if directive_type == "array_partition":
-            node_name = directive_args.get("variable")
+        if directive_type in ['inline', 'dataflow']:
+            location = directive_args["location"]
+            if "/" in location:
+                function_name, target_name = location.split("/")
+            else:
+                function_name = location
+                target_name = location
+            
+            region_node = find_region(hls_data, target_name, function_name)
+            if region_node is None:
+                print(f"Warning: Region '{target_name}' "
+                      f"(function '{function_name}') not found in nodes.")
+                continue
+            region_node.attrs[directive_type] = 1
+        elif directive_type == "array_partition":
             function_name = directive_args.get("location", "")
-            if node_name is None:
+            target_name = directive_args.get("variable")
+            if target_name is None:
                 print("Warning: No variable specified for array partition.")
                 continue
 
-            node = find_array(node_name, function_name)
-            if node is None:
-                print(f"Warning: Variable '{node_name}' (function '{function_name}') not found in nodes.")
+            directive_node = find_directive_node(hls_data, directive_type, function_name, target_name)
+            if directive_node is None:
+                print(f"Warning: Directive '{directive_type}' targeting "
+                      f"'{function_name}/{target_name} not found in nodes.")
                 continue
             
-            total_array_size = node.attrs["total_size"]
-            array_impl = node.attrs["array_impl"]
+            partition_factor = int(directive_args.get("factor", 0))
+            if partition_factor <= 0:
+                array_node = find_array(hls_data, target_name, function_name)
+                if array_node is None:
+                    print(f"Warning: Variable '{target_name}' "
+                          f"(function '{function_name}') not found in nodes.")
+                    continue
+                array_size = array_node.attrs["total_size"]
+                partition_factor = array_size
 
-            factor = int(directive_args.get("factor", 0))
-            if factor > total_array_size:
-                print(f"Warning: Partition factor {factor} exceeds array size {total_array_size}.")
-                continue
-            elif factor <= 0:
-                factor = total_array_size
+            partition_dim = [0] * 4
+            partition_dim[int(directive_args.get("dim", 0))] = 1
 
-            partition_size = total_array_size // factor
-            if partition_size <= 1024 and array_impl[1] == 1: 
-                # BRAM/LUTRAM/URAM -> shift register
-                node.attrs["array_impl"] = [0, 0, 1]
-
-            dim = [0] * 4
-            dim[int(directive_args.get("dim", 0))] = 1
             partition_type = directive_args.get("type", "complete")
-
             if partition_type == "complete":
                 partition_type = [1, 0, 0]
             elif partition_type == "block":
@@ -287,45 +393,38 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
             else:
                 partition_type = [0, 0, 1]
 
-            node.attrs["partition_type"] = partition_type
-            node.attrs["partition_factor"] = factor
-            node.attrs["partition_dim"] = dim
+            directive_node.attrs["partition_type"] = partition_type
+            directive_node.attrs["partition_factor"] = partition_factor
+            directive_node.attrs["partition_dim"] = partition_dim
         else:
+            directive_off = directive_args.get("off", 0)
+            if directive_off != 0:
+                continue
+
             location = directive_args["location"]
             if "/" in location:
-                function_name, node_name = location.split("/")
+                function_name, target_name = location.split("/")
             else:
                 function_name = location
-                node_name = location
+                target_name = location
 
-            node = find_region(node_name, function_name)
-            if node is None:
-                print(f"Warning: Region '{location}' not found in nodes.")
+            directive_node = find_directive_node(hls_data, directive_type, function_name, target_name)
+            if directive_node is None:
+                print(f"Warning: Directive '{directive_type}' targeting "
+                      f"'{function_name}/{target_name}' not found in nodes.")
                 continue
         
             if directive_type == "unroll":
-                factor = int(directive_args.get("factor", 1))
-                factor = factor if factor > 1 else node.attrs.get("max_trip_count", 1)
-                node.attrs['unroll'] = 1
-                node.attrs["unroll_factor"] = factor
-            elif directive_type == "pipeline":
-                if "off" in directive_args:
-                    node.attrs["pipeline_off"] = 1
-                else:
-                    ii = max(1, int(directive_args.get("ii", 1)))
-                    if "ii" in node.attrs: # Check if it is a Region
-                        node.attrs["ii"] = ii
-                        node.attrs["min_latency"] = ii * node.attrs["min_trip_count"]
-                        node.attrs["max_latency"] = ii * node.attrs["max_trip_count"]
-                        node.attrs["pipeline"] = 1
-
-                    # Pipeline in a loop induces a complete unroll in all of 
-                    # its (bounded) subloops
-                    unroll_subloops(node.sub_regions)
-            elif directive_type == "loop_flatten" and "off" in directive_args:
-                node.attrs["loop_flatten_off"] = 1
-            else:
-                node.attrs[directive_type] = 1
+                unroll_factor = int(directive_args.get("factor", 0))
+                if unroll_factor <= 0:
+                    region_node = find_region(hls_data, target_name, function_name)
+                    if region_node is None:
+                        print(f"Warning: Region '{location}' not found in nodes.")
+                        continue
+                    unroll_factor = region_node.attrs.get("max_trip_count", 1)
+                directive_node.attrs["unroll_factor"] = unroll_factor
+  
+        directive_node.attrs[directive_type] = 1
 
 
 def fit_one_hot_encoders(hls_data_dict: Dict[str, HLSData]):

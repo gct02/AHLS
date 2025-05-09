@@ -5,8 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn import (
-    HeteroDictLinear, Linear, HGTConv,
-    LayerNorm, JumpingKnowledge,
+    HeteroDictLinear, Linear, HGTConv, LayerNorm,
     global_add_pool, global_max_pool
 )
 from torch_geometric.typing import Metadata, NodeType, EdgeType
@@ -104,29 +103,6 @@ class HGT(nn.Module):
             self.norm.append(norm)
             self.conv.append(conv)
 
-        # Jumping Knowledge layer
-        # if jk_layers is None:
-        #     self.jk_layers = list(range(self.num_layers))
-        # elif isinstance(jk_layers, int):
-        #     self.jk_layers = [jk_layers]
-        # else:
-        #     self.jk_layers = jk_layers
-
-        # self.jk = nn.ModuleDict({
-        #     nt: JumpingKnowledge(mode='cat')
-        #     for nt in self.node_types
-        # })
-        # jk_out_dim = sum(hid_dim[i] for i in self.jk_layers)
-
-        # Output projection layer
-        # if proj_out_dim is None:
-        #     proj_out_dim = hid_dim[-1]
-
-        # self.proj_out = HeteroDictLinear(
-        #     jk_out_dim, proj_out_dim, types=self.node_types,
-        #     weight_initializer='kaiming_uniform'
-        # )
-
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
             Linear(1, 16, weight_initializer="kaiming_uniform"), 
@@ -154,9 +130,6 @@ class HGT(nn.Module):
         for norm in self.norm:
             for nt in self.node_types:
                 norm[nt].reset_parameters()
-        # for nt in self.node_types:
-        #     self.jk[nt].reset_parameters()
-        # self.proj_out.reset_parameters()
         for m in self.y_base_mlp.modules():
             if isinstance(m, Linear):
                 m.reset_parameters()
@@ -192,23 +165,9 @@ class HGT(nn.Module):
         }
 
         # Convolutional layers
-        # xs_dict = {nt: [] for nt in self.node_types}
         for i in range(self.num_layers):
             x_dict = {nt: self.norm[i][nt](x) for nt, x in x_dict.items()}
             x_dict = self.conv[i](x_dict, edge_index_dict)
-            # if i in self.jk_layers:
-            #     for nt, out in x_dict.items():
-            #         xs_dict[nt].append(out)
-
-        # Jumping knowledge
-        # x_dict = {nt: self.jk[nt](xs_dict[nt]) for nt in self.node_types}
-
-        # Output projection layers
-        # x_dict = self.proj_out(x_dict)
-        # x_dict = {
-        #     nt: F.dropout(F.gelu(x), p=self.dropout, training=self.training)
-        #     for nt, x in x_dict.items()
-        # }
 
         # Pooling layer
         batch_size = self._get_batch_size(batch_dict)
@@ -237,3 +196,91 @@ class HGT(nn.Module):
             if batch.numel() > 0:
                 batch_size = max(batch_size, int(batch.max().item()))
         return batch_size + 1
+    
+
+class HLSGNN(nn.Module):
+    def __init__(
+        self, 
+        metadata: Metadata, 
+        in_channels: Union[int, Dict[NodeType]],
+        out_channels: int,
+        heads: Optional[int] = 1
+    ):
+        super().__init__()
+
+        hrchy_edge_types = [
+            et for et in metadata[1] 
+            if et[1] in ['hrchy', 'hrchy_rev']
+        ]
+        data_edge_types = [
+            et for et in metadata[1] 
+            if et[1] in ['data', 'mem']
+            and et[0] == 'instr' and et[2] == 'instr'
+        ]
+        array_edge_types = [
+            et for et in metadata[1] 
+            if et[0] == 'array' or et[2] == 'array'
+        ]
+
+        self.ap_node_types = ['array_partition', 'array', 'instr']
+        self.ap_edge_types = (array_edge_types 
+                              + [('array_partition', 'transform', 'array')])
+
+        self.unroll_node_types = ['unroll', 'region', 'block', 'instr']
+        self.unroll_edge_types = (hrchy_edge_types 
+                                  + [('unroll', 'transform', 'region')])
+
+        self.pipeline_node_types = ['pipeline', 'array', 'region', 'block', 'instr']
+        self.pipeline_edge_types = (data_edge_types + hrchy_edge_types
+                                    + array_edge_types + [('pipeline', 'transform', 'region')])
+
+        self.merge_node_types = ['loop_merge', 'array', 'region', 'block', 'instr']
+        self.merge_edge_types = (data_edge_types + hrchy_edge_types
+                                 + array_edge_types + [('loop_merge', 'transform', 'region')])
+
+        self.flatten_node_types = ['loop_flatten', 'region', 'block', 'instr']
+        self.flatten_edge_types = (data_edge_types + hrchy_edge_types
+                                   + array_edge_types + [('loop_flatten', 'transform', 'region')])
+
+        self.ap_metadata = (self.ap_node_types, self.ap_edge_types)
+        self.unroll_metadata = (self.unroll_node_types, self.unroll_edge_types)
+        self.pipeline_metadata = (self.pipeline_node_types, self.pipeline_edge_types)
+        self.merge_metadata = (self.merge_node_types, self.merge_edge_types)
+        self.flatten_metadata = (self.flatten_node_types, self.flatten_edge_types)
+
+        self.ap_in_channels = {nt: d for nt, d in in_channels.items() if nt in self.ap_node_types}
+        self.unroll_in_channels = {nt: d for nt, d in in_channels.items() if nt in self.unroll_node_types}
+        self.pipeline_in_channels = {nt: d for nt, d in in_channels.items() if nt in self.pipeline_node_types}
+        self.merge_in_channels = {nt: d for nt, d in in_channels.items() if nt in self.merge_node_types}
+        self.flatten_in_channels = {nt: d for nt, d in in_channels.items() if nt in self.flatten_node_types}
+
+        self.ap_gnn = HGTConv(
+            in_channels=self.ap_in_channels,
+            out_channels=out_channels,
+            metadata=self.ap_metadata,
+            heads=heads,
+        )
+        self.unroll_gnn = HGTConv(
+            in_channels=self.unroll_in_channels,
+            out_channels=out_channels,
+            metadata=self.unroll_metadata,
+            heads=heads,
+        )
+        self.pipeline_gnn = HGTConv(
+            in_channels=self.pipeline_in_channels,
+            out_channels=out_channels,
+            metadata=self.pipeline_metadata,
+            heads=heads,
+        )
+        self.merge_gnn = HGTConv(
+            in_channels=self.merge_in_channels,
+            out_channels=out_channels,
+            metadata=self.merge_metadata,
+            heads=heads,
+        )
+        self.flatten_gnn = HGTConv(
+            in_channels=self.flatten_in_channels,
+            out_channels=out_channels,
+            metadata=self.flatten_metadata,
+            heads=heads,
+        )
