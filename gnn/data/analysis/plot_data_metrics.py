@@ -21,7 +21,6 @@ def generate_metrics_plot(
     x_metric: str,
     y_metric: str, 
     directives: Optional[NDArray[np.int_]] = None,
-    directive_config_path: Optional[str] = None,
     output_dir: Optional[str] = None,
     n_clusters: int = 8,
     cluster_method: str = 'kmeans',
@@ -35,19 +34,15 @@ def generate_metrics_plot(
     metrics = metrics.dropna(subset=[x_metric, y_metric])
     metrics = metrics[(metrics[x_metric] >= 0) & (metrics[y_metric] >= 0)]
 
-    if directive_config_path is not None:
-        with open(directive_config_path, 'r') as f:
-            directive_config_dict = json.load(f)["directives"]
-            directive_config = []
-            for gp_name, gp in directive_config_dict.items():
-                gp_directives = gp.get("possible_directives")
-                if gp_directives is not None:
-                    gp_directives = [d for d in gp_directives if d and "-off" not in d]
-                    directive_config.append((gp_name, gp_directives))
-
     if directives is not None:
         if len(directives) != len(metrics):
             raise ValueError("Number of directives must match number of metric entries.")
+        
+        design_metrics = metrics[x_metric].to_numpy()
+        design_metrics = np.append(
+            design_metrics.reshape(-1, 1), 
+            metrics[y_metric].to_numpy().reshape(-1, 1), axis=1
+        )
         
         clusters = cluster_by_directive(
             directives, n_clusters, 
@@ -60,22 +55,11 @@ def generate_metrics_plot(
         output_data = {}
 
         for i in range(n_clusters):
-            cluster_directives = directives[clusters == i]
-            if len(cluster_directives) == 0:
-                continue
-
-            cluster_mean_directives = np.mean(cluster_directives, axis=0)
-            cluster_directive_info = {}
-            
-            for averages, gp in zip(cluster_mean_directives, directive_config):
-                gp_name, gp_directives = gp
-                group_data = {
-                    directive: round(avg, 3) 
-                    for avg, directive in zip(averages, gp_directives)
-                }
-                cluster_directive_info[gp_name] = group_data
-            
-            output_data[f"Cluster {i}"] = cluster_directive_info
+            cluster_solutions = metrics[clusters == i]["solution"].tolist()
+            solution_indices = []
+            for solution in cluster_solutions:
+                solution_indices.append(int(solution.split("solution")[1].strip()))
+            output_data[f"Cluster {i}"] = solution_indices
             
         with open(output_file, 'w') as f:
             json.dump(output_data, f, indent=2)
@@ -179,8 +163,7 @@ def main(args):
     generate_metrics_plot(
         metrics, benchmark, x_data, y_data, directives=directives,
         output_dir=output_dir, n_clusters=n_clusters, 
-        cluster_method=cluster_method, n_components=principal_components,
-        directive_config_path=directive_config_path
+        cluster_method=cluster_method, n_components=principal_components
     )
 
 

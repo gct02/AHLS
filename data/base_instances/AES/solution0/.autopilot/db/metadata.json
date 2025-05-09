@@ -1,0 +1,331 @@
+{
+  "Array": [
+    {
+      "Name": "Rcon0",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsParam": 0,
+      "NumDims": 2,
+      "TotalSize": 30,
+      "Dimensions": [30]
+    },
+    {
+      "Name": "word",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsParam": 0,
+      "NumDims": 3,
+      "TotalSize": 480,
+      "Dimensions": [4,120]
+    },
+    {
+      "Name": "llvm.global_ctors",
+      "FunctionName": "",
+      "BaseBitwidth": 0,
+      "BaseType": 13,
+      "IsGlobal": 1,
+      "IsParam": 0,
+      "NumDims": 2,
+      "TotalSize": 0,
+      "Dimensions": [0]
+    },
+    {
+      "Name": "invSbox",
+      "FunctionName": "InversShiftRow_ByteSub",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsParam": 1,
+      "NumDims": 3,
+      "TotalSize": 256,
+      "Dimensions": [16,16]
+    },
+    {
+      "Name": "Sbox",
+      "FunctionName": "KeySchedule",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsParam": 1,
+      "NumDims": 3,
+      "TotalSize": 256,
+      "Dimensions": [16,16]
+    },
+    {
+      "Name": "Sbox",
+      "FunctionName": "ByteSub_ShiftRow",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsParam": 1,
+      "NumDims": 3,
+      "TotalSize": 256,
+      "Dimensions": [16,16]
+    },
+    {
+      "Name": "temp",
+      "FunctionName": "KeySchedule",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDims": 2,
+      "TotalSize": 4,
+      "Dimensions": [4]
+    },
+    {
+      "Name": "ret",
+      "FunctionName": "AddRoundKey_InversMixColumn",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "ret",
+      "FunctionName": "MixColumn_AddRoundKey",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "statemt",
+      "FunctionName": "decrypt",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "key",
+      "FunctionName": "decrypt",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "key",
+      "FunctionName": "KeySchedule",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "statemt",
+      "FunctionName": "AddRoundKey",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "statemt",
+      "FunctionName": "InversShiftRow_ByteSub",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "statemt",
+      "FunctionName": "AddRoundKey_InversMixColumn",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "statemt",
+      "FunctionName": "encrypt",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "key",
+      "FunctionName": "encrypt",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "statemt",
+      "FunctionName": "ByteSub_ShiftRow",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "statemt",
+      "FunctionName": "MixColumn_AddRoundKey",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "statemt",
+      "FunctionName": "aes_main",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "key",
+      "FunctionName": "aes_main",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDims": 2,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    }
+  ],
+  "Loop": [
+    {
+      "Name": "decrypt_label4",
+      "FunctionName": "decrypt",
+      "LoopDepth": 1,
+      "TripCount": 13,
+      "SubLoops": [],
+      "BasicBlocks": ["for.body","for.cond","for.inc"]
+    },
+    {
+      "Name": "KeySchedule_label6",
+      "FunctionName": "KeySchedule",
+      "LoopDepth": 1,
+      "TripCount": 116,
+      "SubLoops": ["KeySchedule_label8","KeySchedule_label9"],
+      "BasicBlocks": ["KeySchedule_label7","KeySchedule_label8","KeySchedule_label9","for.body101","for.body120","for.body23","for.cond118","for.cond19","for.cond99","for.end116","for.end135","for.inc114","for.inc133","for.inc136","if.else","if.end","if.end117","if.then","if.then98","land.lhs.true"]
+    },
+    {
+      "Name": "KeySchedule_label9",
+      "FunctionName": "KeySchedule",
+      "LoopDepth": 2,
+      "TripCount": 5,
+      "SubLoops": [],
+      "BasicBlocks": ["for.body120","for.cond118","for.inc133"]
+    },
+    {
+      "Name": "KeySchedule_label8",
+      "FunctionName": "KeySchedule",
+      "LoopDepth": 2,
+      "TripCount": 5,
+      "SubLoops": [],
+      "BasicBlocks": ["for.body101","for.cond99","for.inc114"]
+    },
+    {
+      "Name": "KeySchedule_label4",
+      "FunctionName": "KeySchedule",
+      "LoopDepth": 1,
+      "TripCount": 8,
+      "SubLoops": ["KeySchedule_label5"],
+      "BasicBlocks": ["KeySchedule_label5","for.body","for.body11","for.cond","for.cond9","for.end","for.inc","for.inc16"]
+    },
+    {
+      "Name": "KeySchedule_label5",
+      "FunctionName": "KeySchedule",
+      "LoopDepth": 2,
+      "TripCount": 5,
+      "SubLoops": [],
+      "BasicBlocks": ["for.body11","for.cond9","for.inc"]
+    },
+    {
+      "Name": "AddRoundKey_label0",
+      "FunctionName": "AddRoundKey",
+      "LoopDepth": 1,
+      "TripCount": 8,
+      "SubLoops": [],
+      "BasicBlocks": ["for.body","for.cond","for.inc"]
+    },
+    {
+      "Name": "AddRoundKey_InversMixColumn_label3",
+      "FunctionName": "AddRoundKey_InversMixColumn",
+      "LoopDepth": 1,
+      "TripCount": 8,
+      "SubLoops": [],
+      "BasicBlocks": ["for.body198","for.cond196","for.inc229"]
+    },
+    {
+      "Name": "AddRoundKey_InversMixColumn_label0",
+      "FunctionName": "AddRoundKey_InversMixColumn",
+      "LoopDepth": 1,
+      "TripCount": 8,
+      "SubLoops": ["AddRoundKey_InversMixColumn_label1"],
+      "BasicBlocks": ["AddRoundKey_InversMixColumn_label1","for.body33","for.body36","for.cond31","for.cond34","for.end192","for.inc190","for.inc193","if.end","if.end122","if.end135","if.end141","if.end165","if.end171","if.end177","if.end53","if.end64","if.end79","if.end85","if.end98","if.then","if.then120","if.then133","if.then139","if.then163","if.then169","if.then175","if.then51","if.then62","if.then77","if.then83","if.then96"]
+    },
+    {
+      "Name": "AddRoundKey_InversMixColumn_label1",
+      "FunctionName": "AddRoundKey_InversMixColumn",
+      "LoopDepth": 2,
+      "TripCount": 5,
+      "SubLoops": [],
+      "BasicBlocks": ["for.body36","for.cond34","for.inc190","if.end","if.end122","if.end135","if.end141","if.end165","if.end171","if.end177","if.end53","if.end64","if.end79","if.end85","if.end98","if.then","if.then120","if.then133","if.then139","if.then163","if.then169","if.then175","if.then51","if.then62","if.then77","if.then83","if.then96"]
+    },
+    {
+      "Name": "AddRoundKey_InversMixColumn_label2",
+      "FunctionName": "AddRoundKey_InversMixColumn",
+      "LoopDepth": 1,
+      "TripCount": 8,
+      "SubLoops": [],
+      "BasicBlocks": ["for.body","for.cond","for.inc"]
+    },
+    {
+      "Name": "encrypt_label1",
+      "FunctionName": "encrypt",
+      "LoopDepth": 1,
+      "TripCount": 13,
+      "SubLoops": [],
+      "BasicBlocks": ["for.body","for.cond","for.inc"]
+    },
+    {
+      "Name": "MixColumn_AddRoundKey_label1",
+      "FunctionName": "MixColumn_AddRoundKey",
+      "LoopDepth": 1,
+      "TripCount": 8,
+      "SubLoops": [],
+      "BasicBlocks": ["for.body235","for.cond233","for.inc266"]
+    },
+    {
+      "Name": "MixColumn_AddRoundKey_label0",
+      "FunctionName": "MixColumn_AddRoundKey",
+      "LoopDepth": 1,
+      "TripCount": 8,
+      "SubLoops": [],
+      "BasicBlocks": ["for.body","for.cond","for.inc","if.else","if.else146","if.else207","if.else84","if.end","if.end130","if.end152","if.end192","if.end213","if.end28","if.end68","if.end90","if.then","if.then124","if.then139","if.then18","if.then186","if.then200","if.then62","if.then77"]
+    }
+  ]
+}

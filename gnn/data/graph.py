@@ -1,6 +1,5 @@
 import os
 import pickle
-import subprocess
 from copy import deepcopy
 from typing import Dict, Union, Optional, List, Tuple
 
@@ -60,9 +59,9 @@ EDGE_TYPES = [
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 61, 
+    "instr": 62, 
     "port": 7, 
-    "array": 28,
+    "array": 29,
     "const": 5,
     "block": 5,
     "region": 15
@@ -80,39 +79,18 @@ def build_base_graphs(
     filtered: bool = False,
     encoder_output_path: Optional[str] = None,
 ) -> Dict[str, HLSData]:
+    from gnn.data.utils.transform import process_ir
+    
     hls_data_dict = {}
     for solution_dir, benchmark, top_level_name in base_solutions:
         ir_dir = f"{solution_dir}/IRs" if filtered else f"{solution_dir}/.autopilot/db"
+        ir_path = f"{ir_dir}/a.g.ld.5.gdce.bc"
         metadata_path = f"{ir_dir}/metadata.json"
 
+        process_ir(ir_path, metadata_path)
         if not os.path.exists(metadata_path):
-            try:
-                DSE_LIB = os.environ['DSE_LIB']
-                OPT = os.environ['OPT']
-            except KeyError as error:
-                print(f"Error: environment variable {error.args[0]} not defined.")
-                raise
-
-            ir_path = f"{ir_dir}/a.g.ld.5.gdce.bc"
-            if not os.path.exists(ir_path):
-                print(f"Could not locate IR or metadata for {benchmark}.")
-                continue
-
-            ir_mod_path = f"{ir_dir}/a.g.ld.6.user.bc"
-            try:
-                subprocess.check_output(
-                    f"{OPT} -mem2reg -indvars -loop-simplify -scalar-evolution -instnamer < {ir_path} > {ir_mod_path};", 
-                    shell=True, stderr=subprocess.STDOUT
-                )
-                subprocess.check_output(
-                    f"{OPT} -load {DSE_LIB} -extract-md -out {metadata_path} < {ir_mod_path};", 
-                    shell=True, stderr=subprocess.STDOUT
-                )
-            except subprocess.CalledProcessError as e:
-                os.remove(ir_mod_path, ignore_errors=True)
-                os.remove(metadata_path, ignore_errors=True)
-                print(f"Error extracting metadata for {benchmark}: {e.output.decode()}")
-                continue
+            print(f"Metadata file not found: {metadata_path}")
+            continue
 
         hls_data_dict[benchmark] = HLSData(
             solution_dir, top_level_name, metadata_path, benchmark,
@@ -134,7 +112,8 @@ def build_opt_graph(
     directives_tcl: str, 
     output_pyg: bool = True,
     add_self_loops: bool = True,
-    add_reversed_edges: bool = True
+    add_reversed_edges: bool = True,
+    feature_names_dict: Optional[Dict[str, List[str]]] = None
 ) -> Union[HeteroData, HLSData]:
     hls_data = deepcopy(base_hls_data)
     include_directives(hls_data, directives_tcl)
@@ -142,7 +121,8 @@ def build_opt_graph(
         return to_pyg(
             hls_data, 
             add_self_loops=add_self_loops,
-            add_reversed_edges=add_reversed_edges
+            add_reversed_edges=add_reversed_edges,
+            feature_names_dict=feature_names_dict
         )
     return hls_data
 
@@ -150,12 +130,31 @@ def build_opt_graph(
 def to_pyg(
     hls_data: HLSData, 
     add_self_loops: bool = True,
-    add_reversed_edges: bool = True
+    add_reversed_edges: bool = True,
+    feature_names_dict: Optional[Dict[str, List[str]]] = None
 ) -> HeteroData:
     data = HeteroData()
     
     for nt in NODE_TYPES:
-        nodes = hls_data.nodes.get(nt, [])
+        nodes = hls_data.nodes.get(nt)
+        if not nodes:
+            data[nt].x = torch.empty(
+                (0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32
+            )
+            data[nt].label = []
+            continue
+
+        if feature_names_dict is not None and nt not in feature_names_dict:
+            feature_names = []
+            for key, value in nodes[0].attrs.items():
+                if isinstance(value, list):
+                    value_size = len(value)
+                    for i in range(value_size):
+                        feature_names.append(f"{key}_{i}")
+                else:
+                    feature_names.append(key)
+            feature_names_dict[nt] = feature_names
+
         features = []
         for node in nodes:
             attrs = []
@@ -164,14 +163,9 @@ def to_pyg(
                     attrs.extend(attr)
                 else:
                     attrs.append(attr)
-
             features.append(torch.tensor(attrs, dtype=torch.float32))
 
-        if features:
-            data[nt].x = torch.stack(features, dim=0)
-        else:
-            data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
-
+        data[nt].x = torch.stack(features, dim=0)
         data[nt].label = [node.label for node in nodes]
 
     for et in EDGE_TYPES:
@@ -206,20 +200,6 @@ def to_pyg(
     return data
 
 
-def find_node(
-    hls_data, types_to_search, node_name, function_name
-):
-    if not isinstance(types_to_search, list):
-        types_to_search = [types_to_search]
-    for node_type in types_to_search:
-        for node in hls_data.nodes[node_type]:
-            if node.name == node_name:
-                if (node.function_name == '' or node.function_name is None
-                    or node.function_name == function_name):
-                    return node
-    return None
-
-
 def include_directives(hls_data: HLSData, directives_tcl: str):
     def unroll_subloops(subregs):
         for subreg_id in subregs:
@@ -229,6 +209,29 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 subreg.attrs["unroll"] = 1
                 subreg.attrs["unroll_factor"] = max_tc
             unroll_subloops(subreg.sub_regions)
+
+    def find_array(array_name, function_name):
+        for node in hls_data.nodes.get('array', []):
+            if node.name == array_name:
+                if (not node.function_name 
+                    or node.function_name == function_name):
+                    return node
+        # If not found, search for array_name only
+        for node in hls_data.nodes.get('array', []):
+            if node.name == array_name:
+                return node
+        return None
+    
+    def find_region(region_name, function_name):
+        for node in hls_data.nodes.get('region', []):
+            if node.name == region_name:
+                if node.function_name == function_name:
+                    return node
+        # If not found, search for region_name only
+        for node in hls_data.nodes.get('region', []):
+            if node.name == region_name:
+                return node
+        return None
 
     directives = parse_tcl_directives_file(directives_tcl)
     directives = [d for d in directives if d[0] in DIRECTIVES]
@@ -248,15 +251,12 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
     for directive_type, directive_args in directives:
         if directive_type == "array_partition":
             node_name = directive_args.get("variable")
-            function_name = directive_args.get("location")
+            function_name = directive_args.get("location", "")
             if node_name is None:
                 print("Warning: No variable specified for array partition.")
                 continue
-            if function_name is None:
-                print("Warning: No function name specified for array partition.")
-                continue
 
-            node = find_node(hls_data, "array", node_name, function_name)
+            node = find_array(node_name, function_name)
             if node is None:
                 print(f"Warning: Variable '{node_name}' (function '{function_name}') not found in nodes.")
                 continue
@@ -298,7 +298,7 @@ def include_directives(hls_data: HLSData, directives_tcl: str):
                 function_name = location
                 node_name = location
 
-            node = find_node(hls_data, "region", node_name, function_name)
+            node = find_region(node_name, function_name)
             if node is None:
                 print(f"Warning: Region '{location}' not found in nodes.")
                 continue
@@ -396,8 +396,8 @@ def plot_data(
         ("array", "data", "instr"): "#008c9e",
         ("instr", "data", "const"): "#38bd59",
         ("array", "data", "const"): "#38bd59",
-        ("region", "control", "instr"): "#ddb753",
-        ("region", "control", "region"): "#ddb753",
+        ("block", "control", "instr"): "#ddb753",
+        ("block", "control", "block"): "#ddb753",
         ("instr", "mem", "instr"): "#e73939",
         ("instr", "alloca", "array"): "#824ac2",
         ("region", "hrchy", "region"): "#aab2b9",
@@ -412,19 +412,19 @@ def plot_data(
             etypes = edge_colors.keys()
         elif plot_type == "call":
             ntypes = ["instr"]
-            etypes = [et for et in EDGE_TYPES if et[1] == "call"]
+            etypes = [et for et in edge_colors.keys() if et[1] == "call"]
         elif plot_type == "control":
             ntypes = ["block", "instr"]
-            etypes = [et for et in EDGE_TYPES if et[1] in ["control"] and et[2] == "block"]
+            etypes = [et for et in edge_colors.keys() if et[1] in ["control"] and et[2] == "block"]
         elif plot_type == "data":
             ntypes = ["instr", "const", "port", "array"]
-            etypes = [et for et in EDGE_TYPES if et[1] in ["data", "mem", "alloca"]]
+            etypes = [et for et in edge_colors.keys() if et[1] in ["data", "mem", "alloca"]]
         elif plot_type == "mem":
             ntypes = ["instr", "array"]
-            etypes = [et for et in EDGE_TYPES if et[1] in ["mem", "alloca"]]
+            etypes = [et for et in edge_colors.keys() if et[1] in ["mem", "alloca"]]
         elif plot_type == "hrchy":
             ntypes = ["instr", "block", "region"]
-            etypes = [et for et in EDGE_TYPES if et[1] == "hrchy"]
+            etypes = [et for et in edge_colors.keys() if et[1] == "hrchy"]
         else:
             raise ValueError(f"Unknown plot_type: {plot_type}")
 

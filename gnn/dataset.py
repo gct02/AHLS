@@ -10,6 +10,16 @@ from torch_geometric.data import Dataset, HeteroData
 from torch_geometric.typing import NodeType
 
 
+# Total number of resources available on the target device
+# (xcu50-fsvh2104-2-e)
+AVAILABLE_RESOURCES = {
+    "bram": 2688,
+    "dsp": 5952,
+    "ff": 1743360,
+    "lut": 871680
+}
+
+
 class HLSDataset(Dataset):
     def __init__(
         self, root: str, metric: str,
@@ -17,15 +27,13 @@ class HLSDataset(Dataset):
         scale_features: bool = False,
         feature_ranges: Optional[Dict[NodeType, Tuple[Tensor, Tensor]]] = None,
         benchmarks: Optional[Union[str, List[str]]] = None,
-        separate: bool = True,
         log_transform: bool = False,
         **kwargs
     ):
         self._true_root = root
         self._full_dir = os.path.join(root, "full")
-        self._metric = metric
-        self._separate = separate
 
+        self.metric = metric.lower()
         self.log_transform = log_transform
         self.root = os.path.join(root, mode)
 
@@ -55,9 +63,17 @@ class HLSDataset(Dataset):
                 print(f"Skipping {benchmark} (base metrics file is empty)")
                 continue
 
-            if (base_target := float(base_metrics.get(self._metric, -1.0))) < 0:
-                print(f"Skipping {benchmark} (base target value not found)")
-                continue
+            if self.metric == "snru":
+                try:
+                    base_target = self._compute_snru(base_metrics)
+                except ValueError:
+                    print(f"Skipping {benchmark} (SNRU computation failed)")
+                    continue
+            else:
+                base_target = float(base_metrics.get(self.metric, -1.0))
+                if base_target < 0:
+                    print(f"Skipping {benchmark} (base target value not found)")
+                    continue
             
             self.benchmarks.append(benchmark)
             self.base_targets[benchmark] = base_target
@@ -85,8 +101,6 @@ class HLSDataset(Dataset):
         return self._processed_file_names
     
     def download(self):
-        if not self._separate:
-            return
         if not os.path.exists(self._full_dir):
             raise FileNotFoundError(
                 f"Directory {self._full_dir} does not exist."
@@ -140,10 +154,17 @@ class HLSDataset(Dataset):
                 with open(metrics_path, 'r') as f:
                     metrics = json.load(f)
 
-                target = float(metrics.get(self._metric, -1.0)) if metrics else -1.0
-                if target < 0:
-                    print(f"Skipping {idx} (target value not found)")
-                    continue
+                if self.metric == "snru":
+                    try:
+                        target = self._compute_snru(metrics)
+                    except ValueError:
+                        print(f"Skipping {idx} (SNRU computation failed)")
+                        continue
+                else:
+                    target = float(metrics.get(self.metric, -1.0)) if metrics else -1.0
+                    if target < 0:
+                        print(f"Skipping {idx} (target value not found)")
+                        continue
 
                 data = torch.load(graph_path)
 
@@ -182,6 +203,17 @@ class HLSDataset(Dataset):
             diffs[diffs == 0] = 1
             data.x_dict[nt] = (x - mins) / diffs
         return data
+    
+    def _compute_snru(metrics):
+        """Compute the SNRU (Sum of Normalized Resource Utilization) metric."""
+        snru = 0
+        for resource, available in AVAILABLE_RESOURCES.items():
+            value = metrics.get(resource, -1)
+            if value < 0:
+                raise ValueError(f"Resource {resource} not found in metrics.")
+            snru += value / available
+        snru /= len(AVAILABLE_RESOURCES)
+        return snru
 
 
 def _compute_feature_ranges(

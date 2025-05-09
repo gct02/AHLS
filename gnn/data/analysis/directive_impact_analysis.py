@@ -27,6 +27,7 @@ def parse_errors_from_log(log_file):
 
     for line in lines:
         epoch, target, pred = map(float, line.strip().split(',')[:-1])
+        # epoch, _, target, pred = map(float, line.strip().split(','))
         rel_error = abs(target - pred) / target
         rel_errors[int(epoch) - 1].append(rel_error)
 
@@ -80,6 +81,7 @@ def process_directives(raw_test_dataset_dir, source_dataset_dir, config_path):
     """Return directive dict {solution_idx: directive_indices}."""
     directive_dict = {}
 
+    feature_names = None
     for solution in _sorted_solutions(raw_test_dataset_dir):
         solution_idx = int(solution.split("solution")[1])
         raw_solution_dir = os.path.join(raw_test_dataset_dir, solution)
@@ -96,9 +98,14 @@ def process_directives(raw_test_dataset_dir, source_dataset_dir, config_path):
         if not os.path.exists(tcl_path):
             continue
 
-        directive_dict[solution_idx] = parse_and_encode_directives(config_path, tcl_path)
+        if feature_names is None:
+            directive_dict[solution_idx], feature_names = parse_and_encode_directives(
+                config_path, tcl_path, return_feature_names=True
+            )
+        else:
+            directive_dict[solution_idx] = parse_and_encode_directives(config_path, tcl_path)
 
-    return directive_dict
+    return directive_dict, feature_names
 
 
 def associate_directives_with_results(directive_dict, result_dict):
@@ -126,108 +133,29 @@ def process_results_and_directives(
 ):
     """Return (solution_idx, directives, mean_error) tuples."""
     result_dict = process_results(log_file, raw_test_dataset_dir)
-    directive_dict = process_directives(raw_test_dataset_dir, source_dataset_dir, config_path)
+    directive_dict, feature_names = process_directives(
+        raw_test_dataset_dir, source_dataset_dir, config_path
+    )
     directive_result_dict = associate_directives_with_results(directive_dict, result_dict)
     if sorted_by_error:
-        return sort_by_error(directive_result_dict)
-    return directive_result_dict
+        return sort_by_error(directive_result_dict), feature_names
+    return directive_result_dict, feature_names
 
 
-def average_error_per_directive_group(directive_result_dict, directive_config_path):
-    with open(directive_config_path, "r") as f:
-        directive_group_dict = json.load(f)["directives"]
-
-    directive_groups = []
-    for gp_name, gp in directive_group_dict.items():
-        gp_directives = gp.get("possible_directives")
-        if gp_directives is not None:
-            gp_directives = [d for d in gp_directives if d and "-off" not in d]
-            directive_groups.append((gp_name, gp_directives))
-
-    directive_results = [(entry[1], entry[2]) for entry in directive_result_dict]
-    directives_errors = defaultdict(list)
-
-    for encoded_directive_groups, rel_error in directive_results:
-        for gp, encoded_directives in zip(directive_groups, encoded_directive_groups):
-            gp_name, gp_directives = gp
-            for j, directive in enumerate(gp_directives):
-                if encoded_directives[j] == 1:
-                    directives_errors[directive].append(rel_error)
-        
-    directive_mean_errors = {
-        directive: np.mean(errors) if errors else None
-        for directive, errors in directives_errors.items()
-    }
-    return directive_mean_errors
-    
-
-def average_error_per_directive_type(directive_result_dict, directive_config_path):
-    with open(directive_config_path, "r") as f:
-        directive_group_dict = json.load(f)["directives"]
-
-    directive_groups = []
-    for gp_name, gp in directive_group_dict.items():
-        gp_directives = gp.get("possible_directives")
-        if gp_directives is not None:
-            gp_directives = [d for d in gp_directives if d and "-off" not in d]
-            directive_groups.append((gp_name, gp_directives))
-
-    directive_results = [(entry[1], entry[2]) for entry in directive_result_dict]
-    directives_errors = {d: [] for d in DIRECTIVES}
-
-    for encoded_directive_groups, rel_error in directive_results:
-        for gp, encoded_directives in zip(directive_groups, encoded_directive_groups):
-            gp_name, gp_directives = gp
-            for j, directive in enumerate(gp_directives):
-                if encoded_directives[j] == 1:
-                    directive_name = directive.split(' ')[0].split('set_directive_')[1]
-                    if directive_name in DIRECTIVES:
-                        directives_errors[directive_name].append(rel_error)
-        
-    directive_mean_errors = {
-        directive: np.mean(errors) if errors else None
-        for directive, errors in directives_errors.items()
-    }
-    return directive_mean_errors
-
-
-def build_dataset(directive_result_dict, directive_config_path=None):
+def build_dataset(directive_result_dict):
     directives = [entry[1] for entry in directive_result_dict]
     errors = [entry[2] for entry in directive_result_dict]
-
     directives, errors = np.array(directives), np.array(errors)
-    n_directives_per_group = directives.shape[-1]
-
     directives = directives.reshape(directives.shape[0], -1)
-
-    if directive_config_path is None:
-        return directives, errors
-    
-    with open(directive_config_path, "r") as f:
-        directive_group_dict = json.load(f)["directives"]
-
-    directive_names = []
-    for i, (gp_name, gp) in enumerate(directive_group_dict.items()):
-        gp_directives = gp.get("possible_directives")
-        if gp_directives is None:
-            continue
-        n_directives = 0
-        for j, directive in enumerate(gp_directives):
-            if "-off" not in directive:  
-                directive_names.append(f"{gp_name} ({j})")
-                n_directives += 1
-        for _ in range(n_directives_per_group - n_directives):
-            directive_names.append(f"empty_{i}_{j}")
-
-    return directives, errors, directive_names
+    return directives, errors
 
 
 def train_model(X_directives, y_errors):
     model = xgb.XGBRegressor(
         objective='reg:squarederror',
-        n_estimators=150,
-        learning_rate=0.1,
-        max_depth=7,
+        n_estimators=1000,
+        learning_rate=0.01,
+        max_depth=8,
         subsample=0.8,
         colsample_bytree=0.8,
         random_state=42,
@@ -246,8 +174,10 @@ def explain_model(model, X_directives):
 def plot_shap_values(X_directives, shap_values, feature_names=None):
     shap.summary_plot(
         shap_values, X_directives, 
-        feature_names=feature_names, max_display=30,
-        alpha=0.7, plot_type="dot"
+        feature_names=feature_names, 
+        max_display=30, alpha=0.6,
+        show_values_in_legend=True,
+        color=shap_values
     )
     plt.tight_layout()
 
@@ -279,24 +209,13 @@ if __name__ == "__main__":
     raw_test_dataset_dir = sys.argv[2]
     directive_config_path = sys.argv[3]
     log_file = sys.argv[4]
-    output_file = sys.argv[5] if len(sys.argv) > 5 else None
 
-    directive_result_dict = process_results_and_directives(
+    directive_result_dict, feature_names = process_results_and_directives(
         log_file, raw_test_dataset_dir, source_dataset_dir, directive_config_path
     )
-    directive_mean_errors = average_error_per_directive_group(
-        directive_result_dict, directive_config_path
-    )
-    if output_file:
-        with open(output_file, "w") as f:
-            json.dump(directive_mean_errors, f, indent=4)
-    else:
-        print(json.dumps(directive_mean_errors, indent=4))
 
-    X_directives, y_errors, directive_names = build_dataset(
-        directive_result_dict, directive_config_path
-    )
+    X_directives, y_errors = build_dataset(directive_result_dict)
     model = train_model(X_directives, y_errors)
     shap_values = explain_model(model, X_directives)
-    plot_shap_values(X_directives, shap_values, feature_names=directive_names)
+    plot_shap_values(X_directives, shap_values, feature_names)
 

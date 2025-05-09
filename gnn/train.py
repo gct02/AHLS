@@ -17,7 +17,6 @@ from torch_geometric.loader import DataLoader
 
 from gnn.models import HGT
 from gnn.dataset import HLSDataset
-from gnn.losses import RMSLELoss
 from gnn.data.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
 
 
@@ -35,7 +34,7 @@ def save_model(model, output_dir, model_name):
     torch.save(obj=model.state_dict(), f=f"{output_dir}/{model_name}")
 
 
-def rpd(pred, target):
+def mape(pred, target):
     pred, target = map(torch.as_tensor, (pred, target))
     avg = (torch.abs(pred) + torch.abs(target)) / 2
     return torch.where(
@@ -70,21 +69,16 @@ def evaluate(
     
     # Assumption: Only one instance per batch
     for batch in loader:
-        torch.cuda.empty_cache()
-
         batch = batch.to(DEVICE)
-        x_dict, edge_index_dict = batch.x_dict, batch.edge_index_dict
-        batch_dict = batch.batch_dict
-        base_target = batch.y_base
-        target = batch.y
 
-        pred = model(x_dict, edge_index_dict, batch_dict, base_target)
-
-        batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
-        base_target = base_target.cpu()
-
+        pred = model(
+            batch.x_dict, 
+            batch.edge_index_dict, 
+            batch.batch_dict, 
+            batch.y_base
+        )
         preds.append(pred.item())
-        targets.append(target.item())
+        targets.append(batch.y.item())
 
     if log_dir:
         with open(f"{log_dir}/{mode}.log", 'a') as f:
@@ -92,10 +86,9 @@ def evaluate(
                 f.write(f"{epoch},{t},{p},{t-p}\n")
 
     if log_transformed:
-        preds = np.expm1(preds)
-        targets = np.expm1(targets)
+        preds, targets = np.expm1(preds), np.expm1(targets)
 
-    mre = rpd(torch.tensor(preds), torch.tensor(targets)).mean().item()
+    mre = mape(torch.tensor(preds), torch.tensor(targets)).mean().item()
     if mre < evaluate.min_mre:
         evaluate.min_mre = mre
         evaluate.best_epoch = epoch
@@ -120,16 +113,14 @@ def train_model(
     test_loader: DataLoader,
     epochs: int,
     scheduler: Optional[torch.optim.lr_scheduler.LRScheduler] = None,
-    warmup_scheduler: Optional[torch.optim.lr_scheduler.LRScheduler] = None,
-    warmup_steps: int = 0,
     verbosity: int = 1,
     log_dir: Optional[str] = None,
     log_transformed: bool = False,
 ) -> Dict[str, List[List[Tuple[float, float]]]]:
-    step = 0
     results = defaultdict(list)
 
     for epoch in range(1, epochs + 1):
+        torch.cuda.empty_cache()
         if verbosity > 0:
             print(f"Epoch {epoch}/{epochs}\n")
 
@@ -137,42 +128,34 @@ def train_model(
                 
         model.train()
         for batch in train_loader:
-            torch.cuda.empty_cache()
             optimizer.zero_grad()
-
             batch = batch.to(DEVICE)
-            x_dict, edge_index_dict = batch.x_dict, batch.edge_index_dict
-            batch_dict = batch.batch_dict
-            base_target = batch.y_base
+
+            pred = model(
+                batch.x_dict,
+                batch.edge_index_dict, 
+                batch.batch_dict, 
+                batch.y_base
+            )
             target = batch.y
-
-            pred = model(x_dict, edge_index_dict, batch_dict, base_target)
-
             loss = loss_fn(pred, target)
             loss.backward()
-
             clip_grad_norm_(model.parameters(), max_norm=10.0)
+
             optimizer.step()
 
-            if step < warmup_steps and warmup_scheduler is not None:
-                warmup_scheduler.step()
-                step += 1
-                if step == warmup_steps and verbosity > 0:
-                    print("Warmup completed, switching to cosine annealing scheduler")
-            elif scheduler is not None:
+            if scheduler is not None:
                 scheduler.step()
 
-            batch, pred, target = batch.cpu(), pred.cpu(), target.cpu()
-            base_target = base_target.cpu()
-
-            pred = pred.tolist()
-            target = target.tolist()
+            pred, target = pred.tolist(), target.tolist()
             preds.extend(pred)
             targets.extend(target)
 
             if verbosity > 1:
+                if log_transformed:
+                    pred, target = np.expm1(pred), np.expm1(target)
                 for p, t in zip(pred, target):
-                    print(f"Target: {np.expm1(t)}; Prediction: {np.expm1(p)}")
+                    print(f"Target: {t}; Prediction: {p}")
 
         if log_dir:
             with open(f"{log_dir}/train.log", 'a') as f:
@@ -180,8 +163,7 @@ def train_model(
                     f.write(f"{epoch},{t},{p},{t-p}\n")
 
         if log_transformed:
-            preds = np.expm1(preds)
-            targets = np.expm1(targets)
+            preds, targets = np.expm1(preds), np.expm1(targets)
 
         results['train'].append(list(zip(preds, targets)))
 
@@ -209,7 +191,6 @@ def main(args: Dict[str, str]):
     loss = args['loss']
     log_transform = args['log_transform']
     residual = float(args['residual'])
-    skip_separation = args['skip_separation']
 
     matplotlib.use('Agg')
 
@@ -227,49 +208,44 @@ def main(args: Dict[str, str]):
 
     train_loader, test_loader = prepare_data_loaders(
         dataset_dir, target_metric, test_bench, train_benches, 
-        batch_size=batch_size, separate=not skip_separation,
-        log_transform=log_transform
+        batch_size=batch_size, log_transform=log_transform
     )
 
     metadata = (NODE_TYPES, EDGE_TYPES)
     in_channels = NODE_FEATURE_DIMS
     out_channels = 1
+    hid_dim = [512, 256, 128]
+    heads = [8, 4, 4]
+    num_layers = len(hid_dim)
+    proj_in_dim = 512
     
     model = HGT(
         metadata, in_channels, out_channels,
-        hid_dim=256, heads=4, num_layers=4,
-        dropout=0.1
+        hid_dim=hid_dim, heads=heads, 
+        num_layers=num_layers, proj_in_dim=proj_in_dim
     ).to(DEVICE)
 
-    if loss == 'rmsle':
-        loss_fn = RMSLELoss()
-    elif loss == 'huber':
-        loss_fn = nn.HuberLoss(delta=residual)
-    elif loss == 'mse':
+    if loss == 'mse':
         loss_fn = nn.MSELoss()
+    elif loss == 'huber':
+        loss_fn = nn.HuberLoss(delta=1.5*residual)
     elif loss == 'l1':
         loss_fn = nn.L1Loss()
     else:
         raise ValueError(f"Unknown loss function: {loss}")
 
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=3e-4, betas=(0.9, 0.999), weight_decay=5e-4
+        model.parameters(), lr=3e-4, betas=(0.9, 0.95), weight_decay=5e-4
     )
 
-    warmup_steps = (epochs * len(train_loader)) // 10
-    warmup_scheduler = torch.optim.lr_scheduler.LinearLR(
-        optimizer, start_factor=0.1, total_iters=warmup_steps
-    )
-
-    total_steps = epochs * len(train_loader) - warmup_steps
+    total_steps = epochs * len(train_loader)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
         optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-5
     )
 
     results = train_model(
         model, loss_fn, optimizer, train_loader, test_loader, epochs, 
-        scheduler=scheduler, warmup_scheduler=warmup_scheduler, 
-        warmup_steps=warmup_steps, verbosity=verbosity, log_dir=analysis_dir,
+        scheduler=scheduler, verbosity=verbosity, log_dir=analysis_dir,
         log_transformed=log_transform
     )
     plot_prediction_bars(results["test"], test_bench, target_metric, analysis_dir)
@@ -346,7 +322,7 @@ def plot_prediction_scatter(
 
     if mre is None:
         if errors is None:
-            errors = rpd(preds, targets)
+            errors = mape(preds, targets)
         mre = np.mean(errors)
             
     r2 = r2_score(targets, preds)
@@ -372,9 +348,9 @@ def plot_prediction_bars(
     """Plot per-benchmark instance-level predictions and errors"""
     best_epoch = evaluate.best_epoch
 
-    targets = [r[1] for r in test_results[0]]
+    targets = [r[1] for r in test_results[best_epoch]]
     preds = [r[0] for r in test_results[best_epoch]]
-    errors = [rpd(p, t).item() for p, t in zip(preds, targets)]
+    errors = [mape(p, t).item() for p, t in zip(preds, targets)]
 
     indices = list(range(len(targets)))
     mre = evaluate.min_mre
@@ -430,15 +406,15 @@ def save_training_artifacts(
     train_errors, test_errors = [], []
 
     for train_results, test_results in zip(results['train'], results['test']):
-        train_errors.append(np.mean([rpd(p, t) for p, t in train_results]))
-        test_errors.append(np.mean([rpd(p, t) for p, t in test_results]))
+        train_errors.append(np.mean([mape(p, t) for p, t in train_results]))
+        test_errors.append(np.mean([mape(p, t) for p, t in test_results]))
 
     best_epoch = evaluate.best_epoch
     test_results = results['test']
 
     targets = [r[1] for r in test_results[0]]
     preds = [r[0] for r in test_results[best_epoch]]
-    errors = [rpd(p, t).item() for p, t in zip(preds, targets)]
+    errors = [mape(p, t).item() for p, t in zip(preds, targets)]
 
     plot_learning_curves(train_errors, test_errors, f"{output_dir}/learning_curve.png")
     plot_prediction_scatter(targets, preds, f"{output_dir}/test_results_scatter.png", errors=errors)
@@ -498,21 +474,18 @@ def prepare_data_loaders(
     test_benchmarks: Union[List[str], str],
     train_benchmarks: Union[List[str], str],
     batch_size: int = 16,
-    separate: bool = True,
     log_transform: bool = False
 ) -> Tuple[DataLoader, DataLoader]:
     train_data = HLSDataset(
         dataset_dir, metric, mode="train", scale_features=True, 
-        benchmarks=train_benchmarks, separate=separate,
-        log_transform=log_transform
+        benchmarks=train_benchmarks, log_transform=log_transform
     )
     test_data = HLSDataset(
         dataset_dir, metric, mode="test", scale_features=True,
         feature_ranges=train_data.feature_ranges,
-        benchmarks=test_benchmarks, separate=separate,
-        log_transform=log_transform
+        benchmarks=test_benchmarks,log_transform=log_transform
     )
-    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=False)
+    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
 
     return train_loader, test_loader
@@ -524,11 +497,11 @@ def parse_arguments():
                         help='The root directory of the dataset.')
     parser.add_argument('-e', '--epoch', default=300, 
                         help='The number of training epochs (default: 300).')
-    parser.add_argument('-r', '--seed', default=42, 
+    parser.add_argument('-s', '--seed', default=42, 
                         help='Random seed for repeatability (default: 42).')
     parser.add_argument('-b', '--batch', default=16, 
                         help='The size of the training batch (default: 16).')
-    parser.add_argument('-l', '--loss', default='mse', choices=['mse', 'rmsle', 'l1', 'huber'],
+    parser.add_argument('-l', '--loss', default='mse', choices=['mse', 'l1', 'huber'],
                         help='The loss function to use for training (default: mse).')
     parser.add_argument('-lt', '--log-transform', action='store_true',
                         help='Apply log transformation to the target variable.')
@@ -536,12 +509,10 @@ def parse_arguments():
                         help='The name of the benchmark to use for test.')
     parser.add_argument('-t', '--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp', 'power'],
                         help='The target metric.')
-    parser.add_argument('-s', '--skip-separation', action='store_true',
-                        help='Skip the separation of the dataset into raw and processed versions.')
     parser.add_argument('-v', '--verbose', nargs='?', const=1, type=int, default=0, 
                         help='Set verbosity level (default: 0). Use without value for level 1, or specify a level.')
-    parser.add_argument('-rs', '--residual', default=1.0, type=float,
-                        help='Some measure of variability (e.g., standard deviation or MAD) of the residuals for Huber loss (default: 1.0).')
+    parser.add_argument('-r', '--residual', default=1.0, type=float,
+                        help='A measure of variability (e.g., standard deviation or MAD) of the residuals for Huber loss (default: 1.0).')
     parser.add_argument('-o', '--output-dir', default='.',
                         help='Directory to save the output files (default: current directory).')
     return vars(parser.parse_args())

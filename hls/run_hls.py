@@ -10,7 +10,7 @@ add_files { $SRC_FILES }
 set_top $TOP_FUNC
 open_solution -reset $SOL_NAME
 config_array_partition -throughput_driven off
-config_compile -pipeline_loops 9999999
+config_compile -pipeline_loops 999999
 config_unroll -tripcount_threshold 0
 set_part $DEVICE
 create_clock -period $CLOCK_PERIOD -name default

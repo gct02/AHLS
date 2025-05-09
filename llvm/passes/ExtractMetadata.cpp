@@ -152,6 +152,11 @@ struct ExtractMetadataPass : public ModulePass {
                         LoopMetadata* MD = new LoopMetadata(LoopName, FunctionName);
                         MD->setAttribute("TripCount", getEstimatedLoopTripCount(CurrLoop, &SE));
                         MD->setAttribute("LoopDepth", CurrLoop->getLoopDepth());
+                        if (!L->getParentLoop()) {
+                            MD->setAttribute("IsOuterMost", 1);
+                        } else {
+                            MD->setAttribute("IsOuterMost", 0);
+                        }
                         ModuleMD["Loop"].push_back(MD);
 
                         for (Loop* SL : CurrLoop->getSubLoops()) {
@@ -211,15 +216,17 @@ struct ExtractMetadataPass : public ModulePass {
             std::string FunctionName = F.hasName() ? F.getName().str() : "";
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
-                    Type* Ty = I.getType();
-                    if (Ty->isPointerTy()) {
-                        Ty = Ty->getPointerElementType();
-                    }
-                    if (Ty->isArrayTy()) {
-                        std::string Name = I.hasName() ? I.getName().str() : "";
-                        DEBUG(errs() << "Local array name: " << Name << "\n");
-                        ArrayMetadata* MD = getArrayMetadata(Ty, Name, FunctionName);
-                        ModuleMD["Array"].push_back(MD);
+                    if (AllocaInst* AI = dyn_cast<AllocaInst>(&I)) {
+                        Type* Ty = AI->getAllocatedType();
+                        if (Ty->isPointerTy()) {
+                            Ty = Ty->getPointerElementType();
+                        }
+                        if (Ty->isArrayTy()) {
+                            std::string Name = I.hasName() ? I.getName().str() : "";
+                            DEBUG(errs() << "Local array name: " << Name << "\n");
+                            ArrayMetadata* MD = getArrayMetadata(Ty, Name, FunctionName);
+                            ModuleMD["Array"].push_back(MD);
+                        }
                     }
                 }
             }
@@ -341,21 +348,21 @@ struct ExtractMetadataPass : public ModulePass {
     }
 
     uint32_t getEstimatedLoopTripCount(Loop* L, ScalarEvolution* SE) {
-        uint32_t TC = 0;
+        uint32_t LoopTC = 0;
         if (BasicBlock* ExitingBlock = getExitingBlock(L, SE)) {
-            TC = SE->getSmallConstantTripCount(L, ExitingBlock);
-            if (TC > 0) return TC;
+            LoopTC = SE->getSmallConstantTripCount(L, ExitingBlock);
+            if (LoopTC > 0) return LoopTC;
         }
-        Optional<LoopTripCountMDInfo> TCMDInfo = getLoopTripCount(L);
-        if (TCMDInfo.hasValue()) {
-            TC = (uint32_t)TCMDInfo->getMax();
-            if (TC > 0) return TC;
+        Optional<LoopTripCountMDInfo> LoopTCMDInfo = getLoopTripCount(L);
+        if (LoopTCMDInfo.hasValue()) {
+            LoopTC = (uint32_t)LoopTCMDInfo->getMax();
+            if (LoopTC > 0) return LoopTC;
         }
-        Optional<uint32_t> EstimatedTC = getLoopEstimatedTripCount(L);
-        if (EstimatedTC.hasValue()) {
-            TC = EstimatedTC.getValue();
+        Optional<uint32_t> EstimatedLoopTC = getLoopEstimatedTripCount(L);
+        if (EstimatedLoopTC.hasValue()) {
+            LoopTC = EstimatedLoopTC.getValue();
         }
-        return std::max(TC, 1u);
+        return std::max(LoopTC, 1u);
     }
 
     ArrayMetadata* getArrayMetadata(Type* ArrayTy, std::string ArrayName, 
@@ -390,13 +397,14 @@ struct ExtractMetadataPass : public ModulePass {
         AU.addRequired<ScalarEvolutionWrapperPass>();
     }
 
-    // ~ExtractMetadataPass() override {
-    //     for (auto& item : metadataDict) {
-    //         for (auto* md : item.second) {
-    //             delete md;
-    //         }
-    //     }
-    // }
+    ~ExtractMetadataPass() override {
+        for (auto& MDEntry : ModuleMD) {
+            for (EntityMetadata* MD : MDEntry.second) {
+                if (MD != nullptr) delete MD;
+            }
+        }
+        ModuleMD.clear();
+    }
 }; 
 // End struct ExtractMetadataPass
 
