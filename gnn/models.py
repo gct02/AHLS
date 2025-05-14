@@ -8,6 +8,7 @@ from torch_geometric.nn import (
     HeteroDictLinear, Linear, HGTConv, LayerNorm,
     global_add_pool, global_max_pool
 )
+from torch_geometric.data import HeteroData
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 
 
@@ -52,6 +53,11 @@ class HGT(nn.Module):
 
         self.node_types = metadata[0]
         self.edge_types = metadata[1]
+        self.directive_node_types = dir_metadata.keys()
+        self.directive_edge_types = [
+            et for et in metadata[1] 
+            if et[0] in self.directive_node_types
+        ]
         self.in_channels = in_channels
         self.out_channels = out_channels
         self.dropout = dropout
@@ -139,15 +145,7 @@ class HGT(nn.Module):
             if isinstance(m, Linear):
                 m.reset_parameters()
 
-    def forward(
-        self,
-        x_dict: Dict[NodeType, Tensor],
-        edge_index_dict: Dict[EdgeType, Tensor],
-        batch_dict: Dict[NodeType, Tensor],
-        dir_node_subset: Dict[str, Dict[NodeType, Tensor]],
-        dir_edge_subset: Dict[str, Dict[EdgeType, Tensor]],
-        y_base: Tensor
-    ) -> Tensor:
+    def forward(self, data: HeteroData) -> Tensor:
         r"""Runs the forward pass of the module.
 
         Args:
@@ -165,6 +163,8 @@ class HGT(nn.Module):
 
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
+        x_dict, edge_index_dict, batch_dict = data.x_dict, data.edge_index_dict, data.batch_dict
+        
         # Input projection layer
         x_dict = self.proj_in(x_dict)
         x_dict = {
@@ -173,10 +173,10 @@ class HGT(nn.Module):
         }
 
         # GNN for HLS directives
-        x_dict = self.hls_gnn(
-            x_dict, edge_index_dict, 
-            dir_node_subset, dir_edge_subset
-        )
+        x_dict = self.hls_gnn(x_dict, data)
+
+        for et in self.directive_edge_types:
+            edge_index_dict.pop(et, None)
 
         # Convolutional layers
         for i in range(self.num_layers):
@@ -195,7 +195,7 @@ class HGT(nn.Module):
 
         x = torch.cat(x_list, dim=1)
 
-        y_base_processed = self.y_base_mlp(y_base)
+        y_base_processed = self.y_base_mlp(data.y_base)
         x = torch.cat([x, y_base_processed], dim=1)
 
         # Graph-level MLP
@@ -236,25 +236,25 @@ class HLSGNN(nn.Module):
         for gnn in self.gnn.values():
             gnn.reset_parameters()
 
-    def forward(
-        self,
-        x_dict: Dict[str, Dict[NodeType, Tensor]],
-        edge_index_dict: Dict[str, Dict[EdgeType, Tensor]],
-        dir_node_subset: Dict[str, Dict[NodeType, Tensor]],
-        dir_edge_subset: Dict[str, Dict[EdgeType, Tensor]]
-    ):
+    def forward(self, x_dict: Dict[NodeType, Tensor], data: HeteroData):
         for dt, gnn in self.gnn.items():
-            mask_dict = dir_node_subset[dt]
-            x_dict_subset = {
+            try:
+                x_mask_dict = data.__getattr__(f"{dt}_x_mask_dict")
+                edge_index_dict = data.__getattr__(f"{dt}_edge_index_dict")
+            except AttributeError:
+                raise AttributeError(
+                    f"Missing attributes for directive {dt} in data."
+                )
+            
+            dir_x_dict = {
                 nt: x_dict[nt][mask, :]
-                for nt, mask in mask_dict.items()
+                for nt, mask in x_mask_dict.items()
             }
-            x_dict_subset = gnn(x_dict_subset, dir_edge_subset[dt])
-            for nt, x_subset in x_dict_subset.items():
-                x_dict[nt][mask_dict[nt]] = x_subset
+            print(edge_index_dict)
+            dir_x_dict = gnn(dir_x_dict, edge_index_dict)
+            for nt, x in dir_x_dict.items():
+                x_dict[nt][x_mask_dict[nt]] = x
 
-            target_nt = "array" if dt == "array_partition" else "region"
             x_dict.pop(dt, None)
-            edge_index_dict.pop((dt, "transform", target_nt), None)
             
         return x_dict

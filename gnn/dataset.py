@@ -192,6 +192,7 @@ class HLSDataset(Dataset):
 
     def get(self, ind):
         data = torch.load(self.processed_paths[ind])
+        print(data)
         return data 
     
     def _scale_features(self, data: HeteroData) -> HeteroData:
@@ -214,7 +215,7 @@ class HLSDataset(Dataset):
             snru += value / available
         snru /= len(AVAILABLE_RESOURCES)
         return snru
-
+    
 
 def _compute_feature_ranges(
     dataset_dir: str, metric: str,

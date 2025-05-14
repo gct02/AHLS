@@ -73,15 +73,7 @@ def evaluate(
     # Assumption: Only one instance per batch
     for batch in loader:
         batch = batch.to(DEVICE)
-
-        pred = model(
-            batch.x_dict, 
-            batch.edge_index_dict, 
-            batch.batch_dict, 
-            batch.dir_node_subsets,
-            batch.dir_edge_index_subsets,
-            batch.y_base
-        )
+        pred = model(batch)
         preds.append(pred.item())
         targets.append(batch.y.item())
 
@@ -135,15 +127,7 @@ def train_model(
         for batch in train_loader:
             optimizer.zero_grad()
             batch = batch.to(DEVICE)
-
-            pred = model(
-                batch.x_dict,
-                batch.edge_index_dict, 
-                batch.batch_dict, 
-                batch.dir_node_subsets,
-                batch.dir_edge_index_subsets,
-                batch.y_base
-            )
+            pred = model(batch)
             target = batch.y
             loss = loss_fn(pred, target)
             loss.backward()
@@ -511,7 +495,7 @@ def parse_arguments():
                         help='Apply log transformation to the target variable.')
     parser.add_argument('-tb', '--testbench', required=True, 
                         help='The name of the benchmark to use for test.')
-    parser.add_argument('-t', '--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp', 'power'],
+    parser.add_argument('-t', '--target', required=True, choices=['lut', 'ff', 'dsp', 'bram', 'cp', 'power', 'snru'],
                         help='The target metric.')
     parser.add_argument('-v', '--verbose', nargs='?', const=1, type=int, default=0, 
                         help='Set verbosity level (default: 0). Use without value for level 1, or specify a level.')

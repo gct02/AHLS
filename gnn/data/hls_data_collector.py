@@ -777,7 +777,7 @@ class HLSData:
                 self.edges[call_edge_type].append((function_call[0], callee_start.id))
 
     def _build_region_hrchy(self):
-        for i, node in enumerate(self.nodes['region']):
+        for node in self.nodes['region']:
             regions_above = set()
             regions_below = set()
             blocks = set(node.blocks)

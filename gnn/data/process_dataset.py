@@ -28,6 +28,7 @@ def main(args: Dict[str, str]):
     filtered = args['filtered']
     kernel_config_path = args.get('kernel_config_path')
     directives_config_dir = args.get('directive_config_dir')
+    debug = args.get('debug', False)
 
     with open(kernel_config_path, "r") as f:
         kernel_config = json.load(f)
@@ -61,6 +62,7 @@ def main(args: Dict[str, str]):
         filtered=False
     )
 
+    max_instances = 10 if debug else 1e10
     for bench in benchmarks:
         benchmark_out = output_dir / bench.name
         benchmark_out.mkdir(parents=True, exist_ok=True)
@@ -69,6 +71,7 @@ def main(args: Dict[str, str]):
         with open(benchmark_out / "base_metrics.json", "w") as f:
             json.dump(base_metrics, f, indent=2)
 
+        count = 0
         for solution in bench.iterdir():
             if not solution.is_dir():
                 continue
@@ -77,6 +80,10 @@ def main(args: Dict[str, str]):
             if not hls_data_json.exists():
                 print(f"Directives JSON file not found for {solution}")
                 continue
+
+            count += 1
+            if count > max_instances:
+                break 
             
             tcl_path = solution / f"directives.tcl"
             create_directives_tcl(hls_data_json, tcl_path)
@@ -108,6 +115,8 @@ def parse_args():
                         help="Path to the configuration file for kernel information")
     parser.add_argument("-cd", "--directive-config-dir", default=None,
                         help="Path to the directory containing the directives config files")
+    parser.add_argument("-dbg", "--debug", action="store_true",
+                        help="Enable debug mode")
     return vars(parser.parse_args())
 
 

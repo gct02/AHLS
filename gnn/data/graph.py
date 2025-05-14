@@ -2,11 +2,16 @@ import os
 import pickle
 import json
 from copy import deepcopy
-from typing import Dict, Union, Optional, List, Tuple
+from typing import Dict, Union, Optional, List, Tuple, Any
 
 import torch
 import matplotlib.pyplot as plt
+from torch import Tensor
+from torch_geometric import Index
+from torch_geometric.data.storage import EdgeStorage
 from torch_geometric.data import HeteroData
+from torch_geometric.data.hetero_data import NodeOrEdgeStorage
+from torch_geometric.utils import is_sparse
 from sklearn.preprocessing import OneHotEncoder
 
 from gnn.data.hls_data_collector import HLSData, DirectiveNode
@@ -156,6 +161,44 @@ DIRECTIVE_METADATA = {
 EMBEDDING_DIM = 512
 
 
+class HLSHeteroData(HeteroData):
+    def __init__(self):
+        super(HLSHeteroData, self).__init__()
+
+    def __cat_dim__(self, key: str, value: Any,
+                    store: Optional[NodeOrEdgeStorage] = None, *args,
+                    **kwargs) -> Any:
+        # for dt in DIRECTIVES:
+        #     if key.startswith(dt):
+        #         if "edge_index" in key:
+        #             return -1
+        #         elif "x_mask" in key:
+        #             return 0
+        if is_sparse(value) and ('adj' in key or 'edge_index' in key):
+            return (0, 1)
+        elif isinstance(store, EdgeStorage) and 'index' in key:
+            return -1
+        return 0
+
+    def __inc__(self, key: str, value: Any,
+                store: Optional[NodeOrEdgeStorage] = None, *args,
+                **kwargs) -> Any:
+        # for dt in DIRECTIVES:
+        #     if key.startswith(dt):
+        #         if "edge_index" in key:
+        #             return torch.tensor(store.size()).view(2, 1)
+        #         elif "x_mask" in key:
+        #             return 0
+        if 'batch' in key and isinstance(value, Tensor):
+            if isinstance(value, Index):
+                return value.get_dim_size()
+            return int(value.max()) + 1
+        elif isinstance(store, EdgeStorage) and 'index' in key:
+            return torch.tensor(store.size()).view(2, 1)
+        else:
+            return 0
+
+
 def build_base_graphs(
     base_solutions: List[Tuple[str, str, str]],
     directive_config_dir: str,
@@ -202,7 +245,7 @@ def build_opt_graph(
     add_self_loops: bool = True,
     add_reversed_edges: bool = True,
     feature_names_dict: Optional[Dict[str, List[str]]] = None
-) -> Union[HeteroData, HLSData]:
+) -> Union[HLSHeteroData, HLSData]:
     hls_data = deepcopy(base_hls_data)
     update_directive_features(hls_data, directives_tcl)
     if output_pyg:
@@ -220,36 +263,24 @@ def get_directive_subset(hls_data, hetero_data, dir_type):
         nt: [False] * hetero_data[nt].x.size(0) 
         for nt in DIRECTIVE_NODE_TYPES[dir_type]
     }
-    edge_subset = {
-        et: [False] * hetero_data[et].edge_index.size(1) 
-        for et in DIRECTIVE_EDGE_TYPES[dir_type]
-    }
+    edge_subset = {et: set() for et in DIRECTIVE_EDGE_TYPES[dir_type]}
 
     target_nt = "array" if dir_type == "array_partition" else "region"
-    dir_et = (dir_type, "transform", target_nt)
-    edge_index = hetero_data[dir_et].edge_index
     
-    for i in range(edge_index.size(1)):
-        src, dst = edge_index[:, i]
+    for src, dst in hls_data.edges.get((dir_type, "transform", target_nt), []):
         node_subset[dir_type][src] = True
         node_subset[target_nt][dst] = True
-        edge_subset[dir_et][i] = True
+        edge_subset[(dir_type, "transform", target_nt)].add((src, dst))
 
         if dir_type == "array_partition":
-            data_et = ("array", "data", "instr")
-            alloca_et = ("instr", "alloca", "array")
-            data_edge_index = hetero_data[data_et].edge_index
-            alloca_edge_index = hetero_data[alloca_et].edge_index
-            for j in range(data_edge_index.size(1)):
-                src_array, dst_instr = data_edge_index[:, j]
+            for src_array, dst_instr in hls_data.edges.get(("array", "data", "instr"), []):
                 if src_array == dst:
                     node_subset["instr"][dst_instr] = True
-                    edge_subset[data_et][j] = True
-            for j in range(alloca_edge_index.size(1)):
-                src_instr, dst_array = alloca_edge_index[:, j]
+                    edge_subset[("array", "data", "instr")].add((src_array, dst_instr))
+            for src_instr, dst_array in hls_data.edges.get(("instr", "alloca", "array"), []):
                 if dst_array == dst:
                     node_subset["instr"][src_instr] = True
-                    edge_subset[alloca_et][j] = True
+                    edge_subset[("instr", "alloca", "array")].add((src_instr, dst_array))
         else:
             region_hrchy = hls_data.region_hrchy.get(dst)
             if not region_hrchy:
@@ -284,8 +315,9 @@ def get_directive_subset(hls_data, hetero_data, dir_type):
         edge_index = hetero_data[et].edge_index
         for i in range(edge_index.size(1)):
             src, dst = edge_index[:, i]
+            src, dst = src.item(), dst.item()
             if src_node_subset[src] and dst_node_subset[dst]:
-                edge_subset[et][i] = True
+                edge_subset[et].add((src, dst))
 
     index_map = {nt: {} for nt in DIRECTIVE_NODE_TYPES[dir_type]}
     for nt, mask in node_subset.items():
@@ -295,15 +327,13 @@ def get_directive_subset(hls_data, hetero_data, dir_type):
                 index_map[nt][i] = idx
                 idx += 1
 
-    edge_index_subset = {et: [] for et in DIRECTIVE_EDGE_TYPES[dir_type]}
-    for et, mask in edge_subset.items():
-        for i, m in enumerate(mask):
-            if m:
-                src, dst = hetero_data[et].edge_index[:, i]
-                src, dst = src.item(), dst.item()
-                edge_index_subset[et].append(
-                    (index_map[et[0]][src], index_map[et[2]][dst])
-                )
+    edge_subset_reindexed = {
+        et: [
+            (index_map[et[0]][src], index_map[et[2]][dst])
+            for src, dst in edges
+        ]
+        for et, edges in edge_subset.items()
+    }
 
     for nt in DIRECTIVE_NODE_TYPES[dir_type]:
         if len(node_subset[nt]) == 0:
@@ -312,15 +342,15 @@ def get_directive_subset(hls_data, hetero_data, dir_type):
             node_subset[nt] = torch.tensor(node_subset[nt], dtype=torch.bool)
 
     for et in DIRECTIVE_EDGE_TYPES[dir_type]:
-        if len(edge_index_subset[et]) == 0:
-            edge_index_subset[et] = torch.empty((2, 0), dtype=torch.long)
+        if len(edge_subset_reindexed[et]) == 0:
+            edge_subset_reindexed[et] = torch.empty((2, 0), dtype=torch.long)
         else:
-            src, dst = zip(*edge_index_subset[et])
+            src, dst = zip(*edge_subset_reindexed[et])
             src = torch.tensor(src, dtype=torch.long)
             dst = torch.tensor(dst, dtype=torch.long)
-            edge_index_subset[et] = torch.stack([src, dst], dim=0)
+            edge_subset_reindexed[et] = torch.stack([src, dst], dim=0)
 
-    return node_subset, edge_index_subset
+    return node_subset, edge_subset_reindexed
 
 
 def to_pyg(
@@ -328,8 +358,8 @@ def to_pyg(
     add_self_loops: bool = True,
     add_reversed_edges: bool = True,
     feature_names_dict: Optional[Dict[str, List[str]]] = None
-) -> HeteroData:
-    data = HeteroData()
+) -> HLSHeteroData:
+    data = HLSHeteroData()
     
     for nt in NODE_TYPES:
         nodes = hls_data.nodes.get(nt)
@@ -393,12 +423,14 @@ def to_pyg(
             else:
                 data[nt, "to", nt].edge_index = torch.empty((2, 0), dtype=torch.long)
 
-    data.dir_node_subsets = {}
-    data.dir_edge_index_subsets = {}
     for dt in DIRECTIVE_NODE_TYPES.keys():
-        node_subset, edge_index_subsets = get_directive_subset(hls_data, data, dt)
-        data.dir_node_subsets[dt] = node_subset
-        data.dir_edge_index_subsets[dt] = edge_index_subsets
+        node_subsets, edge_subsets = get_directive_subset(hls_data, data, dt)
+        # data.__setattr__(f"{dt}_x_mask_dict", node_subsets)
+        # data.__setattr__(f"{dt}_edge_index_dict", edge_subsets)
+        for nt, mask in node_subsets.items():
+            data[nt].__setattr__(f"{dt}_x_mask", mask)
+        for et, edge_index in edge_subsets.items():
+            data[et].__setattr__(f"{dt}_edge_index", edge_index)
 
     return data
 
