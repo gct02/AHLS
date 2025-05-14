@@ -1,88 +1,88 @@
 {
-  "directives": {
-    "pipeline soft_max": {
-      "possible_directives": [
+  "directives":{
+    "pipeline soft_max":{
+      "possible_directives":[
         "set_directive_pipeline -off \"soft_max\""
       ],
-      "function": "soft_max",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"soft_max",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition net_outputs soft_max": {
-      "possible_directives": [
+    "array_partition net_outputs soft_max":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"soft_max\" net_outputs"
       ],
-      "function": "soft_max",
-      "label": "",
-      "variable": "net_outputs",
-      "directive_type": "array_partition"
+      "function":"soft_max",
+      "label":"",
+      "variable":"net_outputs",
+      "directive_type":"array_partition"
     },
-    "array_partition activations soft_max": {
-      "possible_directives": [
+    "array_partition activations soft_max":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"soft_max\" activations"
       ],
-      "function": "soft_max",
-      "label": "",
-      "variable": "activations",
-      "directive_type": "array_partition"
+      "function":"soft_max",
+      "label":"",
+      "variable":"activations",
+      "directive_type":"array_partition"
     },
-    "loop_merge soft_max": {
-      "possible_directives": [
+    "loop_merge soft_max":{
+      "possible_directives":[
         "",
         "set_directive_loop_merge \"soft_max\""
       ],
-      "function": "soft_max",
-      "label": "",
-      "directive_type": "loop_merge"
+      "function":"soft_max",
+      "label":"",
+      "directive_type":"loop_merge"
     },
-    "unroll soft_max_loop1": {
-      "possible_directives": [
+    "unroll soft_max_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"soft_max/soft_max_loop1\""
       ],
-      "function": "soft_max",
-      "label": "soft_max_loop1",
-      "directive_type": "unroll"
+      "function":"soft_max",
+      "label":"soft_max_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline soft_max_loop1": {
-      "possible_directives": [
+    "pipeline soft_max_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"soft_max/soft_max_loop1\"",
         "set_directive_pipeline \"soft_max/soft_max_loop1\""
       ],
-      "function": "soft_max",
-      "label": "soft_max_loop1",
-      "directive_type": "pipeline"
+      "function":"soft_max",
+      "label":"soft_max_loop1",
+      "directive_type":"pipeline"
     },
-    "unroll soft_max_loop2": {
-      "possible_directives": [
+    "unroll soft_max_loop2":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"soft_max/soft_max_loop2\""
       ],
-      "function": "soft_max",
-      "label": "soft_max_loop2",
-      "directive_type": "unroll"
+      "function":"soft_max",
+      "label":"soft_max_loop2",
+      "directive_type":"unroll"
     },
-    "pipeline soft_max_loop2": {
-      "possible_directives": [
+    "pipeline soft_max_loop2":{
+      "possible_directives":[
         "set_directive_pipeline -off \"soft_max/soft_max_loop2\"",
         "set_directive_pipeline \"soft_max/soft_max_loop2\""
       ],
-      "function": "soft_max",
-      "label": "soft_max_loop2",
-      "directive_type": "pipeline"
+      "function":"soft_max",
+      "label":"soft_max_loop2",
+      "directive_type":"pipeline"
     },
-    "pipeline RELU": {
-      "possible_directives": [
+    "pipeline RELU":{
+      "possible_directives":[
         "set_directive_pipeline -off \"RELU\""
       ],
-      "function": "RELU",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"RELU",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition activations RELU": {
-      "possible_directives": [
+    "array_partition activations RELU":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"RELU\" activations",
         "set_directive_array_partition -type block -factor 2 \"RELU\" activations",
@@ -96,13 +96,13 @@
         "set_directive_array_partition -type block -factor 32 \"RELU\" activations",
         "set_directive_array_partition -type cyclic -factor 32 \"RELU\" activations"
       ],
-      "function": "RELU",
-      "label": "",
-      "variable": "activations",
-      "directive_type": "array_partition"
+      "function":"RELU",
+      "label":"",
+      "variable":"activations",
+      "directive_type":"array_partition"
     },
-    "array_partition dactivations RELU": {
-      "possible_directives": [
+    "array_partition dactivations RELU":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"RELU\" dactivations",
         "set_directive_array_partition -type block -factor 2 \"RELU\" dactivations",
@@ -116,39 +116,39 @@
         "set_directive_array_partition -type block -factor 32 \"RELU\" dactivations",
         "set_directive_array_partition -type cyclic -factor 32 \"RELU\" dactivations"
       ],
-      "function": "RELU",
-      "label": "",
-      "variable": "dactivations",
-      "directive_type": "array_partition"
+      "function":"RELU",
+      "label":"",
+      "variable":"dactivations",
+      "directive_type":"array_partition"
     },
-    "unroll RELU_loop1": {
-      "possible_directives": [
+    "unroll RELU_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"RELU/RELU_loop1\""
       ],
-      "function": "RELU",
-      "label": "RELU_loop1",
-      "directive_type": "unroll"
+      "function":"RELU",
+      "label":"RELU_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline RELU_loop1": {
-      "possible_directives": [
+    "pipeline RELU_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"RELU/RELU_loop1\"",
         "set_directive_pipeline \"RELU/RELU_loop1\""
       ],
-      "function": "RELU",
-      "label": "RELU_loop1",
-      "directive_type": "pipeline"
+      "function":"RELU",
+      "label":"RELU_loop1",
+      "directive_type":"pipeline"
     },
-    "pipeline add_bias_to_activations": {
-      "possible_directives": [
+    "pipeline add_bias_to_activations":{
+      "possible_directives":[
         "set_directive_pipeline -off \"add_bias_to_activations\""
       ],
-      "function": "add_bias_to_activations",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"add_bias_to_activations",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition biases add_bias_to_activations": {
-      "possible_directives": [
+    "array_partition biases add_bias_to_activations":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"add_bias_to_activations\" biases",
         "set_directive_array_partition -type block -factor 2 \"add_bias_to_activations\" biases",
@@ -162,13 +162,13 @@
         "set_directive_array_partition -type block -factor 32 \"add_bias_to_activations\" biases",
         "set_directive_array_partition -type cyclic -factor 32 \"add_bias_to_activations\" biases"
       ],
-      "function": "add_bias_to_activations",
-      "label": "",
-      "variable": "biases",
-      "directive_type": "array_partition"
+      "function":"add_bias_to_activations",
+      "label":"",
+      "variable":"biases",
+      "directive_type":"array_partition"
     },
-    "array_partition activations add_bias_to_activations": {
-      "possible_directives": [
+    "array_partition activations add_bias_to_activations":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"add_bias_to_activations\" activations",
         "set_directive_array_partition -type block -factor 2 \"add_bias_to_activations\" activations",
@@ -182,39 +182,39 @@
         "set_directive_array_partition -type block -factor 32 \"add_bias_to_activations\" activations",
         "set_directive_array_partition -type cyclic -factor 32 \"add_bias_to_activations\" activations"
       ],
-      "function": "add_bias_to_activations",
-      "label": "",
-      "variable": "activations",
-      "directive_type": "array_partition"
+      "function":"add_bias_to_activations",
+      "label":"",
+      "variable":"activations",
+      "directive_type":"array_partition"
     },
-    "unroll add_bias_to_activations_loop1": {
-      "possible_directives": [
+    "unroll add_bias_to_activations_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"add_bias_to_activations/add_bias_to_activations_loop1\""
       ],
-      "function": "add_bias_to_activations",
-      "label": "add_bias_to_activations_loop1",
-      "directive_type": "unroll"
+      "function":"add_bias_to_activations",
+      "label":"add_bias_to_activations_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline add_bias_to_activations_loop1": {
-      "possible_directives": [
+    "pipeline add_bias_to_activations_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"add_bias_to_activations/add_bias_to_activations_loop1\"",
         "set_directive_pipeline \"add_bias_to_activations/add_bias_to_activations_loop1\""
       ],
-      "function": "add_bias_to_activations",
-      "label": "add_bias_to_activations_loop1",
-      "directive_type": "pipeline"
+      "function":"add_bias_to_activations",
+      "label":"add_bias_to_activations_loop1",
+      "directive_type":"pipeline"
     },
-    "pipeline matrix_vector_product_with_bias_input_layer": {
-      "possible_directives": [
+    "pipeline matrix_vector_product_with_bias_input_layer":{
+      "possible_directives":[
         "set_directive_pipeline -off \"matrix_vector_product_with_bias_input_layer\""
       ],
-      "function": "matrix_vector_product_with_bias_input_layer",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"matrix_vector_product_with_bias_input_layer",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition biases matrix_vector_product_with_bias_input_layer": {
-      "possible_directives": [
+    "array_partition biases matrix_vector_product_with_bias_input_layer":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"matrix_vector_product_with_bias_input_layer\" biases",
         "set_directive_array_partition -type block -factor 2 \"matrix_vector_product_with_bias_input_layer\" biases",
@@ -228,13 +228,13 @@
         "set_directive_array_partition -type block -factor 32 \"matrix_vector_product_with_bias_input_layer\" biases",
         "set_directive_array_partition -type cyclic -factor 32 \"matrix_vector_product_with_bias_input_layer\" biases"
       ],
-      "function": "matrix_vector_product_with_bias_input_layer",
-      "label": "",
-      "variable": "biases",
-      "directive_type": "array_partition"
+      "function":"matrix_vector_product_with_bias_input_layer",
+      "label":"",
+      "variable":"biases",
+      "directive_type":"array_partition"
     },
-    "array_partition weights matrix_vector_product_with_bias_input_layer": {
-      "possible_directives": [
+    "array_partition weights matrix_vector_product_with_bias_input_layer":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"matrix_vector_product_with_bias_input_layer\" weights",
         "set_directive_array_partition -type block -factor 2 \"matrix_vector_product_with_bias_input_layer\" weights",
@@ -254,13 +254,13 @@
         "set_directive_array_partition -type block -factor 256 \"matrix_vector_product_with_bias_input_layer\" weights",
         "set_directive_array_partition -type cyclic -factor 256 \"matrix_vector_product_with_bias_input_layer\" weights"
       ],
-      "function": "matrix_vector_product_with_bias_input_layer",
-      "label": "",
-      "variable": "weights",
-      "directive_type": "array_partition"
+      "function":"matrix_vector_product_with_bias_input_layer",
+      "label":"",
+      "variable":"weights",
+      "directive_type":"array_partition"
     },
-    "array_partition activations matrix_vector_product_with_bias_input_layer": {
-      "possible_directives": [
+    "array_partition activations matrix_vector_product_with_bias_input_layer":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"matrix_vector_product_with_bias_input_layer\" activations",
         "set_directive_array_partition -type block -factor 2 \"matrix_vector_product_with_bias_input_layer\" activations",
@@ -274,13 +274,13 @@
         "set_directive_array_partition -type block -factor 32 \"matrix_vector_product_with_bias_input_layer\" activations",
         "set_directive_array_partition -type cyclic -factor 32 \"matrix_vector_product_with_bias_input_layer\" activations"
       ],
-      "function": "matrix_vector_product_with_bias_input_layer",
-      "label": "",
-      "variable": "activations",
-      "directive_type": "array_partition"
+      "function":"matrix_vector_product_with_bias_input_layer",
+      "label":"",
+      "variable":"activations",
+      "directive_type":"array_partition"
     },
-    "array_partition input_sample matrix_vector_product_with_bias_input_layer": {
-      "possible_directives": [
+    "array_partition input_sample matrix_vector_product_with_bias_input_layer":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"matrix_vector_product_with_bias_input_layer\" input_sample",
         "set_directive_array_partition -type block -factor 2 \"matrix_vector_product_with_bias_input_layer\" input_sample",
@@ -288,13 +288,13 @@
         "set_directive_array_partition -type block -factor 4 \"matrix_vector_product_with_bias_input_layer\" input_sample",
         "set_directive_array_partition -type cyclic -factor 4 \"matrix_vector_product_with_bias_input_layer\" input_sample"
       ],
-      "function": "matrix_vector_product_with_bias_input_layer",
-      "label": "",
-      "variable": "input_sample",
-      "directive_type": "array_partition"
+      "function":"matrix_vector_product_with_bias_input_layer",
+      "label":"",
+      "variable":"input_sample",
+      "directive_type":"array_partition"
     },
-    "unroll matrix_vector_product_with_bias_input_layer_loop1": {
-      "possible_directives": [
+    "unroll matrix_vector_product_with_bias_input_layer_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1\"",
         "set_directive_unroll -factor 2 \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1\"",
@@ -303,58 +303,58 @@
         "set_directive_unroll -factor 16 \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1\"",
         "set_directive_unroll -factor 32 \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1\""
       ],
-      "function": "matrix_vector_product_with_bias_input_layer",
-      "label": "matrix_vector_product_with_bias_input_layer_loop1",
-      "directive_type": "unroll"
+      "function":"matrix_vector_product_with_bias_input_layer",
+      "label":"matrix_vector_product_with_bias_input_layer_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline matrix_vector_product_with_bias_input_layer_loop1": {
-      "possible_directives": [
+    "pipeline matrix_vector_product_with_bias_input_layer_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1\"",
         "set_directive_pipeline \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1\""
       ],
-      "function": "matrix_vector_product_with_bias_input_layer",
-      "label": "matrix_vector_product_with_bias_input_layer_loop1",
-      "directive_type": "pipeline"
+      "function":"matrix_vector_product_with_bias_input_layer",
+      "label":"matrix_vector_product_with_bias_input_layer_loop1",
+      "directive_type":"pipeline"
     },
-    "unroll matrix_vector_product_with_bias_input_layer_loop1_1": {
-      "possible_directives": [
+    "unroll matrix_vector_product_with_bias_input_layer_loop1_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1_1\"",
         "set_directive_unroll -factor 2 \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1_1\"",
         "set_directive_unroll -factor 4 \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1_1\""
       ],
-      "function": "matrix_vector_product_with_bias_input_layer",
-      "label": "matrix_vector_product_with_bias_input_layer_loop1_1",
-      "directive_type": "unroll"
+      "function":"matrix_vector_product_with_bias_input_layer",
+      "label":"matrix_vector_product_with_bias_input_layer_loop1_1",
+      "directive_type":"unroll"
     },
-    "pipeline matrix_vector_product_with_bias_input_layer_loop1_1": {
-      "possible_directives": [
+    "pipeline matrix_vector_product_with_bias_input_layer_loop1_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1_1\"",
         "set_directive_pipeline \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1_1\""
       ],
-      "function": "matrix_vector_product_with_bias_input_layer",
-      "label": "matrix_vector_product_with_bias_input_layer_loop1_1",
-      "directive_type": "pipeline"
+      "function":"matrix_vector_product_with_bias_input_layer",
+      "label":"matrix_vector_product_with_bias_input_layer_loop1_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten matrix_vector_product_with_bias_input_layer_loop1_1": {
-      "possible_directives": [
+    "loop_flatten matrix_vector_product_with_bias_input_layer_loop1_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1_1\"",
         "set_directive_loop_flatten \"matrix_vector_product_with_bias_input_layer/matrix_vector_product_with_bias_input_layer_loop1_1\""
       ],
-      "function": "matrix_vector_product_with_bias_input_layer",
-      "label": "matrix_vector_product_with_bias_input_layer_loop1_1",
-      "directive_type": "loop_flatten"
+      "function":"matrix_vector_product_with_bias_input_layer",
+      "label":"matrix_vector_product_with_bias_input_layer_loop1_1",
+      "directive_type":"loop_flatten"
     },
-    "pipeline matrix_vector_product_with_bias_second_layer": {
-      "possible_directives": [
+    "pipeline matrix_vector_product_with_bias_second_layer":{
+      "possible_directives":[
         "set_directive_pipeline -off \"matrix_vector_product_with_bias_second_layer\""
       ],
-      "function": "matrix_vector_product_with_bias_second_layer",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"matrix_vector_product_with_bias_second_layer",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition biases matrix_vector_product_with_bias_second_layer": {
-      "possible_directives": [
+    "array_partition biases matrix_vector_product_with_bias_second_layer":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"matrix_vector_product_with_bias_second_layer\" biases",
         "set_directive_array_partition -type block -factor 2 \"matrix_vector_product_with_bias_second_layer\" biases",
@@ -368,13 +368,13 @@
         "set_directive_array_partition -type block -factor 32 \"matrix_vector_product_with_bias_second_layer\" biases",
         "set_directive_array_partition -type cyclic -factor 32 \"matrix_vector_product_with_bias_second_layer\" biases"
       ],
-      "function": "matrix_vector_product_with_bias_second_layer",
-      "label": "",
-      "variable": "biases",
-      "directive_type": "array_partition"
+      "function":"matrix_vector_product_with_bias_second_layer",
+      "label":"",
+      "variable":"biases",
+      "directive_type":"array_partition"
     },
-    "array_partition weights matrix_vector_product_with_bias_second_layer": {
-      "possible_directives": [
+    "array_partition weights matrix_vector_product_with_bias_second_layer":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"matrix_vector_product_with_bias_second_layer\" weights",
         "set_directive_array_partition -type block -factor 2 \"matrix_vector_product_with_bias_second_layer\" weights",
@@ -400,13 +400,13 @@
         "set_directive_array_partition -type block -factor 2048 \"matrix_vector_product_with_bias_second_layer\" weights",
         "set_directive_array_partition -type cyclic -factor 2048 \"matrix_vector_product_with_bias_second_layer\" weights"
       ],
-      "function": "matrix_vector_product_with_bias_second_layer",
-      "label": "",
-      "variable": "weights",
-      "directive_type": "array_partition"
+      "function":"matrix_vector_product_with_bias_second_layer",
+      "label":"",
+      "variable":"weights",
+      "directive_type":"array_partition"
     },
-    "array_partition activations matrix_vector_product_with_bias_second_layer": {
-      "possible_directives": [
+    "array_partition activations matrix_vector_product_with_bias_second_layer":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"matrix_vector_product_with_bias_second_layer\" activations",
         "set_directive_array_partition -type block -factor 2 \"matrix_vector_product_with_bias_second_layer\" activations",
@@ -420,13 +420,13 @@
         "set_directive_array_partition -type block -factor 32 \"matrix_vector_product_with_bias_second_layer\" activations",
         "set_directive_array_partition -type cyclic -factor 32 \"matrix_vector_product_with_bias_second_layer\" activations"
       ],
-      "function": "matrix_vector_product_with_bias_second_layer",
-      "label": "",
-      "variable": "activations",
-      "directive_type": "array_partition"
+      "function":"matrix_vector_product_with_bias_second_layer",
+      "label":"",
+      "variable":"activations",
+      "directive_type":"array_partition"
     },
-    "array_partition input_activations matrix_vector_product_with_bias_second_layer": {
-      "possible_directives": [
+    "array_partition input_activations matrix_vector_product_with_bias_second_layer":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"matrix_vector_product_with_bias_second_layer\" input_activations",
         "set_directive_array_partition -type block -factor 2 \"matrix_vector_product_with_bias_second_layer\" input_activations",
@@ -440,13 +440,13 @@
         "set_directive_array_partition -type block -factor 32 \"matrix_vector_product_with_bias_second_layer\" input_activations",
         "set_directive_array_partition -type cyclic -factor 32 \"matrix_vector_product_with_bias_second_layer\" input_activations"
       ],
-      "function": "matrix_vector_product_with_bias_second_layer",
-      "label": "",
-      "variable": "input_activations",
-      "directive_type": "array_partition"
+      "function":"matrix_vector_product_with_bias_second_layer",
+      "label":"",
+      "variable":"input_activations",
+      "directive_type":"array_partition"
     },
-    "unroll matrix_vector_product_with_bias_second_layer_loop1": {
-      "possible_directives": [
+    "unroll matrix_vector_product_with_bias_second_layer_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1\"",
         "set_directive_unroll -factor 2 \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1\"",
@@ -455,21 +455,21 @@
         "set_directive_unroll -factor 16 \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1\"",
         "set_directive_unroll -factor 32 \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1\""
       ],
-      "function": "matrix_vector_product_with_bias_second_layer",
-      "label": "matrix_vector_product_with_bias_second_layer_loop1",
-      "directive_type": "unroll"
+      "function":"matrix_vector_product_with_bias_second_layer",
+      "label":"matrix_vector_product_with_bias_second_layer_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline matrix_vector_product_with_bias_second_layer_loop1": {
-      "possible_directives": [
+    "pipeline matrix_vector_product_with_bias_second_layer_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1\"",
         "set_directive_pipeline \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1\""
       ],
-      "function": "matrix_vector_product_with_bias_second_layer",
-      "label": "matrix_vector_product_with_bias_second_layer_loop1",
-      "directive_type": "pipeline"
+      "function":"matrix_vector_product_with_bias_second_layer",
+      "label":"matrix_vector_product_with_bias_second_layer_loop1",
+      "directive_type":"pipeline"
     },
-    "unroll matrix_vector_product_with_bias_second_layer_loop1_1": {
-      "possible_directives": [
+    "unroll matrix_vector_product_with_bias_second_layer_loop1_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1_1\"",
         "set_directive_unroll -factor 2 \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1_1\"",
@@ -478,48 +478,48 @@
         "set_directive_unroll -factor 16 \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1_1\"",
         "set_directive_unroll -factor 32 \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1_1\""
       ],
-      "function": "matrix_vector_product_with_bias_second_layer",
-      "label": "matrix_vector_product_with_bias_second_layer_loop1_1",
-      "directive_type": "unroll"
+      "function":"matrix_vector_product_with_bias_second_layer",
+      "label":"matrix_vector_product_with_bias_second_layer_loop1_1",
+      "directive_type":"unroll"
     },
-    "pipeline matrix_vector_product_with_bias_second_layer_loop1_1": {
-      "possible_directives": [
+    "pipeline matrix_vector_product_with_bias_second_layer_loop1_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1_1\"",
         "set_directive_pipeline \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1_1\""
       ],
-      "function": "matrix_vector_product_with_bias_second_layer",
-      "label": "matrix_vector_product_with_bias_second_layer_loop1_1",
-      "directive_type": "pipeline"
+      "function":"matrix_vector_product_with_bias_second_layer",
+      "label":"matrix_vector_product_with_bias_second_layer_loop1_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten matrix_vector_product_with_bias_second_layer_loop1_1": {
-      "possible_directives": [
+    "loop_flatten matrix_vector_product_with_bias_second_layer_loop1_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1_1\"",
         "set_directive_loop_flatten \"matrix_vector_product_with_bias_second_layer/matrix_vector_product_with_bias_second_layer_loop1_1\""
       ],
-      "function": "matrix_vector_product_with_bias_second_layer",
-      "label": "matrix_vector_product_with_bias_second_layer_loop1_1",
-      "directive_type": "loop_flatten"
+      "function":"matrix_vector_product_with_bias_second_layer",
+      "label":"matrix_vector_product_with_bias_second_layer_loop1_1",
+      "directive_type":"loop_flatten"
     },
-    "pipeline matrix_vector_product_with_bias_output_layer": {
-      "possible_directives": [
+    "pipeline matrix_vector_product_with_bias_output_layer":{
+      "possible_directives":[
         "set_directive_pipeline -off \"matrix_vector_product_with_bias_output_layer\""
       ],
-      "function": "matrix_vector_product_with_bias_output_layer",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"matrix_vector_product_with_bias_output_layer",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition biases matrix_vector_product_with_bias_output_layer": {
-      "possible_directives": [
+    "array_partition biases matrix_vector_product_with_bias_output_layer":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"matrix_vector_product_with_bias_output_layer\" biases"
       ],
-      "function": "matrix_vector_product_with_bias_output_layer",
-      "label": "",
-      "variable": "biases",
-      "directive_type": "array_partition"
+      "function":"matrix_vector_product_with_bias_output_layer",
+      "label":"",
+      "variable":"biases",
+      "directive_type":"array_partition"
     },
-    "array_partition weights matrix_vector_product_with_bias_output_layer": {
-      "possible_directives": [
+    "array_partition weights matrix_vector_product_with_bias_output_layer":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"matrix_vector_product_with_bias_output_layer\" weights",
         "set_directive_array_partition -type block -factor 2 \"matrix_vector_product_with_bias_output_layer\" weights",
@@ -535,23 +535,23 @@
         "set_directive_array_partition -type block -factor 64 \"matrix_vector_product_with_bias_output_layer\" weights",
         "set_directive_array_partition -type cyclic -factor 64 \"matrix_vector_product_with_bias_output_layer\" weights"
       ],
-      "function": "matrix_vector_product_with_bias_output_layer",
-      "label": "",
-      "variable": "weights",
-      "directive_type": "array_partition"
+      "function":"matrix_vector_product_with_bias_output_layer",
+      "label":"",
+      "variable":"weights",
+      "directive_type":"array_partition"
     },
-    "array_partition activations matrix_vector_product_with_bias_output_layer": {
-      "possible_directives": [
+    "array_partition activations matrix_vector_product_with_bias_output_layer":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"matrix_vector_product_with_bias_output_layer\" activations"
       ],
-      "function": "matrix_vector_product_with_bias_output_layer",
-      "label": "",
-      "variable": "activations",
-      "directive_type": "array_partition"
+      "function":"matrix_vector_product_with_bias_output_layer",
+      "label":"",
+      "variable":"activations",
+      "directive_type":"array_partition"
     },
-    "array_partition input_activations matrix_vector_product_with_bias_output_layer": {
-      "possible_directives": [
+    "array_partition input_activations matrix_vector_product_with_bias_output_layer":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"matrix_vector_product_with_bias_output_layer\" input_activations",
         "set_directive_array_partition -type block -factor 2 \"matrix_vector_product_with_bias_output_layer\" input_activations",
@@ -565,31 +565,31 @@
         "set_directive_array_partition -type block -factor 32 \"matrix_vector_product_with_bias_output_layer\" input_activations",
         "set_directive_array_partition -type cyclic -factor 32 \"matrix_vector_product_with_bias_output_layer\" input_activations"
       ],
-      "function": "matrix_vector_product_with_bias_output_layer",
-      "label": "",
-      "variable": "input_activations",
-      "directive_type": "array_partition"
+      "function":"matrix_vector_product_with_bias_output_layer",
+      "label":"",
+      "variable":"input_activations",
+      "directive_type":"array_partition"
     },
-    "unroll matrix_vector_product_with_bias_output_layer_loop1": {
-      "possible_directives": [
+    "unroll matrix_vector_product_with_bias_output_layer_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"matrix_vector_product_with_bias_output_layer/matrix_vector_product_with_bias_output_layer_loop1\""
       ],
-      "function": "matrix_vector_product_with_bias_output_layer",
-      "label": "matrix_vector_product_with_bias_output_layer_loop1",
-      "directive_type": "unroll"
+      "function":"matrix_vector_product_with_bias_output_layer",
+      "label":"matrix_vector_product_with_bias_output_layer_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline matrix_vector_product_with_bias_output_layer_loop1": {
-      "possible_directives": [
+    "pipeline matrix_vector_product_with_bias_output_layer_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"matrix_vector_product_with_bias_output_layer/matrix_vector_product_with_bias_output_layer_loop1\"",
         "set_directive_pipeline \"matrix_vector_product_with_bias_output_layer/matrix_vector_product_with_bias_output_layer_loop1\""
       ],
-      "function": "matrix_vector_product_with_bias_output_layer",
-      "label": "matrix_vector_product_with_bias_output_layer_loop1",
-      "directive_type": "pipeline"
+      "function":"matrix_vector_product_with_bias_output_layer",
+      "label":"matrix_vector_product_with_bias_output_layer_loop1",
+      "directive_type":"pipeline"
     },
-    "unroll matrix_vector_product_with_bias_output_layer_loop1_1": {
-      "possible_directives": [
+    "unroll matrix_vector_product_with_bias_output_layer_loop1_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"matrix_vector_product_with_bias_output_layer/matrix_vector_product_with_bias_output_layer_loop1_1\"",
         "set_directive_unroll -factor 2 \"matrix_vector_product_with_bias_output_layer/matrix_vector_product_with_bias_output_layer_loop1_1\"",
@@ -598,104 +598,104 @@
         "set_directive_unroll -factor 16 \"matrix_vector_product_with_bias_output_layer/matrix_vector_product_with_bias_output_layer_loop1_1\"",
         "set_directive_unroll -factor 32 \"matrix_vector_product_with_bias_output_layer/matrix_vector_product_with_bias_output_layer_loop1_1\""
       ],
-      "function": "matrix_vector_product_with_bias_output_layer",
-      "label": "matrix_vector_product_with_bias_output_layer_loop1_1",
-      "directive_type": "unroll"
+      "function":"matrix_vector_product_with_bias_output_layer",
+      "label":"matrix_vector_product_with_bias_output_layer_loop1_1",
+      "directive_type":"unroll"
     },
-    "pipeline matrix_vector_product_with_bias_output_layer_loop1_1": {
-      "possible_directives": [
+    "pipeline matrix_vector_product_with_bias_output_layer_loop1_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"matrix_vector_product_with_bias_output_layer/matrix_vector_product_with_bias_output_layer_loop1_1\"",
         "set_directive_pipeline \"matrix_vector_product_with_bias_output_layer/matrix_vector_product_with_bias_output_layer_loop1_1\""
       ],
-      "function": "matrix_vector_product_with_bias_output_layer",
-      "label": "matrix_vector_product_with_bias_output_layer_loop1_1",
-      "directive_type": "pipeline"
+      "function":"matrix_vector_product_with_bias_output_layer",
+      "label":"matrix_vector_product_with_bias_output_layer_loop1_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten matrix_vector_product_with_bias_output_layer_loop1_1": {
-      "possible_directives": [
+    "loop_flatten matrix_vector_product_with_bias_output_layer_loop1_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"matrix_vector_product_with_bias_output_layer/matrix_vector_product_with_bias_output_layer_loop1_1\"",
         "set_directive_loop_flatten \"matrix_vector_product_with_bias_output_layer/matrix_vector_product_with_bias_output_layer_loop1_1\""
       ],
-      "function": "matrix_vector_product_with_bias_output_layer",
-      "label": "matrix_vector_product_with_bias_output_layer_loop1_1",
-      "directive_type": "loop_flatten"
+      "function":"matrix_vector_product_with_bias_output_layer",
+      "label":"matrix_vector_product_with_bias_output_layer_loop1_1",
+      "directive_type":"loop_flatten"
     },
-    "pipeline take_difference": {
-      "possible_directives": [
+    "pipeline take_difference":{
+      "possible_directives":[
         "set_directive_pipeline -off \"take_difference\""
       ],
-      "function": "take_difference",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"take_difference",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition net_outputs take_difference": {
-      "possible_directives": [
+    "array_partition net_outputs take_difference":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"take_difference\" net_outputs"
       ],
-      "function": "take_difference",
-      "label": "",
-      "variable": "net_outputs",
-      "directive_type": "array_partition"
+      "function":"take_difference",
+      "label":"",
+      "variable":"net_outputs",
+      "directive_type":"array_partition"
     },
-    "array_partition solutions take_difference": {
-      "possible_directives": [
+    "array_partition solutions take_difference":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"take_difference\" solutions"
       ],
-      "function": "take_difference",
-      "label": "",
-      "variable": "solutions",
-      "directive_type": "array_partition"
+      "function":"take_difference",
+      "label":"",
+      "variable":"solutions",
+      "directive_type":"array_partition"
     },
-    "array_partition output_difference take_difference": {
-      "possible_directives": [
+    "array_partition output_difference take_difference":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"take_difference\" output_difference"
       ],
-      "function": "take_difference",
-      "label": "",
-      "variable": "output_difference",
-      "directive_type": "array_partition"
+      "function":"take_difference",
+      "label":"",
+      "variable":"output_difference",
+      "directive_type":"array_partition"
     },
-    "array_partition dactivations take_difference": {
-      "possible_directives": [
+    "array_partition dactivations take_difference":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"take_difference\" dactivations"
       ],
-      "function": "take_difference",
-      "label": "",
-      "variable": "dactivations",
-      "directive_type": "array_partition"
+      "function":"take_difference",
+      "label":"",
+      "variable":"dactivations",
+      "directive_type":"array_partition"
     },
-    "unroll take_difference_loop1": {
-      "possible_directives": [
+    "unroll take_difference_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"take_difference/take_difference_loop1\""
       ],
-      "function": "take_difference",
-      "label": "take_difference_loop1",
-      "directive_type": "unroll"
+      "function":"take_difference",
+      "label":"take_difference_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline take_difference_loop1": {
-      "possible_directives": [
+    "pipeline take_difference_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"take_difference/take_difference_loop1\"",
         "set_directive_pipeline \"take_difference/take_difference_loop1\""
       ],
-      "function": "take_difference",
-      "label": "take_difference_loop1",
-      "directive_type": "pipeline"
+      "function":"take_difference",
+      "label":"take_difference_loop1",
+      "directive_type":"pipeline"
     },
-    "pipeline get_delta_matrix_weights3": {
-      "possible_directives": [
+    "pipeline get_delta_matrix_weights3":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_delta_matrix_weights3\""
       ],
-      "function": "get_delta_matrix_weights3",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"get_delta_matrix_weights3",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition delta_weights3 get_delta_matrix_weights3": {
-      "possible_directives": [
+    "array_partition delta_weights3 get_delta_matrix_weights3":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_delta_matrix_weights3\" delta_weights3",
         "set_directive_array_partition -type block -factor 2 \"get_delta_matrix_weights3\" delta_weights3",
@@ -711,23 +711,23 @@
         "set_directive_array_partition -type block -factor 64 \"get_delta_matrix_weights3\" delta_weights3",
         "set_directive_array_partition -type cyclic -factor 64 \"get_delta_matrix_weights3\" delta_weights3"
       ],
-      "function": "get_delta_matrix_weights3",
-      "label": "",
-      "variable": "delta_weights3",
-      "directive_type": "array_partition"
+      "function":"get_delta_matrix_weights3",
+      "label":"",
+      "variable":"delta_weights3",
+      "directive_type":"array_partition"
     },
-    "array_partition output_difference get_delta_matrix_weights3": {
-      "possible_directives": [
+    "array_partition output_difference get_delta_matrix_weights3":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_delta_matrix_weights3\" output_difference"
       ],
-      "function": "get_delta_matrix_weights3",
-      "label": "",
-      "variable": "output_difference",
-      "directive_type": "array_partition"
+      "function":"get_delta_matrix_weights3",
+      "label":"",
+      "variable":"output_difference",
+      "directive_type":"array_partition"
     },
-    "array_partition last_activations get_delta_matrix_weights3": {
-      "possible_directives": [
+    "array_partition last_activations get_delta_matrix_weights3":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_delta_matrix_weights3\" last_activations",
         "set_directive_array_partition -type block -factor 2 \"get_delta_matrix_weights3\" last_activations",
@@ -741,13 +741,13 @@
         "set_directive_array_partition -type block -factor 32 \"get_delta_matrix_weights3\" last_activations",
         "set_directive_array_partition -type cyclic -factor 32 \"get_delta_matrix_weights3\" last_activations"
       ],
-      "function": "get_delta_matrix_weights3",
-      "label": "",
-      "variable": "last_activations",
-      "directive_type": "array_partition"
+      "function":"get_delta_matrix_weights3",
+      "label":"",
+      "variable":"last_activations",
+      "directive_type":"array_partition"
     },
-    "unroll get_delta_matrix_weights3_loop1": {
-      "possible_directives": [
+    "unroll get_delta_matrix_weights3_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"get_delta_matrix_weights3/get_delta_matrix_weights3_loop1\"",
         "set_directive_unroll -factor 2 \"get_delta_matrix_weights3/get_delta_matrix_weights3_loop1\"",
@@ -756,56 +756,56 @@
         "set_directive_unroll -factor 16 \"get_delta_matrix_weights3/get_delta_matrix_weights3_loop1\"",
         "set_directive_unroll -factor 32 \"get_delta_matrix_weights3/get_delta_matrix_weights3_loop1\""
       ],
-      "function": "get_delta_matrix_weights3",
-      "label": "get_delta_matrix_weights3_loop1",
-      "directive_type": "unroll"
+      "function":"get_delta_matrix_weights3",
+      "label":"get_delta_matrix_weights3_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline get_delta_matrix_weights3_loop1": {
-      "possible_directives": [
+    "pipeline get_delta_matrix_weights3_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_delta_matrix_weights3/get_delta_matrix_weights3_loop1\"",
         "set_directive_pipeline \"get_delta_matrix_weights3/get_delta_matrix_weights3_loop1\""
       ],
-      "function": "get_delta_matrix_weights3",
-      "label": "get_delta_matrix_weights3_loop1",
-      "directive_type": "pipeline"
+      "function":"get_delta_matrix_weights3",
+      "label":"get_delta_matrix_weights3_loop1",
+      "directive_type":"pipeline"
     },
-    "unroll get_delta_matrix_weights3_loop1_1": {
-      "possible_directives": [
+    "unroll get_delta_matrix_weights3_loop1_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"get_delta_matrix_weights3/get_delta_matrix_weights3_loop1_1\""
       ],
-      "function": "get_delta_matrix_weights3",
-      "label": "get_delta_matrix_weights3_loop1_1",
-      "directive_type": "unroll"
+      "function":"get_delta_matrix_weights3",
+      "label":"get_delta_matrix_weights3_loop1_1",
+      "directive_type":"unroll"
     },
-    "pipeline get_delta_matrix_weights3_loop1_1": {
-      "possible_directives": [
+    "pipeline get_delta_matrix_weights3_loop1_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_delta_matrix_weights3/get_delta_matrix_weights3_loop1_1\"",
         "set_directive_pipeline \"get_delta_matrix_weights3/get_delta_matrix_weights3_loop1_1\""
       ],
-      "function": "get_delta_matrix_weights3",
-      "label": "get_delta_matrix_weights3_loop1_1",
-      "directive_type": "pipeline"
+      "function":"get_delta_matrix_weights3",
+      "label":"get_delta_matrix_weights3_loop1_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten get_delta_matrix_weights3_loop1_1": {
-      "possible_directives": [
+    "loop_flatten get_delta_matrix_weights3_loop1_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"get_delta_matrix_weights3/get_delta_matrix_weights3_loop1_1\"",
         "set_directive_loop_flatten \"get_delta_matrix_weights3/get_delta_matrix_weights3_loop1_1\""
       ],
-      "function": "get_delta_matrix_weights3",
-      "label": "get_delta_matrix_weights3_loop1_1",
-      "directive_type": "loop_flatten"
+      "function":"get_delta_matrix_weights3",
+      "label":"get_delta_matrix_weights3_loop1_1",
+      "directive_type":"loop_flatten"
     },
-    "pipeline get_oracle_activations2": {
-      "possible_directives": [
+    "pipeline get_oracle_activations2":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_oracle_activations2\""
       ],
-      "function": "get_oracle_activations2",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"get_oracle_activations2",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition weights3 get_oracle_activations2": {
-      "possible_directives": [
+    "array_partition weights3 get_oracle_activations2":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_oracle_activations2\" weights3",
         "set_directive_array_partition -type block -factor 2 \"get_oracle_activations2\" weights3",
@@ -821,23 +821,23 @@
         "set_directive_array_partition -type block -factor 64 \"get_oracle_activations2\" weights3",
         "set_directive_array_partition -type cyclic -factor 64 \"get_oracle_activations2\" weights3"
       ],
-      "function": "get_oracle_activations2",
-      "label": "",
-      "variable": "weights3",
-      "directive_type": "array_partition"
+      "function":"get_oracle_activations2",
+      "label":"",
+      "variable":"weights3",
+      "directive_type":"array_partition"
     },
-    "array_partition output_differences get_oracle_activations2": {
-      "possible_directives": [
+    "array_partition output_differences get_oracle_activations2":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_oracle_activations2\" output_differences"
       ],
-      "function": "get_oracle_activations2",
-      "label": "",
-      "variable": "output_differences",
-      "directive_type": "array_partition"
+      "function":"get_oracle_activations2",
+      "label":"",
+      "variable":"output_differences",
+      "directive_type":"array_partition"
     },
-    "array_partition oracle_activations get_oracle_activations2": {
-      "possible_directives": [
+    "array_partition oracle_activations get_oracle_activations2":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_oracle_activations2\" oracle_activations",
         "set_directive_array_partition -type block -factor 2 \"get_oracle_activations2\" oracle_activations",
@@ -851,13 +851,13 @@
         "set_directive_array_partition -type block -factor 32 \"get_oracle_activations2\" oracle_activations",
         "set_directive_array_partition -type cyclic -factor 32 \"get_oracle_activations2\" oracle_activations"
       ],
-      "function": "get_oracle_activations2",
-      "label": "",
-      "variable": "oracle_activations",
-      "directive_type": "array_partition"
+      "function":"get_oracle_activations2",
+      "label":"",
+      "variable":"oracle_activations",
+      "directive_type":"array_partition"
     },
-    "array_partition dactivations get_oracle_activations2": {
-      "possible_directives": [
+    "array_partition dactivations get_oracle_activations2":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_oracle_activations2\" dactivations",
         "set_directive_array_partition -type block -factor 2 \"get_oracle_activations2\" dactivations",
@@ -871,13 +871,13 @@
         "set_directive_array_partition -type block -factor 32 \"get_oracle_activations2\" dactivations",
         "set_directive_array_partition -type cyclic -factor 32 \"get_oracle_activations2\" dactivations"
       ],
-      "function": "get_oracle_activations2",
-      "label": "",
-      "variable": "dactivations",
-      "directive_type": "array_partition"
+      "function":"get_oracle_activations2",
+      "label":"",
+      "variable":"dactivations",
+      "directive_type":"array_partition"
     },
-    "unroll get_oracle_activations2_loop1": {
-      "possible_directives": [
+    "unroll get_oracle_activations2_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"get_oracle_activations2/get_oracle_activations2_loop1\"",
         "set_directive_unroll -factor 2 \"get_oracle_activations2/get_oracle_activations2_loop1\"",
@@ -886,56 +886,56 @@
         "set_directive_unroll -factor 16 \"get_oracle_activations2/get_oracle_activations2_loop1\"",
         "set_directive_unroll -factor 32 \"get_oracle_activations2/get_oracle_activations2_loop1\""
       ],
-      "function": "get_oracle_activations2",
-      "label": "get_oracle_activations2_loop1",
-      "directive_type": "unroll"
+      "function":"get_oracle_activations2",
+      "label":"get_oracle_activations2_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline get_oracle_activations2_loop1": {
-      "possible_directives": [
+    "pipeline get_oracle_activations2_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_oracle_activations2/get_oracle_activations2_loop1\"",
         "set_directive_pipeline \"get_oracle_activations2/get_oracle_activations2_loop1\""
       ],
-      "function": "get_oracle_activations2",
-      "label": "get_oracle_activations2_loop1",
-      "directive_type": "pipeline"
+      "function":"get_oracle_activations2",
+      "label":"get_oracle_activations2_loop1",
+      "directive_type":"pipeline"
     },
-    "unroll get_oracle_activations2_loop1_1": {
-      "possible_directives": [
+    "unroll get_oracle_activations2_loop1_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"get_oracle_activations2/get_oracle_activations2_loop1_1\""
       ],
-      "function": "get_oracle_activations2",
-      "label": "get_oracle_activations2_loop1_1",
-      "directive_type": "unroll"
+      "function":"get_oracle_activations2",
+      "label":"get_oracle_activations2_loop1_1",
+      "directive_type":"unroll"
     },
-    "pipeline get_oracle_activations2_loop1_1": {
-      "possible_directives": [
+    "pipeline get_oracle_activations2_loop1_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_oracle_activations2/get_oracle_activations2_loop1_1\"",
         "set_directive_pipeline \"get_oracle_activations2/get_oracle_activations2_loop1_1\""
       ],
-      "function": "get_oracle_activations2",
-      "label": "get_oracle_activations2_loop1_1",
-      "directive_type": "pipeline"
+      "function":"get_oracle_activations2",
+      "label":"get_oracle_activations2_loop1_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten get_oracle_activations2_loop1_1": {
-      "possible_directives": [
+    "loop_flatten get_oracle_activations2_loop1_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"get_oracle_activations2/get_oracle_activations2_loop1_1\"",
         "set_directive_loop_flatten \"get_oracle_activations2/get_oracle_activations2_loop1_1\""
       ],
-      "function": "get_oracle_activations2",
-      "label": "get_oracle_activations2_loop1_1",
-      "directive_type": "loop_flatten"
+      "function":"get_oracle_activations2",
+      "label":"get_oracle_activations2_loop1_1",
+      "directive_type":"loop_flatten"
     },
-    "pipeline get_delta_matrix_weights2": {
-      "possible_directives": [
+    "pipeline get_delta_matrix_weights2":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_delta_matrix_weights2\""
       ],
-      "function": "get_delta_matrix_weights2",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"get_delta_matrix_weights2",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition delta_weights2 get_delta_matrix_weights2": {
-      "possible_directives": [
+    "array_partition delta_weights2 get_delta_matrix_weights2":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_delta_matrix_weights2\" delta_weights2",
         "set_directive_array_partition -type block -factor 2 \"get_delta_matrix_weights2\" delta_weights2",
@@ -961,13 +961,13 @@
         "set_directive_array_partition -type block -factor 2048 \"get_delta_matrix_weights2\" delta_weights2",
         "set_directive_array_partition -type cyclic -factor 2048 \"get_delta_matrix_weights2\" delta_weights2"
       ],
-      "function": "get_delta_matrix_weights2",
-      "label": "",
-      "variable": "delta_weights2",
-      "directive_type": "array_partition"
+      "function":"get_delta_matrix_weights2",
+      "label":"",
+      "variable":"delta_weights2",
+      "directive_type":"array_partition"
     },
-    "array_partition output_difference get_delta_matrix_weights2": {
-      "possible_directives": [
+    "array_partition output_difference get_delta_matrix_weights2":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_delta_matrix_weights2\" output_difference",
         "set_directive_array_partition -type block -factor 2 \"get_delta_matrix_weights2\" output_difference",
@@ -981,13 +981,13 @@
         "set_directive_array_partition -type block -factor 32 \"get_delta_matrix_weights2\" output_difference",
         "set_directive_array_partition -type cyclic -factor 32 \"get_delta_matrix_weights2\" output_difference"
       ],
-      "function": "get_delta_matrix_weights2",
-      "label": "",
-      "variable": "output_difference",
-      "directive_type": "array_partition"
+      "function":"get_delta_matrix_weights2",
+      "label":"",
+      "variable":"output_difference",
+      "directive_type":"array_partition"
     },
-    "array_partition last_activations get_delta_matrix_weights2": {
-      "possible_directives": [
+    "array_partition last_activations get_delta_matrix_weights2":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_delta_matrix_weights2\" last_activations",
         "set_directive_array_partition -type block -factor 2 \"get_delta_matrix_weights2\" last_activations",
@@ -1001,13 +1001,13 @@
         "set_directive_array_partition -type block -factor 32 \"get_delta_matrix_weights2\" last_activations",
         "set_directive_array_partition -type cyclic -factor 32 \"get_delta_matrix_weights2\" last_activations"
       ],
-      "function": "get_delta_matrix_weights2",
-      "label": "",
-      "variable": "last_activations",
-      "directive_type": "array_partition"
+      "function":"get_delta_matrix_weights2",
+      "label":"",
+      "variable":"last_activations",
+      "directive_type":"array_partition"
     },
-    "unroll get_delta_matrix_weights2_loop1": {
-      "possible_directives": [
+    "unroll get_delta_matrix_weights2_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1\"",
         "set_directive_unroll -factor 2 \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1\"",
@@ -1016,21 +1016,21 @@
         "set_directive_unroll -factor 16 \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1\"",
         "set_directive_unroll -factor 32 \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1\""
       ],
-      "function": "get_delta_matrix_weights2",
-      "label": "get_delta_matrix_weights2_loop1",
-      "directive_type": "unroll"
+      "function":"get_delta_matrix_weights2",
+      "label":"get_delta_matrix_weights2_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline get_delta_matrix_weights2_loop1": {
-      "possible_directives": [
+    "pipeline get_delta_matrix_weights2_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1\"",
         "set_directive_pipeline \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1\""
       ],
-      "function": "get_delta_matrix_weights2",
-      "label": "get_delta_matrix_weights2_loop1",
-      "directive_type": "pipeline"
+      "function":"get_delta_matrix_weights2",
+      "label":"get_delta_matrix_weights2_loop1",
+      "directive_type":"pipeline"
     },
-    "unroll get_delta_matrix_weights2_loop1_1": {
-      "possible_directives": [
+    "unroll get_delta_matrix_weights2_loop1_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1_1\"",
         "set_directive_unroll -factor 2 \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1_1\"",
@@ -1039,38 +1039,38 @@
         "set_directive_unroll -factor 16 \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1_1\"",
         "set_directive_unroll -factor 32 \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1_1\""
       ],
-      "function": "get_delta_matrix_weights2",
-      "label": "get_delta_matrix_weights2_loop1_1",
-      "directive_type": "unroll"
+      "function":"get_delta_matrix_weights2",
+      "label":"get_delta_matrix_weights2_loop1_1",
+      "directive_type":"unroll"
     },
-    "pipeline get_delta_matrix_weights2_loop1_1": {
-      "possible_directives": [
+    "pipeline get_delta_matrix_weights2_loop1_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1_1\"",
         "set_directive_pipeline \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1_1\""
       ],
-      "function": "get_delta_matrix_weights2",
-      "label": "get_delta_matrix_weights2_loop1_1",
-      "directive_type": "pipeline"
+      "function":"get_delta_matrix_weights2",
+      "label":"get_delta_matrix_weights2_loop1_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten get_delta_matrix_weights2_loop1_1": {
-      "possible_directives": [
+    "loop_flatten get_delta_matrix_weights2_loop1_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1_1\"",
         "set_directive_loop_flatten \"get_delta_matrix_weights2/get_delta_matrix_weights2_loop1_1\""
       ],
-      "function": "get_delta_matrix_weights2",
-      "label": "get_delta_matrix_weights2_loop1_1",
-      "directive_type": "loop_flatten"
+      "function":"get_delta_matrix_weights2",
+      "label":"get_delta_matrix_weights2_loop1_1",
+      "directive_type":"loop_flatten"
     },
-    "pipeline get_oracle_activations1": {
-      "possible_directives": [
+    "pipeline get_oracle_activations1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_oracle_activations1\""
       ],
-      "function": "get_oracle_activations1",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"get_oracle_activations1",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition weights2 get_oracle_activations1": {
-      "possible_directives": [
+    "array_partition weights2 get_oracle_activations1":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_oracle_activations1\" weights2",
         "set_directive_array_partition -type block -factor 2 \"get_oracle_activations1\" weights2",
@@ -1096,13 +1096,13 @@
         "set_directive_array_partition -type block -factor 2048 \"get_oracle_activations1\" weights2",
         "set_directive_array_partition -type cyclic -factor 2048 \"get_oracle_activations1\" weights2"
       ],
-      "function": "get_oracle_activations1",
-      "label": "",
-      "variable": "weights2",
-      "directive_type": "array_partition"
+      "function":"get_oracle_activations1",
+      "label":"",
+      "variable":"weights2",
+      "directive_type":"array_partition"
     },
-    "array_partition output_differences get_oracle_activations1": {
-      "possible_directives": [
+    "array_partition output_differences get_oracle_activations1":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_oracle_activations1\" output_differences",
         "set_directive_array_partition -type block -factor 2 \"get_oracle_activations1\" output_differences",
@@ -1116,13 +1116,13 @@
         "set_directive_array_partition -type block -factor 32 \"get_oracle_activations1\" output_differences",
         "set_directive_array_partition -type cyclic -factor 32 \"get_oracle_activations1\" output_differences"
       ],
-      "function": "get_oracle_activations1",
-      "label": "",
-      "variable": "output_differences",
-      "directive_type": "array_partition"
+      "function":"get_oracle_activations1",
+      "label":"",
+      "variable":"output_differences",
+      "directive_type":"array_partition"
     },
-    "array_partition oracle_activations get_oracle_activations1": {
-      "possible_directives": [
+    "array_partition oracle_activations get_oracle_activations1":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_oracle_activations1\" oracle_activations",
         "set_directive_array_partition -type block -factor 2 \"get_oracle_activations1\" oracle_activations",
@@ -1136,13 +1136,13 @@
         "set_directive_array_partition -type block -factor 32 \"get_oracle_activations1\" oracle_activations",
         "set_directive_array_partition -type cyclic -factor 32 \"get_oracle_activations1\" oracle_activations"
       ],
-      "function": "get_oracle_activations1",
-      "label": "",
-      "variable": "oracle_activations",
-      "directive_type": "array_partition"
+      "function":"get_oracle_activations1",
+      "label":"",
+      "variable":"oracle_activations",
+      "directive_type":"array_partition"
     },
-    "array_partition dactivations get_oracle_activations1": {
-      "possible_directives": [
+    "array_partition dactivations get_oracle_activations1":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_oracle_activations1\" dactivations",
         "set_directive_array_partition -type block -factor 2 \"get_oracle_activations1\" dactivations",
@@ -1156,13 +1156,13 @@
         "set_directive_array_partition -type block -factor 32 \"get_oracle_activations1\" dactivations",
         "set_directive_array_partition -type cyclic -factor 32 \"get_oracle_activations1\" dactivations"
       ],
-      "function": "get_oracle_activations1",
-      "label": "",
-      "variable": "dactivations",
-      "directive_type": "array_partition"
+      "function":"get_oracle_activations1",
+      "label":"",
+      "variable":"dactivations",
+      "directive_type":"array_partition"
     },
-    "unroll get_oracle_activations1_loop1": {
-      "possible_directives": [
+    "unroll get_oracle_activations1_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"get_oracle_activations1/get_oracle_activations1_loop1\"",
         "set_directive_unroll -factor 2 \"get_oracle_activations1/get_oracle_activations1_loop1\"",
@@ -1171,21 +1171,21 @@
         "set_directive_unroll -factor 16 \"get_oracle_activations1/get_oracle_activations1_loop1\"",
         "set_directive_unroll -factor 32 \"get_oracle_activations1/get_oracle_activations1_loop1\""
       ],
-      "function": "get_oracle_activations1",
-      "label": "get_oracle_activations1_loop1",
-      "directive_type": "unroll"
+      "function":"get_oracle_activations1",
+      "label":"get_oracle_activations1_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline get_oracle_activations1_loop1": {
-      "possible_directives": [
+    "pipeline get_oracle_activations1_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_oracle_activations1/get_oracle_activations1_loop1\"",
         "set_directive_pipeline \"get_oracle_activations1/get_oracle_activations1_loop1\""
       ],
-      "function": "get_oracle_activations1",
-      "label": "get_oracle_activations1_loop1",
-      "directive_type": "pipeline"
+      "function":"get_oracle_activations1",
+      "label":"get_oracle_activations1_loop1",
+      "directive_type":"pipeline"
     },
-    "unroll get_oracle_activations1_loop1_1": {
-      "possible_directives": [
+    "unroll get_oracle_activations1_loop1_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"get_oracle_activations1/get_oracle_activations1_loop1_1\"",
         "set_directive_unroll -factor 2 \"get_oracle_activations1/get_oracle_activations1_loop1_1\"",
@@ -1194,38 +1194,38 @@
         "set_directive_unroll -factor 16 \"get_oracle_activations1/get_oracle_activations1_loop1_1\"",
         "set_directive_unroll -factor 32 \"get_oracle_activations1/get_oracle_activations1_loop1_1\""
       ],
-      "function": "get_oracle_activations1",
-      "label": "get_oracle_activations1_loop1_1",
-      "directive_type": "unroll"
+      "function":"get_oracle_activations1",
+      "label":"get_oracle_activations1_loop1_1",
+      "directive_type":"unroll"
     },
-    "pipeline get_oracle_activations1_loop1_1": {
-      "possible_directives": [
+    "pipeline get_oracle_activations1_loop1_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_oracle_activations1/get_oracle_activations1_loop1_1\"",
         "set_directive_pipeline \"get_oracle_activations1/get_oracle_activations1_loop1_1\""
       ],
-      "function": "get_oracle_activations1",
-      "label": "get_oracle_activations1_loop1_1",
-      "directive_type": "pipeline"
+      "function":"get_oracle_activations1",
+      "label":"get_oracle_activations1_loop1_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten get_oracle_activations1_loop1_1": {
-      "possible_directives": [
+    "loop_flatten get_oracle_activations1_loop1_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"get_oracle_activations1/get_oracle_activations1_loop1_1\"",
         "set_directive_loop_flatten \"get_oracle_activations1/get_oracle_activations1_loop1_1\""
       ],
-      "function": "get_oracle_activations1",
-      "label": "get_oracle_activations1_loop1_1",
-      "directive_type": "loop_flatten"
+      "function":"get_oracle_activations1",
+      "label":"get_oracle_activations1_loop1_1",
+      "directive_type":"loop_flatten"
     },
-    "pipeline get_delta_matrix_weights1": {
-      "possible_directives": [
+    "pipeline get_delta_matrix_weights1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_delta_matrix_weights1\""
       ],
-      "function": "get_delta_matrix_weights1",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"get_delta_matrix_weights1",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition delta_weights1 get_delta_matrix_weights1": {
-      "possible_directives": [
+    "array_partition delta_weights1 get_delta_matrix_weights1":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_delta_matrix_weights1\" delta_weights1",
         "set_directive_array_partition -type block -factor 2 \"get_delta_matrix_weights1\" delta_weights1",
@@ -1245,13 +1245,13 @@
         "set_directive_array_partition -type block -factor 256 \"get_delta_matrix_weights1\" delta_weights1",
         "set_directive_array_partition -type cyclic -factor 256 \"get_delta_matrix_weights1\" delta_weights1"
       ],
-      "function": "get_delta_matrix_weights1",
-      "label": "",
-      "variable": "delta_weights1",
-      "directive_type": "array_partition"
+      "function":"get_delta_matrix_weights1",
+      "label":"",
+      "variable":"delta_weights1",
+      "directive_type":"array_partition"
     },
-    "array_partition output_difference get_delta_matrix_weights1": {
-      "possible_directives": [
+    "array_partition output_difference get_delta_matrix_weights1":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_delta_matrix_weights1\" output_difference",
         "set_directive_array_partition -type block -factor 2 \"get_delta_matrix_weights1\" output_difference",
@@ -1265,13 +1265,13 @@
         "set_directive_array_partition -type block -factor 32 \"get_delta_matrix_weights1\" output_difference",
         "set_directive_array_partition -type cyclic -factor 32 \"get_delta_matrix_weights1\" output_difference"
       ],
-      "function": "get_delta_matrix_weights1",
-      "label": "",
-      "variable": "output_difference",
-      "directive_type": "array_partition"
+      "function":"get_delta_matrix_weights1",
+      "label":"",
+      "variable":"output_difference",
+      "directive_type":"array_partition"
     },
-    "array_partition last_activations get_delta_matrix_weights1": {
-      "possible_directives": [
+    "array_partition last_activations get_delta_matrix_weights1":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"get_delta_matrix_weights1\" last_activations",
         "set_directive_array_partition -type block -factor 2 \"get_delta_matrix_weights1\" last_activations",
@@ -1279,33 +1279,33 @@
         "set_directive_array_partition -type block -factor 4 \"get_delta_matrix_weights1\" last_activations",
         "set_directive_array_partition -type cyclic -factor 4 \"get_delta_matrix_weights1\" last_activations"
       ],
-      "function": "get_delta_matrix_weights1",
-      "label": "",
-      "variable": "last_activations",
-      "directive_type": "array_partition"
+      "function":"get_delta_matrix_weights1",
+      "label":"",
+      "variable":"last_activations",
+      "directive_type":"array_partition"
     },
-    "unroll get_delta_matrix_weights1_loop1": {
-      "possible_directives": [
+    "unroll get_delta_matrix_weights1_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1\"",
         "set_directive_unroll -factor 2 \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1\"",
         "set_directive_unroll -factor 4 \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1\""
       ],
-      "function": "get_delta_matrix_weights1",
-      "label": "get_delta_matrix_weights1_loop1",
-      "directive_type": "unroll"
+      "function":"get_delta_matrix_weights1",
+      "label":"get_delta_matrix_weights1_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline get_delta_matrix_weights1_loop1": {
-      "possible_directives": [
+    "pipeline get_delta_matrix_weights1_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1\"",
         "set_directive_pipeline \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1\""
       ],
-      "function": "get_delta_matrix_weights1",
-      "label": "get_delta_matrix_weights1_loop1",
-      "directive_type": "pipeline"
+      "function":"get_delta_matrix_weights1",
+      "label":"get_delta_matrix_weights1_loop1",
+      "directive_type":"pipeline"
     },
-    "unroll get_delta_matrix_weights1_loop1_1": {
-      "possible_directives": [
+    "unroll get_delta_matrix_weights1_loop1_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1_1\"",
         "set_directive_unroll -factor 2 \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1_1\"",
@@ -1314,38 +1314,38 @@
         "set_directive_unroll -factor 16 \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1_1\"",
         "set_directive_unroll -factor 32 \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1_1\""
       ],
-      "function": "get_delta_matrix_weights1",
-      "label": "get_delta_matrix_weights1_loop1_1",
-      "directive_type": "unroll"
+      "function":"get_delta_matrix_weights1",
+      "label":"get_delta_matrix_weights1_loop1_1",
+      "directive_type":"unroll"
     },
-    "pipeline get_delta_matrix_weights1_loop1_1": {
-      "possible_directives": [
+    "pipeline get_delta_matrix_weights1_loop1_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1_1\"",
         "set_directive_pipeline \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1_1\""
       ],
-      "function": "get_delta_matrix_weights1",
-      "label": "get_delta_matrix_weights1_loop1_1",
-      "directive_type": "pipeline"
+      "function":"get_delta_matrix_weights1",
+      "label":"get_delta_matrix_weights1_loop1_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten get_delta_matrix_weights1_loop1_1": {
-      "possible_directives": [
+    "loop_flatten get_delta_matrix_weights1_loop1_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1_1\"",
         "set_directive_loop_flatten \"get_delta_matrix_weights1/get_delta_matrix_weights1_loop1_1\""
       ],
-      "function": "get_delta_matrix_weights1",
-      "label": "get_delta_matrix_weights1_loop1_1",
-      "directive_type": "loop_flatten"
+      "function":"get_delta_matrix_weights1",
+      "label":"get_delta_matrix_weights1_loop1_1",
+      "directive_type":"loop_flatten"
     },
-    "pipeline update_weights": {
-      "possible_directives": [
+    "pipeline update_weights":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights\""
       ],
-      "function": "update_weights",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition weights1 update_weights": {
-      "possible_directives": [
+    "array_partition weights1 update_weights":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"update_weights\" weights1",
         "set_directive_array_partition -type block -factor 2 \"update_weights\" weights1",
@@ -1365,13 +1365,13 @@
         "set_directive_array_partition -type block -factor 256 \"update_weights\" weights1",
         "set_directive_array_partition -type cyclic -factor 256 \"update_weights\" weights1"
       ],
-      "function": "update_weights",
-      "label": "",
-      "variable": "weights1",
-      "directive_type": "array_partition"
+      "function":"update_weights",
+      "label":"",
+      "variable":"weights1",
+      "directive_type":"array_partition"
     },
-    "array_partition weights2 update_weights": {
-      "possible_directives": [
+    "array_partition weights2 update_weights":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"update_weights\" weights2",
         "set_directive_array_partition -type block -factor 2 \"update_weights\" weights2",
@@ -1397,13 +1397,13 @@
         "set_directive_array_partition -type block -factor 2048 \"update_weights\" weights2",
         "set_directive_array_partition -type cyclic -factor 2048 \"update_weights\" weights2"
       ],
-      "function": "update_weights",
-      "label": "",
-      "variable": "weights2",
-      "directive_type": "array_partition"
+      "function":"update_weights",
+      "label":"",
+      "variable":"weights2",
+      "directive_type":"array_partition"
     },
-    "array_partition weights3 update_weights": {
-      "possible_directives": [
+    "array_partition weights3 update_weights":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"update_weights\" weights3",
         "set_directive_array_partition -type block -factor 2 \"update_weights\" weights3",
@@ -1419,13 +1419,13 @@
         "set_directive_array_partition -type block -factor 64 \"update_weights\" weights3",
         "set_directive_array_partition -type cyclic -factor 64 \"update_weights\" weights3"
       ],
-      "function": "update_weights",
-      "label": "",
-      "variable": "weights3",
-      "directive_type": "array_partition"
+      "function":"update_weights",
+      "label":"",
+      "variable":"weights3",
+      "directive_type":"array_partition"
     },
-    "array_partition d_weights1 update_weights": {
-      "possible_directives": [
+    "array_partition d_weights1 update_weights":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"update_weights\" d_weights1",
         "set_directive_array_partition -type block -factor 2 \"update_weights\" d_weights1",
@@ -1445,13 +1445,13 @@
         "set_directive_array_partition -type block -factor 256 \"update_weights\" d_weights1",
         "set_directive_array_partition -type cyclic -factor 256 \"update_weights\" d_weights1"
       ],
-      "function": "update_weights",
-      "label": "",
-      "variable": "d_weights1",
-      "directive_type": "array_partition"
+      "function":"update_weights",
+      "label":"",
+      "variable":"d_weights1",
+      "directive_type":"array_partition"
     },
-    "array_partition d_weights2 update_weights": {
-      "possible_directives": [
+    "array_partition d_weights2 update_weights":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"update_weights\" d_weights2",
         "set_directive_array_partition -type block -factor 2 \"update_weights\" d_weights2",
@@ -1477,13 +1477,13 @@
         "set_directive_array_partition -type block -factor 2048 \"update_weights\" d_weights2",
         "set_directive_array_partition -type cyclic -factor 2048 \"update_weights\" d_weights2"
       ],
-      "function": "update_weights",
-      "label": "",
-      "variable": "d_weights2",
-      "directive_type": "array_partition"
+      "function":"update_weights",
+      "label":"",
+      "variable":"d_weights2",
+      "directive_type":"array_partition"
     },
-    "array_partition d_weights3 update_weights": {
-      "possible_directives": [
+    "array_partition d_weights3 update_weights":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"update_weights\" d_weights3",
         "set_directive_array_partition -type block -factor 2 \"update_weights\" d_weights3",
@@ -1499,13 +1499,13 @@
         "set_directive_array_partition -type block -factor 64 \"update_weights\" d_weights3",
         "set_directive_array_partition -type cyclic -factor 64 \"update_weights\" d_weights3"
       ],
-      "function": "update_weights",
-      "label": "",
-      "variable": "d_weights3",
-      "directive_type": "array_partition"
+      "function":"update_weights",
+      "label":"",
+      "variable":"d_weights3",
+      "directive_type":"array_partition"
     },
-    "array_partition biases1 update_weights": {
-      "possible_directives": [
+    "array_partition biases1 update_weights":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"update_weights\" biases1",
         "set_directive_array_partition -type block -factor 2 \"update_weights\" biases1",
@@ -1519,13 +1519,13 @@
         "set_directive_array_partition -type block -factor 32 \"update_weights\" biases1",
         "set_directive_array_partition -type cyclic -factor 32 \"update_weights\" biases1"
       ],
-      "function": "update_weights",
-      "label": "",
-      "variable": "biases1",
-      "directive_type": "array_partition"
+      "function":"update_weights",
+      "label":"",
+      "variable":"biases1",
+      "directive_type":"array_partition"
     },
-    "array_partition biases2 update_weights": {
-      "possible_directives": [
+    "array_partition biases2 update_weights":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"update_weights\" biases2",
         "set_directive_array_partition -type block -factor 2 \"update_weights\" biases2",
@@ -1539,23 +1539,23 @@
         "set_directive_array_partition -type block -factor 32 \"update_weights\" biases2",
         "set_directive_array_partition -type cyclic -factor 32 \"update_weights\" biases2"
       ],
-      "function": "update_weights",
-      "label": "",
-      "variable": "biases2",
-      "directive_type": "array_partition"
+      "function":"update_weights",
+      "label":"",
+      "variable":"biases2",
+      "directive_type":"array_partition"
     },
-    "array_partition biases3 update_weights": {
-      "possible_directives": [
+    "array_partition biases3 update_weights":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"update_weights\" biases3"
       ],
-      "function": "update_weights",
-      "label": "",
-      "variable": "biases3",
-      "directive_type": "array_partition"
+      "function":"update_weights",
+      "label":"",
+      "variable":"biases3",
+      "directive_type":"array_partition"
     },
-    "array_partition d_biases1 update_weights": {
-      "possible_directives": [
+    "array_partition d_biases1 update_weights":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"update_weights\" d_biases1",
         "set_directive_array_partition -type block -factor 2 \"update_weights\" d_biases1",
@@ -1569,13 +1569,13 @@
         "set_directive_array_partition -type block -factor 32 \"update_weights\" d_biases1",
         "set_directive_array_partition -type cyclic -factor 32 \"update_weights\" d_biases1"
       ],
-      "function": "update_weights",
-      "label": "",
-      "variable": "d_biases1",
-      "directive_type": "array_partition"
+      "function":"update_weights",
+      "label":"",
+      "variable":"d_biases1",
+      "directive_type":"array_partition"
     },
-    "array_partition d_biases2 update_weights": {
-      "possible_directives": [
+    "array_partition d_biases2 update_weights":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"update_weights\" d_biases2",
         "set_directive_array_partition -type block -factor 2 \"update_weights\" d_biases2",
@@ -1589,52 +1589,52 @@
         "set_directive_array_partition -type block -factor 32 \"update_weights\" d_biases2",
         "set_directive_array_partition -type cyclic -factor 32 \"update_weights\" d_biases2"
       ],
-      "function": "update_weights",
-      "label": "",
-      "variable": "d_biases2",
-      "directive_type": "array_partition"
+      "function":"update_weights",
+      "label":"",
+      "variable":"d_biases2",
+      "directive_type":"array_partition"
     },
-    "array_partition d_biases3 update_weights": {
-      "possible_directives": [
+    "array_partition d_biases3 update_weights":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"update_weights\" d_biases3"
       ],
-      "function": "update_weights",
-      "label": "",
-      "variable": "d_biases3",
-      "directive_type": "array_partition"
+      "function":"update_weights",
+      "label":"",
+      "variable":"d_biases3",
+      "directive_type":"array_partition"
     },
-    "loop_merge update_weights": {
-      "possible_directives": [
+    "loop_merge update_weights":{
+      "possible_directives":[
         "",
         "set_directive_loop_merge \"update_weights\""
       ],
-      "function": "update_weights",
-      "label": "",
-      "directive_type": "loop_merge"
+      "function":"update_weights",
+      "label":"",
+      "directive_type":"loop_merge"
     },
-    "unroll update_weights_loop1": {
-      "possible_directives": [
+    "unroll update_weights_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop1\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop1\"",
         "set_directive_unroll -factor 4 \"update_weights/update_weights_loop1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop1",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop1": {
-      "possible_directives": [
+    "pipeline update_weights_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop1\"",
         "set_directive_pipeline \"update_weights/update_weights_loop1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop1",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop1",
+      "directive_type":"pipeline"
     },
-    "unroll update_weights_loop1_1": {
-      "possible_directives": [
+    "unroll update_weights_loop1_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop1_1\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop1_1\"",
@@ -1643,30 +1643,30 @@
         "set_directive_unroll -factor 16 \"update_weights/update_weights_loop1_1\"",
         "set_directive_unroll -factor 32 \"update_weights/update_weights_loop1_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop1_1",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop1_1",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop1_1": {
-      "possible_directives": [
+    "pipeline update_weights_loop1_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop1_1\"",
         "set_directive_pipeline \"update_weights/update_weights_loop1_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop1_1",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop1_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten update_weights_loop1_1": {
-      "possible_directives": [
+    "loop_flatten update_weights_loop1_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"update_weights/update_weights_loop1_1\"",
         "set_directive_loop_flatten \"update_weights/update_weights_loop1_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop1_1",
-      "directive_type": "loop_flatten"
+      "function":"update_weights",
+      "label":"update_weights_loop1_1",
+      "directive_type":"loop_flatten"
     },
-    "unroll update_weights_loop2": {
-      "possible_directives": [
+    "unroll update_weights_loop2":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop2\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop2\"",
@@ -1675,41 +1675,41 @@
         "set_directive_unroll -factor 16 \"update_weights/update_weights_loop2\"",
         "set_directive_unroll -factor 32 \"update_weights/update_weights_loop2\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop2",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop2",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop2": {
-      "possible_directives": [
+    "pipeline update_weights_loop2":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop2\"",
         "set_directive_pipeline \"update_weights/update_weights_loop2\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop2",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop2",
+      "directive_type":"pipeline"
     },
-    "unroll update_weights_loop3": {
-      "possible_directives": [
+    "unroll update_weights_loop3":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop3\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop3\"",
         "set_directive_unroll -factor 4 \"update_weights/update_weights_loop3\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop3",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop3",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop3": {
-      "possible_directives": [
+    "pipeline update_weights_loop3":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop3\"",
         "set_directive_pipeline \"update_weights/update_weights_loop3\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop3",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop3",
+      "directive_type":"pipeline"
     },
-    "unroll update_weights_loop3_1": {
-      "possible_directives": [
+    "unroll update_weights_loop3_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop3_1\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop3_1\"",
@@ -1718,30 +1718,30 @@
         "set_directive_unroll -factor 16 \"update_weights/update_weights_loop3_1\"",
         "set_directive_unroll -factor 32 \"update_weights/update_weights_loop3_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop3_1",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop3_1",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop3_1": {
-      "possible_directives": [
+    "pipeline update_weights_loop3_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop3_1\"",
         "set_directive_pipeline \"update_weights/update_weights_loop3_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop3_1",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop3_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten update_weights_loop3_1": {
-      "possible_directives": [
+    "loop_flatten update_weights_loop3_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"update_weights/update_weights_loop3_1\"",
         "set_directive_loop_flatten \"update_weights/update_weights_loop3_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop3_1",
-      "directive_type": "loop_flatten"
+      "function":"update_weights",
+      "label":"update_weights_loop3_1",
+      "directive_type":"loop_flatten"
     },
-    "unroll update_weights_loop4": {
-      "possible_directives": [
+    "unroll update_weights_loop4":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop4\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop4\"",
@@ -1750,21 +1750,21 @@
         "set_directive_unroll -factor 16 \"update_weights/update_weights_loop4\"",
         "set_directive_unroll -factor 32 \"update_weights/update_weights_loop4\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop4",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop4",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop4": {
-      "possible_directives": [
+    "pipeline update_weights_loop4":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop4\"",
         "set_directive_pipeline \"update_weights/update_weights_loop4\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop4",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop4",
+      "directive_type":"pipeline"
     },
-    "unroll update_weights_loop5": {
-      "possible_directives": [
+    "unroll update_weights_loop5":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop5\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop5\"",
@@ -1773,21 +1773,21 @@
         "set_directive_unroll -factor 16 \"update_weights/update_weights_loop5\"",
         "set_directive_unroll -factor 32 \"update_weights/update_weights_loop5\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop5",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop5",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop5": {
-      "possible_directives": [
+    "pipeline update_weights_loop5":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop5\"",
         "set_directive_pipeline \"update_weights/update_weights_loop5\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop5",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop5",
+      "directive_type":"pipeline"
     },
-    "unroll update_weights_loop5_1": {
-      "possible_directives": [
+    "unroll update_weights_loop5_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop5_1\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop5_1\"",
@@ -1796,30 +1796,30 @@
         "set_directive_unroll -factor 16 \"update_weights/update_weights_loop5_1\"",
         "set_directive_unroll -factor 32 \"update_weights/update_weights_loop5_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop5_1",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop5_1",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop5_1": {
-      "possible_directives": [
+    "pipeline update_weights_loop5_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop5_1\"",
         "set_directive_pipeline \"update_weights/update_weights_loop5_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop5_1",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop5_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten update_weights_loop5_1": {
-      "possible_directives": [
+    "loop_flatten update_weights_loop5_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"update_weights/update_weights_loop5_1\"",
         "set_directive_loop_flatten \"update_weights/update_weights_loop5_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop5_1",
-      "directive_type": "loop_flatten"
+      "function":"update_weights",
+      "label":"update_weights_loop5_1",
+      "directive_type":"loop_flatten"
     },
-    "unroll update_weights_loop6": {
-      "possible_directives": [
+    "unroll update_weights_loop6":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop6\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop6\"",
@@ -1828,21 +1828,21 @@
         "set_directive_unroll -factor 16 \"update_weights/update_weights_loop6\"",
         "set_directive_unroll -factor 32 \"update_weights/update_weights_loop6\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop6",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop6",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop6": {
-      "possible_directives": [
+    "pipeline update_weights_loop6":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop6\"",
         "set_directive_pipeline \"update_weights/update_weights_loop6\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop6",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop6",
+      "directive_type":"pipeline"
     },
-    "unroll update_weights_loop7": {
-      "possible_directives": [
+    "unroll update_weights_loop7":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop7\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop7\"",
@@ -1851,21 +1851,21 @@
         "set_directive_unroll -factor 16 \"update_weights/update_weights_loop7\"",
         "set_directive_unroll -factor 32 \"update_weights/update_weights_loop7\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop7",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop7",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop7": {
-      "possible_directives": [
+    "pipeline update_weights_loop7":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop7\"",
         "set_directive_pipeline \"update_weights/update_weights_loop7\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop7",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop7",
+      "directive_type":"pipeline"
     },
-    "unroll update_weights_loop7_1": {
-      "possible_directives": [
+    "unroll update_weights_loop7_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop7_1\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop7_1\"",
@@ -1874,30 +1874,30 @@
         "set_directive_unroll -factor 16 \"update_weights/update_weights_loop7_1\"",
         "set_directive_unroll -factor 32 \"update_weights/update_weights_loop7_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop7_1",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop7_1",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop7_1": {
-      "possible_directives": [
+    "pipeline update_weights_loop7_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop7_1\"",
         "set_directive_pipeline \"update_weights/update_weights_loop7_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop7_1",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop7_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten update_weights_loop7_1": {
-      "possible_directives": [
+    "loop_flatten update_weights_loop7_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"update_weights/update_weights_loop7_1\"",
         "set_directive_loop_flatten \"update_weights/update_weights_loop7_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop7_1",
-      "directive_type": "loop_flatten"
+      "function":"update_weights",
+      "label":"update_weights_loop7_1",
+      "directive_type":"loop_flatten"
     },
-    "unroll update_weights_loop8": {
-      "possible_directives": [
+    "unroll update_weights_loop8":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop8\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop8\"",
@@ -1906,21 +1906,21 @@
         "set_directive_unroll -factor 16 \"update_weights/update_weights_loop8\"",
         "set_directive_unroll -factor 32 \"update_weights/update_weights_loop8\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop8",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop8",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop8": {
-      "possible_directives": [
+    "pipeline update_weights_loop8":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop8\"",
         "set_directive_pipeline \"update_weights/update_weights_loop8\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop8",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop8",
+      "directive_type":"pipeline"
     },
-    "unroll update_weights_loop9": {
-      "possible_directives": [
+    "unroll update_weights_loop9":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop9\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop9\"",
@@ -1929,66 +1929,66 @@
         "set_directive_unroll -factor 16 \"update_weights/update_weights_loop9\"",
         "set_directive_unroll -factor 32 \"update_weights/update_weights_loop9\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop9",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop9",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop9": {
-      "possible_directives": [
+    "pipeline update_weights_loop9":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop9\"",
         "set_directive_pipeline \"update_weights/update_weights_loop9\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop9",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop9",
+      "directive_type":"pipeline"
     },
-    "unroll update_weights_loop9_1": {
-      "possible_directives": [
+    "unroll update_weights_loop9_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop9_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop9_1",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop9_1",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop9_1": {
-      "possible_directives": [
+    "pipeline update_weights_loop9_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop9_1\"",
         "set_directive_pipeline \"update_weights/update_weights_loop9_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop9_1",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop9_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten update_weights_loop9_1": {
-      "possible_directives": [
+    "loop_flatten update_weights_loop9_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"update_weights/update_weights_loop9_1\"",
         "set_directive_loop_flatten \"update_weights/update_weights_loop9_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop9_1",
-      "directive_type": "loop_flatten"
+      "function":"update_weights",
+      "label":"update_weights_loop9_1",
+      "directive_type":"loop_flatten"
     },
-    "unroll update_weights_loop10": {
-      "possible_directives": [
+    "unroll update_weights_loop10":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop10\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop10",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop10",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop10": {
-      "possible_directives": [
+    "pipeline update_weights_loop10":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop10\"",
         "set_directive_pipeline \"update_weights/update_weights_loop10\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop10",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop10",
+      "directive_type":"pipeline"
     },
-    "unroll update_weights_loop11": {
-      "possible_directives": [
+    "unroll update_weights_loop11":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop11\"",
         "set_directive_unroll -factor 2 \"update_weights/update_weights_loop11\"",
@@ -1997,74 +1997,74 @@
         "set_directive_unroll -factor 16 \"update_weights/update_weights_loop11\"",
         "set_directive_unroll -factor 32 \"update_weights/update_weights_loop11\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop11",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop11",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop11": {
-      "possible_directives": [
+    "pipeline update_weights_loop11":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop11\"",
         "set_directive_pipeline \"update_weights/update_weights_loop11\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop11",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop11",
+      "directive_type":"pipeline"
     },
-    "unroll update_weights_loop11_1": {
-      "possible_directives": [
+    "unroll update_weights_loop11_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop11_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop11_1",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop11_1",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop11_1": {
-      "possible_directives": [
+    "pipeline update_weights_loop11_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop11_1\"",
         "set_directive_pipeline \"update_weights/update_weights_loop11_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop11_1",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop11_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten update_weights_loop11_1": {
-      "possible_directives": [
+    "loop_flatten update_weights_loop11_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"update_weights/update_weights_loop11_1\"",
         "set_directive_loop_flatten \"update_weights/update_weights_loop11_1\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop11_1",
-      "directive_type": "loop_flatten"
+      "function":"update_weights",
+      "label":"update_weights_loop11_1",
+      "directive_type":"loop_flatten"
     },
-    "unroll update_weights_loop12": {
-      "possible_directives": [
+    "unroll update_weights_loop12":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"update_weights/update_weights_loop12\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop12",
-      "directive_type": "unroll"
+      "function":"update_weights",
+      "label":"update_weights_loop12",
+      "directive_type":"unroll"
     },
-    "pipeline update_weights_loop12": {
-      "possible_directives": [
+    "pipeline update_weights_loop12":{
+      "possible_directives":[
         "set_directive_pipeline -off \"update_weights/update_weights_loop12\"",
         "set_directive_pipeline \"update_weights/update_weights_loop12\""
       ],
-      "function": "update_weights",
-      "label": "update_weights_loop12",
-      "directive_type": "pipeline"
+      "function":"update_weights",
+      "label":"update_weights_loop12",
+      "directive_type":"pipeline"
     },
-    "pipeline backprop": {
-      "possible_directives": [
+    "pipeline backprop":{
+      "possible_directives":[
         "set_directive_pipeline -off \"backprop\""
       ],
-      "function": "backprop",
-      "label": "",
-      "directive_type": "pipeline"
+      "function":"backprop",
+      "label":"",
+      "directive_type":"pipeline"
     },
-    "array_partition weights1 backprop": {
-      "possible_directives": [
+    "array_partition weights1 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" weights1",
         "set_directive_array_partition -type block -factor 2 \"backprop\" weights1",
@@ -2084,13 +2084,13 @@
         "set_directive_array_partition -type block -factor 256 \"backprop\" weights1",
         "set_directive_array_partition -type cyclic -factor 256 \"backprop\" weights1"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "weights1",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"weights1",
+      "directive_type":"array_partition"
     },
-    "array_partition weights2 backprop": {
-      "possible_directives": [
+    "array_partition weights2 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" weights2",
         "set_directive_array_partition -type block -factor 2 \"backprop\" weights2",
@@ -2116,13 +2116,13 @@
         "set_directive_array_partition -type block -factor 2048 \"backprop\" weights2",
         "set_directive_array_partition -type cyclic -factor 2048 \"backprop\" weights2"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "weights2",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"weights2",
+      "directive_type":"array_partition"
     },
-    "array_partition weights3 backprop": {
-      "possible_directives": [
+    "array_partition weights3 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" weights3",
         "set_directive_array_partition -type block -factor 2 \"backprop\" weights3",
@@ -2138,13 +2138,13 @@
         "set_directive_array_partition -type block -factor 64 \"backprop\" weights3",
         "set_directive_array_partition -type cyclic -factor 64 \"backprop\" weights3"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "weights3",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"weights3",
+      "directive_type":"array_partition"
     },
-    "array_partition biases1 backprop": {
-      "possible_directives": [
+    "array_partition biases1 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" biases1",
         "set_directive_array_partition -type block -factor 2 \"backprop\" biases1",
@@ -2158,13 +2158,13 @@
         "set_directive_array_partition -type block -factor 32 \"backprop\" biases1",
         "set_directive_array_partition -type cyclic -factor 32 \"backprop\" biases1"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "biases1",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"biases1",
+      "directive_type":"array_partition"
     },
-    "array_partition biases2 backprop": {
-      "possible_directives": [
+    "array_partition biases2 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" biases2",
         "set_directive_array_partition -type block -factor 2 \"backprop\" biases2",
@@ -2178,23 +2178,23 @@
         "set_directive_array_partition -type block -factor 32 \"backprop\" biases2",
         "set_directive_array_partition -type cyclic -factor 32 \"backprop\" biases2"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "biases2",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"biases2",
+      "directive_type":"array_partition"
     },
-    "array_partition biases3 backprop": {
-      "possible_directives": [
+    "array_partition biases3 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" biases3"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "biases3",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"biases3",
+      "directive_type":"array_partition"
     },
-    "array_partition training_data backprop": {
-      "possible_directives": [
+    "array_partition training_data backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" training_data",
         "set_directive_array_partition -type block -factor 2 \"backprop\" training_data",
@@ -2218,13 +2218,13 @@
         "set_directive_array_partition -type block -factor 1024 \"backprop\" training_data",
         "set_directive_array_partition -type cyclic -factor 1024 \"backprop\" training_data"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "training_data",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"training_data",
+      "directive_type":"array_partition"
     },
-    "array_partition training_targets backprop": {
-      "possible_directives": [
+    "array_partition training_targets backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" training_targets",
         "set_directive_array_partition -type block -factor 2 \"backprop\" training_targets",
@@ -2242,13 +2242,13 @@
         "set_directive_array_partition -type block -factor 128 \"backprop\" training_targets",
         "set_directive_array_partition -type cyclic -factor 128 \"backprop\" training_targets"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "training_targets",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"training_targets",
+      "directive_type":"array_partition"
     },
-    "array_partition activations1 backprop": {
-      "possible_directives": [
+    "array_partition activations1 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" activations1",
         "set_directive_array_partition -type block -factor 2 \"backprop\" activations1",
@@ -2262,13 +2262,13 @@
         "set_directive_array_partition -type block -factor 32 \"backprop\" activations1",
         "set_directive_array_partition -type cyclic -factor 32 \"backprop\" activations1"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "activations1",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"activations1",
+      "directive_type":"array_partition"
     },
-    "array_partition activations2 backprop": {
-      "possible_directives": [
+    "array_partition activations2 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" activations2",
         "set_directive_array_partition -type block -factor 2 \"backprop\" activations2",
@@ -2282,23 +2282,23 @@
         "set_directive_array_partition -type block -factor 32 \"backprop\" activations2",
         "set_directive_array_partition -type cyclic -factor 32 \"backprop\" activations2"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "activations2",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"activations2",
+      "directive_type":"array_partition"
     },
-    "array_partition activations3 backprop": {
-      "possible_directives": [
+    "array_partition activations3 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" activations3"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "activations3",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"activations3",
+      "directive_type":"array_partition"
     },
-    "array_partition dactivations1 backprop": {
-      "possible_directives": [
+    "array_partition dactivations1 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" dactivations1",
         "set_directive_array_partition -type block -factor 2 \"backprop\" dactivations1",
@@ -2312,13 +2312,13 @@
         "set_directive_array_partition -type block -factor 32 \"backprop\" dactivations1",
         "set_directive_array_partition -type cyclic -factor 32 \"backprop\" dactivations1"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "dactivations1",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"dactivations1",
+      "directive_type":"array_partition"
     },
-    "array_partition dactivations2 backprop": {
-      "possible_directives": [
+    "array_partition dactivations2 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" dactivations2",
         "set_directive_array_partition -type block -factor 2 \"backprop\" dactivations2",
@@ -2332,43 +2332,43 @@
         "set_directive_array_partition -type block -factor 32 \"backprop\" dactivations2",
         "set_directive_array_partition -type cyclic -factor 32 \"backprop\" dactivations2"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "dactivations2",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"dactivations2",
+      "directive_type":"array_partition"
     },
-    "array_partition dactivations3 backprop": {
-      "possible_directives": [
+    "array_partition dactivations3 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" dactivations3"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "dactivations3",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"dactivations3",
+      "directive_type":"array_partition"
     },
-    "array_partition net_outputs backprop": {
-      "possible_directives": [
+    "array_partition net_outputs backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" net_outputs"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "net_outputs",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"net_outputs",
+      "directive_type":"array_partition"
     },
-    "array_partition output_difference backprop": {
-      "possible_directives": [
+    "array_partition output_difference backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" output_difference"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "output_difference",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"output_difference",
+      "directive_type":"array_partition"
     },
-    "array_partition delta_weights1 backprop": {
-      "possible_directives": [
+    "array_partition delta_weights1 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" delta_weights1",
         "set_directive_array_partition -type block -factor 2 \"backprop\" delta_weights1",
@@ -2388,13 +2388,13 @@
         "set_directive_array_partition -type block -factor 256 \"backprop\" delta_weights1",
         "set_directive_array_partition -type cyclic -factor 256 \"backprop\" delta_weights1"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "delta_weights1",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"delta_weights1",
+      "directive_type":"array_partition"
     },
-    "array_partition delta_weights2 backprop": {
-      "possible_directives": [
+    "array_partition delta_weights2 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" delta_weights2",
         "set_directive_array_partition -type block -factor 2 \"backprop\" delta_weights2",
@@ -2420,13 +2420,13 @@
         "set_directive_array_partition -type block -factor 2048 \"backprop\" delta_weights2",
         "set_directive_array_partition -type cyclic -factor 2048 \"backprop\" delta_weights2"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "delta_weights2",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"delta_weights2",
+      "directive_type":"array_partition"
     },
-    "array_partition delta_weights3 backprop": {
-      "possible_directives": [
+    "array_partition delta_weights3 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" delta_weights3",
         "set_directive_array_partition -type block -factor 2 \"backprop\" delta_weights3",
@@ -2442,13 +2442,13 @@
         "set_directive_array_partition -type block -factor 64 \"backprop\" delta_weights3",
         "set_directive_array_partition -type cyclic -factor 64 \"backprop\" delta_weights3"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "delta_weights3",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"delta_weights3",
+      "directive_type":"array_partition"
     },
-    "array_partition oracle_activations1 backprop": {
-      "possible_directives": [
+    "array_partition oracle_activations1 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" oracle_activations1",
         "set_directive_array_partition -type block -factor 2 \"backprop\" oracle_activations1",
@@ -2462,13 +2462,13 @@
         "set_directive_array_partition -type block -factor 32 \"backprop\" oracle_activations1",
         "set_directive_array_partition -type cyclic -factor 32 \"backprop\" oracle_activations1"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "oracle_activations1",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"oracle_activations1",
+      "directive_type":"array_partition"
     },
-    "array_partition oracle_activations2 backprop": {
-      "possible_directives": [
+    "array_partition oracle_activations2 backprop":{
+      "possible_directives":[
         "",
         "set_directive_array_partition \"backprop\" oracle_activations2",
         "set_directive_array_partition -type block -factor 2 \"backprop\" oracle_activations2",
@@ -2482,13 +2482,13 @@
         "set_directive_array_partition -type block -factor 32 \"backprop\" oracle_activations2",
         "set_directive_array_partition -type cyclic -factor 32 \"backprop\" oracle_activations2"
       ],
-      "function": "backprop",
-      "label": "",
-      "variable": "oracle_activations2",
-      "directive_type": "array_partition"
+      "function":"backprop",
+      "label":"",
+      "variable":"oracle_activations2",
+      "directive_type":"array_partition"
     },
-    "unroll backprop_loop1": {
-      "possible_directives": [
+    "unroll backprop_loop1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"backprop/backprop_loop1\"",
         "set_directive_unroll -factor 2 \"backprop/backprop_loop1\"",
@@ -2498,21 +2498,21 @@
         "set_directive_unroll -factor 32 \"backprop/backprop_loop1\"",
         "set_directive_unroll -factor 64 \"backprop/backprop_loop1\""
       ],
-      "function": "backprop",
-      "label": "backprop_loop1",
-      "directive_type": "unroll"
+      "function":"backprop",
+      "label":"backprop_loop1",
+      "directive_type":"unroll"
     },
-    "pipeline backprop_loop1": {
-      "possible_directives": [
+    "pipeline backprop_loop1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"backprop/backprop_loop1\"",
         "set_directive_pipeline \"backprop/backprop_loop1\""
       ],
-      "function": "backprop",
-      "label": "backprop_loop1",
-      "directive_type": "pipeline"
+      "function":"backprop",
+      "label":"backprop_loop1",
+      "directive_type":"pipeline"
     },
-    "unroll backprop_loop1_1": {
-      "possible_directives": [
+    "unroll backprop_loop1_1":{
+      "possible_directives":[
         "",
         "set_directive_unroll \"backprop/backprop_loop1_1\"",
         "set_directive_unroll -factor 2 \"backprop/backprop_loop1_1\"",
@@ -2521,27 +2521,27 @@
         "set_directive_unroll -factor 16 \"backprop/backprop_loop1_1\"",
         "set_directive_unroll -factor 32 \"backprop/backprop_loop1_1\""
       ],
-      "function": "backprop",
-      "label": "backprop_loop1_1",
-      "directive_type": "unroll"
+      "function":"backprop",
+      "label":"backprop_loop1_1",
+      "directive_type":"unroll"
     },
-    "pipeline backprop_loop1_1": {
-      "possible_directives": [
+    "pipeline backprop_loop1_1":{
+      "possible_directives":[
         "set_directive_pipeline -off \"backprop/backprop_loop1_1\"",
         "set_directive_pipeline \"backprop/backprop_loop1_1\""
       ],
-      "function": "backprop",
-      "label": "backprop_loop1_1",
-      "directive_type": "pipeline"
+      "function":"backprop",
+      "label":"backprop_loop1_1",
+      "directive_type":"pipeline"
     },
-    "loop_flatten backprop_loop1_1": {
-      "possible_directives": [
+    "loop_flatten backprop_loop1_1":{
+      "possible_directives":[
         "set_directive_loop_flatten -off \"backprop/backprop_loop1_1\"",
         "set_directive_loop_flatten \"backprop/backprop_loop1_1\""
       ],
-      "function": "backprop",
-      "label": "backprop_loop1_1",
-      "directive_type": "loop_flatten"
+      "function":"backprop",
+      "label":"backprop_loop1_1",
+      "directive_type":"loop_flatten"
     }
   }
 }

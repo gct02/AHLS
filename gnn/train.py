@@ -78,8 +78,8 @@ def evaluate(
             batch.x_dict, 
             batch.edge_index_dict, 
             batch.batch_dict, 
-            batch.directive_node_indices, 
-            batch.directive_edges, 
+            batch.dir_node_subsets,
+            batch.dir_edge_index_subsets,
             batch.y_base
         )
         preds.append(pred.item())
@@ -140,8 +140,8 @@ def train_model(
                 batch.x_dict,
                 batch.edge_index_dict, 
                 batch.batch_dict, 
-                batch.directive_node_indices,
-                batch.directive_edges,
+                batch.dir_node_subsets,
+                batch.dir_edge_index_subsets,
                 batch.y_base
             )
             target = batch.y

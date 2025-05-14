@@ -805,9 +805,9 @@ class HLSData:
             self.region_hrchy[node.id] = {
                 'above': regions_above,
                 'below': regions_below,
-                'blocks': blocks,
-                'instrs': instrs,
-                'arrays': arrays
+                'block': blocks,
+                'instr': instrs,
+                'array': arrays
             }
 
     def as_dict(self):

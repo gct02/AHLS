@@ -289,7 +289,7 @@ def _parse_directive_options(args: List[str]) -> Dict[str, str]:
                 key, value = args[i].split('=')
                 parsed_args[key[1:]] = value.strip('" \n')
             elif args[i] == '-off':
-                parsed_args['off'] = "True"
+                parsed_args['off'] = "true"
             else:
                 parsed_args[args[i][1:]] = args[i + 1].strip('" \n')
                 i += 1

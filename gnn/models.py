@@ -17,8 +17,9 @@ class HGT(nn.Module):
     perform graph-level regression.
 
     Args:
-        metadata (Tuple[List[str], List[Tuple[str, str, str]]]):
-            Metadata object containing node and edge types.
+        metadata (Metadata): Metadata object containing node and edge types.
+        dir_metadata (Dict[str, Metadata]): Metadata object containing node 
+            and edge types for each HLS directive.
         in_channels (int or Dict[str, int]): Number of input channels
             for each node type.
         out_channels (int): Number of output channels.
@@ -33,18 +34,12 @@ class HGT(nn.Module):
         proj_in_dim (int, optional): Input projection dimension.
             If :obj:`None`, it is set to the first hidden dimension. 
             (default: :obj:`None`)
-        proj_out_dim (int, optional): Output projection dimension.
-            If :obj:`None`, it is set to the last hidden dimension.
-            (default: :obj:`None`)
-        jk_layers (List[int], optional): List of layers to use for Jumping
-            Knowledge. If :obj:`None`, all layers are used.
-            (default: :obj:`None`)
         dropout (float): Dropout rate. (default: :obj:`0.0`)
     """
     def __init__(
         self,
         metadata: Metadata,
-        directive_metadata: Dict[str, Metadata],
+        dir_metadata: Dict[str, Metadata],
         in_channels: Union[int, Dict[NodeType, int]],
         out_channels: int,
         hid_dim: Union[int, List[int]] = 256,
@@ -90,7 +85,7 @@ class HGT(nn.Module):
 
         # GNN for HLS directives
         self.hls_gnn = HLSGNN(
-            directive_metadata, proj_in_dim, proj_in_dim, heads=heads[0]
+            dir_metadata, proj_in_dim, proj_in_dim, heads=heads[0]
         )
 
         # Convolutional layers
@@ -131,6 +126,7 @@ class HGT(nn.Module):
     def reset_parameters(self):
         """Reinitializes model parameters."""
         self.proj_in.reset_parameters()
+        self.hls_gnn.reset_parameters()
         for conv in self.conv:
             conv.reset_parameters()
         for norm in self.norm:
@@ -148,8 +144,8 @@ class HGT(nn.Module):
         x_dict: Dict[NodeType, Tensor],
         edge_index_dict: Dict[EdgeType, Tensor],
         batch_dict: Dict[NodeType, Tensor],
-        directive_node_indices: Dict[str, Dict[NodeType, Tensor]],
-        directive_edges: Dict[str, Dict[EdgeType, Tensor]],
+        dir_node_subset: Dict[str, Dict[NodeType, Tensor]],
+        dir_edge_subset: Dict[str, Dict[EdgeType, Tensor]],
         y_base: Tensor
     ) -> Tensor:
         r"""Runs the forward pass of the module.
@@ -161,6 +157,10 @@ class HGT(nn.Module):
                 indices for each edge type.
             batch_dict (Dict[NodeType, Tensor]): Dictionary of batch indices 
                 for each node type.
+            dir_node_subset (Dict[str, Dict[NodeType, Tensor]]): Dictionary of
+                node subsets for each HLS directive.
+            dir_edge_subset (Dict[str, Dict[EdgeType, Tensor]]): Dictionary of
+                edge subsets for each HLS directive.
             y_base (Tensor): The target values of the base solutions.
 
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
@@ -174,7 +174,8 @@ class HGT(nn.Module):
 
         # GNN for HLS directives
         x_dict = self.hls_gnn(
-            x_dict, directive_node_indices, directive_edges
+            x_dict, edge_index_dict, 
+            dir_node_subset, dir_edge_subset
         )
 
         # Convolutional layers
@@ -214,21 +215,18 @@ class HGT(nn.Module):
 class HLSGNN(nn.Module):
     def __init__(
         self, 
-        directive_metadata: Dict[str, Metadata],
+        dir_metadata: Dict[str, Metadata],
         in_channels: Union[int, Dict[NodeType, int]],
         out_channels: int,
         heads: int = 1
     ):
         super().__init__()
-        
-        self.directive_metadata = directive_metadata
 
         self.gnn = nn.ModuleDict({
-            directive: HGTConv(
-                in_channels, out_channels, metadata,
-                heads=heads
+            dt: HGTConv(
+                in_channels, out_channels, metadata, heads=heads
             )
-            for directive, metadata in directive_metadata.items()
+            for dt, metadata in dir_metadata.items()
         })
 
         self.reset_parameters()
@@ -241,17 +239,22 @@ class HLSGNN(nn.Module):
     def forward(
         self,
         x_dict: Dict[str, Dict[NodeType, Tensor]],
-        directive_node_indices: Dict[str, Dict[NodeType, Tensor]],
-        directive_edges: Dict[str, Dict[EdgeType, Tensor]]
+        edge_index_dict: Dict[str, Dict[EdgeType, Tensor]],
+        dir_node_subset: Dict[str, Dict[NodeType, Tensor]],
+        dir_edge_subset: Dict[str, Dict[EdgeType, Tensor]]
     ):
         for dt, gnn in self.gnn.items():
-            subset = directive_node_indices[dt]
+            mask_dict = dir_node_subset[dt]
             x_dict_subset = {
-                nt: x_dict[nt][indices] 
-                for nt, indices in subset.items()
+                nt: x_dict[nt][mask, :]
+                for nt, mask in mask_dict.items()
             }
-            x_dict_subset = gnn(x_dict_subset, directive_edges[dt])
-            for nt, indices in subset.items():
-                x_dict[nt][indices] = x_dict_subset[nt]
+            x_dict_subset = gnn(x_dict_subset, dir_edge_subset[dt])
+            for nt, x_subset in x_dict_subset.items():
+                x_dict[nt][mask_dict[nt]] = x_subset
 
+            target_nt = "array" if dt == "array_partition" else "region"
+            x_dict.pop(dt, None)
+            edge_index_dict.pop((dt, "transform", target_nt), None)
+            
         return x_dict
