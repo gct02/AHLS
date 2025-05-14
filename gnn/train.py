@@ -17,7 +17,10 @@ from torch_geometric.loader import DataLoader
 
 from gnn.models import HGT
 from gnn.dataset import HLSDataset
-from gnn.data.graph import NODE_TYPES, EDGE_TYPES, NODE_FEATURE_DIMS
+from gnn.data.graph import (
+    METADATA, DIRECTIVE_METADATA,
+    NODE_FEATURE_DIMS
+)
 
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -75,6 +78,8 @@ def evaluate(
             batch.x_dict, 
             batch.edge_index_dict, 
             batch.batch_dict, 
+            batch.directive_node_indices, 
+            batch.directive_edges, 
             batch.y_base
         )
         preds.append(pred.item())
@@ -135,6 +140,8 @@ def train_model(
                 batch.x_dict,
                 batch.edge_index_dict, 
                 batch.batch_dict, 
+                batch.directive_node_indices,
+                batch.directive_edges,
                 batch.y_base
             )
             target = batch.y
@@ -211,16 +218,13 @@ def main(args: Dict[str, str]):
         batch_size=batch_size, log_transform=log_transform
     )
 
-    metadata = (NODE_TYPES, EDGE_TYPES)
-    in_channels = NODE_FEATURE_DIMS
-    out_channels = 1
-    hid_dim = [512, 256, 128]
-    heads = [8, 4, 4]
+    hid_dim = [512, 512]
+    heads = [8, 8]
     num_layers = len(hid_dim)
     proj_in_dim = 512
     
     model = HGT(
-        metadata, in_channels, out_channels,
+        METADATA, DIRECTIVE_METADATA, NODE_FEATURE_DIMS, 1,
         hid_dim=hid_dim, heads=heads, 
         num_layers=num_layers, proj_in_dim=proj_in_dim
     ).to(DEVICE)

@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 from pathlib import Path
 from typing import Dict, Union
 
@@ -25,10 +26,15 @@ def main(args: Dict[str, str]):
     dataset_dir = Path(args['dataset_dir'])
     output_dir = Path(args['output_dir'])
     filtered = args['filtered']
-    config_path = args.get('config_path')
+    kernel_config_path = args.get('kernel_config_path')
+    directives_config_dir = args.get('directive_config_dir')
 
-    with open(config_path, "r") as f:
-        config = json.load(f)
+    with open(kernel_config_path, "r") as f:
+        kernel_config = json.load(f)
+
+    if not os.path.exists(directives_config_dir):
+        print(f"Directives config directory not found: {directives_config_dir}")
+        return
 
     base_solutions = []
     benchmarks = []
@@ -36,8 +42,8 @@ def main(args: Dict[str, str]):
         if not bench.is_dir():
             continue
 
-        bench_config = config.get(bench.name)
-        if not bench_config:
+        bench_kernel_config = kernel_config.get(bench.name)
+        if not bench_kernel_config:
             print(f"Configuration not found for {bench.name}")
             continue
 
@@ -46,11 +52,14 @@ def main(args: Dict[str, str]):
             print(f"Base solution directory not found for {bench}")
             continue
         
-        top_fn = bench_config["top_level"]
+        top_fn = bench_kernel_config["top_level"]
         base_solutions.append((base_sol_dir, bench.name, top_fn))
         benchmarks.append(bench)
 
-    base_graphs = build_base_graphs(base_solutions, filtered=False)
+    base_graphs = build_base_graphs(
+        base_solutions, directives_config_dir, 
+        filtered=False
+    )
 
     for bench in benchmarks:
         benchmark_out = output_dir / bench.name
@@ -95,8 +104,10 @@ def parse_args():
                         help="Signal that the dataset is filtered")
     parser.add_argument("-b", "--benchmarks", nargs="+", default=None,
                         help="List of benchmarks to process")
-    parser.add_argument("-c", "--config-path", default=None,
+    parser.add_argument("-ck", "--kernel-config-path", default=None,
                         help="Path to the configuration file for kernel information")
+    parser.add_argument("-cd", "--directive-config-dir", default=None,
+                        help="Path to the directory containing the directives config files")
     return vars(parser.parse_args())
 
 

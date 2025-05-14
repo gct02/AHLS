@@ -66,23 +66,28 @@ EDGE_TYPES = [
     ("block", "hrchy_rev", "region"),
     ("instr", "hrchy_rev", "region"),
     ("instr", "hrchy_rev", "block"),
-] + [(nt, "to", nt) for nt in NODE_TYPES] + DIRECTIVE_EDGE_TYPES
+] + [
+    # Self-loops
+    (nt, "to", nt) for nt in NODE_TYPES
+] + (
+    DIRECTIVE_EDGE_TYPES
+)
+
+METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
     "instr": 62, 
     "port": 7, 
-    "array": 20,
+    "array": 21,
     "const": 5,
     "block": 5,
-    "region": 15,
+    "region": 8,
     "array_partition": 9,
     "loop_flatten": 1,
     "loop_merge": 1,
     "pipeline": 1,
-    "unroll": 2,
-    "dataflow": 1,
-    "inline": 1
+    "unroll": 2
 }
 
 DIRECTIVES = [
@@ -91,10 +96,70 @@ DIRECTIVES = [
     "dataflow", "inline"
 ]
 
+DIRECTIVE_METADATA = {
+    "array_partition": (
+        ["array_partition", "array", "instr"],
+        [
+            ("array_partition", "transform", "array"),
+            ("array", "data", "instr"),
+            ("instr", "alloca", "array")
+        ]
+    ),
+    "unroll": (
+        ["unroll", "region", "block", "instr"],
+        [
+            ("unroll", "transform", "region"),
+            ("region", "hrchy", "region"),
+            ("region", "hrchy", "block"),
+            ("region", "hrchy", "instr"),
+            ("block", "hrchy", "instr"),
+            ("region", "hrchy_rev", "region"),
+            ("block", "hrchy_rev", "region"),
+            ("instr", "hrchy_rev", "region"),
+            ("instr", "hrchy_rev", "block")
+        ]
+    ),
+    "pipeline": (
+        ["pipeline", "region", "block", "instr", "array"],
+        [
+            ("pipeline", "transform", "region"),
+            ("region", "hrchy", "region"),
+            ("region", "hrchy", "block"),
+            ("region", "hrchy", "instr"),
+            ("block", "hrchy", "instr"),
+            ("region", "hrchy_rev", "region"),
+            ("block", "hrchy_rev", "region"),
+            ("instr", "hrchy_rev", "region"),
+            ("instr", "hrchy_rev", "block"),
+            ("array", "data", "instr"),
+            ("instr", "alloca", "array"),
+            ("instr", "data", "instr"),
+            ("block", "control", "instr"),
+            ("block", "control", "block")
+        ]
+    ),
+    "loop_flatten": (
+        ["loop_flatten", "region"],
+        [
+            ("loop_flatten", "transform", "region"),
+            ("region", "hrchy", "region"),
+            ("region", "hrchy_rev", "region")
+        ]
+    ),
+    "loop_merge": (
+        ["loop_merge", "region"],
+        [
+            ("loop_merge", "transform", "region"),
+            ("region", "hrchy", "region"),
+            ("region", "hrchy_rev", "region")
+        ]
+    )
+}
+
 
 def build_base_graphs(
     base_solutions: List[Tuple[str, str, str]],
-    directive_config_path: str,
+    directive_config_dir: str,
     filtered: bool = False,
     encoder_output_path: Optional[str] = None,
 ) -> Dict[str, HLSData]:
@@ -114,6 +179,9 @@ def build_base_graphs(
         hls_data = HLSData(
             solution_dir, top_level_name, metadata_path, benchmark,
             filtered=filtered
+        )
+        directive_config_path = os.path.join(
+            directive_config_dir, f"{benchmark.lower()}.json"
         )
         include_directives(hls_data, directive_config_path)
         hls_data_dict[benchmark] = hls_data
@@ -218,6 +286,172 @@ def to_pyg(
             else:
                 data[nt, "to", nt].edge_index = torch.empty((2, 0), dtype=torch.long)
 
+    data.directive_node_indices = {dt: {} for dt in DIRECTIVE_NODE_TYPES}
+    data.directive_edges = {dt: {} for dt in DIRECTIVE_NODE_TYPES}
+
+    array_partition_subset = {
+        "array_partition": set(range(data["array_partition"].x.size(0))),
+        "array": set(), "instr": set()
+    }
+    for src, dst in hls_data.edges.get(("array_partition", "transform", "array"), []):
+        array_partition_subset["array"].add(dst)
+        for _, instr in hls_data.edges.get(("array", "data", "instr"), []):
+            array_partition_subset["instr"].add(instr)
+        for instr, _ in hls_data.edges.get(("instr", "alloca", "array"), []):
+            array_partition_subset["instr"].add(instr)
+
+    array_partition_edge_subset = {}
+    for et in DIRECTIVE_METADATA["array_partition"][1]:
+        array_partition_edge_subset[et] = set()
+        src_nt, _, dst_nt = et
+        for src, dst in hls_data.edges.get(et, []):
+            if src in array_partition_subset[src_nt] and dst in array_partition_subset[dst_nt]:
+                array_partition_edge_subset[et].add((src, dst))
+    
+    for nt, indices in array_partition_subset.items():
+        data.directive_node_indices["array_partition"][nt] = torch.tensor(list(indices), dtype=torch.long)
+
+    for et, edge_index in array_partition_edge_subset.items():
+        if not edge_index:
+            data.directive_edges["array_partition"][et] = torch.empty((2, 0), dtype=torch.long)
+            continue
+        src, dst = zip(*edge_index)
+        src = torch.tensor(src, dtype=torch.long)
+        dst = torch.tensor(dst, dtype=torch.long)
+        data.directive_edges["array_partition"][et] = torch.stack([src, dst], dim=0)
+        
+    unroll_subset = {
+        "unroll": set(range(data["unroll"].x.size(0))),
+        "region": set(), "block": set(), "instr": set()
+    }
+    for src, dst in hls_data.edges.get(("unroll", "transform", "region"), []):
+        unroll_subset["region"].add(dst)
+        if (hrchy := hls_data.region_hrchy.get(dst)):
+            for region in hrchy["above"]:
+                unroll_subset["region"].add(region)
+            for region in hrchy["below"]:
+                unroll_subset["region"].add(region)
+            for block in hrchy["blocks"]:
+                unroll_subset["block"].add(block)
+            for instr in hrchy["instrs"]:
+                unroll_subset["instr"].add(instr)
+
+    unroll_edge_subset = {}
+    for et in DIRECTIVE_METADATA["unroll"][1]:
+        unroll_edge_subset[et] = set()
+        src_nt, _, dst_nt = et
+        for src, dst in hls_data.edges.get(et, []):
+            if src in unroll_subset[src_nt] and dst in unroll_subset[dst_nt]:
+                unroll_edge_subset[et].add((src, dst))
+
+    for et, edge_index in unroll_edge_subset.items():
+        if not edge_index:
+            data.directive_edges["unroll"][et] = torch.empty((2, 0), dtype=torch.long)
+            continue
+        src, dst = zip(*edge_index)
+        src = torch.tensor(src, dtype=torch.long)
+        dst = torch.tensor(dst, dtype=torch.long)
+        data.directive_edges["unroll"][et] = torch.stack([src, dst], dim=0)
+
+    for nt, indices in unroll_subset.items():
+        data.directive_node_indices["unroll"][nt] = torch.tensor(list(indices), dtype=torch.long)
+
+    pipeline_subset = {
+        "pipeline": set(range(data["pipeline"].x.size(0))),
+        "region": set(), "block": set(), "instr": set(), "array": set()
+    }
+    for src, dst in hls_data.edges.get(("pipeline", "transform", "region"), []):
+        pipeline_subset["region"].add(dst)
+        if (hrchy := hls_data.region_hrchy.get(dst)):
+            for region in hrchy["below"]:
+                pipeline_subset["region"].add(region)
+            for block in hrchy["blocks"]:
+                pipeline_subset["block"].add(block)
+            for instr in hrchy["instrs"]:
+                pipeline_subset["instr"].add(instr)
+            for array in hrchy["arrays"]:
+                pipeline_subset["array"].add(array)
+
+    pipeline_edge_subset = {}
+    for et in DIRECTIVE_METADATA["pipeline"][1]:
+        pipeline_edge_subset[et] = set()
+        src_nt, _, dst_nt = et
+        for src, dst in hls_data.edges.get(et, []):
+            if src in pipeline_subset[src_nt] and dst in pipeline_subset[dst_nt]:
+                pipeline_edge_subset[et].add((src, dst))
+
+    for et, edge_index in pipeline_edge_subset.items():
+        if not edge_index:
+            data.directive_edges["pipeline"][et] = torch.empty((2, 0), dtype=torch.long)
+            continue
+        src, dst = zip(*edge_index)
+        src = torch.tensor(src, dtype=torch.long)
+        dst = torch.tensor(dst, dtype=torch.long)
+        data.directive_edges["pipeline"][et] = torch.stack([src, dst], dim=0)
+
+    for nt, indices in pipeline_subset.items():
+        data.directive_node_indices["pipeline"][nt] = torch.tensor(list(indices), dtype=torch.long)
+
+    loop_flatten_subset = {
+        "loop_flatten": set(range(data["loop_flatten"].x.size(0))),
+        "region": set()
+    }
+    for src, dst in hls_data.edges.get(("loop_flatten", "transform", "region"), []):
+        loop_flatten_subset["region"].add(dst)
+        if (hrchy := hls_data.region_hrchy.get(dst)):
+            for region in hrchy["above"]:
+                loop_flatten_subset["region"].add(region)
+
+    loop_flatten_edge_subset = {}
+    for et in DIRECTIVE_METADATA["loop_flatten"][1]:
+        loop_flatten_edge_subset[et] = set()
+        src_nt, _, dst_nt = et
+        for src, dst in hls_data.edges.get(et, []):
+            if src in loop_flatten_subset[src_nt] and dst in loop_flatten_subset[dst_nt]:
+                loop_flatten_edge_subset[et].add((src, dst))
+
+    for et, edge_index in loop_flatten_edge_subset.items():
+        if not edge_index:
+            data.directive_edges["loop_flatten"][et] = torch.empty((2, 0), dtype=torch.long)
+            continue
+        src, dst = zip(*edge_index)
+        src = torch.tensor(src, dtype=torch.long)
+        dst = torch.tensor(dst, dtype=torch.long)
+        data.directive_edges["loop_flatten"][et] = torch.stack([src, dst], dim=0)
+
+    for nt, indices in loop_flatten_subset.items():
+        data.directive_node_indices["loop_flatten"][nt] = torch.tensor(list(indices), dtype=torch.long)
+
+    loop_merge_subset = {
+        "loop_merge": set(range(data["loop_merge"].x.size(0))),
+        "region": set()
+    }
+    for src, dst in hls_data.edges.get(("loop_merge", "transform", "region"), []):
+        loop_merge_subset["region"].add(dst)
+        if (hrchy := hls_data.region_hrchy.get(dst)):
+            for region in hrchy["below"]:
+                loop_merge_subset["region"].add(region)
+
+    loop_merge_edge_subset = {}
+    for et in DIRECTIVE_METADATA["loop_merge"][1]:
+        loop_merge_edge_subset[et] = set()
+        src_nt, _, dst_nt = et
+        for src, dst in hls_data.edges.get(et, []):
+            if src in loop_merge_subset[src_nt] and dst in loop_merge_subset[dst_nt]:
+                loop_merge_edge_subset[et].add((src, dst))
+
+    for et, edge_index in loop_merge_edge_subset.items():
+        if not edge_index:
+            data.directive_edges["loop_merge"][et] = torch.empty((2, 0), dtype=torch.long)
+            continue
+        src, dst = zip(*edge_index)
+        src = torch.tensor(src, dtype=torch.long)
+        dst = torch.tensor(dst, dtype=torch.long)
+        data.directive_edges["loop_merge"][et] = torch.stack([src, dst], dim=0)
+
+    for nt, indices in loop_merge_subset.items():
+        data.directive_node_indices["loop_merge"][nt] = torch.tensor(list(indices), dtype=torch.long)
+
     return data
 
 
@@ -255,7 +489,7 @@ def include_directives(hls_data, directive_config_path):
     with open(directive_config_path, "r") as f:
         directive_config = json.load(f)
     
-    directive_group_dict = directive_config.get("possible_directives")
+    directive_group_dict = directive_config.get("directives")
     if directive_group_dict is None:
         raise ValueError(
             f"Invalid directive config file: {directive_config_path}"
@@ -271,7 +505,8 @@ def include_directives(hls_data, directive_config_path):
 
     indices = {nt: 0 for nt in DIRECTIVE_NODE_TYPES}
 
-    for directive, directive_options in directive_group_dict.values():
+    for directive in directive_group_dict.values():
+        directive_options = directive.get("possible_directives", [])
         if len(directive_options) <= 1:
             continue
         directive_type = directive.get("directive_type")
@@ -305,19 +540,12 @@ def include_directives(hls_data, directive_config_path):
                 (directive_node.id, node.id)
             )
         else:
-            location = directive.get("location")
-            if location is None:
-                print("Warning: No location specified for directive.")
-                continue
-            if "/" in location:
-                function_name, node_name = location.split("/")
-            else:
-                function_name = location
-                node_name = location
-
-            node = find_region(hls_data, node_name, function_name)
+            label = directive.get("label", "")
+            if not label:
+                label = function
+            node = find_region(hls_data, label, function)
             if node is None:
-                print(f"Warning: Region '{node_name}' (function '{function_name}') not found in nodes.")
+                print(f"Warning: Region '{label}' (function '{function}') not found in nodes.")
                 continue
 
             directive_id = indices[directive_type]
@@ -326,7 +554,7 @@ def include_directives(hls_data, directive_config_path):
             if directive_type == "unroll":
                 directive_attrs["unroll_factor"] = 0
             directive_node = DirectiveNode(
-                directive_type, function_name, node_name, 
+                directive_type, function, label, 
                 directive_id, directive_attrs
             )
             hls_data.nodes[directive_type].append(directive_node)
@@ -359,6 +587,7 @@ def update_directive_features(hls_data: HLSData, directives_tcl: str):
                       f"(function '{function_name}') not found in nodes.")
                 continue
             region_node.attrs[directive_type] = 1
+            continue
         elif directive_type == "array_partition":
             function_name = directive_args.get("location", "")
             target_name = directive_args.get("variable")

@@ -1,6 +1,7 @@
 import os
 import json
 import xml.etree.ElementTree as ET
+from collections import defaultdict
 from abc import ABC, abstractmethod
 from enum import IntEnum
 from typing import Optional, Dict, Union, List, Tuple
@@ -245,7 +246,9 @@ class RegionNode(Node):
         }
         self.sub_regions = self._extract_items(element, 'sub_regions')
         self.blocks = self._extract_items(element, 'basic_blocks')
-        self.instrs = [] # Placeholder for instructions
+        self.parents = []
+        self.instrs = []
+        self.arrays = []
     
     def _extract_items(self, element, tag):
         return [
@@ -356,6 +359,7 @@ class BlockNode(CDFGNode):
             int(instr.text) 
             for instr in element.find('node_objs').findall('item')
         ]
+        self.arrays = []
         self.attrs["num_instrs"] = len(self.instrs)
         self._get_instruction_resources(instruction_nodes, node_id_map)
     
@@ -565,6 +569,8 @@ class CDFG:
                 node_id, node_type = self._node_id_map.get(instr_id, (None, None))
                 if node_id is not None and node_type == 'instr':
                     instrs.append(node_id)
+                elif node_type == 'array':
+                    node.arrays.append(instr_id)
             node.instrs = instrs
             self.nodes['block'].append(node)
 
@@ -572,9 +578,9 @@ class CDFG:
         offset = self._offsets['region']
         for elem in regions.findall('item'):
             node = RegionNode(elem, self.function_name, metadata)
-            node.id += offset
+            node.id += offset - 1
             node.sub_regions = [
-                sub_region_id + offset 
+                sub_region_id + offset - 1
                 for sub_region_id in node.sub_regions
             ]
             node.blocks = [
@@ -582,6 +588,10 @@ class CDFG:
                 for block_id in node.blocks if block_id in self._node_id_map
             ]
             self.nodes['region'].append(node)
+
+        for i, node in enumerate(self.nodes['region']):
+            for sub_region_id in node.sub_regions:
+                self.nodes['region'][sub_region_id - offset].parents.append(node.id)
 
     def _parse_edges(self, cdfg):
         for elem in cdfg.find('edges').findall('item'):
@@ -638,15 +648,13 @@ class CDFG:
                     if dst_instr.attrs['opcode'] == 'getelementptr':
                         self.edges[("array", "data", "instr")].append((src_array_id, dst_instr_id))
 
-        # Add a (array -> op) edge for each (array -> get -> op) path
+        # Add a (array -> op) edge for each (array -> gep -> op) path
         for src_array_id, dst_instr_id in self.edges.get(("array", "data", "instr"), []):
-            if src_array_id == dst_const_id:
-                dst_instr = self.nodes['instr'][dst_instr_id - self._offsets['instr']]
-                if dst_instr.attrs['opcode'] == 'getelementptr':
-                    for src_instr_id, next_instr_id in self.edges.get(("instr", "data", "instr"), []):
-                        if src_instr_id == dst_instr_id:
-                            self.edges[("array", "data", "instr")].append((src_array_id, next_instr_id))
-                            break
+            dst_instr = self.nodes['instr'][dst_instr_id - self._offsets['instr']]
+            if dst_instr.attrs['opcode'] == 'getelementptr':
+                for src_instr_id, next_instr_id in self.edges.get(("instr", "data", "instr"), []):
+                    if src_instr_id == dst_instr_id:
+                        self.edges[("array", "data", "instr")].append((src_array_id, next_instr_id))
 
     def _map_edge_type(self, edge_type):
         return {'1': 'data', '2': 'control', '4': 'mem'}.get(edge_type, '')
@@ -658,10 +666,13 @@ class CDFG:
                 self.edges[('region', 'hrchy', 'region')].append((region.id, sub_region_id))
             for block_id in region.blocks:
                 self.edges[('region', 'hrchy', 'block')].append((region.id, block_id))
-                for instr_id in self.nodes['block'][block_id - block_offset].instrs:
+                block_node = self.nodes['block'][block_id - block_offset]
+                for instr_id in block_node.instrs:
                     self.nodes['region'][i].instrs.append(instr_id)
                     self.edges[('region', 'hrchy', 'instr')].append((region.id, instr_id))
                     self.edges[('block', 'hrchy', 'instr')].append((block_id, instr_id))
+                for array_id in block_node.arrays:
+                    self.nodes['region'][i].arrays.append(array_id)
 
     def as_dict(self):
         return {
@@ -711,8 +722,9 @@ class HLSData:
             for key, value in rpt['module_data'].items() 
             if key in TARGET_RESOURCES
         }
-        self._offsets = {nt: -1 if nt == "region" else 0 for nt in BASIC_NODE_TYPES}
+        self._offsets = {nt: 0 for nt in BASIC_NODE_TYPES}
         self._cdfgs = {}
+        self.region_hrchy = {}
 
         with open(metadata_path, 'r') as f:
             self.metadata = json.load(f)
@@ -720,6 +732,7 @@ class HLSData:
         try:
             self._process_adb_files(solution_dir, filtered)
             self._include_call_flow()
+            self._build_region_hrchy()
         except Exception as e:
             print(f"Error processing ADB files: {e}")
             raise
@@ -762,6 +775,40 @@ class HLSData:
                 callee_cdfg = self._cdfgs[callee]
                 callee_start = callee_cdfg.nodes['instr'][0]
                 self.edges[call_edge_type].append((function_call[0], callee_start.id))
+
+    def _build_region_hrchy(self):
+        for i, node in enumerate(self.nodes['region']):
+            regions_above = set()
+            regions_below = set()
+            blocks = set(node.blocks)
+            instrs = set(node.instrs)
+            arrays = set(node.arrays)
+
+            parents = set(node.parents)
+            while parents:
+                parent_id = parents.pop()
+                if parent_id not in regions_above:
+                    regions_above.add(parent_id)
+                    parents.update(self.nodes['region'][parent_id - self._offsets['region']].parents)
+            
+            children = set(node.sub_regions)
+            while children:
+                child_id = children.pop()
+                if child_id not in regions_below:
+                    regions_below.add(child_id)
+                    child_node = self.nodes['region'][child_id - self._offsets['region']]
+                    blocks.update(child_node.blocks)
+                    instrs.update(child_node.instrs)
+                    arrays.update(child_node.arrays)
+                    children.update(child_node.sub_regions)
+
+            self.region_hrchy[node.id] = {
+                'above': regions_above,
+                'below': regions_below,
+                'blocks': blocks,
+                'instrs': instrs,
+                'arrays': arrays
+            }
 
     def as_dict(self):
         return {
