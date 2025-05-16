@@ -15,16 +15,16 @@ from torch.nn.utils import clip_grad_norm_
 from sklearn.metrics import r2_score
 
 from gnn.models import HGT
-from gnn.dataset import HLSDataset
-from gnn.dataloader import HLSDataLoader
-from gnn.data.graph import (
-    METADATA, DIRECTIVE_SUBSET_METADATA,
+from gnn.data.dataset import HLSDataset
+from gnn.data.dataloader import HLSDataLoader
+from gnn.data.hetero_data import (
+    METADATA,
+    DIRECTIVE_SUBSET_METADATA,
     NODE_FEATURE_DIMS
 )
 
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-# DEVICE = torch.device('cpu')
 
 
 PredTargetPair = Tuple[

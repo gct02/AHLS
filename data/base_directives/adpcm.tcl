@@ -1,10 +1,3 @@
-set_directive_pipeline -off adpcm_main
-set_directive_pipeline -off encode
-set_directive_pipeline -off decode
-set_directive_pipeline -off reset
-set_directive_pipeline -off filtez
-set_directive_pipeline -off quantl
-set_directive_pipeline -off upzero
 set_directive_pipeline -off encode/encode_label0
 set_directive_pipeline -off encode/encode_label1
 set_directive_pipeline -off decode/decode_label2
@@ -19,18 +12,4 @@ set_directive_pipeline -off upzero/upzero_label10
 set_directive_pipeline -off upzero/upzero_label11
 set_directive_pipeline -off adpcm_main/adpcm_main_label12
 set_directive_pipeline -off adpcm_main/adpcm_main_label13
-set_directive_loop_flatten -off encode/encode_label0
-set_directive_loop_flatten -off encode/encode_label1
-set_directive_loop_flatten -off decode/decode_label2
-set_directive_loop_flatten -off decode/decode_label3
-set_directive_loop_flatten -off reset/reset_label4
-set_directive_loop_flatten -off reset/reset_label5
-set_directive_loop_flatten -off reset/reset_label6
-set_directive_loop_flatten -off reset/reset_label7
-set_directive_loop_flatten -off filtez/filtez_label8
-set_directive_loop_flatten -off quantl/quantl_label9
-set_directive_loop_flatten -off upzero/upzero_label10
-set_directive_loop_flatten -off upzero/upzero_label11
-set_directive_loop_flatten -off adpcm_main/adpcm_main_label12
-set_directive_loop_flatten -off adpcm_main/adpcm_main_label13
 set_directive_top adpcm_main -name adpcm_main

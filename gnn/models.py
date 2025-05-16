@@ -5,8 +5,12 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn import (
-    HeteroDictLinear, Linear, HGTConv, LayerNorm,
-    global_add_pool, global_max_pool
+    Linear,
+    HeteroDictLinear, 
+    LayerNorm,
+    HGTConv,
+    global_add_pool, 
+    global_max_pool
 )
 from torch_geometric.data import HeteroData
 from torch_geometric.typing import Metadata, NodeType
@@ -19,8 +23,8 @@ class HGT(nn.Module):
 
     Args:
         metadata (Metadata): Metadata object containing node and edge types.
-        dir_metadata (Dict[str, Metadata]): Metadata object containing node 
-            and edge types for each HLS directive.
+        dct_metadata_dict (Dict[str, Metadata]): Dictionary holding Metadata 
+            objects containing node and edge types for each HLS directive.
         in_channels (int or Dict[str, int]): Number of input channels
             for each node type.
         out_channels (int): Number of output channels.
@@ -40,7 +44,7 @@ class HGT(nn.Module):
     def __init__(
         self,
         metadata: Metadata,
-        dir_metadata: Dict[str, Metadata],
+        dct_metadata_dict: Dict[str, Metadata],
         in_channels: Union[int, Dict[NodeType, int]],
         out_channels: int,
         hid_dim: Union[int, List[int]] = 256,
@@ -53,18 +57,18 @@ class HGT(nn.Module):
 
         self.node_types = metadata[0]
         self.edge_types = metadata[1]
-        self.directive_node_types = dir_metadata.keys()
-        self.directive_edge_types = [
+        self.dct_node_types = dct_metadata_dict.keys()
+        self.dct_edge_types = [
             et for et in self.edge_types
-            if et[0] in self.directive_node_types
+            if et[0] in self.dct_node_types
         ]
         self.cdfg_node_types = [
             nt for nt in self.node_types 
-            if nt not in self.directive_node_types
+            if nt not in self.dct_node_types
         ]
         self.cdfg_edge_types = [
             et for et in self.edge_types
-            if et[0] in self.cdfg_node_types
+            if et not in self.dct_edge_types
         ]
         self.in_channels = in_channels
         self.out_channels = out_channels
@@ -98,8 +102,8 @@ class HGT(nn.Module):
         )
 
         # GNN for HLS directives
-        self.hls_gnn = HLSGNN(
-            dir_metadata=dir_metadata, 
+        self.hls_gnn = HLSTransformGNN(
+            dct_metadata_dict=dct_metadata_dict, 
             in_channels=proj_in_dim, 
             out_channels=proj_in_dim, 
             heads=heads[0]
@@ -184,11 +188,15 @@ class HGT(nn.Module):
 
         # GNN for HLS directives
         x_dict = self.hls_gnn(x_dict, data)
-
-        for nt in self.directive_node_types:
-            x_dict.pop(nt, None)
-        for et in self.directive_edge_types:
-            edge_index_dict.pop(et, None)
+        
+        x_dict = {
+            nt: x for nt, x in x_dict.items()
+            if nt in self.cdfg_node_types
+        }
+        edge_index_dict = {
+            et: edge_index for et, edge_index in edge_index_dict.items()
+            if et in self.cdfg_edge_types
+        }
 
         # Convolutional layers
         for i in range(self.num_layers):
@@ -224,10 +232,10 @@ class HGT(nn.Module):
         return batch_size + 1
     
 
-class HLSGNN(nn.Module):
+class HLSTransformGNN(nn.Module):
     def __init__(
         self, 
-        dir_metadata: Dict[str, Metadata],
+        dct_metadata_dict: Dict[str, Metadata],
         in_channels: Union[int, Dict[NodeType, int]],
         out_channels: int,
         heads: int = 1
@@ -235,13 +243,13 @@ class HLSGNN(nn.Module):
         super().__init__()
 
         self.gnn = nn.ModuleDict({
-            dt: HGTConv(
+            dct: HGTConv(
                 in_channels=in_channels, 
                 out_channels=out_channels, 
-                metadata=metadata, 
+                metadata=dct_metadata, 
                 heads=heads
             )
-            for dt, metadata in dir_metadata.items()
+            for dct, dct_metadata in dct_metadata_dict.items()
         })
 
         self.reset_parameters()
@@ -252,19 +260,20 @@ class HLSGNN(nn.Module):
             gnn.reset_parameters()
 
     def forward(self, x_dict: Dict[NodeType, Tensor], data: HeteroData):
-        for dt, gnn in self.gnn.items():
+        for dct, gnn in self.gnn.items():
             try:
-                x_mask_dict = data.__getattr__(f"{dt}_x_mask_dict")
-                filtered_edge_index_dict = data.__getattr__(f"{dt}_filtered_edges_dict")
+                x_mask_dict = data.__getattr__(f"{dct}_x_mask_dict")
+                filtered_edge_dict = data.__getattr__(f"{dct}_filtered_edge_dict")
             except AttributeError:
                 raise AttributeError(
-                    f"Missing attributes for directive {dt} in data."
+                    f"Missing attributes for directive {dct} in data."
                 )
+            
             filtered_x_dict = {
                 nt: x_dict[nt][mask, :]
                 for nt, mask in x_mask_dict.items()
             }
-            filtered_x_dict = gnn(filtered_x_dict, filtered_edge_index_dict)
+            filtered_x_dict = gnn(filtered_x_dict, filtered_edge_dict)
 
             for nt, x in filtered_x_dict.items():
                 x_dict[nt][x_mask_dict[nt]] = x
