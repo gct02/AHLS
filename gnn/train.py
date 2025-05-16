@@ -13,10 +13,10 @@ import torch
 import torch.nn as nn
 from torch.nn.utils import clip_grad_norm_
 from sklearn.metrics import r2_score
-from torch_geometric.loader import DataLoader
 
 from gnn.models import HGT
 from gnn.dataset import HLSDataset
+from gnn.dataloader import HLSDataLoader
 from gnn.data.graph import (
     METADATA, DIRECTIVE_SUBSET_METADATA,
     NODE_FEATURE_DIMS
@@ -60,7 +60,7 @@ def static_vars(**kwargs):
 def evaluate(
     epoch: int,
     model: nn.Module,
-    loader: DataLoader,
+    loader: HLSDataLoader,
     verbosity: int = 1,
     log_dir: Optional[str] = None,
     mode: str = 'test',
@@ -107,8 +107,8 @@ def train_model(
     model: nn.Module,
     loss_fn: nn.Module,
     optimizer: torch.optim.Optimizer,
-    train_loader: DataLoader,
-    test_loader: DataLoader,
+    train_loader: HLSDataLoader,
+    test_loader: HLSDataLoader,
     epochs: int,
     scheduler: Optional[torch.optim.lr_scheduler.LRScheduler] = None,
     verbosity: int = 1,
@@ -464,7 +464,7 @@ def prepare_data_loaders(
     train_benchmarks: Union[List[str], str],
     batch_size: int = 16,
     log_transform: bool = False
-) -> Tuple[DataLoader, DataLoader]:
+) -> Tuple[HLSDataLoader, HLSDataLoader]:
     train_data = HLSDataset(
         dataset_dir, metric, mode="train", scale_features=True, 
         benchmarks=train_benchmarks, log_transform=log_transform
@@ -474,8 +474,8 @@ def prepare_data_loaders(
         feature_ranges=train_data.feature_ranges,
         benchmarks=test_benchmarks,log_transform=log_transform
     )
-    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
-    test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
+    train_loader = HLSDataLoader(train_data, batch_size=batch_size, shuffle=True)
+    test_loader = HLSDataLoader(test_data, batch_size=1, shuffle=False)
 
     return train_loader, test_loader
 

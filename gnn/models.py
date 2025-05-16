@@ -24,7 +24,7 @@ class HGT(nn.Module):
         in_channels (int or Dict[str, int]): Number of input channels
             for each node type.
         out_channels (int): Number of output channels.
-        hid_dims (int or List[int]): Hidden dimensions for each conv layer.
+        hid_dim (int or List[int]): Hidden dimensions for each conv layer.
             (default: :obj:`256`)
         heads (int or List[int]): Number of attention heads for each conv layer.
             (default: :obj:`4`)
