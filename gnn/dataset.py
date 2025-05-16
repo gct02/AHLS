@@ -192,7 +192,6 @@ class HLSDataset(Dataset):
 
     def get(self, ind):
         data = torch.load(self.processed_paths[ind])
-        print(data)
         return data 
     
     def _scale_features(self, data: HeteroData) -> HeteroData:

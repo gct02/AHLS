@@ -18,12 +18,13 @@ from torch_geometric.loader import DataLoader
 from gnn.models import HGT
 from gnn.dataset import HLSDataset
 from gnn.data.graph import (
-    METADATA, DIRECTIVE_METADATA,
+    METADATA, DIRECTIVE_SUBSET_METADATA,
     NODE_FEATURE_DIMS
 )
 
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+# DEVICE = torch.device('cpu')
 
 
 PredTargetPair = Tuple[
@@ -208,7 +209,7 @@ def main(args: Dict[str, str]):
     proj_in_dim = 512
     
     model = HGT(
-        METADATA, DIRECTIVE_METADATA, NODE_FEATURE_DIMS, 1,
+        METADATA, DIRECTIVE_SUBSET_METADATA, NODE_FEATURE_DIMS, 1,
         hid_dim=hid_dim, heads=heads, 
         num_layers=num_layers, proj_in_dim=proj_in_dim
     ).to(DEVICE)
