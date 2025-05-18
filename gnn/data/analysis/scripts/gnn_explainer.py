@@ -25,10 +25,10 @@ def extract_errors_from_log(log_file_path):
     rel_errors = [[] for _ in range(n_epochs)]
 
     for line in lines:
-        epoch, target, pred = map(float, line.strip().split(',')[:-1])
-        # epoch, _, target, pred = map(float, line.strip().split(','))
+        epoch, target, pred = line.strip().split(',')[:-1]
+        epoch, target, pred = int(epoch), float(target), float(pred)
         rel_error = abs(target - pred) / target
-        rel_errors[int(epoch) - 1].append(rel_error)
+        rel_errors[epoch - 1].append(rel_error)
 
     return rel_errors
 
@@ -62,8 +62,8 @@ def create_index_map(raw_test_dataset_dir):
 def create_solution_result_dict(rel_errors, index_map):
     """Link each result with its corresponding solution ID."""
     return {
-        index_map[i]: error
-        for i, error in enumerate(rel_errors) 
+        index_map[i]: re
+        for i, re in enumerate(rel_errors) 
         if i in index_map
     }
 
@@ -99,7 +99,7 @@ def process_directives(raw_test_dataset_dir, source_dataset_dir, dct_config_path
         if feat_names is None:
             dct_dict[sol_idx], feat_names = encode_directives(
                 dct_config_path, dct_tcl_path, 
-                return_feature_names=True
+                return_feat_names=True
             )
         else:
             dct_dict[sol_idx] = encode_directives(dct_config_path, dct_tcl_path)
@@ -110,8 +110,8 @@ def process_directives(raw_test_dataset_dir, source_dataset_dir, dct_config_path
 def associate_directives_with_results(dct_dict, result_dict):
     """Return dict {solution_idx: (directive_indices, rel_errors)}."""
     return {
-        i: (dcts, rel_errors)
-        for i, rel_errors in result_dict.items()
+        i: (dcts, re)
+        for i, re in result_dict.items()
         if (dcts := dct_dict.get(i)) is not None
     }
 
@@ -119,7 +119,7 @@ def associate_directives_with_results(dct_dict, result_dict):
 def sort_by_error(dct_result_dict):
     """Return sorted list of tuples (solution_idx, directives, error), descending."""
     return sorted(
-        [(i, d, np.mean(re)) for i, (d, re) in dct_result_dict.items()],
+        [(i, d, re) for i, (d, re) in dct_result_dict.items()],
         key=lambda x: x[2],
         reverse=True
     )
@@ -169,15 +169,32 @@ def explain_model(model, X_dct):
     return shap_values
 
 
+def explain_model_with_interactions(model, X_dct):
+    explainer = shap.TreeExplainer(model)
+    shap_interaction_values = explainer.shap_interaction_values(X_dct)
+    return shap_interaction_values
+
+
 def plot_shap_values(X_dct, shap_values, feat_names=None):
     shap.summary_plot(
         shap_values, X_dct, 
         feature_names=feat_names, 
-        max_display=30, alpha=0.6,
+        max_display=20, alpha=0.4,
         show_values_in_legend=True,
-        color=shap_values
+        color=X_dct
     )
     plt.tight_layout()
+
+
+def plot_interaction_summary(shap_interaction_values, X_dct, feat_names=None):
+    shap.summary_plot(
+        shap_interaction_values, X_dct, 
+        feature_names=feat_names, 
+        max_display=20, alpha=0.4,
+        show_values_in_legend=True,
+        plot_type="compact_dot",
+        color=X_dct
+    )
 
 
 def _load_metrics(path):
@@ -242,6 +259,10 @@ if __name__ == "__main__":
 
     X_dct, y_error = build_dataset(dct_result_list)
     model = train_model(X_dct, y_error)
+
     shap_values = explain_model(model, X_dct)
     plot_shap_values(X_dct, shap_values, feat_names)
+
+    # shap_interaction_values = explain_model_with_interactions(model, X_dct)
+    # plot_interaction_summary(shap_interaction_values, X_dct, feat_names)
 
