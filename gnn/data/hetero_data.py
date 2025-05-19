@@ -63,7 +63,7 @@ DIRECTIVE_SUBSET_NODE_TYPES = {
         "unroll", "region", "block", "instr"
     ],
     "pipeline": [
-        "pipeline", "region", "block", "instr", "array"
+        "pipeline", "region", "block", "instr"
     ],
     "loop_flatten": [
         "loop_flatten", "region"
@@ -86,8 +86,6 @@ DIRECTIVE_SUBSET_EDGE_TYPES = {
     ],
     "pipeline": [
         ("pipeline", "transform", "region"),
-        ("array", "data", "instr"),
-        ("instr", "alloca", "array"),
         ("instr", "data", "instr"),
         ("block", "control", "instr"),
         ("block", "control", "block")
@@ -226,10 +224,13 @@ def extract_dct_subset(kernel_info, dct):
         x_mask_dict[target_nt][dst] = True
 
         if dct == "array_partition":
-            for src_array, dst_instr in kernel_info.edges.get(("array", "data", "instr"), []):
+            array_alloca_edges = kernel_info.edges.get(("array", "alloca", "array"), [])
+            for src_array, dst_instr in array_alloca_edges:
                 if src_array == dst:
                     x_mask_dict["instr"][dst_instr] = True
-            for src_instr, dst_array in kernel_info.edges.get(("instr", "alloca", "array"), []):
+            
+            array_data_edges = kernel_info.edges.get(("array", "data", "instr"), [])
+            for src_instr, dst_array in array_data_edges:
                 if dst_array == dst:
                     x_mask_dict["instr"][src_instr] = True
         else:
@@ -237,16 +238,10 @@ def extract_dct_subset(kernel_info, dct):
             if not region_hrchy:
                 continue
 
-            if dct == "unroll":
-                subtypes = ["block", "instr"]
-            elif dct == "pipeline":
-                subtypes = ["block", "instr", "array"]
-            else:
-                subtypes = []
-
-            for subtype in subtypes:
-                for node in region_hrchy[subtype]:
-                    x_mask_dict[subtype][node] = True
+            if dct in ["pipeline", "unroll"]:
+                for nt in ["block", "instr"]:
+                    for node in region_hrchy[nt]:
+                        x_mask_dict[nt][node] = True
 
             if dct in ["pipeline", "loop_merge"]:
                 levels = ["below"]
@@ -304,11 +299,7 @@ def extract_dct_subset(kernel_info, dct):
         src, dst = zip(*edge_index)
         src = torch.tensor(src, dtype=torch.long)
         dst = torch.tensor(dst, dtype=torch.long)
-        edge_index_tensor = torch.stack([src, dst], dim=0)
-
-        # Sort the edge index by destination node
-        sorted_indices = edge_index_tensor[1].argsort()
-        filtered_edge_dict[et] = edge_index_tensor[:, sorted_indices]
+        filtered_edge_dict[et] = torch.stack([src, dst], dim=0)
 
     for nt, mask in x_mask_dict.items():
         if len(mask) == 0:
@@ -364,10 +355,8 @@ def to_hls_hetero_data(
         data.set_value_dict(f"{dt}_filtered_edge", filtered_edge_dict)
         for nt, mask in x_mask_dict.items():
             data[nt].__setattr__(f"{dt}_x_mask", mask)
-            data[nt].__setitem__(f"{dt}_x_mask", mask)
         for et, edge_index in filtered_edge_dict.items():
             data[et].__setattr__(f"{dt}_filtered_edge", edge_index)
-            data[et].__setitem__(f"{dt}_filtered_edge", edge_index)
 
     if add_reversed_edges:
         hrchy_edges = {k: v for k, v in data.edge_index_dict.items() if k[1] == "hrchy"}

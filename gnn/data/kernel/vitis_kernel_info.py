@@ -21,7 +21,7 @@ CDFG_EDGE_TYPES = [
     ("port", "data", "instr"), 
     ("array", "data", "instr"),
 
-    # Edges representing GEP instructions with globals
+    # Edges representing constant pointers
     ("instr", "data", "const"),
     ("array", "data", "const"),
 
@@ -78,20 +78,20 @@ class Node(ABC):
 class DirectiveNode(Node):
     def __init__(
         self, 
-        directive_type: str,
+        directive: str,
         function_name: Optional[str] = None,
         target_name: Optional[str] = None,
         node_id: Optional[int] = None,
-        attrs: Optional[AttributeDict] = None
+        attributes: Optional[AttributeDict] = None
     ):
         self.id = node_id
-        self.directive_type = directive_type
+        self.directive = directive
         self.function_name = function_name if function_name else ''
         self.target_name = target_name if target_name else ''
-        self.name = f"{directive_type} {self.function_name}/{self.target_name}"
+        self.name = f"{directive} {self.function_name}/{self.target_name}"
         self.label = self.name
 
-        self.attrs = attrs if attrs else {}
+        self.attrs = attributes if attributes else {}
 
     def as_dict(self):
         return {
@@ -116,9 +116,9 @@ class CDFGNode(Node):
         self.id = findint(obj, 'id')
         if self.id is None:
             raise ValueError("Element does not contain 'id' tag")
+        
         self.name = obj.findtext('name', '')
         self.rtl_name = obj.findtext('rtlName', '')
-
         self.function_name = function_name
         self.attrs = {}
         self.label = None
@@ -136,22 +136,20 @@ class CDFGNode(Node):
 class ArrayNode(Node):
     def __init__(
         self, 
-        array_md_entry: MetadataEntry,
-        node_name: str,
+        array_metadata: MetadataEntry,
         node_id: int,
-        function_name: str,
-        is_top_level: bool,
+        is_top_fn_port: bool = False,
         direction: Optional[PortDirection] = None,
         resources: Optional[Dict[str, int]] = None
     ):
         self.id = node_id
-        self.name = node_name
-        self.label = node_name
-        self.function_name = function_name
+        self.name = array_metadata['Name']
+        self.label = self.name
+        self.function_name = array_metadata.get('FunctionName', '')
 
-        self.total_size = max(1, array_md_entry['TotalSize'])
+        self.total_size = max(1, array_metadata['TotalSize'])
 
-        if direction is not None and is_top_level:
+        if direction is not None and is_top_fn_port:
             array_impl = [1, 0, 0] # RTL port
         elif self.total_size > 1024:
             array_impl = [0, 1, 0] # BRAM, LUTRAM or URAM
@@ -167,7 +165,7 @@ class ArrayNode(Node):
         else:
             direction_encoding = [0, 0, 1, 0]
 
-        dims = array_md_entry.get('Dimensions', [])
+        dims = array_metadata.get('Dimensions', [])
         num_dims = len(dims)
         if num_dims > MAX_ARRAY_DIM:
             # Truncate to MAX_ARRAY_DIM, multiplying the last dimension
@@ -179,10 +177,9 @@ class ArrayNode(Node):
             dims.extend([1] * (MAX_ARRAY_DIM - num_dims))
 
         self.attrs = {
-            'dims': dims,
-            'num_dims': num_dims,
-            'base_type': array_md_entry.get('BaseType', ''),
-            'base_bitwidth': array_md_entry.get('BaseBitWidth', 0),
+            'dims': dims, 'num_dims': num_dims,
+            'base_type': array_metadata.get('BaseType', ''),
+            'base_bitwidth': array_metadata.get('BaseBitWidth', 0),
             'direction': direction_encoding,
             'array_impl': array_impl,
         }
@@ -209,21 +206,23 @@ class RegionNode(Node):
         self, 
         element: ET.Element, 
         function_name: str, 
-        module_md_dict: MetadataDict,
+        metadata: MetadataDict,
     ):
         self.id = findint(element, 'mId')
         if self.id is None:
             raise ValueError("Element does not contain 'mId' tag")
+        
         self.name = element.findtext('mTag')
         self.label = self.name
         self.function_name = function_name
 
-        self.is_loop = True if findint(element, 'mType', 0) == 1 else False
+        self.is_loop = findint(element, 'mType', 0) == 1
 
         metadata_entry = find_in_metadata(
-            module_md_dict, 'Loop', self.name, function_name
+            metadata, 'Loop', self.name, function_name
         )
         if metadata_entry is not None:
+            self.function_name = metadata_entry.get('FunctionName', function_name)
             loop_depth = metadata_entry.get('LoopDepth', 0)
         else:
             loop_depth = findint(element, 'mDepth', 0)
@@ -243,11 +242,12 @@ class RegionNode(Node):
             'loop_depth': loop_depth, 'ii': ii, 
             'dataflow': 0, 'inline': 0
         }
+
         self.sub_regions = self._extract_items(element, 'sub_regions')
-        self.blocks = self._extract_items(element, 'basic_blocks')
         self.parents = []
+
+        self.blocks = self._extract_items(element, 'basic_blocks')
         self.instrs = []
-        self.arrays = []
     
     def _extract_items(self, element, tag):
         return [
@@ -275,7 +275,7 @@ class PortNode(CDFGNode):
         self, 
         element: ET.Element, 
         function_name: str,
-        is_top_level: bool
+        is_top_fn_port: bool
     ):
         super().__init__(element, function_name)
 
@@ -291,7 +291,7 @@ class PortNode(CDFGNode):
 
         self.attrs.update({
             'direction': direction,
-            'top_level': int(is_top_level),
+            'top_level': int(is_top_fn_port),
             'bitwidth': findint(element, 'Value/bitwidth', 0),
             'port_type': element.findtext('if_type', '')
         })
@@ -334,7 +334,6 @@ class ConstantNode(CDFGNode):
         super().__init__(element, function_name)
 
         self.label = element.findtext('content', '')
-
         self.attrs.update({
             'bitwidth': findint(element, 'Value/bitwidth', 0),
             'const_type': element.findtext('const_type', ''),
@@ -346,33 +345,28 @@ class BlockNode(CDFGNode):
         self, 
         element: ET.Element, 
         function_name: str,
-        instruction_nodes: List[InstructionNode],
-        node_id_map: Dict[int, Tuple[int, str]]
+        instr_nodes: List[InstructionNode],
+        node_id_map: Dict[int, Tuple[int, str]],
+        instr_offset: int = 0
     ):
         super().__init__(element, function_name)
 
         self.label = self.name
         self.attrs = {resource_type: 0 for resource_type in TARGET_RESOURCES}
+        self._parse_instrs(element, instr_nodes, node_id_map, instr_offset)
 
-        self.instrs = [
-            int(instr.text) 
-            for instr in element.find('node_objs').findall('item')
-        ]
-        self.arrays = []
-        self.attrs["num_instrs"] = len(self.instrs)
-        self._get_instruction_resources(instruction_nodes, node_id_map)
-    
-    def _get_instruction_resources(self, instruction_nodes, node_id_map):
-        instr_dict = {instr.id: instr for instr in instruction_nodes}
-        for instr_id in self.instrs:
-            instr_id = node_id_map.get(instr_id, (None, None))[0]
-            if instr_id is None:
+    def _parse_instrs(self, element, instr_nodes, node_id_map, instr_offset):
+        self.instrs = []
+        for instr in element.find('node_objs').findall('item'):
+            instr_id, instr_type = node_id_map.get(int(instr.text), (None, None))
+            if instr_id is None or instr_type != 'instr':
                 continue
-            instr = instr_dict.get(instr_id)
-            if instr is None:
-                continue
+            self.instrs.append(instr_id)
+            instr_node = instr_nodes[instr_id - instr_offset]
             for resource_type in TARGET_RESOURCES:
-                self.attrs[resource_type] += instr.attrs[resource_type]
+                self.attrs[resource_type] += instr_node.attrs[resource_type]
+        
+        self.attrs["num_instrs"] = len(self.instrs)
 
     def as_dict(self):
         return {
@@ -392,9 +386,9 @@ class CDFG:
     def __init__(
         self, 
         root: ET.Element, 
-        top_level_name: str, 
+        top_fn_name: str, 
         metadata: MetadataDict,
-        resource_dict: Dict[str, Dict[str, int]],
+        node_resource_map: Dict[str, Dict[str, int]],
         offsets: Optional[Dict[str, int]] = None,
     ):
         self.nodes = {nt: [] for nt in CDFG_NODE_TYPES}
@@ -411,46 +405,39 @@ class CDFG:
             raise ValueError("CDFG regions not found in the XML file")
 
         # Extract function information
-        self.function_name = cdfg.findtext('name')
+        self.name = cdfg.findtext('name')
         self.ret_bitwidth = findint(cdfg, 'ret_bitwidth')
-        self.is_top_level = self.function_name == top_level_name
+        self.is_top_fn = self.name == top_fn_name
         self.function_calls = []
 
         try:
-            self._parse_nodes(cdfg, cdfg_regions, resource_dict, metadata)
+            self._parse_nodes(cdfg, cdfg_regions, node_resource_map, metadata)
             self._parse_edges(cdfg)
             self._build_hierarchy_edges()
         except Exception as e:
             print(f"Error parsing CDFG: {e}")
             raise
 
-    def _parse_nodes(self, cdfg, regions, resource_dict, metadata):
-        consts = cdfg.find('consts')
-        if consts is None:
+    def _parse_nodes(self, cdfg, regions, node_resource_map, metadata):
+        if (consts := cdfg.find('consts')) is None:
             raise ValueError("CDFG does not contain 'consts' section")
-        self._process_consts(consts)
-
-        # 'nodes' section contains instructions and global variables
-        # (represented as instructions with 'GlobalMem' opcode)
-        instrs = cdfg.find('nodes')
-        if instrs is None:
+        if (instrs := cdfg.find('nodes')) is None:
             raise ValueError("CDFG does not contain 'nodes' section")
-        self._process_instrs(instrs, resource_dict, metadata)
-
-        ports = cdfg.find('ports')
-        if ports is None:
+        if (ports := cdfg.find('ports')) is None:
             raise ValueError("CDFG does not contain 'ports' section")
-        self._process_ports(ports, metadata)
-
-        blocks = cdfg.find('blocks')
-        if blocks is None:
+        if (blocks := cdfg.find('blocks')) is None:
             raise ValueError("CDFG does not contain 'blocks' section")
+        
+        self._process_instrs(instrs, node_resource_map, metadata)
+        self._process_ports(ports, metadata)
+        self._process_consts(consts)
         self._process_blocks(blocks)
-
         self._process_regions(regions, metadata)
 
-    def _process_instrs(self, instrs, resource_dict, metadata):
-        self._alloca_instrs = {}
+    def _process_instrs(self, instrs, node_resource_map, metadata):
+        # Note: 'nodes' section contains instructions and global variables
+        # (represented as instructions with a 'GlobalMem' opcode)
+        self._alloca_array_map = {}
         instr_offset = self._offsets['instr']
         array_offset = self._offsets['array']
         instr_idx, array_idx = 0, 0
@@ -468,44 +455,34 @@ class CDFG:
             node_name = obj.findtext('name', '')
             rtl_name = obj.findtext('rtlName', '')
             opcode = elem.findtext('opcode')
+            resources = node_resource_map.get(rtl_name) if rtl_name else None
 
-            resources = resource_dict.get(rtl_name) if rtl_name else None
-
-            metadata_entry = find_in_metadata(
-                metadata, 'Array', node_name, self.function_name
-            )
+            array_entry = find_in_metadata(metadata, 'Array', node_name, self.name)
             array_node = None
-            if metadata_entry is not None:
+            if array_entry is not None:
                 array_id = array_idx + array_offset
                 array_idx += 1
-                array_node = ArrayNode(
-                    metadata_entry, node_name, array_id, metadata_entry.get('FunctionName', ''),
-                    self.is_top_level, resources=resources
-                )
+                array_node = ArrayNode(array_entry, array_id, resources=resources)
                 self.nodes['array'].append(array_node)
-
                 if opcode == 'GlobalMem':
                     self._node_id_map[node_id] = (array_id, 'array')
                     continue
                         
-            instr_node = InstructionNode(
-                elem, self.function_name, resources=resources
-            )
-            self._node_id_map[instr_node.id] = (instr_idx + instr_offset, 'instr')
-            instr_node.id = instr_idx + instr_offset
+            instr_node = InstructionNode(elem, self.name, resources=resources)
+            instr_id = instr_idx + instr_offset
+            self._node_id_map[instr_node.id] = (instr_id, 'instr')
+            instr_node.id = instr_id
             instr_idx += 1
             self.nodes['instr'].append(instr_node)
 
-            if array_node is not None:
-                if opcode == 'alloca':
-                    self.edges[('instr', 'alloca', 'array')].append((instr_node.id, array_node.id))
-                    self._alloca_instrs[instr_node.id] = array_node.id
+            if array_node is not None and opcode == 'alloca':
+                self.edges[('instr', 'alloca', 'array')].append((instr_id, array_id))
+                self._alloca_array_map[instr_id] = array_id
 
     def _process_ports(self, ports, metadata):
         port_offset = self._offsets['port']
         array_offset = self._offsets['array']
-        port_idx = 0
-        array_idx = len(self.nodes['array'])
+        port_idx, array_idx = 0, len(self.nodes['array'])
 
         for elem in ports.findall('item'):
             value = elem.find('Value')
@@ -516,25 +493,26 @@ class CDFG:
             node_id = findint(obj, 'id')
             if node_id is None:
                 raise ValueError("Element does not contain 'id' tag")
+            
             node_name = obj.findtext('name', '')
             direction = findint(elem, 'direction', PortDirection.BI)
 
-            metadata_entry = find_in_metadata(
-                metadata, 'Array', node_name, self.function_name
-            )
-            if metadata_entry is not None:
+            array_entry = find_in_metadata(metadata, 'Array', node_name, self.name)
+            if array_entry is not None:
                 array_id = array_idx + array_offset
                 array_idx += 1
                 node = ArrayNode(
-                    metadata_entry, node_name, array_id, self.function_name,
-                    self.is_top_level, direction=direction
+                    array_entry, array_id,
+                    is_top_fn_port=self.is_top_fn, 
+                    direction=direction
                 )
                 self._node_id_map[node_id] = (array_id, 'array')
                 self.nodes['array'].append(node)
             else:
-                node = PortNode(elem, self.function_name, self.is_top_level)
-                self._node_id_map[node.id] = (port_idx + port_offset, 'port')
-                node.id = port_idx + port_offset
+                node = PortNode(elem, self.name, self.is_top_fn)
+                port_id = port_idx + port_offset
+                self._node_id_map[node.id] = (port_id, 'port')
+                node.id = port_id
                 port_idx += 1
                 self.nodes['port'].append(node)
 
@@ -545,7 +523,7 @@ class CDFG:
         dummy_consts = []
 
         for elem in consts.findall('item'):
-            node = ConstantNode(elem, self.function_name)
+            node = ConstantNode(elem, self.name)
             if node.attrs['const_type'] == '6':
                 dummy_consts.append(node)
             else:
@@ -559,24 +537,21 @@ class CDFG:
 
     def _process_blocks(self, blocks):
         offset = self._offsets['block']
+        instr_nodes = self.nodes['instr']
+        instr_offset = self._offsets['instr']
         for i, elem in enumerate(blocks.findall('item')):
-            node = BlockNode(elem, self.function_name, self.nodes['instr'], self._node_id_map)
+            node = BlockNode(
+                elem, self.name, instr_nodes, 
+                self._node_id_map, instr_offset
+            )
             self._node_id_map[node.id] = (i + offset, 'block')
             node.id = i + offset
-            instrs = []
-            for instr_id in node.instrs:
-                node_id, node_type = self._node_id_map.get(instr_id, (None, None))
-                if node_id is not None and node_type == 'instr':
-                    instrs.append(node_id)
-                elif node_type == 'array':
-                    node.arrays.append(instr_id)
-            node.instrs = instrs
             self.nodes['block'].append(node)
 
     def _process_regions(self, regions, metadata):
         offset = self._offsets['region']
         for elem in regions.findall('item'):
-            node = RegionNode(elem, self.function_name, metadata)
+            node = RegionNode(elem, self.name, metadata)
             node.id += offset - 1
             node.sub_regions = [
                 sub_region_id + offset - 1
@@ -584,7 +559,8 @@ class CDFG:
             ]
             node.blocks = [
                 self._node_id_map[block_id][0] 
-                for block_id in node.blocks if block_id in self._node_id_map
+                for block_id in node.blocks 
+                if block_id in self._node_id_map
             ]
             self.nodes['region'].append(node)
 
@@ -594,8 +570,8 @@ class CDFG:
 
     def _parse_edges(self, cdfg):
         for elem in cdfg.find('edges').findall('item'):
-            rel_type = self._map_edge_type(elem.findtext('edge_type', ''))
-            if rel_type == '':
+            rel = self._map_edge_type(elem.findtext('edge_type', ''))
+            if rel == '':
                 continue
 
             src = findint(elem, 'source_obj')
@@ -603,34 +579,30 @@ class CDFG:
             if src is None or dst is None:
                 continue
 
-            src, src_type = self._node_id_map.get(src, (None, None))
-            dst, dst_type = self._node_id_map.get(dst, (None, None))
+            src, src_nt = self._node_id_map.get(src, (None, None))
+            dst, dst_nt = self._node_id_map.get(dst, (None, None))
             if src is None or dst is None:
                 continue
 
-            edge_type = (src_type, rel_type, dst_type)
-            if edge_type not in CDFG_EDGE_TYPES:
-                print(f"Skipping edge type: {edge_type}")
+            et = (src_nt, rel, dst_nt)
+            if et not in CDFG_EDGE_TYPES:
+                print(f"Skipping edge type: {et}")
                 continue
 
-            if edge_type == ('const', 'data', 'instr'):
-                src_node = self.nodes[src_type][src - self._offsets[src_type]]
+            if et == ('const', 'data', 'instr'):
+                src_node = self.nodes[src_nt][src - self._offsets[src_nt]]
                 if src_node.attrs['const_type'] == '6':
                     callee_name = src_node.name
                     self.function_calls.append((dst, callee_name))
                     continue
-            elif src_type == "instr" and rel_type == "data":
-                src_node = self.nodes[src_type][src - self._offsets[src_type]]
-                if src_node.id in self._alloca_instrs:
-                    src = self._alloca_instrs[src_node.id]
-                    edge_type = ('array', 'data', dst_type)
-            
 
-            if edge_type not in self.edges:
-                print(f"Unexpected edge type {edge_type} found on ADB file")
-                continue
+            elif src_nt == "instr" and rel == "data":
+                src_node = self.nodes[src_nt][src - self._offsets[src_nt]]
+                if src_node.id in self._alloca_array_map:
+                    src = self._alloca_array_map[src_node.id]
+                    et = ('array', 'data', dst_nt)
 
-            self.edges[edge_type].append((src, dst))
+            self.edges[et].append((src, dst))
 
         # Remove dummy constants (representing call edges)
         for i, node in enumerate(self.nodes['const']):
@@ -638,16 +610,15 @@ class CDFG:
                 del self.nodes['const'][i:]
                 break
         
-        # Add a (array -> gep) edge for each (array -> const_ptr -> gep) path
-        array_ref_edges = self.edges.get(("array", "data", "const"), [])
-        for src_array_id, dst_const_id in array_ref_edges:
+        # Add a (Array -> GEP) edge for each (Array -> ArrayPtr -> GEP) path
+        for src_array_id, dst_const_id in self.edges.get(("array", "data", "const"), []):
             for src_const_id, dst_instr_id in self.edges.get(("const", "data", "instr"), []):
                 if src_const_id == dst_const_id:
                     dst_instr = self.nodes['instr'][dst_instr_id - self._offsets['instr']]
                     if dst_instr.attrs['opcode'] == 'getelementptr':
                         self.edges[("array", "data", "instr")].append((src_array_id, dst_instr_id))
 
-        # Add a (array -> op) edge for each (array -> gep -> op) path
+        # Add a (Array -> Instr) edge for each (Array -> GEP -> Instr) path
         for src_array_id, dst_instr_id in self.edges.get(("array", "data", "instr"), []):
             dst_instr = self.nodes['instr'][dst_instr_id - self._offsets['instr']]
             if dst_instr.attrs['opcode'] == 'getelementptr':
@@ -670,12 +641,10 @@ class CDFG:
                     self.nodes['region'][i].instrs.append(instr_id)
                     self.edges[('region', 'hrchy', 'instr')].append((region.id, instr_id))
                     self.edges[('block', 'hrchy', 'instr')].append((block_id, instr_id))
-                for array_id in block_node.arrays:
-                    self.nodes['region'][i].arrays.append(array_id)
 
     def as_dict(self):
         return {
-            'name': self.function_name,
+            'name': self.name,
             'return_bitwidth': self.ret_bitwidth,
             'nodes': {
                 nt: [n.as_dict() for n in nodes] 
@@ -704,7 +673,7 @@ class VitisKernelInfo:
         kernel_name: Optional[str] = None,
         filtered: bool = False
     ):
-        self.top_level_name = top_fn_name
+        self.top_fn_name = top_fn_name
         self.kernel_name = kernel_name if kernel_name else ''
         self.nodes = {nt: [] for nt in CDFG_NODE_TYPES}
         self.edges = {et: [] for et in CDFG_EDGE_TYPES}
@@ -752,10 +721,10 @@ class VitisKernelInfo:
             tree = ET.parse(path)
             root = tree.getroot()
             cdfg = CDFG(
-                root, self.top_level_name, self.metadata,
+                root, self.top_fn_name, self.metadata,
                 self.resource_usage, offsets=self._offsets
             )
-            self._cdfgs[cdfg.function_name] = cdfg
+            self._cdfgs[cdfg.name] = cdfg
             self._merge_cdfg_data(cdfg)
 
     def _merge_cdfg_data(self, cdfg):
@@ -781,7 +750,6 @@ class VitisKernelInfo:
             regions_below = set()
             blocks = set(node.blocks)
             instrs = set(node.instrs)
-            arrays = set(node.arrays)
 
             parents = set(node.parents)
             while parents:
@@ -798,15 +766,11 @@ class VitisKernelInfo:
                     child_node = self.nodes['region'][child_id - self._offsets['region']]
                     blocks.update(child_node.blocks)
                     instrs.update(child_node.instrs)
-                    arrays.update(child_node.arrays)
                     children.update(child_node.sub_regions)
 
             self.region_hrchy[node.id] = {
-                'above': regions_above,
-                'below': regions_below,
-                'block': blocks,
-                'instr': instrs,
-                'array': arrays
+                'above': regions_above, 'below': regions_below,
+                'block': blocks, 'instr': instrs
             }
 
     def as_dict(self):
@@ -836,20 +800,20 @@ class VitisKernelInfo:
 
 def find_in_metadata(
     metadata: MetadataDict,
-    entity_type: str,
+    node_type: str,
     node_name: str,
     function_name: str
 ) -> Optional[MetadataEntry]:
-    if entity_type not in metadata:
+    if node_type not in metadata:
         return None
-    for entry in metadata[entity_type]:
+    for entry in metadata[node_type]:
         if entry['Name'] == node_name:
             entry_function_name = entry.get('FunctionName', '')
-            if (entry_function_name == '' or entry_function_name is None
+            if (not entry_function_name 
                 or entry_function_name == function_name):
                 return entry
-    # If no entry is found, search for the entity name only
-    for entry in metadata[entity_type]:
+    # If no entry is found, search for the node name only
+    for entry in metadata[node_type]:
         if entry['Name'] == node_name:
             return entry
     return None

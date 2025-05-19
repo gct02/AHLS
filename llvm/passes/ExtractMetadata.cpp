@@ -183,6 +183,7 @@ struct ExtractMetadataPass : public ModulePass {
             DEBUG(errs() << "Global name: " << GlobalName << "\n");
 
             // Check if the global object represents a function parameter
+            // First, check if it has a debug info node
             if (auto* DbgMDNode = G.getMetadata("dbg")) {
                 if (auto* DIVarExpr = dyn_cast<DIGlobalVariableExpression>(DbgMDNode)) {
                     if (auto* DIVar = DIVarExpr->getVariable()) {
@@ -196,6 +197,16 @@ struct ExtractMetadataPass : public ModulePass {
                     }
                 }
             }
+            // If no debug info, check if its name has the format <function>.<param>
+            if (IsParam == 0) {
+                size_t DotPos = GlobalName.find('.');
+                if (DotPos != std::string::npos) {
+                    FunctionName = GlobalName.substr(0, DotPos);
+                    GlobalName = GlobalName.substr(DotPos + 1);
+                    IsParam = 1;
+                }
+            }
+            
             if (GlobalTy->isPointerTy()) {
                 GlobalTy = GlobalTy->getPointerElementType();
             }
