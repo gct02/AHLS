@@ -76,11 +76,11 @@ class HGT(nn.Module):
 
         if num_layers is None:
             if isinstance(hid_dim, list):
-                self.num_layers  = len(hid_dim)
+                num_layers  = len(hid_dim)
             else:
-                self.num_layers  = 4  # Default number of layers
-        else:
-            self.num_layers = num_layers
+                num_layers  = 4  # Default number of layers
+
+        self.num_layers = num_layers
 
         if not isinstance(hid_dim, list):
             hid_dim = [hid_dim] * num_layers
@@ -97,8 +97,7 @@ class HGT(nn.Module):
 
         # Input projection layer
         self.proj_in = HeteroDictLinear(
-            in_channels, proj_in_dim, types=self.node_types, 
-            weight_initializer='kaiming_uniform'
+            in_channels, proj_in_dim, types=self.node_types
         )
 
         # GNN for HLS directives
@@ -128,7 +127,7 @@ class HGT(nn.Module):
                 heads=num_heads
             )
             norm = nn.ModuleDict({
-                nt: LayerNorm(out_dim) 
+                nt: LayerNorm(in_dim) 
                 for nt in self.node_types
             })
             self.conv.append(conv)
@@ -136,19 +135,19 @@ class HGT(nn.Module):
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
-            Linear(1, 16, weight_initializer="kaiming_uniform"), 
+            Linear(1, 16), 
             nn.LeakyReLU(negative_slope=0.1),
-            Linear(16, 16, weight_initializer="kaiming_uniform")
+            Linear(16, 16)
         )
 
         # Graph-level MLP
         emb_dim = len(self.cdfg_node_types) * 2 * hid_dim[-1] + 16
         self.graph_mlp = nn.Sequential(
-            Linear(emb_dim, hid_dim[-1], weight_initializer="kaiming_uniform"), 
+            Linear(emb_dim, hid_dim[-1]), 
             nn.LayerNorm(hid_dim[-1]), nn.GELU(), nn.Dropout(dropout),
-            Linear(hid_dim[-1], 64, weight_initializer="kaiming_uniform"),  
+            Linear(hid_dim[-1], 64),  
             nn.LayerNorm(64), nn.GELU(), nn.Dropout(dropout),
-            Linear(64, out_channels, weight_initializer="kaiming_uniform")
+            Linear(64, out_channels)
         )
 
         self.reset_parameters()
@@ -178,6 +177,7 @@ class HGT(nn.Module):
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
         x_dict, edge_index_dict, batch_dict = data.x_dict, data.edge_index_dict, data.batch_dict
+        batch_size = self._get_batch_size(batch_dict)
         
         # Input projection layer
         x_dict = self.proj_in(x_dict)
@@ -191,12 +191,14 @@ class HGT(nn.Module):
         )
 
         # Convolutional layers
-        for i in range(self.num_layers):
-            x_dict = self.conv[i](x_dict, edge_index_dict)
-            x_dict = {nt: self.norm[i][nt](x) for nt, x in x_dict.items()}
+        for conv, norm in zip(self.conv, self.norm):
+            x_dict = {
+                nt: norm[nt](x, batch_dict[nt], batch_size=batch_size) 
+                for nt, x in x_dict.items()
+            }
+            x_dict = conv(x_dict, edge_index_dict)
 
         # Pooling layer
-        batch_size = self._get_batch_size(batch_dict)
         x_list = []
         for nt, x in x_dict.items():
             batch = batch_dict[nt]

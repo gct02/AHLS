@@ -77,7 +77,7 @@ DIRECTIVE_SUBSET_EDGE_TYPES = {
     "array_partition": [
         ("array_partition", "transform", "array"),
         ("array", "data", "instr"),
-        ("instr", "alloca", "array")
+        ("instr", "alloca", "array"),
         ("array", "to", "array"),
         ("instr", "to", "instr")
     ],
@@ -409,8 +409,12 @@ def find_region_node(kernel_info, region_name, function_name):
 
 
 def include_directive_info(kernel_info: VitisKernelInfo, solution_dct_tcl_path: str):
-    kernel_info.nodes.update({nt: [] for nt in DIRECTIVES})
-    kernel_info.edges.update({et: [] for et in EDGE_TYPES if et[0] in DIRECTIVES})
+    for dct in DIRECTIVES:
+        kernel_info.nodes[dct] = []
+
+    for et in EDGE_TYPES:
+        if et[0] in DIRECTIVES:
+            kernel_info.edges[et] = []
 
     directives = parse_tcl_directives_file(solution_dct_tcl_path)
     directives = [
@@ -420,22 +424,7 @@ def include_directive_info(kernel_info: VitisKernelInfo, solution_dct_tcl_path: 
     directive_count = {nt: 0 for nt in DIRECTIVES}
 
     for directive_type, directive_args in directives:
-        if directive_type in ['inline', 'dataflow']:
-            location = directive_args["location"]
-            if "/" in location:
-                function_name, target_name = location.split("/")
-            else:
-                function_name = location
-                target_name = location
-            
-            region_node = find_region_node(kernel_info, target_name, function_name)
-            if region_node is None:
-                print(f"Warning: Region '{target_name}' "
-                      f"(function '{function_name}') not found in nodes.")
-                continue
-            region_node.attrs[directive_type] = 1
-
-        elif directive_type == "array_partition":
+        if directive_type == "array_partition":
             function_name = directive_args.get("location", "")
             target_name = directive_args.get("variable")
             if target_name is None:
@@ -486,6 +475,14 @@ def include_directive_info(kernel_info: VitisKernelInfo, solution_dct_tcl_path: 
                 target_name = location
 
             region_node = find_region_node(kernel_info, target_name, function_name)
+            if region_node is None:
+                print(f"Warning: Region '{target_name}' "
+                      f"(function '{function_name}') not found in nodes.")
+                continue
+
+            if directive_type in ["dataflow", "inline"]:
+                region_node.attrs[directive_type] = 1
+                continue
 
             directive_node = DirectiveNode(
                 directive_type, function_name, target_name, 

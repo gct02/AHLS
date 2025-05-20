@@ -198,7 +198,7 @@ class HLSDataset(Dataset):
     
     def _scale_features(self, data: HeteroData) -> HeteroData:
         for nt, x in data.x_dict.items():
-            if x.size(0) == 0:
+            if x.size(0) == 0 or nt not in self.feature_ranges:
                 continue
             mins, maxs = self.feature_ranges[nt]
             diffs = maxs - mins

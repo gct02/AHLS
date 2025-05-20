@@ -286,7 +286,7 @@ def plot_learning_curves(
     plt.ylabel('MRE', fontsize=12)
     plt.legend()
 
-    best_epoch = np.argmin(test_errors)
+    best_epoch = evaluate.best_epoch - 1
     ax.axvline(best_epoch, color='blue', linestyle='--', alpha=0.7)
     ax.text(
         best_epoch + 0.5, np.max(test_errors), f'Best Epoch: {best_epoch}', 
@@ -349,7 +349,7 @@ def plot_prediction_bars(
     benchmark: str, metric: str, output_dir: str
 ):
     """Plot per-benchmark instance-level predictions and errors"""
-    best_epoch = evaluate.best_epoch
+    best_epoch = evaluate.best_epoch - 1
 
     targets = [r[1] for r in test_results[best_epoch]]
     preds = [r[0] for r in test_results[best_epoch]]
@@ -412,7 +412,7 @@ def save_training_artifacts(
         train_errors.append(np.mean([mape(p, t) for p, t in train_results]))
         test_errors.append(np.mean([mape(p, t) for p, t in test_results]))
 
-    best_epoch = evaluate.best_epoch
+    best_epoch = evaluate.best_epoch - 1
     test_results = results['test']
 
     targets = [r[1] for r in test_results[best_epoch]]

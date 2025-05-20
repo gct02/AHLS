@@ -30,15 +30,10 @@ def main(args: Dict[str, str]):
     output_dir = Path(args['output_dir'])
     filtered = args['filtered']
     kernel_config_path = args.get('kernel_config_path')
-    dct_config_dir = args.get('directive_config_dir')
     debug = args.get('debug', False)
 
     with open(kernel_config_path, "r") as f:
         kernel_config = json.load(f)
-
-    if not os.path.exists(dct_config_dir):
-        print(f"Directives config directory not found: {dct_config_dir}")
-        return
 
     base_sol_info_list, benches = [], []
     for bench in dataset_dir.iterdir():
@@ -115,8 +110,6 @@ def parse_args():
                         help="List of benchmarks to process")
     parser.add_argument("-ck", "--kernel-config-path", default=None,
                         help="Path to the configuration file for kernel information")
-    parser.add_argument("-cd", "--directive-config-dir", default=None,
-                        help="Path to the directory containing the directives config files")
     parser.add_argument("-dbg", "--debug", action="store_true",
                         help="Enable debug mode")
     return vars(parser.parse_args())
