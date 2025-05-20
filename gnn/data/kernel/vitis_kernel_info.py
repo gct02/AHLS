@@ -1,4 +1,5 @@
 import os
+import re
 import json
 import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
@@ -49,9 +50,7 @@ TARGET_RESOURCES = ['FF', 'LUT', 'DSP', 'BRAM']
 MAX_ARRAY_DIM = 4
 
 
-MetadataEntry = Dict[str, Union[str, int, float, bool, List[int]]]
-MetadataDict = Dict[str, MetadataEntry]
-
+ArrayInfo = Dict[str, Union[int, str, List[int]]]
 AttributeDict = Dict[str, Union[int, float, List[int]]]
 
 
@@ -136,20 +135,20 @@ class CDFGNode(Node):
 class ArrayNode(Node):
     def __init__(
         self, 
-        array_metadata: MetadataEntry,
+        array_info: ArrayInfo,
         node_id: int,
-        is_top_fn_port: bool = False,
+        is_top_level_port: bool = False,
         direction: Optional[PortDirection] = None,
         resources: Optional[Dict[str, int]] = None
     ):
         self.id = node_id
-        self.name = array_metadata['Name']
+        self.name = array_info['Name']
         self.label = self.name
-        self.function_name = array_metadata.get('FunctionName', '')
+        self.function_name = array_info.get('FunctionName', '')
 
-        self.total_size = max(1, array_metadata['TotalSize'])
+        self.total_size = max(1, array_info.get('TotalSize', 1))
 
-        if direction is not None and is_top_fn_port:
+        if direction is not None and is_top_level_port:
             array_impl = [1, 0, 0] # RTL port
         elif self.total_size > 1024:
             array_impl = [0, 1, 0] # BRAM, LUTRAM or URAM
@@ -165,7 +164,7 @@ class ArrayNode(Node):
         else:
             direction_encoding = [0, 0, 1, 0]
 
-        dims = array_metadata.get('Dimensions', [])
+        dims = array_info.get('Dimensions', [])
         num_dims = len(dims)
         if num_dims > MAX_ARRAY_DIM:
             # Truncate to MAX_ARRAY_DIM, multiplying the last dimension
@@ -177,9 +176,9 @@ class ArrayNode(Node):
             dims.extend([1] * (MAX_ARRAY_DIM - num_dims))
 
         self.attrs = {
-            'dims': dims, 'num_dims': num_dims,
-            'base_type': array_metadata.get('BaseType', ''),
-            'base_bitwidth': array_metadata.get('BaseBitWidth', 0),
+            'dims': dims,
+            'base_type': array_info.get('BaseType', -1),
+            'base_bitwidth': array_info.get('BaseBitwidth', 0),
             'direction': direction_encoding,
             'array_impl': array_impl,
         }
@@ -202,12 +201,7 @@ class ArrayNode(Node):
     
 
 class RegionNode(Node):
-    def __init__(
-        self, 
-        element: ET.Element, 
-        function_name: str, 
-        metadata: MetadataDict,
-    ):
+    def __init__(self, element: ET.Element, function_name: str):
         self.id = findint(element, 'mId')
         if self.id is None:
             raise ValueError("Element does not contain 'mId' tag")
@@ -217,18 +211,9 @@ class RegionNode(Node):
         self.function_name = function_name
 
         self.is_loop = findint(element, 'mType', 0) == 1
+        loop_depth = findint(element, 'mDepth', 0)
+        loop_depth = max(1, loop_depth) if self.is_loop else 0
 
-        metadata_entry = find_in_metadata(
-            metadata, 'Loop', self.name, function_name
-        )
-        if metadata_entry is not None:
-            self.function_name = metadata_entry.get('FunctionName', function_name)
-            loop_depth = metadata_entry.get('LoopDepth', 0)
-        else:
-            loop_depth = findint(element, 'mDepth', 0)
-            if self.is_loop:
-                loop_depth = max(1, loop_depth)
-            
         min_lat = max(1, findint(element, 'mMinLatency', 0))
         max_lat = max(min_lat, findint(element, 'mMaxLatency', 0))
         min_tc = max(1, findint(element, 'mMinTripCount', 0))
@@ -275,7 +260,7 @@ class PortNode(CDFGNode):
         self, 
         element: ET.Element, 
         function_name: str,
-        is_top_fn_port: bool
+        is_top_level: bool
     ):
         super().__init__(element, function_name)
 
@@ -291,7 +276,7 @@ class PortNode(CDFGNode):
 
         self.attrs.update({
             'direction': direction,
-            'top_level': int(is_top_fn_port),
+            'top_level': int(is_top_level),
             'bitwidth': findint(element, 'Value/bitwidth', 0),
             'port_type': element.findtext('if_type', '')
         })
@@ -386,9 +371,8 @@ class CDFG:
     def __init__(
         self, 
         root: ET.Element, 
-        top_fn_name: str, 
-        metadata: MetadataDict,
-        node_resource_map: Dict[str, Dict[str, int]],
+        top_function_name: str, 
+        array_info_list: List[ArrayInfo],
         offsets: Optional[Dict[str, int]] = None,
     ):
         self.nodes = {nt: [] for nt in CDFG_NODE_TYPES}
@@ -407,18 +391,20 @@ class CDFG:
         # Extract function information
         self.name = cdfg.findtext('name')
         self.ret_bitwidth = findint(cdfg, 'ret_bitwidth')
-        self.is_top_fn = self.name == top_fn_name
+        self.is_top_fn = self.name == top_function_name
         self.function_calls = []
 
+        self._get_node_resource_map(root)
+
         try:
-            self._parse_nodes(cdfg, cdfg_regions, node_resource_map, metadata)
+            self._parse_nodes(cdfg, cdfg_regions, array_info_list)
             self._parse_edges(cdfg)
             self._build_hierarchy_edges()
         except Exception as e:
             print(f"Error parsing CDFG: {e}")
             raise
 
-    def _parse_nodes(self, cdfg, regions, node_resource_map, metadata):
+    def _parse_nodes(self, cdfg, regions, array_info_list):
         if (consts := cdfg.find('consts')) is None:
             raise ValueError("CDFG does not contain 'consts' section")
         if (instrs := cdfg.find('nodes')) is None:
@@ -428,13 +414,13 @@ class CDFG:
         if (blocks := cdfg.find('blocks')) is None:
             raise ValueError("CDFG does not contain 'blocks' section")
         
-        self._process_instrs(instrs, node_resource_map, metadata)
-        self._process_ports(ports, metadata)
+        self._process_instrs(instrs, array_info_list)
+        self._process_ports(ports, array_info_list)
         self._process_consts(consts)
         self._process_blocks(blocks)
-        self._process_regions(regions, metadata)
+        self._process_regions(regions)
 
-    def _process_instrs(self, instrs, node_resource_map, metadata):
+    def _process_instrs(self, instrs, array_info_list):
         # Note: 'nodes' section contains instructions and global variables
         # (represented as instructions with a 'GlobalMem' opcode)
         self._alloca_array_map = {}
@@ -455,14 +441,14 @@ class CDFG:
             node_name = obj.findtext('name', '')
             rtl_name = obj.findtext('rtlName', '')
             opcode = elem.findtext('opcode')
-            resources = node_resource_map.get(rtl_name) if rtl_name else None
+            resources = self._node_resource_map.get(rtl_name) if rtl_name else None
 
-            array_entry = find_in_metadata(metadata, 'Array', node_name, self.name)
+            array_info = get_array_info(array_info_list, node_name, self.name)
             array_node = None
-            if array_entry is not None:
+            if array_info is not None:
                 array_id = array_idx + array_offset
                 array_idx += 1
-                array_node = ArrayNode(array_entry, array_id, resources=resources)
+                array_node = ArrayNode(array_info, array_id, resources=resources)
                 self.nodes['array'].append(array_node)
                 if opcode == 'GlobalMem':
                     self._node_id_map[node_id] = (array_id, 'array')
@@ -479,7 +465,7 @@ class CDFG:
                 self.edges[('instr', 'alloca', 'array')].append((instr_id, array_id))
                 self._alloca_array_map[instr_id] = array_id
 
-    def _process_ports(self, ports, metadata):
+    def _process_ports(self, ports, array_info_list):
         port_offset = self._offsets['port']
         array_offset = self._offsets['array']
         port_idx, array_idx = 0, len(self.nodes['array'])
@@ -497,13 +483,13 @@ class CDFG:
             node_name = obj.findtext('name', '')
             direction = findint(elem, 'direction', PortDirection.BI)
 
-            array_entry = find_in_metadata(metadata, 'Array', node_name, self.name)
-            if array_entry is not None:
+            array_info = get_array_info(array_info_list, node_name, self.name)
+            if array_info is not None:
                 array_id = array_idx + array_offset
                 array_idx += 1
                 node = ArrayNode(
-                    array_entry, array_id,
-                    is_top_fn_port=self.is_top_fn, 
+                    array_info, array_id,
+                    is_top_level_port=self.is_top_fn, 
                     direction=direction
                 )
                 self._node_id_map[node_id] = (array_id, 'array')
@@ -548,10 +534,10 @@ class CDFG:
             node.id = i + offset
             self.nodes['block'].append(node)
 
-    def _process_regions(self, regions, metadata):
+    def _process_regions(self, regions):
         offset = self._offsets['region']
         for elem in regions.findall('item'):
-            node = RegionNode(elem, self.name, metadata)
+            node = RegionNode(elem, self.name)
             node.id += offset - 1
             node.sub_regions = [
                 sub_region_id + offset - 1
@@ -642,6 +628,24 @@ class CDFG:
                     self.edges[('region', 'hrchy', 'instr')].append((region.id, instr_id))
                     self.edges[('block', 'hrchy', 'instr')].append((block_id, instr_id))
 
+    def _get_node_resource_map(self, root):
+        res_items = root.findall('*/res/*/item')
+        rx = re.compile(' \(.*\)')
+
+        self._node_resource_map = {}
+        
+        for item in res_items:
+            rtl_name = re.sub(rx, '', item.find('first').text).strip()
+            rtl_resources = item.find('second')
+            if rtl_resources is None or rtl_name in self._node_resource_map:
+                continue
+            res_map = {res: 0 for res in TARGET_RESOURCES}
+            for res in rtl_resources.iter('item'):
+                res_name = res.findtext('first')
+                if res_name in res_map:
+                    res_map[res_name] = findint(res, 'second')
+            self._node_resource_map[rtl_name] = res_map
+
     def as_dict(self):
         return {
             'name': self.name,
@@ -668,13 +672,13 @@ class VitisKernelInfo:
     def __init__(
         self, 
         solution_dir: str, 
-        top_fn_name: str, 
-        ir_metadata_path: str,
+        top_function_name: str, 
+        array_info_path: str,
         kernel_name: Optional[str] = None,
         filtered: bool = False
     ):
-        self.top_fn_name = top_fn_name
-        self.kernel_name = kernel_name if kernel_name else ''
+        self.top_function_name = top_function_name
+        self.kernel_name = kernel_name if kernel_name else top_function_name
         self.nodes = {nt: [] for nt in CDFG_NODE_TYPES}
         self.edges = {et: [] for et in CDFG_EDGE_TYPES}
         self.metrics = {}
@@ -685,27 +689,38 @@ class VitisKernelInfo:
                 if key not in self.metrics:
                     self.metrics[key] = value
 
-        self.resource_usage = {
-            key: value
-            for key, value in rpt['module_data'].items() 
-            if key in TARGET_RESOURCES
-        }
         self._offsets = {nt: 0 for nt in CDFG_NODE_TYPES}
         self._cdfgs = {}
         self.region_hrchy = {}
 
-        with open(ir_metadata_path, 'r') as f:
-            self.metadata = json.load(f)
+        with open(array_info_path, 'r') as f:
+            array_info = json.load(f)
+
+        if not array_info:
+            raise ValueError("Array info is empty")
+        
+        array_info_list = array_info.get('ArrayInfo')
+        if not array_info_list:
+            raise ValueError("Array info list is empty")
+        
+        for i in range(len(array_info_list)):
+            for key, value in array_info_list[i].items():
+                if isinstance(value, str) and key not in ['Name', 'FunctionName']:
+                    array_info_list[i][key] = int(value.strip())
+                elif isinstance(value, list):
+                    for j in range(len(value)):
+                        if isinstance(value[j], str):
+                            value[j] = int(value[j].strip())
 
         try:
-            self._process_adb_files(solution_dir, filtered)
+            self._process_adb_files(solution_dir, filtered, array_info_list)
             self._include_call_flow()
             self._build_region_hrchy()
         except Exception as e:
             print(f"Error processing ADB files: {e}")
             raise
 
-    def _process_adb_files(self, solution_dir, filtered):
+    def _process_adb_files(self, solution_dir, filtered, array_info_list):
         try:
             adb_file_list = collect_adb_files(solution_dir, filtered)
         except FileNotFoundError as e:
@@ -721,8 +736,8 @@ class VitisKernelInfo:
             tree = ET.parse(path)
             root = tree.getroot()
             cdfg = CDFG(
-                root, self.top_fn_name, self.metadata,
-                self.resource_usage, offsets=self._offsets
+                root, self.top_function_name, 
+                array_info_list, offsets=self._offsets
             )
             self._cdfgs[cdfg.name] = cdfg
             self._merge_cdfg_data(cdfg)
@@ -798,24 +813,21 @@ class VitisKernelInfo:
         return self.__str__()
     
 
-def find_in_metadata(
-    metadata: MetadataDict,
-    node_type: str,
-    node_name: str,
+def get_array_info(
+    array_info_list: List[ArrayInfo],
+    array_name: str,
     function_name: str
-) -> Optional[MetadataEntry]:
-    if node_type not in metadata:
-        return None
-    for entry in metadata[node_type]:
-        if entry['Name'] == node_name:
-            entry_function_name = entry.get('FunctionName', '')
-            if (not entry_function_name 
-                or entry_function_name == function_name):
-                return entry
-    # If no entry is found, search for the node name only
-    for entry in metadata[node_type]:
-        if entry['Name'] == node_name:
-            return entry
+) -> Optional[ArrayInfo]:
+    for array_info in array_info_list:
+        if array_info['Name'] == array_name:
+            other_function_name = array_info.get('FunctionName', '')
+            if (not other_function_name
+                or other_function_name == function_name):
+                return array_info
+    # If no entry is found, search for the array name only
+    for array_info in array_info_list:
+        if array_info['Name'] == array_name:
+            return array_info
     return None
 
 
@@ -841,16 +853,16 @@ def collect_adb_files(solution_dir, filtered=False):
 
 def parse_adb(
     solution_dir: str, 
-    top_fn_name: str,
-    ir_md_file_path: str,
+    top_function_name: str,
+    array_info_path: str,
     kernel_name: str,
     filtered: bool = False,
     output_path: str = None
 ) -> VitisKernelInfo:
     kernel_info = VitisKernelInfo(
         solution_dir=solution_dir, 
-        top_fn_name=top_fn_name, 
-        ir_metadata_path=ir_md_file_path,
+        top_function_name=top_function_name, 
+        array_info_path=array_info_path,
         kernel_name=kernel_name, 
         filtered=filtered,
     )

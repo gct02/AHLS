@@ -48,7 +48,7 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 62, "port": 7, "array": 20,
+    "instr": 62, "port": 7, "array": 19,
     "const": 5, "block": 5, "region": 8,
 
     "array_partition": 8, "loop_flatten": 1,
@@ -156,23 +156,23 @@ def extract_base_kernel_info(
     filtered: bool = False,
     encoder_output_path: Optional[str] = None,
 ) -> Dict[str, VitisKernelInfo]:
-    from gnn.data.kernel.llvm_utils import extract_llvm_ir_metadata
+    from gnn.data.kernel.llvm_utils import extract_llvm_ir_array_info
     
     kernel_info_dict = {}
-    for sol_dir, kernel_name, top_fn_name in solution_info_list:
+    for sol_dir, kernel_name, top_function in solution_info_list:
         ir_dir = f"{sol_dir}/IRs" if filtered else f"{sol_dir}/.autopilot/db"
         ir_path = f"{ir_dir}/a.g.ld.5.gdce.bc"
-        ir_md_path = f"{ir_dir}/metadata.json"
+        ir_array_info_path = f"{ir_dir}/array_info.json"
 
-        extract_llvm_ir_metadata(ir_path, ir_md_path)
-        if not os.path.exists(ir_md_path):
-            print(f"Metadata file not found: {ir_md_path}")
+        extract_llvm_ir_array_info(ir_path, ir_array_info_path)
+        if not os.path.exists(ir_array_info_path):
+            print(f"IR Array info file not found: {ir_array_info_path}")
             continue
 
         kernel_info = VitisKernelInfo(
             solution_dir=sol_dir, 
-            top_fn_name=top_fn_name, 
-            ir_metadata_path=ir_md_path, 
+            top_function_name=top_function, 
+            array_info_path=ir_array_info_path, 
             kernel_name=kernel_name,
             filtered=filtered
         )

@@ -145,9 +145,9 @@ class HGT(nn.Module):
         emb_dim = len(self.cdfg_node_types) * 2 * hid_dim[-1] + 16
         self.graph_mlp = nn.Sequential(
             Linear(emb_dim, hid_dim[-1], weight_initializer="kaiming_uniform"), 
-            nn.BatchNorm1d(hid_dim[-1]), nn.GELU(), nn.Dropout(dropout),
+            nn.LayerNorm(hid_dim[-1]), nn.GELU(), nn.Dropout(dropout),
             Linear(hid_dim[-1], 64, weight_initializer="kaiming_uniform"),  
-            nn.BatchNorm1d(64), nn.GELU(), nn.Dropout(dropout),
+            nn.LayerNorm(64), nn.GELU(), nn.Dropout(dropout),
             Linear(64, out_channels, weight_initializer="kaiming_uniform")
         )
 
@@ -276,6 +276,6 @@ class HLSTransformGNN(nn.Module):
             filtered_x_dict = gnn(filtered_x_dict, filtered_edge_dict)
 
             for nt, x in filtered_x_dict.items():
-                x_dict[nt][x_mask_dict[nt]] = x
+                x_dict[nt][x_mask_dict[nt], :] = x
             
         return x_dict

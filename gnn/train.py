@@ -203,35 +203,48 @@ def main(args: Dict[str, str]):
         batch_size=batch_size, log_transform=log_transform
     )
 
-    hid_dim = [512, 512]
-    heads = [8, 8]
+    hid_dim = [256, 256]
+    heads = [4, 4]
     num_layers = len(hid_dim)
-    proj_in_dim = 512
+    proj_in_dim = hid_dim[0]
     
     model = HGT(
-        METADATA, DIRECTIVE_SUBSET_METADATA, NODE_FEATURE_DIMS, 1,
-        hid_dim=hid_dim, heads=heads, 
-        num_layers=num_layers, proj_in_dim=proj_in_dim
+        metadata=METADATA, 
+        dct_metadata_dict=DIRECTIVE_SUBSET_METADATA, 
+        in_channels=NODE_FEATURE_DIMS, 
+        out_channels=1,
+        hid_dim=hid_dim, 
+        heads=heads, 
+        num_layers=num_layers, 
+        proj_in_dim=proj_in_dim,
+        dropout=0.0
     ).to(DEVICE)
 
     if loss == 'mse':
         loss_fn = nn.MSELoss()
-    elif loss == 'huber':
-        loss_fn = nn.HuberLoss(delta=1.5*residual)
     elif loss == 'l1':
         loss_fn = nn.L1Loss()
+    elif loss == 'huber':
+        loss_fn = nn.HuberLoss(delta=1.5*residual)
     else:
         raise ValueError(f"Unknown loss function: {loss}")
 
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=3e-4, betas=(0.9, 0.95), weight_decay=5e-4
+        model.parameters(), 
+        lr=5e-4, 
+        betas=(0.9, 0.999), 
+        weight_decay=5e-4,
+        eps=1e-6  # Suspecting numerical instability
     )
 
     total_steps = epochs * len(train_loader)
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-        optimizer, T_0=total_steps // 10, T_mult=2, eta_min=1e-5
+    scheduler = torch.optim.lr_scheduler.OneCycleLR(
+        optimizer,
+        max_lr=5e-4,
+        total_steps=total_steps,
+        pct_start=0.3,
+        anneal_strategy='cos'
     )
-
     results = train_model(
         model, loss_fn, optimizer, train_loader, test_loader, epochs, 
         scheduler=scheduler, verbosity=verbosity, log_dir=analysis_dir,
@@ -401,7 +414,7 @@ def save_training_artifacts(
     best_epoch = evaluate.best_epoch
     test_results = results['test']
 
-    targets = [r[1] for r in test_results[0]]
+    targets = [r[1] for r in test_results[best_epoch]]
     preds = [r[0] for r in test_results[best_epoch]]
     errors = [mape(p, t).item() for p, t in zip(preds, targets)]
 

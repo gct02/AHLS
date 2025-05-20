@@ -74,6 +74,9 @@ def main(args: Dict[str, str]):
         with open(bench_out_dir / "base_metrics.json", "w") as f:
             json.dump(base_metrics, f, indent=2)
 
+        kernel_info = kernel_info_dict[bench.name]
+        kernel_info.dump(bench_out_dir / "kernel_info.json")
+
         sol_count = 0
         for sol in bench.iterdir():
             if not sol.is_dir():
@@ -94,7 +97,7 @@ def main(args: Dict[str, str]):
             with open(sol_out_dir / "metrics.json", "w") as f:
                 json.dump(metrics, f, indent=2)
 
-            data = create_hls_hetero_data(kernel_info_dict[bench.name], dct_tcl_path)
+            data = create_hls_hetero_data(kernel_info, dct_tcl_path)
             torch.save(data, sol_out_dir / "graph.pt")
 
             if debug:
