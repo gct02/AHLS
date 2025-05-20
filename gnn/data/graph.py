@@ -1,46 +1,37 @@
 import os
 import pickle
-import json
 from copy import deepcopy
-from typing import Dict, Union, Optional, List, Tuple, Any
+from typing import Dict, Union, Optional, List, Tuple
 
 import matplotlib.pyplot as plt
 import torch
-from torch import Tensor
 from sklearn.preprocessing import OneHotEncoder
 
 from torch_geometric.data import HeteroData
-from torch_geometric.data.hetero_data import NodeOrEdgeStorage
-from torch_geometric.data.storage import EdgeStorage
-from torch_geometric.utils import is_sparse
 
 from gnn.data.kernel.vitis_kernel_info import (
+    VitisKernelInfo,
     CDFG_NODE_TYPES,
-    CDFG_EDGE_TYPES,
-    VitisKernelInfo, 
-    DirectiveNode
+    CDFG_EDGE_TYPES
 )
 from gnn.data.utils.parsers import parse_tcl_directives_file
 
 
 DIRECTIVES = [
     "array_partition", "loop_flatten",
-    "loop_merge", "pipeline", "unroll"
+    "loop_merge", "pipeline", "unroll",
+    "dataflow", "inline"
 ]
 
-NODE_TYPES = CDFG_NODE_TYPES + DIRECTIVES
+NODE_TYPES = CDFG_NODE_TYPES
 
 EDGE_TYPES = CDFG_EDGE_TYPES + [
+    # Reverse edges for hierarchical relationships
     (dst_nt, "hrchy_rev", src_nt) 
     for src_nt, rel, dst_nt in CDFG_EDGE_TYPES 
     if rel == "hrchy"
 ] + [
-    ("array_partition", "transform", "array"),
-    ("loop_flatten", "transform", "region"),
-    ("loop_merge", "transform", "region"),
-    ("pipeline", "transform", "region"),
-    ("unroll", "transform", "region")
-] + [
+    # Self-loops
     (nt, "to", nt) for nt in CDFG_NODE_TYPES
 ]
 
@@ -48,116 +39,9 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 62, "port": 7, "array": 19,
-    "const": 5, "block": 5, "region": 8,
-
-    "array_partition": 8, "loop_flatten": 1,
-    "loop_merge": 1, "pipeline": 1, "unroll": 2
+    "instr": 62, "port": 7, "array": 28,
+    "const": 5, "block": 5, "region": 13
 }
-
-DIRECTIVE_SUBSET_NODE_TYPES = {
-    "array_partition": [
-        "array_partition", "array", "instr"
-    ],
-    "unroll": [
-        "unroll", "region", "block", "instr"
-    ],
-    "pipeline": [
-        "pipeline", "region", "block", "instr"
-    ],
-    "loop_flatten": [
-        "loop_flatten", "region"
-    ],
-    "loop_merge": [
-        "loop_merge", "region"
-    ]
-}
-
-DIRECTIVE_SUBSET_EDGE_TYPES = {
-    "array_partition": [
-        ("array_partition", "transform", "array"),
-        ("array", "data", "instr"),
-        ("instr", "alloca", "array")
-        ("array", "to", "array"),
-        ("instr", "to", "instr")
-    ],
-    "unroll": [
-        ("unroll", "transform", "region"),
-        ("region", "to", "region"),
-        ("block", "to", "block"),
-        ("instr", "to", "instr")
-    ] + [
-        et for et in EDGE_TYPES if "hrchy" in et[1]
-    ],
-    "pipeline": [
-        ("pipeline", "transform", "region"),
-        ("instr", "data", "instr"),
-        ("block", "control", "instr"),
-        ("block", "control", "block"),
-        ("region", "to", "region"),
-        ("block", "to", "block"),
-        ("instr", "to", "instr")
-    ] + [
-        et for et in EDGE_TYPES if "hrchy" in et[1]
-    ],
-    "loop_flatten": [
-        ("loop_flatten", "transform", "region"),
-        ("region", "hrchy", "region"),
-        ("region", "hrchy_rev", "region"),
-        ("region", "to", "region")
-    ],
-    "loop_merge": [
-        ("loop_merge", "transform", "region"),
-        ("region", "hrchy", "region"),
-        ("region", "hrchy_rev", "region"),
-        ("region", "to", "region")
-    ]
-}
-
-DIRECTIVE_SUBSET_METADATA = {
-    dt: (DIRECTIVE_SUBSET_NODE_TYPES[dt], DIRECTIVE_SUBSET_EDGE_TYPES[dt])
-    for dt in DIRECTIVES
-}
-
-
-class HLSHeteroData(HeteroData):
-    def __init__(self):
-        super(HLSHeteroData, self).__init__()
-
-    def __cat_dim__(
-        self, key: str, value: Any,
-        store: Optional[NodeOrEdgeStorage] = None, 
-        *args, **kwargs
-    ) -> Any:
-        for dt in DIRECTIVES:
-            if key.startswith(dt):
-                if "filtered_edge" in key:
-                    return 1
-                else: 
-                    return 0
-        if is_sparse(value) and 'adj' in key:
-            return (0, 1)
-        elif isinstance(store, EdgeStorage) and 'index' in key:
-            return -1
-        return 0
-    
-    def __inc__(
-        self, key: str, value: Any,
-        store: Optional[NodeOrEdgeStorage] = None, 
-        *args, **kwargs
-    ) -> Any:
-        for dt in DIRECTIVES:
-            if key.startswith(dt):
-                if "filtered_edge" in key:
-                    return value.size(1)
-                else: 
-                    return 0
-        if 'batch' in key and isinstance(value, Tensor):
-            return int(value.max()) + 1
-        elif isinstance(store, EdgeStorage) and 'index' in key:
-            return torch.tensor(store.size()).view(2, 1)
-        else:
-            return 0
 
 
 def extract_base_kernel_info(
@@ -196,130 +80,27 @@ def extract_base_kernel_info(
     return kernel_info_dict
 
 
-def create_hls_hetero_data(
+def build_hls_graph_data(
     base_kernel_info: VitisKernelInfo,
     solution_dct_tcl_path: str, 
     add_self_loops: bool = True,
     add_reversed_edges: bool = True,
-) -> HLSHeteroData:
+) -> HeteroData:
     kernel_info = deepcopy(base_kernel_info)
     include_directive_info(kernel_info, solution_dct_tcl_path)
-    return to_hls_hetero_data(
+    return to_hetero_data(
         kernel_info, 
         add_self_loops=add_self_loops,
         add_reversed_edges=add_reversed_edges,
     )
 
 
-def extract_dct_subset(kernel_info, dct):
-    node_types = DIRECTIVE_SUBSET_NODE_TYPES[dct]
-    edge_types = DIRECTIVE_SUBSET_EDGE_TYPES[dct]
-
-    x_mask_dict = {
-        nt: [False] * len(kernel_info.nodes.get(nt, []))
-        for nt in node_types
-    }
-    filtered_edge_dict = {et: set() for et in edge_types}
-
-    target_nt = "array" if dct == "array_partition" else "region"
-    
-    for src, dst in kernel_info.edges.get((dct, "transform", target_nt), []):
-        x_mask_dict[dct][src] = True
-        x_mask_dict[target_nt][dst] = True
-
-        if dct == "array_partition":
-            array_alloca_edges = kernel_info.edges.get(("array", "alloca", "array"), [])
-            for src_array, dst_instr in array_alloca_edges:
-                if src_array == dst:
-                    x_mask_dict["instr"][dst_instr] = True
-            
-            array_data_edges = kernel_info.edges.get(("array", "data", "instr"), [])
-            for src_instr, dst_array in array_data_edges:
-                if dst_array == dst:
-                    x_mask_dict["instr"][src_instr] = True
-        else:
-            region_hrchy = kernel_info.region_hrchy.get(dst)
-            if not region_hrchy:
-                continue
-
-            if dct in ["pipeline", "unroll"]:
-                for nt in ["block", "instr"]:
-                    for node in region_hrchy[nt]:
-                        x_mask_dict[nt][node] = True
-
-            if dct in ["pipeline", "loop_merge"]:
-                levels = ["below"]
-            elif dct == "loop_flatten":
-                levels = ["above"]
-            else:
-                levels = ["above", "below"]
-
-            for level in levels:
-                for region in region_hrchy[level]:
-                    x_mask_dict["region"][region] = True
-
-    index_map = {}
-    for nt, mask in x_mask_dict.items():
-        index_map[nt] = {}
-        idx = 0
-        for i, m in enumerate(mask):
-            if m:
-                index_map[nt][i] = idx
-                idx += 1
-    
-    for et in edge_types:
-        st, rt, dt = et
-        if rt == "hrchy_rev":
-            continue
-
-        src_node_subset = x_mask_dict[st]
-        dst_node_subset = x_mask_dict[dt]
-        src_index_map = index_map[st]
-        dst_index_map = index_map[dt]
-
-        for src, dst in kernel_info.edges.get(et, []):
-            src_in, dst_in = src_node_subset[src], dst_node_subset[dst]
-            if not src_in or not dst_in:
-                continue
-            src = src_index_map.get(src)
-            dst = dst_index_map.get(dst)
-            if not src or not dst:
-                continue
-            filtered_edge_dict[et].add((src, dst))
-            if rt == "hrchy":
-                rev_et = (dt, "hrchy_rev", st)
-                if rev_et in edge_types:
-                    filtered_edge_dict[rev_et].add((dst, src))
-    
-    filtered_edge_dict = {
-        et: list(edge_index) 
-        for et, edge_index in filtered_edge_dict.items()
-    }
-
-    for et, edge_index in filtered_edge_dict.items():
-        if len(edge_index) == 0:
-            filtered_edge_dict[et] = torch.empty((2, 0), dtype=torch.long)
-            continue
-        src, dst = zip(*edge_index)
-        src = torch.tensor(src, dtype=torch.long)
-        dst = torch.tensor(dst, dtype=torch.long)
-        filtered_edge_dict[et] = torch.stack([src, dst], dim=0)
-
-    for nt, mask in x_mask_dict.items():
-        if len(mask) == 0:
-            x_mask_dict[nt] = torch.empty(0, dtype=torch.bool)
-        else:
-            x_mask_dict[nt] = torch.tensor(mask, dtype=torch.bool)
-
-    return x_mask_dict, filtered_edge_dict
-
-
-def to_hls_hetero_data(
+def to_hetero_data(
     kernel_info: VitisKernelInfo, 
     add_self_loops: bool = True,
     add_reversed_edges: bool = True,
-) -> HLSHeteroData:
-    data = HLSHeteroData()
+) -> HeteroData:
+    data = HeteroData()
     
     for nt in NODE_TYPES:
         nodes = kernel_info.nodes.get(nt)
@@ -352,15 +133,6 @@ def to_hls_hetero_data(
             data[et].edge_index = torch.stack([src, dst], dim=0)
         else:
             data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
-
-    for dt in DIRECTIVES:
-        x_mask_dict, filtered_edge_dict = extract_dct_subset(kernel_info, dt)
-        data.set_value_dict(f"{dt}_x_mask", x_mask_dict)
-        data.set_value_dict(f"{dt}_filtered_edge", filtered_edge_dict)
-        for nt, mask in x_mask_dict.items():
-            data[nt].__setattr__(f"{dt}_x_mask", mask)
-        for et, edge_index in filtered_edge_dict.items():
-            data[et].__setattr__(f"{dt}_filtered_edge", edge_index)
 
     if add_reversed_edges:
         hrchy_edges = {k: v for k, v in data.edge_index_dict.items() if k[1] == "hrchy"}
@@ -409,35 +181,15 @@ def find_region_node(kernel_info, region_name, function_name):
 
 
 def include_directive_info(kernel_info: VitisKernelInfo, solution_dct_tcl_path: str):
-    kernel_info.nodes.update({nt: [] for nt in DIRECTIVES})
-    kernel_info.edges.update({et: [] for et in EDGE_TYPES if et[0] in DIRECTIVES})
-
     directives = parse_tcl_directives_file(solution_dct_tcl_path)
-    directives = [
-        (dtype, dargs) for dtype, dargs in directives 
-        if dtype in DIRECTIVES or dtype in ["inline", "dataflow"]
-    ]
-    directive_count = {nt: 0 for nt in DIRECTIVES}
 
-    for directive_type, directive_args in directives:
-        if directive_type in ['inline', 'dataflow']:
-            location = directive_args["location"]
-            if "/" in location:
-                function_name, target_name = location.split("/")
-            else:
-                function_name = location
-                target_name = location
-            
-            region_node = find_region_node(kernel_info, target_name, function_name)
-            if region_node is None:
-                print(f"Warning: Region '{target_name}' "
-                      f"(function '{function_name}') not found in nodes.")
-                continue
-            region_node.attrs[directive_type] = 1
+    for dct, args in directives:
+        if dct not in DIRECTIVES:
+            continue
 
-        elif directive_type == "array_partition":
-            function_name = directive_args.get("location", "")
-            target_name = directive_args.get("variable")
+        if dct == "array_partition":
+            function_name = args.get("location", "")
+            target_name = args.get("variable")
             if target_name is None:
                 print("Warning: No variable specified for array partition.")
                 continue
@@ -447,38 +199,29 @@ def include_directive_info(kernel_info: VitisKernelInfo, solution_dct_tcl_path: 
                 print(f"Warning: Variable '{target_name}' "
                       f"(function '{function_name}') not found in nodes.")
                 continue
-
-            directive_node = DirectiveNode(
-                directive_type, function_name, target_name, 
-                directive_count[directive_type]
-            )
-            directive_count[directive_type] += 1
             
-            partition_factor = int(directive_args.get("factor", 0))
+            array_node.attrs["array_partition"] = 1
+
+            partition_factor = int(args.get("factor", 0))
             if partition_factor <= 0:
                 partition_factor = array_node.total_size
-            directive_node.attrs["partition_factor"] = partition_factor
+            array_node.attrs["partition_factor"] = partition_factor
 
             partition_dim = [0] * 4
-            partition_dim[int(directive_args.get("dim", 0))] = 1
-            directive_node.attrs["partition_dim"] = partition_dim
+            partition_dim[int(args.get("dim", 0))] = 1
+            array_node.attrs["partition_dim"] = partition_dim
 
-            partition_type = directive_args.get("type", "complete")
+            partition_type = args.get("type", "complete")
             if partition_type == "complete":
                 partition_type = [1, 0, 0]
             elif partition_type == "block":
                 partition_type = [0, 1, 0]
             else:
                 partition_type = [0, 0, 1]
-            directive_node.attrs["partition_type"] = partition_type
+            array_node.attrs["partition_type"] = partition_type
 
-            kernel_info.nodes[directive_type].append(directive_node)
-            kernel_info.edges[(directive_type, "transform", "array")].append(
-                (directive_node.id, array_node.id)
-            )
-
-        elif "off" not in directive_args:
-            location = directive_args["location"]
+        elif "off" not in args:
+            location = args["location"]
             if "/" in location:
                 function_name, target_name = location.split("/")
             else:
@@ -486,24 +229,13 @@ def include_directive_info(kernel_info: VitisKernelInfo, solution_dct_tcl_path: 
                 target_name = location
 
             region_node = find_region_node(kernel_info, target_name, function_name)
+            region_node.attrs[dct] = 1
 
-            directive_node = DirectiveNode(
-                directive_type, function_name, target_name, 
-                directive_count[directive_type]
-            )
-            directive_count[directive_type] += 1
-
-            directive_node.attrs[directive_type] = 1
-            if directive_type == "unroll":
-                unroll_factor = int(directive_args.get("factor", 0))
+            if dct == "unroll":
+                unroll_factor = int(args.get("factor", 0))
                 if unroll_factor <= 0:
                     unroll_factor = region_node.attrs.get("max_trip_count", 1)
-                directive_node.attrs["unroll_factor"] = unroll_factor
-  
-            kernel_info.nodes[directive_type].append(directive_node)
-            kernel_info.edges[(directive_type, "transform", "region")].append(
-                (directive_node.id, region_node.id)
-            )
+                region_node.attrs["unroll_factor"] = unroll_factor
 
 
 def fit_one_hot_encoders(hls_data_dict: Dict[str, VitisKernelInfo]):
@@ -550,7 +282,7 @@ def load_encoders(path: str) -> Dict[str, OneHotEncoder]:
                     
 
 def plot_data(
-    data: HLSHeteroData,
+    data: HeteroData,
     plt_type: Union[str, list] = "full",
     batched: bool = False
 ):
@@ -599,7 +331,7 @@ def plot_data(
                 node_types.add(et[2])
             node_types = list(node_types)
 
-        filtered_data = HLSHeteroData()
+        filtered_data = HeteroData()
         for nt, x in data.x_dict.items():
             if nt not in node_types:
                 x = torch.empty((0, NODE_FEATURE_DIMS[nt]), 
@@ -703,7 +435,7 @@ if __name__ == "__main__":
         filtered=filtered
     )[kernel_name]
 
-    data = to_hls_hetero_data(kernel_info)
+    data = to_hetero_data(kernel_info)
 
     plot_data(data, plt_type, batched=False)
 

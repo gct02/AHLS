@@ -138,7 +138,7 @@ def process_results_and_directives(
     dct_result_dict = associate_directives_with_results(dct_dict, result_dict)
     if sorted_by_error:
         return sort_by_error(dct_result_dict), feat_names
-    return dct_result_dict, feat_names
+    return [(i, d, re) for i, (d, re) in dct_result_dict.items()], feat_names
 
 
 def build_dataset(dct_result_dict):
@@ -179,7 +179,7 @@ def plot_shap_values(X_dct, shap_values, feat_names=None):
     shap.summary_plot(
         shap_values, X_dct, 
         feature_names=feat_names, 
-        max_display=20, alpha=0.4,
+        max_display=30, alpha=0.4,
         show_values_in_legend=True,
         color=X_dct
     )
@@ -190,7 +190,7 @@ def plot_interaction_summary(shap_interaction_values, X_dct, feat_names=None):
     shap.summary_plot(
         shap_interaction_values, X_dct, 
         feature_names=feat_names, 
-        max_display=20, alpha=0.4,
+        max_display=30, alpha=0.4,
         show_values_in_legend=True,
         plot_type="compact_dot",
         color=X_dct

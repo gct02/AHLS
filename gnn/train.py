@@ -1,6 +1,7 @@
 import os
 import argparse
 import random
+import copy
 from collections import defaultdict
 from typing import List, Dict, Tuple, Optional, Union
 
@@ -14,18 +15,18 @@ import torch.nn as nn
 from torch.nn.utils import clip_grad_norm_
 from sklearn.metrics import r2_score
 
+from torch_geometric.data import HeteroData
+from torch_geometric.loader import DataLoader
+
 from gnn.models import HGT
-from gnn.data.dataset import HLSDataset
-from gnn.data.dataloader import HLSDataLoader
-from gnn.data.hetero_data import (
+from gnn.data.graph import (
     METADATA,
-    DIRECTIVE_SUBSET_METADATA,
     NODE_FEATURE_DIMS
 )
+from gnn.data.dataset import HLSDataset
 
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
 
 PredTargetPair = Tuple[
     Union[float, torch.Tensor], 
@@ -56,11 +57,11 @@ def static_vars(**kwargs):
     return decorate
 
 
-@static_vars(min_mre=1e10, best_epoch=0)
+@static_vars(min_mre=1e10, best_epoch=0, best_model_state=None)
 def evaluate(
     epoch: int,
     model: nn.Module,
-    loader: HLSDataLoader,
+    loader: DataLoader,
     verbosity: int = 1,
     log_dir: Optional[str] = None,
     mode: str = 'test',
@@ -90,6 +91,7 @@ def evaluate(
     if mre < evaluate.min_mre:
         evaluate.min_mre = mre
         evaluate.best_epoch = epoch
+        evaluate.best_model = copy.deepcopy(model.state_dict())
 
     results = list(zip(preds, targets))
 
@@ -107,8 +109,8 @@ def train_model(
     model: nn.Module,
     loss_fn: nn.Module,
     optimizer: torch.optim.Optimizer,
-    train_loader: HLSDataLoader,
-    test_loader: HLSDataLoader,
+    train_loader: DataLoader,
+    test_loader: DataLoader,
     epochs: int,
     scheduler: Optional[torch.optim.lr_scheduler.LRScheduler] = None,
     verbosity: int = 1,
@@ -203,23 +205,17 @@ def main(args: Dict[str, str]):
         dataset_dir, target_metric, test_bench, train_benches, 
         batch_size=batch_size, log_transform=log_transform
     )
-
-    hid_dim = [256, 256]
-    heads = [4, 4]
-    num_layers = len(hid_dim)
-    proj_in_dim = hid_dim[0]
     
     model = HGT(
-        metadata=METADATA, 
-        dct_metadata_dict=DIRECTIVE_SUBSET_METADATA, 
-        in_channels=NODE_FEATURE_DIMS, 
+        metadata=METADATA,
+        in_channels=NODE_FEATURE_DIMS,
         out_channels=1,
-        hid_dim=hid_dim, 
-        heads=heads, 
-        num_layers=num_layers, 
-        proj_in_dim=proj_in_dim,
+        proj_in_dim=256,
+        hid_dim=[256, 256],
+        heads=[4, 4],
+        num_layers=2,
         dropout=0.0
-    ).to(DEVICE)
+    )
 
     if loss == 'mse':
         loss_fn = nn.MSELoss()
@@ -234,8 +230,7 @@ def main(args: Dict[str, str]):
         model.parameters(), 
         lr=5e-4, 
         betas=(0.9, 0.999), 
-        weight_decay=5e-4,
-        eps=1e-6  # Suspecting numerical instability
+        weight_decay=5e-4
     )
 
     total_steps = epochs * len(train_loader)
@@ -246,13 +241,17 @@ def main(args: Dict[str, str]):
         pct_start=0.3,
         anneal_strategy='cos'
     )
+
     results = train_model(
         model, loss_fn, optimizer, train_loader, test_loader, epochs, 
         scheduler=scheduler, verbosity=verbosity, log_dir=analysis_dir,
         log_transformed=log_transform
     )
+
     plot_prediction_bars(results["test"], test_bench, target_metric, analysis_dir)
     save_training_artifacts(results, analysis_dir)
+
+    model.load_state_dict(evaluate.best_model_state)
     save_model(model, pretrained_dir, f"{test_bench}_{target_metric}.pth")
 
 
@@ -286,7 +285,7 @@ def plot_learning_curves(
     plt.ylabel('MRE', fontsize=12)
     plt.legend()
 
-    best_epoch = np.argmin(test_errors)
+    best_epoch = evaluate.best_epoch - 1
     ax.axvline(best_epoch, color='blue', linestyle='--', alpha=0.7)
     ax.text(
         best_epoch + 0.5, np.max(test_errors), f'Best Epoch: {best_epoch}', 
@@ -349,7 +348,7 @@ def plot_prediction_bars(
     benchmark: str, metric: str, output_dir: str
 ):
     """Plot per-benchmark instance-level predictions and errors"""
-    best_epoch = evaluate.best_epoch
+    best_epoch = evaluate.best_epoch - 1
 
     targets = [r[1] for r in test_results[best_epoch]]
     preds = [r[0] for r in test_results[best_epoch]]
@@ -412,7 +411,7 @@ def save_training_artifacts(
         train_errors.append(np.mean([mape(p, t) for p, t in train_results]))
         test_errors.append(np.mean([mape(p, t) for p, t in test_results]))
 
-    best_epoch = evaluate.best_epoch
+    best_epoch = evaluate.best_epoch - 1
     test_results = results['test']
 
     targets = [r[1] for r in test_results[best_epoch]]
@@ -478,7 +477,7 @@ def prepare_data_loaders(
     train_benchmarks: Union[List[str], str],
     batch_size: int = 16,
     log_transform: bool = False
-) -> Tuple[HLSDataLoader, HLSDataLoader]:
+) -> Tuple[DataLoader, DataLoader]:
     train_data = HLSDataset(
         dataset_dir, metric, mode="train", scale_features=True, 
         benchmarks=train_benchmarks, log_transform=log_transform
@@ -488,8 +487,8 @@ def prepare_data_loaders(
         feature_ranges=train_data.feature_ranges,
         benchmarks=test_benchmarks,log_transform=log_transform
     )
-    train_loader = HLSDataLoader(train_data, batch_size=batch_size, shuffle=True)
-    test_loader = HLSDataLoader(test_data, batch_size=1, shuffle=False)
+    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
+    test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
 
     return train_loader, test_loader
 

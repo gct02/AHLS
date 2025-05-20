@@ -39,7 +39,7 @@ CDFG_EDGE_TYPES = [
     # Array allocation edges
     ("instr", "alloca", "array"),
 
-    # Hierarchical edges (representing CDFG structure)
+    # Edges for hierarchical relationships
     ("region", "hrchy", "region"), 
     ("region", "hrchy", "block"),
     ("region", "hrchy", "instr"),
@@ -72,37 +72,6 @@ class Node(ABC):
     @abstractmethod
     def __repr__(self):
         pass
-
-
-class DirectiveNode(Node):
-    def __init__(
-        self, 
-        directive: str,
-        function_name: Optional[str] = None,
-        target_name: Optional[str] = None,
-        node_id: Optional[int] = None,
-        attributes: Optional[AttributeDict] = None
-    ):
-        self.id = node_id
-        self.directive = directive
-        self.function_name = function_name if function_name else ''
-        self.target_name = target_name if target_name else ''
-        self.name = f"{directive} {self.function_name}/{self.target_name}"
-        self.label = self.name
-
-        self.attrs = attributes if attributes else {}
-
-    def as_dict(self):
-        return {
-            'name': self.name,
-            'attributes': self.attrs
-        }
-    
-    def __str__(self):
-        return json.dumps(self.as_dict(), indent=2)
-    
-    def __repr__(self):
-        return self.__str__()
 
 
 class CDFGNode(Node):
@@ -146,6 +115,7 @@ class ArrayNode(Node):
         self.label = self.name
         self.function_name = array_info.get('FunctionName', '')
 
+        self.is_top_level_port = is_top_level_port
         self.total_size = max(1, array_info.get('TotalSize', 1))
 
         if direction is not None and is_top_level_port:
@@ -181,6 +151,12 @@ class ArrayNode(Node):
             'base_bitwidth': array_info.get('BaseBitwidth', 0),
             'direction': direction_encoding,
             'array_impl': array_impl,
+
+            # Attributes of HLS directives
+            'array_partition': 0,
+            'partition_type': [0, 0, 0],
+            'partition_dim': [0] * (MAX_ARRAY_DIM + 1),
+            'partition_factor': 0
         }
 
         if resources is not None:
@@ -225,7 +201,15 @@ class RegionNode(Node):
             'min_latency': min_lat, 'max_latency': max_lat,
             'min_trip_count': min_tc, 'max_trip_count': max_tc,
             'loop_depth': loop_depth, 'ii': ii, 
-            'dataflow': 0, 'inline': 0
+
+            # Attributes of HLS directives
+            'pipeline': 0,
+            'unroll': 0,
+            'unroll_factor': 0,
+            'loop_merge': 0,
+            'loop_flatten': 0,
+            'dataflow': 0, 
+            'inline': 0,
         }
 
         self.sub_regions = self._extract_items(element, 'sub_regions')
@@ -391,7 +375,7 @@ class CDFG:
         # Extract function information
         self.name = cdfg.findtext('name')
         self.ret_bitwidth = findint(cdfg, 'ret_bitwidth')
-        self.is_top_fn = self.name == top_function_name
+        self.is_top_level = self.name == top_function_name
         self.function_calls = []
 
         self._get_node_resource_map(root)
@@ -489,13 +473,13 @@ class CDFG:
                 array_idx += 1
                 node = ArrayNode(
                     array_info, array_id,
-                    is_top_level_port=self.is_top_fn, 
+                    is_top_level_port=self.is_top_level, 
                     direction=direction
                 )
                 self._node_id_map[node_id] = (array_id, 'array')
                 self.nodes['array'].append(node)
             else:
-                node = PortNode(elem, self.name, self.is_top_fn)
+                node = PortNode(elem, self.name, self.is_top_level)
                 port_id = port_idx + port_offset
                 self._node_id_map[node.id] = (port_id, 'port')
                 node.id = port_id

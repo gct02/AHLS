@@ -138,7 +138,7 @@ def encode_directives(
             ap_type = [0, 0, 1]
 
         return [1, ap_factor] + ap_dim + ap_type
-    
+
     def get_dct_feat_name(dct, label):
         dct_id = f"{dct}_{label}"
         if dct == "array_partition":
