@@ -40,8 +40,7 @@ def main(args: Dict[str, str]):
         print(f"Directives config directory not found: {dct_config_dir}")
         return
 
-    base_sols = []
-    benches = []
+    base_sol_info_list, benches = [], []
     for bench in dataset_dir.iterdir():
         if not bench.is_dir():
             continue
@@ -57,14 +56,10 @@ def main(args: Dict[str, str]):
             continue
         
         top_fn = bench_kernel_config["top_level"]
-        base_sols.append((base_sol_dir, bench.name, top_fn))
+        base_sol_info_list.append((base_sol_dir, bench.name, top_fn))
         benches.append(bench)
 
-    kernel_info_dict = extract_base_kernel_info(
-        solution_info_list=base_sols, 
-        hls_dct_config_dir=dct_config_dir, 
-        filtered=False
-    )
+    kernel_info_dict = extract_base_kernel_info(base_sol_info_list)
 
     for bench in benches:
         bench_out_dir = output_dir / bench.name

@@ -187,6 +187,7 @@ def main(args: Dict[str, str]):
     matplotlib.use('Agg')
 
     # torch.backends.cudnn.benchmark = True
+    torch.autograd.set_detect_anomaly(True)
     torch.set_printoptions(
         precision=6, threshold=1000, edgeitems=20, linewidth=200, sci_mode=False
     )

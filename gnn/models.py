@@ -1,4 +1,4 @@
-from typing import Union, Dict, List, Optional
+from typing import Union, Dict, List, Optional, Tuple
 
 import torch
 import torch.nn as nn
@@ -13,7 +13,7 @@ from torch_geometric.nn import (
     global_max_pool
 )
 from torch_geometric.data import HeteroData
-from torch_geometric.typing import Metadata, NodeType
+from torch_geometric.typing import Metadata, NodeType, EdgeType
 
 
 class HGT(nn.Module):
@@ -121,23 +121,23 @@ class HGT(nn.Module):
             in_dim = proj_in_dim if i == 0 else hid_dim[i - 1]
             out_dim = hid_dim[i]
             num_heads = heads[i]
-            norm = nn.ModuleDict({
-                nt: LayerNorm(in_dim) 
-                for nt in self.node_types
-            })
             conv = HGTConv(
                 in_channels=in_dim, 
                 out_channels=out_dim, 
                 metadata=cdfg_metadata, 
                 heads=num_heads
             )
-            self.norm.append(norm)
+            norm = nn.ModuleDict({
+                nt: LayerNorm(out_dim) 
+                for nt in self.node_types
+            })
             self.conv.append(conv)
+            self.norm.append(norm)
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
             Linear(1, 16, weight_initializer="kaiming_uniform"), 
-            nn.LeakyReLU(negative_slope=0.2),
+            nn.LeakyReLU(negative_slope=0.1),
             Linear(16, 16, weight_initializer="kaiming_uniform")
         )
 
@@ -181,27 +181,19 @@ class HGT(nn.Module):
         
         # Input projection layer
         x_dict = self.proj_in(x_dict)
-        x_dict = {
-            nt: F.dropout(F.gelu(x), p=self.dropout, training=self.training)
-            for nt, x in x_dict.items()
-        }
 
         # GNN for HLS directives
         x_dict = self.hls_gnn(x_dict, data)
         
-        x_dict = {
-            nt: x for nt, x in x_dict.items()
-            if nt in self.cdfg_node_types
-        }
-        edge_index_dict = {
-            et: edge_index for et, edge_index in edge_index_dict.items()
-            if et in self.cdfg_edge_types
-        }
+        # Filter out node and edge types related to HLS directives
+        x_dict, edge_index_dict, batch_dict = self._filter_data(
+            x_dict, edge_index_dict, batch_dict
+        )
 
         # Convolutional layers
         for i in range(self.num_layers):
-            x_dict = {nt: self.norm[i][nt](x) for nt, x in x_dict.items()}
             x_dict = self.conv[i](x_dict, edge_index_dict)
+            x_dict = {nt: self.norm[i][nt](x) for nt, x in x_dict.items()}
 
         # Pooling layer
         batch_size = self._get_batch_size(batch_dict)
@@ -223,6 +215,27 @@ class HGT(nn.Module):
 
         return out.squeeze(1)
     
+    def _filter_data(
+        self,
+        x_dict: Dict[NodeType, Tensor],
+        edge_index_dict: Dict[EdgeType, Tensor],
+        batch_dict: Dict[NodeType, Tensor]
+    ) -> Tuple[Dict[NodeType, Tensor], Dict[EdgeType, Tensor], Dict[NodeType, Tensor]]:
+        """Filters out node and edge types related to HLS directives."""
+        x_dict = {
+            nt: x for nt, x in x_dict.items()
+            if nt in self.cdfg_node_types
+        }
+        edge_index_dict = {
+            et: edge_index for et, edge_index in edge_index_dict.items()
+            if et in self.cdfg_edge_types
+        }
+        batch_dict = {
+            nt: batch for nt, batch in batch_dict.items()
+            if nt in self.cdfg_node_types
+        }
+        return x_dict, edge_index_dict, batch_dict
+    
     def _get_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
         """Returns the batch size."""
         batch_size = 0
@@ -242,14 +255,22 @@ class HLSTransformGNN(nn.Module):
     ):
         super().__init__()
 
+        self.directives = [
+            "loop_flatten",
+            "loop_merge",
+            "array_partition",
+            "unroll",
+            "pipeline"
+        ]
+
         self.gnn = nn.ModuleDict({
             dct: HGTConv(
                 in_channels=in_channels, 
                 out_channels=out_channels, 
-                metadata=dct_metadata, 
+                metadata=dct_metadata_dict[dct], 
                 heads=heads
             )
-            for dct, dct_metadata in dct_metadata_dict.items()
+            for dct in self.directives
         })
 
         self.reset_parameters()
@@ -260,7 +281,7 @@ class HLSTransformGNN(nn.Module):
             gnn.reset_parameters()
 
     def forward(self, x_dict: Dict[NodeType, Tensor], data: HeteroData):
-        for dct, gnn in self.gnn.items():
+        for dct in self.directives:
             try:
                 x_mask_dict = data.__getattr__(f"{dct}_x_mask_dict")
                 filtered_edge_dict = data.__getattr__(f"{dct}_filtered_edge_dict")
@@ -273,9 +294,10 @@ class HLSTransformGNN(nn.Module):
                 nt: x_dict[nt][mask, :]
                 for nt, mask in x_mask_dict.items()
             }
-            filtered_x_dict = gnn(filtered_x_dict, filtered_edge_dict)
+            filtered_x_dict = self.gnn[dct](filtered_x_dict, filtered_edge_dict)
 
             for nt, x in filtered_x_dict.items():
-                x_dict[nt][x_mask_dict[nt], :] = x
+                if x is not None and x.size(0) > 0:
+                    x_dict[nt][x_mask_dict[nt], :] = x
             
         return x_dict

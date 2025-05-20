@@ -78,9 +78,14 @@ DIRECTIVE_SUBSET_EDGE_TYPES = {
         ("array_partition", "transform", "array"),
         ("array", "data", "instr"),
         ("instr", "alloca", "array")
+        ("array", "to", "array"),
+        ("instr", "to", "instr")
     ],
     "unroll": [
-        ("unroll", "transform", "region")
+        ("unroll", "transform", "region"),
+        ("region", "to", "region"),
+        ("block", "to", "block"),
+        ("instr", "to", "instr")
     ] + [
         et for et in EDGE_TYPES if "hrchy" in et[1]
     ],
@@ -88,19 +93,24 @@ DIRECTIVE_SUBSET_EDGE_TYPES = {
         ("pipeline", "transform", "region"),
         ("instr", "data", "instr"),
         ("block", "control", "instr"),
-        ("block", "control", "block")
+        ("block", "control", "block"),
+        ("region", "to", "region"),
+        ("block", "to", "block"),
+        ("instr", "to", "instr")
     ] + [
         et for et in EDGE_TYPES if "hrchy" in et[1]
     ],
     "loop_flatten": [
         ("loop_flatten", "transform", "region"),
         ("region", "hrchy", "region"),
-        ("region", "hrchy_rev", "region")
+        ("region", "hrchy_rev", "region"),
+        ("region", "to", "region")
     ],
     "loop_merge": [
         ("loop_merge", "transform", "region"),
         ("region", "hrchy", "region"),
-        ("region", "hrchy_rev", "region")
+        ("region", "hrchy_rev", "region"),
+        ("region", "to", "region")
     ]
 }
 
@@ -152,7 +162,6 @@ class HLSHeteroData(HeteroData):
 
 def extract_base_kernel_info(
     solution_info_list: List[Tuple[str, str, str]],
-    hls_dct_config_dir: str,
     filtered: bool = False,
     encoder_output_path: Optional[str] = None,
 ) -> Dict[str, VitisKernelInfo]:
@@ -169,18 +178,13 @@ def extract_base_kernel_info(
             print(f"IR Array info file not found: {ir_array_info_path}")
             continue
 
-        kernel_info = VitisKernelInfo(
+        kernel_info_dict[kernel_name] = VitisKernelInfo(
             solution_dir=sol_dir, 
             top_function_name=top_function, 
             array_info_path=ir_array_info_path, 
             kernel_name=kernel_name,
             filtered=filtered
         )
-        dct_config_path = os.path.join(
-            hls_dct_config_dir, f"{kernel_name.lower()}.json"
-        )
-        include_directive_info(kernel_info, dct_config_path)
-        kernel_info_dict[kernel_name] = kernel_info
             
     encoders = fit_one_hot_encoders(kernel_info_dict)
     if encoder_output_path:
@@ -199,7 +203,7 @@ def create_hls_hetero_data(
     add_reversed_edges: bool = True,
 ) -> HLSHeteroData:
     kernel_info = deepcopy(base_kernel_info)
-    update_directive_info(kernel_info, solution_dct_tcl_path)
+    include_directive_info(kernel_info, solution_dct_tcl_path)
     return to_hls_hetero_data(
         kernel_info, 
         add_self_loops=add_self_loops,
@@ -383,8 +387,7 @@ def to_hls_hetero_data(
 def find_array_node(kernel_info, array_name, function_name):
     for node in kernel_info.nodes.get('array', []):
         if node.name == array_name:
-            if (not node.function_name 
-                or node.function_name == function_name):
+            if node.function_name == function_name:
                 return node
     # If not found, search for array_name only
     for node in kernel_info.nodes.get('array', []):
@@ -405,105 +408,16 @@ def find_region_node(kernel_info, region_name, function_name):
     return None
 
 
-def include_directive_info(kernel_info, dct_config_path):
-    if not os.path.exists(dct_config_path):
-        raise FileNotFoundError(
-            f"Directive config file not found: {dct_config_path}"
-        )
-    
-    with open(dct_config_path, "r") as f:
-        directive_config = json.load(f)
-    
-    directive_group_dict = directive_config.get("directives")
-    if directive_group_dict is None:
-        raise ValueError(
-            f"Invalid directive config file: {dct_config_path}"
-        )
-    
-    dir_node_types = DIRECTIVES
-    dir_edge_types = [et for et in EDGE_TYPES if et[0] in dir_node_types]
-
-    for directive_nt in dir_node_types:
-        if directive_nt not in kernel_info.nodes:
-            kernel_info.nodes[directive_nt] = []
-
-    for directive_et in dir_edge_types:
-        if directive_et not in kernel_info.edges:
-            kernel_info.edges[directive_et] = []
-
-    indices = {nt: 0 for nt in dir_node_types}
-
-    for directive in directive_group_dict.values():
-        directive_options = directive.get("possible_directives", [])
-        if len(directive_options) <= 1:
-            continue
-        directive_type = directive.get("directive_type")
-        if directive_type is None or directive_type not in dir_node_types:
-            print(f"Warning: Skipping directive with type '{directive_type}'")
-            continue
-        function = directive.get("function", "")
-        if directive_type == "array_partition":
-            variable = directive.get("variable")
-            if variable is None:
-                print("Warning: No variable specified for array partition.")
-                continue
-            node = find_array_node(kernel_info, variable, function)
-            if node is None:
-                print(f"Warning: Variable '{variable}' (function '{function}') not found in nodes.")
-                continue
-            directive_id = indices[directive_type]
-            indices[directive_type] += 1
-            directive_attrs = {
-                "partition_factor": 0,
-                "partition_dim": [0, 0, 0, 0],
-                "partition_type": [0, 0, 0],
-            }
-            directive_node = DirectiveNode(
-                directive_type, function, variable, 
-                directive_id, directive_attrs
-            )
-            kernel_info.nodes[directive_type].append(directive_node)
-            kernel_info.edges[(directive_type, "transform", "array")].append(
-                (directive_node.id, node.id)
-            )
-        else:
-            label = directive.get("label", "")
-            if not label:
-                label = function
-            node = find_region_node(kernel_info, label, function)
-            if node is None:
-                print(f"Warning: Region '{label}' (function '{function}') not found in nodes.")
-                continue
-
-            directive_id = indices[directive_type]
-            indices[directive_type] += 1
-            directive_attrs = {directive_type: 0}
-            if directive_type == "unroll":
-                directive_attrs["unroll_factor"] = 0
-            directive_node = DirectiveNode(
-                directive_type, function, label, 
-                directive_id, directive_attrs
-            )
-            kernel_info.nodes[directive_type].append(directive_node)
-            kernel_info.edges[(directive_type, "transform", "region")].append(
-                (directive_node.id, node.id)
-            )
-
-
-def update_directive_info(
-    kernel_info: VitisKernelInfo, 
-    solution_dct_tcl_path: str
-):
-    def find_dct_node(hls_data, directive_type, function_name, target_name):
-        for node in hls_data.nodes.get(directive_type, []):
-            if node.function_name == function_name and node.target_name == target_name:
-                return node
+def include_directive_info(kernel_info: VitisKernelInfo, solution_dct_tcl_path: str):
+    kernel_info.nodes.update({nt: [] for nt in DIRECTIVES})
+    kernel_info.edges.update({et: [] for et in EDGE_TYPES if et[0] in DIRECTIVES})
 
     directives = parse_tcl_directives_file(solution_dct_tcl_path)
     directives = [
         (dtype, dargs) for dtype, dargs in directives 
         if dtype in DIRECTIVES or dtype in ["inline", "dataflow"]
     ]
+    directive_count = {nt: 0 for nt in DIRECTIVES}
 
     for directive_type, directive_args in directives:
         if directive_type in ['inline', 'dataflow']:
@@ -520,7 +434,7 @@ def update_directive_info(
                       f"(function '{function_name}') not found in nodes.")
                 continue
             region_node.attrs[directive_type] = 1
-            continue
+
         elif directive_type == "array_partition":
             function_name = directive_args.get("location", "")
             target_name = directive_args.get("variable")
@@ -528,23 +442,26 @@ def update_directive_info(
                 print("Warning: No variable specified for array partition.")
                 continue
 
-            directive_node = find_dct_node(kernel_info, directive_type, function_name, target_name)
-            if directive_node is None:
-                print(f"Warning: Directive '{directive_type}' targeting "
-                      f"'{function_name}/{target_name} not found in nodes.")
+            array_node = find_array_node(kernel_info, target_name, function_name)
+            if array_node is None:
+                print(f"Warning: Variable '{target_name}' "
+                      f"(function '{function_name}') not found in nodes.")
                 continue
+
+            directive_node = DirectiveNode(
+                directive_type, function_name, target_name, 
+                directive_count[directive_type]
+            )
+            directive_count[directive_type] += 1
             
             partition_factor = int(directive_args.get("factor", 0))
             if partition_factor <= 0:
-                array_node = find_array_node(kernel_info, target_name, function_name)
-                if array_node is None:
-                    print(f"Warning: Variable '{target_name}' "
-                          f"(function '{function_name}') not found in nodes.")
-                    continue
                 partition_factor = array_node.total_size
+            directive_node.attrs["partition_factor"] = partition_factor
 
             partition_dim = [0] * 4
             partition_dim[int(directive_args.get("dim", 0))] = 1
+            directive_node.attrs["partition_dim"] = partition_dim
 
             partition_type = directive_args.get("type", "complete")
             if partition_type == "complete":
@@ -553,15 +470,14 @@ def update_directive_info(
                 partition_type = [0, 1, 0]
             else:
                 partition_type = [0, 0, 1]
-
             directive_node.attrs["partition_type"] = partition_type
-            directive_node.attrs["partition_factor"] = partition_factor
-            directive_node.attrs["partition_dim"] = partition_dim
-        else:
-            directive_off = directive_args.get("off")
-            if directive_off and directive_off.lower() == "true":
-                continue
 
+            kernel_info.nodes[directive_type].append(directive_node)
+            kernel_info.edges[(directive_type, "transform", "array")].append(
+                (directive_node.id, array_node.id)
+            )
+
+        elif "off" not in directive_args:
             location = directive_args["location"]
             if "/" in location:
                 function_name, target_name = location.split("/")
@@ -569,23 +485,25 @@ def update_directive_info(
                 function_name = location
                 target_name = location
 
-            directive_node = find_dct_node(kernel_info, directive_type, function_name, target_name)
-            if directive_node is None:
-                print(f"Warning: Directive '{directive_type}' targeting "
-                      f"'{function_name}/{target_name}' not found in nodes.")
-                continue
-        
+            region_node = find_region_node(kernel_info, target_name, function_name)
+
+            directive_node = DirectiveNode(
+                directive_type, function_name, target_name, 
+                directive_count[directive_type]
+            )
+            directive_count[directive_type] += 1
+
+            directive_node.attrs[directive_type] = 1
             if directive_type == "unroll":
                 unroll_factor = int(directive_args.get("factor", 0))
                 if unroll_factor <= 0:
-                    region_node = find_region_node(kernel_info, target_name, function_name)
-                    if region_node is None:
-                        print(f"Warning: Region '{location}' not found in nodes.")
-                        continue
                     unroll_factor = region_node.attrs.get("max_trip_count", 1)
                 directive_node.attrs["unroll_factor"] = unroll_factor
   
-            directive_node.attrs[directive_type] = 1
+            kernel_info.nodes[directive_type].append(directive_node)
+            kernel_info.edges[(directive_type, "transform", "region")].append(
+                (directive_node.id, region_node.id)
+            )
 
 
 def fit_one_hot_encoders(hls_data_dict: Dict[str, VitisKernelInfo]):
