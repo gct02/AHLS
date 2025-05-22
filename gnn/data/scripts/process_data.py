@@ -1,5 +1,6 @@
 import argparse
 import json
+import pickle
 from pathlib import Path
 from typing import Dict, Union
 
@@ -64,7 +65,13 @@ def main(args: Dict[str, str]):
             json.dump(base_metrics, f, indent=2)
 
         kernel_info = kernel_info_dict[bench.name]
-        kernel_info.dump(bench_out_dir / "kernel_info.json")
+        kernel_info_pkl_path = bench_out_dir / "kernel_info.pkl"
+        kernel_info_json_path = bench_out_dir / "kernel_info.json"
+
+        with open(kernel_info_pkl_path, "wb") as f:
+            pickle.dump(kernel_info, f)
+
+        kernel_info.save_as_json(kernel_info_json_path)
 
         sol_count = 0
         for sol in bench.iterdir():

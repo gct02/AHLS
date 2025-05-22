@@ -39,7 +39,7 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 62, "port": 7, "array": 28,
+    "instr": 62, "port": 7, "array": 29,
     "const": 5, "block": 5, "region": 13
 }
 
@@ -207,7 +207,7 @@ def include_directive_info(kernel_info: VitisKernelInfo, solution_dct_tcl_path: 
                 partition_factor = array_node.total_size
             array_node.attrs["partition_factor"] = partition_factor
 
-            partition_dim = [0] * 4
+            partition_dim = [0] * 5
             partition_dim[int(args.get("dim", 0))] = 1
             array_node.attrs["partition_dim"] = partition_dim
 
@@ -229,6 +229,11 @@ def include_directive_info(kernel_info: VitisKernelInfo, solution_dct_tcl_path: 
                 target_name = location
 
             region_node = find_region_node(kernel_info, target_name, function_name)
+            if region_node is None:
+                print(f"Warning: Region '{target_name}' "
+                      f"(function '{function_name}') not found in nodes.")
+                continue
+            
             region_node.attrs[dct] = 1
 
             if dct == "unroll":

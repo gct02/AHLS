@@ -4446,6 +4446,20 @@
             0,
             0
           ],
+          "array_partition": 0,
+          "partition_type": [
+            0,
+            0,
+            0
+          ],
+          "partition_dim": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "partition_factor": 0,
           "FF": 0,
           "LUT": 0,
           "DSP": 0,
@@ -4478,6 +4492,20 @@
             0,
             0
           ],
+          "array_partition": 0,
+          "partition_type": [
+            0,
+            0,
+            0
+          ],
+          "partition_dim": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "partition_factor": 0,
           "FF": 0,
           "LUT": 0,
           "DSP": 0,
@@ -4510,6 +4538,20 @@
             0,
             0
           ],
+          "array_partition": 0,
+          "partition_type": [
+            0,
+            0,
+            0
+          ],
+          "partition_dim": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "partition_factor": 0,
           "FF": 0,
           "LUT": 0,
           "DSP": 0,
@@ -4929,6 +4971,11 @@
           "max_trip_count": 1,
           "loop_depth": 0,
           "ii": 2990225.0,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -4949,6 +4996,11 @@
           "max_trip_count": 1,
           "loop_depth": 0,
           "ii": 1,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -4971,6 +5023,11 @@
           "max_trip_count": 8,
           "loop_depth": 1,
           "ii": 373778.0,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -4991,6 +5048,11 @@
           "max_trip_count": 1,
           "loop_depth": 0,
           "ii": 1,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5016,6 +5078,11 @@
           "max_trip_count": 8,
           "loop_depth": 1,
           "ii": 46722.0,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5036,6 +5103,11 @@
           "max_trip_count": 1,
           "loop_depth": 0,
           "ii": 1,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5061,6 +5133,11 @@
           "max_trip_count": 64,
           "loop_depth": 1,
           "ii": 730.0,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5081,6 +5158,11 @@
           "max_trip_count": 1,
           "loop_depth": 0,
           "ii": 1,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5106,6 +5188,11 @@
           "max_trip_count": 8,
           "loop_depth": 1,
           "ii": 91.0,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5126,6 +5213,11 @@
           "max_trip_count": 1,
           "loop_depth": 0,
           "ii": 1,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5161,6 +5253,11 @@
           "max_trip_count": 8,
           "loop_depth": 1,
           "ii": 11.0,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5202,6 +5299,11 @@
           "max_trip_count": 1,
           "loop_depth": 0,
           "ii": 1,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5222,6 +5324,11 @@
           "max_trip_count": 1,
           "loop_depth": 0,
           "ii": 1,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5242,6 +5349,11 @@
           "max_trip_count": 1,
           "loop_depth": 0,
           "ii": 1,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5263,6 +5375,11 @@
           "max_trip_count": 1,
           "loop_depth": 0,
           "ii": 1,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5285,6 +5402,11 @@
           "max_trip_count": 1,
           "loop_depth": 0,
           "ii": 1,
+          "pipeline": 0,
+          "unroll": 0,
+          "unroll_factor": 0,
+          "loop_merge": 0,
+          "loop_flatten": 0,
           "dataflow": 0,
           "inline": 0
         },
@@ -5295,162 +5417,6 @@
         "instructions": [
           61
         ]
-      }
-    ],
-    "array_partition": [
-      {
-        "name": "array_partition bbgemm/m1",
-        "attributes": {
-          "partition_factor": 0,
-          "partition_dim": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "partition_type": [
-            0,
-            0,
-            0
-          ]
-        }
-      },
-      {
-        "name": "array_partition bbgemm/m2",
-        "attributes": {
-          "partition_factor": 0,
-          "partition_dim": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "partition_type": [
-            0,
-            0,
-            0
-          ]
-        }
-      },
-      {
-        "name": "array_partition bbgemm/prod",
-        "attributes": {
-          "partition_factor": 0,
-          "partition_dim": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "partition_type": [
-            0,
-            0,
-            0
-          ]
-        }
-      }
-    ],
-    "loop_flatten": [
-      {
-        "name": "loop_flatten bbgemm/loopk",
-        "attributes": {
-          "loop_flatten": 0
-        }
-      }
-    ],
-    "loop_merge": [
-      {
-        "name": "loop_merge bbgemm/loopjj",
-        "attributes": {
-          "loop_merge": 0
-        }
-      },
-      {
-        "name": "loop_merge bbgemm/loopkk",
-        "attributes": {
-          "loop_merge": 0
-        }
-      },
-      {
-        "name": "loop_merge bbgemm/loopi",
-        "attributes": {
-          "loop_merge": 0
-        }
-      },
-      {
-        "name": "loop_merge bbgemm/loopk",
-        "attributes": {
-          "loop_merge": 0
-        }
-      }
-    ],
-    "pipeline": [
-      {
-        "name": "pipeline bbgemm/loopjj",
-        "attributes": {
-          "pipeline": 0
-        }
-      },
-      {
-        "name": "pipeline bbgemm/loopkk",
-        "attributes": {
-          "pipeline": 0
-        }
-      },
-      {
-        "name": "pipeline bbgemm/loopi",
-        "attributes": {
-          "pipeline": 0
-        }
-      },
-      {
-        "name": "pipeline bbgemm/loopk",
-        "attributes": {
-          "pipeline": 0
-        }
-      },
-      {
-        "name": "pipeline bbgemm/loopj",
-        "attributes": {
-          "pipeline": 0
-        }
-      }
-    ],
-    "unroll": [
-      {
-        "name": "unroll bbgemm/loopjj",
-        "attributes": {
-          "unroll": 0,
-          "unroll_factor": 0
-        }
-      },
-      {
-        "name": "unroll bbgemm/loopkk",
-        "attributes": {
-          "unroll": 0,
-          "unroll_factor": 0
-        }
-      },
-      {
-        "name": "unroll bbgemm/loopi",
-        "attributes": {
-          "unroll": 0,
-          "unroll_factor": 0
-        }
-      },
-      {
-        "name": "unroll bbgemm/loopk",
-        "attributes": {
-          "unroll": 0,
-          "unroll_factor": 0
-        }
-      },
-      {
-        "name": "unroll bbgemm/loopj",
-        "attributes": {
-          "unroll": 0,
-          "unroll_factor": 0
-        }
       }
     ]
   },
@@ -6658,88 +6624,6 @@
       [
         15,
         61
-      ]
-    ],
-    "array_partition__transform__array": [
-      [
-        0,
-        0
-      ],
-      [
-        1,
-        1
-      ],
-      [
-        2,
-        2
-      ]
-    ],
-    "loop_flatten__transform__region": [
-      [
-        0,
-        8
-      ]
-    ],
-    "loop_merge__transform__region": [
-      [
-        0,
-        2
-      ],
-      [
-        1,
-        4
-      ],
-      [
-        2,
-        6
-      ],
-      [
-        3,
-        8
-      ]
-    ],
-    "pipeline__transform__region": [
-      [
-        0,
-        2
-      ],
-      [
-        1,
-        4
-      ],
-      [
-        2,
-        6
-      ],
-      [
-        3,
-        8
-      ],
-      [
-        4,
-        10
-      ]
-    ],
-    "unroll__transform__region": [
-      [
-        0,
-        2
-      ],
-      [
-        1,
-        4
-      ],
-      [
-        2,
-        6
-      ],
-      [
-        3,
-        8
-      ],
-      [
-        4,
-        10
       ]
     ]
   }

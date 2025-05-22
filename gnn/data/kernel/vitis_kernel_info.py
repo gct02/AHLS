@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import pickle
 import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
 from enum import IntEnum
@@ -786,7 +787,7 @@ class VitisKernelInfo:
             }
         }
 
-    def dump(self, filepath):
+    def save_as_json(self, filepath):
         with open(filepath, 'w') as f:
             json.dump(self.as_dict(), f, indent=2)
     
@@ -853,7 +854,7 @@ def parse_adb(
 
     # For debugging purposes
     if output_path:
-        kernel_info.dump(output_path)
+        kernel_info.save_as_json(output_path)
     else:
         print(kernel_info)
 
