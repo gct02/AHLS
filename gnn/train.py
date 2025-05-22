@@ -2,6 +2,7 @@ import os
 import argparse
 import random
 import copy
+import pickle
 from collections import defaultdict
 from typing import List, Dict, Tuple, Optional, Union
 
@@ -26,38 +27,17 @@ from gnn.data.graph import (
 from gnn.data.dataset import HLSDataset
 
 
-DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
 PredTargetPair = Tuple[
     Union[float, torch.Tensor], 
     Union[float, torch.Tensor]
 ]
 
+DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-def save_model(model, output_dir, model_name):
-    os.makedirs(output_dir, exist_ok=True)
-    torch.save(obj=model.state_dict(), f=f"{output_dir}/{model_name}")
+min_mre = 1e10
+best_epoch = 0
+best_model = None
 
-
-def mape(pred, target):
-    pred, target = map(torch.as_tensor, (pred, target))
-    avg = (torch.abs(pred) + torch.abs(target)) / 2
-    return torch.where(
-        target == 0, 
-        torch.abs(pred - target) / avg, 
-        torch.abs(pred - target) / torch.abs(target)
-    ) * 100
-
-
-def static_vars(**kwargs):
-    def decorate(func):
-        for k in kwargs:
-            setattr(func, k, kwargs[k])
-        return func
-    return decorate
-
-
-@static_vars(min_mre=1e10, best_epoch=0, best_model_state=None)
 def evaluate(
     epoch: int,
     model: nn.Module,
@@ -88,10 +68,10 @@ def evaluate(
         preds, targets = np.expm1(preds), np.expm1(targets)
 
     mre = mape(torch.tensor(preds), torch.tensor(targets)).mean().item()
-    if mre < evaluate.min_mre:
-        evaluate.min_mre = mre
-        evaluate.best_epoch = epoch
-        evaluate.best_model = copy.deepcopy(model.state_dict())
+    if mre < min_mre:
+        min_mre = mre
+        best_epoch = epoch
+        best_model = copy.deepcopy(model.state_dict())
 
     results = list(zip(preds, targets))
 
@@ -100,7 +80,7 @@ def evaluate(
             print(f"Target: {t}; Prediction: {p}")
             
         print(f"\nMRE on {mode} set: {mre:.2f}%")
-        print(f"Best MRE so far: {evaluate.min_mre:.2f}% at epoch {evaluate.best_epoch}\n")
+        print(f"Best MRE so far: {min_mre:.2f}% at epoch {best_epoch + 1}\n")
     
     return results
 
@@ -119,10 +99,10 @@ def train_model(
 ) -> Dict[str, List[List[Tuple[float, float]]]]:
     results = defaultdict(list)
 
-    for epoch in range(1, epochs + 1):
+    for epoch in range(epochs):
         torch.cuda.empty_cache()
         if verbosity > 0:
-            print(f"Epoch {epoch}/{epochs}\n")
+            print(f"Epoch {epoch + 1}/{epochs}\n")
 
         preds, targets = [], []
                 
@@ -134,7 +114,7 @@ def train_model(
             target = batch.y
             loss = loss_fn(pred, target)
             loss.backward()
-            clip_grad_norm_(model.parameters(), max_norm=10.0)
+            clip_grad_norm_(model.parameters(), max_norm=5.0)
 
             optimizer.step()
 
@@ -205,17 +185,19 @@ def main(args: Dict[str, str]):
         dataset_dir, target_metric, test_bench, train_benches, 
         batch_size=batch_size, log_transform=log_transform
     )
+
+    model_args = {
+        'metadata': METADATA,
+        'in_channels': NODE_FEATURE_DIMS,
+        'out_channels': 1,
+        'proj_in_dim': 256,
+        'hid_dim': [256, 256],
+        'heads': [4, 4],
+        'num_layers': 2,
+        'dropout': 0.0
+    }
     
-    model = HGT(
-        metadata=METADATA,
-        in_channels=NODE_FEATURE_DIMS,
-        out_channels=1,
-        proj_in_dim=256,
-        hid_dim=[256, 256],
-        heads=[4, 4],
-        num_layers=2,
-        dropout=0.0
-    )
+    model = HGT(**model_args).to(DEVICE)
 
     if loss == 'mse':
         loss_fn = nn.MSELoss()
@@ -248,12 +230,16 @@ def main(args: Dict[str, str]):
         log_transformed=log_transform
     )
 
+    torch.save(
+        obj=best_model, 
+        f=f"{pretrained_dir}/{target_metric}_estimator.pt"
+    )
+    with open(f"{pretrained_dir}/{target_metric}_estimator.pkl", 'wb') as f:
+        pickle.dump(model_args, f)
+
     plot_prediction_bars(results["test"], test_bench, target_metric, analysis_dir)
     save_training_artifacts(results, analysis_dir)
-
-    model.load_state_dict(evaluate.best_model_state)
-    save_model(model, pretrained_dir, f"{test_bench}_{target_metric}.pth")
-
+    
 
 def plot_learning_curves(
     train_errors: List[float], 
@@ -285,7 +271,6 @@ def plot_learning_curves(
     plt.ylabel('MRE', fontsize=12)
     plt.legend()
 
-    best_epoch = evaluate.best_epoch - 1
     ax.axvline(best_epoch, color='blue', linestyle='--', alpha=0.7)
     ax.text(
         best_epoch + 0.5, np.max(test_errors), f'Best Epoch: {best_epoch}', 
@@ -348,14 +333,11 @@ def plot_prediction_bars(
     benchmark: str, metric: str, output_dir: str
 ):
     """Plot per-benchmark instance-level predictions and errors"""
-    best_epoch = evaluate.best_epoch - 1
-
     targets = [r[1] for r in test_results[best_epoch]]
     preds = [r[0] for r in test_results[best_epoch]]
     errors = [mape(p, t).item() for p, t in zip(preds, targets)]
 
     indices = list(range(len(targets)))
-    mre = evaluate.min_mre
 
     df = pd.DataFrame({
         'index': indices,
@@ -388,7 +370,7 @@ def plot_prediction_bars(
         df['index'], rotation=90, ha='center', va='top', fontsize=4, alpha=0.9
     )
     ax.text(
-        0.12, 0.95, f"Mean Relative Error: {mre:.2f}%", 
+        0.12, 0.95, f"Mean Relative Error: {min_mre:.2f}%", 
         transform=ax.transAxes, fontsize=11, ha='center'
     )
     ax.set_title(f"Predictions for {benchmark.upper()} ({metric.title()})", fontsize=14)
@@ -406,14 +388,11 @@ def save_training_artifacts(
     output_dir: str,
 ):
     train_errors, test_errors = [], []
-
     for train_results, test_results in zip(results['train'], results['test']):
         train_errors.append(np.mean([mape(p, t) for p, t in train_results]))
         test_errors.append(np.mean([mape(p, t) for p, t in test_results]))
 
-    best_epoch = evaluate.best_epoch - 1
     test_results = results['test']
-
     targets = [r[1] for r in test_results[best_epoch]]
     preds = [r[0] for r in test_results[best_epoch]]
     errors = [mape(p, t).item() for p, t in zip(preds, targets)]
@@ -451,7 +430,7 @@ def make_output_dirs(root_dir, test_bench, metric) -> Tuple[str, str]:
         run = get_current_run_number(tb_dir)
 
     run_info_dir = f"{tb_dir}/run_{run}"
-    pretrained_dir = f"{base_pretrained_dir}/{metric}/{test_bench}"
+    pretrained_dir = f"{base_pretrained_dir}/{test_bench}"
 
     os.makedirs(run_info_dir, exist_ok=True)
     os.makedirs(pretrained_dir, exist_ok=True)
@@ -491,6 +470,16 @@ def prepare_data_loaders(
     test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
 
     return train_loader, test_loader
+
+
+def mape(pred, target):
+    pred, target = map(torch.as_tensor, (pred, target))
+    avg = (torch.abs(pred) + torch.abs(target)) / 2
+    return torch.where(
+        target == 0, 
+        torch.abs(pred - target) / avg, 
+        torch.abs(pred - target) / torch.abs(target)
+    ) * 100
 
 
 def parse_arguments():
