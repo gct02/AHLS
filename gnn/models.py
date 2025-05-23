@@ -59,9 +59,9 @@ class HGT(nn.Module):
 
         if num_layers is None:
             if isinstance(hid_dim, list):
-                num_layers  = len(hid_dim)
+                num_layers = len(hid_dim)
             else:
-                num_layers  = 4  # Default number of layers
+                num_layers = 2  # Default to 2 layers
                 
         self.num_layers = num_layers
 
@@ -127,10 +127,8 @@ class HGT(nn.Module):
     def reset_parameters(self):
         """Reinitializes model parameters."""
         self.proj_in.reset_parameters()
-        self.hls_gnn.reset_parameters()
-        for conv in self.conv:
+        for conv, norm in zip(self.conv, self.norm):
             conv.reset_parameters()
-        for norm in self.norm:
             for nt in self.node_types:
                 norm[nt].reset_parameters()
         for m in self.y_base_mlp.modules():

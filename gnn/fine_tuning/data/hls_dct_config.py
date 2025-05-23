@@ -33,7 +33,7 @@ def filter_directive_groups(
             dct_node_tuples.append((group_name, group, node))
             return
 
-        for i, (_, existing_node) in enumerate(dct_node_tuples):
+        for i, (_, _, existing_node) in enumerate(dct_node_tuples):
             if node.total_size >= existing_node.total_size:
                 dct_node_tuples.insert(i, (group_name, group, node))
                 return
@@ -47,7 +47,7 @@ def filter_directive_groups(
         
         unbounded = _has_variable_bounds(node)
         lat = node.attrs.get("max_lat", 0)
-        for i, (_, existing_node) in enumerate(dct_node_tuples):
+        for i, (_, _, existing_node) in enumerate(dct_node_tuples):
             existing_lat = existing_node.attrs.get("max_lat", 0)
             if lat == existing_lat:
                 # prioritize unbounded loops when latency is equal
@@ -167,28 +167,3 @@ def _has_variable_bounds(region_node: RegionNode) -> bool:
     min_tc = region_node.attrs.get("min_tc", 0)
     max_tc = region_node.attrs.get("max_tc", 0)
     return min_tc != max_tc
-
-
-if __name__ == "__main__":
-    import argparse
-    import pickle
-
-    parser = argparse.ArgumentParser(description="Filter directive groups.")
-    parser.add_argument("-i", "--input_dct_config", type=str, required=True, help="Path to input directive configuration file.")
-    parser.add_argument("-o", "--filtered_dct_config", type=str, required=True, help="Path to output filtered directive configuration file.")
-    parser.add_argument("-k", "--kernel_info_path", type=str, required=True, help="Path to kernel info JSON file.")
-    parser.add_argument("-p", "--num_pipelines", type=int, default=2, help="Number of pipeline directives to include.")
-    parser.add_argument("-u", "--num_unrolls", type=int, default=1, help="Number of unroll directives to include.")
-
-    args = parser.parse_args()
-
-    with open(args.kernel_info_path, "r") as f:
-        kernel_info = pickle.load(f)
-
-    filter_directive_groups(
-        args.input_dct_config,
-        args.filtered_dct_config,
-        kernel_info,
-        args.num_pipelines,
-        args.num_unrolls
-    )

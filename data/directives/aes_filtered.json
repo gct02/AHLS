@@ -1,5 +1,51 @@
 {
-  "directives": {},
+  "directives": {
+    "array_partition aes_main statemt": {
+      "possible_directives": [
+        "",
+        "set_directive_array_partition -type block -factor 2 -dim 0 \"aes_main\" statemt",
+        "set_directive_array_partition -type block -factor 4 -dim 0 \"aes_main\" statemt",
+        "set_directive_array_partition -type block -factor 8 -dim 0 \"aes_main\" statemt",
+        "set_directive_array_partition -type block -factor 16 -dim 0 \"aes_main\" statemt",
+        "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"aes_main\" statemt",
+        "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"aes_main\" statemt",
+        "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"aes_main\" statemt",
+        "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"aes_main\" statemt",
+        "set_directive_array_partition -type complete -dim 0 \"aes_main\" statemt"
+      ],
+      "function": "aes_main",
+      "label": "",
+      "variable": "statemt",
+      "directive_type": "array_partition"
+    },
+    "pipeline KeySchedule_label6": {
+      "possible_directives": [
+        "set_directive_pipeline -off \"KeySchedule/KeySchedule_label6\"",
+        "set_directive_pipeline \"KeySchedule/KeySchedule_label6\""
+      ],
+      "function": "KeySchedule",
+      "label": "KeySchedule_label6",
+      "directive_type": "pipeline"
+    },
+    "pipeline KeySchedule_label5": {
+      "possible_directives": [
+        "set_directive_pipeline -off \"KeySchedule/KeySchedule_label5\"",
+        "set_directive_pipeline \"KeySchedule/KeySchedule_label5\""
+      ],
+      "function": "KeySchedule",
+      "label": "KeySchedule_label5",
+      "directive_type": "pipeline"
+    },
+    "unroll KeySchedule_label6": {
+      "possible_directives": [
+        "",
+        "set_directive_unroll \"KeySchedule/KeySchedule_label6\""
+      ],
+      "function": "KeySchedule",
+      "label": "KeySchedule_label6",
+      "directive_type": "unroll"
+    }
+  },
   "nested_loops": [
     {
       "function": "AddRoundKey_InversMixColumn",

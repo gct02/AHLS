@@ -1,15 +1,15 @@
 #!/bin/bash
 
 if [ $# -lt 1 ]; then
-    echo "Usage: $0 <dct_tcl> [<vitis_hls_settings> <vivado_settings>]"
+    echo "Usage: $0 <hls_tcl> [<vitis_hls_settings> <vivado_settings>]"
     exit 1
 fi
 
-dct_tcl=$1
+hls_tcl=$1
 
-# Check if the directive config file exists
-if [ ! -f "$dct_tcl" ]; then
-    echo "File not found: $dct_tcl"
+# Check if the config file exists
+if [ ! -f "$hls_tcl" ]; then
+    echo "File not found: $hls_tcl"
     exit 1
 fi
 
@@ -30,4 +30,4 @@ else
     exit 1
 fi
 
-vitis_hls -f "$dct_tcl"
+vitis_hls -f "$hls_tcl"

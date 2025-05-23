@@ -35,8 +35,6 @@
 *.i*86
 *.x86_64
 *.hex
-client/client
-server/server
 
 # Debug files
 *.dSYM/
@@ -44,27 +42,11 @@ server/server
 *.idb
 *.pdb
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
-
-# Config files
-*.cfg
-*.conf
-
 # Logs
 *.log
 
-# IDE specific files
-.vscode/
-.idea/
-
 # Environment specific files
+.vscode/
 __pycache__/
 *__pycache__/
 .venv/
@@ -79,12 +61,9 @@ approx/
 test*/
 run_info/
 
-# The dataset to train the estimator
+# The HLS DSE dataset
 dataset/test/
 dataset/train/
-
-# Pre-trained models
-pretrained/
 
 # Scripts
 scripts/*.sh

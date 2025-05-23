@@ -1,0 +1,15 @@
+{
+  "lut": 2018,
+  "bram": 0,
+  "ff": 970,
+  "dsp": 11,
+  "wns": 2.585,
+  "tns": 0,
+  "target_clk": 8.0,
+  "achieved_clk": 5.415,
+  "total_power": 2.253,
+  "dynamic_power": 0.04,
+  "static_power": 2.213,
+  "cc": 2728081,
+  "time": 14772558.615
+}
