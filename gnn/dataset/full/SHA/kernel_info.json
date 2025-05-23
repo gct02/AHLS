@@ -31601,10 +31601,11 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 1,
+          "is_port": 1,
           "direction": [
             0,
             1,
-            0,
             0
           ],
           "array_impl": [
@@ -31647,10 +31648,11 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 1,
+          "is_port": 1,
           "direction": [
             0,
             1,
-            0,
             0
           ],
           "array_impl": [
@@ -31693,9 +31695,10 @@
             0.0
           ],
           "base_bitwidth": 8,
+          "is_global": 0,
+          "is_port": 1,
           "direction": [
             1,
-            0,
             0,
             0
           ],
@@ -31739,10 +31742,11 @@
             0.0
           ],
           "base_bitwidth": 8,
+          "is_global": 1,
+          "is_port": 1,
           "direction": [
             0,
             1,
-            0,
             0
           ],
           "array_impl": [
@@ -31785,11 +31789,12 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 1,
+          "is_port": 1,
           "direction": [
             0,
             0,
-            1,
-            0
+            1
           ],
           "array_impl": [
             0,
@@ -31831,8 +31836,56 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 1,
+          "is_port": 1,
           "direction": [
             0,
+            0,
+            1
+          ],
+          "array_impl": [
+            0,
+            0,
+            1
+          ],
+          "array_partition": 0,
+          "partition_type": [
+            0,
+            0,
+            0
+          ],
+          "partition_dim": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "partition_factor": 0,
+          "FF": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "BRAM": 0
+        }
+      },
+      {
+        "name": "sha_info_data",
+        "attributes": {
+          "dims": [
+            16,
+            1,
+            1,
+            1
+          ],
+          "base_type": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "base_bitwidth": 32,
+          "is_global": 1,
+          "is_port": 1,
+          "direction": [
             0,
             1,
             0
@@ -31877,57 +31930,12 @@
             0.0
           ],
           "base_bitwidth": 32,
-          "direction": [
-            0,
-            1,
-            0,
-            0
-          ],
-          "array_impl": [
-            0,
-            0,
-            1
-          ],
-          "array_partition": 0,
-          "partition_type": [
-            0,
-            0,
-            0
-          ],
-          "partition_dim": [
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "partition_factor": 0,
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0
-        }
-      },
-      {
-        "name": "sha_info_data",
-        "attributes": {
-          "dims": [
-            16,
-            1,
-            1,
-            1
-          ],
-          "base_type": [
-            0.0,
-            1.0,
-            0.0
-          ],
-          "base_bitwidth": 32,
+          "is_global": 1,
+          "is_port": 1,
           "direction": [
             0,
             0,
-            1,
-            0
+            1
           ],
           "array_impl": [
             0,
@@ -31969,11 +31977,12 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 1,
+          "is_port": 1,
           "direction": [
             0,
             0,
-            1,
-            0
+            1
           ],
           "array_impl": [
             0,
@@ -32015,11 +32024,12 @@
             0.0
           ],
           "base_bitwidth": 8,
+          "is_global": 1,
+          "is_port": 0,
           "direction": [
             0,
             0,
-            0,
-            1
+            0
           ],
           "array_impl": [
             0,
@@ -32061,11 +32071,12 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 1,
+          "is_port": 0,
           "direction": [
             0,
             0,
-            0,
-            1
+            0
           ],
           "array_impl": [
             0,
@@ -32107,11 +32118,12 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 1,
+          "is_port": 0,
           "direction": [
             0,
             0,
-            0,
-            1
+            0
           ],
           "array_impl": [
             0,
@@ -32153,9 +32165,10 @@
             0.0
           ],
           "base_bitwidth": 8,
+          "is_global": 0,
+          "is_port": 1,
           "direction": [
             1,
-            0,
             0,
             0
           ],
@@ -32199,9 +32212,10 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 0,
+          "is_port": 1,
           "direction": [
             1,
-            0,
             0,
             0
           ],
@@ -32245,10 +32259,11 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 0,
+          "is_port": 1,
           "direction": [
             0,
             1,
-            0,
             0
           ],
           "array_impl": [
@@ -32291,11 +32306,12 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 0,
+          "is_port": 0,
           "direction": [
             0,
             0,
-            0,
-            1
+            0
           ],
           "array_impl": [
             0,
@@ -32337,9 +32353,10 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 1,
+          "is_port": 1,
           "direction": [
             1,
-            0,
             0,
             0
           ],
@@ -32383,11 +32400,12 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 1,
+          "is_port": 1,
           "direction": [
             0,
             0,
-            1,
-            0
+            1
           ],
           "array_impl": [
             0,
@@ -38841,24 +38859,12 @@
         33
       ],
       [
-        1,
-        55
-      ],
-      [
         3,
         71
       ],
       [
         2,
         72
-      ],
-      [
-        3,
-        74
-      ],
-      [
-        2,
-        73
       ],
       [
         4,
@@ -38893,16 +38899,8 @@
         100
       ],
       [
-        4,
-        86
-      ],
-      [
         6,
         125
-      ],
-      [
-        6,
-        126
       ],
       [
         7,
@@ -38931,14 +38929,6 @@
       [
         14,
         210
-      ],
-      [
-        13,
-        195
-      ],
-      [
-        14,
-        211
       ],
       [
         16,
@@ -38985,6 +38975,58 @@
         408
       ],
       [
+        0,
+        208
+      ],
+      [
+        1,
+        33
+      ],
+      [
+        1,
+        125
+      ],
+      [
+        1,
+        85
+      ],
+      [
+        1,
+        224
+      ],
+      [
+        3,
+        71
+      ],
+      [
+        1,
+        55
+      ],
+      [
+        3,
+        74
+      ],
+      [
+        2,
+        73
+      ],
+      [
+        4,
+        86
+      ],
+      [
+        6,
+        126
+      ],
+      [
+        13,
+        195
+      ],
+      [
+        14,
+        211
+      ],
+      [
         16,
         225
       ],
@@ -39027,9 +39069,32 @@
       [
         15,
         409
+      ],
+      [
+        0,
+        209
+      ],
+      [
+        1,
+        55
+      ],
+      [
+        1,
+        126
+      ],
+      [
+        1,
+        86
+      ],
+      [
+        1,
+        225
+      ],
+      [
+        3,
+        74
       ]
     ],
-    "instr__data__const": [],
     "array__data__const": [
       [
         0,

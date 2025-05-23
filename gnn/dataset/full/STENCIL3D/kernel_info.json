@@ -11535,9 +11535,10 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 0,
+          "is_port": 1,
           "direction": [
             1,
-            0,
             0,
             0
           ],
@@ -11581,9 +11582,10 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 0,
+          "is_port": 1,
           "direction": [
             1,
-            0,
             0,
             0
           ],
@@ -11627,10 +11629,11 @@
             0.0
           ],
           "base_bitwidth": 32,
+          "is_global": 0,
+          "is_port": 1,
           "direction": [
             0,
             1,
-            0,
             0
           ],
           "array_impl": [
@@ -14299,7 +14302,6 @@
         156
       ]
     ],
-    "instr__data__const": [],
     "array__data__const": [],
     "block__control__instr": [
       [

@@ -125412,10 +125412,11 @@
             0.0
           ],
           "base_bitwidth": 64,
+          "is_global": 0,
+          "is_port": 1,
           "direction": [
             0,
             1,
-            0,
             0
           ],
           "array_impl": [
@@ -125458,11 +125459,12 @@
             0.0
           ],
           "base_bitwidth": 64,
+          "is_global": 0,
+          "is_port": 0,
           "direction": [
             0,
             0,
-            0,
-            1
+            0
           ],
           "array_impl": [
             0,
@@ -125504,11 +125506,12 @@
             0.0
           ],
           "base_bitwidth": 64,
+          "is_global": 0,
+          "is_port": 0,
           "direction": [
             0,
             0,
-            0,
-            1
+            0
           ],
           "array_impl": [
             0,
@@ -125550,11 +125553,12 @@
             0.0
           ],
           "base_bitwidth": 64,
+          "is_global": 0,
+          "is_port": 0,
           "direction": [
             0,
             0,
-            0,
-            1
+            0
           ],
           "array_impl": [
             0,
@@ -125596,11 +125600,12 @@
             0.0
           ],
           "base_bitwidth": 64,
+          "is_global": 0,
+          "is_port": 0,
           "direction": [
             0,
             0,
-            0,
-            1
+            0
           ],
           "array_impl": [
             0,
@@ -125642,11 +125647,12 @@
             0.0
           ],
           "base_bitwidth": 64,
+          "is_global": 0,
+          "is_port": 0,
           "direction": [
             0,
             0,
-            0,
-            1
+            0
           ],
           "array_impl": [
             0,
@@ -125688,11 +125694,12 @@
             0.0
           ],
           "base_bitwidth": 64,
+          "is_global": 0,
+          "is_port": 1,
           "direction": [
             0,
             0,
-            1,
-            0
+            1
           ],
           "array_impl": [
             1,
@@ -125734,11 +125741,12 @@
             0.0
           ],
           "base_bitwidth": 64,
+          "is_global": 0,
+          "is_port": 1,
           "direction": [
             0,
             0,
-            1,
-            0
+            1
           ],
           "array_impl": [
             1,
@@ -125780,11 +125788,12 @@
             1.0
           ],
           "base_bitwidth": 0,
+          "is_global": 1,
+          "is_port": 0,
           "direction": [
             0,
             0,
-            0,
-            1
+            0
           ],
           "array_impl": [
             0,
@@ -125826,11 +125835,12 @@
             0.0
           ],
           "base_bitwidth": 64,
+          "is_global": 0,
+          "is_port": 1,
           "direction": [
             0,
             0,
-            1,
-            0
+            1
           ],
           "array_impl": [
             0,
@@ -125872,11 +125882,12 @@
             0.0
           ],
           "base_bitwidth": 64,
+          "is_global": 0,
+          "is_port": 1,
           "direction": [
             0,
             0,
-            1,
-            0
+            1
           ],
           "array_impl": [
             0,
@@ -145477,38 +145488,6 @@
         137
       ],
       [
-        0,
-        96
-      ],
-      [
-        0,
-        102
-      ],
-      [
-        0,
-        108
-      ],
-      [
-        0,
-        114
-      ],
-      [
-        0,
-        120
-      ],
-      [
-        0,
-        126
-      ],
-      [
-        0,
-        132
-      ],
-      [
-        0,
-        138
-      ],
-      [
         3,
         146
       ],
@@ -146371,6 +146350,46 @@
       [
         7,
         1443
+      ],
+      [
+        9,
+        1614
+      ],
+      [
+        10,
+        1617
+      ],
+      [
+        0,
+        96
+      ],
+      [
+        0,
+        102
+      ],
+      [
+        0,
+        108
+      ],
+      [
+        0,
+        114
+      ],
+      [
+        0,
+        120
+      ],
+      [
+        0,
+        126
+      ],
+      [
+        0,
+        132
+      ],
+      [
+        0,
+        138
       ],
       [
         3,
@@ -147654,14 +147673,6 @@
       ],
       [
         9,
-        1614
-      ],
-      [
-        10,
-        1617
-      ],
-      [
-        9,
         1615
       ],
       [
@@ -147677,7 +147688,6 @@
         1625
       ]
     ],
-    "instr__data__const": [],
     "array__data__const": [],
     "block__control__instr": [
       [

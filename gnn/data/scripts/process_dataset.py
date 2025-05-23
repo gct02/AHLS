@@ -29,8 +29,20 @@ def main(args: Dict[str, str]):
     dataset_dir = Path(args['dataset_dir'])
     output_dir = Path(args['output_dir'])
     filtered = args['filtered']
-    top_level_fn_config = args.get('top_level_function_config')
+    top_level_fn_config = args['top_level_function_config']
     debug = args.get('debug', False)
+
+    if not dataset_dir.exists():
+        raise FileNotFoundError(f"Dataset directory not found: {dataset_dir}")
+    
+    if not dataset_dir.is_dir():
+        raise NotADirectoryError(f"Dataset path is not a directory: {dataset_dir}")
+    
+    if not Path(top_level_fn_config).exists():
+        raise FileNotFoundError(f"Top level function config file not found: {top_level_fn_config}")
+
+    if not output_dir.exists():
+        output_dir.mkdir(parents=True, exist_ok=True)
 
     with open(top_level_fn_config, "r") as f:
         top_level_fn_dict = json.load(f)

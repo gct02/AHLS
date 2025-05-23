@@ -34,10 +34,15 @@ PredTargetPair = Tuple[
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-min_mre = 1e10
-best_epoch = 0
-best_model = None
+def static_vars(**kwargs):
+    def decorate(func):
+        for k in kwargs:
+            setattr(func, k, kwargs[k])
+        return func
+    return decorate
 
+
+@static_vars(min_mre=1e10, best_epoch=0, best_model=None)
 def evaluate(
     epoch: int,
     model: nn.Module,
@@ -58,7 +63,7 @@ def evaluate(
         pred = model(batch)
         preds.append(pred.item())
         targets.append(batch.y.item())
-
+        
     if log_dir:
         with open(f"{log_dir}/{mode}.log", 'a') as f:
             for p, t in zip(preds, targets):
@@ -68,10 +73,10 @@ def evaluate(
         preds, targets = np.expm1(preds), np.expm1(targets)
 
     mre = mape(torch.tensor(preds), torch.tensor(targets)).mean().item()
-    if mre < min_mre:
-        min_mre = mre
-        best_epoch = epoch
-        best_model = copy.deepcopy(model.state_dict())
+    if mre < evaluate.min_mre:
+        evaluate.min_mre = mre
+        evaluate.best_epoch = epoch
+        evaluate.best_model = copy.deepcopy(model.state_dict())
 
     results = list(zip(preds, targets))
 
@@ -80,7 +85,7 @@ def evaluate(
             print(f"Target: {t}; Prediction: {p}")
             
         print(f"\nMRE on {mode} set: {mre:.2f}%")
-        print(f"Best MRE so far: {min_mre:.2f}% at epoch {best_epoch + 1}\n")
+        print(f"Best MRE so far: {evaluate.min_mre:.2f}% at epoch {evaluate.best_epoch + 1}\n")
     
     return results
 
@@ -231,7 +236,7 @@ def main(args: Dict[str, str]):
     )
 
     torch.save(
-        obj=best_model, 
+        obj=evaluate.best_model, 
         f=f"{pretrained_dir}/{target_metric}_estimator.pt"
     )
     with open(f"{pretrained_dir}/{target_metric}_estimator.pkl", 'wb') as f:
@@ -271,9 +276,9 @@ def plot_learning_curves(
     plt.ylabel('MRE', fontsize=12)
     plt.legend()
 
-    ax.axvline(best_epoch, color='blue', linestyle='--', alpha=0.7)
+    ax.axvline(evaluate.best_epoch, color='blue', linestyle='--', alpha=0.7)
     ax.text(
-        best_epoch + 0.5, np.max(test_errors), f'Best Epoch: {best_epoch}', 
+        evaluate.best_epoch + 0.5, np.max(test_errors), f'Best Epoch: {evaluate.best_epoch}', 
         color='blue', fontsize=10
     )
     if np.max(test_errors) / np.min(test_errors) > 100:
@@ -333,8 +338,8 @@ def plot_prediction_bars(
     benchmark: str, metric: str, output_dir: str
 ):
     """Plot per-benchmark instance-level predictions and errors"""
-    targets = [r[1] for r in test_results[best_epoch]]
-    preds = [r[0] for r in test_results[best_epoch]]
+    targets = [r[1] for r in test_results[evaluate.best_epoch]]
+    preds = [r[0] for r in test_results[evaluate.best_epoch]]
     errors = [mape(p, t).item() for p, t in zip(preds, targets)]
 
     indices = list(range(len(targets)))
@@ -370,7 +375,7 @@ def plot_prediction_bars(
         df['index'], rotation=90, ha='center', va='top', fontsize=4, alpha=0.9
     )
     ax.text(
-        0.12, 0.95, f"Mean Relative Error: {min_mre:.2f}%", 
+        0.12, 0.95, f"Mean Relative Error: {evaluate.min_mre:.2f}%", 
         transform=ax.transAxes, fontsize=11, ha='center'
     )
     ax.set_title(f"Predictions for {benchmark.upper()} ({metric.title()})", fontsize=14)
@@ -393,8 +398,8 @@ def save_training_artifacts(
         test_errors.append(np.mean([mape(p, t) for p, t in test_results]))
 
     test_results = results['test']
-    targets = [r[1] for r in test_results[best_epoch]]
-    preds = [r[0] for r in test_results[best_epoch]]
+    targets = [r[1] for r in test_results[evaluate.best_epoch]]
+    preds = [r[0] for r in test_results[evaluate.best_epoch]]
     errors = [mape(p, t).item() for p, t in zip(preds, targets)]
 
     plot_learning_curves(train_errors, test_errors, f"{output_dir}/learning_curve.png")

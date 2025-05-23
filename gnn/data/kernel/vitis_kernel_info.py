@@ -1,7 +1,6 @@
 import os
 import re
 import json
-import pickle
 import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
 from enum import IntEnum
@@ -23,8 +22,8 @@ CDFG_EDGE_TYPES = [
     ("port", "data", "instr"), 
     ("array", "data", "instr"),
 
-    # Edges representing constant pointers
-    ("instr", "data", "const"),
+    # Edges representing constant pointers 
+    # to global arrays
     ("array", "data", "const"),
 
     # Control flow edges
@@ -113,27 +112,28 @@ class ArrayNode(Node):
     ):
         self.id = node_id
         self.name = array_info['Name']
-        self.label = self.name
         self.function_name = array_info.get('FunctionName', '')
+
+        self.label = self.name
 
         self.is_top_level_port = is_top_level_port
         self.total_size = max(1, array_info.get('TotalSize', 1))
 
-        if direction is not None and is_top_level_port:
+        is_global = int(array_info.get('IsGlobal', 0))
+
+        if is_top_level_port:
             array_impl = [1, 0, 0] # RTL port
         elif self.total_size > 1024:
             array_impl = [0, 1, 0] # BRAM, LUTRAM or URAM
         else:
             array_impl = [0, 0, 1] # Shift register
 
-        if direction is None:
-            direction_encoding = [0, 0, 0, 1]
-        elif direction == PortDirection.IN:
-            direction_encoding = [1, 0, 0, 0]
-        elif direction == PortDirection.OUT:
-            direction_encoding = [0, 1, 0, 0]
+        direction_encoding = [0, 0, 0]
+        if direction is not None:
+            is_port = 1
+            direction_encoding[direction] = 1
         else:
-            direction_encoding = [0, 0, 1, 0]
+            is_port = 0
 
         dims = array_info.get('Dimensions', [])
         num_dims = len(dims)
@@ -150,6 +150,8 @@ class ArrayNode(Node):
             'dims': dims,
             'base_type': array_info.get('BaseType', -1),
             'base_bitwidth': array_info.get('BaseBitwidth', 0),
+            'is_global': is_global,
+            'is_port': is_port,
             'direction': direction_encoding,
             'array_impl': array_impl,
 
@@ -245,7 +247,7 @@ class PortNode(CDFGNode):
         self, 
         element: ET.Element, 
         function_name: str,
-        is_top_level: bool
+        is_top_level_port: bool
     ):
         super().__init__(element, function_name)
 
@@ -261,7 +263,7 @@ class PortNode(CDFGNode):
 
         self.attrs.update({
             'direction': direction,
-            'top_level': int(is_top_level),
+            'top_level': int(is_top_level_port),
             'bitwidth': findint(element, 'Value/bitwidth', 0),
             'port_type': element.findtext('if_type', '')
         })
@@ -278,6 +280,8 @@ class InstructionNode(CDFGNode):
 
         opcode = element.findtext('opcode', '')
         self.label = opcode
+
+        self.line_number = findint(element, 'Value/Obj/lineNumber', 0)
 
         if resources is not None:
             for resource_type in TARGET_RESOURCES:
@@ -356,7 +360,7 @@ class CDFG:
     def __init__(
         self, 
         root: ET.Element, 
-        top_function_name: str, 
+        top_level_function: str, 
         array_info_list: List[ArrayInfo],
         offsets: Optional[Dict[str, int]] = None,
     ):
@@ -376,7 +380,7 @@ class CDFG:
         # Extract function information
         self.name = cdfg.findtext('name')
         self.ret_bitwidth = findint(cdfg, 'ret_bitwidth')
-        self.is_top_level = self.name == top_function_name
+        self.is_top_level = self.name == top_level_function
         self.function_calls = []
 
         self._get_node_resource_map(root)
@@ -580,22 +584,6 @@ class CDFG:
             if node.attrs['const_type'] == '6':
                 del self.nodes['const'][i:]
                 break
-        
-        # Add a (Array -> GEP) edge for each (Array -> ArrayPtr -> GEP) path
-        for src_array_id, dst_const_id in self.edges.get(("array", "data", "const"), []):
-            for src_const_id, dst_instr_id in self.edges.get(("const", "data", "instr"), []):
-                if src_const_id == dst_const_id:
-                    dst_instr = self.nodes['instr'][dst_instr_id - self._offsets['instr']]
-                    if dst_instr.attrs['opcode'] == 'getelementptr':
-                        self.edges[("array", "data", "instr")].append((src_array_id, dst_instr_id))
-
-        # Add a (Array -> Instr) edge for each (Array -> GEP -> Instr) path
-        for src_array_id, dst_instr_id in self.edges.get(("array", "data", "instr"), []):
-            dst_instr = self.nodes['instr'][dst_instr_id - self._offsets['instr']]
-            if dst_instr.attrs['opcode'] == 'getelementptr':
-                for src_instr_id, next_instr_id in self.edges.get(("instr", "data", "instr"), []):
-                    if src_instr_id == dst_instr_id:
-                        self.edges[("array", "data", "instr")].append((src_array_id, next_instr_id))
 
     def _map_edge_type(self, edge_type):
         return {'1': 'data', '2': 'control', '4': 'mem'}.get(edge_type, '')
@@ -657,13 +645,14 @@ class VitisKernelInfo:
     def __init__(
         self, 
         solution_dir: str, 
-        top_function_name: str, 
+        top_level_function: str, 
         array_info_path: str,
+        global_array_usage_path: str,
         kernel_name: Optional[str] = None,
         filtered: bool = False
     ):
-        self.top_function_name = top_function_name
-        self.kernel_name = kernel_name if kernel_name else top_function_name
+        self.top_level_function = top_level_function
+        self.kernel_name = kernel_name if kernel_name else top_level_function
         self.nodes = {nt: [] for nt in CDFG_NODE_TYPES}
         self.edges = {et: [] for et in CDFG_EDGE_TYPES}
         self.metrics = {}
@@ -679,14 +668,12 @@ class VitisKernelInfo:
         self.region_hrchy = {}
 
         with open(array_info_path, 'r') as f:
-            array_info = json.load(f)
+            array_info_json = json.load(f)
 
-        if not array_info:
+        if not array_info_json:
             raise ValueError("Array info is empty")
         
-        array_info_list = array_info.get('ArrayInfo')
-        if not array_info_list:
-            raise ValueError("Array info list is empty")
+        array_info_list = array_info_json.get('ArrayInfo')
         
         for i in range(len(array_info_list)):
             for key, value in array_info_list[i].items():
@@ -697,10 +684,19 @@ class VitisKernelInfo:
                         if isinstance(value[j], str):
                             value[j] = int(value[j].strip())
 
+        with open(global_array_usage_path, 'r') as f:
+            global_array_usage_json = json.load(f)
+
+        if not global_array_usage_json:
+            raise ValueError("Global array usage info is empty")
+        
+        global_array_usage = global_array_usage_json.get('GlobalArrayUsageInfo')
+
         try:
             self._process_adb_files(solution_dir, filtered, array_info_list)
             self._include_call_flow()
             self._build_region_hrchy()
+            self._complement_array_edges(global_array_usage)
         except Exception as e:
             print(f"Error processing ADB files: {e}")
             raise
@@ -721,7 +717,7 @@ class VitisKernelInfo:
             tree = ET.parse(path)
             root = tree.getroot()
             cdfg = CDFG(
-                root, self.top_function_name, 
+                root, self.top_level_function, 
                 array_info_list, offsets=self._offsets
             )
             self._cdfgs[cdfg.name] = cdfg
@@ -772,6 +768,51 @@ class VitisKernelInfo:
                 'above': regions_above, 'below': regions_below,
                 'block': blocks, 'instr': instrs
             }
+
+    def _complement_array_edges(self, global_array_usage):
+        def get_array_node(array_name):
+            for node in self.nodes['array']:
+                if node.name == array_name:
+                    return node
+            return None
+        
+        def get_instr_node(instr_name, function_name):
+            for node in self.nodes['instr']:
+                if (node.name == instr_name and 
+                    node.function_name == function_name):
+                    return node
+            return None
+        
+        for array_info in global_array_usage:
+            array_name = array_info['Name']
+
+            array_node = get_array_node(array_name)
+            if array_node is None:
+                continue
+
+            for usage in array_info['Uses']:
+                instr_name = usage['Name']
+                function_name = usage['FunctionName']
+                instr_node = get_instr_node(instr_name, function_name)
+                if instr_node is None:
+                    continue
+                self.edges[('array', 'data', 'instr')].append((array_node.id, instr_node.id))
+
+        # Add a (Array -> GEP) edge for each (Array -> ArrayPtr -> GEP) path
+        for src_array_id, dst_const_id in self.edges.get(("array", "data", "const"), []):
+            for src_const_id, dst_instr_id in self.edges.get(("const", "data", "instr"), []):
+                if src_const_id == dst_const_id:
+                    dst_instr = self.nodes['instr'][dst_instr_id]
+                    if dst_instr.attrs['opcode'] == 'getelementptr':
+                        self.edges[("array", "data", "instr")].append((src_array_id, dst_instr_id))
+
+        # Add a (Array -> Instr) edge for each (Array -> GEP -> Instr) path
+        for src_array_id, dst_instr_id in self.edges.get(("array", "data", "instr"), []):
+            dst_instr = self.nodes['instr'][dst_instr_id]
+            if dst_instr.attrs['opcode'] == 'getelementptr':
+                for src_instr_id, next_instr_id in self.edges.get(("instr", "data", "instr"), []):
+                    if src_instr_id == dst_instr_id:
+                        self.edges[("array", "data", "instr")].append((src_array_id, next_instr_id))
 
     def as_dict(self):
         return {
@@ -846,7 +887,7 @@ def parse_adb(
 ) -> VitisKernelInfo:
     kernel_info = VitisKernelInfo(
         solution_dir=solution_dir, 
-        top_function_name=top_function_name, 
+        top_level_function=top_function_name, 
         array_info_path=array_info_path,
         kernel_name=kernel_name, 
         filtered=filtered,

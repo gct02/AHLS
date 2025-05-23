@@ -39,7 +39,7 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 62, "port": 7, "array": 29,
+    "instr": 62, "port": 7, "array": 30,
     "const": 5, "block": 5, "region": 13
 }
 
@@ -54,18 +54,26 @@ def extract_base_kernel_info(
     kernel_info_dict = {}
     for sol_dir, kernel_name, top_function in solution_info_list:
         ir_dir = f"{sol_dir}/IRs" if filtered else f"{sol_dir}/.autopilot/db"
-        ir_path = f"{ir_dir}/a.g.ld.5.gdce.bc"
-        ir_array_info_path = f"{ir_dir}/array_info.json"
+        array_info_path = f"{ir_dir}/array_info.json"
+        global_array_usage_path = f"{ir_dir}/global_array_usage.json"
 
-        extract_llvm_ir_array_info(ir_path, ir_array_info_path)
-        if not os.path.exists(ir_array_info_path):
-            print(f"IR Array info file not found: {ir_array_info_path}")
+        extract_llvm_ir_array_info(
+            hls_ir_dir=ir_dir, 
+            array_info_out_path=array_info_path,
+            global_array_usage_out_path=global_array_usage_path
+        )
+        if not os.path.exists(array_info_path):
+            print(f"IR Array info file not found: {array_info_path}")
+            continue
+        if not os.path.exists(global_array_usage_path):
+            print(f"IR Global array usage file not found: {global_array_usage_path}")
             continue
 
         kernel_info_dict[kernel_name] = VitisKernelInfo(
             solution_dir=sol_dir, 
-            top_function_name=top_function, 
-            array_info_path=ir_array_info_path, 
+            top_level_function=top_function, 
+            array_info_path=array_info_path, 
+            global_array_usage_path=global_array_usage_path,
             kernel_name=kernel_name,
             filtered=filtered
         )

@@ -19,7 +19,7 @@ using namespace llvm;
 
 static cl::opt<std::string> OutputPath(
     "out", 
-    cl::desc("Path to the file to write metadata to"), 
+    cl::desc("Path to the file to write the array information to"), 
     cl::value_desc("filepath")
 );
 
