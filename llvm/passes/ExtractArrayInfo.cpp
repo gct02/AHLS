@@ -18,7 +18,7 @@
 using namespace llvm;
 
 static cl::opt<std::string> OutputPath(
-    "out", 
+    "out-info", 
     cl::desc("Path to the file to write the array information to"), 
     cl::value_desc("filepath")
 );

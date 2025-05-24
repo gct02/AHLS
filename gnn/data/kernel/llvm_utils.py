@@ -26,11 +26,11 @@ def extract_llvm_ir_array_info(
 
     try:
         subprocess.check_output(
-            f"{opt} -load {dse_lib} -extract-array-info -out {array_info_out_path} < {ir_1};", 
+            f"{opt} -load {dse_lib} -extract-array-info -out-info {array_info_out_path} < {ir_1}", 
             shell=True, stderr=subprocess.STDOUT
         )
         subprocess.check_output(
-            f"{opt} -load {dse_lib} -extract-global-array-uses -out-usage {global_array_usage_out_path} < {ir_2};", 
+            f"{opt} -load {dse_lib} -extract-global-array-uses -out-usage {global_array_usage_out_path} < {ir_2}", 
             shell=True, stderr=subprocess.STDOUT
         )
     except subprocess.CalledProcessError as e:

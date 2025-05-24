@@ -776,11 +776,23 @@ class VitisKernelInfo:
                     return node
             return None
         
-        def get_instr_node(instr_name, function_name):
+        def get_instr_node(instr_name, function_name, idx):
             for node in self.nodes['instr']:
-                if (node.name == instr_name and 
-                    node.function_name == function_name):
-                    return node
+                if node.function_name != function_name:
+                    continue
+
+                if instr_name:
+                    if node.name == instr_name:
+                        return node
+                else:               
+                    funtion = self._cdfgs.get(function_name)
+                    if funtion is None:
+                        continue
+
+                    instrs = funtion.nodes['instr']
+                    if idx < len(instrs):
+                        return instrs[idx]
+
             return None
         
         for array_info in global_array_usage:
@@ -793,7 +805,8 @@ class VitisKernelInfo:
             for usage in array_info['Uses']:
                 instr_name = usage['Name']
                 function_name = usage['FunctionName']
-                instr_node = get_instr_node(instr_name, function_name)
+                idx = usage['Idx']
+                instr_node = get_instr_node(instr_name, function_name, idx)
                 if instr_node is None:
                     continue
                 self.edges[('array', 'data', 'instr')].append((array_node.id, instr_node.id))
@@ -875,28 +888,3 @@ def collect_adb_files(solution_dir, filtered=False):
             file_paths.append(os.path.join(ir_dir, file_name))
 
     return file_paths
-
-
-def parse_adb(
-    solution_dir: str, 
-    top_function_name: str,
-    array_info_path: str,
-    kernel_name: str,
-    filtered: bool = False,
-    output_path: str = None
-) -> VitisKernelInfo:
-    kernel_info = VitisKernelInfo(
-        solution_dir=solution_dir, 
-        top_level_function=top_function_name, 
-        array_info_path=array_info_path,
-        kernel_name=kernel_name, 
-        filtered=filtered,
-    )
-
-    # For debugging purposes
-    if output_path:
-        kernel_info.save_as_json(output_path)
-    else:
-        print(kernel_info)
-
-    return kernel_info

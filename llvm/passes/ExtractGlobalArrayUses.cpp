@@ -5,15 +5,17 @@
 #include <utility>
 #include <vector>
 
-#include "llvm/ADT/StringExtras.h"
+#include "llvm/IR/Constant.h"
 #include "llvm/IR/DebugInfo.h"
 #include "llvm/IR/Function.h"
 #include "llvm/IR/Instructions.h"
 #include "llvm/IR/LLVMContext.h"
+#include "llvm/IR/Metadata.h"
 #include "llvm/IR/Module.h"
+#include "llvm/IR/Operator.h"
+#include "llvm/Pass.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"
-
 
 using namespace llvm;
 
@@ -28,10 +30,12 @@ namespace {
 struct InstructionInfo {
     std::string Name;
     std::string FunctionName;
+    uint32_t Idx;
     
     InstructionInfo(const std::string& Name, 
-                    const std::string& FunctionName)
-        : Name(Name), FunctionName(FunctionName) {}
+                    const std::string& FunctionName,
+                    uint32_t Idx = 0)
+        : Name(Name), FunctionName(FunctionName), Idx(Idx) {}
 };
 
 struct GlobalArrayUsageInfo {
@@ -46,8 +50,9 @@ struct GlobalArrayUsageInfo {
     }
 
     void addUse(const std::string& Name, 
-                const std::string& FunctionName) {
-        Uses.emplace_back(Name, FunctionName);
+                const std::string& FunctionName,
+                uint32_t Idx = 0) {
+        Uses.emplace_back(Name, FunctionName, Idx);
     }
 };
 
@@ -55,7 +60,7 @@ struct ExtractGlobalArrayUsesPass : public ModulePass {
     static char ID;
     ExtractGlobalArrayUsesPass() : ModulePass(ID) {}
 
-   std::vector<GlobalArrayUsageInfo*> GlobalArrayUsageInfoList;
+   std::vector<GlobalArrayUsageInfo*> ArrayUsageInfoList;
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "extract-global-array-uses"
@@ -64,6 +69,7 @@ struct ExtractGlobalArrayUsesPass : public ModulePass {
             errs() << "Output file not specified.\n";
             return false;
         }
+        assignIndicesToInstructions(M);
         extractGlobalArrayUsageInfo(M);
         serializeGlobalArrayUsageInfo(M);
         
@@ -104,10 +110,19 @@ struct ExtractGlobalArrayUsesPass : public ModulePass {
                     if (auto* F = I->getFunction()) {
                         FunctionName = F->hasName() ? F->getName().str() : "";
                     }
-                    Info->addUse(InstName, FunctionName);
+                    
+                    Optional<uint32_t> IdxOpt = getInstructionIndex(*I);
+                    uint32_t Idx = 0;
+                    if (!IdxOpt.hasValue()) {
+                        if (!I->hasName()) continue;
+                    } else {
+                        Idx = IdxOpt.getValue();
+                    }
+
+                    Info->addUse(InstName, FunctionName, Idx);
                 }
             }
-            GlobalArrayUsageInfoList.push_back(Info);
+            ArrayUsageInfoList.push_back(Info);
         }
     }
 
@@ -120,7 +135,7 @@ struct ExtractGlobalArrayUsesPass : public ModulePass {
 
         OFStream << "{\n  \"GlobalArrayUsageInfo\": [\n";
         bool FirstEntry = true;
-        for (const auto* Info : GlobalArrayUsageInfoList) {
+        for (const auto* Info : ArrayUsageInfoList) {
             if (!FirstEntry) OFStream << ",\n";
             FirstEntry = false;
 
@@ -133,7 +148,8 @@ struct ExtractGlobalArrayUsesPass : public ModulePass {
                 FirstUse = false;
                 OFStream << "\n        {\n";
                 OFStream << "          \"Name\": \"" << ArrayUse.Name << "\",\n";
-                OFStream << "          \"FunctionName\": \"" << ArrayUse.FunctionName << "\"\n";
+                OFStream << "          \"FunctionName\": \"" << ArrayUse.FunctionName << "\",\n";
+                OFStream << "          \"Idx\": " << ArrayUse.Idx << "\n";
                 OFStream << "        }"; // Close Use object braces
             }
 
@@ -146,8 +162,38 @@ struct ExtractGlobalArrayUsesPass : public ModulePass {
         OFStream.close();
     }
 
+    void assignIndicesToInstructions(Module& M) {
+        for (Function& F : M) {
+            uint32_t Idx = 0;
+            for (BasicBlock& BB : F) {
+                for (Instruction& I : BB) {
+                    setInstructionIndex(I, Idx);
+                    ++Idx;
+                }
+            }
+        }
+    }
+
+    void setInstructionIndex(Instruction& I, uint32_t Idx) {
+        LLVMContext& Ctx = I.getContext();
+        ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(Ctx), Idx);
+        MDNode* MD = MDNode::get(Ctx, {ConstantAsMetadata::get(CI)});
+        I.setMetadata("idx", MD);
+    }
+
+    Optional<uint32_t> getInstructionIndex(Instruction& I) {
+        if (MDNode* MD = I.getMetadata("idx")) {
+            if (ConstantAsMetadata* CAM = dyn_cast<ConstantAsMetadata>(MD->getOperand(0))) {
+                if (ConstantInt* CI = dyn_cast<ConstantInt>(CAM->getValue())) {
+                    return (uint32_t)CI->getZExtValue();
+                }
+            }
+        }
+        return Optional<uint32_t>();
+    }
+
     ~ExtractGlobalArrayUsesPass() override {
-        for (auto* Info : GlobalArrayUsageInfoList) {
+        for (auto* Info : ArrayUsageInfoList) {
             delete Info;
         }
     }
