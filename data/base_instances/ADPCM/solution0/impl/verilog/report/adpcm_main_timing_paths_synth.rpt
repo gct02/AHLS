@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Tue Mar 25 17:19:43 2025
+| Date              : Sun May 25 00:37:08 2025
 | Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing -max_paths 10 -file ./report/adpcm_main_timing_paths_synth.rpt
 | Design            : bd_0_wrapper
@@ -13,19 +13,19 @@ Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanc
 
 Timing Report
 
-Slack (MET) :             2.769ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[16]/D
+Slack (MET) :             3.408ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[45]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        5.182ns  (logic 3.650ns (70.436%)  route 1.532ns (29.564%))
-  Logic Levels:           23  (CARRY8=9 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=3 LUT3=1 LUT4=1 LUT6=1)
-  Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
+  Data Path Delay:        4.527ns  (logic 3.644ns (80.495%)  route 0.883ns (19.505%))
+  Logic Levels:           13  (CARRY8=3 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=1 LUT3=1)
+  Clock Path Skew:        -0.055ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.060ns
+    Source Clock Delay      (SCD):    0.076ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -37,104 +37,78 @@ Slack (MET) :             2.769ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
+                         net (fo=3323, unset)         0.076     0.076    bd_0_i/hls_inst/inst/tqmf_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[24])
-                                                      0.277     0.337 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/P[24]
-                         net (fo=4, unplaced)         0.180     0.517    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/trunc_ln345_2_reg_2107[9]
-                         LUT2 (Prop_LUT2_I0_O)        0.052     0.569 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71/O
-                         net (fo=1, unplaced)         0.023     0.592    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71_n_20
-                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     0.789 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1/CO[7]
-                         net (fo=1, unplaced)         0.005     0.794    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[0])
-                                                      0.056     0.850 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1/O[0]
-                         net (fo=2, unplaced)         0.185     1.035    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/sext_ln570_fu_998_p1[16]
-                         LUT3 (Prop_LUT3_I2_O)        0.070     1.105 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6/O
-                         net (fo=4, unplaced)         0.227     1.332    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/B[16]
-                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_B[16]_B2_DATA[16])
-                                                      0.151     1.483 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST/B2_DATA[16]
-                         net (fo=1, unplaced)         0.000     1.483    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA.B2_DATA<16>
-                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[16]_B2B1[16])
-                                                      0.073     1.556 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST/B2B1[16]
-                         net (fo=1, unplaced)         0.000     1.556    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA.B2B1<16>
-                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[16]_V[43])
-                                                      0.609     2.165 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST/V[43]
-                         net (fo=1, unplaced)         0.000     2.165    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER.V<43>
-                         DSP_M_DATA (Prop_DSP_M_DATA_V[43]_V_DATA[43])
-                                                      0.046     2.211 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST/V_DATA[43]
-                         net (fo=1, unplaced)         0.000     2.211    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA.V_DATA<43>
-                         DSP_ALU (Prop_DSP_ALU_V_DATA[43]_ALU_OUT[47])
-                                                      0.571     2.782 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST/ALU_OUT[47]
-                         net (fo=1, unplaced)         0.000     2.782    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU.ALU_OUT<47>
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_DOUTADOUT[0])
+                                                      0.972     1.048 f  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/DOUTADOUT[0]
+                         net (fo=6, unplaced)         0.162     1.210    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/DOUTADOUT[0]
+                         LUT3 (Prop_LUT3_I0_O)        0.112     1.322 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product_i_32/O
+                         net (fo=1, unplaced)         0.209     1.531    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/A[0]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_A[0]_A2_DATA[0])
+                                                      0.192     1.723 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA_INST/A2_DATA[0]
+                         net (fo=1, unplaced)         0.000     1.723    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA.A2_DATA<0>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_A2_DATA[0]_A2A1[0])
+                                                      0.076     1.799 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA_INST/A2A1[0]
+                         net (fo=1, unplaced)         0.000     1.799    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA.A2A1<0>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_A2A1[0]_U[21])
+                                                      0.505     2.304 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER_INST/U[21]
+                         net (fo=1, unplaced)         0.000     2.304    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER.U<21>
+                         DSP_M_DATA (Prop_DSP_M_DATA_U[21]_U_DATA[21])
+                                                      0.047     2.351 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA_INST/U_DATA[21]
+                         net (fo=1, unplaced)         0.000     2.351    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA.U_DATA<21>
+                         DSP_ALU (Prop_DSP_ALU_U_DATA[21]_ALU_OUT[47])
+                                                      0.585     2.936 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, unplaced)         0.000     2.936    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU.ALU_OUT<47>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[47]_PCOUT[47])
-                                                      0.122     2.904 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST/PCOUT[47]
-                         net (fo=1, unplaced)         0.014     2.918    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/PCIN[47]
+                                                      0.122     3.058 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, unplaced)         0.014     3.072    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/PCIN[47]
                          DSP_ALU (Prop_DSP_ALU_PCIN[47]_ALU_OUT[7])
-                                                      0.546     3.464 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST/ALU_OUT[7]
-                         net (fo=1, unplaced)         0.000     3.464    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU.ALU_OUT<7>
+                                                      0.546     3.618 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU_INST/ALU_OUT[7]
+                         net (fo=1, unplaced)         0.000     3.618    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU.ALU_OUT<7>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[7]_P[7])
-                                                      0.109     3.573 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST/P[7]
-                         net (fo=2, unplaced)         0.208     3.781    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2_n_118
-                         LUT2 (Prop_LUT2_I0_O)        0.053     3.834 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4/O
-                         net (fo=1, unplaced)         0.020     3.854    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4_n_20
-                         CARRY8 (Prop_CARRY8_S[0]_CO[7])
-                                                      0.199     4.053 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0/CO[7]
-                         net (fo=1, unplaced)         0.005     4.058    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_n_20
+                                                      0.109     3.727 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_OUTPUT_INST/P[7]
+                         net (fo=4, unplaced)         0.221     3.948    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__1_0[24]
+                         LUT2 (Prop_LUT2_I0_O)        0.100     4.048 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9/O
+                         net (fo=1, unplaced)         0.242     4.290    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9_n_40
+                         CARRY8 (Prop_CARRY8_DI[0]_CO[7])
+                                                      0.140     4.430 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.435    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1_n_40
                          CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.080 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1/CO[7]
-                         net (fo=1, unplaced)         0.005     4.085    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.107 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2/CO[7]
-                         net (fo=1, unplaced)         0.005     4.112    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.134 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3/CO[7]
-                         net (fo=1, unplaced)         0.005     4.139    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     4.255 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4/O[7]
-                         net (fo=36, unplaced)        0.200     4.455    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/O[0]
-                         LUT4 (Prop_LUT4_I1_O)        0.038     4.493 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2/O
-                         net (fo=6, unplaced)         0.207     4.700    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2_n_20
-                         LUT2 (Prop_LUT2_I1_O)        0.038     4.738 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25/O
-                         net (fo=1, unplaced)         0.185     4.923    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25_n_20
-                         LUT6 (Prop_LUT6_I0_O)        0.037     4.960 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13/O
-                         net (fo=1, unplaced)         0.028     4.988    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13_n_20
-                         CARRY8 (Prop_CARRY8_S[2]_CO[7])
-                                                      0.168     5.156 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188_reg[15]_i_1/CO[7]
-                         net (fo=1, unplaced)         0.005     5.161    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188_reg[15]_i_1_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[0])
-                                                      0.056     5.217 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188_reg[16]_i_1/O[0]
-                         net (fo=1, unplaced)         0.025     5.242    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_fu_1540_p2[16]
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[16]/D
+                                                      0.022     4.457 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.462    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1_n_40
+                         CARRY8 (Prop_CARRY8_CI_O[5])
+                                                      0.116     4.578 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[40]_i_1/O[5]
+                         net (fo=1, unplaced)         0.025     4.603    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2_n_114
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[45]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_clk
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[16]/C
+                         net (fo=3323, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_encode_fu_453/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[45]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[16]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[45]
   -------------------------------------------------------------------
                          required time                          8.011    
-                         arrival time                          -5.242    
+                         arrival time                          -4.603    
   -------------------------------------------------------------------
-                         slack                                  2.769    
+                         slack                                  3.408    
 
-Slack (MET) :             2.769ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[16]/D
+Slack (MET) :             3.420ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[46]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        5.182ns  (logic 3.650ns (70.436%)  route 1.532ns (29.564%))
-  Logic Levels:           23  (CARRY8=9 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=3 LUT3=1 LUT4=1 LUT6=1)
-  Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
+  Data Path Delay:        4.515ns  (logic 3.631ns (80.421%)  route 0.884ns (19.579%))
+  Logic Levels:           13  (CARRY8=3 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=1 LUT3=1)
+  Clock Path Skew:        -0.055ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.060ns
+    Source Clock Delay      (SCD):    0.076ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -146,104 +120,78 @@ Slack (MET) :             2.769ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
+                         net (fo=3323, unset)         0.076     0.076    bd_0_i/hls_inst/inst/tqmf_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[24])
-                                                      0.277     0.337 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/P[24]
-                         net (fo=4, unplaced)         0.180     0.517    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/trunc_ln345_2_reg_2107[9]
-                         LUT2 (Prop_LUT2_I0_O)        0.052     0.569 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71/O
-                         net (fo=1, unplaced)         0.023     0.592    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71_n_20
-                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     0.789 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1/CO[7]
-                         net (fo=1, unplaced)         0.005     0.794    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[0])
-                                                      0.056     0.850 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1/O[0]
-                         net (fo=2, unplaced)         0.185     1.035    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/sext_ln570_fu_998_p1[16]
-                         LUT3 (Prop_LUT3_I2_O)        0.070     1.105 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6/O
-                         net (fo=4, unplaced)         0.227     1.332    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/B[16]
-                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_B[16]_B2_DATA[16])
-                                                      0.151     1.483 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST/B2_DATA[16]
-                         net (fo=1, unplaced)         0.000     1.483    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA.B2_DATA<16>
-                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[16]_B2B1[16])
-                                                      0.073     1.556 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST/B2B1[16]
-                         net (fo=1, unplaced)         0.000     1.556    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA.B2B1<16>
-                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[16]_V[43])
-                                                      0.609     2.165 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST/V[43]
-                         net (fo=1, unplaced)         0.000     2.165    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER.V<43>
-                         DSP_M_DATA (Prop_DSP_M_DATA_V[43]_V_DATA[43])
-                                                      0.046     2.211 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST/V_DATA[43]
-                         net (fo=1, unplaced)         0.000     2.211    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA.V_DATA<43>
-                         DSP_ALU (Prop_DSP_ALU_V_DATA[43]_ALU_OUT[47])
-                                                      0.571     2.782 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST/ALU_OUT[47]
-                         net (fo=1, unplaced)         0.000     2.782    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU.ALU_OUT<47>
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_DOUTADOUT[0])
+                                                      0.972     1.048 f  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/DOUTADOUT[0]
+                         net (fo=6, unplaced)         0.162     1.210    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/DOUTADOUT[0]
+                         LUT3 (Prop_LUT3_I0_O)        0.112     1.322 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product_i_32/O
+                         net (fo=1, unplaced)         0.209     1.531    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/A[0]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_A[0]_A2_DATA[0])
+                                                      0.192     1.723 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA_INST/A2_DATA[0]
+                         net (fo=1, unplaced)         0.000     1.723    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA.A2_DATA<0>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_A2_DATA[0]_A2A1[0])
+                                                      0.076     1.799 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA_INST/A2A1[0]
+                         net (fo=1, unplaced)         0.000     1.799    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA.A2A1<0>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_A2A1[0]_U[21])
+                                                      0.505     2.304 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER_INST/U[21]
+                         net (fo=1, unplaced)         0.000     2.304    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER.U<21>
+                         DSP_M_DATA (Prop_DSP_M_DATA_U[21]_U_DATA[21])
+                                                      0.047     2.351 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA_INST/U_DATA[21]
+                         net (fo=1, unplaced)         0.000     2.351    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA.U_DATA<21>
+                         DSP_ALU (Prop_DSP_ALU_U_DATA[21]_ALU_OUT[47])
+                                                      0.585     2.936 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, unplaced)         0.000     2.936    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU.ALU_OUT<47>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[47]_PCOUT[47])
-                                                      0.122     2.904 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST/PCOUT[47]
-                         net (fo=1, unplaced)         0.014     2.918    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/PCIN[47]
+                                                      0.122     3.058 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, unplaced)         0.014     3.072    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/PCIN[47]
                          DSP_ALU (Prop_DSP_ALU_PCIN[47]_ALU_OUT[7])
-                                                      0.546     3.464 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST/ALU_OUT[7]
-                         net (fo=1, unplaced)         0.000     3.464    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU.ALU_OUT<7>
+                                                      0.546     3.618 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU_INST/ALU_OUT[7]
+                         net (fo=1, unplaced)         0.000     3.618    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU.ALU_OUT<7>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[7]_P[7])
-                                                      0.109     3.573 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST/P[7]
-                         net (fo=2, unplaced)         0.208     3.781    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2_n_118
-                         LUT2 (Prop_LUT2_I0_O)        0.053     3.834 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4/O
-                         net (fo=1, unplaced)         0.020     3.854    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4_n_20
-                         CARRY8 (Prop_CARRY8_S[0]_CO[7])
-                                                      0.199     4.053 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0/CO[7]
-                         net (fo=1, unplaced)         0.005     4.058    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_n_20
+                                                      0.109     3.727 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_OUTPUT_INST/P[7]
+                         net (fo=4, unplaced)         0.221     3.948    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__1_0[24]
+                         LUT2 (Prop_LUT2_I0_O)        0.100     4.048 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9/O
+                         net (fo=1, unplaced)         0.242     4.290    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9_n_40
+                         CARRY8 (Prop_CARRY8_DI[0]_CO[7])
+                                                      0.140     4.430 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.435    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1_n_40
                          CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.080 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1/CO[7]
-                         net (fo=1, unplaced)         0.005     4.085    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.107 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2/CO[7]
-                         net (fo=1, unplaced)         0.005     4.112    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.134 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3/CO[7]
-                         net (fo=1, unplaced)         0.005     4.139    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     4.255 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4/O[7]
-                         net (fo=36, unplaced)        0.200     4.455    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/O[0]
-                         LUT4 (Prop_LUT4_I1_O)        0.038     4.493 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[7]_i_2/O
-                         net (fo=6, unplaced)         0.207     4.700    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[7]_i_2_n_20
-                         LUT2 (Prop_LUT2_I1_O)        0.038     4.738 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_25/O
-                         net (fo=1, unplaced)         0.185     4.923    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_25_n_20
-                         LUT6 (Prop_LUT6_I0_O)        0.037     4.960 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_13/O
-                         net (fo=1, unplaced)         0.028     4.988    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_13_n_20
-                         CARRY8 (Prop_CARRY8_S[2]_CO[7])
-                                                      0.168     5.156 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157_reg[15]_i_1/CO[7]
-                         net (fo=1, unplaced)         0.005     5.161    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157_reg[15]_i_1_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[0])
-                                                      0.056     5.217 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157_reg[16]_i_1/O[0]
-                         net (fo=1, unplaced)         0.025     5.242    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_fu_1094_p2[16]
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[16]/D
+                                                      0.022     4.457 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.462    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1_n_40
+                         CARRY8 (Prop_CARRY8_CI_O[6])
+                                                      0.103     4.565 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[40]_i_1/O[6]
+                         net (fo=1, unplaced)         0.026     4.591    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2_n_113
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[46]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_clk
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[16]/C
+                         net (fo=3323, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_encode_fu_453/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[46]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[16]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[46]
   -------------------------------------------------------------------
                          required time                          8.011    
-                         arrival time                          -5.242    
+                         arrival time                          -4.591    
   -------------------------------------------------------------------
-                         slack                                  2.769    
+                         slack                                  3.420    
 
-Slack (MET) :             2.795ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[15]/D
+Slack (MET) :             3.434ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[39]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        5.156ns  (logic 3.628ns (70.365%)  route 1.528ns (29.635%))
-  Logic Levels:           22  (CARRY8=8 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=3 LUT3=1 LUT4=1 LUT6=1)
-  Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
+  Data Path Delay:        4.501ns  (logic 3.622ns (80.471%)  route 0.879ns (19.529%))
+  Logic Levels:           12  (CARRY8=2 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=1 LUT3=1)
+  Clock Path Skew:        -0.055ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.060ns
+    Source Clock Delay      (SCD):    0.076ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -255,101 +203,75 @@ Slack (MET) :             2.795ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
+                         net (fo=3323, unset)         0.076     0.076    bd_0_i/hls_inst/inst/tqmf_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[24])
-                                                      0.277     0.337 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/P[24]
-                         net (fo=4, unplaced)         0.180     0.517    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/trunc_ln345_2_reg_2107[9]
-                         LUT2 (Prop_LUT2_I0_O)        0.052     0.569 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71/O
-                         net (fo=1, unplaced)         0.023     0.592    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71_n_20
-                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     0.789 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1/CO[7]
-                         net (fo=1, unplaced)         0.005     0.794    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[0])
-                                                      0.056     0.850 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1/O[0]
-                         net (fo=2, unplaced)         0.185     1.035    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/sext_ln570_fu_998_p1[16]
-                         LUT3 (Prop_LUT3_I2_O)        0.070     1.105 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6/O
-                         net (fo=4, unplaced)         0.227     1.332    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/B[16]
-                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_B[16]_B2_DATA[16])
-                                                      0.151     1.483 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST/B2_DATA[16]
-                         net (fo=1, unplaced)         0.000     1.483    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA.B2_DATA<16>
-                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[16]_B2B1[16])
-                                                      0.073     1.556 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST/B2B1[16]
-                         net (fo=1, unplaced)         0.000     1.556    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA.B2B1<16>
-                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[16]_V[43])
-                                                      0.609     2.165 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST/V[43]
-                         net (fo=1, unplaced)         0.000     2.165    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER.V<43>
-                         DSP_M_DATA (Prop_DSP_M_DATA_V[43]_V_DATA[43])
-                                                      0.046     2.211 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST/V_DATA[43]
-                         net (fo=1, unplaced)         0.000     2.211    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA.V_DATA<43>
-                         DSP_ALU (Prop_DSP_ALU_V_DATA[43]_ALU_OUT[47])
-                                                      0.571     2.782 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST/ALU_OUT[47]
-                         net (fo=1, unplaced)         0.000     2.782    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU.ALU_OUT<47>
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_DOUTADOUT[0])
+                                                      0.972     1.048 f  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/DOUTADOUT[0]
+                         net (fo=6, unplaced)         0.162     1.210    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/DOUTADOUT[0]
+                         LUT3 (Prop_LUT3_I0_O)        0.112     1.322 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product_i_32/O
+                         net (fo=1, unplaced)         0.209     1.531    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/A[0]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_A[0]_A2_DATA[0])
+                                                      0.192     1.723 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA_INST/A2_DATA[0]
+                         net (fo=1, unplaced)         0.000     1.723    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA.A2_DATA<0>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_A2_DATA[0]_A2A1[0])
+                                                      0.076     1.799 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA_INST/A2A1[0]
+                         net (fo=1, unplaced)         0.000     1.799    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA.A2A1<0>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_A2A1[0]_U[21])
+                                                      0.505     2.304 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER_INST/U[21]
+                         net (fo=1, unplaced)         0.000     2.304    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER.U<21>
+                         DSP_M_DATA (Prop_DSP_M_DATA_U[21]_U_DATA[21])
+                                                      0.047     2.351 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA_INST/U_DATA[21]
+                         net (fo=1, unplaced)         0.000     2.351    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA.U_DATA<21>
+                         DSP_ALU (Prop_DSP_ALU_U_DATA[21]_ALU_OUT[47])
+                                                      0.585     2.936 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, unplaced)         0.000     2.936    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU.ALU_OUT<47>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[47]_PCOUT[47])
-                                                      0.122     2.904 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST/PCOUT[47]
-                         net (fo=1, unplaced)         0.014     2.918    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/PCIN[47]
+                                                      0.122     3.058 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, unplaced)         0.014     3.072    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/PCIN[47]
                          DSP_ALU (Prop_DSP_ALU_PCIN[47]_ALU_OUT[7])
-                                                      0.546     3.464 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST/ALU_OUT[7]
-                         net (fo=1, unplaced)         0.000     3.464    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU.ALU_OUT<7>
+                                                      0.546     3.618 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU_INST/ALU_OUT[7]
+                         net (fo=1, unplaced)         0.000     3.618    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU.ALU_OUT<7>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[7]_P[7])
-                                                      0.109     3.573 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST/P[7]
-                         net (fo=2, unplaced)         0.208     3.781    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2_n_118
-                         LUT2 (Prop_LUT2_I0_O)        0.053     3.834 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4/O
-                         net (fo=1, unplaced)         0.020     3.854    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4_n_20
-                         CARRY8 (Prop_CARRY8_S[0]_CO[7])
-                                                      0.199     4.053 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0/CO[7]
-                         net (fo=1, unplaced)         0.005     4.058    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.080 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1/CO[7]
-                         net (fo=1, unplaced)         0.005     4.085    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.107 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2/CO[7]
-                         net (fo=1, unplaced)         0.005     4.112    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.134 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3/CO[7]
-                         net (fo=1, unplaced)         0.005     4.139    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3_n_20
+                                                      0.109     3.727 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_OUTPUT_INST/P[7]
+                         net (fo=4, unplaced)         0.221     3.948    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__1_0[24]
+                         LUT2 (Prop_LUT2_I0_O)        0.100     4.048 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9/O
+                         net (fo=1, unplaced)         0.242     4.290    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9_n_40
+                         CARRY8 (Prop_CARRY8_DI[0]_CO[7])
+                                                      0.140     4.430 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.435    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1_n_40
                          CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     4.255 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4/O[7]
-                         net (fo=36, unplaced)        0.200     4.455    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/O[0]
-                         LUT4 (Prop_LUT4_I1_O)        0.038     4.493 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2/O
-                         net (fo=6, unplaced)         0.207     4.700    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2_n_20
-                         LUT2 (Prop_LUT2_I1_O)        0.038     4.738 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25/O
-                         net (fo=1, unplaced)         0.185     4.923    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25_n_20
-                         LUT6 (Prop_LUT6_I0_O)        0.037     4.960 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13/O
-                         net (fo=1, unplaced)         0.028     4.988    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13_n_20
-                         CARRY8 (Prop_CARRY8_S[2]_O[7])
-                                                      0.202     5.190 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188_reg[15]_i_1/O[7]
-                         net (fo=1, unplaced)         0.026     5.216    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_fu_1540_p2[15]
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[15]/D
+                                                      0.116     4.551 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1/O[7]
+                         net (fo=1, unplaced)         0.026     4.577    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2_n_105
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[39]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_clk
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[15]/C
+                         net (fo=3323, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_encode_fu_453/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[39]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[15]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[39]
   -------------------------------------------------------------------
                          required time                          8.011    
-                         arrival time                          -5.216    
+                         arrival time                          -4.577    
   -------------------------------------------------------------------
-                         slack                                  2.795    
+                         slack                                  3.434    
 
-Slack (MET) :             2.795ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[15]/D
+Slack (MET) :             3.435ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[37]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        5.156ns  (logic 3.628ns (70.365%)  route 1.528ns (29.635%))
-  Logic Levels:           22  (CARRY8=8 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=3 LUT3=1 LUT4=1 LUT6=1)
-  Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
+  Data Path Delay:        4.500ns  (logic 3.622ns (80.489%)  route 0.878ns (19.511%))
+  Logic Levels:           12  (CARRY8=2 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=1 LUT3=1)
+  Clock Path Skew:        -0.055ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.060ns
+    Source Clock Delay      (SCD):    0.076ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -361,101 +283,75 @@ Slack (MET) :             2.795ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
+                         net (fo=3323, unset)         0.076     0.076    bd_0_i/hls_inst/inst/tqmf_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[24])
-                                                      0.277     0.337 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/P[24]
-                         net (fo=4, unplaced)         0.180     0.517    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/trunc_ln345_2_reg_2107[9]
-                         LUT2 (Prop_LUT2_I0_O)        0.052     0.569 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71/O
-                         net (fo=1, unplaced)         0.023     0.592    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71_n_20
-                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     0.789 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1/CO[7]
-                         net (fo=1, unplaced)         0.005     0.794    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[0])
-                                                      0.056     0.850 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1/O[0]
-                         net (fo=2, unplaced)         0.185     1.035    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/sext_ln570_fu_998_p1[16]
-                         LUT3 (Prop_LUT3_I2_O)        0.070     1.105 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6/O
-                         net (fo=4, unplaced)         0.227     1.332    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/B[16]
-                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_B[16]_B2_DATA[16])
-                                                      0.151     1.483 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST/B2_DATA[16]
-                         net (fo=1, unplaced)         0.000     1.483    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA.B2_DATA<16>
-                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[16]_B2B1[16])
-                                                      0.073     1.556 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST/B2B1[16]
-                         net (fo=1, unplaced)         0.000     1.556    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA.B2B1<16>
-                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[16]_V[43])
-                                                      0.609     2.165 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST/V[43]
-                         net (fo=1, unplaced)         0.000     2.165    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER.V<43>
-                         DSP_M_DATA (Prop_DSP_M_DATA_V[43]_V_DATA[43])
-                                                      0.046     2.211 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST/V_DATA[43]
-                         net (fo=1, unplaced)         0.000     2.211    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA.V_DATA<43>
-                         DSP_ALU (Prop_DSP_ALU_V_DATA[43]_ALU_OUT[47])
-                                                      0.571     2.782 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST/ALU_OUT[47]
-                         net (fo=1, unplaced)         0.000     2.782    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU.ALU_OUT<47>
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_DOUTADOUT[0])
+                                                      0.972     1.048 f  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/DOUTADOUT[0]
+                         net (fo=6, unplaced)         0.162     1.210    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/DOUTADOUT[0]
+                         LUT3 (Prop_LUT3_I0_O)        0.112     1.322 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product_i_32/O
+                         net (fo=1, unplaced)         0.209     1.531    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/A[0]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_A[0]_A2_DATA[0])
+                                                      0.192     1.723 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA_INST/A2_DATA[0]
+                         net (fo=1, unplaced)         0.000     1.723    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA.A2_DATA<0>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_A2_DATA[0]_A2A1[0])
+                                                      0.076     1.799 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA_INST/A2A1[0]
+                         net (fo=1, unplaced)         0.000     1.799    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA.A2A1<0>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_A2A1[0]_U[21])
+                                                      0.505     2.304 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER_INST/U[21]
+                         net (fo=1, unplaced)         0.000     2.304    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER.U<21>
+                         DSP_M_DATA (Prop_DSP_M_DATA_U[21]_U_DATA[21])
+                                                      0.047     2.351 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA_INST/U_DATA[21]
+                         net (fo=1, unplaced)         0.000     2.351    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA.U_DATA<21>
+                         DSP_ALU (Prop_DSP_ALU_U_DATA[21]_ALU_OUT[47])
+                                                      0.585     2.936 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, unplaced)         0.000     2.936    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU.ALU_OUT<47>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[47]_PCOUT[47])
-                                                      0.122     2.904 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST/PCOUT[47]
-                         net (fo=1, unplaced)         0.014     2.918    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/PCIN[47]
+                                                      0.122     3.058 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, unplaced)         0.014     3.072    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/PCIN[47]
                          DSP_ALU (Prop_DSP_ALU_PCIN[47]_ALU_OUT[7])
-                                                      0.546     3.464 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST/ALU_OUT[7]
-                         net (fo=1, unplaced)         0.000     3.464    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU.ALU_OUT<7>
+                                                      0.546     3.618 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU_INST/ALU_OUT[7]
+                         net (fo=1, unplaced)         0.000     3.618    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU.ALU_OUT<7>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[7]_P[7])
-                                                      0.109     3.573 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST/P[7]
-                         net (fo=2, unplaced)         0.208     3.781    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2_n_118
-                         LUT2 (Prop_LUT2_I0_O)        0.053     3.834 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4/O
-                         net (fo=1, unplaced)         0.020     3.854    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4_n_20
-                         CARRY8 (Prop_CARRY8_S[0]_CO[7])
-                                                      0.199     4.053 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0/CO[7]
-                         net (fo=1, unplaced)         0.005     4.058    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.080 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1/CO[7]
-                         net (fo=1, unplaced)         0.005     4.085    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.107 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2/CO[7]
-                         net (fo=1, unplaced)         0.005     4.112    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.134 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3/CO[7]
-                         net (fo=1, unplaced)         0.005     4.139    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     4.255 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4/O[7]
-                         net (fo=36, unplaced)        0.200     4.455    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/O[0]
-                         LUT4 (Prop_LUT4_I1_O)        0.038     4.493 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[7]_i_2/O
-                         net (fo=6, unplaced)         0.207     4.700    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[7]_i_2_n_20
-                         LUT2 (Prop_LUT2_I1_O)        0.038     4.738 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_25/O
-                         net (fo=1, unplaced)         0.185     4.923    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_25_n_20
-                         LUT6 (Prop_LUT6_I0_O)        0.037     4.960 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_13/O
-                         net (fo=1, unplaced)         0.028     4.988    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_13_n_20
-                         CARRY8 (Prop_CARRY8_S[2]_O[7])
-                                                      0.202     5.190 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157_reg[15]_i_1/O[7]
-                         net (fo=1, unplaced)         0.026     5.216    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_fu_1094_p2[15]
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[15]/D
+                                                      0.109     3.727 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_OUTPUT_INST/P[7]
+                         net (fo=4, unplaced)         0.221     3.948    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__1_0[24]
+                         LUT2 (Prop_LUT2_I0_O)        0.100     4.048 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9/O
+                         net (fo=1, unplaced)         0.242     4.290    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9_n_40
+                         CARRY8 (Prop_CARRY8_DI[0]_CO[7])
+                                                      0.140     4.430 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.435    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1_n_40
+                         CARRY8 (Prop_CARRY8_CI_O[5])
+                                                      0.116     4.551 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1/O[5]
+                         net (fo=1, unplaced)         0.025     4.576    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2_n_107
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[37]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_clk
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[15]/C
+                         net (fo=3323, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_encode_fu_453/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[37]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[15]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[37]
   -------------------------------------------------------------------
                          required time                          8.011    
-                         arrival time                          -5.216    
+                         arrival time                          -4.576    
   -------------------------------------------------------------------
-                         slack                                  2.795    
+                         slack                                  3.435    
 
-Slack (MET) :             2.798ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[13]/D
+Slack (MET) :             3.438ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[44]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        5.153ns  (logic 3.626ns (70.367%)  route 1.527ns (29.633%))
-  Logic Levels:           22  (CARRY8=8 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=3 LUT3=1 LUT4=1 LUT6=1)
-  Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
+  Data Path Delay:        4.497ns  (logic 3.614ns (80.365%)  route 0.883ns (19.635%))
+  Logic Levels:           13  (CARRY8=3 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=1 LUT3=1)
+  Clock Path Skew:        -0.055ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.060ns
+    Source Clock Delay      (SCD):    0.076ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -467,101 +363,78 @@ Slack (MET) :             2.798ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
+                         net (fo=3323, unset)         0.076     0.076    bd_0_i/hls_inst/inst/tqmf_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[24])
-                                                      0.277     0.337 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/P[24]
-                         net (fo=4, unplaced)         0.180     0.517    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/trunc_ln345_2_reg_2107[9]
-                         LUT2 (Prop_LUT2_I0_O)        0.052     0.569 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71/O
-                         net (fo=1, unplaced)         0.023     0.592    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71_n_20
-                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     0.789 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1/CO[7]
-                         net (fo=1, unplaced)         0.005     0.794    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[0])
-                                                      0.056     0.850 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1/O[0]
-                         net (fo=2, unplaced)         0.185     1.035    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/sext_ln570_fu_998_p1[16]
-                         LUT3 (Prop_LUT3_I2_O)        0.070     1.105 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6/O
-                         net (fo=4, unplaced)         0.227     1.332    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/B[16]
-                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_B[16]_B2_DATA[16])
-                                                      0.151     1.483 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST/B2_DATA[16]
-                         net (fo=1, unplaced)         0.000     1.483    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA.B2_DATA<16>
-                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[16]_B2B1[16])
-                                                      0.073     1.556 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST/B2B1[16]
-                         net (fo=1, unplaced)         0.000     1.556    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA.B2B1<16>
-                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[16]_V[43])
-                                                      0.609     2.165 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST/V[43]
-                         net (fo=1, unplaced)         0.000     2.165    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER.V<43>
-                         DSP_M_DATA (Prop_DSP_M_DATA_V[43]_V_DATA[43])
-                                                      0.046     2.211 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST/V_DATA[43]
-                         net (fo=1, unplaced)         0.000     2.211    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA.V_DATA<43>
-                         DSP_ALU (Prop_DSP_ALU_V_DATA[43]_ALU_OUT[47])
-                                                      0.571     2.782 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST/ALU_OUT[47]
-                         net (fo=1, unplaced)         0.000     2.782    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU.ALU_OUT<47>
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_DOUTADOUT[0])
+                                                      0.972     1.048 f  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/DOUTADOUT[0]
+                         net (fo=6, unplaced)         0.162     1.210    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/DOUTADOUT[0]
+                         LUT3 (Prop_LUT3_I0_O)        0.112     1.322 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product_i_32/O
+                         net (fo=1, unplaced)         0.209     1.531    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/A[0]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_A[0]_A2_DATA[0])
+                                                      0.192     1.723 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA_INST/A2_DATA[0]
+                         net (fo=1, unplaced)         0.000     1.723    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA.A2_DATA<0>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_A2_DATA[0]_A2A1[0])
+                                                      0.076     1.799 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA_INST/A2A1[0]
+                         net (fo=1, unplaced)         0.000     1.799    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA.A2A1<0>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_A2A1[0]_U[21])
+                                                      0.505     2.304 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER_INST/U[21]
+                         net (fo=1, unplaced)         0.000     2.304    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER.U<21>
+                         DSP_M_DATA (Prop_DSP_M_DATA_U[21]_U_DATA[21])
+                                                      0.047     2.351 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA_INST/U_DATA[21]
+                         net (fo=1, unplaced)         0.000     2.351    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA.U_DATA<21>
+                         DSP_ALU (Prop_DSP_ALU_U_DATA[21]_ALU_OUT[47])
+                                                      0.585     2.936 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, unplaced)         0.000     2.936    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU.ALU_OUT<47>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[47]_PCOUT[47])
-                                                      0.122     2.904 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST/PCOUT[47]
-                         net (fo=1, unplaced)         0.014     2.918    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/PCIN[47]
+                                                      0.122     3.058 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, unplaced)         0.014     3.072    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/PCIN[47]
                          DSP_ALU (Prop_DSP_ALU_PCIN[47]_ALU_OUT[7])
-                                                      0.546     3.464 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST/ALU_OUT[7]
-                         net (fo=1, unplaced)         0.000     3.464    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU.ALU_OUT<7>
+                                                      0.546     3.618 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU_INST/ALU_OUT[7]
+                         net (fo=1, unplaced)         0.000     3.618    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU.ALU_OUT<7>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[7]_P[7])
-                                                      0.109     3.573 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST/P[7]
-                         net (fo=2, unplaced)         0.208     3.781    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2_n_118
-                         LUT2 (Prop_LUT2_I0_O)        0.053     3.834 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4/O
-                         net (fo=1, unplaced)         0.020     3.854    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4_n_20
-                         CARRY8 (Prop_CARRY8_S[0]_CO[7])
-                                                      0.199     4.053 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0/CO[7]
-                         net (fo=1, unplaced)         0.005     4.058    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_n_20
+                                                      0.109     3.727 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_OUTPUT_INST/P[7]
+                         net (fo=4, unplaced)         0.221     3.948    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__1_0[24]
+                         LUT2 (Prop_LUT2_I0_O)        0.100     4.048 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9/O
+                         net (fo=1, unplaced)         0.242     4.290    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9_n_40
+                         CARRY8 (Prop_CARRY8_DI[0]_CO[7])
+                                                      0.140     4.430 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.435    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1_n_40
                          CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.080 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1/CO[7]
-                         net (fo=1, unplaced)         0.005     4.085    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.107 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2/CO[7]
-                         net (fo=1, unplaced)         0.005     4.112    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.134 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3/CO[7]
-                         net (fo=1, unplaced)         0.005     4.139    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     4.255 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4/O[7]
-                         net (fo=36, unplaced)        0.200     4.455    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/O[0]
-                         LUT4 (Prop_LUT4_I1_O)        0.038     4.493 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2/O
-                         net (fo=6, unplaced)         0.207     4.700    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2_n_20
-                         LUT2 (Prop_LUT2_I1_O)        0.038     4.738 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25/O
-                         net (fo=1, unplaced)         0.185     4.923    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25_n_20
-                         LUT6 (Prop_LUT6_I0_O)        0.037     4.960 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13/O
-                         net (fo=1, unplaced)         0.028     4.988    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13_n_20
-                         CARRY8 (Prop_CARRY8_S[2]_O[5])
-                                                      0.200     5.188 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188_reg[15]_i_1/O[5]
-                         net (fo=1, unplaced)         0.025     5.213    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_fu_1540_p2[13]
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[13]/D
+                                                      0.022     4.457 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.462    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1_n_40
+                         CARRY8 (Prop_CARRY8_CI_O[4])
+                                                      0.086     4.548 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[40]_i_1/O[4]
+                         net (fo=1, unplaced)         0.025     4.573    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2_n_115
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[44]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_clk
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[13]/C
+                         net (fo=3323, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_encode_fu_453/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[44]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[13]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[44]
   -------------------------------------------------------------------
                          required time                          8.011    
-                         arrival time                          -5.213    
+                         arrival time                          -4.573    
   -------------------------------------------------------------------
-                         slack                                  2.798    
+                         slack                                  3.438    
 
-Slack (MET) :             2.798ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[13]/D
+Slack (MET) :             3.441ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[43]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        5.153ns  (logic 3.626ns (70.367%)  route 1.527ns (29.633%))
-  Logic Levels:           22  (CARRY8=8 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=3 LUT3=1 LUT4=1 LUT6=1)
-  Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
+  Data Path Delay:        4.494ns  (logic 3.610ns (80.329%)  route 0.884ns (19.671%))
+  Logic Levels:           13  (CARRY8=3 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=1 LUT3=1)
+  Clock Path Skew:        -0.055ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.060ns
+    Source Clock Delay      (SCD):    0.076ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -573,101 +446,78 @@ Slack (MET) :             2.798ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
+                         net (fo=3323, unset)         0.076     0.076    bd_0_i/hls_inst/inst/tqmf_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[24])
-                                                      0.277     0.337 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/P[24]
-                         net (fo=4, unplaced)         0.180     0.517    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/trunc_ln345_2_reg_2107[9]
-                         LUT2 (Prop_LUT2_I0_O)        0.052     0.569 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71/O
-                         net (fo=1, unplaced)         0.023     0.592    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71_n_20
-                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     0.789 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1/CO[7]
-                         net (fo=1, unplaced)         0.005     0.794    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[0])
-                                                      0.056     0.850 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1/O[0]
-                         net (fo=2, unplaced)         0.185     1.035    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/sext_ln570_fu_998_p1[16]
-                         LUT3 (Prop_LUT3_I2_O)        0.070     1.105 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6/O
-                         net (fo=4, unplaced)         0.227     1.332    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/B[16]
-                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_B[16]_B2_DATA[16])
-                                                      0.151     1.483 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST/B2_DATA[16]
-                         net (fo=1, unplaced)         0.000     1.483    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA.B2_DATA<16>
-                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[16]_B2B1[16])
-                                                      0.073     1.556 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST/B2B1[16]
-                         net (fo=1, unplaced)         0.000     1.556    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA.B2B1<16>
-                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[16]_V[43])
-                                                      0.609     2.165 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST/V[43]
-                         net (fo=1, unplaced)         0.000     2.165    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER.V<43>
-                         DSP_M_DATA (Prop_DSP_M_DATA_V[43]_V_DATA[43])
-                                                      0.046     2.211 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST/V_DATA[43]
-                         net (fo=1, unplaced)         0.000     2.211    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA.V_DATA<43>
-                         DSP_ALU (Prop_DSP_ALU_V_DATA[43]_ALU_OUT[47])
-                                                      0.571     2.782 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST/ALU_OUT[47]
-                         net (fo=1, unplaced)         0.000     2.782    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU.ALU_OUT<47>
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_DOUTADOUT[0])
+                                                      0.972     1.048 f  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/DOUTADOUT[0]
+                         net (fo=6, unplaced)         0.162     1.210    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/DOUTADOUT[0]
+                         LUT3 (Prop_LUT3_I0_O)        0.112     1.322 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product_i_32/O
+                         net (fo=1, unplaced)         0.209     1.531    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/A[0]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_A[0]_A2_DATA[0])
+                                                      0.192     1.723 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA_INST/A2_DATA[0]
+                         net (fo=1, unplaced)         0.000     1.723    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA.A2_DATA<0>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_A2_DATA[0]_A2A1[0])
+                                                      0.076     1.799 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA_INST/A2A1[0]
+                         net (fo=1, unplaced)         0.000     1.799    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA.A2A1<0>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_A2A1[0]_U[21])
+                                                      0.505     2.304 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER_INST/U[21]
+                         net (fo=1, unplaced)         0.000     2.304    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER.U<21>
+                         DSP_M_DATA (Prop_DSP_M_DATA_U[21]_U_DATA[21])
+                                                      0.047     2.351 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA_INST/U_DATA[21]
+                         net (fo=1, unplaced)         0.000     2.351    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA.U_DATA<21>
+                         DSP_ALU (Prop_DSP_ALU_U_DATA[21]_ALU_OUT[47])
+                                                      0.585     2.936 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, unplaced)         0.000     2.936    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU.ALU_OUT<47>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[47]_PCOUT[47])
-                                                      0.122     2.904 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST/PCOUT[47]
-                         net (fo=1, unplaced)         0.014     2.918    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/PCIN[47]
+                                                      0.122     3.058 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, unplaced)         0.014     3.072    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/PCIN[47]
                          DSP_ALU (Prop_DSP_ALU_PCIN[47]_ALU_OUT[7])
-                                                      0.546     3.464 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST/ALU_OUT[7]
-                         net (fo=1, unplaced)         0.000     3.464    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU.ALU_OUT<7>
+                                                      0.546     3.618 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU_INST/ALU_OUT[7]
+                         net (fo=1, unplaced)         0.000     3.618    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU.ALU_OUT<7>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[7]_P[7])
-                                                      0.109     3.573 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST/P[7]
-                         net (fo=2, unplaced)         0.208     3.781    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2_n_118
-                         LUT2 (Prop_LUT2_I0_O)        0.053     3.834 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4/O
-                         net (fo=1, unplaced)         0.020     3.854    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4_n_20
-                         CARRY8 (Prop_CARRY8_S[0]_CO[7])
-                                                      0.199     4.053 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0/CO[7]
-                         net (fo=1, unplaced)         0.005     4.058    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_n_20
+                                                      0.109     3.727 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_OUTPUT_INST/P[7]
+                         net (fo=4, unplaced)         0.221     3.948    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__1_0[24]
+                         LUT2 (Prop_LUT2_I0_O)        0.100     4.048 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9/O
+                         net (fo=1, unplaced)         0.242     4.290    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9_n_40
+                         CARRY8 (Prop_CARRY8_DI[0]_CO[7])
+                                                      0.140     4.430 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.435    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1_n_40
                          CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.080 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1/CO[7]
-                         net (fo=1, unplaced)         0.005     4.085    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.107 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2/CO[7]
-                         net (fo=1, unplaced)         0.005     4.112    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.134 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3/CO[7]
-                         net (fo=1, unplaced)         0.005     4.139    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     4.255 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4/O[7]
-                         net (fo=36, unplaced)        0.200     4.455    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/O[0]
-                         LUT4 (Prop_LUT4_I1_O)        0.038     4.493 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[7]_i_2/O
-                         net (fo=6, unplaced)         0.207     4.700    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[7]_i_2_n_20
-                         LUT2 (Prop_LUT2_I1_O)        0.038     4.738 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_25/O
-                         net (fo=1, unplaced)         0.185     4.923    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_25_n_20
-                         LUT6 (Prop_LUT6_I0_O)        0.037     4.960 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_13/O
-                         net (fo=1, unplaced)         0.028     4.988    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_13_n_20
-                         CARRY8 (Prop_CARRY8_S[2]_O[5])
-                                                      0.200     5.188 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157_reg[15]_i_1/O[5]
-                         net (fo=1, unplaced)         0.025     5.213    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_fu_1094_p2[13]
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[13]/D
+                                                      0.022     4.457 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.462    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1_n_40
+                         CARRY8 (Prop_CARRY8_CI_O[3])
+                                                      0.082     4.544 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[40]_i_1/O[3]
+                         net (fo=1, unplaced)         0.026     4.570    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2_n_116
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[43]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_clk
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[13]/C
+                         net (fo=3323, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_encode_fu_453/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[43]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[13]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[43]
   -------------------------------------------------------------------
                          required time                          8.011    
-                         arrival time                          -5.213    
+                         arrival time                          -4.570    
   -------------------------------------------------------------------
-                         slack                                  2.798    
+                         slack                                  3.441    
 
-Slack (MET) :             2.809ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[14]/D
+Slack (MET) :             3.447ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[38]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        5.142ns  (logic 3.614ns (70.284%)  route 1.528ns (29.716%))
-  Logic Levels:           22  (CARRY8=8 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=3 LUT3=1 LUT4=1 LUT6=1)
-  Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
+  Data Path Delay:        4.488ns  (logic 3.609ns (80.414%)  route 0.879ns (19.586%))
+  Logic Levels:           12  (CARRY8=2 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=1 LUT3=1)
+  Clock Path Skew:        -0.055ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.060ns
+    Source Clock Delay      (SCD):    0.076ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -679,101 +529,75 @@ Slack (MET) :             2.809ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
+                         net (fo=3323, unset)         0.076     0.076    bd_0_i/hls_inst/inst/tqmf_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[24])
-                                                      0.277     0.337 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/P[24]
-                         net (fo=4, unplaced)         0.180     0.517    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/trunc_ln345_2_reg_2107[9]
-                         LUT2 (Prop_LUT2_I0_O)        0.052     0.569 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71/O
-                         net (fo=1, unplaced)         0.023     0.592    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71_n_20
-                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     0.789 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1/CO[7]
-                         net (fo=1, unplaced)         0.005     0.794    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[0])
-                                                      0.056     0.850 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1/O[0]
-                         net (fo=2, unplaced)         0.185     1.035    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/sext_ln570_fu_998_p1[16]
-                         LUT3 (Prop_LUT3_I2_O)        0.070     1.105 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6/O
-                         net (fo=4, unplaced)         0.227     1.332    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/B[16]
-                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_B[16]_B2_DATA[16])
-                                                      0.151     1.483 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST/B2_DATA[16]
-                         net (fo=1, unplaced)         0.000     1.483    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA.B2_DATA<16>
-                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[16]_B2B1[16])
-                                                      0.073     1.556 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST/B2B1[16]
-                         net (fo=1, unplaced)         0.000     1.556    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA.B2B1<16>
-                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[16]_V[43])
-                                                      0.609     2.165 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST/V[43]
-                         net (fo=1, unplaced)         0.000     2.165    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER.V<43>
-                         DSP_M_DATA (Prop_DSP_M_DATA_V[43]_V_DATA[43])
-                                                      0.046     2.211 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST/V_DATA[43]
-                         net (fo=1, unplaced)         0.000     2.211    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA.V_DATA<43>
-                         DSP_ALU (Prop_DSP_ALU_V_DATA[43]_ALU_OUT[47])
-                                                      0.571     2.782 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST/ALU_OUT[47]
-                         net (fo=1, unplaced)         0.000     2.782    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU.ALU_OUT<47>
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_DOUTADOUT[0])
+                                                      0.972     1.048 f  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/DOUTADOUT[0]
+                         net (fo=6, unplaced)         0.162     1.210    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/DOUTADOUT[0]
+                         LUT3 (Prop_LUT3_I0_O)        0.112     1.322 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product_i_32/O
+                         net (fo=1, unplaced)         0.209     1.531    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/A[0]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_A[0]_A2_DATA[0])
+                                                      0.192     1.723 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA_INST/A2_DATA[0]
+                         net (fo=1, unplaced)         0.000     1.723    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA.A2_DATA<0>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_A2_DATA[0]_A2A1[0])
+                                                      0.076     1.799 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA_INST/A2A1[0]
+                         net (fo=1, unplaced)         0.000     1.799    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA.A2A1<0>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_A2A1[0]_U[21])
+                                                      0.505     2.304 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER_INST/U[21]
+                         net (fo=1, unplaced)         0.000     2.304    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER.U<21>
+                         DSP_M_DATA (Prop_DSP_M_DATA_U[21]_U_DATA[21])
+                                                      0.047     2.351 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA_INST/U_DATA[21]
+                         net (fo=1, unplaced)         0.000     2.351    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA.U_DATA<21>
+                         DSP_ALU (Prop_DSP_ALU_U_DATA[21]_ALU_OUT[47])
+                                                      0.585     2.936 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, unplaced)         0.000     2.936    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU.ALU_OUT<47>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[47]_PCOUT[47])
-                                                      0.122     2.904 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST/PCOUT[47]
-                         net (fo=1, unplaced)         0.014     2.918    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/PCIN[47]
+                                                      0.122     3.058 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, unplaced)         0.014     3.072    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/PCIN[47]
                          DSP_ALU (Prop_DSP_ALU_PCIN[47]_ALU_OUT[7])
-                                                      0.546     3.464 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST/ALU_OUT[7]
-                         net (fo=1, unplaced)         0.000     3.464    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU.ALU_OUT<7>
+                                                      0.546     3.618 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU_INST/ALU_OUT[7]
+                         net (fo=1, unplaced)         0.000     3.618    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU.ALU_OUT<7>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[7]_P[7])
-                                                      0.109     3.573 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST/P[7]
-                         net (fo=2, unplaced)         0.208     3.781    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2_n_118
-                         LUT2 (Prop_LUT2_I0_O)        0.053     3.834 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4/O
-                         net (fo=1, unplaced)         0.020     3.854    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4_n_20
-                         CARRY8 (Prop_CARRY8_S[0]_CO[7])
-                                                      0.199     4.053 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0/CO[7]
-                         net (fo=1, unplaced)         0.005     4.058    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.080 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1/CO[7]
-                         net (fo=1, unplaced)         0.005     4.085    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.107 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2/CO[7]
-                         net (fo=1, unplaced)         0.005     4.112    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.134 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3/CO[7]
-                         net (fo=1, unplaced)         0.005     4.139    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     4.255 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4/O[7]
-                         net (fo=36, unplaced)        0.200     4.455    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/O[0]
-                         LUT4 (Prop_LUT4_I1_O)        0.038     4.493 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2/O
-                         net (fo=6, unplaced)         0.207     4.700    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2_n_20
-                         LUT2 (Prop_LUT2_I1_O)        0.038     4.738 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25/O
-                         net (fo=1, unplaced)         0.185     4.923    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25_n_20
-                         LUT6 (Prop_LUT6_I0_O)        0.037     4.960 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13/O
-                         net (fo=1, unplaced)         0.028     4.988    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13_n_20
-                         CARRY8 (Prop_CARRY8_S[2]_O[6])
-                                                      0.188     5.176 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188_reg[15]_i_1/O[6]
-                         net (fo=1, unplaced)         0.026     5.202    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_fu_1540_p2[14]
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[14]/D
+                                                      0.109     3.727 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_OUTPUT_INST/P[7]
+                         net (fo=4, unplaced)         0.221     3.948    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__1_0[24]
+                         LUT2 (Prop_LUT2_I0_O)        0.100     4.048 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9/O
+                         net (fo=1, unplaced)         0.242     4.290    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9_n_40
+                         CARRY8 (Prop_CARRY8_DI[0]_CO[7])
+                                                      0.140     4.430 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.435    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1_n_40
+                         CARRY8 (Prop_CARRY8_CI_O[6])
+                                                      0.103     4.538 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1/O[6]
+                         net (fo=1, unplaced)         0.026     4.564    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2_n_106
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[38]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_clk
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[14]/C
+                         net (fo=3323, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_encode_fu_453/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[38]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[14]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[38]
   -------------------------------------------------------------------
                          required time                          8.011    
-                         arrival time                          -5.202    
+                         arrival time                          -4.564    
   -------------------------------------------------------------------
-                         slack                                  2.809    
+                         slack                                  3.447    
 
-Slack (MET) :             2.809ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[14]/D
+Slack (MET) :             3.448ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[41]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        5.142ns  (logic 3.614ns (70.284%)  route 1.528ns (29.716%))
-  Logic Levels:           22  (CARRY8=8 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=3 LUT3=1 LUT4=1 LUT6=1)
-  Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
+  Data Path Delay:        4.487ns  (logic 3.604ns (80.321%)  route 0.883ns (19.679%))
+  Logic Levels:           13  (CARRY8=3 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=1 LUT3=1)
+  Clock Path Skew:        -0.055ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.060ns
+    Source Clock Delay      (SCD):    0.076ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -785,101 +609,78 @@ Slack (MET) :             2.809ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
+                         net (fo=3323, unset)         0.076     0.076    bd_0_i/hls_inst/inst/tqmf_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[24])
-                                                      0.277     0.337 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/P[24]
-                         net (fo=4, unplaced)         0.180     0.517    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/trunc_ln345_2_reg_2107[9]
-                         LUT2 (Prop_LUT2_I0_O)        0.052     0.569 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71/O
-                         net (fo=1, unplaced)         0.023     0.592    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71_n_20
-                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     0.789 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1/CO[7]
-                         net (fo=1, unplaced)         0.005     0.794    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[0])
-                                                      0.056     0.850 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1/O[0]
-                         net (fo=2, unplaced)         0.185     1.035    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/sext_ln570_fu_998_p1[16]
-                         LUT3 (Prop_LUT3_I2_O)        0.070     1.105 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6/O
-                         net (fo=4, unplaced)         0.227     1.332    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/B[16]
-                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_B[16]_B2_DATA[16])
-                                                      0.151     1.483 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST/B2_DATA[16]
-                         net (fo=1, unplaced)         0.000     1.483    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA.B2_DATA<16>
-                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[16]_B2B1[16])
-                                                      0.073     1.556 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST/B2B1[16]
-                         net (fo=1, unplaced)         0.000     1.556    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA.B2B1<16>
-                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[16]_V[43])
-                                                      0.609     2.165 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST/V[43]
-                         net (fo=1, unplaced)         0.000     2.165    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER.V<43>
-                         DSP_M_DATA (Prop_DSP_M_DATA_V[43]_V_DATA[43])
-                                                      0.046     2.211 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST/V_DATA[43]
-                         net (fo=1, unplaced)         0.000     2.211    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA.V_DATA<43>
-                         DSP_ALU (Prop_DSP_ALU_V_DATA[43]_ALU_OUT[47])
-                                                      0.571     2.782 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST/ALU_OUT[47]
-                         net (fo=1, unplaced)         0.000     2.782    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU.ALU_OUT<47>
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_DOUTADOUT[0])
+                                                      0.972     1.048 f  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/DOUTADOUT[0]
+                         net (fo=6, unplaced)         0.162     1.210    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/DOUTADOUT[0]
+                         LUT3 (Prop_LUT3_I0_O)        0.112     1.322 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product_i_32/O
+                         net (fo=1, unplaced)         0.209     1.531    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/A[0]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_A[0]_A2_DATA[0])
+                                                      0.192     1.723 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA_INST/A2_DATA[0]
+                         net (fo=1, unplaced)         0.000     1.723    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA.A2_DATA<0>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_A2_DATA[0]_A2A1[0])
+                                                      0.076     1.799 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA_INST/A2A1[0]
+                         net (fo=1, unplaced)         0.000     1.799    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA.A2A1<0>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_A2A1[0]_U[21])
+                                                      0.505     2.304 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER_INST/U[21]
+                         net (fo=1, unplaced)         0.000     2.304    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER.U<21>
+                         DSP_M_DATA (Prop_DSP_M_DATA_U[21]_U_DATA[21])
+                                                      0.047     2.351 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA_INST/U_DATA[21]
+                         net (fo=1, unplaced)         0.000     2.351    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA.U_DATA<21>
+                         DSP_ALU (Prop_DSP_ALU_U_DATA[21]_ALU_OUT[47])
+                                                      0.585     2.936 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, unplaced)         0.000     2.936    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU.ALU_OUT<47>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[47]_PCOUT[47])
-                                                      0.122     2.904 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST/PCOUT[47]
-                         net (fo=1, unplaced)         0.014     2.918    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/PCIN[47]
+                                                      0.122     3.058 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, unplaced)         0.014     3.072    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/PCIN[47]
                          DSP_ALU (Prop_DSP_ALU_PCIN[47]_ALU_OUT[7])
-                                                      0.546     3.464 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST/ALU_OUT[7]
-                         net (fo=1, unplaced)         0.000     3.464    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU.ALU_OUT<7>
+                                                      0.546     3.618 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU_INST/ALU_OUT[7]
+                         net (fo=1, unplaced)         0.000     3.618    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU.ALU_OUT<7>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[7]_P[7])
-                                                      0.109     3.573 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST/P[7]
-                         net (fo=2, unplaced)         0.208     3.781    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2_n_118
-                         LUT2 (Prop_LUT2_I0_O)        0.053     3.834 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4/O
-                         net (fo=1, unplaced)         0.020     3.854    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4_n_20
-                         CARRY8 (Prop_CARRY8_S[0]_CO[7])
-                                                      0.199     4.053 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0/CO[7]
-                         net (fo=1, unplaced)         0.005     4.058    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_n_20
+                                                      0.109     3.727 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_OUTPUT_INST/P[7]
+                         net (fo=4, unplaced)         0.221     3.948    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__1_0[24]
+                         LUT2 (Prop_LUT2_I0_O)        0.100     4.048 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9/O
+                         net (fo=1, unplaced)         0.242     4.290    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9_n_40
+                         CARRY8 (Prop_CARRY8_DI[0]_CO[7])
+                                                      0.140     4.430 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.435    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1_n_40
                          CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.080 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1/CO[7]
-                         net (fo=1, unplaced)         0.005     4.085    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.107 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2/CO[7]
-                         net (fo=1, unplaced)         0.005     4.112    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.134 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3/CO[7]
-                         net (fo=1, unplaced)         0.005     4.139    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     4.255 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4/O[7]
-                         net (fo=36, unplaced)        0.200     4.455    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/O[0]
-                         LUT4 (Prop_LUT4_I1_O)        0.038     4.493 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[7]_i_2/O
-                         net (fo=6, unplaced)         0.207     4.700    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[7]_i_2_n_20
-                         LUT2 (Prop_LUT2_I1_O)        0.038     4.738 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_25/O
-                         net (fo=1, unplaced)         0.185     4.923    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_25_n_20
-                         LUT6 (Prop_LUT6_I0_O)        0.037     4.960 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_13/O
-                         net (fo=1, unplaced)         0.028     4.988    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_13_n_20
-                         CARRY8 (Prop_CARRY8_S[2]_O[6])
-                                                      0.188     5.176 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157_reg[15]_i_1/O[6]
-                         net (fo=1, unplaced)         0.026     5.202    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_fu_1094_p2[14]
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[14]/D
+                                                      0.022     4.457 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.462    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1_n_40
+                         CARRY8 (Prop_CARRY8_CI_O[1])
+                                                      0.076     4.538 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[40]_i_1/O[1]
+                         net (fo=1, unplaced)         0.025     4.563    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2_n_118
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[41]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_clk
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[14]/C
+                         net (fo=3323, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_encode_fu_453/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[41]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[14]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[41]
   -------------------------------------------------------------------
                          required time                          8.011    
-                         arrival time                          -5.202    
+                         arrival time                          -4.563    
   -------------------------------------------------------------------
-                         slack                                  2.809    
+                         slack                                  3.448    
 
-Slack (MET) :             2.831ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[12]/D
+Slack (MET) :             3.456ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[42]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        5.120ns  (logic 3.593ns (70.176%)  route 1.527ns (29.824%))
-  Logic Levels:           22  (CARRY8=8 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=3 LUT3=1 LUT4=1 LUT6=1)
-  Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
+  Data Path Delay:        4.479ns  (logic 3.595ns (80.263%)  route 0.884ns (19.737%))
+  Logic Levels:           13  (CARRY8=3 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=1 LUT3=1)
+  Clock Path Skew:        -0.055ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.060ns
+    Source Clock Delay      (SCD):    0.076ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -891,101 +692,78 @@ Slack (MET) :             2.831ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
+                         net (fo=3323, unset)         0.076     0.076    bd_0_i/hls_inst/inst/tqmf_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[24])
-                                                      0.277     0.337 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/P[24]
-                         net (fo=4, unplaced)         0.180     0.517    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/trunc_ln345_2_reg_2107[9]
-                         LUT2 (Prop_LUT2_I0_O)        0.052     0.569 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71/O
-                         net (fo=1, unplaced)         0.023     0.592    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71_n_20
-                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     0.789 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1/CO[7]
-                         net (fo=1, unplaced)         0.005     0.794    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[0])
-                                                      0.056     0.850 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1/O[0]
-                         net (fo=2, unplaced)         0.185     1.035    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/sext_ln570_fu_998_p1[16]
-                         LUT3 (Prop_LUT3_I2_O)        0.070     1.105 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6/O
-                         net (fo=4, unplaced)         0.227     1.332    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/B[16]
-                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_B[16]_B2_DATA[16])
-                                                      0.151     1.483 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST/B2_DATA[16]
-                         net (fo=1, unplaced)         0.000     1.483    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA.B2_DATA<16>
-                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[16]_B2B1[16])
-                                                      0.073     1.556 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST/B2B1[16]
-                         net (fo=1, unplaced)         0.000     1.556    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA.B2B1<16>
-                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[16]_V[43])
-                                                      0.609     2.165 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST/V[43]
-                         net (fo=1, unplaced)         0.000     2.165    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER.V<43>
-                         DSP_M_DATA (Prop_DSP_M_DATA_V[43]_V_DATA[43])
-                                                      0.046     2.211 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST/V_DATA[43]
-                         net (fo=1, unplaced)         0.000     2.211    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA.V_DATA<43>
-                         DSP_ALU (Prop_DSP_ALU_V_DATA[43]_ALU_OUT[47])
-                                                      0.571     2.782 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST/ALU_OUT[47]
-                         net (fo=1, unplaced)         0.000     2.782    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU.ALU_OUT<47>
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_DOUTADOUT[0])
+                                                      0.972     1.048 f  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/DOUTADOUT[0]
+                         net (fo=6, unplaced)         0.162     1.210    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/DOUTADOUT[0]
+                         LUT3 (Prop_LUT3_I0_O)        0.112     1.322 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product_i_32/O
+                         net (fo=1, unplaced)         0.209     1.531    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/A[0]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_A[0]_A2_DATA[0])
+                                                      0.192     1.723 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA_INST/A2_DATA[0]
+                         net (fo=1, unplaced)         0.000     1.723    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA.A2_DATA<0>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_A2_DATA[0]_A2A1[0])
+                                                      0.076     1.799 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA_INST/A2A1[0]
+                         net (fo=1, unplaced)         0.000     1.799    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA.A2A1<0>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_A2A1[0]_U[21])
+                                                      0.505     2.304 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER_INST/U[21]
+                         net (fo=1, unplaced)         0.000     2.304    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER.U<21>
+                         DSP_M_DATA (Prop_DSP_M_DATA_U[21]_U_DATA[21])
+                                                      0.047     2.351 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA_INST/U_DATA[21]
+                         net (fo=1, unplaced)         0.000     2.351    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA.U_DATA<21>
+                         DSP_ALU (Prop_DSP_ALU_U_DATA[21]_ALU_OUT[47])
+                                                      0.585     2.936 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, unplaced)         0.000     2.936    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU.ALU_OUT<47>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[47]_PCOUT[47])
-                                                      0.122     2.904 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST/PCOUT[47]
-                         net (fo=1, unplaced)         0.014     2.918    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/PCIN[47]
+                                                      0.122     3.058 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, unplaced)         0.014     3.072    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/PCIN[47]
                          DSP_ALU (Prop_DSP_ALU_PCIN[47]_ALU_OUT[7])
-                                                      0.546     3.464 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST/ALU_OUT[7]
-                         net (fo=1, unplaced)         0.000     3.464    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU.ALU_OUT<7>
+                                                      0.546     3.618 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU_INST/ALU_OUT[7]
+                         net (fo=1, unplaced)         0.000     3.618    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU.ALU_OUT<7>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[7]_P[7])
-                                                      0.109     3.573 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST/P[7]
-                         net (fo=2, unplaced)         0.208     3.781    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2_n_118
-                         LUT2 (Prop_LUT2_I0_O)        0.053     3.834 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4/O
-                         net (fo=1, unplaced)         0.020     3.854    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4_n_20
-                         CARRY8 (Prop_CARRY8_S[0]_CO[7])
-                                                      0.199     4.053 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0/CO[7]
-                         net (fo=1, unplaced)         0.005     4.058    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_n_20
+                                                      0.109     3.727 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_OUTPUT_INST/P[7]
+                         net (fo=4, unplaced)         0.221     3.948    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__1_0[24]
+                         LUT2 (Prop_LUT2_I0_O)        0.100     4.048 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9/O
+                         net (fo=1, unplaced)         0.242     4.290    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9_n_40
+                         CARRY8 (Prop_CARRY8_DI[0]_CO[7])
+                                                      0.140     4.430 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.435    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1_n_40
                          CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.080 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1/CO[7]
-                         net (fo=1, unplaced)         0.005     4.085    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.107 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2/CO[7]
-                         net (fo=1, unplaced)         0.005     4.112    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.134 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3/CO[7]
-                         net (fo=1, unplaced)         0.005     4.139    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     4.255 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4/O[7]
-                         net (fo=36, unplaced)        0.200     4.455    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/O[0]
-                         LUT4 (Prop_LUT4_I1_O)        0.038     4.493 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2/O
-                         net (fo=6, unplaced)         0.207     4.700    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2_n_20
-                         LUT2 (Prop_LUT2_I1_O)        0.038     4.738 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25/O
-                         net (fo=1, unplaced)         0.185     4.923    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25_n_20
-                         LUT6 (Prop_LUT6_I0_O)        0.037     4.960 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13/O
-                         net (fo=1, unplaced)         0.028     4.988    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13_n_20
-                         CARRY8 (Prop_CARRY8_S[2]_O[4])
-                                                      0.167     5.155 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188_reg[15]_i_1/O[4]
-                         net (fo=1, unplaced)         0.025     5.180    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_fu_1540_p2[12]
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[12]/D
+                                                      0.022     4.457 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.462    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1_n_40
+                         CARRY8 (Prop_CARRY8_CI_O[2])
+                                                      0.067     4.529 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[40]_i_1/O[2]
+                         net (fo=1, unplaced)         0.026     4.555    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2_n_117
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[42]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_clk
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[12]/C
+                         net (fo=3323, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_encode_fu_453/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[42]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_8_reg_2188_reg[12]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[42]
   -------------------------------------------------------------------
                          required time                          8.011    
-                         arrival time                          -5.180    
+                         arrival time                          -4.555    
   -------------------------------------------------------------------
-                         slack                                  2.831    
+                         slack                                  3.456    
 
-Slack (MET) :             2.831ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[12]/D
+Slack (MET) :             3.465ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[36]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        5.120ns  (logic 3.593ns (70.176%)  route 1.527ns (29.824%))
-  Logic Levels:           22  (CARRY8=8 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=3 LUT3=1 LUT4=1 LUT6=1)
-  Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
+  Data Path Delay:        4.470ns  (logic 3.592ns (80.358%)  route 0.878ns (19.642%))
+  Logic Levels:           12  (CARRY8=2 DSP_A_B_DATA=1 DSP_ALU=2 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT2=1 LUT3=1)
+  Clock Path Skew:        -0.055ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.060ns
+    Source Clock Delay      (SCD):    0.076ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -997,87 +775,61 @@ Slack (MET) :             2.831ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK
+                         net (fo=3323, unset)         0.076     0.076    bd_0_i/hls_inst/inst/tqmf_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[24])
-                                                      0.277     0.337 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/P[24]
-                         net (fo=4, unplaced)         0.180     0.517    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/trunc_ln345_2_reg_2107[9]
-                         LUT2 (Prop_LUT2_I0_O)        0.052     0.569 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71/O
-                         net (fo=1, unplaced)         0.023     0.592    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71_n_20
-                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     0.789 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1/CO[7]
-                         net (fo=1, unplaced)         0.005     0.794    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[0])
-                                                      0.056     0.850 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1/O[0]
-                         net (fo=2, unplaced)         0.185     1.035    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/sext_ln570_fu_998_p1[16]
-                         LUT3 (Prop_LUT3_I2_O)        0.070     1.105 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6/O
-                         net (fo=4, unplaced)         0.227     1.332    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/B[16]
-                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_B[16]_B2_DATA[16])
-                                                      0.151     1.483 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST/B2_DATA[16]
-                         net (fo=1, unplaced)         0.000     1.483    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA.B2_DATA<16>
-                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[16]_B2B1[16])
-                                                      0.073     1.556 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST/B2B1[16]
-                         net (fo=1, unplaced)         0.000     1.556    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA.B2B1<16>
-                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[16]_V[43])
-                                                      0.609     2.165 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST/V[43]
-                         net (fo=1, unplaced)         0.000     2.165    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER.V<43>
-                         DSP_M_DATA (Prop_DSP_M_DATA_V[43]_V_DATA[43])
-                                                      0.046     2.211 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST/V_DATA[43]
-                         net (fo=1, unplaced)         0.000     2.211    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA.V_DATA<43>
-                         DSP_ALU (Prop_DSP_ALU_V_DATA[43]_ALU_OUT[47])
-                                                      0.571     2.782 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST/ALU_OUT[47]
-                         net (fo=1, unplaced)         0.000     2.782    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU.ALU_OUT<47>
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_DOUTADOUT[0])
+                                                      0.972     1.048 f  bd_0_i/hls_inst/inst/tqmf_U/ram_reg_bram_0/DOUTADOUT[0]
+                         net (fo=6, unplaced)         0.162     1.210    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/DOUTADOUT[0]
+                         LUT3 (Prop_LUT3_I0_O)        0.112     1.322 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product_i_32/O
+                         net (fo=1, unplaced)         0.209     1.531    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/A[0]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_A[0]_A2_DATA[0])
+                                                      0.192     1.723 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA_INST/A2_DATA[0]
+                         net (fo=1, unplaced)         0.000     1.723    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_A_B_DATA.A2_DATA<0>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_A2_DATA[0]_A2A1[0])
+                                                      0.076     1.799 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA_INST/A2A1[0]
+                         net (fo=1, unplaced)         0.000     1.799    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_PREADD_DATA.A2A1<0>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_A2A1[0]_U[21])
+                                                      0.505     2.304 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER_INST/U[21]
+                         net (fo=1, unplaced)         0.000     2.304    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_MULTIPLIER.U<21>
+                         DSP_M_DATA (Prop_DSP_M_DATA_U[21]_U_DATA[21])
+                                                      0.047     2.351 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA_INST/U_DATA[21]
+                         net (fo=1, unplaced)         0.000     2.351    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_M_DATA.U_DATA<21>
+                         DSP_ALU (Prop_DSP_ALU_U_DATA[21]_ALU_OUT[47])
+                                                      0.585     2.936 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, unplaced)         0.000     2.936    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_ALU.ALU_OUT<47>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[47]_PCOUT[47])
-                                                      0.122     2.904 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST/PCOUT[47]
-                         net (fo=1, unplaced)         0.014     2.918    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/PCIN[47]
+                                                      0.122     3.058 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, unplaced)         0.014     3.072    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/PCIN[47]
                          DSP_ALU (Prop_DSP_ALU_PCIN[47]_ALU_OUT[7])
-                                                      0.546     3.464 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST/ALU_OUT[7]
-                         net (fo=1, unplaced)         0.000     3.464    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU.ALU_OUT<7>
+                                                      0.546     3.618 f  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU_INST/ALU_OUT[7]
+                         net (fo=1, unplaced)         0.000     3.618    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_ALU.ALU_OUT<7>
                          DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[7]_P[7])
-                                                      0.109     3.573 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST/P[7]
-                         net (fo=2, unplaced)         0.208     3.781    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2_n_118
-                         LUT2 (Prop_LUT2_I0_O)        0.053     3.834 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4/O
-                         net (fo=1, unplaced)         0.020     3.854    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4_n_20
-                         CARRY8 (Prop_CARRY8_S[0]_CO[7])
-                                                      0.199     4.053 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0/CO[7]
-                         net (fo=1, unplaced)         0.005     4.058    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.080 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1/CO[7]
-                         net (fo=1, unplaced)         0.005     4.085    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.107 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2/CO[7]
-                         net (fo=1, unplaced)         0.005     4.112    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2_n_20
-                         CARRY8 (Prop_CARRY8_CI_CO[7])
-                                                      0.022     4.134 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3/CO[7]
-                         net (fo=1, unplaced)         0.005     4.139    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3_n_20
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     4.255 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4/O[7]
-                         net (fo=36, unplaced)        0.200     4.455    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/O[0]
-                         LUT4 (Prop_LUT4_I1_O)        0.038     4.493 f  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[7]_i_2/O
-                         net (fo=6, unplaced)         0.207     4.700    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[7]_i_2_n_20
-                         LUT2 (Prop_LUT2_I1_O)        0.038     4.738 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_25/O
-                         net (fo=1, unplaced)         0.185     4.923    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_25_n_20
-                         LUT6 (Prop_LUT6_I0_O)        0.037     4.960 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_13/O
-                         net (fo=1, unplaced)         0.028     4.988    bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_13_n_20
-                         CARRY8 (Prop_CARRY8_S[2]_O[4])
-                                                      0.167     5.155 r  bd_0_i/hls_inst/inst/grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157_reg[15]_i_1/O[4]
-                         net (fo=1, unplaced)         0.025     5.180    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_fu_1094_p2[12]
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[12]/D
+                                                      0.109     3.727 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__0/DSP_OUTPUT_INST/P[7]
+                         net (fo=4, unplaced)         0.221     3.948    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/tmp_product__1_0[24]
+                         LUT2 (Prop_LUT2_I0_O)        0.100     4.048 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9/O
+                         net (fo=1, unplaced)         0.242     4.290    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338[24]_i_9_n_40
+                         CARRY8 (Prop_CARRY8_DI[0]_CO[7])
+                                                      0.140     4.430 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     4.435    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[24]_i_1_n_40
+                         CARRY8 (Prop_CARRY8_CI_O[4])
+                                                      0.086     4.521 r  bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2/xa_1_fu_338_reg[32]_i_1/O[4]
+                         net (fo=1, unplaced)         0.025     4.546    bd_0_i/hls_inst/inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2_n_108
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[36]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=3002, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_decode_fu_399/ap_clk
-                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[12]/C
+                         net (fo=3323, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_encode_fu_453/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[36]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_decode_fu_399/apl2_reg_2157_reg[12]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_encode_fu_453/xa_1_fu_338_reg[36]
   -------------------------------------------------------------------
                          required time                          8.011    
-                         arrival time                          -5.180    
+                         arrival time                          -4.546    
   -------------------------------------------------------------------
-                         slack                                  2.831    
+                         slack                                  3.465    
 
 
 

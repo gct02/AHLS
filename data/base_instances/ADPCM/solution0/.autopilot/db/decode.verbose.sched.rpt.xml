@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'decode'" level="0">
-<item name = "Date">Tue Mar 25 17:16:28 2025
+<item name = "Date">Sun May 25 00:34:21 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 5.213 ns, 2.16 ns</column>
+<column name="ap_clk">8.00 ns, 5.214 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">95, 95, 0.760 us, 0.760 us, 95, 95, no</column>
+<column name="">103, 103, 0.824 us, 0.824 us, 103, 103, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,6 +35,12 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- filtez_label8">10, 10, 2, -, -, 5, no</column>
+<column name="- upzero_label10">12, 12, 2, -, -, 6, no</column>
+<column name="- upzero_label11">12, 12, 2, -, -, 6, no</column>
+<column name="- filtez_label8">10, 10, 2, -, -, 5, no</column>
+<column name="- upzero_label10">12, 12, 2, -, -, 6, no</column>
+<column name="- upzero_label11">12, 12, 2, -, -, 6, no</column>
 <column name="- decode_label2">20, 20, 2, -, -, 10, no</column>
 <column name="- decode_label3">20, 20, 2, -, -, 10, no</column>
 </table>

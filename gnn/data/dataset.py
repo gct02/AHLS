@@ -29,14 +29,14 @@ class HLSDataset(Dataset):
         scale_features: bool = False,
         feature_ranges: Optional[Dict[NodeType, Tuple[Tensor, Tensor]]] = None,
         benchmarks: Optional[Union[str, List[str]]] = None,
-        log_transform: bool = False,
+        log_scale: bool = False,
         **kwargs
     ):
         self._true_root = root
         self._full_dir = os.path.join(root, "full")
 
         self.metric = metric.lower()
-        self.log_transform = log_transform
+        self.log_transform = log_scale
         self.root = os.path.join(root, mode)
 
         if not benchmarks:

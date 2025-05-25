@@ -6,7 +6,6 @@
 `timescale 1 ns / 1 ps
 module adpcm_main_ilb_table_ROM_AUTO_1R (
     address0, ce0, q0, 
-    address1, ce1, q1, 
     reset, clk);
 
 parameter DataWidth = 12;
@@ -16,10 +15,6 @@ parameter AddressRange = 32;
 input[AddressWidth-1:0] address0;
 input ce0;
 output reg[DataWidth-1:0] q0;
- 
-input[AddressWidth-1:0] address1;
-input ce1;
-output reg[DataWidth-1:0] q1;
 
 input reset;
 input clk;
@@ -39,14 +34,6 @@ begin
     if (ce0) 
     begin
         q0 <= rom0[address0];
-    end
-end
-  
-always @(posedge clk) 
-begin 
-    if (ce1) 
-    begin
-        q1 <= rom0[address1];
     end
 end
 

@@ -1,4 +1,0 @@
-<VitisHLS:BurstInfo>
-    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:421:5" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:421:5" LoopName="anonymous" ParentFunc="void scaled_fixed2ieee&lt;63, 1&gt;(ap_ufixed&lt;63, 1, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, double&amp;, int)"/>
-</VitisHLS:BurstInfo>
-

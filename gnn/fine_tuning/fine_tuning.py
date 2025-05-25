@@ -8,7 +8,7 @@ import torch.nn as nn
 from torch_geometric.loader import DataLoader
 
 from gnn.models import HGT
-from gnn.fine_tuning.data.dataset import HLSFineTuningDataset
+from gnn.fine_tuning.dataset import HLSFineTuningDataset
 
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')

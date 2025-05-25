@@ -1,5 +1,3 @@
-set_directive_pipeline -off local_memset/local_memset_label0
-set_directive_pipeline -off local_memset/local_memset_label1
 set_directive_pipeline -off local_memcpy/local_memcpy_label3
 set_directive_pipeline -off sha_update/sha_update_label4
 set_directive_pipeline -off sha_transform/sha_transform_label1
@@ -8,6 +6,3 @@ set_directive_pipeline -off sha_transform/sha_transform_label3
 set_directive_pipeline -off sha_transform/sha_transform_label4
 set_directive_pipeline -off sha_transform/sha_transform_label5
 set_directive_pipeline -off sha_transform/sha_transform_label6
-set_directive_pipeline -off sha_stream/sha_stream_label0
-set_directive_pipeline -off sha_stream/sha_stream_label1
-set_directive_pipeline -off sha_stream/sha_stream_label2

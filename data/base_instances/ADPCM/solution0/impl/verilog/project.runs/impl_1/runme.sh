@@ -21,7 +21,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/ADPCM/solution0/impl/verilog/project.runs/impl_1'
+HD_PWD='/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

@@ -8,8 +8,6 @@
     <flowTarget value="vivado"/>
     <config>
         <config_array_partition throughput_driven="off"/>
-        <config_debug enable="1"/>
-        <config_compile pipeline_loops="999999"/>
         <config_export flow="impl" format="syn_dcp" rtl="verilog"/>
     </config>
     <targetInfo>
@@ -21,11 +19,5 @@
     <clockList>
         <clock name="default" period="8" default="false"/>
     </clockList>
-    <Simulation argv="">
-        <SimFlow name="cosim" setup="false" dumpTrace="all" optimizeCompile="false" ldflags="" mflags="" compiledLibrary="" toolName="xsim">
-            <Rtl name="verilog" active="true"/>
-            <Rtl name="vhdl" active="false"/>
-        </SimFlow>
-    </Simulation>
 </AutoPilot:solution>
 

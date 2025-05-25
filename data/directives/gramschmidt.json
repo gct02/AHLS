@@ -233,9 +233,7 @@
       "nest":{
         "function":"kernel_gramschmidt",
         "label":"loop2",
-        "nest":{
-          
-        }
+        "nest":{}
       }
     },
     {
@@ -244,9 +242,7 @@
       "nest":{
         "function":"kernel_gramschmidt",
         "label":"loop3",
-        "nest":{
-          
-        }
+        "nest":{}
       }
     },
     {
@@ -258,9 +254,7 @@
         "nest":{
           "function":"kernel_gramschmidt",
           "label":"loop5",
-          "nest":{
-            
-          }
+          "nest":{}
         }
       }
     },
@@ -273,9 +267,7 @@
         "nest":{
           "function":"kernel_gramschmidt",
           "label":"loop6",
-          "nest":{
-            
-          }
+          "nest":{}
         }
       }
     }

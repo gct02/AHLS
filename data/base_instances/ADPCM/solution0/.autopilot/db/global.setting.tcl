@@ -42,21 +42,21 @@ set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xcu50:-fsvh2104:-2-e
-set SourceFiles {sc {} c {../.././data/benchmarks/adpcm/adpcm.c ../../data/benchmarks/adpcm/adpcm.c}}
-set SourceFlags {sc {} c {{ } {} {}}}
+set SourceFiles {sc {} c ../../../benchmarks/adpcm/adpcm.c}
+set SourceFlags {sc {} c {{}}}
 set DirectiveFile {}
-set TBFiles {verilog ../../data/benchmarks/adpcm/adpcm_test.c bc ../../data/benchmarks/adpcm/adpcm_test.c sc ../../data/benchmarks/adpcm/adpcm_test.c vhdl ../../data/benchmarks/adpcm/adpcm_test.c c {} cas ../../data/benchmarks/adpcm/adpcm_test.c}
+set TBFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set SpecLanguage C
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
-set TBTops {verilog {} bc {} sc {} vhdl {} c {} cas {}}
-set TBInstNames {verilog {} bc {} sc {} vhdl {} c {} cas {}}
+set TBTops {bc "" c "" sc "" cas "" vhdl "" verilog ""}
+set TBInstNames {bc "" c "" sc "" cas "" vhdl "" verilog ""}
 set XDCFiles {}
 set ExtraGlobalOptions {"area_timing" 1 "clock_gate" 1 "impl_flow" map "power_gate" 0}
 set TBTVFileNotFound {}
 set AppFile ../hls.app
 set ApsFile solution0.aps
-set AvePath ../../.
+set AvePath ../../../../.
 set DefaultPlatform DefaultPlatform
 set multiClockList {}
 set SCPortClockMap {}

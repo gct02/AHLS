@@ -22,8 +22,11 @@ CDFG_EDGE_TYPES = [
     ("port", "data", "instr"), 
     ("array", "data", "instr"),
 
-    # Edges representing constant pointers 
-    # to global arrays
+    # Edges representing store instructions
+    ("instr", "store", "array"),
+    ("instr", "store", "instr"),
+
+    # Edges representing constant pointers to global arrays
     ("array", "data", "const"),
 
     # Control flow edges
@@ -33,7 +36,8 @@ CDFG_EDGE_TYPES = [
     # Call flow edges
     ("instr", "call", "instr"),
 
-    # Memory edges (load->store)
+    # Edges representing relationships between
+    # load and store instructions that access the same memory
     ("instr", "mem", "instr"),
 
     # Array allocation edges
@@ -279,7 +283,10 @@ class InstructionNode(CDFGNode):
         super().__init__(element, function_name)
 
         opcode = element.findtext('opcode', '')
-        self.label = opcode
+        if opcode == 'getelementptr':
+            self.label = 'gep'
+        else:
+            self.label = opcode
 
         self.line_number = findint(element, 'Value/Obj/lineNumber', 0)
 
@@ -826,6 +833,17 @@ class VitisKernelInfo:
                 for src_instr_id, next_instr_id in self.edges.get(("instr", "data", "instr"), []):
                     if src_instr_id == dst_instr_id:
                         self.edges[("array", "data", "instr")].append((src_array_id, next_instr_id))
+
+        for src_array_id, dst_instr_id in self.edges.get(("array", "data", "instr"), []):
+            dst_instr = self.nodes['instr'][dst_instr_id]
+            if dst_instr.attrs['opcode'] == 'store':
+                self.edges[("instr", "store", "array")].append((dst_instr_id, src_array_id))
+
+        for src_instr_id, dst_instr_id in self.edges.get(("instr", "data", "instr"), []):
+            src_instr = self.nodes['instr'][src_instr_id]
+            dst_instr = self.nodes['instr'][dst_instr_id]
+            if src_instr.attrs['opcode'] == 'alloca' and dst_instr.attrs['opcode'] == 'store':
+                self.edges[("instr", "store", "instr")].append((dst_instr_id, src_instr_id))
 
     def as_dict(self):
         return {

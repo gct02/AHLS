@@ -301,19 +301,7 @@ __attribute__((sdx_kernel("adpcm_main", 0))) void adpcm_main(
     int encoded[100/2],
     int decoded[100]
 ) {
-#line 1 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 211 "data/benchmarks/adpcm/adpcm.c"
-
-#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/run_hls.tcl"
-#pragma HLSDIRECTIVE TOP name=adpcm_main
-# 211 "data/benchmarks/adpcm/adpcm.c"
-
-#line 22 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
-# 211 "data/benchmarks/adpcm/adpcm.c"
-
-#line 43 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
 #pragma HLSDIRECTIVE TOP name=adpcm_main
 # 211 "data/benchmarks/adpcm/adpcm.c"
 
@@ -323,12 +311,8 @@ __attribute__((sdx_kernel("adpcm_main", 0))) void adpcm_main(
 
     adpcm_main_label12:
     for (i = 0; i < 100/2; i++) {
-#line 20 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
-# 217 "data/benchmarks/adpcm/adpcm.c"
-
-#line 41 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 217 "data/benchmarks/adpcm/adpcm.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=50 max=50 avg=50
@@ -337,12 +321,8 @@ __attribute__((sdx_kernel("adpcm_main", 0))) void adpcm_main(
 
     adpcm_main_label13:
     for (i = 0; i < 100/2; i++) {
-#line 21 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
-# 223 "data/benchmarks/adpcm/adpcm.c"
-
-#line 42 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 223 "data/benchmarks/adpcm/adpcm.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=50 max=50 avg=50
@@ -362,14 +342,6 @@ int abs(int n) {
 }
 
 int encode(int xin1, int xin2) {
-#line 2 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 240 "data/benchmarks/adpcm/adpcm.c"
-
-#line 23 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
-# 240 "data/benchmarks/adpcm/adpcm.c"
-
     int i;
     const int *h_ptr;
     int *tqmf_ptr, *tqmf_ptr1;
@@ -385,11 +357,7 @@ int encode(int xin1, int xin2) {
 
     encode_label0:
     for (i = 0; i < 10; i++) {
-#line 29 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
-# 255 "data/benchmarks/adpcm/adpcm.c"
-
-#line 8 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 1 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 255 "data/benchmarks/adpcm/adpcm.c"
 
@@ -407,11 +375,7 @@ int encode(int xin1, int xin2) {
 
     encode_label1:
     for (i = 0; i < 22; i++) {
-#line 30 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
-# 269 "data/benchmarks/adpcm/adpcm.c"
-
-#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 2 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 269 "data/benchmarks/adpcm/adpcm.c"
 
@@ -477,14 +441,6 @@ int encode(int xin1, int xin2) {
 }
 
 void decode(int input) {
-#line 24 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
-# 331 "data/benchmarks/adpcm/adpcm.c"
-
-#line 3 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 331 "data/benchmarks/adpcm/adpcm.c"
-
     int i;
     long int xa1, xa2;
     const int *h_ptr;
@@ -543,12 +499,8 @@ void decode(int input) {
 
     decode_label2:
     for (i = 0; i < 10; i++) {
-#line 10 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 3 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
-# 389 "data/benchmarks/adpcm/adpcm.c"
-
-#line 31 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 389 "data/benchmarks/adpcm/adpcm.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=10 max=10 avg=10
@@ -567,12 +519,8 @@ void decode(int input) {
 
     decode_label3:
     for (i = 0; i < 10; i++) {
-#line 11 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 4 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
-# 405 "data/benchmarks/adpcm/adpcm.c"
-
-#line 32 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 405 "data/benchmarks/adpcm/adpcm.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=10 max=10 avg=10
@@ -586,14 +534,6 @@ void decode(int input) {
 
 
 void reset() {
-#line 25 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
-# 416 "data/benchmarks/adpcm/adpcm.c"
-
-#line 4 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 416 "data/benchmarks/adpcm/adpcm.c"
-
     int i;
 
     detl = dec_detl = 32;
@@ -605,12 +545,8 @@ void reset() {
 
     reset_label4:
     for (i = 0; i < 6; i++) {
-#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 5 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
-# 427 "data/benchmarks/adpcm/adpcm.c"
-
-#line 33 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 427 "data/benchmarks/adpcm/adpcm.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=6 max=6 avg=6
@@ -622,12 +558,8 @@ void reset() {
 
     reset_label5:
     for (i = 0; i < 6; i++) {
-#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
-# 436 "data/benchmarks/adpcm/adpcm.c"
-
-#line 34 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 436 "data/benchmarks/adpcm/adpcm.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=6 max=6 avg=6
@@ -639,12 +571,8 @@ void reset() {
 
     reset_label6:
     for (i = 0; i < 24; i++) {
-#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
-# 445 "data/benchmarks/adpcm/adpcm.c"
-
-#line 35 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 445 "data/benchmarks/adpcm/adpcm.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=24 max=24 avg=24
@@ -653,12 +581,8 @@ void reset() {
 
     reset_label7:
     for (i = 0; i < 11; i++) {
-#line 15 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 8 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
-# 451 "data/benchmarks/adpcm/adpcm.c"
-
-#line 36 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 451 "data/benchmarks/adpcm/adpcm.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=11 max=11 avg=11
@@ -668,26 +592,14 @@ void reset() {
 }
 
 int filtez(int *bpl, int *dlt) {
-#line 26 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
-# 458 "data/benchmarks/adpcm/adpcm.c"
-
-#line 5 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 458 "data/benchmarks/adpcm/adpcm.c"
-
     int i;
     long int zl;
     zl = (long)(*bpl++) * (*dlt++);
 
     filtez_label8:
     for (i = 1; i < 6; i++) {
-#line 16 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
-# 464 "data/benchmarks/adpcm/adpcm.c"
-
-#line 37 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 464 "data/benchmarks/adpcm/adpcm.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=5 max=5 avg=5
@@ -710,14 +622,6 @@ int filtep(int rlt1, int al1, int rlt2, int al2) {
 
 
 int quantl(int el, int detl) {
-#line 27 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
-# 484 "data/benchmarks/adpcm/adpcm.c"
-
-#line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 484 "data/benchmarks/adpcm/adpcm.c"
-
     int ril, mil;
     long int wd, decis;
 
@@ -727,12 +631,8 @@ int quantl(int el, int detl) {
 
     quantl_label9:
     for (mil = 0; mil < 30; mil++) {
-#line 17 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 10 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
-# 493 "data/benchmarks/adpcm/adpcm.c"
-
-#line 38 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 493 "data/benchmarks/adpcm/adpcm.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=30 max=30 avg=30
@@ -773,26 +673,14 @@ int scalel(int nbl, int shift_constant) {
 
 
 void upzero(int dlt, int *dlti, int *bli) {
-#line 28 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
-# 531 "data/benchmarks/adpcm/adpcm.c"
-
-#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 531 "data/benchmarks/adpcm/adpcm.c"
-
     int i, wd2, wd3;
 
 
     if (dlt == 0) {
         upzero_label10:
         for (i = 0; i < 6; i++) {
-#line 18 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 11 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
-# 537 "data/benchmarks/adpcm/adpcm.c"
-
-#line 39 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 537 "data/benchmarks/adpcm/adpcm.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=6 max=6 avg=6
@@ -801,12 +689,8 @@ void upzero(int dlt, int *dlti, int *bli) {
     } else {
         upzero_label11:
         for (i = 0; i < 6; i++) {
-#line 19 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
-# 543 "data/benchmarks/adpcm/adpcm.c"
-
-#line 40 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 543 "data/benchmarks/adpcm/adpcm.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=6 max=6 avg=6

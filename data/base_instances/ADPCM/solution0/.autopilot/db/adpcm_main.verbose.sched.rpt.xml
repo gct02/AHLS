@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'adpcm_main'" level="0">
-<item name = "Date">Tue Mar 25 17:16:29 2025
+<item name = "Date">Sun May 25 00:34:22 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 5.213 ns, 2.16 ns</column>
+<column name="ap_clk">8.00 ns, 5.214 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">13404, 13504, 0.107 ms, 0.108 ms, 13405, 13505, no</column>
+<column name="">15203, 15303, 0.122 ms, 0.122 ms, 15204, 15304, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,8 +35,12 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- adpcm_main_label12">8400, 8500, 168 ~ 170, -, -, 50, no</column>
-<column name="- adpcm_main_label13">4950, 4950, 99, -, -, 50, no</column>
+<column name="- reset_label4">6, 6, 1, -, -, 6, no</column>
+<column name="- reset_label5">6, 6, 1, -, -, 6, no</column>
+<column name="- reset_label6">24, 24, 1, -, -, 24, no</column>
+<column name="- reset_label7">11, 11, 1, -, -, 11, no</column>
+<column name="- adpcm_main_label12">9800, 9900, 196 ~ 198, -, -, 50, no</column>
+<column name="- adpcm_main_label13">5350, 5350, 107, -, -, 50, no</column>
 </table>
 </item>
 </section>

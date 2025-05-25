@@ -7,7 +7,6 @@ set_directive_pipeline -off decrypt/decrypt_label4
 set_directive_pipeline -off AddRoundKey/AddRoundKey_label0
 set_directive_pipeline -off MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0
 set_directive_pipeline -off MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1
-set_directive_pipeline -off MixColumn_AddRoundKey/MixColumn_AddRoundKey_label2
 set_directive_pipeline -off KeySchedule/KeySchedule_label4
 set_directive_pipeline -off KeySchedule/KeySchedule_label5
 set_directive_pipeline -off KeySchedule/KeySchedule_label6

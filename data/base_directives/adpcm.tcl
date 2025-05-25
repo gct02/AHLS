@@ -12,4 +12,3 @@ set_directive_pipeline -off upzero/upzero_label10
 set_directive_pipeline -off upzero/upzero_label11
 set_directive_pipeline -off adpcm_main/adpcm_main_label12
 set_directive_pipeline -off adpcm_main/adpcm_main_label13
-set_directive_top adpcm_main -name adpcm_main

@@ -7,16 +7,13 @@ from collections import defaultdict
 from typing import List, Dict, Tuple, Optional, Union
 
 import matplotlib
-import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
-import pandas as pd
 import torch
 import torch.nn as nn
 from torch.nn.utils import clip_grad_norm_
-from sklearn.metrics import r2_score
+from torch.optim import Optimizer
+from torch.optim.lr_scheduler import LRScheduler
 
-from torch_geometric.data import HeteroData
 from torch_geometric.loader import DataLoader
 
 from gnn.models import HGT
@@ -25,14 +22,16 @@ from gnn.data.graph import (
     NODE_FEATURE_DIMS
 )
 from gnn.data.dataset import HLSDataset
+from gnn.utils import mape
+from gnn.analysis import (
+    plot_prediction_bars,
+    plot_prediction_scatter,
+    plot_learning_curves
+)
 
-
-PredTargetPair = Tuple[
-    Union[float, torch.Tensor], 
-    Union[float, torch.Tensor]
-]
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+
 
 def static_vars(**kwargs):
     def decorate(func):
@@ -50,7 +49,7 @@ def evaluate(
     verbosity: int = 1,
     log_dir: Optional[str] = None,
     mode: str = 'test',
-    log_transformed: bool = False
+    exp_adjust: bool = False
 ) -> List[Tuple[float, float]]:
     if verbosity > 1:
         print(f"\nEvaluating on {mode} set\n")
@@ -69,10 +68,14 @@ def evaluate(
             for p, t in zip(preds, targets):
                 f.write(f"{epoch},{t},{p},{t-p}\n")
 
-    if log_transformed:
+    if exp_adjust:
         preds, targets = np.expm1(preds), np.expm1(targets)
 
-    mre = mape(torch.tensor(preds), torch.tensor(targets)).mean().item()
+    mre = mape(
+        torch.tensor(preds), 
+        torch.tensor(targets)
+    ).mean().item()
+
     if mre < evaluate.min_mre:
         evaluate.min_mre = mre
         evaluate.best_epoch = epoch
@@ -85,7 +88,8 @@ def evaluate(
             print(f"Target: {t}; Prediction: {p}")
             
         print(f"\nMRE on {mode} set: {mre:.2f}%")
-        print(f"Best MRE so far: {evaluate.min_mre:.2f}% at epoch {evaluate.best_epoch + 1}\n")
+        print(f"Best MRE so far: {evaluate.min_mre:.2f}%"
+              f" at epoch {evaluate.best_epoch + 1}\n")
     
     return results
 
@@ -93,14 +97,14 @@ def evaluate(
 def train_model(
     model: nn.Module,
     loss_fn: nn.Module,
-    optimizer: torch.optim.Optimizer,
+    optimizer: Optimizer,
     train_loader: DataLoader,
     test_loader: DataLoader,
     epochs: int,
-    scheduler: Optional[torch.optim.lr_scheduler.LRScheduler] = None,
+    scheduler: Optional[LRScheduler] = None,
     verbosity: int = 1,
     log_dir: Optional[str] = None,
-    log_transformed: bool = False,
+    exp_adjust: bool = False,
 ) -> Dict[str, List[List[Tuple[float, float]]]]:
     results = defaultdict(list)
 
@@ -119,7 +123,7 @@ def train_model(
             target = batch.y
             loss = loss_fn(pred, target)
             loss.backward()
-            clip_grad_norm_(model.parameters(), max_norm=5.0)
+            clip_grad_norm_(model.parameters(), max_norm=1.0)
 
             optimizer.step()
 
@@ -131,7 +135,7 @@ def train_model(
             targets.extend(target)
 
             if verbosity > 1:
-                if log_transformed:
+                if exp_adjust:
                     pred, target = np.expm1(pred), np.expm1(target)
                 for p, t in zip(pred, target):
                     print(f"Target: {t}; Prediction: {p}")
@@ -141,7 +145,7 @@ def train_model(
                 for p, t in zip(preds, targets):
                     f.write(f"{epoch},{t},{p},{t-p}\n")
 
-        if log_transformed:
+        if exp_adjust:
             preds, targets = np.expm1(preds), np.expm1(targets)
 
         results['train'].append(list(zip(preds, targets)))
@@ -150,8 +154,9 @@ def train_model(
         with torch.no_grad():
             test_results = evaluate(
                 epoch, model, test_loader, 
-                verbosity=verbosity, log_dir=log_dir, 
-                log_transformed=log_transformed
+                verbosity=verbosity, 
+                log_dir=log_dir, 
+                exp_adjust=exp_adjust
             )
             results['test'].append(test_results)
 
@@ -168,12 +173,11 @@ def main(args: Dict[str, str]):
     output_dir = args['output_dir']
     verbosity = int(args['verbose'])
     loss = args['loss']
-    log_transform = args['log_transform']
+    log_scale = args['log_scale']
     residual = float(args['residual'])
 
     matplotlib.use('Agg')
 
-    # torch.backends.cudnn.benchmark = True
     torch.autograd.set_detect_anomaly(True)
     torch.set_printoptions(
         precision=6, threshold=1000, edgeitems=20, linewidth=200, sci_mode=False
@@ -187,8 +191,12 @@ def main(args: Dict[str, str]):
     analysis_dir, pretrained_dir = make_output_dirs(output_dir, test_bench, target_metric)
 
     train_loader, test_loader = prepare_data_loaders(
-        dataset_dir, target_metric, test_bench, train_benches, 
-        batch_size=batch_size, log_transform=log_transform
+        dataset_dir=dataset_dir, 
+        metric=target_metric, 
+        test_benchmarks=test_bench, 
+        train_benchmarks=train_benches, 
+        batch_size=batch_size, 
+        log_scale=log_scale
     )
 
     model_args = {
@@ -217,7 +225,7 @@ def main(args: Dict[str, str]):
         model.parameters(), 
         lr=5e-4, 
         betas=(0.9, 0.999), 
-        weight_decay=5e-4
+        weight_decay=1e-4
     )
 
     total_steps = epochs * len(train_loader)
@@ -225,171 +233,41 @@ def main(args: Dict[str, str]):
         optimizer,
         max_lr=5e-4,
         total_steps=total_steps,
-        pct_start=0.3,
+        pct_start=0.35,
         anneal_strategy='cos'
     )
 
     results = train_model(
-        model, loss_fn, optimizer, train_loader, test_loader, epochs, 
-        scheduler=scheduler, verbosity=verbosity, log_dir=analysis_dir,
-        log_transformed=log_transform
+        model, loss_fn, optimizer, 
+        train_loader, test_loader, epochs, 
+        scheduler=scheduler, 
+        verbosity=verbosity, 
+        log_dir=analysis_dir,
+        exp_adjust=log_scale
     )
 
     torch.save(
         obj=evaluate.best_model, 
         f=f"{pretrained_dir}/{target_metric}_estimator.pt"
     )
-    with open(f"{pretrained_dir}/{target_metric}_estimator.pkl", 'wb') as f:
+    with open(f"{pretrained_dir}/{target_metric}_estimator_args.pkl", 'wb') as f:
         pickle.dump(model_args, f)
 
-    plot_prediction_bars(results["test"], test_bench, target_metric, analysis_dir)
+    indices = [data.solution_index for data in test_loader.dataset]
+    plot_prediction_bars(
+        test_results=results["test"], 
+        solution_indices=indices,
+        benchmark=test_bench, 
+        metric=target_metric, 
+        output_path=f"{analysis_dir}/preds_bar_plot.png", 
+        epoch=evaluate.best_epoch, 
+        mre=evaluate.min_mre
+    )
     save_training_artifacts(results, analysis_dir)
-    
-
-def plot_learning_curves(
-    train_errors: List[float], 
-    test_errors: List[float], 
-    output_path: str
-):
-    n_epochs = len(train_errors)
-    if n_epochs != len(test_errors):
-        raise ValueError("Mismatch in number of training and test epochs")
-    
-    train_errors = list(map(lambda x: x / 100, train_errors))
-    test_errors = list(map(lambda x: x / 100, test_errors))
-
-    plt.figure(figsize=(12, 6), dpi=150)
-    sns.set_style("whitegrid")
-
-    df = pd.DataFrame({
-        'Epoch': list(range(n_epochs)) * 2,
-        'Loss': train_errors + test_errors,
-        'Type': ['Train'] * n_epochs + ['Test'] * n_epochs
-    })
-    ax = sns.lineplot(
-        x='Epoch', y='Loss', hue='Type', data=df, 
-        palette={'Train': 'green', 'Test': 'red'}, 
-        linewidth=2.5, marker='o'
-    )
-    plt.title(f'Training Progress (Final Test Loss: {test_errors[-1]:.4f})', fontsize=14)
-    plt.xlabel('Epoch', fontsize=12)
-    plt.ylabel('MRE', fontsize=12)
-    plt.legend()
-
-    ax.axvline(evaluate.best_epoch, color='blue', linestyle='--', alpha=0.7)
-    ax.text(
-        evaluate.best_epoch + 0.5, np.max(test_errors), f'Best Epoch: {evaluate.best_epoch}', 
-        color='blue', fontsize=10
-    )
-    if np.max(test_errors) / np.min(test_errors) > 100:
-        plt.yscale('log')
-
-    plt.tight_layout()
-    plt.savefig(output_path, bbox_inches='tight', dpi=150)
-    plt.close()
-
-
-def plot_prediction_scatter(
-    targets: List[float], preds: List[float], output_path: str,
-    errors: Optional[Union[List[float], torch.Tensor]] = None,
-    mre: Optional[float] = None
-):
-    max_val = max(max(targets), max(preds)) * 1.1
-    min_val = min(min(targets), min(preds)) * 0.9
-
-    plt.figure(figsize=(10, 10), dpi=150)
-    sns.set_style("whitegrid")
-
-    # Reference line for perfect prediction
-    plt.plot(
-        [min_val, max_val], [min_val, max_val], 'r--', 
-        label='Perfect Prediction', alpha=0.7
-    )
-    # Regression line
-    sns.regplot(
-        x=targets, y=preds, scatter=False, color='blue', label='Trend Line'
-    )
-    # Scatter plot
-    sns.scatterplot(x=targets, y=preds, alpha=0.6, edgecolor='w', label='Predictions')
-
-    if mre is None:
-        if errors is None:
-            errors = mape(preds, targets)
-        mre = np.mean(errors)
-            
-    r2 = r2_score(targets, preds)
-    plt.text(
-        min_val*1.05, max_val*0.9, f'Mean Relative Error: {mre:.2f}\nR²: {r2:.2f}', 
-        bbox=dict(facecolor='white', alpha=0.8)
-    )
-    
-    plt.title('Actual vs. Predicted Resource Usage', fontsize=14)
-    plt.xlabel('Actual Values', fontsize=12)
-    plt.ylabel('Predictions', fontsize=12)
-    plt.legend()
-
-    plt.tight_layout()
-    plt.savefig(output_path, bbox_inches='tight', dpi=150)
-    plt.close()
-
-
-def plot_prediction_bars(
-    test_results: List[List[PredTargetPair]],
-    benchmark: str, metric: str, output_dir: str
-):
-    """Plot per-benchmark instance-level predictions and errors"""
-    targets = [r[1] for r in test_results[evaluate.best_epoch]]
-    preds = [r[0] for r in test_results[evaluate.best_epoch]]
-    errors = [mape(p, t).item() for p, t in zip(preds, targets)]
-
-    indices = list(range(len(targets)))
-
-    df = pd.DataFrame({
-        'index': indices,
-        'target': targets,
-        'prediction': preds,
-        'relative_error': errors
-    })
-    df = df.sort_values(by=['relative_error'], ascending=True, ignore_index=True)
-
-    _, ax = plt.subplots(figsize=(16, 6), dpi=180)
-    sns.set_style("whitegrid")
-
-    ax.bar(indices, df['target'], color='blue', alpha=0.5, label='Targets')
-    ax.bar(indices, df['prediction'], color='darkorange', alpha=0.5, label='Predictions')
-
-    max_val = max(df['target'].max(), df['prediction'].max())
-    ax.set_ylim(0, max_val * 1.2)
-    ax.set_xlim(indices[0] - 1, indices[-1] + 1)
-
-    for i, row in df.iterrows():
-        p, t, r = row['prediction'], row['target'], row['relative_error']
-        ax.text(
-        	i, max(p, t) + 0.005 * max_val, f"{r:.2f}%", 
-        	rotation=90, ha='center', fontsize=4, alpha=0.9
-        )
-
-    ax.grid(axis='y', linestyle='--', alpha=0.7)
-    ax.set_xticks(indices)
-    ax.set_xticklabels(
-        df['index'], rotation=90, ha='center', va='top', fontsize=4, alpha=0.9
-    )
-    ax.text(
-        0.12, 0.95, f"Mean Relative Error: {evaluate.min_mre:.2f}%", 
-        transform=ax.transAxes, fontsize=11, ha='center'
-    )
-    ax.set_title(f"Predictions for {benchmark.upper()} ({metric.title()})", fontsize=14)
-    ax.set_xlabel('Instance Index', fontsize=12)
-    ax.set_ylabel(f'{metric.title()}', fontsize=12)
-    ax.legend()
-
-    plt.tight_layout()
-    plt.savefig(f"{output_dir}/test_results_bars.png")
-    plt.close()
 
 
 def save_training_artifacts(
-    results: Dict[str, List[List[PredTargetPair]]],
+    results: Dict[str, List[List[Tuple[float, float]]]],
     output_dir: str,
 ):
     train_errors, test_errors = [], []
@@ -402,8 +280,18 @@ def save_training_artifacts(
     preds = [r[0] for r in test_results[evaluate.best_epoch]]
     errors = [mape(p, t).item() for p, t in zip(preds, targets)]
 
-    plot_learning_curves(train_errors, test_errors, f"{output_dir}/learning_curve.png")
-    plot_prediction_scatter(targets, preds, f"{output_dir}/test_results_scatter.png", errors=errors)
+    plot_learning_curves(
+        train_errors=train_errors, 
+        test_errors=test_errors, 
+        output_path=f"{output_dir}/learning_curve.png",
+        epoch=evaluate.best_epoch
+    )
+    plot_prediction_scatter(
+        targets=targets, 
+        preds=preds, 
+        output_path=f"{output_dir}/preds_scatter_plot.png", 
+        errors=errors
+    )
     
 
 def set_random_seeds(seed: int):
@@ -460,31 +348,21 @@ def prepare_data_loaders(
     test_benchmarks: Union[List[str], str],
     train_benchmarks: Union[List[str], str],
     batch_size: int = 16,
-    log_transform: bool = False
+    log_scale: bool = False
 ) -> Tuple[DataLoader, DataLoader]:
     train_data = HLSDataset(
         dataset_dir, metric, mode="train", scale_features=True, 
-        benchmarks=train_benchmarks, log_transform=log_transform
+        benchmarks=train_benchmarks, log_scale=log_scale
     )
     test_data = HLSDataset(
         dataset_dir, metric, mode="test", scale_features=True,
         feature_ranges=train_data.feature_ranges,
-        benchmarks=test_benchmarks,log_transform=log_transform
+        benchmarks=test_benchmarks,log_scale=log_scale
     )
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=1, shuffle=False)
 
     return train_loader, test_loader
-
-
-def mape(pred, target):
-    pred, target = map(torch.as_tensor, (pred, target))
-    avg = (torch.abs(pred) + torch.abs(target)) / 2
-    return torch.where(
-        target == 0, 
-        torch.abs(pred - target) / avg, 
-        torch.abs(pred - target) / torch.abs(target)
-    ) * 100
 
 
 def parse_arguments():
@@ -495,11 +373,11 @@ def parse_arguments():
                         help='The number of training epochs (default: 300).')
     parser.add_argument('-s', '--seed', default=42, 
                         help='Random seed for repeatability (default: 42).')
-    parser.add_argument('-b', '--batch', default=16, 
-                        help='The size of the training batch (default: 16).')
+    parser.add_argument('-b', '--batch', default=32, 
+                        help='The size of the training batch (default: 32).')
     parser.add_argument('-l', '--loss', default='mse', choices=['mse', 'l1', 'huber'],
                         help='The loss function to use for training (default: mse).')
-    parser.add_argument('-lt', '--log-transform', action='store_true',
+    parser.add_argument('-lt', '--log-scale', action='store_true',
                         help='Apply log transformation to the target variable.')
     parser.add_argument('-tb', '--testbench', required=True, 
                         help='The name of the benchmark to use for test.')
