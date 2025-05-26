@@ -4418,34 +4418,33 @@
         }
       }
     ],
-    "port": [],
-    "array": [
+    "port": [
       {
         "name": "m1",
         "attributes": {
-          "dims": [
-            4096,
-            1,
-            1,
-            1
-          ],
-          "base_type": [
-            1.0,
-            0.0,
-            0.0
-          ],
-          "base_bitwidth": 64,
-          "is_global": 0,
-          "is_port": 1,
           "direction": [
             1,
             0,
             0
           ],
-          "array_impl": [
+          "top_level": 1,
+          "bitwidth": 64,
+          "port_type": [
+            0.0,
+            1.0
+          ],
+          "is_array": 1,
+          "base_type": [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          "dims": [
+            4096,
             1,
-            0,
-            0
+            1,
+            1
           ],
           "array_partition": 0,
           "partition_type": [
@@ -4460,39 +4459,35 @@
             0,
             0
           ],
-          "partition_factor": 0,
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0
+          "partition_factor": 0
         }
       },
       {
         "name": "m2",
         "attributes": {
-          "dims": [
-            4096,
-            1,
-            1,
-            1
-          ],
-          "base_type": [
-            1.0,
-            0.0,
-            0.0
-          ],
-          "base_bitwidth": 64,
-          "is_global": 0,
-          "is_port": 1,
           "direction": [
             1,
             0,
             0
           ],
-          "array_impl": [
+          "top_level": 1,
+          "bitwidth": 64,
+          "port_type": [
+            0.0,
+            1.0
+          ],
+          "is_array": 1,
+          "base_type": [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          "dims": [
+            4096,
             1,
-            0,
-            0
+            1,
+            1
           ],
           "array_partition": 0,
           "partition_type": [
@@ -4507,39 +4502,35 @@
             0,
             0
           ],
-          "partition_factor": 0,
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0
+          "partition_factor": 0
         }
       },
       {
         "name": "prod",
         "attributes": {
-          "dims": [
-            4096,
-            1,
-            1,
-            1
-          ],
-          "base_type": [
-            1.0,
-            0.0,
-            0.0
-          ],
-          "base_bitwidth": 64,
-          "is_global": 0,
-          "is_port": 1,
           "direction": [
             0,
             0,
             1
           ],
-          "array_impl": [
+          "top_level": 1,
+          "bitwidth": 64,
+          "port_type": [
+            0.0,
+            1.0
+          ],
+          "is_array": 1,
+          "base_type": [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          "dims": [
+            4096,
             1,
-            0,
-            0
+            1,
+            1
           ],
           "array_partition": 0,
           "partition_type": [
@@ -4554,14 +4545,11 @@
             0,
             0
           ],
-          "partition_factor": 0,
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0
+          "partition_factor": 0
         }
       }
     ],
+    "array": [],
     "const": [
       {
         "name": "empty",
@@ -5752,8 +5740,7 @@
         59
       ]
     ],
-    "port__data__instr": [],
-    "array__data__instr": [
+    "port__data__instr": [
       [
         0,
         29
@@ -5765,25 +5752,42 @@
       [
         2,
         47
+      ]
+    ],
+    "array__data__instr": [],
+    "instr__store__array": [],
+    "instr__store__instr": [
+      [
+        1,
+        0
       ],
       [
-        0,
-        30
+        59,
+        0
+      ]
+    ],
+    "instr__store__port": [],
+    "instr__alloca__array": [],
+    "instr__mem__instr": [
+      [
+        48,
+        52
       ],
       [
         1,
-        42
+        3
       ],
       [
-        2,
-        48
+        1,
+        59
       ],
       [
-        2,
-        52
+        3,
+        59
       ]
     ],
     "array__data__const": [],
+    "port__data__const": [],
     "block__control__instr": [
       [
         1,
@@ -5981,25 +5985,6 @@
       ]
     ],
     "instr__call__instr": [],
-    "instr__mem__instr": [
-      [
-        48,
-        52
-      ],
-      [
-        1,
-        3
-      ],
-      [
-        1,
-        59
-      ],
-      [
-        3,
-        59
-      ]
-    ],
-    "instr__alloca__array": [],
     "region__hrchy__region": [
       [
         0,

@@ -150,7 +150,7 @@ class DatasetGenerator:
             while parent_proc.is_running() and parent_proc.status() != psutil.STATUS_ZOMBIE:
                 time.sleep(60)
 
-                completed, rpts_generated = self.check_run_completion(solution_dir)
+                completed, rpts_generated = self._check_run_completion(solution_dir)
                 elapsed_time = time.time() - start_time
 
                 if elapsed_time > self.synth_timeout or rpts_generated:
@@ -173,6 +173,28 @@ class DatasetGenerator:
         except Exception as e:
             print(e)
             return False
+        
+    def _check_run_completion(self, solution_dir: Path):
+        impl_dir = solution_dir / 'impl/verilog/project.runs/impl_1'
+        if not impl_dir.is_dir():
+            return False, False
+        
+        log_file = impl_dir / 'runme.log'
+        if not log_file.is_file():
+            return False, False
+
+        with open(log_file, 'r') as f:
+            text = f.read()
+
+        if text.find('route_design completed successfully') == -1:
+            return False, False
+        
+        if ((impl_dir / 'bd_0_wrapper_utilization_placed.rpt').is_file()
+            and (impl_dir / 'bd_0_wrapper_power_routed.rpt').is_file()
+            and (impl_dir / 'bd_0_wrapper_timing_summary_routed.rpt').is_file()):
+            return True, True
+        
+        return True, False
 
     def _build_label_dct_dict(self, dct_config):
         label_dct_dict = {}

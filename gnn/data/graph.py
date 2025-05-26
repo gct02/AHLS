@@ -1,7 +1,7 @@
 import os
 import pickle
 from copy import deepcopy
-from typing import Dict, Union, Optional, List, Tuple
+from typing import Dict, Optional, List, Tuple
 
 import matplotlib.pyplot as plt
 import torch
@@ -165,22 +165,24 @@ def to_hetero_data(
 
 
 def find_array_node(kernel_info, array_name, function_name):
-    for node in kernel_info.nodes.get('array', []):
-        if node.name == array_name:
-            if node.function_name == function_name:
+    for nt in ['port', 'array']:
+        for node in kernel_info.nodes.get(nt, []):
+            if (node.name == array_name 
+                and node.function_name == function_name):
                 return node
     # If not found, search for array_name only
-    for node in kernel_info.nodes.get('array', []):
-        if node.name == array_name:
-            return node
+    for nt in ['port', 'array']:
+        for node in kernel_info.nodes.get(nt, []):
+            if node.name == array_name:
+                return node
     return None
 
 
 def find_region_node(kernel_info, region_name, function_name):
     for node in kernel_info.nodes.get('region', []):
-        if node.name == region_name:
-            if node.function_name == function_name:
-                return node
+        if (node.name == region_name
+            and node.function_name == function_name):
+            return node
     # If not found, search for region_name only
     for node in kernel_info.nodes.get('region', []):
         if node.name == region_name:
@@ -188,7 +190,10 @@ def find_region_node(kernel_info, region_name, function_name):
     return None
 
 
-def include_directive_info(kernel_info: VitisKernelInfo, solution_dct_tcl_path: str):
+def include_directive_info(
+    kernel_info: VitisKernelInfo, 
+    solution_dct_tcl_path: str
+):
     directives = parse_tcl_directives_file(solution_dct_tcl_path)
 
     for dct, args in directives:
@@ -296,7 +301,7 @@ def load_encoders(path: str) -> Dict[str, OneHotEncoder]:
 
 def plot_data(
     data: HeteroData,
-    plt_type: Union[str, list] = "full",
+    plt_type: str = "full",
     batched: bool = False
 ):
     import networkx as nx
@@ -317,109 +322,111 @@ def plot_data(
         ("instr", "data", "instr"): "#00bcd4",
         ("port", "data", "instr"): "#00a1b3",
         ("array", "data", "instr"): "#008c9e",
-        ("instr", "data", "const"): "#38bd59",
-        ("array", "data", "const"): "#38bd59",
+        ("array", "data", "const"): "#249741",
+        ("port", "data", "const"): "#249741",
         ("block", "control", "instr"): "#ddb753",
         ("block", "control", "block"): "#ddb753",
         ("instr", "mem", "instr"): "#e73939",
-        ("instr", "alloca", "array"): "#824ac2",
+        ("instr", "store", "array"): "#aa603e",
+        ("instr", "store", "instr"): "#aa603e",
+        ("instr", "store", "port"): "#aa603e",
+        ("instr", "alloca", "array"): "#c24a94",
+        ("instr", "call", "instr"): "#8040c9",
         ("region", "hrchy", "region"): "#aab2b9",
         ("region", "hrchy", "block"): "#aab2b9",
-        ("block", "hrchy", "instr"): "#aab2b9",
-        ("instr", "call", "instr"): "#ba68c8"
+        ("block", "hrchy", "instr"): "#aab2b9"
     }
     
-    def plot(plt_type="full"):
-        if plt_type == "full":
-            edge_types = node_color_dict.keys()
-            node_types = edge_color_dict.keys()
-        else:
-            edge_types = [
-                et for et in edge_color_dict.keys() 
-                if et[1] == plt_type
-            ]
-            node_types = set()
-            for et in edge_types:
-                node_types.add(et[0])
-                node_types.add(et[2])
-            node_types = list(node_types)
-
-        filtered_data = HeteroData()
-        for nt, x in data.x_dict.items():
-            if nt not in node_types:
-                x = torch.empty((0, NODE_FEATURE_DIMS[nt]), 
-                                dtype=torch.float32)
-            filtered_data[nt].x = x
-            filtered_data[nt].label = data[nt].label
-
-        for et, edge_index in data.edge_index_dict.items():
-            if et not in edge_types:
-                edge_index = torch.empty((2, 0), dtype=torch.long)
-            filtered_data[et].edge_index = edge_index
-
-        G = to_networkx(
-            data=filtered_data, 
-            node_attrs=['x', 'label'], 
-            remove_self_loops=True
-        )
-        
-        ncolors, nlabels = [], {}
-        for node, attrs in G.nodes(data=True):
-            nt = attrs.get("type")
-            if nt is None:
-                continue
-            ncolors.append(node_color_dict[nt])
-            nlabels[node] = attrs["label"]
-
-        ecolors = []
-        for src, dst, attrs in G.edges(data=True):
-            et = attrs.get("type")
-            if et is None:
-                continue
-            ecolor = edge_color_dict.get(et)
-            if ecolor is None:
-                ecolor = "#000000"
-            ecolors.append(ecolor)
-            G.edges[src, dst]["color"] = ecolor
-
-        node_legend = [
-            Patch(color=color, label=nt) 
-            for nt, color in node_color_dict.items() if nt in node_types
+    if plt_type == "full":
+        edge_types = node_color_dict.keys()
+        node_types = edge_color_dict.keys()
+    else:
+        edge_types = [
+            et for et in edge_color_dict.keys() 
+            if et[1] == plt_type
         ]
-        edge_legend = [
-            Line2D([0], [0], color=color, lw=2, label=f"{rt}: {st}→{dt}")
-            for (st, rt, dt), color in edge_color_dict.items() 
-            if (st, rt, dt) in edge_types
-        ]
+        node_types = set()
+        for et in edge_types:
+            node_types.add(et[0])
+            node_types.add(et[2])
+        node_types = list(node_types)
 
-        if plt_type in ["full", "data", "hrchy"] and not batched:
-            # Not batched large graphs
-            pos = nx.kamada_kawai_layout(G, scale=2)
-        elif plt_type in ["mem", "call", "alloca"]:
-            # Small graphs (batched or not)
-            pos = nx.planar_layout(G, scale=2)
-        else:
-            # Batched large graphs
-            pos = nx.spring_layout(G, scale=2)
+    filtered_data = HeteroData()
+    for nt, x in data.x_dict.items():
+        if nt not in node_types:
+            x = torch.empty((0, NODE_FEATURE_DIMS[nt]), 
+                            dtype=torch.float32)
+        filtered_data[nt].x = x
+        filtered_data[nt].label = data[nt].label
 
-        plt.figure(figsize=(12, 8))
-        nx.draw_networkx(
-            G, pos, labels=nlabels, node_color=ncolors, 
-            edge_color=ecolors, style="dashed", node_size=150, 
-            font_size=8, arrowsize=9, width=.8, alpha=.8
-        )
-        plt.legend(
-            handles=node_legend + edge_legend, loc='lower center', 
-            bbox_to_anchor=(0.5, -0.1), ncol=3, fontsize=8, frameon=False
-        )
-        plt.show()
+    for et, edge_index in data.edge_index_dict.items():
+        if et not in edge_types:
+            edge_index = torch.empty((2, 0), dtype=torch.long)
+        filtered_data[et].edge_index = edge_index
 
-    if isinstance(plt_type, str):
-        plt_type = [plt_type]
+    G = to_networkx(
+        data=filtered_data, 
+        node_attrs=['x', 'label'], 
+        remove_self_loops=True
+    )
+    
+    ncolors, nlabels = [], {}
+    for node, attrs in G.nodes(data=True):
+        nt = attrs.get("type")
+        if nt is None:
+            continue
+        ncolor = node_color_dict.get(nt)
+        if ncolor is None:
+            print(f"Warning: No color defined for node type '{nt}'")
+            ncolor = "#FFFFFF"
+        ncolors.append(ncolor)
+        nlabels[node] = attrs["label"]
 
-    for pt in plt_type:
-        plot(pt)
+    ecolors = []
+    for src, dst, attrs in G.edges(data=True):
+        et = attrs.get("type")
+        if et is None:
+            continue
+        ecolor = edge_color_dict.get(et)
+        if ecolor is None:
+            print(f"Warning: No color defined for edge type '{et}'")
+            ecolor = "#FFFFFF"
+        ecolors.append(ecolor)
+        G.edges[src, dst]["color"] = ecolor
 
+    node_legend = [
+        Patch(color=color, label=nt) 
+        for nt, color in node_color_dict.items() 
+        if nt in node_types
+    ]
+    edge_legend = [
+        Line2D([0], [0], color=color, lw=2, label=f"{et[1]}: {et[0]}→{et[2]}")
+        for et, color in edge_color_dict.items() 
+        if et in edge_types
+    ]
+
+    if plt_type in ["full", "data", "hrchy"] and not batched:
+        # Non-batched large graphs
+        pos = nx.kamada_kawai_layout(G, scale=2)
+    elif plt_type in ["mem", "call", "alloca"]:
+        # Small graphs (batched or not)
+        pos = nx.planar_layout(G, scale=2)
+    else:
+        # Batched large graphs
+        pos = nx.spring_layout(G, scale=2)
+
+    plt.figure(figsize=(12, 8))
+    nx.draw_networkx(
+        G, pos, labels=nlabels, node_color=ncolors, 
+        edge_color=ecolors, style="dashed", node_size=150, 
+        font_size=8, arrowsize=9, width=.8, alpha=.8
+    )
+    plt.legend(
+        handles=node_legend + edge_legend, loc='lower center', 
+        bbox_to_anchor=(0.5, -0.1), ncol=3, fontsize=8, frameon=False
+    )
+    plt.show()
+    
 
 if __name__ == "__main__":
     from argparse import ArgumentParser

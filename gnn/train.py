@@ -207,7 +207,7 @@ def main(args: Dict[str, str]):
         'hid_dim': [256, 256],
         'heads': [4, 4],
         'num_layers': 2,
-        'dropout': 0.0
+        'dropout': 0.1
     }
     
     model = HGT(**model_args).to(DEVICE)

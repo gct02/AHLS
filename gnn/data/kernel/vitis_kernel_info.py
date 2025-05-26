@@ -25,9 +25,18 @@ CDFG_EDGE_TYPES = [
     # Edges representing store instructions
     ("instr", "store", "array"),
     ("instr", "store", "instr"),
+    ("instr", "store", "port"),
+
+    # Array allocation edges
+    ("instr", "alloca", "array"),
+
+    # Edges representing relationships between load and 
+    # store instructions that access the same memory
+    ("instr", "mem", "instr"),
 
     # Edges representing constant pointers to global arrays
     ("array", "data", "const"),
+    ("port", "data", "const"),
 
     # Control flow edges
     ("block", "control", "instr"), 
@@ -35,13 +44,6 @@ CDFG_EDGE_TYPES = [
 
     # Call flow edges
     ("instr", "call", "instr"),
-
-    # Edges representing relationships between
-    # load and store instructions that access the same memory
-    ("instr", "mem", "instr"),
-
-    # Array allocation edges
-    ("instr", "alloca", "array"),
 
     # Edges for hierarchical relationships
     ("region", "hrchy", "region"), 
@@ -110,34 +112,22 @@ class ArrayNode(Node):
         self, 
         array_info: ArrayInfo,
         node_id: int,
-        is_top_level_port: bool = False,
-        direction: Optional[PortDirection] = None,
         resources: Optional[Dict[str, int]] = None
     ):
         self.id = node_id
         self.name = array_info['Name']
         self.function_name = array_info.get('FunctionName', '')
 
-        self.label = self.name
+        self.label = (f'{self.function_name}/{self.name}' 
+                      if self.function_name else self.name)
 
-        self.is_top_level_port = is_top_level_port
         self.total_size = max(1, array_info.get('TotalSize', 1))
-
         is_global = int(array_info.get('IsGlobal', 0))
 
-        if is_top_level_port:
-            array_impl = [1, 0, 0] # RTL port
-        elif self.total_size > 1024:
-            array_impl = [0, 1, 0] # BRAM, LUTRAM or URAM
+        if self.total_size > 1024:
+            array_impl = [1, 0] # BRAM, LUTRAM or URAM
         else:
-            array_impl = [0, 0, 1] # Shift register
-
-        direction_encoding = [0, 0, 0]
-        if direction is not None:
-            is_port = 1
-            direction_encoding[direction] = 1
-        else:
-            is_port = 0
+            array_impl = [0, 1] # Shift register
 
         dims = array_info.get('Dimensions', [])
         num_dims = len(dims)
@@ -155,8 +145,6 @@ class ArrayNode(Node):
             'base_type': array_info.get('BaseType', -1),
             'base_bitwidth': array_info.get('BaseBitwidth', 0),
             'is_global': is_global,
-            'is_port': is_port,
-            'direction': direction_encoding,
             'array_impl': array_impl,
 
             # Attributes of HLS directives
@@ -201,15 +189,18 @@ class RegionNode(Node):
         max_lat = max(min_lat, findint(element, 'mMaxLatency', 0))
         min_tc = max(1, findint(element, 'mMinTripCount', 0))
         max_tc = max(min_tc, findint(element, 'mMaxTripCount', 0))
+
         if (ii := findint(element, 'mII', 0)) <= 0:
             ii = max(1, max_lat / max_tc)
 
         self.attrs = {
-            'min_latency': min_lat, 'max_latency': max_lat,
-            'min_trip_count': min_tc, 'max_trip_count': max_tc,
-            'loop_depth': loop_depth, 'ii': ii, 
+            'min_latency': min_lat, 
+            'max_latency': max_lat,
+            'min_trip_count': min_tc, 
+            'max_trip_count': max_tc,
+            'loop_depth': loop_depth, 
+            'ii': ii, 
 
-            # Attributes of HLS directives
             'pipeline': 0,
             'unroll': 0,
             'unroll_factor': 0,
@@ -251,11 +242,37 @@ class PortNode(CDFGNode):
         self, 
         element: ET.Element, 
         function_name: str,
-        is_top_level_port: bool
+        is_top_level: bool,
+        array_info: Optional[ArrayInfo] = None
     ):
         super().__init__(element, function_name)
+        
+        if array_info is not None:
+            self.name = array_info['Name']
+            self.function_name = array_info.get('FunctionName', function_name)
 
-        self.label = self.name
+            self.is_array = True
+            base_type = array_info.get('BaseType', -1)
+            self.total_size = max(1, array_info.get('TotalSize', 1))
+
+            dims = array_info.get('Dimensions', [])
+            num_dims = len(dims)
+            if num_dims > MAX_ARRAY_DIM:
+                # Truncate to MAX_ARRAY_DIM, multiplying the last dimension
+                # by the product of the remaining dimensions
+                for i in range(num_dims - 1, MAX_ARRAY_DIM - 1, -1):
+                    dims[i - 1] *= dims[i]
+                    dims.pop()
+            elif num_dims < MAX_ARRAY_DIM: # Pad with 1s
+                dims.extend([1] * (MAX_ARRAY_DIM - num_dims))
+        else:
+            self.is_array = False
+            base_type = -1
+            self.total_size = 1
+            dims = [1] * MAX_ARRAY_DIM
+
+        self.label = f'{self.function_name}/{self.name}'
+        self.is_top_level = is_top_level
 
         direction = findint(element, 'direction', PortDirection.BI)
         if direction == PortDirection.IN:
@@ -267,9 +284,18 @@ class PortNode(CDFGNode):
 
         self.attrs.update({
             'direction': direction,
-            'top_level': int(is_top_level_port),
+            'top_level': int(is_top_level),
             'bitwidth': findint(element, 'Value/bitwidth', 0),
-            'port_type': element.findtext('if_type', '')
+            'port_type': element.findtext('if_type', ''),
+
+            'is_array': int(self.is_array),
+            'base_type': base_type,
+            'dims': dims,
+
+            'array_partition': 0,
+            'partition_type': [0, 0, 0],
+            'partition_dim': [0] * (MAX_ARRAY_DIM + 1),
+            'partition_factor': 0
         })
 
 
@@ -417,12 +443,12 @@ class CDFG:
         self._process_regions(regions)
 
     def _process_instrs(self, instrs, array_info_list):
-        # Note: 'nodes' section contains instructions and global variables
+        # Note: the 'nodes' section contains instructions and global variables
         # (represented as instructions with a 'GlobalMem' opcode)
         self._alloca_array_map = {}
         instr_offset = self._offsets['instr']
         array_offset = self._offsets['array']
-        instr_idx, array_idx = 0, 0
+        array_idx, instr_idx = 0, 0
 
         for elem in instrs.findall('item'):
             value = elem.find('Value')
@@ -434,69 +460,50 @@ class CDFG:
             if node_id is None:
                 raise ValueError("Element does not contain 'id' tag")
             
-            node_name = obj.findtext('name', '')
+            name = obj.findtext('name', '')
             rtl_name = obj.findtext('rtlName', '')
             opcode = elem.findtext('opcode')
             resources = self._node_resource_map.get(rtl_name) if rtl_name else None
 
-            array_info = get_array_info(array_info_list, node_name, self.name)
-            array_node = None
+            array_info = get_array_info(array_info_list, name, self.name)
             if array_info is not None:
                 array_id = array_idx + array_offset
                 array_idx += 1
-                array_node = ArrayNode(array_info, array_id, resources=resources)
+
+                array_node = ArrayNode(array_info, array_id, resources)
                 self.nodes['array'].append(array_node)
+
                 if opcode == 'GlobalMem':
                     self._node_id_map[node_id] = (array_id, 'array')
                     continue
                         
-            instr_node = InstructionNode(elem, self.name, resources=resources)
+            instr_node = InstructionNode(elem, self.name, resources)
             instr_id = instr_idx + instr_offset
+            instr_idx += 1
+
             self._node_id_map[instr_node.id] = (instr_id, 'instr')
             instr_node.id = instr_id
-            instr_idx += 1
             self.nodes['instr'].append(instr_node)
 
-            if array_node is not None and opcode == 'alloca':
+            if array_info is not None and opcode == 'alloca':
                 self.edges[('instr', 'alloca', 'array')].append((instr_id, array_id))
                 self._alloca_array_map[instr_id] = array_id
 
     def _process_ports(self, ports, array_info_list):
-        port_offset = self._offsets['port']
-        array_offset = self._offsets['array']
-        port_idx, array_idx = 0, len(self.nodes['array'])
+        offset = self._offsets['port']
 
-        for elem in ports.findall('item'):
+        for i, elem in enumerate(ports.findall('item')):
             value = elem.find('Value')
             obj = elem.find('Obj') if value is None else value.find('Obj')
             if obj is None:
                 raise ValueError("Element does not contain 'Obj' or 'Value/Obj' tag")
-            
-            node_id = findint(obj, 'id')
-            if node_id is None:
-                raise ValueError("Element does not contain 'id' tag")
-            
-            node_name = obj.findtext('name', '')
-            direction = findint(elem, 'direction', PortDirection.BI)
+            name = obj.findtext('name', '')
 
-            array_info = get_array_info(array_info_list, node_name, self.name)
-            if array_info is not None:
-                array_id = array_idx + array_offset
-                array_idx += 1
-                node = ArrayNode(
-                    array_info, array_id,
-                    is_top_level_port=self.is_top_level, 
-                    direction=direction
-                )
-                self._node_id_map[node_id] = (array_id, 'array')
-                self.nodes['array'].append(node)
-            else:
-                node = PortNode(elem, self.name, self.is_top_level)
-                port_id = port_idx + port_offset
-                self._node_id_map[node.id] = (port_id, 'port')
-                node.id = port_id
-                port_idx += 1
-                self.nodes['port'].append(node)
+            array_info = get_array_info(array_info_list, name, self.name)
+            node = PortNode(elem, self.name, self.is_top_level, array_info)
+            self._node_id_map[node.id] = (i + offset, 'port')
+            node.id = i + offset
+            self.nodes['port'].append(node)
 
     def _process_consts(self, consts):
         # Constant nodes with type 6 are used to represent 
@@ -640,7 +647,7 @@ class CDFG:
             }
         }
     
-    def dump(self, filepath):
+    def save_as_json(self, filepath):
         with open(filepath, 'w') as f:
             json.dump(self.as_dict(), f, indent=2)
 
@@ -703,7 +710,7 @@ class VitisKernelInfo:
             self._process_adb_files(solution_dir, filtered, array_info_list)
             self._include_call_flow()
             self._build_region_hrchy()
-            self._complement_array_edges(global_array_usage)
+            self._complement_cdfg_edges(global_array_usage)
         except Exception as e:
             print(f"Error processing ADB files: {e}")
             raise
@@ -724,8 +731,10 @@ class VitisKernelInfo:
             tree = ET.parse(path)
             root = tree.getroot()
             cdfg = CDFG(
-                root, self.top_level_function, 
-                array_info_list, offsets=self._offsets
+                root, 
+                self.top_level_function, 
+                array_info_list, 
+                offsets=self._offsets
             )
             self._cdfgs[cdfg.name] = cdfg
             self._merge_cdfg_data(cdfg)
@@ -748,6 +757,8 @@ class VitisKernelInfo:
                 self.edges[call_edge_type].append((function_call[0], callee_start.id))
 
     def _build_region_hrchy(self):
+        offset = self._offsets['region']
+
         for node in self.nodes['region']:
             regions_above = set()
             regions_below = set()
@@ -759,31 +770,33 @@ class VitisKernelInfo:
                 parent_id = parents.pop()
                 if parent_id not in regions_above:
                     regions_above.add(parent_id)
-                    parents.update(self.nodes['region'][parent_id - self._offsets['region']].parents)
+                    parents.update(self.nodes['region'][parent_id - offset].parents)
             
             children = set(node.sub_regions)
             while children:
                 child_id = children.pop()
                 if child_id not in regions_below:
                     regions_below.add(child_id)
-                    child_node = self.nodes['region'][child_id - self._offsets['region']]
+                    child_node = self.nodes['region'][child_id - offset]
                     blocks.update(child_node.blocks)
                     instrs.update(child_node.instrs)
                     children.update(child_node.sub_regions)
 
             self.region_hrchy[node.id] = {
-                'above': regions_above, 'below': regions_below,
-                'block': blocks, 'instr': instrs
+                'above': regions_above, 
+                'below': regions_below,
+                'block': blocks, 
+                'instr': instrs
             }
 
-    def _complement_array_edges(self, global_array_usage):
+    def _complement_cdfg_edges(self, global_array_usage):
         def get_array_node(array_name):
             for node in self.nodes['array']:
                 if node.name == array_name:
                     return node
             return None
         
-        def get_instr_node(instr_name, function_name, idx):
+        def get_instr_node(instr_name, function_name, idx_in_function):
             for node in self.nodes['instr']:
                 if node.function_name != function_name:
                     continue
@@ -792,20 +805,18 @@ class VitisKernelInfo:
                     if node.name == instr_name:
                         return node
                 else:               
-                    funtion = self._cdfgs.get(function_name)
-                    if funtion is None:
+                    function = self._cdfgs.get(function_name)
+                    if function is None:
                         continue
 
-                    instrs = funtion.nodes['instr']
-                    if idx < len(instrs):
-                        return instrs[idx]
+                    instrs = function.nodes['instr']
+                    if idx_in_function < len(instrs):
+                        return instrs[idx_in_function]
 
             return None
         
         for array_info in global_array_usage:
-            array_name = array_info['Name']
-
-            array_node = get_array_node(array_name)
+            array_node = get_array_node(array_info['Name'])
             if array_node is None:
                 continue
 
@@ -814,36 +825,39 @@ class VitisKernelInfo:
                 function_name = usage['FunctionName']
                 idx = usage['Idx']
                 instr_node = get_instr_node(instr_name, function_name, idx)
-                if instr_node is None:
-                    continue
-                self.edges[('array', 'data', 'instr')].append((array_node.id, instr_node.id))
+                if instr_node is not None:
+                    self.edges[('array', 'data', 'instr')].append(
+                        (array_node.id, instr_node.id)
+                    )
 
-        # Add a (Array -> GEP) edge for each (Array -> ArrayPtr -> GEP) path
-        for src_array_id, dst_const_id in self.edges.get(("array", "data", "const"), []):
-            for src_const_id, dst_instr_id in self.edges.get(("const", "data", "instr"), []):
-                if src_const_id == dst_const_id:
-                    dst_instr = self.nodes['instr'][dst_instr_id]
-                    if dst_instr.attrs['opcode'] == 'getelementptr':
-                        self.edges[("array", "data", "instr")].append((src_array_id, dst_instr_id))
+        # Add an (Array -> Instr) edge for each (Array -> ArrayElementPtr -> Instr) path
+        for array_id, ptr_id in self.edges.get(("array", "data", "const"), []):
+            for const_id, instr_id in self.edges.get(("const", "data", "instr"), []):
+                if ptr_id == const_id:
+                    self.edges[("array", "data", "instr")].append((array_id, instr_id))
 
-        # Add a (Array -> Instr) edge for each (Array -> GEP -> Instr) path
-        for src_array_id, dst_instr_id in self.edges.get(("array", "data", "instr"), []):
-            dst_instr = self.nodes['instr'][dst_instr_id]
-            if dst_instr.attrs['opcode'] == 'getelementptr':
-                for src_instr_id, next_instr_id in self.edges.get(("instr", "data", "instr"), []):
-                    if src_instr_id == dst_instr_id:
-                        self.edges[("array", "data", "instr")].append((src_array_id, next_instr_id))
+        # Add an (Port -> Array) edge for each (Port -> ArrayElementPtr -> Instr) path
+        for port_id, ptr_id in self.edges.get(("port", "data", "const"), []):
+            for const_id, instr_id in self.edges.get(("const", "data", "instr"), []):
+                if ptr_id == const_id:
+                    self.edges[("port", "data", "instr")].append((port_id, instr_id))
 
-        for src_array_id, dst_instr_id in self.edges.get(("array", "data", "instr"), []):
-            dst_instr = self.nodes['instr'][dst_instr_id]
-            if dst_instr.attrs['opcode'] == 'store':
-                self.edges[("instr", "store", "array")].append((dst_instr_id, src_array_id))
+        # Add an (StoreInstr -> Array) edge for each (Array -> StoreInstr) edge
+        for array_id, instr_id in self.edges.get(("array", "data", "instr"), []):
+            if self.nodes['instr'][instr_id].attrs['opcode'] == 'store':
+                self.edges[("instr", "store", "array")].append((instr_id, array_id))
 
-        for src_instr_id, dst_instr_id in self.edges.get(("instr", "data", "instr"), []):
-            src_instr = self.nodes['instr'][src_instr_id]
-            dst_instr = self.nodes['instr'][dst_instr_id]
-            if src_instr.attrs['opcode'] == 'alloca' and dst_instr.attrs['opcode'] == 'store':
-                self.edges[("instr", "store", "instr")].append((dst_instr_id, src_instr_id))
+        # Add an (StoreInstr -> Port) edge for each (Port -> StoreInstr) edge
+        for port_id, instr_id in self.edges.get(("port", "data", "instr"), []):
+            if self.nodes['instr'][instr_id].attrs['opcode'] == 'store':
+                self.edges[("instr", "store", "port")].append((instr_id, port_id))
+
+        # Add an (StoreInstr -> AllocaInstr) edge for each (AllocaInstr -> StoreInstr) edge
+        for src_id, dst_id in self.edges.get(("instr", "data", "instr"), []):
+            src = self.nodes['instr'][src_id]
+            dst = self.nodes['instr'][dst_id]
+            if src.attrs['opcode'] == 'alloca' and dst.attrs['opcode'] == 'store':
+                self.edges[("instr", "store", "instr")].append((dst_id, src_id))
 
     def as_dict(self):
         return {
