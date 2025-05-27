@@ -30,11 +30,11 @@ namespace {
 struct InstructionInfo {
     std::string Name;
     std::string FunctionName;
-    uint32_t Idx;
+    int32_t Idx;
     
     InstructionInfo(const std::string& Name, 
                     const std::string& FunctionName,
-                    uint32_t Idx = 0)
+                    int32_t Idx = -1)
         : Name(Name), FunctionName(FunctionName), Idx(Idx) {}
 };
 
@@ -51,7 +51,7 @@ struct GlobalArrayUsageInfo {
 
     void addUse(const std::string& Name, 
                 const std::string& FunctionName,
-                uint32_t Idx = 0) {
+                int32_t Idx = -1) {
         Uses.emplace_back(Name, FunctionName, Idx);
     }
 };
@@ -69,7 +69,7 @@ struct ExtractGlobalArrayUsesPass : public ModulePass {
             errs() << "Output file not specified.\n";
             return false;
         }
-        assignIndicesToInstructions(M);
+        assignIndicesToStores(M);
         extractGlobalArrayUsageInfo(M);
         serializeGlobalArrayUsageInfo(M);
         
@@ -104,22 +104,34 @@ struct ExtractGlobalArrayUsesPass : public ModulePass {
             // Check if the global object has any uses
             for (auto& U : G.uses()) {
                 if (auto* I = dyn_cast<Instruction>(U.getUser())) {
-                    std::string InstName = I->hasName() ? I->getName().str() : "";
-
-                    std::string FunctionName = "";
-                    if (auto* F = I->getFunction()) {
-                        FunctionName = F->hasName() ? F->getName().str() : "";
-                    }
-                    
-                    Optional<uint32_t> IdxOpt = getInstructionIndex(*I);
-                    uint32_t Idx = 0;
-                    if (!IdxOpt.hasValue()) {
-                        if (!I->hasName()) continue;
+                    // If the instruction is a GEPOperator, use its users
+                    if (auto* GEP = dyn_cast<GEPOperator>(I)) {
+                        for (auto Use : GEP->users()) {
+                            if (auto* Inst = dyn_cast<Instruction>(Use)) {
+                                std::string InstName = Inst->hasName() ? Inst->getName().str() : "";
+                                std::string FunctionName = "";
+                                if (auto* F = Inst->getFunction()) {
+                                    FunctionName = F->hasName() ? F->getName().str() : "";
+                                }
+                                int32_t Idx = -1;
+                                if (auto* SI = dyn_cast<StoreInst>(Inst)) {
+                                    Idx = getStoreIndex(*SI);
+                                }
+                                Info->addUse(InstName, FunctionName, Idx);
+                            }
+                        }
                     } else {
-                        Idx = IdxOpt.getValue();
+                        std::string InstName = I->hasName() ? I->getName().str() : "";
+                        std::string FunctionName = "";
+                        if (auto* F = I->getFunction()) {
+                            FunctionName = F->hasName() ? F->getName().str() : "";
+                        }
+                        int32_t Idx = -1;
+                        if (auto* SI = dyn_cast<StoreInst>(I)) {
+                            Idx = getStoreIndex(*SI);
+                        }
+                        Info->addUse(InstName, FunctionName, Idx);
                     }
-
-                    Info->addUse(InstName, FunctionName, Idx);
                 }
             }
             ArrayUsageInfoList.push_back(Info);
@@ -149,7 +161,7 @@ struct ExtractGlobalArrayUsesPass : public ModulePass {
                 OFStream << "\n        {\n";
                 OFStream << "          \"Name\": \"" << ArrayUse.Name << "\",\n";
                 OFStream << "          \"FunctionName\": \"" << ArrayUse.FunctionName << "\",\n";
-                OFStream << "          \"Idx\": " << ArrayUse.Idx << "\n";
+                OFStream << "          \"StoreIdx\": " << ArrayUse.Idx << "\n";
                 OFStream << "        }"; // Close Use object braces
             }
 
@@ -162,34 +174,36 @@ struct ExtractGlobalArrayUsesPass : public ModulePass {
         OFStream.close();
     }
 
-    void assignIndicesToInstructions(Module& M) {
+    void assignIndicesToStores(Module& M) {
         for (Function& F : M) {
-            uint32_t Idx = 0;
+            int32_t Idx = 0;
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
-                    setInstructionIndex(I, Idx);
-                    ++Idx;
+                    if (auto* SI = dyn_cast<StoreInst>(&I)) {
+                        setStoreIndex(I, Idx);
+                        ++Idx;
+                    }
                 }
             }
         }
     }
 
-    void setInstructionIndex(Instruction& I, uint32_t Idx) {
+    void setStoreIndex(Instruction& I, uint32_t Idx) {
         LLVMContext& Ctx = I.getContext();
         ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(Ctx), Idx);
         MDNode* MD = MDNode::get(Ctx, {ConstantAsMetadata::get(CI)});
-        I.setMetadata("idx", MD);
+        I.setMetadata("storeIdx", MD);
     }
 
-    Optional<uint32_t> getInstructionIndex(Instruction& I) {
-        if (MDNode* MD = I.getMetadata("idx")) {
-            if (ConstantAsMetadata* CAM = dyn_cast<ConstantAsMetadata>(MD->getOperand(0))) {
-                if (ConstantInt* CI = dyn_cast<ConstantInt>(CAM->getValue())) {
-                    return (uint32_t)CI->getZExtValue();
+    int32_t getStoreIndex(const Instruction& I) const {
+        if (auto* MD = I.getMetadata("storeIdx")) {
+            if (auto* CAM = dyn_cast<ConstantAsMetadata>(MD->getOperand(0))) {
+                if (auto* CI = dyn_cast<ConstantInt>(CAM->getValue())) {
+                    return CI->getSExtValue();
                 }
             }
         }
-        return Optional<uint32_t>();
+        return -1; // No index found
     }
 
     ~ExtractGlobalArrayUsesPass() override {

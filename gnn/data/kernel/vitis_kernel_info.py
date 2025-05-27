@@ -11,8 +11,7 @@ from gnn.data.utils.parsers import extract_impl_report
 
 
 CDFG_NODE_TYPES = [
-    "instr", "port", "array", 
-    "const", "block", "region"
+    "instr", "port", "const", "block", "region"
 ]
 
 CDFG_EDGE_TYPES = [
@@ -20,22 +19,13 @@ CDFG_EDGE_TYPES = [
     ("const", "data", "instr"), 
     ("instr", "data", "instr"),
     ("port", "data", "instr"), 
-    ("array", "data", "instr"),
-
-    # Edges representing store instructions
-    ("instr", "store", "array"),
-    ("instr", "store", "instr"),
-    ("instr", "store", "port"),
-
-    # Array allocation edges
-    ("instr", "alloca", "array"),
 
     # Edges representing relationships between load and 
     # store instructions that access the same memory
     ("instr", "mem", "instr"),
 
     # Edges representing constant pointers to global arrays
-    ("array", "data", "const"),
+    ("instr", "data", "const"),
     ("port", "data", "const"),
 
     # Control flow edges
@@ -57,7 +47,6 @@ MAX_ARRAY_DIM = 4
 
 
 ArrayInfo = Dict[str, Union[int, str, List[int]]]
-AttributeDict = Dict[str, Union[int, float, List[int]]]
 
 
 class PortDirection(IntEnum):
@@ -81,7 +70,7 @@ class Node(ABC):
 
 
 class CDFGNode(Node):
-    def __init__(self, element: ET.Element, function_name: str):
+    def __init__(self, element: ET.Element, function: str):
         value = element.find('Value')
         obj = element.find('Obj') if value is None else value.find('Obj')
         if obj is None:
@@ -93,76 +82,12 @@ class CDFGNode(Node):
         
         self.name = obj.findtext('name', '')
         self.rtl_name = obj.findtext('rtlName', '')
-        self.function_name = function_name
+        self.function = function
         self.attrs = {}
-        self.label = None
+        self.label = self.name
 
     def as_dict(self):
-        return {'name': self.name, 'attributes': self.attrs}
-    
-    def __str__(self):
-        return json.dumps(self.as_dict(), indent=2)
-    
-    def __repr__(self):
-        return self.__str__()
-    
-
-class ArrayNode(Node):
-    def __init__(
-        self, 
-        array_info: ArrayInfo,
-        node_id: int,
-        resources: Optional[Dict[str, int]] = None
-    ):
-        self.id = node_id
-        self.name = array_info['Name']
-        self.function_name = array_info.get('FunctionName', '')
-
-        self.label = (f'{self.function_name}/{self.name}' 
-                      if self.function_name else self.name)
-
-        self.total_size = max(1, array_info.get('TotalSize', 1))
-        is_global = int(array_info.get('IsGlobal', 0))
-
-        if self.total_size > 1024:
-            array_impl = [1, 0] # BRAM, LUTRAM or URAM
-        else:
-            array_impl = [0, 1] # Shift register
-
-        dims = array_info.get('Dimensions', [])
-        num_dims = len(dims)
-        if num_dims > MAX_ARRAY_DIM:
-            # Truncate to MAX_ARRAY_DIM, multiplying the last dimension
-            # by the product of the remaining dimensions
-            for i in range(num_dims - 1, MAX_ARRAY_DIM - 1, -1):
-                dims[i - 1] *= dims[i]
-                dims.pop()
-        elif num_dims < MAX_ARRAY_DIM: # Pad with 1s
-            dims.extend([1] * (MAX_ARRAY_DIM - num_dims))
-
-        self.attrs = {
-            'dims': dims,
-            'base_type': array_info.get('BaseType', -1),
-            'base_bitwidth': array_info.get('BaseBitwidth', 0),
-            'is_global': is_global,
-            'array_impl': array_impl,
-
-            # Attributes of HLS directives
-            'array_partition': 0,
-            'partition_type': [0, 0, 0],
-            'partition_dim': [0] * (MAX_ARRAY_DIM + 1),
-            'partition_factor': 0
-        }
-
-        if resources is not None:
-            for resource_type in TARGET_RESOURCES:
-                self.attrs[resource_type] = resources.get(resource_type, 0)
-        else:
-            for resource_type in TARGET_RESOURCES:
-                self.attrs[resource_type] = 0
-
-    def as_dict(self):
-        return {'name': self.name, 'attributes': self.attrs}
+        return {'label': self.label, 'attributes': self.attrs}
     
     def __str__(self):
         return json.dumps(self.as_dict(), indent=2)
@@ -172,14 +97,15 @@ class ArrayNode(Node):
     
 
 class RegionNode(Node):
-    def __init__(self, element: ET.Element, function_name: str):
+    def __init__(self, element: ET.Element, function: str):
         self.id = findint(element, 'mId')
         if self.id is None:
             raise ValueError("Element does not contain 'mId' tag")
         
         self.name = element.findtext('mTag')
-        self.label = self.name
-        self.function_name = function_name
+        self.function = function
+        self.label = f"{self.function}/{self.name}" if self.name else self.function
+        self.label = self.label.replace(' ', '_')
 
         self.is_loop = findint(element, 'mType', 0) == 1
         loop_depth = findint(element, 'mDepth', 0)
@@ -223,7 +149,7 @@ class RegionNode(Node):
     
     def as_dict(self):
         return {
-            'name': self.name, 
+            'label': self.label, 
             'attributes': self.attrs,
             'sub_regions': self.sub_regions,
             'blocks': self.blocks,
@@ -241,17 +167,14 @@ class PortNode(CDFGNode):
     def __init__(
         self, 
         element: ET.Element, 
-        function_name: str,
+        function: str,
         is_top_level: bool,
         array_info: Optional[ArrayInfo] = None
     ):
-        super().__init__(element, function_name)
+        super().__init__(element, function)
         
-        if array_info is not None:
-            self.name = array_info['Name']
-            self.function_name = array_info.get('FunctionName', function_name)
-
-            self.is_array = True
+        self.is_array = array_info is not None
+        if self.is_array:
             base_type = array_info.get('BaseType', -1)
             self.total_size = max(1, array_info.get('TotalSize', 1))
 
@@ -266,30 +189,26 @@ class PortNode(CDFGNode):
             elif num_dims < MAX_ARRAY_DIM: # Pad with 1s
                 dims.extend([1] * (MAX_ARRAY_DIM - num_dims))
         else:
-            self.is_array = False
             base_type = -1
             self.total_size = 1
             dims = [1] * MAX_ARRAY_DIM
 
-        self.label = f'{self.function_name}/{self.name}'
+        self.label = f'{self.function}/{self.name}'
         self.is_top_level = is_top_level
 
-        direction = findint(element, 'direction', PortDirection.BI)
-        if direction == PortDirection.IN:
-            direction = [1, 0, 0]
-        elif direction == PortDirection.OUT:
-            direction = [0, 1, 0]
-        else:
-            direction = [0, 0, 1]
+        direction_idx = findint(element, 'direction')
+        if direction_idx is None or direction_idx < 0 or direction_idx > 2:
+            direction_idx = PortDirection.BI # Default to bidirectional
+        direction = [0, 0, 0]
+        direction[direction_idx] = 1
 
         self.attrs.update({
             'direction': direction,
             'top_level': int(is_top_level),
             'bitwidth': findint(element, 'Value/bitwidth', 0),
-            'port_type': element.findtext('if_type', ''),
+            'port_type': element.findtext('if_type', '-1'),
 
-            'is_array': int(self.is_array),
-            'base_type': base_type,
+            'base_type': str(base_type),
             'dims': dims,
 
             'array_partition': 0,
@@ -303,18 +222,56 @@ class InstructionNode(CDFGNode):
     def __init__(
         self, 
         element: ET.Element, 
-        function_name: str,
+        function: str,
         resources: Optional[Dict[str, int]] = None,
+        array_info: Optional[ArrayInfo] = None
     ):
-        super().__init__(element, function_name)
+        super().__init__(element, function)
 
-        opcode = element.findtext('opcode', '')
-        if opcode == 'getelementptr':
-            self.label = 'gep'
+        self.is_array = array_info is not None
+        if self.is_array:
+            base_type = array_info.get('BaseType', -1)
+            self.total_size = max(1, array_info.get('TotalSize', 1))
+
+            dims = array_info.get('Dimensions', [])
+            num_dims = len(dims)
+            if num_dims > MAX_ARRAY_DIM:
+                # Truncate to MAX_ARRAY_DIM, multiplying the last dimension
+                # by the product of the remaining dimensions
+                for i in range(num_dims - 1, MAX_ARRAY_DIM - 1, -1):
+                    dims[i - 1] *= dims[i]
+                    dims.pop()
+            elif num_dims < MAX_ARRAY_DIM: # Pad with 1s
+                dims.extend([1] * (MAX_ARRAY_DIM - num_dims))
         else:
-            self.label = opcode
+            base_type = -1
+            self.total_size = 1
+            dims = [1] * MAX_ARRAY_DIM
+
+        self.opcode = element.findtext('opcode', '')
+        self.label = 'gep' if self.opcode == 'getelementptr' else self.opcode
 
         self.line_number = findint(element, 'Value/Obj/lineNumber', 0)
+
+        self.attrs.update({
+            'opcode': self.opcode,
+            'impl': element.findtext('Value/Obj/coreName', ''),
+            'bitwidth': findint(element, 'Value/bitwidth', 0),
+            'delay': findfloat(element, 'm_delay', 0.0),
+
+            'base_type': str(base_type),
+            'dims': dims,
+
+            'array_partition': 0,
+            'partition_type': [0, 0, 0],
+            'partition_dim': [0] * (MAX_ARRAY_DIM + 1),
+            'partition_factor': 0
+        })
+
+        self.operand_edges = [
+            int(edge.text) 
+            for edge in element.find('oprand_edges').findall('item')
+        ]
 
         if resources is not None:
             for resource_type in TARGET_RESOURCES:
@@ -322,18 +279,6 @@ class InstructionNode(CDFGNode):
         else:
             for resource_type in TARGET_RESOURCES:
                 self.attrs[resource_type] = 0
-
-        self.attrs.update({
-            'opcode': opcode,
-            'impl': element.findtext('Value/Obj/coreName', ''),
-            'bitwidth': findint(element, 'Value/bitwidth', 0),
-            'delay': findfloat(element, 'm_delay', 0.0),
-        })
-
-        self.operand_edges = [
-            int(edge.text) 
-            for edge in element.find('oprand_edges').findall('item')
-        ]
 
 
 class ConstantNode(CDFGNode):
@@ -343,7 +288,7 @@ class ConstantNode(CDFGNode):
         self.label = element.findtext('content', '')
         self.attrs.update({
             'bitwidth': findint(element, 'Value/bitwidth', 0),
-            'const_type': element.findtext('const_type', ''),
+            'const_type': element.findtext('const_type', '-1'),
         })
 
 
@@ -351,22 +296,22 @@ class BlockNode(CDFGNode):
     def __init__(
         self, 
         element: ET.Element, 
-        function_name: str,
+        function: str,
         instr_nodes: List[InstructionNode],
         node_id_map: Dict[int, Tuple[int, str]],
         instr_offset: int = 0
     ):
-        super().__init__(element, function_name)
+        super().__init__(element, function)
 
-        self.label = self.name
+        self.label = f"{self.function}/{self.name}"
         self.attrs = {resource_type: 0 for resource_type in TARGET_RESOURCES}
         self._parse_instrs(element, instr_nodes, node_id_map, instr_offset)
 
     def _parse_instrs(self, element, instr_nodes, node_id_map, instr_offset):
         self.instrs = []
         for instr in element.find('node_objs').findall('item'):
-            instr_id, instr_type = node_id_map.get(int(instr.text), (None, None))
-            if instr_id is None or instr_type != 'instr':
+            instr_id, _ = node_id_map.get(int(instr.text), (None, None))
+            if instr_id is None:
                 continue
             self.instrs.append(instr_id)
             instr_node = instr_nodes[instr_id - instr_offset]
@@ -377,7 +322,7 @@ class BlockNode(CDFGNode):
 
     def as_dict(self):
         return {
-            'name': self.name, 
+            'label': self.label, 
             'attributes': self.attrs,
             'instructions': self.instrs
         }
@@ -445,12 +390,9 @@ class CDFG:
     def _process_instrs(self, instrs, array_info_list):
         # Note: the 'nodes' section contains instructions and global variables
         # (represented as instructions with a 'GlobalMem' opcode)
-        self._alloca_array_map = {}
-        instr_offset = self._offsets['instr']
-        array_offset = self._offsets['array']
-        array_idx, instr_idx = 0, 0
+        offset = self._offsets['instr']
 
-        for elem in instrs.findall('item'):
+        for i, elem in enumerate(instrs.findall('item')):
             value = elem.find('Value')
             obj = elem.find('Obj') if value is None else value.find('Obj')
             if obj is None:
@@ -458,34 +400,21 @@ class CDFG:
             
             name = obj.findtext('name', '')
             rtl_name = obj.findtext('rtlName', '')
-            opcode = elem.findtext('opcode')
             resources = self._node_resource_map.get(rtl_name) if rtl_name else None
+            opcode = elem.findtext('opcode', '')
 
-            array_info = get_array_info(array_info_list, name, self.name)
-            if array_info is not None:
-                array_id = array_idx + array_offset
-                array_idx += 1
-
-                array_node = ArrayNode(array_info, array_id, resources)
-                self.nodes['array'].append(array_node)
-
-                if opcode == 'GlobalMem':
-                    if (node_id := findint(obj, 'id')) is None:
-                        raise ValueError("Element does not contain 'id' tag")
-                    self._node_id_map[node_id] = (array_id, 'array')
-                    continue
-                        
-            instr_node = InstructionNode(elem, self.name, resources)
-            instr_id = instr_idx + instr_offset
-            instr_idx += 1
-
-            self._node_id_map[instr_node.id] = (instr_id, 'instr')
-            instr_node.id = instr_id
-            self.nodes['instr'].append(instr_node)
-
-            if array_info is not None and opcode == 'alloca':
-                self.edges[('instr', 'alloca', 'array')].append((instr_id, array_id))
-                self._alloca_array_map[instr_id] = array_id
+            array_info = get_array_info(
+                array_info_list, name, self.name, 
+                is_global_mem=opcode == 'GlobalMem'
+            )
+            node = InstructionNode(
+                elem, self.name, 
+                resources=resources,
+                array_info=array_info
+            )
+            self._node_id_map[node.id] = (i + offset, 'instr')
+            node.id = i + offset
+            self.nodes['instr'].append(node)
 
     def _process_ports(self, ports, array_info_list):
         offset = self._offsets['port']
@@ -498,14 +427,17 @@ class CDFG:
             name = obj.findtext('name', '')
 
             array_info = get_array_info(array_info_list, name, self.name)
-            node = PortNode(elem, self.name, self.is_top_level, array_info)
+            node = PortNode(
+                elem, self.name, self.is_top_level, 
+                array_info=array_info
+            )
             self._node_id_map[node.id] = (i + offset, 'port')
             node.id = i + offset
             self.nodes['port'].append(node)
 
     def _process_consts(self, consts):
-        # Constant nodes with type 6 are used to represent 
-        # call edges and will be removed later
+        # Note: Constant nodes with type 6 are used to 
+        # represent call edges and will be removed later
         offset = self._offsets['const']
         dummy_consts = []
 
@@ -583,12 +515,6 @@ class CDFG:
                     self.function_calls.append((dst, callee_name))
                     continue
 
-            elif src_nt == "instr" and rel == "data":
-                src_node = self.nodes[src_nt][src - self._offsets[src_nt]]
-                if src_node.id in self._alloca_array_map:
-                    src = self._alloca_array_map[src_node.id]
-                    et = ('array', 'data', dst_nt)
-
             self.edges[et].append((src, dst))
 
         # Remove dummy constants (representing call edges)
@@ -634,7 +560,7 @@ class CDFG:
     def as_dict(self):
         return {
             'name': self.name,
-            'return_bitwidth': self.ret_bitwidth,
+            'bitwidth': self.ret_bitwidth,
             'nodes': {
                 nt: [n.as_dict() for n in nodes] 
                 for nt, nodes in self.nodes.items()
@@ -675,9 +601,11 @@ class VitisKernelInfo:
                 if key not in self.metrics:
                     self.metrics[key] = value
 
+        self.metrics['cc'] = rpt['cc']
+        self.metrics['time'] = rpt['time']
+
         self._offsets = {nt: 0 for nt in CDFG_NODE_TYPES}
         self._cdfgs = {}
-        self.region_hrchy = {}
 
         with open(array_info_path, 'r') as f:
             array_info_json = json.load(f)
@@ -697,17 +625,16 @@ class VitisKernelInfo:
                             value[j] = int(value[j].strip())
 
         with open(global_array_usage_path, 'r') as f:
-            global_array_usage_json = json.load(f)
+            global_array_usage = json.load(f)
 
-        if not global_array_usage_json:
+        if not global_array_usage:
             raise ValueError("Global array usage info is empty")
         
-        global_array_usage = global_array_usage_json.get('GlobalArrayUsageInfo')
+        global_array_usage = global_array_usage.get('GlobalArrayUsageInfo')
 
         try:
             self._process_adb_files(solution_dir, filtered, array_info_list)
             self._include_call_flow()
-            self._build_region_hrchy()
             self._complement_cdfg_edges(global_array_usage)
         except Exception as e:
             print(f"Error processing ADB files: {e}")
@@ -729,9 +656,7 @@ class VitisKernelInfo:
             tree = ET.parse(path)
             root = tree.getroot()
             cdfg = CDFG(
-                root, 
-                self.top_level_function, 
-                array_info_list, 
+                root, self.top_level_function, array_info_list, 
                 offsets=self._offsets
             )
             self._cdfgs[cdfg.name] = cdfg
@@ -754,108 +679,60 @@ class VitisKernelInfo:
                 callee_start = callee_cdfg.nodes['instr'][0]
                 self.edges[call_edge_type].append((function_call[0], callee_start.id))
 
-    def _build_region_hrchy(self):
-        offset = self._offsets['region']
-
-        for node in self.nodes['region']:
-            regions_above = set()
-            regions_below = set()
-            blocks = set(node.blocks)
-            instrs = set(node.instrs)
-
-            parents = set(node.parents)
-            while parents:
-                parent_id = parents.pop()
-                if parent_id not in regions_above:
-                    regions_above.add(parent_id)
-                    parents.update(self.nodes['region'][parent_id - offset].parents)
-            
-            children = set(node.sub_regions)
-            while children:
-                child_id = children.pop()
-                if child_id not in regions_below:
-                    regions_below.add(child_id)
-                    child_node = self.nodes['region'][child_id - offset]
-                    blocks.update(child_node.blocks)
-                    instrs.update(child_node.instrs)
-                    children.update(child_node.sub_regions)
-
-            self.region_hrchy[node.id] = {
-                'above': regions_above, 
-                'below': regions_below,
-                'block': blocks, 
-                'instr': instrs
-            }
-
     def _complement_cdfg_edges(self, global_array_usage):
-        def get_array_node(array_name):
-            for node in self.nodes['array']:
-                if node.name == array_name:
+        def get_global_array_node(array_name):
+            for node in self.nodes['instr']:
+                if (node.name == array_name 
+                    and node.attrs['opcode'] == 'GlobalMem'):
                     return node
             return None
         
-        def get_instr_node(instr_name, function_name, idx_in_function):
-            for node in self.nodes['instr']:
-                if node.function_name != function_name:
-                    continue
-
-                if instr_name:
-                    if node.name == instr_name:
-                        return node
-                else:               
-                    function = self._cdfgs.get(function_name)
-                    if function is None:
-                        continue
-
-                    instrs = function.nodes['instr']
-                    if idx_in_function < len(instrs):
-                        return instrs[idx_in_function]
-
-            return None
-        
         for array_info in global_array_usage:
-            array_node = get_array_node(array_info['Name'])
+            array_node = get_global_array_node(array_info['Name'])
             if array_node is None:
                 continue
 
-            for usage in array_info['Uses']:
-                instr_name = usage['Name']
-                function_name = usage['FunctionName']
-                idx = usage['Idx']
-                instr_node = get_instr_node(instr_name, function_name, idx)
-                if instr_node is not None:
-                    self.edges[('array', 'data', 'instr')].append(
-                        (array_node.id, instr_node.id)
-                    )
+            for array_use in array_info['Uses']:
+                function_name = array_use.get('FunctionName', '')
+                if not function_name:
+                    continue
 
-        # Add an (Array -> Instr) edge for each (Array -> ArrayElementPtr -> Instr) path
-        for array_id, ptr_id in self.edges.get(("array", "data", "const"), []):
-            for const_id, instr_id in self.edges.get(("const", "data", "instr"), []):
-                if ptr_id == const_id:
-                    self.edges[("array", "data", "instr")].append((array_id, instr_id))
+                cdfg = self._cdfgs.get(function_name)
+                if cdfg is None:
+                    continue
 
-        # Add an (Port -> Array) edge for each (Port -> ArrayElementPtr -> Instr) path
-        for port_id, ptr_id in self.edges.get(("port", "data", "const"), []):
-            for const_id, instr_id in self.edges.get(("const", "data", "instr"), []):
-                if ptr_id == const_id:
-                    self.edges[("port", "data", "instr")].append((port_id, instr_id))
+                instr_nodes = cdfg.nodes['instr']
+                instr_id = -1
+                instr_name = array_use.get('Name', '')
+                store_idx = array_use.get('StoreIdx', -1)
 
-        # Add an (StoreInstr -> Array) edge for each (Array -> StoreInstr) edge
-        for array_id, instr_id in self.edges.get(("array", "data", "instr"), []):
-            if self.nodes['instr'][instr_id].attrs['opcode'] == 'store':
-                self.edges[("instr", "store", "array")].append((instr_id, array_id))
+                if store_idx >= 0:
+                    store_count = 0
+                    for instr_node in instr_nodes:
+                        if instr_node.attrs.get('opcode', '') == 'store':
+                            if store_count == store_idx:
+                                instr_id = instr_node.id
+                                break
+                            store_count += 1
+                elif instr_name:
+                    for instr_node in instr_nodes:
+                        if (instr_node.name == instr_name
+                            and instr_node.attrs.get('opcode', '') in ['load', 'getelementptr']):
+                            instr_id = instr_node.id
+                            break
+                
+                if instr_id == -1:
+                    continue
 
-        # Add an (StoreInstr -> Port) edge for each (Port -> StoreInstr) edge
-        for port_id, instr_id in self.edges.get(("port", "data", "instr"), []):
-            if self.nodes['instr'][instr_id].attrs['opcode'] == 'store':
-                self.edges[("instr", "store", "port")].append((instr_id, port_id))
-
-        # Add an (StoreInstr -> AllocaInstr) edge for each (AllocaInstr -> StoreInstr) edge
-        for src_id, dst_id in self.edges.get(("instr", "data", "instr"), []):
-            src = self.nodes['instr'][src_id]
-            dst = self.nodes['instr'][dst_id]
-            if src.attrs['opcode'] == 'alloca' and dst.attrs['opcode'] == 'store':
-                self.edges[("instr", "store", "instr")].append((dst_id, src_id))
+                src, dst = array_node.id, instr_id
+                if not self._edge_exists(src, dst, ('instr', 'data', 'instr')):
+                    self.edges[('instr', 'data', 'instr')].append((src, dst))
+    
+    def _edge_exists(self, src: int, dst: int, edge_type: Tuple[str, str, str]) -> bool:
+        return any(
+            src == edge[0] and dst == edge[1] 
+            for edge in self.edges.get(edge_type, [])
+        )
 
     def as_dict(self):
         return {
@@ -885,14 +762,19 @@ class VitisKernelInfo:
 def get_array_info(
     array_info_list: List[ArrayInfo],
     array_name: str,
-    function_name: str
+    function_name: str,
+    is_global_mem: bool = False
 ) -> Optional[ArrayInfo]:
     for array_info in array_info_list:
         if array_info['Name'] == array_name:
-            other_function_name = array_info.get('FunctionName', '')
-            if (not other_function_name
-                or other_function_name == function_name):
+            if array_info.get('FunctionName', '') == function_name:
                 return array_info
+    # If no entry is found and `is_global_mem` is True, search for the global array
+    if is_global_mem:
+        for array_info in array_info_list:
+            if 'IsGlobal' in array_info and array_info['IsGlobal']:
+                if array_info['Name'] == array_name:
+                    return array_info
     # If no entry is found, search for the array name only
     for array_info in array_info_list:
         if array_info['Name'] == array_name:

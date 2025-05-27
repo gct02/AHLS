@@ -39,8 +39,11 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 62, "port": 26, "array": 26,
-    "const": 5, "block": 5, "region": 13
+    "instr": 62, 
+    "port": 26,
+    "const": 5, 
+    "block": 5,
+    "region": 13
 }
 
 
@@ -164,27 +167,34 @@ def to_hetero_data(
     return data
 
 
-def find_array_node(kernel_info, array_name, function_name, return_type=False):
-    for nt in ['port', 'array']:
-        for node in kernel_info.nodes.get(nt, []):
+def find_array_node(kernel_info, array_name, function_name, ret_node_type=False):
+    if function_name:
+        for node in kernel_info.nodes.get('port', []):
             if (node.name == array_name 
+                and node.attrs.get('array_partition', 0) == 0
                 and node.function_name == function_name):
-                if return_type:
-                    return node, nt
-                else:
-                    return node
+                return (node, 'port') if ret_node_type else node
+            
+    for node in kernel_info.nodes.get('instr', []):
+        if (node.opcode in ['alloca', 'GlobalMem']
+            and node.name == array_name 
+            and node.attrs.get('array_partition', 0) == 0
+            and node.function_name == function_name):
+            return (node, 'instr') if ret_node_type else node
+        
     # If not found, search for array_name only
-    for nt in ['port', 'array']:
-        for node in kernel_info.nodes.get(nt, []):
-            if node.name == array_name:
-                if return_type:
-                    return node, nt
-                else:
-                    return node
-    
-    if return_type:
-        return None, ''
-    return None
+    for node in kernel_info.nodes.get('port', []):
+        if (node.name == array_name 
+            and node.attrs.get('array_partition', 0) == 0):
+            return (node, 'port') if ret_node_type else node
+        
+    for node in kernel_info.nodes.get('instr', []):
+        if (node.opcode in ['alloca', 'GlobalMem']
+            and node.name == array_name 
+            and node.attrs.get('array_partition', 0) == 0):
+            return (node, 'instr') if ret_node_type else node
+
+    return (None, None) if ret_node_type else None
 
 
 def find_region_node(kernel_info, region_name, function_name):
@@ -229,9 +239,8 @@ def include_directive_info(
                 partition_factor = array_node.total_size
             array_node.attrs["partition_factor"] = partition_factor
 
-            partition_dim = [0] * 5
-            partition_dim[int(args.get("dim", 0))] = 1
-            array_node.attrs["partition_dim"] = partition_dim
+            partition_dim = int(args.get("dim", 0))
+            array_node.attrs["partition_dim"][partition_dim] = 1
 
             partition_type = args.get("type", "complete")
             if partition_type == "complete":
@@ -257,7 +266,6 @@ def include_directive_info(
                 continue
             
             region_node.attrs[dct] = 1
-
             if dct == "unroll":
                 unroll_factor = int(args.get("factor", 0))
                 if unroll_factor <= 0:
@@ -321,7 +329,6 @@ def plot_data(
     node_color_dict = {
         "instr": "#419ada",
         "port": "#1ecf89",
-        "array": "#ec3c94",
         "const": "#aa6df0",
         "block": "#c9a24e",
         "region": "#d84c4c",
@@ -330,16 +337,11 @@ def plot_data(
         ("const", "data", "instr"): "#5fdde0",
         ("instr", "data", "instr"): "#00bcd4",
         ("port", "data", "instr"): "#00a1b3",
-        ("array", "data", "instr"): "#008c9e",
-        ("array", "data", "const"): "#249741",
+        ("instr", "data", "const"): "#249741",
         ("port", "data", "const"): "#249741",
         ("block", "control", "instr"): "#ddb753",
         ("block", "control", "block"): "#ddb753",
         ("instr", "mem", "instr"): "#e73939",
-        ("instr", "store", "array"): "#aa603e",
-        ("instr", "store", "instr"): "#aa603e",
-        ("instr", "store", "port"): "#aa603e",
-        ("instr", "alloca", "array"): "#c24a94",
         ("instr", "call", "instr"): "#8040c9",
         ("region", "hrchy", "region"): "#aab2b9",
         ("region", "hrchy", "block"): "#aab2b9",

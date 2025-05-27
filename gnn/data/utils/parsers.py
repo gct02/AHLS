@@ -140,34 +140,6 @@ def extract_impl_report(solution_dir, filtered=False) -> Dict[str, Union[Report,
     reports['power'] = extract_power_report(solution_dir, filtered)
     reports['cc'] = extract_hls_cc_report(solution_dir, filtered)
     reports['time'] = reports['timing']['achieved_clk'] * reports['cc']
-
-    try:
-        rpt_dir = _find_report_folder(solution_dir, filtered)
-    except ValueError as e:
-        print(e)
-        return None
-    
-    rpt_path = rpt_dir + 'export_impl.xml'
-    if not os.path.exists(rpt_path):
-        print(f'Implementation report not found in {solution_dir}')
-        return None
-    
-    tree = ET.parse(rpt_path)
-    root = tree.getroot()
-
-    module_data = {}
-    for module in root.find('RtlModules').findall('RtlModule'):
-        name = module.attrib['DISPNAME']
-        data = {"LUT": 0, "FF": 0, "BRAM": 0, "DSP": 0}
-        resources = module.find('Resources')
-        if resources is not None:
-            data['LUT'] = int(resources.attrib.get('LUT', 0))
-            data['FF'] = int(resources.attrib.get('FF', 0))
-            data['BRAM'] = int(resources.attrib.get('BRAM', 0))
-            data['DSP'] = int(resources.attrib.get('DSP', 0))
-        module_data[name] = data
-    
-    reports['module_data'] = module_data
     return reports
 
 
