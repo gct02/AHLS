@@ -83,7 +83,7 @@ class HLSDataset(Dataset):
         if scale_features:
             if not feature_ranges:
                 self.feature_ranges = _compute_feature_ranges(
-                    self._full_dir, metric, self.benchmarks
+                    self._full_dir, self.benchmarks
                 )
             else:
                 self.feature_ranges = feature_ranges
@@ -219,15 +219,15 @@ class HLSDataset(Dataset):
     
 
 def _compute_feature_ranges(
-    dataset_dir: str, metric: str,
+    dataset_dir: str,
     benchmarks: Optional[Union[str, List[str]]] = None
-) -> Dict[NodeType, Dict[NodeType, Tuple[Tensor, Tensor]]]:
+) -> Dict[NodeType, Tuple[Tensor, Tensor]]:
     if benchmarks is None:
         benchmarks = sorted(os.listdir(dataset_dir))
     elif isinstance(benchmarks, str):
         benchmarks = [benchmarks]
 
-    feature_ranges = {}
+    feat_ranges = {}
     for bench in benchmarks:
         bench_dir = os.path.join(dataset_dir, bench)
         if not os.path.isdir(bench_dir):
@@ -252,10 +252,11 @@ def _compute_feature_ranges(
             with open(metrics_path, 'r') as f:
                 metrics = json.load(f)
 
-            target = float(metrics.get(metric, -1.0)) if metrics else -1.0
-            if target < 0:
-                print(f"Skipping {sol} (target value not found)")
-                continue
+            for metric in AVAILABLE_RESOURCES.keys():
+                target = float(metrics.get(metric, -1.0)) if metrics else -1.0
+                if target < 0:
+                    print(f"Skipping {sol} (missing reports for {metric})")
+                    continue
 
             data = torch.load(graph_path)
 
@@ -264,14 +265,13 @@ def _compute_feature_ranges(
                     continue
                 mins = torch.min(x, dim=0).values
                 maxs = torch.max(x, dim=0).values
-                if nt not in feature_ranges:
-                    feature_ranges[nt] = [mins, maxs]
+                if nt not in feat_ranges:
+                    feat_ranges[nt] = (mins, maxs)
                 else:
-                    ranges = feature_ranges[nt]
-                    feature_ranges[nt][0] = torch.minimum(ranges[0], mins)
-                    feature_ranges[nt][1] = torch.maximum(ranges[1], maxs)
+                    ranges = feat_ranges[nt]
+                    feat_ranges[nt] = (
+                        torch.minimum(ranges[0], mins), 
+                        torch.maximum(ranges[1], maxs)
+                    )
 
-    for nt, (mins, maxs) in feature_ranges.items():
-        feature_ranges[nt] = (mins, maxs)
-
-    return feature_ranges
+    return feat_ranges

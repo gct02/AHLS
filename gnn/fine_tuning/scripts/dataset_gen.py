@@ -8,7 +8,7 @@ from random import randint
 from hls.hls_config import gen_design_config_tcl   
 
 
-NUM_FINE_TUNING_SAMPLES = 10
+NUM_INSTANCES = 10
 
 
 class DatasetGenerator:
@@ -148,7 +148,7 @@ class DatasetGenerator:
             parent_proc = psutil.Process(proc.pid)
 
             while parent_proc.is_running() and parent_proc.status() != psutil.STATUS_ZOMBIE:
-                time.sleep(60)
+                time.sleep(30)
 
                 completed, rpts_generated = self._check_run_completion(solution_dir)
                 elapsed_time = time.time() - start_time
@@ -159,7 +159,7 @@ class DatasetGenerator:
                     elif completed:
                         print(f'Run was successful but some reports were not generated'
                               f' ({solution_name}).')
-                        time.sleep(60)
+                        time.sleep(30)
                     else:
                         print(f'Run exceeded time limit ({solution_name}).')
 
@@ -175,11 +175,15 @@ class DatasetGenerator:
             return False
         
     def _check_run_completion(self, solution_dir: Path):
-        impl_dir = solution_dir / 'impl/verilog/project.runs/impl_1'
+        impl_dir = solution_dir / 'impl'
         if not impl_dir.is_dir():
             return False, False
         
-        log_file = impl_dir / 'runme.log'
+        run_dir = impl_dir / 'verilog/project.runs/impl_1'
+        if not run_dir.is_dir():
+            return False, False
+        
+        log_file = run_dir / 'runme.log'
         if not log_file.is_file():
             return False, False
 
@@ -189,12 +193,12 @@ class DatasetGenerator:
         if text.find('route_design completed successfully') == -1:
             return False, False
         
-        if ((impl_dir / 'bd_0_wrapper_utilization_placed.rpt').is_file()
-            and (impl_dir / 'bd_0_wrapper_power_routed.rpt').is_file()
-            and (impl_dir / 'bd_0_wrapper_timing_summary_routed.rpt').is_file()):
-            return True, True
+        summary_file = impl_dir / 'reports/verilog/export_impl.xml'
+        power_rpt_file = run_dir / 'bd_0_wrapper_power_routed.rpt'
+        if not summary_file.is_file() or not power_rpt_file.is_file():
+            return True, False
         
-        return True, False
+        return True, True
 
     def _build_label_dct_dict(self, dct_config):
         label_dct_dict = {}
@@ -327,7 +331,7 @@ if __name__ == "__main__":
                         help='Filter directives')
     parser.add_argument('-k', '--kernel-info-path', type=str,
                         help='Path to kernel info JSON file')
-    parser.add_argument('-n', '--num_instances', type=int, default=NUM_FINE_TUNING_SAMPLES, 
+    parser.add_argument('-n', '--num_instances', type=int, default=NUM_INSTANCES, 
                         help='Max instances to generate')
     parser.add_argument('-t', '--synth_timeout', type=int, default=3600, 
                         help='Synthesis timeout in seconds')
@@ -335,10 +339,14 @@ if __name__ == "__main__":
                         help='Resume from last run')
     parser.add_argument('-v', '--vitis_run_script', type=str, default='./hls/run_vitis.sh',
                         help='Path to Vitis run script')
-    parser.add_argument('-np', '--num_pipelines', type=int, default=2,
+    parser.add_argument('-np', '--max_pipelines', type=int, default=5,
                         help='Number of pipeline directives to include')
-    parser.add_argument('-nu', '--num_unrolls', type=int, default=1,
+    parser.add_argument('-nu', '--max_unrolls', type=int, default=3,
                         help='Number of unroll directives to include')
+    parser.add_argument('-iap', '--max_if_partitions', type=int, default=-1,
+                        help='Max number of array partitions on interfaces to include')
+    parser.add_argument('-nap', '--max_non_if_partitions', type=int, default=2,
+                        help='Max number of array partitions (excluding arrays on the interface) to include')
 
     args = parser.parse_args()
 
@@ -349,7 +357,7 @@ if __name__ == "__main__":
 
     if args.filter_dct:
         import pickle
-        from gnn.fine_tuning.hls_dct_config import filter_directive_groups
+        from gnn.fine_tuning.data.directive_filtering import filter_directives
 
         if not args.kernel_info_path:
             print('Kernel info path is required when filtering directives.')
@@ -363,12 +371,14 @@ if __name__ == "__main__":
             kernel_info = pickle.load(f)
 
         dct_config_path = Path(args.dct_config_path).parent / f'{dct_config_path.stem}_filtered.json'
-        filter_directive_groups(
+        filter_directives(
             args.dct_config_path,
             dct_config_path,
             kernel_info,
-            num_pipelines=args.num_pipelines,
-            num_unrolls=args.num_unrolls
+            max_if_partitions=args.max_if_partitions,
+            max_non_if_partitions=args.max_non_if_partitions,
+            max_pipelines=args.max_pipelines,
+            max_unrolls=args.max_unrolls
         )
 
     generator = DatasetGenerator(

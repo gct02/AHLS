@@ -117,7 +117,9 @@ class HGT(nn.Module):
         self.graph_mlp = nn.Sequential(
             Linear(emb_dim, hid_dim[-1]), 
             nn.LayerNorm(hid_dim[-1]), nn.GELU(), nn.Dropout(dropout),
-            Linear(hid_dim[-1], 64),  
+            Linear(hid_dim[-1], 128),  
+            nn.LayerNorm(128), nn.GELU(), nn.Dropout(dropout),
+            Linear(128, 64),
             nn.LayerNorm(64), nn.GELU(), nn.Dropout(dropout),
             Linear(64, out_channels)
         )
@@ -146,8 +148,19 @@ class HGT(nn.Module):
 
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
-        x_dict, edge_index_dict, batch_dict = data.x_dict, data.edge_index_dict, data.batch_dict
-        batch_size = self._get_batch_size(batch_dict)
+        x_dict = data.x_dict
+        edge_index_dict = data.edge_index_dict
+        
+        if hasattr(data, 'batch_dict'):
+            batch_dict = data.batch_dict
+            batch_size = self._get_batch_size(batch_dict)
+        else:
+            for nt, x in x_dict.items():
+                if x.size(0) > 0:
+                    batch_dict = {nt: torch.zeros(x.size(0), dtype=torch.long)}
+                else:
+                    batch_dict = {nt: torch.tensor([], dtype=torch.long)}
+            batch_size = 0
         
         # Input projection layer
         x_dict = self.proj_in(x_dict)

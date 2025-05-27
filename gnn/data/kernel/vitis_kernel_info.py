@@ -456,10 +456,6 @@ class CDFG:
             if obj is None:
                 raise ValueError("Element does not contain 'Obj' or 'Value/Obj' tag")
             
-            node_id = findint(obj, 'id')
-            if node_id is None:
-                raise ValueError("Element does not contain 'id' tag")
-            
             name = obj.findtext('name', '')
             rtl_name = obj.findtext('rtlName', '')
             opcode = elem.findtext('opcode')
@@ -474,6 +470,8 @@ class CDFG:
                 self.nodes['array'].append(array_node)
 
                 if opcode == 'GlobalMem':
+                    if (node_id := findint(obj, 'id')) is None:
+                        raise ValueError("Element does not contain 'id' tag")
                     self._node_id_map[node_id] = (array_id, 'array')
                     continue
                         

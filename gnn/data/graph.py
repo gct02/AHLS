@@ -39,7 +39,7 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 62, "port": 7, "array": 30,
+    "instr": 62, "port": 26, "array": 26,
     "const": 5, "block": 5, "region": 13
 }
 
@@ -164,17 +164,26 @@ def to_hetero_data(
     return data
 
 
-def find_array_node(kernel_info, array_name, function_name):
+def find_array_node(kernel_info, array_name, function_name, return_type=False):
     for nt in ['port', 'array']:
         for node in kernel_info.nodes.get(nt, []):
             if (node.name == array_name 
                 and node.function_name == function_name):
-                return node
+                if return_type:
+                    return node, nt
+                else:
+                    return node
     # If not found, search for array_name only
     for nt in ['port', 'array']:
         for node in kernel_info.nodes.get(nt, []):
             if node.name == array_name:
-                return node
+                if return_type:
+                    return node, nt
+                else:
+                    return node
+    
+    if return_type:
+        return None, ''
     return None
 
 

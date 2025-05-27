@@ -45,8 +45,8 @@ def plot_learning_curves(
     if best_epoch is not None:
         ax.axvline(best_epoch, color='blue', linestyle='--', alpha=0.7)
         ax.text(
-            best_epoch + 0.5, np.max(test_errors), f'Best Epoch: {best_epoch}', 
-            color='blue', fontsize=10
+            best_epoch, np.max(test_errors), 
+            f'Best Epoch: {best_epoch}', color='blue', fontsize=10
         )
     if np.max(test_errors) / np.min(test_errors) > 100:
         plt.yscale('log')
@@ -116,6 +116,7 @@ def plot_prediction_bars(
     preds = [r[0] for r in test_results[epoch]]
     errors = [mape(p, t).item() for p, t in zip(preds, targets)]
     indices = copy.deepcopy(solution_indices)
+    x = list(range(len(indices)))
 
     df = pd.DataFrame({
         'index': indices,
@@ -128,12 +129,12 @@ def plot_prediction_bars(
     _, ax = plt.subplots(figsize=(16, 6), dpi=180)
     sns.set_style("whitegrid")
 
-    ax.bar(indices, df['target'], color='blue', alpha=0.5, label='Targets')
-    ax.bar(indices, df['prediction'], color='darkorange', alpha=0.5, label='Predictions')
+    ax.bar(x, df['target'], color='blue', alpha=0.5, label='Targets')
+    ax.bar(x, df['prediction'], color='darkorange', alpha=0.5, label='Predictions')
 
     max_val = max(df['target'].max(), df['prediction'].max())
     ax.set_ylim(0, max_val * 1.2)
-    ax.set_xlim(indices[0] - 1, indices[-1] + 1)
+    ax.set_xlim(x[0] - 1, x[-1] + 1)
 
     for i, row in df.iterrows():
         p, t, r = row['prediction'], row['target'], row['error']
@@ -143,7 +144,7 @@ def plot_prediction_bars(
         )
 
     ax.grid(axis='y', linestyle='--', alpha=0.7)
-    ax.set_xticks(indices)
+    ax.set_xticks(x)
     ax.set_xticklabels(
         df['index'], rotation=90, ha='center', va='top', fontsize=4, alpha=0.9
     )

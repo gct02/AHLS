@@ -1,0 +1,10 @@
+{
+    "ADPCM": "adpcm_main",
+    "AES": "aes_main",
+    "GEMM": "bbgemm",
+    "GSM": "Gsm_LPC_Analysis",
+    "KNN": "md_kernel",
+    "SHA": "sha_stream",
+    "STENCIL3D": "stencil3d",
+    "TRANS_FFT": "fft1D_512"
+}
