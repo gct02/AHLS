@@ -339,14 +339,6 @@ if __name__ == "__main__":
                         help='Resume from last run')
     parser.add_argument('-v', '--vitis_run_script', type=str, default='./hls/run_vitis.sh',
                         help='Path to Vitis run script')
-    parser.add_argument('-np', '--max_pipelines', type=int, default=5,
-                        help='Number of pipeline directives to include')
-    parser.add_argument('-nu', '--max_unrolls', type=int, default=3,
-                        help='Number of unroll directives to include')
-    parser.add_argument('-iap', '--max_if_partitions', type=int, default=-1,
-                        help='Max number of array partitions on interfaces to include')
-    parser.add_argument('-nap', '--max_non_if_partitions', type=int, default=2,
-                        help='Max number of array partitions (excluding arrays on the interface) to include')
 
     args = parser.parse_args()
 

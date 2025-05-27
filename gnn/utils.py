@@ -1,7 +1,7 @@
 import torch
 
 
-def mape(pred, target):
+def percentage_diff(pred, target):
     pred, target = map(torch.as_tensor, (pred, target))
     avg = (torch.abs(pred) + torch.abs(target)) / 2
     return torch.where(

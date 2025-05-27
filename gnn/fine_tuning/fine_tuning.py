@@ -70,7 +70,6 @@ def load_model(
     model_args['dropout'] = dropout
     model = HGT(**model_args)
     model.load_state_dict(torch.load(model_path, map_location=DEVICE))
-
     return model.to(DEVICE)
 
 
@@ -83,7 +82,7 @@ def main(args: Dict[str, str]):
     feature_ranges_path = args.get("feature_ranges", "")
     target_metric = args.get("target", "snru")
     epochs = int(args.get("epochs", 10))
-    lr = float(args.get("learning_rate", 1e-5))
+    lr = float(args.get("learning_rate", 1e-4))
     dropout = float(args.get("dropout", 0.3))
     output_dir = args.get("output_dir", "")
 
@@ -117,7 +116,7 @@ def main(args: Dict[str, str]):
             pretraining_args = pickle.load(f)
 
         betas = pretraining_args.get('betas', (0.9, 0.999))
-        weight_decay = pretraining_args.get('weight_decay', 5e-4)
+        weight_decay = pretraining_args.get('weight_decay', 1e-4)
     
         loss = pretraining_args.get('loss', 'mse')
         if loss == 'mse':
@@ -133,20 +132,15 @@ def main(args: Dict[str, str]):
         max_norm = pretraining_args.get('max_norm', 5.0)
     else:
         betas = (0.9, 0.999)
-        weight_decay = 5e-4
+        weight_decay = 1e-4
         loss_fn = nn.MSELoss()
         max_norm = 5.0
 
-    # optimizer = torch.optim.AdamW(
-    #     model.parameters(), 
-    #     lr=lr,
-    #     betas=betas,
-    #     weight_decay=weight_decay
-    # )
-    optimizer = torch.optim.Adam(
+    optimizer = torch.optim.AdamW(
         model.parameters(), 
         lr=lr,
-        betas=betas
+        betas=betas,
+        weight_decay=weight_decay
     )
     
     # Fine-tune the model

@@ -86,7 +86,7 @@ def parse_args():
                         help="Signal that the dataset is filtered")
     parser.add_argument("-k", "--kernel-name", required=True,
                         help="Name of the kernel to process")
-    parser.add_argument("-t", "--top-fn", required=True,
+    parser.add_argument("-tf", "--top-fn", required=True,
                         help="Name of the kernel top function")
     parser.add_argument("-b", "--base-sol-dir", type=str,
                         help="Path to the base solution directory")
