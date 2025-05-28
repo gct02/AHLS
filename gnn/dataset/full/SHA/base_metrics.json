@@ -9,5 +9,7 @@
   "dsp": 0,
   "total_power": 2.254,
   "dynamic_power": 0.041,
-  "static_power": 2.213
+  "static_power": 2.213,
+  "cc": 124779,
+  "time": 417760.092
 }

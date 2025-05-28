@@ -39,8 +39,8 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 62, 
-    "port": 26,
+    "instr": 80, 
+    "port": 25,
     "const": 5, 
     "block": 5,
     "region": 13
@@ -172,14 +172,14 @@ def find_array_node(kernel_info, array_name, function_name, ret_node_type=False)
         for node in kernel_info.nodes.get('port', []):
             if (node.name == array_name 
                 and node.attrs.get('array_partition', 0) == 0
-                and node.function_name == function_name):
+                and node.function == function_name):
                 return (node, 'port') if ret_node_type else node
             
     for node in kernel_info.nodes.get('instr', []):
         if (node.opcode in ['alloca', 'GlobalMem']
             and node.name == array_name 
             and node.attrs.get('array_partition', 0) == 0
-            and node.function_name == function_name):
+            and node.function == function_name):
             return (node, 'instr') if ret_node_type else node
         
     # If not found, search for array_name only
@@ -200,7 +200,7 @@ def find_array_node(kernel_info, array_name, function_name, ret_node_type=False)
 def find_region_node(kernel_info, region_name, function_name):
     for node in kernel_info.nodes.get('region', []):
         if (node.name == region_name
-            and node.function_name == function_name):
+            and node.function == function_name):
             return node
     # If not found, search for region_name only
     for node in kernel_info.nodes.get('region', []):
