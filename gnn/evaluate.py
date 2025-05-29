@@ -8,7 +8,7 @@ import torch.nn as nn
 
 from torch_geometric.loader import DataLoader
 
-from gnn.models import HGT
+from gnn.models import HLSQoREstimator
 from gnn.data.dataset import HLSDataset
 from gnn.analysis import plot_prediction_bars
 from gnn.utils import percentage_diff
@@ -48,7 +48,7 @@ def load_model(model_path: str, model_args_path: str) -> nn.Module:
     with open(model_args_path, 'rb') as f:
         model_args = pickle.load(f)
 
-    model = HGT(**model_args)
+    model = HLSQoREstimator(**model_args)
     model.load_state_dict(torch.load(model_path, map_location=DEVICE))
     return model
 

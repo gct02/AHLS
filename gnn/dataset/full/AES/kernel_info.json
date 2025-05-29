@@ -90956,13 +90956,6 @@
     "block": [
       {
         "label": "AddRoundKey/entry",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 5
-        },
         "instructions": [
           0,
           1,
@@ -90973,13 +90966,6 @@
       },
       {
         "label": "AddRoundKey/for.inc",
-        "attributes": {
-          "FF": 0,
-          "LUT": 22,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 4
-        },
         "instructions": [
           5,
           6,
@@ -90989,13 +90975,6 @@
       },
       {
         "label": "AddRoundKey/for.inc.split",
-        "attributes": {
-          "FF": 0,
-          "LUT": 200,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 46
-        },
         "instructions": [
           9,
           10,
@@ -91047,26 +91026,12 @@
       },
       {
         "label": "AddRoundKey/for.end",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 1
-        },
         "instructions": [
           55
         ]
       },
       {
         "label": "aes_main/aes_main",
-        "attributes": {
-          "FF": 1660,
-          "LUT": 8192,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           56,
           57,
@@ -91075,13 +91040,6 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/entry",
-        "attributes": {
-          "FF": 32,
-          "LUT": 33,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 6
-        },
         "instructions": [
           60,
           61,
@@ -91093,13 +91051,6 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/for.inc",
-        "attributes": {
-          "FF": 0,
-          "LUT": 22,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 4
-        },
         "instructions": [
           66,
           67,
@@ -91109,13 +91060,6 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/for.inc.split",
-        "attributes": {
-          "FF": 0,
-          "LUT": 200,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 46
-        },
         "instructions": [
           70,
           71,
@@ -91167,13 +91111,6 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1.preheader",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           116,
           117,
@@ -91182,13 +91119,6 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1",
-        "attributes": {
-          "FF": 0,
-          "LUT": 22,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 4
-        },
         "instructions": [
           119,
           120,
@@ -91198,13 +91128,6 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1.split",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           123,
           124,
@@ -91213,13 +91136,6 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/for.body36",
-        "attributes": {
-          "FF": 0,
-          "LUT": 22,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 4
-        },
         "instructions": [
           126,
           127,
@@ -91229,13 +91145,6 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/for.body36.split",
-        "attributes": {
-          "FF": 0,
-          "LUT": 1560,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 113
-        },
         "instructions": [
           130,
           131,
@@ -91354,13 +91263,6 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/for.inc193",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 2
-        },
         "instructions": [
           243,
           244
@@ -91368,13 +91270,6 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/for.inc229.preheader",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           245,
           246,
@@ -91383,13 +91278,6 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/for.inc229",
-        "attributes": {
-          "FF": 0,
-          "LUT": 22,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 4
-        },
         "instructions": [
           248,
           249,
@@ -91399,13 +91287,6 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/for.inc229.split",
-        "attributes": {
-          "FF": 0,
-          "LUT": 12,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 27
-        },
         "instructions": [
           252,
           253,
@@ -91438,26 +91319,12 @@
       },
       {
         "label": "AddRoundKey_InversMixColumn/for.end231",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 1
-        },
         "instructions": [
           279
         ]
       },
       {
         "label": "MixColumn_AddRoundKey/entry",
-        "attributes": {
-          "FF": 32,
-          "LUT": 33,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 6
-        },
         "instructions": [
           280,
           281,
@@ -91469,13 +91336,6 @@
       },
       {
         "label": "MixColumn_AddRoundKey/for.body",
-        "attributes": {
-          "FF": 0,
-          "LUT": 22,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 4
-        },
         "instructions": [
           286,
           287,
@@ -91485,13 +91345,6 @@
       },
       {
         "label": "MixColumn_AddRoundKey/for.body.split",
-        "attributes": {
-          "FF": 0,
-          "LUT": 1536,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 110
-        },
         "instructions": [
           290,
           291,
@@ -91607,13 +91460,6 @@
       },
       {
         "label": "MixColumn_AddRoundKey/for.inc266.preheader",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           400,
           401,
@@ -91622,13 +91468,6 @@
       },
       {
         "label": "MixColumn_AddRoundKey/for.inc266",
-        "attributes": {
-          "FF": 0,
-          "LUT": 22,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 4
-        },
         "instructions": [
           403,
           404,
@@ -91638,13 +91477,6 @@
       },
       {
         "label": "MixColumn_AddRoundKey/for.inc266.split",
-        "attributes": {
-          "FF": 0,
-          "LUT": 12,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 27
-        },
         "instructions": [
           407,
           408,
@@ -91677,26 +91509,12 @@
       },
       {
         "label": "MixColumn_AddRoundKey/for.end268",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 1
-        },
         "instructions": [
           434
         ]
       },
       {
         "label": "InversShiftRow_ByteSub/InversShiftRow_ByteSub",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 129
-        },
         "instructions": [
           435,
           436,
@@ -91831,13 +91649,6 @@
       },
       {
         "label": "ByteSub_ShiftRow/ByteSub_ShiftRow",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 129
-        },
         "instructions": [
           565,
           566,
@@ -91972,13 +91783,6 @@
       },
       {
         "label": "encrypt/entry",
-        "attributes": {
-          "FF": 405,
-          "LUT": 1272,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 5
-        },
         "instructions": [
           695,
           696,
@@ -91989,13 +91793,6 @@
       },
       {
         "label": "encrypt/for.inc",
-        "attributes": {
-          "FF": 0,
-          "LUT": 12,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           700,
           701,
@@ -92004,13 +91801,6 @@
       },
       {
         "label": "encrypt/for.inc.split",
-        "attributes": {
-          "FF": 422,
-          "LUT": 2336,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 5
-        },
         "instructions": [
           703,
           704,
@@ -92021,13 +91811,6 @@
       },
       {
         "label": "encrypt/for.end",
-        "attributes": {
-          "FF": 244,
-          "LUT": 750,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           708,
           709,
@@ -92036,13 +91819,6 @@
       },
       {
         "label": "KeySchedule/entry",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           711,
           712,
@@ -92051,13 +91827,6 @@
       },
       {
         "label": "KeySchedule/KeySchedule_label5",
-        "attributes": {
-          "FF": 0,
-          "LUT": 22,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 4
-        },
         "instructions": [
           714,
           715,
@@ -92067,13 +91836,6 @@
       },
       {
         "label": "KeySchedule/KeySchedule_label5.split",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           718,
           719,
@@ -92082,13 +91844,6 @@
       },
       {
         "label": "KeySchedule/for.inc",
-        "attributes": {
-          "FF": 0,
-          "LUT": 22,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 4
-        },
         "instructions": [
           721,
           722,
@@ -92098,13 +91853,6 @@
       },
       {
         "label": "KeySchedule/for.inc.split",
-        "attributes": {
-          "FF": 0,
-          "LUT": 30,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 16
-        },
         "instructions": [
           725,
           726,
@@ -92126,13 +91874,6 @@
       },
       {
         "label": "KeySchedule/for.inc16",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 2
-        },
         "instructions": [
           741,
           742
@@ -92140,13 +91881,6 @@
       },
       {
         "label": "KeySchedule/KeySchedule_label7.preheader",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           743,
           744,
@@ -92155,13 +91889,6 @@
       },
       {
         "label": "KeySchedule/KeySchedule_label7",
-        "attributes": {
-          "FF": 0,
-          "LUT": 13,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           746,
           747,
@@ -92170,13 +91897,6 @@
       },
       {
         "label": "KeySchedule/KeySchedule_label7.split_ifconv",
-        "attributes": {
-          "FF": 0,
-          "LUT": 538,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 122
-        },
         "instructions": [
           749,
           750,
@@ -92304,13 +92024,6 @@
       },
       {
         "label": "KeySchedule/for.inc133",
-        "attributes": {
-          "FF": 0,
-          "LUT": 22,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 5
-        },
         "instructions": [
           871,
           872,
@@ -92321,13 +92034,6 @@
       },
       {
         "label": "KeySchedule/for.inc133.split",
-        "attributes": {
-          "FF": 0,
-          "LUT": 100,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 15
-        },
         "instructions": [
           876,
           877,
@@ -92348,13 +92054,6 @@
       },
       {
         "label": "KeySchedule/for.inc136",
-        "attributes": {
-          "FF": 0,
-          "LUT": 13,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           891,
           892,
@@ -92363,26 +92062,12 @@
       },
       {
         "label": "KeySchedule/cleanup",
-        "attributes": {
-          "FF": 0,
-          "LUT": 0,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 1
-        },
         "instructions": [
           894
         ]
       },
       {
         "label": "decrypt/entry",
-        "attributes": {
-          "FF": 557,
-          "LUT": 1744,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 6
-        },
         "instructions": [
           897,
           898,
@@ -92394,13 +92079,6 @@
       },
       {
         "label": "decrypt/for.inc",
-        "attributes": {
-          "FF": 0,
-          "LUT": 12,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 3
-        },
         "instructions": [
           903,
           904,
@@ -92409,13 +92087,6 @@
       },
       {
         "label": "decrypt/for.inc.split",
-        "attributes": {
-          "FF": 382,
-          "LUT": 2614,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 5
-        },
         "instructions": [
           906,
           907,
@@ -92426,13 +92097,6 @@
       },
       {
         "label": "decrypt/for.end",
-        "attributes": {
-          "FF": 92,
-          "LUT": 278,
-          "DSP": 0,
-          "BRAM": 0,
-          "num_instrs": 2
-        },
         "instructions": [
           911,
           912
@@ -100226,227 +99890,227 @@
       ],
       [
         59,
-        23
+        46
       ],
       [
         59,
-        20
+        39
       ],
       [
         59,
-        17
+        32
       ],
       [
         59,
-        14
+        24
       ],
       [
         59,
-        84
+        107
       ],
       [
         59,
-        81
+        100
       ],
       [
         59,
-        78
+        93
       ],
       [
         59,
-        75
+        85
       ],
       [
         59,
-        885
+        889
       ],
       [
         59,
-        882
+        886
       ],
       [
         59,
-        765
+        772
       ],
       [
         59,
-        764
+        770
       ],
       [
         59,
-        761
+        768
       ],
       [
         59,
-        758
+        766
       ],
       [
         59,
-        733
+        741
       ],
       [
         59,
-        335
+        392
       ],
       [
         59,
-        332
+        374
       ],
       [
         59,
-        329
+        355
       ],
       [
         59,
-        326
+        336
       ],
       [
         564,
-        559
+        560
       ],
       [
         564,
-        551
+        552
       ],
       [
         564,
-        543
+        544
       ],
       [
         564,
-        535
+        536
       ],
       [
         564,
-        526
+        527
       ],
       [
         564,
-        518
+        519
       ],
       [
         564,
-        510
+        511
       ],
       [
         564,
-        503
+        504
       ],
       [
         564,
-        494
+        495
       ],
       [
         564,
-        487
+        488
       ],
       [
         564,
-        478
+        479
       ],
       [
         564,
-        471
+        472
       ],
       [
         564,
-        462
+        463
       ],
       [
         564,
-        454
+        455
       ],
       [
         564,
-        446
+        447
       ],
       [
         564,
-        439
+        440
       ],
       [
         694,
-        689
+        690
       ],
       [
         694,
-        681
+        682
       ],
       [
         694,
-        673
+        674
       ],
       [
         694,
-        665
+        666
       ],
       [
         694,
-        656
+        657
       ],
       [
         694,
-        648
+        649
       ],
       [
         694,
-        640
+        641
       ],
       [
         694,
-        633
+        634
       ],
       [
         694,
-        624
+        625
       ],
       [
         694,
-        617
+        618
       ],
       [
         694,
-        608
+        609
       ],
       [
         694,
-        601
+        602
       ],
       [
         694,
-        592
+        593
       ],
       [
         694,
-        584
+        585
       ],
       [
         694,
-        576
+        577
       ],
       [
         694,
-        569
+        570
       ],
       [
         895,
-        861
+        862
       ],
       [
         895,
-        840
+        841
       ],
       [
         895,
-        819
+        820
       ],
       [
         895,
-        792
+        793
       ],
       [
         896,
-        797
+        798
       ]
     ],
     "port__data__instr": [

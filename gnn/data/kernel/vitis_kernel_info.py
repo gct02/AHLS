@@ -144,7 +144,8 @@ class RegionNode(Node):
     
     def _extract_items(self, element, tag):
         return [
-            int(item.text) for item in element.find(tag).findall('item')
+            int(item.text) 
+            for item in element.find(tag).findall('item')
         ]
     
     def as_dict(self):
@@ -293,37 +294,21 @@ class ConstantNode(CDFGNode):
 
 
 class BlockNode(CDFGNode):
-    def __init__(
-        self, 
-        element: ET.Element, 
-        function: str,
-        instr_nodes: List[InstructionNode],
-        node_id_map: Dict[int, Tuple[int, str]],
-        instr_offset: int = 0
-    ):
+    def __init__(self, element: ET.Element, function: str):
         super().__init__(element, function)
 
         self.label = f"{self.function}/{self.name}"
-        self.attrs = {resource_type: 0 for resource_type in TARGET_RESOURCES}
-        self._parse_instrs(element, instr_nodes, node_id_map, instr_offset)
+        self.instrs = self._extract_items(element, 'node_objs')
 
-    def _parse_instrs(self, element, instr_nodes, node_id_map, instr_offset):
-        self.instrs = []
-        for instr in element.find('node_objs').findall('item'):
-            instr_id, _ = node_id_map.get(int(instr.text), (None, None))
-            if instr_id is None:
-                continue
-            self.instrs.append(instr_id)
-            instr_node = instr_nodes[instr_id - instr_offset]
-            for resource_type in TARGET_RESOURCES:
-                self.attrs[resource_type] += instr_node.attrs[resource_type]
-        
-        self.attrs["num_instrs"] = len(self.instrs)
+    def _extract_items(self, element, tag):
+        return [
+            int(item.text) 
+            for item in element.find(tag).findall('item')
+        ]
 
     def as_dict(self):
         return {
             'label': self.label, 
-            'attributes': self.attrs,
             'instructions': self.instrs
         }
     
@@ -456,15 +441,15 @@ class CDFG:
 
     def _process_blocks(self, blocks):
         offset = self._offsets['block']
-        instr_nodes = self.nodes['instr']
-        instr_offset = self._offsets['instr']
         for i, elem in enumerate(blocks.findall('item')):
-            node = BlockNode(
-                elem, self.name, instr_nodes, 
-                self._node_id_map, instr_offset
-            )
+            node = BlockNode(elem, self.name)
             self._node_id_map[node.id] = (i + offset, 'block')
             node.id = i + offset
+            node.instrs = [
+                self._node_id_map[instr_id][0]
+                for instr_id in node.instrs
+                if instr_id in self._node_id_map
+            ]
             self.nodes['block'].append(node)
 
     def _process_regions(self, regions):

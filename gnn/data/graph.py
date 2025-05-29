@@ -24,7 +24,6 @@ DIRECTIVES = [
 ]
 
 NODE_TYPES = CDFG_NODE_TYPES
-
 EDGE_TYPES = CDFG_EDGE_TYPES + [
     # Reverse edges for hierarchical relationships
     (dst_nt, "hrchy_rev", src_nt) 
@@ -34,16 +33,17 @@ EDGE_TYPES = CDFG_EDGE_TYPES + [
     # Self-loops
     (nt, "to", nt) for nt in CDFG_NODE_TYPES
 ]
-
 METADATA = (NODE_TYPES, EDGE_TYPES)
+
+EMBEDDING_DIM = 256
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
     "instr": 80, 
     "port": 25,
-    "const": 5, 
-    "block": 5,
-    "region": 13
+    "const": 5,
+    "region": 13,
+    "block": EMBEDDING_DIM
 }
 
 
@@ -122,17 +122,25 @@ def to_hetero_data(
             data[nt].label = []
             continue
 
-        features = []
-        for node in nodes:
-            attrs = []
-            for attr in node.attrs.values():
-                if isinstance(attr, list):
-                    attrs.extend(attr)
-                else:
-                    attrs.append(attr)
-            features.append(torch.tensor(attrs, dtype=torch.float32))
-
-        data[nt].x = torch.stack(features, dim=0)
+        if nt == 'block':
+            # Block nodes does not have features
+            data[nt].x = torch.zeros(
+                (len(nodes), EMBEDDING_DIM), dtype=torch.float32
+            )
+        else:
+            features = []
+            for node in nodes:
+                attrs = []
+                for attr in node.attrs.values():
+                    if isinstance(attr, list):
+                        attrs.extend(attr)
+                    else:
+                        attrs.append(attr)
+                features.append(
+                    torch.tensor(attrs, dtype=torch.float32)
+                )
+            data[nt].x = torch.stack(features, dim=0)
+            
         data[nt].label = [node.label for node in nodes]
 
     for et in EDGE_TYPES:

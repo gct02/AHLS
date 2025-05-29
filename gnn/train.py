@@ -3,25 +3,27 @@ import argparse
 import random
 import copy
 import pickle
-from typing import List, Dict, Tuple, Optional, Union
+from typing import List, Dict, Tuple, Optional, Union, Any
 
 import matplotlib
 import numpy as np
 import torch
 import torch.nn as nn
+from torch import Tensor
 from torch.nn.utils import clip_grad_norm_
 from torch.optim import Optimizer
 from torch.optim.lr_scheduler import LRScheduler
 
 from torch_geometric.loader import DataLoader
 
-from gnn.models import HGT
-from gnn.data.graph import (
-    METADATA,
-    NODE_FEATURE_DIMS
-)
+from gnn.models import HLSQoREstimator
 from gnn.data.dataset import HLSDataset
 from gnn.utils import percentage_diff
+from gnn.data.graph import (
+    METADATA,
+    NODE_FEATURE_DIMS,
+    EMBEDDING_DIM
+)
 from gnn.analysis import (
     plot_prediction_bars,
     plot_prediction_scatter,
@@ -41,8 +43,8 @@ def static_vars(**kwargs):
 
 
 @static_vars(
-    min_mre=1e10, 
-    best_epoch=0, 
+    min_mre=float('inf'), 
+    best_epoch=-1, 
     best_preds=None,
     best_model=None
 )
@@ -50,39 +52,57 @@ def evaluate(
     model: nn.Module,
     loader: DataLoader,
     epoch: int,
-    verbosity: int = 1,
-    mode: str = 'test',
-    exp_adjust: bool = False
+    exp_adjust: bool = False,
+    output_dir: Optional[str] = None,
+    first_checkpoint_epoch: int = 100
 ) -> float:
-    if verbosity > 1:
-        print(f"\nEvaluating on {mode} set\n")
-
-    preds, targets = [], []
+    targets, preds = [], []
     
-    # Assumption: Only one instance per batch
-    for batch in loader:
-        batch = batch.to(DEVICE)
-        pred = model(batch)
-        preds.append(pred.item())
-        targets.append(batch.y.item())
+    for data in loader:
+        data = data.to(DEVICE)
+        pred = model(
+            data.x_dict, 
+            data.edge_index_dict, 
+            data.batch_dict,
+            data.y_base
+        )
+        targets.append(data.y)
+        preds.append(pred)
         
+    targets = torch.cat(targets, dim=0)
+    preds = torch.cat(preds, dim=0)
     if exp_adjust:
-        preds, targets = np.expm1(preds), np.expm1(targets)
+        targets = torch.expm1(targets)
+        preds = torch.expm1(preds)
 
     mre = percentage_diff(preds, targets).mean().item()
+
     if mre < evaluate.min_mre:
+        if output_dir and epoch > -1:
+            model_path = f"{output_dir}/best_model.pt"
+            torch.save(obj=model.state_dict(), f=model_path)
+            indices = [
+                data.solution_index 
+                for data in loader.dataset
+            ]
+            with open(f"{output_dir}/predictions.csv", "a") as f:
+                f.write(f"Epoch: {epoch + 1} - MRE: {mre:.2f}%\n")
+
+                print(f"CHECKPOINT: Saving predictions for epoch "
+                      f"{epoch + 1} with MRE: {mre:.2f}%")
+                
+                for i, t, p in zip(indices, targets.tolist(), preds.tolist()):
+                    f.write(f"{i},{t},{p}\n")
+                    print(f"Index: {i}, Target: {t}, Prediction: {p}\n")
+
         evaluate.min_mre = mre
         evaluate.best_epoch = epoch
         evaluate.best_preds = preds
         evaluate.best_model = copy.deepcopy(model.state_dict())
-            
-    if verbosity > 0:
-        for p, t in zip(preds, targets):
-             print(f"Target: {t}; Prediction: {p}")
 
-        print(f"\nMRE on {mode} set: {mre:.2f}%")
-        print(f"Best MRE so far: {evaluate.min_mre:.2f}%"
-              f" at epoch {evaluate.best_epoch + 1}\n")
+    print(f"MRE at epoch {epoch + 1}: {mre:.2f}%")
+    print(f"Best MRE so far: {evaluate.min_mre:.2f}%"
+          f" at epoch {evaluate.best_epoch + 1}\n")
     
     return mre
 
@@ -95,61 +115,66 @@ def train_model(
     test_loader: DataLoader,
     epochs: int,
     scheduler: Optional[LRScheduler] = None,
-    verbosity: int = 1,
     max_norm: Optional[float] = None,
     exp_adjust: bool = False,
+    output_dir: Optional[str] = None
 ) -> Tuple[List[float], List[float]]:
     train_mres, test_mres = [], []
 
     for epoch in range(epochs):
-        if verbosity > 0:
-            print(f"Epoch {epoch + 1}/{epochs}\n")
-
-        train_errors = []
+        targets, preds = [], []
                 
         model.train()
-        for batch in train_loader:
+        for data in train_loader:
             torch.cuda.empty_cache()
             
             optimizer.zero_grad()
-            batch = batch.to(DEVICE)
-            pred = model(batch)
-            target = batch.y
-            loss = loss_fn(pred, target)
+            data = data.to(DEVICE)
+            pred = model(
+                data.x_dict, 
+                data.edge_index_dict, 
+                data.batch_dict,
+                data.y_base
+            )
+            loss = loss_fn(pred, data.y)
             loss.backward()
 
             if max_norm is not None:
-                clip_grad_norm_(model.parameters(), max_norm=max_norm)
-
+                clip_grad_norm_(
+                    model.parameters(), 
+                    max_norm=max_norm
+                )
             optimizer.step()
             if scheduler is not None:
                 scheduler.step()
 
-            if exp_adjust:
-                pred, target = np.expm1(pred), np.expm1(target)
+            targets.append(data.y)
+            preds.append(pred)
 
-            train_errors.append(percentage_diff(pred, target))
+        targets = torch.cat(targets, dim=0)
+        preds = torch.cat(preds, dim=0)
+        if exp_adjust:
+            targets = torch.expm1(targets)
+            preds = torch.expm1(preds)
 
-            if verbosity > 1:
-                for p, t in zip(pred.tolist(), target.tolist()):
-                    print(f"Target: {t}; Prediction: {p}")
-
-        train_mre = torch.stack(train_errors).mean().item()
+        train_mre = percentage_diff(preds, targets).mean().item()
         train_mres.append(train_mre)
 
         model.eval()
         with torch.no_grad():
             test_mre = evaluate(
-                model, test_loader, epoch,
-                verbosity=verbosity, 
-                exp_adjust=exp_adjust
+                model=model, 
+                loader=test_loader, 
+                epoch=epoch,
+                exp_adjust=exp_adjust,
+                output_dir=output_dir
             )
             test_mres.append(test_mre)
 
     return train_mres, test_mres
 
 
-def main(args: Dict[str, str]):
+def main(args: Dict[str, Any]):
     dataset_dir = args['dataset_dir']
     test_bench = args['test_bench']
     target_metric = args['target']
@@ -158,12 +183,8 @@ def main(args: Dict[str, str]):
     seed = int(args['seed'])
     learning_rate = float(args['learning_rate'])
     betas = tuple(map(float, args['betas']))
-    weight_decay = float(args['weight_decay'])
     max_norm = float(args['max_norm'])
-    pct_start = float(args['pct_start'])
-    anneal_strategy = args['anneal_strategy']
     loss = args['loss']
-    verbosity = int(args['verbose'])
     log_scale = args['log_scale']
     huber_delta = float(args['huber_delta'])
     output_dir = args['output_dir']
@@ -179,6 +200,7 @@ def main(args: Dict[str, str]):
         output_dir = os.path.dirname(os.path.abspath(__file__))
 
     matplotlib.use('Agg')
+
     torch.autograd.set_detect_anomaly(True)
     torch.set_printoptions(edgeitems=20, linewidth=200, sci_mode=False)
 
@@ -191,28 +213,29 @@ def main(args: Dict[str, str]):
     pretrained_dir = f"{model_dir}/pretrained"
     model_info_dir = f"{model_dir}/model_info"
     training_info_dir = f"{model_dir}/training_info"
+    checkpoint_dir = f"{model_dir}/checkpoint"
     graphs_dir = f"{training_info_dir}/graphs"
 
     os.makedirs(model_dir, exist_ok=True)
     os.makedirs(model_info_dir, exist_ok=True)
     os.makedirs(pretrained_dir, exist_ok=True)
     os.makedirs(training_info_dir, exist_ok=True)
+    os.makedirs(checkpoint_dir, exist_ok=True)
     os.makedirs(graphs_dir, exist_ok=True)
 
     with open(f"{training_info_dir}/training_args.pkl", 'wb') as f:
         pickle.dump(args, f)
 
     model_args = {
-        'metadata': METADATA,
         'in_channels': NODE_FEATURE_DIMS,
+        'hidden_channels': EMBEDDING_DIM,
+        'num_layers': 4,
         'out_channels': 1,
-        'proj_in_dim': 256,
-        'hid_dim': [256, 256, 256],
-        'heads': [4, 4, 4],
-        'num_layers': 3,
-        'dropout': 0.1
+        'metadata': METADATA,
+        'dropout_gnn': 0.2,
+        'dropout_mlp': 0.2
     }
-    model = HGT(**model_args).to(DEVICE)
+    model = HLSQoREstimator(**model_args).to(DEVICE)
 
     model_args_path = f"{model_info_dir}/{target_metric.upper()}_estimator_args.pkl"
     with open(model_args_path, 'wb') as f:
@@ -226,14 +249,7 @@ def main(args: Dict[str, str]):
         loss_fn = nn.HuberLoss(delta=huber_delta)
     else:
         raise ValueError(f"Unsupported loss function: {loss}")
-
-    optimizer = torch.optim.AdamW(
-        model.parameters(), 
-        lr=learning_rate, 
-        betas=betas, 
-        weight_decay=weight_decay
-    )
-
+    
     train_loader, test_loader, feat_ranges = prepare_data_loaders(
         dataset_dir=dataset_dir, 
         target_metric=target_metric, 
@@ -242,26 +258,29 @@ def main(args: Dict[str, str]):
         batch_size=batch_size, 
         log_scale=log_scale
     )
-
     with open(f"{model_info_dir}/feature_ranges.pkl", 'wb') as f:
         pickle.dump(feat_ranges, f)
 
+    optimizer = torch.optim.Adam(
+        model.parameters(), 
+        lr=learning_rate, 
+        betas=betas
+    )
+
     total_steps = epochs * len(train_loader)
-    scheduler = torch.optim.lr_scheduler.OneCycleLR(
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
         optimizer,
-        max_lr=learning_rate,
-        total_steps=total_steps,
-        pct_start=pct_start,
-        anneal_strategy=anneal_strategy
+        T_max=total_steps,
+        eta_min=1e-6
     )
 
     train_errors, test_errors = train_model(
         model, loss_fn, optimizer, 
         train_loader, test_loader, epochs, 
         scheduler=scheduler, 
-        verbosity=verbosity, 
         max_norm=max_norm,
-        exp_adjust=log_scale
+        exp_adjust=log_scale,
+        output_dir=checkpoint_dir
     )
 
     model_path = f"{pretrained_dir}/{target_metric.upper()}_estimator.pt"
@@ -269,7 +288,7 @@ def main(args: Dict[str, str]):
 
     indices = [data.solution_index for data in test_loader.dataset]
     targets = [data.y.item() for data in test_loader.dataset]
-    preds = evaluate.best_preds
+    preds = evaluate.best_preds.tolist()
 
     with open(f"{model_info_dir}/predictions.csv", 'w') as f:
         f.write("Index,Target,Prediction\n")
@@ -333,7 +352,7 @@ def prepare_data_loaders(
     train_benches: Union[List[str], str],
     batch_size: int = 32,
     log_scale: bool = False
-) -> Tuple[DataLoader, DataLoader, Dict[str, Tuple[float, float]]]:
+) -> Tuple[DataLoader, DataLoader, Dict[str, Tuple[Tensor, Tensor]]]:
     train_dataset = HLSDataset(
         root=dataset_dir, 
         metric=target_metric, 
@@ -355,7 +374,7 @@ def prepare_data_loaders(
         train_dataset, batch_size=batch_size, shuffle=True
     )
     test_loader = DataLoader(
-        test_dataset, batch_size=1, shuffle=False
+        test_dataset, batch_size=batch_size, shuffle=False
     )
     return (train_loader, test_loader, 
             train_dataset.feature_ranges)
@@ -367,7 +386,10 @@ def parse_arguments():
     parser.add_argument('-d', '--dataset-dir', type=str, required=True, 
                         help='The root directory of the dataset.')
     parser.add_argument('-tb', '--test-bench', type=str, required=True, 
-                        help='The name of the benchmark to use for test.')
+                        help='The name of the benchmark to use for testing.')
+    parser.add_argument('-t', '--target', type=str, default='snru', 
+                        choices=['snru', 'time', 'power', 'lut', 'ff', 'dsp', 'bram'],
+                        help='The target metric to predict (default: snru).')
     parser.add_argument('-e', '--epoch', type=int, default=300, 
                         help='The number of training epochs (default: 300).')
     parser.add_argument('-s', '--seed', type=int, default=42, 
@@ -376,24 +398,14 @@ def parse_arguments():
                         help='The size of the training batch (default: 32).')
     parser.add_argument('-l', '--loss', type=str, default='mse', choices=['mse', 'l1', 'huber'],
                         help='The loss function to use for training (default: mse).')
-    parser.add_argument('-lr', '--learning-rate', type=float, default=5e-4,
-                        help='The learning rate for the AdamW optimizer (default: 5e-4).')
+    parser.add_argument('-lr', '--learning-rate', type=float, default=1e-3,
+                        help='The learning rate for the optimizer (default: 1e-3).')
     parser.add_argument('-bs', '--betas', type=float, nargs=2, default=(0.9, 0.999),
-                        help='The betas for the AdamW optimizer (default: 0.9, 0.999).')
-    parser.add_argument('-wd', '--weight-decay', type=float, default=1e-4,
-                        help='Weight decay for the AdamW optimizer (default: 1e-4).')
+                        help='The betas for the Adam optimizer (default: 0.9, 0.999).')
     parser.add_argument('-mn', '--max-norm', type=float, default=5.0,
                         help='Maximum norm for gradient clipping (default: 5.0).')
-    parser.add_argument('-ps', '--pct-start', type=float, default=0.35,
-                        help='The percentage of the cycle to increase the learning rate (default: 0.35).')
-    parser.add_argument('-as', '--anneal-strategy', type=str, default='cos', choices=['cos', 'linear'], 
-                        help='The annealing strategy for the learning rate scheduler (default: cos).')
     parser.add_argument('-ls', '--log-scale', action='store_true',
                         help='Apply log transformation to the target variable.')
-    parser.add_argument('-t', '--target', type=str, default='snru', choices=['snru', 'time', 'power', 'lut', 'ff', 'dsp', 'bram'],
-                        help='The target metric to predict (default: snru).')
-    parser.add_argument('-v', '--verbose', type=int, nargs='?', const=1, default=0, 
-                        help='Set verbosity level (default: 0). Use without value for level 1, or specify a level.')
     parser.add_argument('-hd', '--huber-delta', type=float, default=1.0,
                         help='Delta parameter for Huber loss (default: 1.0). Only used if loss is set to "huber".')
     parser.add_argument('-o', '--output-dir', type=str, default='',

@@ -8,7 +8,7 @@ from torch.nn.utils import clip_grad_norm_
 
 from torch_geometric.loader import DataLoader
 
-from gnn.models import HGT
+from gnn.models import HLSQoREstimator
 from gnn.fine_tuning.data.dataset import HLSFineTuningDataset
 
 
@@ -68,7 +68,7 @@ def load_model(
         raise ValueError("Model arguments must be a dictionary.")
     
     model_args['dropout'] = dropout
-    model = HGT(**model_args)
+    model = HLSQoREstimator(**model_args)
     model.load_state_dict(torch.load(model_path, map_location=DEVICE))
     return model.to(DEVICE)
 
