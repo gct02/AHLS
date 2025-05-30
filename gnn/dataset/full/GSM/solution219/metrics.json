@@ -2,14 +2,15 @@
   "lut": 4901,
   "ff": 3370,
   "dsp": 45,
-  "bram": 0,
-  "wns": 0.444,
-  "tns": 0,
+  "bram": 1,
+  "snru": 0.0038720081609452082,
+  "wns": 2.444,
+  "tns": 0.0,
   "target_clk": 8.0,
-  "achieved_clk": 7.556,
+  "achieved_clk": 5.556,
   "total_power": 2.307,
   "dynamic_power": 0.094,
   "static_power": 2.214,
   "cc": 705,
-  "time": 5326.9800000000005
+  "time": 3916.98
 }

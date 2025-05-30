@@ -1,0 +1,6 @@
+<pragmas>
+<pragma file="data/benchmarks/knn/md.c" line="1" pragmaType="pipeline" parentfunction="md_kernel" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/knn/md.c" line="26" pragmaType="loop_tripcount" parentfunction="md_kernel" min="256" max="256" avg="256"/>
+<pragma file="data/benchmarks/knn/md.c" line="2" pragmaType="pipeline" parentfunction="md_kernel" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/knn/md.c" line="34" pragmaType="loop_tripcount" parentfunction="md_kernel" min="16" max="16" avg="16"/>
+</pragmas>

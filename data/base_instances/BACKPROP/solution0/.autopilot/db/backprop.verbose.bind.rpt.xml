@@ -1,0 +1,73 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'backprop'" level="0">
+<item name = "Date">Thu May 29 16:17:25 2025
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">BACKPROP</item>
+<item name = "Solution">solution0 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">8.00 ns, 6.014 ns, 2.16 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">50997648, 50997648, 0.408 sec, 0.408 sec, 50997649, 50997649, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_update_weights_1_fu_1234">update_weights_1, 183269, 183269, 1.466 ms, 1.466 ms, 183269, 183269, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- backprop_loop1">50997647, 50997647, 312869, -, -, 163, no</column>
+<column name=" + backprop_loop1_1">64, 64, 1, -, -, 64, no</column>
+<column name=" + matrix_vector_product_with_bias_input_layer_loop1">8448, 8448, 132, -, -, 64, no</column>
+<column name="  ++ matrix_vector_product_with_bias_input_layer_loop1_1">130, 130, 10, -, -, 13, no</column>
+<column name=" + add_bias_to_activations_loop1">320, 320, 5, -, -, 64, no</column>
+<column name=" + RELU_loop1">1984, 1984, 31, -, -, 64, no</column>
+<column name=" + matrix_vector_product_with_bias_second_layer_loop1">41088, 41088, 642, -, -, 64, no</column>
+<column name="  ++ matrix_vector_product_with_bias_second_layer_loop1_1">640, 640, 10, -, -, 64, no</column>
+<column name=" + add_bias_to_activations_loop1">320, 320, 5, -, -, 64, no</column>
+<column name=" + RELU_loop1">1984, 1984, 31, -, -, 64, no</column>
+<column name=" + matrix_vector_product_with_bias_output_layer_loop1">1737, 1737, 579, -, -, 3, no</column>
+<column name="  ++ matrix_vector_product_with_bias_output_layer_loop1_1">576, 576, 9, -, -, 64, no</column>
+<column name=" + add_bias_to_activations_loop1">18, 18, 6, -, -, 3, no</column>
+<column name=" + RELU_loop1">87, 87, 29, -, -, 3, no</column>
+<column name=" + soft_max_loop1">45, 45, 15, -, -, 3, no</column>
+<column name=" + soft_max_loop2">75, 75, 25, -, -, 3, no</column>
+<column name=" + take_difference_loop1">27, 27, 9, -, -, 3, no</column>
+<column name=" + get_delta_matrix_weights3_loop1">960, 960, 15, -, -, 64, no</column>
+<column name="  ++ get_delta_matrix_weights3_loop1_1">12, 12, 4, -, -, 3, no</column>
+<column name=" + get_oracle_activations2_loop1">2112, 2112, 33, -, -, 64, no</column>
+<column name="  ++ get_oracle_activations2_loop1_1">27, 27, 9, -, -, 3, no</column>
+<column name=" + get_delta_matrix_weights2_loop1">24768, 24768, 387, -, -, 64, no</column>
+<column name="  ++ get_delta_matrix_weights2_loop1_1">384, 384, 6, -, -, 64, no</column>
+<column name=" + get_oracle_activations1_loop1">41344, 41344, 646, -, -, 64, no</column>
+<column name="  ++ get_oracle_activations1_loop1_1">640, 640, 10, -, -, 64, no</column>
+<column name=" + get_delta_matrix_weights1_loop1">4199, 4199, 323, -, -, 13, no</column>
+<column name="  ++ get_delta_matrix_weights1_loop1_1">320, 320, 5, -, -, 64, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

@@ -1,0 +1,148 @@
+
+
+================================================================
+== Vitis HLS Report for 'Autocorrelation_Pipeline_Autocorrelation_label5'
+================================================================
+* Date:           Thu May 29 16:47:04 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        GSM
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  3.198 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      162|      162|  1.296 us|  1.296 us|  162|  162|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |         Loop Name        |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Autocorrelation_label5  |      160|      160|         2|          1|          1|   160|       yes|
+        +--------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 2
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.56>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%idx77 = alloca i32 1"   --->   Operation 5 'alloca' 'idx77' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%zext_ln152_read = read i3 @_ssdm_op_Read.ap_auto.i3, i3 %zext_ln152"   --->   Operation 6 'read' 'zext_ln152_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%zext_ln152_cast = zext i3 %zext_ln152_read"   --->   Operation 7 'zext' 'zext_ln152_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %indata, void @empty_9, i32 0, i32 0, void @empty, i32 4294967295, i32 0, void @empty, void @empty, void @empty, i32 0, i32 0, i32 0, i32 0, void @empty, void @empty, i32 4294967295, i32 0"   --->   Operation 8 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.38ns)   --->   "%store_ln0 = store i8 0, i8 %idx77"   --->   Operation 9 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc341"   --->   Operation 10 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%idx77_load = load i8 %idx77" [data/benchmarks/gsm/gsm_lpc.c:152]   --->   Operation 11 'load' 'idx77_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.70ns)   --->   "%icmp_ln152 = icmp_eq  i8 %idx77_load, i8 160" [data/benchmarks/gsm/gsm_lpc.c:152]   --->   Operation 12 'icmp' 'icmp_ln152' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 13 [1/1] (0.70ns)   --->   "%add_ln152 = add i8 %idx77_load, i8 1" [data/benchmarks/gsm/gsm_lpc.c:152]   --->   Operation 13 'add' 'add_ln152' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%br_ln152 = br i1 %icmp_ln152, void %for.inc341.split, void %if.end344.loopexit.exitStub" [data/benchmarks/gsm/gsm_lpc.c:152]   --->   Operation 14 'br' 'br_ln152' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%zext_ln152_1 = zext i8 %idx77_load" [data/benchmarks/gsm/gsm_lpc.c:152]   --->   Operation 15 'zext' 'zext_ln152_1' <Predicate = (!icmp_ln152)> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%indata_addr = getelementptr i16 %indata, i64 0, i64 %zext_ln152_1" [data/benchmarks/gsm/gsm_lpc.c:154]   --->   Operation 16 'getelementptr' 'indata_addr' <Predicate = (!icmp_ln152)> <Delay = 0.00>
+ST_1 : Operation 17 [2/2] (1.17ns)   --->   "%indata_load = load i8 %indata_addr" [data/benchmarks/gsm/gsm_lpc.c:154]   --->   Operation 17 'load' 'indata_load' <Predicate = (!icmp_ln152)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_1 : Operation 18 [1/1] (0.38ns)   --->   "%store_ln152 = store i8 %add_ln152, i8 %idx77" [data/benchmarks/gsm/gsm_lpc.c:152]   --->   Operation 18 'store' 'store_ln152' <Predicate = (!icmp_ln152)> <Delay = 0.38>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 26 'ret' 'ret_ln0' <Predicate = (icmp_ln152)> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 3.19>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%specpipeline_ln154 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty" [data/benchmarks/gsm/gsm_lpc.c:154]   --->   Operation 19 'specpipeline' 'specpipeline_ln154' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%speclooptripcount_ln153 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 160, i64 160, i64 160" [data/benchmarks/gsm/gsm_lpc.c:153]   --->   Operation 20 'speclooptripcount' 'speclooptripcount_ln153' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%specloopname_ln152 = specloopname void @_ssdm_op_SpecLoopName, void @empty_2" [data/benchmarks/gsm/gsm_lpc.c:152]   --->   Operation 21 'specloopname' 'specloopname_ln152' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 22 [1/2] (1.17ns)   --->   "%indata_load = load i8 %indata_addr" [data/benchmarks/gsm/gsm_lpc.c:154]   --->   Operation 22 'load' 'indata_load' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_2 : Operation 23 [1/1] (0.84ns)   --->   "%shl_ln154 = shl i16 %indata_load, i16 %zext_ln152_cast" [data/benchmarks/gsm/gsm_lpc.c:154]   --->   Operation 23 'shl' 'shl_ln154' <Predicate = true> <Delay = 0.84> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.84> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 24 [1/1] (1.17ns)   --->   "%store_ln154 = store i16 %shl_ln154, i8 %indata_addr" [data/benchmarks/gsm/gsm_lpc.c:154]   --->   Operation 24 'store' 'store_ln154' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%br_ln152 = br void %for.inc341" [data/benchmarks/gsm/gsm_lpc.c:152]   --->   Operation 25 'br' 'br_ln152' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 1.564ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln0') of constant 0 on local variable 'idx77' [7]  (0.387 ns)
+	'load' operation 8 bit ('idx77_load', data/benchmarks/gsm/gsm_lpc.c:152) on local variable 'idx77' [10]  (0.000 ns)
+	'getelementptr' operation 8 bit ('indata_addr', data/benchmarks/gsm/gsm_lpc.c:154) [19]  (0.000 ns)
+	'load' operation 16 bit ('indata_load', data/benchmarks/gsm/gsm_lpc.c:154) on array 'indata' [20]  (1.177 ns)
+
+ <State 2>: 3.198ns
+The critical path consists of the following:
+	'load' operation 16 bit ('indata_load', data/benchmarks/gsm/gsm_lpc.c:154) on array 'indata' [20]  (1.177 ns)
+	'shl' operation 16 bit ('shl_ln154', data/benchmarks/gsm/gsm_lpc.c:154) [21]  (0.844 ns)
+	'store' operation 0 bit ('store_ln154', data/benchmarks/gsm/gsm_lpc.c:154) of variable 'shl_ln154', data/benchmarks/gsm/gsm_lpc.c:154 on array 'indata' [22]  (1.177 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

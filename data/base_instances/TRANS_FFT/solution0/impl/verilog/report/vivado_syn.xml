@@ -1,0 +1,331 @@
+<profile>
+<RunData>
+  <RUN_TYPE>synth</RUN_TYPE>
+  <VIVADO_VERSION>v.2023.2</VIVADO_VERSION>
+  <ROOT_MODULE_CELL>bd_0_i/hls_inst</ROOT_MODULE_CELL>
+</RunData>
+<TimingReport>
+  <TargetClockPeriod>8.000</TargetClockPeriod>
+  <AchievedClockPeriod>6.518</AchievedClockPeriod>
+  <CLOCK_NAME>ap_clk</CLOCK_NAME>
+  <CP_FINAL>6.518</CP_FINAL>
+  <CP_ROUTE>NA</CP_ROUTE>
+  <CP_SYNTH>6.518</CP_SYNTH>
+  <CP_TARGET>8.000</CP_TARGET>
+  <SLACK_FINAL>1.482</SLACK_FINAL>
+  <SLACK_ROUTE></SLACK_ROUTE>
+  <SLACK_SYNTH>1.482</SLACK_SYNTH>
+  <TIMING_MET>TRUE</TIMING_MET>
+  <TNS_FINAL>0.000</TNS_FINAL>
+  <TNS_ROUTE>NA</TNS_ROUTE>
+  <TNS_SYNTH>0.000</TNS_SYNTH>
+  <WNS_FINAL>1.482</WNS_FINAL>
+  <WNS_ROUTE>NA</WNS_ROUTE>
+  <WNS_SYNTH>1.482</WNS_SYNTH>
+</TimingReport>
+<AreaReport>
+  <Resources>
+    <BRAM>20</BRAM>
+    <CLB>0</CLB>
+    <DSP>163</DSP>
+    <FF>15353</FF>
+    <LATCH>0</LATCH>
+    <LUT>26101</LUT>
+    <SRL>107</SRL>
+    <URAM>0</URAM>
+  </Resources>
+  <AvailableResources>
+    <BRAM>2688</BRAM>
+    <CLB>0</CLB>
+    <DSP>5952</DSP>
+    <FF>1743360</FF>
+    <LUT>871680</LUT>
+    <URAM>640</URAM>
+  </AvailableResources>
+</AreaReport>
+<RtlModules>
+  <RtlModule CELL="inst" DEPTH="0" FILE_NAME="bd_0_hls_inst_0.v" ORIG_REF_NAME="fft1D_512" TOP_CELL="bd_0_i/hls_inst/inst">
+    <SubModules count="23">DATA_x_U DATA_y_U dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 dadddsub_64ns_64ns_64_4_full_dsp_1_U69 dadddsub_64ns_64ns_64_4_full_dsp_1_U70 dadddsub_64ns_64ns_64_4_full_dsp_1_U71 data_x_U_x data_y_U_x dmul_64ns_64ns_64_4_max_dsp_1_U74 dmul_64ns_64ns_64_4_max_dsp_1_U75 dmul_64ns_64ns_64_4_max_dsp_1_U76 dmul_64ns_64ns_64_4_max_dsp_1_U77 dmul_64ns_64ns_64_4_max_dsp_1_U78 dmul_64ns_64ns_64_4_max_dsp_1_U79 dsub_64ns_64ns_64_4_full_dsp_1_U72 dsub_64ns_64ns_64_4_full_dsp_1_U73 grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550 grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580 grp_sin_or_cos_double_s_fu_5138 smem_U twiddles8_reversed8_U</SubModules>
+    <Resources BRAM="20" DSP="163" FF="15353" LUT="26101" LogicLUT="25994" RAMB36="10" SRL="107"/>
+    <LocalResources FF="3171" LUT="104" LogicLUT="104"/>
+  </RtlModule>
+  <RtlModule CELL="inst/DATA_x_U" BINDMODULE="fft1D_512_DATA_x_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_DATA_x_RAM_AUTO_1R1W">
+    <Resources BRAM="4" LUT="624" LogicLUT="624" RAMB36="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/DATA_y_U" BINDMODULE="fft1D_512_DATA_x_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_DATA_x_RAM_AUTO_1R1W">
+    <Resources BRAM="4" LUT="682" LogicLUT="682" RAMB36="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U66" BINDMODULE="fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1">
+    <Resources DSP="3" FF="370" LUT="1089" LogicLUT="1089"/>
+    <LocalResources FF="129" LUT="371" LogicLUT="371"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67" BINDMODULE="fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1">
+    <Resources DSP="3" FF="370" LUT="1033" LogicLUT="1033"/>
+    <LocalResources FF="129" LUT="251" LogicLUT="251"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U68" BINDMODULE="fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1">
+    <Resources DSP="3" FF="370" LUT="1229" LogicLUT="1229"/>
+    <LocalResources FF="129" LUT="351" LogicLUT="351"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U69" BINDMODULE="fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1">
+    <Resources DSP="3" FF="370" LUT="1078" LogicLUT="1078"/>
+    <LocalResources FF="129" LUT="264" LogicLUT="264"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U70" BINDMODULE="fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1">
+    <Resources DSP="3" FF="370" LUT="718" LogicLUT="718"/>
+    <LocalResources FF="129"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U71" BINDMODULE="fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1">
+    <Resources DSP="3" FF="369" LUT="782" LogicLUT="782"/>
+    <LocalResources FF="128" LUT="64" LogicLUT="64"/>
+  </RtlModule>
+  <RtlModule CELL="inst/data_x_U_x" BINDMODULE="fft1D_512_data_x_RAM_AUTO_1R1W_x" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_data_x_RAM_AUTO_1R1W_x">
+    <Resources BRAM="4" LUT="192" LogicLUT="192" RAMB36="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/data_y_U_x" BINDMODULE="fft1D_512_data_x_RAM_AUTO_1R1W_x" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_data_x_RAM_AUTO_1R1W_x">
+    <Resources BRAM="4" LUT="527" LogicLUT="527" RAMB36="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dmul_64ns_64ns_64_4_max_dsp_1_U74" BINDMODULE="fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1">
+    <Resources DSP="8" FF="213" LUT="168" LogicLUT="168"/>
+    <LocalResources FF="128" LUT="64" LogicLUT="64"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dmul_64ns_64ns_64_4_max_dsp_1_U75" BINDMODULE="fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1">
+    <Resources DSP="8" FF="213" LUT="169" LogicLUT="169"/>
+    <LocalResources FF="128" LUT="65" LogicLUT="65"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dmul_64ns_64ns_64_4_max_dsp_1_U76" BINDMODULE="fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1">
+    <Resources DSP="8" FF="213" LUT="104" LogicLUT="104"/>
+    <LocalResources FF="128"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dmul_64ns_64ns_64_4_max_dsp_1_U77" BINDMODULE="fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1">
+    <Resources DSP="8" FF="188" LUT="104" LogicLUT="104"/>
+    <LocalResources FF="103"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dmul_64ns_64ns_64_4_max_dsp_1_U78" BINDMODULE="fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1">
+    <Resources DSP="8" FF="149" LUT="77" LogicLUT="77"/>
+    <LocalResources FF="64"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dmul_64ns_64ns_64_4_max_dsp_1_U79" BINDMODULE="fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1">
+    <Resources DSP="8" FF="149" LUT="77" LogicLUT="77"/>
+    <LocalResources FF="64"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dsub_64ns_64ns_64_4_full_dsp_1_U72" BINDMODULE="fft1D_512_dsub_64ns_64ns_64_4_full_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dsub_64ns_64ns_64_4_full_dsp_1">
+    <Resources DSP="3" FF="369" LUT="751" LogicLUT="751"/>
+    <LocalResources FF="128" LUT="33" LogicLUT="33"/>
+  </RtlModule>
+  <RtlModule CELL="inst/dsub_64ns_64ns_64_4_full_dsp_1_U73" BINDMODULE="fft1D_512_dsub_64ns_64ns_64_4_full_dsp_1" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_dsub_64ns_64ns_64_4_full_dsp_1">
+    <Resources DSP="3" FF="369" LUT="751" LogicLUT="751"/>
+    <LocalResources FF="128" LUT="33" LogicLUT="33"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_fft1D_512_Pipeline_loop1_twiddles">
+    <SubModules count="2">flow_control_loop_pipe_sequential_init_U sitodp_32ns_64_2_no_dsp_1_U41</SubModules>
+    <Resources FF="3604" LUT="4922" LogicLUT="4922"/>
+    <LocalResources FF="3596" LUT="4678" LogicLUT="4678"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550/flow_control_loop_pipe_sequential_init_U" BINDMODULE="fft1D_512_flow_control_loop_pipe_sequential_init" DEPTH="2" FILE_NAME="fft1D_512_fft1D_512_Pipeline_loop1_twiddles.v" ORIG_REF_NAME="fft1D_512_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="89" LogicLUT="89"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550/sitodp_32ns_64_2_no_dsp_1_U41" BINDMODULE="fft1D_512_sitodp_32ns_64_2_no_dsp_1" DEPTH="2" FILE_NAME="fft1D_512_fft1D_512_Pipeline_loop1_twiddles.v" ORIG_REF_NAME="fft1D_512_sitodp_32ns_64_2_no_dsp_1">
+    <Resources FF="6" LUT="155" LogicLUT="155"/>
+    <LocalResources FF="6"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_fft1D_512_Pipeline_loop6_twiddles">
+    <SubModules count="2">flow_control_loop_pipe_sequential_init_U sitodp_32ns_64_2_no_dsp_1_U60</SubModules>
+    <Resources FF="3500" LUT="5758" LogicLUT="5746" SRL="12"/>
+    <LocalResources FF="3495" LUT="5509" LogicLUT="5497" SRL="12"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580/flow_control_loop_pipe_sequential_init_U" BINDMODULE="fft1D_512_flow_control_loop_pipe_sequential_init" DEPTH="2" FILE_NAME="fft1D_512_fft1D_512_Pipeline_loop6_twiddles.v" ORIG_REF_NAME="fft1D_512_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="94" LogicLUT="94"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580/sitodp_32ns_64_2_no_dsp_1_U60" BINDMODULE="fft1D_512_sitodp_32ns_64_2_no_dsp_1" DEPTH="2" FILE_NAME="fft1D_512_fft1D_512_Pipeline_loop6_twiddles.v" ORIG_REF_NAME="fft1D_512_sitodp_32ns_64_2_no_dsp_1">
+    <Resources FF="3" LUT="155" LogicLUT="155"/>
+    <LocalResources FF="3"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_sin_or_cos_double_s">
+    <SubModules count="15">fourth_order_double_sin_cos_K0_U fourth_order_double_sin_cos_K1_U fourth_order_double_sin_cos_K2_U fourth_order_double_sin_cos_K3_U fourth_order_double_sin_cos_K4_U mul_170s_53ns_170_2_1_U9 mul_35ns_25ns_60_1_1_U1 mul_42ns_33ns_75_1_1_U2 mul_49ns_44s_93_1_1_U3 mul_49ns_49ns_98_1_1_U4 mul_49ns_49ns_98_1_1_U5 mul_49ns_49ns_98_1_1_U6 mul_56ns_52s_108_1_1_U7 mul_64s_63ns_126_1_1_U8 ref_4oPi_table_256_U</SubModules>
+    <Resources DSP="91" FF="993" LUT="4673" LogicLUT="4578" SRL="95"/>
+    <LocalResources FF="540" LUT="1628" LogicLUT="1533" SRL="95"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/fourth_order_double_sin_cos_K0_U" BINDMODULE="fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K0_ROM_1P_LUTRAM_1R" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K0_ROM_1P_LUTRAM_1R">
+    <Resources FF="59" LUT="283" LogicLUT="283"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/fourth_order_double_sin_cos_K1_U" BINDMODULE="fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K1_ROM_1P_LUTRAM_1R" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K1_ROM_1P_LUTRAM_1R">
+    <Resources FF="18" LUT="209" LogicLUT="209"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/fourth_order_double_sin_cos_K2_U" BINDMODULE="fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K2_ROM_1P_LUTRAM_1R" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K2_ROM_1P_LUTRAM_1R">
+    <Resources FF="26" LUT="166" LogicLUT="166"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/fourth_order_double_sin_cos_K3_U" BINDMODULE="fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K3_ROM_1P_LUTRAM_1R" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K3_ROM_1P_LUTRAM_1R">
+    <Resources FF="16" LUT="130" LogicLUT="130"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/fourth_order_double_sin_cos_K4_U" BINDMODULE="fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K4_ROM_1P_LUTRAM_1R" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K4_ROM_1P_LUTRAM_1R">
+    <Resources FF="25" LUT="94" LogicLUT="94"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/mul_170s_53ns_170_2_1_U9" BINDMODULE="fft1D_512_mul_170s_53ns_170_2_1" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_mul_170s_53ns_170_2_1">
+    <Resources DSP="27" FF="86" LUT="661" LogicLUT="661"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/mul_35ns_25ns_60_1_1_U1" BINDMODULE="fft1D_512_mul_35ns_25ns_60_1_1" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_mul_35ns_25ns_60_1_1">
+    <Resources DSP="2" LUT="25" LogicLUT="25"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/mul_42ns_33ns_75_1_1_U2" BINDMODULE="fft1D_512_mul_42ns_33ns_75_1_1" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_mul_42ns_33ns_75_1_1">
+    <Resources DSP="4" LUT="102" LogicLUT="102"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_44s_93_1_1_U3" BINDMODULE="fft1D_512_mul_49ns_44s_93_1_1" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_mul_49ns_44s_93_1_1">
+    <Resources DSP="6" LUT="104" LogicLUT="104"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4" BINDMODULE="fft1D_512_mul_49ns_49ns_98_1_1" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_mul_49ns_49ns_98_1_1">
+    <Resources DSP="9" LUT="506" LogicLUT="506"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U5" BINDMODULE="fft1D_512_mul_49ns_49ns_98_1_1" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_mul_49ns_49ns_98_1_1">
+    <Resources DSP="9" LUT="82" LogicLUT="82"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6" BINDMODULE="fft1D_512_mul_49ns_49ns_98_1_1" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_mul_49ns_49ns_98_1_1">
+    <Resources DSP="9" LUT="82" LogicLUT="82"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7" BINDMODULE="fft1D_512_mul_56ns_52s_108_1_1" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_mul_56ns_52s_108_1_1">
+    <Resources DSP="9" LUT="248" LogicLUT="248"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/mul_64s_63ns_126_1_1_U8" BINDMODULE="fft1D_512_mul_64s_63ns_126_1_1" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_mul_64s_63ns_126_1_1">
+    <Resources DSP="16" LUT="157" LogicLUT="157"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_sin_or_cos_double_s_fu_5138/ref_4oPi_table_256_U" BINDMODULE="fft1D_512_sin_or_cos_double_s_ref_4oPi_table_256_ROM_AUTO_1R" DEPTH="2" FILE_NAME="fft1D_512_sin_or_cos_double_s.v" ORIG_REF_NAME="fft1D_512_sin_or_cos_double_s_ref_4oPi_table_256_ROM_AUTO_1R">
+    <Resources FF="223" LUT="197" LogicLUT="197"/>
+  </RtlModule>
+  <RtlModule CELL="inst/smem_U" BINDMODULE="fft1D_512_smem_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_smem_RAM_AUTO_1R1W">
+    <Resources BRAM="4" LUT="489" LogicLUT="489" RAMB36="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/twiddles8_reversed8_U" BINDMODULE="fft1D_512_twiddles8_reversed8_ROM_AUTO_1R" DEPTH="1" FILE_NAME="fft1D_512.v" ORIG_REF_NAME="fft1D_512_twiddles8_reversed8_ROM_AUTO_1R">
+    <Resources FF="3"/>
+  </RtlModule>
+</RtlModules>
+<TimingPaths>
+  <TPATH DATAPATH_DELAY="6.231" DATAPATH_LOGIC_DELAY="3.585" DATAPATH_NET_DELAY="2.646" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_44s_93_1_1_U3/tmp_product__0/DSP_A_B_DATA_INST/B[11]" LOGIC_LEVELS="20" MAX_FANOUT="166" SLACK="1.482" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="875"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_41" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1516"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_314" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_292" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_243" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_169" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_99__0" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_32__1" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1783"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__1/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__1/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_4" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0_i_2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_44s_93_1_1_U3/tmp_product__0/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="6.231" DATAPATH_LOGIC_DELAY="3.585" DATAPATH_NET_DELAY="2.646" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_44s_93_1_1_U3/tmp_product__0__0/DSP_A_B_DATA_INST/B[11]" LOGIC_LEVELS="20" MAX_FANOUT="166" SLACK="1.482" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="875"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_41" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1516"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_314" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_292" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_243" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_169" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_99__0" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_32__1" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1783"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__1/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__1/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_4" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0_i_2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_44s_93_1_1_U3/tmp_product__0__0/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="6.231" DATAPATH_LOGIC_DELAY="3.585" DATAPATH_NET_DELAY="2.646" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U5/tmp_product__0/DSP_A_B_DATA_INST/B[11]" LOGIC_LEVELS="20" MAX_FANOUT="166" SLACK="1.482" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="875"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_41" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1516"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_314" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_292" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_243" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_169" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_99__0" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_32__1" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1783"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__1/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__1/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_4" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0_i_2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U5/tmp_product__0/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="6.231" DATAPATH_LOGIC_DELAY="3.585" DATAPATH_NET_DELAY="2.646" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U5/tmp_product__4/DSP_A_B_DATA_INST/B[11]" LOGIC_LEVELS="20" MAX_FANOUT="166" SLACK="1.482" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="875"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_41" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1516"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_314" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_292" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_243" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_169" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_99__0" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_32__1" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1783"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__1/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__1/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_4" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0_i_2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U5/tmp_product__4/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="6.231" DATAPATH_LOGIC_DELAY="3.585" DATAPATH_NET_DELAY="2.646" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[11]" LOGIC_LEVELS="20" MAX_FANOUT="166" SLACK="1.482" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="875"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_41" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1516"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_314" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_292" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_243" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_169" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_99__0" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1540"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_32__1" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="1783"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__1/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__1/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_4" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0_i_2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="27"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+  </TPATH>
+</TimingPaths>
+<VivadoReportFiles>
+  <ReportFile TYPE="design_analysis" PATH="verilog/report/fft1D_512_design_analysis_synth.rpt"/>
+  <ReportFile TYPE="failfast" PATH="verilog/report/fft1D_512_failfast_synth.rpt"/>
+  <ReportFile TYPE="timing" PATH="verilog/report/fft1D_512_timing_synth.rpt"/>
+  <ReportFile TYPE="timing_paths" PATH="verilog/report/fft1D_512_timing_paths_synth.rpt"/>
+  <ReportFile TYPE="utilization" PATH="verilog/report/fft1D_512_utilization_synth.rpt"/>
+  <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/fft1D_512_utilization_hierarchical_synth.rpt"/>
+</VivadoReportFiles>
+</profile>

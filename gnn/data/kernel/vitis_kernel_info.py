@@ -7,7 +7,7 @@ from enum import IntEnum
 from typing import Optional, Dict, Union, List, Tuple
 
 from gnn.data.utils.xml_utils import findint, findfloat
-from gnn.data.utils.parsers import extract_impl_report
+from gnn.data.utils.parsers import extract_metrics
 
 
 CDFG_NODE_TYPES = [
@@ -578,16 +578,8 @@ class VitisKernelInfo:
         self.kernel_name = kernel_name if kernel_name else top_level_function
         self.nodes = {nt: [] for nt in CDFG_NODE_TYPES}
         self.edges = {et: [] for et in CDFG_EDGE_TYPES}
-        self.metrics = {}
 
-        rpt = extract_impl_report(solution_dir, filtered=filtered)
-        for category in ['timing', 'utilization', 'power']:
-            for key, value in rpt[category].items():
-                if key not in self.metrics:
-                    self.metrics[key] = value
-
-        self.metrics['cc'] = rpt['cc']
-        self.metrics['time'] = rpt['time']
+        self.metrics = extract_metrics(solution_dir, filtered=filtered)
 
         self._offsets = {nt: 0 for nt in CDFG_NODE_TYPES}
         self._cdfgs = {}

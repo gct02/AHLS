@@ -1,0 +1,24 @@
+
+
+Implementation tool: Xilinx Vivado v.2023.2
+Project:             STENCIL3D
+Solution:            solution0
+Device target:       xcu50-fsvh2104-2-e
+Report date:         Thu May 29 20:07:42 -03 2025
+
+#=== Post-Implementation Resource usage ===
+SLICE:            0
+LUT:            397
+FF:             386
+DSP:              3
+BRAM:             0
+URAM:             0
+LATCH:            0
+SRL:              0
+CLB:             74
+
+#=== Final timing ===
+CP required:                     8.000
+CP achieved post-synthesis:      4.563
+CP achieved post-implementation: 5.503
+Timing met

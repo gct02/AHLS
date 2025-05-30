@@ -1,0 +1,52 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'encrypt'" level="0">
+<item name = "Date">Thu May 29 14:55:04 2025
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">AES</item>
+<item name = "Solution">solution0 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">8.00 ns, 3.942 ns, 2.16 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">1054, 1054, 8.432 us, 8.432 us, 1054, 1054, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- KeySchedule_label4">40, 40, 10, -, -, 4, no</column>
+<column name=" + KeySchedule_label5">8, 8, 2, -, -, 4, no</column>
+<column name="- KeySchedule_label6">520, 520, 13, -, -, 40, no</column>
+<column name=" + KeySchedule_label9">8, 8, 2, -, -, 4, no</column>
+<column name="- AddRoundKey_label0">16, 16, 4, -, -, 4, no</column>
+<column name="- encrypt_label1">441, 441, 49, -, -, 9, no</column>
+<column name="- AddRoundKey_label0">16, 16, 4, -, -, 4, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

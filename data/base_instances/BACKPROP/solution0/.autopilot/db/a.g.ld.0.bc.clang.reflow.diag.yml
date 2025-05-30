@@ -1,0 +1,238 @@
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 57, 
+                   Column: 0 }
+Function:        matrix_vector_product_with_bias_input_layer
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          add_bias_to_activations
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 45, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          matrix_vector_product_with_bias_input_layer
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 57, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 75, 
+                   Column: 0 }
+Function:        matrix_vector_product_with_bias_second_layer
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          add_bias_to_activations
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 45, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          matrix_vector_product_with_bias_second_layer
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 75, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 93, 
+                   Column: 0 }
+Function:        matrix_vector_product_with_bias_output_layer
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          add_bias_to_activations
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 45, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          matrix_vector_product_with_bias_output_layer
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 93, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                   Column: 0 }
+Function:        backprop
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          matrix_vector_product_with_bias_input_layer
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 57, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          backprop
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                   Column: 0 }
+Function:        backprop
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          RELU
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 33, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          backprop
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                   Column: 0 }
+Function:        backprop
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          matrix_vector_product_with_bias_second_layer
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 75, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          backprop
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                   Column: 0 }
+Function:        backprop
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          matrix_vector_product_with_bias_output_layer
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 93, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          backprop
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                   Column: 0 }
+Function:        backprop
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          soft_max
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 16, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          backprop
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                   Column: 0 }
+Function:        backprop
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          take_difference
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 111, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          backprop
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                   Column: 0 }
+Function:        backprop
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          get_delta_matrix_weights3
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 122, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          backprop
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                   Column: 0 }
+Function:        backprop
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          get_oracle_activations2
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 138, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          backprop
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                   Column: 0 }
+Function:        backprop
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          get_delta_matrix_weights2
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 155, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          backprop
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                   Column: 0 }
+Function:        backprop
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          get_oracle_activations1
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 171, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          backprop
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                   Column: 0 }
+Function:        backprop
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          get_delta_matrix_weights1
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 188, 
+                       Column: 0 }
+  - String:          ''' into '''
+  - Caller:          backprop
+    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
+                       Column: 0 }
+  - String:          ''''
+...

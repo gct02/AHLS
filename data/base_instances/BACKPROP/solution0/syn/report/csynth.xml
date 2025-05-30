@@ -1,0 +1,2543 @@
+<profile>
+    <ReportVersion>
+        <Version>2023.2</Version>
+    </ReportVersion>
+    <UserAssignments>
+        <unit>ns</unit>
+        <ProductFamily>virtexuplusHBM</ProductFamily>
+        <Part>xcu50-fsvh2104-2-e</Part>
+        <TopModelName>backprop</TopModelName>
+        <TargetClockPeriod>8.00</TargetClockPeriod>
+        <ClockUncertainty>2.16</ClockUncertainty>
+        <FlowTarget>vivado</FlowTarget>
+    </UserAssignments>
+    <PerformanceEstimates>
+        <PipelineType>no</PipelineType>
+        <SummaryOfTimingAnalysis>
+            <unit>ns</unit>
+            <EstimatedClockPeriod>6.014</EstimatedClockPeriod>
+        </SummaryOfTimingAnalysis>
+        <SummaryOfOverallLatency>
+            <unit>clock cycles</unit>
+            <Best-caseLatency>50997648</Best-caseLatency>
+            <Average-caseLatency>50997648</Average-caseLatency>
+            <Worst-caseLatency>50997648</Worst-caseLatency>
+            <Best-caseRealTimeLatency>0.408 sec</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0.408 sec</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>0.408 sec</Worst-caseRealTimeLatency>
+            <Interval-min>50997649</Interval-min>
+            <Interval-max>50997649</Interval-max>
+        </SummaryOfOverallLatency>
+        <SummaryOfLoopLatency>
+            <backprop_loop1>
+                <Slack>5.84</Slack>
+                <TripCount>163</TripCount>
+                <Latency>50997647</Latency>
+                <AbsoluteTimeLatency>407981176</AbsoluteTimeLatency>
+                <IterationLatency>312869</IterationLatency>
+                <InstanceList/>
+                <backprop_loop1_1>
+                    <Slack>5.84</Slack>
+                    <TripCount>64</TripCount>
+                    <Latency>64</Latency>
+                    <AbsoluteTimeLatency>512</AbsoluteTimeLatency>
+                    <IterationLatency>1</IterationLatency>
+                    <InstanceList/>
+                </backprop_loop1_1>
+                <matrix_vector_product_with_bias_input_layer_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>64</TripCount>
+                    <Latency>8448</Latency>
+                    <AbsoluteTimeLatency>67584</AbsoluteTimeLatency>
+                    <IterationLatency>132</IterationLatency>
+                    <InstanceList/>
+                    <matrix_vector_product_with_bias_input_layer_loop1_1>
+                        <Slack>5.84</Slack>
+                        <TripCount>13</TripCount>
+                        <Latency>130</Latency>
+                        <AbsoluteTimeLatency>1040</AbsoluteTimeLatency>
+                        <IterationLatency>10</IterationLatency>
+                        <InstanceList/>
+                    </matrix_vector_product_with_bias_input_layer_loop1_1>
+                </matrix_vector_product_with_bias_input_layer_loop1>
+                <add_bias_to_activations_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>64</TripCount>
+                    <Latency>320</Latency>
+                    <AbsoluteTimeLatency>2560</AbsoluteTimeLatency>
+                    <IterationLatency>5</IterationLatency>
+                    <InstanceList/>
+                </add_bias_to_activations_loop1>
+                <RELU_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>64</TripCount>
+                    <Latency>1984</Latency>
+                    <AbsoluteTimeLatency>15872</AbsoluteTimeLatency>
+                    <IterationLatency>31</IterationLatency>
+                    <InstanceList/>
+                </RELU_loop1>
+                <matrix_vector_product_with_bias_second_layer_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>64</TripCount>
+                    <Latency>41088</Latency>
+                    <AbsoluteTimeLatency>328704</AbsoluteTimeLatency>
+                    <IterationLatency>642</IterationLatency>
+                    <InstanceList/>
+                    <matrix_vector_product_with_bias_second_layer_loop1_1>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>640</Latency>
+                        <AbsoluteTimeLatency>5120</AbsoluteTimeLatency>
+                        <IterationLatency>10</IterationLatency>
+                        <InstanceList/>
+                    </matrix_vector_product_with_bias_second_layer_loop1_1>
+                </matrix_vector_product_with_bias_second_layer_loop1>
+                <add_bias_to_activations_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>64</TripCount>
+                    <Latency>320</Latency>
+                    <AbsoluteTimeLatency>2560</AbsoluteTimeLatency>
+                    <IterationLatency>5</IterationLatency>
+                    <InstanceList/>
+                </add_bias_to_activations_loop1>
+                <RELU_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>64</TripCount>
+                    <Latency>1984</Latency>
+                    <AbsoluteTimeLatency>15872</AbsoluteTimeLatency>
+                    <IterationLatency>31</IterationLatency>
+                    <InstanceList/>
+                </RELU_loop1>
+                <matrix_vector_product_with_bias_output_layer_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>3</TripCount>
+                    <Latency>1737</Latency>
+                    <AbsoluteTimeLatency>13896</AbsoluteTimeLatency>
+                    <IterationLatency>579</IterationLatency>
+                    <InstanceList/>
+                    <matrix_vector_product_with_bias_output_layer_loop1_1>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>576</Latency>
+                        <AbsoluteTimeLatency>4608</AbsoluteTimeLatency>
+                        <IterationLatency>9</IterationLatency>
+                        <InstanceList/>
+                    </matrix_vector_product_with_bias_output_layer_loop1_1>
+                </matrix_vector_product_with_bias_output_layer_loop1>
+                <add_bias_to_activations_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>3</TripCount>
+                    <Latency>18</Latency>
+                    <AbsoluteTimeLatency>144</AbsoluteTimeLatency>
+                    <IterationLatency>6</IterationLatency>
+                    <InstanceList/>
+                </add_bias_to_activations_loop1>
+                <RELU_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>3</TripCount>
+                    <Latency>87</Latency>
+                    <AbsoluteTimeLatency>696</AbsoluteTimeLatency>
+                    <IterationLatency>29</IterationLatency>
+                    <InstanceList/>
+                </RELU_loop1>
+                <soft_max_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>3</TripCount>
+                    <Latency>45</Latency>
+                    <AbsoluteTimeLatency>360</AbsoluteTimeLatency>
+                    <IterationLatency>15</IterationLatency>
+                    <InstanceList/>
+                </soft_max_loop1>
+                <soft_max_loop2>
+                    <Slack>5.84</Slack>
+                    <TripCount>3</TripCount>
+                    <Latency>75</Latency>
+                    <AbsoluteTimeLatency>600</AbsoluteTimeLatency>
+                    <IterationLatency>25</IterationLatency>
+                    <InstanceList/>
+                </soft_max_loop2>
+                <take_difference_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>3</TripCount>
+                    <Latency>27</Latency>
+                    <AbsoluteTimeLatency>216</AbsoluteTimeLatency>
+                    <IterationLatency>9</IterationLatency>
+                    <InstanceList/>
+                </take_difference_loop1>
+                <get_delta_matrix_weights3_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>64</TripCount>
+                    <Latency>960</Latency>
+                    <AbsoluteTimeLatency>7680</AbsoluteTimeLatency>
+                    <IterationLatency>15</IterationLatency>
+                    <InstanceList/>
+                    <get_delta_matrix_weights3_loop1_1>
+                        <Slack>5.84</Slack>
+                        <TripCount>3</TripCount>
+                        <Latency>12</Latency>
+                        <AbsoluteTimeLatency>96</AbsoluteTimeLatency>
+                        <IterationLatency>4</IterationLatency>
+                        <InstanceList/>
+                    </get_delta_matrix_weights3_loop1_1>
+                </get_delta_matrix_weights3_loop1>
+                <get_oracle_activations2_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>64</TripCount>
+                    <Latency>2112</Latency>
+                    <AbsoluteTimeLatency>16896</AbsoluteTimeLatency>
+                    <IterationLatency>33</IterationLatency>
+                    <InstanceList/>
+                    <get_oracle_activations2_loop1_1>
+                        <Slack>5.84</Slack>
+                        <TripCount>3</TripCount>
+                        <Latency>27</Latency>
+                        <AbsoluteTimeLatency>216</AbsoluteTimeLatency>
+                        <IterationLatency>9</IterationLatency>
+                        <InstanceList/>
+                    </get_oracle_activations2_loop1_1>
+                </get_oracle_activations2_loop1>
+                <get_delta_matrix_weights2_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>64</TripCount>
+                    <Latency>24768</Latency>
+                    <AbsoluteTimeLatency>198144</AbsoluteTimeLatency>
+                    <IterationLatency>387</IterationLatency>
+                    <InstanceList/>
+                    <get_delta_matrix_weights2_loop1_1>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>384</Latency>
+                        <AbsoluteTimeLatency>3072</AbsoluteTimeLatency>
+                        <IterationLatency>6</IterationLatency>
+                        <InstanceList/>
+                    </get_delta_matrix_weights2_loop1_1>
+                </get_delta_matrix_weights2_loop1>
+                <get_oracle_activations1_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>64</TripCount>
+                    <Latency>41344</Latency>
+                    <AbsoluteTimeLatency>330752</AbsoluteTimeLatency>
+                    <IterationLatency>646</IterationLatency>
+                    <InstanceList/>
+                    <get_oracle_activations1_loop1_1>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>640</Latency>
+                        <AbsoluteTimeLatency>5120</AbsoluteTimeLatency>
+                        <IterationLatency>10</IterationLatency>
+                        <InstanceList/>
+                    </get_oracle_activations1_loop1_1>
+                </get_oracle_activations1_loop1>
+                <get_delta_matrix_weights1_loop1>
+                    <Slack>5.84</Slack>
+                    <TripCount>13</TripCount>
+                    <Latency>4199</Latency>
+                    <AbsoluteTimeLatency>33592</AbsoluteTimeLatency>
+                    <IterationLatency>323</IterationLatency>
+                    <InstanceList/>
+                    <get_delta_matrix_weights1_loop1_1>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>320</Latency>
+                        <AbsoluteTimeLatency>2560</AbsoluteTimeLatency>
+                        <IterationLatency>5</IterationLatency>
+                        <InstanceList/>
+                    </get_delta_matrix_weights1_loop1_1>
+                </get_delta_matrix_weights1_loop1>
+            </backprop_loop1>
+        </SummaryOfLoopLatency>
+        <SummaryOfViolations>
+            <IssueType>-</IssueType>
+            <ViolationType>-</ViolationType>
+            <SourceLocation>data/benchmarks/backprop/backprop.c:338</SourceLocation>
+            <SummaryOfLoopViolations>
+                <backprop_loop1>
+                    <Name>backprop_loop1</Name>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:374</SourceLocation>
+                    <backprop_loop1_1>
+                        <Name>backprop_loop1_1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:363</SourceLocation>
+                    </backprop_loop1_1>
+                    <matrix_vector_product_with_bias_input_layer_loop1>
+                        <Name>matrix_vector_product_with_bias_input_layer_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:60~data/benchmarks/backprop/backprop.c:367</SourceLocation>
+                        <matrix_vector_product_with_bias_input_layer_loop1_1>
+                            <Name>matrix_vector_product_with_bias_input_layer_loop1_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:64~data/benchmarks/backprop/backprop.c:367</SourceLocation>
+                        </matrix_vector_product_with_bias_input_layer_loop1_1>
+                    </matrix_vector_product_with_bias_input_layer_loop1>
+                    <add_bias_to_activations_loop1>
+                        <Name>add_bias_to_activations_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:48~data/benchmarks/backprop/backprop.c:69~data/benchmarks/backprop/backprop.c:367</SourceLocation>
+                    </add_bias_to_activations_loop1>
+                    <RELU_loop1>
+                        <Name>RELU_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:36~data/benchmarks/backprop/backprop.c:368</SourceLocation>
+                    </RELU_loop1>
+                    <matrix_vector_product_with_bias_second_layer_loop1>
+                        <Name>matrix_vector_product_with_bias_second_layer_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:78~data/benchmarks/backprop/backprop.c:369</SourceLocation>
+                        <matrix_vector_product_with_bias_second_layer_loop1_1>
+                            <Name>matrix_vector_product_with_bias_second_layer_loop1_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:82~data/benchmarks/backprop/backprop.c:369</SourceLocation>
+                        </matrix_vector_product_with_bias_second_layer_loop1_1>
+                    </matrix_vector_product_with_bias_second_layer_loop1>
+                    <add_bias_to_activations_loop1>
+                        <Name>add_bias_to_activations_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:48~data/benchmarks/backprop/backprop.c:87~data/benchmarks/backprop/backprop.c:369</SourceLocation>
+                    </add_bias_to_activations_loop1>
+                    <RELU_loop1>
+                        <Name>RELU_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:36~data/benchmarks/backprop/backprop.c:370</SourceLocation>
+                    </RELU_loop1>
+                    <matrix_vector_product_with_bias_output_layer_loop1>
+                        <Name>matrix_vector_product_with_bias_output_layer_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:102~data/benchmarks/backprop/backprop.c:371</SourceLocation>
+                        <matrix_vector_product_with_bias_output_layer_loop1_1>
+                            <Name>matrix_vector_product_with_bias_output_layer_loop1_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:100~data/benchmarks/backprop/backprop.c:371</SourceLocation>
+                        </matrix_vector_product_with_bias_output_layer_loop1_1>
+                    </matrix_vector_product_with_bias_output_layer_loop1>
+                    <add_bias_to_activations_loop1>
+                        <Name>add_bias_to_activations_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:50~data/benchmarks/backprop/backprop.c:105~data/benchmarks/backprop/backprop.c:371</SourceLocation>
+                    </add_bias_to_activations_loop1>
+                    <RELU_loop1>
+                        <Name>RELU_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:39~data/benchmarks/backprop/backprop.c:372</SourceLocation>
+                    </RELU_loop1>
+                    <soft_max_loop1>
+                        <Name>soft_max_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:24~data/benchmarks/backprop/backprop.c:373</SourceLocation>
+                    </soft_max_loop1>
+                    <soft_max_loop2>
+                        <Name>soft_max_loop2</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:29~data/benchmarks/backprop/backprop.c:373</SourceLocation>
+                    </soft_max_loop2>
+                    <take_difference_loop1>
+                        <Name>take_difference_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:116~data/benchmarks/backprop/backprop.c:374</SourceLocation>
+                    </take_difference_loop1>
+                    <get_delta_matrix_weights3_loop1>
+                        <Name>get_delta_matrix_weights3_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:125~data/benchmarks/backprop/backprop.c:375</SourceLocation>
+                        <get_delta_matrix_weights3_loop1_1>
+                            <Name>get_delta_matrix_weights3_loop1_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:130~data/benchmarks/backprop/backprop.c:375</SourceLocation>
+                        </get_delta_matrix_weights3_loop1_1>
+                    </get_delta_matrix_weights3_loop1>
+                    <get_oracle_activations2_loop1>
+                        <Name>get_oracle_activations2_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:141~data/benchmarks/backprop/backprop.c:376</SourceLocation>
+                        <get_oracle_activations2_loop1_1>
+                            <Name>get_oracle_activations2_loop1_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:147~data/benchmarks/backprop/backprop.c:376</SourceLocation>
+                        </get_oracle_activations2_loop1_1>
+                    </get_oracle_activations2_loop1>
+                    <get_delta_matrix_weights2_loop1>
+                        <Name>get_delta_matrix_weights2_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:158~data/benchmarks/backprop/backprop.c:377</SourceLocation>
+                        <get_delta_matrix_weights2_loop1_1>
+                            <Name>get_delta_matrix_weights2_loop1_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:161~data/benchmarks/backprop/backprop.c:377</SourceLocation>
+                        </get_delta_matrix_weights2_loop1_1>
+                    </get_delta_matrix_weights2_loop1>
+                    <get_oracle_activations1_loop1>
+                        <Name>get_oracle_activations1_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:174~data/benchmarks/backprop/backprop.c:378</SourceLocation>
+                        <get_oracle_activations1_loop1_1>
+                            <Name>get_oracle_activations1_loop1_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:178~data/benchmarks/backprop/backprop.c:378</SourceLocation>
+                        </get_oracle_activations1_loop1_1>
+                    </get_oracle_activations1_loop1>
+                    <get_delta_matrix_weights1_loop1>
+                        <Name>get_delta_matrix_weights1_loop1</Name>
+                        <IssueType>-</IssueType>
+                        <ViolationType>-</ViolationType>
+                        <SourceLocation>data/benchmarks/backprop/backprop.c:191~data/benchmarks/backprop/backprop.c:379</SourceLocation>
+                        <get_delta_matrix_weights1_loop1_1>
+                            <Name>get_delta_matrix_weights1_loop1_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:194~data/benchmarks/backprop/backprop.c:379</SourceLocation>
+                        </get_delta_matrix_weights1_loop1_1>
+                    </get_delta_matrix_weights1_loop1>
+                </backprop_loop1>
+            </SummaryOfLoopViolations>
+        </SummaryOfViolations>
+    </PerformanceEstimates>
+    <AreaEstimates>
+        <Resources>
+            <BRAM_18K>6</BRAM_18K>
+            <DSP>37</DSP>
+            <FF>7662</FF>
+            <LUT>10426</LUT>
+            <URAM>1</URAM>
+        </Resources>
+        <AvailableResources>
+            <BRAM_18K>2688</BRAM_18K>
+            <DSP>5952</DSP>
+            <FF>1743360</FF>
+            <LUT>871680</LUT>
+            <URAM>640</URAM>
+        </AvailableResources>
+    </AreaEstimates>
+    <InterfaceSummary>
+        <RtlPorts>
+            <name>ap_clk</name>
+            <Object>backprop</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_rst</name>
+            <Object>backprop</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_start</name>
+            <Object>backprop</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_done</name>
+            <Object>backprop</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_idle</name>
+            <Object>backprop</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_ready</name>
+            <Object>backprop</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights1_address0</name>
+            <Object>weights1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>10</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights1_ce0</name>
+            <Object>weights1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights1_we0</name>
+            <Object>weights1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights1_d0</name>
+            <Object>weights1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights1_q0</name>
+            <Object>weights1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights2_address0</name>
+            <Object>weights2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>12</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights2_ce0</name>
+            <Object>weights2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights2_we0</name>
+            <Object>weights2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights2_d0</name>
+            <Object>weights2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights2_q0</name>
+            <Object>weights2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights3_address0</name>
+            <Object>weights3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>8</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights3_ce0</name>
+            <Object>weights3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights3_we0</name>
+            <Object>weights3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights3_d0</name>
+            <Object>weights3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>weights3_q0</name>
+            <Object>weights3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases1_address0</name>
+            <Object>biases1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>6</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases1_ce0</name>
+            <Object>biases1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases1_we0</name>
+            <Object>biases1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases1_d0</name>
+            <Object>biases1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases1_q0</name>
+            <Object>biases1</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases2_address0</name>
+            <Object>biases2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>6</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases2_ce0</name>
+            <Object>biases2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases2_we0</name>
+            <Object>biases2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases2_d0</name>
+            <Object>biases2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases2_q0</name>
+            <Object>biases2</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases3_address0</name>
+            <Object>biases3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>2</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases3_ce0</name>
+            <Object>biases3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases3_we0</name>
+            <Object>biases3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases3_d0</name>
+            <Object>biases3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>biases3_q0</name>
+            <Object>biases3</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_data_address0</name>
+            <Object>training_data</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>12</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_data_ce0</name>
+            <Object>training_data</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_data_q0</name>
+            <Object>training_data</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_targets_address0</name>
+            <Object>training_targets</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>9</Bits>
+            <Attribute>address</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_targets_ce0</name>
+            <Object>training_targets</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>training_targets_q0</name>
+            <Object>training_targets</Object>
+            <Type>array</Type>
+            <Scope/>
+            <IOProtocol>ap_memory</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+    </InterfaceSummary>
+    <RTLDesignHierarchy>
+        <TopModule MAX_DEPTH="3">
+            <ModuleName>backprop</ModuleName>
+            <InstancesList>
+                <Instance>
+                    <InstName>grp_update_weights_1_fu_1234</InstName>
+                    <ModuleName>update_weights_1</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>1234</ID>
+                    <BindInstances>add_ln219_fu_597_p2 add_ln222_fu_627_p2 add_ln224_fu_637_p2 add_ln229_fu_676_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U4 add_ln239_fu_722_p2 add_ln242_fu_747_p2 add_ln244_fu_757_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U4 add_ln248_fu_789_p2 add_ln257_fu_833_p2 add_ln260_fu_867_p2 add_ln262_fu_877_p2 add_ln267_fu_916_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U4 add_ln277_fu_962_p2 add_ln280_fu_991_p2 add_ln282_fu_1001_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U4 add_ln286_fu_1034_p2 add_ln295_fu_1078_p2 empty_48_fu_1100_p2 add_ln298_fu_1122_p2 add_ln300_fu_1132_p2 add_ln305_fu_1171_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U4 add_ln315_fu_1225_p2 empty_50_fu_1247_p2 add_ln318_fu_1264_p2 add_ln320_fu_1274_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U4 add_ln324_fu_1306_p2</BindInstances>
+                </Instance>
+            </InstancesList>
+            <BindInstances>activations1_U activations2_U dactivations1_U dactivations2_U delta_weights1_U delta_weights2_U delta_weights3_U oracle_activations1_U oracle_activations2_U add_ln356_1_fu_1397_p2 dmul_64ns_64ns_64_4_max_dsp_1_U23 add_ln359_fu_1425_p2 add_ln60_1_fu_1513_p2 add_ln60_fu_1525_p2 add_ln64_fu_1542_p2 add_ln66_fu_1556_p2 add_ln66_1_fu_1562_p2 dmul_64ns_64ns_64_4_max_dsp_1_U23 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 add_ln48_fu_1591_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 add_ln36_fu_1614_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 dmul_64ns_64ns_64_4_max_dsp_1_U23 dexp_64ns_64ns_64_10_full_dsp_1_U25 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 ddiv_64ns_64ns_64_14_no_dsp_1_U24 add_ln78_fu_1646_p2 add_ln82_fu_1675_p2 add_ln84_fu_1685_p2 dmul_64ns_64ns_64_4_max_dsp_1_U23 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 add_ln48_1_fu_1711_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 add_ln36_1_fu_1734_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 dmul_64ns_64ns_64_4_max_dsp_1_U23 dexp_64ns_64ns_64_10_full_dsp_1_U25 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 ddiv_64ns_64ns_64_14_no_dsp_1_U24 add_ln96_fu_1766_p2 add_ln100_fu_1786_p2 add_ln102_fu_1801_p2 dmul_64ns_64ns_64_4_max_dsp_1_U23 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 add_ln48_2_fu_1822_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 add_ln36_2_fu_1857_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 dmul_64ns_64ns_64_4_max_dsp_1_U23 dexp_64ns_64ns_64_10_full_dsp_1_U25 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 ddiv_64ns_64ns_64_14_no_dsp_1_U24 add_ln22_fu_1910_p2 dexp_64ns_64ns_64_10_full_dsp_1_U25 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 add_ln27_fu_1948_p2 dexp_64ns_64ns_64_10_full_dsp_1_U25 ddiv_64ns_64ns_64_14_no_dsp_1_U24 sub_ln374_fu_1977_p2 add_ln114_fu_2017_p2 add_ln116_fu_2027_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 dmul_64ns_64ns_64_4_max_dsp_1_U23 add_ln125_fu_2122_p2 empty_52_fu_2149_p2 add_ln128_fu_2161_p2 dmul_64ns_64ns_64_4_max_dsp_1_U23 add_ln130_fu_2184_p2 add_ln141_fu_2199_p2 empty_54_fu_2226_p2 add_ln145_fu_2238_p2 add_ln147_fu_2248_p2 dmul_64ns_64ns_64_4_max_dsp_1_U23 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 dmul_64ns_64ns_64_4_max_dsp_1_U23 add_ln158_fu_2282_p2 add_ln161_fu_2310_p2 dmul_64ns_64ns_64_4_max_dsp_1_U23 add_ln163_fu_2325_p2 add_ln174_fu_2340_p2 add_ln178_fu_2369_p2 add_ln180_fu_2379_p2 dmul_64ns_64ns_64_4_max_dsp_1_U23 dadddsub_64ns_64ns_64_4_full_dsp_1_U22 dmul_64ns_64ns_64_4_max_dsp_1_U23 add_ln191_fu_2405_p2 arrayidx10_sum197_fu_2415_p2 add_ln194_fu_2466_p2 dmul_64ns_64ns_64_4_max_dsp_1_U23 add_ln196_fu_2481_p2</BindInstances>
+        </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+        <Module>
+            <Name>update_weights_1</Name>
+            <Loops>
+                <update_weights_loop1>
+                    <update_weights_loop1_1/>
+                </update_weights_loop1>
+                <update_weights_loop2/>
+                <update_weights_loop3>
+                    <update_weights_loop3_1/>
+                </update_weights_loop3>
+                <update_weights_loop4/>
+                <update_weights_loop5>
+                    <update_weights_loop5_1/>
+                </update_weights_loop5>
+                <update_weights_loop6/>
+                <update_weights_loop7>
+                    <update_weights_loop7_1/>
+                </update_weights_loop7>
+                <update_weights_loop8/>
+                <update_weights_loop9>
+                    <update_weights_loop9_1/>
+                </update_weights_loop9>
+                <update_weights_loop10/>
+                <update_weights_loop11>
+                    <update_weights_loop11_1/>
+                </update_weights_loop11>
+                <update_weights_loop12/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>5.975</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>183269</Best-caseLatency>
+                    <Average-caseLatency>183269</Average-caseLatency>
+                    <Worst-caseLatency>183269</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>1.466 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>1.466 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>1.466 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>183269</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <update_weights_loop1>
+                        <Name>update_weights_loop1</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>13</TripCount>
+                        <Latency>14170</Latency>
+                        <AbsoluteTimeLatency>0.113 ms</AbsoluteTimeLatency>
+                        <IterationLatency>1090</IterationLatency>
+                        <PipelineDepth>1090</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                        <update_weights_loop1_1>
+                            <Name>update_weights_loop1_1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>1088</Latency>
+                            <AbsoluteTimeLatency>8.704 us</AbsoluteTimeLatency>
+                            <IterationLatency>17</IterationLatency>
+                            <PipelineDepth>17</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </update_weights_loop1_1>
+                    </update_weights_loop1>
+                    <update_weights_loop2>
+                        <Name>update_weights_loop2</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>1088</Latency>
+                        <AbsoluteTimeLatency>8.704 us</AbsoluteTimeLatency>
+                        <IterationLatency>17</IterationLatency>
+                        <PipelineDepth>17</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </update_weights_loop2>
+                    <update_weights_loop3>
+                        <Name>update_weights_loop3</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>13</TripCount>
+                        <Latency>14170</Latency>
+                        <AbsoluteTimeLatency>0.113 ms</AbsoluteTimeLatency>
+                        <IterationLatency>1090</IterationLatency>
+                        <PipelineDepth>1090</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                        <update_weights_loop3_1>
+                            <Name>update_weights_loop3_1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>1088</Latency>
+                            <AbsoluteTimeLatency>8.704 us</AbsoluteTimeLatency>
+                            <IterationLatency>17</IterationLatency>
+                            <PipelineDepth>17</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </update_weights_loop3_1>
+                    </update_weights_loop3>
+                    <update_weights_loop4>
+                        <Name>update_weights_loop4</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>1088</Latency>
+                        <AbsoluteTimeLatency>8.704 us</AbsoluteTimeLatency>
+                        <IterationLatency>17</IterationLatency>
+                        <PipelineDepth>17</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </update_weights_loop4>
+                    <update_weights_loop5>
+                        <Name>update_weights_loop5</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>73856</Latency>
+                        <AbsoluteTimeLatency>0.591 ms</AbsoluteTimeLatency>
+                        <IterationLatency>1154</IterationLatency>
+                        <PipelineDepth>1154</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                        <update_weights_loop5_1>
+                            <Name>update_weights_loop5_1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>1152</Latency>
+                            <AbsoluteTimeLatency>9.216 us</AbsoluteTimeLatency>
+                            <IterationLatency>18</IterationLatency>
+                            <PipelineDepth>18</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </update_weights_loop5_1>
+                    </update_weights_loop5>
+                    <update_weights_loop6>
+                        <Name>update_weights_loop6</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>1088</Latency>
+                        <AbsoluteTimeLatency>8.704 us</AbsoluteTimeLatency>
+                        <IterationLatency>17</IterationLatency>
+                        <PipelineDepth>17</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </update_weights_loop6>
+                    <update_weights_loop7>
+                        <Name>update_weights_loop7</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>69760</Latency>
+                        <AbsoluteTimeLatency>0.558 ms</AbsoluteTimeLatency>
+                        <IterationLatency>1090</IterationLatency>
+                        <PipelineDepth>1090</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                        <update_weights_loop7_1>
+                            <Name>update_weights_loop7_1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>1088</Latency>
+                            <AbsoluteTimeLatency>8.704 us</AbsoluteTimeLatency>
+                            <IterationLatency>17</IterationLatency>
+                            <PipelineDepth>17</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </update_weights_loop7_1>
+                    </update_weights_loop7>
+                    <update_weights_loop8>
+                        <Name>update_weights_loop8</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>1088</Latency>
+                        <AbsoluteTimeLatency>8.704 us</AbsoluteTimeLatency>
+                        <IterationLatency>17</IterationLatency>
+                        <PipelineDepth>17</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </update_weights_loop8>
+                    <update_weights_loop9>
+                        <Name>update_weights_loop9</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>3392</Latency>
+                        <AbsoluteTimeLatency>27.136 us</AbsoluteTimeLatency>
+                        <IterationLatency>53</IterationLatency>
+                        <PipelineDepth>53</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                        <update_weights_loop9_1>
+                            <Name>update_weights_loop9_1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>3</TripCount>
+                            <Latency>51</Latency>
+                            <AbsoluteTimeLatency>0.408 us</AbsoluteTimeLatency>
+                            <IterationLatency>17</IterationLatency>
+                            <PipelineDepth>17</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </update_weights_loop9_1>
+                    </update_weights_loop9>
+                    <update_weights_loop10>
+                        <Name>update_weights_loop10</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>3</TripCount>
+                        <Latency>48</Latency>
+                        <AbsoluteTimeLatency>0.384 us</AbsoluteTimeLatency>
+                        <IterationLatency>16</IterationLatency>
+                        <PipelineDepth>16</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </update_weights_loop10>
+                    <update_weights_loop11>
+                        <Name>update_weights_loop11</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>3392</Latency>
+                        <AbsoluteTimeLatency>27.136 us</AbsoluteTimeLatency>
+                        <IterationLatency>53</IterationLatency>
+                        <PipelineDepth>53</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                        <update_weights_loop11_1>
+                            <Name>update_weights_loop11_1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>3</TripCount>
+                            <Latency>51</Latency>
+                            <AbsoluteTimeLatency>0.408 us</AbsoluteTimeLatency>
+                            <IterationLatency>17</IterationLatency>
+                            <PipelineDepth>17</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </update_weights_loop11_1>
+                    </update_weights_loop11>
+                    <update_weights_loop12>
+                        <Name>update_weights_loop12</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>3</TripCount>
+                        <Latency>51</Latency>
+                        <AbsoluteTimeLatency>0.408 us</AbsoluteTimeLatency>
+                        <IterationLatency>17</IterationLatency>
+                        <PipelineDepth>17</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </update_weights_loop12>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:213</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <update_weights_loop1>
+                            <Name>update_weights_loop1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:219</SourceLocation>
+                            <update_weights_loop1_1>
+                                <Name>update_weights_loop1_1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:222</SourceLocation>
+                            </update_weights_loop1_1>
+                        </update_weights_loop1>
+                        <update_weights_loop2>
+                            <Name>update_weights_loop2</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:229</SourceLocation>
+                        </update_weights_loop2>
+                        <update_weights_loop3>
+                            <Name>update_weights_loop3</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:239</SourceLocation>
+                            <update_weights_loop3_1>
+                                <Name>update_weights_loop3_1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:242</SourceLocation>
+                            </update_weights_loop3_1>
+                        </update_weights_loop3>
+                        <update_weights_loop4>
+                            <Name>update_weights_loop4</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:248</SourceLocation>
+                        </update_weights_loop4>
+                        <update_weights_loop5>
+                            <Name>update_weights_loop5</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:257</SourceLocation>
+                            <update_weights_loop5_1>
+                                <Name>update_weights_loop5_1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:260</SourceLocation>
+                            </update_weights_loop5_1>
+                        </update_weights_loop5>
+                        <update_weights_loop6>
+                            <Name>update_weights_loop6</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:267</SourceLocation>
+                        </update_weights_loop6>
+                        <update_weights_loop7>
+                            <Name>update_weights_loop7</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:277</SourceLocation>
+                            <update_weights_loop7_1>
+                                <Name>update_weights_loop7_1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:280</SourceLocation>
+                            </update_weights_loop7_1>
+                        </update_weights_loop7>
+                        <update_weights_loop8>
+                            <Name>update_weights_loop8</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:286</SourceLocation>
+                        </update_weights_loop8>
+                        <update_weights_loop9>
+                            <Name>update_weights_loop9</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:295</SourceLocation>
+                            <update_weights_loop9_1>
+                                <Name>update_weights_loop9_1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:298</SourceLocation>
+                            </update_weights_loop9_1>
+                        </update_weights_loop9>
+                        <update_weights_loop10>
+                            <Name>update_weights_loop10</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:305</SourceLocation>
+                        </update_weights_loop10>
+                        <update_weights_loop11>
+                            <Name>update_weights_loop11</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:315</SourceLocation>
+                            <update_weights_loop11_1>
+                                <Name>update_weights_loop11_1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:318</SourceLocation>
+                            </update_weights_loop11_1>
+                        </update_weights_loop11>
+                        <update_weights_loop12>
+                            <Name>update_weights_loop12</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:324</SourceLocation>
+                        </update_weights_loop12>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>1659</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>2726</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln219_fu_597_p2" SOURCE="data/benchmarks/backprop/backprop.c:219" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln219"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln222_fu_627_p2" SOURCE="data/benchmarks/backprop/backprop.c:222" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln222"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln224_fu_637_p2" SOURCE="data/benchmarks/backprop/backprop.c:224" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln224"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln229_fu_676_p2" SOURCE="data/benchmarks/backprop/backprop.c:229" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln229"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" SOURCE="data/benchmarks/backprop/backprop.c:235" STORAGESUBTYPE="" URAM="0" VARIABLE="norm_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln239_fu_722_p2" SOURCE="data/benchmarks/backprop/backprop.c:239" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln239"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop3_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln242_fu_747_p2" SOURCE="data/benchmarks/backprop/backprop.c:242" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln242"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop3_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln244_fu_757_p2" SOURCE="data/benchmarks/backprop/backprop.c:244" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln244"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" SOURCE="data/benchmarks/backprop/backprop.c:236" STORAGESUBTYPE="" URAM="0" VARIABLE="bias_norm"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln248_fu_789_p2" SOURCE="data/benchmarks/backprop/backprop.c:248" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln248"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln257_fu_833_p2" SOURCE="data/benchmarks/backprop/backprop.c:257" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln257"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop5_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln260_fu_867_p2" SOURCE="data/benchmarks/backprop/backprop.c:260" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln260"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop5_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln262_fu_877_p2" SOURCE="data/benchmarks/backprop/backprop.c:262" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln262"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln267_fu_916_p2" SOURCE="data/benchmarks/backprop/backprop.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln267"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" SOURCE="data/benchmarks/backprop/backprop.c:273" STORAGESUBTYPE="" URAM="0" VARIABLE="norm_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln277_fu_962_p2" SOURCE="data/benchmarks/backprop/backprop.c:277" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln277"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop7_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln280_fu_991_p2" SOURCE="data/benchmarks/backprop/backprop.c:280" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln280"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop7_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln282_fu_1001_p2" SOURCE="data/benchmarks/backprop/backprop.c:282" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln282"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" SOURCE="data/benchmarks/backprop/backprop.c:274" STORAGESUBTYPE="" URAM="0" VARIABLE="bias_norm_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln286_fu_1034_p2" SOURCE="data/benchmarks/backprop/backprop.c:286" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln286"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln295_fu_1078_p2" SOURCE="data/benchmarks/backprop/backprop.c:295" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln295"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop9" OPTYPE="sub" PRAGMA="" RTLNAME="empty_48_fu_1100_p2" SOURCE="data/benchmarks/backprop/backprop.c:295" STORAGESUBTYPE="" URAM="0" VARIABLE="empty_48"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop9_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln298_fu_1122_p2" SOURCE="data/benchmarks/backprop/backprop.c:298" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln298"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop9_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln300_fu_1132_p2" SOURCE="data/benchmarks/backprop/backprop.c:300" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln300"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln305_fu_1171_p2" SOURCE="data/benchmarks/backprop/backprop.c:305" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln305"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" SOURCE="data/benchmarks/backprop/backprop.c:311" STORAGESUBTYPE="" URAM="0" VARIABLE="norm_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop11" OPTYPE="add" PRAGMA="" RTLNAME="add_ln315_fu_1225_p2" SOURCE="data/benchmarks/backprop/backprop.c:315" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln315"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop11" OPTYPE="sub" PRAGMA="" RTLNAME="empty_50_fu_1247_p2" SOURCE="data/benchmarks/backprop/backprop.c:315" STORAGESUBTYPE="" URAM="0" VARIABLE="empty_50"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop11_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln318_fu_1264_p2" SOURCE="data/benchmarks/backprop/backprop.c:318" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln318"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop11_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln320_fu_1274_p2" SOURCE="data/benchmarks/backprop/backprop.c:320" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln320"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" SOURCE="data/benchmarks/backprop/backprop.c:312" STORAGESUBTYPE="" URAM="0" VARIABLE="bias_norm_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop12" OPTYPE="add" PRAGMA="" RTLNAME="add_ln324_fu_1306_p2" SOURCE="data/benchmarks/backprop/backprop.c:324" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln324"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>backprop</Name>
+            <Loops>
+                <backprop_loop1>
+                    <backprop_loop1_1/>
+                    <matrix_vector_product_with_bias_input_layer_loop1>
+                        <matrix_vector_product_with_bias_input_layer_loop1_1/>
+                    </matrix_vector_product_with_bias_input_layer_loop1>
+                    <add_bias_to_activations_loop1/>
+                    <RELU_loop1/>
+                    <matrix_vector_product_with_bias_second_layer_loop1>
+                        <matrix_vector_product_with_bias_second_layer_loop1_1/>
+                    </matrix_vector_product_with_bias_second_layer_loop1>
+                    <add_bias_to_activations_loop1/>
+                    <RELU_loop1/>
+                    <matrix_vector_product_with_bias_output_layer_loop1>
+                        <matrix_vector_product_with_bias_output_layer_loop1_1/>
+                    </matrix_vector_product_with_bias_output_layer_loop1>
+                    <add_bias_to_activations_loop1/>
+                    <RELU_loop1/>
+                    <soft_max_loop1/>
+                    <soft_max_loop2/>
+                    <take_difference_loop1/>
+                    <get_delta_matrix_weights3_loop1>
+                        <get_delta_matrix_weights3_loop1_1/>
+                    </get_delta_matrix_weights3_loop1>
+                    <get_oracle_activations2_loop1>
+                        <get_oracle_activations2_loop1_1/>
+                    </get_oracle_activations2_loop1>
+                    <get_delta_matrix_weights2_loop1>
+                        <get_delta_matrix_weights2_loop1_1/>
+                    </get_delta_matrix_weights2_loop1>
+                    <get_oracle_activations1_loop1>
+                        <get_oracle_activations1_loop1_1/>
+                    </get_oracle_activations1_loop1>
+                    <get_delta_matrix_weights1_loop1>
+                        <get_delta_matrix_weights1_loop1_1/>
+                    </get_delta_matrix_weights1_loop1>
+                </backprop_loop1>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>6.014</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>50997648</Best-caseLatency>
+                    <Average-caseLatency>50997648</Average-caseLatency>
+                    <Worst-caseLatency>50997648</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.408 sec</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.408 sec</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.408 sec</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>50997649</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <backprop_loop1>
+                        <Name>backprop_loop1</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>163</TripCount>
+                        <Latency>50997647</Latency>
+                        <AbsoluteTimeLatency>0.408 sec</AbsoluteTimeLatency>
+                        <IterationLatency>312869</IterationLatency>
+                        <PipelineDepth>312869</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList>
+                            <Instance>grp_update_weights_1_fu_1234</Instance>
+                        </InstanceList>
+                        <backprop_loop1_1>
+                            <Name>backprop_loop1_1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>64</Latency>
+                            <AbsoluteTimeLatency>0.512 us</AbsoluteTimeLatency>
+                            <IterationLatency>1</IterationLatency>
+                            <PipelineDepth>1</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </backprop_loop1_1>
+                        <matrix_vector_product_with_bias_input_layer_loop1>
+                            <Name>matrix_vector_product_with_bias_input_layer_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>8448</Latency>
+                            <AbsoluteTimeLatency>67.584 us</AbsoluteTimeLatency>
+                            <IterationLatency>132</IterationLatency>
+                            <PipelineDepth>132</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                            <matrix_vector_product_with_bias_input_layer_loop1_1>
+                                <Name>matrix_vector_product_with_bias_input_layer_loop1_1</Name>
+                                <Slack>5.84</Slack>
+                                <TripCount>13</TripCount>
+                                <Latency>130</Latency>
+                                <AbsoluteTimeLatency>1.040 us</AbsoluteTimeLatency>
+                                <IterationLatency>10</IterationLatency>
+                                <PipelineDepth>10</PipelineDepth>
+                                <PipelineType>no</PipelineType>
+                                <InstanceList/>
+                            </matrix_vector_product_with_bias_input_layer_loop1_1>
+                        </matrix_vector_product_with_bias_input_layer_loop1>
+                        <add_bias_to_activations_loop1>
+                            <Name>add_bias_to_activations_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>320</Latency>
+                            <AbsoluteTimeLatency>2.560 us</AbsoluteTimeLatency>
+                            <IterationLatency>5</IterationLatency>
+                            <PipelineDepth>5</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </add_bias_to_activations_loop1>
+                        <RELU_loop1>
+                            <Name>RELU_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>1984</Latency>
+                            <AbsoluteTimeLatency>15.872 us</AbsoluteTimeLatency>
+                            <IterationLatency>31</IterationLatency>
+                            <PipelineDepth>31</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </RELU_loop1>
+                        <matrix_vector_product_with_bias_second_layer_loop1>
+                            <Name>matrix_vector_product_with_bias_second_layer_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>41088</Latency>
+                            <AbsoluteTimeLatency>0.329 ms</AbsoluteTimeLatency>
+                            <IterationLatency>642</IterationLatency>
+                            <PipelineDepth>642</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                            <matrix_vector_product_with_bias_second_layer_loop1_1>
+                                <Name>matrix_vector_product_with_bias_second_layer_loop1_1</Name>
+                                <Slack>5.84</Slack>
+                                <TripCount>64</TripCount>
+                                <Latency>640</Latency>
+                                <AbsoluteTimeLatency>5.120 us</AbsoluteTimeLatency>
+                                <IterationLatency>10</IterationLatency>
+                                <PipelineDepth>10</PipelineDepth>
+                                <PipelineType>no</PipelineType>
+                                <InstanceList/>
+                            </matrix_vector_product_with_bias_second_layer_loop1_1>
+                        </matrix_vector_product_with_bias_second_layer_loop1>
+                        <add_bias_to_activations_loop1>
+                            <Name>add_bias_to_activations_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>320</Latency>
+                            <AbsoluteTimeLatency>2.560 us</AbsoluteTimeLatency>
+                            <IterationLatency>5</IterationLatency>
+                            <PipelineDepth>5</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </add_bias_to_activations_loop1>
+                        <RELU_loop1>
+                            <Name>RELU_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>1984</Latency>
+                            <AbsoluteTimeLatency>15.872 us</AbsoluteTimeLatency>
+                            <IterationLatency>31</IterationLatency>
+                            <PipelineDepth>31</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </RELU_loop1>
+                        <matrix_vector_product_with_bias_output_layer_loop1>
+                            <Name>matrix_vector_product_with_bias_output_layer_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>3</TripCount>
+                            <Latency>1737</Latency>
+                            <AbsoluteTimeLatency>13.896 us</AbsoluteTimeLatency>
+                            <IterationLatency>579</IterationLatency>
+                            <PipelineDepth>579</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                            <matrix_vector_product_with_bias_output_layer_loop1_1>
+                                <Name>matrix_vector_product_with_bias_output_layer_loop1_1</Name>
+                                <Slack>5.84</Slack>
+                                <TripCount>64</TripCount>
+                                <Latency>576</Latency>
+                                <AbsoluteTimeLatency>4.608 us</AbsoluteTimeLatency>
+                                <IterationLatency>9</IterationLatency>
+                                <PipelineDepth>9</PipelineDepth>
+                                <PipelineType>no</PipelineType>
+                                <InstanceList/>
+                            </matrix_vector_product_with_bias_output_layer_loop1_1>
+                        </matrix_vector_product_with_bias_output_layer_loop1>
+                        <add_bias_to_activations_loop1>
+                            <Name>add_bias_to_activations_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>3</TripCount>
+                            <Latency>18</Latency>
+                            <AbsoluteTimeLatency>0.144 us</AbsoluteTimeLatency>
+                            <IterationLatency>6</IterationLatency>
+                            <PipelineDepth>6</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </add_bias_to_activations_loop1>
+                        <RELU_loop1>
+                            <Name>RELU_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>3</TripCount>
+                            <Latency>87</Latency>
+                            <AbsoluteTimeLatency>0.696 us</AbsoluteTimeLatency>
+                            <IterationLatency>29</IterationLatency>
+                            <PipelineDepth>29</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </RELU_loop1>
+                        <soft_max_loop1>
+                            <Name>soft_max_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>3</TripCount>
+                            <Latency>45</Latency>
+                            <AbsoluteTimeLatency>0.360 us</AbsoluteTimeLatency>
+                            <IterationLatency>15</IterationLatency>
+                            <PipelineDepth>15</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </soft_max_loop1>
+                        <soft_max_loop2>
+                            <Name>soft_max_loop2</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>3</TripCount>
+                            <Latency>75</Latency>
+                            <AbsoluteTimeLatency>0.600 us</AbsoluteTimeLatency>
+                            <IterationLatency>25</IterationLatency>
+                            <PipelineDepth>25</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </soft_max_loop2>
+                        <take_difference_loop1>
+                            <Name>take_difference_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>3</TripCount>
+                            <Latency>27</Latency>
+                            <AbsoluteTimeLatency>0.216 us</AbsoluteTimeLatency>
+                            <IterationLatency>9</IterationLatency>
+                            <PipelineDepth>9</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                        </take_difference_loop1>
+                        <get_delta_matrix_weights3_loop1>
+                            <Name>get_delta_matrix_weights3_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>960</Latency>
+                            <AbsoluteTimeLatency>7.680 us</AbsoluteTimeLatency>
+                            <IterationLatency>15</IterationLatency>
+                            <PipelineDepth>15</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                            <get_delta_matrix_weights3_loop1_1>
+                                <Name>get_delta_matrix_weights3_loop1_1</Name>
+                                <Slack>5.84</Slack>
+                                <TripCount>3</TripCount>
+                                <Latency>12</Latency>
+                                <AbsoluteTimeLatency>96.000 ns</AbsoluteTimeLatency>
+                                <IterationLatency>4</IterationLatency>
+                                <PipelineDepth>4</PipelineDepth>
+                                <PipelineType>no</PipelineType>
+                                <InstanceList/>
+                            </get_delta_matrix_weights3_loop1_1>
+                        </get_delta_matrix_weights3_loop1>
+                        <get_oracle_activations2_loop1>
+                            <Name>get_oracle_activations2_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>2112</Latency>
+                            <AbsoluteTimeLatency>16.896 us</AbsoluteTimeLatency>
+                            <IterationLatency>33</IterationLatency>
+                            <PipelineDepth>33</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                            <get_oracle_activations2_loop1_1>
+                                <Name>get_oracle_activations2_loop1_1</Name>
+                                <Slack>5.84</Slack>
+                                <TripCount>3</TripCount>
+                                <Latency>27</Latency>
+                                <AbsoluteTimeLatency>0.216 us</AbsoluteTimeLatency>
+                                <IterationLatency>9</IterationLatency>
+                                <PipelineDepth>9</PipelineDepth>
+                                <PipelineType>no</PipelineType>
+                                <InstanceList/>
+                            </get_oracle_activations2_loop1_1>
+                        </get_oracle_activations2_loop1>
+                        <get_delta_matrix_weights2_loop1>
+                            <Name>get_delta_matrix_weights2_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>24768</Latency>
+                            <AbsoluteTimeLatency>0.198 ms</AbsoluteTimeLatency>
+                            <IterationLatency>387</IterationLatency>
+                            <PipelineDepth>387</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                            <get_delta_matrix_weights2_loop1_1>
+                                <Name>get_delta_matrix_weights2_loop1_1</Name>
+                                <Slack>5.84</Slack>
+                                <TripCount>64</TripCount>
+                                <Latency>384</Latency>
+                                <AbsoluteTimeLatency>3.072 us</AbsoluteTimeLatency>
+                                <IterationLatency>6</IterationLatency>
+                                <PipelineDepth>6</PipelineDepth>
+                                <PipelineType>no</PipelineType>
+                                <InstanceList/>
+                            </get_delta_matrix_weights2_loop1_1>
+                        </get_delta_matrix_weights2_loop1>
+                        <get_oracle_activations1_loop1>
+                            <Name>get_oracle_activations1_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>64</TripCount>
+                            <Latency>41344</Latency>
+                            <AbsoluteTimeLatency>0.331 ms</AbsoluteTimeLatency>
+                            <IterationLatency>646</IterationLatency>
+                            <PipelineDepth>646</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                            <get_oracle_activations1_loop1_1>
+                                <Name>get_oracle_activations1_loop1_1</Name>
+                                <Slack>5.84</Slack>
+                                <TripCount>64</TripCount>
+                                <Latency>640</Latency>
+                                <AbsoluteTimeLatency>5.120 us</AbsoluteTimeLatency>
+                                <IterationLatency>10</IterationLatency>
+                                <PipelineDepth>10</PipelineDepth>
+                                <PipelineType>no</PipelineType>
+                                <InstanceList/>
+                            </get_oracle_activations1_loop1_1>
+                        </get_oracle_activations1_loop1>
+                        <get_delta_matrix_weights1_loop1>
+                            <Name>get_delta_matrix_weights1_loop1</Name>
+                            <Slack>5.84</Slack>
+                            <TripCount>13</TripCount>
+                            <Latency>4199</Latency>
+                            <AbsoluteTimeLatency>33.592 us</AbsoluteTimeLatency>
+                            <IterationLatency>323</IterationLatency>
+                            <PipelineDepth>323</PipelineDepth>
+                            <PipelineType>no</PipelineType>
+                            <InstanceList/>
+                            <get_delta_matrix_weights1_loop1_1>
+                                <Name>get_delta_matrix_weights1_loop1_1</Name>
+                                <Slack>5.84</Slack>
+                                <TripCount>64</TripCount>
+                                <Latency>320</Latency>
+                                <AbsoluteTimeLatency>2.560 us</AbsoluteTimeLatency>
+                                <IterationLatency>5</IterationLatency>
+                                <PipelineDepth>5</PipelineDepth>
+                                <PipelineType>no</PipelineType>
+                                <InstanceList/>
+                            </get_delta_matrix_weights1_loop1_1>
+                        </get_delta_matrix_weights1_loop1>
+                    </backprop_loop1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:338</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <backprop_loop1>
+                            <Name>backprop_loop1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:374</SourceLocation>
+                            <backprop_loop1_1>
+                                <Name>backprop_loop1_1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:363</SourceLocation>
+                            </backprop_loop1_1>
+                            <matrix_vector_product_with_bias_input_layer_loop1>
+                                <Name>matrix_vector_product_with_bias_input_layer_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:60~data/benchmarks/backprop/backprop.c:367</SourceLocation>
+                                <matrix_vector_product_with_bias_input_layer_loop1_1>
+                                    <Name>matrix_vector_product_with_bias_input_layer_loop1_1</Name>
+                                    <IssueType>-</IssueType>
+                                    <ViolationType>-</ViolationType>
+                                    <SourceLocation>data/benchmarks/backprop/backprop.c:64~data/benchmarks/backprop/backprop.c:367</SourceLocation>
+                                </matrix_vector_product_with_bias_input_layer_loop1_1>
+                            </matrix_vector_product_with_bias_input_layer_loop1>
+                            <add_bias_to_activations_loop1>
+                                <Name>add_bias_to_activations_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:48~data/benchmarks/backprop/backprop.c:69~data/benchmarks/backprop/backprop.c:367</SourceLocation>
+                            </add_bias_to_activations_loop1>
+                            <RELU_loop1>
+                                <Name>RELU_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:36~data/benchmarks/backprop/backprop.c:368</SourceLocation>
+                            </RELU_loop1>
+                            <matrix_vector_product_with_bias_second_layer_loop1>
+                                <Name>matrix_vector_product_with_bias_second_layer_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:78~data/benchmarks/backprop/backprop.c:369</SourceLocation>
+                                <matrix_vector_product_with_bias_second_layer_loop1_1>
+                                    <Name>matrix_vector_product_with_bias_second_layer_loop1_1</Name>
+                                    <IssueType>-</IssueType>
+                                    <ViolationType>-</ViolationType>
+                                    <SourceLocation>data/benchmarks/backprop/backprop.c:82~data/benchmarks/backprop/backprop.c:369</SourceLocation>
+                                </matrix_vector_product_with_bias_second_layer_loop1_1>
+                            </matrix_vector_product_with_bias_second_layer_loop1>
+                            <add_bias_to_activations_loop1>
+                                <Name>add_bias_to_activations_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:48~data/benchmarks/backprop/backprop.c:87~data/benchmarks/backprop/backprop.c:369</SourceLocation>
+                            </add_bias_to_activations_loop1>
+                            <RELU_loop1>
+                                <Name>RELU_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:36~data/benchmarks/backprop/backprop.c:370</SourceLocation>
+                            </RELU_loop1>
+                            <matrix_vector_product_with_bias_output_layer_loop1>
+                                <Name>matrix_vector_product_with_bias_output_layer_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:102~data/benchmarks/backprop/backprop.c:371</SourceLocation>
+                                <matrix_vector_product_with_bias_output_layer_loop1_1>
+                                    <Name>matrix_vector_product_with_bias_output_layer_loop1_1</Name>
+                                    <IssueType>-</IssueType>
+                                    <ViolationType>-</ViolationType>
+                                    <SourceLocation>data/benchmarks/backprop/backprop.c:100~data/benchmarks/backprop/backprop.c:371</SourceLocation>
+                                </matrix_vector_product_with_bias_output_layer_loop1_1>
+                            </matrix_vector_product_with_bias_output_layer_loop1>
+                            <add_bias_to_activations_loop1>
+                                <Name>add_bias_to_activations_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:50~data/benchmarks/backprop/backprop.c:105~data/benchmarks/backprop/backprop.c:371</SourceLocation>
+                            </add_bias_to_activations_loop1>
+                            <RELU_loop1>
+                                <Name>RELU_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:39~data/benchmarks/backprop/backprop.c:372</SourceLocation>
+                            </RELU_loop1>
+                            <soft_max_loop1>
+                                <Name>soft_max_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:24~data/benchmarks/backprop/backprop.c:373</SourceLocation>
+                            </soft_max_loop1>
+                            <soft_max_loop2>
+                                <Name>soft_max_loop2</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:29~data/benchmarks/backprop/backprop.c:373</SourceLocation>
+                            </soft_max_loop2>
+                            <take_difference_loop1>
+                                <Name>take_difference_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:116~data/benchmarks/backprop/backprop.c:374</SourceLocation>
+                            </take_difference_loop1>
+                            <get_delta_matrix_weights3_loop1>
+                                <Name>get_delta_matrix_weights3_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:125~data/benchmarks/backprop/backprop.c:375</SourceLocation>
+                                <get_delta_matrix_weights3_loop1_1>
+                                    <Name>get_delta_matrix_weights3_loop1_1</Name>
+                                    <IssueType>-</IssueType>
+                                    <ViolationType>-</ViolationType>
+                                    <SourceLocation>data/benchmarks/backprop/backprop.c:130~data/benchmarks/backprop/backprop.c:375</SourceLocation>
+                                </get_delta_matrix_weights3_loop1_1>
+                            </get_delta_matrix_weights3_loop1>
+                            <get_oracle_activations2_loop1>
+                                <Name>get_oracle_activations2_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:141~data/benchmarks/backprop/backprop.c:376</SourceLocation>
+                                <get_oracle_activations2_loop1_1>
+                                    <Name>get_oracle_activations2_loop1_1</Name>
+                                    <IssueType>-</IssueType>
+                                    <ViolationType>-</ViolationType>
+                                    <SourceLocation>data/benchmarks/backprop/backprop.c:147~data/benchmarks/backprop/backprop.c:376</SourceLocation>
+                                </get_oracle_activations2_loop1_1>
+                            </get_oracle_activations2_loop1>
+                            <get_delta_matrix_weights2_loop1>
+                                <Name>get_delta_matrix_weights2_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:158~data/benchmarks/backprop/backprop.c:377</SourceLocation>
+                                <get_delta_matrix_weights2_loop1_1>
+                                    <Name>get_delta_matrix_weights2_loop1_1</Name>
+                                    <IssueType>-</IssueType>
+                                    <ViolationType>-</ViolationType>
+                                    <SourceLocation>data/benchmarks/backprop/backprop.c:161~data/benchmarks/backprop/backprop.c:377</SourceLocation>
+                                </get_delta_matrix_weights2_loop1_1>
+                            </get_delta_matrix_weights2_loop1>
+                            <get_oracle_activations1_loop1>
+                                <Name>get_oracle_activations1_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:174~data/benchmarks/backprop/backprop.c:378</SourceLocation>
+                                <get_oracle_activations1_loop1_1>
+                                    <Name>get_oracle_activations1_loop1_1</Name>
+                                    <IssueType>-</IssueType>
+                                    <ViolationType>-</ViolationType>
+                                    <SourceLocation>data/benchmarks/backprop/backprop.c:178~data/benchmarks/backprop/backprop.c:378</SourceLocation>
+                                </get_oracle_activations1_loop1_1>
+                            </get_oracle_activations1_loop1>
+                            <get_delta_matrix_weights1_loop1>
+                                <Name>get_delta_matrix_weights1_loop1</Name>
+                                <IssueType>-</IssueType>
+                                <ViolationType>-</ViolationType>
+                                <SourceLocation>data/benchmarks/backprop/backprop.c:191~data/benchmarks/backprop/backprop.c:379</SourceLocation>
+                                <get_delta_matrix_weights1_loop1_1>
+                                    <Name>get_delta_matrix_weights1_loop1_1</Name>
+                                    <IssueType>-</IssueType>
+                                    <ViolationType>-</ViolationType>
+                                    <SourceLocation>data/benchmarks/backprop/backprop.c:194~data/benchmarks/backprop/backprop.c:379</SourceLocation>
+                                </get_delta_matrix_weights1_loop1_1>
+                            </get_delta_matrix_weights1_loop1>
+                        </backprop_loop1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>6</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>~0</UTIL_BRAM>
+                    <DSP>37</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>7662</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>10426</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>1</UTIL_LUT>
+                    <URAM>1</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>~0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="activations1_U" SOURCE="data/benchmarks/backprop/backprop.c:340" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="activations1"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="activations2_U" SOURCE="data/benchmarks/backprop/backprop.c:341" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="activations2"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dactivations1_U" SOURCE="data/benchmarks/backprop/backprop.c:343" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="dactivations1"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dactivations2_U" SOURCE="data/benchmarks/backprop/backprop.c:344" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="dactivations2"/>
+                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="delta_weights1_U" SOURCE="data/benchmarks/backprop/backprop.c:349" STORAGESIZE="64 832 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="delta_weights1"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="delta_weights2_U" SOURCE="data/benchmarks/backprop/backprop.c:350" STORAGESIZE="64 4096 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="1" VARIABLE="delta_weights2"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="delta_weights3_U" SOURCE="data/benchmarks/backprop/backprop.c:351" STORAGESIZE="64 192 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="delta_weights3"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="oracle_activations1_U" SOURCE="data/benchmarks/backprop/backprop.c:352" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="oracle_activations1"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="oracle_activations2_U" SOURCE="data/benchmarks/backprop/backprop.c:353" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="oracle_activations2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln356_1_fu_1397_p2" SOURCE="data/benchmarks/backprop/backprop.c:356" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln356_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1" OPTYPE="add" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:356" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln356"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln359_fu_1425_p2" SOURCE="data/benchmarks/backprop/backprop.c:359" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln359"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_input_layer_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln60_1_fu_1513_p2" SOURCE="data/benchmarks/backprop/backprop.c:60" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln60_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_input_layer_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln60_fu_1525_p2" SOURCE="data/benchmarks/backprop/backprop.c:60" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln60"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_input_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln64_fu_1542_p2" SOURCE="data/benchmarks/backprop/backprop.c:64" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln64"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_input_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln66_fu_1556_p2" SOURCE="data/benchmarks/backprop/backprop.c:66" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln66"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_input_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln66_1_fu_1562_p2" SOURCE="data/benchmarks/backprop/backprop.c:66" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln66_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="matrix_vector_product_with_bias_input_layer_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:66" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="matrix_vector_product_with_bias_input_layer_loop1_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:66" STORAGESUBTYPE="" URAM="0" VARIABLE="add11_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="add_bias_to_activations_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln48_fu_1591_p2" SOURCE="data/benchmarks/backprop/backprop.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln48"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="add_bias_to_activations_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:50" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="RELU_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_fu_1614_p2" SOURCE="data/benchmarks/backprop/backprop.c:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dexp" DSP="26" ID="" IMPL="fulldsp" LATENCY="9" LOOP="RELU_loop1" OPTYPE="dexp" PRAGMA="" RTLNAME="dexp_64ns_64ns_64_10_full_dsp_1_U25" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op ddiv" DSP="0" ID="" IMPL="fabric" LATENCY="13" LOOP="RELU_loop1" OPTYPE="ddiv" PRAGMA="" RTLNAME="ddiv_64ns_64ns_64_14_no_dsp_1_U24" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="div_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_second_layer_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln78_fu_1646_p2" SOURCE="data/benchmarks/backprop/backprop.c:78" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln78"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_second_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln82_fu_1675_p2" SOURCE="data/benchmarks/backprop/backprop.c:82" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln82"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_second_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln84_fu_1685_p2" SOURCE="data/benchmarks/backprop/backprop.c:84" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln84"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="matrix_vector_product_with_bias_second_layer_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:84" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="matrix_vector_product_with_bias_second_layer_loop1_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:84" STORAGESUBTYPE="" URAM="0" VARIABLE="add11_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="add_bias_to_activations_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln48_1_fu_1711_p2" SOURCE="data/benchmarks/backprop/backprop.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln48_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="add_bias_to_activations_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:50" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="RELU_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_1_fu_1734_p2" SOURCE="data/benchmarks/backprop/backprop.c:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dexp" DSP="26" ID="" IMPL="fulldsp" LATENCY="9" LOOP="RELU_loop1" OPTYPE="dexp" PRAGMA="" RTLNAME="dexp_64ns_64ns_64_10_full_dsp_1_U25" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op ddiv" DSP="0" ID="" IMPL="fabric" LATENCY="13" LOOP="RELU_loop1" OPTYPE="ddiv" PRAGMA="" RTLNAME="ddiv_64ns_64ns_64_14_no_dsp_1_U24" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="div_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_output_layer_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln96_fu_1766_p2" SOURCE="data/benchmarks/backprop/backprop.c:96" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln96"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_output_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln100_fu_1786_p2" SOURCE="data/benchmarks/backprop/backprop.c:100" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln100"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_output_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln102_fu_1801_p2" SOURCE="data/benchmarks/backprop/backprop.c:102" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln102"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="matrix_vector_product_with_bias_output_layer_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:102" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8_i2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="matrix_vector_product_with_bias_output_layer_loop1_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:102" STORAGESUBTYPE="" URAM="0" VARIABLE="add11_i2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="add_bias_to_activations_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln48_2_fu_1822_p2" SOURCE="data/benchmarks/backprop/backprop.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln48_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="add_bias_to_activations_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:50" STORAGESUBTYPE="" URAM="0" VARIABLE="activations3_0_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="RELU_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_2_fu_1857_p2" SOURCE="data/benchmarks/backprop/backprop.c:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_i2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="dactivations3_0"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dexp" DSP="26" ID="" IMPL="fulldsp" LATENCY="9" LOOP="RELU_loop1" OPTYPE="dexp" PRAGMA="" RTLNAME="dexp_64ns_64ns_64_10_full_dsp_1_U25" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op ddiv" DSP="0" ID="" IMPL="fabric" LATENCY="13" LOOP="RELU_loop1" OPTYPE="ddiv" PRAGMA="" RTLNAME="ddiv_64ns_64ns_64_14_no_dsp_1_U24" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="activations3_0_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="soft_max_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln22_fu_1910_p2" SOURCE="data/benchmarks/backprop/backprop.c:22" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln22"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dexp" DSP="26" ID="" IMPL="fulldsp" LATENCY="9" LOOP="soft_max_loop1" OPTYPE="dexp" PRAGMA="" RTLNAME="dexp_64ns_64ns_64_10_full_dsp_1_U25" SOURCE="data/benchmarks/backprop/backprop.c:24" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="soft_max_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:24" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="soft_max_loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln27_fu_1948_p2" SOURCE="data/benchmarks/backprop/backprop.c:27" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln27"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dexp" DSP="26" ID="" IMPL="fulldsp" LATENCY="9" LOOP="soft_max_loop2" OPTYPE="dexp" PRAGMA="" RTLNAME="dexp_64ns_64ns_64_10_full_dsp_1_U25" SOURCE="data/benchmarks/backprop/backprop.c:29" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op ddiv" DSP="0" ID="" IMPL="fabric" LATENCY="13" LOOP="soft_max_loop2" OPTYPE="ddiv" PRAGMA="" RTLNAME="ddiv_64ns_64ns_64_14_no_dsp_1_U24" SOURCE="data/benchmarks/backprop/backprop.c:29" STORAGESUBTYPE="" URAM="0" VARIABLE="net_outputs_0"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln374_fu_1977_p2" SOURCE="data/benchmarks/backprop/backprop.c:374" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln374"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="take_difference_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln114_fu_2017_p2" SOURCE="data/benchmarks/backprop/backprop.c:114" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln114"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="take_difference_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln116_fu_2027_p2" SOURCE="data/benchmarks/backprop/backprop.c:116" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln116"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="take_difference_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:116" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_i4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="take_difference_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:116" STORAGESUBTYPE="" URAM="0" VARIABLE="output_difference_0"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_delta_matrix_weights3_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln125_fu_2122_p2" SOURCE="data/benchmarks/backprop/backprop.c:125" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln125"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_delta_matrix_weights3_loop1" OPTYPE="sub" PRAGMA="" RTLNAME="empty_52_fu_2149_p2" SOURCE="data/benchmarks/backprop/backprop.c:125" STORAGESUBTYPE="" URAM="0" VARIABLE="empty_52"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_delta_matrix_weights3_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln128_fu_2161_p2" SOURCE="data/benchmarks/backprop/backprop.c:128" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln128"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_delta_matrix_weights3_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:130" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_i4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_delta_matrix_weights3_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln130_fu_2184_p2" SOURCE="data/benchmarks/backprop/backprop.c:130" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln130"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_oracle_activations2_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln141_fu_2199_p2" SOURCE="data/benchmarks/backprop/backprop.c:141" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln141"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_oracle_activations2_loop1" OPTYPE="sub" PRAGMA="" RTLNAME="empty_54_fu_2226_p2" SOURCE="data/benchmarks/backprop/backprop.c:141" STORAGESUBTYPE="" URAM="0" VARIABLE="empty_54"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_oracle_activations2_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln145_fu_2238_p2" SOURCE="data/benchmarks/backprop/backprop.c:145" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln145"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_oracle_activations2_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln147_fu_2248_p2" SOURCE="data/benchmarks/backprop/backprop.c:147" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln147"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_oracle_activations2_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:147" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8_i3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="get_oracle_activations2_loop1_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:147" STORAGESUBTYPE="" URAM="0" VARIABLE="add11_i3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_oracle_activations2_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:149" STORAGESUBTYPE="" URAM="0" VARIABLE="mul16_i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_delta_matrix_weights2_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln158_fu_2282_p2" SOURCE="data/benchmarks/backprop/backprop.c:158" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln158"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_delta_matrix_weights2_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln161_fu_2310_p2" SOURCE="data/benchmarks/backprop/backprop.c:161" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln161"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_delta_matrix_weights2_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:163" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_i5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_delta_matrix_weights2_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln163_fu_2325_p2" SOURCE="data/benchmarks/backprop/backprop.c:163" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln163"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_oracle_activations1_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln174_fu_2340_p2" SOURCE="data/benchmarks/backprop/backprop.c:174" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln174"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_oracle_activations1_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln178_fu_2369_p2" SOURCE="data/benchmarks/backprop/backprop.c:178" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln178"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_oracle_activations1_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln180_fu_2379_p2" SOURCE="data/benchmarks/backprop/backprop.c:180" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln180"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_oracle_activations1_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:180" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8_i4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="get_oracle_activations1_loop1_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:180" STORAGESUBTYPE="" URAM="0" VARIABLE="add11_i4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_oracle_activations1_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:182" STORAGESUBTYPE="" URAM="0" VARIABLE="mul16_i1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_delta_matrix_weights1_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln191_fu_2405_p2" SOURCE="data/benchmarks/backprop/backprop.c:191" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln191"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_delta_matrix_weights1_loop1" OPTYPE="add" PRAGMA="" RTLNAME="arrayidx10_sum197_fu_2415_p2" SOURCE="data/benchmarks/backprop/backprop.c:191" STORAGESUBTYPE="" URAM="0" VARIABLE="arrayidx10_sum197"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_delta_matrix_weights1_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln194_fu_2466_p2" SOURCE="data/benchmarks/backprop/backprop.c:194" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln194"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_delta_matrix_weights1_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:196" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_i6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_delta_matrix_weights1_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln196_fu_2481_p2" SOURCE="data/benchmarks/backprop/backprop.c:196" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln196"/>
+            </BindNodes>
+        </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+    <UserConfigCommands>
+        <config_array_partition throughput_driven="off"/>
+    </UserConfigCommands>
+    <Args>
+        <Arg ArgName="weights1" index="0" direction="inout" srcType="double*" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="weights1_address0" name="weights1_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="weights1_ce0" name="weights1_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="weights1_we0" name="weights1_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="weights1_d0" name="weights1_d0" usage="data" direction="out"/>
+                <hwRef type="port" interface="weights1_q0" name="weights1_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="weights2" index="1" direction="inout" srcType="double*" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="weights2_address0" name="weights2_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="weights2_ce0" name="weights2_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="weights2_we0" name="weights2_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="weights2_d0" name="weights2_d0" usage="data" direction="out"/>
+                <hwRef type="port" interface="weights2_q0" name="weights2_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="weights3" index="2" direction="inout" srcType="double*" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="weights3_address0" name="weights3_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="weights3_ce0" name="weights3_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="weights3_we0" name="weights3_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="weights3_d0" name="weights3_d0" usage="data" direction="out"/>
+                <hwRef type="port" interface="weights3_q0" name="weights3_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="biases1" index="3" direction="inout" srcType="double*" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="biases1_address0" name="biases1_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="biases1_ce0" name="biases1_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="biases1_we0" name="biases1_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="biases1_d0" name="biases1_d0" usage="data" direction="out"/>
+                <hwRef type="port" interface="biases1_q0" name="biases1_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="biases2" index="4" direction="inout" srcType="double*" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="biases2_address0" name="biases2_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="biases2_ce0" name="biases2_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="biases2_we0" name="biases2_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="biases2_d0" name="biases2_d0" usage="data" direction="out"/>
+                <hwRef type="port" interface="biases2_q0" name="biases2_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="biases3" index="5" direction="inout" srcType="double*" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="biases3_address0" name="biases3_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="biases3_ce0" name="biases3_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="biases3_we0" name="biases3_we0" usage="control" direction="out"/>
+                <hwRef type="port" interface="biases3_d0" name="biases3_d0" usage="data" direction="out"/>
+                <hwRef type="port" interface="biases3_q0" name="biases3_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="training_data" index="6" direction="in" srcType="double*" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="training_data_address0" name="training_data_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="training_data_ce0" name="training_data_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="training_data_q0" name="training_data_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="training_targets" index="7" direction="in" srcType="double*" srcSize="64">
+            <hwRefs>
+                <hwRef type="port" interface="training_targets_address0" name="training_targets_address0" usage="address" direction="out"/>
+                <hwRef type="port" interface="training_targets_ce0" name="training_targets_ce0" usage="control" direction="out"/>
+                <hwRef type="port" interface="training_targets_q0" name="training_targets_q0" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+    </Args>
+    <Interfaces>
+        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
+            <busParams>
+                <busParam busParamName="ASSOCIATED_RESET">ap_rst</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_clk">CLK</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_clk</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_HIGH</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_ctrl" type="ap_ctrl" busTypeName="acc_handshake" mode="slave">
+            <portMaps>
+                <portMap portMapName="ap_start">start</portMap>
+                <portMap portMapName="ap_done">done</portMap>
+                <portMap portMapName="ap_idle">idle</portMap>
+                <portMap portMapName="ap_ready">ready</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_done</port>
+                <port>ap_idle</port>
+                <port>ap_ready</port>
+                <port>ap_start</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="weights1_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="10">
+            <portMaps>
+                <portMap portMapName="weights1_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>weights1_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="weights1"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="weights1_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="weights1_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>weights1_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="weights1"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="weights1_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="weights1_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>weights1_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="weights1"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="weights2_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="12">
+            <portMaps>
+                <portMap portMapName="weights2_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>weights2_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="weights2"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="weights2_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="weights2_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>weights2_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="weights2"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="weights2_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="weights2_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>weights2_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="weights2"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="weights3_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="8">
+            <portMaps>
+                <portMap portMapName="weights3_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>weights3_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="weights3"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="weights3_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="weights3_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>weights3_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="weights3"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="weights3_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="weights3_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>weights3_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="weights3"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="biases1_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="6">
+            <portMaps>
+                <portMap portMapName="biases1_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>biases1_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="biases1"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="biases1_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="biases1_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>biases1_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="biases1"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="biases1_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="biases1_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>biases1_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="biases1"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="biases2_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="6">
+            <portMaps>
+                <portMap portMapName="biases2_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>biases2_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="biases2"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="biases2_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="biases2_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>biases2_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="biases2"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="biases2_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="biases2_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>biases2_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="biases2"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="biases3_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="2">
+            <portMaps>
+                <portMap portMapName="biases3_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>biases3_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="biases3"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="biases3_d0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="biases3_d0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>biases3_d0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="biases3"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="biases3_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="biases3_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>biases3_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="biases3"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="training_data_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="12">
+            <portMaps>
+                <portMap portMapName="training_data_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>training_data_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="training_data"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="training_data_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="training_data_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>training_data_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="training_data"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="training_targets_address0" type="data" busTypeName="data" protocol="ap_memory" mode="master" dataWidth="9">
+            <portMaps>
+                <portMap portMapName="training_targets_address0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>training_targets_address0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="training_targets"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="training_targets_q0" type="data" busTypeName="data" protocol="ap_memory" mode="slave" dataWidth="64">
+            <portMaps>
+                <portMap portMapName="training_targets_q0">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>training_targets_q0</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0" argName="training_targets"/>
+            </constraints>
+        </Interface>
+    </Interfaces>
+    <ReportHWInterface>
+        <section name="HW Interfaces" level="0">
+            <item name="AP_MEMORY">
+                <table>
+                    <keys size="3">Port, Direction, Bitwidth</keys>
+                    <column name="biases1_address0">out, 6</column>
+                    <column name="biases1_d0">out, 64</column>
+                    <column name="biases1_q0">in, 64</column>
+                    <column name="biases2_address0">out, 6</column>
+                    <column name="biases2_d0">out, 64</column>
+                    <column name="biases2_q0">in, 64</column>
+                    <column name="biases3_address0">out, 2</column>
+                    <column name="biases3_d0">out, 64</column>
+                    <column name="biases3_q0">in, 64</column>
+                    <column name="training_data_address0">out, 12</column>
+                    <column name="training_data_q0">in, 64</column>
+                    <column name="training_targets_address0">out, 9</column>
+                    <column name="training_targets_q0">in, 64</column>
+                    <column name="weights1_address0">out, 10</column>
+                    <column name="weights1_d0">out, 64</column>
+                    <column name="weights1_q0">in, 64</column>
+                    <column name="weights2_address0">out, 12</column>
+                    <column name="weights2_d0">out, 64</column>
+                    <column name="weights2_q0">in, 64</column>
+                    <column name="weights3_address0">out, 8</column>
+                    <column name="weights3_d0">out, 64</column>
+                    <column name="weights3_q0">in, 64</column>
+                </table>
+            </item>
+            <item name="TOP LEVEL CONTROL">
+                <table>
+                    <keys size="3">Interface, Type, Ports</keys>
+                    <column name="ap_clk">clock, ap_clk</column>
+                    <column name="ap_rst">reset, ap_rst</column>
+                    <column name="ap_ctrl">ap_ctrl_hs, ap_done ap_idle ap_ready ap_start</column>
+                </table>
+            </item>
+        </section>
+    </ReportHWInterface>
+    <ReportSWInterface>
+        <section name="SW I/O Information" level="0">
+            <item name="Top Function Arguments">
+                <table>
+                    <keys size="3">Argument, Direction, Datatype</keys>
+                    <column name="weights1">inout, double*</column>
+                    <column name="weights2">inout, double*</column>
+                    <column name="weights3">inout, double*</column>
+                    <column name="biases1">inout, double*</column>
+                    <column name="biases2">inout, double*</column>
+                    <column name="biases3">inout, double*</column>
+                    <column name="training_data">in, double*</column>
+                    <column name="training_targets">in, double*</column>
+                </table>
+            </item>
+            <item name="SW-to-HW Mapping">
+                <table>
+                    <keys size="4">Argument, HW Interface, HW Type, HW Usage</keys>
+                    <column name="weights1">weights1_address0, port, offset</column>
+                    <column name="weights1">weights1_ce0, port, </column>
+                    <column name="weights1">weights1_we0, port, </column>
+                    <column name="weights1">weights1_d0, port, </column>
+                    <column name="weights1">weights1_q0, port, </column>
+                    <column name="weights2">weights2_address0, port, offset</column>
+                    <column name="weights2">weights2_ce0, port, </column>
+                    <column name="weights2">weights2_we0, port, </column>
+                    <column name="weights2">weights2_d0, port, </column>
+                    <column name="weights2">weights2_q0, port, </column>
+                    <column name="weights3">weights3_address0, port, offset</column>
+                    <column name="weights3">weights3_ce0, port, </column>
+                    <column name="weights3">weights3_we0, port, </column>
+                    <column name="weights3">weights3_d0, port, </column>
+                    <column name="weights3">weights3_q0, port, </column>
+                    <column name="biases1">biases1_address0, port, offset</column>
+                    <column name="biases1">biases1_ce0, port, </column>
+                    <column name="biases1">biases1_we0, port, </column>
+                    <column name="biases1">biases1_d0, port, </column>
+                    <column name="biases1">biases1_q0, port, </column>
+                    <column name="biases2">biases2_address0, port, offset</column>
+                    <column name="biases2">biases2_ce0, port, </column>
+                    <column name="biases2">biases2_we0, port, </column>
+                    <column name="biases2">biases2_d0, port, </column>
+                    <column name="biases2">biases2_q0, port, </column>
+                    <column name="biases3">biases3_address0, port, offset</column>
+                    <column name="biases3">biases3_ce0, port, </column>
+                    <column name="biases3">biases3_we0, port, </column>
+                    <column name="biases3">biases3_d0, port, </column>
+                    <column name="biases3">biases3_q0, port, </column>
+                    <column name="training_data">training_data_address0, port, offset</column>
+                    <column name="training_data">training_data_ce0, port, </column>
+                    <column name="training_data">training_data_q0, port, </column>
+                    <column name="training_targets">training_targets_address0, port, offset</column>
+                    <column name="training_targets">training_targets_ce0, port, </column>
+                    <column name="training_targets">training_targets_q0, port, </column>
+                </table>
+            </item>
+        </section>
+    </ReportSWInterface>
+    <ResolutionUrl key="ZZZ">docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
+    <PragmaReport>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:23" status="valid" parentFunction="soft_max" variable="" isDirective="0" options="min=3 max=3 avg=3"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:28" status="valid" parentFunction="soft_max" variable="" isDirective="0" options="min=3 max=3 avg=3"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:37" status="valid" parentFunction="relu" variable="" isDirective="0" options="min=3 max=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:49" status="valid" parentFunction="add_bias_to_activations" variable="" isDirective="0" options="min=3 max=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:61" status="valid" parentFunction="matrix_vector_product_with_bias_input_layer" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:65" status="valid" parentFunction="matrix_vector_product_with_bias_input_layer" variable="" isDirective="0" options="min=13 max=13 avg=13"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:79" status="valid" parentFunction="matrix_vector_product_with_bias_second_layer" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:83" status="valid" parentFunction="matrix_vector_product_with_bias_second_layer" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:97" status="valid" parentFunction="matrix_vector_product_with_bias_output_layer" variable="" isDirective="0" options="min=3 max=3 avg=3"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:101" status="valid" parentFunction="matrix_vector_product_with_bias_output_layer" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:115" status="valid" parentFunction="take_difference" variable="" isDirective="0" options="min=3 max=3 avg=3"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:126" status="valid" parentFunction="get_delta_matrix_weights3" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:129" status="valid" parentFunction="get_delta_matrix_weights3" variable="" isDirective="0" options="min=3 max=3 avg=3"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:142" status="valid" parentFunction="get_oracle_activations2" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:146" status="valid" parentFunction="get_oracle_activations2" variable="" isDirective="0" options="min=3 max=3 avg=3"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:159" status="valid" parentFunction="get_delta_matrix_weights2" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:162" status="valid" parentFunction="get_delta_matrix_weights2" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:175" status="valid" parentFunction="get_oracle_activations1" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:179" status="valid" parentFunction="get_oracle_activations1" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:192" status="valid" parentFunction="get_delta_matrix_weights1" variable="" isDirective="0" options="min=13 max=13 avg=13"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:195" status="valid" parentFunction="get_delta_matrix_weights1" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:220" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=13 max=13 avg=13"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:223" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:230" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:240" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=13 max=13 avg=13"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:243" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:249" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:258" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:261" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:268" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:278" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:281" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:287" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:296" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:299" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=3 max=3 avg=3"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:306" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=3 max=3 avg=3"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:316" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:319" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=3 max=3 avg=3"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:325" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=3 max=3 avg=3"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:357" status="valid" parentFunction="backprop" variable="" isDirective="0" options="min=163 max=163 avg=163"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:360" status="valid" parentFunction="backprop" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:4" status="valid" parentFunction="add_bias_to_activations" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:40" status="valid" parentFunction="backprop" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:41" status="valid" parentFunction="backprop" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:20" status="valid" parentFunction="get_delta_matrix_weights1" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:21" status="valid" parentFunction="get_delta_matrix_weights1" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:16" status="valid" parentFunction="get_delta_matrix_weights2" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:17" status="valid" parentFunction="get_delta_matrix_weights2" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:12" status="valid" parentFunction="get_delta_matrix_weights3" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:13" status="valid" parentFunction="get_delta_matrix_weights3" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:18" status="valid" parentFunction="get_oracle_activations1" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:19" status="valid" parentFunction="get_oracle_activations1" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:14" status="valid" parentFunction="get_oracle_activations2" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:15" status="valid" parentFunction="get_oracle_activations2" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:5" status="valid" parentFunction="matrix_vector_product_with_bias_input_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:6" status="valid" parentFunction="matrix_vector_product_with_bias_input_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:9" status="valid" parentFunction="matrix_vector_product_with_bias_output_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:10" status="valid" parentFunction="matrix_vector_product_with_bias_output_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:7" status="valid" parentFunction="matrix_vector_product_with_bias_second_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:8" status="valid" parentFunction="matrix_vector_product_with_bias_second_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:3" status="valid" parentFunction="relu" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:1" status="valid" parentFunction="soft_max" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:2" status="valid" parentFunction="soft_max" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:11" status="valid" parentFunction="take_difference" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:22" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:23" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:24" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:25" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:26" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:27" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:28" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:29" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:30" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:31" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:32" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:33" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:34" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:35" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:36" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:37" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:38" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:39" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+    </PragmaReport>
+</profile>
+

@@ -1,0 +1,17 @@
+{
+  "0": {
+    "basicblocks": 12,
+    "calls": "",
+    "file": "gemm.c",
+    "fileloc": 10,
+    "instructions": 48,
+    "loads": {
+      "T": 3
+    },
+    "name": "bbgemm",
+    "stores": {
+      "T": 1
+    },
+    "total_instructions": 48
+  }
+}

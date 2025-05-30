@@ -1,0 +1,405 @@
+================================================================
+== Vivado Place & Route Results
+================================================================
++ General Information:
+    * Date:            Thu May 29 16:26:08 -03 2025
+    * Version:         2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:         BACKPROP
+    * Solution:        solution0 (Vivado IP Flow Target)
+    * Product family:  virtexuplusHBM
+    * Target device:   xcu50-fsvh2104-2-e
+
+
+================================================================
+== Run Constraints & Options
+================================================================
++ Design Constraints & Options:
+    * Place & Route target clock:  8 ns
+    * C-Synthesis target clock:    8 ns
+    * C-Synthesis uncertainty:     27%
+
++ RTL Synthesis Options:
+    * config_export -vivado_synth_strategy:     default
+    * config_export -vivado_synth_design_args:  -directive sdx_optimization_effort_high
+
++ Place & Route Options:
+    * config_export -vivado_impl_strategy:  default
+    * config_export -vivado_phys_opt:       none
+
++ Reporting Options:
+    * config_export -vivado_report_level:      2
+    * config_export -vivado_max_timing_paths:  10
+
+
+================================================================
+== Place & Route Resource Summary
+================================================================
+LUT:              12767
+FF:               9423
+DSP:              37
+BRAM:             6
+URAM:             1
+SRL:              94
+
+
+================================================================
+== Place & Route Timing Summary
+================================================================
+* Timing was met
++----------------+-------------+
+| Timing         | Period (ns) |
++----------------+-------------+
+| Target         | 8.000       |
+| Post-Synthesis | 5.022       |
+| Post-Route     | 6.295       |
++----------------+-------------+
+
+
+================================================================
+== Place & Route Resources
+================================================================
++------------------------------------------+-------+------+-----+------+------+-----+--------+------+---------+----------+--------+
+| Name                                     | LUT   | FF   | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable | Source |
++------------------------------------------+-------+------+-----+------+------+-----+--------+------+---------+----------+--------+
+| inst                                     | 12767 | 9423 | 37  | 6    | 1    |     |        |      |         |          |        |
+|   (inst)                                 | 690   | 4052 |     |      |      |     |        |      |         |          |        |
+|   activations1_U                         | 313   | 64   |     |      |      |     |        |      |         |          |        |
+|   activations2_U                         | 484   | 64   |     |      |      |     |        |      |         |          |        |
+|   dactivations1_U                        | 68    | 64   |     |      |      |     |        |      |         |          |        |
+|   dactivations2_U                        | 98    | 64   |     |      |      |     |        |      |         |          |        |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 1264  | 367  | 3   |      |      |     |        |      |         |          |        |
+|   ddiv_64ns_64ns_64_14_no_dsp_1_U24      | 3395  | 1330 |     |      |      |     |        |      |         |          |        |
+|   delta_weights1_U                       |       |      |     | 4    |      |     |        |      |         |          |        |
+|   delta_weights2_U                       |       |      |     |      | 1    |     |        |      |         |          |        |
+|   delta_weights3_U                       |       |      |     | 2    |      |     |        |      |         |          |        |
+|   dexp_64ns_64ns_64_10_full_dsp_1_U25    | 1914  | 775  | 26  |      |      |     |        |      |         |          |        |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 327   | 211  | 8   |      |      |     |        |      |         |          |        |
+|   grp_update_weights_1_fu_1234           | 3416  | 2304 |     |      |      |     |        |      |         |          |        |
+|     (grp_update_weights_1_fu_1234)       | 1545  | 1594 |     |      |      |     |        |      |         |          |        |
+|     dsqrt_64ns_64ns_64_12_no_dsp_1_U4    | 1871  | 710  |     |      |      |     |        |      |         |          |        |
+|   mux_3_2_64_1_1_U27                     | 64    |      |     |      |      |     |        |      |         |          |        |
+|   mux_3_2_64_1_1_U28                     | 64    |      |     |      |      |     |        |      |         |          |        |
+|   mux_3_2_64_1_1_U29                     | 64    |      |     |      |      |     |        |      |         |          |        |
+|   mux_3_2_64_1_1_U32                     | 68    |      |     |      |      |     |        |      |         |          |        |
+|   mux_3_2_64_1_1_U33                     | 192   |      |     |      |      |     |        |      |         |          |        |
+|   oracle_activations1_U                  | 98    | 64   |     |      |      |     |        |      |         |          |        |
+|   oracle_activations2_U                  | 252   | 64   |     |      |      |     |        |      |         |          |        |
++------------------------------------------+-------+------+-----+------+------+-----+--------+------+---------+----------+--------+
+
+
+================================================================
+== Place & Route Fail Fast
+================================================================
++-----------------------------------------------------------+-----------+--------+--------+
+| Criteria                                                  | Guideline | Actual | Status |
++-----------------------------------------------------------+-----------+--------+--------+
+| LUT                                                       | 70%       | 1.46%  | OK     |
+| FD                                                        | 50%       | 0.54%  | OK     |
+| LUTRAM+SRL                                                | 25%       | 0.12%  | OK     |
+| CARRY8                                                    | 25%       | 0.67%  | OK     |
+| MUXF7                                                     | 15%       | 0.10%  | OK     |
+| DSP                                                       | 80%       | 0.62%  | OK     |
+| RAMB/FIFO                                                 | 80%       | 0.22%  | OK     |
+| URAM                                                      | 80%       | 0.16%  | OK     |
+| DSP+RAMB+URAM (Avg)                                       | 70%       | 0.33%  | OK     |
+| BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
+| DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
+| MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
+| Control Sets                                              | 16344     | 161    | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 1.77   | OK     |
+| Max Average Fanout for modules > 100k cells               | 4         | 0      | OK     |
+| Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+| TIMING-6 (No common primary clock between related clocks) | 0         | 0      | OK     |
+| TIMING-7 (No common node between related clocks)          | 0         | 0      | OK     |
+| TIMING-8 (No common period between related clocks)        | 0         | 0      | OK     |
+| TIMING-14 (LUT on the clock tree)                         | 0         | 0      | OK     |
+| TIMING-35 (No common node in paths with the same clock)   | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+| Number of paths above max LUT budgeting (0.300ns)         | 0         | 0      | OK     |
+| Number of paths above max Net budgeting (0.208ns)         | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+
+
+================================================================
+== Place & Route Timing Paths
+================================================================
+* Timing was met
++-------+-------+---------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path  | SLACK | STARTPOINT PIN                                                                                                | ENDPOINT PIN                                                                                                  | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
+|       |       |                                                                                                               |                                                                                                               |              |            |                |          DELAY |        DELAY |
++-------+-------+---------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path1 | 1.705 | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/Q_DEL/i_pipe/opt_has_pipe.first_q_reg[50]/C | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[53].ADDSUB/ADDSUB/Q_DEL/i_pipe/opt_has_pipe.first_q_reg[57]/D |           49 |         56 |          6.278 |          2.780 |        3.498 |
+| Path2 | 1.905 | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[41].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[1]/C                | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/Q_DEL/i_pipe/opt_has_pipe.first_q_reg[51]/D |           42 |         50 |          6.076 |          2.715 |        3.361 |
+| Path3 | 1.912 | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[41].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[1]/C                | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/Q_DEL/i_pipe/opt_has_pipe.first_q_reg[47]/D |           41 |         50 |          6.069 |          2.734 |        3.335 |
+| Path4 | 1.912 | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[41].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[1]/C                | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/Q_DEL/i_pipe/opt_has_pipe.first_q_reg[49]/D |           42 |         50 |          6.069 |          2.709 |        3.360 |
+| Path5 | 1.913 | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[41].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[1]/C                | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/Q_DEL/i_pipe/opt_has_pipe.first_q_reg[45]/D |           41 |         50 |          6.068 |          2.734 |        3.334 |
++-------+-------+---------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+
+    +---------------------------------------------------------------------------------------------------------------------+-------------------+
+    | Path1 Cells                                                                                                         | Primitive Type    |
+    +---------------------------------------------------------------------------------------------------------------------+-------------------+
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/Q_DEL/i_pipe/opt_has_pipe.first_q_reg[50]         | REGISTER.SDR.FDRE |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/Q_DEL/i_pipe/CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1__46 | CLB.LUT.LUT1      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[48].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8        | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[48].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8        | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[48].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[48].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[48].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[48].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[48].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[49].ADDSUB/CHAIN_GEN[3].C_MUX.CARRY_MUX_i_1                         | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[49].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8        | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[49].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8        | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[49].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[49].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[49].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[49].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[49].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[49].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1__48              | CLB.LUT.LUT1      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[50].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8        | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[50].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8        | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[50].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[50].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[50].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[50].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[50].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[50].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1__49              | CLB.LUT.LUT1      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[51].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8        | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[51].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8        | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[51].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[51].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[51].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[51].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[51].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[52].ADDSUB/CHAIN_GEN[3].C_MUX.CARRY_MUX_i_1                         | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[52].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8        | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[52].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8        | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[52].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[52].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[52].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[52].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[52].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[53].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                         | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[53].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8        | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[53].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8        | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[53].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[53].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[53].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[53].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[53].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[53].ADDSUB/ADDSUB/CHAIN_GEN[56].C_MUX.CARRY_MUX_CARRY4_CARRY8       | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[53].ADDSUB/ADDSUB/Q_DEL/i_pipe/opt_has_pipe.first_q_reg[57]         | REGISTER.SDR.FDRE |
+    +---------------------------------------------------------------------------------------------------------------------+-------------------+
+
+    +---------------------------------------------------------------------------------------------------------------+-------------------+
+    | Path2 Cells                                                                                                   | Primitive Type    |
+    +---------------------------------------------------------------------------------------------------------------+-------------------+
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[41].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[1]                  | REGISTER.SDR.FDRE |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/CHAIN_GEN[13].C_MUX.CARRY_MUX_i_1                  | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/Q_DEL/i_pipe/opt_has_pipe.first_q_reg[51]   | REGISTER.SDR.FDRE |
+    +---------------------------------------------------------------------------------------------------------------+-------------------+
+
+    +---------------------------------------------------------------------------------------------------------------+-------------------+
+    | Path3 Cells                                                                                                   | Primitive Type    |
+    +---------------------------------------------------------------------------------------------------------------+-------------------+
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[41].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[1]                  | REGISTER.SDR.FDRE |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/CHAIN_GEN[13].C_MUX.CARRY_MUX_i_1                  | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/Q_DEL/i_pipe/opt_has_pipe.first_q_reg[47]   | REGISTER.SDR.FDRE |
+    +---------------------------------------------------------------------------------------------------------------+-------------------+
+
+    +---------------------------------------------------------------------------------------------------------------+-------------------+
+    | Path4 Cells                                                                                                   | Primitive Type    |
+    +---------------------------------------------------------------------------------------------------------------+-------------------+
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[41].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[1]                  | REGISTER.SDR.FDRE |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/CHAIN_GEN[13].C_MUX.CARRY_MUX_i_1                  | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/Q_DEL/i_pipe/opt_has_pipe.first_q_reg[49]   | REGISTER.SDR.FDRE |
+    +---------------------------------------------------------------------------------------------------------------+-------------------+
+
+    +---------------------------------------------------------------------------------------------------------------+-------------------+
+    | Path5 Cells                                                                                                   | Primitive Type    |
+    +---------------------------------------------------------------------------------------------------------------+-------------------+
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[41].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[1]                  | REGISTER.SDR.FDRE |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[42].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/CHAIN_GEN[13].C_MUX.CARRY_MUX_i_1                  | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[43].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[44].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/CHAIN_GEN[5].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[45].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_i_1                   | CLB.LUT.LUT3      |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[46].ADDSUB/ADDSUB/CHAIN_GEN[48].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[8].C_MUX.CARRY_MUX_CARRY4_CARRY8  | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[16].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[24].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[32].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/CHAIN_GEN[40].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8  |
+    | i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[47].ADDSUB/ADDSUB/Q_DEL/i_pipe/opt_has_pipe.first_q_reg[45]   | REGISTER.SDR.FDRE |
+    +---------------------------------------------------------------------------------------------------------------+-------------------+
+
+
+================================================================
+== Place & Route Vivado Reports
+================================================================
++--------------------------+------------------------------------------------------------------+
+| Report Type              | Report Location                                                  |
++--------------------------+------------------------------------------------------------------+
+| design_analysis          | impl/verilog/report/backprop_design_analysis_routed.rpt          |
+| failfast                 | impl/verilog/report/backprop_failfast_routed.rpt                 |
+| status                   | impl/verilog/report/backprop_status_routed.rpt                   |
+| timing                   | impl/verilog/report/backprop_timing_routed.rpt                   |
+| timing_paths             | impl/verilog/report/backprop_timing_paths_routed.rpt             |
+| utilization              | impl/verilog/report/backprop_utilization_routed.rpt              |
+| utilization_hierarchical | impl/verilog/report/backprop_utilization_hierarchical_routed.rpt |
++--------------------------+------------------------------------------------------------------+
+
+

@@ -6,5 +6,7 @@
     "KNN": "md_kernel",
     "SHA": "sha_stream",
     "STENCIL3D": "stencil3d",
-    "TRANS_FFT": "fft1D_512"
+    "TRANS_FFT": "fft1D_512",
+    "GRAMSCHMIDT": "kernel_gramschmidt",
+    "BACKPROP": "backprop"
 }

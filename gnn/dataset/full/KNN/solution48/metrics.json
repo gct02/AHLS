@@ -3,13 +3,14 @@
   "ff": 4076,
   "dsp": 33,
   "bram": 0,
-  "wns": 0.675,
-  "tns": 0,
+  "snru": 0.003787486011439534,
+  "wns": 1.675,
+  "tns": 0.0,
   "target_clk": 8.0,
-  "achieved_clk": 7.325,
+  "achieved_clk": 6.325,
   "total_power": 2.432,
   "dynamic_power": 0.216,
   "static_power": 2.216,
   "cc": 262913,
-  "time": 1925837.725
+  "time": 1662924.725
 }

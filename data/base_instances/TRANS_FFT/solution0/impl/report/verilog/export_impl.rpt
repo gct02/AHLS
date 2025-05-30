@@ -1,0 +1,298 @@
+================================================================
+== Vivado Place & Route Results
+================================================================
++ General Information:
+    * Date:            Thu May 29 21:24:28 -03 2025
+    * Version:         2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:         TRANS_FFT
+    * Solution:        solution0 (Vivado IP Flow Target)
+    * Product family:  virtexuplusHBM
+    * Target device:   xcu50-fsvh2104-2-e
+
+
+================================================================
+== Run Constraints & Options
+================================================================
++ Design Constraints & Options:
+    * Place & Route target clock:  8 ns
+    * C-Synthesis target clock:    8 ns
+    * C-Synthesis uncertainty:     27%
+
++ RTL Synthesis Options:
+    * config_export -vivado_synth_strategy:     default
+    * config_export -vivado_synth_design_args:  -directive sdx_optimization_effort_high
+
++ Place & Route Options:
+    * config_export -vivado_impl_strategy:  default
+    * config_export -vivado_phys_opt:       none
+
++ Reporting Options:
+    * config_export -vivado_report_level:      2
+    * config_export -vivado_max_timing_paths:  10
+
+
+================================================================
+== Place & Route Resource Summary
+================================================================
+LUT:              25603
+FF:               15572
+DSP:              163
+BRAM:             20
+URAM:             0
+SRL:              70
+
+
+================================================================
+== Place & Route Timing Summary
+================================================================
+* Timing was met
++----------------+-------------+
+| Timing         | Period (ns) |
++----------------+-------------+
+| Target         | 8.000       |
+| Post-Synthesis | 6.518       |
+| Post-Route     | 7.844       |
++----------------+-------------+
+
+
+================================================================
+== Place & Route Resources
+================================================================
++-----------------------------------------------------+-------+-------+-----+------+------+-----+--------+------+---------+----------+--------+
+| Name                                                | LUT   | FF    | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable | Source |
++-----------------------------------------------------+-------+-------+-----+------+------+-----+--------+------+---------+----------+--------+
+| inst                                                | 25603 | 15572 | 163 | 20   |      |     |        |      |         |          |        |
+|   (inst)                                            | 93    | 3171  |     |      |      |     |        |      |         |          |        |
+|   DATA_x_U                                          | 624   |       |     | 4    |      |     |        |      |         |          |        |
+|   DATA_y_U                                          | 682   |       |     | 4    |      |     |        |      |         |          |        |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U66            | 1071  | 367   | 3   |      |      |     |        |      |         |          |        |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U67            | 1017  | 367   | 3   |      |      |     |        |      |         |          |        |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U68            | 1213  | 367   | 3   |      |      |     |        |      |         |          |        |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U69            | 1066  | 367   | 3   |      |      |     |        |      |         |          |        |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U70            | 701   | 367   | 3   |      |      |     |        |      |         |          |        |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U71            | 765   | 366   | 3   |      |      |     |        |      |         |          |        |
+|   data_x_U_x                                        | 192   |       |     | 4    |      |     |        |      |         |          |        |
+|   data_y_U_x                                        | 526   |       |     | 4    |      |     |        |      |         |          |        |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U74                 | 164   | 211   | 8   |      |      |     |        |      |         |          |        |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U75                 | 165   | 211   | 8   |      |      |     |        |      |         |          |        |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U76                 | 100   | 211   | 8   |      |      |     |        |      |         |          |        |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U77                 | 100   | 186   | 8   |      |      |     |        |      |         |          |        |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U78                 | 62    | 147   | 8   |      |      |     |        |      |         |          |        |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U79                 | 62    | 147   | 8   |      |      |     |        |      |         |          |        |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U72                | 736   | 366   | 3   |      |      |     |        |      |         |          |        |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U73                | 736   | 366   | 3   |      |      |     |        |      |         |          |        |
+|   grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550     | 4816  | 3562  |     |      |      |     |        |      |         |          |        |
+|     (grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550) | 4628  | 3554  |     |      |      |     |        |      |         |          |        |
+|   grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580     | 5634  | 3458  |     |      |      |     |        |      |         |          |        |
+|     (grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580) | 5453  | 3453  |     |      |      |     |        |      |         |          |        |
+|   grp_sin_or_cos_double_s_fu_5138                   | 4614  | 1332  | 91  |      |      |     |        |      |         |          |        |
+|     (grp_sin_or_cos_double_s_fu_5138)               | 1584  | 540   |     |      |      |     |        |      |         |          |        |
+|     fourth_order_double_sin_cos_K0_U                | 283   | 59    |     |      |      |     |        |      |         |          |        |
+|     fourth_order_double_sin_cos_K1_U                | 209   | 18    |     |      |      |     |        |      |         |          |        |
+|     fourth_order_double_sin_cos_K2_U                | 166   | 26    |     |      |      |     |        |      |         |          |        |
+|     fourth_order_double_sin_cos_K3_U                | 130   | 16    |     |      |      |     |        |      |         |          |        |
+|     fourth_order_double_sin_cos_K4_U                | 94    | 25    |     |      |      |     |        |      |         |          |        |
+|     mul_170s_53ns_170_2_1_U9                        | 658   | 86    | 27  |      |      |     |        |      |         |          |        |
+|     mul_35ns_25ns_60_1_1_U1                         | 25    |       | 2   |      |      |     |        |      |         |          |        |
+|     mul_42ns_33ns_75_1_1_U2                         | 102   |       | 4   |      |      |     |        |      |         |          |        |
+|     mul_49ns_44s_93_1_1_U3                          | 103   | 64    | 6   |      |      |     |        |      |         |          |        |
+|     mul_49ns_49ns_98_1_1_U4                         | 513   | 85    | 9   |      |      |     |        |      |         |          |        |
+|     mul_49ns_49ns_98_1_1_U5                         | 81    | 62    | 9   |      |      |     |        |      |         |          |        |
+|     mul_49ns_49ns_98_1_1_U6                         | 81    | 128   | 9   |      |      |     |        |      |         |          |        |
+|     mul_56ns_52s_108_1_1_U7                         | 247   |       | 9   |      |      |     |        |      |         |          |        |
+|     mul_64s_63ns_126_1_1_U8                         | 144   |       | 16  |      |      |     |        |      |         |          |        |
+|     ref_4oPi_table_256_U                            | 197   | 223   |     |      |      |     |        |      |         |          |        |
+|   smem_U                                            | 489   |       |     | 4    |      |     |        |      |         |          |        |
+|   twiddles8_reversed8_U                             |       | 3     |     |      |      |     |        |      |         |          |        |
++-----------------------------------------------------+-------+-------+-----+------+------+-----+--------+------+---------+----------+--------+
+
+
+================================================================
+== Place & Route Fail Fast
+================================================================
++-----------------------------------------------------------+-----------+--------+--------+
+| Criteria                                                  | Guideline | Actual | Status |
++-----------------------------------------------------------+-----------+--------+--------+
+| LUT                                                       | 70%       | 2.94%  | OK     |
+| FD                                                        | 50%       | 0.89%  | OK     |
+| LUTRAM+SRL                                                | 25%       | 0.02%  | OK     |
+| CARRY8                                                    | 25%       | 0.40%  | OK     |
+| MUXF7                                                     | 15%       | 0.09%  | OK     |
+| DSP                                                       | 80%       | 2.74%  | OK     |
+| RAMB/FIFO                                                 | 80%       | 0.74%  | OK     |
+| URAM                                                      | 80%       | 0.00%  | OK     |
+| DSP+RAMB+URAM (Avg)                                       | 70%       | 1.74%  | OK     |
+| BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
+| DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
+| MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
+| Control Sets                                              | 16344     | 141    | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 1.44   | OK     |
+| Max Average Fanout for modules > 100k cells               | 4         | 0      | OK     |
+| Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+| TIMING-6 (No common primary clock between related clocks) | 0         | 0      | OK     |
+| TIMING-7 (No common node between related clocks)          | 0         | 0      | OK     |
+| TIMING-8 (No common period between related clocks)        | 0         | 0      | OK     |
+| TIMING-14 (LUT on the clock tree)                         | 0         | 0      | OK     |
+| TIMING-35 (No common node in paths with the same clock)   | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+| Number of paths above max LUT budgeting (0.300ns)         | 0         | 0      | OK     |
+| Number of paths above max Net budgeting (0.208ns)         | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+
+
+================================================================
+== Place & Route Timing Paths
+================================================================
+* Timing was met
++-------+-------+--------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path  | SLACK | STARTPOINT PIN                                                                                               | ENDPOINT PIN                                                                                   | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
+|       |       |                                                                                                              |                                                                                                |              |            |                |          DELAY |        DELAY |
++-------+-------+--------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path1 | 0.156 | grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C                                                      | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST/B[16] |           19 |        150 |          7.570 |          4.038 |        3.532 |
+| Path2 | 0.167 | grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C                                                      | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[9]     |           19 |        150 |          7.520 |          4.043 |        3.477 |
+| Path3 | 0.174 | grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C                                                      | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[12]    |           19 |        150 |          7.545 |          4.064 |        3.481 |
+| Path4 | 0.189 | i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_0/OP_DEL/i_pipe/opt_has_pipe.first_q_reg[3]/C | data_y_U_x/ram_reg_bram_0/DINBDIN[10]                                                          |           12 |         73 |          7.549 |          1.863 |        5.686 |
+| Path5 | 0.202 | grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C                                                      | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST/B[15] |           19 |        150 |          7.528 |          4.018 |        3.510 |
++-------+-------+--------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+
+    +---------------------------------------------------------------------------------------------+------------------------+
+    | Path1 Cells                                                                                 | Primitive Type         |
+    +---------------------------------------------------------------------------------------------+------------------------+
+    | grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]                                       | REGISTER.SDR.FDRE      |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0              | CLB.LUT.LUT3           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257                   | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191                   | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123                   | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0                 | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3                 | CLB.LUT.LUT6           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_19__0                 | CLB.LUT.LUT4           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_2__0                  | CLB.CARRY.CARRY8       |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0                  | CLB.CARRY.CARRY8       |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    +---------------------------------------------------------------------------------------------+------------------------+
+
+    +---------------------------------------------------------------------------------------------+------------------------+
+    | Path2 Cells                                                                                 | Primitive Type         |
+    +---------------------------------------------------------------------------------------------+------------------------+
+    | grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]                                       | REGISTER.SDR.FDRE      |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0              | CLB.LUT.LUT3           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257                   | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191                   | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123                   | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0                 | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3                 | CLB.LUT.LUT6           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_5__0                  | CLB.LUT.LUT4           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0                  | CLB.CARRY.CARRY8       |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0_i_2                  | CLB.CARRY.CARRY8       |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST       | ARITHMETIC.DSP.DSP48E2 |
+    +---------------------------------------------------------------------------------------------+------------------------+
+
+    +---------------------------------------------------------------------------------------------+------------------------+
+    | Path3 Cells                                                                                 | Primitive Type         |
+    +---------------------------------------------------------------------------------------------+------------------------+
+    | grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]                                       | REGISTER.SDR.FDRE      |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0              | CLB.LUT.LUT3           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257                   | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191                   | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123                   | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0                 | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3                 | CLB.LUT.LUT6           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_5__0                  | CLB.LUT.LUT4           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0                  | CLB.CARRY.CARRY8       |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0_i_2                  | CLB.CARRY.CARRY8       |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST       | ARITHMETIC.DSP.DSP48E2 |
+    +---------------------------------------------------------------------------------------------+------------------------+
+
+    +----------------------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+    | Path4 Cells                                                                                                                                        | Primitive Type         |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+    | i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_0/OP_DEL/i_pipe/opt_has_pipe.first_q_reg[3]                                         | REGISTER.SDR.FDRE      |
+    | i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_0/OP_DEL/i_pipe/m_axis_result_tdata[52]_INST_0_i_8                                  | CLB.LUT.LUT4           |
+    | i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_0/OP_DEL/i_pipe/CHAIN_GEN[0].C_MUX.CARRY_MUX_i_5                                    | CLB.LUT.LUT5           |
+    | i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_Z/OP_DEL/i_pipe/CHAIN_GEN[0].C_MUX.CARRY_MUX_i_7                                    | CLB.LUT.LUT5           |
+    | i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_Z/OP_DEL/i_pipe/CHAIN_GEN[0].C_MUX.CARRY_MUX_i_2__2                                 | CLB.LUT.LUT6           |
+    | i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.SPECIAL.RND_CHAIN/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8 | CLB.CARRY.CARRY8       |
+    | i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/i_no_versal_es1_workaround.DSP/DSP_A_B_DATA_INST               | ARITHMETIC.DSP.DSP48E2 |
+    | i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/i_no_versal_es1_workaround.DSP/DSP_ALU_INST                    | ARITHMETIC.DSP.DSP48E2 |
+    | i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/i_no_versal_es1_workaround.DSP/DSP_OUTPUT_INST                 | ARITHMETIC.DSP.DSP48E2 |
+    | i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/EXP/STATE_DELAY/i_pipe/mant_op_inferred_i_42                                                               | CLB.LUT.LUT3           |
+    | grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550/ram_reg_bram_0_i_478                                                                                 | CLB.LUT.LUT3           |
+    | grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580/ram_reg_bram_0_i_258__2                                                                              | CLB.LUT.LUT6           |
+    | grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580/ram_reg_bram_0_i_62__2                                                                               | CLB.LUT.LUT6           |
+    | data_y_U_x/ram_reg_bram_0                                                                                                                          | BLOCKRAM.BRAM.RAMB36E2 |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+
+    +---------------------------------------------------------------------------------------------+------------------------+
+    | Path5 Cells                                                                                 | Primitive Type         |
+    +---------------------------------------------------------------------------------------------+------------------------+
+    | grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]                                       | REGISTER.SDR.FDRE      |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0              | CLB.LUT.LUT3           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257                   | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191                   | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123                   | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0                 | CLB.LUT.LUT5           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3                 | CLB.LUT.LUT6           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_19__0                 | CLB.LUT.LUT4           |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_2__0                  | CLB.CARRY.CARRY8       |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0                  | CLB.CARRY.CARRY8       |
+    | grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    +---------------------------------------------------------------------------------------------+------------------------+
+
+
+================================================================
+== Place & Route Vivado Reports
+================================================================
++--------------------------+-------------------------------------------------------------------+
+| Report Type              | Report Location                                                   |
++--------------------------+-------------------------------------------------------------------+
+| design_analysis          | impl/verilog/report/fft1D_512_design_analysis_routed.rpt          |
+| failfast                 | impl/verilog/report/fft1D_512_failfast_routed.rpt                 |
+| status                   | impl/verilog/report/fft1D_512_status_routed.rpt                   |
+| timing                   | impl/verilog/report/fft1D_512_timing_routed.rpt                   |
+| timing_paths             | impl/verilog/report/fft1D_512_timing_paths_routed.rpt             |
+| utilization              | impl/verilog/report/fft1D_512_utilization_routed.rpt              |
+| utilization_hierarchical | impl/verilog/report/fft1D_512_utilization_hierarchical_routed.rpt |
++--------------------------+-------------------------------------------------------------------+
+
+

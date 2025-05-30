@@ -1,0 +1,944 @@
+{
+  "GlobalArrayUsageInfo": [
+    {
+      "Name": "empty",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 331
+        }
+      ]
+    },
+    {
+      "Name": "empty_0",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 66
+        }
+      ]
+    },
+    {
+      "Name": "empty_1",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 103
+        }
+      ]
+    },
+    {
+      "Name": "empty_2",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 92
+        }
+      ]
+    },
+    {
+      "Name": "empty_3",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 274
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 197
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 126
+        }
+      ]
+    },
+    {
+      "Name": "empty_4",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 294
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 213
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 142
+        }
+      ]
+    },
+    {
+      "Name": "empty_5",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 177
+        }
+      ]
+    },
+    {
+      "Name": "empty_6",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 164
+        }
+      ]
+    },
+    {
+      "Name": "empty_7",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 498
+        }
+      ]
+    },
+    {
+      "Name": "empty_8",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 29
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 27
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 25
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 23
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 21
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 19
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 17
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 15
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 7
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 2
+        }
+      ]
+    },
+    {
+      "Name": "empty_9",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 485
+        }
+      ]
+    },
+    {
+      "Name": "empty_10",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 14
+        }
+      ]
+    },
+    {
+      "Name": "empty_11",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 359
+        }
+      ]
+    },
+    {
+      "Name": "empty_12",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 400
+        }
+      ]
+    },
+    {
+      "Name": "empty_13",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 384
+        }
+      ]
+    },
+    {
+      "Name": "empty_14",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 433
+        }
+      ]
+    },
+    {
+      "Name": "empty_15",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 417
+        }
+      ]
+    },
+    {
+      "Name": "empty_16",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 468
+        }
+      ]
+    },
+    {
+      "Name": "empty_17",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 455
+        }
+      ]
+    },
+    {
+      "Name": "empty_18",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 211
+        }
+      ]
+    },
+    {
+      "Name": "empty_19",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 237
+        }
+      ]
+    },
+    {
+      "Name": "empty_20",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 318
+        }
+      ]
+    },
+    {
+      "Name": "empty_21",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 201
+        }
+      ]
+    },
+    {
+      "Name": "empty_22",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 520
+        }
+      ]
+    },
+    {
+      "Name": "empty_23",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 54
+        }
+      ]
+    },
+    {
+      "Name": "empty_24",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 355
+        }
+      ]
+    },
+    {
+      "Name": "empty_25",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 332
+        }
+      ]
+    },
+    {
+      "Name": "empty_26",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 321
+        }
+      ]
+    },
+    {
+      "Name": "empty_27",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 296
+        }
+      ]
+    },
+    {
+      "Name": "empty_28",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 271
+        }
+      ]
+    },
+    {
+      "Name": "empty_29",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 259
+        }
+      ]
+    },
+    {
+      "Name": "empty_30",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 248
+        }
+      ]
+    },
+    {
+      "Name": "empty_31",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 24
+        }
+      ]
+    },
+    {
+      "Name": "empty_32",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 535
+        }
+      ]
+    },
+    {
+      "Name": "empty_33",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 176
+        }
+      ]
+    },
+    {
+      "Name": "empty_34",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 151
+        }
+      ]
+    },
+    {
+      "Name": "empty_35",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 140
+        }
+      ]
+    },
+    {
+      "Name": "empty_36",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 121
+        }
+      ]
+    },
+    {
+      "Name": "empty_37",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 93
+        }
+      ]
+    },
+    {
+      "Name": "empty_38",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 84
+        }
+      ]
+    },
+    {
+      "Name": "empty_39",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 59
+        }
+      ]
+    },
+    {
+      "Name": "empty_40",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 34
+        }
+      ]
+    },
+    {
+      "Name": "empty_41",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 239
+        }
+      ]
+    },
+    {
+      "Name": "empty_42",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 29
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 29
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 29
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 29
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 29
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 29
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 27
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 27
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 27
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 27
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 27
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 27
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 25
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 25
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 25
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 25
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 25
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 25
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 23
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 23
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 23
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 23
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 23
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 23
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 21
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 21
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 21
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 21
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 21
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 21
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 19
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 19
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 19
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 19
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 19
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 19
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 17
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 17
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 17
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 17
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 17
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 17
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 15
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 15
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 15
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 15
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 15
+        },
+        {
+          "Name": "",
+          "FunctionName": "backprop",
+          "Idx": 15
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 7
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 7
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 7
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 7
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 7
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 7
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "update_weights.1",
+          "Idx": 2
+        }
+      ]
+    }
+  ]
+}

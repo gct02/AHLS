@@ -1,5 +1,6 @@
 import re
 import os
+import json
 from pathlib import Path
 from typing import List, Tuple, Union, Dict
 
@@ -8,66 +9,95 @@ import xml.etree.ElementTree as ET
 from gnn.data.utils.xml_utils import findint, findfloat
 
 
-Number = Union[int, float]
-Report = Dict[str, Number] 
+# Total number of resources available on the target device
+# (xcu50-fsvh2104-2-e)
+AVAILABLE_RESOURCES = {
+    "bram": 2688,
+    "dsp": 5952,
+    "ff": 1743360,
+    "lut": 871680
+}
+
+POWER_METRICS = ['total_power', 'dynamic_power', 'static_power']
+TIMING_METRICS = ['wns', 'tns', 'target_clk', 'achieved_clk']
+UTILIZATION_METRICS = ['lut', 'ff', 'dsp', 'bram']
 
 
-def extract_timing_summary(solution_dir, filtered=False) -> Report:
-    try:
-        rpt_dir = _find_report_folder(solution_dir, filtered)
-    except ValueError as e:
-        print(e)
-        return None
+def extract_timing_summary(solution_dir, filtered=False) -> Dict[str, float]:
+    if filtered:
+        rpt_path = Path(solution_dir) / 'reports/export_impl.xml'
+        if rpt_path.is_file():
+            return _parse_timing_report_xml(rpt_path)
+        
+        rpt_path = Path(solution_dir) / 'reports/impl_timing_summary.rpt'
+        if rpt_path.is_file():
+            return _parse_timing_report_txt(rpt_path)
+        
+        return {m: -1.0 for m in TIMING_METRICS}
 
-    rpt_path = rpt_dir + 'export_impl.xml'
-    if os.path.exists(rpt_path):
+    rpt_path = Path(solution_dir) / 'impl/report/verilog/export_impl.xml'
+    if rpt_path.is_file():
         return _parse_timing_report_xml(rpt_path)
     
-    rpt_path = rpt_dir + 'impl_timing_summary.rpt'
-    if os.path.exists(rpt_path):
+    rpt_path = Path(solution_dir) / 'impl/verilog/report/vivado_impl.xml'
+    if rpt_path.is_file():
+        return _parse_timing_report_xml(rpt_path)
+    
+    rpt_path = Path(solution_dir) / 'impl/verilog/project.runs/impl_1/bd_0_wrapper_timing_summary_routed.rpt'
+    if rpt_path.is_file():
         return _parse_timing_report_txt(rpt_path)
     
-    print(f'Timing report not found in {solution_dir}')
-    return None
+    return {m: -1.0 for m in TIMING_METRICS}
 
 
-def extract_utilization(solution_dir, filtered=False) -> Report:
-    try:
-        rpt_dir = _find_report_folder(solution_dir, filtered)
-    except ValueError as e:
-        print(e)
-        return None
+def extract_utilization(solution_dir, filtered=False) -> Dict[str, int]:
+    if filtered:
+        rpt_path = Path(solution_dir) / 'reports/export_impl.xml'
+        if rpt_path.is_file():
+            return _parse_utilization_report_xml(rpt_path)
+        
+        rpt_path = Path(solution_dir) / 'reports/impl_utilization_placed.rpt'
+        if rpt_path.is_file():
+            return _parse_utilization_report_txt(rpt_path)
+        
+        return {m: -1 for m in UTILIZATION_METRICS}
 
-    rpt_path = rpt_dir + 'export_impl.xml'
-    if os.path.exists(rpt_path):
+    rpt_path = Path(solution_dir) / 'impl/report/verilog/export_impl.xml'
+    if rpt_path.is_file():
         return _parse_utilization_report_xml(rpt_path)
     
-    rpt_path = rpt_dir + 'impl_utilization_placed.rpt'
-    if os.path.exists(rpt_path):
+    rpt_path = Path(solution_dir) / 'impl/verilog/report/vivado_impl.xml'
+    if rpt_path.is_file():
+        return _parse_utilization_report_xml(rpt_path)
+    
+    rpt_path = Path(solution_dir) / 'impl/verilog/project.runs/impl_1/bd_0_wrapper_utilization_placed.rpt'
+    if rpt_path.is_file():
         return _parse_utilization_report_txt(rpt_path)
+    
+    return {m: -1 for m in UTILIZATION_METRICS}
 
-    print(f'Utilization report not found in {solution_dir}')
-    return None
 
-
-def extract_hls_cc_report(solution_dir, filtered=False) -> int:
+def extract_cc_report(solution_dir, filtered=False) -> Dict[str, int]:
     if filtered:
-        rpt_path = f'{solution_dir}/reports/csynth.xml'
+        rpt_path = Path(solution_dir) / 'reports/csynth.xml'
     else:
-        rpt_path = f'{solution_dir}/syn/report/csynth.xml'
+        rpt_path = Path(solution_dir)/ 'syn/report/csynth.xml'
 
     if not os.path.exists(rpt_path):
         print(f'CC report not found in {solution_dir}')
-        return -1
+        return {'cc': -1}
 
     tree = ET.parse(rpt_path)
     root = tree.getroot()
-    return findint(
-        root, 'PerformanceEstimates/SummaryOfOverallLatency/Average-caseLatency', -1
+    cc = findint(
+        root, 
+        'PerformanceEstimates/SummaryOfOverallLatency/Average-caseLatency', 
+        default=-1
     )
+    return {'cc': cc}
 
 
-def extract_power_report(solution_dir, filtered=False) -> Report:
+def extract_power_report(solution_dir, filtered=False) -> Dict[str, float]:
     if filtered:
         rpt_path = f'{solution_dir}/reports/impl_power.rpt'
     else:
@@ -75,7 +105,7 @@ def extract_power_report(solution_dir, filtered=False) -> Report:
 
     if not Path(rpt_path).is_file():
         print(f'Power report not found in {solution_dir}')
-        return {'total_power': -1.0, 'dynamic_power': -1.0, 'static_power': -1.0}
+        return {m: -1.0 for m in POWER_METRICS}
     
     with open(rpt_path, "r") as rpt:
         lines = rpt.readlines()
@@ -99,48 +129,36 @@ def extract_power_report(solution_dir, filtered=False) -> Report:
     }
 
 
-def extract_metrics(
-    solution_dir, filtered=False
-) -> Dict[str, Union[Report, Number]]:
-    def extend_metrics(metrics_dict, other_metrics):
-        for key, value in other_metrics.items():
-            metrics_dict[key] = max(0, value)
-
-    timing = extract_timing_summary(solution_dir, filtered)
-    if timing is None:
-        print(f'Timing report not found in {solution_dir}')
-        return None
-    utilization = extract_utilization(solution_dir, filtered)
-    if utilization is None:
-        print(f'Utilization report not found in {solution_dir}')
-        return None
-    cc = extract_hls_cc_report(solution_dir, filtered)
-    if cc == -1:
-        print(f'CC report not found in {solution_dir}')
-        return None
-    power = extract_power_report(solution_dir, filtered)
-    if power is None:
-        print(f'Power report not found in {solution_dir}')
-        return None
-    
+def extract_metrics(solution_dir, filtered=False) -> Dict[str, Union[float, int]]:
     metrics = {}
-    extend_metrics(metrics, utilization)
-    extend_metrics(metrics, timing)
-    extend_metrics(metrics, power)
-    metrics['cc'] = cc
-    metrics['time'] = timing['achieved_clk'] * cc
+
+    metrics.update(extract_utilization(solution_dir, filtered))
+    metrics['snru'] = compute_snru(metrics)
+
+    metrics.update(extract_timing_summary(solution_dir, filtered))
+    metrics.update(extract_power_report(solution_dir, filtered))
+    metrics.update(extract_cc_report(solution_dir, filtered))
+
+    achieved_clk = metrics.get('achieved_clk', -1.0)
+    cc = metrics.get('cc', -1)
+    if achieved_clk > 0.0 and cc > 0:
+        metrics['time'] = achieved_clk * cc
+    else:
+        metrics['time'] = -1.0
 
     return metrics
 
 
-def extract_impl_report(solution_dir, filtered=False) -> Dict[str, Union[Report, Number]]:
-    reports = {}
-    reports['timing'] = extract_timing_summary(solution_dir, filtered)
-    reports['utilization'] = extract_utilization(solution_dir, filtered)
-    reports['power'] = extract_power_report(solution_dir, filtered)
-    reports['cc'] = extract_hls_cc_report(solution_dir, filtered)
-    reports['time'] = reports['timing']['achieved_clk'] * reports['cc']
-    return reports
+def export_directives_as_tcl(
+    solution_data_json_path: Union[str, Path],
+    output_path: Union[str, Path]
+):
+    with open(solution_data_json_path, "r") as f:
+        data = json.load(f)
+    directives = data["HlsSolution"]["DirectiveTcl"]
+    with open(output_path, "w") as f:
+        directives = "\n".join(directives)
+        f.write(directives)
 
 
 def parse_tcl_directives_file(tcl_path) -> List[Tuple[str, Dict[str, str]]]:
@@ -157,6 +175,16 @@ def parse_directive_cmd(directive_cmd) -> Tuple[str, Dict[str, str]]:
     args = directive_cmd.split(' ')[1:]
     parsed_args = _parse_directive_options(args)
     return cmd, parsed_args
+
+
+def compute_snru(util_report: Dict[str, int]) -> float:
+    if any(v == -1 for v in util_report.values()):
+        return -1.0
+    return sum([
+        util_report[res] / total
+        for res, total in AVAILABLE_RESOURCES.items()
+        if res in util_report and total > 0
+    ]) / len(AVAILABLE_RESOURCES)
 
 
 def _parse_utilization_report_xml(rpt_path):
@@ -182,8 +210,10 @@ def _parse_timing_report_xml(rpt_path):
 
 
 def _parse_utilization_report_txt(rpt_path):
-    integer_pattern = '-?\d+'
-    rx = re.compile(integer_pattern, re.VERBOSE)
+    integer_pattern = '[+-]?\d+'
+    decimal_pattern = '[+-]?\d*\.?\d+'
+    rx_int = re.compile(integer_pattern, re.VERBOSE)
+    rx_dec = re.compile(decimal_pattern, re.VERBOSE)
     
     lut = bram = ff = dsp = -1
         
@@ -196,19 +226,21 @@ def _parse_utilization_report_txt(rpt_path):
     bram_line = _find_line_containing(lines, 'Block RAM Tile')
 
     if lut_line != -1:
-        lut = int((rx.findall(lines[lut_line]))[0])
+        lut = int((rx_int.findall(lines[lut_line]))[0])
     if ff_line != -1:
-        ff = int((rx.findall(lines[ff_line]))[0])
+        ff = int((rx_int.findall(lines[ff_line]))[0])
     if dsp_line != -1:
-        dsp = int((rx.findall(lines[dsp_line]))[0])
+        dsp = int((rx_int.findall(lines[dsp_line]))[0])
     if bram_line != -1:
-        bram = int((rx.findall(lines[bram_line]))[0])
+        # This value is multiplied by 2 in the XML reports
+        # but in the text report it is not, so we multiply it here
+        bram = int(float((rx_dec.findall(lines[bram_line]))[0]) * 2)
         
     return {'lut': lut, 'ff': ff, 'dsp': dsp, 'bram': bram}
 
 
 def _parse_timing_report_txt(rpt_path):
-    decimal_pattern = '-?[0-9]\d*(\.\d+)?'
+    decimal_pattern = '[+-]?\d*\.?\d+'
     rx = re.compile(decimal_pattern, re.VERBOSE)
 
     wns = tns = -1.0
@@ -219,25 +251,24 @@ def _parse_timing_report_txt(rpt_path):
 
     start_idx = _find_line_containing(lines, 'WNS(ns)', 'TNS(ns)')
     if start_idx == -1:
-        return None
+        return {
+            'wns': -1.0,
+            'tns': -1.0,
+            'target_clk': target_clk,
+            'achieved_clk': -1.0
+        }
     
     rpt_line = lines[start_idx + 2]
-    wns = float((rx.findall(rpt_line))[0])
-    tns = float((rx.findall(rpt_line))[1])
+    rpts = rx.findall(rpt_line)
+    wns = float(rpts[0])
+    tns = float(rpts[1])
     
     return {
         'wns': wns,
         'tns': tns,
         'target_clk': target_clk,
-        'achieved_clk': target_clk - wns
+        'achieved_clk': target_clk - wns if wns >= 0 else -1.0
     }
-
-
-def _find_report_folder(solution_dir, filtered=False) -> str:
-    rpt_dir = f'{solution_dir}/' + ('reports/' if filtered else 'impl/report/verilog/')
-    if not os.path.exists(rpt_dir):
-        raise ValueError(f'Report directory not found in {solution_dir}')
-    return rpt_dir
 
 
 def _find_line_containing(lines: List[str], *search_string) -> int:

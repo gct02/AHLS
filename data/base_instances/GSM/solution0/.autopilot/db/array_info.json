@@ -1,0 +1,82 @@
+{
+  "ArrayInfo": [
+    {
+      "Name": "global_ctors",
+      "FunctionName": "llvm",
+      "BaseBitwidth": 0,
+      "BaseType": 13,
+      "IsGlobal": 1,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 0,
+      "Dimensions": [0]
+    },
+    {
+      "Name": "bitoff",
+      "FunctionName": "gsm_norm",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 256,
+      "Dimensions": [256]
+    },
+    {
+      "Name": "ACF",
+      "FunctionName": "Reflection_coefficients",
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9]
+    },
+    {
+      "Name": "P",
+      "FunctionName": "Reflection_coefficients",
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9]
+    },
+    {
+      "Name": "K",
+      "FunctionName": "Reflection_coefficients",
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9]
+    },
+    {
+      "Name": "L_ACF",
+      "FunctionName": "Gsm_LPC_Analysis",
+      "BaseBitwidth": 64,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9]
+    },
+    {
+      "Name": "indata",
+      "FunctionName": "Gsm_LPC_Analysis",
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 160,
+      "Dimensions": [160]
+    },
+    {
+      "Name": "LARc",
+      "FunctionName": "Gsm_LPC_Analysis",
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 8,
+      "Dimensions": [8]
+    }
+  ]
+}

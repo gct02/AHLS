@@ -10,16 +10,6 @@ from torch_geometric.data import Dataset, HeteroData
 from torch_geometric.typing import NodeType
 
 
-# Total number of resources available on the target device
-# (xcu50-fsvh2104-2-e)
-AVAILABLE_RESOURCES = {
-    "bram": 2688,
-    "dsp": 5952,
-    "ff": 1743360,
-    "lut": 871680
-}
-
-
 class HLSDataset(Dataset):
     def __init__(
         self, 
@@ -65,17 +55,10 @@ class HLSDataset(Dataset):
                 print(f"Skipping {benchmark} (base metrics file is empty)")
                 continue
 
-            if self.metric == "snru":
-                try:
-                    base_target = self._compute_snru(base_metrics)
-                except ValueError:
-                    print(f"Skipping {benchmark} (SNRU computation failed)")
-                    continue
-            else:
-                base_target = float(base_metrics.get(self.metric, -1.0))
-                if base_target < 0:
-                    print(f"Skipping {benchmark} (base target value not found)")
-                    continue
+            base_target = float(base_metrics.get(self.metric, -1.0))
+            if base_target < 0:
+                print(f"Skipping {benchmark} (base target value not found)")
+                continue
             
             self.benchmarks.append(benchmark)
             self.base_targets[benchmark] = base_target
@@ -83,7 +66,7 @@ class HLSDataset(Dataset):
         if scale_features:
             if not feature_ranges:
                 self.feature_ranges = _compute_feature_ranges(
-                    self._full_dir, self.benchmarks
+                    self._full_dir, self.benchmarks, metric=self.metric
                 )
             else:
                 self.feature_ranges = feature_ranges
@@ -156,17 +139,14 @@ class HLSDataset(Dataset):
                 with open(metrics_path, 'r') as f:
                     metrics = json.load(f)
 
-                if self.metric == "snru":
-                    try:
-                        target = self._compute_snru(metrics)
-                    except ValueError:
-                        print(f"Skipping {idx} (SNRU computation failed)")
-                        continue
-                else:
-                    target = float(metrics.get(self.metric, -1.0)) if metrics else -1.0
-                    if target < 0:
-                        print(f"Skipping {idx} (target value not found)")
-                        continue
+                if not metrics:
+                    print(f"Skipping {idx} (metrics file is empty)")
+                    continue
+
+                target = float(metrics.get(self.metric, -1.0))
+                if target < 0:
+                    print(f"Skipping {idx} (target value not found)")
+                    continue
 
                 data = torch.load(graph_path)
 
@@ -206,21 +186,11 @@ class HLSDataset(Dataset):
             data.x_dict[nt] = (x - mins) / diffs
         return data
     
-    def _compute_snru(metrics):
-        """Compute the SNRU (Sum of Normalized Resource Utilization) metric."""
-        snru = 0
-        for resource, available in AVAILABLE_RESOURCES.items():
-            value = metrics.get(resource, -1)
-            if value < 0:
-                raise ValueError(f"Resource {resource} not found in metrics.")
-            snru += value / available
-        snru /= len(AVAILABLE_RESOURCES)
-        return snru
-    
 
 def _compute_feature_ranges(
     dataset_dir: str,
-    benchmarks: Optional[Union[str, List[str]]] = None
+    benchmarks: Optional[Union[str, List[str]]] = None,
+    metric: str = "snru"
 ) -> Dict[NodeType, Tuple[Tensor, Tensor]]:
     if benchmarks is None:
         benchmarks = sorted(os.listdir(dataset_dir))
@@ -252,11 +222,11 @@ def _compute_feature_ranges(
             with open(metrics_path, 'r') as f:
                 metrics = json.load(f)
 
-            for metric in AVAILABLE_RESOURCES.keys():
-                target = float(metrics.get(metric, -1.0)) if metrics else -1.0
-                if target < 0:
-                    print(f"Skipping {sol} (missing reports for {metric})")
-                    continue
+            target = float(metrics.get(metric, -1.0)) if metrics else -1.0
+            if target < 0:
+                print(f"Skipping {sol} on feature range computing "
+                      f"(missing or invalid {metric} value)")
+                continue
 
             data = torch.load(graph_path)
 

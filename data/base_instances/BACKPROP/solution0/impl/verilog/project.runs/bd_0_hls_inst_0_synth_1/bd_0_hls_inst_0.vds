@@ -1,0 +1,504 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Thu May 29 16:18:00 2025
+# Process ID: 37483
+# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1
+# Command line: vivado -log bd_0_hls_inst_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_0_hls_inst_0.tcl
+# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.vds
+# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/vivado.jou
+# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 4351.537 MHz, CPU Physical cores: 4, Host memory: 16492 MB
+#-----------------------------------------------------------
+source bd_0_hls_inst_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: bd_0_hls_inst_0
+Command: synth_design -top bd_0_hls_inst_0 -part xcu50-fsvh2104-2-e -directive sdx_optimization_effort_high -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu50'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu50'
+INFO: [Device 21-403] Loading part xcu50-fsvh2104-2-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 37553
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 3008.926 ; gain = 396.660 ; free physical = 605 ; free virtual = 15818
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'backprop' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_activations1_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_activations1_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_activations1_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_activations1_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'backprop_delta_weights1_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_delta_weights1_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_delta_weights1_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_delta_weights1_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'backprop_delta_weights2_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_delta_weights2_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_delta_weights2_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_delta_weights2_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'backprop_delta_weights3_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_delta_weights3_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_delta_weights3_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_delta_weights3_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'backprop_update_weights_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_update_weights_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dsqrt_64ns_64ns_64_12_no_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/ip/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6157] synthesizing module 'LUT1' [/tools/Xilinx/Vivado/2023.2/scripts/rt/data/unisim_comp.v:81293]
+INFO: [Synth 8-6155] done synthesizing module 'LUT1' (0#1) [/tools/Xilinx/Vivado/2023.2/scripts/rt/data/unisim_comp.v:81293]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/ip/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dsqrt_64ns_64ns_64_12_no_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_mux_3_2_64_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_mux_3_2_64_1_1.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_mux_3_2_64_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_mux_3_2_64_1_1.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_update_weights_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_update_weights_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dadddsub_64ns_64ns_64_4_full_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/ip/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/ip/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dadddsub_64ns_64ns_64_4_full_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dmul_64ns_64ns_64_4_max_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_dmul_64ns_64ns_64_4_max_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/ip/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/ip/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dmul_64ns_64ns_64_4_max_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_dmul_64ns_64ns_64_4_max_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_ddiv_64ns_64ns_64_14_no_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_ddiv_64ns_64ns_64_14_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/ip/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/ip/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_ddiv_64ns_64ns_64_14_no_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_ddiv_64ns_64ns_64_14_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dexp_64ns_64ns_64_10_full_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_dexp_64ns_64ns_64_10_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/ip/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip.v:53]
+WARNING: [Synth 8-5974] attribute "use_dsp48" has been deprecated, please use "use_dsp" instead 
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/ip/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dexp_64ns_64ns_64_10_full_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop_dexp_64ns_64ns_64_10_full_dsp_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized259 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized259 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized259 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized259 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized259 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized272 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized272 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized272 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized340 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized340 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized340 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized237 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized237 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized237 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized237 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized237 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized33 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized33 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized33 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized33 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized33 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized9 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized9 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized9 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized9 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized9 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CARRYS_OUT[0] in module compare_ne_im is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CARRYS_OUT[0] in module compare_eq_im__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized53 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized53 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized53 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized53 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized53 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized95 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized95 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized95 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized95 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized95 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[15] in module carry_chain__parameterized74 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized49 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized49 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized49 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized49 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized49 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized97 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized97 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized97 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized97 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized97 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized107 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized107 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized107 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized107 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized107 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized223 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized223 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized223 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized223 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized223 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized143 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized143 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized143 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized143 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized143 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module dsp48e1_wrapper__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port NORMALIZE[1] in module flt_round_bit__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port FIXED_POINT in module flt_round_bit__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port FIX_MANT_SIGN in module flt_round_bit__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SIGN in module flt_round_bit__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized251 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized251 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized251 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized251 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized251 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized233 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized233 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized233 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized233 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized233 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized87 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized87 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized87 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized87 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized87 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized153 is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 3305.863 ; gain = 693.598 ; free physical = 287 ; free virtual = 15441
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 3305.863 ; gain = 693.598 ; free physical = 292 ; free virtual = 15447
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 3305.863 ; gain = 693.598 ; free physical = 292 ; free virtual = 15447
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.59 ; elapsed = 00:00:00.58 . Memory (MB): peak = 3305.863 ; gain = 0.000 ; free physical = 298 ; free virtual = 15451
+INFO: [Netlist 29-17] Analyzing 10129 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/backprop_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/backprop_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3573.660 ; gain = 0.000 ; free physical = 298 ; free virtual = 15351
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 44 instances were transformed.
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 15 instances
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 22 instances
+  FDE => FDRE: 7 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.69 ; elapsed = 00:00:00.21 . Memory (MB): peak = 3579.598 ; gain = 5.902 ; free physical = 295 ; free virtual = 15349
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:30 ; elapsed = 00:00:29 . Memory (MB): peak = 3579.598 ; gain = 967.332 ; free physical = 308 ; free virtual = 15364
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcu50-fsvh2104-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:30 ; elapsed = 00:00:29 . Memory (MB): peak = 3579.598 ; gain = 967.332 ; free physical = 308 ; free virtual = 15365
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:29 . Memory (MB): peak = 3579.598 ; gain = 967.332 ; free physical = 308 ; free virtual = 15365
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_1_reg_2816_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop.v:2036]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_2724_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop.v:2013]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln174_reg_3152_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop.v:2107]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln141_reg_3050_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9963/hdl/verilog/backprop.v:2078]
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-6904] The RAM "backprop_activations1_RAM_AUTO_1R1W:/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 36 for RAM "backprop_delta_weights1_RAM_AUTO_1R1W:/ram_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 28 for RAM "backprop_delta_weights1_RAM_AUTO_1R1W:/ram_reg"
+INFO: [Synth 8-6794] RAM ("backprop_delta_weights2_RAM_AUTO_1R1W:/ram_reg") will be automatically implemented using URAM. 
+INFO: [Synth 8-5780] Default cascade height of 1 will be used for URAM '"backprop_delta_weights2_RAM_AUTO_1R1W:/ram_reg"'.
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 3579.598 ; gain = 967.332 ; free physical = 323 ; free virtual = 15384
+---------------------------------------------------------------------------------
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXTRA_LSB_BIT_DEL' (delay__parameterized0) to 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXTRA_LSB_RND1_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXP_INC_DELAY' (delay__parameterized0) to 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXP_INC_RND1_DELAY'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXP_IN_DELAY.EXP_IN_DEL' (delay__parameterized33) to 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXP_RND2_DELAY.EXP_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXP_IN_DELAY.EXP_OFF_OP_DEL' (delay__parameterized33) to 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXP_RND2_DELAY.EXP_OFF_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_UNDERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U22/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/ALIGN_BLK/SUB_DELAY' (delay__parameterized0) to 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U22/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/ALIGN_BLK/SUBTRACT_PREADD_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U22/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/EXTRA_LSB_BIT_DEL' (delay__parameterized0) to 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U22/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/EXTRA_LSB_RND1_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U22/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/EXP_INC_DELAY' (delay__parameterized0) to 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U22/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/EXP_INC_RND1_DELAY'
+INFO: [Synth 8-223] decloning instance 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U22/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U22/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U22/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U22/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/dmul_64ns_64ns_64_4_max_dsp_1_U23/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXTRA_LSB_BIT_DEL' (delay__parameterized0) to 'inst/dmul_64ns_64ns_64_4_max_dsp_1_U23/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXTRA_LSB_RND1_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/dmul_64ns_64ns_64_4_max_dsp_1_U23/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXP_INC_DELAY' (delay__parameterized0) to 'inst/dmul_64ns_64ns_64_4_max_dsp_1_U23/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXP_INC_RND1_DELAY'
+INFO: [Synth 8-223] decloning instance 'inst/dmul_64ns_64ns_64_4_max_dsp_1_U23/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXP_IN_DELAY.EXP_IN_DEL' (delay__parameterized33) to 'inst/dmul_64ns_64ns_64_4_max_dsp_1_U23/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXP_RND2_DELAY.EXP_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/dmul_64ns_64ns_64_4_max_dsp_1_U23/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXP_IN_DELAY.EXP_OFF_OP_DEL' (delay__parameterized33) to 'inst/dmul_64ns_64ns_64_4_max_dsp_1_U23/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXP_RND2_DELAY.EXP_OFF_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/dmul_64ns_64ns_64_4_max_dsp_1_U23/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/dmul_64ns_64ns_64_4_max_dsp_1_U23/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/dmul_64ns_64ns_64_4_max_dsp_1_U23/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/dmul_64ns_64ns_64_4_max_dsp_1_U23/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U24/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXTRA_LSB_BIT_DEL' (delay__parameterized0) to 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U24/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXTRA_LSB_RND1_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U24/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXP_INC_DELAY' (delay__parameterized0) to 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U24/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXP_INC_RND1_DELAY'
+INFO: [Synth 8-223] decloning instance 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U24/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXP_IN_DELAY.EXP_IN_DEL' (delay__parameterized33) to 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U24/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXP_RND2_DELAY.EXP_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U24/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXP_IN_DELAY.EXP_OFF_OP_DEL' (delay__parameterized33) to 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U24/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXP_RND2_DELAY.EXP_OFF_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U24/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_OVERFLOW' (delay__parameterized0) to 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U24/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_ccm_recip_ln2/g_tables[0].i_sign_delay' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_ccm_recip_ln2/g_tables[1].i_sign_delay'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_ccm_recip_ln2/g_tables[0].i_sign_delay' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_ccm_recip_ln2/g_tables[2].i_sign_delay'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_ccm_ln2/g_tables[0].i_sign_delay' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_ccm_ln2/g_tables[1].i_sign_delay'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXTRA_LSB_BIT_DEL' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXTRA_LSB_RND1_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXP_INC_DELAY' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXP_INC_RND1_DELAY'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXP_IN_DELAY.EXP_IN_DEL' (delay__parameterized24) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXP_RND2_DELAY.EXP_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXP_IN_DELAY.EXP_OFF_OP_DEL' (delay__parameterized24) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXP_RND2_DELAY.EXP_OFF_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/DELAY_INVALID_OP' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/DELAY_INVALID_OP' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/DELAY_INVALID_OP' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U25/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 5952 (col length:93)
+BRAMs: 2688 (col length: RAMB18 192 RAMB36 96)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+INFO: [Synth 8-6904] The RAM "inst/oracle_activations1_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "inst/oracle_activations2_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "inst/dactivations1_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "inst/dactivations2_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "inst/activations2_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "inst/activations1_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+RAM ("inst/delta_weights1_U/ram_reg") is too shallow (depth = 832) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 36 for RAM "inst/delta_weights1_U/ram_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 28 for RAM "inst/delta_weights1_U/ram_reg"
+INFO: [Synth 8-6794] RAM ("inst/delta_weights2_U/ram_reg") will be automatically implemented using URAM. 
+INFO: [Synth 8-5780] Default cascade height of 1 will be used for URAM '"inst/delta_weights2_U/ram_reg"'.
+RAM ("inst/delta_weights3_U/ram_reg") is too shallow (depth = 192) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-6904] The RAM "inst/oracle_activations1_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "inst/oracle_activations2_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "inst/dactivations1_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "inst/dactivations2_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "inst/activations2_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "inst/activations1_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6794] RAM ("inst/delta_weights2_U/ram_reg") will be automatically implemented using URAM. 
+INFO: [Synth 8-5780] Default cascade height of 1 will be used for URAM '"inst/delta_weights2_U/ram_reg"'.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:36 ; elapsed = 00:01:36 . Memory (MB): peak = 3579.598 ; gain = 967.332 ; free physical = 358 ; free virtual = 15134
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:41 ; elapsed = 00:01:42 . Memory (MB): peak = 3671.270 ; gain = 1059.004 ; free physical = 316 ; free virtual = 15022
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:44 ; elapsed = 00:01:44 . Memory (MB): peak = 3713.293 ; gain = 1101.027 ; free physical = 245 ; free virtual = 14964
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance inst/delta_weights1_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/delta_weights1_U/ram_reg_bram_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/delta_weights3_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/delta_weights3_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:50 ; elapsed = 00:01:50 . Memory (MB): peak = 3792.340 ; gain = 1180.074 ; free physical = 268 ; free virtual = 14695
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:55 ; elapsed = 00:01:55 . Memory (MB): peak = 3801.246 ; gain = 1188.980 ; free physical = 307 ; free virtual = 14736
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:55 ; elapsed = 00:01:55 . Memory (MB): peak = 3801.246 ; gain = 1188.980 ; free physical = 295 ; free virtual = 14724
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:57 ; elapsed = 00:01:57 . Memory (MB): peak = 3801.246 ; gain = 1188.980 ; free physical = 311 ; free virtual = 14627
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:57 ; elapsed = 00:01:57 . Memory (MB): peak = 3801.246 ; gain = 1188.980 ; free physical = 311 ; free virtual = 14627
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:57 ; elapsed = 00:01:58 . Memory (MB): peak = 3801.246 ; gain = 1188.980 ; free physical = 326 ; free virtual = 14642
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:57 ; elapsed = 00:01:58 . Memory (MB): peak = 3801.246 ; gain = 1188.980 ; free physical = 438 ; free virtual = 14754
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------------------------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                         | DSP Mapping        | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------------------------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|dsp48e1_wrapper__parameterized0     | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper                     | A:B                | 29     | 18     | -      | -      | 16     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized1_207 | C+A:B              | 0      | 2      | 47     | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp                                 | (C+A*B)'           | 25     | 13     | 46     | -      | 17     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|dsp                                 | PCIN>>17+(A*B)'    | 0      | 5      | -      | -      | 45     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|dsp__parameterized0                 | C+A*B              | 17     | 17     | 46     | -      | 17     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp__parameterized0                 | PCIN>>17+A*B       | 0      | 12     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dsp__parameterized0                 | (PCIN+A*B)'        | 27     | 17     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|dsp__parameterized0                 | PCIN>>17+(A*B)'    | 0      | 12     | -      | -      | 45     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|dsp__parameterized1                 | (C+A*B)'           | 17     | 17     | 0      | -      | 17     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|dsp__parameterized1                 | PCIN>>17+(A*B)'    | 0      | 17     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|dsp__parameterized1                 | PCIN+A'*B'         | 17     | 14     | -      | -      | 17     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|dsp__parameterized1                 | PCIN+A'*B'         | 17     | 17     | -      | -      | 17     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|dsp__parameterized1                 | PCIN+(A*B)'        | 17     | 17     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|dsp__parameterized1                 | PCIN>>17+A'*B      | 17     | 0      | -      | -      | 0      | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|dsp__parameterized1                 | PCIN>>17+A'*B      | 14     | 0      | -      | -      | 0      | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|dsp__parameterized1                 | (PCIN+A'*B')'      | 14     | 17     | -      | -      | 17     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|dsp__parameterized1                 | PCIN>>17+(A*B')'   | 0      | 14     | -      | -      | 45     | 0    | 1    | -    | -    | -     | 1    | 0    | 
+|dsp48e1_wrapper__parameterized2_37  | C+A:B              | 29     | 18     | 38     | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized4_35  | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized4_36  | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized4_33  | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized4_34  | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized5     | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 1    | 
+|dsp48e1_wrapper__parameterized4     | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized2_32  | C+A:B              | 0      | 6      | 0      | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized2     | C+A:B              | 0      | 11     | 48     | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized3     | (C+A:B)'           | 30     | 18     | 48     | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|dsp48e1_wrapper__parameterized1_27  | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper                     | Dynamic            | -      | -      | -      | -      | 17     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper__parameterized0     | Dynamic            | -      | -      | -      | -      | 17     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper__parameterized2     | PCIN>>17+C+A*B     | 0      | 17     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper__parameterized3     | (C+A*B)'           | 26     | 17     | 17     | -      | 17     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|dsp48e2_wrapper__parameterized4     | PCIN>>17+C'+(A*B)' | 0      | 17     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|dsp48e2_wrapper__parameterized5     | PCIN>>17+C'+A'*B'  | 0      | 17     | -      | -      | 45     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper__parameterized1     | A:B+C              | 30     | 18     | 48     | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized1     | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
++------------------------------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+----------------+------+
+|      |Cell            |Count |
++------+----------------+------+
+|1     |CARRY8          |    39|
+|2     |DSP48E1         |    15|
+|3     |DSP_ALU         |    22|
+|8     |DSP_A_B_DATA    |    22|
+|14    |DSP_C_DATA      |    22|
+|16    |DSP_MULTIPLIER  |    22|
+|18    |DSP_M_DATA      |    22|
+|20    |DSP_OUTPUT      |    22|
+|27    |DSP_PREADD      |    22|
+|28    |DSP_PREADD_DATA |    22|
+|31    |LUT1            |   172|
+|32    |LUT2            |   733|
+|33    |LUT3            |  5372|
+|34    |LUT4            |   927|
+|35    |LUT5            |  1831|
+|36    |LUT6            |  4336|
+|37    |MUXCY           |  5010|
+|38    |MUXF7           |   426|
+|39    |MUXF8           |     8|
+|40    |RAM64X1S        |   384|
+|41    |RAMB36E2        |     3|
+|43    |SRL16E          |   108|
+|44    |URAM288         |     1|
+|45    |XORCY           |  4856|
+|46    |FDE             |     7|
+|47    |FDRE            |  9540|
+|48    |FDSE            |    12|
++------+----------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:57 ; elapsed = 00:01:58 . Memory (MB): peak = 3801.246 ; gain = 1188.980 ; free physical = 438 ; free virtual = 14754
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 5 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:46 ; elapsed = 00:01:48 . Memory (MB): peak = 3801.246 ; gain = 915.246 ; free physical = 438 ; free virtual = 14754
+Synthesis Optimization Complete : Time (s): cpu = 00:01:57 ; elapsed = 00:01:58 . Memory (MB): peak = 3801.254 ; gain = 1188.980 ; free physical = 438 ; free virtual = 14754
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.34 ; elapsed = 00:00:00.35 . Memory (MB): peak = 3801.254 ; gain = 0.000 ; free physical = 596 ; free virtual = 14938
+INFO: [Netlist 29-17] Analyzing 10767 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/delta_weights3_U/ram_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3899.793 ; gain = 0.000 ; free physical = 600 ; free virtual = 14955
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1122 instances were transformed.
+  (CARRY4) => CARRY8: 694 instances
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 15 instances
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 22 instances
+  FDE => FDRE: 7 instances
+  RAM64X1S => RAM64X1S (RAMS64E): 384 instances
+
+Synth Design complete | Checksum: 659e4482
+INFO: [Common 17-83] Releasing license: Synthesis
+125 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:02:11 ; elapsed = 00:02:09 . Memory (MB): peak = 3899.828 ; gain = 2545.281 ; free physical = 602 ; free virtual = 14958
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3428.213; main = 3153.413; forked = 377.571
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4773.855; main = 3899.797; forked = 981.512
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3923.805 ; gain = 0.000 ; free physical = 599 ; free virtual = 14956
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = f3c8d1a8ac9bc16f
+INFO: [Coretcl 2-1174] Renamed 615 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3923.805 ; gain = 0.000 ; free physical = 547 ; free virtual = 14953
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file bd_0_hls_inst_0_utilization_synth.rpt -pb bd_0_hls_inst_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu May 29 16:20:25 2025...

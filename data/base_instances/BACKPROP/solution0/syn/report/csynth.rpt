@@ -1,0 +1,409 @@
+
+
+================================================================
+== Synthesis Summary Report of 'backprop'
+================================================================
++ General Information: 
+    * Date:           Thu May 29 16:17:26 2025
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        BACKPROP
+    * Solution:       solution0 (Vivado IP Flow Target)
+    * Product family: virtexuplusHBM
+    * Target device:  xcu50-fsvh2104-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-----------------------------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+---------+----------+------------+------------+---------+
+    |                          Modules                          |  Issue |       | Latency  |  Latency  | Iteration|          | Trip |          |         |          |            |            |         |
+    |                          & Loops                          |  Type  | Slack | (cycles) |    (ns)   |  Latency | Interval | Count| Pipelined|  BRAM   |    DSP   |     FF     |     LUT    |   URAM  |
+    +-----------------------------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+---------+----------+------------+------------+---------+
+    |+ backprop                                                 |  Timing|  -0.17|  50997648|  4.080e+08|         -|  50997649|     -|        no|  6 (~0%)|  37 (~0%)|  7662 (~0%)|  10426 (1%)|  1 (~0%)|
+    | o backprop_loop1                                          |       -|   5.84|  50997647|  4.080e+08|    312869|         -|   163|        no|        -|         -|           -|           -|        -|
+    |  + update_weights_1                                       |  Timing|  -0.13|    183269|  1.466e+06|         -|    183269|     -|        no|        -|         -|  1659 (~0%)|  2726 (~0%)|        -|
+    |   o update_weights_loop1                                  |       -|   5.84|     14170|  1.134e+05|      1090|         -|    13|        no|        -|         -|           -|           -|        -|
+    |    o update_weights_loop1_1                               |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o update_weights_loop2                                  |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o update_weights_loop3                                  |       -|   5.84|     14170|  1.134e+05|      1090|         -|    13|        no|        -|         -|           -|           -|        -|
+    |    o update_weights_loop3_1                               |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o update_weights_loop4                                  |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o update_weights_loop5                                  |       -|   5.84|     73856|  5.908e+05|      1154|         -|    64|        no|        -|         -|           -|           -|        -|
+    |    o update_weights_loop5_1                               |       -|   5.84|      1152|  9.216e+03|        18|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o update_weights_loop6                                  |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o update_weights_loop7                                  |       -|   5.84|     69760|  5.581e+05|      1090|         -|    64|        no|        -|         -|           -|           -|        -|
+    |    o update_weights_loop7_1                               |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o update_weights_loop8                                  |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o update_weights_loop9                                  |       -|   5.84|      3392|  2.714e+04|        53|         -|    64|        no|        -|         -|           -|           -|        -|
+    |    o update_weights_loop9_1                               |       -|   5.84|        51|    408.000|        17|         -|     3|        no|        -|         -|           -|           -|        -|
+    |   o update_weights_loop10                                 |       -|   5.84|        48|    384.000|        16|         -|     3|        no|        -|         -|           -|           -|        -|
+    |   o update_weights_loop11                                 |       -|   5.84|      3392|  2.714e+04|        53|         -|    64|        no|        -|         -|           -|           -|        -|
+    |    o update_weights_loop11_1                              |       -|   5.84|        51|    408.000|        17|         -|     3|        no|        -|         -|           -|           -|        -|
+    |   o update_weights_loop12                                 |       -|   5.84|        51|    408.000|        17|         -|     3|        no|        -|         -|           -|           -|        -|
+    |  o backprop_loop1_1                                       |       -|   5.84|        64|    512.000|         1|         -|    64|        no|        -|         -|           -|           -|        -|
+    |  o matrix_vector_product_with_bias_input_layer_loop1      |       -|   5.84|      8448|  6.758e+04|       132|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o matrix_vector_product_with_bias_input_layer_loop1_1   |       -|   5.84|       130|  1.040e+03|        10|         -|    13|        no|        -|         -|           -|           -|        -|
+    |  o add_bias_to_activations_loop1                          |       -|   5.84|       320|  2.560e+03|         5|         -|    64|        no|        -|         -|           -|           -|        -|
+    |  o RELU_loop1                                             |       -|   5.84|      1984|  1.587e+04|        31|         -|    64|        no|        -|         -|           -|           -|        -|
+    |  o matrix_vector_product_with_bias_second_layer_loop1     |       -|   5.84|     41088|  3.287e+05|       642|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o matrix_vector_product_with_bias_second_layer_loop1_1  |       -|   5.84|       640|  5.120e+03|        10|         -|    64|        no|        -|         -|           -|           -|        -|
+    |  o add_bias_to_activations_loop1                          |       -|   5.84|       320|  2.560e+03|         5|         -|    64|        no|        -|         -|           -|           -|        -|
+    |  o RELU_loop1                                             |       -|   5.84|      1984|  1.587e+04|        31|         -|    64|        no|        -|         -|           -|           -|        -|
+    |  o matrix_vector_product_with_bias_output_layer_loop1     |       -|   5.84|      1737|  1.390e+04|       579|         -|     3|        no|        -|         -|           -|           -|        -|
+    |   o matrix_vector_product_with_bias_output_layer_loop1_1  |       -|   5.84|       576|  4.608e+03|         9|         -|    64|        no|        -|         -|           -|           -|        -|
+    |  o add_bias_to_activations_loop1                          |       -|   5.84|        18|    144.000|         6|         -|     3|        no|        -|         -|           -|           -|        -|
+    |  o RELU_loop1                                             |       -|   5.84|        87|    696.000|        29|         -|     3|        no|        -|         -|           -|           -|        -|
+    |  o soft_max_loop1                                         |       -|   5.84|        45|    360.000|        15|         -|     3|        no|        -|         -|           -|           -|        -|
+    |  o soft_max_loop2                                         |       -|   5.84|        75|    600.000|        25|         -|     3|        no|        -|         -|           -|           -|        -|
+    |  o take_difference_loop1                                  |       -|   5.84|        27|    216.000|         9|         -|     3|        no|        -|         -|           -|           -|        -|
+    |  o get_delta_matrix_weights3_loop1                        |       -|   5.84|       960|  7.680e+03|        15|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o get_delta_matrix_weights3_loop1_1                     |       -|   5.84|        12|     96.000|         4|         -|     3|        no|        -|         -|           -|           -|        -|
+    |  o get_oracle_activations2_loop1                          |       -|   5.84|      2112|  1.690e+04|        33|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o get_oracle_activations2_loop1_1                       |       -|   5.84|        27|    216.000|         9|         -|     3|        no|        -|         -|           -|           -|        -|
+    |  o get_delta_matrix_weights2_loop1                        |       -|   5.84|     24768|  1.981e+05|       387|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o get_delta_matrix_weights2_loop1_1                     |       -|   5.84|       384|  3.072e+03|         6|         -|    64|        no|        -|         -|           -|           -|        -|
+    |  o get_oracle_activations1_loop1                          |       -|   5.84|     41344|  3.308e+05|       646|         -|    64|        no|        -|         -|           -|           -|        -|
+    |   o get_oracle_activations1_loop1_1                       |       -|   5.84|       640|  5.120e+03|        10|         -|    64|        no|        -|         -|           -|           -|        -|
+    |  o get_delta_matrix_weights1_loop1                        |       -|   5.84|      4199|  3.359e+04|       323|         -|    13|        no|        -|         -|           -|           -|        -|
+    |   o get_delta_matrix_weights1_loop1_1                     |       -|   5.84|       320|  2.560e+03|         5|         -|    64|        no|        -|         -|           -|           -|        -|
+    +-----------------------------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+---------+----------+------------+------------+---------+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++---------------------------+-----------+----------+
+| Port                      | Direction | Bitwidth |
++---------------------------+-----------+----------+
+| biases1_address0          | out       | 6        |
+| biases1_d0                | out       | 64       |
+| biases1_q0                | in        | 64       |
+| biases2_address0          | out       | 6        |
+| biases2_d0                | out       | 64       |
+| biases2_q0                | in        | 64       |
+| biases3_address0          | out       | 2        |
+| biases3_d0                | out       | 64       |
+| biases3_q0                | in        | 64       |
+| training_data_address0    | out       | 12       |
+| training_data_q0          | in        | 64       |
+| training_targets_address0 | out       | 9        |
+| training_targets_q0       | in        | 64       |
+| weights1_address0         | out       | 10       |
+| weights1_d0               | out       | 64       |
+| weights1_q0               | in        | 64       |
+| weights2_address0         | out       | 12       |
+| weights2_d0               | out       | 64       |
+| weights2_q0               | in        | 64       |
+| weights3_address0         | out       | 8        |
+| weights3_d0               | out       | 64       |
+| weights3_q0               | in        | 64       |
++---------------------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++------------------+-----------+----------+
+| Argument         | Direction | Datatype |
++------------------+-----------+----------+
+| weights1         | inout     | double*  |
+| weights2         | inout     | double*  |
+| weights3         | inout     | double*  |
+| biases1          | inout     | double*  |
+| biases2          | inout     | double*  |
+| biases3          | inout     | double*  |
+| training_data    | in        | double*  |
+| training_targets | in        | double*  |
++------------------+-----------+----------+
+
+* SW-to-HW Mapping
++------------------+---------------------------+---------+----------+
+| Argument         | HW Interface              | HW Type | HW Usage |
++------------------+---------------------------+---------+----------+
+| weights1         | weights1_address0         | port    | offset   |
+| weights1         | weights1_ce0              | port    |          |
+| weights1         | weights1_we0              | port    |          |
+| weights1         | weights1_d0               | port    |          |
+| weights1         | weights1_q0               | port    |          |
+| weights2         | weights2_address0         | port    | offset   |
+| weights2         | weights2_ce0              | port    |          |
+| weights2         | weights2_we0              | port    |          |
+| weights2         | weights2_d0               | port    |          |
+| weights2         | weights2_q0               | port    |          |
+| weights3         | weights3_address0         | port    | offset   |
+| weights3         | weights3_ce0              | port    |          |
+| weights3         | weights3_we0              | port    |          |
+| weights3         | weights3_d0               | port    |          |
+| weights3         | weights3_q0               | port    |          |
+| biases1          | biases1_address0          | port    | offset   |
+| biases1          | biases1_ce0               | port    |          |
+| biases1          | biases1_we0               | port    |          |
+| biases1          | biases1_d0                | port    |          |
+| biases1          | biases1_q0                | port    |          |
+| biases2          | biases2_address0          | port    | offset   |
+| biases2          | biases2_ce0               | port    |          |
+| biases2          | biases2_we0               | port    |          |
+| biases2          | biases2_d0                | port    |          |
+| biases2          | biases2_q0                | port    |          |
+| biases3          | biases3_address0          | port    | offset   |
+| biases3          | biases3_ce0               | port    |          |
+| biases3          | biases3_we0               | port    |          |
+| biases3          | biases3_d0                | port    |          |
+| biases3          | biases3_q0                | port    |          |
+| training_data    | training_data_address0    | port    | offset   |
+| training_data    | training_data_ce0         | port    |          |
+| training_data    | training_data_q0          | port    |          |
+| training_targets | training_targets_address0 | port    | offset   |
+| training_targets | training_targets_ce0      | port    |          |
+| training_targets | training_targets_q0       | port    |          |
++------------------+---------------------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++------------------------------------------+-----+--------+---------------------+-------+---------+---------+
+| Name                                     | DSP | Pragma | Variable            | Op    | Impl    | Latency |
++------------------------------------------+-----+--------+---------------------+-------+---------+---------+
+| + backprop                               | 37  |        |                     |       |         |         |
+|   add_ln356_1_fu_1397_p2                 |     |        | add_ln356_1         | add   | fabric  | 0       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      |     |        | add_ln356           | add   | fabric  | 0       |
+|   add_ln359_fu_1425_p2                   |     |        | add_ln359           | add   | fabric  | 0       |
+|   add_ln60_1_fu_1513_p2                  |     |        | add_ln60_1          | add   | fabric  | 0       |
+|   add_ln60_fu_1525_p2                    |     |        | add_ln60            | add   | fabric  | 0       |
+|   add_ln64_fu_1542_p2                    |     |        | add_ln64            | add   | fabric  | 0       |
+|   add_ln66_fu_1556_p2                    |     |        | add_ln66            | add   | fabric  | 0       |
+|   add_ln66_1_fu_1562_p2                  |     |        | add_ln66_1          | add   | fabric  | 0       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | mul8_i              | dmul  | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | add11_i             | dadd  | fulldsp | 3       |
+|   add_ln48_fu_1591_p2                    |     |        | add_ln48            | add   | fabric  | 0       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | add_i_i             | dadd  | fulldsp | 3       |
+|   add_ln36_fu_1614_p2                    |     |        | add_ln36            | add   | fabric  | 0       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | sub_i               | dadd  | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | mul_i               | dmul  | maxdsp  | 3       |
+|   dexp_64ns_64ns_64_10_full_dsp_1_U25    | 26  |        | tmp                 | dexp  | fulldsp | 9       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | add_i               | dadd  | fulldsp | 3       |
+|   ddiv_64ns_64ns_64_14_no_dsp_1_U24      |     |        | div_i               | ddiv  | fabric  | 13      |
+|   add_ln78_fu_1646_p2                    |     |        | add_ln78            | add   | fabric  | 0       |
+|   add_ln82_fu_1675_p2                    |     |        | add_ln82            | add   | fabric  | 0       |
+|   add_ln84_fu_1685_p2                    |     |        | add_ln84            | add   | fabric  | 0       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | mul8_i1             | dmul  | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | add11_i1            | dadd  | fulldsp | 3       |
+|   add_ln48_1_fu_1711_p2                  |     |        | add_ln48_1          | add   | fabric  | 0       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | add_i_i1            | dadd  | fulldsp | 3       |
+|   add_ln36_1_fu_1734_p2                  |     |        | add_ln36_1          | add   | fabric  | 0       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | sub_i1              | dadd  | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | mul_i1              | dmul  | maxdsp  | 3       |
+|   dexp_64ns_64ns_64_10_full_dsp_1_U25    | 26  |        | tmp_1               | dexp  | fulldsp | 9       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | add_i1              | dadd  | fulldsp | 3       |
+|   ddiv_64ns_64ns_64_14_no_dsp_1_U24      |     |        | div_i1              | ddiv  | fabric  | 13      |
+|   add_ln96_fu_1766_p2                    |     |        | add_ln96            | add   | fabric  | 0       |
+|   add_ln100_fu_1786_p2                   |     |        | add_ln100           | add   | fabric  | 0       |
+|   add_ln102_fu_1801_p2                   |     |        | add_ln102           | add   | fabric  | 0       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | mul8_i2             | dmul  | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | add11_i2            | dadd  | fulldsp | 3       |
+|   add_ln48_2_fu_1822_p2                  |     |        | add_ln48_2          | add   | fabric  | 0       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | activations3_0_3    | dadd  | fulldsp | 3       |
+|   add_ln36_2_fu_1857_p2                  |     |        | add_ln36_2          | add   | fabric  | 0       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | sub_i2              | dadd  | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | dactivations3_0     | dmul  | maxdsp  | 3       |
+|   dexp_64ns_64ns_64_10_full_dsp_1_U25    | 26  |        | tmp_2               | dexp  | fulldsp | 9       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | add_i2              | dadd  | fulldsp | 3       |
+|   ddiv_64ns_64ns_64_14_no_dsp_1_U24      |     |        | activations3_0_4    | ddiv  | fabric  | 13      |
+|   add_ln22_fu_1910_p2                    |     |        | add_ln22            | add   | fabric  | 0       |
+|   dexp_64ns_64ns_64_10_full_dsp_1_U25    | 26  |        | tmp_3               | dexp  | fulldsp | 9       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | sum_1               | dadd  | fulldsp | 3       |
+|   add_ln27_fu_1948_p2                    |     |        | add_ln27            | add   | fabric  | 0       |
+|   dexp_64ns_64ns_64_10_full_dsp_1_U25    | 26  |        | tmp_4               | dexp  | fulldsp | 9       |
+|   ddiv_64ns_64ns_64_14_no_dsp_1_U24      |     |        | net_outputs_0       | ddiv  | fabric  | 13      |
+|   sub_ln374_fu_1977_p2                   |     |        | sub_ln374           | sub   | fabric  | 0       |
+|   add_ln114_fu_2017_p2                   |     |        | add_ln114           | add   | fabric  | 0       |
+|   add_ln116_fu_2027_p2                   |     |        | add_ln116           | add   | fabric  | 0       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | sub_i4              | dadd  | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | output_difference_0 | dmul  | maxdsp  | 3       |
+|   add_ln125_fu_2122_p2                   |     |        | add_ln125           | add   | fabric  | 0       |
+|   empty_52_fu_2149_p2                    |     |        | empty_52            | sub   | fabric  | 0       |
+|   add_ln128_fu_2161_p2                   |     |        | add_ln128           | add   | fabric  | 0       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | mul_i4              | dmul  | maxdsp  | 3       |
+|   add_ln130_fu_2184_p2                   |     |        | add_ln130           | add   | fabric  | 0       |
+|   add_ln141_fu_2199_p2                   |     |        | add_ln141           | add   | fabric  | 0       |
+|   empty_54_fu_2226_p2                    |     |        | empty_54            | sub   | fabric  | 0       |
+|   add_ln145_fu_2238_p2                   |     |        | add_ln145           | add   | fabric  | 0       |
+|   add_ln147_fu_2248_p2                   |     |        | add_ln147           | add   | fabric  | 0       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | mul8_i3             | dmul  | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | add11_i3            | dadd  | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | mul16_i             | dmul  | maxdsp  | 3       |
+|   add_ln158_fu_2282_p2                   |     |        | add_ln158           | add   | fabric  | 0       |
+|   add_ln161_fu_2310_p2                   |     |        | add_ln161           | add   | fabric  | 0       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | mul_i5              | dmul  | maxdsp  | 3       |
+|   add_ln163_fu_2325_p2                   |     |        | add_ln163           | add   | fabric  | 0       |
+|   add_ln174_fu_2340_p2                   |     |        | add_ln174           | add   | fabric  | 0       |
+|   add_ln178_fu_2369_p2                   |     |        | add_ln178           | add   | fabric  | 0       |
+|   add_ln180_fu_2379_p2                   |     |        | add_ln180           | add   | fabric  | 0       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | mul8_i4             | dmul  | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U22 | 3   |        | add11_i4            | dadd  | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | mul16_i1            | dmul  | maxdsp  | 3       |
+|   add_ln191_fu_2405_p2                   |     |        | add_ln191           | add   | fabric  | 0       |
+|   arrayidx10_sum197_fu_2415_p2           |     |        | arrayidx10_sum197   | add   | fabric  | 0       |
+|   add_ln194_fu_2466_p2                   |     |        | add_ln194           | add   | fabric  | 0       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U23      | 8   |        | mul_i6              | dmul  | maxdsp  | 3       |
+|   add_ln196_fu_2481_p2                   |     |        | add_ln196           | add   | fabric  | 0       |
+|  + update_weights_1                      | 0   |        |                     |       |         |         |
+|    add_ln219_fu_597_p2                   |     |        | add_ln219           | add   | fabric  | 0       |
+|    add_ln222_fu_627_p2                   |     |        | add_ln222           | add   | fabric  | 0       |
+|    add_ln224_fu_637_p2                   |     |        | add_ln224           | add   | fabric  | 0       |
+|    add_ln229_fu_676_p2                   |     |        | add_ln229           | add   | fabric  | 0       |
+|    dsqrt_64ns_64ns_64_12_no_dsp_1_U4     |     |        | norm_1              | dsqrt | fabric  | 11      |
+|    add_ln239_fu_722_p2                   |     |        | add_ln239           | add   | fabric  | 0       |
+|    add_ln242_fu_747_p2                   |     |        | add_ln242           | add   | fabric  | 0       |
+|    add_ln244_fu_757_p2                   |     |        | add_ln244           | add   | fabric  | 0       |
+|    dsqrt_64ns_64ns_64_12_no_dsp_1_U4     |     |        | bias_norm           | dsqrt | fabric  | 11      |
+|    add_ln248_fu_789_p2                   |     |        | add_ln248           | add   | fabric  | 0       |
+|    add_ln257_fu_833_p2                   |     |        | add_ln257           | add   | fabric  | 0       |
+|    add_ln260_fu_867_p2                   |     |        | add_ln260           | add   | fabric  | 0       |
+|    add_ln262_fu_877_p2                   |     |        | add_ln262           | add   | fabric  | 0       |
+|    add_ln267_fu_916_p2                   |     |        | add_ln267           | add   | fabric  | 0       |
+|    dsqrt_64ns_64ns_64_12_no_dsp_1_U4     |     |        | norm_4              | dsqrt | fabric  | 11      |
+|    add_ln277_fu_962_p2                   |     |        | add_ln277           | add   | fabric  | 0       |
+|    add_ln280_fu_991_p2                   |     |        | add_ln280           | add   | fabric  | 0       |
+|    add_ln282_fu_1001_p2                  |     |        | add_ln282           | add   | fabric  | 0       |
+|    dsqrt_64ns_64ns_64_12_no_dsp_1_U4     |     |        | bias_norm_3         | dsqrt | fabric  | 11      |
+|    add_ln286_fu_1034_p2                  |     |        | add_ln286           | add   | fabric  | 0       |
+|    add_ln295_fu_1078_p2                  |     |        | add_ln295           | add   | fabric  | 0       |
+|    empty_48_fu_1100_p2                   |     |        | empty_48            | sub   | fabric  | 0       |
+|    add_ln298_fu_1122_p2                  |     |        | add_ln298           | add   | fabric  | 0       |
+|    add_ln300_fu_1132_p2                  |     |        | add_ln300           | add   | fabric  | 0       |
+|    add_ln305_fu_1171_p2                  |     |        | add_ln305           | add   | fabric  | 0       |
+|    dsqrt_64ns_64ns_64_12_no_dsp_1_U4     |     |        | norm_7              | dsqrt | fabric  | 11      |
+|    add_ln315_fu_1225_p2                  |     |        | add_ln315           | add   | fabric  | 0       |
+|    empty_50_fu_1247_p2                   |     |        | empty_50            | sub   | fabric  | 0       |
+|    add_ln318_fu_1264_p2                  |     |        | add_ln318           | add   | fabric  | 0       |
+|    add_ln320_fu_1274_p2                  |     |        | add_ln320           | add   | fabric  | 0       |
+|    dsqrt_64ns_64ns_64_12_no_dsp_1_U4     |     |        | bias_norm_6         | dsqrt | fabric  | 11      |
+|    add_ln324_fu_1306_p2                  |     |        | add_ln324           | add   | fabric  | 0       |
++------------------------------------------+-----+--------+---------------------+-------+---------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------------+--------------+------+------+------+--------+---------------------+------+---------+------------------+
+| Name                    | Usage        | Type | BRAM | URAM | Pragma | Variable            | Impl | Latency | Bitwidth, Depth, |
+|                         |              |      |      |      |        |                     |      |         | Banks            |
++-------------------------+--------------+------+------+------+--------+---------------------+------+---------+------------------+
+| + backprop              |              |      | 6    | 1    |        |                     |      |         |                  |
+|   activations1_U        | ram_1p array |      |      |      |        | activations1        | auto | 1       | 64, 64, 1        |
+|   activations2_U        | ram_1p array |      |      |      |        | activations2        | auto | 1       | 64, 64, 1        |
+|   dactivations1_U       | ram_1p array |      |      |      |        | dactivations1       | auto | 1       | 64, 64, 1        |
+|   dactivations2_U       | ram_1p array |      |      |      |        | dactivations2       | auto | 1       | 64, 64, 1        |
+|   delta_weights1_U      | ram_1p array |      | 4    |      |        | delta_weights1      | auto | 1       | 64, 832, 1       |
+|   delta_weights2_U      | ram_1p array |      |      | 1    |        | delta_weights2      | auto | 1       | 64, 4096, 1      |
+|   delta_weights3_U      | ram_1p array |      | 2    |      |        | delta_weights3      | auto | 1       | 64, 192, 1       |
+|   oracle_activations1_U | ram_1p array |      |      |      |        | oracle_activations1 | auto | 1       | 64, 64, 1        |
+|   oracle_activations2_U | ram_1p array |      |      |      |        | oracle_activations2 | auto | 1       | 64, 64, 1        |
++-------------------------+--------------+------+------+------+--------+---------------------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++----------------+-------------------------+-----------------------------------------------------------------------------------------+
+| Type           | Options                 | Location                                                                                |
++----------------+-------------------------+-----------------------------------------------------------------------------------------+
+| loop_tripcount | min=3 max=3 avg=3       | data/benchmarks/backprop/backprop.c:23 in soft_max                                      |
+| loop_tripcount | min=3 max=3 avg=3       | data/benchmarks/backprop/backprop.c:28 in soft_max                                      |
+| loop_tripcount | min=3 max=64            | data/benchmarks/backprop/backprop.c:37 in relu                                          |
+| loop_tripcount | min=3 max=64            | data/benchmarks/backprop/backprop.c:49 in add_bias_to_activations                       |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:61 in matrix_vector_product_with_bias_input_layer   |
+| loop_tripcount | min=13 max=13 avg=13    | data/benchmarks/backprop/backprop.c:65 in matrix_vector_product_with_bias_input_layer   |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:79 in matrix_vector_product_with_bias_second_layer  |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:83 in matrix_vector_product_with_bias_second_layer  |
+| loop_tripcount | min=3 max=3 avg=3       | data/benchmarks/backprop/backprop.c:97 in matrix_vector_product_with_bias_output_layer  |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:101 in matrix_vector_product_with_bias_output_layer |
+| loop_tripcount | min=3 max=3 avg=3       | data/benchmarks/backprop/backprop.c:115 in take_difference                              |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:126 in get_delta_matrix_weights3                    |
+| loop_tripcount | min=3 max=3 avg=3       | data/benchmarks/backprop/backprop.c:129 in get_delta_matrix_weights3                    |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:142 in get_oracle_activations2                      |
+| loop_tripcount | min=3 max=3 avg=3       | data/benchmarks/backprop/backprop.c:146 in get_oracle_activations2                      |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:159 in get_delta_matrix_weights2                    |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:162 in get_delta_matrix_weights2                    |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:175 in get_oracle_activations1                      |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:179 in get_oracle_activations1                      |
+| loop_tripcount | min=13 max=13 avg=13    | data/benchmarks/backprop/backprop.c:192 in get_delta_matrix_weights1                    |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:195 in get_delta_matrix_weights1                    |
+| loop_tripcount | min=13 max=13 avg=13    | data/benchmarks/backprop/backprop.c:220 in update_weights                               |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:223 in update_weights                               |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:230 in update_weights                               |
+| loop_tripcount | min=13 max=13 avg=13    | data/benchmarks/backprop/backprop.c:240 in update_weights                               |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:243 in update_weights                               |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:249 in update_weights                               |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:258 in update_weights                               |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:261 in update_weights                               |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:268 in update_weights                               |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:278 in update_weights                               |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:281 in update_weights                               |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:287 in update_weights                               |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:296 in update_weights                               |
+| loop_tripcount | min=3 max=3 avg=3       | data/benchmarks/backprop/backprop.c:299 in update_weights                               |
+| loop_tripcount | min=3 max=3 avg=3       | data/benchmarks/backprop/backprop.c:306 in update_weights                               |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:316 in update_weights                               |
+| loop_tripcount | min=3 max=3 avg=3       | data/benchmarks/backprop/backprop.c:319 in update_weights                               |
+| loop_tripcount | min=3 max=3 avg=3       | data/benchmarks/backprop/backprop.c:325 in update_weights                               |
+| loop_tripcount | min=163 max=163 avg=163 | data/benchmarks/backprop/backprop.c:357 in backprop                                     |
+| loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:360 in backprop                                     |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:4 in add_bias_to_activations                            |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:40 in backprop                                          |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:41 in backprop                                          |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:20 in get_delta_matrix_weights1                         |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:21 in get_delta_matrix_weights1                         |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:16 in get_delta_matrix_weights2                         |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:17 in get_delta_matrix_weights2                         |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:12 in get_delta_matrix_weights3                         |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:13 in get_delta_matrix_weights3                         |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:18 in get_oracle_activations1                           |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:19 in get_oracle_activations1                           |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:14 in get_oracle_activations2                           |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:15 in get_oracle_activations2                           |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:5 in matrix_vector_product_with_bias_input_layer        |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:6 in matrix_vector_product_with_bias_input_layer        |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:9 in matrix_vector_product_with_bias_output_layer       |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:10 in matrix_vector_product_with_bias_output_layer      |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:7 in matrix_vector_product_with_bias_second_layer       |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:8 in matrix_vector_product_with_bias_second_layer       |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:3 in relu                                               |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:1 in soft_max                                           |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:2 in soft_max                                           |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:11 in take_difference                                   |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:22 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:23 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:24 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:25 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:26 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:27 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:28 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:29 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:30 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:31 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:32 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:33 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:34 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:35 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:36 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:37 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:38 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:39 in update_weights                                    |
++----------------+-------------------------+-----------------------------------------------------------------------------------------+
+
+

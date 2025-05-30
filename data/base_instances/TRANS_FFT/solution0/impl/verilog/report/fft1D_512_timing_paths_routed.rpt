@@ -1,0 +1,1034 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
+| Date              : Thu May 29 21:24:05 2025
+| Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
+| Command           : report_timing -max_paths 10 -file ./report/fft1D_512_timing_paths_routed.rpt
+| Design            : bd_0_wrapper
+| Device            : xcu50-fsvh2104
+| Speed File        : -2  PRODUCTION 1.30 05-01-2022
+| Design State      : Routed
+| Temperature Grade : E
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.156ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST/B[16]
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        7.570ns  (logic 4.038ns (53.344%)  route 3.532ns (46.656%))
+  Logic Levels:           19  (CARRY8=2 DSP_A_B_DATA=1 DSP_ALU=3 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=3 DSP_PREADD_DATA=1 LUT3=1 LUT4=1 LUT5=4 LUT6=1)
+  Clock Path Skew:        0.015ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.043ns = ( 8.043 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.028ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.028     0.028    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/ap_clk
+    SLICE_X130Y4         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X130Y4         FDRE (Prop_CFF_SLICEL_C_Q)
+                                                      0.079     0.107 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/Q
+                         net (fo=111, routed)         0.162     0.269    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_3_reg_1731
+    SLICE_X131Y4         LUT3 (Prop_H5LUT_SLICEL_I2_O)
+                                                      0.158     0.427 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0/O
+                         net (fo=150, routed)         0.344     0.771    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/q0[56]_i_18_0[2]
+    SLICE_X132Y10        LUT5 (Prop_E6LUT_SLICEL_I3_O)
+                                                      0.147     0.918 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257/O
+                         net (fo=2, routed)           0.093     1.011    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_0
+    SLICE_X133Y10        LUT5 (Prop_C6LUT_SLICEM_I4_O)
+                                                      0.088     1.099 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191/O
+                         net (fo=2, routed)           0.256     1.355    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191_n_0
+    SLICE_X136Y11        LUT5 (Prop_H6LUT_SLICEL_I4_O)
+                                                      0.090     1.445 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123/O
+                         net (fo=2, routed)           0.137     1.582    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_n_0
+    SLICE_X137Y12        LUT5 (Prop_E6LUT_SLICEM_I0_O)
+                                                      0.100     1.682 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0/O
+                         net (fo=2, routed)           0.161     1.843    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0_n_0
+    SLICE_X138Y13        LUT6 (Prop_H6LUT_SLICEL_I2_O)
+                                                      0.150     1.993 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3/O
+                         net (fo=12, routed)          0.815     2.808    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/B[5]
+    DSP48E2_X21Y3        DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_B[5]_B2_DATA[5])
+                                                      0.151     2.959 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST/B2_DATA[5]
+                         net (fo=1, routed)           0.000     2.959    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA.B2_DATA<5>
+    DSP48E2_X21Y3        DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_B2_DATA[5]_B2B1[5])
+                                                      0.073     3.032 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST/B2B1[5]
+                         net (fo=1, routed)           0.000     3.032    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA.B2B1<5>
+    DSP48E2_X21Y3        DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_B2B1[5]_V[35])
+                                                      0.609     3.641 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST/V[35]
+                         net (fo=1, routed)           0.000     3.641    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER.V<35>
+    DSP48E2_X21Y3        DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_V[35]_V_DATA[35])
+                                                      0.046     3.687 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST/V_DATA[35]
+                         net (fo=1, routed)           0.000     3.687    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA.V_DATA<35>
+    DSP48E2_X21Y3        DSP_ALU (Prop_DSP_ALU_DSP48E2_V_DATA[35]_ALU_OUT[47])
+                                                      0.571     4.258 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.258    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y3        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     4.380 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.038     4.418    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/PCIN[47]
+    DSP48E2_X21Y4        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[47])
+                                                      0.546     4.964 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.964    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y4        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     5.086 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.014     5.100    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/PCIN[47]
+    DSP48E2_X21Y5        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[40])
+                                                      0.546     5.646 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST/ALU_OUT[40]
+                         net (fo=1, routed)           0.000     5.646    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU.ALU_OUT<40>
+    DSP48E2_X21Y5        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[40]_P[40])
+                                                      0.109     5.755 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST/P[40]
+                         net (fo=5, routed)           0.581     6.335    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4_n_65
+    SLICE_X150Y30        LUT4 (Prop_G6LUT_SLICEM_I3_O)
+                                                      0.150     6.485 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_19__0/O
+                         net (fo=1, routed)           0.302     6.787    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_19__0_n_0
+    SLICE_X151Y30        CARRY8 (Prop_CARRY8_SLICEL_DI[2]_CO[7])
+                                                      0.105     6.892 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_2__0/CO[7]
+                         net (fo=1, routed)           0.026     6.918    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_2__0_n_0
+    SLICE_X151Y31        CARRY8 (Prop_CARRY8_SLICEL_CI_O[1])
+                                                      0.076     6.994 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0/O[1]
+                         net (fo=11, routed)          0.603     7.598    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/B[16]
+    DSP48E2_X21Y1        DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST/B[16]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.043     8.043    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/CLK
+    DSP48E2_X21Y1        DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST/CLK
+                         clock pessimism              0.000     8.043    
+                         clock uncertainty           -0.035     8.008    
+    DSP48E2_X21Y1        DSP_A_B_DATA (Setup_DSP_A_B_DATA_DSP48E2_CLK_B[16])
+                                                     -0.254     7.754    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST
+  -------------------------------------------------------------------
+                         required time                          7.754    
+                         arrival time                          -7.598    
+  -------------------------------------------------------------------
+                         slack                                  0.156    
+
+Slack (MET) :             0.167ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[9]
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        7.520ns  (logic 4.043ns (53.761%)  route 3.477ns (46.239%))
+  Logic Levels:           19  (CARRY8=2 DSP_A_B_DATA=1 DSP_ALU=3 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=3 DSP_PREADD_DATA=1 LUT3=1 LUT4=1 LUT5=4 LUT6=1)
+  Clock Path Skew:        0.015ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.043ns = ( 8.043 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.028ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.028     0.028    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/ap_clk
+    SLICE_X130Y4         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X130Y4         FDRE (Prop_CFF_SLICEL_C_Q)
+                                                      0.079     0.107 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/Q
+                         net (fo=111, routed)         0.162     0.269    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_3_reg_1731
+    SLICE_X131Y4         LUT3 (Prop_H5LUT_SLICEL_I2_O)
+                                                      0.158     0.427 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0/O
+                         net (fo=150, routed)         0.344     0.771    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/q0[56]_i_18_0[2]
+    SLICE_X132Y10        LUT5 (Prop_E6LUT_SLICEL_I3_O)
+                                                      0.147     0.918 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257/O
+                         net (fo=2, routed)           0.093     1.011    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_0
+    SLICE_X133Y10        LUT5 (Prop_C6LUT_SLICEM_I4_O)
+                                                      0.088     1.099 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191/O
+                         net (fo=2, routed)           0.256     1.355    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191_n_0
+    SLICE_X136Y11        LUT5 (Prop_H6LUT_SLICEL_I4_O)
+                                                      0.090     1.445 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123/O
+                         net (fo=2, routed)           0.137     1.582    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_n_0
+    SLICE_X137Y12        LUT5 (Prop_E6LUT_SLICEM_I0_O)
+                                                      0.100     1.682 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0/O
+                         net (fo=2, routed)           0.161     1.843    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0_n_0
+    SLICE_X138Y13        LUT6 (Prop_H6LUT_SLICEL_I2_O)
+                                                      0.150     1.993 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3/O
+                         net (fo=12, routed)          0.815     2.808    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/B[5]
+    DSP48E2_X21Y3        DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_B[5]_B2_DATA[5])
+                                                      0.151     2.959 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST/B2_DATA[5]
+                         net (fo=1, routed)           0.000     2.959    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA.B2_DATA<5>
+    DSP48E2_X21Y3        DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_B2_DATA[5]_B2B1[5])
+                                                      0.073     3.032 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST/B2B1[5]
+                         net (fo=1, routed)           0.000     3.032    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA.B2B1<5>
+    DSP48E2_X21Y3        DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_B2B1[5]_V[35])
+                                                      0.609     3.641 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST/V[35]
+                         net (fo=1, routed)           0.000     3.641    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER.V<35>
+    DSP48E2_X21Y3        DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_V[35]_V_DATA[35])
+                                                      0.046     3.687 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST/V_DATA[35]
+                         net (fo=1, routed)           0.000     3.687    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA.V_DATA<35>
+    DSP48E2_X21Y3        DSP_ALU (Prop_DSP_ALU_DSP48E2_V_DATA[35]_ALU_OUT[47])
+                                                      0.571     4.258 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.258    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y3        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     4.380 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.038     4.418    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/PCIN[47]
+    DSP48E2_X21Y4        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[47])
+                                                      0.546     4.964 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.964    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y4        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     5.086 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.014     5.100    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/PCIN[47]
+    DSP48E2_X21Y5        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[45])
+                                                      0.546     5.646 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST/ALU_OUT[45]
+                         net (fo=1, routed)           0.000     5.646    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU.ALU_OUT<45>
+    DSP48E2_X21Y5        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[45]_P[45])
+                                                      0.109     5.755 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST/P[45]
+                         net (fo=5, routed)           0.659     6.413    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4_n_60
+    SLICE_X150Y31        LUT4 (Prop_G6LUT_SLICEM_I1_O)
+                                                      0.123     6.536 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_5__0/O
+                         net (fo=1, routed)           0.304     6.840    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_5__0_n_0
+    SLICE_X151Y31        CARRY8 (Prop_CARRY8_SLICEL_DI[0]_CO[7])
+                                                      0.131     6.971 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0/CO[7]
+                         net (fo=1, routed)           0.026     6.997    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0_n_0
+    SLICE_X151Y32        CARRY8 (Prop_CARRY8_SLICEL_CI_O[3])
+                                                      0.082     7.079 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0_i_2/O[3]
+                         net (fo=11, routed)          0.469     7.548    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/B[9]
+    DSP48E2_X20Y11       DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[9]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.043     8.043    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/CLK
+    DSP48E2_X20Y11       DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/CLK
+                         clock pessimism              0.000     8.043    
+                         clock uncertainty           -0.035     8.008    
+    DSP48E2_X20Y11       DSP_A_B_DATA (Setup_DSP_A_B_DATA_DSP48E2_CLK_B[9])
+                                                     -0.292     7.716    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST
+  -------------------------------------------------------------------
+                         required time                          7.716    
+                         arrival time                          -7.548    
+  -------------------------------------------------------------------
+                         slack                                  0.167    
+
+Slack (MET) :             0.174ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[12]
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        7.545ns  (logic 4.064ns (53.860%)  route 3.481ns (46.140%))
+  Logic Levels:           19  (CARRY8=2 DSP_A_B_DATA=1 DSP_ALU=3 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=3 DSP_PREADD_DATA=1 LUT3=1 LUT4=1 LUT5=4 LUT6=1)
+  Clock Path Skew:        0.015ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.043ns = ( 8.043 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.028ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.028     0.028    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/ap_clk
+    SLICE_X130Y4         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X130Y4         FDRE (Prop_CFF_SLICEL_C_Q)
+                                                      0.079     0.107 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/Q
+                         net (fo=111, routed)         0.162     0.269    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_3_reg_1731
+    SLICE_X131Y4         LUT3 (Prop_H5LUT_SLICEL_I2_O)
+                                                      0.158     0.427 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0/O
+                         net (fo=150, routed)         0.344     0.771    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/q0[56]_i_18_0[2]
+    SLICE_X132Y10        LUT5 (Prop_E6LUT_SLICEL_I3_O)
+                                                      0.147     0.918 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257/O
+                         net (fo=2, routed)           0.093     1.011    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_0
+    SLICE_X133Y10        LUT5 (Prop_C6LUT_SLICEM_I4_O)
+                                                      0.088     1.099 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191/O
+                         net (fo=2, routed)           0.256     1.355    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191_n_0
+    SLICE_X136Y11        LUT5 (Prop_H6LUT_SLICEL_I4_O)
+                                                      0.090     1.445 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123/O
+                         net (fo=2, routed)           0.137     1.582    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_n_0
+    SLICE_X137Y12        LUT5 (Prop_E6LUT_SLICEM_I0_O)
+                                                      0.100     1.682 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0/O
+                         net (fo=2, routed)           0.161     1.843    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0_n_0
+    SLICE_X138Y13        LUT6 (Prop_H6LUT_SLICEL_I2_O)
+                                                      0.150     1.993 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3/O
+                         net (fo=12, routed)          0.815     2.808    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/B[5]
+    DSP48E2_X21Y3        DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_B[5]_B2_DATA[5])
+                                                      0.151     2.959 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST/B2_DATA[5]
+                         net (fo=1, routed)           0.000     2.959    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA.B2_DATA<5>
+    DSP48E2_X21Y3        DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_B2_DATA[5]_B2B1[5])
+                                                      0.073     3.032 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST/B2B1[5]
+                         net (fo=1, routed)           0.000     3.032    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA.B2B1<5>
+    DSP48E2_X21Y3        DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_B2B1[5]_V[35])
+                                                      0.609     3.641 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST/V[35]
+                         net (fo=1, routed)           0.000     3.641    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER.V<35>
+    DSP48E2_X21Y3        DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_V[35]_V_DATA[35])
+                                                      0.046     3.687 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST/V_DATA[35]
+                         net (fo=1, routed)           0.000     3.687    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA.V_DATA<35>
+    DSP48E2_X21Y3        DSP_ALU (Prop_DSP_ALU_DSP48E2_V_DATA[35]_ALU_OUT[47])
+                                                      0.571     4.258 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.258    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y3        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     4.380 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.038     4.418    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/PCIN[47]
+    DSP48E2_X21Y4        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[47])
+                                                      0.546     4.964 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.964    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y4        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     5.086 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.014     5.100    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/PCIN[47]
+    DSP48E2_X21Y5        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[45])
+                                                      0.546     5.646 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST/ALU_OUT[45]
+                         net (fo=1, routed)           0.000     5.646    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU.ALU_OUT<45>
+    DSP48E2_X21Y5        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[45]_P[45])
+                                                      0.109     5.755 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST/P[45]
+                         net (fo=5, routed)           0.659     6.413    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4_n_60
+    SLICE_X150Y31        LUT4 (Prop_G6LUT_SLICEM_I1_O)
+                                                      0.123     6.536 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_5__0/O
+                         net (fo=1, routed)           0.304     6.840    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_5__0_n_0
+    SLICE_X151Y31        CARRY8 (Prop_CARRY8_SLICEL_DI[0]_CO[7])
+                                                      0.131     6.971 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0/CO[7]
+                         net (fo=1, routed)           0.026     6.997    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0_n_0
+    SLICE_X151Y32        CARRY8 (Prop_CARRY8_SLICEL_CI_O[6])
+                                                      0.103     7.100 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0_i_2/O[6]
+                         net (fo=11, routed)          0.473     7.573    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/B[12]
+    DSP48E2_X20Y11       DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[12]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.043     8.043    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/CLK
+    DSP48E2_X20Y11       DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/CLK
+                         clock pessimism              0.000     8.043    
+                         clock uncertainty           -0.035     8.008    
+    DSP48E2_X20Y11       DSP_A_B_DATA (Setup_DSP_A_B_DATA_DSP48E2_CLK_B[12])
+                                                     -0.260     7.748    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST
+  -------------------------------------------------------------------
+                         required time                          7.748    
+                         arrival time                          -7.573    
+  -------------------------------------------------------------------
+                         slack                                  0.174    
+
+Slack (MET) :             0.189ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_0/OP_DEL/i_pipe/opt_has_pipe.first_q_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/data_y_U_x/ram_reg_bram_0/DINBDIN[10]
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        7.549ns  (logic 1.863ns (24.679%)  route 5.686ns (75.321%))
+  Logic Levels:           12  (CARRY8=1 DSP_A_B_DATA=1 DSP_ALU=1 DSP_OUTPUT=1 LUT3=2 LUT4=1 LUT5=2 LUT6=3)
+  Clock Path Skew:        0.010ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.040ns = ( 8.040 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.030ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.030     0.030    bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_0/OP_DEL/i_pipe/aclk
+    SLICE_X146Y85        FDRE                                         r  bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_0/OP_DEL/i_pipe/opt_has_pipe.first_q_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X146Y85        FDRE (Prop_DFF_SLICEM_C_Q)
+                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_0/OP_DEL/i_pipe/opt_has_pipe.first_q_reg[3]/Q
+                         net (fo=1, routed)           0.312     0.420    bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_0/OP_DEL/i_pipe/opt_has_pipe.first_q[3]
+    SLICE_X146Y81        LUT4 (Prop_F6LUT_SLICEM_I0_O)
+                                                      0.148     0.568 r  bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_0/OP_DEL/i_pipe/m_axis_result_tdata[52]_INST_0_i_8/O
+                         net (fo=2, routed)           0.183     0.751    bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_0/OP_DEL/i_pipe/m_axis_result_tdata[52]_INST_0_i_8_n_0
+    SLICE_X146Y81        LUT5 (Prop_A5LUT_SLICEM_I4_O)
+                                                      0.163     0.914 r  bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_0/OP_DEL/i_pipe/CHAIN_GEN[0].C_MUX.CARRY_MUX_i_5/O
+                         net (fo=73, routed)          0.217     1.131    bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_Z/OP_DEL/i_pipe/CHAIN_GEN[0].C_MUX.CARRY_MUX_0
+    SLICE_X146Y77        LUT5 (Prop_D5LUT_SLICEM_I1_O)
+                                                      0.135     1.266 f  bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_Z/OP_DEL/i_pipe/CHAIN_GEN[0].C_MUX.CARRY_MUX_i_7/O
+                         net (fo=2, routed)           0.147     1.413    bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_Z/OP_DEL/i_pipe/CHAIN_GEN[0].C_MUX.CARRY_MUX_i_7_n_0
+    SLICE_X146Y76        LUT6 (Prop_F6LUT_SLICEM_I1_O)
+                                                      0.148     1.561 f  bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/LZE/ENCODE[0].MUX_Z/OP_DEL/i_pipe/CHAIN_GEN[0].C_MUX.CARRY_MUX_i_2__2/O
+                         net (fo=1, routed)           0.276     1.837    bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.SPECIAL.RND_CHAIN/NORM_1_OR_0.STRUCT_REQ.SPECIAL.b_ip
+    SLICE_X146Y76        CARRY8 (Prop_CARRY8_SLICEM_DI[0]_CO[0])
+                                                      0.056     1.893 f  bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/RND_BIT_GEN/NORM_1_OR_0.STRUCT_REQ.SPECIAL.RND_CHAIN/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4_CARRY8/CO[0]
+                         net (fo=1, routed)           0.382     2.275    bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/i_no_versal_es1_workaround.DSP/B[1]
+    DSP48E2_X20Y24       DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_B[1]_B_ALU[1])
+                                                      0.165     2.440 r  bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/i_no_versal_es1_workaround.DSP/DSP_A_B_DATA_INST/B_ALU[1]
+                         net (fo=1, routed)           0.000     2.440    bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/i_no_versal_es1_workaround.DSP/DSP_A_B_DATA.B_ALU<1>
+    DSP48E2_X20Y24       DSP_ALU (Prop_DSP_ALU_DSP48E2_B_ALU[1]_ALU_OUT[11])
+                                                      0.541     2.981 f  bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/i_no_versal_es1_workaround.DSP/DSP_ALU_INST/ALU_OUT[11]
+                         net (fo=1, routed)           0.000     2.981    bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/i_no_versal_es1_workaround.DSP/DSP_ALU.ALU_OUT<11>
+    DSP48E2_X20Y24       DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[11]_P[11])
+                                                      0.109     3.090 r  bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/i_no_versal_es1_workaround.DSP/DSP_OUTPUT_INST/P[11]
+                         net (fo=1, routed)           0.252     3.342    bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/EXP/STATE_DELAY/i_pipe/P[10]
+    SLICE_X149Y74        LUT3 (Prop_G6LUT_SLICEM_I2_O)
+                                                      0.123     3.465 r  bd_0_i/hls_inst/inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U67/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/EXP/STATE_DELAY/i_pipe/mant_op_inferred_i_42/O
+                         net (fo=23, routed)          1.110     4.575    bd_0_i/hls_inst/inst/grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550/D[10]
+    SLICE_X170Y20        LUT3 (Prop_C5LUT_SLICEL_I0_O)
+                                                      0.110     4.685 r  bd_0_i/hls_inst/inst/grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550/ram_reg_bram_0_i_478/O
+                         net (fo=1, routed)           1.455     6.140    bd_0_i/hls_inst/inst/grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580/grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550_data_y_d0[10]
+    SLICE_X112Y23        LUT6 (Prop_H6LUT_SLICEL_I2_O)
+                                                      0.036     6.176 f  bd_0_i/hls_inst/inst/grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580/ram_reg_bram_0_i_258__2/O
+                         net (fo=1, routed)           0.136     6.312    bd_0_i/hls_inst/inst/grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580/ram_reg_bram_0_i_258__2_n_0
+    SLICE_X112Y24        LUT6 (Prop_H6LUT_SLICEL_I3_O)
+                                                      0.051     6.363 r  bd_0_i/hls_inst/inst/grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580/ram_reg_bram_0_i_62__2/O
+                         net (fo=1, routed)           1.216     7.579    bd_0_i/hls_inst/inst/data_y_U_x/d0[10]
+    RAMB36_X9Y12         RAMB36E2                                     r  bd_0_i/hls_inst/inst/data_y_U_x/ram_reg_bram_0/DINBDIN[10]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.040     8.040    bd_0_i/hls_inst/inst/data_y_U_x/ap_clk
+    RAMB36_X9Y12         RAMB36E2                                     r  bd_0_i/hls_inst/inst/data_y_U_x/ram_reg_bram_0/CLKBWRCLK
+                         clock pessimism              0.000     8.040    
+                         clock uncertainty           -0.035     8.005    
+    RAMB36_X9Y12         RAMB36E2 (Setup_RAMB36E2_RAMB36_CLKBWRCLK_DINBDIN[10])
+                                                     -0.237     7.768    bd_0_i/hls_inst/inst/data_y_U_x/ram_reg_bram_0
+  -------------------------------------------------------------------
+                         required time                          7.768    
+                         arrival time                          -7.579    
+  -------------------------------------------------------------------
+                         slack                                  0.189    
+
+Slack (MET) :             0.202ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST/B[15]
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        7.528ns  (logic 4.018ns (53.372%)  route 3.510ns (46.628%))
+  Logic Levels:           19  (CARRY8=2 DSP_A_B_DATA=1 DSP_ALU=3 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=3 DSP_PREADD_DATA=1 LUT3=1 LUT4=1 LUT5=4 LUT6=1)
+  Clock Path Skew:        0.015ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.043ns = ( 8.043 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.028ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.028     0.028    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/ap_clk
+    SLICE_X130Y4         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X130Y4         FDRE (Prop_CFF_SLICEL_C_Q)
+                                                      0.079     0.107 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/Q
+                         net (fo=111, routed)         0.162     0.269    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_3_reg_1731
+    SLICE_X131Y4         LUT3 (Prop_H5LUT_SLICEL_I2_O)
+                                                      0.158     0.427 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0/O
+                         net (fo=150, routed)         0.344     0.771    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/q0[56]_i_18_0[2]
+    SLICE_X132Y10        LUT5 (Prop_E6LUT_SLICEL_I3_O)
+                                                      0.147     0.918 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257/O
+                         net (fo=2, routed)           0.093     1.011    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_0
+    SLICE_X133Y10        LUT5 (Prop_C6LUT_SLICEM_I4_O)
+                                                      0.088     1.099 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191/O
+                         net (fo=2, routed)           0.256     1.355    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191_n_0
+    SLICE_X136Y11        LUT5 (Prop_H6LUT_SLICEL_I4_O)
+                                                      0.090     1.445 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123/O
+                         net (fo=2, routed)           0.137     1.582    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_n_0
+    SLICE_X137Y12        LUT5 (Prop_E6LUT_SLICEM_I0_O)
+                                                      0.100     1.682 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0/O
+                         net (fo=2, routed)           0.161     1.843    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0_n_0
+    SLICE_X138Y13        LUT6 (Prop_H6LUT_SLICEL_I2_O)
+                                                      0.150     1.993 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3/O
+                         net (fo=12, routed)          0.815     2.808    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/B[5]
+    DSP48E2_X21Y3        DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_B[5]_B2_DATA[5])
+                                                      0.151     2.959 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST/B2_DATA[5]
+                         net (fo=1, routed)           0.000     2.959    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA.B2_DATA<5>
+    DSP48E2_X21Y3        DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_B2_DATA[5]_B2B1[5])
+                                                      0.073     3.032 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST/B2B1[5]
+                         net (fo=1, routed)           0.000     3.032    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA.B2B1<5>
+    DSP48E2_X21Y3        DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_B2B1[5]_V[35])
+                                                      0.609     3.641 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST/V[35]
+                         net (fo=1, routed)           0.000     3.641    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER.V<35>
+    DSP48E2_X21Y3        DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_V[35]_V_DATA[35])
+                                                      0.046     3.687 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST/V_DATA[35]
+                         net (fo=1, routed)           0.000     3.687    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA.V_DATA<35>
+    DSP48E2_X21Y3        DSP_ALU (Prop_DSP_ALU_DSP48E2_V_DATA[35]_ALU_OUT[47])
+                                                      0.571     4.258 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.258    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y3        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     4.380 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.038     4.418    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/PCIN[47]
+    DSP48E2_X21Y4        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[47])
+                                                      0.546     4.964 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.964    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y4        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     5.086 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.014     5.100    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/PCIN[47]
+    DSP48E2_X21Y5        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[40])
+                                                      0.546     5.646 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST/ALU_OUT[40]
+                         net (fo=1, routed)           0.000     5.646    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU.ALU_OUT<40>
+    DSP48E2_X21Y5        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[40]_P[40])
+                                                      0.109     5.755 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST/P[40]
+                         net (fo=5, routed)           0.581     6.335    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4_n_65
+    SLICE_X150Y30        LUT4 (Prop_G6LUT_SLICEM_I3_O)
+                                                      0.150     6.485 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_19__0/O
+                         net (fo=1, routed)           0.302     6.787    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_19__0_n_0
+    SLICE_X151Y30        CARRY8 (Prop_CARRY8_SLICEL_DI[2]_CO[7])
+                                                      0.105     6.892 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_2__0/CO[7]
+                         net (fo=1, routed)           0.026     6.918    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_2__0_n_0
+    SLICE_X151Y31        CARRY8 (Prop_CARRY8_SLICEL_CI_O[0])
+                                                      0.056     6.974 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0/O[0]
+                         net (fo=11, routed)          0.582     7.556    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/B[15]
+    DSP48E2_X21Y1        DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST/B[15]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.043     8.043    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/CLK
+    DSP48E2_X21Y1        DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST/CLK
+                         clock pessimism              0.000     8.043    
+                         clock uncertainty           -0.035     8.008    
+    DSP48E2_X21Y1        DSP_A_B_DATA (Setup_DSP_A_B_DATA_DSP48E2_CLK_B[15])
+                                                     -0.249     7.759    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST
+  -------------------------------------------------------------------
+                         required time                          7.759    
+                         arrival time                          -7.556    
+  -------------------------------------------------------------------
+                         slack                                  0.202    
+
+Slack (MET) :             0.203ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[8]
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        7.501ns  (logic 4.035ns (53.796%)  route 3.466ns (46.204%))
+  Logic Levels:           19  (CARRY8=2 DSP_A_B_DATA=1 DSP_ALU=3 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=3 DSP_PREADD_DATA=1 LUT3=1 LUT4=1 LUT5=4 LUT6=1)
+  Clock Path Skew:        0.015ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.043ns = ( 8.043 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.028ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.028     0.028    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/ap_clk
+    SLICE_X130Y4         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X130Y4         FDRE (Prop_CFF_SLICEL_C_Q)
+                                                      0.079     0.107 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/Q
+                         net (fo=111, routed)         0.162     0.269    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_3_reg_1731
+    SLICE_X131Y4         LUT3 (Prop_H5LUT_SLICEL_I2_O)
+                                                      0.158     0.427 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0/O
+                         net (fo=150, routed)         0.344     0.771    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/q0[56]_i_18_0[2]
+    SLICE_X132Y10        LUT5 (Prop_E6LUT_SLICEL_I3_O)
+                                                      0.147     0.918 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257/O
+                         net (fo=2, routed)           0.093     1.011    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_0
+    SLICE_X133Y10        LUT5 (Prop_C6LUT_SLICEM_I4_O)
+                                                      0.088     1.099 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191/O
+                         net (fo=2, routed)           0.256     1.355    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191_n_0
+    SLICE_X136Y11        LUT5 (Prop_H6LUT_SLICEL_I4_O)
+                                                      0.090     1.445 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123/O
+                         net (fo=2, routed)           0.137     1.582    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_n_0
+    SLICE_X137Y12        LUT5 (Prop_E6LUT_SLICEM_I0_O)
+                                                      0.100     1.682 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0/O
+                         net (fo=2, routed)           0.161     1.843    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0_n_0
+    SLICE_X138Y13        LUT6 (Prop_H6LUT_SLICEL_I2_O)
+                                                      0.150     1.993 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3/O
+                         net (fo=12, routed)          0.815     2.808    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/B[5]
+    DSP48E2_X21Y3        DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_B[5]_B2_DATA[5])
+                                                      0.151     2.959 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST/B2_DATA[5]
+                         net (fo=1, routed)           0.000     2.959    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA.B2_DATA<5>
+    DSP48E2_X21Y3        DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_B2_DATA[5]_B2B1[5])
+                                                      0.073     3.032 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST/B2B1[5]
+                         net (fo=1, routed)           0.000     3.032    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA.B2B1<5>
+    DSP48E2_X21Y3        DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_B2B1[5]_V[35])
+                                                      0.609     3.641 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST/V[35]
+                         net (fo=1, routed)           0.000     3.641    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER.V<35>
+    DSP48E2_X21Y3        DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_V[35]_V_DATA[35])
+                                                      0.046     3.687 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST/V_DATA[35]
+                         net (fo=1, routed)           0.000     3.687    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA.V_DATA<35>
+    DSP48E2_X21Y3        DSP_ALU (Prop_DSP_ALU_DSP48E2_V_DATA[35]_ALU_OUT[47])
+                                                      0.571     4.258 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.258    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y3        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     4.380 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.038     4.418    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/PCIN[47]
+    DSP48E2_X21Y4        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[47])
+                                                      0.546     4.964 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.964    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y4        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     5.086 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.014     5.100    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/PCIN[47]
+    DSP48E2_X21Y5        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[45])
+                                                      0.546     5.646 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST/ALU_OUT[45]
+                         net (fo=1, routed)           0.000     5.646    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU.ALU_OUT<45>
+    DSP48E2_X21Y5        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[45]_P[45])
+                                                      0.109     5.755 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST/P[45]
+                         net (fo=5, routed)           0.659     6.413    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4_n_60
+    SLICE_X150Y31        LUT4 (Prop_G6LUT_SLICEM_I1_O)
+                                                      0.123     6.536 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_5__0/O
+                         net (fo=1, routed)           0.304     6.840    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_5__0_n_0
+    SLICE_X151Y31        CARRY8 (Prop_CARRY8_SLICEL_DI[0]_CO[7])
+                                                      0.131     6.971 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0/CO[7]
+                         net (fo=1, routed)           0.026     6.997    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0_n_0
+    SLICE_X151Y32        CARRY8 (Prop_CARRY8_SLICEL_CI_O[2])
+                                                      0.074     7.071 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0_i_2/O[2]
+                         net (fo=11, routed)          0.457     7.529    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/B[8]
+    DSP48E2_X20Y11       DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[8]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.043     8.043    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/CLK
+    DSP48E2_X20Y11       DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/CLK
+                         clock pessimism              0.000     8.043    
+                         clock uncertainty           -0.035     8.008    
+    DSP48E2_X20Y11       DSP_A_B_DATA (Setup_DSP_A_B_DATA_DSP48E2_CLK_B[8])
+                                                     -0.276     7.732    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST
+  -------------------------------------------------------------------
+                         required time                          7.732    
+                         arrival time                          -7.529    
+  -------------------------------------------------------------------
+                         slack                                  0.203    
+
+Slack (MET) :             0.211ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST/B[12]
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        7.508ns  (logic 4.037ns (53.767%)  route 3.471ns (46.233%))
+  Logic Levels:           18  (CARRY8=1 DSP_A_B_DATA=1 DSP_ALU=3 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=3 DSP_PREADD_DATA=1 LUT3=1 LUT4=1 LUT5=4 LUT6=1)
+  Clock Path Skew:        0.015ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.043ns = ( 8.043 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.028ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.028     0.028    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/ap_clk
+    SLICE_X130Y4         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X130Y4         FDRE (Prop_CFF_SLICEL_C_Q)
+                                                      0.079     0.107 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/Q
+                         net (fo=111, routed)         0.162     0.269    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_3_reg_1731
+    SLICE_X131Y4         LUT3 (Prop_H5LUT_SLICEL_I2_O)
+                                                      0.158     0.427 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0/O
+                         net (fo=150, routed)         0.344     0.771    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/q0[56]_i_18_0[2]
+    SLICE_X132Y10        LUT5 (Prop_E6LUT_SLICEL_I3_O)
+                                                      0.147     0.918 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257/O
+                         net (fo=2, routed)           0.093     1.011    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_0
+    SLICE_X133Y10        LUT5 (Prop_C6LUT_SLICEM_I4_O)
+                                                      0.088     1.099 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191/O
+                         net (fo=2, routed)           0.256     1.355    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191_n_0
+    SLICE_X136Y11        LUT5 (Prop_H6LUT_SLICEL_I4_O)
+                                                      0.090     1.445 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123/O
+                         net (fo=2, routed)           0.137     1.582    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_n_0
+    SLICE_X137Y12        LUT5 (Prop_E6LUT_SLICEM_I0_O)
+                                                      0.100     1.682 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0/O
+                         net (fo=2, routed)           0.161     1.843    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0_n_0
+    SLICE_X138Y13        LUT6 (Prop_H6LUT_SLICEL_I2_O)
+                                                      0.150     1.993 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3/O
+                         net (fo=12, routed)          0.815     2.808    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/B[5]
+    DSP48E2_X21Y3        DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_B[5]_B2_DATA[5])
+                                                      0.151     2.959 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST/B2_DATA[5]
+                         net (fo=1, routed)           0.000     2.959    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA.B2_DATA<5>
+    DSP48E2_X21Y3        DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_B2_DATA[5]_B2B1[5])
+                                                      0.073     3.032 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST/B2B1[5]
+                         net (fo=1, routed)           0.000     3.032    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA.B2B1<5>
+    DSP48E2_X21Y3        DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_B2B1[5]_V[35])
+                                                      0.609     3.641 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST/V[35]
+                         net (fo=1, routed)           0.000     3.641    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER.V<35>
+    DSP48E2_X21Y3        DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_V[35]_V_DATA[35])
+                                                      0.046     3.687 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST/V_DATA[35]
+                         net (fo=1, routed)           0.000     3.687    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA.V_DATA<35>
+    DSP48E2_X21Y3        DSP_ALU (Prop_DSP_ALU_DSP48E2_V_DATA[35]_ALU_OUT[47])
+                                                      0.571     4.258 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.258    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y3        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     4.380 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.038     4.418    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/PCIN[47]
+    DSP48E2_X21Y4        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[47])
+                                                      0.546     4.964 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.964    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y4        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     5.086 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.014     5.100    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/PCIN[47]
+    DSP48E2_X21Y5        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[40])
+                                                      0.546     5.646 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST/ALU_OUT[40]
+                         net (fo=1, routed)           0.000     5.646    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU.ALU_OUT<40>
+    DSP48E2_X21Y5        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[40]_P[40])
+                                                      0.109     5.755 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST/P[40]
+                         net (fo=5, routed)           0.581     6.335    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4_n_65
+    SLICE_X150Y30        LUT4 (Prop_G6LUT_SLICEM_I3_O)
+                                                      0.150     6.485 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_19__0/O
+                         net (fo=1, routed)           0.302     6.787    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_19__0_n_0
+    SLICE_X151Y30        CARRY8 (Prop_CARRY8_SLICEL_DI[2]_O[5])
+                                                      0.180     6.967 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_2__0/O[5]
+                         net (fo=11, routed)          0.569     7.536    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/B[12]
+    DSP48E2_X21Y1        DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST/B[12]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.043     8.043    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/CLK
+    DSP48E2_X21Y1        DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST/CLK
+                         clock pessimism              0.000     8.043    
+                         clock uncertainty           -0.035     8.008    
+    DSP48E2_X21Y1        DSP_A_B_DATA (Setup_DSP_A_B_DATA_DSP48E2_CLK_B[12])
+                                                     -0.260     7.748    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product__6/DSP_A_B_DATA_INST
+  -------------------------------------------------------------------
+                         required time                          7.748    
+                         arrival time                          -7.536    
+  -------------------------------------------------------------------
+                         slack                                  0.211    
+
+Slack (MET) :             0.221ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[10]
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        7.470ns  (logic 4.047ns (54.175%)  route 3.423ns (45.825%))
+  Logic Levels:           19  (CARRY8=2 DSP_A_B_DATA=1 DSP_ALU=3 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=3 DSP_PREADD_DATA=1 LUT3=1 LUT4=1 LUT5=4 LUT6=1)
+  Clock Path Skew:        0.015ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.043ns = ( 8.043 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.028ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.028     0.028    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/ap_clk
+    SLICE_X130Y4         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X130Y4         FDRE (Prop_CFF_SLICEL_C_Q)
+                                                      0.079     0.107 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/Q
+                         net (fo=111, routed)         0.162     0.269    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_3_reg_1731
+    SLICE_X131Y4         LUT3 (Prop_H5LUT_SLICEL_I2_O)
+                                                      0.158     0.427 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0/O
+                         net (fo=150, routed)         0.344     0.771    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/q0[56]_i_18_0[2]
+    SLICE_X132Y10        LUT5 (Prop_E6LUT_SLICEL_I3_O)
+                                                      0.147     0.918 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257/O
+                         net (fo=2, routed)           0.093     1.011    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_0
+    SLICE_X133Y10        LUT5 (Prop_C6LUT_SLICEM_I4_O)
+                                                      0.088     1.099 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191/O
+                         net (fo=2, routed)           0.256     1.355    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191_n_0
+    SLICE_X136Y11        LUT5 (Prop_H6LUT_SLICEL_I4_O)
+                                                      0.090     1.445 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123/O
+                         net (fo=2, routed)           0.137     1.582    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_n_0
+    SLICE_X137Y12        LUT5 (Prop_E6LUT_SLICEM_I0_O)
+                                                      0.100     1.682 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0/O
+                         net (fo=2, routed)           0.161     1.843    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0_n_0
+    SLICE_X138Y13        LUT6 (Prop_H6LUT_SLICEL_I2_O)
+                                                      0.150     1.993 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3/O
+                         net (fo=12, routed)          0.815     2.808    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/B[5]
+    DSP48E2_X21Y3        DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_B[5]_B2_DATA[5])
+                                                      0.151     2.959 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST/B2_DATA[5]
+                         net (fo=1, routed)           0.000     2.959    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA.B2_DATA<5>
+    DSP48E2_X21Y3        DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_B2_DATA[5]_B2B1[5])
+                                                      0.073     3.032 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST/B2B1[5]
+                         net (fo=1, routed)           0.000     3.032    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA.B2B1<5>
+    DSP48E2_X21Y3        DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_B2B1[5]_V[35])
+                                                      0.609     3.641 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST/V[35]
+                         net (fo=1, routed)           0.000     3.641    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER.V<35>
+    DSP48E2_X21Y3        DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_V[35]_V_DATA[35])
+                                                      0.046     3.687 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST/V_DATA[35]
+                         net (fo=1, routed)           0.000     3.687    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA.V_DATA<35>
+    DSP48E2_X21Y3        DSP_ALU (Prop_DSP_ALU_DSP48E2_V_DATA[35]_ALU_OUT[47])
+                                                      0.571     4.258 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.258    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y3        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     4.380 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.038     4.418    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/PCIN[47]
+    DSP48E2_X21Y4        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[47])
+                                                      0.546     4.964 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.964    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y4        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     5.086 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.014     5.100    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/PCIN[47]
+    DSP48E2_X21Y5        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[45])
+                                                      0.546     5.646 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST/ALU_OUT[45]
+                         net (fo=1, routed)           0.000     5.646    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU.ALU_OUT<45>
+    DSP48E2_X21Y5        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[45]_P[45])
+                                                      0.109     5.755 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST/P[45]
+                         net (fo=5, routed)           0.659     6.413    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4_n_60
+    SLICE_X150Y31        LUT4 (Prop_G6LUT_SLICEM_I1_O)
+                                                      0.123     6.536 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_5__0/O
+                         net (fo=1, routed)           0.304     6.840    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_5__0_n_0
+    SLICE_X151Y31        CARRY8 (Prop_CARRY8_SLICEL_DI[0]_CO[7])
+                                                      0.131     6.971 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0/CO[7]
+                         net (fo=1, routed)           0.026     6.997    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0_n_0
+    SLICE_X151Y32        CARRY8 (Prop_CARRY8_SLICEL_CI_O[4])
+                                                      0.086     7.083 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0_i_2/O[4]
+                         net (fo=11, routed)          0.415     7.498    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/B[10]
+    DSP48E2_X20Y11       DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[10]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.043     8.043    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/CLK
+    DSP48E2_X20Y11       DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/CLK
+                         clock pessimism              0.000     8.043    
+                         clock uncertainty           -0.035     8.008    
+    DSP48E2_X20Y11       DSP_A_B_DATA (Setup_DSP_A_B_DATA_DSP48E2_CLK_B[10])
+                                                     -0.288     7.720    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST
+  -------------------------------------------------------------------
+                         required time                          7.720    
+                         arrival time                          -7.498    
+  -------------------------------------------------------------------
+                         slack                                  0.221    
+
+Slack (MET) :             0.223ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[11]
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        7.491ns  (logic 4.077ns (54.424%)  route 3.414ns (45.576%))
+  Logic Levels:           19  (CARRY8=2 DSP_A_B_DATA=1 DSP_ALU=3 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=3 DSP_PREADD_DATA=1 LUT3=1 LUT4=1 LUT5=4 LUT6=1)
+  Clock Path Skew:        0.015ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.043ns = ( 8.043 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.028ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.028     0.028    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/ap_clk
+    SLICE_X130Y4         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X130Y4         FDRE (Prop_CFF_SLICEL_C_Q)
+                                                      0.079     0.107 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/Q
+                         net (fo=111, routed)         0.162     0.269    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_3_reg_1731
+    SLICE_X131Y4         LUT3 (Prop_H5LUT_SLICEL_I2_O)
+                                                      0.158     0.427 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0/O
+                         net (fo=150, routed)         0.344     0.771    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/q0[56]_i_18_0[2]
+    SLICE_X132Y10        LUT5 (Prop_E6LUT_SLICEL_I3_O)
+                                                      0.147     0.918 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257/O
+                         net (fo=2, routed)           0.093     1.011    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_0
+    SLICE_X133Y10        LUT5 (Prop_C6LUT_SLICEM_I4_O)
+                                                      0.088     1.099 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191/O
+                         net (fo=2, routed)           0.256     1.355    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191_n_0
+    SLICE_X136Y11        LUT5 (Prop_H6LUT_SLICEL_I4_O)
+                                                      0.090     1.445 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123/O
+                         net (fo=2, routed)           0.137     1.582    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_n_0
+    SLICE_X137Y12        LUT5 (Prop_E6LUT_SLICEM_I0_O)
+                                                      0.100     1.682 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0/O
+                         net (fo=2, routed)           0.161     1.843    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0_n_0
+    SLICE_X138Y13        LUT6 (Prop_H6LUT_SLICEL_I2_O)
+                                                      0.150     1.993 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3/O
+                         net (fo=12, routed)          0.815     2.808    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/B[5]
+    DSP48E2_X21Y3        DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_B[5]_B2_DATA[5])
+                                                      0.151     2.959 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST/B2_DATA[5]
+                         net (fo=1, routed)           0.000     2.959    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA.B2_DATA<5>
+    DSP48E2_X21Y3        DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_B2_DATA[5]_B2B1[5])
+                                                      0.073     3.032 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST/B2B1[5]
+                         net (fo=1, routed)           0.000     3.032    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA.B2B1<5>
+    DSP48E2_X21Y3        DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_B2B1[5]_V[35])
+                                                      0.609     3.641 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST/V[35]
+                         net (fo=1, routed)           0.000     3.641    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER.V<35>
+    DSP48E2_X21Y3        DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_V[35]_V_DATA[35])
+                                                      0.046     3.687 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST/V_DATA[35]
+                         net (fo=1, routed)           0.000     3.687    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA.V_DATA<35>
+    DSP48E2_X21Y3        DSP_ALU (Prop_DSP_ALU_DSP48E2_V_DATA[35]_ALU_OUT[47])
+                                                      0.571     4.258 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.258    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y3        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     4.380 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.038     4.418    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/PCIN[47]
+    DSP48E2_X21Y4        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[47])
+                                                      0.546     4.964 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.964    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y4        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     5.086 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.014     5.100    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/PCIN[47]
+    DSP48E2_X21Y5        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[45])
+                                                      0.546     5.646 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST/ALU_OUT[45]
+                         net (fo=1, routed)           0.000     5.646    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU.ALU_OUT<45>
+    DSP48E2_X21Y5        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[45]_P[45])
+                                                      0.109     5.755 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST/P[45]
+                         net (fo=5, routed)           0.659     6.413    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4_n_60
+    SLICE_X150Y31        LUT4 (Prop_G6LUT_SLICEM_I1_O)
+                                                      0.123     6.536 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_5__0/O
+                         net (fo=1, routed)           0.304     6.840    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_5__0_n_0
+    SLICE_X151Y31        CARRY8 (Prop_CARRY8_SLICEL_DI[0]_CO[7])
+                                                      0.131     6.971 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0/CO[7]
+                         net (fo=1, routed)           0.026     6.997    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0_n_0
+    SLICE_X151Y32        CARRY8 (Prop_CARRY8_SLICEL_CI_O[5])
+                                                      0.116     7.113 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__0_i_2/O[5]
+                         net (fo=11, routed)          0.406     7.519    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/B[11]
+    DSP48E2_X20Y11       DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[11]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.043     8.043    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/CLK
+    DSP48E2_X20Y11       DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/CLK
+                         clock pessimism              0.000     8.043    
+                         clock uncertainty           -0.035     8.008    
+    DSP48E2_X20Y11       DSP_A_B_DATA (Setup_DSP_A_B_DATA_DSP48E2_CLK_B[11])
+                                                     -0.265     7.743    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST
+  -------------------------------------------------------------------
+                         required time                          7.743    
+                         arrival time                          -7.519    
+  -------------------------------------------------------------------
+                         slack                                  0.223    
+
+Slack (MET) :             0.231ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[1]
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        7.484ns  (logic 4.044ns (54.032%)  route 3.440ns (45.968%))
+  Logic Levels:           19  (CARRY8=2 DSP_A_B_DATA=1 DSP_ALU=3 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=3 DSP_PREADD_DATA=1 LUT3=1 LUT4=1 LUT5=4 LUT6=1)
+  Clock Path Skew:        0.015ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.043ns = ( 8.043 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.028ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.028     0.028    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/ap_clk
+    SLICE_X130Y4         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X130Y4         FDRE (Prop_CFF_SLICEL_C_Q)
+                                                      0.079     0.107 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/tmp_3_reg_1731_reg[0]/Q
+                         net (fo=111, routed)         0.162     0.269    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_3_reg_1731
+    SLICE_X131Y4         LUT3 (Prop_H5LUT_SLICEL_I2_O)
+                                                      0.158     0.427 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2_i_42__0/O
+                         net (fo=150, routed)         0.344     0.771    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/q0[56]_i_18_0[2]
+    SLICE_X132Y10        LUT5 (Prop_E6LUT_SLICEL_I3_O)
+                                                      0.147     0.918 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_56ns_52s_108_1_1_U7/tmp_product_i_257/O
+                         net (fo=2, routed)           0.093     1.011    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_0
+    SLICE_X133Y10        LUT5 (Prop_C6LUT_SLICEM_I4_O)
+                                                      0.088     1.099 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191/O
+                         net (fo=2, routed)           0.256     1.355    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_191_n_0
+    SLICE_X136Y11        LUT5 (Prop_H6LUT_SLICEL_I4_O)
+                                                      0.090     1.445 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123/O
+                         net (fo=2, routed)           0.137     1.582    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_123_n_0
+    SLICE_X137Y12        LUT5 (Prop_E6LUT_SLICEM_I0_O)
+                                                      0.100     1.682 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0/O
+                         net (fo=2, routed)           0.161     1.843    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_52__0_n_0
+    SLICE_X138Y13        LUT6 (Prop_H6LUT_SLICEL_I2_O)
+                                                      0.150     1.993 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_10__3/O
+                         net (fo=12, routed)          0.815     2.808    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/B[5]
+    DSP48E2_X21Y3        DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_B[5]_B2_DATA[5])
+                                                      0.151     2.959 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA_INST/B2_DATA[5]
+                         net (fo=1, routed)           0.000     2.959    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_A_B_DATA.B2_DATA<5>
+    DSP48E2_X21Y3        DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_B2_DATA[5]_B2B1[5])
+                                                      0.073     3.032 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA_INST/B2B1[5]
+                         net (fo=1, routed)           0.000     3.032    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_PREADD_DATA.B2B1<5>
+    DSP48E2_X21Y3        DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_B2B1[5]_V[35])
+                                                      0.609     3.641 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER_INST/V[35]
+                         net (fo=1, routed)           0.000     3.641    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_MULTIPLIER.V<35>
+    DSP48E2_X21Y3        DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_V[35]_V_DATA[35])
+                                                      0.046     3.687 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA_INST/V_DATA[35]
+                         net (fo=1, routed)           0.000     3.687    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_M_DATA.V_DATA<35>
+    DSP48E2_X21Y3        DSP_ALU (Prop_DSP_ALU_DSP48E2_V_DATA[35]_ALU_OUT[47])
+                                                      0.571     4.258 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.258    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y3        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     4.380 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__2/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.038     4.418    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/PCIN[47]
+    DSP48E2_X21Y4        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[47])
+                                                      0.546     4.964 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU_INST/ALU_OUT[47]
+                         net (fo=1, routed)           0.000     4.964    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_ALU.ALU_OUT<47>
+    DSP48E2_X21Y4        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[47]_PCOUT[47])
+                                                      0.122     5.086 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__3/DSP_OUTPUT_INST/PCOUT[47]
+                         net (fo=1, routed)           0.014     5.100    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/PCIN[47]
+    DSP48E2_X21Y5        DSP_ALU (Prop_DSP_ALU_DSP48E2_PCIN[47]_ALU_OUT[40])
+                                                      0.546     5.646 f  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU_INST/ALU_OUT[40]
+                         net (fo=1, routed)           0.000     5.646    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_ALU.ALU_OUT<40>
+    DSP48E2_X21Y5        DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[40]_P[40])
+                                                      0.109     5.755 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4/DSP_OUTPUT_INST/P[40]
+                         net (fo=5, routed)           0.581     6.335    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product__4_n_65
+    SLICE_X150Y30        LUT4 (Prop_G6LUT_SLICEM_I3_O)
+                                                      0.150     6.485 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_19__0/O
+                         net (fo=1, routed)           0.302     6.787    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_19__0_n_0
+    SLICE_X151Y30        CARRY8 (Prop_CARRY8_SLICEL_DI[2]_CO[7])
+                                                      0.105     6.892 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_2__0/CO[7]
+                         net (fo=1, routed)           0.026     6.918    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_2__0_n_0
+    SLICE_X151Y31        CARRY8 (Prop_CARRY8_SLICEL_CI_O[3])
+                                                      0.082     7.000 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U4/tmp_product_i_1__0/O[3]
+                         net (fo=11, routed)          0.512     7.512    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/B[1]
+    DSP48E2_X20Y11       DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/B[1]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=16586, unset)        0.043     8.043    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/CLK
+    DSP48E2_X20Y11       DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST/CLK
+                         clock pessimism              0.000     8.043    
+                         clock uncertainty           -0.035     8.008    
+    DSP48E2_X20Y11       DSP_A_B_DATA (Setup_DSP_A_B_DATA_DSP48E2_CLK_B[1])
+                                                     -0.264     7.744    bd_0_i/hls_inst/inst/grp_sin_or_cos_double_s_fu_5138/mul_49ns_49ns_98_1_1_U6/tmp_product/DSP_A_B_DATA_INST
+  -------------------------------------------------------------------
+                         required time                          7.744    
+                         arrival time                          -7.512    
+  -------------------------------------------------------------------
+                         slack                                  0.231    
+
+
+
+

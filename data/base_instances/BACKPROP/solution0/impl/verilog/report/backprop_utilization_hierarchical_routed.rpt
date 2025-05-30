@@ -1,0 +1,70 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
+| Date         : Thu May 29 16:25:52 2025
+| Host         : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_utilization -hierarchical -hierarchical_depth 6 -file ./report/backprop_utilization_hierarchical_routed.rpt
+| Design       : bd_0_wrapper
+| Device       : xcu50-fsvh2104-2-e
+| Speed File   : -2
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------------------------------------------------+----------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+|                            Instance                            |                             Module                             | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | URAM | DSP Blocks |
++----------------------------------------------------------------+----------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+| bd_0_wrapper                                                   |                                                          (top) |      12767 |      12289 |     384 |   94 | 9423 |      3 |      0 |    1 |         37 |
+|   bd_0_i                                                       |                                                           bd_0 |      12767 |      12289 |     384 |   94 | 9423 |      3 |      0 |    1 |         37 |
+|     hls_inst                                                   |                                                bd_0_hls_inst_0 |      12767 |      12289 |     384 |   94 | 9423 |      3 |      0 |    1 |         37 |
+|       inst                                                     |                                       bd_0_hls_inst_0_backprop |      12767 |      12289 |     384 |   94 | 9423 |      3 |      0 |    1 |         37 |
+|         (inst)                                                 |                                       bd_0_hls_inst_0_backprop |        690 |        690 |       0 |    0 | 4052 |      0 |      0 |    0 |          0 |
+|         activations1_U                                         |            bd_0_hls_inst_0_backprop_activations1_RAM_AUTO_1R1W |        313 |        249 |      64 |    0 |   64 |      0 |      0 |    0 |          0 |
+|         activations2_U                                         |          bd_0_hls_inst_0_backprop_activations1_RAM_AUTO_1R1W_0 |        484 |        420 |      64 |    0 |   64 |      0 |      0 |    0 |          0 |
+|         dactivations1_U                                        |          bd_0_hls_inst_0_backprop_activations1_RAM_AUTO_1R1W_1 |         68 |          4 |      64 |    0 |   64 |      0 |      0 |    0 |          0 |
+|         dactivations2_U                                        |          bd_0_hls_inst_0_backprop_activations1_RAM_AUTO_1R1W_2 |         98 |         34 |      64 |    0 |   64 |      0 |      0 |    0 |          0 |
+|         dadddsub_64ns_64ns_64_4_full_dsp_1_U22                 |    bd_0_hls_inst_0_backprop_dadddsub_64ns_64ns_64_4_full_dsp_1 |       1264 |       1264 |       0 |    0 |  367 |      0 |      0 |    0 |          3 |
+|           (dadddsub_64ns_64ns_64_4_full_dsp_1_U22)             |    bd_0_hls_inst_0_backprop_dadddsub_64ns_64ns_64_4_full_dsp_1 |        325 |        325 |       0 |    0 |  129 |      0 |      0 |    0 |          0 |
+|           backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u     | bd_0_hls_inst_0_backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip |        939 |        939 |       0 |    0 |  238 |      0 |      0 |    0 |          3 |
+|             (backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u) | bd_0_hls_inst_0_backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip |        240 |        240 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|             inst                                               |         bd_0_hls_inst_0_floating_point_v7_1_16__parameterized0 |        699 |        699 |       0 |    0 |  238 |      0 |      0 |    0 |          3 |
+|         ddiv_64ns_64ns_64_14_no_dsp_1_U24                      |         bd_0_hls_inst_0_backprop_ddiv_64ns_64ns_64_14_no_dsp_1 |       3395 |       3339 |       0 |   56 | 1330 |      0 |      0 |    0 |          0 |
+|           (ddiv_64ns_64ns_64_14_no_dsp_1_U24)                  |         bd_0_hls_inst_0_backprop_ddiv_64ns_64ns_64_14_no_dsp_1 |          0 |          0 |       0 |    0 |  128 |      0 |      0 |    0 |          0 |
+|           backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u          |      bd_0_hls_inst_0_backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip |       3395 |       3339 |       0 |   56 | 1202 |      0 |      0 |    0 |          0 |
+|             (backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u)      |      bd_0_hls_inst_0_backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip |        192 |        192 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|             inst                                               |         bd_0_hls_inst_0_floating_point_v7_1_16__parameterized2 |       3203 |       3147 |       0 |   56 | 1202 |      0 |      0 |    0 |          0 |
+|         delta_weights1_U                                       |          bd_0_hls_inst_0_backprop_delta_weights1_RAM_AUTO_1R1W |          0 |          0 |       0 |    0 |    0 |      2 |      0 |    0 |          0 |
+|         delta_weights2_U                                       |          bd_0_hls_inst_0_backprop_delta_weights2_RAM_AUTO_1R1W |          0 |          0 |       0 |    0 |    0 |      0 |      0 |    1 |          0 |
+|         delta_weights3_U                                       |          bd_0_hls_inst_0_backprop_delta_weights3_RAM_AUTO_1R1W |          0 |          0 |       0 |    0 |    0 |      1 |      0 |    0 |          0 |
+|         dexp_64ns_64ns_64_10_full_dsp_1_U25                    |       bd_0_hls_inst_0_backprop_dexp_64ns_64ns_64_10_full_dsp_1 |       1914 |       1901 |       0 |   13 |  775 |      0 |      0 |    0 |         26 |
+|           (dexp_64ns_64ns_64_10_full_dsp_1_U25)                |       bd_0_hls_inst_0_backprop_dexp_64ns_64ns_64_10_full_dsp_1 |        130 |        130 |       0 |    0 |   64 |      0 |      0 |    0 |          0 |
+|           backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u        |    bd_0_hls_inst_0_backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip |       1784 |       1771 |       0 |   13 |  711 |      0 |      0 |    0 |         26 |
+|             inst                                               |         bd_0_hls_inst_0_floating_point_v7_1_16__parameterized3 |       1784 |       1771 |       0 |   13 |  711 |      0 |      0 |    0 |         26 |
+|         dmul_64ns_64ns_64_4_max_dsp_1_U23                      |         bd_0_hls_inst_0_backprop_dmul_64ns_64ns_64_4_max_dsp_1 |        327 |        327 |       0 |    0 |  211 |      0 |      0 |    0 |          8 |
+|           (dmul_64ns_64ns_64_4_max_dsp_1_U23)                  |         bd_0_hls_inst_0_backprop_dmul_64ns_64ns_64_4_max_dsp_1 |        231 |        231 |       0 |    0 |  128 |      0 |      0 |    0 |          0 |
+|           backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u          |      bd_0_hls_inst_0_backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip |         96 |         96 |       0 |    0 |   83 |      0 |      0 |    0 |          8 |
+|             inst                                               |         bd_0_hls_inst_0_floating_point_v7_1_16__parameterized1 |         96 |         96 |       0 |    0 |   83 |      0 |      0 |    0 |          8 |
+|         grp_update_weights_1_fu_1234                           |                      bd_0_hls_inst_0_backprop_update_weights_1 |       3416 |       3391 |       0 |   25 | 2304 |      0 |      0 |    0 |          0 |
+|           (grp_update_weights_1_fu_1234)                       |                      bd_0_hls_inst_0_backprop_update_weights_1 |       1545 |       1545 |       0 |    0 | 1594 |      0 |      0 |    0 |          0 |
+|           dsqrt_64ns_64ns_64_12_no_dsp_1_U4                    |        bd_0_hls_inst_0_backprop_dsqrt_64ns_64ns_64_12_no_dsp_1 |       1871 |       1846 |       0 |   25 |  710 |      0 |      0 |    0 |          0 |
+|             (dsqrt_64ns_64ns_64_12_no_dsp_1_U4)                |        bd_0_hls_inst_0_backprop_dsqrt_64ns_64ns_64_12_no_dsp_1 |        193 |        193 |       0 |    0 |   64 |      0 |      0 |    0 |          0 |
+|             backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u       |     bd_0_hls_inst_0_backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip |       1678 |       1653 |       0 |   25 |  646 |      0 |      0 |    0 |          0 |
+|         mux_3_2_64_1_1_U27                                     |                        bd_0_hls_inst_0_backprop_mux_3_2_64_1_1 |         64 |         64 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|         mux_3_2_64_1_1_U28                                     |                      bd_0_hls_inst_0_backprop_mux_3_2_64_1_1_3 |         64 |         64 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|         mux_3_2_64_1_1_U29                                     |                      bd_0_hls_inst_0_backprop_mux_3_2_64_1_1_4 |         64 |         64 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|         mux_3_2_64_1_1_U32                                     |                      bd_0_hls_inst_0_backprop_mux_3_2_64_1_1_5 |         68 |         68 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|         mux_3_2_64_1_1_U33                                     |                      bd_0_hls_inst_0_backprop_mux_3_2_64_1_1_6 |        192 |        192 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|         oracle_activations1_U                                  |          bd_0_hls_inst_0_backprop_activations1_RAM_AUTO_1R1W_7 |         98 |         34 |      64 |    0 |   64 |      0 |      0 |    0 |          0 |
+|         oracle_activations2_U                                  |          bd_0_hls_inst_0_backprop_activations1_RAM_AUTO_1R1W_8 |        252 |        188 |      64 |    0 |   64 |      0 |      0 |    0 |          0 |
++----------------------------------------------------------------+----------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

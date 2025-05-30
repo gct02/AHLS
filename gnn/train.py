@@ -53,8 +53,7 @@ def evaluate(
     loader: DataLoader,
     epoch: int,
     exp_adjust: bool = False,
-    output_dir: Optional[str] = None,
-    first_checkpoint_epoch: int = 100
+    output_dir: Optional[str] = None
 ) -> float:
     targets, preds = [], []
     
@@ -78,7 +77,7 @@ def evaluate(
     mre = percentage_diff(preds, targets).mean().item()
 
     if mre < evaluate.min_mre:
-        if output_dir and epoch > -1:
+        if output_dir and epoch >= 100:
             model_path = f"{output_dir}/best_model.pt"
             torch.save(obj=model.state_dict(), f=model_path)
             indices = [
@@ -88,19 +87,19 @@ def evaluate(
             with open(f"{output_dir}/predictions.csv", "a") as f:
                 f.write(f"Epoch: {epoch + 1} - MRE: {mre:.2f}%\n")
 
-                print(f"CHECKPOINT: Saving predictions for epoch "
-                      f"{epoch + 1} with MRE: {mre:.2f}%")
+                print(f"\nCHECKPOINT: Saving predictions for epoch "
+                      f"{epoch + 1} with MRE: {mre:.2f}%\n")
                 
                 for i, t, p in zip(indices, targets.tolist(), preds.tolist()):
                     f.write(f"{i},{t},{p}\n")
-                    print(f"Index: {i}, Target: {t}, Prediction: {p}\n")
+                    print(f"Index: {i}, Target: {t}, Prediction: {p}")
 
         evaluate.min_mre = mre
         evaluate.best_epoch = epoch
         evaluate.best_preds = preds
         evaluate.best_model = copy.deepcopy(model.state_dict())
 
-    print(f"MRE at epoch {epoch + 1}: {mre:.2f}%")
+    print(f"\nMRE at epoch {epoch + 1}: {mre:.2f}%")
     print(f"Best MRE so far: {evaluate.min_mre:.2f}%"
           f" at epoch {evaluate.best_epoch + 1}\n")
     
@@ -210,13 +209,20 @@ def main(args: Dict[str, Any]):
     train_benches = [b for b in benches if b != test_bench]
 
     model_dir = f"{output_dir}/models/{target_metric.upper()}_{test_bench}"
+
+    run_number = 1
+    while os.path.exists(f"{model_dir}/run_{run_number}"):
+        run_number += 1
+
+    model_dir = f"{model_dir}/run_{run_number}"
+    os.makedirs(model_dir, exist_ok=True)
+
     pretrained_dir = f"{model_dir}/pretrained"
     model_info_dir = f"{model_dir}/model_info"
     training_info_dir = f"{model_dir}/training_info"
     checkpoint_dir = f"{model_dir}/checkpoint"
     graphs_dir = f"{training_info_dir}/graphs"
 
-    os.makedirs(model_dir, exist_ok=True)
     os.makedirs(model_info_dir, exist_ok=True)
     os.makedirs(pretrained_dir, exist_ok=True)
     os.makedirs(training_info_dir, exist_ok=True)
@@ -378,7 +384,6 @@ def prepare_data_loaders(
     )
     return (train_loader, test_loader, 
             train_dataset.feature_ranges)
-
 
 
 def parse_arguments():

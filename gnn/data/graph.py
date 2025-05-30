@@ -39,7 +39,7 @@ EMBEDDING_DIM = 256
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 80, 
+    "instr": 83, 
     "port": 25,
     "const": 5,
     "region": 13,

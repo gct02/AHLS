@@ -1,0 +1,291 @@
+<profile>
+  <RunData>
+    <RUN_TYPE>synth</RUN_TYPE>
+    <VIVADO_VERSION>v.2023.2</VIVADO_VERSION>
+    <ROOT_MODULE_CELL>bd_0_i/hls_inst</ROOT_MODULE_CELL>
+  </RunData>
+  <TimingReport>
+    <TargetClockPeriod>8.000</TargetClockPeriod>
+    <AchievedClockPeriod>5.022</AchievedClockPeriod>
+    <CLOCK_NAME>ap_clk</CLOCK_NAME>
+    <CP_FINAL>5.022</CP_FINAL>
+    <CP_ROUTE>NA</CP_ROUTE>
+    <CP_SYNTH>5.022</CP_SYNTH>
+    <CP_TARGET>8.000</CP_TARGET>
+    <SLACK_FINAL>2.978</SLACK_FINAL>
+    <SLACK_ROUTE/>
+    <SLACK_SYNTH>2.978</SLACK_SYNTH>
+    <TIMING_MET>TRUE</TIMING_MET>
+    <TNS_FINAL>0.000</TNS_FINAL>
+    <TNS_ROUTE>NA</TNS_ROUTE>
+    <TNS_SYNTH>0.000</TNS_SYNTH>
+    <WNS_FINAL>2.978</WNS_FINAL>
+    <WNS_ROUTE>NA</WNS_ROUTE>
+    <WNS_SYNTH>2.978</WNS_SYNTH>
+  </TimingReport>
+  <AreaReport>
+    <Resources>
+      <BRAM>6</BRAM>
+      <CLB>0</CLB>
+      <DSP>37</DSP>
+      <FF>9559</FF>
+      <LATCH>0</LATCH>
+      <LUT>12917</LUT>
+      <SRL>108</SRL>
+      <URAM>1</URAM>
+    </Resources>
+    <AvailableResources>
+      <BRAM>2688</BRAM>
+      <CLB>0</CLB>
+      <DSP>5952</DSP>
+      <FF>1743360</FF>
+      <LUT>871680</LUT>
+      <URAM>640</URAM>
+    </AvailableResources>
+  </AreaReport>
+  <RtlModules>
+    <RtlModule CELL="inst" DEPTH="0" IS_TOP="1" TYPE="function" MODULENAME="backprop" DISPNAME="inst" RTLNAME="backprop">
+      <SubModules count="19">activations1_U activations2_U dactivations1_U dactivations2_U dadddsub_64ns_64ns_64_4_full_dsp_1_U22 ddiv_64ns_64ns_64_14_no_dsp_1_U24 delta_weights1_U delta_weights2_U delta_weights3_U dexp_64ns_64ns_64_10_full_dsp_1_U25 dmul_64ns_64ns_64_4_max_dsp_1_U23 grp_update_weights_1_fu_1234 mux_3_2_64_1_1_U27 mux_3_2_64_1_1_U28 mux_3_2_64_1_1_U29 mux_3_2_64_1_1_U32 mux_3_2_64_1_1_U33 oracle_activations1_U oracle_activations2_U</SubModules>
+      <Resources BRAM="6" DSP="37" FF="9559" LUT="12917" URAM="1"/>
+      <LocalResources FF="4052" LUT="706"/>
+    </RtlModule>
+    <RtlModule CELL="inst/activations1_U" BINDMODULE="backprop_activations1_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="activations1_RAM_AUTO_1R1W" DISPNAME="activations1_U" RTLNAME="backprop_activations1_RAM_AUTO_1R1W">
+      <Resources FF="64" LUT="313"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="activations1_U" SOURCE="data/benchmarks/backprop/backprop.c:340" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="activations1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/activations2_U" BINDMODULE="backprop_activations1_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="activations1_RAM_AUTO_1R1W" DISPNAME="activations2_U" RTLNAME="backprop_activations1_RAM_AUTO_1R1W">
+      <Resources FF="64" LUT="484"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="activations2_U" SOURCE="data/benchmarks/backprop/backprop.c:341" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="activations2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/dactivations1_U" BINDMODULE="backprop_activations1_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="activations1_RAM_AUTO_1R1W" DISPNAME="dactivations1_U" RTLNAME="backprop_activations1_RAM_AUTO_1R1W">
+      <Resources FF="64" LUT="71"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dactivations1_U" SOURCE="data/benchmarks/backprop/backprop.c:343" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="dactivations1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/dactivations2_U" BINDMODULE="backprop_activations1_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="activations1_RAM_AUTO_1R1W" DISPNAME="dactivations2_U" RTLNAME="backprop_activations1_RAM_AUTO_1R1W">
+      <Resources FF="64" LUT="101"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dactivations2_U" SOURCE="data/benchmarks/backprop/backprop.c:344" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="dactivations2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U22" BINDMODULE="backprop_dadddsub_64ns_64ns_64_4_full_dsp_1" DEPTH="1" TYPE="resource" MODULENAME="dadddsub_64ns_64ns_64_4_full_dsp_1" DISPNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" RTLNAME="backprop_dadddsub_64ns_64ns_64_4_full_dsp_1">
+      <Resources DSP="3" FF="370" LUT="1281"/>
+      <LocalResources FF="129" LUT="325"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="matrix_vector_product_with_bias_input_layer_loop1_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:66" STORAGESUBTYPE="" URAM="0" VARIABLE="add11_i"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="add_bias_to_activations_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:50" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i_i"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_i"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="matrix_vector_product_with_bias_second_layer_loop1_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:84" STORAGESUBTYPE="" URAM="0" VARIABLE="add11_i1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="add_bias_to_activations_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:50" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i_i1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_i1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="matrix_vector_product_with_bias_output_layer_loop1_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:102" STORAGESUBTYPE="" URAM="0" VARIABLE="add11_i2"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="add_bias_to_activations_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:50" STORAGESUBTYPE="" URAM="0" VARIABLE="activations3_0_3"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_i2"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="add_i2"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="soft_max_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:24" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="take_difference_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:116" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_i4"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="get_oracle_activations2_loop1_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:147" STORAGESUBTYPE="" URAM="0" VARIABLE="add11_i3"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="get_oracle_activations1_loop1_1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U22" SOURCE="data/benchmarks/backprop/backprop.c:180" STORAGESUBTYPE="" URAM="0" VARIABLE="add11_i4"/>
+    </RtlModule>
+    <RtlModule CELL="inst/ddiv_64ns_64ns_64_14_no_dsp_1_U24" BINDMODULE="backprop_ddiv_64ns_64ns_64_14_no_dsp_1" DEPTH="1" TYPE="resource" MODULENAME="ddiv_64ns_64ns_64_14_no_dsp_1" DISPNAME="ddiv_64ns_64ns_64_14_no_dsp_1_U24" RTLNAME="backprop_ddiv_64ns_64ns_64_14_no_dsp_1">
+      <Resources FF="1392" LUT="3407"/>
+      <LocalResources FF="128"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op ddiv" DSP="0" ID="" IMPL="fabric" LATENCY="13" LOOP="RELU_loop1" OPTYPE="ddiv" PRAGMA="" RTLNAME="ddiv_64ns_64ns_64_14_no_dsp_1_U24" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="div_i"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op ddiv" DSP="0" ID="" IMPL="fabric" LATENCY="13" LOOP="RELU_loop1" OPTYPE="ddiv" PRAGMA="" RTLNAME="ddiv_64ns_64ns_64_14_no_dsp_1_U24" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="div_i1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op ddiv" DSP="0" ID="" IMPL="fabric" LATENCY="13" LOOP="RELU_loop1" OPTYPE="ddiv" PRAGMA="" RTLNAME="ddiv_64ns_64ns_64_14_no_dsp_1_U24" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="activations3_0_4"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op ddiv" DSP="0" ID="" IMPL="fabric" LATENCY="13" LOOP="soft_max_loop2" OPTYPE="ddiv" PRAGMA="" RTLNAME="ddiv_64ns_64ns_64_14_no_dsp_1_U24" SOURCE="data/benchmarks/backprop/backprop.c:29" STORAGESUBTYPE="" URAM="0" VARIABLE="net_outputs_0"/>
+    </RtlModule>
+    <RtlModule CELL="inst/delta_weights1_U" BINDMODULE="backprop_delta_weights1_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delta_weights1_RAM_AUTO_1R1W" DISPNAME="delta_weights1_U" RTLNAME="backprop_delta_weights1_RAM_AUTO_1R1W">
+      <Resources BRAM="4"/>
+      <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="delta_weights1_U" SOURCE="data/benchmarks/backprop/backprop.c:349" STORAGESIZE="64 832 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="delta_weights1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/delta_weights2_U" BINDMODULE="backprop_delta_weights2_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delta_weights2_RAM_AUTO_1R1W" DISPNAME="delta_weights2_U" RTLNAME="backprop_delta_weights2_RAM_AUTO_1R1W">
+      <Resources URAM="1"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="delta_weights2_U" SOURCE="data/benchmarks/backprop/backprop.c:350" STORAGESIZE="64 4096 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="1" VARIABLE="delta_weights2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/delta_weights3_U" BINDMODULE="backprop_delta_weights3_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delta_weights3_RAM_AUTO_1R1W" DISPNAME="delta_weights3_U" RTLNAME="backprop_delta_weights3_RAM_AUTO_1R1W">
+      <Resources BRAM="2"/>
+      <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="delta_weights3_U" SOURCE="data/benchmarks/backprop/backprop.c:351" STORAGESIZE="64 192 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="delta_weights3"/>
+    </RtlModule>
+    <RtlModule CELL="inst/dexp_64ns_64ns_64_10_full_dsp_1_U25" BINDMODULE="backprop_dexp_64ns_64ns_64_10_full_dsp_1" DEPTH="1" TYPE="resource" MODULENAME="dexp_64ns_64ns_64_10_full_dsp_1" DISPNAME="dexp_64ns_64ns_64_10_full_dsp_1_U25" RTLNAME="backprop_dexp_64ns_64ns_64_10_full_dsp_1">
+      <Resources DSP="26" FF="777" LUT="1975"/>
+      <LocalResources FF="64" LUT="131"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dexp" DSP="26" ID="" IMPL="fulldsp" LATENCY="9" LOOP="RELU_loop1" OPTYPE="dexp" PRAGMA="" RTLNAME="dexp_64ns_64ns_64_10_full_dsp_1_U25" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dexp" DSP="26" ID="" IMPL="fulldsp" LATENCY="9" LOOP="RELU_loop1" OPTYPE="dexp" PRAGMA="" RTLNAME="dexp_64ns_64ns_64_10_full_dsp_1_U25" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dexp" DSP="26" ID="" IMPL="fulldsp" LATENCY="9" LOOP="RELU_loop1" OPTYPE="dexp" PRAGMA="" RTLNAME="dexp_64ns_64ns_64_10_full_dsp_1_U25" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_2"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dexp" DSP="26" ID="" IMPL="fulldsp" LATENCY="9" LOOP="soft_max_loop1" OPTYPE="dexp" PRAGMA="" RTLNAME="dexp_64ns_64ns_64_10_full_dsp_1_U25" SOURCE="data/benchmarks/backprop/backprop.c:24" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_3"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dexp" DSP="26" ID="" IMPL="fulldsp" LATENCY="9" LOOP="soft_max_loop2" OPTYPE="dexp" PRAGMA="" RTLNAME="dexp_64ns_64ns_64_10_full_dsp_1_U25" SOURCE="data/benchmarks/backprop/backprop.c:29" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_4"/>
+    </RtlModule>
+    <RtlModule CELL="inst/dmul_64ns_64ns_64_4_max_dsp_1_U23" BINDMODULE="backprop_dmul_64ns_64ns_64_4_max_dsp_1" DEPTH="1" TYPE="resource" MODULENAME="dmul_64ns_64ns_64_4_max_dsp_1" DISPNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" RTLNAME="backprop_dmul_64ns_64ns_64_4_max_dsp_1">
+      <Resources DSP="8" FF="213" LUT="331"/>
+      <LocalResources FF="128" LUT="231"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1" OPTYPE="add" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:356" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln356"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="matrix_vector_product_with_bias_input_layer_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:66" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8_i"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_i"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="matrix_vector_product_with_bias_second_layer_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:84" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8_i1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_i1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="matrix_vector_product_with_bias_output_layer_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:102" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8_i2"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="dactivations3_0"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="take_difference_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:116" STORAGESUBTYPE="" URAM="0" VARIABLE="output_difference_0"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_delta_matrix_weights3_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:130" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_i4"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_oracle_activations2_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:147" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8_i3"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_oracle_activations2_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:149" STORAGESUBTYPE="" URAM="0" VARIABLE="mul16_i"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_delta_matrix_weights2_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:163" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_i5"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_oracle_activations1_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:180" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8_i4"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_oracle_activations1_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:182" STORAGESUBTYPE="" URAM="0" VARIABLE="mul16_i1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_delta_matrix_weights1_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U23" SOURCE="data/benchmarks/backprop/backprop.c:196" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_i6"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_update_weights_1_fu_1234" DEPTH="1" TYPE="function" MODULENAME="update_weights_1" DISPNAME="grp_update_weights_1_fu_1234" RTLNAME="backprop_update_weights_1">
+      <SubModules count="1">dsqrt_64ns_64ns_64_12_no_dsp_1_U4</SubModules>
+      <Resources FF="2371" LUT="3446"/>
+      <LocalResources FF="1594" LUT="1566"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_update_weights_1_fu_1234/dsqrt_64ns_64ns_64_12_no_dsp_1_U4" BINDMODULE="backprop_dsqrt_64ns_64ns_64_12_no_dsp_1" DEPTH="2" TYPE="resource" MODULENAME="dsqrt_64ns_64ns_64_12_no_dsp_1" DISPNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" RTLNAME="backprop_dsqrt_64ns_64ns_64_12_no_dsp_1">
+      <Resources FF="777" LUT="1880"/>
+      <LocalResources FF="64" LUT="194"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" SOURCE="data/benchmarks/backprop/backprop.c:235" STORAGESUBTYPE="" URAM="0" VARIABLE="norm_1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" SOURCE="data/benchmarks/backprop/backprop.c:236" STORAGESUBTYPE="" URAM="0" VARIABLE="bias_norm"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" SOURCE="data/benchmarks/backprop/backprop.c:273" STORAGESUBTYPE="" URAM="0" VARIABLE="norm_4"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" SOURCE="data/benchmarks/backprop/backprop.c:274" STORAGESUBTYPE="" URAM="0" VARIABLE="bias_norm_3"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" SOURCE="data/benchmarks/backprop/backprop.c:311" STORAGESUBTYPE="" URAM="0" VARIABLE="norm_7"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U4" SOURCE="data/benchmarks/backprop/backprop.c:312" STORAGESUBTYPE="" URAM="0" VARIABLE="bias_norm_6"/>
+    </RtlModule>
+    <RtlModule CELL="inst/mux_3_2_64_1_1_U27" BINDMODULE="backprop_mux_3_2_64_1_1" DEPTH="1" TYPE="rtl" MODULENAME="mux_3_2_64_1_1" DISPNAME="mux_3_2_64_1_1_U27" RTLNAME="backprop_mux_3_2_64_1_1">
+      <Resources LUT="64"/>
+    </RtlModule>
+    <RtlModule CELL="inst/mux_3_2_64_1_1_U28" BINDMODULE="backprop_mux_3_2_64_1_1" DEPTH="1" TYPE="rtl" MODULENAME="mux_3_2_64_1_1" DISPNAME="mux_3_2_64_1_1_U28" RTLNAME="backprop_mux_3_2_64_1_1">
+      <Resources LUT="64"/>
+    </RtlModule>
+    <RtlModule CELL="inst/mux_3_2_64_1_1_U29" BINDMODULE="backprop_mux_3_2_64_1_1" DEPTH="1" TYPE="rtl" MODULENAME="mux_3_2_64_1_1" DISPNAME="mux_3_2_64_1_1_U29" RTLNAME="backprop_mux_3_2_64_1_1">
+      <Resources LUT="64"/>
+    </RtlModule>
+    <RtlModule CELL="inst/mux_3_2_64_1_1_U32" BINDMODULE="backprop_mux_3_2_64_1_1" DEPTH="1" TYPE="rtl" MODULENAME="mux_3_2_64_1_1" DISPNAME="mux_3_2_64_1_1_U32" RTLNAME="backprop_mux_3_2_64_1_1">
+      <Resources LUT="68"/>
+    </RtlModule>
+    <RtlModule CELL="inst/mux_3_2_64_1_1_U33" BINDMODULE="backprop_mux_3_2_64_1_1" DEPTH="1" TYPE="rtl" MODULENAME="mux_3_2_64_1_1" DISPNAME="mux_3_2_64_1_1_U33" RTLNAME="backprop_mux_3_2_64_1_1">
+      <Resources LUT="192"/>
+    </RtlModule>
+    <RtlModule CELL="inst/oracle_activations1_U" BINDMODULE="backprop_activations1_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="activations1_RAM_AUTO_1R1W" DISPNAME="oracle_activations1_U" RTLNAME="backprop_activations1_RAM_AUTO_1R1W">
+      <Resources FF="64" LUT="98"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="oracle_activations1_U" SOURCE="data/benchmarks/backprop/backprop.c:352" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="oracle_activations1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/oracle_activations2_U" BINDMODULE="backprop_activations1_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="activations1_RAM_AUTO_1R1W" DISPNAME="oracle_activations2_U" RTLNAME="backprop_activations1_RAM_AUTO_1R1W">
+      <Resources FF="64" LUT="252"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="oracle_activations2_U" SOURCE="data/benchmarks/backprop/backprop.c:353" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="oracle_activations2"/>
+    </RtlModule>
+  </RtlModules>
+  <TimingPaths>
+    <TPATH DATAPATH_DELAY="4.985" DATAPATH_LOGIC_DELAY="4.901" DATAPATH_NET_DELAY="0.084" ENDPOINT_PIN="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST/ALU_OUT[0]" LOGIC_LEVELS="12" MAX_FANOUT="1" SLACK="2.978" STARTPOINT_PIN="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST/CLK">
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    </TPATH>
+    <TPATH DATAPATH_DELAY="4.985" DATAPATH_LOGIC_DELAY="4.901" DATAPATH_NET_DELAY="0.084" ENDPOINT_PIN="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST/ALU_OUT[10]" LOGIC_LEVELS="12" MAX_FANOUT="1" SLACK="2.978" STARTPOINT_PIN="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST/CLK">
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    </TPATH>
+    <TPATH DATAPATH_DELAY="4.985" DATAPATH_LOGIC_DELAY="4.901" DATAPATH_NET_DELAY="0.084" ENDPOINT_PIN="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST/ALU_OUT[11]" LOGIC_LEVELS="12" MAX_FANOUT="1" SLACK="2.978" STARTPOINT_PIN="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST/CLK">
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    </TPATH>
+    <TPATH DATAPATH_DELAY="4.985" DATAPATH_LOGIC_DELAY="4.901" DATAPATH_NET_DELAY="0.084" ENDPOINT_PIN="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST/ALU_OUT[12]" LOGIC_LEVELS="12" MAX_FANOUT="1" SLACK="2.978" STARTPOINT_PIN="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST/CLK">
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    </TPATH>
+    <TPATH DATAPATH_DELAY="4.985" DATAPATH_LOGIC_DELAY="4.901" DATAPATH_NET_DELAY="0.084" ENDPOINT_PIN="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST/ALU_OUT[13]" LOGIC_LEVELS="12" MAX_FANOUT="1" SLACK="2.978" STARTPOINT_PIN="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST/CLK">
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[0].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[0].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[1].bppDSP[2].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="i_synth/EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP[2].bppDSP[1].use_dsp.use_dsp48e2.iDSP48E2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    </TPATH>
+  </TimingPaths>
+  <VivadoReportFiles>
+    <ReportFile TYPE="design_analysis" PATH="verilog/report/backprop_design_analysis_synth.rpt"/>
+    <ReportFile TYPE="failfast" PATH="verilog/report/backprop_failfast_synth.rpt"/>
+    <ReportFile TYPE="timing" PATH="verilog/report/backprop_timing_synth.rpt"/>
+    <ReportFile TYPE="timing_paths" PATH="verilog/report/backprop_timing_paths_synth.rpt"/>
+    <ReportFile TYPE="utilization" PATH="verilog/report/backprop_utilization_synth.rpt"/>
+    <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/backprop_utilization_hierarchical_synth.rpt"/>
+  </VivadoReportFiles>
+  <GeneralInfo NAME="General Information">
+    <item NAME="Date" VALUE="Thu May 29 16:26:08 -03 2025"/>
+    <item NAME="Version" VALUE="2023.2 (Build 4023990 on Oct 11 2023)"/>
+    <item NAME="Project" VALUE="BACKPROP"/>
+    <item NAME="Solution" VALUE="solution0 (Vivado IP Flow Target)"/>
+    <item NAME="Product family" VALUE="virtexuplusHBM"/>
+    <item NAME="Target device" VALUE="xcu50-fsvh2104-2-e"/>
+  </GeneralInfo>
+  <RunOptions NAME="Run Constraints &amp; Options">
+    <General NAME="Design Constraints &amp; Options">
+      <item NAME="RTL Synthesis target clock" VALUE="8 ns"/>
+      <item NAME="C-Synthesis target clock" VALUE="8 ns"/>
+      <item NAME="C-Synthesis uncertainty" VALUE="27%"/>
+      <item NAME="config_export -ip_xdc_file" VALUE=""/>
+      <item NAME="config_export -ip_xdc_ooc_file" VALUE=""/>
+    </General>
+    <Syn NAME="RTL Synthesis Options">
+      <item NAME="config_export -vivado_synth_strategy" VALUE="default"/>
+      <item NAME="config_export -vivado_synth_design_args" VALUE="-directive sdx_optimization_effort_high"/>
+    </Syn>
+    <Reporting NAME="Reporting Options">
+      <item NAME="config_export -vivado_report_level" VALUE="2"/>
+      <item NAME="config_export -vivado_max_timing_paths" VALUE="10"/>
+    </Reporting>
+  </RunOptions>
+</profile>
+

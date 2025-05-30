@@ -20,12 +20,12 @@ void soft_max(TYPE net_outputs[possible_outputs], TYPE activations[possible_outp
 
     soft_max_loop1:
     for(i=0; i < possible_outputs; i++) {
-        #pragma HLS TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
+        #pragma HLS LOOP_TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
         sum += exp(-activations[i]);
     }
     soft_max_loop2:
     for(i=0; i < possible_outputs; i++) {
-        #pragma HLS TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
+        #pragma HLS LOOP_TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
         net_outputs[i] = exp(-activations[i])/sum;
     }
 }
@@ -34,7 +34,7 @@ void RELU(TYPE activations[nodes_per_layer], TYPE dactivations[nodes_per_layer],
     int i;
     RELU_loop1:
     for( i = 0; i < size; i++) {
-        #pragma HLS TRIPCOUNT min=possible_outputs max=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=possible_outputs max=nodes_per_layer
         dactivations[i] = activations[i]*(1.0-activations[i]);
         activations[i] = 1.0/(1.0+exp(-activations[i]));
     }
@@ -46,7 +46,7 @@ void add_bias_to_activations(TYPE biases[nodes_per_layer],
     int i;
     add_bias_to_activations_loop1:
     for( i = 0; i < size; i++){
-        #pragma HLS TRIPCOUNT min=possible_outputs max=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=possible_outputs max=nodes_per_layer
         activations[i] = activations[i] + biases[i];
     }
 }
@@ -58,11 +58,11 @@ void matrix_vector_product_with_bias_input_layer(TYPE biases[nodes_per_layer],
     int i,j;
     matrix_vector_product_with_bias_input_layer_loop1:
     for(j = 0; j < nodes_per_layer; j++){
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         activations[j] = (TYPE)0.0;
         matrix_vector_product_with_bias_input_layer_loop1_1:
         for (i = 0; i < input_dimension; i++){
-            #pragma HLS TRIPCOUNT min=input_dimension max=input_dimension avg=input_dimension
+            #pragma HLS LOOP_TRIPCOUNT min=input_dimension max=input_dimension avg=input_dimension
             activations[j] += weights[j*input_dimension + i] * input_sample[i];
         }
     }
@@ -76,11 +76,11 @@ void matrix_vector_product_with_bias_second_layer(TYPE biases[nodes_per_layer],
     int i,j;
     matrix_vector_product_with_bias_second_layer_loop1:
     for (i = 0; i < nodes_per_layer; i++){
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         activations[i] = (TYPE)0.0;
         matrix_vector_product_with_bias_second_layer_loop1_1:
         for(j = 0; j < nodes_per_layer; j++){
-            #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+            #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
             activations[i] += weights[i*nodes_per_layer + j] * input_activations[j];
         }
     }
@@ -94,11 +94,11 @@ void matrix_vector_product_with_bias_output_layer(TYPE biases[possible_outputs],
     int i, j;
     matrix_vector_product_with_bias_output_layer_loop1:
     for(j = 0; j < possible_outputs; j++){
-        #pragma HLS TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
+        #pragma HLS LOOP_TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
         activations[j] = (TYPE)0.0;
         matrix_vector_product_with_bias_output_layer_loop1_1:
         for (i = 0; i < nodes_per_layer; i++){
-            #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+            #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
             activations[j] += weights[j*nodes_per_layer + i] * input_activations[i];
         }
     }
@@ -112,7 +112,7 @@ void take_difference(TYPE net_outputs[possible_outputs],
     int i;
     take_difference_loop1:
     for( i = 0; i < possible_outputs; i++){
-        #pragma HLS TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
+        #pragma HLS LOOP_TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
         output_difference[i] = (((net_outputs[i]) - solutions[i]) * -1.0) * dactivations[i];
     }
 }
@@ -123,10 +123,10 @@ void get_delta_matrix_weights3(TYPE delta_weights3[nodes_per_layer*possible_outp
     int i, j;
     get_delta_matrix_weights3_loop1:
     for( i = 0; i < nodes_per_layer; i++) {
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         get_delta_matrix_weights3_loop1_1:
         for( j = 0; j < possible_outputs; j++) {
-            #pragma HLS TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
+            #pragma HLS LOOP_TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
             delta_weights3[i*possible_outputs + j] = last_activations[i] * output_difference[j];
         }
     }
@@ -139,11 +139,11 @@ void get_oracle_activations2(TYPE weights3[nodes_per_layer*possible_outputs],
     int i, j;
     get_oracle_activations2_loop1:
     for( i = 0; i < nodes_per_layer; i++) {
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         oracle_activations[i] = (TYPE)0.0;
         get_oracle_activations2_loop1_1:
         for( j = 0; j < possible_outputs; j++) {
-            #pragma HLS TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
+            #pragma HLS LOOP_TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
             oracle_activations[i] += output_differences[j] * weights3[i*possible_outputs + j];
         }
         oracle_activations[i] = oracle_activations[i] * dactivations[i];
@@ -156,10 +156,10 @@ void get_delta_matrix_weights2(TYPE delta_weights2[nodes_per_layer*nodes_per_lay
     int i, j;
     get_delta_matrix_weights2_loop1:
     for( i = 0; i < nodes_per_layer; i++) {
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         get_delta_matrix_weights2_loop1_1:
         for( j = 0; j < nodes_per_layer; j++) {
-            #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+            #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
             delta_weights2[i*nodes_per_layer + j] = last_activations[i] * output_difference[j];
         }
     }
@@ -172,11 +172,11 @@ void get_oracle_activations1(TYPE weights2[nodes_per_layer*nodes_per_layer],
     int i, j;
     get_oracle_activations1_loop1:
     for( i = 0; i < nodes_per_layer; i++) {
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         oracle_activations[i] = (TYPE)0.0;
         get_oracle_activations1_loop1_1:
         for( j = 0; j < nodes_per_layer; j++) {
-            #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+            #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
             oracle_activations[i] += output_differences[j] * weights2[i*nodes_per_layer + j];
         }
         oracle_activations[i] = oracle_activations[i] * dactivations[i];
@@ -189,10 +189,10 @@ void get_delta_matrix_weights1(TYPE delta_weights1[input_dimension*nodes_per_lay
     int i, j;
     get_delta_matrix_weights1_loop1:
     for( i = 0; i < input_dimension; i++) {
-        #pragma HLS TRIPCOUNT min=input_dimension max=input_dimension avg=input_dimension
+        #pragma HLS LOOP_TRIPCOUNT min=input_dimension max=input_dimension avg=input_dimension
         get_delta_matrix_weights1_loop1_1:
         for( j = 0; j < nodes_per_layer; j++) {
-            #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+            #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
             delta_weights1[i*nodes_per_layer + j] = last_activations[i] * output_difference[j];
         }
     }
@@ -217,17 +217,17 @@ void update_weights(TYPE weights1[input_dimension*nodes_per_layer],
 
     update_weights_loop1:
     for(i=0; i < input_dimension; i++){
-        #pragma HLS TRIPCOUNT min=input_dimension max=input_dimension avg=input_dimension
+        #pragma HLS LOOP_TRIPCOUNT min=input_dimension max=input_dimension avg=input_dimension
         update_weights_loop1_1:
         for(j = 0; j < nodes_per_layer; j++){
-            #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+            #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
             weights1[i*nodes_per_layer + j] -= (d_weights1[i*nodes_per_layer + j] * learning_rate);
             norm += weights1[i*nodes_per_layer + j]*weights1[i*nodes_per_layer + j];
         }
     }
     update_weights_loop2:
     for(i=0; i < nodes_per_layer; i++){
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         biases1[i] -= (d_biases1[i]*learning_rate);
         bias_norm += biases1[i]*biases1[i];
     }
@@ -237,16 +237,16 @@ void update_weights(TYPE weights1[input_dimension*nodes_per_layer],
 
     update_weights_loop3:
     for(i=0; i < input_dimension; i++){
-        #pragma HLS TRIPCOUNT min=input_dimension max=input_dimension avg=input_dimension
+        #pragma HLS LOOP_TRIPCOUNT min=input_dimension max=input_dimension avg=input_dimension
         update_weights_loop3_1:
         for(j = 0; j < nodes_per_layer; j++){
-            #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+            #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
             weights1[i*nodes_per_layer + j] = (weights1[i*nodes_per_layer + j]/norm);
         }
     }
     update_weights_loop4:
     for(i=0; i < nodes_per_layer; i++){
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         biases1[i] = (biases1[i]/bias_norm);
     }
 
@@ -255,17 +255,17 @@ void update_weights(TYPE weights1[input_dimension*nodes_per_layer],
 
     update_weights_loop5:
     for(i=0; i < nodes_per_layer; i++){
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         update_weights_loop5_1:
         for(j = 0; j < nodes_per_layer; j++){
-            #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+            #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
             weights2[i*nodes_per_layer + j] -= (d_weights2[i*nodes_per_layer + j] * learning_rate);
             norm += weights2[i*nodes_per_layer + j]*weights2[i*nodes_per_layer + j];
         }
     }
     update_weights_loop6:
     for(i=0; i < nodes_per_layer; i++){
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         biases2[i] -= (d_biases2[i]*learning_rate);
         bias_norm += biases2[i]*biases2[i];
     }
@@ -275,16 +275,16 @@ void update_weights(TYPE weights1[input_dimension*nodes_per_layer],
 
     update_weights_loop7:
     for(i=0; i < nodes_per_layer; i++){
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         update_weights_loop7_1:
         for(j = 0; j < nodes_per_layer; j++){
-            #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+            #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
             weights2[i*nodes_per_layer + j] = (weights2[i*nodes_per_layer + j]/norm);
         }
     }
     update_weights_loop8:
     for(i=0; i < nodes_per_layer; i++){
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         biases2[i] = (biases2[i]/bias_norm);
     }
 
@@ -293,17 +293,17 @@ void update_weights(TYPE weights1[input_dimension*nodes_per_layer],
 
     update_weights_loop9:
     for(i=0; i < nodes_per_layer; i++){
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         update_weights_loop9_1:
         for(j = 0; j < possible_outputs; j++){
-            #pragma HLS TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
+            #pragma HLS LOOP_TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
             weights3[i*possible_outputs + j] -= (d_weights3[i*possible_outputs + j] * learning_rate);
             norm += weights3[i*possible_outputs + j]*weights3[i*possible_outputs + j];
         }
     }
     update_weights_loop10:
     for(i=0; i<possible_outputs;i++){
-        #pragma HLS TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
+        #pragma HLS LOOP_TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
         biases3[i] -= d_biases3[i]*learning_rate;
         bias_norm += biases3[i]*biases3[i];
     }
@@ -313,16 +313,16 @@ void update_weights(TYPE weights1[input_dimension*nodes_per_layer],
 
     update_weights_loop11:
     for(i=0; i < nodes_per_layer; i++){
-        #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+        #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
         update_weights_loop11_1:
         for(j = 0; j < possible_outputs; j++){
-            #pragma HLS TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
+            #pragma HLS LOOP_TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
             weights3[i*possible_outputs + j] = (weights3[i*possible_outputs + j]/norm);
         }
     }
     update_weights_loop12:
     for(i=0; i < possible_outputs; i++){
-        #pragma HLS TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
+        #pragma HLS LOOP_TRIPCOUNT min=possible_outputs max=possible_outputs avg=possible_outputs
         biases3[i] = (biases3[i]/bias_norm);
     }
 }
@@ -354,10 +354,10 @@ void backprop(TYPE weights1[input_dimension*nodes_per_layer],
 
     backprop_loop1:
     for(i=0; i<training_sets; i++){
-        #pragma HLS TRIPCOUNT min=training_sets max=training_sets avg=training_sets
+        #pragma HLS LOOP_TRIPCOUNT min=training_sets max=training_sets avg=training_sets
         backprop_loop1_1:
         for(j=0;j<nodes_per_layer;j++){
-            #pragma HLS TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
+            #pragma HLS LOOP_TRIPCOUNT min=nodes_per_layer max=nodes_per_layer avg=nodes_per_layer
             activations1[j] = (TYPE)0.0;
             activations2[j] = (TYPE)0.0;
             if(j<possible_outputs){

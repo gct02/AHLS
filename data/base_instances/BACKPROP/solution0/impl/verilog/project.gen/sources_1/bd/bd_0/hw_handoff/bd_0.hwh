@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu May 29 16:17:55 2025" VIVADOVERSION="2023.2">
+
+  <SYSTEMINFO ARCH="virtexuplusHBM" DEVICE="xcu50" NAME="bd_0" PACKAGE="fsvh2104" SPEEDGRADE="-2"/>
+
+  <EXTERNALPORTS>
+    <PORT CLKFREQUENCY="125000000.0" DIR="I" NAME="ap_clk" SIGIS="clk" SIGNAME="External_Ports_ap_clk">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="ap_clk"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="ap_ctrl_done" SIGIS="undef" SIGNAME="hls_inst_ap_done">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="ap_done"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="ap_ctrl_idle" SIGIS="undef" SIGNAME="hls_inst_ap_idle">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="ap_idle"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="ap_ctrl_ready" SIGIS="undef" SIGNAME="hls_inst_ap_ready">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="ap_ready"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="ap_ctrl_start" SIGIS="undef" SIGNAME="hls_inst_ap_start">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="ap_start"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="ap_rst" POLARITY="ACTIVE_HIGH" SIGIS="rst" SIGNAME="External_Ports_ap_rst">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="ap_rst"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="5" NAME="biases1_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_biases1_address0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases1_address0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="biases1_ce0" SIGIS="undef" SIGNAME="hls_inst_biases1_ce0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases1_ce0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="63" NAME="biases1_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_biases1_d0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases1_d0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="63" NAME="biases1_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_biases1_q0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases1_q0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="biases1_we0" SIGIS="undef" SIGNAME="hls_inst_biases1_we0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases1_we0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="5" NAME="biases2_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_biases2_address0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases2_address0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="biases2_ce0" SIGIS="undef" SIGNAME="hls_inst_biases2_ce0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases2_ce0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="63" NAME="biases2_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_biases2_d0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases2_d0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="63" NAME="biases2_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_biases2_q0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases2_q0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="biases2_we0" SIGIS="undef" SIGNAME="hls_inst_biases2_we0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases2_we0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="1" NAME="biases3_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_biases3_address0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases3_address0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="biases3_ce0" SIGIS="undef" SIGNAME="hls_inst_biases3_ce0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases3_ce0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="63" NAME="biases3_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_biases3_d0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases3_d0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="63" NAME="biases3_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_biases3_q0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases3_q0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="biases3_we0" SIGIS="undef" SIGNAME="hls_inst_biases3_we0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="biases3_we0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="11" NAME="training_data_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_training_data_address0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="training_data_address0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="training_data_ce0" SIGIS="undef" SIGNAME="hls_inst_training_data_ce0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="training_data_ce0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="63" NAME="training_data_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_training_data_q0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="training_data_q0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="8" NAME="training_targets_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_training_targets_address0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="training_targets_address0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="training_targets_ce0" SIGIS="undef" SIGNAME="hls_inst_training_targets_ce0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="training_targets_ce0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="63" NAME="training_targets_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_training_targets_q0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="training_targets_q0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="9" NAME="weights1_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_weights1_address0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights1_address0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="weights1_ce0" SIGIS="undef" SIGNAME="hls_inst_weights1_ce0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights1_ce0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="63" NAME="weights1_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_weights1_d0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights1_d0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="63" NAME="weights1_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_weights1_q0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights1_q0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="weights1_we0" SIGIS="undef" SIGNAME="hls_inst_weights1_we0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights1_we0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="11" NAME="weights2_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_weights2_address0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights2_address0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="weights2_ce0" SIGIS="undef" SIGNAME="hls_inst_weights2_ce0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights2_ce0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="63" NAME="weights2_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_weights2_d0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights2_d0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="63" NAME="weights2_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_weights2_q0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights2_q0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="weights2_we0" SIGIS="undef" SIGNAME="hls_inst_weights2_we0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights2_we0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="7" NAME="weights3_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_weights3_address0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights3_address0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="weights3_ce0" SIGIS="undef" SIGNAME="hls_inst_weights3_ce0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights3_ce0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="63" NAME="weights3_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_weights3_d0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights3_d0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="63" NAME="weights3_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_weights3_q0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights3_q0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="weights3_we0" SIGIS="undef" SIGNAME="hls_inst_weights3_we0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="weights3_we0"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES>
+    <BUSINTERFACE BUSNAME="External_Interface_ap_ctrl" NAME="ap_ctrl" TYPE="TARGET">
+      <PORTMAPS>
+        <PORTMAP LOGICAL="done" PHYSICAL="ap_ctrl_done"/>
+        <PORTMAP LOGICAL="idle" PHYSICAL="ap_ctrl_idle"/>
+        <PORTMAP LOGICAL="ready" PHYSICAL="ap_ctrl_ready"/>
+        <PORTMAP LOGICAL="start" PHYSICAL="ap_ctrl_start"/>
+      </PORTMAPS>
+    </BUSINTERFACE>
+  </EXTERNALINTERFACES>
+
+  <MODULES>
+    <MODULE COREREVISION="2114104697" FULLNAME="/hls_inst" HWVERSION="1.0" INSTANCE="hls_inst" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="backprop" VLNV="xilinx.com:hls:backprop:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="bd_0_hls_inst_0"/>
+        <PARAMETER NAME="II" VALUE="x"/>
+        <PARAMETER NAME="clk_period" VALUE="8"/>
+        <PARAMETER NAME="combinational" VALUE="0"/>
+        <PARAMETER NAME="latency" VALUE="50997648"/>
+        <PARAMETER NAME="machine" VALUE="64"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="125000000.0" DIR="I" NAME="ap_clk" SIGIS="clk" SIGNAME="External_Ports_ap_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="ap_clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="ap_done" SIGIS="undef" SIGNAME="hls_inst_ap_done">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_0_imp" PORT="ap_ctrl_done"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="ap_idle" SIGIS="undef" SIGNAME="hls_inst_ap_idle">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_0_imp" PORT="ap_ctrl_idle"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="ap_ready" SIGIS="undef" SIGNAME="hls_inst_ap_ready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_0_imp" PORT="ap_ctrl_ready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="ap_rst" POLARITY="ACTIVE_HIGH" SIGIS="rst" SIGNAME="External_Ports_ap_rst">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="ap_rst"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="ap_start" SIGIS="undef" SIGNAME="hls_inst_ap_start">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_0_imp" PORT="ap_ctrl_start"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="5" NAME="biases1_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_biases1_address0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases1_address0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="biases1_ce0" SIGIS="undef" SIGNAME="hls_inst_biases1_ce0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases1_ce0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="biases1_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_biases1_d0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases1_d0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="biases1_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_biases1_q0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases1_q0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="biases1_we0" SIGIS="undef" SIGNAME="hls_inst_biases1_we0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases1_we0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="5" NAME="biases2_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_biases2_address0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases2_address0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="biases2_ce0" SIGIS="undef" SIGNAME="hls_inst_biases2_ce0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases2_ce0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="biases2_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_biases2_d0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases2_d0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="biases2_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_biases2_q0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases2_q0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="biases2_we0" SIGIS="undef" SIGNAME="hls_inst_biases2_we0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases2_we0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="biases3_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_biases3_address0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases3_address0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="biases3_ce0" SIGIS="undef" SIGNAME="hls_inst_biases3_ce0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases3_ce0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="biases3_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_biases3_d0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases3_d0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="biases3_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_biases3_q0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases3_q0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="biases3_we0" SIGIS="undef" SIGNAME="hls_inst_biases3_we0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="biases3_we0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="11" NAME="training_data_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_training_data_address0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="training_data_address0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="training_data_ce0" SIGIS="undef" SIGNAME="hls_inst_training_data_ce0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="training_data_ce0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="training_data_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_training_data_q0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="training_data_q0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="8" NAME="training_targets_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_training_targets_address0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="training_targets_address0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="training_targets_ce0" SIGIS="undef" SIGNAME="hls_inst_training_targets_ce0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="training_targets_ce0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="training_targets_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_training_targets_q0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="training_targets_q0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="9" NAME="weights1_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_weights1_address0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights1_address0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="weights1_ce0" SIGIS="undef" SIGNAME="hls_inst_weights1_ce0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights1_ce0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="weights1_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_weights1_d0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights1_d0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="weights1_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_weights1_q0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights1_q0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="weights1_we0" SIGIS="undef" SIGNAME="hls_inst_weights1_we0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights1_we0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="11" NAME="weights2_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_weights2_address0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights2_address0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="weights2_ce0" SIGIS="undef" SIGNAME="hls_inst_weights2_ce0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights2_ce0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="weights2_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_weights2_d0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights2_d0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="weights2_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_weights2_q0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights2_q0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="weights2_we0" SIGIS="undef" SIGNAME="hls_inst_weights2_we0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights2_we0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="weights3_address0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_weights3_address0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights3_address0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="weights3_ce0" SIGIS="undef" SIGNAME="hls_inst_weights3_ce0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights3_ce0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="weights3_d0" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_weights3_d0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights3_d0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="weights3_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_weights3_q0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights3_q0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="weights3_we0" SIGIS="undef" SIGNAME="hls_inst_weights3_we0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="weights3_we0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="External_Interface_ap_ctrl" NAME="ap_ctrl" TYPE="TARGET" VLNV="xilinx.com:interface:acc_handshake:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="done" PHYSICAL="ap_done"/>
+            <PORTMAP LOGICAL="idle" PHYSICAL="ap_idle"/>
+            <PORTMAP LOGICAL="ready" PHYSICAL="ap_ready"/>
+            <PORTMAP LOGICAL="start" PHYSICAL="ap_start"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

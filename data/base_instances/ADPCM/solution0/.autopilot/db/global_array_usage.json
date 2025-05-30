@@ -1,0 +1,694 @@
+{
+  "GlobalArrayUsageInfo": [
+    {
+      "Name": "wl_code_table",
+      "Uses": [
+        {
+          "Name": "wl_code_table_addr",
+          "FunctionName": "decode",
+          "Idx": 85
+        },
+        {
+          "Name": "wl_code_table_addr",
+          "FunctionName": "encode",
+          "Idx": 213
+        }
+      ]
+    },
+    {
+      "Name": "tqmf",
+      "Uses": [
+        {
+          "Name": "tqmf_addr",
+          "FunctionName": "adpcm_main",
+          "Idx": 92
+        },
+        {
+          "Name": "tqmf_ptr_2",
+          "FunctionName": "encode",
+          "Idx": 82
+        },
+        {
+          "Name": "tqmf_ptr1",
+          "FunctionName": "encode",
+          "Idx": 79
+        },
+        {
+          "Name": "tqmf_ptr_1",
+          "FunctionName": "encode",
+          "Idx": 37
+        },
+        {
+          "Name": "tqmf_ptr",
+          "FunctionName": "encode",
+          "Idx": 33
+        }
+      ]
+    },
+    {
+      "Name": "quant26bt_pos",
+      "Uses": [
+        {
+          "Name": "quant26bt_pos_addr",
+          "FunctionName": "encode",
+          "Idx": 191
+        }
+      ]
+    },
+    {
+      "Name": "quant26bt_neg",
+      "Uses": [
+        {
+          "Name": "quant26bt_neg_addr",
+          "FunctionName": "encode",
+          "Idx": 193
+        }
+      ]
+    },
+    {
+      "Name": "qq6_code6_table",
+      "Uses": [
+        {
+          "Name": "qq6_code6_table_addr",
+          "FunctionName": "decode",
+          "Idx": 71
+        }
+      ]
+    },
+    {
+      "Name": "qq4_code4_table",
+      "Uses": [
+        {
+          "Name": "qq4_code4_table_addr",
+          "FunctionName": "decode",
+          "Idx": 62
+        },
+        {
+          "Name": "qq4_code4_table_addr",
+          "FunctionName": "encode",
+          "Idx": 199
+        }
+      ]
+    },
+    {
+      "Name": "ilb_table",
+      "Uses": [
+        {
+          "Name": "ilb_table_addr_2",
+          "FunctionName": "decode",
+          "Idx": 300
+        },
+        {
+          "Name": "ilb_table_addr",
+          "FunctionName": "decode",
+          "Idx": 99
+        },
+        {
+          "Name": "ilb_table_addr_1",
+          "FunctionName": "encode",
+          "Idx": 443
+        },
+        {
+          "Name": "ilb_table_addr",
+          "FunctionName": "encode",
+          "Idx": 227
+        }
+      ]
+    },
+    {
+      "Name": "h",
+      "Uses": [
+        {
+          "Name": "h_ptr_2",
+          "FunctionName": "decode",
+          "Idx": 462
+        },
+        {
+          "Name": "h_ptr",
+          "FunctionName": "decode",
+          "Idx": 457
+        },
+        {
+          "Name": "h_ptr_1",
+          "FunctionName": "encode",
+          "Idx": 40
+        },
+        {
+          "Name": "h_ptr",
+          "FunctionName": "encode",
+          "Idx": 34
+        }
+      ]
+    },
+    {
+      "Name": "delay_dltx",
+      "Uses": [
+        {
+          "Name": "delay_dltx_addr",
+          "FunctionName": "adpcm_main",
+          "Idx": 52
+        },
+        {
+          "Name": "delay_dltx_addr",
+          "FunctionName": "encode",
+          "Idx": 264
+        },
+        {
+          "Name": "delay_dltx_addr_1",
+          "FunctionName": "encode",
+          "Idx": 112
+        }
+      ]
+    },
+    {
+      "Name": "delay_dhx",
+      "Uses": [
+        {
+          "Name": "delay_dhx_addr",
+          "FunctionName": "adpcm_main",
+          "Idx": 54
+        },
+        {
+          "Name": "delay_dhx_addr",
+          "FunctionName": "encode",
+          "Idx": 482
+        },
+        {
+          "Name": "delay_dhx_addr_1",
+          "FunctionName": "encode",
+          "Idx": 368
+        }
+      ]
+    },
+    {
+      "Name": "delay_bpl",
+      "Uses": [
+        {
+          "Name": "delay_bpl_addr",
+          "FunctionName": "adpcm_main",
+          "Idx": 72
+        },
+        {
+          "Name": "delay_bpl_addr_1",
+          "FunctionName": "encode",
+          "Idx": 271
+        },
+        {
+          "Name": "delay_bpl_addr",
+          "FunctionName": "encode",
+          "Idx": 248
+        },
+        {
+          "Name": "delay_bpl_addr_2",
+          "FunctionName": "encode",
+          "Idx": 113
+        }
+      ]
+    },
+    {
+      "Name": "delay_bph",
+      "Uses": [
+        {
+          "Name": "delay_bph_addr",
+          "FunctionName": "adpcm_main",
+          "Idx": 74
+        },
+        {
+          "Name": "delay_bph_addr_1",
+          "FunctionName": "encode",
+          "Idx": 489
+        },
+        {
+          "Name": "delay_bph_addr",
+          "FunctionName": "encode",
+          "Idx": 463
+        },
+        {
+          "Name": "delay_bph_addr_2",
+          "FunctionName": "encode",
+          "Idx": 369
+        }
+      ]
+    },
+    {
+      "Name": "decis_levl",
+      "Uses": [
+        {
+          "Name": "decis_levl_addr",
+          "FunctionName": "encode",
+          "Idx": 179
+        }
+      ]
+    },
+    {
+      "Name": "dec_del_dltx",
+      "Uses": [
+        {
+          "Name": "dec_del_dltx_addr",
+          "FunctionName": "adpcm_main",
+          "Idx": 56
+        },
+        {
+          "Name": "dec_del_dltx_addr",
+          "FunctionName": "decode",
+          "Idx": 136
+        },
+        {
+          "Name": "dec_del_dltx_addr_1",
+          "FunctionName": "decode",
+          "Idx": 22
+        }
+      ]
+    },
+    {
+      "Name": "dec_del_dhx",
+      "Uses": [
+        {
+          "Name": "dec_del_dhx_addr",
+          "FunctionName": "adpcm_main",
+          "Idx": 58
+        },
+        {
+          "Name": "dec_del_dhx_addr",
+          "FunctionName": "decode",
+          "Idx": 339
+        },
+        {
+          "Name": "dec_del_dhx_addr_1",
+          "FunctionName": "decode",
+          "Idx": 240
+        }
+      ]
+    },
+    {
+      "Name": "dec_del_bpl",
+      "Uses": [
+        {
+          "Name": "dec_del_bpl_addr",
+          "FunctionName": "adpcm_main",
+          "Idx": 76
+        },
+        {
+          "Name": "dec_del_bpl_addr_1",
+          "FunctionName": "decode",
+          "Idx": 143
+        },
+        {
+          "Name": "dec_del_bpl_addr",
+          "FunctionName": "decode",
+          "Idx": 120
+        },
+        {
+          "Name": "dec_del_bpl_addr_2",
+          "FunctionName": "decode",
+          "Idx": 23
+        }
+      ]
+    },
+    {
+      "Name": "dec_del_bph",
+      "Uses": [
+        {
+          "Name": "dec_del_bph_addr",
+          "FunctionName": "adpcm_main",
+          "Idx": 78
+        },
+        {
+          "Name": "dec_del_bph_addr_1",
+          "FunctionName": "decode",
+          "Idx": 346
+        },
+        {
+          "Name": "dec_del_bph_addr",
+          "FunctionName": "decode",
+          "Idx": 320
+        },
+        {
+          "Name": "dec_del_bph_addr_2",
+          "FunctionName": "decode",
+          "Idx": 241
+        }
+      ]
+    },
+    {
+      "Name": "accumd",
+      "Uses": [
+        {
+          "Name": "accumd_addr",
+          "FunctionName": "adpcm_main",
+          "Idx": 108
+        },
+        {
+          "Name": "ad_ptr1",
+          "FunctionName": "decode",
+          "Idx": 521
+        },
+        {
+          "Name": "ad_ptr_1",
+          "FunctionName": "decode",
+          "Idx": 516
+        },
+        {
+          "Name": "ad_ptr",
+          "FunctionName": "decode",
+          "Idx": 453
+        }
+      ]
+    },
+    {
+      "Name": "accumc",
+      "Uses": [
+        {
+          "Name": "accumc_addr",
+          "FunctionName": "adpcm_main",
+          "Idx": 106
+        },
+        {
+          "Name": "ac_ptr_1",
+          "FunctionName": "decode",
+          "Idx": 520
+        },
+        {
+          "Name": "ac_ptr1",
+          "FunctionName": "decode",
+          "Idx": 519
+        },
+        {
+          "Name": "ac_ptr",
+          "FunctionName": "decode",
+          "Idx": 454
+        }
+      ]
+    },
+    {
+      "Name": "empty",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 51
+        }
+      ]
+    },
+    {
+      "Name": "empty_0",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 71
+        }
+      ]
+    },
+    {
+      "Name": "empty_1",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 105
+        }
+      ]
+    },
+    {
+      "Name": "empty_2",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "decode",
+          "Idx": 452
+        }
+      ]
+    },
+    {
+      "Name": "empty_3",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "decode",
+          "Idx": 513
+        }
+      ]
+    },
+    {
+      "Name": "empty_4",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 2
+        }
+      ]
+    },
+    {
+      "Name": "empty_5",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 6
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 2
+        }
+      ]
+    },
+    {
+      "Name": "empty_6",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "decode",
+          "Idx": 319
+        },
+        {
+          "Name": "",
+          "FunctionName": "decode",
+          "Idx": 119
+        },
+        {
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 462
+        },
+        {
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 247
+        }
+      ]
+    },
+    {
+      "Name": "empty_7",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 30
+        }
+      ]
+    },
+    {
+      "Name": "empty_8",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 76
+        }
+      ]
+    },
+    {
+      "Name": "empty_9",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "decode",
+          "Idx": 238
+        },
+        {
+          "Name": "",
+          "FunctionName": "decode",
+          "Idx": 20
+        },
+        {
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 366
+        },
+        {
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 110
+        }
+      ]
+    },
+    {
+      "Name": "empty_10",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 178
+        }
+      ]
+    },
+    {
+      "Name": "empty_11",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 1
+        }
+      ]
+    },
+    {
+      "Name": "empty_12",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 91
+        }
+      ]
+    },
+    {
+      "Name": "empty_13",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 121
+        }
+      ]
+    },
+    {
+      "Name": "empty_14",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "adpcm_main",
+          "Idx": 142
+        }
+      ]
+    },
+    {
+      "Name": "empty_15",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "decode",
+          "Idx": 338
+        },
+        {
+          "Name": "",
+          "FunctionName": "decode",
+          "Idx": 135
+        },
+        {
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 481
+        },
+        {
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 263
+        }
+      ]
+    }
+  ]
+}

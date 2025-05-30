@@ -1,0 +1,315 @@
+<profile>
+<RunData>
+  <RUN_TYPE>impl</RUN_TYPE>
+  <VIVADO_VERSION>v.2023.2</VIVADO_VERSION>
+  <ROOT_MODULE_CELL>bd_0_i/hls_inst</ROOT_MODULE_CELL>
+</RunData>
+<TimingReport>
+  <TargetClockPeriod>8.000</TargetClockPeriod>
+  <AchievedClockPeriod>3.592</AchievedClockPeriod>
+  <CLOCK_NAME>ap_clk</CLOCK_NAME>
+  <CP_FINAL>3.592</CP_FINAL>
+  <CP_ROUTE>3.592</CP_ROUTE>
+  <CP_SYNTH>2.710</CP_SYNTH>
+  <CP_TARGET>8.000</CP_TARGET>
+  <SLACK_FINAL>4.408</SLACK_FINAL>
+  <SLACK_ROUTE>4.408</SLACK_ROUTE>
+  <SLACK_SYNTH>5.290</SLACK_SYNTH>
+  <TIMING_MET>TRUE</TIMING_MET>
+  <TNS_FINAL>0.000</TNS_FINAL>
+  <TNS_ROUTE>0.000</TNS_ROUTE>
+  <TNS_SYNTH>0.000</TNS_SYNTH>
+  <WNS_FINAL>4.408</WNS_FINAL>
+  <WNS_ROUTE>4.408</WNS_ROUTE>
+  <WNS_SYNTH>5.290</WNS_SYNTH>
+</TimingReport>
+<AreaReport>
+  <Resources>
+    <BRAM>4</BRAM>
+    <CLB>508</CLB>
+    <DSP>40</DSP>
+    <FF>2189</FF>
+    <LATCH>0</LATCH>
+    <LUT>2859</LUT>
+    <SRL>9</SRL>
+    <URAM>0</URAM>
+  </Resources>
+  <AvailableResources>
+    <BRAM>2688</BRAM>
+    <CLB>108960</CLB>
+    <DSP>5952</DSP>
+    <FF>1743360</FF>
+    <LUT>871680</LUT>
+    <URAM>640</URAM>
+  </AvailableResources>
+</AreaReport>
+<RtlModules>
+  <RtlModule CELL="inst" DEPTH="0" FILE_NAME="bd_0_hls_inst_0.v" ORIG_REF_NAME="Gsm_LPC_Analysis" TOP_CELL="bd_0_i/hls_inst/inst">
+    <SubModules count="5">L_ACF_U bitoff_U grp_Autocorrelation_fu_103 grp_Quantization_and_coding_fu_122 grp_Reflection_coefficients_fu_113</SubModules>
+    <Resources BRAM="4" DSP="40" FF="2189" LUT="2859" LUTRAM="24" LogicLUT="2826" RAMB36="2" SRL="9"/>
+    <LocalResources FF="22" LUT="9" LogicLUT="9"/>
+  </RtlModule>
+  <RtlModule CELL="inst/L_ACF_U" BINDMODULE="Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W" DEPTH="1" FILE_NAME="Gsm_LPC_Analysis.v" ORIG_REF_NAME="Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W">
+    <Resources BRAM="4" LUT="319" LogicLUT="319" RAMB36="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/bitoff_U" BINDMODULE="Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R" DEPTH="1" FILE_NAME="Gsm_LPC_Analysis.v" ORIG_REF_NAME="Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R">
+    <Resources FF="16" LUT="21" LogicLUT="21"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103" DEPTH="1" FILE_NAME="Gsm_LPC_Analysis.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Autocorrelation">
+    <SubModules count="23">am_addmul_16s_16s_16s_33_4_1_U56 am_addmul_16s_16s_16s_33_4_1_U65 ama_addmuladd_16s_16s_16s_32s_33_4_1_U54 ama_addmuladd_16s_16s_16s_32s_33_4_1_U55 ama_addmuladd_16s_16s_16s_33s_34_4_1_U64 ama_addmuladd_16s_16s_16s_33s_34_4_1_U66 ama_addmuladd_16s_16s_16s_33s_34_4_1_U67 grp_Autocorrelation_Pipeline_Autocorrelation_label0_fu_359 grp_Autocorrelation_Pipeline_Autocorrelation_label2_fu_373 grp_Autocorrelation_Pipeline_Autocorrelation_label3_fu_379 grp_Autocorrelation_Pipeline_Autocorrelation_label4_fu_404 grp_Autocorrelation_Pipeline_Autocorrelation_label5_fu_410 grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_366 mac_muladd_16s_16s_32s_33_4_1_U57 mac_muladd_16s_16s_32s_33_4_1_U58 mac_muladd_16s_16s_32s_33_4_1_U59 mac_muladd_16s_16s_32s_33_4_1_U60 mac_muladd_16s_16s_32s_33_4_1_U61 mac_muladd_16s_16s_32s_33_4_1_U68 mac_muladd_16s_16s_33s_33_4_1_U62 mac_muladd_16s_16s_33s_33_4_1_U63 mul_16s_16s_32_1_1_U45 mul_16s_16s_32_1_1_U51</SubModules>
+    <Resources DSP="34" FF="1714" LUT="1700" LogicLUT="1691" SRL="9"/>
+    <LocalResources DSP="4" FF="1006" LUT="447" LogicLUT="447"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/am_addmul_16s_16s_16s_33_4_1_U56" BINDMODULE="Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1">
+    <Resources DSP="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/am_addmul_16s_16s_16s_33_4_1_U65" BINDMODULE="Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1">
+    <Resources DSP="1" LUT="1" LogicLUT="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/ama_addmuladd_16s_16s_16s_32s_33_4_1_U54" BINDMODULE="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1">
+    <Resources DSP="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/ama_addmuladd_16s_16s_16s_32s_33_4_1_U55" BINDMODULE="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1">
+    <Resources DSP="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/ama_addmuladd_16s_16s_16s_33s_34_4_1_U64" BINDMODULE="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1">
+    <Resources DSP="1" LUT="1" LogicLUT="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/ama_addmuladd_16s_16s_16s_33s_34_4_1_U66" BINDMODULE="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1">
+    <Resources DSP="1" LUT="3" LogicLUT="3"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/ama_addmuladd_16s_16s_16s_33s_34_4_1_U67" BINDMODULE="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1">
+    <Resources DSP="1" LUT="3" LogicLUT="3"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label0_fu_359" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label0">
+    <SubModules count="1">flow_control_loop_pipe_sequential_init_U</SubModules>
+    <Resources FF="27" LUT="73" LogicLUT="73"/>
+    <LocalResources FF="25" LUT="56" LogicLUT="56"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label0_fu_359/flow_control_loop_pipe_sequential_init_U" BINDMODULE="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init" DEPTH="3" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label0.v" ORIG_REF_NAME="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="17" LogicLUT="17"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label2_fu_373" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label2">
+    <SubModules count="1">flow_control_loop_pipe_sequential_init_U</SubModules>
+    <Resources FF="7" LUT="21" LogicLUT="21"/>
+    <LocalResources FF="5"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label2_fu_373/flow_control_loop_pipe_sequential_init_U" BINDMODULE="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init" DEPTH="3" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label2.v" ORIG_REF_NAME="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="21" LogicLUT="21"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label3_fu_379" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3">
+    <SubModules count="5">flow_control_loop_pipe_sequential_init_U mul_16s_16s_32_1_1_U10 mul_16s_16s_32_1_1_U11 mul_16s_16s_32_1_1_U8 mul_16s_16s_32_1_1_U9</SubModules>
+    <Resources DSP="4" FF="610" LUT="926" LogicLUT="926"/>
+    <LocalResources FF="608" LUT="289" LogicLUT="289"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label3_fu_379/flow_control_loop_pipe_sequential_init_U" BINDMODULE="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init" DEPTH="3" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.v" ORIG_REF_NAME="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="636" LogicLUT="636"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label3_fu_379/mul_16s_16s_32_1_1_U10" BINDMODULE="Gsm_LPC_Analysis_mul_16s_16s_32_1_1" DEPTH="3" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mul_16s_16s_32_1_1">
+    <Resources DSP="1" LUT="93" LogicLUT="93"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label3_fu_379/mul_16s_16s_32_1_1_U11" BINDMODULE="Gsm_LPC_Analysis_mul_16s_16s_32_1_1" DEPTH="3" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mul_16s_16s_32_1_1">
+    <Resources DSP="1" LUT="157" LogicLUT="157"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label3_fu_379/mul_16s_16s_32_1_1_U8" BINDMODULE="Gsm_LPC_Analysis_mul_16s_16s_32_1_1" DEPTH="3" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mul_16s_16s_32_1_1">
+    <Resources DSP="1" LUT="63" LogicLUT="63"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label3_fu_379/mul_16s_16s_32_1_1_U9" BINDMODULE="Gsm_LPC_Analysis_mul_16s_16s_32_1_1" DEPTH="3" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mul_16s_16s_32_1_1">
+    <Resources DSP="1" LUT="63" LogicLUT="63"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label4_fu_404" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label4">
+    <SubModules count="1">flow_control_loop_pipe_sequential_init_U</SubModules>
+    <Resources FF="12" LUT="16" LogicLUT="16"/>
+    <LocalResources FF="10" LUT="1" LogicLUT="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label4_fu_404/flow_control_loop_pipe_sequential_init_U" BINDMODULE="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init" DEPTH="3" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label4.v" ORIG_REF_NAME="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="15" LogicLUT="15"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label5_fu_410" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label5">
+    <SubModules count="1">flow_control_loop_pipe_sequential_init_U</SubModules>
+    <Resources FF="22" LUT="58" LogicLUT="58"/>
+    <LocalResources FF="20" LUT="35" LogicLUT="35"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_Autocorrelation_label5_fu_410/flow_control_loop_pipe_sequential_init_U" BINDMODULE="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init" DEPTH="3" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label5.v" ORIG_REF_NAME="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="23" LogicLUT="23"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_366" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1">
+    <SubModules count="2">flow_control_loop_pipe_sequential_init_U mac_muladd_16s_15ns_15ns_31_4_1_U3</SubModules>
+    <Resources DSP="1" FF="30" LUT="42" LogicLUT="33" SRL="9"/>
+    <LocalResources FF="28" LUT="26" LogicLUT="17" SRL="9"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_366/flow_control_loop_pipe_sequential_init_U" BINDMODULE="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init" DEPTH="3" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1.v" ORIG_REF_NAME="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="16" LogicLUT="16"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_366/mac_muladd_16s_15ns_15ns_31_4_1_U3" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1" DEPTH="3" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1">
+    <Resources DSP="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/mac_muladd_16s_16s_32s_33_4_1_U57" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1">
+    <Resources DSP="2" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/mac_muladd_16s_16s_32s_33_4_1_U58" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1">
+    <Resources DSP="2" LUT="1" LogicLUT="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/mac_muladd_16s_16s_32s_33_4_1_U59" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1">
+    <Resources DSP="2" LUT="5" LogicLUT="5"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/mac_muladd_16s_16s_32s_33_4_1_U60" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1">
+    <Resources DSP="2" LUT="1" LogicLUT="1"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/mac_muladd_16s_16s_32s_33_4_1_U61" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1">
+    <Resources DSP="2" LUT="8" LogicLUT="8"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/mac_muladd_16s_16s_32s_33_4_1_U68" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1">
+    <Resources DSP="2" LUT="33" LogicLUT="33"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/mac_muladd_16s_16s_33s_33_4_1_U62" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1">
+    <Resources DSP="1" LUT="2" LogicLUT="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/mac_muladd_16s_16s_33s_33_4_1_U63" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1">
+    <Resources DSP="1" LUT="2" LogicLUT="2"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U45" BINDMODULE="Gsm_LPC_Analysis_mul_16s_16s_32_1_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mul_16s_16s_32_1_1">
+    <Resources DSP="1" LUT="33" LogicLUT="33"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51" BINDMODULE="Gsm_LPC_Analysis_mul_16s_16s_32_1_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Autocorrelation.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mul_16s_16s_32_1_1">
+    <Resources DSP="1" LUT="31" LogicLUT="31"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Quantization_and_coding_fu_122" DEPTH="1" FILE_NAME="Gsm_LPC_Analysis.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Quantization_and_coding">
+    <SubModules count="3">mul_16s_15ns_31_1_1_U89 mul_16s_15ns_31_1_1_U90 mul_16s_15ns_31_1_1_U91</SubModules>
+    <Resources DSP="3" FF="76" LUT="231" LogicLUT="231"/>
+    <LocalResources FF="76" LUT="191" LogicLUT="191"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Quantization_and_coding_fu_122/mul_16s_15ns_31_1_1_U89" BINDMODULE="Gsm_LPC_Analysis_mul_16s_15ns_31_1_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Quantization_and_coding.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mul_16s_15ns_31_1_1">
+    <Resources DSP="1" LUT="13" LogicLUT="13"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Quantization_and_coding_fu_122/mul_16s_15ns_31_1_1_U90" BINDMODULE="Gsm_LPC_Analysis_mul_16s_15ns_31_1_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Quantization_and_coding.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mul_16s_15ns_31_1_1">
+    <Resources DSP="1" LUT="12" LogicLUT="12"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Quantization_and_coding_fu_122/mul_16s_15ns_31_1_1_U91" BINDMODULE="Gsm_LPC_Analysis_mul_16s_15ns_31_1_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Quantization_and_coding.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mul_16s_15ns_31_1_1">
+    <Resources DSP="1" LUT="15" LogicLUT="15"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Reflection_coefficients_fu_113" DEPTH="1" FILE_NAME="Gsm_LPC_Analysis.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Reflection_coefficients">
+    <SubModules count="7">ACF_U K_U P_U grp_Reflection_coefficients_Pipeline_gsm_div_label0_fu_402 mac_muladd_16s_16s_15ns_31_4_1_U81 mac_muladd_16s_16s_15ns_31_4_1_U82 mac_muladd_16s_16s_15ns_31_4_1_U83</SubModules>
+    <Resources DSP="3" FF="361" LUT="583" LUTRAM="24" LogicLUT="559"/>
+    <LocalResources FF="212" LUT="167" LogicLUT="167"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Reflection_coefficients_fu_113/ACF_U" BINDMODULE="Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Reflection_coefficients.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W">
+    <Resources FF="16" LUT="13" LUTRAM="8" LogicLUT="5"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Reflection_coefficients_fu_113/K_U" BINDMODULE="Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Reflection_coefficients.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W">
+    <Resources FF="16" LUT="17" LUTRAM="8" LogicLUT="9"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Reflection_coefficients_fu_113/P_U" BINDMODULE="Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Reflection_coefficients.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W">
+    <Resources FF="16" LUT="51" LUTRAM="8" LogicLUT="43"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Reflection_coefficients_fu_113/grp_Reflection_coefficients_Pipeline_gsm_div_label0_fu_402" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Reflection_coefficients.v" ORIG_REF_NAME="Gsm_LPC_Analysis_Reflection_coefficients_Pipeline_gsm_div_label0">
+    <SubModules count="1">flow_control_loop_pipe_sequential_init_U</SubModules>
+    <Resources FF="101" LUT="144" LogicLUT="144"/>
+    <LocalResources FF="99" LUT="124" LogicLUT="124"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Reflection_coefficients_fu_113/grp_Reflection_coefficients_Pipeline_gsm_div_label0_fu_402/flow_control_loop_pipe_sequential_init_U" BINDMODULE="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init" DEPTH="3" FILE_NAME="Gsm_LPC_Analysis_Reflection_coefficients_Pipeline_gsm_div_label0.v" ORIG_REF_NAME="Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init">
+    <Resources FF="2" LUT="20" LogicLUT="20"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Reflection_coefficients_fu_113/mac_muladd_16s_16s_15ns_31_4_1_U81" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Reflection_coefficients.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1">
+    <Resources DSP="1" LUT="54" LogicLUT="54"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Reflection_coefficients_fu_113/mac_muladd_16s_16s_15ns_31_4_1_U82" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Reflection_coefficients.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1">
+    <Resources DSP="1" LUT="88" LogicLUT="88"/>
+  </RtlModule>
+  <RtlModule CELL="inst/grp_Reflection_coefficients_fu_113/mac_muladd_16s_16s_15ns_31_4_1_U83" BINDMODULE="Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1" DEPTH="2" FILE_NAME="Gsm_LPC_Analysis_Reflection_coefficients.v" ORIG_REF_NAME="Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1">
+    <Resources DSP="1" LUT="50" LogicLUT="50"/>
+  </RtlModule>
+</RtlModules>
+<TimingPaths>
+  <TPATH DATAPATH_DELAY="3.417" DATAPATH_LOGIC_DELAY="0.132" DATAPATH_NET_DELAY="3.285" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mac_muladd_16s_16s_32s_33_4_1_U61/Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1_DSP48_3_U/p_reg_reg/DSP_A_B_DATA_INST/CEB1" LOGIC_LEVELS="1" MAX_FANOUT="64" SLACK="4.408" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/ap_CS_fsm_reg[9]/C">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/ap_CS_fsm_reg[9]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1054"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mac_muladd_16s_16s_32s_33_4_1_U58/Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1_DSP48_3_U/p_reg_reg_i_1" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mac_muladd_16s_16s_32s_33_4_1_U61/Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1_DSP48_3_U/p_reg_reg/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="3.506" DATAPATH_LOGIC_DELAY="2.217" DATAPATH_NET_DELAY="1.289" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[63]/D" LOGIC_LEVELS="15" MAX_FANOUT="2" SLACK="4.444" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST/CLK">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1749"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_14" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="1749"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[7]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[23]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[31]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[39]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[47]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[55]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[63]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[63]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="554"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="3.505" DATAPATH_LOGIC_DELAY="2.217" DATAPATH_NET_DELAY="1.288" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[61]/D" LOGIC_LEVELS="15" MAX_FANOUT="2" SLACK="4.445" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST/CLK">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1749"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_14" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="1749"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[7]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[23]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[31]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[39]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[47]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[55]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[63]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[61]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="554"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="3.493" DATAPATH_LOGIC_DELAY="2.204" DATAPATH_NET_DELAY="1.289" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[62]/D" LOGIC_LEVELS="15" MAX_FANOUT="2" SLACK="4.457" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST/CLK">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1749"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_14" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="1749"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[7]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[23]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[31]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[39]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[47]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[55]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[63]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[62]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="554"/>
+  </TPATH>
+  <TPATH DATAPATH_DELAY="3.475" DATAPATH_LOGIC_DELAY="2.187" DATAPATH_NET_DELAY="1.288" ENDPOINT_PIN="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[60]/D" LOGIC_LEVELS="15" MAX_FANOUT="2" SLACK="4.475" STARTPOINT_PIN="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST/CLK">
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1749"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_14" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="1749"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[7]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[23]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[31]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[39]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[47]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[55]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/L_ACF_U/add_ln124_reg_1688_reg[63]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="232"/>
+    <CELL  NAME="bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[60]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="554"/>
+  </TPATH>
+</TimingPaths>
+<VivadoReportFiles>
+  <ReportFile TYPE="design_analysis" PATH="verilog/report/Gsm_LPC_Analysis_design_analysis_routed.rpt"/>
+  <ReportFile TYPE="failfast" PATH="verilog/report/Gsm_LPC_Analysis_failfast_routed.rpt"/>
+  <ReportFile TYPE="status" PATH="verilog/report/Gsm_LPC_Analysis_status_routed.rpt"/>
+  <ReportFile TYPE="timing" PATH="verilog/report/Gsm_LPC_Analysis_timing_routed.rpt"/>
+  <ReportFile TYPE="timing_paths" PATH="verilog/report/Gsm_LPC_Analysis_timing_paths_routed.rpt"/>
+  <ReportFile TYPE="utilization" PATH="verilog/report/Gsm_LPC_Analysis_utilization_routed.rpt"/>
+  <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/Gsm_LPC_Analysis_utilization_hierarchical_routed.rpt"/>
+</VivadoReportFiles>
+</profile>

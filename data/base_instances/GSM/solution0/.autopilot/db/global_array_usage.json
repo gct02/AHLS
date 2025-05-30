@@ -1,0 +1,569 @@
+{
+  "GlobalArrayUsageInfo": [
+    {
+      "Name": "bitoff",
+      "Uses": [
+        {
+          "Name": "bitoff_addr_5",
+          "FunctionName": "Autocorrelation",
+          "Idx": 41
+        },
+        {
+          "Name": "bitoff_addr_4",
+          "FunctionName": "Autocorrelation",
+          "Idx": 36
+        },
+        {
+          "Name": "bitoff_addr",
+          "FunctionName": "Autocorrelation",
+          "Idx": 29
+        },
+        {
+          "Name": "bitoff_addr_3",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 59
+        },
+        {
+          "Name": "bitoff_addr_2",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 54
+        },
+        {
+          "Name": "bitoff_addr_1",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 48
+        },
+        {
+          "Name": "bitoff_addr",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 42
+        }
+      ]
+    },
+    {
+      "Name": "empty",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation",
+          "Idx": 10
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation",
+          "Idx": 10
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation",
+          "Idx": 10
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation",
+          "Idx": 10
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation",
+          "Idx": 10
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation",
+          "Idx": 10
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label0",
+          "Idx": 15
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label0",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label0",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label0",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label0",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label0",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label0",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label2",
+          "Idx": 8
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3",
+          "Idx": 67
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3",
+          "Idx": 11
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3",
+          "Idx": 11
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3",
+          "Idx": 11
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3",
+          "Idx": 11
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3",
+          "Idx": 11
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3",
+          "Idx": 11
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label4",
+          "Idx": 8
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5",
+          "Idx": 12
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1",
+          "Idx": 12
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 19
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Quantization_and_coding",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "Quantization_and_coding",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "Quantization_and_coding",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "Quantization_and_coding",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "Quantization_and_coding",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "Quantization_and_coding",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients_Pipeline_gsm_div_label0",
+          "Idx": 18
+        }
+      ]
+    },
+    {
+      "Name": "empty_0",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 2
+        }
+      ]
+    },
+    {
+      "Name": "empty_1",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 21
+        }
+      ]
+    },
+    {
+      "Name": "empty_2",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5",
+          "Idx": 14
+        }
+      ]
+    },
+    {
+      "Name": "empty_3",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label4",
+          "Idx": 10
+        }
+      ]
+    },
+    {
+      "Name": "empty_4",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3",
+          "Idx": 69
+        }
+      ]
+    },
+    {
+      "Name": "empty_5",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label2",
+          "Idx": 10
+        }
+      ]
+    },
+    {
+      "Name": "empty_6",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 125
+        }
+      ]
+    },
+    {
+      "Name": "empty_7",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients_Pipeline_gsm_div_label0",
+          "Idx": 20
+        }
+      ]
+    },
+    {
+      "Name": "empty_8",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 222
+        }
+      ]
+    },
+    {
+      "Name": "empty_9",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation",
+          "Idx": 10
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label0",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3",
+          "Idx": 11
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 5
+        },
+        {
+          "Name": "",
+          "FunctionName": "Gsm_LPC_Analysis",
+          "Idx": 3
+        },
+        {
+          "Name": "",
+          "FunctionName": "Quantization_and_coding",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 1
+        }
+      ]
+    },
+    {
+      "Name": "empty_10",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 150
+        }
+      ]
+    },
+    {
+      "Name": "empty_11",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 111
+        }
+      ]
+    },
+    {
+      "Name": "empty_12",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 94
+        }
+      ]
+    },
+    {
+      "Name": "empty_13",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1",
+          "Idx": 14
+        }
+      ]
+    },
+    {
+      "Name": "empty_14",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label0",
+          "Idx": 17
+        }
+      ]
+    },
+    {
+      "Name": "empty_15",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 19
+        }
+      ]
+    },
+    {
+      "Name": "empty_16",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "Reflection_coefficients",
+          "Idx": 175
+        }
+      ]
+    }
+  ]
+}
