@@ -234,12 +234,13 @@ def main(args: Dict[str, Any]):
 
     model_args = {
         'in_channels': NODE_FEATURE_DIMS,
-        'hidden_channels': EMBEDDING_DIM,
+        'hidden_channels': [EMBEDDING_DIM, 192, 128, 64],
         'num_layers': 4,
         'out_channels': 1,
         'metadata': METADATA,
-        'dropout_gnn': 0.3,
-        'dropout_mlp': 0.3
+        'heads': [8, 8, 4, 4],
+        'dropout_gnn': 0.1,
+        'dropout_mlp': 0.2
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
 
@@ -267,16 +268,18 @@ def main(args: Dict[str, Any]):
     with open(f"{model_info_dir}/feature_ranges.pkl", 'wb') as f:
         pickle.dump(feat_ranges, f)
 
-    optimizer = torch.optim.Adam(
+    optimizer = torch.optim.AdamW(
         model.parameters(), 
         lr=learning_rate, 
-        betas=betas
+        betas=betas,
+        weight_decay=5e-4
     )
 
     total_steps = epochs * len(train_loader)
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-        optimizer,
-        T_max=total_steps,
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
+        optimizer, 
+        T_0=total_steps // 10, 
+        T_mult=2, 
         eta_min=1e-5
     )
 
@@ -403,12 +406,12 @@ def parse_arguments():
                         help='The size of the training batch (default: 32).')
     parser.add_argument('-l', '--loss', type=str, default='mse', choices=['mse', 'l1', 'huber'],
                         help='The loss function to use for training (default: mse).')
-    parser.add_argument('-lr', '--learning-rate', type=float, default=3e-4,
-                        help='The learning rate for the optimizer (default: 1e-3).')
-    parser.add_argument('-bs', '--betas', type=float, nargs=2, default=(0.9, 0.999),
-                        help='The betas for the Adam optimizer (default: 0.9, 0.999).')
-    parser.add_argument('-mn', '--max-norm', type=float, default=5.0,
-                        help='Maximum norm for gradient clipping (default: 5.0).')
+    parser.add_argument('-lr', '--learning-rate', type=float, default=5e-4,
+                        help='The learning rate for the optimizer (default: 5e-4).')
+    parser.add_argument('-bs', '--betas', type=float, nargs=2, default=(0.9, 0.95),
+                        help='The betas for the Adam optimizer (default: 0.9, 0.95).')
+    parser.add_argument('-mn', '--max-norm', type=float, default=10.0,
+                        help='Maximum norm for gradient clipping (default: 10.0).')
     parser.add_argument('-ls', '--log-scale', action='store_true',
                         help='Apply log transformation to the target variable.')
     parser.add_argument('-hd', '--huber-delta', type=float, default=1.0,
