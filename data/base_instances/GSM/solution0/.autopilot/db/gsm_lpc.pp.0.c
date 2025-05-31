@@ -193,6 +193,10 @@ void Autocorrelation(
     longword *L_ACF
 )
 {
+#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 38 "data/benchmarks/gsm/gsm_lpc.c"
+
     register int k, i;
     word temp;
     word smax;
@@ -204,6 +208,10 @@ void Autocorrelation(
     smax = 0;
     Autocorrelation_label0:
     for (k = 0; k <= 159; k++) {
+#line 8 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 49 "data/benchmarks/gsm/gsm_lpc.c"
+
 #pragma HLS LOOP_TRIPCOUNT min=160 max=160 avg=160
  temp = gsm_abs(s[k]);
         if (temp > smax)
@@ -319,6 +327,10 @@ void Reflection_coefficients(
     register word *r
 )
 {
+#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 164 "data/benchmarks/gsm/gsm_lpc.c"
+
     register int i, m, n;
     register word temp;
     word ACF[9];
@@ -385,6 +397,10 @@ void Reflection_coefficients(
         if (P[0] < temp) {
             Reflection_coefficients_label6:
             for (i = n; i <= 8; i++) {
+#line 10 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 210 "data/benchmarks/gsm/gsm_lpc.c"
+
 #line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 210 "data/benchmarks/gsm/gsm_lpc.c"
@@ -410,6 +426,10 @@ void Reflection_coefficients(
         for (m = 1; m <= 8 - n; m++) {
 #line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 229 "data/benchmarks/gsm/gsm_lpc.c"
+
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 229 "data/benchmarks/gsm/gsm_lpc.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=1 max=7

@@ -6,31 +6,31 @@
   </RunData>
   <TimingReport>
     <TargetClockPeriod>8.000</TargetClockPeriod>
-    <AchievedClockPeriod>1.973</AchievedClockPeriod>
+    <AchievedClockPeriod>1.971</AchievedClockPeriod>
     <CLOCK_NAME>ap_clk</CLOCK_NAME>
-    <CP_FINAL>1.973</CP_FINAL>
+    <CP_FINAL>1.971</CP_FINAL>
     <CP_ROUTE>NA</CP_ROUTE>
-    <CP_SYNTH>1.973</CP_SYNTH>
+    <CP_SYNTH>1.971</CP_SYNTH>
     <CP_TARGET>8.000</CP_TARGET>
-    <SLACK_FINAL>6.027</SLACK_FINAL>
+    <SLACK_FINAL>6.029</SLACK_FINAL>
     <SLACK_ROUTE/>
-    <SLACK_SYNTH>6.027</SLACK_SYNTH>
+    <SLACK_SYNTH>6.029</SLACK_SYNTH>
     <TIMING_MET>TRUE</TIMING_MET>
     <TNS_FINAL>0.000</TNS_FINAL>
     <TNS_ROUTE>NA</TNS_ROUTE>
     <TNS_SYNTH>0.000</TNS_SYNTH>
-    <WNS_FINAL>6.027</WNS_FINAL>
+    <WNS_FINAL>6.029</WNS_FINAL>
     <WNS_ROUTE>NA</WNS_ROUTE>
-    <WNS_SYNTH>6.027</WNS_SYNTH>
+    <WNS_SYNTH>6.029</WNS_SYNTH>
   </TimingReport>
   <AreaReport>
     <Resources>
-      <BRAM>7</BRAM>
+      <BRAM>8</BRAM>
       <CLB>0</CLB>
       <DSP>0</DSP>
-      <FF>1552</FF>
+      <FF>1557</FF>
       <LATCH>0</LATCH>
-      <LUT>1577</LUT>
+      <LUT>1506</LUT>
       <SRL>0</SRL>
       <URAM>0</URAM>
     </Resources>
@@ -45,96 +45,124 @@
   </AreaReport>
   <RtlModules>
     <RtlModule CELL="inst" DEPTH="0" IS_TOP="1" TYPE="function" MODULENAME="aes_main" DISPNAME="inst" RTLNAME="aes_main">
-      <SubModules count="5">Rcon0_U Sbox_U grp_decrypt_fu_50 grp_encrypt_fu_34 word_U</SubModules>
-      <Resources BRAM="7" FF="1552" LUT="1577"/>
-      <LocalResources FF="8" LUT="1"/>
-    </RtlModule>
-    <RtlModule CELL="inst/Rcon0_U" BINDMODULE="aes_main_Rcon0_ROM_AUTO_1R" DEPTH="1" TYPE="resource" MODULENAME="Rcon0_ROM_AUTO_1R" DISPNAME="Rcon0_U" RTLNAME="aes_main_Rcon0_ROM_AUTO_1R">
-      <Resources FF="8"/>
-      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="Rcon0_U" SOURCE="" STORAGESIZE="8 30 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="Rcon0"/>
-    </RtlModule>
-    <RtlModule CELL="inst/Sbox_U" BINDMODULE="aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R" DEPTH="1" TYPE="resource" MODULENAME="ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R" DISPNAME="Sbox_U" RTLNAME="aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R">
-      <Resources BRAM="1"/>
-      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_2p" PRAGMA="" RTLNAME="Sbox_U" SOURCE="" STORAGESIZE="8 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_2p" URAM="0" VARIABLE="Sbox"/>
+      <SubModules count="3">grp_decrypt_fu_50 grp_encrypt_fu_34 word_U</SubModules>
+      <Resources BRAM="8" FF="1557" LUT="1506"/>
+      <LocalResources FF="7" LUT="1"/>
     </RtlModule>
     <RtlModule CELL="inst/grp_decrypt_fu_50" DEPTH="1" TYPE="function" MODULENAME="decrypt" DISPNAME="grp_decrypt_fu_50" RTLNAME="aes_main_decrypt">
-      <SubModules count="2">grp_AddRoundKey_InversMixColumn_fu_469 grp_InversShiftRow_ByteSub_fu_461</SubModules>
-      <Resources BRAM="1" FF="778" LUT="777"/>
-      <LocalResources FF="390" LUT="203"/>
+      <SubModules count="4">grp_AddRoundKey_InversMixColumn_fu_83 grp_AddRoundKey_fu_64 grp_InversShiftRow_ByteSub_fu_75 grp_KeySchedule_fu_52</SubModules>
+      <Resources BRAM="2" FF="785" LUT="728"/>
+      <LocalResources FF="23" LUT="9"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_469" DEPTH="2" TYPE="function" MODULENAME="AddRoundKey_InversMixColumn" DISPNAME="grp_AddRoundKey_InversMixColumn_fu_469" RTLNAME="aes_main_AddRoundKey_InversMixColumn">
+    <RtlModule CELL="inst/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83" DEPTH="2" TYPE="function" MODULENAME="AddRoundKey_InversMixColumn" DISPNAME="grp_AddRoundKey_InversMixColumn_fu_83" RTLNAME="aes_main_AddRoundKey_InversMixColumn">
       <SubModules count="1">ret_U</SubModules>
-      <Resources FF="244" LUT="461"/>
-      <LocalResources FF="180" LUT="165"/>
+      <Resources FF="244" LUT="367"/>
+      <LocalResources FF="180" LUT="141"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_469/ret_U" BINDMODULE="aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W" DEPTH="3" TYPE="resource" MODULENAME="AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W" DISPNAME="ret_U" RTLNAME="aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W">
-      <Resources FF="64" LUT="296"/>
+    <RtlModule CELL="inst/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/ret_U" BINDMODULE="aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W" DEPTH="3" TYPE="resource" MODULENAME="AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W" DISPNAME="ret_U" RTLNAME="aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W">
+      <Resources FF="64" LUT="226"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="ret_U" SOURCE="data/benchmarks/aes/aes_key.c:320" STORAGESIZE="32 32 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p array" URAM="0" VARIABLE="ret"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_s2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_s2p" PRAGMA="" RTLNAME="ret_U" SOURCE="data/benchmarks/aes/aes_key.c:376" STORAGESIZE="32 32 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_s2p array" URAM="0" VARIABLE="ret"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_461" DEPTH="2" TYPE="function" MODULENAME="InversShiftRow_ByteSub" DISPNAME="grp_InversShiftRow_ByteSub_fu_461" RTLNAME="aes_main_InversShiftRow_ByteSub">
-      <SubModules count="1">invSbox_U</SubModules>
-      <Resources BRAM="1" FF="144" LUT="113"/>
-      <LocalResources FF="144" LUT="37"/>
+    <RtlModule CELL="inst/grp_decrypt_fu_50/grp_AddRoundKey_fu_64" DEPTH="2" TYPE="function" MODULENAME="AddRoundKey" DISPNAME="grp_AddRoundKey_fu_64" RTLNAME="aes_main_AddRoundKey">
+      <Resources FF="79" LUT="81"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_461/invSbox_U" BINDMODULE="aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R" DEPTH="3" TYPE="resource" MODULENAME="InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R" DISPNAME="invSbox_U" RTLNAME="aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R">
-      <Resources BRAM="1" LUT="76"/>
+    <RtlModule CELL="inst/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75" DEPTH="2" TYPE="function" MODULENAME="InversShiftRow_ByteSub" DISPNAME="grp_InversShiftRow_ByteSub_fu_75" RTLNAME="aes_main_InversShiftRow_ByteSub">
+      <SubModules count="1">invSbox_U</SubModules>
+      <Resources BRAM="1" FF="144" LUT="98"/>
+      <LocalResources FF="144" LUT="31"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/invSbox_U" BINDMODULE="aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R" DEPTH="3" TYPE="resource" MODULENAME="InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R" DISPNAME="invSbox_U" RTLNAME="aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R">
+      <Resources BRAM="1" LUT="67"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_2p" PRAGMA="" RTLNAME="invSbox_U" SOURCE="" STORAGESIZE="8 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_2p" URAM="0" VARIABLE="invSbox"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_encrypt_fu_34" DEPTH="1" TYPE="function" MODULENAME="encrypt" DISPNAME="grp_encrypt_fu_34" RTLNAME="aes_main_encrypt">
-      <SubModules count="2">grp_ByteSub_ShiftRow_fu_461 grp_MixColumn_AddRoundKey_fu_469</SubModules>
-      <Resources BRAM="3" FF="758" LUT="665"/>
-      <LocalResources FF="390" LUT="176"/>
+    <RtlModule CELL="inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52" DEPTH="2" TYPE="function" MODULENAME="KeySchedule" DISPNAME="grp_KeySchedule_fu_52" RTLNAME="aes_main_KeySchedule">
+      <SubModules count="2">Rcon0_U Sbox_U</SubModules>
+      <Resources BRAM="1" FF="295" LUT="173"/>
+      <LocalResources FF="287" LUT="148"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_461" DEPTH="2" TYPE="function" MODULENAME="ByteSub_ShiftRow" DISPNAME="grp_ByteSub_ShiftRow_fu_461" RTLNAME="aes_main_ByteSub_ShiftRow">
+    <RtlModule CELL="inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/Rcon0_U" BINDMODULE="aes_main_KeySchedule_Rcon0_ROM_AUTO_1R" DEPTH="3" TYPE="resource" MODULENAME="KeySchedule_Rcon0_ROM_AUTO_1R" DISPNAME="Rcon0_U" RTLNAME="aes_main_KeySchedule_Rcon0_ROM_AUTO_1R">
+      <Resources FF="8" LUT="4"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="Rcon0_U" SOURCE="" STORAGESIZE="8 30 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="Rcon0"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="Rcon0_U" SOURCE="" STORAGESIZE="8 30 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="Rcon0"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/Sbox_U" BINDMODULE="aes_main_KeySchedule_Sbox_ROM_AUTO_1R" DEPTH="3" TYPE="resource" MODULENAME="KeySchedule_Sbox_ROM_AUTO_1R" DISPNAME="Sbox_U" RTLNAME="aes_main_KeySchedule_Sbox_ROM_AUTO_1R">
+      <Resources BRAM="1" LUT="21"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_2p" PRAGMA="" RTLNAME="Sbox_U" SOURCE="" STORAGESIZE="8 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_2p" URAM="0" VARIABLE="Sbox"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_2p" PRAGMA="" RTLNAME="Sbox_U" SOURCE="" STORAGESIZE="8 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_2p" URAM="0" VARIABLE="Sbox"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encrypt_fu_34" DEPTH="1" TYPE="function" MODULENAME="encrypt" DISPNAME="grp_encrypt_fu_34" RTLNAME="aes_main_encrypt">
+      <SubModules count="4">grp_AddRoundKey_fu_62 grp_ByteSub_ShiftRow_fu_73 grp_KeySchedule_fu_50 grp_MixColumn_AddRoundKey_fu_81</SubModules>
+      <Resources BRAM="4" FF="765" LUT="672"/>
+      <LocalResources FF="23" LUT="8"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encrypt_fu_34/grp_AddRoundKey_fu_62" DEPTH="2" TYPE="function" MODULENAME="AddRoundKey" DISPNAME="grp_AddRoundKey_fu_62" RTLNAME="aes_main_AddRoundKey">
+      <Resources FF="79" LUT="31"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73" DEPTH="2" TYPE="function" MODULENAME="ByteSub_ShiftRow" DISPNAME="grp_ByteSub_ShiftRow_fu_73" RTLNAME="aes_main_ByteSub_ShiftRow">
       <SubModules count="1">Sbox_1_U</SubModules>
-      <Resources BRAM="1" FF="144" LUT="129"/>
+      <Resources BRAM="1" FF="144" LUT="113"/>
       <LocalResources FF="144" LUT="30"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_461/Sbox_1_U" BINDMODULE="aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R" DEPTH="3" TYPE="resource" MODULENAME="ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R" DISPNAME="Sbox_1_U" RTLNAME="aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R">
-      <Resources BRAM="1" LUT="99"/>
+    <RtlModule CELL="inst/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/Sbox_1_U" BINDMODULE="aes_main_KeySchedule_Sbox_ROM_AUTO_1R" DEPTH="3" TYPE="resource" MODULENAME="KeySchedule_Sbox_ROM_AUTO_1R" DISPNAME="Sbox_1_U" RTLNAME="aes_main_KeySchedule_Sbox_ROM_AUTO_1R">
+      <Resources BRAM="1" LUT="83"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_2p" PRAGMA="" RTLNAME="Sbox_1_U" SOURCE="" STORAGESIZE="8 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_2p" URAM="0" VARIABLE="Sbox_1"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_469" DEPTH="2" TYPE="function" MODULENAME="MixColumn_AddRoundKey" DISPNAME="grp_MixColumn_AddRoundKey_fu_469" RTLNAME="aes_main_MixColumn_AddRoundKey">
-      <SubModules count="1">ret_U</SubModules>
-      <Resources BRAM="2" FF="224" LUT="360"/>
-      <LocalResources FF="224" LUT="176"/>
+    <RtlModule CELL="inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50" DEPTH="2" TYPE="function" MODULENAME="KeySchedule" DISPNAME="grp_KeySchedule_fu_50" RTLNAME="aes_main_KeySchedule">
+      <SubModules count="2">Rcon0_U Sbox_U</SubModules>
+      <Resources BRAM="1" FF="295" LUT="168"/>
+      <LocalResources FF="287" LUT="143"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_469/ret_U" BINDMODULE="aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W" DEPTH="3" TYPE="resource" MODULENAME="MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W" DISPNAME="ret_U" RTLNAME="aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W">
-      <Resources BRAM="2" LUT="184"/>
+    <RtlModule CELL="inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/Rcon0_U" BINDMODULE="aes_main_KeySchedule_Rcon0_ROM_AUTO_1R" DEPTH="3" TYPE="resource" MODULENAME="KeySchedule_Rcon0_ROM_AUTO_1R" DISPNAME="Rcon0_U" RTLNAME="aes_main_KeySchedule_Rcon0_ROM_AUTO_1R">
+      <Resources FF="8" LUT="4"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="Rcon0_U" SOURCE="" STORAGESIZE="8 30 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="Rcon0"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="Rcon0_U" SOURCE="" STORAGESIZE="8 30 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="Rcon0"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/Sbox_U" BINDMODULE="aes_main_KeySchedule_Sbox_ROM_AUTO_1R" DEPTH="3" TYPE="resource" MODULENAME="KeySchedule_Sbox_ROM_AUTO_1R" DISPNAME="Sbox_U" RTLNAME="aes_main_KeySchedule_Sbox_ROM_AUTO_1R">
+      <Resources BRAM="1" LUT="21"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_2p" PRAGMA="" RTLNAME="Sbox_U" SOURCE="" STORAGESIZE="8 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_2p" URAM="0" VARIABLE="Sbox"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_2p" PRAGMA="" RTLNAME="Sbox_U" SOURCE="" STORAGESIZE="8 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_2p" URAM="0" VARIABLE="Sbox"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81" DEPTH="2" TYPE="function" MODULENAME="MixColumn_AddRoundKey" DISPNAME="grp_MixColumn_AddRoundKey_fu_81" RTLNAME="aes_main_MixColumn_AddRoundKey">
+      <SubModules count="1">ret_U</SubModules>
+      <Resources BRAM="2" FF="224" LUT="352"/>
+      <LocalResources FF="224" LUT="144"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/ret_U" BINDMODULE="aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W" DEPTH="3" TYPE="resource" MODULENAME="MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W" DISPNAME="ret_U" RTLNAME="aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W">
+      <Resources BRAM="2" LUT="208"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="ret_U" SOURCE="data/benchmarks/aes/aes_key.c:320" STORAGESIZE="32 32 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p array" URAM="0" VARIABLE="ret"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_s2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_s2p" PRAGMA="" RTLNAME="ret_U" SOURCE="data/benchmarks/aes/aes_key.c:376" STORAGESIZE="32 32 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_s2p array" URAM="0" VARIABLE="ret"/>
     </RtlModule>
     <RtlModule CELL="inst/word_U" BINDMODULE="aes_main_word_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="word_RAM_AUTO_1R1W" DISPNAME="word_U" RTLNAME="aes_main_word_RAM_AUTO_1R1W">
-      <Resources BRAM="2" LUT="134"/>
+      <Resources BRAM="2" LUT="105"/>
       <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_s2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_s2p" PRAGMA="" RTLNAME="word_U" SOURCE="" STORAGESIZE="32 480 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_s2p" URAM="0" VARIABLE="word"/>
     </RtlModule>
   </RtlModules>
   <TimingPaths>
-    <TPATH DATAPATH_DELAY="1.607" DATAPATH_LOGIC_DELAY="1.039" DATAPATH_NET_DELAY="0.568" ENDPOINT_PIN="word_U/ram_reg_bram_0/DINADIN[0]" LOGIC_LEVELS="2" MAX_FANOUT="13" SLACK="6.027" STARTPOINT_PIN="word_U/ram_reg_bram_0/CLKBWRCLK">
+    <TPATH DATAPATH_DELAY="1.605" DATAPATH_LOGIC_DELAY="1.039" DATAPATH_NET_DELAY="0.566" ENDPOINT_PIN="word_U/ram_reg_bram_0/DINADIN[0]" LOGIC_LEVELS="2" MAX_FANOUT="12" SLACK="6.029" STARTPOINT_PIN="word_U/ram_reg_bram_0/CLKBWRCLK">
       <CELL NAME="word_U/ram_reg_bram_0" PRIMITIVE_TYPE="BLOCKRAM.BRAM.RAMB36E2" LINE_NUMBER="54"/>
-      <CELL NAME="grp_encrypt_fu_34/ram_reg_bram_0_i_152__0" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="174"/>
-      <CELL NAME="grp_decrypt_fu_50/ram_reg_bram_0_i_52__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="174"/>
+      <CELL NAME="grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_146__0" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="153"/>
+      <CELL NAME="grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_52__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="153"/>
     </TPATH>
-    <TPATH DATAPATH_DELAY="1.577" DATAPATH_LOGIC_DELAY="0.966" DATAPATH_NET_DELAY="0.611" ENDPOINT_PIN="word_U/ram_reg_bram_0/DINADIN[4]" LOGIC_LEVELS="2" MAX_FANOUT="12" SLACK="6.063" STARTPOINT_PIN="word_U/ram_reg_bram_0/CLKBWRCLK">
+    <TPATH DATAPATH_DELAY="1.575" DATAPATH_LOGIC_DELAY="0.966" DATAPATH_NET_DELAY="0.609" ENDPOINT_PIN="word_U/ram_reg_bram_0/DINADIN[4]" LOGIC_LEVELS="2" MAX_FANOUT="11" SLACK="6.065" STARTPOINT_PIN="word_U/ram_reg_bram_0/CLKBWRCLK">
       <CELL NAME="word_U/ram_reg_bram_0" PRIMITIVE_TYPE="BLOCKRAM.BRAM.RAMB36E2" LINE_NUMBER="54"/>
-      <CELL NAME="grp_encrypt_fu_34/ram_reg_bram_0_i_148" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="174"/>
-      <CELL NAME="grp_decrypt_fu_50/ram_reg_bram_0_i_48__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="174"/>
+      <CELL NAME="grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_142__0" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="153"/>
+      <CELL NAME="grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_48__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="153"/>
     </TPATH>
-    <TPATH DATAPATH_DELAY="1.555" DATAPATH_LOGIC_DELAY="0.992" DATAPATH_NET_DELAY="0.563" ENDPOINT_PIN="word_U/ram_reg_bram_0/DINADIN[1]" LOGIC_LEVELS="2" MAX_FANOUT="12" SLACK="6.079" STARTPOINT_PIN="word_U/ram_reg_bram_0/CLKBWRCLK">
+    <TPATH DATAPATH_DELAY="1.553" DATAPATH_LOGIC_DELAY="0.992" DATAPATH_NET_DELAY="0.561" ENDPOINT_PIN="word_U/ram_reg_bram_0/DINADIN[1]" LOGIC_LEVELS="2" MAX_FANOUT="11" SLACK="6.081" STARTPOINT_PIN="word_U/ram_reg_bram_0/CLKBWRCLK">
       <CELL NAME="word_U/ram_reg_bram_0" PRIMITIVE_TYPE="BLOCKRAM.BRAM.RAMB36E2" LINE_NUMBER="54"/>
-      <CELL NAME="grp_encrypt_fu_34/ram_reg_bram_0_i_151__0" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="174"/>
-      <CELL NAME="grp_decrypt_fu_50/ram_reg_bram_0_i_51__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="174"/>
+      <CELL NAME="grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_145__0" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="153"/>
+      <CELL NAME="grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_51__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="153"/>
     </TPATH>
-    <TPATH DATAPATH_DELAY="1.548" DATAPATH_LOGIC_DELAY="0.982" DATAPATH_NET_DELAY="0.566" ENDPOINT_PIN="word_U/ram_reg_bram_0/DINADIN[2]" LOGIC_LEVELS="2" MAX_FANOUT="12" SLACK="6.104" STARTPOINT_PIN="word_U/ram_reg_bram_0/CLKBWRCLK">
+    <TPATH DATAPATH_DELAY="1.546" DATAPATH_LOGIC_DELAY="0.982" DATAPATH_NET_DELAY="0.564" ENDPOINT_PIN="word_U/ram_reg_bram_0/DINADIN[2]" LOGIC_LEVELS="2" MAX_FANOUT="11" SLACK="6.106" STARTPOINT_PIN="word_U/ram_reg_bram_0/CLKBWRCLK">
       <CELL NAME="word_U/ram_reg_bram_0" PRIMITIVE_TYPE="BLOCKRAM.BRAM.RAMB36E2" LINE_NUMBER="54"/>
-      <CELL NAME="grp_encrypt_fu_34/ram_reg_bram_0_i_150__0" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="174"/>
-      <CELL NAME="grp_decrypt_fu_50/ram_reg_bram_0_i_50__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="174"/>
+      <CELL NAME="grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_144__0" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="153"/>
+      <CELL NAME="grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_50__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="153"/>
     </TPATH>
-    <TPATH DATAPATH_DELAY="1.548" DATAPATH_LOGIC_DELAY="0.984" DATAPATH_NET_DELAY="0.564" ENDPOINT_PIN="word_U/ram_reg_bram_0/DINADIN[3]" LOGIC_LEVELS="2" MAX_FANOUT="12" SLACK="6.112" STARTPOINT_PIN="word_U/ram_reg_bram_0/CLKBWRCLK">
+    <TPATH DATAPATH_DELAY="1.546" DATAPATH_LOGIC_DELAY="0.984" DATAPATH_NET_DELAY="0.562" ENDPOINT_PIN="word_U/ram_reg_bram_0/DINADIN[3]" LOGIC_LEVELS="2" MAX_FANOUT="11" SLACK="6.114" STARTPOINT_PIN="word_U/ram_reg_bram_0/CLKBWRCLK">
       <CELL NAME="word_U/ram_reg_bram_0" PRIMITIVE_TYPE="BLOCKRAM.BRAM.RAMB36E2" LINE_NUMBER="54"/>
-      <CELL NAME="grp_encrypt_fu_34/ram_reg_bram_0_i_149__0" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="174"/>
-      <CELL NAME="grp_decrypt_fu_50/ram_reg_bram_0_i_49__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="174"/>
+      <CELL NAME="grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_143__0" PRIMITIVE_TYPE="CLB.LUT.LUT5" LINE_NUMBER="153"/>
+      <CELL NAME="grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_49__0" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="153"/>
     </TPATH>
   </TimingPaths>
   <VivadoReportFiles>
@@ -146,7 +174,7 @@
     <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/aes_main_utilization_hierarchical_synth.rpt"/>
   </VivadoReportFiles>
   <GeneralInfo NAME="General Information">
-    <item NAME="Date" VALUE="Thu May 29 15:00:17 -03 2025"/>
+    <item NAME="Date" VALUE="Sat May 31 00:15:32 -03 2025"/>
     <item NAME="Version" VALUE="2023.2 (Build 4023990 on Oct 11 2023)"/>
     <item NAME="Project" VALUE="AES"/>
     <item NAME="Solution" VALUE="solution0 (Vivado IP Flow Target)"/>

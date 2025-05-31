@@ -1,0 +1,203 @@
+
+
+================================================================
+== Vitis HLS Report for 'local_memcpy'
+================================================================
+* Date:           Fri May 30 23:25:08 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        SHA
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  2.778 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        1|       49|  8.000 ns|  0.392 us|    1|   49|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |                       |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip  |          |
+        |       Loop Name       |   min   |   max   |  Latency |  achieved |   target  |  Count | Pipelined|
+        +-----------------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |- local_memcpy_label3  |        0|       48|         3|          -|          -|  0 ~ 16|        no|
+        +-----------------------+---------+---------+----------+-----------+-----------+--------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 2 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.99>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%idx9 = alloca i32 1"   --->   Operation 5 'alloca' 'idx9' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%idx = alloca i32 1"   --->   Operation 6 'alloca' 'idx' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%idx1_read = read i14 @_ssdm_op_Read.ap_auto.i14, i14 %idx1" [data/benchmarks/sha/sha.c:73]   --->   Operation 7 'read' 'idx1_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%n_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %n" [data/benchmarks/sha/sha.c:73]   --->   Operation 8 'read' 'n_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%s2_offset_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %s2_offset" [data/benchmarks/sha/sha.c:73]   --->   Operation 9 'read' 's2_offset_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%tmp_9 = bitconcatenate i14 @_ssdm_op_BitConcatenate.i14.i1.i13, i1 %s2_offset_read, i13 0" [data/benchmarks/sha/sha.c:73]   --->   Operation 10 'bitconcatenate' 'tmp_9' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%tmp_3 = bitselect i1 @_ssdm_op_BitSelect.i1.i32.i32, i32 %n_read, i32 31" [data/benchmarks/sha/sha.c:76]   --->   Operation 11 'bitselect' 'tmp_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.88ns)   --->   "%sub_ln76 = sub i32 0, i32 %n_read" [data/benchmarks/sha/sha.c:76]   --->   Operation 12 'sub' 'sub_ln76' <Predicate = true> <Delay = 0.88> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%tmp_s = partselect i30 @_ssdm_op_PartSelect.i30.i32.i32.i32, i32 %sub_ln76, i32 2, i32 31" [data/benchmarks/sha/sha.c:76]   --->   Operation 13 'partselect' 'tmp_s' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%zext_ln76 = zext i30 %tmp_s" [data/benchmarks/sha/sha.c:76]   --->   Operation 14 'zext' 'zext_ln76' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.86ns)   --->   "%sub_ln76_1 = sub i31 0, i31 %zext_ln76" [data/benchmarks/sha/sha.c:76]   --->   Operation 15 'sub' 'sub_ln76_1' <Predicate = true> <Delay = 0.86> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.86> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%tmp_1 = partselect i30 @_ssdm_op_PartSelect.i30.i32.i32.i32, i32 %n_read, i32 2, i32 31" [data/benchmarks/sha/sha.c:76]   --->   Operation 16 'partselect' 'tmp_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%zext_ln76_1 = zext i30 %tmp_1" [data/benchmarks/sha/sha.c:76]   --->   Operation 17 'zext' 'zext_ln76_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.25ns)   --->   "%m = select i1 %tmp_3, i31 %sub_ln76_1, i31 %zext_ln76_1" [data/benchmarks/sha/sha.c:76]   --->   Operation 18 'select' 'm' <Predicate = true> <Delay = 0.25> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.25> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 19 [1/1] (0.38ns)   --->   "%store_ln0 = store i32 0, i32 %idx"   --->   Operation 19 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 20 [1/1] (0.38ns)   --->   "%store_ln0 = store i5 0, i5 %idx9"   --->   Operation 20 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%br_ln79 = br void %while.body" [data/benchmarks/sha/sha.c:79]   --->   Operation 21 'br' 'br_ln79' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 2.77>
+ST_2 : Operation 22 [1/1] (0.00ns)   --->   "%idx9_load = load i5 %idx9" [data/benchmarks/sha/sha.c:79]   --->   Operation 22 'load' 'idx9_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%zext_ln79_1 = zext i5 %idx9_load" [data/benchmarks/sha/sha.c:79]   --->   Operation 23 'zext' 'zext_ln79_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (0.87ns)   --->   "%icmp_ln79 = icmp_slt  i31 %zext_ln79_1, i31 %m" [data/benchmarks/sha/sha.c:79]   --->   Operation 24 'icmp' 'icmp_ln79' <Predicate = true> <Delay = 0.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 25 [1/1] (0.70ns)   --->   "%add_ln79_1 = add i5 %idx9_load, i5 1" [data/benchmarks/sha/sha.c:79]   --->   Operation 25 'add' 'add_ln79_1' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%br_ln79 = br i1 %icmp_ln79, void %while.end.loopexit, void %while.body.split" [data/benchmarks/sha/sha.c:79]   --->   Operation 26 'br' 'br_ln79' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%idx_load = load i32 %idx" [data/benchmarks/sha/sha.c:79]   --->   Operation 27 'load' 'idx_load' <Predicate = (icmp_ln79)> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%trunc_ln79 = trunc i32 %idx_load" [data/benchmarks/sha/sha.c:79]   --->   Operation 28 'trunc' 'trunc_ln79' <Predicate = (icmp_ln79)> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.76ns)   --->   "%add_ln73 = add i14 %trunc_ln79, i14 %idx1_read" [data/benchmarks/sha/sha.c:73]   --->   Operation 29 'add' 'add_ln73' <Predicate = (icmp_ln79)> <Delay = 0.76> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.76> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 30 [1/1] (0.76ns)   --->   "%add_ln73_1 = add i14 %tmp_9, i14 %add_ln73" [data/benchmarks/sha/sha.c:73]   --->   Operation 30 'add' 'add_ln73_1' <Predicate = (icmp_ln79)> <Delay = 0.76> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.76> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%zext_ln73 = zext i14 %add_ln73_1" [data/benchmarks/sha/sha.c:73]   --->   Operation 31 'zext' 'zext_ln73' <Predicate = (icmp_ln79)> <Delay = 0.00>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%p2 = getelementptr i8 %s2, i64 0, i64 %zext_ln73" [data/benchmarks/sha/sha.c:73]   --->   Operation 32 'getelementptr' 'p2' <Predicate = (icmp_ln79)> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln82 = add i14 %add_ln73, i14 1" [data/benchmarks/sha/sha.c:82]   --->   Operation 33 'add' 'add_ln82' <Predicate = (icmp_ln79)> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.35> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 34 [1/1] (0.71ns) (root node of TernaryAdder)   --->   "%add_ln82_1 = add i14 %tmp_9, i14 %add_ln82" [data/benchmarks/sha/sha.c:82]   --->   Operation 34 'add' 'add_ln82_1' <Predicate = (icmp_ln79)> <Delay = 0.71> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.35> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 35 [1/1] (0.00ns)   --->   "%zext_ln82 = zext i14 %add_ln82_1" [data/benchmarks/sha/sha.c:82]   --->   Operation 35 'zext' 'zext_ln82' <Predicate = (icmp_ln79)> <Delay = 0.00>
+ST_2 : Operation 36 [1/1] (0.00ns)   --->   "%p2_1 = getelementptr i8 %s2, i64 0, i64 %zext_ln82" [data/benchmarks/sha/sha.c:82]   --->   Operation 36 'getelementptr' 'p2_1' <Predicate = (icmp_ln79)> <Delay = 0.00>
+ST_2 : Operation 37 [2/2] (1.24ns)   --->   "%p2_load = load i14 %p2" [data/benchmarks/sha/sha.c:82]   --->   Operation 37 'load' 'p2_load' <Predicate = (icmp_ln79)> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16384> <RAM>
+ST_2 : Operation 38 [2/2] (1.24ns)   --->   "%p2_1_load = load i14 %p2_1" [data/benchmarks/sha/sha.c:83]   --->   Operation 38 'load' 'p2_1_load' <Predicate = (icmp_ln79)> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16384> <RAM>
+ST_2 : Operation 39 [1/1] (0.88ns)   --->   "%add_ln79 = add i32 %idx_load, i32 4" [data/benchmarks/sha/sha.c:79]   --->   Operation 39 'add' 'add_ln79' <Predicate = (icmp_ln79)> <Delay = 0.88> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 40 [1/1] (0.38ns)   --->   "%store_ln79 = store i32 %add_ln79, i32 %idx" [data/benchmarks/sha/sha.c:79]   --->   Operation 40 'store' 'store_ln79' <Predicate = (icmp_ln79)> <Delay = 0.38>
+ST_2 : Operation 41 [1/1] (0.38ns)   --->   "%store_ln79 = store i5 %add_ln79_1, i5 %idx9" [data/benchmarks/sha/sha.c:79]   --->   Operation 41 'store' 'store_ln79' <Predicate = (icmp_ln79)> <Delay = 0.38>
+ST_2 : Operation 42 [1/1] (0.00ns)   --->   "%ret_ln89 = ret" [data/benchmarks/sha/sha.c:89]   --->   Operation 42 'ret' 'ret_ln89' <Predicate = (!icmp_ln79)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 1.96>
+ST_3 : Operation 43 [1/2] (1.24ns)   --->   "%p2_load = load i14 %p2" [data/benchmarks/sha/sha.c:82]   --->   Operation 43 'load' 'p2_load' <Predicate = true> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16384> <RAM>
+ST_3 : Operation 44 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln83 = add i14 %add_ln73, i14 2" [data/benchmarks/sha/sha.c:83]   --->   Operation 44 'add' 'add_ln83' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.35> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 45 [1/1] (0.71ns) (root node of TernaryAdder)   --->   "%add_ln83_1 = add i14 %tmp_9, i14 %add_ln83" [data/benchmarks/sha/sha.c:83]   --->   Operation 45 'add' 'add_ln83_1' <Predicate = true> <Delay = 0.71> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.35> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 46 [1/1] (0.00ns)   --->   "%zext_ln83 = zext i14 %add_ln83_1" [data/benchmarks/sha/sha.c:83]   --->   Operation 46 'zext' 'zext_ln83' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 47 [1/1] (0.00ns)   --->   "%p2_2 = getelementptr i8 %s2, i64 0, i64 %zext_ln83" [data/benchmarks/sha/sha.c:83]   --->   Operation 47 'getelementptr' 'p2_2' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 48 [1/2] (1.24ns)   --->   "%p2_1_load = load i14 %p2_1" [data/benchmarks/sha/sha.c:83]   --->   Operation 48 'load' 'p2_1_load' <Predicate = true> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16384> <RAM>
+ST_3 : Operation 49 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln84 = add i14 %add_ln73, i14 3" [data/benchmarks/sha/sha.c:84]   --->   Operation 49 'add' 'add_ln84' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.35> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 50 [1/1] (0.71ns) (root node of TernaryAdder)   --->   "%add_ln84_1 = add i14 %tmp_9, i14 %add_ln84" [data/benchmarks/sha/sha.c:84]   --->   Operation 50 'add' 'add_ln84_1' <Predicate = true> <Delay = 0.71> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.35> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 51 [1/1] (0.00ns)   --->   "%zext_ln84 = zext i14 %add_ln84_1" [data/benchmarks/sha/sha.c:84]   --->   Operation 51 'zext' 'zext_ln84' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 52 [1/1] (0.00ns)   --->   "%p2_3 = getelementptr i8 %s2, i64 0, i64 %zext_ln84" [data/benchmarks/sha/sha.c:84]   --->   Operation 52 'getelementptr' 'p2_3' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 53 [2/2] (1.24ns)   --->   "%p2_2_load = load i14 %p2_2" [data/benchmarks/sha/sha.c:84]   --->   Operation 53 'load' 'p2_2_load' <Predicate = true> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16384> <RAM>
+ST_3 : Operation 54 [2/2] (1.24ns)   --->   "%p2_3_load = load i14 %p2_3" [data/benchmarks/sha/sha.c:85]   --->   Operation 54 'load' 'p2_3_load' <Predicate = true> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16384> <RAM>
+
+State 4 <SV = 3> <Delay = 1.94>
+ST_4 : Operation 55 [1/1] (0.00ns)   --->   "%zext_ln79 = zext i5 %idx9_load" [data/benchmarks/sha/sha.c:79]   --->   Operation 55 'zext' 'zext_ln79' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 56 [1/1] (0.00ns)   --->   "%speclooptripcount_ln80 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 0, i64 16, i64 8" [data/benchmarks/sha/sha.c:80]   --->   Operation 56 'speclooptripcount' 'speclooptripcount_ln80' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 57 [1/1] (0.00ns)   --->   "%specloopname_ln88 = specloopname void @_ssdm_op_SpecLoopName, void @empty_10" [data/benchmarks/sha/sha.c:88]   --->   Operation 57 'specloopname' 'specloopname_ln88' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 58 [1/1] (0.00ns)   --->   "%p1 = getelementptr i32 %sha_info_data, i64 0, i64 %zext_ln79" [data/benchmarks/sha/sha.c:73]   --->   Operation 58 'getelementptr' 'p1' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 59 [1/2] (1.24ns)   --->   "%p2_2_load = load i14 %p2_2" [data/benchmarks/sha/sha.c:84]   --->   Operation 59 'load' 'p2_2_load' <Predicate = true> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16384> <RAM>
+ST_4 : Operation 60 [1/2] (1.24ns)   --->   "%p2_3_load = load i14 %p2_3" [data/benchmarks/sha/sha.c:85]   --->   Operation 60 'load' 'p2_3_load' <Predicate = true> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16384> <RAM>
+ST_4 : Operation 61 [1/1] (0.00ns)   --->   "%tmp = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i8.i8.i8.i8, i8 %p2_3_load, i8 %p2_2_load, i8 %p2_1_load, i8 %p2_load" [data/benchmarks/sha/sha.c:85]   --->   Operation 61 'bitconcatenate' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 62 [1/1] (0.69ns)   --->   "%store_ln86 = store i32 %tmp, i4 %p1" [data/benchmarks/sha/sha.c:86]   --->   Operation 62 'store' 'store_ln86' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_4 : Operation 63 [1/1] (0.00ns)   --->   "%br_ln79 = br void %while.body" [data/benchmarks/sha/sha.c:79]   --->   Operation 63 'br' 'br_ln79' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 1.999ns
+The critical path consists of the following:
+	wire read operation ('n_read', data/benchmarks/sha/sha.c:73) on port 'n' (data/benchmarks/sha/sha.c:73) [9]  (0.000 ns)
+	'sub' operation 32 bit ('sub_ln76', data/benchmarks/sha/sha.c:76) [13]  (0.880 ns)
+	'sub' operation 31 bit ('sub_ln76_1', data/benchmarks/sha/sha.c:76) [16]  (0.868 ns)
+	'select' operation 31 bit ('m', data/benchmarks/sha/sha.c:76) [19]  (0.251 ns)
+
+ <State 2>: 2.778ns
+The critical path consists of the following:
+	'load' operation 32 bit ('idx_load', data/benchmarks/sha/sha.c:79) on local variable 'idx' [30]  (0.000 ns)
+	'add' operation 14 bit ('add_ln73', data/benchmarks/sha/sha.c:73) [36]  (0.765 ns)
+	'add' operation 14 bit ('add_ln73_1', data/benchmarks/sha/sha.c:73) [37]  (0.765 ns)
+	'getelementptr' operation 14 bit ('p2', data/benchmarks/sha/sha.c:73) [39]  (0.000 ns)
+	'load' operation 8 bit ('p2_load', data/benchmarks/sha/sha.c:82) on array 's2' [44]  (1.248 ns)
+
+ <State 3>: 1.964ns
+The critical path consists of the following:
+	'add' operation 14 bit ('add_ln83', data/benchmarks/sha/sha.c:83) [45]  (0.000 ns)
+	'add' operation 14 bit ('add_ln83_1', data/benchmarks/sha/sha.c:83) [46]  (0.716 ns)
+	'getelementptr' operation 14 bit ('p2', data/benchmarks/sha/sha.c:83) [48]  (0.000 ns)
+	'load' operation 8 bit ('p2_2_load', data/benchmarks/sha/sha.c:84) on array 's2' [54]  (1.248 ns)
+
+ <State 4>: 1.947ns
+The critical path consists of the following:
+	'load' operation 8 bit ('p2_2_load', data/benchmarks/sha/sha.c:84) on array 's2' [54]  (1.248 ns)
+	'store' operation 0 bit ('store_ln86', data/benchmarks/sha/sha.c:86) of variable 'tmp', data/benchmarks/sha/sha.c:85 on array 'sha_info_data' [57]  (0.699 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

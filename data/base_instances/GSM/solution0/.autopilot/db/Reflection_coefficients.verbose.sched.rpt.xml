@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Reflection_coefficients'" level="0">
-<item name = "Date">Thu May 29 16:47:04 2025
+<item name = "Date">Fri May 30 22:03:38 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GSM</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">11, 550, 88.000 ns, 4.400 us, 11, 550, no</column>
+<column name="">11, 557, 88.000 ns, 4.456 us, 11, 557, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -39,7 +39,7 @@
 <column name="- Reflection_coefficients_label1">18, 18, 2, -, -, 9, no</column>
 <column name="- Reflection_coefficients_label2">14, 14, 2, -, -, 7, no</column>
 <column name="- Reflection_coefficients_label3">18, 18, 2, -, -, 9, no</column>
-<column name="- Reflection_coefficients_label4">13, 484, 13 ~ 60, -, -, 1 ~ 8, no</column>
+<column name="- Reflection_coefficients_label4">14, 491, 14 ~ 61, -, -, 1 ~ 8, no</column>
 <column name=" + Reflection_coefficients_label5">5, 35, 5, -, -, 1 ~ 7, no</column>
 <column name="- Reflection_coefficients_label6">1, 8, 1, -, -, 1 ~ 8, no</column>
 </table>

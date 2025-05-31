@@ -2315,10 +2315,10 @@ entry_ifconv:127 %c_2 = cttz i32 @llvm.cttz.i32, i32 %tmp_8_i, i1 1
 
 <Node id="137" bw="32" op_0_bw="32" op_1_bw="32" op_2_bw="32" op_3_bw="32">
 <![CDATA[
-entry_ifconv:128 %tmp_i_46 = partselect i32 @llvm.part.select.i32, i32 %out_bits_6, i32 31, i32 0
+entry_ifconv:128 %tmp_i_49 = partselect i32 @llvm.part.select.i32, i32 %out_bits_6, i32 31, i32 0
 
 ]]></Node>
-<StgValue><ssdm name="tmp_i_46"/></StgValue>
+<StgValue><ssdm name="tmp_i_49"/></StgValue>
 </operation>
 
 <operation id="159" st_id="9" stage="1" lat="1">
@@ -2330,7 +2330,7 @@ entry_ifconv:128 %tmp_i_46 = partselect i32 @llvm.part.select.i32, i32 %out_bits
 
 <Node id="138" bw="32" op_0_bw="32" op_1_bw="32" op_2_bw="1">
 <![CDATA[
-entry_ifconv:129 %c_3 = cttz i32 @llvm.cttz.i32, i32 %tmp_i_46, i1 1
+entry_ifconv:129 %c_3 = cttz i32 @llvm.cttz.i32, i32 %tmp_i_49, i1 1
 
 ]]></Node>
 <StgValue><ssdm name="c_3"/></StgValue>

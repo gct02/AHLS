@@ -402,6 +402,10 @@ int aes_main (int statemt[32], int key[32]);
 # 65 "data/benchmarks/aes/aes_enc.c" 2
 
 int encrypt(int statemt[32], int key[32], int type) {
+#line 24 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 66 "data/benchmarks/aes/aes_enc.c"
+
     int i;
     int nb;
     int round_val;

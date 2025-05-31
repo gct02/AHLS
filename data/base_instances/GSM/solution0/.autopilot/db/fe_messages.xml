@@ -1,6 +1,18 @@
 <xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:11:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="gsm_norm" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:12:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="gsm_div" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/gsm/gsm_add.c:140:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="gsm_div" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=15 max=15 avg=15" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:13:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="Autocorrelation" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:8:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="Autocorrelation" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/gsm/gsm_lpc.c:50:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Autocorrelation" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=160 max=160 avg=160" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
@@ -19,6 +31,9 @@
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/gsm/gsm_lpc.c:153:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Autocorrelation" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=160 max=160 avg=160" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:14:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:1:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
@@ -50,6 +65,9 @@
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/gsm/gsm_lpc.c:205:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=1 max=8" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:10:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:7:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
@@ -59,32 +77,26 @@
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:6:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:9:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/gsm/gsm_lpc.c:230:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Reflection_coefficients" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=1 max=7" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/gsm/gsm_lpc.c:249:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Transformation_to_Log_Area_Ratios" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=8 max=8 avg=8" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl:11:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl:9:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="Gsm_LPC_Analysis" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=Gsm_LPC_Analysis" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/gsm/gsm_lpc.c:38:0" msg_body="Inlining function 'gsm_abs' into 'Autocorrelation'">
         <args Callee="gsm_abs" Callee-DebugLoc="File data/benchmarks/gsm/gsm_add.c Line 66 Column 0" Caller="Autocorrelation" Caller-DebugLoc="File data/benchmarks/gsm/gsm_lpc.c Line 38 Column 0"/>
     </msg>
-    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/gsm/gsm_lpc.c:38:0" msg_body="Inlining function 'gsm_norm' into 'Autocorrelation'">
-        <args Callee="gsm_norm" Callee-DebugLoc="File data/benchmarks/gsm/gsm_add.c Line 71 Column 0" Caller="Autocorrelation" Caller-DebugLoc="File data/benchmarks/gsm/gsm_lpc.c Line 38 Column 0"/>
-    </msg>
     <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/gsm/gsm_lpc.c:38:0" msg_body="Inlining function 'gsm_mult_r' into 'Autocorrelation'">
         <args Callee="gsm_mult_r" Callee-DebugLoc="File data/benchmarks/gsm/gsm_add.c Line 52 Column 0" Caller="Autocorrelation" Caller-DebugLoc="File data/benchmarks/gsm/gsm_lpc.c Line 38 Column 0"/>
     </msg>
-    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/gsm/gsm_lpc.c:164:0" msg_body="Inlining function 'gsm_norm' into 'Reflection_coefficients'">
-        <args Callee="gsm_norm" Callee-DebugLoc="File data/benchmarks/gsm/gsm_add.c Line 71 Column 0" Caller="Reflection_coefficients" Caller-DebugLoc="File data/benchmarks/gsm/gsm_lpc.c Line 164 Column 0"/>
-    </msg>
     <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/gsm/gsm_lpc.c:164:0" msg_body="Inlining function 'gsm_abs' into 'Reflection_coefficients'">
         <args Callee="gsm_abs" Callee-DebugLoc="File data/benchmarks/gsm/gsm_add.c Line 66 Column 0" Caller="Reflection_coefficients" Caller-DebugLoc="File data/benchmarks/gsm/gsm_lpc.c Line 164 Column 0"/>
-    </msg>
-    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/gsm/gsm_lpc.c:164:0" msg_body="Inlining function 'gsm_div' into 'Reflection_coefficients'">
-        <args Callee="gsm_div" Callee-DebugLoc="File data/benchmarks/gsm/gsm_add.c Line 119 Column 0" Caller="Reflection_coefficients" Caller-DebugLoc="File data/benchmarks/gsm/gsm_lpc.c Line 164 Column 0"/>
     </msg>
     <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/gsm/gsm_lpc.c:164:0" msg_body="Inlining function 'gsm_mult_r' into 'Reflection_coefficients'">
         <args Callee="gsm_mult_r" Callee-DebugLoc="File data/benchmarks/gsm/gsm_add.c Line 52 Column 0" Caller="Reflection_coefficients" Caller-DebugLoc="File data/benchmarks/gsm/gsm_lpc.c Line 164 Column 0"/>

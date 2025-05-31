@@ -1,11 +1,5 @@
 # This script segment is generated automatically by AutoPilot
 
-set name adpcm_main_mul_14s_32s_46_1_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {mul} IMPL {auto} LATENCY 0 ALLOW_PRAGMA 1
-}
-
-
 set name adpcm_main_mul_15s_32s_47_1_1
 if {${::AESL::PGuard_rtl_comp_handler}} {
 	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {mul} IMPL {auto} LATENCY 0 ALLOW_PRAGMA 1
@@ -13,12 +7,6 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 
 
 set name adpcm_main_mul_16s_32s_47_1_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {mul} IMPL {auto} LATENCY 0 ALLOW_PRAGMA 1
-}
-
-
-set name adpcm_main_mul_16s_32s_48_1_1
 if {${::AESL::PGuard_rtl_comp_handler}} {
 	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {mul} IMPL {auto} LATENCY 0 ALLOW_PRAGMA 1
 }
@@ -36,7 +24,7 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 }
 
 
-set name adpcm_main_mul_15ns_15ns_30_1_1
+set name adpcm_main_mul_15ns_11ns_25_1_1
 if {${::AESL::PGuard_rtl_comp_handler}} {
 	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {mul} IMPL {auto} LATENCY 0 ALLOW_PRAGMA 1
 }
@@ -48,19 +36,7 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 }
 
 
-set name adpcm_main_mul_16s_16s_32_1_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {mul} IMPL {auto} LATENCY 0 ALLOW_PRAGMA 1
-}
-
-
-set name adpcm_main_mul_15ns_11ns_25_1_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {mul} IMPL {auto} LATENCY 0 ALLOW_PRAGMA 1
-}
-
-
-set id 13
+set id 70
 set name adpcm_main_mux_4_2_14_1_1
 set corename simcore_mux
 set op mux
@@ -117,7 +93,7 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 }
 
 
-set id 15
+set id 72
 set name adpcm_main_mux_4_2_11_1_1
 set corename simcore_mux
 set op mux
@@ -168,27 +144,6 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_pipemux, check your
 }
 
 
-set name adpcm_main_mul_14s_14s_28_1_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {mul} IMPL {auto} LATENCY 0 ALLOW_PRAGMA 1
-}
-
-
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler adpcm_main_encode_decis_levl_ROM_AUTO_1R BINDTYPE {storage} TYPE {rom} IMPL {auto} LATENCY 2 ALLOW_PRAGMA 1
-}
-
-
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler adpcm_main_encode_quant26bt_pos_ROM_AUTO_1R BINDTYPE {storage} TYPE {rom} IMPL {auto} LATENCY 2 ALLOW_PRAGMA 1
-}
-
-
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler adpcm_main_encode_quant26bt_neg_ROM_AUTO_1R BINDTYPE {storage} TYPE {rom} IMPL {auto} LATENCY 2 ALLOW_PRAGMA 1
-}
-
-
 # clear list
 if {${::AESL::PGuard_autoexp_gen}} {
     cg_default_interface_gen_dc_begin
@@ -200,7 +155,7 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 36 \
+    id 84 \
     name tqmf \
     reset_level 1 \
     sync_rst true \
@@ -219,7 +174,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 37 \
+    id 85 \
     name h \
     reset_level 1 \
     sync_rst true \
@@ -238,7 +193,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 38 \
+    id 86 \
     name delay_bpl \
     reset_level 1 \
     sync_rst true \
@@ -257,7 +212,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 39 \
+    id 87 \
     name delay_dltx \
     reset_level 1 \
     sync_rst true \
@@ -276,7 +231,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 46 \
+    id 94 \
     name qq4_code4_table \
     reset_level 1 \
     sync_rst true \
@@ -295,7 +250,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 48 \
+    id 96 \
     name wl_code_table \
     reset_level 1 \
     sync_rst true \
@@ -314,14 +269,14 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 49 \
+    id 97 \
     name ilb_table \
     reset_level 1 \
     sync_rst true \
     dir I \
     corename ilb_table \
     op interface \
-    ports { ilb_table_address0 { O 5 vector } ilb_table_ce0 { O 1 bit } ilb_table_q0 { I 12 vector } } \
+    ports { ilb_table_address0 { O 5 vector } ilb_table_ce0 { O 1 bit } ilb_table_q0 { I 12 vector } ilb_table_address1 { O 5 vector } ilb_table_ce1 { O 1 bit } ilb_table_q1 { I 12 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ilb_table'"
@@ -333,7 +288,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 52 \
+    id 100 \
     name delay_bph \
     reset_level 1 \
     sync_rst true \
@@ -352,14 +307,14 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 53 \
+    id 101 \
     name delay_dhx \
     reset_level 1 \
     sync_rst true \
     dir IO \
     corename delay_dhx \
     op interface \
-    ports { delay_dhx_address0 { O 3 vector } delay_dhx_ce0 { O 1 bit } delay_dhx_we0 { O 1 bit } delay_dhx_d0 { O 14 vector } delay_dhx_q0 { I 14 vector } delay_dhx_address1 { O 3 vector } delay_dhx_ce1 { O 1 bit } delay_dhx_we1 { O 1 bit } delay_dhx_d1 { O 14 vector } delay_dhx_q1 { I 14 vector } } \
+    ports { delay_dhx_address0 { O 3 vector } delay_dhx_ce0 { O 1 bit } delay_dhx_we0 { O 1 bit } delay_dhx_d0 { O 16 vector } delay_dhx_q0 { I 16 vector } delay_dhx_address1 { O 3 vector } delay_dhx_ce1 { O 1 bit } delay_dhx_we1 { O 1 bit } delay_dhx_d1 { O 16 vector } delay_dhx_q1 { I 16 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'delay_dhx'"
@@ -370,7 +325,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 34 \
+    id 82 \
     name xin1 \
     type other \
     dir I \
@@ -385,7 +340,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 35 \
+    id 83 \
     name xin2 \
     type other \
     dir I \
@@ -400,7 +355,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 40 \
+    id 88 \
     name rlt1 \
     type other \
     dir IO \
@@ -415,7 +370,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 41 \
+    id 89 \
     name al1 \
     type other \
     dir IO \
@@ -430,7 +385,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 42 \
+    id 90 \
     name rlt2 \
     type other \
     dir IO \
@@ -445,7 +400,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 43 \
+    id 91 \
     name al2 \
     type other \
     dir IO \
@@ -460,7 +415,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 44 \
+    id 92 \
     name detl \
     type other \
     dir IO \
@@ -475,7 +430,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 45 \
+    id 93 \
     name il \
     type other \
     dir O \
@@ -490,7 +445,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 47 \
+    id 95 \
     name nbl \
     type other \
     dir IO \
@@ -505,7 +460,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 50 \
+    id 98 \
     name plt1 \
     type other \
     dir IO \
@@ -520,7 +475,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 51 \
+    id 99 \
     name plt2 \
     type other \
     dir IO \
@@ -535,7 +490,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 54 \
+    id 102 \
     name rh1 \
     type other \
     dir IO \
@@ -550,7 +505,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 55 \
+    id 103 \
     name ah1 \
     type other \
     dir IO \
@@ -565,7 +520,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 56 \
+    id 104 \
     name rh2 \
     type other \
     dir IO \
@@ -580,7 +535,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 57 \
+    id 105 \
     name ah2 \
     type other \
     dir IO \
@@ -595,7 +550,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 58 \
+    id 106 \
     name deth \
     type other \
     dir IO \
@@ -610,7 +565,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 59 \
+    id 107 \
     name nbh \
     type other \
     dir IO \
@@ -625,7 +580,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 60 \
+    id 108 \
     name ph1 \
     type other \
     dir IO \
@@ -640,7 +595,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 61 \
+    id 109 \
     name ph2 \
     type other \
     dir IO \

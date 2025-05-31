@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'Autocorrelation_Pipeline_Autocorrelation_label2'
 ================================================================
-* Date:           Thu May 29 16:47:03 2025
+* Date:           Fri May 30 22:03:37 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        GSM
@@ -93,7 +93,7 @@ ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%br_ln79 = br i1 %tmp, void %for.inc
 ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%zext_ln79 = zext i5 %k" [data/benchmarks/gsm/gsm_lpc.c:79]   --->   Operation 10 'zext' 'zext_ln79' <Predicate = (!tmp)> <Delay = 0.00>
 ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%specpipeline_ln39 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty" [data/benchmarks/gsm/gsm_lpc.c:39]   --->   Operation 11 'specpipeline' 'specpipeline_ln39' <Predicate = (!tmp)> <Delay = 0.00>
 ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%speclooptripcount_ln80 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 9, i64 9, i64 9" [data/benchmarks/gsm/gsm_lpc.c:80]   --->   Operation 12 'speclooptripcount' 'speclooptripcount_ln80' <Predicate = (!tmp)> <Delay = 0.00>
-ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%specloopname_ln79 = specloopname void @_ssdm_op_SpecLoopName, void @empty_5" [data/benchmarks/gsm/gsm_lpc.c:79]   --->   Operation 13 'specloopname' 'specloopname_ln79' <Predicate = (!tmp)> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%specloopname_ln79 = specloopname void @_ssdm_op_SpecLoopName, void @empty_13" [data/benchmarks/gsm/gsm_lpc.c:79]   --->   Operation 13 'specloopname' 'specloopname_ln79' <Predicate = (!tmp)> <Delay = 0.00>
 ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%L_ACF_addr = getelementptr i64 %L_ACF, i64 0, i64 %zext_ln79" [data/benchmarks/gsm/gsm_lpc.c:81]   --->   Operation 14 'getelementptr' 'L_ACF_addr' <Predicate = (!tmp)> <Delay = 0.00>
 ST_1 : Operation 15 [1/1] (0.71ns)   --->   "%store_ln81 = store i64 0, i4 %L_ACF_addr" [data/benchmarks/gsm/gsm_lpc.c:81]   --->   Operation 15 'store' 'store_ln81' <Predicate = (!tmp)> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
 ST_1 : Operation 16 [1/1] (0.70ns)   --->   "%add_ln79 = add i5 %k, i5 31" [data/benchmarks/gsm/gsm_lpc.c:79]   --->   Operation 16 'add' 'add_ln79' <Predicate = (!tmp)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
@@ -255,7 +255,7 @@ ret_ln0                (ret              ) [ 00]
 <pin id="25" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="empty_5"/></StgValue>
+<StgValue><ssdm name="empty_13"/></StgValue>
 </bind>
 </comp>
 

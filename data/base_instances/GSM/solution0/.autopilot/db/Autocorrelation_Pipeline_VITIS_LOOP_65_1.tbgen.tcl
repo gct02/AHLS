@@ -16,15 +16,17 @@ set C_modelName {Autocorrelation_Pipeline_VITIS_LOOP_65_1}
 set C_modelType { void 0 }
 set C_modelArgList {
 	{ indata int 16 regular {array 160 { 0 1 } 1 1 }  }
-	{ zext_ln65 int 15 regular  }
+	{ cmp_i68 int 1 regular  }
+	{ empty int 15 regular  }
 }
 set hasAXIMCache 0
 set AXIMCacheInstList { }
 set C_modelArgMapList {[ 
 	{ "Name" : "indata", "interface" : "memory", "bitwidth" : 16, "direction" : "READWRITE"} , 
- 	{ "Name" : "zext_ln65", "interface" : "wire", "bitwidth" : 15, "direction" : "READONLY"} ]}
+ 	{ "Name" : "cmp_i68", "interface" : "wire", "bitwidth" : 1, "direction" : "READONLY"} , 
+ 	{ "Name" : "empty", "interface" : "wire", "bitwidth" : 15, "direction" : "READONLY"} ]}
 # RTL Port declarations: 
-set portNum 14
+set portNum 15
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
@@ -39,7 +41,8 @@ set portList {
 	{ indata_address1 sc_out sc_lv 8 signal 0 } 
 	{ indata_ce1 sc_out sc_logic 1 signal 0 } 
 	{ indata_q1 sc_in sc_lv 16 signal 0 } 
-	{ zext_ln65 sc_in sc_lv 15 signal 1 } 
+	{ cmp_i68 sc_in sc_lv 1 signal 1 } 
+	{ empty sc_in sc_lv 15 signal 2 } 
 }
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
@@ -55,7 +58,8 @@ set NewPortList {[
  	{ "name": "indata_address1", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "indata", "role": "address1" }} , 
  	{ "name": "indata_ce1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "indata", "role": "ce1" }} , 
  	{ "name": "indata_q1", "direction": "in", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "indata", "role": "q1" }} , 
- 	{ "name": "zext_ln65", "direction": "in", "datatype": "sc_lv", "bitwidth":15, "type": "signal", "bundle":{"name": "zext_ln65", "role": "default" }}  ]}
+ 	{ "name": "cmp_i68", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cmp_i68", "role": "default" }} , 
+ 	{ "name": "empty", "direction": "in", "datatype": "sc_lv", "bitwidth":15, "type": "signal", "bundle":{"name": "empty", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
 	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2"],
@@ -74,7 +78,8 @@ set RtlHierarchyInfo {[
 		"IsBlackBox" : "0",
 		"Port" : [
 			{"Name" : "indata", "Type" : "Memory", "Direction" : "IO"},
-			{"Name" : "zext_ln65", "Type" : "None", "Direction" : "I"}],
+			{"Name" : "cmp_i68", "Type" : "None", "Direction" : "I"},
+			{"Name" : "empty", "Type" : "None", "Direction" : "I"}],
 		"Loop" : [
 			{"Name" : "VITIS_LOOP_65_1", "PipelineType" : "UPC",
 				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter4", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter4", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
@@ -85,7 +90,8 @@ set RtlHierarchyInfo {[
 set ArgLastReadFirstWriteLatency {
 	Autocorrelation_Pipeline_VITIS_LOOP_65_1 {
 		indata {Type IO LastRead 0 FirstWrite 4}
-		zext_ln65 {Type I LastRead 0 FirstWrite -1}}}
+		cmp_i68 {Type I LastRead 0 FirstWrite -1}
+		empty {Type I LastRead 0 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 
@@ -100,5 +106,6 @@ set PipelineEnableSignalInfo {[
 
 set Spec2ImplPortList { 
 	indata { ap_memory {  { indata_address0 mem_address 1 8 }  { indata_ce0 mem_ce 1 1 }  { indata_we0 mem_we 1 1 }  { indata_d0 mem_din 1 16 }  { indata_address1 MemPortADDR2 1 8 }  { indata_ce1 MemPortCE2 1 1 }  { indata_q1 in_data 0 16 } } }
-	zext_ln65 { ap_none {  { zext_ln65 in_data 0 15 } } }
+	cmp_i68 { ap_none {  { cmp_i68 in_data 0 1 } } }
+	empty { ap_none {  { empty in_data 0 15 } } }
 }

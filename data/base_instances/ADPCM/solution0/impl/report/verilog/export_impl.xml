@@ -6,31 +6,31 @@
   </RunData>
   <TimingReport>
     <TargetClockPeriod>8.000</TargetClockPeriod>
-    <AchievedClockPeriod>6.065</AchievedClockPeriod>
+    <AchievedClockPeriod>6.568</AchievedClockPeriod>
     <CLOCK_NAME>ap_clk</CLOCK_NAME>
-    <CP_FINAL>6.065</CP_FINAL>
-    <CP_ROUTE>6.065</CP_ROUTE>
-    <CP_SYNTH>4.592</CP_SYNTH>
+    <CP_FINAL>6.568</CP_FINAL>
+    <CP_ROUTE>6.568</CP_ROUTE>
+    <CP_SYNTH>5.231</CP_SYNTH>
     <CP_TARGET>8.000</CP_TARGET>
-    <SLACK_FINAL>1.935</SLACK_FINAL>
-    <SLACK_ROUTE>1.935</SLACK_ROUTE>
-    <SLACK_SYNTH>3.408</SLACK_SYNTH>
+    <SLACK_FINAL>1.432</SLACK_FINAL>
+    <SLACK_ROUTE>1.432</SLACK_ROUTE>
+    <SLACK_SYNTH>2.769</SLACK_SYNTH>
     <TIMING_MET>TRUE</TIMING_MET>
     <TNS_FINAL>0.000</TNS_FINAL>
     <TNS_ROUTE>0.000</TNS_ROUTE>
     <TNS_SYNTH>0.000</TNS_SYNTH>
-    <WNS_FINAL>1.935</WNS_FINAL>
-    <WNS_ROUTE>1.935</WNS_ROUTE>
-    <WNS_SYNTH>3.408</WNS_SYNTH>
+    <WNS_FINAL>1.432</WNS_FINAL>
+    <WNS_ROUTE>1.432</WNS_ROUTE>
+    <WNS_SYNTH>2.769</WNS_SYNTH>
   </TimingReport>
   <AreaReport>
     <Resources>
       <BRAM>6</BRAM>
-      <CLB>772</CLB>
-      <DSP>47</DSP>
-      <FF>3002</FF>
+      <CLB>790</CLB>
+      <DSP>50</DSP>
+      <FF>2633</FF>
       <LATCH>0</LATCH>
-      <LUT>4156</LUT>
+      <LUT>4339</LUT>
       <SRL>0</SRL>
       <URAM>0</URAM>
     </Resources>
@@ -45,12 +45,12 @@
   </AreaReport>
   <RtlModules>
     <RtlModule CELL="inst" DEPTH="0" IS_TOP="1" TYPE="function" MODULENAME="adpcm_main" DISPNAME="inst" RTLNAME="adpcm_main">
-      <SubModules count="16">accumc_U accumd_U dec_del_bph_U dec_del_bpl_U dec_del_dhx_U dec_del_dltx_U delay_bph_U delay_bpl_U delay_dhx_U delay_dltx_U grp_decode_fu_519 grp_encode_fu_453 h_U ilb_table_U tqmf_U wl_code_table_U</SubModules>
-      <Resources BRAM="6" DSP="47" FF="3002" LUT="4156"/>
-      <LocalResources FF="929" LUT="33"/>
+      <SubModules count="17">accumc_U accumd_U dec_del_bph_U dec_del_bpl_U dec_del_dhx_U dec_del_dltx_U delay_bph_U delay_bpl_U delay_dhx_U delay_dltx_U grp_decode_fu_397 grp_encode_fu_331 grp_reset_fu_241 h_U ilb_table_U tqmf_U wl_code_table_U</SubModules>
+      <Resources BRAM="6" DSP="50" FF="2633" LUT="4339"/>
+      <LocalResources FF="913" LUT="18"/>
     </RtlModule>
     <RtlModule CELL="inst/accumc_U" BINDMODULE="adpcm_main_accumc_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="accumc_RAM_AUTO_1R1W" DISPNAME="accumc_U" RTLNAME="adpcm_main_accumc_RAM_AUTO_1R1W">
-      <Resources FF="32" LUT="17"/>
+      <Resources FF="32" LUT="16"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="accumc_U" SOURCE="" STORAGESIZE="32 11 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p" URAM="0" VARIABLE="accumc"/>
     </RtlModule>
     <RtlModule CELL="inst/accumd_U" BINDMODULE="adpcm_main_accumc_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="accumc_RAM_AUTO_1R1W" DISPNAME="accumd_U" RTLNAME="adpcm_main_accumc_RAM_AUTO_1R1W">
@@ -58,298 +58,361 @@
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="accumd_U" SOURCE="" STORAGESIZE="32 11 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p" URAM="0" VARIABLE="accumd"/>
     </RtlModule>
     <RtlModule CELL="inst/dec_del_bph_U" BINDMODULE="adpcm_main_delay_bpl_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delay_bpl_RAM_AUTO_1R1W" DISPNAME="dec_del_bph_U" RTLNAME="adpcm_main_delay_bpl_RAM_AUTO_1R1W">
-      <Resources FF="32" LUT="74"/>
+      <Resources FF="32" LUT="62"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dec_del_bph_U" SOURCE="" STORAGESIZE="32 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p" URAM="0" VARIABLE="dec_del_bph"/>
     </RtlModule>
     <RtlModule CELL="inst/dec_del_bpl_U" BINDMODULE="adpcm_main_delay_bpl_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delay_bpl_RAM_AUTO_1R1W" DISPNAME="dec_del_bpl_U" RTLNAME="adpcm_main_delay_bpl_RAM_AUTO_1R1W">
       <Resources FF="32" LUT="73"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dec_del_bpl_U" SOURCE="" STORAGESIZE="32 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p" URAM="0" VARIABLE="dec_del_bpl"/>
     </RtlModule>
-    <RtlModule CELL="inst/dec_del_dhx_U" BINDMODULE="adpcm_main_delay_dhx_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delay_dhx_RAM_AUTO_1R1W" DISPNAME="dec_del_dhx_U" RTLNAME="adpcm_main_delay_dhx_RAM_AUTO_1R1W">
-      <Resources BRAM="1" LUT="7"/>
-      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="dec_del_dhx_U" SOURCE="" STORAGESIZE="14 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="dec_del_dhx"/>
+    <RtlModule CELL="inst/dec_del_dhx_U" BINDMODULE="adpcm_main_delay_dltx_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delay_dltx_RAM_AUTO_1R1W" DISPNAME="dec_del_dhx_U" RTLNAME="adpcm_main_delay_dltx_RAM_AUTO_1R1W">
+      <Resources BRAM="1" LUT="40"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="dec_del_dhx_U" SOURCE="" STORAGESIZE="16 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="dec_del_dhx"/>
     </RtlModule>
     <RtlModule CELL="inst/dec_del_dltx_U" BINDMODULE="adpcm_main_delay_dltx_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delay_dltx_RAM_AUTO_1R1W" DISPNAME="dec_del_dltx_U" RTLNAME="adpcm_main_delay_dltx_RAM_AUTO_1R1W">
-      <Resources BRAM="1" LUT="9"/>
+      <Resources BRAM="1"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="dec_del_dltx_U" SOURCE="" STORAGESIZE="16 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="dec_del_dltx"/>
     </RtlModule>
     <RtlModule CELL="inst/delay_bph_U" BINDMODULE="adpcm_main_delay_bpl_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delay_bpl_RAM_AUTO_1R1W" DISPNAME="delay_bph_U" RTLNAME="adpcm_main_delay_bpl_RAM_AUTO_1R1W">
-      <Resources FF="32" LUT="73"/>
+      <Resources FF="32" LUT="90"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="delay_bph_U" SOURCE="" STORAGESIZE="32 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p" URAM="0" VARIABLE="delay_bph"/>
     </RtlModule>
     <RtlModule CELL="inst/delay_bpl_U" BINDMODULE="adpcm_main_delay_bpl_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delay_bpl_RAM_AUTO_1R1W" DISPNAME="delay_bpl_U" RTLNAME="adpcm_main_delay_bpl_RAM_AUTO_1R1W">
-      <Resources FF="32" LUT="73"/>
+      <Resources FF="32" LUT="75"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="delay_bpl_U" SOURCE="" STORAGESIZE="32 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p" URAM="0" VARIABLE="delay_bpl"/>
     </RtlModule>
-    <RtlModule CELL="inst/delay_dhx_U" BINDMODULE="adpcm_main_delay_dhx_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delay_dhx_RAM_AUTO_1R1W" DISPNAME="delay_dhx_U" RTLNAME="adpcm_main_delay_dhx_RAM_AUTO_1R1W">
-      <Resources BRAM="1" LUT="7"/>
-      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="delay_dhx_U" SOURCE="" STORAGESIZE="14 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="delay_dhx"/>
+    <RtlModule CELL="inst/delay_dhx_U" BINDMODULE="adpcm_main_delay_dltx_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delay_dltx_RAM_AUTO_1R1W" DISPNAME="delay_dhx_U" RTLNAME="adpcm_main_delay_dltx_RAM_AUTO_1R1W">
+      <Resources BRAM="1" LUT="16"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="delay_dhx_U" SOURCE="" STORAGESIZE="16 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="delay_dhx"/>
     </RtlModule>
     <RtlModule CELL="inst/delay_dltx_U" BINDMODULE="adpcm_main_delay_dltx_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="delay_dltx_RAM_AUTO_1R1W" DISPNAME="delay_dltx_U" RTLNAME="adpcm_main_delay_dltx_RAM_AUTO_1R1W">
       <Resources BRAM="1" LUT="8"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="delay_dltx_U" SOURCE="" STORAGESIZE="16 6 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="delay_dltx"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519" DEPTH="1" TYPE="function" MODULENAME="decode" DISPNAME="grp_decode_fu_519" RTLNAME="adpcm_main_decode">
-      <SubModules count="14">mul_14s_14s_28_1_1_U76 mul_14s_15ns_29_1_1_U75 mul_14s_32s_46_1_1_U62 mul_15s_32s_47_1_1_U63 mul_15s_32s_47_1_1_U64 mul_16s_15ns_31_1_1_U70 mul_16s_15ns_31_1_1_U71 mul_16s_16s_32_1_1_U72 mul_16s_32s_47_1_1_U65 mul_16s_32s_48_1_1_U66 mul_32s_32s_64_1_1_U67 mul_32s_32s_64_1_1_U68 mul_32s_7s_39_1_1_U69 mux_4_2_14_1_1_U74</SubModules>
-      <Resources DSP="23" FF="775" LUT="1617"/>
-      <LocalResources FF="775" LUT="958"/>
+    <RtlModule CELL="inst/grp_decode_fu_397" DEPTH="1" TYPE="function" MODULENAME="decode" DISPNAME="grp_decode_fu_397" RTLNAME="adpcm_main_decode">
+      <SubModules count="12">grp_filtez_fu_427 grp_upzero_fu_437 mul_14s_15ns_29_1_1_U120 mul_15s_32s_47_1_1_U110 mul_15s_32s_47_1_1_U111 mul_16s_15ns_31_1_1_U116 mul_16s_15ns_31_1_1_U117 mul_16s_32s_47_1_1_U112 mul_32s_32s_64_1_1_U113 mul_32s_32s_64_1_1_U114 mul_32s_7s_39_1_1_U115 mux_4_2_14_1_1_U119</SubModules>
+      <Resources DSP="20" FF="496" LUT="1655"/>
+      <LocalResources FF="377" LUT="701"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_14s_14s_28_1_1_U76" BINDMODULE="adpcm_main_mul_14s_14s_28_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_14s_14s_28_1_1" DISPNAME="mul_14s_14s_28_1_1_U76" RTLNAME="adpcm_main_mul_14s_14s_28_1_1">
-      <Resources DSP="1" LUT="24"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U76" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545_2"/>
+    <RtlModule CELL="inst/grp_decode_fu_397/grp_filtez_fu_427" DEPTH="2" TYPE="function" MODULENAME="filtez" DISPNAME="grp_filtez_fu_427" RTLNAME="adpcm_main_filtez">
+      <SubModules count="1">mul_16s_32s_48_1_1_U44</SubModules>
+      <Resources DSP="2" FF="56" LUT="73"/>
+      <LocalResources FF="56" LUT="27"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_14s_15ns_29_1_1_U75" BINDMODULE="adpcm_main_mul_14s_15ns_29_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_14s_15ns_29_1_1" DISPNAME="mul_14s_15ns_29_1_1_U75" RTLNAME="adpcm_main_mul_14s_15ns_29_1_1">
-      <Resources DSP="1" LUT="18"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_15ns_29_1_1_U75" SOURCE="data/benchmarks/adpcm/adpcm.c:364" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln364"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_14s_32s_46_1_1_U62" BINDMODULE="adpcm_main_mul_14s_32s_46_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_14s_32s_46_1_1" DISPNAME="mul_14s_32s_46_1_1_U62" RTLNAME="adpcm_main_mul_14s_32s_46_1_1">
+    <RtlModule CELL="inst/grp_decode_fu_397/grp_filtez_fu_427/mul_16s_32s_48_1_1_U44" BINDMODULE="adpcm_main_mul_16s_32s_48_1_1" DEPTH="3" TYPE="resource" MODULENAME="mul_16s_32s_48_1_1" DISPNAME="mul_16s_32s_48_1_1_U44" RTLNAME="adpcm_main_mul_16s_32s_48_1_1">
       <Resources DSP="2" LUT="46"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_1_1_U62" SOURCE="data/benchmarks/adpcm/adpcm.c:461" STORAGESUBTYPE="" URAM="0" VARIABLE="zl_12"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="filtez_label8" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_1_1_U62" SOURCE="data/benchmarks/adpcm/adpcm.c:466" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln466_2"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_48_1_1_U44" SOURCE="data/benchmarks/adpcm/adpcm.c:461" STORAGESUBTYPE="" URAM="0" VARIABLE="zl"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="filtez_label8" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_48_1_1_U44" SOURCE="data/benchmarks/adpcm/adpcm.c:466" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln466"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_48_1_1_U44" SOURCE="data/benchmarks/adpcm/adpcm.c:461" STORAGESUBTYPE="" URAM="0" VARIABLE="zl"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="filtez_label8" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_48_1_1_U44" SOURCE="data/benchmarks/adpcm/adpcm.c:466" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln466"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_15s_32s_47_1_1_U63" BINDMODULE="adpcm_main_mul_15s_32s_47_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_15s_32s_47_1_1" DISPNAME="mul_15s_32s_47_1_1_U63" RTLNAME="adpcm_main_mul_15s_32s_47_1_1">
-      <Resources DSP="2" LUT="92"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U63" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U63" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479_2"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="decode_label2" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U63" SOURCE="data/benchmarks/adpcm/adpcm.c:391" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln391"/>
+    <RtlModule CELL="inst/grp_decode_fu_397/grp_upzero_fu_437" DEPTH="2" TYPE="function" MODULENAME="upzero" DISPNAME="grp_upzero_fu_437" RTLNAME="adpcm_main_upzero">
+      <SubModules count="1">mul_16s_16s_32_1_1_U55</SubModules>
+      <Resources DSP="1" FF="63" LUT="131"/>
+      <LocalResources FF="63" LUT="107"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_15s_32s_47_1_1_U64" BINDMODULE="adpcm_main_mul_15s_32s_47_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_15s_32s_47_1_1" DISPNAME="mul_15s_32s_47_1_1_U64" RTLNAME="adpcm_main_mul_15s_32s_47_1_1">
+    <RtlModule CELL="inst/grp_decode_fu_397/grp_upzero_fu_437/mul_16s_16s_32_1_1_U55" BINDMODULE="adpcm_main_mul_16s_16s_32_1_1" DEPTH="3" TYPE="resource" MODULENAME="mul_16s_16s_32_1_1" DISPNAME="mul_16s_16s_32_1_1_U55" RTLNAME="adpcm_main_mul_16s_16s_32_1_1">
+      <Resources DSP="1" LUT="24"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U55" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U55" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U55" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_decode_fu_397/mul_14s_15ns_29_1_1_U120" BINDMODULE="adpcm_main_mul_14s_15ns_29_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_14s_15ns_29_1_1" DISPNAME="mul_14s_15ns_29_1_1_U120" RTLNAME="adpcm_main_mul_14s_15ns_29_1_1">
+      <Resources DSP="1" LUT="94"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_15ns_29_1_1_U120" SOURCE="data/benchmarks/adpcm/adpcm.c:364" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln364"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_decode_fu_397/mul_15s_32s_47_1_1_U110" BINDMODULE="adpcm_main_mul_15s_32s_47_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_15s_32s_47_1_1" DISPNAME="mul_15s_32s_47_1_1_U110" RTLNAME="adpcm_main_mul_15s_32s_47_1_1">
+      <Resources DSP="2" LUT="169"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U110" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U110" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479_2"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="decode_label2" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U110" SOURCE="data/benchmarks/adpcm/adpcm.c:391" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln391"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_decode_fu_397/mul_15s_32s_47_1_1_U111" BINDMODULE="adpcm_main_mul_15s_32s_47_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_15s_32s_47_1_1" DISPNAME="mul_15s_32s_47_1_1_U111" RTLNAME="adpcm_main_mul_15s_32s_47_1_1">
       <Resources DSP="2" LUT="61"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="decode_label2" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U64" SOURCE="data/benchmarks/adpcm/adpcm.c:392" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln392"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="decode_label2" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U111" SOURCE="data/benchmarks/adpcm/adpcm.c:392" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln392"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_16s_15ns_31_1_1_U70" BINDMODULE="adpcm_main_mul_16s_15ns_31_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_15ns_31_1_1" DISPNAME="mul_16s_15ns_31_1_1_U70" RTLNAME="adpcm_main_mul_16s_15ns_31_1_1">
-      <Resources DSP="1" LUT="20"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U70" SOURCE="data/benchmarks/adpcm/adpcm.c:345" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln345"/>
+    <RtlModule CELL="inst/grp_decode_fu_397/mul_16s_15ns_31_1_1_U116" BINDMODULE="adpcm_main_mul_16s_15ns_31_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_15ns_31_1_1" DISPNAME="mul_16s_15ns_31_1_1_U116" RTLNAME="adpcm_main_mul_16s_15ns_31_1_1">
+      <Resources DSP="1" LUT="78"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U116" SOURCE="data/benchmarks/adpcm/adpcm.c:345" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln345"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_16s_15ns_31_1_1_U71" BINDMODULE="adpcm_main_mul_16s_15ns_31_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_15ns_31_1_1" DISPNAME="mul_16s_15ns_31_1_1_U71" RTLNAME="adpcm_main_mul_16s_15ns_31_1_1">
+    <RtlModule CELL="inst/grp_decode_fu_397/mul_16s_15ns_31_1_1_U117" BINDMODULE="adpcm_main_mul_16s_15ns_31_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_15ns_31_1_1" DISPNAME="mul_16s_15ns_31_1_1_U117" RTLNAME="adpcm_main_mul_16s_15ns_31_1_1">
       <Resources DSP="1" LUT="16"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U71" SOURCE="data/benchmarks/adpcm/adpcm.c:346" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln346"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U117" SOURCE="data/benchmarks/adpcm/adpcm.c:346" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln346"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_16s_16s_32_1_1_U72" BINDMODULE="adpcm_main_mul_16s_16s_32_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_16s_32_1_1" DISPNAME="mul_16s_16s_32_1_1_U72" RTLNAME="adpcm_main_mul_16s_16s_32_1_1">
-      <Resources DSP="1" LUT="24"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U72" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_16s_32s_47_1_1_U65" BINDMODULE="adpcm_main_mul_16s_32s_47_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_32s_47_1_1" DISPNAME="mul_16s_32s_47_1_1_U65" RTLNAME="adpcm_main_mul_16s_32s_47_1_1">
-      <Resources DSP="2" LUT="24"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U65" SOURCE="data/benchmarks/adpcm/adpcm.c:475" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln475"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U65" SOURCE="data/benchmarks/adpcm/adpcm.c:475" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln475_2"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_16s_32s_48_1_1_U66" BINDMODULE="adpcm_main_mul_16s_32s_48_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_32s_48_1_1" DISPNAME="mul_16s_32s_48_1_1_U66" RTLNAME="adpcm_main_mul_16s_32s_48_1_1">
-      <Resources DSP="2" LUT="46"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_48_1_1_U66" SOURCE="data/benchmarks/adpcm/adpcm.c:461" STORAGESUBTYPE="" URAM="0" VARIABLE="zl"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="filtez_label8" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_48_1_1_U66" SOURCE="data/benchmarks/adpcm/adpcm.c:466" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln466"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_32s_32s_64_1_1_U67" BINDMODULE="adpcm_main_mul_32s_32s_64_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_32s_64_1_1" DISPNAME="mul_32s_32s_64_1_1_U67" RTLNAME="adpcm_main_mul_32s_32s_64_1_1">
-      <Resources DSP="4" LUT="121"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U67" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U67" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570_2"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_32s_32s_64_1_1_U68" BINDMODULE="adpcm_main_mul_32s_32s_64_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_32s_64_1_1" DISPNAME="mul_32s_32s_64_1_1_U68" RTLNAME="adpcm_main_mul_32s_32s_64_1_1">
-      <Resources DSP="4" LUT="65"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U68" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U68" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574_2"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mul_32s_7s_39_1_1_U69" BINDMODULE="adpcm_main_mul_32s_7s_39_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_7s_39_1_1" DISPNAME="mul_32s_7s_39_1_1_U69" RTLNAME="adpcm_main_mul_32s_7s_39_1_1">
-      <Resources LUT="150"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U69" SOURCE="data/benchmarks/adpcm/adpcm.c:386" STORAGESUBTYPE="" URAM="0" VARIABLE="xa2"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U69" SOURCE="data/benchmarks/adpcm/adpcm.c:395" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln395"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_decode_fu_519/mux_4_2_14_1_1_U74" BINDMODULE="adpcm_main_mux_4_2_14_1_1" DEPTH="2" TYPE="rtl" MODULENAME="mux_4_2_14_1_1" DISPNAME="mux_4_2_14_1_1_U74" RTLNAME="adpcm_main_mux_4_2_14_1_1">
-      <Resources LUT="2"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453" DEPTH="1" TYPE="function" MODULENAME="encode" DISPNAME="grp_encode_fu_453" RTLNAME="adpcm_main_encode">
-      <SubModules count="17">mul_14s_14s_28_1_1_U16 mul_14s_15ns_29_1_1_U14 mul_14s_32s_46_1_1_U1 mul_15ns_11ns_25_1_1_U12 mul_15ns_15ns_30_1_1_U9 mul_15s_32s_47_1_1_U2 mul_15s_32s_47_1_1_U3 mul_16s_15ns_31_1_1_U10 mul_16s_16s_32_1_1_U11 mul_16s_32s_47_1_1_U4 mul_16s_32s_48_1_1_U5 mul_32s_32s_64_1_1_U6 mul_32s_32s_64_1_1_U7 mul_32s_7s_39_1_1_U8 mux_4_2_14_1_1_U13 quant26bt_neg_U quant26bt_pos_U</SubModules>
-      <Resources DSP="24" FF="1072" LUT="1816"/>
-      <LocalResources FF="1061" LUT="1016"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_14s_14s_28_1_1_U16" BINDMODULE="adpcm_main_mul_14s_14s_28_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_14s_14s_28_1_1" DISPNAME="mul_14s_14s_28_1_1_U16" RTLNAME="adpcm_main_mul_14s_14s_28_1_1">
-      <Resources DSP="1" LUT="24"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_14s_28_1_1_U16" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545_1"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_14s_15ns_29_1_1_U14" BINDMODULE="adpcm_main_mul_14s_15ns_29_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_14s_15ns_29_1_1" DISPNAME="mul_14s_15ns_29_1_1_U14" RTLNAME="adpcm_main_mul_14s_15ns_29_1_1">
-      <Resources DSP="1" LUT="1"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_15ns_29_1_1_U14" SOURCE="data/benchmarks/adpcm/adpcm.c:314" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln314"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_14s_32s_46_1_1_U1" BINDMODULE="adpcm_main_mul_14s_32s_46_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_14s_32s_46_1_1" DISPNAME="mul_14s_32s_46_1_1_U1" RTLNAME="adpcm_main_mul_14s_32s_46_1_1">
-      <Resources DSP="2" LUT="46"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_1_1_U1" SOURCE="data/benchmarks/adpcm/adpcm.c:461" STORAGESUBTYPE="" URAM="0" VARIABLE="zl_6"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="filtez_label8" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_32s_46_1_1_U1" SOURCE="data/benchmarks/adpcm/adpcm.c:466" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln466_1"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_15ns_11ns_25_1_1_U12" BINDMODULE="adpcm_main_mul_15ns_11ns_25_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_15ns_11ns_25_1_1" DISPNAME="mul_15ns_11ns_25_1_1_U12" RTLNAME="adpcm_main_mul_15ns_11ns_25_1_1">
-      <Resources DSP="1" LUT="19"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_11ns_25_1_1_U12" SOURCE="data/benchmarks/adpcm/adpcm.c:310" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln310"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_15ns_15ns_30_1_1_U9" BINDMODULE="adpcm_main_mul_15ns_15ns_30_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_15ns_15ns_30_1_1" DISPNAME="mul_15ns_15ns_30_1_1_U9" RTLNAME="adpcm_main_mul_15ns_15ns_30_1_1">
-      <Resources DSP="1" LUT="27"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="quantl_label9" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_15ns_30_1_1_U9" SOURCE="data/benchmarks/adpcm/adpcm.c:495" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln495"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U2" BINDMODULE="adpcm_main_mul_15s_32s_47_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_15s_32s_47_1_1" DISPNAME="mul_15s_32s_47_1_1_U2" RTLNAME="adpcm_main_mul_15s_32s_47_1_1">
-      <Resources DSP="2" LUT="139"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="encode_label0" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U2" SOURCE="data/benchmarks/adpcm/adpcm.c:257" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln257"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U2" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U2" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479_1"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_15s_32s_47_1_1_U3" BINDMODULE="adpcm_main_mul_15s_32s_47_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_15s_32s_47_1_1" DISPNAME="mul_15s_32s_47_1_1_U3" RTLNAME="adpcm_main_mul_15s_32s_47_1_1">
-      <Resources DSP="2" LUT="47"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="encode_label0" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U3" SOURCE="data/benchmarks/adpcm/adpcm.c:258" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln258"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_16s_15ns_31_1_1_U10" BINDMODULE="adpcm_main_mul_16s_15ns_31_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_15ns_31_1_1" DISPNAME="mul_16s_15ns_31_1_1_U10" RTLNAME="adpcm_main_mul_16s_15ns_31_1_1">
-      <Resources DSP="1"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U10" SOURCE="data/benchmarks/adpcm/adpcm.c:287" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln287"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_16s_16s_32_1_1_U11" BINDMODULE="adpcm_main_mul_16s_16s_32_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_16s_32_1_1" DISPNAME="mul_16s_16s_32_1_1_U11" RTLNAME="adpcm_main_mul_16s_16s_32_1_1">
-      <Resources DSP="1" LUT="24"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U11" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_16s_32s_47_1_1_U4" BINDMODULE="adpcm_main_mul_16s_32s_47_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_32s_47_1_1" DISPNAME="mul_16s_32s_47_1_1_U4" RTLNAME="adpcm_main_mul_16s_32s_47_1_1">
+    <RtlModule CELL="inst/grp_decode_fu_397/mul_16s_32s_47_1_1_U112" BINDMODULE="adpcm_main_mul_16s_32s_47_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_32s_47_1_1" DISPNAME="mul_16s_32s_47_1_1_U112" RTLNAME="adpcm_main_mul_16s_32s_47_1_1">
       <Resources DSP="2" LUT="25"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U4" SOURCE="data/benchmarks/adpcm/adpcm.c:475" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln475"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U4" SOURCE="data/benchmarks/adpcm/adpcm.c:475" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln475_1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U112" SOURCE="data/benchmarks/adpcm/adpcm.c:475" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln475"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U112" SOURCE="data/benchmarks/adpcm/adpcm.c:475" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln475_2"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_16s_32s_48_1_1_U5" BINDMODULE="adpcm_main_mul_16s_32s_48_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_32s_48_1_1" DISPNAME="mul_16s_32s_48_1_1_U5" RTLNAME="adpcm_main_mul_16s_32s_48_1_1">
-      <Resources DSP="2" LUT="46"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_48_1_1_U5" SOURCE="data/benchmarks/adpcm/adpcm.c:461" STORAGESUBTYPE="" URAM="0" VARIABLE="zl"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="filtez_label8" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_48_1_1_U5" SOURCE="data/benchmarks/adpcm/adpcm.c:466" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln466"/>
+    <RtlModule CELL="inst/grp_decode_fu_397/mul_32s_32s_64_1_1_U113" BINDMODULE="adpcm_main_mul_32s_32s_64_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_32s_64_1_1" DISPNAME="mul_32s_32s_64_1_1_U113" RTLNAME="adpcm_main_mul_32s_32s_64_1_1">
+      <Resources DSP="4" LUT="139"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U113" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U113" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570_2"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_32s_32s_64_1_1_U6" BINDMODULE="adpcm_main_mul_32s_32s_64_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_32s_64_1_1" DISPNAME="mul_32s_32s_64_1_1_U6" RTLNAME="adpcm_main_mul_32s_32s_64_1_1">
-      <Resources DSP="4" LUT="121"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U6" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U6" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570_1"/>
-    </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_32s_32s_64_1_1_U7" BINDMODULE="adpcm_main_mul_32s_32s_64_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_32s_64_1_1" DISPNAME="mul_32s_32s_64_1_1_U7" RTLNAME="adpcm_main_mul_32s_32s_64_1_1">
+    <RtlModule CELL="inst/grp_decode_fu_397/mul_32s_32s_64_1_1_U114" BINDMODULE="adpcm_main_mul_32s_32s_64_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_32s_64_1_1" DISPNAME="mul_32s_32s_64_1_1_U114" RTLNAME="adpcm_main_mul_32s_32s_64_1_1">
       <Resources DSP="4" LUT="65"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U7" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U7" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574_1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U114" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U114" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574_2"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mul_32s_7s_39_1_1_U8" BINDMODULE="adpcm_main_mul_32s_7s_39_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_7s_39_1_1" DISPNAME="mul_32s_7s_39_1_1_U8" RTLNAME="adpcm_main_mul_32s_7s_39_1_1">
-      <Resources LUT="193"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U8" SOURCE="data/benchmarks/adpcm/adpcm.c:251" STORAGESUBTYPE="" URAM="0" VARIABLE="xb"/>
-      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U8" SOURCE="data/benchmarks/adpcm/adpcm.c:262" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln262"/>
+    <RtlModule CELL="inst/grp_decode_fu_397/mul_32s_7s_39_1_1_U115" BINDMODULE="adpcm_main_mul_32s_7s_39_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_7s_39_1_1" DISPNAME="mul_32s_7s_39_1_1_U115" RTLNAME="adpcm_main_mul_32s_7s_39_1_1">
+      <Resources LUT="150"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U115" SOURCE="data/benchmarks/adpcm/adpcm.c:386" STORAGESUBTYPE="" URAM="0" VARIABLE="xa2"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U115" SOURCE="data/benchmarks/adpcm/adpcm.c:395" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln395"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/mux_4_2_14_1_1_U13" BINDMODULE="adpcm_main_mux_4_2_14_1_1" DEPTH="2" TYPE="rtl" MODULENAME="mux_4_2_14_1_1" DISPNAME="mux_4_2_14_1_1_U13" RTLNAME="adpcm_main_mux_4_2_14_1_1">
+    <RtlModule CELL="inst/grp_decode_fu_397/mux_4_2_14_1_1_U119" BINDMODULE="adpcm_main_mux_4_2_14_1_1" DEPTH="2" TYPE="rtl" MODULENAME="mux_4_2_14_1_1" DISPNAME="mux_4_2_14_1_1_U119" RTLNAME="adpcm_main_mux_4_2_14_1_1">
       <Resources LUT="2"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/quant26bt_neg_U" BINDMODULE="adpcm_main_encode_quant26bt_neg_ROM_AUTO_1R" DEPTH="2" TYPE="resource" MODULENAME="encode_quant26bt_neg_ROM_AUTO_1R" DISPNAME="quant26bt_neg_U" RTLNAME="adpcm_main_encode_quant26bt_neg_ROM_AUTO_1R">
-      <Resources FF="5" LUT="16"/>
+    <RtlModule CELL="inst/grp_encode_fu_331" DEPTH="1" TYPE="function" MODULENAME="encode" DISPNAME="grp_encode_fu_331" RTLNAME="adpcm_main_encode">
+      <SubModules count="15">grp_filtez_fu_426 grp_quantl_fu_436 grp_upzero_fu_448 grp_upzero_fu_457 mul_14s_15ns_29_1_1_U71 mul_15ns_11ns_25_1_1_U68 mul_15s_32s_47_1_1_U60 mul_15s_32s_47_1_1_U61 mul_16s_15ns_31_1_1_U69 mul_16s_32s_47_1_1_U62 mul_32s_32s_64_1_1_U63 mul_32s_32s_64_1_1_U64 mul_32s_32s_64_1_1_U65 mul_32s_32s_64_1_1_U66 mul_32s_7s_39_1_1_U67</SubModules>
+      <Resources DSP="30" FF="967" LUT="1941"/>
+      <LocalResources FF="715" LUT="632"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/grp_filtez_fu_426" DEPTH="2" TYPE="function" MODULENAME="filtez" DISPNAME="grp_filtez_fu_426" RTLNAME="adpcm_main_filtez">
+      <SubModules count="1">mul_16s_32s_48_1_1_U44</SubModules>
+      <Resources DSP="2" FF="56" LUT="228"/>
+      <LocalResources FF="56" LUT="182"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/grp_filtez_fu_426/mul_16s_32s_48_1_1_U44" BINDMODULE="adpcm_main_mul_16s_32s_48_1_1" DEPTH="3" TYPE="resource" MODULENAME="mul_16s_32s_48_1_1" DISPNAME="mul_16s_32s_48_1_1_U44" RTLNAME="adpcm_main_mul_16s_32s_48_1_1">
+      <Resources DSP="2" LUT="46"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_48_1_1_U44" SOURCE="data/benchmarks/adpcm/adpcm.c:461" STORAGESUBTYPE="" URAM="0" VARIABLE="zl"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="filtez_label8" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_48_1_1_U44" SOURCE="data/benchmarks/adpcm/adpcm.c:466" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln466"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_48_1_1_U44" SOURCE="data/benchmarks/adpcm/adpcm.c:461" STORAGESUBTYPE="" URAM="0" VARIABLE="zl"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="filtez_label8" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_48_1_1_U44" SOURCE="data/benchmarks/adpcm/adpcm.c:466" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln466"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/grp_quantl_fu_436" DEPTH="2" TYPE="function" MODULENAME="quantl" DISPNAME="grp_quantl_fu_436" RTLNAME="adpcm_main_quantl">
+      <SubModules count="3">mul_15ns_15ns_30_1_1_U48 quant26bt_neg_U quant26bt_pos_U</SubModules>
+      <Resources DSP="1" FF="70" LUT="106"/>
+      <LocalResources FF="59" LUT="39"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/grp_quantl_fu_436/mul_15ns_15ns_30_1_1_U48" BINDMODULE="adpcm_main_mul_15ns_15ns_30_1_1" DEPTH="3" TYPE="resource" MODULENAME="mul_15ns_15ns_30_1_1" DISPNAME="mul_15ns_15ns_30_1_1_U48" RTLNAME="adpcm_main_mul_15ns_15ns_30_1_1">
+      <Resources DSP="1" LUT="27"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="quantl_label9" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_15ns_30_1_1_U48" SOURCE="data/benchmarks/adpcm/adpcm.c:495" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln495"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/grp_quantl_fu_436/quant26bt_neg_U" BINDMODULE="adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R" DEPTH="3" TYPE="resource" MODULENAME="quantl_quant26bt_neg_ROM_AUTO_1R" DISPNAME="quant26bt_neg_U" RTLNAME="adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R">
+      <Resources FF="5" LUT="31"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="quant26bt_neg_U" SOURCE="" STORAGESIZE="6 31 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="quant26bt_neg"/>
     </RtlModule>
-    <RtlModule CELL="inst/grp_encode_fu_453/quant26bt_pos_U" BINDMODULE="adpcm_main_encode_quant26bt_pos_ROM_AUTO_1R" DEPTH="2" TYPE="resource" MODULENAME="encode_quant26bt_pos_ROM_AUTO_1R" DISPNAME="quant26bt_pos_U" RTLNAME="adpcm_main_encode_quant26bt_pos_ROM_AUTO_1R">
-      <Resources FF="6" LUT="8"/>
+    <RtlModule CELL="inst/grp_encode_fu_331/grp_quantl_fu_436/quant26bt_pos_U" BINDMODULE="adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R" DEPTH="3" TYPE="resource" MODULENAME="quantl_quant26bt_pos_ROM_AUTO_1R" DISPNAME="quant26bt_pos_U" RTLNAME="adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R">
+      <Resources FF="6" LUT="9"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="quant26bt_pos_U" SOURCE="" STORAGESIZE="6 31 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="quant26bt_pos"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/grp_upzero_fu_448" DEPTH="2" TYPE="function" MODULENAME="upzero" DISPNAME="grp_upzero_fu_448" RTLNAME="adpcm_main_upzero">
+      <SubModules count="1">mul_16s_16s_32_1_1_U55</SubModules>
+      <Resources DSP="1" FF="63" LUT="79"/>
+      <LocalResources FF="63" LUT="55"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/grp_upzero_fu_448/mul_16s_16s_32_1_1_U55" BINDMODULE="adpcm_main_mul_16s_16s_32_1_1" DEPTH="3" TYPE="resource" MODULENAME="mul_16s_16s_32_1_1" DISPNAME="mul_16s_16s_32_1_1_U55" RTLNAME="adpcm_main_mul_16s_16s_32_1_1">
+      <Resources DSP="1" LUT="24"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U55" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U55" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U55" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/grp_upzero_fu_457" DEPTH="2" TYPE="function" MODULENAME="upzero" DISPNAME="grp_upzero_fu_457" RTLNAME="adpcm_main_upzero">
+      <SubModules count="1">mul_16s_16s_32_1_1_U55</SubModules>
+      <Resources DSP="1" FF="63" LUT="75"/>
+      <LocalResources FF="63" LUT="51"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/grp_upzero_fu_457/mul_16s_16s_32_1_1_U55" BINDMODULE="adpcm_main_mul_16s_16s_32_1_1" DEPTH="3" TYPE="resource" MODULENAME="mul_16s_16s_32_1_1" DISPNAME="mul_16s_16s_32_1_1_U55" RTLNAME="adpcm_main_mul_16s_16s_32_1_1">
+      <Resources DSP="1" LUT="24"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U55" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U55" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U55" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/mul_14s_15ns_29_1_1_U71" BINDMODULE="adpcm_main_mul_14s_15ns_29_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_14s_15ns_29_1_1" DISPNAME="mul_14s_15ns_29_1_1_U71" RTLNAME="adpcm_main_mul_14s_15ns_29_1_1">
+      <Resources DSP="1" LUT="47"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_15ns_29_1_1_U71" SOURCE="data/benchmarks/adpcm/adpcm.c:314" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln314"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/mul_15ns_11ns_25_1_1_U68" BINDMODULE="adpcm_main_mul_15ns_11ns_25_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_15ns_11ns_25_1_1" DISPNAME="mul_15ns_11ns_25_1_1_U68" RTLNAME="adpcm_main_mul_15ns_11ns_25_1_1">
+      <Resources DSP="1"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_11ns_25_1_1_U68" SOURCE="data/benchmarks/adpcm/adpcm.c:310" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln310"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/mul_15s_32s_47_1_1_U60" BINDMODULE="adpcm_main_mul_15s_32s_47_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_15s_32s_47_1_1" DISPNAME="mul_15s_32s_47_1_1_U60" RTLNAME="adpcm_main_mul_15s_32s_47_1_1">
+      <Resources DSP="2" LUT="139"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="encode_label0" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U60" SOURCE="data/benchmarks/adpcm/adpcm.c:257" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln257"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U60" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U60" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479_1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/mul_15s_32s_47_1_1_U61" BINDMODULE="adpcm_main_mul_15s_32s_47_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_15s_32s_47_1_1" DISPNAME="mul_15s_32s_47_1_1_U61" RTLNAME="adpcm_main_mul_15s_32s_47_1_1">
+      <Resources DSP="2" LUT="47"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="encode_label0" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U61" SOURCE="data/benchmarks/adpcm/adpcm.c:258" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln258"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/mul_16s_15ns_31_1_1_U69" BINDMODULE="adpcm_main_mul_16s_15ns_31_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_15ns_31_1_1" DISPNAME="mul_16s_15ns_31_1_1_U69" RTLNAME="adpcm_main_mul_16s_15ns_31_1_1">
+      <Resources DSP="1" LUT="48"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U69" SOURCE="data/benchmarks/adpcm/adpcm.c:287" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln287"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/mul_16s_32s_47_1_1_U62" BINDMODULE="adpcm_main_mul_16s_32s_47_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_16s_32s_47_1_1" DISPNAME="mul_16s_32s_47_1_1_U62" RTLNAME="adpcm_main_mul_16s_32s_47_1_1">
+      <Resources DSP="2" LUT="25"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U62" SOURCE="data/benchmarks/adpcm/adpcm.c:475" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln475"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U62" SOURCE="data/benchmarks/adpcm/adpcm.c:475" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln475_1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/mul_32s_32s_64_1_1_U63" BINDMODULE="adpcm_main_mul_32s_32s_64_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_32s_64_1_1" DISPNAME="mul_32s_32s_64_1_1_U63" RTLNAME="adpcm_main_mul_32s_32s_64_1_1">
+      <Resources DSP="4" LUT="100"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U63" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/mul_32s_32s_64_1_1_U64" BINDMODULE="adpcm_main_mul_32s_32s_64_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_32s_64_1_1" DISPNAME="mul_32s_32s_64_1_1_U64" RTLNAME="adpcm_main_mul_32s_32s_64_1_1">
+      <Resources DSP="4" LUT="63"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U64" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/mul_32s_32s_64_1_1_U65" BINDMODULE="adpcm_main_mul_32s_32s_64_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_32s_64_1_1" DISPNAME="mul_32s_32s_64_1_1_U65" RTLNAME="adpcm_main_mul_32s_32s_64_1_1">
+      <Resources DSP="4" LUT="102"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U65" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570_1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/mul_32s_32s_64_1_1_U66" BINDMODULE="adpcm_main_mul_32s_32s_64_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_32s_64_1_1" DISPNAME="mul_32s_32s_64_1_1_U66" RTLNAME="adpcm_main_mul_32s_32s_64_1_1">
+      <Resources DSP="4" LUT="63"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U66" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574_1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_encode_fu_331/mul_32s_7s_39_1_1_U67" BINDMODULE="adpcm_main_mul_32s_7s_39_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_32s_7s_39_1_1" DISPNAME="mul_32s_7s_39_1_1_U67" RTLNAME="adpcm_main_mul_32s_7s_39_1_1">
+      <Resources LUT="193"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U67" SOURCE="data/benchmarks/adpcm/adpcm.c:251" STORAGESUBTYPE="" URAM="0" VARIABLE="xb"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U67" SOURCE="data/benchmarks/adpcm/adpcm.c:262" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln262"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_reset_fu_241" DEPTH="1" TYPE="function" MODULENAME="reset" DISPNAME="grp_reset_fu_241" RTLNAME="adpcm_main_reset">
+      <Resources FF="20" LUT="35"/>
     </RtlModule>
     <RtlModule CELL="inst/h_U" BINDMODULE="adpcm_main_h_ROM_AUTO_1R" DEPTH="1" TYPE="resource" MODULENAME="h_ROM_AUTO_1R" DISPNAME="h_U" RTLNAME="adpcm_main_h_ROM_AUTO_1R">
       <Resources FF="12"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_2p" PRAGMA="" RTLNAME="h_U" SOURCE="" STORAGESIZE="15 24 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_2p" URAM="0" VARIABLE="h"/>
     </RtlModule>
     <RtlModule CELL="inst/ilb_table_U" BINDMODULE="adpcm_main_ilb_table_ROM_AUTO_1R" DEPTH="1" TYPE="resource" MODULENAME="ilb_table_ROM_AUTO_1R" DISPNAME="ilb_table_U" RTLNAME="adpcm_main_ilb_table_ROM_AUTO_1R">
-      <Resources FF="11" LUT="146"/>
-      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="ilb_table_U" SOURCE="" STORAGESIZE="12 32 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="ilb_table"/>
+      <Resources FF="22" LUT="122"/>
+      <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_2p" PRAGMA="" RTLNAME="ilb_table_U" SOURCE="" STORAGESIZE="12 32 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_2p" URAM="0" VARIABLE="ilb_table"/>
     </RtlModule>
     <RtlModule CELL="inst/tqmf_U" BINDMODULE="adpcm_main_tqmf_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="tqmf_RAM_AUTO_1R1W" DISPNAME="tqmf_U" RTLNAME="adpcm_main_tqmf_RAM_AUTO_1R1W">
-      <Resources BRAM="2" LUT="67"/>
+      <Resources BRAM="2" LUT="66"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="tqmf_U" SOURCE="" STORAGESIZE="32 24 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="tqmf"/>
     </RtlModule>
     <RtlModule CELL="inst/wl_code_table_U" BINDMODULE="adpcm_main_wl_code_table_ROM_AUTO_1R" DEPTH="1" TYPE="resource" MODULENAME="wl_code_table_ROM_AUTO_1R" DISPNAME="wl_code_table_U" RTLNAME="adpcm_main_wl_code_table_ROM_AUTO_1R">
-      <Resources FF="11" LUT="56"/>
+      <Resources FF="11" LUT="76"/>
       <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="wl_code_table_U" SOURCE="" STORAGESIZE="13 16 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="wl_code_table"/>
     </RtlModule>
   </RtlModules>
   <TimingPaths>
-    <TPATH DATAPATH_DELAY="6.045" DATAPATH_LOGIC_DELAY="3.278" DATAPATH_NET_DELAY="2.767" ENDPOINT_PIN="grp_encode_fu_453/apl2_3_reg_3416_reg[16]/D" LOGIC_LEVELS="16" MAX_FANOUT="144" SLACK="1.935" STARTPOINT_PIN="grp_encode_fu_453/ap_CS_fsm_reg[28]/C">
-      <CELL NAME="grp_encode_fu_453/ap_CS_fsm_reg[28]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1111"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_i_13__2" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1118"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product__0/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product__0/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__2_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="30"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__3" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__4" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U6/apl2_3_reg_3416[15]_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="2508"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U6/apl2_3_reg_3416_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U6/apl2_3_reg_3416_reg[16]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/apl2_3_reg_3416_reg[16]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1299"/>
+    <TPATH DATAPATH_DELAY="6.518" DATAPATH_LOGIC_DELAY="3.737" DATAPATH_NET_DELAY="2.781" ENDPOINT_PIN="grp_decode_fu_397/apl2_reg_2151_reg[16]/D" LOGIC_LEVELS="22" MAX_FANOUT="36" SLACK="1.432" STARTPOINT_PIN="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product/DSP_OUTPUT_INST/CLK">
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_62" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="1866"/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_35__1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_20__5" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry_i_4__6" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="30"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__0" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__3" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__4" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151[15]_i_23" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="9"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151[15]_i_5" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151_reg[16]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/apl2_reg_2151_reg[16]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="956"/>
     </TPATH>
-    <TPATH DATAPATH_DELAY="6.042" DATAPATH_LOGIC_DELAY="3.300" DATAPATH_NET_DELAY="2.742" ENDPOINT_PIN="grp_encode_fu_453/apl2_3_reg_3416_reg[15]/D" LOGIC_LEVELS="15" MAX_FANOUT="144" SLACK="1.938" STARTPOINT_PIN="grp_encode_fu_453/ap_CS_fsm_reg[28]/C">
-      <CELL NAME="grp_encode_fu_453/ap_CS_fsm_reg[28]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1111"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_i_13__2" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1118"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product__0/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product__0/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__2_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="30"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__3" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__4" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U6/apl2_3_reg_3416[15]_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="2508"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U6/apl2_3_reg_3416_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/apl2_3_reg_3416_reg[15]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1299"/>
+    <TPATH DATAPATH_DELAY="6.515" DATAPATH_LOGIC_DELAY="3.759" DATAPATH_NET_DELAY="2.756" ENDPOINT_PIN="grp_decode_fu_397/apl2_reg_2151_reg[15]/D" LOGIC_LEVELS="21" MAX_FANOUT="36" SLACK="1.435" STARTPOINT_PIN="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product/DSP_OUTPUT_INST/CLK">
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_62" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="1866"/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_35__1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_20__5" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry_i_4__6" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="30"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__0" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__3" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__4" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151[15]_i_23" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="9"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151[15]_i_5" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/apl2_reg_2151_reg[15]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="956"/>
     </TPATH>
-    <TPATH DATAPATH_DELAY="6.039" DATAPATH_LOGIC_DELAY="3.298" DATAPATH_NET_DELAY="2.741" ENDPOINT_PIN="grp_encode_fu_453/apl2_3_reg_3416_reg[13]/D" LOGIC_LEVELS="15" MAX_FANOUT="144" SLACK="1.941" STARTPOINT_PIN="grp_encode_fu_453/ap_CS_fsm_reg[28]/C">
-      <CELL NAME="grp_encode_fu_453/ap_CS_fsm_reg[28]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1111"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_i_13__2" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1118"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product__0/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product__0/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__2_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="30"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__3" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__4" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U6/apl2_3_reg_3416[15]_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="2508"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U6/apl2_3_reg_3416_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/apl2_3_reg_3416_reg[13]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1299"/>
+    <TPATH DATAPATH_DELAY="6.511" DATAPATH_LOGIC_DELAY="3.756" DATAPATH_NET_DELAY="2.755" ENDPOINT_PIN="grp_decode_fu_397/apl2_reg_2151_reg[13]/D" LOGIC_LEVELS="21" MAX_FANOUT="36" SLACK="1.439" STARTPOINT_PIN="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product/DSP_OUTPUT_INST/CLK">
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_62" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="1866"/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_35__1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_20__5" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry_i_4__6" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="30"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__0" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__3" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__4" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151[15]_i_23" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="9"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151[15]_i_5" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/apl2_reg_2151_reg[13]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="956"/>
     </TPATH>
-    <TPATH DATAPATH_DELAY="6.027" DATAPATH_LOGIC_DELAY="3.285" DATAPATH_NET_DELAY="2.742" ENDPOINT_PIN="grp_encode_fu_453/apl2_3_reg_3416_reg[14]/D" LOGIC_LEVELS="15" MAX_FANOUT="144" SLACK="1.953" STARTPOINT_PIN="grp_encode_fu_453/ap_CS_fsm_reg[28]/C">
-      <CELL NAME="grp_encode_fu_453/ap_CS_fsm_reg[28]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1111"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_i_13__2" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1118"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product__0/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product__0/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__2_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="30"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__3" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__4" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U6/apl2_3_reg_3416[15]_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="2508"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U6/apl2_3_reg_3416_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/apl2_3_reg_3416_reg[14]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1299"/>
+    <TPATH DATAPATH_DELAY="6.500" DATAPATH_LOGIC_DELAY="3.744" DATAPATH_NET_DELAY="2.756" ENDPOINT_PIN="grp_decode_fu_397/apl2_reg_2151_reg[14]/D" LOGIC_LEVELS="21" MAX_FANOUT="36" SLACK="1.450" STARTPOINT_PIN="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product/DSP_OUTPUT_INST/CLK">
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_62" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="1866"/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_35__1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_20__5" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry_i_4__6" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="30"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__0" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__3" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__4" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151[15]_i_23" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="9"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151[15]_i_5" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_reg_2151_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/apl2_reg_2151_reg[14]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="956"/>
     </TPATH>
-    <TPATH DATAPATH_DELAY="6.008" DATAPATH_LOGIC_DELAY="3.267" DATAPATH_NET_DELAY="2.741" ENDPOINT_PIN="grp_encode_fu_453/apl2_3_reg_3416_reg[12]/D" LOGIC_LEVELS="15" MAX_FANOUT="144" SLACK="1.972" STARTPOINT_PIN="grp_encode_fu_453/ap_CS_fsm_reg[28]/C">
-      <CELL NAME="grp_encode_fu_453/ap_CS_fsm_reg[28]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1111"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_i_13__2" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="1118"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product__0/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product__0/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__2_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="30"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__3" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U7/tmp_product_carry__4" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U6/apl2_3_reg_3416[15]_i_7" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="2508"/>
-      <CELL NAME="grp_encode_fu_453/mul_32s_32s_64_1_1_U6/apl2_3_reg_3416_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="1126"/>
-      <CELL NAME="grp_encode_fu_453/apl2_3_reg_3416_reg[12]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="1299"/>
+    <TPATH DATAPATH_DELAY="6.494" DATAPATH_LOGIC_DELAY="3.728" DATAPATH_NET_DELAY="2.766" ENDPOINT_PIN="grp_decode_fu_397/apl2_8_reg_2182_reg[16]/D" LOGIC_LEVELS="22" MAX_FANOUT="36" SLACK="1.456" STARTPOINT_PIN="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product/DSP_OUTPUT_INST/CLK">
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_62" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="1866"/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_35__1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_14s_15ns_29_1_1_U120/tmp_product_i_20__5" PRIMITIVE_TYPE="CLB.LUT.LUT3" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST" PRIMITIVE_TYPE="ARITHMETIC.DSP.DSP48E2" LINE_NUMBER=""/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry_i_4__6" PRIMITIVE_TYPE="CLB.LUT.LUT2" LINE_NUMBER="30"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__0" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__2" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__3" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/tmp_product_carry__4" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_8_reg_2182[15]_i_23" PRIMITIVE_TYPE="CLB.LUT.LUT6" LINE_NUMBER="9"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_8_reg_2182[15]_i_5" PRIMITIVE_TYPE="CLB.LUT.LUT4" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_8_reg_2182_reg[15]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/mul_32s_32s_64_1_1_U113/apl2_8_reg_2182_reg[16]_i_1" PRIMITIVE_TYPE="CLB.CARRY.CARRY8" LINE_NUMBER="885"/>
+      <CELL NAME="grp_decode_fu_397/apl2_8_reg_2182_reg[16]" PRIMITIVE_TYPE="REGISTER.SDR.FDRE" LINE_NUMBER="967"/>
     </TPATH>
   </TimingPaths>
   <VivadoReportFiles>
@@ -362,7 +425,7 @@
     <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/adpcm_main_utilization_hierarchical_routed.rpt"/>
   </VivadoReportFiles>
   <GeneralInfo NAME="General Information">
-    <item NAME="Date" VALUE="Sun May 25 00:40:28 -03 2025"/>
+    <item NAME="Date" VALUE="Fri May 30 21:23:36 -03 2025"/>
     <item NAME="Version" VALUE="2023.2 (Build 4023990 on Oct 11 2023)"/>
     <item NAME="Project" VALUE="ADPCM"/>
     <item NAME="Solution" VALUE="solution0 (Vivado IP Flow Target)"/>

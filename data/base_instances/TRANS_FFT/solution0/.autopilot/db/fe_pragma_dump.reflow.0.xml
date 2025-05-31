@@ -21,6 +21,8 @@
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<60, 1, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base(char const*)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<256>::ap_uint(char const*)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<256, false>::ap_int_base(char const*)" off="0" region="0" recursive="0"/>
+<pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="15" pragmaType="inline" parentfunction="twiddles8" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="14" pragmaType="loop_flatten" parentfunction="twiddles8" off="1"/>
 <pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="29" pragmaType="loop_tripcount" parentfunction="twiddles8" min="7" max="7" avg="7"/>
 <pragma file="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_hotbm.h" line="219" pragmaType="array_partition" parentfunction="sin_or_cos" dim="1" factor="0" mode="complete" dynamic="0" variable="_ZZN6hotbm_10sin_or_cosIdEET_S1_bbE10swap_table"/>
 <pragma file="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_hotbm.h" line="220" pragmaType="array_partition" parentfunction="sin_or_cos" dim="1" factor="0" mode="complete" dynamic="0" variable="_ZZN6hotbm_10sin_or_cosIdEET_S1_bbE13neg_sin_table"/>
@@ -68,7 +70,6 @@
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_bit_ref<1, false>::ap_bit_ref(ap_int_base<1, false> const*, int)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="to_bool" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<52, false>::ap_int_base(int)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
 <pragma file="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/include/header_files/etc/ap_common.h" line="520" pragmaType="inline" parentfunction="_ZN8ssdm_intILi52ELb0EEC2EDq52_j" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<11, false>::ap_int_base(int)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
@@ -83,7 +84,6 @@
 <pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowCsim" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_bit_ref<4, false>::ap_bit_ref(ap_int_base<4, false>*, int)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<4, false>::ap_int_base<3, false>(ap_int_base<3, false> const&)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_bit_ref<1, false>::operator=(int)" off="0" region="0" recursive="0"/>
 <pragma file="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/include/header_files/etc/ap_common.h" line="520" pragmaType="inline" parentfunction="_ZN8ssdm_intILi4ELb0EEC2EDq4_j" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<1, false>::operator[](int)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="wl" off="0" region="0" recursive="0"/>
@@ -328,7 +328,6 @@
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<63, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base(int)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<63, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator>>(unsigned int) const" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<63, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator<<(unsigned int) const" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<63, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<63, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<63, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator!() const" off="0" region="0" recursive="0"/>
@@ -440,7 +439,7 @@
 <pragma file="" line="0" pragmaType="inline" parentfunction="bool ap_fixed_base<124, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator==<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&) const" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<155, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/include/header_files/etc/ap_common.h" line="512" pragmaType="inline" parentfunction="_ZN8ssdm_intILi155ELb1EEC2EDq155_i" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="report" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<124, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<124, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<223, 56, false, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<223, 56, false, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<124, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<223, 56, false, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<223, 56, false, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="report" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, false>& ap_int_base<32, false>::operator=<33, true>(ap_int_base<33, true> const&)" off="0" region="0" recursive="0"/>
@@ -478,6 +477,7 @@
 <pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="7" pragmaType="pipeline" parentfunction="fft1D_512" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="302" pragmaType="loop_tripcount" parentfunction="fft1D_512" min="64" max="64" avg="64"/>
 <pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="6" pragmaType="pipeline" parentfunction="fft1D_512" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="13" pragmaType="loop_flatten" parentfunction="fft1D_512" off="1"/>
 <pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="251" pragmaType="loop_tripcount" parentfunction="fft1D_512" min="64" max="64" avg="64"/>
 <pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="5" pragmaType="pipeline" parentfunction="fft1D_512" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="225" pragmaType="loop_tripcount" parentfunction="fft1D_512" min="64" max="64" avg="64"/>
@@ -488,17 +488,20 @@
 <pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="2" pragmaType="pipeline" parentfunction="fft1D_512" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="177" pragmaType="loop_tripcount" parentfunction="fft1D_512" min="64" max="64" avg="64"/>
 <pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="1" pragmaType="pipeline" parentfunction="fft1D_512" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="12" pragmaType="loop_flatten" parentfunction="fft1D_512" off="1"/>
 <pragma file="data/benchmarks/trans_fft/transposed_fft.c" line="129" pragmaType="loop_tripcount" parentfunction="fft1D_512" min="64" max="64" avg="64"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<66, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<66, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<63, 1, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<63, 1, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="af_range_ref<223, 56, false, (ap_q_mode)5, (ap_o_mode)3, 0>& af_range_ref<223, 56, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<223, false>(ap_range_ref<223, false> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_bit_ref<4, false>& ap_bit_ref<4, false>::operator=<1, false>(ap_int_base<1, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="iwl" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_bit_ref<8, false>::operator=(bool)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="report" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<56, -7, false, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<56, -7, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<63, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<63, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_range_ref<32, false>& ap_range_ref<32, false>::operator=<63, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>(af_range_ref<63, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<66, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<66, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<63, 1, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<63, 1, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="af_range_ref<63, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>& af_range_ref<63, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<63, 1, true, (ap_q_mode)5, (ap_o_mode)3, 0>(af_range_ref<63, 1, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<63, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<63, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<56, -7, false, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<56, -7, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<63, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<63, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="wl" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<53, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<53, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<63, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<63, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="af_range_ref<63, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>& af_range_ref<63, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<63, false>(ap_int_base<63, false> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<63, 1, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<63, 1, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
@@ -510,13 +513,14 @@
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<64, 2, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<64, 2, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<98, -28, false, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<98, -28, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="wl" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="report" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_range_ref<62, false>& ap_range_ref<62, false>::operator=<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>(af_range_ref<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="report" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<63, 0, false, (ap_q_mode)0, (ap_o_mode)0, 0>& ap_fixed_base<63, 0, false, (ap_q_mode)0, (ap_o_mode)0, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<157, 33, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<157, 33, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<157, 33, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<157, 33, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<124, 0, false, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_fixed_base<124, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<124, 1, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<223, 56, false, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<223, 56, false, (ap_q_mode)5, (ap_o_mode)3, 0> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<223, false>& ap_int_base<223, false>::operator<<=<32>(ap_int_base<32, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_bit_ref<1, false>::operator=(int)" off="0" region="0" recursive="0"/>
 <pragma file="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/src/common/hls_hotbm_double.cpp" line="15" pragmaType="array_partition" parentfunction="sin_or_cos_approximation" dim="1" factor="0" mode="complete" dynamic="0" variable="_ZZN6hotbm_10value_listIdE24sin_or_cos_approximationILi63ELi63EEE9ap_ufixedIXT_ELi1EL9ap_q_mode5EL9ap_o_mode3ELi0EEbR7ap_uintILi3EERS3_IXT_ELi0ELS4_5ELS5_3ELi0EERS3_IXT0_ELi0ELS4_5ELS5_3ELi0EER6ap_intILi11EEE10swap_table"/>
 <pragma file="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/src/common/hls_hotbm_double.cpp" line="16" pragmaType="bind_storage" parentfunction="sin_or_cos_approximation" op="666" impl="34" latency="-1" variable="_ZN19fourth_order_doubleL10sin_cos_K0E"/>
 <pragma file="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/src/common/hls_hotbm_double.cpp" line="17" pragmaType="bind_storage" parentfunction="sin_or_cos_approximation" op="666" impl="34" latency="-1" variable="_ZN19fourth_order_doubleL10sin_cos_K1E"/>

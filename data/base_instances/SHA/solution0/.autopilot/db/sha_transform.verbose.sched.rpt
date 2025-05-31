@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'sha_transform'
 ================================================================
-* Date:           Thu May 29 17:32:46 2025
+* Date:           Fri May 30 23:25:08 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        SHA
@@ -123,7 +123,7 @@ ST_2 : Operation 34 [1/1] (0.00ns)   --->   "%br_ln104 = br void %for.inc21" [da
 
 State 3 <SV = 2> <Delay = 1.29>
 ST_3 : Operation 35 [1/1] (0.00ns)   --->   "%speclooptripcount_ln99 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 16, i64 16, i64 16" [data/benchmarks/sha/sha.c:99]   --->   Operation 35 'speclooptripcount' 'speclooptripcount_ln99' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 36 [1/1] (0.00ns)   --->   "%specloopname_ln101 = specloopname void @_ssdm_op_SpecLoopName, void @empty_0" [data/benchmarks/sha/sha.c:101]   --->   Operation 36 'specloopname' 'specloopname_ln101' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 36 [1/1] (0.00ns)   --->   "%specloopname_ln101 = specloopname void @_ssdm_op_SpecLoopName, void @empty_4" [data/benchmarks/sha/sha.c:101]   --->   Operation 36 'specloopname' 'specloopname_ln101' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 37 [1/2] (0.69ns)   --->   "%sha_info_data_load = load i4 %sha_info_data_addr" [data/benchmarks/sha/sha.c:100]   --->   Operation 37 'load' 'sha_info_data_load' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
 ST_3 : Operation 38 [1/1] (0.00ns)   --->   "%W_addr = getelementptr i32 %W, i64 0, i64 %zext_ln98" [data/benchmarks/sha/sha.c:100]   --->   Operation 38 'getelementptr' 'W_addr' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 39 [1/1] (0.60ns)   --->   "%store_ln100 = store i32 %sha_info_data_load, i7 %W_addr" [data/benchmarks/sha/sha.c:100]   --->   Operation 39 'store' 'store_ln100' <Predicate = true> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
@@ -165,7 +165,7 @@ ST_5 : Operation 69 [2/2] (0.60ns)   --->   "%W_load_3 = load i7 %W_addr_4" [dat
 State 6 <SV = 4> <Delay = 1.41>
 ST_6 : Operation 70 [1/1] (0.00ns)   --->   "%zext_ln104 = zext i7 %i_7" [data/benchmarks/sha/sha.c:104]   --->   Operation 70 'zext' 'zext_ln104' <Predicate = true> <Delay = 0.00>
 ST_6 : Operation 71 [1/1] (0.00ns)   --->   "%speclooptripcount_ln105 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 64, i64 64, i64 64" [data/benchmarks/sha/sha.c:105]   --->   Operation 71 'speclooptripcount' 'speclooptripcount_ln105' <Predicate = true> <Delay = 0.00>
-ST_6 : Operation 72 [1/1] (0.00ns)   --->   "%specloopname_ln107 = specloopname void @_ssdm_op_SpecLoopName, void @empty_1" [data/benchmarks/sha/sha.c:107]   --->   Operation 72 'specloopname' 'specloopname_ln107' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 72 [1/1] (0.00ns)   --->   "%specloopname_ln107 = specloopname void @_ssdm_op_SpecLoopName, void @empty_0" [data/benchmarks/sha/sha.c:107]   --->   Operation 72 'specloopname' 'specloopname_ln107' <Predicate = true> <Delay = 0.00>
 ST_6 : Operation 73 [1/2] (0.60ns)   --->   "%W_load_2 = load i7 %W_addr_3" [data/benchmarks/sha/sha.c:106]   --->   Operation 73 'load' 'W_load_2' <Predicate = true> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
 ST_6 : Operation 74 [1/2] (0.60ns)   --->   "%W_load_3 = load i7 %W_addr_4" [data/benchmarks/sha/sha.c:106]   --->   Operation 74 'load' 'W_load_3' <Predicate = true> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
 ST_6 : Operation 75 [1/1] (0.00ns) (grouped into LUT with out node xor_ln106_2)   --->   "%xor_ln106 = xor i32 %W_load_1, i32 %W_load" [data/benchmarks/sha/sha.c:106]   --->   Operation 75 'xor' 'xor_ln106' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.21> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
@@ -232,7 +232,7 @@ ST_10 : Operation 127 [1/1] (0.38ns)   --->   "%br_ln121 = br void %for.inc60" [
 
 State 11 <SV = 7> <Delay = 1.33>
 ST_11 : Operation 128 [1/1] (0.00ns)   --->   "%speclooptripcount_ln118 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 20, i64 20, i64 20" [data/benchmarks/sha/sha.c:118]   --->   Operation 128 'speclooptripcount' 'speclooptripcount_ln118' <Predicate = true> <Delay = 0.00>
-ST_11 : Operation 129 [1/1] (0.00ns)   --->   "%specloopname_ln120 = specloopname void @_ssdm_op_SpecLoopName, void @empty_2" [data/benchmarks/sha/sha.c:120]   --->   Operation 129 'specloopname' 'specloopname_ln120' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 129 [1/1] (0.00ns)   --->   "%specloopname_ln120 = specloopname void @_ssdm_op_SpecLoopName, void @empty_1" [data/benchmarks/sha/sha.c:120]   --->   Operation 129 'specloopname' 'specloopname_ln120' <Predicate = true> <Delay = 0.00>
 ST_11 : Operation 130 [1/1] (0.00ns)   --->   "%trunc_ln119 = trunc i32 %B_10" [data/benchmarks/sha/sha.c:119]   --->   Operation 130 'trunc' 'trunc_ln119' <Predicate = true> <Delay = 0.00>
 ST_11 : Operation 131 [1/1] (0.00ns)   --->   "%lshr_ln = partselect i5 @_ssdm_op_PartSelect.i5.i32.i32.i32, i32 %B_10, i32 27, i32 31" [data/benchmarks/sha/sha.c:119]   --->   Operation 131 'partselect' 'lshr_ln' <Predicate = true> <Delay = 0.00>
 ST_11 : Operation 132 [1/2] (0.60ns)   --->   "%W_load_4 = load i7 %W_addr_6" [data/benchmarks/sha/sha.c:119]   --->   Operation 132 'load' 'W_load_4' <Predicate = true> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
@@ -277,7 +277,7 @@ ST_12 : Operation 168 [1/1] (0.38ns)   --->   "%br_ln125 = br void %for.inc85" [
 
 State 13 <SV = 8> <Delay = 1.33>
 ST_13 : Operation 169 [1/1] (0.00ns)   --->   "%speclooptripcount_ln122 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 20, i64 20, i64 20" [data/benchmarks/sha/sha.c:122]   --->   Operation 169 'speclooptripcount' 'speclooptripcount_ln122' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 170 [1/1] (0.00ns)   --->   "%specloopname_ln124 = specloopname void @_ssdm_op_SpecLoopName, void @empty" [data/benchmarks/sha/sha.c:124]   --->   Operation 170 'specloopname' 'specloopname_ln124' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 170 [1/1] (0.00ns)   --->   "%specloopname_ln124 = specloopname void @_ssdm_op_SpecLoopName, void @empty_2" [data/benchmarks/sha/sha.c:124]   --->   Operation 170 'specloopname' 'specloopname_ln124' <Predicate = true> <Delay = 0.00>
 ST_13 : Operation 171 [1/1] (0.00ns)   --->   "%trunc_ln123 = trunc i32 %B_11" [data/benchmarks/sha/sha.c:123]   --->   Operation 171 'trunc' 'trunc_ln123' <Predicate = true> <Delay = 0.00>
 ST_13 : Operation 172 [1/1] (0.00ns)   --->   "%lshr_ln1 = partselect i5 @_ssdm_op_PartSelect.i5.i32.i32.i32, i32 %B_11, i32 27, i32 31" [data/benchmarks/sha/sha.c:123]   --->   Operation 172 'partselect' 'lshr_ln1' <Predicate = true> <Delay = 0.00>
 ST_13 : Operation 173 [1/2] (0.60ns)   --->   "%W_load_5 = load i7 %W_addr_7" [data/benchmarks/sha/sha.c:123]   --->   Operation 173 'load' 'W_load_5' <Predicate = true> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
@@ -328,7 +328,7 @@ ST_14 : Operation 215 [1/1] (0.00ns)   --->   "%br_ln129 = br void %for.inc107" 
 
 State 15 <SV = 9> <Delay = 1.33>
 ST_15 : Operation 216 [1/1] (0.00ns)   --->   "%speclooptripcount_ln126 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 20, i64 20, i64 20" [data/benchmarks/sha/sha.c:126]   --->   Operation 216 'speclooptripcount' 'speclooptripcount_ln126' <Predicate = true> <Delay = 0.00>
-ST_15 : Operation 217 [1/1] (0.00ns)   --->   "%specloopname_ln128 = specloopname void @_ssdm_op_SpecLoopName, void @empty_8" [data/benchmarks/sha/sha.c:128]   --->   Operation 217 'specloopname' 'specloopname_ln128' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 217 [1/1] (0.00ns)   --->   "%specloopname_ln128 = specloopname void @_ssdm_op_SpecLoopName, void @empty" [data/benchmarks/sha/sha.c:128]   --->   Operation 217 'specloopname' 'specloopname_ln128' <Predicate = true> <Delay = 0.00>
 ST_15 : Operation 218 [1/1] (0.00ns)   --->   "%trunc_ln127 = trunc i32 %B_12" [data/benchmarks/sha/sha.c:127]   --->   Operation 218 'trunc' 'trunc_ln127' <Predicate = true> <Delay = 0.00>
 ST_15 : Operation 219 [1/1] (0.00ns)   --->   "%lshr_ln2 = partselect i5 @_ssdm_op_PartSelect.i5.i32.i32.i32, i32 %B_12, i32 27, i32 31" [data/benchmarks/sha/sha.c:127]   --->   Operation 219 'partselect' 'lshr_ln2' <Predicate = true> <Delay = 0.00>
 ST_15 : Operation 220 [1/2] (0.60ns)   --->   "%W_load_6 = load i7 %W_addr_8" [data/benchmarks/sha/sha.c:127]   --->   Operation 220 'load' 'W_load_6' <Predicate = true> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
@@ -372,7 +372,7 @@ ST_16 : Operation 255 [1/1] (0.88ns)   --->   "%add_ln138 = add i32 %D, i32 %D_1
 
 State 17 <SV = 10> <Delay = 1.71>
 ST_17 : Operation 256 [1/1] (0.00ns)   --->   "%speclooptripcount_ln130 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 20, i64 20, i64 20" [data/benchmarks/sha/sha.c:130]   --->   Operation 256 'speclooptripcount' 'speclooptripcount_ln130' <Predicate = true> <Delay = 0.00>
-ST_17 : Operation 257 [1/1] (0.00ns)   --->   "%specloopname_ln132 = specloopname void @_ssdm_op_SpecLoopName, void @empty_12" [data/benchmarks/sha/sha.c:132]   --->   Operation 257 'specloopname' 'specloopname_ln132' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 257 [1/1] (0.00ns)   --->   "%specloopname_ln132 = specloopname void @_ssdm_op_SpecLoopName, void @empty_8" [data/benchmarks/sha/sha.c:132]   --->   Operation 257 'specloopname' 'specloopname_ln132' <Predicate = true> <Delay = 0.00>
 ST_17 : Operation 258 [1/1] (0.00ns)   --->   "%trunc_ln131 = trunc i32 %A_12" [data/benchmarks/sha/sha.c:131]   --->   Operation 258 'trunc' 'trunc_ln131' <Predicate = true> <Delay = 0.00>
 ST_17 : Operation 259 [1/1] (0.00ns)   --->   "%lshr_ln3 = partselect i5 @_ssdm_op_PartSelect.i5.i32.i32.i32, i32 %A_12, i32 27, i32 31" [data/benchmarks/sha/sha.c:131]   --->   Operation 259 'partselect' 'lshr_ln3' <Predicate = true> <Delay = 0.00>
 ST_17 : Operation 260 [1/2] (0.60ns)   --->   "%W_load_7 = load i7 %W_addr_9" [data/benchmarks/sha/sha.c:131]   --->   Operation 260 'load' 'W_load_7' <Predicate = true> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>

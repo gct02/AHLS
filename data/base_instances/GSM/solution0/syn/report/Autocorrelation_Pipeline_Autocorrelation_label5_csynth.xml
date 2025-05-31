@@ -60,7 +60,7 @@
 
 <AreaEstimates>
 <Resources>
-<FF>22</FF>
+<FF>19</FF>
 <LUT>103</LUT>
 <BRAM_18K>0</BRAM_18K>
 <DSP>0</DSP>
@@ -220,14 +220,14 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>zext_ln152</name>
-<Object>zext_ln152</Object>
+<name>conv336_cast</name>
+<Object>conv336_cast</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>3</Bits>
+<Bits>6</Bits>
 <Attribute>data</Attribute>
 </RtlPorts>
 </InterfaceSummary>

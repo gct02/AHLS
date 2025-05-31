@@ -7,22 +7,6 @@
       <key>level</key>
       <string>warning</string>
       <key>filename</key>
-      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
-      <key>line</key>
-      <integer>1</integer>
-      <key>column</key>
-      <integer>9</integer>
-      <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=soft_max_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
-      <key>ID</key>
-      <integer>5471</integer>
-      <key>WarningOption</key>
-      <string>dump-hls-pragmas</string>
-    </dict>
-    <dict>
-      <key>level</key>
-      <string>warning</string>
-      <key>filename</key>
       <string>data/benchmarks/backprop/backprop.c</string>
       <key>line</key>
       <integer>23</integer>
@@ -30,22 +14,6 @@
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=soft_max_XLX_SEP_ PragmaOptions=min=3 max=3 avg=3_XLX_SEP_</string>
-      <key>ID</key>
-      <integer>5471</integer>
-      <key>WarningOption</key>
-      <string>dump-hls-pragmas</string>
-    </dict>
-    <dict>
-      <key>level</key>
-      <string>warning</string>
-      <key>filename</key>
-      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
-      <key>line</key>
-      <integer>2</integer>
-      <key>column</key>
-      <integer>9</integer>
-      <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=soft_max_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -71,22 +39,6 @@
       <key>level</key>
       <string>warning</string>
       <key>filename</key>
-      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
-      <key>line</key>
-      <integer>3</integer>
-      <key>column</key>
-      <integer>9</integer>
-      <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=RELU_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
-      <key>ID</key>
-      <integer>5471</integer>
-      <key>WarningOption</key>
-      <string>dump-hls-pragmas</string>
-    </dict>
-    <dict>
-      <key>level</key>
-      <string>warning</string>
-      <key>filename</key>
       <string>data/benchmarks/backprop/backprop.c</string>
       <key>line</key>
       <integer>37</integer>
@@ -94,22 +46,6 @@
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=RELU_XLX_SEP_ PragmaOptions=min=3 max=64_XLX_SEP_</string>
-      <key>ID</key>
-      <integer>5471</integer>
-      <key>WarningOption</key>
-      <string>dump-hls-pragmas</string>
-    </dict>
-    <dict>
-      <key>level</key>
-      <string>warning</string>
-      <key>filename</key>
-      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
-      <key>line</key>
-      <integer>4</integer>
-      <key>column</key>
-      <integer>9</integer>
-      <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=add_bias_to_activations_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -137,7 +73,23 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>5</integer>
+      <integer>36</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_input_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>1</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -169,11 +121,27 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>6</integer>
+      <integer>2</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_input_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>44</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_input_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -201,7 +169,23 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>7</integer>
+      <integer>37</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_second_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>3</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -233,11 +217,27 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>8</integer>
+      <integer>4</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_second_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>45</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_second_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -265,7 +265,23 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
+      <integer>38</integer>
+      <key>column</key>
       <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_output_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>5</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -297,7 +313,23 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>10</integer>
+      <integer>46</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_output_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>6</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -327,22 +359,6 @@
       <key>level</key>
       <string>warning</string>
       <key>filename</key>
-      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
-      <key>line</key>
-      <integer>11</integer>
-      <key>column</key>
-      <integer>9</integer>
-      <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=take_difference_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
-      <key>ID</key>
-      <integer>5471</integer>
-      <key>WarningOption</key>
-      <string>dump-hls-pragmas</string>
-    </dict>
-    <dict>
-      <key>level</key>
-      <string>warning</string>
-      <key>filename</key>
       <string>data/benchmarks/backprop/backprop.c</string>
       <key>line</key>
       <integer>115</integer>
@@ -361,7 +377,23 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>12</integer>
+      <integer>41</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights3_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>15</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -393,11 +425,27 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>13</integer>
+      <integer>16</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights3_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>51</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights3_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -425,7 +473,23 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>14</integer>
+      <integer>43</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>9</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -457,11 +521,27 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>15</integer>
+      <integer>10</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>48</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -489,7 +569,23 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>16</integer>
+      <integer>40</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>13</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -521,11 +617,27 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>17</integer>
+      <integer>14</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>50</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -553,7 +665,23 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>18</integer>
+      <integer>42</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>7</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -585,7 +713,23 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>19</integer>
+      <integer>47</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>8</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -617,7 +761,23 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>20</integer>
+      <integer>39</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>11</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -649,11 +809,27 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>21</integer>
+      <integer>12</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>49</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -681,7 +857,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>22</integer>
+      <integer>17</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -713,11 +889,27 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>23</integer>
+      <integer>18</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>52</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -745,7 +937,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>24</integer>
+      <integer>19</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -777,7 +969,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>25</integer>
+      <integer>20</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -809,11 +1001,27 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>26</integer>
+      <integer>21</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>53</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -841,7 +1049,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>27</integer>
+      <integer>22</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -873,7 +1081,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>28</integer>
+      <integer>23</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -905,11 +1113,27 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>29</integer>
+      <integer>24</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>54</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -937,7 +1161,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>30</integer>
+      <integer>25</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -969,7 +1193,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>31</integer>
+      <integer>26</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -1001,11 +1225,27 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>32</integer>
+      <integer>27</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>55</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -1033,7 +1273,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>33</integer>
+      <integer>28</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -1065,7 +1305,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>34</integer>
+      <integer>29</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -1097,11 +1337,27 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>35</integer>
+      <integer>30</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>56</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -1129,7 +1385,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>36</integer>
+      <integer>31</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -1161,7 +1417,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>37</integer>
+      <integer>32</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -1193,11 +1449,27 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>38</integer>
+      <integer>33</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
+      <key>line</key>
+      <integer>57</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -1225,7 +1497,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>39</integer>
+      <integer>34</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -1273,7 +1545,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
       <key>line</key>
-      <integer>40</integer>
+      <integer>35</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -1294,22 +1566,6 @@
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=min=163 max=163 avg=163_XLX_SEP_</string>
-      <key>ID</key>
-      <integer>5471</integer>
-      <key>WarningOption</key>
-      <string>dump-hls-pragmas</string>
-    </dict>
-    <dict>
-      <key>level</key>
-      <string>warning</string>
-      <key>filename</key>
-      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl</string>
-      <key>line</key>
-      <integer>41</integer>
-      <key>column</key>
-      <integer>9</integer>
-      <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>

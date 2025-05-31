@@ -7,7 +7,7 @@
 <Project Product="Vivado" Version="7" Minor="65" Path="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/BACKPROP/solution0/impl/ip/tmp.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="637dbc083f4b4f6eba8f2e8fc2aae59b"/>
+    <Option Name="Id" Val="4e14e7eafb894d8cbdcc555e41062789"/>
     <Option Name="Part" Val="xcu50-fsvh2104-2-e"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -90,6 +90,13 @@
   <FileSets Version="1" Minor="32">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
       <Filter Type="Srcs"/>
+      <File Path="$PSRCDIR/sources_1/ip/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/ip/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>

@@ -46,7 +46,7 @@ dict set report_options language $language
 dict set report_options clock_name $clock
 dict set report_options error_if_impl_timing_fails false
 dict set report_options bindmodules {sha_stream_flow_control_loop_pipe_sequential_init sha_stream_sha_transform_W_RAM_AUTO_1R1W sha_stream_local_indata_RAM_AUTO_1R1W sha_stream_sha_info_data_RAM_AUTO_1R1W sha_stream_sha_info_digest_RAM_AUTO_1R1W}
-dict set report_options max_module_depth 6
+dict set report_options max_module_depth 7
 
 
 create_project $vivado_proj_name $vivado_proj_dir -part $target_device -force

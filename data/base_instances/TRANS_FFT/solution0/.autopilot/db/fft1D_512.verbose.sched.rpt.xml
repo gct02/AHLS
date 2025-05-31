@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'fft1D_512'" level="0">
-<item name = "Date">Thu May 29 21:12:26 2025
+<item name = "Date">Fri May 30 23:10:28 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">TRANS_FFT</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 6.054 ns, 2.16 ns</column>
+<column name="ap_clk">8.00 ns, 5.558 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">19856, 19856, 0.159 ms, 0.159 ms, 19857, 19857, no</column>
+<column name="">15694, 15694, 0.126 ms, 0.126 ms, 15695, 15695, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,10 +35,12 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- loop1">5568, 5568, 87, -, -, 64, no</column>
 <column name="- loop2">320, 320, 5, -, -, 64, no</column>
 <column name="- loop3">320, 320, 5, -, -, 64, no</column>
 <column name="- loop4">320, 320, 5, -, -, 64, no</column>
 <column name="- loop5">320, 320, 5, -, -, 64, no</column>
+<column name="- loop6">5568, 5568, 87, -, -, 64, no</column>
 <column name="- loop7">320, 320, 5, -, -, 64, no</column>
 <column name="- loop8">320, 320, 5, -, -, 64, no</column>
 <column name="- loop9">320, 320, 5, -, -, 64, no</column>

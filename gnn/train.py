@@ -77,7 +77,7 @@ def evaluate(
     mre = percentage_diff(preds, targets).mean().item()
 
     if mre < evaluate.min_mre:
-        if output_dir and epoch >= 100:
+        if output_dir and epoch >= 50:
             model_path = f"{output_dir}/best_model.pt"
             torch.save(obj=model.state_dict(), f=model_path)
             indices = [
@@ -238,8 +238,8 @@ def main(args: Dict[str, Any]):
         'num_layers': 4,
         'out_channels': 1,
         'metadata': METADATA,
-        'dropout_gnn': 0.2,
-        'dropout_mlp': 0.2
+        'dropout_gnn': 0.3,
+        'dropout_mlp': 0.3
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
 
@@ -277,7 +277,7 @@ def main(args: Dict[str, Any]):
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
         optimizer,
         T_max=total_steps,
-        eta_min=1e-6
+        eta_min=1e-5
     )
 
     train_errors, test_errors = train_model(
@@ -403,7 +403,7 @@ def parse_arguments():
                         help='The size of the training batch (default: 32).')
     parser.add_argument('-l', '--loss', type=str, default='mse', choices=['mse', 'l1', 'huber'],
                         help='The loss function to use for training (default: mse).')
-    parser.add_argument('-lr', '--learning-rate', type=float, default=1e-3,
+    parser.add_argument('-lr', '--learning-rate', type=float, default=3e-4,
                         help='The learning rate for the optimizer (default: 1e-3).')
     parser.add_argument('-bs', '--betas', type=float, nargs=2, default=(0.9, 0.999),
                         help='The betas for the Adam optimizer (default: 0.9, 0.999).')

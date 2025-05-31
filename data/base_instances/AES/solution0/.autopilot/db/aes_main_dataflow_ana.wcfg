@@ -52,37 +52,69 @@
             <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_encrypt_fu_34_activity.dataflowTxWaveData.Cycles</obj_property>
             <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_encrypt_fu_34_activity.dataflowTxWaveData.OutStanding</obj_property>
             <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_encrypt_fu_34_activity.dataflowTxTooltipData</obj_property>
-            <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_461/grp_ByteSub_ShiftRow_fu_461_activity">
-               <obj_property name="label">grp_ByteSub_ShiftRow_fu_461_activity</obj_property>
+            <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_KeySchedule_fu_50/grp_KeySchedule_fu_50_activity">
+               <obj_property name="label">grp_KeySchedule_fu_50_activity</obj_property>
                <obj_property name="DisplayName">label</obj_property>
                <obj_property name="UseFullPath">true</obj_property>
-               <obj_property name="ElementShortName">grp_ByteSub_ShiftRow_fu_461_activity</obj_property>
-               <obj_property name="ObjectShortName">grp_ByteSub_ShiftRow_fu_461_activity</obj_property>
+               <obj_property name="ElementShortName">grp_KeySchedule_fu_50_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_KeySchedule_fu_50_activity</obj_property>
                <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
                <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
                <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
                <obj_property name="CustomSignalColor">turquoise</obj_property>
                <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-               <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_461/grp_ByteSub_ShiftRow_fu_461_activity.dataflowTxWaveData.Cycles</obj_property>
-               <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_461/grp_ByteSub_ShiftRow_fu_461_activity.dataflowTxWaveData.OutStanding</obj_property>
-               <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_461/grp_ByteSub_ShiftRow_fu_461_activity.dataflowTxTooltipData</obj_property>
+               <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_KeySchedule_fu_50/grp_KeySchedule_fu_50_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_KeySchedule_fu_50/grp_KeySchedule_fu_50_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_KeySchedule_fu_50/grp_KeySchedule_fu_50_activity.dataflowTxTooltipData</obj_property>
             </wvobject>
-            <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_469/grp_MixColumn_AddRoundKey_fu_469_activity">
-               <obj_property name="label">grp_MixColumn_AddRoundKey_fu_469_activity</obj_property>
+            <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_AddRoundKey_fu_62/grp_AddRoundKey_fu_62_activity">
+               <obj_property name="label">grp_AddRoundKey_fu_62_activity</obj_property>
                <obj_property name="DisplayName">label</obj_property>
                <obj_property name="UseFullPath">true</obj_property>
-               <obj_property name="ElementShortName">grp_MixColumn_AddRoundKey_fu_469_activity</obj_property>
-               <obj_property name="ObjectShortName">grp_MixColumn_AddRoundKey_fu_469_activity</obj_property>
+               <obj_property name="ElementShortName">grp_AddRoundKey_fu_62_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_AddRoundKey_fu_62_activity</obj_property>
                <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
                <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
                <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
                <obj_property name="CustomSignalColor">turquoise</obj_property>
                <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-               <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_469/grp_MixColumn_AddRoundKey_fu_469_activity.dataflowTxWaveData.Cycles</obj_property>
-               <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_469/grp_MixColumn_AddRoundKey_fu_469_activity.dataflowTxWaveData.OutStanding</obj_property>
-               <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_469/grp_MixColumn_AddRoundKey_fu_469_activity.dataflowTxTooltipData</obj_property>
+               <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_AddRoundKey_fu_62/grp_AddRoundKey_fu_62_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_AddRoundKey_fu_62/grp_AddRoundKey_fu_62_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_AddRoundKey_fu_62/grp_AddRoundKey_fu_62_activity.dataflowTxTooltipData</obj_property>
+            </wvobject>
+            <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/grp_ByteSub_ShiftRow_fu_73_activity">
+               <obj_property name="label">grp_ByteSub_ShiftRow_fu_73_activity</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="UseFullPath">true</obj_property>
+               <obj_property name="ElementShortName">grp_ByteSub_ShiftRow_fu_73_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_ByteSub_ShiftRow_fu_73_activity</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+               <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+               <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">turquoise</obj_property>
+               <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+               <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/grp_ByteSub_ShiftRow_fu_73_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/grp_ByteSub_ShiftRow_fu_73_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/grp_ByteSub_ShiftRow_fu_73_activity.dataflowTxTooltipData</obj_property>
+            </wvobject>
+            <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/grp_MixColumn_AddRoundKey_fu_81_activity">
+               <obj_property name="label">grp_MixColumn_AddRoundKey_fu_81_activity</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="UseFullPath">true</obj_property>
+               <obj_property name="ElementShortName">grp_MixColumn_AddRoundKey_fu_81_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_MixColumn_AddRoundKey_fu_81_activity</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+               <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+               <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">turquoise</obj_property>
+               <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+               <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/grp_MixColumn_AddRoundKey_fu_81_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/grp_MixColumn_AddRoundKey_fu_81_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/grp_MixColumn_AddRoundKey_fu_81_activity.dataflowTxTooltipData</obj_property>
             </wvobject>
          </wvobject>
          <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_decrypt_fu_50_activity">
@@ -100,37 +132,69 @@
             <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_decrypt_fu_50_activity.dataflowTxWaveData.Cycles</obj_property>
             <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_decrypt_fu_50_activity.dataflowTxWaveData.OutStanding</obj_property>
             <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_decrypt_fu_50_activity.dataflowTxTooltipData</obj_property>
-            <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_461/grp_InversShiftRow_ByteSub_fu_461_activity">
-               <obj_property name="label">grp_InversShiftRow_ByteSub_fu_461_activity</obj_property>
+            <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_KeySchedule_fu_52/grp_KeySchedule_fu_52_activity">
+               <obj_property name="label">grp_KeySchedule_fu_52_activity</obj_property>
                <obj_property name="DisplayName">label</obj_property>
                <obj_property name="UseFullPath">true</obj_property>
-               <obj_property name="ElementShortName">grp_InversShiftRow_ByteSub_fu_461_activity</obj_property>
-               <obj_property name="ObjectShortName">grp_InversShiftRow_ByteSub_fu_461_activity</obj_property>
+               <obj_property name="ElementShortName">grp_KeySchedule_fu_52_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_KeySchedule_fu_52_activity</obj_property>
                <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
                <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
                <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
                <obj_property name="CustomSignalColor">turquoise</obj_property>
                <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-               <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_461/grp_InversShiftRow_ByteSub_fu_461_activity.dataflowTxWaveData.Cycles</obj_property>
-               <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_461/grp_InversShiftRow_ByteSub_fu_461_activity.dataflowTxWaveData.OutStanding</obj_property>
-               <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_461/grp_InversShiftRow_ByteSub_fu_461_activity.dataflowTxTooltipData</obj_property>
+               <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_KeySchedule_fu_52/grp_KeySchedule_fu_52_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_KeySchedule_fu_52/grp_KeySchedule_fu_52_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_KeySchedule_fu_52/grp_KeySchedule_fu_52_activity.dataflowTxTooltipData</obj_property>
             </wvobject>
-            <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_469/grp_AddRoundKey_InversMixColumn_fu_469_activity">
-               <obj_property name="label">grp_AddRoundKey_InversMixColumn_fu_469_activity</obj_property>
+            <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_fu_64/grp_AddRoundKey_fu_64_activity">
+               <obj_property name="label">grp_AddRoundKey_fu_64_activity</obj_property>
                <obj_property name="DisplayName">label</obj_property>
                <obj_property name="UseFullPath">true</obj_property>
-               <obj_property name="ElementShortName">grp_AddRoundKey_InversMixColumn_fu_469_activity</obj_property>
-               <obj_property name="ObjectShortName">grp_AddRoundKey_InversMixColumn_fu_469_activity</obj_property>
+               <obj_property name="ElementShortName">grp_AddRoundKey_fu_64_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_AddRoundKey_fu_64_activity</obj_property>
                <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
                <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
                <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
                <obj_property name="CustomSignalColor">turquoise</obj_property>
                <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-               <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_469/grp_AddRoundKey_InversMixColumn_fu_469_activity.dataflowTxWaveData.Cycles</obj_property>
-               <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_469/grp_AddRoundKey_InversMixColumn_fu_469_activity.dataflowTxWaveData.OutStanding</obj_property>
-               <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_469/grp_AddRoundKey_InversMixColumn_fu_469_activity.dataflowTxTooltipData</obj_property>
+               <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_fu_64/grp_AddRoundKey_fu_64_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_fu_64/grp_AddRoundKey_fu_64_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_fu_64/grp_AddRoundKey_fu_64_activity.dataflowTxTooltipData</obj_property>
+            </wvobject>
+            <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/grp_InversShiftRow_ByteSub_fu_75_activity">
+               <obj_property name="label">grp_InversShiftRow_ByteSub_fu_75_activity</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="UseFullPath">true</obj_property>
+               <obj_property name="ElementShortName">grp_InversShiftRow_ByteSub_fu_75_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_InversShiftRow_ByteSub_fu_75_activity</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+               <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+               <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">turquoise</obj_property>
+               <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+               <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/grp_InversShiftRow_ByteSub_fu_75_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/grp_InversShiftRow_ByteSub_fu_75_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/grp_InversShiftRow_ByteSub_fu_75_activity.dataflowTxTooltipData</obj_property>
+            </wvobject>
+            <wvobject type="group" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/grp_AddRoundKey_InversMixColumn_fu_83_activity">
+               <obj_property name="label">grp_AddRoundKey_InversMixColumn_fu_83_activity</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="UseFullPath">true</obj_property>
+               <obj_property name="ElementShortName">grp_AddRoundKey_InversMixColumn_fu_83_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_AddRoundKey_InversMixColumn_fu_83_activity</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+               <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+               <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">turquoise</obj_property>
+               <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+               <obj_property name="Render_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/grp_AddRoundKey_InversMixColumn_fu_83_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/grp_AddRoundKey_InversMixColumn_fu_83_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/grp_AddRoundKey_InversMixColumn_fu_83_activity.dataflowTxTooltipData</obj_property>
             </wvobject>
          </wvobject>
       </wvobject>
@@ -169,13 +233,21 @@
       <wvobject type="group" fp_name="grp_encrypt_fu_34_group">
          <obj_property name="label">grp_encrypt_fu_34</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="protoinst" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_461/grp_ByteSub_ShiftRow_fu_461_activity">
-            <obj_property name="ElementShortName">grp_ByteSub_ShiftRow_fu_461_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_ByteSub_ShiftRow_fu_461_activity</obj_property>
+         <wvobject type="protoinst" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_KeySchedule_fu_50/grp_KeySchedule_fu_50_activity">
+            <obj_property name="ElementShortName">grp_KeySchedule_fu_50_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_KeySchedule_fu_50_activity</obj_property>
          </wvobject>
-         <wvobject type="protoinst" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_469/grp_MixColumn_AddRoundKey_fu_469_activity">
-            <obj_property name="ElementShortName">grp_MixColumn_AddRoundKey_fu_469_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_MixColumn_AddRoundKey_fu_469_activity</obj_property>
+         <wvobject type="protoinst" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_AddRoundKey_fu_62/grp_AddRoundKey_fu_62_activity">
+            <obj_property name="ElementShortName">grp_AddRoundKey_fu_62_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_AddRoundKey_fu_62_activity</obj_property>
+         </wvobject>
+         <wvobject type="protoinst" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/grp_ByteSub_ShiftRow_fu_73_activity">
+            <obj_property name="ElementShortName">grp_ByteSub_ShiftRow_fu_73_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_ByteSub_ShiftRow_fu_73_activity</obj_property>
+         </wvobject>
+         <wvobject type="protoinst" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/grp_MixColumn_AddRoundKey_fu_81_activity">
+            <obj_property name="ElementShortName">grp_MixColumn_AddRoundKey_fu_81_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_MixColumn_AddRoundKey_fu_81_activity</obj_property>
          </wvobject>
          <wvobject type="group" fp_name="grp_encrypt_fu_34_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
@@ -193,41 +265,81 @@
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
-         <wvobject type="group" fp_name="grp_ByteSub_ShiftRow_fu_461_group">
-            <obj_property name="label">grp_ByteSub_ShiftRow_fu_461</obj_property>
+         <wvobject type="group" fp_name="grp_KeySchedule_fu_50_group">
+            <obj_property name="label">grp_KeySchedule_fu_50</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="group" fp_name="grp_ByteSub_ShiftRow_fu_461_Handshake_group">
+            <wvobject type="group" fp_name="grp_KeySchedule_fu_50_Handshake_group">
                <obj_property name="label">Block-level handshake</obj_property>
                <obj_property name="DisplayName">label</obj_property>
-               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_461/ap_start">
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ap_start">
                   <obj_property name="ElementShortName">ap_start</obj_property>
                   <obj_property name="ObjectShortName">ap_start</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_461/ap_ready">
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ap_ready">
                   <obj_property name="ElementShortName">ap_ready</obj_property>
                   <obj_property name="ObjectShortName">ap_ready</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_461/ap_done">
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ap_done">
                   <obj_property name="ElementShortName">ap_done</obj_property>
                   <obj_property name="ObjectShortName">ap_done</obj_property>
                </wvobject>
             </wvobject>
          </wvobject>
-         <wvobject type="group" fp_name="grp_MixColumn_AddRoundKey_fu_469_group">
-            <obj_property name="label">grp_MixColumn_AddRoundKey_fu_469</obj_property>
+         <wvobject type="group" fp_name="grp_AddRoundKey_fu_62_group">
+            <obj_property name="label">grp_AddRoundKey_fu_62</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="group" fp_name="grp_MixColumn_AddRoundKey_fu_469_Handshake_group">
+            <wvobject type="group" fp_name="grp_AddRoundKey_fu_62_Handshake_group">
                <obj_property name="label">Block-level handshake</obj_property>
                <obj_property name="DisplayName">label</obj_property>
-               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_469/ap_start">
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_AddRoundKey_fu_62/ap_start">
                   <obj_property name="ElementShortName">ap_start</obj_property>
                   <obj_property name="ObjectShortName">ap_start</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_469/ap_ready">
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_AddRoundKey_fu_62/ap_ready">
                   <obj_property name="ElementShortName">ap_ready</obj_property>
                   <obj_property name="ObjectShortName">ap_ready</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_469/ap_done">
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_AddRoundKey_fu_62/ap_done">
+                  <obj_property name="ElementShortName">ap_done</obj_property>
+                  <obj_property name="ObjectShortName">ap_done</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="grp_ByteSub_ShiftRow_fu_73_group">
+            <obj_property name="label">grp_ByteSub_ShiftRow_fu_73</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="grp_ByteSub_ShiftRow_fu_73_Handshake_group">
+               <obj_property name="label">Block-level handshake</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/ap_start">
+                  <obj_property name="ElementShortName">ap_start</obj_property>
+                  <obj_property name="ObjectShortName">ap_start</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/ap_ready">
+                  <obj_property name="ElementShortName">ap_ready</obj_property>
+                  <obj_property name="ObjectShortName">ap_ready</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/ap_done">
+                  <obj_property name="ElementShortName">ap_done</obj_property>
+                  <obj_property name="ObjectShortName">ap_done</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="grp_MixColumn_AddRoundKey_fu_81_group">
+            <obj_property name="label">grp_MixColumn_AddRoundKey_fu_81</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="grp_MixColumn_AddRoundKey_fu_81_Handshake_group">
+               <obj_property name="label">Block-level handshake</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/ap_start">
+                  <obj_property name="ElementShortName">ap_start</obj_property>
+                  <obj_property name="ObjectShortName">ap_start</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/ap_ready">
+                  <obj_property name="ElementShortName">ap_ready</obj_property>
+                  <obj_property name="ObjectShortName">ap_ready</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/ap_done">
                   <obj_property name="ElementShortName">ap_done</obj_property>
                   <obj_property name="ObjectShortName">ap_done</obj_property>
                </wvobject>
@@ -237,13 +349,21 @@
       <wvobject type="group" fp_name="grp_decrypt_fu_50_group">
          <obj_property name="label">grp_decrypt_fu_50</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="protoinst" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_461/grp_InversShiftRow_ByteSub_fu_461_activity">
-            <obj_property name="ElementShortName">grp_InversShiftRow_ByteSub_fu_461_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_InversShiftRow_ByteSub_fu_461_activity</obj_property>
+         <wvobject type="protoinst" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_KeySchedule_fu_52/grp_KeySchedule_fu_52_activity">
+            <obj_property name="ElementShortName">grp_KeySchedule_fu_52_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_KeySchedule_fu_52_activity</obj_property>
          </wvobject>
-         <wvobject type="protoinst" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_469/grp_AddRoundKey_InversMixColumn_fu_469_activity">
-            <obj_property name="ElementShortName">grp_AddRoundKey_InversMixColumn_fu_469_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_AddRoundKey_InversMixColumn_fu_469_activity</obj_property>
+         <wvobject type="protoinst" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_fu_64/grp_AddRoundKey_fu_64_activity">
+            <obj_property name="ElementShortName">grp_AddRoundKey_fu_64_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_AddRoundKey_fu_64_activity</obj_property>
+         </wvobject>
+         <wvobject type="protoinst" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/grp_InversShiftRow_ByteSub_fu_75_activity">
+            <obj_property name="ElementShortName">grp_InversShiftRow_ByteSub_fu_75_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_InversShiftRow_ByteSub_fu_75_activity</obj_property>
+         </wvobject>
+         <wvobject type="protoinst" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/grp_AddRoundKey_InversMixColumn_fu_83_activity">
+            <obj_property name="ElementShortName">grp_AddRoundKey_InversMixColumn_fu_83_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_AddRoundKey_InversMixColumn_fu_83_activity</obj_property>
          </wvobject>
          <wvobject type="group" fp_name="grp_decrypt_fu_50_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
@@ -261,41 +381,81 @@
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
-         <wvobject type="group" fp_name="grp_InversShiftRow_ByteSub_fu_461_group">
-            <obj_property name="label">grp_InversShiftRow_ByteSub_fu_461</obj_property>
+         <wvobject type="group" fp_name="grp_KeySchedule_fu_52_group">
+            <obj_property name="label">grp_KeySchedule_fu_52</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="group" fp_name="grp_InversShiftRow_ByteSub_fu_461_Handshake_group">
+            <wvobject type="group" fp_name="grp_KeySchedule_fu_52_Handshake_group">
                <obj_property name="label">Block-level handshake</obj_property>
                <obj_property name="DisplayName">label</obj_property>
-               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_461/ap_start">
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ap_start">
                   <obj_property name="ElementShortName">ap_start</obj_property>
                   <obj_property name="ObjectShortName">ap_start</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_461/ap_ready">
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ap_ready">
                   <obj_property name="ElementShortName">ap_ready</obj_property>
                   <obj_property name="ObjectShortName">ap_ready</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_461/ap_done">
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ap_done">
                   <obj_property name="ElementShortName">ap_done</obj_property>
                   <obj_property name="ObjectShortName">ap_done</obj_property>
                </wvobject>
             </wvobject>
          </wvobject>
-         <wvobject type="group" fp_name="grp_AddRoundKey_InversMixColumn_fu_469_group">
-            <obj_property name="label">grp_AddRoundKey_InversMixColumn_fu_469</obj_property>
+         <wvobject type="group" fp_name="grp_AddRoundKey_fu_64_group">
+            <obj_property name="label">grp_AddRoundKey_fu_64</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="group" fp_name="grp_AddRoundKey_InversMixColumn_fu_469_Handshake_group">
+            <wvobject type="group" fp_name="grp_AddRoundKey_fu_64_Handshake_group">
                <obj_property name="label">Block-level handshake</obj_property>
                <obj_property name="DisplayName">label</obj_property>
-               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_469/ap_start">
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_fu_64/ap_start">
                   <obj_property name="ElementShortName">ap_start</obj_property>
                   <obj_property name="ObjectShortName">ap_start</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_469/ap_ready">
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_fu_64/ap_ready">
                   <obj_property name="ElementShortName">ap_ready</obj_property>
                   <obj_property name="ObjectShortName">ap_ready</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_469/ap_done">
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_fu_64/ap_done">
+                  <obj_property name="ElementShortName">ap_done</obj_property>
+                  <obj_property name="ObjectShortName">ap_done</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="grp_InversShiftRow_ByteSub_fu_75_group">
+            <obj_property name="label">grp_InversShiftRow_ByteSub_fu_75</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="grp_InversShiftRow_ByteSub_fu_75_Handshake_group">
+               <obj_property name="label">Block-level handshake</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/ap_start">
+                  <obj_property name="ElementShortName">ap_start</obj_property>
+                  <obj_property name="ObjectShortName">ap_start</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/ap_ready">
+                  <obj_property name="ElementShortName">ap_ready</obj_property>
+                  <obj_property name="ObjectShortName">ap_ready</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/ap_done">
+                  <obj_property name="ElementShortName">ap_done</obj_property>
+                  <obj_property name="ObjectShortName">ap_done</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="grp_AddRoundKey_InversMixColumn_fu_83_group">
+            <obj_property name="label">grp_AddRoundKey_InversMixColumn_fu_83</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="grp_AddRoundKey_InversMixColumn_fu_83_Handshake_group">
+               <obj_property name="label">Block-level handshake</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/ap_start">
+                  <obj_property name="ElementShortName">ap_start</obj_property>
+                  <obj_property name="ObjectShortName">ap_start</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/ap_ready">
+                  <obj_property name="ElementShortName">ap_ready</obj_property>
+                  <obj_property name="ObjectShortName">ap_ready</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_aes_main_top/AESL_inst_aes_main/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/ap_done">
                   <obj_property name="ElementShortName">ap_done</obj_property>
                   <obj_property name="ObjectShortName">ap_done</obj_property>
                </wvobject>

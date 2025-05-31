@@ -241,7 +241,7 @@
     "components": {
       "hls_inst": {
         "vlnv": "xilinx.com:hls:adpcm_main:1.0",
-        "ip_revision": "2114097994",
+        "ip_revision": "2114106437",
         "xci_name": "bd_0_hls_inst_0",
         "xci_path": "ip/bd_0_hls_inst_0/bd_0_hls_inst_0.xci",
         "inst_hier_path": "hls_inst"

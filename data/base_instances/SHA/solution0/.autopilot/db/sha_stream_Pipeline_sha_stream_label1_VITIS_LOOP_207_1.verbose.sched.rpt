@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1'
 ================================================================
-* Date:           Thu May 29 17:32:46 2025
+* Date:           Fri May 30 23:25:07 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        SHA
@@ -104,8 +104,8 @@ ST_1 : Operation 20 [1/1] (0.76ns)   --->   "%icmp_ln207 = icmp_eq  i14 %j_load,
 ST_1 : Operation 21 [1/1] (0.34ns)   --->   "%select_ln201 = select i1 %icmp_ln207, i14 0, i14 %j_load" [data/benchmarks/sha/sha.c:201]   --->   Operation 21 'select' 'select_ln201' <Predicate = (!icmp_ln205)> <Delay = 0.34> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.34> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
 ST_1 : Operation 22 [1/1] (0.27ns)   --->   "%select_ln205 = select i1 %icmp_ln207, i2 %add_ln205, i2 %i_load" [data/benchmarks/sha/sha.c:205]   --->   Operation 22 'select' 'select_ln205' <Predicate = (!icmp_ln205)> <Delay = 0.27> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.27> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
 ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%trunc_ln209 = trunc i2 %select_ln205" [data/benchmarks/sha/sha.c:209]   --->   Operation 23 'trunc' 'trunc_ln209' <Predicate = (!icmp_ln205)> <Delay = 0.00>
-ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%tmp_8 = bitconcatenate i14 @_ssdm_op_BitConcatenate.i14.i1.i13, i1 %trunc_ln209, i13 0" [data/benchmarks/sha/sha.c:209]   --->   Operation 24 'bitconcatenate' 'tmp_8' <Predicate = (!icmp_ln205)> <Delay = 0.00>
-ST_1 : Operation 25 [1/1] (0.76ns)   --->   "%add_ln209 = add i14 %tmp_8, i14 %select_ln201" [data/benchmarks/sha/sha.c:209]   --->   Operation 25 'add' 'add_ln209' <Predicate = (!icmp_ln205)> <Delay = 0.76> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.76> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%tmp = bitconcatenate i14 @_ssdm_op_BitConcatenate.i14.i1.i13, i1 %trunc_ln209, i13 0" [data/benchmarks/sha/sha.c:209]   --->   Operation 24 'bitconcatenate' 'tmp' <Predicate = (!icmp_ln205)> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.76ns)   --->   "%add_ln209 = add i14 %tmp, i14 %select_ln201" [data/benchmarks/sha/sha.c:209]   --->   Operation 25 'add' 'add_ln209' <Predicate = (!icmp_ln205)> <Delay = 0.76> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.76> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%zext_ln209 = zext i14 %add_ln209" [data/benchmarks/sha/sha.c:209]   --->   Operation 26 'zext' 'zext_ln209' <Predicate = (!icmp_ln205)> <Delay = 0.00>
 ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%indata_addr = getelementptr i8 %indata, i64 0, i64 %zext_ln209" [data/benchmarks/sha/sha.c:209]   --->   Operation 27 'getelementptr' 'indata_addr' <Predicate = (!icmp_ln205)> <Delay = 0.00>
 ST_1 : Operation 28 [2/2] (1.24ns)   --->   "%indata_load = load i14 %indata_addr" [data/benchmarks/sha/sha.c:209]   --->   Operation 28 'load' 'indata_load' <Predicate = (!icmp_ln205)> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16384> <RAM>

@@ -12,3 +12,9 @@ set_directive_pipeline -off upzero/upzero_label10
 set_directive_pipeline -off upzero/upzero_label11
 set_directive_pipeline -off adpcm_main/adpcm_main_label12
 set_directive_pipeline -off adpcm_main/adpcm_main_label13
+set_directive_inline -off encode
+set_directive_inline -off decode
+set_directive_inline -off reset
+set_directive_inline -off filtez
+set_directive_inline -off quantl
+set_directive_inline -off upzero

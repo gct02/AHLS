@@ -1,0 +1,268 @@
+
+
+================================================================
+== Vitis HLS Report for 'matrix_vector_product_with_bias_input_layer_1'
+================================================================
+* Date:           Fri May 30 21:43:12 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        BACKPROP
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  5.703 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
+    +---------+---------+-----------+-----------+------+------+---------+
+    |     8519|     8519|  68.152 us|  68.152 us|  8519|  8519|       no|
+    +---------+---------+-----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                                                        |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |                        Loop Name                       |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- matrix_vector_product_with_bias_input_layer_loop1     |     8448|     8448|       132|          -|          -|    64|        no|
+        | + matrix_vector_product_with_bias_input_layer_loop1_1  |      130|      130|        10|          -|          -|    13|        no|
+        +--------------------------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 13
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 13 3 
+3 --> 4 2 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 3 
+13 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.38>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%phi_mul = alloca i32 1"   --->   Operation 14 'alloca' 'phi_mul' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%j = alloca i32 1" [data/benchmarks/backprop/backprop.c:58]   --->   Operation 15 'alloca' 'j' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %training_data, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 16 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %biases1, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 17 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %weights1, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 18 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%idx_read = read i12 @_ssdm_op_Read.ap_auto.i12, i12 %idx" [data/benchmarks/backprop/backprop.c:60]   --->   Operation 19 'read' 'idx_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.38ns)   --->   "%store_ln58 = store i7 0, i7 %j" [data/benchmarks/backprop/backprop.c:58]   --->   Operation 20 'store' 'store_ln58' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 21 [1/1] (0.38ns)   --->   "%store_ln0 = store i10 0, i10 %phi_mul"   --->   Operation 21 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%br_ln60 = br void %matrix_vector_product_with_bias_input_layer_loop1_1" [data/benchmarks/backprop/backprop.c:60]   --->   Operation 22 'br' 'br_ln60' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 0.72>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%phi_mul_load = load i10 %phi_mul" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 23 'load' 'phi_mul_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%j_7 = load i7 %j" [data/benchmarks/backprop/backprop.c:60]   --->   Operation 24 'load' 'j_7' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.72ns)   --->   "%add_ln60_1 = add i10 %phi_mul_load, i10 13" [data/benchmarks/backprop/backprop.c:60]   --->   Operation 25 'add' 'add_ln60_1' <Predicate = true> <Delay = 0.72> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 26 [1/1] (0.70ns)   --->   "%icmp_ln60 = icmp_eq  i7 %j_7, i7 64" [data/benchmarks/backprop/backprop.c:60]   --->   Operation 26 'icmp' 'icmp_ln60' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 27 [1/1] (0.70ns)   --->   "%add_ln60 = add i7 %j_7, i7 1" [data/benchmarks/backprop/backprop.c:60]   --->   Operation 27 'add' 'add_ln60' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%br_ln60 = br i1 %icmp_ln60, void %matrix_vector_product_with_bias_input_layer_loop1_1.split, void %for.inc.i.preheader" [data/benchmarks/backprop/backprop.c:60]   --->   Operation 28 'br' 'br_ln60' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%zext_ln60 = zext i7 %j_7" [data/benchmarks/backprop/backprop.c:60]   --->   Operation 29 'zext' 'zext_ln60' <Predicate = (!icmp_ln60)> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%speclooptripcount_ln61 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 64, i64 64, i64 64" [data/benchmarks/backprop/backprop.c:61]   --->   Operation 30 'speclooptripcount' 'speclooptripcount_ln61' <Predicate = (!icmp_ln60)> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%specloopname_ln68 = specloopname void @_ssdm_op_SpecLoopName, void @empty_12" [data/benchmarks/backprop/backprop.c:68]   --->   Operation 31 'specloopname' 'specloopname_ln68' <Predicate = (!icmp_ln60)> <Delay = 0.00>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%activations_addr = getelementptr i64 %activations, i64 0, i64 %zext_ln60" [data/benchmarks/backprop/backprop.c:62]   --->   Operation 32 'getelementptr' 'activations_addr' <Predicate = (!icmp_ln60)> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (0.38ns)   --->   "%br_ln64 = br void %for.inc" [data/benchmarks/backprop/backprop.c:64]   --->   Operation 33 'br' 'br_ln64' <Predicate = (!icmp_ln60)> <Delay = 0.38>
+ST_2 : Operation 34 [2/2] (0.00ns)   --->   "%call_ln0 = call void @matrix_vector_product_with_bias_input_layer.1_Pipeline_add_bias_to_activations_l, i64 %activations, i64 %biases1"   --->   Operation 34 'call' 'call_ln0' <Predicate = (icmp_ln60)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 2.39>
+ST_3 : Operation 35 [1/1] (0.00ns)   --->   "%i_14 = phi i4 %add_ln64, void %for.inc.split, i4 0, void %matrix_vector_product_with_bias_input_layer_loop1_1.split" [data/benchmarks/backprop/backprop.c:64]   --->   Operation 35 'phi' 'i_14' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 36 [1/1] (0.00ns)   --->   "%add113 = phi i64 %add, void %for.inc.split, i64 0, void %matrix_vector_product_with_bias_input_layer_loop1_1.split" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 36 'phi' 'add113' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 37 [1/1] (0.70ns)   --->   "%icmp_ln64 = icmp_eq  i4 %i_14, i4 13" [data/benchmarks/backprop/backprop.c:64]   --->   Operation 37 'icmp' 'icmp_ln64' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 38 [1/1] (0.70ns)   --->   "%add_ln64 = add i4 %i_14, i4 1" [data/benchmarks/backprop/backprop.c:64]   --->   Operation 38 'add' 'add_ln64' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 39 [1/1] (0.00ns)   --->   "%br_ln64 = br i1 %icmp_ln64, void %for.inc.split, void %for.inc12" [data/benchmarks/backprop/backprop.c:64]   --->   Operation 39 'br' 'br_ln64' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 40 [1/1] (0.00ns)   --->   "%zext_ln64 = zext i4 %i_14" [data/benchmarks/backprop/backprop.c:64]   --->   Operation 40 'zext' 'zext_ln64' <Predicate = (!icmp_ln64)> <Delay = 0.00>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%zext_ln64_1 = zext i4 %i_14" [data/benchmarks/backprop/backprop.c:64]   --->   Operation 41 'zext' 'zext_ln64_1' <Predicate = (!icmp_ln64)> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (0.72ns)   --->   "%add_ln66 = add i10 %zext_ln64_1, i10 %phi_mul_load" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 42 'add' 'add_ln66' <Predicate = (!icmp_ln64)> <Delay = 0.72> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 43 [1/1] (0.74ns)   --->   "%add_ln66_1 = add i12 %zext_ln64, i12 %idx_read" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 43 'add' 'add_ln66_1' <Predicate = (!icmp_ln64)> <Delay = 0.74> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.74> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 44 [1/1] (0.00ns)   --->   "%zext_ln66_1 = zext i12 %add_ln66_1" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 44 'zext' 'zext_ln66_1' <Predicate = (!icmp_ln64)> <Delay = 0.00>
+ST_3 : Operation 45 [1/1] (0.00ns)   --->   "%training_data_addr = getelementptr i64 %training_data, i64 0, i64 %zext_ln66_1" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 45 'getelementptr' 'training_data_addr' <Predicate = (!icmp_ln64)> <Delay = 0.00>
+ST_3 : Operation 46 [2/2] (1.64ns)   --->   "%training_data_load = load i12 %training_data_addr" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 46 'load' 'training_data_load' <Predicate = (!icmp_ln64)> <Delay = 1.64> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.64> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 2119> <RAM>
+ST_3 : Operation 47 [1/1] (0.71ns)   --->   "%store_ln66 = store i64 %add113, i6 %activations_addr" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 47 'store' 'store_ln66' <Predicate = (icmp_ln64)> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 64> <RAM>
+ST_3 : Operation 48 [1/1] (0.38ns)   --->   "%store_ln58 = store i7 %add_ln60, i7 %j" [data/benchmarks/backprop/backprop.c:58]   --->   Operation 48 'store' 'store_ln58' <Predicate = (icmp_ln64)> <Delay = 0.38>
+ST_3 : Operation 49 [1/1] (0.38ns)   --->   "%store_ln60 = store i10 %add_ln60_1, i10 %phi_mul" [data/benchmarks/backprop/backprop.c:60]   --->   Operation 49 'store' 'store_ln60' <Predicate = (icmp_ln64)> <Delay = 0.38>
+ST_3 : Operation 50 [1/1] (0.00ns)   --->   "%br_ln60 = br void %matrix_vector_product_with_bias_input_layer_loop1_1" [data/benchmarks/backprop/backprop.c:60]   --->   Operation 50 'br' 'br_ln60' <Predicate = (icmp_ln64)> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 1.64>
+ST_4 : Operation 51 [1/1] (0.00ns)   --->   "%zext_ln66 = zext i10 %add_ln66" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 51 'zext' 'zext_ln66' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 52 [1/1] (0.00ns)   --->   "%weights1_addr = getelementptr i64 %weights1, i64 0, i64 %zext_ln66" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 52 'getelementptr' 'weights1_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 53 [2/2] (1.20ns)   --->   "%weights1_load = load i10 %weights1_addr" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 53 'load' 'weights1_load' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 832> <RAM>
+ST_4 : Operation 54 [1/2] (1.64ns)   --->   "%training_data_load = load i12 %training_data_addr" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 54 'load' 'training_data_load' <Predicate = true> <Delay = 1.64> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.64> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 2119> <RAM>
+
+State 5 <SV = 4> <Delay = 5.70>
+ST_5 : Operation 55 [1/2] (1.20ns)   --->   "%weights1_load = load i10 %weights1_addr" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 55 'load' 'weights1_load' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 832> <RAM>
+ST_5 : Operation 56 [1/1] (0.00ns)   --->   "%bitcast_ln66 = bitcast i64 %weights1_load" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 56 'bitcast' 'bitcast_ln66' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 57 [1/1] (0.00ns)   --->   "%bitcast_ln66_1 = bitcast i64 %training_data_load" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 57 'bitcast' 'bitcast_ln66_1' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 58 [4/4] (4.50ns)   --->   "%mul8 = dmul i64 %bitcast_ln66, i64 %bitcast_ln66_1" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 58 'dmul' 'mul8' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 4.50>
+ST_6 : Operation 59 [3/4] (4.50ns)   --->   "%mul8 = dmul i64 %bitcast_ln66, i64 %bitcast_ln66_1" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 59 'dmul' 'mul8' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 4.50>
+ST_7 : Operation 60 [2/4] (4.50ns)   --->   "%mul8 = dmul i64 %bitcast_ln66, i64 %bitcast_ln66_1" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 60 'dmul' 'mul8' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 4.50>
+ST_8 : Operation 61 [1/4] (4.50ns)   --->   "%mul8 = dmul i64 %bitcast_ln66, i64 %bitcast_ln66_1" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 61 'dmul' 'mul8' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 4.33>
+ST_9 : Operation 62 [4/4] (4.33ns)   --->   "%add = dadd i64 %add113, i64 %mul8" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 62 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 4.33>
+ST_10 : Operation 63 [3/4] (4.33ns)   --->   "%add = dadd i64 %add113, i64 %mul8" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 63 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 4.33>
+ST_11 : Operation 64 [2/4] (4.33ns)   --->   "%add = dadd i64 %add113, i64 %mul8" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 64 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 4.33>
+ST_12 : Operation 65 [1/1] (0.00ns)   --->   "%speclooptripcount_ln65 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 13, i64 13, i64 13" [data/benchmarks/backprop/backprop.c:65]   --->   Operation 65 'speclooptripcount' 'speclooptripcount_ln65' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 66 [1/1] (0.00ns)   --->   "%specloopname_ln67 = specloopname void @_ssdm_op_SpecLoopName, void @empty_11" [data/benchmarks/backprop/backprop.c:67]   --->   Operation 66 'specloopname' 'specloopname_ln67' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 67 [1/4] (4.33ns)   --->   "%add = dadd i64 %add113, i64 %mul8" [data/benchmarks/backprop/backprop.c:66]   --->   Operation 67 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 68 [1/1] (0.00ns)   --->   "%br_ln64 = br void %for.inc" [data/benchmarks/backprop/backprop.c:64]   --->   Operation 68 'br' 'br_ln64' <Predicate = true> <Delay = 0.00>
+
+State 13 <SV = 2> <Delay = 0.00>
+ST_13 : Operation 69 [1/2] (0.00ns)   --->   "%call_ln0 = call void @matrix_vector_product_with_bias_input_layer.1_Pipeline_add_bias_to_activations_l, i64 %activations, i64 %biases1"   --->   Operation 69 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_13 : Operation 70 [1/1] (0.00ns)   --->   "%ret_ln70 = ret" [data/benchmarks/backprop/backprop.c:70]   --->   Operation 70 'ret' 'ret_ln70' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 0.387ns
+The critical path consists of the following:
+	'alloca' operation 7 bit ('j', data/benchmarks/backprop/backprop.c:58) [7]  (0.000 ns)
+	'store' operation 0 bit ('store_ln58', data/benchmarks/backprop/backprop.c:58) of constant 0 on local variable 'j', data/benchmarks/backprop/backprop.c:58 [12]  (0.387 ns)
+
+ <State 2>: 0.725ns
+The critical path consists of the following:
+	'load' operation 10 bit ('phi_mul_load', data/benchmarks/backprop/backprop.c:66) on local variable 'phi_mul' [16]  (0.000 ns)
+	'add' operation 10 bit ('add_ln60_1', data/benchmarks/backprop/backprop.c:60) [18]  (0.725 ns)
+
+ <State 3>: 2.390ns
+The critical path consists of the following:
+	'phi' operation 4 bit ('i', data/benchmarks/backprop/backprop.c:64) with incoming values : ('add_ln64', data/benchmarks/backprop/backprop.c:64) [29]  (0.000 ns)
+	'add' operation 12 bit ('add_ln66_1', data/benchmarks/backprop/backprop.c:66) [44]  (0.745 ns)
+	'getelementptr' operation 12 bit ('training_data_addr', data/benchmarks/backprop/backprop.c:66) [46]  (0.000 ns)
+	'load' operation 64 bit ('training_data_load', data/benchmarks/backprop/backprop.c:66) on array 'training_data' [47]  (1.645 ns)
+
+ <State 4>: 1.645ns
+The critical path consists of the following:
+	'load' operation 64 bit ('training_data_load', data/benchmarks/backprop/backprop.c:66) on array 'training_data' [47]  (1.645 ns)
+
+ <State 5>: 5.703ns
+The critical path consists of the following:
+	'load' operation 64 bit ('weights1_load', data/benchmarks/backprop/backprop.c:66) on array 'weights1' [42]  (1.200 ns)
+	'dmul' operation 64 bit ('mul8', data/benchmarks/backprop/backprop.c:66) [49]  (4.503 ns)
+
+ <State 6>: 4.503ns
+The critical path consists of the following:
+	'dmul' operation 64 bit ('mul8', data/benchmarks/backprop/backprop.c:66) [49]  (4.503 ns)
+
+ <State 7>: 4.503ns
+The critical path consists of the following:
+	'dmul' operation 64 bit ('mul8', data/benchmarks/backprop/backprop.c:66) [49]  (4.503 ns)
+
+ <State 8>: 4.503ns
+The critical path consists of the following:
+	'dmul' operation 64 bit ('mul8', data/benchmarks/backprop/backprop.c:66) [49]  (4.503 ns)
+
+ <State 9>: 4.334ns
+The critical path consists of the following:
+	'dadd' operation 64 bit ('add', data/benchmarks/backprop/backprop.c:66) [50]  (4.334 ns)
+
+ <State 10>: 4.334ns
+The critical path consists of the following:
+	'dadd' operation 64 bit ('add', data/benchmarks/backprop/backprop.c:66) [50]  (4.334 ns)
+
+ <State 11>: 4.334ns
+The critical path consists of the following:
+	'dadd' operation 64 bit ('add', data/benchmarks/backprop/backprop.c:66) [50]  (4.334 ns)
+
+ <State 12>: 4.334ns
+The critical path consists of the following:
+	'dadd' operation 64 bit ('add', data/benchmarks/backprop/backprop.c:66) [50]  (4.334 ns)
+
+ <State 13>: 0.000ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

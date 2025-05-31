@@ -35,11 +35,11 @@ EDGE_TYPES = CDFG_EDGE_TYPES + [
 ]
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
-EMBEDDING_DIM = 256
+EMBEDDING_DIM = 512
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 83, 
+    "instr": 85, 
     "port": 25,
     "const": 5,
     "region": 13,

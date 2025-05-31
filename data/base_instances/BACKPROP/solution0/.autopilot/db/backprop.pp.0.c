@@ -2288,19 +2288,11 @@ void soft_max(double net_outputs[3], double activations[3]) {
 
     soft_max_loop1:
     for(i=0; i < 3; i++) {
-#line 1 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 22 "data/benchmarks/backprop/backprop.c"
-
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
  sum += exp(-activations[i]);
     }
     soft_max_loop2:
     for(i=0; i < 3; i++) {
-#line 2 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 27 "data/benchmarks/backprop/backprop.c"
-
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
  net_outputs[i] = exp(-activations[i])/sum;
     }
@@ -2310,10 +2302,6 @@ void RELU(double activations[64], double dactivations[64], int size) {
     int i;
     RELU_loop1:
     for( i = 0; i < size; i++) {
-#line 3 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 36 "data/benchmarks/backprop/backprop.c"
-
 #pragma HLS LOOP_TRIPCOUNT min=3 max=64
  dactivations[i] = activations[i]*(1.0-activations[i]);
         activations[i] = 1.0/(1.0+exp(-activations[i]));
@@ -2326,10 +2314,6 @@ void add_bias_to_activations(double biases[64],
     int i;
     add_bias_to_activations_loop1:
     for( i = 0; i < size; i++){
-#line 4 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 48 "data/benchmarks/backprop/backprop.c"
-
 #pragma HLS LOOP_TRIPCOUNT min=3 max=64
  activations[i] = activations[i] + biases[i];
     }
@@ -2339,10 +2323,14 @@ void matrix_vector_product_with_bias_input_layer(double biases[64],
                                                  double weights[13*64],
                                                  double activations[64],
                                                  double input_sample[13]){
+#line 36 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 57 "data/benchmarks/backprop/backprop.c"
+
     int i,j;
     matrix_vector_product_with_bias_input_layer_loop1:
     for(j = 0; j < 64; j++){
-#line 5 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 1 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 60 "data/benchmarks/backprop/backprop.c"
 
@@ -2350,8 +2338,12 @@ void matrix_vector_product_with_bias_input_layer(double biases[64],
  activations[j] = (double)0.0;
         matrix_vector_product_with_bias_input_layer_loop1_1:
         for (i = 0; i < 13; i++){
-#line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 2 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 64 "data/benchmarks/backprop/backprop.c"
+
+#line 44 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 64 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=13 max=13 avg=13
@@ -2365,10 +2357,14 @@ void matrix_vector_product_with_bias_second_layer(double biases[64],
                                                   double weights[64*64],
                                                   double activations[64],
                                                   double input_activations[64]){
+#line 37 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 75 "data/benchmarks/backprop/backprop.c"
+
     int i,j;
     matrix_vector_product_with_bias_second_layer_loop1:
     for (i = 0; i < 64; i++){
-#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 3 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 78 "data/benchmarks/backprop/backprop.c"
 
@@ -2376,8 +2372,12 @@ void matrix_vector_product_with_bias_second_layer(double biases[64],
  activations[i] = (double)0.0;
         matrix_vector_product_with_bias_second_layer_loop1_1:
         for(j = 0; j < 64; j++){
-#line 8 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 4 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 82 "data/benchmarks/backprop/backprop.c"
+
+#line 45 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 82 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
@@ -2391,10 +2391,14 @@ void matrix_vector_product_with_bias_output_layer(double biases[3],
                                                   double weights[64*3],
                                                   double activations[3],
                                                   double input_activations[64]){
+#line 38 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 93 "data/benchmarks/backprop/backprop.c"
+
     int i, j;
     matrix_vector_product_with_bias_output_layer_loop1:
     for(j = 0; j < 3; j++){
-#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 5 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 96 "data/benchmarks/backprop/backprop.c"
 
@@ -2402,7 +2406,11 @@ void matrix_vector_product_with_bias_output_layer(double biases[3],
  activations[j] = (double)0.0;
         matrix_vector_product_with_bias_output_layer_loop1_1:
         for (i = 0; i < 64; i++){
-#line 10 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 46 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 100 "data/benchmarks/backprop/backprop.c"
+
+#line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 100 "data/benchmarks/backprop/backprop.c"
 
@@ -2420,10 +2428,6 @@ void take_difference(double net_outputs[3],
     int i;
     take_difference_loop1:
     for( i = 0; i < 3; i++){
-#line 11 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 114 "data/benchmarks/backprop/backprop.c"
-
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
  output_difference[i] = (((net_outputs[i]) - solutions[i]) * -1.0) * dactivations[i];
     }
@@ -2432,18 +2436,26 @@ void take_difference(double net_outputs[3],
 void get_delta_matrix_weights3(double delta_weights3[64*3],
                                double output_difference[3],
                                double last_activations[64]) {
+#line 41 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 122 "data/benchmarks/backprop/backprop.c"
+
     int i, j;
     get_delta_matrix_weights3_loop1:
     for( i = 0; i < 64; i++) {
-#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 15 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 125 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
  get_delta_matrix_weights3_loop1_1:
         for( j = 0; j < 3; j++) {
-#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 16 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 128 "data/benchmarks/backprop/backprop.c"
+
+#line 51 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 128 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
@@ -2456,10 +2468,14 @@ void get_oracle_activations2(double weights3[64*3],
                              double output_differences[3],
                              double oracle_activations[64],
                              double dactivations[64]) {
+#line 43 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 138 "data/benchmarks/backprop/backprop.c"
+
     int i, j;
     get_oracle_activations2_loop1:
     for( i = 0; i < 64; i++) {
-#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 141 "data/benchmarks/backprop/backprop.c"
 
@@ -2467,8 +2483,12 @@ void get_oracle_activations2(double weights3[64*3],
  oracle_activations[i] = (double)0.0;
         get_oracle_activations2_loop1_1:
         for( j = 0; j < 3; j++) {
-#line 15 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 10 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 145 "data/benchmarks/backprop/backprop.c"
+
+#line 48 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 145 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
@@ -2481,18 +2501,26 @@ void get_oracle_activations2(double weights3[64*3],
 void get_delta_matrix_weights2(double delta_weights2[64*64],
                                double output_difference[64],
                                double last_activations[64]) {
+#line 40 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 155 "data/benchmarks/backprop/backprop.c"
+
     int i, j;
     get_delta_matrix_weights2_loop1:
     for( i = 0; i < 64; i++) {
-#line 16 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 158 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
  get_delta_matrix_weights2_loop1_1:
         for( j = 0; j < 64; j++) {
-#line 17 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 161 "data/benchmarks/backprop/backprop.c"
+
+#line 50 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 161 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
@@ -2505,10 +2533,14 @@ void get_oracle_activations1(double weights2[64*64],
                              double output_differences[64],
                              double oracle_activations[64],
                              double dactivations[64]) {
+#line 42 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 171 "data/benchmarks/backprop/backprop.c"
+
     int i, j;
     get_oracle_activations1_loop1:
     for( i = 0; i < 64; i++) {
-#line 18 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 174 "data/benchmarks/backprop/backprop.c"
 
@@ -2516,7 +2548,11 @@ void get_oracle_activations1(double weights2[64*64],
  oracle_activations[i] = (double)0.0;
         get_oracle_activations1_loop1_1:
         for( j = 0; j < 64; j++) {
-#line 19 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 47 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 178 "data/benchmarks/backprop/backprop.c"
+
+#line 8 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 178 "data/benchmarks/backprop/backprop.c"
 
@@ -2530,18 +2566,26 @@ void get_oracle_activations1(double weights2[64*64],
 void get_delta_matrix_weights1(double delta_weights1[13*64],
                                double output_difference[64],
                                double last_activations[13]) {
+#line 39 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 188 "data/benchmarks/backprop/backprop.c"
+
     int i, j;
     get_delta_matrix_weights1_loop1:
     for( i = 0; i < 13; i++) {
-#line 20 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 11 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 191 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=13 max=13 avg=13
  get_delta_matrix_weights1_loop1_1:
         for( j = 0; j < 64; j++) {
-#line 21 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 194 "data/benchmarks/backprop/backprop.c"
+
+#line 49 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 194 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
@@ -2569,15 +2613,19 @@ void update_weights(double weights1[13*64],
 
     update_weights_loop1:
     for(i=0; i < 13; i++){
-#line 22 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 17 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 219 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=13 max=13 avg=13
  update_weights_loop1_1:
         for(j = 0; j < 64; j++){
-#line 23 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 18 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 222 "data/benchmarks/backprop/backprop.c"
+
+#line 52 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 222 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
@@ -2587,7 +2635,7 @@ void update_weights(double weights1[13*64],
     }
     update_weights_loop2:
     for(i=0; i < 64; i++){
-#line 24 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 19 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 229 "data/benchmarks/backprop/backprop.c"
 
@@ -2601,15 +2649,19 @@ void update_weights(double weights1[13*64],
 
     update_weights_loop3:
     for(i=0; i < 13; i++){
-#line 25 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 20 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 239 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=13 max=13 avg=13
  update_weights_loop3_1:
         for(j = 0; j < 64; j++){
-#line 26 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 21 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 242 "data/benchmarks/backprop/backprop.c"
+
+#line 53 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 242 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
@@ -2618,7 +2670,7 @@ void update_weights(double weights1[13*64],
     }
     update_weights_loop4:
     for(i=0; i < 64; i++){
-#line 27 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 22 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 248 "data/benchmarks/backprop/backprop.c"
 
@@ -2631,15 +2683,19 @@ void update_weights(double weights1[13*64],
 
     update_weights_loop5:
     for(i=0; i < 64; i++){
-#line 28 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 23 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 257 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
  update_weights_loop5_1:
         for(j = 0; j < 64; j++){
-#line 29 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 24 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 260 "data/benchmarks/backprop/backprop.c"
+
+#line 54 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 260 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
@@ -2649,7 +2705,7 @@ void update_weights(double weights1[13*64],
     }
     update_weights_loop6:
     for(i=0; i < 64; i++){
-#line 30 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 25 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 267 "data/benchmarks/backprop/backprop.c"
 
@@ -2663,15 +2719,19 @@ void update_weights(double weights1[13*64],
 
     update_weights_loop7:
     for(i=0; i < 64; i++){
-#line 31 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 26 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 277 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
  update_weights_loop7_1:
         for(j = 0; j < 64; j++){
-#line 32 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 27 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 280 "data/benchmarks/backprop/backprop.c"
+
+#line 55 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 280 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
@@ -2680,7 +2740,7 @@ void update_weights(double weights1[13*64],
     }
     update_weights_loop8:
     for(i=0; i < 64; i++){
-#line 33 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 28 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 286 "data/benchmarks/backprop/backprop.c"
 
@@ -2693,15 +2753,19 @@ void update_weights(double weights1[13*64],
 
     update_weights_loop9:
     for(i=0; i < 64; i++){
-#line 34 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 29 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 295 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
  update_weights_loop9_1:
         for(j = 0; j < 3; j++){
-#line 35 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 30 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 298 "data/benchmarks/backprop/backprop.c"
+
+#line 56 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 298 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
@@ -2711,7 +2775,7 @@ void update_weights(double weights1[13*64],
     }
     update_weights_loop10:
     for(i=0; i<3;i++){
-#line 36 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 31 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 305 "data/benchmarks/backprop/backprop.c"
 
@@ -2725,15 +2789,19 @@ void update_weights(double weights1[13*64],
 
     update_weights_loop11:
     for(i=0; i < 64; i++){
-#line 37 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 32 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 315 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
  update_weights_loop11_1:
         for(j = 0; j < 3; j++){
-#line 38 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 33 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 318 "data/benchmarks/backprop/backprop.c"
+
+#line 57 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 318 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
@@ -2742,7 +2810,7 @@ void update_weights(double weights1[13*64],
     }
     update_weights_loop12:
     for(i=0; i < 3; i++){
-#line 39 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 34 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 324 "data/benchmarks/backprop/backprop.c"
 
@@ -2782,17 +2850,13 @@ __attribute__((sdx_kernel("backprop", 0))) void backprop(double weights1[13*64],
 
     backprop_loop1:
     for(i=0; i<163; i++){
-#line 40 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
+#line 35 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 356 "data/benchmarks/backprop/backprop.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=163 max=163 avg=163
  backprop_loop1_1:
         for(j=0;j<64;j++){
-#line 41 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 359 "data/benchmarks/backprop/backprop.c"
-
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
  activations1[j] = (double)0.0;
             activations2[j] = (double)0.0;

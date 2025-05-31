@@ -342,6 +342,10 @@ int abs(int n) {
 }
 
 int encode(int xin1, int xin2) {
+#line 15 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 240 "data/benchmarks/adpcm/adpcm.c"
+
     int i;
     const int *h_ptr;
     int *tqmf_ptr, *tqmf_ptr1;
@@ -441,6 +445,10 @@ int encode(int xin1, int xin2) {
 }
 
 void decode(int input) {
+#line 16 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 331 "data/benchmarks/adpcm/adpcm.c"
+
     int i;
     long int xa1, xa2;
     const int *h_ptr;
@@ -534,6 +542,10 @@ void decode(int input) {
 
 
 void reset() {
+#line 17 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 416 "data/benchmarks/adpcm/adpcm.c"
+
     int i;
 
     detl = dec_detl = 32;
@@ -592,6 +604,10 @@ void reset() {
 }
 
 int filtez(int *bpl, int *dlt) {
+#line 18 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 458 "data/benchmarks/adpcm/adpcm.c"
+
     int i;
     long int zl;
     zl = (long)(*bpl++) * (*dlt++);
@@ -622,6 +638,10 @@ int filtep(int rlt1, int al1, int rlt2, int al2) {
 
 
 int quantl(int el, int detl) {
+#line 19 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 484 "data/benchmarks/adpcm/adpcm.c"
+
     int ril, mil;
     long int wd, decis;
 
@@ -673,6 +693,10 @@ int scalel(int nbl, int shift_constant) {
 
 
 void upzero(int dlt, int *dlti, int *bli) {
+#line 20 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 531 "data/benchmarks/adpcm/adpcm.c"
+
     int i, wd2, wd3;
 
 

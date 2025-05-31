@@ -318,10 +318,10 @@ for.inc10:8 %trunc_ln209 = trunc i2 %select_ln205
 
 <Node id="26" bw="14" op_0_bw="14" op_1_bw="1" op_2_bw="13">
 <![CDATA[
-for.inc10:9 %tmp_8 = bitconcatenate i14 @_ssdm_op_BitConcatenate.i14.i1.i13, i1 %trunc_ln209, i13 0
+for.inc10:9 %tmp = bitconcatenate i14 @_ssdm_op_BitConcatenate.i14.i1.i13, i1 %trunc_ln209, i13 0
 
 ]]></Node>
-<StgValue><ssdm name="tmp_8"/></StgValue>
+<StgValue><ssdm name="tmp"/></StgValue>
 </operation>
 
 <operation id="25" st_id="1" stage="1" lat="1">
@@ -334,7 +334,7 @@ for.inc10:9 %tmp_8 = bitconcatenate i14 @_ssdm_op_BitConcatenate.i14.i1.i13, i1 
 
 <Node id="27" bw="14" op_0_bw="14" op_1_bw="14">
 <![CDATA[
-for.inc10:10 %add_ln209 = add i14 %tmp_8, i14 %select_ln201
+for.inc10:10 %add_ln209 = add i14 %tmp, i14 %select_ln201
 
 ]]></Node>
 <StgValue><ssdm name="add_ln209"/></StgValue>

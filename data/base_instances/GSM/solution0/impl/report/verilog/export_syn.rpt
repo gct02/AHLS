@@ -2,7 +2,7 @@
 == Vivado RTL Synthesis Results
 ================================================================
 + General Information:
-    * Date:            Thu May 29 16:52:46 -03 2025
+    * Date:            Fri May 30 22:09:18 -03 2025
     * Version:         2023.2 (Build 4023990 on Oct 11 2023)
     * Project:         GSM
     * Solution:        solution0 (Vivado IP Flow Target)
@@ -30,8 +30,8 @@
 ================================================================
 == RTL Synthesis Resource Summary
 ================================================================
-LUT:              2911
-FF:               2189
+LUT:              2934
+FF:               2302
 DSP:              40
 BRAM:             4
 URAM:             0
@@ -56,64 +56,63 @@ SRL:              9
 +--------------------------------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
 | Name                                                               | LUT  | FF   | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable | Source |
 +--------------------------------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
-| inst                                                               | 2911 | 2189 | 40  | 4    |      |     |        |      |         |          |        |
+| inst                                                               | 2934 | 2302 | 40  | 4    |      |     |        |      |         |          |        |
 |   (inst)                                                           | 10   | 22   |     |      |      |     |        |      |         |          |        |
-|   L_ACF_U                                                          | 322  |      |     | 4    |      |     |        |      |         |          |        |
-|   bitoff_U                                                         | 21   | 16   |     |      |      |     |        |      |         |          |        |
-|   grp_Autocorrelation_fu_103                                       | 1710 | 1714 | 34  |      |      |     |        |      |         |          |        |
-|     (grp_Autocorrelation_fu_103)                                   | 447  | 1006 | 4   |      |      |     |        |      |         |          |        |
-|     am_addmul_16s_16s_16s_33_4_1_U56                               |      |      | 1   |      |      |     |        |      |         |          |        |
-|     am_addmul_16s_16s_16s_33_4_1_U65                               | 1    |      | 1   |      |      |     |        |      |         |          |        |
-|     ama_addmuladd_16s_16s_16s_32s_33_4_1_U54                       |      |      | 2   |      |      |     |        |      |         |          |        |
+|   L_ACF_U                                                          | 226  |      |     | 4    |      |     |        |      |         |          |        |
+|   grp_Autocorrelation_fu_103                                       | 1716 | 1736 | 34  |      |      |     |        |      |         |          |        |
+|     (grp_Autocorrelation_fu_103)                                   | 516  | 1058 | 4   |      |      |     |        |      |         |          |        |
+|     am_addmul_16s_16s_16s_33_4_1_U57                               |      |      | 1   |      |      |     |        |      |         |          |        |
+|     am_addmul_16s_16s_16s_33_4_1_U66                               | 1    |      | 1   |      |      |     |        |      |         |          |        |
 |     ama_addmuladd_16s_16s_16s_32s_33_4_1_U55                       |      |      | 2   |      |      |     |        |      |         |          |        |
-|     ama_addmuladd_16s_16s_16s_33s_34_4_1_U64                       | 1    |      | 1   |      |      |     |        |      |         |          |        |
-|     ama_addmuladd_16s_16s_16s_33s_34_4_1_U66                       | 3    |      | 1   |      |      |     |        |      |         |          |        |
+|     ama_addmuladd_16s_16s_16s_32s_33_4_1_U56                       |      |      | 2   |      |      |     |        |      |         |          |        |
+|     ama_addmuladd_16s_16s_16s_33s_34_4_1_U65                       | 1    |      | 1   |      |      |     |        |      |         |          |        |
 |     ama_addmuladd_16s_16s_16s_33s_34_4_1_U67                       | 3    |      | 1   |      |      |     |        |      |         |          |        |
-|     grp_Autocorrelation_Pipeline_Autocorrelation_label0_fu_359     | 73   | 27   |     |      |      |     |        |      |         |          |        |
-|       (grp_Autocorrelation_Pipeline_Autocorrelation_label0_fu_359) | 56   | 25   |     |      |      |     |        |      |         |          |        |
-|     grp_Autocorrelation_Pipeline_Autocorrelation_label2_fu_373     | 21   | 7    |     |      |      |     |        |      |         |          |        |
-|       (grp_Autocorrelation_Pipeline_Autocorrelation_label2_fu_373) |      | 5    |     |      |      |     |        |      |         |          |        |
-|     grp_Autocorrelation_Pipeline_Autocorrelation_label3_fu_379     | 931  | 610  | 4   |      |      |     |        |      |         |          |        |
-|       (grp_Autocorrelation_Pipeline_Autocorrelation_label3_fu_379) | 290  | 608  |     |      |      |     |        |      |         |          |        |
-|       mul_16s_16s_32_1_1_U10                                       | 93   |      | 1   |      |      |     |        |      |         |          |        |
-|       mul_16s_16s_32_1_1_U11                                       | 157  |      | 1   |      |      |     |        |      |         |          |        |
-|       mul_16s_16s_32_1_1_U8                                        | 63   |      | 1   |      |      |     |        |      |         |          |        |
+|     ama_addmuladd_16s_16s_16s_33s_34_4_1_U68                       | 3    |      | 1   |      |      |     |        |      |         |          |        |
+|     grp_Autocorrelation_Pipeline_Autocorrelation_label2_fu_342     | 17   | 7    |     |      |      |     |        |      |         |          |        |
+|       (grp_Autocorrelation_Pipeline_Autocorrelation_label2_fu_342) |      | 5    |     |      |      |     |        |      |         |          |        |
+|     grp_Autocorrelation_Pipeline_Autocorrelation_label3_fu_348     | 947  | 610  | 4   |      |      |     |        |      |         |          |        |
+|       (grp_Autocorrelation_Pipeline_Autocorrelation_label3_fu_348) | 291  | 608  |     |      |      |     |        |      |         |          |        |
+|       mul_16s_16s_32_1_1_U10                                       | 63   |      | 1   |      |      |     |        |      |         |          |        |
+|       mul_16s_16s_32_1_1_U11                                       | 93   |      | 1   |      |      |     |        |      |         |          |        |
+|       mul_16s_16s_32_1_1_U12                                       | 157  |      | 1   |      |      |     |        |      |         |          |        |
 |       mul_16s_16s_32_1_1_U9                                        | 63   |      | 1   |      |      |     |        |      |         |          |        |
-|     grp_Autocorrelation_Pipeline_Autocorrelation_label4_fu_404     | 16   | 12   |     |      |      |     |        |      |         |          |        |
-|       (grp_Autocorrelation_Pipeline_Autocorrelation_label4_fu_404) | 1    | 10   |     |      |      |     |        |      |         |          |        |
-|       flow_control_loop_pipe_sequential_init_U                     | 15   | 2    |     |      |      |     |        |      |         |          |        |
-|     grp_Autocorrelation_Pipeline_Autocorrelation_label5_fu_410     | 58   | 22   |     |      |      |     |        |      |         |          |        |
-|       (grp_Autocorrelation_Pipeline_Autocorrelation_label5_fu_410) | 35   | 20   |     |      |      |     |        |      |         |          |        |
+|     grp_Autocorrelation_Pipeline_Autocorrelation_label4_fu_373     | 19   | 12   |     |      |      |     |        |      |         |          |        |
+|       (grp_Autocorrelation_Pipeline_Autocorrelation_label4_fu_373) | 2    | 10   |     |      |      |     |        |      |         |          |        |
+|       flow_control_loop_pipe_sequential_init_U                     | 17   | 2    |     |      |      |     |        |      |         |          |        |
+|     grp_Autocorrelation_Pipeline_Autocorrelation_label5_fu_379     | 48   | 19   |     |      |      |     |        |      |         |          |        |
+|       (grp_Autocorrelation_Pipeline_Autocorrelation_label5_fu_379) | 25   | 17   |     |      |      |     |        |      |         |          |        |
 |       flow_control_loop_pipe_sequential_init_U                     | 23   | 2    |     |      |      |     |        |      |         |          |        |
-|     grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_366            | 42   | 30   | 1   |      |      |     |        |      |         |          |        |
-|       (grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_366)        | 26   | 28   |     |      |      |     |        |      |         |          |        |
-|       flow_control_loop_pipe_sequential_init_U                     | 16   | 2    |     |      |      |     |        |      |         |          |        |
-|       mac_muladd_16s_15ns_15ns_31_4_1_U3                           |      |      | 1   |      |      |     |        |      |         |          |        |
-|     mac_muladd_16s_16s_32s_33_4_1_U57                              | 8    |      | 2   |      |      |     |        |      |         |          |        |
-|     mac_muladd_16s_16s_32s_33_4_1_U58                              | 1    |      | 2   |      |      |     |        |      |         |          |        |
-|     mac_muladd_16s_16s_32s_33_4_1_U59                              | 5    |      | 2   |      |      |     |        |      |         |          |        |
-|     mac_muladd_16s_16s_32s_33_4_1_U60                              | 1    |      | 2   |      |      |     |        |      |         |          |        |
-|     mac_muladd_16s_16s_32s_33_4_1_U61                              | 8    |      | 2   |      |      |     |        |      |         |          |        |
-|     mac_muladd_16s_16s_32s_33_4_1_U68                              | 33   |      | 2   |      |      |     |        |      |         |          |        |
-|     mac_muladd_16s_16s_33s_33_4_1_U62                              | 2    |      | 1   |      |      |     |        |      |         |          |        |
+|     grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_333            | 47   | 30   | 1   |      |      |     |        |      |         |          |        |
+|       (grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_333)        | 14   | 28   |     |      |      |     |        |      |         |          |        |
+|       flow_control_loop_pipe_sequential_init_U                     | 17   | 2    |     |      |      |     |        |      |         |          |        |
+|       mac_muladd_16s_15ns_15ns_31_4_1_U3                           | 16   |      | 1   |      |      |     |        |      |         |          |        |
+|     mac_muladd_16s_16s_32s_33_4_1_U58                              | 8    |      | 2   |      |      |     |        |      |         |          |        |
+|     mac_muladd_16s_16s_32s_33_4_1_U59                              | 1    |      | 2   |      |      |     |        |      |         |          |        |
+|     mac_muladd_16s_16s_32s_33_4_1_U60                              | 5    |      | 2   |      |      |     |        |      |         |          |        |
+|     mac_muladd_16s_16s_32s_33_4_1_U61                              | 1    |      | 2   |      |      |     |        |      |         |          |        |
+|     mac_muladd_16s_16s_32s_33_4_1_U62                              | 8    |      | 2   |      |      |     |        |      |         |          |        |
+|     mac_muladd_16s_16s_32s_33_4_1_U69                              | 33   |      | 2   |      |      |     |        |      |         |          |        |
 |     mac_muladd_16s_16s_33s_33_4_1_U63                              | 2    |      | 1   |      |      |     |        |      |         |          |        |
-|     mul_16s_16s_32_1_1_U45                                         | 33   |      | 1   |      |      |     |        |      |         |          |        |
-|     mul_16s_16s_32_1_1_U51                                         | 31   |      | 1   |      |      |     |        |      |         |          |        |
-|   grp_Quantization_and_coding_fu_122                               | 235  | 76   | 3   |      |      |     |        |      |         |          |        |
-|     (grp_Quantization_and_coding_fu_122)                           | 195  | 76   |     |      |      |     |        |      |         |          |        |
-|     mul_16s_15ns_31_1_1_U89                                        | 13   |      | 1   |      |      |     |        |      |         |          |        |
-|     mul_16s_15ns_31_1_1_U90                                        | 12   |      | 1   |      |      |     |        |      |         |          |        |
-|     mul_16s_15ns_31_1_1_U91                                        | 15   |      | 1   |      |      |     |        |      |         |          |        |
-|   grp_Reflection_coefficients_fu_113                               | 613  | 361  | 3   |      |      |     |        |      |         |          |        |
-|     (grp_Reflection_coefficients_fu_113)                           | 170  | 212  |     |      |      |     |        |      |         |          |        |
+|     mac_muladd_16s_16s_33s_33_4_1_U64                              | 2    |      | 1   |      |      |     |        |      |         |          |        |
+|     mul_16s_16s_32_1_1_U46                                         | 33   |      | 1   |      |      |     |        |      |         |          |        |
+|     mul_16s_16s_32_1_1_U52                                         | 31   |      | 1   |      |      |     |        |      |         |          |        |
+|   grp_Quantization_and_coding_fu_122                               | 233  | 76   | 3   |      |      |     |        |      |         |          |        |
+|     (grp_Quantization_and_coding_fu_122)                           | 191  | 76   |     |      |      |     |        |      |         |          |        |
+|     mul_16s_15ns_31_1_1_U90                                        | 13   |      | 1   |      |      |     |        |      |         |          |        |
+|     mul_16s_15ns_31_1_1_U91                                        | 14   |      | 1   |      |      |     |        |      |         |          |        |
+|     mul_16s_15ns_31_1_1_U92                                        | 15   |      | 1   |      |      |     |        |      |         |          |        |
+|   grp_Reflection_coefficients_fu_113                               | 717  | 440  | 3   |      |      |     |        |      |         |          |        |
+|     (grp_Reflection_coefficients_fu_113)                           | 146  | 238  |     |      |      |     |        |      |         |          |        |
 |     ACF_U                                                          | 21   | 16   |     |      |      |     |        |      |         |          |        |
 |     K_U                                                            | 26   | 16   |     |      |      |     |        |      |         |          |        |
-|     P_U                                                            | 59   | 16   |     |      |      |     |        |      |         |          |        |
-|     grp_Reflection_coefficients_Pipeline_gsm_div_label0_fu_402     | 144  | 101  |     |      |      |     |        |      |         |          |        |
-|       (grp_Reflection_coefficients_Pipeline_gsm_div_label0_fu_402) | 124  | 99   |     |      |      |     |        |      |         |          |        |
-|     mac_muladd_16s_16s_15ns_31_4_1_U81                             | 55   |      | 1   |      |      |     |        |      |         |          |        |
-|     mac_muladd_16s_16s_15ns_31_4_1_U82                             | 88   |      | 1   |      |      |     |        |      |         |          |        |
-|     mac_muladd_16s_16s_15ns_31_4_1_U83                             | 50   |      | 1   |      |      |     |        |      |         |          |        |
+|     P_U                                                            | 58   | 16   |     |      |      |     |        |      |         |          |        |
+|     grp_gsm_div_fu_306                                             | 304  | 154  |     |      |      |     |        |      |         |          |        |
+|       (grp_gsm_div_fu_306)                                         | 159  | 53   |     |      |      |     |        |      |         |          |        |
+|     mac_muladd_16s_16s_15ns_31_4_1_U83                             | 53   |      | 1   |      |      |     |        |      |         |          |        |
+|     mac_muladd_16s_16s_15ns_31_4_1_U84                             | 59   |      | 1   |      |      |     |        |      |         |          |        |
+|     mac_muladd_16s_16s_15ns_31_4_1_U85                             | 50   |      | 1   |      |      |     |        |      |         |          |        |
+|   grp_gsm_norm_fu_323                                              | 32   | 28   |     |      |      |     |        |      |         |          |        |
+|     bitoff_U                                                       | 29   | 16   |     |      |      |     |        |      |         |          |        |
 +--------------------------------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
 
 
@@ -123,10 +122,10 @@ SRL:              9
 +-----------------------------------------------------------+-----------+--------+--------+
 | Criteria                                                  | Guideline | Actual | Status |
 +-----------------------------------------------------------+-----------+--------+--------+
-| LUT                                                       | 70%       | 0.33%  | OK     |
+| LUT                                                       | 70%       | 0.34%  | OK     |
 | FD                                                        | 50%       | 0.13%  | OK     |
 | LUTRAM+SRL                                                | 25%       | 0.01%  | OK     |
-| CARRY8                                                    | 25%       | 0.19%  | OK     |
+| CARRY8                                                    | 25%       | 0.18%  | OK     |
 | MUXF7                                                     | 15%       | 0.00%  | OK     |
 | DSP                                                       | 80%       | 0.67%  | OK     |
 | RAMB/FIFO                                                 | 80%       | 0.15%  | OK     |
@@ -135,8 +134,8 @@ SRL:              9
 | BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
 | DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
 | MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
-| Control Sets                                              | 16344     | 72     | OK     |
-| Average Fanout for modules > 100k cells                   | 4         | 1.07   | OK     |
+| Control Sets                                              | 16344     | 76     | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 1.08   | OK     |
 | Max Average Fanout for modules > 100k cells               | 4         | 0      | OK     |
 | Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
 +-----------------------------------------------------------+-----------+--------+--------+
@@ -159,119 +158,119 @@ SRL:              9
 | Path  | SLACK | STARTPOINT PIN                                                                      | ENDPOINT PIN                                            | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
 |       |       |                                                                                     |                                                         |              |            |                |          DELAY |        DELAY |
 +-------+-------+-------------------------------------------------------------------------------------+---------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
-| Path1 | 5.290 | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST/CLK | grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[63]/D |           15 |          2 |          2.661 |          2.146 |        0.515 |
-| Path2 | 5.291 | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST/CLK | grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[61]/D |           15 |          2 |          2.660 |          2.146 |        0.514 |
-| Path3 | 5.303 | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST/CLK | grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[62]/D |           15 |          2 |          2.648 |          2.133 |        0.515 |
-| Path4 | 5.317 | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST/CLK | grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[55]/D |           14 |          2 |          2.634 |          2.124 |        0.510 |
-| Path5 | 5.318 | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST/CLK | grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[53]/D |           14 |          2 |          2.633 |          2.124 |        0.509 |
+| Path1 | 5.290 | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_A_B_DATA_INST/CLK | grp_Autocorrelation_fu_103/add_ln124_reg_1472_reg[63]/D |           15 |          2 |          2.661 |          2.146 |        0.515 |
+| Path2 | 5.291 | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_A_B_DATA_INST/CLK | grp_Autocorrelation_fu_103/add_ln124_reg_1472_reg[61]/D |           15 |          2 |          2.660 |          2.146 |        0.514 |
+| Path3 | 5.303 | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_A_B_DATA_INST/CLK | grp_Autocorrelation_fu_103/add_ln124_reg_1472_reg[62]/D |           15 |          2 |          2.648 |          2.133 |        0.515 |
+| Path4 | 5.317 | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_A_B_DATA_INST/CLK | grp_Autocorrelation_fu_103/add_ln124_reg_1472_reg[55]/D |           14 |          2 |          2.634 |          2.124 |        0.510 |
+| Path5 | 5.318 | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_A_B_DATA_INST/CLK | grp_Autocorrelation_fu_103/add_ln124_reg_1472_reg[53]/D |           14 |          2 |          2.633 |          2.124 |        0.509 |
 +-------+-------+-------------------------------------------------------------------------------------+---------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
 
     +------------------------------------------------------------------------------------+------------------------+
     | Path1 Cells                                                                        | Primitive Type         |
     +------------------------------------------------------------------------------------+------------------------+
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_3        | CLB.LUT.LUT3           |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_10       | CLB.LUT.LUT4           |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[7]_i_1    | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[15]_i_1   | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[23]_i_1   | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[31]_i_1   | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[39]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[47]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[55]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[63]_i_1                                             | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[63]                              | REGISTER.SDR.FDRE      |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472[7]_i_3        | CLB.LUT.LUT3           |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472[7]_i_10       | CLB.LUT.LUT4           |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[7]_i_1    | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[15]_i_1   | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[23]_i_1   | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[31]_i_1   | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[39]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[47]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[55]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[63]_i_1                                             | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/add_ln124_reg_1472_reg[63]                              | REGISTER.SDR.FDRE      |
     +------------------------------------------------------------------------------------+------------------------+
 
     +------------------------------------------------------------------------------------+------------------------+
     | Path2 Cells                                                                        | Primitive Type         |
     +------------------------------------------------------------------------------------+------------------------+
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_3        | CLB.LUT.LUT3           |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_10       | CLB.LUT.LUT4           |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[7]_i_1    | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[15]_i_1   | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[23]_i_1   | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[31]_i_1   | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[39]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[47]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[55]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[63]_i_1                                             | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[61]                              | REGISTER.SDR.FDRE      |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472[7]_i_3        | CLB.LUT.LUT3           |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472[7]_i_10       | CLB.LUT.LUT4           |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[7]_i_1    | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[15]_i_1   | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[23]_i_1   | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[31]_i_1   | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[39]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[47]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[55]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[63]_i_1                                             | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/add_ln124_reg_1472_reg[61]                              | REGISTER.SDR.FDRE      |
     +------------------------------------------------------------------------------------+------------------------+
 
     +------------------------------------------------------------------------------------+------------------------+
     | Path3 Cells                                                                        | Primitive Type         |
     +------------------------------------------------------------------------------------+------------------------+
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_3        | CLB.LUT.LUT3           |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_10       | CLB.LUT.LUT4           |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[7]_i_1    | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[15]_i_1   | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[23]_i_1   | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[31]_i_1   | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[39]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[47]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[55]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[63]_i_1                                             | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[62]                              | REGISTER.SDR.FDRE      |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472[7]_i_3        | CLB.LUT.LUT3           |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472[7]_i_10       | CLB.LUT.LUT4           |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[7]_i_1    | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[15]_i_1   | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[23]_i_1   | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[31]_i_1   | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[39]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[47]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[55]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[63]_i_1                                             | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/add_ln124_reg_1472_reg[62]                              | REGISTER.SDR.FDRE      |
     +------------------------------------------------------------------------------------+------------------------+
 
     +------------------------------------------------------------------------------------+------------------------+
     | Path4 Cells                                                                        | Primitive Type         |
     +------------------------------------------------------------------------------------+------------------------+
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_3        | CLB.LUT.LUT3           |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_10       | CLB.LUT.LUT4           |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[7]_i_1    | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[15]_i_1   | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[23]_i_1   | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[31]_i_1   | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[39]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[47]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[55]_i_1                                             | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[55]                              | REGISTER.SDR.FDRE      |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472[7]_i_3        | CLB.LUT.LUT3           |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472[7]_i_10       | CLB.LUT.LUT4           |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[7]_i_1    | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[15]_i_1   | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[23]_i_1   | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[31]_i_1   | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[39]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[47]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[55]_i_1                                             | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/add_ln124_reg_1472_reg[55]                              | REGISTER.SDR.FDRE      |
     +------------------------------------------------------------------------------------+------------------------+
 
     +------------------------------------------------------------------------------------+------------------------+
     | Path5 Cells                                                                        | Primitive Type         |
     +------------------------------------------------------------------------------------+------------------------+
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_3        | CLB.LUT.LUT3           |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688[7]_i_10       | CLB.LUT.LUT4           |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[7]_i_1    | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[15]_i_1   | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[23]_i_1   | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U51/add_ln124_reg_1688_reg[31]_i_1   | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[39]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[47]_i_1                                             | CLB.CARRY.CARRY8       |
-    | L_ACF_U/add_ln124_reg_1688_reg[55]_i_1                                             | CLB.CARRY.CARRY8       |
-    | grp_Autocorrelation_fu_103/add_ln124_reg_1688_reg[53]                              | REGISTER.SDR.FDRE      |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472[7]_i_3        | CLB.LUT.LUT3           |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472[7]_i_10       | CLB.LUT.LUT4           |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[7]_i_1    | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[15]_i_1   | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[23]_i_1   | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U52/add_ln124_reg_1472_reg[31]_i_1   | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[39]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[47]_i_1                                             | CLB.CARRY.CARRY8       |
+    | L_ACF_U/add_ln124_reg_1472_reg[55]_i_1                                             | CLB.CARRY.CARRY8       |
+    | grp_Autocorrelation_fu_103/add_ln124_reg_1472_reg[53]                              | REGISTER.SDR.FDRE      |
     +------------------------------------------------------------------------------------+------------------------+
 
 

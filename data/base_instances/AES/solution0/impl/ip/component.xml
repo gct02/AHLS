@@ -248,7 +248,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>af203d2a</spirit:value>
+            <spirit:value>404bffe7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -264,7 +264,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>c61b9b4e</spirit:value>
+            <spirit:value>58f2082c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -280,7 +280,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5993b699</spirit:value>
+            <spirit:value>37e91cf2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -296,7 +296,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>560909e6</spirit:value>
+            <spirit:value>0901e24c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -659,6 +659,10 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/verilog/aes_main_AddRoundKey.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/verilog/aes_main_AddRoundKey_InversMixColumn.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
@@ -668,14 +672,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/aes_main_ByteSub_ShiftRow.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R.dat</spirit:name>
-        <spirit:userFileType>mif</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -699,6 +695,26 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/verilog/aes_main_KeySchedule.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:userFileType>mif</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/aes_main_KeySchedule_Sbox_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:userFileType>mif</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/aes_main_KeySchedule_Sbox_ROM_AUTO_1R.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/verilog/aes_main_MixColumn_AddRoundKey.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
@@ -708,14 +724,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/aes_main_mux_4_2_32_1_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/aes_main_Rcon0_ROM_AUTO_1R.dat</spirit:name>
-        <spirit:userFileType>mif</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/aes_main_Rcon0_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -734,6 +742,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
+        <spirit:name>hdl/verilog/aes_main_AddRoundKey.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/verilog/aes_main_AddRoundKey_InversMixColumn.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
@@ -745,15 +758,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/aes_main_ByteSub_ShiftRow.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R.dat</spirit:name>
-        <spirit:userFileType>mif</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -782,6 +786,29 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/verilog/aes_main_KeySchedule.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:userFileType>mif</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/aes_main_KeySchedule_Sbox_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:userFileType>mif</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/aes_main_KeySchedule_Sbox_ROM_AUTO_1R.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/verilog/aes_main_MixColumn_AddRoundKey.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
@@ -793,15 +820,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/aes_main_mux_4_2_32_1_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/aes_main_Rcon0_ROM_AUTO_1R.dat</spirit:name>
-        <spirit:userFileType>mif</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/aes_main_Rcon0_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -828,6 +846,10 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/vhdl/aes_main_AddRoundKey.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/vhdl/aes_main_AddRoundKey_InversMixColumn.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
@@ -837,10 +859,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/aes_main_ByteSub_ShiftRow.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -860,6 +878,18 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/vhdl/aes_main_KeySchedule.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/aes_main_KeySchedule_Sbox_ROM_AUTO_1R.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/vhdl/aes_main_MixColumn_AddRoundKey.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
@@ -869,10 +899,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/aes_main_mux_4_2_32_1_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/aes_main_Rcon0_ROM_AUTO_1R.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -882,11 +908,16 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/aes_main.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_70d81fb7</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_5f053de1</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/aes_main_AddRoundKey.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/aes_main_AddRoundKey_InversMixColumn.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
@@ -899,11 +930,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/aes_main_ByteSub_ShiftRow.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -928,6 +954,21 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/vhdl/aes_main_KeySchedule.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/aes_main_KeySchedule_Sbox_ROM_AUTO_1R.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/vhdl/aes_main_MixColumn_AddRoundKey.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
@@ -939,11 +980,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/aes_main_mux_4_2_32_1_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/aes_main_Rcon0_ROM_AUTO_1R.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1010,7 +1046,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">2624</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">2634</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>II</spirit:name>
@@ -1027,8 +1063,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Aes_main</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114104615</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-05-29T17:55:16Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114106610</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-05-31T03:10:30Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -1037,9 +1073,9 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="12d4effa"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="9f141c56"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e5d3bfd0"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="006d7110"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="fe9921be"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="6403b6af"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

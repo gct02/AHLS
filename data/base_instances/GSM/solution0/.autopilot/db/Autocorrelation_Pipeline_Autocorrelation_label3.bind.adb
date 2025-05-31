@@ -16,7 +16,7 @@
 					<Obj class_id="5" tracking_level="0" version="0">
 						<type>1</type>
 						<id>1</id>
-						<name>L_ACF_load_8</name>
+						<name>L_ACF_load_9</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -106,7 +106,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>639657324</coreId>
+						<coreId>1869635878</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -178,7 +178,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728064896</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -214,7 +214,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827026831</coreId>
+						<coreId>2727707216</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -250,7 +250,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1923850176</coreId>
+						<coreId>2863573792</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -286,7 +286,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728290384</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -322,7 +322,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777693840</coreId>
+						<coreId>2863544944</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -358,7 +358,7 @@
 						<coreName>RAM</coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777217312</coreId>
+						<coreId>2728189504</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>16</bitwidth>
@@ -394,7 +394,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777217312</coreId>
+						<coreId>1475800638</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -430,7 +430,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777217312</coreId>
+						<coreId>2728229584</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -466,7 +466,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777510448</coreId>
+						<coreId>2728191376</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -502,7 +502,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827592665</coreId>
+						<coreId>2728177336</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -538,7 +538,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827646775</coreId>
+						<coreId>2728159792</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -574,7 +574,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777217312</coreId>
+						<coreId>1475801821</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -610,7 +610,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>249</coreId>
+						<coreId>2728182800</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -646,7 +646,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777508512</coreId>
+						<coreId>2728188080</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -682,7 +682,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
+						<coreId>2728060416</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -750,8 +750,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>39</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -763,7 +763,7 @@
 									<item class_id="13" tracking_level="0" version="0">
 										<first class_id="14" tracking_level="0" version="0">
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>39</second>
 									</item>
@@ -844,7 +844,7 @@
 					<Obj>
 						<type>0</type>
 						<id>23</id>
-						<name>empty_81</name>
+						<name>empty_75</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -862,7 +862,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777685656</coreId>
+						<coreId>2728299504</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -886,7 +886,7 @@
 					<Obj>
 						<type>0</type>
 						<id>24</id>
-						<name>empty_82</name>
+						<name>empty_76</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -904,7 +904,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1852138031</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -928,7 +928,7 @@
 					<Obj>
 						<type>0</type>
 						<id>25</id>
-						<name>empty_83</name>
+						<name>empty_77</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -946,7 +946,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1717924464</coreId>
+						<coreId>1475788830</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -970,7 +970,7 @@
 					<Obj>
 						<type>0</type>
 						<id>26</id>
-						<name>empty_84</name>
+						<name>empty_78</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -988,7 +988,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777488304</coreId>
+						<coreId>176</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1012,7 +1012,7 @@
 					<Obj>
 						<type>0</type>
 						<id>27</id>
-						<name>empty_85</name>
+						<name>empty_79</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1030,7 +1030,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
+						<coreId>4294967040</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1054,7 +1054,7 @@
 					<Obj>
 						<type>0</type>
 						<id>28</id>
-						<name>empty_86</name>
+						<name>empty_80</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1072,7 +1072,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777699744</coreId>
+						<coreId>2728185936</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1096,7 +1096,7 @@
 					<Obj>
 						<type>0</type>
 						<id>29</id>
-						<name>empty_87</name>
+						<name>empty_81</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1114,7 +1114,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777504368</coreId>
+						<coreId>7955819</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1138,7 +1138,7 @@
 					<Obj>
 						<type>0</type>
 						<id>30</id>
-						<name>empty_88</name>
+						<name>empty_82</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1156,7 +1156,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1951608697</coreId>
+						<coreId>2728185264</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1198,7 +1198,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777690000</coreId>
+						<coreId>1869635840</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1241,7 +1241,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777504368</coreId>
+						<coreId>2728303424</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1284,7 +1284,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777532152</coreId>
+						<coreId>7955819</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1327,7 +1327,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777532448</coreId>
+						<coreId>2728302752</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1370,7 +1370,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728182272</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1413,7 +1413,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827516983</coreId>
+						<coreId>2728280800</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1456,7 +1456,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>7955819</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1499,7 +1499,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777630064</coreId>
+						<coreId>2728280128</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1524,7 +1524,7 @@
 					<Obj>
 						<type>0</type>
 						<id>40</id>
-						<name>L_ACF_load_8_read</name>
+						<name>L_ACF_load_9_read</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1542,7 +1542,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777630648</coreId>
+						<coreId>2728182272</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1567,7 +1567,7 @@
 					<Obj>
 						<type>0</type>
 						<id>41</id>
-						<name>empty_88_write_ln0</name>
+						<name>empty_82_write_ln0</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1585,7 +1585,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827519702</coreId>
+						<coreId>2728300896</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1610,7 +1610,7 @@
 					<Obj>
 						<type>0</type>
 						<id>42</id>
-						<name>empty_87_write_ln0</name>
+						<name>empty_81_write_ln0</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1628,7 +1628,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1159736947</coreId>
+						<coreId>7955819</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1653,7 +1653,7 @@
 					<Obj>
 						<type>0</type>
 						<id>43</id>
-						<name>empty_86_write_ln0</name>
+						<name>empty_80_write_ln0</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1671,7 +1671,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777627536</coreId>
+						<coreId>2728300224</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1696,7 +1696,7 @@
 					<Obj>
 						<type>0</type>
 						<id>44</id>
-						<name>empty_85_write_ln0</name>
+						<name>empty_79_write_ln0</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1714,7 +1714,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777628120</coreId>
+						<coreId>2728182272</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1739,7 +1739,7 @@
 					<Obj>
 						<type>0</type>
 						<id>45</id>
-						<name>empty_84_write_ln0</name>
+						<name>empty_78_write_ln0</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1757,7 +1757,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777715920</coreId>
+						<coreId>2728305952</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1782,7 +1782,7 @@
 					<Obj>
 						<type>0</type>
 						<id>46</id>
-						<name>empty_83_write_ln0</name>
+						<name>empty_77_write_ln0</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1800,7 +1800,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>7955819</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1825,7 +1825,7 @@
 					<Obj>
 						<type>0</type>
 						<id>47</id>
-						<name>empty_82_write_ln0</name>
+						<name>empty_76_write_ln0</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1843,7 +1843,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777724688</coreId>
+						<coreId>2728305280</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1868,7 +1868,7 @@
 					<Obj>
 						<type>0</type>
 						<id>48</id>
-						<name>empty_81_write_ln0</name>
+						<name>empty_75_write_ln0</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -1886,7 +1886,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728060416</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1929,7 +1929,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827638821</coreId>
+						<coreId>608</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -1958,8 +1958,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>39</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1971,7 +1971,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>39</second>
 									</item>
@@ -1986,7 +1986,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
+						<coreId>2728175056</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -2029,7 +2029,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777491712</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -2072,7 +2072,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777492296</coreId>
+						<coreId>2728220592</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -2100,8 +2100,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>43</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2113,7 +2113,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>43</second>
 									</item>
@@ -2128,7 +2128,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>448</coreId>
+						<coreId>608</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -2157,8 +2157,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>129</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2170,7 +2170,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>129</second>
 									</item>
@@ -2185,7 +2185,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777535312</coreId>
+						<coreId>1953394531</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -2214,8 +2214,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>129</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2227,7 +2227,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>129</second>
 									</item>
@@ -2271,8 +2271,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>139</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2284,7 +2284,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>139</second>
 									</item>
@@ -2328,8 +2328,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>129</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2341,7 +2341,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>129</second>
 									</item>
@@ -2356,7 +2356,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827634466</coreId>
+						<coreId>2728060416</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -2386,8 +2386,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>132</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2399,7 +2399,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>132</second>
 									</item>
@@ -2414,7 +2414,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>2036689696</coreId>
+						<coreId>176</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2443,8 +2443,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>133</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2456,7 +2456,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>133</second>
 									</item>
@@ -2471,7 +2471,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777504368</coreId>
+						<coreId>2728060416</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2500,8 +2500,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>134</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2513,7 +2513,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>134</second>
 									</item>
@@ -2528,7 +2528,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1936024608</coreId>
+						<coreId>2728216248</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2557,8 +2557,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>135</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2570,7 +2570,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>135</second>
 									</item>
@@ -2585,7 +2585,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1852793632</coreId>
+						<coreId>1953721961</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2614,8 +2614,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>136</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2627,7 +2627,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>136</second>
 									</item>
@@ -2642,7 +2642,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777507840</coreId>
+						<coreId>2728179632</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2671,8 +2671,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>137</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2684,7 +2684,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>137</second>
 									</item>
@@ -2699,7 +2699,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>1475777147</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2728,8 +2728,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>138</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2741,7 +2741,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>138</second>
 									</item>
@@ -2756,7 +2756,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777497688</coreId>
+						<coreId>6775156</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2785,8 +2785,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>139</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2798,7 +2798,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>139</second>
 									</item>
@@ -2813,7 +2813,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827595192</coreId>
+						<coreId>2728169328</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2842,8 +2842,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>140</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2855,7 +2855,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>140</second>
 									</item>
@@ -2870,7 +2870,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777502560</coreId>
+						<coreId>2728226400</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2899,8 +2899,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>129</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2912,7 +2912,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>129</second>
 									</item>
@@ -2927,7 +2927,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728225568</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -2955,8 +2955,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>43</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -2968,7 +2968,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>43</second>
 									</item>
@@ -3012,8 +3012,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>39</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3025,7 +3025,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>39</second>
 									</item>
@@ -3040,7 +3040,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>808529205</coreId>
+						<coreId>2728162912</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -3068,8 +3068,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>131</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3081,7 +3081,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>131</second>
 									</item>
@@ -3125,8 +3125,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>131</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3138,7 +3138,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>131</second>
 									</item>
@@ -3153,7 +3153,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728060416</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -3181,8 +3181,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>131</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3194,7 +3194,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>131</second>
 									</item>
@@ -3209,7 +3209,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777746224</coreId>
+						<coreId>2728359168</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -3239,8 +3239,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>131</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3252,7 +3252,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>131</second>
 									</item>
@@ -3295,8 +3295,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>132</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3308,7 +3308,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>132</second>
 									</item>
@@ -3323,7 +3323,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777484800</coreId>
+						<coreId>2728361248</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -3351,8 +3351,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>132</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3364,7 +3364,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>132</second>
 									</item>
@@ -3408,8 +3408,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>132</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3421,7 +3421,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>132</second>
 									</item>
@@ -3436,7 +3436,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827629972</coreId>
+						<coreId>1935762796</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -3464,8 +3464,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>132</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3477,7 +3477,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>132</second>
 									</item>
@@ -3521,8 +3521,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>133</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3534,7 +3534,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>133</second>
 									</item>
@@ -3549,7 +3549,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777537712</coreId>
+						<coreId>1885415019</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -3579,8 +3579,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>133</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3592,7 +3592,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>133</second>
 									</item>
@@ -3635,8 +3635,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>133</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3648,7 +3648,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>133</second>
 									</item>
@@ -3663,7 +3663,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>304</coreId>
+						<coreId>608</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -3691,8 +3691,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>133</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3704,7 +3704,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>133</second>
 									</item>
@@ -3748,8 +3748,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>133</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3761,7 +3761,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>133</second>
 									</item>
@@ -3776,7 +3776,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777475792</coreId>
+						<coreId>1472862659</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -3804,8 +3804,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>133</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3817,7 +3817,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>133</second>
 									</item>
@@ -3861,8 +3861,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>134</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3874,7 +3874,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>134</second>
 									</item>
@@ -3918,8 +3918,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>134</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3931,7 +3931,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>134</second>
 									</item>
@@ -3974,8 +3974,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>134</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -3987,7 +3987,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>134</second>
 									</item>
@@ -4002,7 +4002,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777741984</coreId>
+						<coreId>1472883188</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -4032,8 +4032,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>134</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4045,7 +4045,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>134</second>
 									</item>
@@ -4088,8 +4088,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>134</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4101,7 +4101,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>134</second>
 									</item>
@@ -4116,7 +4116,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728168136</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -4144,8 +4144,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>134</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4157,7 +4157,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>134</second>
 									</item>
@@ -4201,8 +4201,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>134</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4214,7 +4214,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>134</second>
 									</item>
@@ -4229,7 +4229,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777603184</coreId>
+						<coreId>2728223296</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -4257,8 +4257,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>134</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4270,7 +4270,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>134</second>
 									</item>
@@ -4314,8 +4314,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>135</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4327,7 +4327,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>135</second>
 									</item>
@@ -4371,8 +4371,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>135</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4384,7 +4384,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>135</second>
 									</item>
@@ -4399,7 +4399,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827352943</coreId>
+						<coreId>2728283896</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -4427,8 +4427,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>135</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4440,7 +4440,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>135</second>
 									</item>
@@ -4455,7 +4455,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777562480</coreId>
+						<coreId>1475639989</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -4485,8 +4485,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>135</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4498,7 +4498,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>135</second>
 									</item>
@@ -4541,8 +4541,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>135</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4554,7 +4554,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>135</second>
 									</item>
@@ -4569,7 +4569,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777702944</coreId>
+						<coreId>2728060416</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -4597,8 +4597,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>135</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4610,7 +4610,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>135</second>
 									</item>
@@ -4654,8 +4654,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>135</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4667,7 +4667,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>135</second>
 									</item>
@@ -4682,7 +4682,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>176</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -4710,8 +4710,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>135</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4723,7 +4723,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>135</second>
 									</item>
@@ -4767,8 +4767,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>136</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4780,7 +4780,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>136</second>
 									</item>
@@ -4824,8 +4824,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>136</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4837,7 +4837,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>136</second>
 									</item>
@@ -4852,7 +4852,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777569872</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -4880,8 +4880,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>136</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4893,7 +4893,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>136</second>
 									</item>
@@ -4908,7 +4908,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728479232</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -4938,8 +4938,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>136</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -4951,7 +4951,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>136</second>
 									</item>
@@ -4994,8 +4994,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>136</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5007,7 +5007,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>136</second>
 									</item>
@@ -5022,7 +5022,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777715920</coreId>
+						<coreId>2728413920</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -5050,8 +5050,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>136</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5063,7 +5063,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>136</second>
 									</item>
@@ -5107,8 +5107,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>136</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5120,7 +5120,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>136</second>
 									</item>
@@ -5135,7 +5135,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827548943</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -5163,8 +5163,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>136</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5176,7 +5176,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>136</second>
 									</item>
@@ -5220,8 +5220,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>137</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5233,7 +5233,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>137</second>
 									</item>
@@ -5277,8 +5277,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>137</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5290,7 +5290,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>137</second>
 									</item>
@@ -5305,7 +5305,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1330007625</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -5333,8 +5333,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>137</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5346,7 +5346,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>137</second>
 									</item>
@@ -5361,7 +5361,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>1330010203</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -5391,8 +5391,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>137</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5404,7 +5404,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>137</second>
 									</item>
@@ -5447,8 +5447,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>137</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5460,7 +5460,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>137</second>
 									</item>
@@ -5475,7 +5475,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728424080</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -5503,8 +5503,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>137</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5516,7 +5516,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>137</second>
 									</item>
@@ -5560,8 +5560,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>137</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5573,7 +5573,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>137</second>
 									</item>
@@ -5588,7 +5588,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827360433</coreId>
+						<coreId>2728343936</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -5616,8 +5616,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>137</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5629,7 +5629,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>137</second>
 									</item>
@@ -5673,8 +5673,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>138</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5686,7 +5686,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>138</second>
 									</item>
@@ -5730,8 +5730,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>138</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5743,7 +5743,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>138</second>
 									</item>
@@ -5758,7 +5758,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777715600</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -5786,8 +5786,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>138</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5799,7 +5799,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>138</second>
 									</item>
@@ -5844,8 +5844,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>138</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5857,7 +5857,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>138</second>
 									</item>
@@ -5900,8 +5900,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>138</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5913,7 +5913,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>138</second>
 									</item>
@@ -5928,7 +5928,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827541760</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -5956,8 +5956,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>138</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -5969,7 +5969,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>138</second>
 									</item>
@@ -6013,8 +6013,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>138</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6026,7 +6026,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>138</second>
 									</item>
@@ -6041,7 +6041,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777721024</coreId>
+						<coreId>176</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -6069,8 +6069,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>138</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6082,7 +6082,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>138</second>
 									</item>
@@ -6126,8 +6126,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>139</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6139,7 +6139,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>139</second>
 									</item>
@@ -6154,7 +6154,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728382544</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -6182,8 +6182,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>139</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6195,7 +6195,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>139</second>
 									</item>
@@ -6210,7 +6210,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777504368</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -6240,8 +6240,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>139</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6253,7 +6253,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>139</second>
 									</item>
@@ -6296,8 +6296,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>139</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6309,7 +6309,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>139</second>
 									</item>
@@ -6324,7 +6324,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827676764</coreId>
+						<coreId>1475725167</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -6352,8 +6352,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>139</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6365,7 +6365,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>139</second>
 									</item>
@@ -6409,8 +6409,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>139</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6422,7 +6422,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>139</second>
 									</item>
@@ -6437,7 +6437,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>608</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -6465,8 +6465,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>139</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6478,7 +6478,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>139</second>
 									</item>
@@ -6522,8 +6522,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>140</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6535,7 +6535,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>140</second>
 									</item>
@@ -6550,7 +6550,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728398192</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -6580,8 +6580,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>140</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6593,7 +6593,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>140</second>
 									</item>
@@ -6636,8 +6636,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>140</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6649,7 +6649,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>140</second>
 									</item>
@@ -6664,7 +6664,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728400600</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>32</bitwidth>
@@ -6692,8 +6692,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>140</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6705,7 +6705,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>140</second>
 									</item>
@@ -6749,8 +6749,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>140</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6762,7 +6762,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>140</second>
 									</item>
@@ -6805,8 +6805,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>140</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6818,7 +6818,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>140</second>
 									</item>
@@ -6862,8 +6862,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>129</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6875,7 +6875,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>129</second>
 									</item>
@@ -6915,12 +6915,12 @@
 					<Obj>
 						<type>0</type>
 						<id>143</id>
-						<name>empty_88_write_ln140</name>
+						<name>empty_82_write_ln140</name>
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>140</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6932,7 +6932,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>140</second>
 									</item>
@@ -6947,7 +6947,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777504368</coreId>
+						<coreId>1752440933</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -6974,12 +6974,12 @@
 					<Obj>
 						<type>0</type>
 						<id>144</id>
-						<name>empty_87_write_ln139</name>
+						<name>empty_81_write_ln139</name>
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>139</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -6991,7 +6991,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>139</second>
 									</item>
@@ -7006,7 +7006,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777517944</coreId>
+						<coreId>2728202736</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -7033,12 +7033,12 @@
 					<Obj>
 						<type>0</type>
 						<id>145</id>
-						<name>empty_86_write_ln138</name>
+						<name>empty_80_write_ln138</name>
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>138</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -7050,7 +7050,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>138</second>
 									</item>
@@ -7065,7 +7065,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827610924</coreId>
+						<coreId>2728203976</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -7092,12 +7092,12 @@
 					<Obj>
 						<type>0</type>
 						<id>146</id>
-						<name>empty_85_write_ln137</name>
+						<name>empty_79_write_ln137</name>
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>137</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -7109,7 +7109,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>137</second>
 									</item>
@@ -7124,7 +7124,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777519920</coreId>
+						<coreId>1475817729</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -7151,12 +7151,12 @@
 					<Obj>
 						<type>0</type>
 						<id>147</id>
-						<name>empty_84_write_ln136</name>
+						<name>empty_78_write_ln136</name>
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>136</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -7168,7 +7168,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>136</second>
 									</item>
@@ -7183,7 +7183,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728203696</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -7210,12 +7210,12 @@
 					<Obj>
 						<type>0</type>
 						<id>148</id>
-						<name>empty_83_write_ln135</name>
+						<name>empty_77_write_ln135</name>
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>135</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -7227,7 +7227,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>135</second>
 									</item>
@@ -7242,7 +7242,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1397309778</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -7269,12 +7269,12 @@
 					<Obj>
 						<type>0</type>
 						<id>149</id>
-						<name>empty_82_write_ln134</name>
+						<name>empty_76_write_ln134</name>
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>134</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -7286,7 +7286,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>134</second>
 									</item>
@@ -7301,7 +7301,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1330007625</coreId>
+						<coreId>1769239916</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -7328,12 +7328,12 @@
 					<Obj>
 						<type>0</type>
 						<id>150</id>
-						<name>empty_81_write_ln133</name>
+						<name>empty_75_write_ln133</name>
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>133</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -7345,7 +7345,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>133</second>
 									</item>
@@ -7360,7 +7360,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777524768</coreId>
+						<coreId>176</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -7391,8 +7391,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>132</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -7404,7 +7404,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>132</second>
 									</item>
@@ -7450,8 +7450,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>39</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -7463,7 +7463,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>39</second>
 									</item>
@@ -7478,7 +7478,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777525504</coreId>
+						<coreId>2728263424</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -7509,8 +7509,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>139</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -7522,7 +7522,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>139</second>
 									</item>
@@ -7568,8 +7568,8 @@
 						<fileName>data/benchmarks/gsm/gsm_lpc.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>129</lineNumber>
-						<contextFuncName>Autocorrelation</contextFuncName>
-						<contextNormFuncName>Autocorrelation</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -7581,7 +7581,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/gsm/gsm_lpc.c</first>
-											<second>Autocorrelation</second>
+											<second></second>
 										</first>
 										<second>129</second>
 									</item>
@@ -7596,7 +7596,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777529248</coreId>
+						<coreId>2728264200</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -7638,7 +7638,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777504368</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -7681,7 +7681,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728266688</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -7724,7 +7724,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>784</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -7767,7 +7767,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827337931</coreId>
+						<coreId>2728267568</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -7853,7 +7853,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827336107</coreId>
+						<coreId>2728268784</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -7939,7 +7939,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777778472</coreId>
+						<coreId>2728060416</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -7982,7 +7982,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777779104</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -8025,7 +8025,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>176</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -8069,7 +8069,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777780344</coreId>
+						<coreId>1475612242</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -8113,7 +8113,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777781056</coreId>
+						<coreId>2728272888</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -8157,7 +8157,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728271712</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -8201,7 +8201,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777672880</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -8245,7 +8245,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>827347357</coreId>
+						<coreId>2728274736</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -8289,7 +8289,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777783728</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -8333,7 +8333,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777784320</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -8377,7 +8377,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1702258035</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -8421,7 +8421,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777785696</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -8497,7 +8497,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777504224</coreId>
+						<coreId>2728279376</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -8528,7 +8528,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777489152</coreId>
+						<coreId>2728413728</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -8559,7 +8559,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777530640</coreId>
+						<coreId>2727840704</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -8590,7 +8590,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777794672</coreId>
+						<coreId>2728060416</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -8621,7 +8621,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777504368</coreId>
+						<coreId>1836016416</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -8652,7 +8652,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777796520</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -8683,7 +8683,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777797736</coreId>
+						<coreId>0</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -8714,7 +8714,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>2728346400</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -8745,7 +8745,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777801712</coreId>
+						<coreId>1330007625</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -8776,7 +8776,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>825368576</coreId>
+						<coreId>2728060416</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -8807,7 +8807,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1777504368</coreId>
+						<coreId>176</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -9060,7 +9060,7 @@
 					<coreName></coreName>
 					<isStorage>0</isStorage>
 					<storageDepth>0</storageDepth>
-					<coreId>1777499216</coreId>
+					<coreId>4294967295</coreId>
 					<rtlModuleName></rtlModuleName>
 				</Obj>
 				<node_objs>
@@ -14599,7 +14599,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_81_fu_98</first>
+			<first>empty_75_fu_98</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -14607,7 +14607,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_82_fu_102</first>
+			<first>empty_76_fu_102</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -14615,7 +14615,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_83_fu_106</first>
+			<first>empty_77_fu_106</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -14623,7 +14623,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_84_fu_110</first>
+			<first>empty_78_fu_110</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -14631,7 +14631,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_85_fu_114</first>
+			<first>empty_79_fu_114</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -14639,7 +14639,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_86_fu_118</first>
+			<first>empty_80_fu_118</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -14647,7 +14647,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_87_fu_122</first>
+			<first>empty_81_fu_122</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -14655,7 +14655,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_88_fu_126</first>
+			<first>empty_82_fu_126</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -15071,7 +15071,7 @@
 		<count>60</count>
 		<item_version>0</item_version>
 		<item>
-			<first>L_ACF_load_8_read_read_fu_178</first>
+			<first>L_ACF_load_9_read_read_fu_178</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -15789,7 +15789,7 @@
 		<count>23</count>
 		<item_version>0</item_version>
 		<item>
-			<first>empty_81_reg_800</first>
+			<first>empty_75_reg_800</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -15797,7 +15797,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_82_reg_808</first>
+			<first>empty_76_reg_808</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -15805,7 +15805,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_83_reg_816</first>
+			<first>empty_77_reg_816</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -15813,7 +15813,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_84_reg_824</first>
+			<first>empty_78_reg_824</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -15821,7 +15821,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_85_reg_832</first>
+			<first>empty_79_reg_832</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -15829,7 +15829,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_86_reg_840</first>
+			<first>empty_80_reg_840</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -15837,7 +15837,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_87_reg_848</first>
+			<first>empty_81_reg_848</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -15845,7 +15845,7 @@
 			</second>
 		</item>
 		<item>
-			<first>empty_88_reg_856</first>
+			<first>empty_82_reg_856</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -15985,7 +15985,7 @@
 		<count>20</count>
 		<item_version>0</item_version>
 		<item class_id="58" tracking_level="0" version="0">
-			<first>L_ACF_load_8</first>
+			<first>L_ACF_load_9</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>

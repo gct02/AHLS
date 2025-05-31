@@ -1,21 +1,20 @@
 {
   "0": {
-    "basicblocks": 40,
-    "calls": "2 2 2 2",
+    "basicblocks": 34,
+    "calls": "2 2",
     "file": "transposed_fft.c",
     "fileloc": 114,
-    "instructions": 1230,
+    "instructions": 1178,
     "loads": {
-      "G": 2,
       "L": 128,
       "T": 16
     },
     "name": "fft1D_512",
     "stores": {
-      "L": 148,
+      "L": 144,
       "T": 16
     },
-    "total_instructions": 2314
+    "total_instructions": 2330
   },
   "1": {
     "basicblocks": 7,
@@ -30,6 +29,22 @@
     "total_instructions": 75
   },
   "2": {
+    "basicblocks": 4,
+    "calls": "3 3",
+    "file": "transposed_fft.c",
+    "fileloc": 23,
+    "instructions": 34,
+    "loads": {
+      "G": 1,
+      "L": 2
+    },
+    "name": "twiddles8",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 576
+  },
+  "3": {
     "basicblocks": 9,
     "calls": "1",
     "file": "hls_hotbm.h",

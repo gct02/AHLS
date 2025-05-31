@@ -13,7 +13,6 @@ module fft1D_512_sin_or_cos_double_s (
         ap_done,
         ap_idle,
         ap_ready,
-        ap_ce,
         t_in,
         do_cos,
         ap_return
@@ -27,7 +26,6 @@ input   ap_start;
 output   ap_done;
 output   ap_idle;
 output   ap_ready;
-input   ap_ce;
 input  [63:0] t_in;
 input  [0:0] do_cos;
 output  [63:0] ap_return;
@@ -48,7 +46,7 @@ reg    ap_enable_reg_pp0_iter6;
 reg    ap_enable_reg_pp0_iter7;
 reg    ap_enable_reg_pp0_iter8;
 reg    ap_idle_pp0;
-reg    ap_block_pp0_stage0_subdone;
+wire    ap_block_pp0_stage0_subdone;
 wire   [3:0] ref_4oPi_table_256_address0;
 reg    ref_4oPi_table_256_ce0;
 wire   [255:0] ref_4oPi_table_256_q0;
@@ -259,7 +257,7 @@ reg   [31:0] tmp_5_i_fu_1265_p4;
 wire   [31:0] out_bits_5_fu_1233_p3;
 reg   [31:0] tmp_8_i_fu_1283_p4;
 wire   [31:0] out_bits_6_fu_1240_p3;
-reg   [31:0] tmp_i_46_fu_1301_p4;
+reg   [31:0] tmp_i_49_fu_1301_p4;
 reg   [31:0] c_fu_1257_p3;
 wire   [62:0] zext_ln423_fu_1319_p1;
 reg   [31:0] c_1_fu_1275_p3;
@@ -313,7 +311,6 @@ wire   [51:0] significand_fu_1551_p3;
 wire   [10:0] results_exp_1_fu_1586_p3;
 wire   [51:0] results_sig_1_fu_1615_p3;
 wire   [63:0] t_2_fu_1623_p4;
-reg    grp_fu_380_ce;
 reg   [0:0] ap_NS_fsm;
 reg    ap_idle_pp0_0to7;
 reg    ap_reset_idle_pp0;
@@ -560,7 +557,7 @@ mul_170s_53ns_170_2_1_U9(
     .reset(ap_rst),
     .din0(grp_fu_380_p0),
     .din1(grp_fu_380_p1),
-    .ce(grp_fu_380_ce),
+    .ce(1'b1),
     .dout(grp_fu_380_p2)
 );
 
@@ -809,7 +806,7 @@ always @ (posedge ap_clk) begin
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_ce))) begin
+    if ((1'b0 == ap_block_pp0_stage0_11001)) begin
         B_reg_1762 <= B_fu_748_p1;
         B_squared_reg_1772 <= {{mul_ln25_fu_360_p2[97:49]}};
         Ex_1_reg_1725 <= Ex_1_fu_630_p2;
@@ -881,7 +878,7 @@ always @ (posedge ap_clk) begin
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_ce) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         closepath_reg_1663 <= closepath_fu_410_p2;
         closepath_reg_1663_pp0_iter1_reg <= closepath_reg_1663;
         din_exp_reg_1650 <= {{data_fu_384_p1[62:52]}};
@@ -945,7 +942,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter4 == 1'b1) & (1'b1 == ap_ce))) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter4 == 1'b1))) begin
         fourth_order_double_sin_cos_K0_ce0 = 1'b1;
     end else begin
         fourth_order_double_sin_cos_K0_ce0 = 1'b0;
@@ -953,7 +950,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter4 == 1'b1) & (1'b1 == ap_ce))) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter4 == 1'b1))) begin
         fourth_order_double_sin_cos_K1_ce0 = 1'b1;
     end else begin
         fourth_order_double_sin_cos_K1_ce0 = 1'b0;
@@ -961,7 +958,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter4 == 1'b1) & (1'b1 == ap_ce))) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter4 == 1'b1))) begin
         fourth_order_double_sin_cos_K2_ce0 = 1'b1;
     end else begin
         fourth_order_double_sin_cos_K2_ce0 = 1'b0;
@@ -969,7 +966,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter4 == 1'b1) & (1'b1 == ap_ce))) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter4 == 1'b1))) begin
         fourth_order_double_sin_cos_K3_ce0 = 1'b1;
     end else begin
         fourth_order_double_sin_cos_K3_ce0 = 1'b0;
@@ -977,7 +974,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter4 == 1'b1) & (1'b1 == ap_ce))) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter4 == 1'b1))) begin
         fourth_order_double_sin_cos_K4_ce0 = 1'b1;
     end else begin
         fourth_order_double_sin_cos_K4_ce0 = 1'b0;
@@ -985,15 +982,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_ce) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        grp_fu_380_ce = 1'b1;
-    end else begin
-        grp_fu_380_ce = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_ce) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         ref_4oPi_table_256_ce0 = 1'b1;
     end else begin
         ref_4oPi_table_256_ce0 = 1'b0;
@@ -1069,9 +1058,7 @@ assign ap_block_pp0_stage0 = ~(1'b1 == 1'b1);
 
 assign ap_block_pp0_stage0_11001 = ~(1'b1 == 1'b1);
 
-always @ (*) begin
-    ap_block_pp0_stage0_subdone = (1'b0 == ap_ce);
-end
+assign ap_block_pp0_stage0_subdone = ~(1'b1 == 1'b1);
 
 assign ap_enable_pp0 = (ap_idle_pp0 ^ 1'b1);
 
@@ -1222,70 +1209,70 @@ always @ (tmp_8_i_fu_1283_p4) begin
 end
 
 
-always @ (tmp_i_46_fu_1301_p4) begin
-    if (tmp_i_46_fu_1301_p4[0] == 1'b1) begin
+always @ (tmp_i_49_fu_1301_p4) begin
+    if (tmp_i_49_fu_1301_p4[0] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd0;
-    end else if (tmp_i_46_fu_1301_p4[1] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[1] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd1;
-    end else if (tmp_i_46_fu_1301_p4[2] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[2] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd2;
-    end else if (tmp_i_46_fu_1301_p4[3] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[3] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd3;
-    end else if (tmp_i_46_fu_1301_p4[4] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[4] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd4;
-    end else if (tmp_i_46_fu_1301_p4[5] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[5] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd5;
-    end else if (tmp_i_46_fu_1301_p4[6] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[6] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd6;
-    end else if (tmp_i_46_fu_1301_p4[7] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[7] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd7;
-    end else if (tmp_i_46_fu_1301_p4[8] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[8] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd8;
-    end else if (tmp_i_46_fu_1301_p4[9] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[9] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd9;
-    end else if (tmp_i_46_fu_1301_p4[10] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[10] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd10;
-    end else if (tmp_i_46_fu_1301_p4[11] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[11] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd11;
-    end else if (tmp_i_46_fu_1301_p4[12] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[12] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd12;
-    end else if (tmp_i_46_fu_1301_p4[13] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[13] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd13;
-    end else if (tmp_i_46_fu_1301_p4[14] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[14] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd14;
-    end else if (tmp_i_46_fu_1301_p4[15] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[15] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd15;
-    end else if (tmp_i_46_fu_1301_p4[16] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[16] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd16;
-    end else if (tmp_i_46_fu_1301_p4[17] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[17] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd17;
-    end else if (tmp_i_46_fu_1301_p4[18] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[18] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd18;
-    end else if (tmp_i_46_fu_1301_p4[19] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[19] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd19;
-    end else if (tmp_i_46_fu_1301_p4[20] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[20] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd20;
-    end else if (tmp_i_46_fu_1301_p4[21] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[21] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd21;
-    end else if (tmp_i_46_fu_1301_p4[22] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[22] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd22;
-    end else if (tmp_i_46_fu_1301_p4[23] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[23] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd23;
-    end else if (tmp_i_46_fu_1301_p4[24] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[24] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd24;
-    end else if (tmp_i_46_fu_1301_p4[25] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[25] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd25;
-    end else if (tmp_i_46_fu_1301_p4[26] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[26] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd26;
-    end else if (tmp_i_46_fu_1301_p4[27] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[27] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd27;
-    end else if (tmp_i_46_fu_1301_p4[28] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[28] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd28;
-    end else if (tmp_i_46_fu_1301_p4[29] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[29] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd29;
-    end else if (tmp_i_46_fu_1301_p4[30] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[30] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd30;
-    end else if (tmp_i_46_fu_1301_p4[31] == 1'b1) begin
+    end else if (tmp_i_49_fu_1301_p4[31] == 1'b1) begin
         c_3_fu_1311_p3 = 32'd31;
     end else begin
         c_3_fu_1311_p3 = 32'd32;
@@ -1765,9 +1752,9 @@ integer ap_tvar_int_4;
 always @ (out_bits_6_fu_1240_p3) begin
     for (ap_tvar_int_4 = 32 - 1; ap_tvar_int_4 >= 0; ap_tvar_int_4 = ap_tvar_int_4 - 1) begin
         if (ap_tvar_int_4 > 31 - 0) begin
-            tmp_i_46_fu_1301_p4[ap_tvar_int_4] = 1'b0;
+            tmp_i_49_fu_1301_p4[ap_tvar_int_4] = 1'b0;
         end else begin
-            tmp_i_46_fu_1301_p4[ap_tvar_int_4] = out_bits_6_fu_1240_p3[31 - ap_tvar_int_4];
+            tmp_i_49_fu_1301_p4[ap_tvar_int_4] = out_bits_6_fu_1240_p3[31 - ap_tvar_int_4];
         end
     end
 end

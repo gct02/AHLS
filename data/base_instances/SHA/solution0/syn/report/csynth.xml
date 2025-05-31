@@ -15,18 +15,18 @@
         <PipelineType>no</PipelineType>
         <SummaryOfTimingAnalysis>
             <unit>ns</unit>
-            <EstimatedClockPeriod>4.179</EstimatedClockPeriod>
+            <EstimatedClockPeriod>4.810</EstimatedClockPeriod>
         </SummaryOfTimingAnalysis>
         <SummaryOfOverallLatency>
             <unit>clock cycles</unit>
-            <Best-caseLatency>130093</Best-caseLatency>
-            <Average-caseLatency>130355</Average-caseLatency>
-            <Worst-caseLatency>131509</Worst-caseLatency>
-            <Best-caseRealTimeLatency>1.041 ms</Best-caseRealTimeLatency>
-            <Average-caseRealTimeLatency>1.043 ms</Average-caseRealTimeLatency>
-            <Worst-caseRealTimeLatency>1.052 ms</Worst-caseRealTimeLatency>
-            <Interval-min>130094</Interval-min>
-            <Interval-max>131510</Interval-max>
+            <Best-caseLatency>118414</Best-caseLatency>
+            <Average-caseLatency>124769</Average-caseLatency>
+            <Worst-caseLatency>132027</Worst-caseLatency>
+            <Best-caseRealTimeLatency>0.947 ms</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0.998 ms</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>1.056 ms</Worst-caseRealTimeLatency>
+            <Interval-min>118415</Interval-min>
+            <Interval-max>132028</Interval-max>
         </SummaryOfOverallLatency>
         <SummaryOfLoopLatency>
             <sha_stream_label0>
@@ -34,77 +34,23 @@
                 <TripCount>2</TripCount>
                 <Latency>
                     <range>
-                        <min>113292</min>
-                        <max>114280</max>
+                        <min>101612</min>
+                        <max>114796</max>
                     </range>
                 </Latency>
                 <AbsoluteTimeLatency>
                     <range>
-                        <min>906336</min>
-                        <max>914240</max>
+                        <min>812896</min>
+                        <max>918368</max>
                     </range>
                 </AbsoluteTimeLatency>
                 <IterationLatency>
                     <range>
-                        <min>56646</min>
-                        <max>57140</max>
+                        <min>50806</min>
+                        <max>57398</max>
                     </range>
                 </IterationLatency>
                 <InstanceList/>
-                <sha_update_label4>
-                    <Slack>5.84</Slack>
-                    <TripCount>
-                        <range>
-                            <min>127</min>
-                            <max>128</max>
-                        </range>
-                    </TripCount>
-                    <Latency>
-                        <range>
-                            <min>56642</min>
-                            <max>57088</max>
-                        </range>
-                    </Latency>
-                    <AbsoluteTimeLatency>
-                        <range>
-                            <min>453136</min>
-                            <max>456704</max>
-                        </range>
-                    </AbsoluteTimeLatency>
-                    <IterationLatency>446</IterationLatency>
-                    <InstanceList/>
-                    <local_memcpy_label3>
-                        <Slack>5.84</Slack>
-                        <TripCount>16</TripCount>
-                        <Latency>48</Latency>
-                        <AbsoluteTimeLatency>384</AbsoluteTimeLatency>
-                        <IterationLatency>3</IterationLatency>
-                        <InstanceList/>
-                    </local_memcpy_label3>
-                </sha_update_label4>
-                <local_memcpy_label3>
-                    <Slack>5.84</Slack>
-                    <TripCount>
-                        <range>
-                            <min>0</min>
-                            <max>16</max>
-                        </range>
-                    </TripCount>
-                    <Latency>
-                        <range>
-                            <min>0</min>
-                            <max>48</max>
-                        </range>
-                    </Latency>
-                    <AbsoluteTimeLatency>
-                        <range>
-                            <min>0</min>
-                            <max>384</max>
-                        </range>
-                    </AbsoluteTimeLatency>
-                    <IterationLatency>3</IterationLatency>
-                    <InstanceList/>
-                </local_memcpy_label3>
             </sha_stream_label0>
         </SummaryOfLoopLatency>
         <SummaryOfViolations>
@@ -117,24 +63,6 @@
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
                     <SourceLocation>data/benchmarks/sha/sha.c:216</SourceLocation>
-                    <sha_update_label4>
-                        <Name>sha_update_label4</Name>
-                        <IssueType>-</IssueType>
-                        <ViolationType>-</ViolationType>
-                        <SourceLocation>data/benchmarks/sha/sha.c:162~data/benchmarks/sha/sha.c:220</SourceLocation>
-                        <local_memcpy_label3>
-                            <Name>local_memcpy_label3</Name>
-                            <IssueType>-</IssueType>
-                            <ViolationType>-</ViolationType>
-                            <SourceLocation>data/benchmarks/sha/sha.c:79~data/benchmarks/sha/sha.c:164~data/benchmarks/sha/sha.c:220</SourceLocation>
-                        </local_memcpy_label3>
-                    </sha_update_label4>
-                    <local_memcpy_label3>
-                        <Name>local_memcpy_label3</Name>
-                        <IssueType>-</IssueType>
-                        <ViolationType>-</ViolationType>
-                        <SourceLocation>data/benchmarks/sha/sha.c:79~data/benchmarks/sha/sha.c:169~data/benchmarks/sha/sha.c:220</SourceLocation>
-                    </local_memcpy_label3>
                 </sha_stream_label0>
             </SummaryOfLoopViolations>
         </SummaryOfViolations>
@@ -142,8 +70,8 @@
     <AreaEstimates>
         <Resources>
             <BRAM_18K>8</BRAM_18K>
-            <FF>1840</FF>
-            <LUT>4051</LUT>
+            <FF>2910</FF>
+            <LUT>5924</LUT>
             <URAM>0</URAM>
             <DSP>0</DSP>
         </Resources>
@@ -344,53 +272,71 @@
         </RtlPorts>
     </InterfaceSummary>
     <RTLDesignHierarchy>
-        <TopModule MAX_DEPTH="3">
+        <TopModule MAX_DEPTH="4">
             <ModuleName>sha_stream</ModuleName>
             <InstancesList>
                 <Instance>
-                    <InstName>grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_395</InstName>
+                    <InstName>grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_158</InstName>
                     <ModuleName>sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>395</ID>
+                    <ID>158</ID>
                     <BindInstances>add_ln205_1_fu_111_p2 add_ln205_fu_123_p2 add_ln209_fu_163_p2 add_ln207_fu_174_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_sha_transform_fu_403</InstName>
+                    <InstName>grp_sha_update_fu_166</InstName>
+                    <ModuleName>sha_update</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>166</ID>
+                    <InstancesList>
+                        <Instance>
+                            <InstName>grp_local_memcpy_fu_84</InstName>
+                            <ModuleName>local_memcpy</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>84</ID>
+                            <BindInstances>sub_ln76_fu_156_p2 sub_ln76_1_fu_176_p2 add_ln79_1_fu_226_p2 add_ln73_fu_239_p2 add_ln73_1_fu_244_p2 add_ln79_fu_270_p2</BindInstances>
+                        </Instance>
+                        <Instance>
+                            <InstName>grp_sha_transform_fu_96</InstName>
+                            <ModuleName>sha_transform</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>96</ID>
+                            <BindInstances>W_U add_ln98_fu_376_p2 add_ln106_fu_406_p2 add_ln106_1_fu_417_p2 add_ln106_2_fu_444_p2 add_ln106_3_fu_454_p2 add_ln104_fu_428_p2 add_ln117_fu_518_p2 add_ln121_fu_729_p2 add_ln125_fu_889_p2 add_ln129_fu_1047_p2 add_ln135_fu_1078_p2 add_ln136_fu_1084_p2 add_ln137_fu_1090_p2 add_ln138_fu_1095_p2 add_ln139_fu_1136_p2</BindInstances>
+                        </Instance>
+                    </InstancesList>
+                    <BindInstances>add_ln155_fu_114_p2 add_ln156_fu_130_p2 add_ln159_fu_164_p2 add_ln167_fu_229_p2 add_ln162_fu_235_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_local_memset_fu_183</InstName>
+                    <ModuleName>local_memset</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>183</ID>
+                    <InstancesList>
+                        <Instance>
+                            <InstName>grp_local_memset_Pipeline_local_memset_label1_fu_36</InstName>
+                            <ModuleName>local_memset_Pipeline_local_memset_label1</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>36</ID>
+                            <BindInstances>add_ln65_fu_84_p2 add_ln57_fu_94_p2</BindInstances>
+                        </Instance>
+                    </InstancesList>
+                    <BindInstances>sub_ln58_fu_53_p2 sub_ln58_1_fu_77_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_sha_transform_fu_193</InstName>
                     <ModuleName>sha_transform</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>403</ID>
+                    <ID>193</ID>
                     <BindInstances>W_U add_ln98_fu_376_p2 add_ln106_fu_406_p2 add_ln106_1_fu_417_p2 add_ln106_2_fu_444_p2 add_ln106_3_fu_454_p2 add_ln104_fu_428_p2 add_ln117_fu_518_p2 add_ln121_fu_729_p2 add_ln125_fu_889_p2 add_ln129_fu_1047_p2 add_ln135_fu_1078_p2 add_ln136_fu_1084_p2 add_ln137_fu_1090_p2 add_ln138_fu_1095_p2 add_ln139_fu_1136_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_sha_stream_Pipeline_local_memset_label12_fu_411</InstName>
-                    <ModuleName>sha_stream_Pipeline_local_memset_label12</ModuleName>
-                    <IsCompInst>true</IsCompInst>
-                    <ID>411</ID>
-                    <BindInstances>add_ln65_fu_84_p2 add_ln57_fu_94_p2</BindInstances>
-                </Instance>
-                <Instance>
-                    <InstName>grp_sha_stream_Pipeline_local_memset_label1_fu_419</InstName>
-                    <ModuleName>sha_stream_Pipeline_local_memset_label1</ModuleName>
-                    <IsCompInst>true</IsCompInst>
-                    <ID>419</ID>
-                    <BindInstances>add_ln65_fu_78_p2 add_ln57_fu_84_p2</BindInstances>
-                </Instance>
-                <Instance>
-                    <InstName>grp_sha_stream_Pipeline_local_memset_label11_fu_427</InstName>
-                    <ModuleName>sha_stream_Pipeline_local_memset_label11</ModuleName>
-                    <IsCompInst>true</IsCompInst>
-                    <ID>427</ID>
-                    <BindInstances>add_ln65_fu_60_p2</BindInstances>
-                </Instance>
-                <Instance>
-                    <InstName>grp_sha_stream_Pipeline_sha_stream_label2_fu_433</InstName>
+                    <InstName>grp_sha_stream_Pipeline_sha_stream_label2_fu_201</InstName>
                     <ModuleName>sha_stream_Pipeline_sha_stream_label2</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>433</ID>
+                    <ID>201</ID>
                     <BindInstances>add_ln225_fu_79_p2</BindInstances>
                 </Instance>
             </InstancesList>
-            <BindInstances>add_ln216_fu_487_p2 add_ln155_fu_558_p2 add_ln156_fu_570_p2 add_ln159_fu_606_p2 add_ln79_1_fu_753_p2 add_ln73_fu_763_p2 add_ln73_2_fu_768_p2 add_ln82_fu_784_p2 add_ln83_fu_817_p2 add_ln84_fu_832_p2 add_ln79_fu_794_p2 add_ln167_fu_800_p2 add_ln162_fu_806_p2 sub_ln76_fu_699_p2 sub_ln76_1_fu_719_p2 add_ln79_3_fu_869_p2 add_ln73_1_fu_879_p2 add_ln73_3_fu_884_p2 add_ln82_1_fu_900_p2 add_ln83_1_fu_925_p2 add_ln84_1_fu_940_p2 add_ln79_2_fu_910_p2 count_1_fu_512_p2 add_ln61_fu_539_p2 sub_ln58_fu_968_p2 sub_ln58_1_fu_981_p2 sub_ln58_2_fu_1005_p2 local_indata_U sha_info_data_U sha_info_digest_U</BindInstances>
+            <BindInstances>add_ln216_fu_235_p2 count_1_fu_281_p2 sub_ln186_fu_298_p2 local_indata_U sha_info_data_U sha_info_digest_U</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
@@ -466,6 +412,87 @@
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_stream_label1_VITIS_LOOP_207_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln205_fu_123_p2" SOURCE="data/benchmarks/sha/sha.c:205" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln205"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_stream_label1_VITIS_LOOP_207_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln209_fu_163_p2" SOURCE="data/benchmarks/sha/sha.c:209" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln209"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_stream_label1_VITIS_LOOP_207_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln207_fu_174_p2" SOURCE="data/benchmarks/sha/sha.c:207" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln207"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>local_memcpy</Name>
+            <Loops>
+                <local_memcpy_label3/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>2.778</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>1</Best-caseLatency>
+                    <Average-caseLatency>25</Average-caseLatency>
+                    <Worst-caseLatency>49</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>8.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.200 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.392 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>1 ~ 49</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <local_memcpy_label3>
+                        <Name>local_memcpy_label3</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>
+                            <range>
+                                <min>0</min>
+                                <max>16</max>
+                            </range>
+                        </TripCount>
+                        <Latency>0 ~ 48</Latency>
+                        <AbsoluteTimeLatency>0 ns ~ 0.384 us</AbsoluteTimeLatency>
+                        <IterationLatency>3</IterationLatency>
+                        <PipelineDepth>3</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </local_memcpy_label3>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/sha/sha.c:73</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <local_memcpy_label3>
+                            <Name>local_memcpy_label3</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/sha/sha.c:79</SourceLocation>
+                        </local_memcpy_label3>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>108</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>407</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln76_fu_156_p2" SOURCE="data/benchmarks/sha/sha.c:76" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln76"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln76_1_fu_176_p2" SOURCE="data/benchmarks/sha/sha.c:76" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln76_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln79_1_fu_226_p2" SOURCE="data/benchmarks/sha/sha.c:79" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln79_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln73_fu_239_p2" SOURCE="data/benchmarks/sha/sha.c:73" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln73"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln73_1_fu_244_p2" SOURCE="data/benchmarks/sha/sha.c:73" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln73_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln79_fu_270_p2" SOURCE="data/benchmarks/sha/sha.c:79" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln79"/>
             </BindNodes>
         </Module>
         <Module>
@@ -645,7 +672,95 @@
             </BindNodes>
         </Module>
         <Module>
-            <Name>sha_stream_Pipeline_local_memset_label12</Name>
+            <Name>sha_update</Name>
+            <Loops>
+                <sha_update_label4/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>2.844</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>50803</Best-caseLatency>
+                    <Average-caseLatency>53875</Average-caseLatency>
+                    <Worst-caseLatency>57395</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.406 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.431 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.459 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>50803 ~ 57395</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <sha_update_label4>
+                        <Name>sha_update_label4</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>
+                            <range>
+                                <min>127</min>
+                                <max>128</max>
+                            </range>
+                        </TripCount>
+                        <Latency>50800 ~ 57344</Latency>
+                        <AbsoluteTimeLatency>0.406 ms ~ 0.459 ms</AbsoluteTimeLatency>
+                        <IterationLatency>
+                            <range>
+                                <min>400</min>
+                                <max>448</max>
+                            </range>
+                        </IterationLatency>
+                        <PipelineDepth>400 ~ 448</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList>
+                            <Instance>grp_local_memcpy_fu_84</Instance>
+                            <Instance>grp_sha_transform_fu_96</Instance>
+                        </InstanceList>
+                    </sha_update_label4>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/sha/sha.c:155</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <sha_update_label4>
+                            <Name>sha_update_label4</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/sha/sha.c:167</SourceLocation>
+                        </sha_update_label4>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <FF>1390</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>2873</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln155_fu_114_p2" SOURCE="data/benchmarks/sha/sha.c:155" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln155"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln156_fu_130_p2" SOURCE="data/benchmarks/sha/sha.c:156" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln156"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln159_fu_164_p2" SOURCE="data/benchmarks/sha/sha.c:159" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln159"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_update_label4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln167_fu_229_p2" SOURCE="data/benchmarks/sha/sha.c:167" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln167"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_update_label4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln162_fu_235_p2" SOURCE="data/benchmarks/sha/sha.c:162" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln162"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>local_memset_Pipeline_local_memset_label1</Name>
             <Loops>
                 <local_memset_label1/>
             </Loops>
@@ -653,7 +768,7 @@
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>8.00</TargetClockPeriod>
                     <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>1.794</EstimatedClockPeriod>
+                    <EstimatedClockPeriod>1.960</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
                     <Best-caseLatency>2</Best-caseLatency>
@@ -686,23 +801,23 @@
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>data/benchmarks/sha/sha.c:65~data/benchmarks/sha/sha.c:186~data/benchmarks/sha/sha.c:223</SourceLocation>
+                    <SourceLocation>data/benchmarks/sha/sha.c:65</SourceLocation>
                     <SummaryOfLoopViolations>
                         <local_memset_label1>
                             <Name>local_memset_label1</Name>
                             <IssueType>-</IssueType>
                             <ViolationType>-</ViolationType>
-                            <SourceLocation>data/benchmarks/sha/sha.c:65~data/benchmarks/sha/sha.c:186~data/benchmarks/sha/sha.c:223</SourceLocation>
+                            <SourceLocation>data/benchmarks/sha/sha.c:65</SourceLocation>
                         </local_memset_label1>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <FF>8</FF>
+                    <FF>32</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>66</LUT>
+                    <LUT>114</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
@@ -722,64 +837,35 @@
             </BindNodes>
         </Module>
         <Module>
-            <Name>sha_stream_Pipeline_local_memset_label1</Name>
-            <Loops>
-                <local_memset_label1/>
-            </Loops>
+            <Name>local_memset</Name>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>8.00</TargetClockPeriod>
                     <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>1.794</EstimatedClockPeriod>
+                    <EstimatedClockPeriod>3.398</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>2</Best-caseLatency>
-                    <Average-caseLatency>9</Average-caseLatency>
-                    <Worst-caseLatency>16</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>16.000 ns</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>72.000 ns</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0.128 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>2 ~ 16</PipelineInitiationInterval>
+                    <Best-caseLatency>3</Best-caseLatency>
+                    <Average-caseLatency>10</Average-caseLatency>
+                    <Worst-caseLatency>17</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>24.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>80.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.136 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>3 ~ 17</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
-                <SummaryOfLoopLatency>
-                    <local_memset_label1>
-                        <Name>local_memset_label1</Name>
-                        <Slack>5.84</Slack>
-                        <TripCount>
-                            <range>
-                                <min>0</min>
-                                <max>14</max>
-                            </range>
-                        </TripCount>
-                        <Latency>0 ~ 14</Latency>
-                        <AbsoluteTimeLatency>0 ns ~ 0.112 us</AbsoluteTimeLatency>
-                        <PipelineII>1</PipelineII>
-                        <PipelineDepth>1</PipelineDepth>
-                        <PipelineType>yes</PipelineType>
-                        <InstanceList/>
-                    </local_memset_label1>
-                </SummaryOfLoopLatency>
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>data/benchmarks/sha/sha.c:57~data/benchmarks/sha/sha.c:182~data/benchmarks/sha/sha.c:223</SourceLocation>
-                    <SummaryOfLoopViolations>
-                        <local_memset_label1>
-                            <Name>local_memset_label1</Name>
-                            <IssueType>-</IssueType>
-                            <ViolationType>-</ViolationType>
-                            <SourceLocation>data/benchmarks/sha/sha.c:57~data/benchmarks/sha/sha.c:182~data/benchmarks/sha/sha.c:223</SourceLocation>
-                        </local_memset_label1>
-                    </SummaryOfLoopViolations>
+                    <SourceLocation>data/benchmarks/sha/sha.c:58</SourceLocation>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <FF>6</FF>
+                    <FF>66</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>63</LUT>
+                    <LUT>211</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
@@ -794,79 +880,8 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memset_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln65_fu_78_p2" SOURCE="data/benchmarks/sha/sha.c:65" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln65"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memset_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln57_fu_84_p2" SOURCE="data/benchmarks/sha/sha.c:57" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln57"/>
-            </BindNodes>
-        </Module>
-        <Module>
-            <Name>sha_stream_Pipeline_local_memset_label11</Name>
-            <Loops>
-                <local_memset_label1/>
-            </Loops>
-            <PerformanceEstimates>
-                <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>8.00</TargetClockPeriod>
-                    <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>1.794</EstimatedClockPeriod>
-                </SummaryOfTimingAnalysis>
-                <SummaryOfOverallLatency>
-                    <Best-caseLatency>16</Best-caseLatency>
-                    <Average-caseLatency>16</Average-caseLatency>
-                    <Worst-caseLatency>16</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0.128 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0.128 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0.128 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>16</PipelineInitiationInterval>
-                    <PipelineType>no</PipelineType>
-                </SummaryOfOverallLatency>
-                <SummaryOfLoopLatency>
-                    <local_memset_label1>
-                        <Name>local_memset_label1</Name>
-                        <Slack>5.84</Slack>
-                        <TripCount>14</TripCount>
-                        <Latency>14</Latency>
-                        <AbsoluteTimeLatency>0.112 us</AbsoluteTimeLatency>
-                        <PipelineII>1</PipelineII>
-                        <PipelineDepth>1</PipelineDepth>
-                        <PipelineType>yes</PipelineType>
-                        <InstanceList/>
-                    </local_memset_label1>
-                </SummaryOfLoopLatency>
-                <SummaryOfViolations>
-                    <IssueType>-</IssueType>
-                    <ViolationType>-</ViolationType>
-                    <SourceLocation>data/benchmarks/sha/sha.c:65~data/benchmarks/sha/sha.c:184~data/benchmarks/sha/sha.c:223</SourceLocation>
-                    <SummaryOfLoopViolations>
-                        <local_memset_label1>
-                            <Name>local_memset_label1</Name>
-                            <IssueType>-</IssueType>
-                            <ViolationType>-</ViolationType>
-                            <SourceLocation>data/benchmarks/sha/sha.c:65~data/benchmarks/sha/sha.c:184~data/benchmarks/sha/sha.c:223</SourceLocation>
-                        </local_memset_label1>
-                    </SummaryOfLoopViolations>
-                </SummaryOfViolations>
-            </PerformanceEstimates>
-            <AreaEstimates>
-                <Resources>
-                    <FF>6</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>~0</UTIL_FF>
-                    <LUT>51</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
-                    <BRAM_18K>0</BRAM_18K>
-                    <AVAIL_BRAM>2688</AVAIL_BRAM>
-                    <UTIL_BRAM>0</UTIL_BRAM>
-                    <DSP>0</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>0</UTIL_DSP>
-                    <URAM>0</URAM>
-                    <AVAIL_URAM>640</AVAIL_URAM>
-                    <UTIL_URAM>0</UTIL_URAM>
-                </Resources>
-            </AreaEstimates>
-            <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memset_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln65_fu_60_p2" SOURCE="data/benchmarks/sha/sha.c:65" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln65"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln58_fu_53_p2" SOURCE="data/benchmarks/sha/sha.c:58" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln58"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln58_1_fu_77_p2" SOURCE="data/benchmarks/sha/sha.c:58" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln58_1"/>
             </BindNodes>
         </Module>
         <Module>
@@ -943,27 +958,22 @@
         <Module>
             <Name>sha_stream</Name>
             <Loops>
-                <sha_stream_label0>
-                    <sha_update_label4>
-                        <local_memcpy_label3/>
-                    </sha_update_label4>
-                    <local_memcpy_label3/>
-                </sha_stream_label0>
+                <sha_stream_label0/>
             </Loops>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>8.00</TargetClockPeriod>
                     <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>4.179</EstimatedClockPeriod>
+                    <EstimatedClockPeriod>4.810</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>130093</Best-caseLatency>
-                    <Average-caseLatency>130355</Average-caseLatency>
-                    <Worst-caseLatency>131509</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>1.041 ms</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>1.043 ms</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>1.052 ms</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>130094 ~ 131510</PipelineInitiationInterval>
+                    <Best-caseLatency>118414</Best-caseLatency>
+                    <Average-caseLatency>124769</Average-caseLatency>
+                    <Worst-caseLatency>132027</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.947 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.998 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>1.056 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>118415 ~ 132028</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -971,62 +981,19 @@
                         <Name>sha_stream_label0</Name>
                         <Slack>5.84</Slack>
                         <TripCount>2</TripCount>
-                        <Latency>113292 ~ 114280</Latency>
-                        <AbsoluteTimeLatency>0.906 ms ~ 0.914 ms</AbsoluteTimeLatency>
+                        <Latency>101612 ~ 114796</Latency>
+                        <AbsoluteTimeLatency>0.813 ms ~ 0.918 ms</AbsoluteTimeLatency>
                         <IterationLatency>
                             <range>
-                                <min>56646</min>
-                                <max>57140</max>
+                                <min>50806</min>
+                                <max>57398</max>
                             </range>
                         </IterationLatency>
-                        <PipelineDepth>56646 ~ 57140</PipelineDepth>
+                        <PipelineDepth>50806 ~ 57398</PipelineDepth>
                         <PipelineType>no</PipelineType>
-                        <InstanceList/>
-                        <sha_update_label4>
-                            <Name>sha_update_label4</Name>
-                            <Slack>5.84</Slack>
-                            <TripCount>
-                                <range>
-                                    <min>127</min>
-                                    <max>128</max>
-                                </range>
-                            </TripCount>
-                            <Latency>56642 ~ 57088</Latency>
-                            <AbsoluteTimeLatency>0.453 ms ~ 0.457 ms</AbsoluteTimeLatency>
-                            <IterationLatency>446</IterationLatency>
-                            <PipelineDepth>446</PipelineDepth>
-                            <PipelineType>no</PipelineType>
-                            <InstanceList>
-                                <Instance>grp_sha_transform_fu_403</Instance>
-                            </InstanceList>
-                            <local_memcpy_label3>
-                                <Name>local_memcpy_label3</Name>
-                                <Slack>5.84</Slack>
-                                <TripCount>16</TripCount>
-                                <Latency>48</Latency>
-                                <AbsoluteTimeLatency>0.384 us</AbsoluteTimeLatency>
-                                <IterationLatency>3</IterationLatency>
-                                <PipelineDepth>3</PipelineDepth>
-                                <PipelineType>no</PipelineType>
-                                <InstanceList/>
-                            </local_memcpy_label3>
-                        </sha_update_label4>
-                        <local_memcpy_label3>
-                            <Name>local_memcpy_label3</Name>
-                            <Slack>5.84</Slack>
-                            <TripCount>
-                                <range>
-                                    <min>0</min>
-                                    <max>16</max>
-                                </range>
-                            </TripCount>
-                            <Latency>0 ~ 48</Latency>
-                            <AbsoluteTimeLatency>0 ns ~ 0.384 us</AbsoluteTimeLatency>
-                            <IterationLatency>3</IterationLatency>
-                            <PipelineDepth>3</PipelineDepth>
-                            <PipelineType>no</PipelineType>
-                            <InstanceList/>
-                        </local_memcpy_label3>
+                        <InstanceList>
+                            <Instance>grp_sha_update_fu_166</Instance>
+                        </InstanceList>
                     </sha_stream_label0>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
@@ -1039,24 +1006,6 @@
                             <IssueType>-</IssueType>
                             <ViolationType>-</ViolationType>
                             <SourceLocation>data/benchmarks/sha/sha.c:216</SourceLocation>
-                            <sha_update_label4>
-                                <Name>sha_update_label4</Name>
-                                <IssueType>-</IssueType>
-                                <ViolationType>-</ViolationType>
-                                <SourceLocation>data/benchmarks/sha/sha.c:162~data/benchmarks/sha/sha.c:220</SourceLocation>
-                                <local_memcpy_label3>
-                                    <Name>local_memcpy_label3</Name>
-                                    <IssueType>-</IssueType>
-                                    <ViolationType>-</ViolationType>
-                                    <SourceLocation>data/benchmarks/sha/sha.c:79~data/benchmarks/sha/sha.c:164~data/benchmarks/sha/sha.c:220</SourceLocation>
-                                </local_memcpy_label3>
-                            </sha_update_label4>
-                            <local_memcpy_label3>
-                                <Name>local_memcpy_label3</Name>
-                                <IssueType>-</IssueType>
-                                <ViolationType>-</ViolationType>
-                                <SourceLocation>data/benchmarks/sha/sha.c:79~data/benchmarks/sha/sha.c:169~data/benchmarks/sha/sha.c:220</SourceLocation>
-                            </local_memcpy_label3>
                         </sha_stream_label0>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
@@ -1066,10 +1015,10 @@
                     <BRAM_18K>8</BRAM_18K>
                     <AVAIL_BRAM>2688</AVAIL_BRAM>
                     <UTIL_BRAM>~0</UTIL_BRAM>
-                    <FF>1840</FF>
+                    <FF>2910</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>4051</LUT>
+                    <LUT>5924</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <URAM>0</URAM>
@@ -1081,33 +1030,9 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_stream_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln216_fu_487_p2" SOURCE="data/benchmarks/sha/sha.c:216" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln216"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_stream_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln155_fu_558_p2" SOURCE="data/benchmarks/sha/sha.c:155" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln155"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_stream_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln156_fu_570_p2" SOURCE="data/benchmarks/sha/sha.c:156" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln156"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_stream_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln159_fu_606_p2" SOURCE="data/benchmarks/sha/sha.c:159" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln159"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln79_1_fu_753_p2" SOURCE="data/benchmarks/sha/sha.c:79" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln79_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln73_fu_763_p2" SOURCE="data/benchmarks/sha/sha.c:73" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln73"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln73_2_fu_768_p2" SOURCE="data/benchmarks/sha/sha.c:73" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln73_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln82_fu_784_p2" SOURCE="data/benchmarks/sha/sha.c:82" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln82"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln83_fu_817_p2" SOURCE="data/benchmarks/sha/sha.c:83" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln83"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln84_fu_832_p2" SOURCE="data/benchmarks/sha/sha.c:84" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln84"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln79_fu_794_p2" SOURCE="data/benchmarks/sha/sha.c:79" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln79"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_update_label4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln167_fu_800_p2" SOURCE="data/benchmarks/sha/sha.c:167" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln167"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_update_label4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln162_fu_806_p2" SOURCE="data/benchmarks/sha/sha.c:162" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln162"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_stream_label0" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln76_fu_699_p2" SOURCE="data/benchmarks/sha/sha.c:76" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln76"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_stream_label0" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln76_1_fu_719_p2" SOURCE="data/benchmarks/sha/sha.c:76" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln76_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln79_3_fu_869_p2" SOURCE="data/benchmarks/sha/sha.c:79" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln79_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln73_1_fu_879_p2" SOURCE="data/benchmarks/sha/sha.c:73" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln73_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln73_3_fu_884_p2" SOURCE="data/benchmarks/sha/sha.c:73" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln73_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln82_1_fu_900_p2" SOURCE="data/benchmarks/sha/sha.c:82" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln82_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln83_1_fu_925_p2" SOURCE="data/benchmarks/sha/sha.c:83" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln83_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln84_1_fu_940_p2" SOURCE="data/benchmarks/sha/sha.c:84" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln84_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="local_memcpy_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln79_2_fu_910_p2" SOURCE="data/benchmarks/sha/sha.c:79" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln79_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="count_1_fu_512_p2" SOURCE="data/benchmarks/sha/sha.c:179" STORAGESUBTYPE="" URAM="0" VARIABLE="count_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln61_fu_539_p2" SOURCE="data/benchmarks/sha/sha.c:61" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln61"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln58_fu_968_p2" SOURCE="data/benchmarks/sha/sha.c:58" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln58"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln58_1_fu_981_p2" SOURCE="data/benchmarks/sha/sha.c:58" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln58_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln58_2_fu_1005_p2" SOURCE="data/benchmarks/sha/sha.c:58" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln58_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="sha_stream_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln216_fu_235_p2" SOURCE="data/benchmarks/sha/sha.c:216" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln216"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="count_1_fu_281_p2" SOURCE="data/benchmarks/sha/sha.c:179" STORAGESUBTYPE="" URAM="0" VARIABLE="count_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln186_fu_298_p2" SOURCE="data/benchmarks/sha/sha.c:186" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln186"/>
                 <BindNode BINDTYPE="storage" BRAM="8" BUNDLEDNAME="" DISPNAME="bind_storage ram_s2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_s2p" PRAGMA="" RTLNAME="local_indata_U" SOURCE="" STORAGESIZE="8 16384 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_s2p" URAM="0" VARIABLE="local_indata"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="sha_info_data_U" SOURCE="" STORAGESIZE="32 16 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="sha_info_data"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="sha_info_digest_U" SOURCE="" STORAGESIZE="32 5 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p" URAM="0" VARIABLE="sha_info_digest"/>
@@ -1311,14 +1236,24 @@
         <Pragma type="loop_tripcount" location="data/benchmarks/sha/sha.c:208" status="valid" parentFunction="sha_stream" variable="" isDirective="0" options="min=8192 max=8192 avg=8192"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/sha/sha.c:217" status="valid" parentFunction="sha_stream" variable="" isDirective="0" options="min=2 max=2 avg=2"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/sha/sha.c:226" status="valid" parentFunction="sha_stream" variable="" isDirective="0" options="min=5 max=5 avg=5"/>
-        <Pragma type="pipeline" location="../base_directives/sha.tcl:1" status="valid" parentFunction="local_memcpy" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/sha.tcl:3" status="valid" parentFunction="sha_transform" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/sha.tcl:14" status="valid" parentFunction="local_memcpy" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/sha.tcl:12" status="valid" parentFunction="local_memcpy" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/sha.tcl:2" status="valid" parentFunction="local_memcpy" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/sha.tcl:13" status="valid" parentFunction="local_memset" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/sha.tcl:15" status="valid" parentFunction="local_memset" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/sha.tcl:10" status="valid" parentFunction="local_memset" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/sha.tcl:11" status="valid" parentFunction="local_memset" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/sha.tcl:1" status="valid" parentFunction="local_memset" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/sha.tcl:18" status="valid" parentFunction="sha_stream" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/sha.tcl:16" status="valid" parentFunction="sha_transform" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/sha.tcl:4" status="valid" parentFunction="sha_transform" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/sha.tcl:5" status="valid" parentFunction="sha_transform" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/sha.tcl:6" status="valid" parentFunction="sha_transform" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/sha.tcl:7" status="valid" parentFunction="sha_transform" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/sha.tcl:8" status="valid" parentFunction="sha_transform" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/sha.tcl:2" status="valid" parentFunction="sha_update" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/sha.tcl:9" status="valid" parentFunction="sha_transform" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/sha.tcl:17" status="valid" parentFunction="sha_update" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/sha.tcl:3" status="valid" parentFunction="sha_update" variable="" isDirective="1" options="off=true"/>
     </PragmaReport>
 </profile>
 

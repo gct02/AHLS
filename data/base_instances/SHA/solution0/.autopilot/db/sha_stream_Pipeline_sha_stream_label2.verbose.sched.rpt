@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'sha_stream_Pipeline_sha_stream_label2'
 ================================================================
-* Date:           Thu May 29 17:32:46 2025
+* Date:           Fri May 30 23:25:08 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        SHA
@@ -102,7 +102,7 @@ ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 
 State 2 <SV = 1> <Delay = 1.39>
 ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%specpipeline_ln201 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_7" [data/benchmarks/sha/sha.c:201]   --->   Operation 17 'specpipeline' 'specpipeline_ln201' <Predicate = true> <Delay = 0.00>
 ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%speclooptripcount_ln226 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 5, i64 5, i64 5" [data/benchmarks/sha/sha.c:226]   --->   Operation 18 'speclooptripcount' 'speclooptripcount_ln226' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%specloopname_ln225 = specloopname void @_ssdm_op_SpecLoopName, void @empty_5" [data/benchmarks/sha/sha.c:225]   --->   Operation 19 'specloopname' 'specloopname_ln225' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%specloopname_ln225 = specloopname void @_ssdm_op_SpecLoopName, void @empty_6" [data/benchmarks/sha/sha.c:225]   --->   Operation 19 'specloopname' 'specloopname_ln225' <Predicate = true> <Delay = 0.00>
 ST_2 : Operation 20 [1/2] (0.69ns)   --->   "%sha_info_digest_load = load i3 %sha_info_digest_addr" [data/benchmarks/sha/sha.c:227]   --->   Operation 20 'load' 'sha_info_digest_load' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
 ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%outdata_addr = getelementptr i32 %outdata, i64 0, i64 %zext_ln225" [data/benchmarks/sha/sha.c:227]   --->   Operation 21 'getelementptr' 'outdata_addr' <Predicate = true> <Delay = 0.00>
 ST_2 : Operation 22 [1/1] (0.69ns)   --->   "%store_ln227 = store i32 %sha_info_digest_load, i3 %outdata_addr" [data/benchmarks/sha/sha.c:227]   --->   Operation 22 'store' 'store_ln227' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
@@ -118,7 +118,7 @@ Target clock period: 8.000ns, clock uncertainty: 2.160ns.
 The critical path consists of the following:
 	'store' operation 0 bit ('store_ln201', data/benchmarks/sha/sha.c:201) of constant 0 on local variable 'i', data/benchmarks/sha/sha.c:201 [5]  (0.387 ns)
 	'load' operation 3 bit ('i', data/benchmarks/sha/sha.c:225) on local variable 'i', data/benchmarks/sha/sha.c:201 [8]  (0.000 ns)
-	'icmp' operation 1 bit ('icmp_ln225', data/benchmarks/sha/sha.c:225) [9]  (0.572 ns)
+	'add' operation 3 bit ('add_ln225', data/benchmarks/sha/sha.c:225) [10]  (0.572 ns)
 	'store' operation 0 bit ('store_ln201', data/benchmarks/sha/sha.c:201) of variable 'add_ln225', data/benchmarks/sha/sha.c:225 on local variable 'i', data/benchmarks/sha/sha.c:201 [21]  (0.387 ns)
 
  <State 2>: 1.398ns

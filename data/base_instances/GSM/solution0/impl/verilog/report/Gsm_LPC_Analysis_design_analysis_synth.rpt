@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date         : Thu May 29 16:49:48 2025
+| Date         : Fri May 30 22:06:20 2025
 | Host         : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command      : report_design_analysis -file ./report/Gsm_LPC_Analysis_design_analysis_synth.rpt
 | Design       : bd_0_wrapper
@@ -49,7 +49,7 @@ Table of Contents
 | Start Point Pin Primitive | DSP_A_B_DATA/CLK                                                                                                                                               |
 | End Point Pin Primitive   | FDRE/D                                                                                                                                                         |
 | Start Point Pin           | DSP_A_B_DATA_INST/CLK                                                                                                                                          |
-| End Point Pin             | add_ln124_reg_1688_reg[63]/D                                                                                                                                   |
+| End Point Pin             | add_ln124_reg_1472_reg[63]/D                                                                                                                                   |
 +---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 * Bounding box calculated as % of dimensions for the target device (5130, 1068)
 
@@ -57,11 +57,11 @@ Table of Contents
 2. Logic Level Distribution
 ---------------------------
 
-+-----------------+-------------+----+----+----+-----+----+----+----+-----+-----+-----+----+----+----+----+----+
-| End Point Clock | Requirement |  1 |  2 |  3 |  4  |  5 |  6 |  7 |  8  |  9  |  10 | 11 | 12 | 13 | 14 | 15 |
-+-----------------+-------------+----+----+----+-----+----+----+----+-----+-----+-----+----+----+----+----+----+
-| ap_clk          | 8.000ns     | 62 | 10 | 33 | 148 | 45 | 19 | 91 | 177 | 158 | 144 | 73 | 16 |  8 |  8 |  8 |
-+-----------------+-------------+----+----+----+-----+----+----+----+-----+-----+-----+----+----+----+----+----+
++-----------------+-------------+----+---+----+-----+----+----+-----+-----+-----+-----+----+----+----+----+----+
+| End Point Clock | Requirement |  1 | 2 |  3 |  4  |  5 |  6 |  7  |  8  |  9  |  10 | 11 | 12 | 13 | 14 | 15 |
++-----------------+-------------+----+---+----+-----+----+----+-----+-----+-----+-----+----+----+----+----+----+
+| ap_clk          | 8.000ns     | 57 | 4 | 33 | 131 | 26 | 37 | 118 | 184 | 153 | 144 | 73 | 16 |  8 |  8 |  8 |
++-----------------+-------------+----+---+----+-----+----+----+-----+-----+-----+-----+----+----+----+----+----+
 * Columns represent the logic levels per end point clock
 ** Distribution is for top worst 1000 paths
 

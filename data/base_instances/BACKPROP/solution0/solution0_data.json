@@ -341,27 +341,22 @@
       "config_export -rtl=verilog"
     ],
     "DirectiveTcl": [
-      "set_directive_pipeline soft_max\/soft_max_loop1 -off=true",
-      "set_directive_pipeline soft_max\/soft_max_loop2 -off=true",
-      "set_directive_pipeline RELU\/RELU_loop1 -off=true",
-      "set_directive_pipeline add_bias_to_activations\/add_bias_to_activations_loop1 -off=true",
       "set_directive_pipeline matrix_vector_product_with_bias_input_layer\/matrix_vector_product_with_bias_input_layer_loop1 -off=true",
       "set_directive_pipeline matrix_vector_product_with_bias_input_layer\/matrix_vector_product_with_bias_input_layer_loop1_1 -off=true",
       "set_directive_pipeline matrix_vector_product_with_bias_second_layer\/matrix_vector_product_with_bias_second_layer_loop1 -off=true",
       "set_directive_pipeline matrix_vector_product_with_bias_second_layer\/matrix_vector_product_with_bias_second_layer_loop1_1 -off=true",
       "set_directive_pipeline matrix_vector_product_with_bias_output_layer\/matrix_vector_product_with_bias_output_layer_loop1 -off=true",
       "set_directive_pipeline matrix_vector_product_with_bias_output_layer\/matrix_vector_product_with_bias_output_layer_loop1_1 -off=true",
-      "set_directive_pipeline take_difference\/take_difference_loop1 -off=true",
-      "set_directive_pipeline get_delta_matrix_weights3\/get_delta_matrix_weights3_loop1 -off=true",
-      "set_directive_pipeline get_delta_matrix_weights3\/get_delta_matrix_weights3_loop1_1 -off=true",
-      "set_directive_pipeline get_oracle_activations2\/get_oracle_activations2_loop1 -off=true",
-      "set_directive_pipeline get_oracle_activations2\/get_oracle_activations2_loop1_1 -off=true",
-      "set_directive_pipeline get_delta_matrix_weights2\/get_delta_matrix_weights2_loop1 -off=true",
-      "set_directive_pipeline get_delta_matrix_weights2\/get_delta_matrix_weights2_loop1_1 -off=true",
       "set_directive_pipeline get_oracle_activations1\/get_oracle_activations1_loop1 -off=true",
       "set_directive_pipeline get_oracle_activations1\/get_oracle_activations1_loop1_1 -off=true",
+      "set_directive_pipeline get_oracle_activations2\/get_oracle_activations2_loop1 -off=true",
+      "set_directive_pipeline get_oracle_activations2\/get_oracle_activations2_loop1_1 -off=true",
       "set_directive_pipeline get_delta_matrix_weights1\/get_delta_matrix_weights1_loop1 -off=true",
       "set_directive_pipeline get_delta_matrix_weights1\/get_delta_matrix_weights1_loop1_1 -off=true",
+      "set_directive_pipeline get_delta_matrix_weights2\/get_delta_matrix_weights2_loop1 -off=true",
+      "set_directive_pipeline get_delta_matrix_weights2\/get_delta_matrix_weights2_loop1_1 -off=true",
+      "set_directive_pipeline get_delta_matrix_weights3\/get_delta_matrix_weights3_loop1 -off=true",
+      "set_directive_pipeline get_delta_matrix_weights3\/get_delta_matrix_weights3_loop1_1 -off=true",
       "set_directive_pipeline update_weights\/update_weights_loop1 -off=true",
       "set_directive_pipeline update_weights\/update_weights_loop1_1 -off=true",
       "set_directive_pipeline update_weights\/update_weights_loop2 -off=true",
@@ -381,7 +376,28 @@
       "set_directive_pipeline update_weights\/update_weights_loop11_1 -off=true",
       "set_directive_pipeline update_weights\/update_weights_loop12 -off=true",
       "set_directive_pipeline backprop\/backprop_loop1 -off=true",
-      "set_directive_pipeline backprop\/backprop_loop1_1 -off=true",
+      "set_directive_inline matrix_vector_product_with_bias_input_layer -off=true",
+      "set_directive_inline matrix_vector_product_with_bias_second_layer -off=true",
+      "set_directive_inline matrix_vector_product_with_bias_output_layer -off=true",
+      "set_directive_inline get_delta_matrix_weights1 -off=true",
+      "set_directive_inline get_delta_matrix_weights2 -off=true",
+      "set_directive_inline get_delta_matrix_weights3 -off=true",
+      "set_directive_inline get_oracle_activations1 -off=true",
+      "set_directive_inline get_oracle_activations2 -off=true",
+      "set_directive_loop_flatten matrix_vector_product_with_bias_input_layer\/matrix_vector_product_with_bias_input_layer_loop1_1 -off=true",
+      "set_directive_loop_flatten matrix_vector_product_with_bias_second_layer\/matrix_vector_product_with_bias_second_layer_loop1_1 -off=true",
+      "set_directive_loop_flatten matrix_vector_product_with_bias_output_layer\/matrix_vector_product_with_bias_output_layer_loop1_1 -off=true",
+      "set_directive_loop_flatten get_oracle_activations1\/get_oracle_activations1_loop1_1 -off=true",
+      "set_directive_loop_flatten get_oracle_activations2\/get_oracle_activations2_loop1_1 -off=true",
+      "set_directive_loop_flatten get_delta_matrix_weights1\/get_delta_matrix_weights1_loop1_1 -off=true",
+      "set_directive_loop_flatten get_delta_matrix_weights2\/get_delta_matrix_weights2_loop1_1 -off=true",
+      "set_directive_loop_flatten get_delta_matrix_weights3\/get_delta_matrix_weights3_loop1_1 -off=true",
+      "set_directive_loop_flatten update_weights\/update_weights_loop1_1 -off=true",
+      "set_directive_loop_flatten update_weights\/update_weights_loop3_1 -off=true",
+      "set_directive_loop_flatten update_weights\/update_weights_loop5_1 -off=true",
+      "set_directive_loop_flatten update_weights\/update_weights_loop7_1 -off=true",
+      "set_directive_loop_flatten update_weights\/update_weights_loop9_1 -off=true",
+      "set_directive_loop_flatten update_weights\/update_weights_loop11_1 -off=true",
       "set_directive_top backprop -name backprop"
     ],
     "ProfileOption": "0",
@@ -393,8 +409,8 @@
     "ClockPeriod": "8",
     "Uncertainty": "2.16",
     "IsCombinational": "0",
-    "II": "50997649",
-    "Latency": "50997648"
+    "II": "50132119",
+    "Latency": "50132118"
   },
   "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 8.000 [get_ports ap_clk]"]},
   "Ipx": {
@@ -403,7 +419,7 @@
     "Name": "backprop",
     "Version": "1.0",
     "DisplayName": "Backprop",
-    "Revision": "2114104697",
+    "Revision": "2114106463",
     "Description": "An IP generated by Vitis HLS",
     "Taxonomy": "\/VITIS_HLS_IP",
     "AutoFamilySupport": "",
@@ -413,6 +429,15 @@
     "CSource": ["..\/..\/..\/benchmarks\/backprop\/backprop.c"],
     "Vhdl": [
       "impl\/vhdl\/backprop_activations1_RAM_AUTO_1R1W.vhd",
+      "impl\/vhdl\/backprop_backprop_Pipeline_backprop_loop1_1.vhd",
+      "impl\/vhdl\/backprop_backprop_Pipeline_RELU_loop1.vhd",
+      "impl\/vhdl\/backprop_backprop_Pipeline_RELU_loop11.vhd",
+      "impl\/vhdl\/backprop_backprop_Pipeline_RELU_loop12.vhd",
+      "impl\/vhdl\/backprop_backprop_Pipeline_soft_max_loop1.vhd",
+      "impl\/vhdl\/backprop_backprop_Pipeline_soft_max_loop2.vhd",
+      "impl\/vhdl\/backprop_backprop_Pipeline_take_difference_loop1.vhd",
+      "impl\/vhdl\/backprop_dactivations1_RAM_AUTO_1R1W.vhd",
+      "impl\/vhdl\/backprop_dadd_64ns_64ns_64_4_full_dsp_1.vhd",
       "impl\/vhdl\/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1.vhd",
       "impl\/vhdl\/backprop_ddiv_64ns_64ns_64_14_no_dsp_1.vhd",
       "impl\/vhdl\/backprop_delta_weights1_RAM_AUTO_1R1W.vhd",
@@ -421,12 +446,33 @@
       "impl\/vhdl\/backprop_dexp_64ns_64ns_64_10_full_dsp_1.vhd",
       "impl\/vhdl\/backprop_dmul_64ns_64ns_64_4_max_dsp_1.vhd",
       "impl\/vhdl\/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1.vhd",
+      "impl\/vhdl\/backprop_flow_control_loop_pipe_sequential_init.vhd",
+      "impl\/vhdl\/backprop_get_delta_matrix_weights1_1.vhd",
+      "impl\/vhdl\/backprop_get_delta_matrix_weights2.vhd",
+      "impl\/vhdl\/backprop_get_delta_matrix_weights3.vhd",
+      "impl\/vhdl\/backprop_get_oracle_activations1_1.vhd",
+      "impl\/vhdl\/backprop_get_oracle_activations2_1.vhd",
+      "impl\/vhdl\/backprop_matrix_vector_product_with_bias_input_layer_1.vhd",
+      "impl\/vhdl\/backprop_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l.vhd",
+      "impl\/vhdl\/backprop_matrix_vector_product_with_bias_output_layer_1.vhd",
+      "impl\/vhdl\/backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s.vhd",
+      "impl\/vhdl\/backprop_matrix_vector_product_with_bias_second_layer_1.vhd",
+      "impl\/vhdl\/backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s.vhd",
       "impl\/vhdl\/backprop_mux_3_2_64_1_1.vhd",
       "impl\/vhdl\/backprop_update_weights_1.vhd",
       "impl\/vhdl\/backprop.vhd"
     ],
     "Verilog": [
       "impl\/verilog\/backprop_activations1_RAM_AUTO_1R1W.v",
+      "impl\/verilog\/backprop_backprop_Pipeline_backprop_loop1_1.v",
+      "impl\/verilog\/backprop_backprop_Pipeline_RELU_loop1.v",
+      "impl\/verilog\/backprop_backprop_Pipeline_RELU_loop11.v",
+      "impl\/verilog\/backprop_backprop_Pipeline_RELU_loop12.v",
+      "impl\/verilog\/backprop_backprop_Pipeline_soft_max_loop1.v",
+      "impl\/verilog\/backprop_backprop_Pipeline_soft_max_loop2.v",
+      "impl\/verilog\/backprop_backprop_Pipeline_take_difference_loop1.v",
+      "impl\/verilog\/backprop_dactivations1_RAM_AUTO_1R1W.v",
+      "impl\/verilog\/backprop_dadd_64ns_64ns_64_4_full_dsp_1.v",
       "impl\/verilog\/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1.v",
       "impl\/verilog\/backprop_ddiv_64ns_64ns_64_14_no_dsp_1.v",
       "impl\/verilog\/backprop_delta_weights1_RAM_AUTO_1R1W.v",
@@ -435,12 +481,25 @@
       "impl\/verilog\/backprop_dexp_64ns_64ns_64_10_full_dsp_1.v",
       "impl\/verilog\/backprop_dmul_64ns_64ns_64_4_max_dsp_1.v",
       "impl\/verilog\/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1.v",
+      "impl\/verilog\/backprop_flow_control_loop_pipe_sequential_init.v",
+      "impl\/verilog\/backprop_get_delta_matrix_weights1_1.v",
+      "impl\/verilog\/backprop_get_delta_matrix_weights2.v",
+      "impl\/verilog\/backprop_get_delta_matrix_weights3.v",
+      "impl\/verilog\/backprop_get_oracle_activations1_1.v",
+      "impl\/verilog\/backprop_get_oracle_activations2_1.v",
+      "impl\/verilog\/backprop_matrix_vector_product_with_bias_input_layer_1.v",
+      "impl\/verilog\/backprop_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l.v",
+      "impl\/verilog\/backprop_matrix_vector_product_with_bias_output_layer_1.v",
+      "impl\/verilog\/backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s.v",
+      "impl\/verilog\/backprop_matrix_vector_product_with_bias_second_layer_1.v",
+      "impl\/verilog\/backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s.v",
       "impl\/verilog\/backprop_mux_3_2_64_1_1.v",
       "impl\/verilog\/backprop_update_weights_1.v",
       "impl\/verilog\/backprop.v"
     ],
     "IpMisc": ["impl\/misc\/logo.png"],
     "Subcore": [
+      "impl\/misc\/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip.tcl",
       "impl\/misc\/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.tcl",
       "impl\/misc\/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip.tcl",
       "impl\/misc\/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip.tcl",
@@ -458,6 +517,11 @@
     "HasXpmMemory": false,
     "HasClockedDsp": false,
     "Ip": [
+      {
+        "Name": "backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip",
+        "Vlnv": "xilinx.com:ip:floating_point:7.1",
+        "Params": "CONFIG.a_precision_type Double CONFIG.a_tuser_width 1 CONFIG.add_sub_value Add CONFIG.b_tuser_width 1 CONFIG.c_a_exponent_width 11 CONFIG.c_a_fraction_width 53 CONFIG.c_compare_operation Programmable CONFIG.c_has_divide_by_zero false CONFIG.c_has_invalid_op false CONFIG.c_has_overflow false CONFIG.c_has_underflow false CONFIG.c_latency 2 CONFIG.c_mult_usage Full_Usage CONFIG.c_optimization Speed_Optimized CONFIG.c_rate 1 CONFIG.c_result_exponent_width 11 CONFIG.c_result_fraction_width 53 CONFIG.component_name backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip CONFIG.flow_control NonBlocking CONFIG.has_a_tlast false CONFIG.has_a_tuser false CONFIG.has_aclken true CONFIG.has_aresetn false CONFIG.has_b_tlast false CONFIG.has_b_tuser false CONFIG.has_operation_tlast false CONFIG.has_operation_tuser false CONFIG.has_result_tready false CONFIG.maximum_latency false CONFIG.operation_tuser_width 1 CONFIG.operation_type Add_Subtract CONFIG.result_precision_type Double CONFIG.result_tlast_behv Null"
+      },
       {
         "Name": "backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip",
         "Vlnv": "xilinx.com:ip:floating_point:7.1",
@@ -1023,12 +1087,212 @@
   "ModuleInfo": {
     "Hierarchy": {
       "ModuleName": "backprop",
-      "Instances": [{
+      "Instances": [
+        {
+          "ModuleName": "backprop_Pipeline_backprop_loop1_1",
+          "InstanceName": "grp_backprop_Pipeline_backprop_loop1_1_fu_246"
+        },
+        {
+          "ModuleName": "matrix_vector_product_with_bias_input_layer_1",
+          "InstanceName": "grp_matrix_vector_product_with_bias_input_layer_1_fu_258",
+          "Instances": [{
+              "ModuleName": "matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l",
+              "InstanceName": "grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_134"
+            }]
+        },
+        {
+          "ModuleName": "backprop_Pipeline_RELU_loop1",
+          "InstanceName": "grp_backprop_Pipeline_RELU_loop1_fu_270"
+        },
+        {
+          "ModuleName": "matrix_vector_product_with_bias_second_layer_1",
+          "InstanceName": "grp_matrix_vector_product_with_bias_second_layer_1_fu_276",
+          "Instances": [{
+              "ModuleName": "matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s",
+              "InstanceName": "grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113"
+            }]
+        },
+        {
+          "ModuleName": "backprop_Pipeline_RELU_loop11",
+          "InstanceName": "grp_backprop_Pipeline_RELU_loop11_fu_286"
+        },
+        {
+          "ModuleName": "matrix_vector_product_with_bias_output_layer_1",
+          "InstanceName": "grp_matrix_vector_product_with_bias_output_layer_1_fu_292",
+          "Instances": [{
+              "ModuleName": "matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s",
+              "InstanceName": "grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_159"
+            }]
+        },
+        {
+          "ModuleName": "backprop_Pipeline_RELU_loop12",
+          "InstanceName": "grp_backprop_Pipeline_RELU_loop12_fu_304"
+        },
+        {
+          "ModuleName": "backprop_Pipeline_soft_max_loop1",
+          "InstanceName": "grp_backprop_Pipeline_soft_max_loop1_fu_320"
+        },
+        {
+          "ModuleName": "backprop_Pipeline_soft_max_loop2",
+          "InstanceName": "grp_backprop_Pipeline_soft_max_loop2_fu_328"
+        },
+        {
+          "ModuleName": "backprop_Pipeline_take_difference_loop1",
+          "InstanceName": "grp_backprop_Pipeline_take_difference_loop1_fu_342"
+        },
+        {
+          "ModuleName": "get_delta_matrix_weights3",
+          "InstanceName": "grp_get_delta_matrix_weights3_fu_361"
+        },
+        {
+          "ModuleName": "get_oracle_activations2_1",
+          "InstanceName": "grp_get_oracle_activations2_1_fu_370"
+        },
+        {
+          "ModuleName": "get_delta_matrix_weights2",
+          "InstanceName": "grp_get_delta_matrix_weights2_fu_381"
+        },
+        {
+          "ModuleName": "get_oracle_activations1_1",
+          "InstanceName": "grp_get_oracle_activations1_1_fu_388"
+        },
+        {
+          "ModuleName": "get_delta_matrix_weights1_1",
+          "InstanceName": "grp_get_delta_matrix_weights1_1_fu_397"
+        },
+        {
           "ModuleName": "update_weights_1",
-          "InstanceName": "grp_update_weights_1_fu_1234"
-        }]
+          "InstanceName": "grp_update_weights_1_fu_406"
+        }
+      ]
     },
     "Info": {
+      "backprop_Pipeline_backprop_loop1_1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "matrix_vector_product_with_bias_input_layer_1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "backprop_Pipeline_RELU_loop1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "matrix_vector_product_with_bias_second_layer_1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "backprop_Pipeline_RELU_loop11": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "matrix_vector_product_with_bias_output_layer_1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "backprop_Pipeline_RELU_loop12": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "backprop_Pipeline_soft_max_loop1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "backprop_Pipeline_soft_max_loop2": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "backprop_Pipeline_take_difference_loop1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "get_delta_matrix_weights3": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "get_oracle_activations2_1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "get_delta_matrix_weights2": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "get_oracle_activations1_1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "get_delta_matrix_weights1_1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
       "update_weights_1": {
         "FunctionProtocol": "ap_ctrl_hs",
         "isTaskLevelControl": "0",
@@ -1045,6 +1309,764 @@
       }
     },
     "Metrics": {
+      "backprop_Pipeline_backprop_loop1_1": {
+        "Latency": {
+          "LatencyBest": "66",
+          "LatencyAvg": "66",
+          "LatencyWorst": "66",
+          "PipelineII": "66",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "1.807"
+        },
+        "Loops": [{
+            "Name": "backprop_loop1_1",
+            "TripCount": "64",
+            "Latency": "64",
+            "PipelineII": "1",
+            "PipelineDepth": "1"
+          }],
+        "Area": {
+          "FF": "201",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "103",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l": {
+        "Latency": {
+          "LatencyBest": "69",
+          "LatencyAvg": "69",
+          "LatencyWorst": "69",
+          "PipelineII": "69",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.048"
+        },
+        "Loops": [{
+            "Name": "add_bias_to_activations_loop1",
+            "TripCount": "64",
+            "Latency": "67",
+            "PipelineII": "1",
+            "PipelineDepth": "5"
+          }],
+        "Area": {
+          "FF": "86",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "99",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "matrix_vector_product_with_bias_input_layer_1": {
+        "Latency": {
+          "LatencyBest": "8519",
+          "LatencyAvg": "8519",
+          "LatencyWorst": "8519",
+          "PipelineII": "8519",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.703"
+        },
+        "Loops": [{
+            "Name": "matrix_vector_product_with_bias_input_layer_loop1",
+            "TripCount": "64",
+            "Latency": "8448",
+            "PipelineII": "",
+            "PipelineDepth": "132",
+            "Loops": [{
+                "Name": "matrix_vector_product_with_bias_input_layer_loop1_1",
+                "TripCount": "13",
+                "Latency": "130",
+                "PipelineII": "",
+                "PipelineDepth": "10"
+              }]
+          }],
+        "Area": {
+          "FF": "350",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "422",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "backprop_Pipeline_RELU_loop1": {
+        "Latency": {
+          "LatencyBest": "95",
+          "LatencyAvg": "95",
+          "LatencyWorst": "95",
+          "PipelineII": "95",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.531"
+        },
+        "Loops": [{
+            "Name": "RELU_loop1",
+            "TripCount": "64",
+            "Latency": "93",
+            "PipelineII": "1",
+            "PipelineDepth": "31"
+          }],
+        "Area": {
+          "FF": "593",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "228",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s": {
+        "Latency": {
+          "LatencyBest": "69",
+          "LatencyAvg": "69",
+          "LatencyWorst": "69",
+          "PipelineII": "69",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.048"
+        },
+        "Loops": [{
+            "Name": "add_bias_to_activations_loop1",
+            "TripCount": "64",
+            "Latency": "67",
+            "PipelineII": "1",
+            "PipelineDepth": "5"
+          }],
+        "Area": {
+          "FF": "86",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "99",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "matrix_vector_product_with_bias_second_layer_1": {
+        "Latency": {
+          "LatencyBest": "41159",
+          "LatencyAvg": "41159",
+          "LatencyWorst": "41159",
+          "PipelineII": "41159",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.217"
+        },
+        "Loops": [{
+            "Name": "matrix_vector_product_with_bias_second_layer_loop1",
+            "TripCount": "64",
+            "Latency": "41088",
+            "PipelineII": "",
+            "PipelineDepth": "642",
+            "Loops": [{
+                "Name": "matrix_vector_product_with_bias_second_layer_loop1_1",
+                "TripCount": "64",
+                "Latency": "640",
+                "PipelineII": "",
+                "PipelineDepth": "10"
+              }]
+          }],
+        "Area": {
+          "FF": "332",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "384",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "backprop_Pipeline_RELU_loop11": {
+        "Latency": {
+          "LatencyBest": "95",
+          "LatencyAvg": "95",
+          "LatencyWorst": "95",
+          "PipelineII": "95",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.531"
+        },
+        "Loops": [{
+            "Name": "RELU_loop1",
+            "TripCount": "64",
+            "Latency": "93",
+            "PipelineII": "1",
+            "PipelineDepth": "31"
+          }],
+        "Area": {
+          "FF": "593",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "228",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s": {
+        "Latency": {
+          "LatencyBest": "12",
+          "LatencyAvg": "12",
+          "LatencyWorst": "12",
+          "PipelineII": "12",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.048"
+        },
+        "Loops": [{
+            "Name": "add_bias_to_activations_loop1",
+            "TripCount": "3",
+            "Latency": "10",
+            "PipelineII": "3",
+            "PipelineDepth": "5"
+          }],
+        "Area": {
+          "FF": "205",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "162",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "matrix_vector_product_with_bias_output_layer_1": {
+        "Latency": {
+          "LatencyBest": "1749",
+          "LatencyAvg": "1749",
+          "LatencyWorst": "1749",
+          "PipelineII": "1749",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.703"
+        },
+        "Loops": [{
+            "Name": "matrix_vector_product_with_bias_output_layer_loop1",
+            "TripCount": "3",
+            "Latency": "1734",
+            "PipelineII": "",
+            "PipelineDepth": "578",
+            "Loops": [{
+                "Name": "matrix_vector_product_with_bias_output_layer_loop1_1",
+                "TripCount": "64",
+                "Latency": "576",
+                "PipelineII": "",
+                "PipelineDepth": "9"
+              }]
+          }],
+        "Area": {
+          "FF": "561",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "380",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "backprop_Pipeline_RELU_loop12": {
+        "Latency": {
+          "LatencyBest": "89",
+          "LatencyAvg": "89",
+          "LatencyWorst": "89",
+          "PipelineII": "89",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.609"
+        },
+        "Loops": [{
+            "Name": "RELU_loop1",
+            "TripCount": "3",
+            "Latency": "87",
+            "PipelineII": "29",
+            "PipelineDepth": "29"
+          }],
+        "Area": {
+          "FF": "742",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "389",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "backprop_Pipeline_soft_max_loop1": {
+        "Latency": {
+          "LatencyBest": "22",
+          "LatencyAvg": "22",
+          "LatencyWorst": "22",
+          "PipelineII": "22",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.531"
+        },
+        "Loops": [{
+            "Name": "soft_max_loop1",
+            "TripCount": "3",
+            "Latency": "20",
+            "PipelineII": "3",
+            "PipelineDepth": "15"
+          }],
+        "Area": {
+          "FF": "271",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "214",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "backprop_Pipeline_soft_max_loop2": {
+        "Latency": {
+          "LatencyBest": "28",
+          "LatencyAvg": "28",
+          "LatencyWorst": "28",
+          "PipelineII": "28",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.609"
+        },
+        "Loops": [{
+            "Name": "soft_max_loop2",
+            "TripCount": "3",
+            "Latency": "26",
+            "PipelineII": "1",
+            "PipelineDepth": "25"
+          }],
+        "Area": {
+          "FF": "502",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "228",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "backprop_Pipeline_take_difference_loop1": {
+        "Latency": {
+          "LatencyBest": "12",
+          "LatencyAvg": "12",
+          "LatencyWorst": "12",
+          "PipelineII": "12",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.534"
+        },
+        "Loops": [{
+            "Name": "take_difference_loop1",
+            "TripCount": "3",
+            "Latency": "10",
+            "PipelineII": "1",
+            "PipelineDepth": "9"
+          }],
+        "Area": {
+          "FF": "406",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "258",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "get_delta_matrix_weights3": {
+        "Latency": {
+          "LatencyBest": "961",
+          "LatencyAvg": "961",
+          "LatencyWorst": "961",
+          "PipelineII": "961",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.703"
+        },
+        "Loops": [{
+            "Name": "get_delta_matrix_weights3_loop1",
+            "TripCount": "64",
+            "Latency": "960",
+            "PipelineII": "",
+            "PipelineDepth": "15",
+            "Loops": [{
+                "Name": "get_delta_matrix_weights3_loop1_1",
+                "TripCount": "3",
+                "Latency": "12",
+                "PipelineII": "",
+                "PipelineDepth": "4"
+              }]
+          }],
+        "Area": {
+          "FF": "105",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "152",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "get_oracle_activations2_1": {
+        "Latency": {
+          "LatencyBest": "2113",
+          "LatencyAvg": "2113",
+          "LatencyWorst": "2113",
+          "PipelineII": "2113",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.703"
+        },
+        "Loops": [{
+            "Name": "get_oracle_activations2_loop1",
+            "TripCount": "64",
+            "Latency": "2112",
+            "PipelineII": "",
+            "PipelineDepth": "33",
+            "Loops": [{
+                "Name": "get_oracle_activations2_loop1_1",
+                "TripCount": "3",
+                "Latency": "27",
+                "PipelineII": "",
+                "PipelineDepth": "9"
+              }]
+          }],
+        "Area": {
+          "FF": "246",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "211",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "get_delta_matrix_weights2": {
+        "Latency": {
+          "LatencyBest": "24769",
+          "LatencyAvg": "24769",
+          "LatencyWorst": "24769",
+          "PipelineII": "24769",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.217"
+        },
+        "Loops": [{
+            "Name": "get_delta_matrix_weights2_loop1",
+            "TripCount": "64",
+            "Latency": "24768",
+            "PipelineII": "",
+            "PipelineDepth": "387",
+            "Loops": [{
+                "Name": "get_delta_matrix_weights2_loop1_1",
+                "TripCount": "64",
+                "Latency": "384",
+                "PipelineII": "",
+                "PipelineDepth": "6"
+              }]
+          }],
+        "Area": {
+          "FF": "189",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "149",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "get_oracle_activations1_1": {
+        "Latency": {
+          "LatencyBest": "41345",
+          "LatencyAvg": "41345",
+          "LatencyWorst": "41345",
+          "PipelineII": "41345",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.217"
+        },
+        "Loops": [{
+            "Name": "get_oracle_activations1_loop1",
+            "TripCount": "64",
+            "Latency": "41344",
+            "PipelineII": "",
+            "PipelineDepth": "646",
+            "Loops": [{
+                "Name": "get_oracle_activations1_loop1_1",
+                "TripCount": "64",
+                "Latency": "640",
+                "PipelineII": "",
+                "PipelineDepth": "10"
+              }]
+          }],
+        "Area": {
+          "FF": "255",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "213",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "get_delta_matrix_weights1_1": {
+        "Latency": {
+          "LatencyBest": "4200",
+          "LatencyAvg": "4200",
+          "LatencyWorst": "4200",
+          "PipelineII": "4200",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "8.00",
+          "Uncertainty": "2.16",
+          "Estimate": "5.703"
+        },
+        "Loops": [{
+            "Name": "get_delta_matrix_weights1_loop1",
+            "TripCount": "13",
+            "Latency": "4199",
+            "PipelineII": "",
+            "PipelineDepth": "323",
+            "Loops": [{
+                "Name": "get_delta_matrix_weights1_loop1_1",
+                "TripCount": "64",
+                "Latency": "320",
+                "PipelineII": "",
+                "PipelineDepth": "5"
+              }]
+          }],
+        "Area": {
+          "FF": "108",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "156",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
       "update_weights_1": {
         "Latency": {
           "LatencyBest": "183269",
@@ -1207,220 +2229,36 @@
       },
       "backprop": {
         "Latency": {
-          "LatencyBest": "50997648",
-          "LatencyAvg": "50997648",
-          "LatencyWorst": "50997648",
-          "PipelineII": "50997649",
+          "LatencyBest": "50132118",
+          "LatencyAvg": "50132118",
+          "LatencyWorst": "50132118",
+          "PipelineII": "50132119",
           "PipelineDepth": "",
           "PipelineType": "no"
         },
         "Timing": {
           "Target": "8.00",
           "Uncertainty": "2.16",
-          "Estimate": "6.014"
+          "Estimate": "5.975"
         },
         "Loops": [{
             "Name": "backprop_loop1",
             "TripCount": "163",
-            "Latency": "50997647",
+            "Latency": "50132117",
             "PipelineII": "",
-            "PipelineDepth": "312869",
-            "Loops": [
-              {
-                "Name": "backprop_loop1_1",
-                "TripCount": "64",
-                "Latency": "64",
-                "PipelineII": "",
-                "PipelineDepth": "1"
-              },
-              {
-                "Name": "matrix_vector_product_with_bias_input_layer_loop1",
-                "TripCount": "64",
-                "Latency": "8448",
-                "PipelineII": "",
-                "PipelineDepth": "132",
-                "Loops": [{
-                    "Name": "matrix_vector_product_with_bias_input_layer_loop1_1",
-                    "TripCount": "13",
-                    "Latency": "130",
-                    "PipelineII": "",
-                    "PipelineDepth": "10"
-                  }]
-              },
-              {
-                "Name": "add_bias_to_activations_loop1",
-                "TripCount": "64",
-                "Latency": "320",
-                "PipelineII": "",
-                "PipelineDepth": "5"
-              },
-              {
-                "Name": "RELU_loop1",
-                "TripCount": "64",
-                "Latency": "1984",
-                "PipelineII": "",
-                "PipelineDepth": "31"
-              },
-              {
-                "Name": "matrix_vector_product_with_bias_second_layer_loop1",
-                "TripCount": "64",
-                "Latency": "41088",
-                "PipelineII": "",
-                "PipelineDepth": "642",
-                "Loops": [{
-                    "Name": "matrix_vector_product_with_bias_second_layer_loop1_1",
-                    "TripCount": "64",
-                    "Latency": "640",
-                    "PipelineII": "",
-                    "PipelineDepth": "10"
-                  }]
-              },
-              {
-                "Name": "add_bias_to_activations_loop1",
-                "TripCount": "64",
-                "Latency": "320",
-                "PipelineII": "",
-                "PipelineDepth": "5"
-              },
-              {
-                "Name": "RELU_loop1",
-                "TripCount": "64",
-                "Latency": "1984",
-                "PipelineII": "",
-                "PipelineDepth": "31"
-              },
-              {
-                "Name": "matrix_vector_product_with_bias_output_layer_loop1",
-                "TripCount": "3",
-                "Latency": "1737",
-                "PipelineII": "",
-                "PipelineDepth": "579",
-                "Loops": [{
-                    "Name": "matrix_vector_product_with_bias_output_layer_loop1_1",
-                    "TripCount": "64",
-                    "Latency": "576",
-                    "PipelineII": "",
-                    "PipelineDepth": "9"
-                  }]
-              },
-              {
-                "Name": "add_bias_to_activations_loop1",
-                "TripCount": "3",
-                "Latency": "18",
-                "PipelineII": "",
-                "PipelineDepth": "6"
-              },
-              {
-                "Name": "RELU_loop1",
-                "TripCount": "3",
-                "Latency": "87",
-                "PipelineII": "",
-                "PipelineDepth": "29"
-              },
-              {
-                "Name": "soft_max_loop1",
-                "TripCount": "3",
-                "Latency": "45",
-                "PipelineII": "",
-                "PipelineDepth": "15"
-              },
-              {
-                "Name": "soft_max_loop2",
-                "TripCount": "3",
-                "Latency": "75",
-                "PipelineII": "",
-                "PipelineDepth": "25"
-              },
-              {
-                "Name": "take_difference_loop1",
-                "TripCount": "3",
-                "Latency": "27",
-                "PipelineII": "",
-                "PipelineDepth": "9"
-              },
-              {
-                "Name": "get_delta_matrix_weights3_loop1",
-                "TripCount": "64",
-                "Latency": "960",
-                "PipelineII": "",
-                "PipelineDepth": "15",
-                "Loops": [{
-                    "Name": "get_delta_matrix_weights3_loop1_1",
-                    "TripCount": "3",
-                    "Latency": "12",
-                    "PipelineII": "",
-                    "PipelineDepth": "4"
-                  }]
-              },
-              {
-                "Name": "get_oracle_activations2_loop1",
-                "TripCount": "64",
-                "Latency": "2112",
-                "PipelineII": "",
-                "PipelineDepth": "33",
-                "Loops": [{
-                    "Name": "get_oracle_activations2_loop1_1",
-                    "TripCount": "3",
-                    "Latency": "27",
-                    "PipelineII": "",
-                    "PipelineDepth": "9"
-                  }]
-              },
-              {
-                "Name": "get_delta_matrix_weights2_loop1",
-                "TripCount": "64",
-                "Latency": "24768",
-                "PipelineII": "",
-                "PipelineDepth": "387",
-                "Loops": [{
-                    "Name": "get_delta_matrix_weights2_loop1_1",
-                    "TripCount": "64",
-                    "Latency": "384",
-                    "PipelineII": "",
-                    "PipelineDepth": "6"
-                  }]
-              },
-              {
-                "Name": "get_oracle_activations1_loop1",
-                "TripCount": "64",
-                "Latency": "41344",
-                "PipelineII": "",
-                "PipelineDepth": "646",
-                "Loops": [{
-                    "Name": "get_oracle_activations1_loop1_1",
-                    "TripCount": "64",
-                    "Latency": "640",
-                    "PipelineII": "",
-                    "PipelineDepth": "10"
-                  }]
-              },
-              {
-                "Name": "get_delta_matrix_weights1_loop1",
-                "TripCount": "13",
-                "Latency": "4199",
-                "PipelineII": "",
-                "PipelineDepth": "323",
-                "Loops": [{
-                    "Name": "get_delta_matrix_weights1_loop1_1",
-                    "TripCount": "64",
-                    "Latency": "320",
-                    "PipelineII": "",
-                    "PipelineDepth": "5"
-                  }]
-              }
-            ]
+            "PipelineDepth": "307559"
           }],
         "Area": {
           "BRAM_18K": "6",
           "AVAIL_BRAM": "2688",
           "UTIL_BRAM": "~0",
-          "DSP": "37",
+          "DSP": "48",
           "AVAIL_DSP": "5952",
           "UTIL_DSP": "~0",
-          "FF": "7662",
+          "FF": "10800",
           "AVAIL_FF": "1743360",
           "UTIL_FF": "~0",
-          "LUT": "10426",
+          "LUT": "12085",
           "AVAIL_LUT": "871680",
           "UTIL_LUT": "1",
           "URAM": "1",
@@ -1433,7 +2271,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2025-05-29 16:17:28 -03",
+    "Time": "2025-05-30 21:43:19 -03",
     "ToolName": "vitis_hls",
     "ToolVersion": "2023.2"
   }

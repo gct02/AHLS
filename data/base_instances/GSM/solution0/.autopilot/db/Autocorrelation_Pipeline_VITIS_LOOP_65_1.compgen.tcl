@@ -89,14 +89,29 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
     id 6 \
-    name zext_ln65 \
+    name cmp_i68 \
     type other \
     dir I \
     reset_level 1 \
     sync_rst true \
-    corename dc_zext_ln65 \
+    corename dc_cmp_i68 \
     op interface \
-    ports { zext_ln65 { I 15 vector } } \
+    ports { cmp_i68 { I 1 vector } } \
+} "
+}
+
+# Direct connection:
+if {${::AESL::PGuard_autoexp_gen}} {
+eval "cg_default_interface_gen_dc { \
+    id 7 \
+    name empty \
+    type other \
+    dir I \
+    reset_level 1 \
+    sync_rst true \
+    corename dc_empty \
+    op interface \
+    ports { empty { I 15 vector } } \
 } "
 }
 

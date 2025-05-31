@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Autocorrelation_Pipeline_Autocorrelation_label5'" level="0">
-<item name = "Date">Thu May 29 16:47:05 2025
+<item name = "Date">Fri May 30 22:03:38 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GSM</item>
@@ -53,7 +53,7 @@
 <column name="Instance">-, -, -, -, -</column>
 <column name="Memory">-, -, -, -, -</column>
 <column name="Multiplexer">-, -, -, 36, -</column>
-<column name="Register">-, -, 22, -, -</column>
+<column name="Register">-, -, 19, -, -</column>
 <specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
 <specialColumn name="Utilization SLR (%)">0, 0, ~0, ~0, 0</specialColumn>
 <specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
@@ -80,8 +80,8 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln152_fu_81_p2">+, 0, 0, 15, 8, 1</column>
-<column name="icmp_ln152_fu_75_p2">icmp, 0, 0, 15, 8, 8</column>
+<column name="add_ln152_fu_77_p2">+, 0, 0, 15, 8, 1</column>
+<column name="icmp_ln152_fu_71_p2">icmp, 0, 0, 15, 8, 8</column>
 <column name="indata_d0">shl, 0, 0, 35, 16, 16</column>
 <column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
 </table>
@@ -90,8 +90,8 @@
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_done_int">9, 2, 1, 2</column>
 <column name="ap_enable_reg_pp0_iter1">9, 2, 1, 2</column>
-<column name="ap_sig_allocacmp_idx77_load">9, 2, 8, 16</column>
-<column name="idx77_fu_36">9, 2, 8, 16</column>
+<column name="ap_sig_allocacmp_idx71_load">9, 2, 8, 16</column>
+<column name="idx71_fu_36">9, 2, 8, 16</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
@@ -99,9 +99,8 @@
 <column name="ap_CS_fsm">1, 0, 1, 0</column>
 <column name="ap_done_reg">1, 0, 1, 0</column>
 <column name="ap_enable_reg_pp0_iter1">1, 0, 1, 0</column>
-<column name="idx77_fu_36">8, 0, 8, 0</column>
+<column name="idx71_fu_36">8, 0, 8, 0</column>
 <column name="indata_addr_reg_118">8, 0, 8, 0</column>
-<column name="zext_ln152_cast_reg_110">3, 0, 16, 13</column>
 </table>
 </item>
 </section>
@@ -124,7 +123,7 @@
 <column name="indata_address1">out, 8, ap_memory, indata, array</column>
 <column name="indata_ce1">out, 1, ap_memory, indata, array</column>
 <column name="indata_q1">in, 16, ap_memory, indata, array</column>
-<column name="zext_ln152">in, 3, ap_none, zext_ln152, scalar</column>
+<column name="conv336_cast">in, 6, ap_none, conv336_cast, scalar</column>
 </table>
 </item>
 </section>

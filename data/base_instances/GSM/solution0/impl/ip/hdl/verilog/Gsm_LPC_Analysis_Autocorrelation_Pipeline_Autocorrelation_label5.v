@@ -20,7 +20,7 @@ module Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label5 (
         indata_address1,
         indata_ce1,
         indata_q1,
-        zext_ln152
+        conv336_cast
 );
 
 parameter    ap_ST_fsm_pp0_stage0 = 1'd1;
@@ -38,7 +38,7 @@ output  [15:0] indata_d0;
 output  [7:0] indata_address1;
 output   indata_ce1;
 input  [15:0] indata_q1;
-input  [2:0] zext_ln152;
+input  [5:0] conv336_cast;
 
 reg ap_idle;
 reg indata_ce0;
@@ -51,20 +51,19 @@ wire    ap_enable_reg_pp0_iter0;
 reg    ap_enable_reg_pp0_iter1;
 reg    ap_idle_pp0;
 wire    ap_block_pp0_stage0_subdone;
-wire   [0:0] icmp_ln152_fu_75_p2;
+wire   [0:0] icmp_ln152_fu_71_p2;
 reg    ap_condition_exit_pp0_iter0_stage0;
 wire    ap_loop_exit_ready;
 reg    ap_ready_int;
-wire   [15:0] zext_ln152_cast_fu_63_p1;
-reg   [15:0] zext_ln152_cast_reg_110;
 wire    ap_block_pp0_stage0_11001;
 reg   [7:0] indata_addr_reg_118;
-wire   [63:0] zext_ln152_1_fu_87_p1;
+wire   [63:0] zext_ln152_fu_83_p1;
 wire    ap_block_pp0_stage0;
-reg   [7:0] idx77_fu_36;
-wire   [7:0] add_ln152_fu_81_p2;
+reg   [7:0] idx71_fu_36;
+wire   [7:0] add_ln152_fu_77_p2;
 wire    ap_loop_init;
-reg   [7:0] ap_sig_allocacmp_idx77_load;
+reg   [7:0] ap_sig_allocacmp_idx71_load;
+wire   [15:0] conv336_cast_readcast_fu_93_p1;
 reg    ap_done_reg;
 wire    ap_continue_int;
 reg    ap_done_int;
@@ -77,7 +76,7 @@ wire    ap_ce_reg;
 initial begin
 #0 ap_CS_fsm = 1'd1;
 #0 ap_enable_reg_pp0_iter1 = 1'b0;
-#0 idx77_fu_36 = 8'd0;
+#0 idx71_fu_36 = 8'd0;
 #0 ap_done_reg = 1'b0;
 end
 
@@ -130,23 +129,22 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        if (((icmp_ln152_fu_75_p2 == 1'd0) & (ap_enable_reg_pp0_iter0 == 1'b1))) begin
-            idx77_fu_36 <= add_ln152_fu_81_p2;
+        if (((icmp_ln152_fu_71_p2 == 1'd0) & (ap_enable_reg_pp0_iter0 == 1'b1))) begin
+            idx71_fu_36 <= add_ln152_fu_77_p2;
         end else if ((ap_loop_init == 1'b1)) begin
-            idx77_fu_36 <= 8'd0;
+            idx71_fu_36 <= 8'd0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        indata_addr_reg_118 <= zext_ln152_1_fu_87_p1;
-        zext_ln152_cast_reg_110[2 : 0] <= zext_ln152_cast_fu_63_p1[2 : 0];
+        indata_addr_reg_118 <= zext_ln152_fu_83_p1;
     end
 end
 
 always @ (*) begin
-    if (((icmp_ln152_fu_75_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+    if (((icmp_ln152_fu_71_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         ap_condition_exit_pp0_iter0_stage0 = 1'b1;
     end else begin
         ap_condition_exit_pp0_iter0_stage0 = 1'b0;
@@ -187,9 +185,9 @@ end
 
 always @ (*) begin
     if (((ap_loop_init == 1'b1) & (1'b0 == ap_block_pp0_stage0) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        ap_sig_allocacmp_idx77_load = 8'd0;
+        ap_sig_allocacmp_idx71_load = 8'd0;
     end else begin
-        ap_sig_allocacmp_idx77_load = idx77_fu_36;
+        ap_sig_allocacmp_idx71_load = idx71_fu_36;
     end
 end
 
@@ -228,7 +226,7 @@ always @ (*) begin
     endcase
 end
 
-assign add_ln152_fu_81_p2 = (ap_sig_allocacmp_idx77_load + 8'd1);
+assign add_ln152_fu_77_p2 = (ap_sig_allocacmp_idx71_load + 8'd1);
 
 assign ap_CS_fsm_pp0_stage0 = ap_CS_fsm[32'd0];
 
@@ -244,20 +242,16 @@ assign ap_enable_reg_pp0_iter0 = ap_start_int;
 
 assign ap_loop_exit_ready = ap_condition_exit_pp0_iter0_stage0;
 
-assign icmp_ln152_fu_75_p2 = ((ap_sig_allocacmp_idx77_load == 8'd160) ? 1'b1 : 1'b0);
+assign conv336_cast_readcast_fu_93_p1 = conv336_cast;
+
+assign icmp_ln152_fu_71_p2 = ((ap_sig_allocacmp_idx71_load == 8'd160) ? 1'b1 : 1'b0);
 
 assign indata_address0 = indata_addr_reg_118;
 
-assign indata_address1 = zext_ln152_1_fu_87_p1;
+assign indata_address1 = zext_ln152_fu_83_p1;
 
-assign indata_d0 = indata_q1 << zext_ln152_cast_reg_110;
+assign indata_d0 = indata_q1 << conv336_cast_readcast_fu_93_p1;
 
-assign zext_ln152_1_fu_87_p1 = ap_sig_allocacmp_idx77_load;
-
-assign zext_ln152_cast_fu_63_p1 = zext_ln152;
-
-always @ (posedge ap_clk) begin
-    zext_ln152_cast_reg_110[15:3] <= 13'b0000000000000;
-end
+assign zext_ln152_fu_83_p1 = ap_sig_allocacmp_idx71_load;
 
 endmodule //Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label5

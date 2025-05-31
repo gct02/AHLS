@@ -415,6 +415,10 @@ int word[4][120];
 
 
 void ByteSub_ShiftRow (int statemt[32], int nb) {
+#line 27 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 79 "data/benchmarks/aes/aes_key.c"
+
     const int Sbox[16][16] = {
         {0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76},
         {0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0, 0xad, 0xd4, 0xa2, 0xaf, 0x9c, 0xa4, 0x72, 0xc0},
@@ -535,6 +539,10 @@ void ByteSub_ShiftRow (int statemt[32], int nb) {
 
 
 void InversShiftRow_ByteSub (int statemt[32], int nb) {
+#line 28 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 199 "data/benchmarks/aes/aes_key.c"
+
     const int invSbox[16][16] = {
         {0x52, 0x09, 0x6a, 0xd5, 0x30, 0x36, 0xa5, 0x38, 0xbf, 0x40, 0xa3, 0x9e, 0x81, 0xf3, 0xd7, 0xfb},
         {0x7c, 0xe3, 0x39, 0x82, 0x9b, 0x2f, 0xff, 0x87, 0x34, 0x8e, 0x43, 0x44, 0xc4, 0xde, 0xe9, 0xcb},
@@ -655,6 +663,10 @@ void InversShiftRow_ByteSub (int statemt[32], int nb) {
 
 
 int MixColumn_AddRoundKey (int statemt[32], int nb, int n) {
+#line 22 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 319 "data/benchmarks/aes/aes_key.c"
+
     int ret[8 * 4], j;
     register int x;
 
@@ -719,6 +731,10 @@ int MixColumn_AddRoundKey (int statemt[32], int nb, int n) {
 
 
 int AddRoundKey_InversMixColumn (int statemt[32], int nb, int n) {
+#line 23 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 375 "data/benchmarks/aes/aes_key.c"
+
     int ret[8 * 4], i, j;
     register int x;
 
@@ -744,6 +760,10 @@ int AddRoundKey_InversMixColumn (int statemt[32], int nb, int n) {
 #pragma HLS LOOP_TRIPCOUNT min=4 max=8 avg=6
  AddRoundKey_InversMixColumn_label1:
         for (i = 0; i < 4; ++i) {
+#line 16 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 392 "data/benchmarks/aes/aes_key.c"
+
 #line 2 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 392 "data/benchmarks/aes/aes_key.c"
@@ -807,6 +827,10 @@ int AddRoundKey_InversMixColumn (int statemt[32], int nb, int n) {
 
 
 int AddRoundKey (int statemt[32], int type, int n) {
+#line 29 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 447 "data/benchmarks/aes/aes_key.c"
+
     int j, nb;
 
     switch (type) {
@@ -844,6 +868,10 @@ int AddRoundKey (int statemt[32], int type, int n) {
 
 
 int KeySchedule (int type, int key[32]) {
+#line 26 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 480 "data/benchmarks/aes/aes_key.c"
+
     const int Sbox[16][16] = {
         {0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76},
         {0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0, 0xad, 0xd4, 0xa2, 0xaf, 0x9c, 0xa4, 0x72, 0xc0},
@@ -929,6 +957,10 @@ int KeySchedule (int type, int key[32]) {
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 557 "data/benchmarks/aes/aes_key.c"
 
+#line 17 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 557 "data/benchmarks/aes/aes_key.c"
+
 #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
  word[i][j] = key[i + j * 4];
         }
@@ -939,6 +971,10 @@ int KeySchedule (int type, int key[32]) {
     for (j = nk; j < nb * (round_val + 1); ++j) {
 #line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 565 "data/benchmarks/aes/aes_key.c"
+
+#line 18 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 565 "data/benchmarks/aes/aes_key.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=32 max=116 avg=74
@@ -961,12 +997,20 @@ int KeySchedule (int type, int key[32]) {
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 581 "data/benchmarks/aes/aes_key.c"
 
+#line 19 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 581 "data/benchmarks/aes/aes_key.c"
+
 
         if (nk > 6 && j % nk == 4) {
             KeySchedule_label8:
             for (i = 0; i < 4; ++i) {
 #line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 585 "data/benchmarks/aes/aes_key.c"
+
+#line 20 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 585 "data/benchmarks/aes/aes_key.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
@@ -978,6 +1022,10 @@ int KeySchedule (int type, int key[32]) {
         for (i = 0; i < 4; ++i) {
 #line 15 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 592 "data/benchmarks/aes/aes_key.c"
+
+#line 21 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 592 "data/benchmarks/aes/aes_key.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun May 25 00:34:50 2025" VIVADOVERSION="2023.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri May 30 21:17:36 2025" VIVADOVERSION="2023.2">
 
   <SYSTEMINFO ARCH="virtexuplusHBM" DEVICE="xcu50" NAME="bd_0" PACKAGE="fsvh2104" SPEEDGRADE="-2"/>
 
@@ -143,14 +143,14 @@
   </EXTERNALINTERFACES>
 
   <MODULES>
-    <MODULE COREREVISION="2114097994" FULLNAME="/hls_inst" HWVERSION="1.0" INSTANCE="hls_inst" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="adpcm_main" VLNV="xilinx.com:hls:adpcm_main:1.0">
+    <MODULE COREREVISION="2114106437" FULLNAME="/hls_inst" HWVERSION="1.0" INSTANCE="hls_inst" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="adpcm_main" VLNV="xilinx.com:hls:adpcm_main:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="Component_Name" VALUE="bd_0_hls_inst_0"/>
         <PARAMETER NAME="II" VALUE="x"/>
         <PARAMETER NAME="clk_period" VALUE="8"/>
         <PARAMETER NAME="combinational" VALUE="0"/>
-        <PARAMETER NAME="latency" VALUE="15203"/>
+        <PARAMETER NAME="latency" VALUE="13404"/>
         <PARAMETER NAME="machine" VALUE="64"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>

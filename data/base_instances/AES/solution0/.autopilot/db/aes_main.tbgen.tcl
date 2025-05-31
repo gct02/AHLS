@@ -71,13 +71,13 @@ set NewPortList {[
  	{ "name": "ap_return", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "ap_return", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4", "10"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "12"],
 		"CDFG" : "aes_main",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
 		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "2624", "EstimateLatencyMax" : "2624",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "2634", "EstimateLatencyMax" : "2634",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -88,40 +88,38 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "statemt", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "4", "SubInstance" : "grp_encrypt_fu_34", "Port" : "statemt", "Inst_start_state" : "1", "Inst_end_state" : "2"},
-					{"ID" : "10", "SubInstance" : "grp_decrypt_fu_50", "Port" : "statemt", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "2", "SubInstance" : "grp_encrypt_fu_34", "Port" : "statemt", "Inst_start_state" : "1", "Inst_end_state" : "2"},
+					{"ID" : "12", "SubInstance" : "grp_decrypt_fu_50", "Port" : "statemt", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
 			{"Name" : "key", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "4", "SubInstance" : "grp_encrypt_fu_34", "Port" : "key", "Inst_start_state" : "1", "Inst_end_state" : "2"},
-					{"ID" : "10", "SubInstance" : "grp_decrypt_fu_50", "Port" : "key", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "2", "SubInstance" : "grp_encrypt_fu_34", "Port" : "key", "Inst_start_state" : "1", "Inst_end_state" : "2"},
+					{"ID" : "12", "SubInstance" : "grp_decrypt_fu_50", "Port" : "key", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
 			{"Name" : "word", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "4", "SubInstance" : "grp_encrypt_fu_34", "Port" : "word", "Inst_start_state" : "1", "Inst_end_state" : "2"},
-					{"ID" : "10", "SubInstance" : "grp_decrypt_fu_50", "Port" : "word", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "2", "SubInstance" : "grp_encrypt_fu_34", "Port" : "word", "Inst_start_state" : "1", "Inst_end_state" : "2"},
+					{"ID" : "12", "SubInstance" : "grp_decrypt_fu_50", "Port" : "word", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
 			{"Name" : "Sbox", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "4", "SubInstance" : "grp_encrypt_fu_34", "Port" : "Sbox", "Inst_start_state" : "1", "Inst_end_state" : "2"},
-					{"ID" : "10", "SubInstance" : "grp_decrypt_fu_50", "Port" : "Sbox", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "2", "SubInstance" : "grp_encrypt_fu_34", "Port" : "Sbox", "Inst_start_state" : "1", "Inst_end_state" : "2"},
+					{"ID" : "12", "SubInstance" : "grp_decrypt_fu_50", "Port" : "Sbox", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
 			{"Name" : "Rcon0", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "4", "SubInstance" : "grp_encrypt_fu_34", "Port" : "Rcon0", "Inst_start_state" : "1", "Inst_end_state" : "2"},
-					{"ID" : "10", "SubInstance" : "grp_decrypt_fu_50", "Port" : "Rcon0", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
+					{"ID" : "2", "SubInstance" : "grp_encrypt_fu_34", "Port" : "Rcon0", "Inst_start_state" : "1", "Inst_end_state" : "2"},
+					{"ID" : "12", "SubInstance" : "grp_decrypt_fu_50", "Port" : "Rcon0", "Inst_start_state" : "3", "Inst_end_state" : "4"}]},
 			{"Name" : "Sbox_1", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "4", "SubInstance" : "grp_encrypt_fu_34", "Port" : "Sbox_1", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
+					{"ID" : "2", "SubInstance" : "grp_encrypt_fu_34", "Port" : "Sbox_1", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "invSbox", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "10", "SubInstance" : "grp_decrypt_fu_50", "Port" : "invSbox", "Inst_start_state" : "3", "Inst_end_state" : "4"}]}]},
+					{"ID" : "12", "SubInstance" : "grp_decrypt_fu_50", "Port" : "invSbox", "Inst_start_state" : "3", "Inst_end_state" : "4"}]}]},
 	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.word_U", "Parent" : "0"},
-	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.Sbox_U", "Parent" : "0"},
-	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.Rcon0_U", "Parent" : "0"},
-	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34", "Parent" : "0", "Child" : ["5", "7", "9"],
+	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34", "Parent" : "0", "Child" : ["3", "7", "8", "10"],
 		"CDFG" : "encrypt",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
 		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "1054", "EstimateLatencyMax" : "1054",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "1059", "EstimateLatencyMax" : "1059",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -132,33 +130,82 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "statemt", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "5", "SubInstance" : "grp_ByteSub_ShiftRow_fu_461", "Port" : "statemt", "Inst_start_state" : "15", "Inst_end_state" : "19"},
-					{"ID" : "7", "SubInstance" : "grp_MixColumn_AddRoundKey_fu_469", "Port" : "statemt", "Inst_start_state" : "17", "Inst_end_state" : "18"}]},
-			{"Name" : "key", "Type" : "Memory", "Direction" : "I"},
+					{"ID" : "7", "SubInstance" : "grp_AddRoundKey_fu_62", "Port" : "statemt", "Inst_start_state" : "10", "Inst_end_state" : "11"},
+					{"ID" : "10", "SubInstance" : "grp_MixColumn_AddRoundKey_fu_81", "Port" : "statemt", "Inst_start_state" : "7", "Inst_end_state" : "8"},
+					{"ID" : "8", "SubInstance" : "grp_ByteSub_ShiftRow_fu_73", "Port" : "statemt", "Inst_start_state" : "5", "Inst_end_state" : "9"}]},
+			{"Name" : "key", "Type" : "Memory", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "3", "SubInstance" : "grp_KeySchedule_fu_50", "Port" : "key", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "word", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "7", "SubInstance" : "grp_MixColumn_AddRoundKey_fu_469", "Port" : "word", "Inst_start_state" : "17", "Inst_end_state" : "18"}]},
-			{"Name" : "Sbox", "Type" : "Memory", "Direction" : "I"},
-			{"Name" : "Rcon0", "Type" : "Memory", "Direction" : "I"},
+					{"ID" : "3", "SubInstance" : "grp_KeySchedule_fu_50", "Port" : "word", "Inst_start_state" : "1", "Inst_end_state" : "2"},
+					{"ID" : "7", "SubInstance" : "grp_AddRoundKey_fu_62", "Port" : "word", "Inst_start_state" : "10", "Inst_end_state" : "11"},
+					{"ID" : "10", "SubInstance" : "grp_MixColumn_AddRoundKey_fu_81", "Port" : "word", "Inst_start_state" : "7", "Inst_end_state" : "8"}]},
+			{"Name" : "Sbox", "Type" : "Memory", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "3", "SubInstance" : "grp_KeySchedule_fu_50", "Port" : "Sbox", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
+			{"Name" : "Rcon0", "Type" : "Memory", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "3", "SubInstance" : "grp_KeySchedule_fu_50", "Port" : "Rcon0", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "Sbox_1", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "5", "SubInstance" : "grp_ByteSub_ShiftRow_fu_461", "Port" : "Sbox_1", "Inst_start_state" : "15", "Inst_end_state" : "19"}]}],
+					{"ID" : "8", "SubInstance" : "grp_ByteSub_ShiftRow_fu_73", "Port" : "Sbox_1", "Inst_start_state" : "5", "Inst_end_state" : "9"}]}],
+		"Loop" : [
+			{"Name" : "encrypt_label1", "PipelineType" : "no",
+				"LoopDec" : {"FSMBitwidth" : "11", "FirstState" : "ap_ST_fsm_state5", "LastState" : ["ap_ST_fsm_state8"], "QuitState" : ["ap_ST_fsm_state5"], "PreState" : ["ap_ST_fsm_state4"], "PostState" : ["ap_ST_fsm_state9"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
+	{"ID" : "3", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_KeySchedule_fu_50", "Parent" : "2", "Child" : ["4", "5", "6"],
+		"CDFG" : "KeySchedule",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "562", "EstimateLatencyMax" : "562",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "key", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "word", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "Sbox", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "Rcon0", "Type" : "Memory", "Direction" : "I"}],
 		"Loop" : [
 			{"Name" : "KeySchedule_label5", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state3", "LastState" : ["ap_ST_fsm_state4"], "QuitState" : ["ap_ST_fsm_state3"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state2"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "10", "FirstState" : "ap_ST_fsm_state3", "LastState" : ["ap_ST_fsm_state4"], "QuitState" : ["ap_ST_fsm_state3"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state2"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "KeySchedule_label4", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state3"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state5"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "10", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state3"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state5"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "KeySchedule_label9", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state9", "LastState" : ["ap_ST_fsm_state10"], "QuitState" : ["ap_ST_fsm_state9"], "PreState" : ["ap_ST_fsm_state8"], "PostState" : ["ap_ST_fsm_state5"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "10", "FirstState" : "ap_ST_fsm_state9", "LastState" : ["ap_ST_fsm_state10"], "QuitState" : ["ap_ST_fsm_state9"], "PreState" : ["ap_ST_fsm_state8"], "PostState" : ["ap_ST_fsm_state5"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "KeySchedule_label6", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state5", "LastState" : ["ap_ST_fsm_state9"], "QuitState" : ["ap_ST_fsm_state5"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state11"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "10", "FirstState" : "ap_ST_fsm_state5", "LastState" : ["ap_ST_fsm_state9"], "QuitState" : ["ap_ST_fsm_state5"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
+	{"ID" : "4", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_KeySchedule_fu_50.Sbox_U", "Parent" : "3"},
+	{"ID" : "5", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_KeySchedule_fu_50.Rcon0_U", "Parent" : "3"},
+	{"ID" : "6", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_KeySchedule_fu_50.mux_4_2_32_1_1_U1", "Parent" : "3"},
+	{"ID" : "7", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_AddRoundKey_fu_62", "Parent" : "2",
+		"CDFG" : "AddRoundKey",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "17", "EstimateLatencyMax" : "17",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "statemt", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "n", "Type" : "None", "Direction" : "I"},
+			{"Name" : "word", "Type" : "Memory", "Direction" : "I"}],
+		"Loop" : [
 			{"Name" : "AddRoundKey_label0", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state11", "LastState" : ["ap_ST_fsm_state14"], "QuitState" : ["ap_ST_fsm_state11"], "PreState" : ["ap_ST_fsm_state5"], "PostState" : ["ap_ST_fsm_state15"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
-			{"Name" : "encrypt_label1", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state15", "LastState" : ["ap_ST_fsm_state18"], "QuitState" : ["ap_ST_fsm_state15"], "PreState" : ["ap_ST_fsm_state11"], "PostState" : ["ap_ST_fsm_state19"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
-			{"Name" : "AddRoundKey_label0", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state20", "LastState" : ["ap_ST_fsm_state23"], "QuitState" : ["ap_ST_fsm_state20"], "PreState" : ["ap_ST_fsm_state19"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
-	{"ID" : "5", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_ByteSub_ShiftRow_fu_461", "Parent" : "4", "Child" : ["6"],
+				"LoopDec" : {"FSMBitwidth" : "5", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state5"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
+	{"ID" : "8", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_ByteSub_ShiftRow_fu_73", "Parent" : "2", "Child" : ["9"],
 		"CDFG" : "ByteSub_ShiftRow",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -175,8 +222,8 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "statemt", "Type" : "Memory", "Direction" : "IO"},
 			{"Name" : "Sbox_1", "Type" : "Memory", "Direction" : "I"}]},
-	{"ID" : "6", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_ByteSub_ShiftRow_fu_461.Sbox_1_U", "Parent" : "5"},
-	{"ID" : "7", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_MixColumn_AddRoundKey_fu_469", "Parent" : "4", "Child" : ["8"],
+	{"ID" : "9", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_ByteSub_ShiftRow_fu_73.Sbox_1_U", "Parent" : "8"},
+	{"ID" : "10", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_MixColumn_AddRoundKey_fu_81", "Parent" : "2", "Child" : ["11"],
 		"CDFG" : "MixColumn_AddRoundKey",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -199,15 +246,14 @@ set RtlHierarchyInfo {[
 				"LoopDec" : {"FSMBitwidth" : "8", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state5"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state6"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "MixColumn_AddRoundKey_label1", "PipelineType" : "no",
 				"LoopDec" : {"FSMBitwidth" : "8", "FirstState" : "ap_ST_fsm_state6", "LastState" : ["ap_ST_fsm_state8"], "QuitState" : ["ap_ST_fsm_state6"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
-	{"ID" : "8", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_MixColumn_AddRoundKey_fu_469.ret_U", "Parent" : "7"},
-	{"ID" : "9", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.mux_4_2_32_1_1_U7", "Parent" : "4"},
-	{"ID" : "10", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50", "Parent" : "0", "Child" : ["11", "13", "15"],
+	{"ID" : "11", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_encrypt_fu_34.grp_MixColumn_AddRoundKey_fu_81.ret_U", "Parent" : "10"},
+	{"ID" : "12", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50", "Parent" : "0", "Child" : ["13", "17", "18", "20"],
 		"CDFG" : "decrypt",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
 		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "1567", "EstimateLatencyMax" : "1567",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "1572", "EstimateLatencyMax" : "1572",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -218,33 +264,82 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "statemt", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "11", "SubInstance" : "grp_InversShiftRow_ByteSub_fu_461", "Port" : "statemt", "Inst_start_state" : "18", "Inst_end_state" : "19"},
-					{"ID" : "13", "SubInstance" : "grp_AddRoundKey_InversMixColumn_fu_469", "Port" : "statemt", "Inst_start_state" : "16", "Inst_end_state" : "17"}]},
-			{"Name" : "key", "Type" : "Memory", "Direction" : "I"},
+					{"ID" : "17", "SubInstance" : "grp_AddRoundKey_fu_64", "Port" : "statemt", "Inst_start_state" : "7", "Inst_end_state" : "11"},
+					{"ID" : "18", "SubInstance" : "grp_InversShiftRow_ByteSub_fu_75", "Port" : "statemt", "Inst_start_state" : "9", "Inst_end_state" : "10"},
+					{"ID" : "20", "SubInstance" : "grp_AddRoundKey_InversMixColumn_fu_83", "Port" : "statemt", "Inst_start_state" : "7", "Inst_end_state" : "8"}]},
+			{"Name" : "key", "Type" : "Memory", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "13", "SubInstance" : "grp_KeySchedule_fu_52", "Port" : "key", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "word", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "13", "SubInstance" : "grp_AddRoundKey_InversMixColumn_fu_469", "Port" : "word", "Inst_start_state" : "16", "Inst_end_state" : "17"}]},
-			{"Name" : "Sbox", "Type" : "Memory", "Direction" : "I"},
-			{"Name" : "Rcon0", "Type" : "Memory", "Direction" : "I"},
+					{"ID" : "17", "SubInstance" : "grp_AddRoundKey_fu_64", "Port" : "word", "Inst_start_state" : "7", "Inst_end_state" : "11"},
+					{"ID" : "20", "SubInstance" : "grp_AddRoundKey_InversMixColumn_fu_83", "Port" : "word", "Inst_start_state" : "7", "Inst_end_state" : "8"},
+					{"ID" : "13", "SubInstance" : "grp_KeySchedule_fu_52", "Port" : "word", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
+			{"Name" : "Sbox", "Type" : "Memory", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "13", "SubInstance" : "grp_KeySchedule_fu_52", "Port" : "Sbox", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
+			{"Name" : "Rcon0", "Type" : "Memory", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "13", "SubInstance" : "grp_KeySchedule_fu_52", "Port" : "Rcon0", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "invSbox", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "11", "SubInstance" : "grp_InversShiftRow_ByteSub_fu_461", "Port" : "invSbox", "Inst_start_state" : "18", "Inst_end_state" : "19"}]}],
+					{"ID" : "18", "SubInstance" : "grp_InversShiftRow_ByteSub_fu_75", "Port" : "invSbox", "Inst_start_state" : "9", "Inst_end_state" : "10"}]}],
+		"Loop" : [
+			{"Name" : "decrypt_label4", "PipelineType" : "no",
+				"LoopDec" : {"FSMBitwidth" : "11", "FirstState" : "ap_ST_fsm_state7", "LastState" : ["ap_ST_fsm_state10"], "QuitState" : ["ap_ST_fsm_state7"], "PreState" : ["ap_ST_fsm_state6"], "PostState" : ["ap_ST_fsm_state11"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
+	{"ID" : "13", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_KeySchedule_fu_52", "Parent" : "12", "Child" : ["14", "15", "16"],
+		"CDFG" : "KeySchedule",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "562", "EstimateLatencyMax" : "562",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "key", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "word", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "Sbox", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "Rcon0", "Type" : "Memory", "Direction" : "I"}],
 		"Loop" : [
 			{"Name" : "KeySchedule_label5", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state3", "LastState" : ["ap_ST_fsm_state4"], "QuitState" : ["ap_ST_fsm_state3"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state2"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "10", "FirstState" : "ap_ST_fsm_state3", "LastState" : ["ap_ST_fsm_state4"], "QuitState" : ["ap_ST_fsm_state3"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state2"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "KeySchedule_label4", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state3"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state5"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "10", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state3"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state5"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "KeySchedule_label9", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state9", "LastState" : ["ap_ST_fsm_state10"], "QuitState" : ["ap_ST_fsm_state9"], "PreState" : ["ap_ST_fsm_state8"], "PostState" : ["ap_ST_fsm_state5"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "10", "FirstState" : "ap_ST_fsm_state9", "LastState" : ["ap_ST_fsm_state10"], "QuitState" : ["ap_ST_fsm_state9"], "PreState" : ["ap_ST_fsm_state8"], "PostState" : ["ap_ST_fsm_state5"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "KeySchedule_label6", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state5", "LastState" : ["ap_ST_fsm_state9"], "QuitState" : ["ap_ST_fsm_state5"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state11"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "10", "FirstState" : "ap_ST_fsm_state5", "LastState" : ["ap_ST_fsm_state9"], "QuitState" : ["ap_ST_fsm_state5"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
+	{"ID" : "14", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_KeySchedule_fu_52.Sbox_U", "Parent" : "13"},
+	{"ID" : "15", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_KeySchedule_fu_52.Rcon0_U", "Parent" : "13"},
+	{"ID" : "16", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_KeySchedule_fu_52.mux_4_2_32_1_1_U1", "Parent" : "13"},
+	{"ID" : "17", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_AddRoundKey_fu_64", "Parent" : "12",
+		"CDFG" : "AddRoundKey",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "17", "EstimateLatencyMax" : "17",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "statemt", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "n", "Type" : "None", "Direction" : "I"},
+			{"Name" : "word", "Type" : "Memory", "Direction" : "I"}],
+		"Loop" : [
 			{"Name" : "AddRoundKey_label0", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state11", "LastState" : ["ap_ST_fsm_state14"], "QuitState" : ["ap_ST_fsm_state11"], "PreState" : ["ap_ST_fsm_state5"], "PostState" : ["ap_ST_fsm_state15"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
-			{"Name" : "decrypt_label4", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state16", "LastState" : ["ap_ST_fsm_state19"], "QuitState" : ["ap_ST_fsm_state16"], "PreState" : ["ap_ST_fsm_state15"], "PostState" : ["ap_ST_fsm_state20"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
-			{"Name" : "AddRoundKey_label0", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "23", "FirstState" : "ap_ST_fsm_state20", "LastState" : ["ap_ST_fsm_state23"], "QuitState" : ["ap_ST_fsm_state20"], "PreState" : ["ap_ST_fsm_state16"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
-	{"ID" : "11", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_InversShiftRow_ByteSub_fu_461", "Parent" : "10", "Child" : ["12"],
+				"LoopDec" : {"FSMBitwidth" : "5", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state5"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
+	{"ID" : "18", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_InversShiftRow_ByteSub_fu_75", "Parent" : "12", "Child" : ["19"],
 		"CDFG" : "InversShiftRow_ByteSub",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -261,8 +356,8 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "statemt", "Type" : "Memory", "Direction" : "IO"},
 			{"Name" : "invSbox", "Type" : "Memory", "Direction" : "I"}]},
-	{"ID" : "12", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_InversShiftRow_ByteSub_fu_461.invSbox_U", "Parent" : "11"},
-	{"ID" : "13", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_AddRoundKey_InversMixColumn_fu_469", "Parent" : "10", "Child" : ["14"],
+	{"ID" : "19", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_InversShiftRow_ByteSub_fu_75.invSbox_U", "Parent" : "18"},
+	{"ID" : "20", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_AddRoundKey_InversMixColumn_fu_83", "Parent" : "12", "Child" : ["21"],
 		"CDFG" : "AddRoundKey_InversMixColumn",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -289,8 +384,7 @@ set RtlHierarchyInfo {[
 				"LoopDec" : {"FSMBitwidth" : "12", "FirstState" : "ap_ST_fsm_state6", "LastState" : ["ap_ST_fsm_state7"], "QuitState" : ["ap_ST_fsm_state6"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state10"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "AddRoundKey_InversMixColumn_label3", "PipelineType" : "no",
 				"LoopDec" : {"FSMBitwidth" : "12", "FirstState" : "ap_ST_fsm_state10", "LastState" : ["ap_ST_fsm_state12"], "QuitState" : ["ap_ST_fsm_state10"], "PreState" : ["ap_ST_fsm_state6"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
-	{"ID" : "14", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_AddRoundKey_InversMixColumn_fu_469.ret_U", "Parent" : "13"},
-	{"ID" : "15", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.mux_4_2_32_1_1_U20", "Parent" : "10"}]}
+	{"ID" : "21", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_decrypt_fu_50.grp_AddRoundKey_InversMixColumn_fu_83.ret_U", "Parent" : "20"}]}
 
 
 set ArgLastReadFirstWriteLatency {
@@ -305,10 +399,19 @@ set ArgLastReadFirstWriteLatency {
 	encrypt {
 		statemt {Type IO LastRead 8 FirstWrite 3}
 		key {Type I LastRead 2 FirstWrite -1}
-		word {Type IO LastRead 8 FirstWrite -1}
-		Sbox {Type I LastRead 5 FirstWrite -1}
-		Rcon0 {Type I LastRead 3 FirstWrite -1}
+		word {Type IO LastRead 6 FirstWrite -1}
+		Sbox {Type I LastRead -1 FirstWrite -1}
+		Rcon0 {Type I LastRead -1 FirstWrite -1}
 		Sbox_1 {Type I LastRead -1 FirstWrite -1}}
+	KeySchedule {
+		key {Type I LastRead 2 FirstWrite -1}
+		word {Type IO LastRead 6 FirstWrite 3}
+		Sbox {Type I LastRead -1 FirstWrite -1}
+		Rcon0 {Type I LastRead -1 FirstWrite -1}}
+	AddRoundKey {
+		statemt {Type IO LastRead 3 FirstWrite 3}
+		n {Type I LastRead 0 FirstWrite -1}
+		word {Type I LastRead 3 FirstWrite -1}}
 	ByteSub_ShiftRow {
 		statemt {Type IO LastRead 8 FirstWrite 8}
 		Sbox_1 {Type I LastRead -1 FirstWrite -1}}
@@ -319,10 +422,19 @@ set ArgLastReadFirstWriteLatency {
 	decrypt {
 		statemt {Type IO LastRead 8 FirstWrite 3}
 		key {Type I LastRead 2 FirstWrite -1}
-		word {Type IO LastRead 8 FirstWrite -1}
-		Sbox {Type I LastRead 5 FirstWrite -1}
-		Rcon0 {Type I LastRead 3 FirstWrite -1}
+		word {Type IO LastRead 6 FirstWrite -1}
+		Sbox {Type I LastRead -1 FirstWrite -1}
+		Rcon0 {Type I LastRead -1 FirstWrite -1}
 		invSbox {Type I LastRead -1 FirstWrite -1}}
+	KeySchedule {
+		key {Type I LastRead 2 FirstWrite -1}
+		word {Type IO LastRead 6 FirstWrite 3}
+		Sbox {Type I LastRead -1 FirstWrite -1}
+		Rcon0 {Type I LastRead -1 FirstWrite -1}}
+	AddRoundKey {
+		statemt {Type IO LastRead 3 FirstWrite 3}
+		n {Type I LastRead 0 FirstWrite -1}
+		word {Type I LastRead 3 FirstWrite -1}}
 	InversShiftRow_ByteSub {
 		statemt {Type IO LastRead 8 FirstWrite 8}
 		invSbox {Type I LastRead -1 FirstWrite -1}}
@@ -334,8 +446,8 @@ set ArgLastReadFirstWriteLatency {
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "2624", "Max" : "2624"}
-	, {"Name" : "Interval", "Min" : "2625", "Max" : "2625"}
+	{"Name" : "Latency", "Min" : "2634", "Max" : "2634"}
+	, {"Name" : "Interval", "Min" : "2635", "Max" : "2635"}
 ]}
 
 set PipelineEnableSignalInfo {[

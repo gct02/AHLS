@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date         : Thu May 29 14:57:38 2025
+| Date         : Sat May 31 00:12:52 2025
 | Host         : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command      : report_design_analysis -file ./report/aes_main_design_analysis_synth.rpt
 | Design       : bd_0_wrapper
@@ -25,17 +25,17 @@ Table of Contents
 |      Characteristics      |                            Path #1                            |
 +---------------------------+---------------------------------------------------------------+
 | Requirement               | 8.000                                                         |
-| Path Delay                | 1.607                                                         |
+| Path Delay                | 1.605                                                         |
 | Logic Delay               | 1.039(65%)                                                    |
-| Net Delay                 | 0.568(35%)                                                    |
+| Net Delay                 | 0.566(35%)                                                    |
 | Clock Skew                | -0.037                                                        |
-| Slack                     | 6.027                                                         |
+| Slack                     | 6.029                                                         |
 | Clock Uncertainty         | 0.035                                                         |
 | Clock Relationship        | Safely Timed                                                  |
 | Clock Delay Group         | Same Clock                                                    |
 | Logic Levels              | 2                                                             |
 | Routes                    | NA                                                            |
-| Logical Path              | RAMB36E2/CLKBWRCLK-(13)-LUT5-(1)-LUT6-(1)-RAMB36E2/DINADIN[0] |
+| Logical Path              | RAMB36E2/CLKBWRCLK-(12)-LUT5-(1)-LUT6-(1)-RAMB36E2/DINADIN[0] |
 | Start Point Clock         | ap_clk                                                        |
 | End Point Clock           | ap_clk                                                        |
 | DSP Block                 | None                                                          |
@@ -43,7 +43,7 @@ Table of Contents
 | IO Crossings              | 0                                                             |
 | SLR Crossings             | 0                                                             |
 | PBlocks                   | 0                                                             |
-| High Fanout               | 13                                                            |
+| High Fanout               | 12                                                            |
 | Dont Touch                | 0                                                             |
 | Mark Debug                | 0                                                             |
 | Start Point Pin Primitive | RAMB36E2/CLKBWRCLK                                            |
@@ -60,7 +60,7 @@ Table of Contents
 +-----------------+-------------+-----+-----+-----+----+----+---+
 | End Point Clock | Requirement |  0  |  1  |  2  |  3 |  4 | 5 |
 +-----------------+-------------+-----+-----+-----+----+----+---+
-| ap_clk          | 8.000ns     | 176 | 555 | 199 | 32 | 34 | 4 |
+| ap_clk          | 8.000ns     | 176 | 549 | 205 | 47 | 14 | 9 |
 +-----------------+-------------+-----+-----+-----+----+----+---+
 * Columns represent the logic levels per end point clock
 ** Distribution is for top worst 1000 paths

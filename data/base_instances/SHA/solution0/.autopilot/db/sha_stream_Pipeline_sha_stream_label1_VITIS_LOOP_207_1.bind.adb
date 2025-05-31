@@ -70,7 +70,7 @@
 						<coreName>RAM</coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1869635878</coreId>
+						<coreId>639657324</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>8</bitwidth>
@@ -96,8 +96,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>201</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -109,7 +109,7 @@
 									<item class_id="12" tracking_level="0" version="0">
 										<first class_id="13" tracking_level="0" version="0">
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>201</second>
 									</item>
@@ -152,8 +152,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>201</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -165,7 +165,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>201</second>
 									</item>
@@ -264,7 +264,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>0</coreId>
+						<coreId>1701605485</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -293,8 +293,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>201</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -306,7 +306,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>201</second>
 									</item>
@@ -350,8 +350,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>201</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -363,7 +363,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>201</second>
 									</item>
@@ -449,8 +449,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>205</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -462,7 +462,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>205</second>
 									</item>
@@ -477,7 +477,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1431257680</coreId>
+						<coreId>574449505</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>15</bitwidth>
@@ -506,8 +506,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>205</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -519,7 +519,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>205</second>
 									</item>
@@ -563,8 +563,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>205</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -576,7 +576,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>205</second>
 									</item>
@@ -620,8 +620,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>205</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -633,7 +633,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>205</second>
 									</item>
@@ -648,7 +648,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1881154127</coreId>
+						<coreId>1948262960</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>0</bitwidth>
@@ -678,8 +678,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>207</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -691,7 +691,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>207</second>
 									</item>
@@ -706,7 +706,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1869635878</coreId>
+						<coreId>574454117</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>14</bitwidth>
@@ -735,8 +735,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>205</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -748,7 +748,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>205</second>
 									</item>
@@ -763,7 +763,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>539119430</coreId>
+						<coreId>1936615712</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>2</bitwidth>
@@ -792,8 +792,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>205</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -805,7 +805,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>205</second>
 									</item>
@@ -849,8 +849,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>207</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -862,7 +862,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>207</second>
 									</item>
@@ -906,8 +906,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>201</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -919,7 +919,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>201</second>
 									</item>
@@ -964,8 +964,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>205</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -977,7 +977,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>205</second>
 									</item>
@@ -1022,8 +1022,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>209</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1035,7 +1035,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>209</second>
 									</item>
@@ -1050,7 +1050,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>774778400</coreId>
+						<coreId>1176633460</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>1</bitwidth>
@@ -1074,12 +1074,12 @@
 					<Obj>
 						<type>0</type>
 						<id>26</id>
-						<name>tmp_8</name>
+						<name>tmp</name>
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>209</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1091,7 +1091,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>209</second>
 									</item>
@@ -1106,7 +1106,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1835099506</coreId>
+						<coreId>1313415680</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>14</bitwidth>
@@ -1136,8 +1136,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>209</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1149,7 +1149,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>209</second>
 									</item>
@@ -1193,8 +1193,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>209</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1206,7 +1206,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>209</second>
 									</item>
@@ -1221,7 +1221,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1213932032</coreId>
+						<coreId>1936683105</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>64</bitwidth>
@@ -1249,8 +1249,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>209</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1262,7 +1262,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>209</second>
 									</item>
@@ -1277,7 +1277,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1852403305</coreId>
+						<coreId>480</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>14</bitwidth>
@@ -1307,8 +1307,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>209</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1320,7 +1320,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>209</second>
 									</item>
@@ -1335,7 +1335,7 @@
 						<coreName></coreName>
 						<isStorage>0</isStorage>
 						<storageDepth>0</storageDepth>
-						<coreId>1527285008</coreId>
+						<coreId>4288547712</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
 					<bitwidth>14</bitwidth>
@@ -1365,8 +1365,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>209</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1378,7 +1378,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>209</second>
 									</item>
@@ -1421,8 +1421,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>209</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1434,7 +1434,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>209</second>
 									</item>
@@ -1478,8 +1478,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>207</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1491,7 +1491,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>207</second>
 									</item>
@@ -1535,8 +1535,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>205</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1548,7 +1548,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>205</second>
 									</item>
@@ -1594,8 +1594,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>201</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1607,7 +1607,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>201</second>
 									</item>
@@ -1653,8 +1653,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>201</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1666,7 +1666,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>201</second>
 									</item>
@@ -1712,8 +1712,8 @@
 						<fileName>data/benchmarks/sha/sha.c</fileName>
 						<fileDirectory>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS</fileDirectory>
 						<lineNumber>207</lineNumber>
-						<contextFuncName>sha_stream</contextFuncName>
-						<contextNormFuncName>sha_stream</contextNormFuncName>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
 						<inlineStackInfo>
 							<count>1</count>
 							<item_version>0</item_version>
@@ -1725,7 +1725,7 @@
 									<item>
 										<first>
 											<first>data/benchmarks/sha/sha.c</first>
-											<second>sha_stream</second>
+											<second></second>
 										</first>
 										<second>207</second>
 									</item>
@@ -2242,7 +2242,7 @@
 					<coreName></coreName>
 					<isStorage>0</isStorage>
 					<storageDepth>0</storageDepth>
-					<coreId>1330007625</coreId>
+					<coreId>1212231507</coreId>
 					<rtlModuleName></rtlModuleName>
 				</Obj>
 				<node_objs>
@@ -3701,7 +3701,7 @@
 			</second>
 		</item>
 		<item>
-			<first>tmp_8_fu_155</first>
+			<first>tmp_fu_155</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>

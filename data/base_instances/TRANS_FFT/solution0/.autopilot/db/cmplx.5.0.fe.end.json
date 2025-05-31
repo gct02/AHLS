@@ -1,63 +1,44 @@
 {
-    "1": {
-        "name": "fft1D_512_Pipeline_loop1_twiddles",
-        "file": "data\/benchmarks\/trans_fft\/transposed_fft.c",
-        "fileloc": "115",
-        "instructions": "315",
-        "total_instructions": "701",
-        "calls": "3 3",
-        "basicblocks": "8",
+    "0": {
+        "name": "fft1D_512",
+        "file": "transposed_fft.c",
+        "fileloc": "114",
+        "instructions": "1379",
+        "total_instructions": "2231",
+        "calls": "1 1",
+        "basicblocks": "34",
         "loads": {
-            "G": "1",
-            "L": "19",
+            "L": "147",
             "T": "16"
         },
         "stores": {
-            "L": "40"
+            "L": "166",
+            "T": "16"
+        },
+        "loops": {
+            "L": "11"
+        }
+    },
+    "1": {
+        "name": "twiddles8",
+        "file": "transposed_fft.c",
+        "fileloc": "23",
+        "instructions": "40",
+        "total_instructions": "426",
+        "calls": "2 2",
+        "basicblocks": "4",
+        "loads": {
+            "G": "1",
+            "L": "3"
+        },
+        "stores": {
+            "L": "4"
         },
         "loops": {
             "L": "1"
         }
     },
     "2": {
-        "name": "fft1D_512_Pipeline_loop6_twiddles",
-        "file": "data\/benchmarks\/trans_fft\/transposed_fft.c",
-        "fileloc": "115",
-        "instructions": "266",
-        "total_instructions": "652",
-        "calls": "3 3",
-        "basicblocks": "8",
-        "loads": {
-            "G": "1",
-            "L": "35"
-        },
-        "stores": {
-            "L": "40"
-        },
-        "loops": {
-            "L": "1"
-        }
-    },
-    "0": {
-        "name": "fft1D_512",
-        "file": "transposed_fft.c",
-        "fileloc": "114",
-        "instructions": "941",
-        "total_instructions": "2294",
-        "calls": "1 2",
-        "basicblocks": "28",
-        "loads": {
-            "L": "105"
-        },
-        "stores": {
-            "L": "114",
-            "T": "16"
-        },
-        "loops": {
-            "L": "9"
-        }
-    },
-    "3": {
         "name": "sin_or_cos<double>",
         "file": "hls_hotbm.h",
         "fileloc": "209",

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Gsm_LPC_Analysis'" level="0">
-<item name = "Date">Thu May 29 16:47:04 2025
+<item name = "Date">Fri May 30 22:03:38 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GSM</item>
@@ -24,15 +24,15 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">1003, 1869, 8.024 us, 14.952 us, 1004, 1870, no</column>
+<column name="">1160, 2034, 9.280 us, 16.272 us, 1161, 2035, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_Autocorrelation_fu_103">Autocorrelation, 971, 1298, 7.768 us, 10.384 us, 971, 1298, no</column>
-<column name="grp_Reflection_coefficients_fu_113">Reflection_coefficients, 11, 550, 88.000 ns, 4.400 us, 11, 550, no</column>
+<column name="grp_Autocorrelation_fu_103">Autocorrelation, 1128, 1456, 9.024 us, 11.648 us, 1128, 1456, no</column>
+<column name="grp_Reflection_coefficients_fu_113">Reflection_coefficients, 11, 557, 88.000 ns, 4.456 us, 11, 557, no</column>
 <column name="grp_Quantization_and_coding_fu_122">Quantization_and_coding, 7, 7, 56.000 ns, 56.000 ns, 7, 7, no</column>
 </table>
 </item>

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date         : Thu May 29 17:35:10 2025
+| Date         : Fri May 30 23:27:45 2025
 | Host         : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command      : report_design_analysis -file ./report/sha_stream_design_analysis_synth.rpt
 | Design       : bd_0_wrapper
@@ -25,17 +25,17 @@ Table of Contents
 |      Characteristics      |                                     Path #1                                     |
 +---------------------------+---------------------------------------------------------------------------------+
 | Requirement               | 8.000                                                                           |
-| Path Delay                | 2.273                                                                           |
-| Logic Delay               | 1.770(78%)                                                                      |
-| Net Delay                 | 0.503(22%)                                                                      |
+| Path Delay                | 2.187                                                                           |
+| Logic Delay               | 1.733(80%)                                                                      |
+| Net Delay                 | 0.454(20%)                                                                      |
 | Clock Skew                | -0.037                                                                          |
-| Slack                     | 5.395                                                                           |
+| Slack                     | 5.481                                                                           |
 | Clock Uncertainty         | 0.035                                                                           |
 | Clock Relationship        | Safely Timed                                                                    |
 | Clock Delay Group         | Same Clock                                                                      |
 | Logic Levels              | 4                                                                               |
 | Routes                    | NA                                                                              |
-| Logical Path              | RAMB36E2/CLKARDCLK-(1)-RAMB36E2-RAMB36E2-RAMB36E2-LUT5-(1)-RAMB36E2/DINADIN[25] |
+| Logical Path              | RAMB36E2/CLKARDCLK-(1)-RAMB36E2-RAMB36E2-RAMB36E2-LUT4-(1)-RAMB36E2/DINADIN[25] |
 | Start Point Clock         | ap_clk                                                                          |
 | End Point Clock           | ap_clk                                                                          |
 | DSP Block                 | None                                                                            |
@@ -57,11 +57,11 @@ Table of Contents
 2. Logic Level Distribution
 ---------------------------
 
-+-----------------+-------------+-----+-----+----+-----+-----+----+----+----+---+---+----+----+
-| End Point Clock | Requirement |  0  |  1  |  2 |  3  |  4  |  5 |  6 |  7 | 8 | 9 | 10 | 11 |
-+-----------------+-------------+-----+-----+----+-----+-----+----+----+----+---+---+----+----+
-| ap_clk          | 8.000ns     | 256 | 128 | 73 | 176 | 149 | 61 | 68 | 57 | 8 | 8 |  8 |  8 |
-+-----------------+-------------+-----+-----+----+-----+-----+----+----+----+---+---+----+----+
++-----------------+-------------+-----+-----+---+----+-----+-----+----+----+----+---+----+----+
+| End Point Clock | Requirement |  0  |  1  | 2 |  3 |  4  |  5  |  6 |  7 |  8 | 9 | 10 | 11 |
++-----------------+-------------+-----+-----+---+----+-----+-----+----+----+----+---+----+----+
+| ap_clk          | 8.000ns     | 166 | 252 | 1 | 73 | 188 | 101 | 85 | 96 | 14 | 8 |  8 |  8 |
++-----------------+-------------+-----+-----+---+----+-----+-----+----+----+----+---+----+----+
 * Columns represent the logic levels per end point clock
 ** Distribution is for top worst 1000 paths
 

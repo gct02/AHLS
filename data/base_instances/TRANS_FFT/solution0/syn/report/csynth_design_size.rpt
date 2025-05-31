@@ -11,32 +11,32 @@
 | Unroll/Inline |                             |              | After user unroll and inline pragmas are applied                                       |
 |               | (1) unroll                  |  5,625       | user unroll pragmas are applied                                                        |
 |               | (2) simplification          |  3,161       | simplification of applied user unroll pragmas                                          |
-|               | (3) inline                  |  3,027       | user inline pragmas are applied                                                        |
-|               | (4) simplification          |  2,376       | simplification of applied user inline pragmas                                          |
+|               | (3) inline                  |  3,033       | user inline pragmas are applied                                                        |
+|               | (4) simplification          |  2,386       | simplification of applied user inline pragmas                                          |
 |               |                             |              |                                                                                        |
 | Array/Struct  |                             |              | After user array partition and struct aggregate/disaggregate pragmas are applied       |
-|               | (1) array partition         |  2,540       | user array partition pragmas are applied                                               |
-|               | (2) simplification          |  2,320       | simplification of applied user array partition & struct aggregate/disaggregate pragmas |
-|               | (3) aggregate/disaggregate  |  2,320       | user struct aggregate/disaggregate pragmas are applied                                 |
-|               | (4) array reshape           |  2,320       | apply array reshape pragmas                                                            |
-|               | (5) access patterns         |  2,344       | array access pattern optmizations                                                      |
+|               | (1) array partition         |  2,550       | user array partition pragmas are applied                                               |
+|               | (2) simplification          |  2,330       | simplification of applied user array partition & struct aggregate/disaggregate pragmas |
+|               | (3) aggregate/disaggregate  |  2,330       | user struct aggregate/disaggregate pragmas are applied                                 |
+|               | (4) array reshape           |  2,330       | apply array reshape pragmas                                                            |
+|               | (5) access patterns         |  2,354       | array access pattern optmizations                                                      |
 |               |                             |              |                                                                                        |
 | Performance   |                             |              | After transformations are applied to meet performance pragma targets                   |
-|               | (1) loop simplification     |  2,308       | loop and instruction simplification                                                    |
-|               | (2) parallelization         |  2,232       | loops are unrolled or pipelined to meet performance targets                            |
-|               | (3) simplification          |  2,232       | simplification of design after performance transformations                             |
+|               | (1) loop simplification     |  2,318       | loop and instruction simplification                                                    |
+|               | (2) parallelization         |  2,242       | loops are unrolled or pipelined to meet performance targets                            |
+|               | (3) simplification          |  2,242       | simplification of design after performance transformations                             |
 |               |                             |              |                                                                                        |
 | HW Transforms |                             |              | After hardware transfomations                                                          |
-|               | (1) lowering                |  2,268       | initial conversion to HW specific instructions                                         |
-|               | (2) optimizations           |  2,314       | high level synthesis optimizations                                                     |
+|               | (1) lowering                |  2,278       | initial conversion to HW specific instructions                                         |
+|               | (2) optimizations           |  2,330       | high level synthesis optimizations                                                     |
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
 
 * Instructions per Function for each Compilation Phase
 +-----------------------------------------+--------------------------+------------------+-----------------+-----------------+-----------------+-----------------+
 | Function                                | Location                 | Compile/Link     | Unroll/Inline   | Array/Struct    | Performance     | HW Transforms   |
 +-----------------------------------------+--------------------------+------------------+-----------------+-----------------+-----------------+-----------------+
-| + fft1D_512                             | transposed_fft.c:114     | 46,773           | 2,376           | 2,344           | 2,232           | 2,314           |
-|  + twiddles8                            | transposed_fft.c:23      | 43,930 (2 calls) |                 |                 |                 |                 |
+| + fft1D_512                             | transposed_fft.c:114     | 46,773           | 2,386           | 2,354           | 2,242           | 2,330           |
+|  + twiddles8                            | transposed_fft.c:23      | 43,930 (2 calls) | 1,296 (2 calls) | 1,248 (2 calls) | 1,152 (2 calls) | 1,152 (2 calls) |
 |   + cos                                 | sincosdouble.cpp:12      | 21,914 (2 calls) |                 |                 |                 |                 |
 |    + cos                                | hls_hotbm_double.cpp:143 | 21,910 (2 calls) |                 |                 |                 |                 |
 |     + sin_or_cos<double>                | hls_hotbm.h:209          | 21,906 (2 calls) |                 |                 |                 |                 |
@@ -85,9 +85,9 @@
 |      + to_ieee                          | x_hls_utils.h:509        |   588 (2 calls)  |                 |                 |                 |                 |
 |       + to_double                       | x_hls_utils.h:494        |   584 (2 calls)  |                 |                 |                 |                 |
 |          data                           | x_hls_utils.h:475        |   548 (2 calls)  |                 |                 |                 |                 |
+|   + sin_or_cos<double>                  | hls_hotbm.h:209          |                  | 1,240 (4 calls) | 1,192 (4 calls) | 1,096 (4 calls) | 1,084 (4 calls) |
+|      scaled_fixed2ieee<63, 1>           | x_hls_float_utils.h:389  |                  |  380 (4 calls)  |  388 (4 calls)  |  300 (4 calls)  |  300 (4 calls)  |
 |    loady8                               | transposed_fft.c:103     |   114 (2 calls)  |                 |                 |                 |                 |
-|  + sin_or_cos<double>                   | hls_hotbm.h:209          |                  | 1,240 (4 calls) | 1,192 (4 calls) | 1,096 (4 calls) | 1,084 (4 calls) |
-|     scaled_fixed2ieee<63, 1>            | x_hls_float_utils.h:389  |                  |  380 (4 calls)  |  388 (4 calls)  |  300 (4 calls)  |  300 (4 calls)  |
 +-----------------------------------------+--------------------------+------------------+-----------------+-----------------+-----------------+-----------------+
 
 * Design Size Message Settings

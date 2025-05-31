@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'Autocorrelation_Pipeline_Autocorrelation_label3'
 ================================================================
-* Date:           Thu May 29 16:47:04 2025
+* Date:           Fri May 30 22:03:37 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        GSM
@@ -92,14 +92,14 @@ State 1 <SV = 0> <Delay = 2.26>
 ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%idx = alloca i32 1"   --->   Operation 9 'alloca' 'idx' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [data/benchmarks/gsm/gsm_lpc.c:39]   --->   Operation 10 'alloca' 'i' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%empty = alloca i32 1"   --->   Operation 11 'alloca' 'empty' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%empty_81 = alloca i32 1"   --->   Operation 12 'alloca' 'empty_81' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%empty_82 = alloca i32 1"   --->   Operation 13 'alloca' 'empty_82' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%empty_83 = alloca i32 1"   --->   Operation 14 'alloca' 'empty_83' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%empty_84 = alloca i32 1"   --->   Operation 15 'alloca' 'empty_84' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%empty_85 = alloca i32 1"   --->   Operation 16 'alloca' 'empty_85' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%empty_86 = alloca i32 1"   --->   Operation 17 'alloca' 'empty_86' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%empty_87 = alloca i32 1"   --->   Operation 18 'alloca' 'empty_87' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%empty_88 = alloca i32 1"   --->   Operation 19 'alloca' 'empty_88' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%empty_75 = alloca i32 1"   --->   Operation 12 'alloca' 'empty_75' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%empty_76 = alloca i32 1"   --->   Operation 13 'alloca' 'empty_76' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%empty_77 = alloca i32 1"   --->   Operation 14 'alloca' 'empty_77' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%empty_78 = alloca i32 1"   --->   Operation 15 'alloca' 'empty_78' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%empty_79 = alloca i32 1"   --->   Operation 16 'alloca' 'empty_79' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%empty_80 = alloca i32 1"   --->   Operation 17 'alloca' 'empty_80' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%empty_81 = alloca i32 1"   --->   Operation 18 'alloca' 'empty_81' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%empty_82 = alloca i32 1"   --->   Operation 19 'alloca' 'empty_82' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %indata, void @empty_9, i32 0, i32 0, void @empty, i32 4294967295, i32 0, void @empty, void @empty, void @empty, i32 0, i32 0, i32 0, i32 0, void @empty, void @empty, i32 4294967295, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%add_ln119_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln119"   --->   Operation 21 'read' 'add_ln119_read' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%add_ln120_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln120"   --->   Operation 22 'read' 'add_ln120_read' <Predicate = true> <Delay = 0.00>
@@ -109,15 +109,15 @@ ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%add_ln123_read = read i64 @_ssdm_o
 ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%add_ln124_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln124"   --->   Operation 26 'read' 'add_ln124_read' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%add_ln125_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln125"   --->   Operation 27 'read' 'add_ln125_read' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%add_ln126_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln126"   --->   Operation 28 'read' 'add_ln126_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%L_ACF_load_8_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %L_ACF_load_8"   --->   Operation 29 'read' 'L_ACF_load_8_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 30 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %L_ACF_load_8_read, i64 %empty_88"   --->   Operation 30 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
-ST_1 : Operation 31 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln126_read, i64 %empty_87"   --->   Operation 31 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
-ST_1 : Operation 32 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln125_read, i64 %empty_86"   --->   Operation 32 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
-ST_1 : Operation 33 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln124_read, i64 %empty_85"   --->   Operation 33 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
-ST_1 : Operation 34 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln123_read, i64 %empty_84"   --->   Operation 34 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
-ST_1 : Operation 35 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln122_read, i64 %empty_83"   --->   Operation 35 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
-ST_1 : Operation 36 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln121_read, i64 %empty_82"   --->   Operation 36 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
-ST_1 : Operation 37 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln120_read, i64 %empty_81"   --->   Operation 37 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%L_ACF_load_9_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %L_ACF_load_9"   --->   Operation 29 'read' 'L_ACF_load_9_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %L_ACF_load_9_read, i64 %empty_82"   --->   Operation 30 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 31 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln126_read, i64 %empty_81"   --->   Operation 31 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 32 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln125_read, i64 %empty_80"   --->   Operation 32 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 33 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln124_read, i64 %empty_79"   --->   Operation 33 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 34 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln123_read, i64 %empty_78"   --->   Operation 34 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 35 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln122_read, i64 %empty_77"   --->   Operation 35 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 36 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln121_read, i64 %empty_76"   --->   Operation 36 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 37 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln120_read, i64 %empty_75"   --->   Operation 37 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
 ST_1 : Operation 38 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln119_read, i64 %empty"   --->   Operation 38 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
 ST_1 : Operation 39 [1/1] (0.38ns)   --->   "%store_ln39 = store i8 8, i8 %i" [data/benchmarks/gsm/gsm_lpc.c:39]   --->   Operation 39 'store' 'store_ln39' <Predicate = true> <Delay = 0.38>
 ST_1 : Operation 40 [1/1] (0.38ns)   --->   "%store_ln0 = store i8 0, i8 %idx"   --->   Operation 40 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
@@ -139,7 +139,7 @@ ST_1 : Operation 55 [1/1] (0.38ns)   --->   "%store_ln39 = store i8 %i_11, i8 %i
 
 State 2 <SV = 1> <Delay = 4.65>
 ST_2 : Operation 56 [1/1] (0.00ns)   --->   "%p_load33 = load i64 %empty" [data/benchmarks/gsm/gsm_lpc.c:132]   --->   Operation 56 'load' 'p_load33' <Predicate = (!icmp_ln129)> <Delay = 0.00>
-ST_2 : Operation 57 [1/1] (0.00ns)   --->   "%p_load31 = load i64 %empty_81" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 57 'load' 'p_load31' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_2 : Operation 57 [1/1] (0.00ns)   --->   "%p_load31 = load i64 %empty_75" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 57 'load' 'p_load31' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_2 : Operation 58 [1/2] (1.17ns)   --->   "%sl = load i8 %indata_addr" [data/benchmarks/gsm/gsm_lpc.c:131]   --->   Operation 58 'load' 'sl' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
 ST_2 : Operation 59 [1/1] (0.00ns)   --->   "%sext_ln132 = sext i16 %sl" [data/benchmarks/gsm/gsm_lpc.c:132]   --->   Operation 59 'sext' 'sext_ln132' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_2 : Operation 60 [1/1] (1.94ns)   --->   "%mul_ln132 = mul i32 %sext_ln132, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:132]   --->   Operation 60 'mul' 'mul_ln132' <Predicate = (!icmp_ln129)> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
@@ -158,12 +158,12 @@ ST_2 : Operation 72 [1/1] (0.70ns)   --->   "%add_ln135 = add i8 %idx_load, i8 5
 ST_2 : Operation 73 [1/1] (0.00ns)   --->   "%zext_ln135 = zext i8 %add_ln135" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 73 'zext' 'zext_ln135' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_2 : Operation 74 [1/1] (0.00ns)   --->   "%indata_addr_3 = getelementptr i16 %indata, i64 0, i64 %zext_ln135" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 74 'getelementptr' 'indata_addr_3' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_2 : Operation 75 [2/2] (1.17ns)   --->   "%indata_load_2 = load i8 %indata_addr_3" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 75 'load' 'indata_load_2' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
-ST_2 : Operation 76 [1/1] (0.38ns)   --->   "%store_ln133 = store i64 %add_ln133, i64 %empty_81" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 76 'store' 'store_ln133' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_2 : Operation 76 [1/1] (0.38ns)   --->   "%store_ln133 = store i64 %add_ln133, i64 %empty_75" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 76 'store' 'store_ln133' <Predicate = (!icmp_ln129)> <Delay = 0.38>
 ST_2 : Operation 77 [1/1] (0.38ns)   --->   "%store_ln132 = store i64 %add_ln132, i64 %empty" [data/benchmarks/gsm/gsm_lpc.c:132]   --->   Operation 77 'store' 'store_ln132' <Predicate = (!icmp_ln129)> <Delay = 0.38>
 
 State 3 <SV = 2> <Delay = 4.65>
-ST_3 : Operation 78 [1/1] (0.00ns)   --->   "%p_load29 = load i64 %empty_82" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 78 'load' 'p_load29' <Predicate = (!icmp_ln129)> <Delay = 0.00>
-ST_3 : Operation 79 [1/1] (0.00ns)   --->   "%p_load27 = load i64 %empty_83" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 79 'load' 'p_load27' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_3 : Operation 78 [1/1] (0.00ns)   --->   "%p_load29 = load i64 %empty_76" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 78 'load' 'p_load29' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_3 : Operation 79 [1/1] (0.00ns)   --->   "%p_load27 = load i64 %empty_77" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 79 'load' 'p_load27' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_3 : Operation 80 [1/2] (1.17ns)   --->   "%indata_load_1 = load i8 %indata_addr_2" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 80 'load' 'indata_load_1' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
 ST_3 : Operation 81 [1/1] (0.00ns)   --->   "%sext_ln134 = sext i16 %indata_load_1" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 81 'sext' 'sext_ln134' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_3 : Operation 82 [1/1] (1.94ns)   --->   "%mul_ln134 = mul i32 %sext_ln134, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 82 'mul' 'mul_ln134' <Predicate = (!icmp_ln129)> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
@@ -182,13 +182,13 @@ ST_3 : Operation 94 [1/1] (0.70ns)   --->   "%add_ln137 = add i8 %idx_load, i8 3
 ST_3 : Operation 95 [1/1] (0.00ns)   --->   "%zext_ln137 = zext i8 %add_ln137" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 95 'zext' 'zext_ln137' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_3 : Operation 96 [1/1] (0.00ns)   --->   "%indata_addr_5 = getelementptr i16 %indata, i64 0, i64 %zext_ln137" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 96 'getelementptr' 'indata_addr_5' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_3 : Operation 97 [2/2] (1.17ns)   --->   "%indata_load_4 = load i8 %indata_addr_5" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 97 'load' 'indata_load_4' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
-ST_3 : Operation 98 [1/1] (0.38ns)   --->   "%store_ln135 = store i64 %add_ln135_1, i64 %empty_83" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 98 'store' 'store_ln135' <Predicate = (!icmp_ln129)> <Delay = 0.38>
-ST_3 : Operation 99 [1/1] (0.38ns)   --->   "%store_ln134 = store i64 %add_ln134_1, i64 %empty_82" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 99 'store' 'store_ln134' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_3 : Operation 98 [1/1] (0.38ns)   --->   "%store_ln135 = store i64 %add_ln135_1, i64 %empty_77" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 98 'store' 'store_ln135' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_3 : Operation 99 [1/1] (0.38ns)   --->   "%store_ln134 = store i64 %add_ln134_1, i64 %empty_76" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 99 'store' 'store_ln134' <Predicate = (!icmp_ln129)> <Delay = 0.38>
 
 State 4 <SV = 3> <Delay = 4.65>
 ST_4 : Operation 100 [1/1] (0.70ns)   --->   "%add_ln139 = add i8 %idx_load, i8 1" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 100 'add' 'add_ln139' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_4 : Operation 101 [1/1] (0.00ns)   --->   "%p_load25 = load i64 %empty_84" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 101 'load' 'p_load25' <Predicate = (!icmp_ln129)> <Delay = 0.00>
-ST_4 : Operation 102 [1/1] (0.00ns)   --->   "%p_load23 = load i64 %empty_85" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 102 'load' 'p_load23' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 101 [1/1] (0.00ns)   --->   "%p_load25 = load i64 %empty_78" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 101 'load' 'p_load25' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 102 [1/1] (0.00ns)   --->   "%p_load23 = load i64 %empty_79" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 102 'load' 'p_load23' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_4 : Operation 103 [1/2] (1.17ns)   --->   "%indata_load_3 = load i8 %indata_addr_4" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 103 'load' 'indata_load_3' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
 ST_4 : Operation 104 [1/1] (0.00ns)   --->   "%sext_ln136 = sext i16 %indata_load_3" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 104 'sext' 'sext_ln136' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_4 : Operation 105 [1/1] (1.94ns)   --->   "%mul_ln136 = mul i32 %sext_ln136, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 105 'mul' 'mul_ln136' <Predicate = (!icmp_ln129)> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
@@ -206,18 +206,18 @@ ST_4 : Operation 116 [2/2] (1.17ns)   --->   "%indata_load_5 = load i8 %indata_a
 ST_4 : Operation 117 [1/1] (0.00ns)   --->   "%zext_ln139 = zext i8 %add_ln139" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 117 'zext' 'zext_ln139' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_4 : Operation 118 [1/1] (0.00ns)   --->   "%indata_addr_7 = getelementptr i16 %indata, i64 0, i64 %zext_ln139" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 118 'getelementptr' 'indata_addr_7' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_4 : Operation 119 [2/2] (1.17ns)   --->   "%indata_load_6 = load i8 %indata_addr_7" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 119 'load' 'indata_load_6' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
-ST_4 : Operation 120 [1/1] (0.38ns)   --->   "%store_ln137 = store i64 %add_ln137_1, i64 %empty_85" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 120 'store' 'store_ln137' <Predicate = (!icmp_ln129)> <Delay = 0.38>
-ST_4 : Operation 121 [1/1] (0.38ns)   --->   "%store_ln136 = store i64 %add_ln136_1, i64 %empty_84" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 121 'store' 'store_ln136' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_4 : Operation 120 [1/1] (0.38ns)   --->   "%store_ln137 = store i64 %add_ln137_1, i64 %empty_79" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 120 'store' 'store_ln137' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_4 : Operation 121 [1/1] (0.38ns)   --->   "%store_ln136 = store i64 %add_ln136_1, i64 %empty_78" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 121 'store' 'store_ln136' <Predicate = (!icmp_ln129)> <Delay = 0.38>
 ST_4 : Operation 122 [1/1] (0.38ns)   --->   "%store_ln139 = store i8 %add_ln139, i8 %idx" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 122 'store' 'store_ln139' <Predicate = (!icmp_ln129)> <Delay = 0.38>
 ST_4 : Operation 151 [1/1] (0.00ns)   --->   "%p_load34 = load i64 %empty"   --->   Operation 151 'load' 'p_load34' <Predicate = (icmp_ln129)> <Delay = 0.00>
-ST_4 : Operation 152 [1/1] (0.00ns)   --->   "%p_load32 = load i64 %empty_81"   --->   Operation 152 'load' 'p_load32' <Predicate = (icmp_ln129)> <Delay = 0.00>
-ST_4 : Operation 153 [1/1] (0.00ns)   --->   "%p_load30 = load i64 %empty_82"   --->   Operation 153 'load' 'p_load30' <Predicate = (icmp_ln129)> <Delay = 0.00>
-ST_4 : Operation 154 [1/1] (0.00ns)   --->   "%p_load28 = load i64 %empty_83"   --->   Operation 154 'load' 'p_load28' <Predicate = (icmp_ln129)> <Delay = 0.00>
-ST_4 : Operation 155 [1/1] (0.00ns)   --->   "%p_load26 = load i64 %empty_84"   --->   Operation 155 'load' 'p_load26' <Predicate = (icmp_ln129)> <Delay = 0.00>
-ST_4 : Operation 156 [1/1] (0.00ns)   --->   "%p_load24 = load i64 %empty_85"   --->   Operation 156 'load' 'p_load24' <Predicate = (icmp_ln129)> <Delay = 0.00>
-ST_4 : Operation 157 [1/1] (0.00ns)   --->   "%p_load22 = load i64 %empty_86"   --->   Operation 157 'load' 'p_load22' <Predicate = (icmp_ln129)> <Delay = 0.00>
-ST_4 : Operation 158 [1/1] (0.00ns)   --->   "%p_load20 = load i64 %empty_87"   --->   Operation 158 'load' 'p_load20' <Predicate = (icmp_ln129)> <Delay = 0.00>
-ST_4 : Operation 159 [1/1] (0.00ns)   --->   "%p_load18 = load i64 %empty_88"   --->   Operation 159 'load' 'p_load18' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 152 [1/1] (0.00ns)   --->   "%p_load32 = load i64 %empty_75"   --->   Operation 152 'load' 'p_load32' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 153 [1/1] (0.00ns)   --->   "%p_load30 = load i64 %empty_76"   --->   Operation 153 'load' 'p_load30' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 154 [1/1] (0.00ns)   --->   "%p_load28 = load i64 %empty_77"   --->   Operation 154 'load' 'p_load28' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 155 [1/1] (0.00ns)   --->   "%p_load26 = load i64 %empty_78"   --->   Operation 155 'load' 'p_load26' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 156 [1/1] (0.00ns)   --->   "%p_load24 = load i64 %empty_79"   --->   Operation 156 'load' 'p_load24' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 157 [1/1] (0.00ns)   --->   "%p_load22 = load i64 %empty_80"   --->   Operation 157 'load' 'p_load22' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 158 [1/1] (0.00ns)   --->   "%p_load20 = load i64 %empty_81"   --->   Operation 158 'load' 'p_load20' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 159 [1/1] (0.00ns)   --->   "%p_load18 = load i64 %empty_82"   --->   Operation 159 'load' 'p_load18' <Predicate = (icmp_ln129)> <Delay = 0.00>
 ST_4 : Operation 160 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %p_out, i64 %p_load18"   --->   Operation 160 'write' 'write_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
 ST_4 : Operation 161 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %p_out1, i64 %p_load20"   --->   Operation 161 'write' 'write_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
 ST_4 : Operation 162 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %p_out2, i64 %p_load22"   --->   Operation 162 'write' 'write_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
@@ -230,8 +230,8 @@ ST_4 : Operation 168 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_
 ST_4 : Operation 169 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 169 'ret' 'ret_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
 
 State 5 <SV = 4> <Delay = 4.65>
-ST_5 : Operation 123 [1/1] (0.00ns)   --->   "%p_load21 = load i64 %empty_86" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 123 'load' 'p_load21' <Predicate = (!icmp_ln129)> <Delay = 0.00>
-ST_5 : Operation 124 [1/1] (0.00ns)   --->   "%p_load19 = load i64 %empty_87" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 124 'load' 'p_load19' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_5 : Operation 123 [1/1] (0.00ns)   --->   "%p_load21 = load i64 %empty_80" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 123 'load' 'p_load21' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_5 : Operation 124 [1/1] (0.00ns)   --->   "%p_load19 = load i64 %empty_81" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 124 'load' 'p_load19' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_5 : Operation 125 [1/1] (0.00ns)   --->   "%zext_ln129 = zext i8 %idx_load" [data/benchmarks/gsm/gsm_lpc.c:129]   --->   Operation 125 'zext' 'zext_ln129' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_5 : Operation 126 [1/2] (1.17ns)   --->   "%indata_load_5 = load i8 %indata_addr_6" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 126 'load' 'indata_load_5' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
 ST_5 : Operation 127 [1/1] (0.00ns)   --->   "%sext_ln138 = sext i16 %indata_load_5" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 127 'sext' 'sext_ln138' <Predicate = (!icmp_ln129)> <Delay = 0.00>
@@ -245,20 +245,20 @@ ST_5 : Operation 134 [1/1] (0.00ns)   --->   "%sext_ln139_1 = sext i32 %mul_ln13
 ST_5 : Operation 135 [1/1] (1.14ns)   --->   "%add_ln139_1 = add i64 %sext_ln139_1, i64 %p_load19" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 135 'add' 'add_ln139_1' <Predicate = (!icmp_ln129)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_5 : Operation 136 [1/1] (0.00ns)   --->   "%indata_addr_8 = getelementptr i16 %indata, i64 0, i64 %zext_ln129" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 136 'getelementptr' 'indata_addr_8' <Predicate = (!icmp_ln129)> <Delay = 0.00>
 ST_5 : Operation 137 [2/2] (1.17ns)   --->   "%indata_load_7 = load i8 %indata_addr_8" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 137 'load' 'indata_load_7' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
-ST_5 : Operation 138 [1/1] (0.38ns)   --->   "%store_ln139 = store i64 %add_ln139_1, i64 %empty_87" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 138 'store' 'store_ln139' <Predicate = (!icmp_ln129)> <Delay = 0.38>
-ST_5 : Operation 139 [1/1] (0.38ns)   --->   "%store_ln138 = store i64 %add_ln138_1, i64 %empty_86" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 139 'store' 'store_ln138' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_5 : Operation 138 [1/1] (0.38ns)   --->   "%store_ln139 = store i64 %add_ln139_1, i64 %empty_81" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 138 'store' 'store_ln139' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_5 : Operation 139 [1/1] (0.38ns)   --->   "%store_ln138 = store i64 %add_ln138_1, i64 %empty_80" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 139 'store' 'store_ln138' <Predicate = (!icmp_ln129)> <Delay = 0.38>
 
 State 6 <SV = 5> <Delay = 4.65>
-ST_6 : Operation 140 [1/1] (0.00ns)   --->   "%p_load = load i64 %empty_88" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 140 'load' 'p_load' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 140 [1/1] (0.00ns)   --->   "%p_load = load i64 %empty_82" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 140 'load' 'p_load' <Predicate = true> <Delay = 0.00>
 ST_6 : Operation 141 [1/1] (0.00ns)   --->   "%specpipeline_ln43 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty" [data/benchmarks/gsm/gsm_lpc.c:43]   --->   Operation 141 'specpipeline' 'specpipeline_ln43' <Predicate = true> <Delay = 0.00>
 ST_6 : Operation 142 [1/1] (0.00ns)   --->   "%speclooptripcount_ln130 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 152, i64 152, i64 152" [data/benchmarks/gsm/gsm_lpc.c:130]   --->   Operation 142 'speclooptripcount' 'speclooptripcount_ln130' <Predicate = true> <Delay = 0.00>
-ST_6 : Operation 143 [1/1] (0.00ns)   --->   "%specloopname_ln129 = specloopname void @_ssdm_op_SpecLoopName, void @empty_4" [data/benchmarks/gsm/gsm_lpc.c:129]   --->   Operation 143 'specloopname' 'specloopname_ln129' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 143 [1/1] (0.00ns)   --->   "%specloopname_ln129 = specloopname void @_ssdm_op_SpecLoopName, void @empty_5" [data/benchmarks/gsm/gsm_lpc.c:129]   --->   Operation 143 'specloopname' 'specloopname_ln129' <Predicate = true> <Delay = 0.00>
 ST_6 : Operation 144 [1/2] (1.17ns)   --->   "%indata_load_7 = load i8 %indata_addr_8" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 144 'load' 'indata_load_7' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
 ST_6 : Operation 145 [1/1] (0.00ns)   --->   "%sext_ln140 = sext i16 %indata_load_7" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 145 'sext' 'sext_ln140' <Predicate = true> <Delay = 0.00>
 ST_6 : Operation 146 [1/1] (1.94ns)   --->   "%mul_ln140 = mul i32 %sext_ln140, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 146 'mul' 'mul_ln140' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 ST_6 : Operation 147 [1/1] (0.00ns)   --->   "%sext_ln140_1 = sext i32 %mul_ln140" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 147 'sext' 'sext_ln140_1' <Predicate = true> <Delay = 0.00>
 ST_6 : Operation 148 [1/1] (1.14ns)   --->   "%add_ln140 = add i64 %sext_ln140_1, i64 %p_load" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 148 'add' 'add_ln140' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_6 : Operation 149 [1/1] (0.38ns)   --->   "%store_ln140 = store i64 %add_ln140, i64 %empty_88" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 149 'store' 'store_ln140' <Predicate = true> <Delay = 0.38>
+ST_6 : Operation 149 [1/1] (0.38ns)   --->   "%store_ln140 = store i64 %add_ln140, i64 %empty_82" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 149 'store' 'store_ln140' <Predicate = true> <Delay = 0.38>
 ST_6 : Operation 150 [1/1] (0.00ns)   --->   "%br_ln129 = br void %for.inc318" [data/benchmarks/gsm/gsm_lpc.c:129]   --->   Operation 150 'br' 'br_ln129' <Predicate = true> <Delay = 0.00>
 
 
@@ -273,7 +273,7 @@ STG Binding:
 - Is pipelined: 0
 - Is top level: 0
 Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
-Port [ L_ACF_load_8]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ L_ACF_load_9]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
 Port [ add_ln126]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
 Port [ add_ln125]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
 Port [ add_ln124]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
@@ -301,14 +301,14 @@ Port [ p_out8]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; ext
 idx                     (alloca           ) [ 0111100]
 i                       (alloca           ) [ 0100000]
 empty                   (alloca           ) [ 0111100]
-empty_81                (alloca           ) [ 0111100]
-empty_82                (alloca           ) [ 0111100]
-empty_83                (alloca           ) [ 0111100]
-empty_84                (alloca           ) [ 0111100]
-empty_85                (alloca           ) [ 0111100]
-empty_86                (alloca           ) [ 0111110]
-empty_87                (alloca           ) [ 0111110]
-empty_88                (alloca           ) [ 0111111]
+empty_75                (alloca           ) [ 0111100]
+empty_76                (alloca           ) [ 0111100]
+empty_77                (alloca           ) [ 0111100]
+empty_78                (alloca           ) [ 0111100]
+empty_79                (alloca           ) [ 0111100]
+empty_80                (alloca           ) [ 0111110]
+empty_81                (alloca           ) [ 0111110]
+empty_82                (alloca           ) [ 0111111]
 specinterface_ln0       (specinterface    ) [ 0000000]
 add_ln119_read          (read             ) [ 0000000]
 add_ln120_read          (read             ) [ 0000000]
@@ -318,7 +318,7 @@ add_ln123_read          (read             ) [ 0000000]
 add_ln124_read          (read             ) [ 0000000]
 add_ln125_read          (read             ) [ 0000000]
 add_ln126_read          (read             ) [ 0000000]
-L_ACF_load_8_read       (read             ) [ 0000000]
+L_ACF_load_9_read       (read             ) [ 0000000]
 store_ln0               (store            ) [ 0000000]
 store_ln0               (store            ) [ 0000000]
 store_ln0               (store            ) [ 0000000]
@@ -455,12 +455,12 @@ ret_ln0                 (ret              ) [ 0000000]
 <model>
 
 <comp_list>
-<comp id="0" class="1000" name="L_ACF_load_8">
+<comp id="0" class="1000" name="L_ACF_load_9">
 <pin_list>
 <pin id="1" dir="1" index="0" bw="1" slack="0"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="L_ACF_load_8"/></StgValue>
+<StgValue><ssdm name="L_ACF_load_9"/></StgValue>
 </bind>
 </comp>
 
@@ -830,7 +830,7 @@ ret_ln0                 (ret              ) [ 0000000]
 <pin id="83" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="empty_4"/></StgValue>
+<StgValue><ssdm name="empty_5"/></StgValue>
 </bind>
 </comp>
 
@@ -876,10 +876,76 @@ ret_ln0                 (ret              ) [ 0000000]
 </bind>
 </comp>
 
-<comp id="98" class="1004" name="empty_81_fu_98">
+<comp id="98" class="1004" name="empty_75_fu_98">
 <pin_list>
 <pin id="99" dir="0" index="0" bw="1" slack="0"/>
 <pin id="100" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="empty_75/1 "/>
+</bind>
+</comp>
+
+<comp id="102" class="1004" name="empty_76_fu_102">
+<pin_list>
+<pin id="103" dir="0" index="0" bw="1" slack="0"/>
+<pin id="104" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="empty_76/1 "/>
+</bind>
+</comp>
+
+<comp id="106" class="1004" name="empty_77_fu_106">
+<pin_list>
+<pin id="107" dir="0" index="0" bw="1" slack="0"/>
+<pin id="108" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="empty_77/1 "/>
+</bind>
+</comp>
+
+<comp id="110" class="1004" name="empty_78_fu_110">
+<pin_list>
+<pin id="111" dir="0" index="0" bw="1" slack="0"/>
+<pin id="112" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="empty_78/1 "/>
+</bind>
+</comp>
+
+<comp id="114" class="1004" name="empty_79_fu_114">
+<pin_list>
+<pin id="115" dir="0" index="0" bw="1" slack="0"/>
+<pin id="116" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="empty_79/1 "/>
+</bind>
+</comp>
+
+<comp id="118" class="1004" name="empty_80_fu_118">
+<pin_list>
+<pin id="119" dir="0" index="0" bw="1" slack="0"/>
+<pin id="120" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="empty_80/1 "/>
+</bind>
+</comp>
+
+<comp id="122" class="1004" name="empty_81_fu_122">
+<pin_list>
+<pin id="123" dir="0" index="0" bw="1" slack="0"/>
+<pin id="124" dir="1" index="1" bw="64" slack="0"/>
 </pin_list>
 <bind>
 <opcode="alloca(26) " fcode="alloca"/>
@@ -887,80 +953,14 @@ ret_ln0                 (ret              ) [ 0000000]
 </bind>
 </comp>
 
-<comp id="102" class="1004" name="empty_82_fu_102">
-<pin_list>
-<pin id="103" dir="0" index="0" bw="1" slack="0"/>
-<pin id="104" dir="1" index="1" bw="64" slack="0"/>
-</pin_list>
-<bind>
-<opcode="alloca(26) " fcode="alloca"/>
-<opset="empty_82/1 "/>
-</bind>
-</comp>
-
-<comp id="106" class="1004" name="empty_83_fu_106">
-<pin_list>
-<pin id="107" dir="0" index="0" bw="1" slack="0"/>
-<pin id="108" dir="1" index="1" bw="64" slack="0"/>
-</pin_list>
-<bind>
-<opcode="alloca(26) " fcode="alloca"/>
-<opset="empty_83/1 "/>
-</bind>
-</comp>
-
-<comp id="110" class="1004" name="empty_84_fu_110">
-<pin_list>
-<pin id="111" dir="0" index="0" bw="1" slack="0"/>
-<pin id="112" dir="1" index="1" bw="64" slack="0"/>
-</pin_list>
-<bind>
-<opcode="alloca(26) " fcode="alloca"/>
-<opset="empty_84/1 "/>
-</bind>
-</comp>
-
-<comp id="114" class="1004" name="empty_85_fu_114">
-<pin_list>
-<pin id="115" dir="0" index="0" bw="1" slack="0"/>
-<pin id="116" dir="1" index="1" bw="64" slack="0"/>
-</pin_list>
-<bind>
-<opcode="alloca(26) " fcode="alloca"/>
-<opset="empty_85/1 "/>
-</bind>
-</comp>
-
-<comp id="118" class="1004" name="empty_86_fu_118">
-<pin_list>
-<pin id="119" dir="0" index="0" bw="1" slack="0"/>
-<pin id="120" dir="1" index="1" bw="64" slack="0"/>
-</pin_list>
-<bind>
-<opcode="alloca(26) " fcode="alloca"/>
-<opset="empty_86/1 "/>
-</bind>
-</comp>
-
-<comp id="122" class="1004" name="empty_87_fu_122">
-<pin_list>
-<pin id="123" dir="0" index="0" bw="1" slack="0"/>
-<pin id="124" dir="1" index="1" bw="64" slack="0"/>
-</pin_list>
-<bind>
-<opcode="alloca(26) " fcode="alloca"/>
-<opset="empty_87/1 "/>
-</bind>
-</comp>
-
-<comp id="126" class="1004" name="empty_88_fu_126">
+<comp id="126" class="1004" name="empty_82_fu_126">
 <pin_list>
 <pin id="127" dir="0" index="0" bw="1" slack="0"/>
 <pin id="128" dir="1" index="1" bw="64" slack="0"/>
 </pin_list>
 <bind>
 <opcode="alloca(26) " fcode="alloca"/>
-<opset="empty_88/1 "/>
+<opset="empty_82/1 "/>
 </bind>
 </comp>
 
@@ -1060,7 +1060,7 @@ ret_ln0                 (ret              ) [ 0000000]
 </bind>
 </comp>
 
-<comp id="178" class="1004" name="L_ACF_load_8_read_read_fu_178">
+<comp id="178" class="1004" name="L_ACF_load_9_read_read_fu_178">
 <pin_list>
 <pin id="179" dir="0" index="0" bw="64" slack="0"/>
 <pin id="180" dir="0" index="1" bw="64" slack="0"/>
@@ -1068,7 +1068,7 @@ ret_ln0                 (ret              ) [ 0000000]
 </pin_list>
 <bind>
 <opcode="read(1150) " fcode="read"/>
-<opset="L_ACF_load_8_read/1 "/>
+<opset="L_ACF_load_9_read/1 "/>
 </bind>
 </comp>
 
@@ -2470,83 +2470,83 @@ ret_ln0                 (ret              ) [ 0000000]
 </bind>
 </comp>
 
-<comp id="800" class="1005" name="empty_81_reg_800">
+<comp id="800" class="1005" name="empty_75_reg_800">
 <pin_list>
 <pin id="801" dir="0" index="0" bw="64" slack="0"/>
 <pin id="802" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opset="empty_75 "/>
+</bind>
+</comp>
+
+<comp id="808" class="1005" name="empty_76_reg_808">
+<pin_list>
+<pin id="809" dir="0" index="0" bw="64" slack="0"/>
+<pin id="810" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opset="empty_76 "/>
+</bind>
+</comp>
+
+<comp id="816" class="1005" name="empty_77_reg_816">
+<pin_list>
+<pin id="817" dir="0" index="0" bw="64" slack="0"/>
+<pin id="818" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opset="empty_77 "/>
+</bind>
+</comp>
+
+<comp id="824" class="1005" name="empty_78_reg_824">
+<pin_list>
+<pin id="825" dir="0" index="0" bw="64" slack="0"/>
+<pin id="826" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opset="empty_78 "/>
+</bind>
+</comp>
+
+<comp id="832" class="1005" name="empty_79_reg_832">
+<pin_list>
+<pin id="833" dir="0" index="0" bw="64" slack="0"/>
+<pin id="834" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opset="empty_79 "/>
+</bind>
+</comp>
+
+<comp id="840" class="1005" name="empty_80_reg_840">
+<pin_list>
+<pin id="841" dir="0" index="0" bw="64" slack="0"/>
+<pin id="842" dir="1" index="1" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opset="empty_80 "/>
+</bind>
+</comp>
+
+<comp id="848" class="1005" name="empty_81_reg_848">
+<pin_list>
+<pin id="849" dir="0" index="0" bw="64" slack="0"/>
+<pin id="850" dir="1" index="1" bw="64" slack="0"/>
 </pin_list>
 <bind>
 <opset="empty_81 "/>
 </bind>
 </comp>
 
-<comp id="808" class="1005" name="empty_82_reg_808">
-<pin_list>
-<pin id="809" dir="0" index="0" bw="64" slack="0"/>
-<pin id="810" dir="1" index="1" bw="64" slack="0"/>
-</pin_list>
-<bind>
-<opset="empty_82 "/>
-</bind>
-</comp>
-
-<comp id="816" class="1005" name="empty_83_reg_816">
-<pin_list>
-<pin id="817" dir="0" index="0" bw="64" slack="0"/>
-<pin id="818" dir="1" index="1" bw="64" slack="0"/>
-</pin_list>
-<bind>
-<opset="empty_83 "/>
-</bind>
-</comp>
-
-<comp id="824" class="1005" name="empty_84_reg_824">
-<pin_list>
-<pin id="825" dir="0" index="0" bw="64" slack="0"/>
-<pin id="826" dir="1" index="1" bw="64" slack="0"/>
-</pin_list>
-<bind>
-<opset="empty_84 "/>
-</bind>
-</comp>
-
-<comp id="832" class="1005" name="empty_85_reg_832">
-<pin_list>
-<pin id="833" dir="0" index="0" bw="64" slack="0"/>
-<pin id="834" dir="1" index="1" bw="64" slack="0"/>
-</pin_list>
-<bind>
-<opset="empty_85 "/>
-</bind>
-</comp>
-
-<comp id="840" class="1005" name="empty_86_reg_840">
-<pin_list>
-<pin id="841" dir="0" index="0" bw="64" slack="0"/>
-<pin id="842" dir="1" index="1" bw="64" slack="0"/>
-</pin_list>
-<bind>
-<opset="empty_86 "/>
-</bind>
-</comp>
-
-<comp id="848" class="1005" name="empty_87_reg_848">
-<pin_list>
-<pin id="849" dir="0" index="0" bw="64" slack="0"/>
-<pin id="850" dir="1" index="1" bw="64" slack="0"/>
-</pin_list>
-<bind>
-<opset="empty_87 "/>
-</bind>
-</comp>
-
-<comp id="856" class="1005" name="empty_88_reg_856">
+<comp id="856" class="1005" name="empty_82_reg_856">
 <pin_list>
 <pin id="857" dir="0" index="0" bw="64" slack="0"/>
 <pin id="858" dir="1" index="1" bw="64" slack="0"/>
 </pin_list>
 <bind>
-<opset="empty_88 "/>
+<opset="empty_82 "/>
 </bind>
 </comp>
 
@@ -3232,7 +3232,7 @@ ret_ln0                 (ret              ) [ 0000000]
 	Port: p_out7 | {4 }
 	Port: p_out8 | {4 }
  - Input state : 
-	Port: Autocorrelation_Pipeline_Autocorrelation_label3 : L_ACF_load_8 | {1 }
+	Port: Autocorrelation_Pipeline_Autocorrelation_label3 : L_ACF_load_9 | {1 }
 	Port: Autocorrelation_Pipeline_Autocorrelation_label3 : add_ln126 | {1 }
 	Port: Autocorrelation_Pipeline_Autocorrelation_label3 : add_ln125 | {1 }
 	Port: Autocorrelation_Pipeline_Autocorrelation_label3 : add_ln124 | {1 }
@@ -3389,7 +3389,7 @@ ret_ln0                 (ret              ) [ 0000000]
 |          |   add_ln124_read_read_fu_160  |    0    |    0    |    0    |
 |          |   add_ln125_read_read_fu_166  |    0    |    0    |    0    |
 |          |   add_ln126_read_read_fu_172  |    0    |    0    |    0    |
-|          | L_ACF_load_8_read_read_fu_178 |    0    |    0    |    0    |
+|          | L_ACF_load_9_read_read_fu_178 |    0    |    0    |    0    |
 |----------|-------------------------------|---------|---------|---------|
 |          |     write_ln0_write_fu_184    |    0    |    0    |    0    |
 |          |     write_ln0_write_fu_191    |    0    |    0    |    0    |
@@ -3440,14 +3440,14 @@ N/A
 +---------------------+--------+
 |                     |   FF   |
 +---------------------+--------+
-|   empty_81_reg_800  |   64   |
-|   empty_82_reg_808  |   64   |
-|   empty_83_reg_816  |   64   |
-|   empty_84_reg_824  |   64   |
-|   empty_85_reg_832  |   64   |
-|   empty_86_reg_840  |   64   |
-|   empty_87_reg_848  |   64   |
-|   empty_88_reg_856  |   64   |
+|   empty_75_reg_800  |   64   |
+|   empty_76_reg_808  |   64   |
+|   empty_77_reg_816  |   64   |
+|   empty_78_reg_824  |   64   |
+|   empty_79_reg_832  |   64   |
+|   empty_80_reg_840  |   64   |
+|   empty_81_reg_848  |   64   |
+|   empty_82_reg_856  |   64   |
 |    empty_reg_792    |   64   |
 |      i_reg_785      |    8   |
 |  icmp_ln129_reg_875 |    1   |

@@ -36,7 +36,7 @@ end;
 architecture behav of aes_main is 
     attribute CORE_GENERATION_INFO : STRING;
     attribute CORE_GENERATION_INFO of behav : architecture is
-    "aes_main_aes_main,hls_ip_2023_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xcu50-fsvh2104-2-e,HLS_INPUT_CLOCK=8.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=4.977500,HLS_SYN_LAT=2624,HLS_SYN_TPT=none,HLS_SYN_MEM=1,HLS_SYN_DSP=0,HLS_SYN_FF=1658,HLS_SYN_LUT=8430,HLS_VERSION=2023_2}";
+    "aes_main_aes_main,hls_ip_2023_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xcu50-fsvh2104-2-e,HLS_INPUT_CLOCK=8.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=4.977500,HLS_SYN_LAT=2634,HLS_SYN_TPT=none,HLS_SYN_MEM=1,HLS_SYN_DSP=0,HLS_SYN_FF=1666,HLS_SYN_LUT=8442,HLS_VERSION=2023_2}";
     constant ap_const_logic_1 : STD_LOGIC := '1';
     constant ap_const_logic_0 : STD_LOGIC := '0';
     constant ap_ST_fsm_state1 : STD_LOGIC_VECTOR (3 downto 0) := "0001";
@@ -62,15 +62,6 @@ architecture behav of aes_main is
     signal word_address1 : STD_LOGIC_VECTOR (8 downto 0);
     signal word_ce1 : STD_LOGIC;
     signal word_q1 : STD_LOGIC_VECTOR (31 downto 0);
-    signal Sbox_address0 : STD_LOGIC_VECTOR (7 downto 0);
-    signal Sbox_ce0 : STD_LOGIC;
-    signal Sbox_q0 : STD_LOGIC_VECTOR (7 downto 0);
-    signal Sbox_address1 : STD_LOGIC_VECTOR (7 downto 0);
-    signal Sbox_ce1 : STD_LOGIC;
-    signal Sbox_q1 : STD_LOGIC_VECTOR (7 downto 0);
-    signal Rcon0_address0 : STD_LOGIC_VECTOR (4 downto 0);
-    signal Rcon0_ce0 : STD_LOGIC;
-    signal Rcon0_q0 : STD_LOGIC_VECTOR (7 downto 0);
     signal grp_encrypt_fu_34_ap_start : STD_LOGIC;
     signal grp_encrypt_fu_34_ap_done : STD_LOGIC;
     signal grp_encrypt_fu_34_ap_idle : STD_LOGIC;
@@ -91,12 +82,6 @@ architecture behav of aes_main is
     signal grp_encrypt_fu_34_word_d0 : STD_LOGIC_VECTOR (31 downto 0);
     signal grp_encrypt_fu_34_word_address1 : STD_LOGIC_VECTOR (8 downto 0);
     signal grp_encrypt_fu_34_word_ce1 : STD_LOGIC;
-    signal grp_encrypt_fu_34_Sbox_address0 : STD_LOGIC_VECTOR (7 downto 0);
-    signal grp_encrypt_fu_34_Sbox_ce0 : STD_LOGIC;
-    signal grp_encrypt_fu_34_Sbox_address1 : STD_LOGIC_VECTOR (7 downto 0);
-    signal grp_encrypt_fu_34_Sbox_ce1 : STD_LOGIC;
-    signal grp_encrypt_fu_34_Rcon0_address0 : STD_LOGIC_VECTOR (4 downto 0);
-    signal grp_encrypt_fu_34_Rcon0_ce0 : STD_LOGIC;
     signal grp_decrypt_fu_50_ap_start : STD_LOGIC;
     signal grp_decrypt_fu_50_ap_done : STD_LOGIC;
     signal grp_decrypt_fu_50_ap_idle : STD_LOGIC;
@@ -117,12 +102,6 @@ architecture behav of aes_main is
     signal grp_decrypt_fu_50_word_d0 : STD_LOGIC_VECTOR (31 downto 0);
     signal grp_decrypt_fu_50_word_address1 : STD_LOGIC_VECTOR (8 downto 0);
     signal grp_decrypt_fu_50_word_ce1 : STD_LOGIC;
-    signal grp_decrypt_fu_50_Sbox_address0 : STD_LOGIC_VECTOR (7 downto 0);
-    signal grp_decrypt_fu_50_Sbox_ce0 : STD_LOGIC;
-    signal grp_decrypt_fu_50_Sbox_address1 : STD_LOGIC_VECTOR (7 downto 0);
-    signal grp_decrypt_fu_50_Sbox_ce1 : STD_LOGIC;
-    signal grp_decrypt_fu_50_Rcon0_address0 : STD_LOGIC_VECTOR (4 downto 0);
-    signal grp_decrypt_fu_50_Rcon0_ce0 : STD_LOGIC;
     signal grp_encrypt_fu_34_ap_start_reg : STD_LOGIC := '0';
     signal ap_CS_fsm_state2 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state2 : signal is "none";
@@ -166,16 +145,7 @@ architecture behav of aes_main is
         word_q0 : IN STD_LOGIC_VECTOR (31 downto 0);
         word_address1 : OUT STD_LOGIC_VECTOR (8 downto 0);
         word_ce1 : OUT STD_LOGIC;
-        word_q1 : IN STD_LOGIC_VECTOR (31 downto 0);
-        Sbox_address0 : OUT STD_LOGIC_VECTOR (7 downto 0);
-        Sbox_ce0 : OUT STD_LOGIC;
-        Sbox_q0 : IN STD_LOGIC_VECTOR (7 downto 0);
-        Sbox_address1 : OUT STD_LOGIC_VECTOR (7 downto 0);
-        Sbox_ce1 : OUT STD_LOGIC;
-        Sbox_q1 : IN STD_LOGIC_VECTOR (7 downto 0);
-        Rcon0_address0 : OUT STD_LOGIC_VECTOR (4 downto 0);
-        Rcon0_ce0 : OUT STD_LOGIC;
-        Rcon0_q0 : IN STD_LOGIC_VECTOR (7 downto 0) );
+        word_q1 : IN STD_LOGIC_VECTOR (31 downto 0) );
     end component;
 
 
@@ -207,16 +177,7 @@ architecture behav of aes_main is
         word_q0 : IN STD_LOGIC_VECTOR (31 downto 0);
         word_address1 : OUT STD_LOGIC_VECTOR (8 downto 0);
         word_ce1 : OUT STD_LOGIC;
-        word_q1 : IN STD_LOGIC_VECTOR (31 downto 0);
-        Sbox_address0 : OUT STD_LOGIC_VECTOR (7 downto 0);
-        Sbox_ce0 : OUT STD_LOGIC;
-        Sbox_q0 : IN STD_LOGIC_VECTOR (7 downto 0);
-        Sbox_address1 : OUT STD_LOGIC_VECTOR (7 downto 0);
-        Sbox_ce1 : OUT STD_LOGIC;
-        Sbox_q1 : IN STD_LOGIC_VECTOR (7 downto 0);
-        Rcon0_address0 : OUT STD_LOGIC_VECTOR (4 downto 0);
-        Rcon0_ce0 : OUT STD_LOGIC;
-        Rcon0_q0 : IN STD_LOGIC_VECTOR (7 downto 0) );
+        word_q1 : IN STD_LOGIC_VECTOR (31 downto 0) );
     end component;
 
 
@@ -239,37 +200,6 @@ architecture behav of aes_main is
     end component;
 
 
-    component aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R IS
-    generic (
-        DataWidth : INTEGER;
-        AddressRange : INTEGER;
-        AddressWidth : INTEGER );
-    port (
-        clk : IN STD_LOGIC;
-        reset : IN STD_LOGIC;
-        address0 : IN STD_LOGIC_VECTOR (7 downto 0);
-        ce0 : IN STD_LOGIC;
-        q0 : OUT STD_LOGIC_VECTOR (7 downto 0);
-        address1 : IN STD_LOGIC_VECTOR (7 downto 0);
-        ce1 : IN STD_LOGIC;
-        q1 : OUT STD_LOGIC_VECTOR (7 downto 0) );
-    end component;
-
-
-    component aes_main_Rcon0_ROM_AUTO_1R IS
-    generic (
-        DataWidth : INTEGER;
-        AddressRange : INTEGER;
-        AddressWidth : INTEGER );
-    port (
-        clk : IN STD_LOGIC;
-        reset : IN STD_LOGIC;
-        address0 : IN STD_LOGIC_VECTOR (4 downto 0);
-        ce0 : IN STD_LOGIC;
-        q0 : OUT STD_LOGIC_VECTOR (7 downto 0) );
-    end component;
-
-
 
 begin
     word_U : component aes_main_word_RAM_AUTO_1R1W
@@ -288,33 +218,6 @@ begin
         address1 => word_address1,
         ce1 => word_ce1,
         q1 => word_q1);
-
-    Sbox_U : component aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R
-    generic map (
-        DataWidth => 8,
-        AddressRange => 256,
-        AddressWidth => 8)
-    port map (
-        clk => ap_clk,
-        reset => ap_rst,
-        address0 => Sbox_address0,
-        ce0 => Sbox_ce0,
-        q0 => Sbox_q0,
-        address1 => Sbox_address1,
-        ce1 => Sbox_ce1,
-        q1 => Sbox_q1);
-
-    Rcon0_U : component aes_main_Rcon0_ROM_AUTO_1R
-    generic map (
-        DataWidth => 8,
-        AddressRange => 30,
-        AddressWidth => 5)
-    port map (
-        clk => ap_clk,
-        reset => ap_rst,
-        address0 => Rcon0_address0,
-        ce0 => Rcon0_ce0,
-        q0 => Rcon0_q0);
 
     grp_encrypt_fu_34 : component aes_main_encrypt
     port map (
@@ -344,16 +247,7 @@ begin
         word_q0 => word_q0,
         word_address1 => grp_encrypt_fu_34_word_address1,
         word_ce1 => grp_encrypt_fu_34_word_ce1,
-        word_q1 => word_q1,
-        Sbox_address0 => grp_encrypt_fu_34_Sbox_address0,
-        Sbox_ce0 => grp_encrypt_fu_34_Sbox_ce0,
-        Sbox_q0 => Sbox_q0,
-        Sbox_address1 => grp_encrypt_fu_34_Sbox_address1,
-        Sbox_ce1 => grp_encrypt_fu_34_Sbox_ce1,
-        Sbox_q1 => Sbox_q1,
-        Rcon0_address0 => grp_encrypt_fu_34_Rcon0_address0,
-        Rcon0_ce0 => grp_encrypt_fu_34_Rcon0_ce0,
-        Rcon0_q0 => Rcon0_q0);
+        word_q1 => word_q1);
 
     grp_decrypt_fu_50 : component aes_main_decrypt
     port map (
@@ -383,16 +277,7 @@ begin
         word_q0 => word_q0,
         word_address1 => grp_decrypt_fu_50_word_address1,
         word_ce1 => grp_decrypt_fu_50_word_ce1,
-        word_q1 => word_q1,
-        Sbox_address0 => grp_decrypt_fu_50_Sbox_address0,
-        Sbox_ce0 => grp_decrypt_fu_50_Sbox_ce0,
-        Sbox_q0 => Sbox_q0,
-        Sbox_address1 => grp_decrypt_fu_50_Sbox_address1,
-        Sbox_ce1 => grp_decrypt_fu_50_Sbox_ce1,
-        Sbox_q1 => Sbox_q1,
-        Rcon0_address0 => grp_decrypt_fu_50_Rcon0_address0,
-        Rcon0_ce0 => grp_decrypt_fu_50_Rcon0_ce0,
-        Rcon0_q0 => Rcon0_q0);
+        word_q1 => word_q1);
 
 
 
@@ -460,7 +345,7 @@ begin
             when ap_ST_fsm_state3 => 
                 ap_NS_fsm <= ap_ST_fsm_state4;
             when ap_ST_fsm_state4 => 
-                if (((ap_const_logic_1 = ap_CS_fsm_state4) and (grp_decrypt_fu_50_ap_done = ap_const_logic_1))) then
+                if (((grp_decrypt_fu_50_ap_done = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state4))) then
                     ap_NS_fsm <= ap_ST_fsm_state1;
                 else
                     ap_NS_fsm <= ap_ST_fsm_state4;
@@ -469,78 +354,6 @@ begin
                 ap_NS_fsm <= "XXXX";
         end case;
     end process;
-
-    Rcon0_address0_assign_proc : process(grp_encrypt_fu_34_Rcon0_address0, grp_decrypt_fu_50_Rcon0_address0, ap_CS_fsm_state2, ap_CS_fsm_state4)
-    begin
-        if ((ap_const_logic_1 = ap_CS_fsm_state4)) then 
-            Rcon0_address0 <= grp_decrypt_fu_50_Rcon0_address0;
-        elsif ((ap_const_logic_1 = ap_CS_fsm_state2)) then 
-            Rcon0_address0 <= grp_encrypt_fu_34_Rcon0_address0;
-        else 
-            Rcon0_address0 <= "XXXXX";
-        end if; 
-    end process;
-
-
-    Rcon0_ce0_assign_proc : process(grp_encrypt_fu_34_Rcon0_ce0, grp_decrypt_fu_50_Rcon0_ce0, ap_CS_fsm_state2, ap_CS_fsm_state4)
-    begin
-        if ((ap_const_logic_1 = ap_CS_fsm_state4)) then 
-            Rcon0_ce0 <= grp_decrypt_fu_50_Rcon0_ce0;
-        elsif ((ap_const_logic_1 = ap_CS_fsm_state2)) then 
-            Rcon0_ce0 <= grp_encrypt_fu_34_Rcon0_ce0;
-        else 
-            Rcon0_ce0 <= ap_const_logic_0;
-        end if; 
-    end process;
-
-
-    Sbox_address0_assign_proc : process(grp_encrypt_fu_34_Sbox_address0, grp_decrypt_fu_50_Sbox_address0, ap_CS_fsm_state2, ap_CS_fsm_state4)
-    begin
-        if ((ap_const_logic_1 = ap_CS_fsm_state4)) then 
-            Sbox_address0 <= grp_decrypt_fu_50_Sbox_address0;
-        elsif ((ap_const_logic_1 = ap_CS_fsm_state2)) then 
-            Sbox_address0 <= grp_encrypt_fu_34_Sbox_address0;
-        else 
-            Sbox_address0 <= "XXXXXXXX";
-        end if; 
-    end process;
-
-
-    Sbox_address1_assign_proc : process(grp_encrypt_fu_34_Sbox_address1, grp_decrypt_fu_50_Sbox_address1, ap_CS_fsm_state2, ap_CS_fsm_state4)
-    begin
-        if ((ap_const_logic_1 = ap_CS_fsm_state4)) then 
-            Sbox_address1 <= grp_decrypt_fu_50_Sbox_address1;
-        elsif ((ap_const_logic_1 = ap_CS_fsm_state2)) then 
-            Sbox_address1 <= grp_encrypt_fu_34_Sbox_address1;
-        else 
-            Sbox_address1 <= "XXXXXXXX";
-        end if; 
-    end process;
-
-
-    Sbox_ce0_assign_proc : process(grp_encrypt_fu_34_Sbox_ce0, grp_decrypt_fu_50_Sbox_ce0, ap_CS_fsm_state2, ap_CS_fsm_state4)
-    begin
-        if ((ap_const_logic_1 = ap_CS_fsm_state4)) then 
-            Sbox_ce0 <= grp_decrypt_fu_50_Sbox_ce0;
-        elsif ((ap_const_logic_1 = ap_CS_fsm_state2)) then 
-            Sbox_ce0 <= grp_encrypt_fu_34_Sbox_ce0;
-        else 
-            Sbox_ce0 <= ap_const_logic_0;
-        end if; 
-    end process;
-
-
-    Sbox_ce1_assign_proc : process(grp_encrypt_fu_34_Sbox_ce1, grp_decrypt_fu_50_Sbox_ce1, ap_CS_fsm_state2, ap_CS_fsm_state4)
-    begin
-        if ((ap_const_logic_1 = ap_CS_fsm_state4)) then 
-            Sbox_ce1 <= grp_decrypt_fu_50_Sbox_ce1;
-        elsif ((ap_const_logic_1 = ap_CS_fsm_state2)) then 
-            Sbox_ce1 <= grp_encrypt_fu_34_Sbox_ce1;
-        else 
-            Sbox_ce1 <= ap_const_logic_0;
-        end if; 
-    end process;
-
     ap_CS_fsm_state1 <= ap_CS_fsm(0);
     ap_CS_fsm_state2 <= ap_CS_fsm(1);
     ap_CS_fsm_state3 <= ap_CS_fsm(2);
@@ -579,7 +392,7 @@ begin
 
     ap_done_assign_proc : process(grp_decrypt_fu_50_ap_done, ap_CS_fsm_state4)
     begin
-        if (((ap_const_logic_1 = ap_CS_fsm_state4) and (grp_decrypt_fu_50_ap_done = ap_const_logic_1))) then 
+        if (((grp_decrypt_fu_50_ap_done = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state4))) then 
             ap_done <= ap_const_logic_1;
         else 
             ap_done <= ap_const_logic_0;
@@ -599,7 +412,7 @@ begin
 
     ap_ready_assign_proc : process(grp_decrypt_fu_50_ap_done, ap_CS_fsm_state4)
     begin
-        if (((ap_const_logic_1 = ap_CS_fsm_state4) and (grp_decrypt_fu_50_ap_done = ap_const_logic_1))) then 
+        if (((grp_decrypt_fu_50_ap_done = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state4))) then 
             ap_ready <= ap_const_logic_1;
         else 
             ap_ready <= ap_const_logic_0;

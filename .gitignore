@@ -58,12 +58,9 @@ build/
 approx/
 
 # Test files and statistics
-test*/
-run_info/
+models/
+gnn_prediction_analysis.py
 
 # The HLS DSE dataset
 dataset/test/
 dataset/train/
-
-# Scripts
-scripts/*.sh

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date         : Thu May 29 15:00:11 2025
+| Date         : Sat May 31 00:15:26 2025
 | Host         : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command      : report_design_analysis -file ./report/aes_main_design_analysis_routed.rpt
 | Design       : bd_0_wrapper
@@ -22,47 +22,47 @@ Table of Contents
 1. Setup Path Characteristics 1-1
 ---------------------------------
 
-+---------------------------+-----------------------------------------------------------------+
-|      Characteristics      |                             Path #1                             |
-+---------------------------+-----------------------------------------------------------------+
-| Requirement               | 8.000                                                           |
-| Path Delay                | 2.546                                                           |
-| Logic Delay               | 0.408(17%)                                                      |
-| Net Delay                 | 2.138(83%)                                                      |
-| Clock Skew                | 0.010                                                           |
-| Slack                     | 5.138                                                           |
-| Clock Uncertainty         | 0.035                                                           |
-| Clock Relationship        | Safely Timed                                                    |
-| Clock Delay Group         | Same Clock                                                      |
-| Logic Levels              | 3                                                               |
-| Routes                    | 4                                                               |
-| Logical Path              | FDRE/C-(49)-LUT6-(3)-LUT6-(1)-LUT6-(1)-RAMB36E2/ADDRBWRADDR[13] |
-| Start Point Clock         | ap_clk                                                          |
-| End Point Clock           | ap_clk                                                          |
-| DSP Block                 | None                                                            |
-| RAM Registers             | None-None                                                       |
-| IO Crossings              | 0                                                               |
-| SLR Crossings             | 0                                                               |
-| PBlocks                   | 0                                                               |
-| High Fanout               | 49                                                              |
-| Dont Touch                | 0                                                               |
-| Mark Debug                | 0                                                               |
-| Start Point Pin Primitive | FDRE/C                                                          |
-| End Point Pin Primitive   | RAMB36E2/ADDRBWRADDR[13]                                        |
-| Start Point Pin           | i_2_reg_450_reg[0]/C                                            |
-| End Point Pin             | ram_reg_bram_0/ADDRBWRADDR[13]                                  |
-+---------------------------+-----------------------------------------------------------------+
++---------------------------+---------------------------------------------------------------+
+|      Characteristics      |                            Path #1                            |
++---------------------------+---------------------------------------------------------------+
+| Requirement               | 8.000                                                         |
+| Path Delay                | 2.640                                                         |
+| Logic Delay               | 1.076(41%)                                                    |
+| Net Delay                 | 1.564(59%)                                                    |
+| Clock Skew                | -0.037                                                        |
+| Slack                     | 5.018                                                         |
+| Clock Uncertainty         | 0.035                                                         |
+| Clock Relationship        | Safely Timed                                                  |
+| Clock Delay Group         | Same Clock                                                    |
+| Logic Levels              | 2                                                             |
+| Routes                    | 3                                                             |
+| Logical Path              | RAMB36E2/CLKBWRCLK-(9)-LUT5-(1)-LUT6-(1)-RAMB36E2/DINADIN[29] |
+| Start Point Clock         | ap_clk                                                        |
+| End Point Clock           | ap_clk                                                        |
+| DSP Block                 | None                                                          |
+| RAM Registers             | DO_REG(0)-None                                                |
+| IO Crossings              | 0                                                             |
+| SLR Crossings             | 0                                                             |
+| PBlocks                   | 0                                                             |
+| High Fanout               | 9                                                             |
+| Dont Touch                | 0                                                             |
+| Mark Debug                | 0                                                             |
+| Start Point Pin Primitive | RAMB36E2/CLKBWRCLK                                            |
+| End Point Pin Primitive   | RAMB36E2/DINADIN[29]                                          |
+| Start Point Pin           | ram_reg_bram_0/CLKBWRCLK                                      |
+| End Point Pin             | ram_reg_bram_0/DINADIN[29]                                    |
++---------------------------+---------------------------------------------------------------+
 * Bounding box calculated as % of dimensions for the target device (5130, 1068)
 
 
 2. Logic Level Distribution
 ---------------------------
 
-+-----------------+-------------+-----+-----+-----+----+----+
-| End Point Clock | Requirement |  0  |  1  |  2  |  3 |  4 |
-+-----------------+-------------+-----+-----+-----+----+----+
-| ap_clk          | 8.000ns     | 138 | 706 | 100 | 24 | 32 |
-+-----------------+-------------+-----+-----+-----+----+----+
++-----------------+-------------+-----+-----+-----+----+----+---+
+| End Point Clock | Requirement |  0  |  1  |  2  |  3 |  4 | 5 |
++-----------------+-------------+-----+-----+-----+----+----+---+
+| ap_clk          | 8.000ns     | 160 | 684 | 102 | 37 | 12 | 5 |
++-----------------+-------------+-----+-----+-----+----+----+---+
 * Columns represent the logic levels per end point clock
 ** Distribution is for top worst 1000 paths
 

@@ -15,20 +15,28 @@
         <PipelineType>no</PipelineType>
         <SummaryOfTimingAnalysis>
             <unit>ns</unit>
-            <EstimatedClockPeriod>6.054</EstimatedClockPeriod>
+            <EstimatedClockPeriod>6.136</EstimatedClockPeriod>
         </SummaryOfTimingAnalysis>
         <SummaryOfOverallLatency>
             <unit>clock cycles</unit>
-            <Best-caseLatency>19856</Best-caseLatency>
-            <Average-caseLatency>19856</Average-caseLatency>
-            <Worst-caseLatency>19856</Worst-caseLatency>
-            <Best-caseRealTimeLatency>0.159 ms</Best-caseRealTimeLatency>
-            <Average-caseRealTimeLatency>0.159 ms</Average-caseRealTimeLatency>
-            <Worst-caseRealTimeLatency>0.159 ms</Worst-caseRealTimeLatency>
-            <Interval-min>19857</Interval-min>
-            <Interval-max>19857</Interval-max>
+            <Best-caseLatency>15694</Best-caseLatency>
+            <Average-caseLatency>15694</Average-caseLatency>
+            <Worst-caseLatency>15694</Worst-caseLatency>
+            <Best-caseRealTimeLatency>0.126 ms</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0.126 ms</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>0.126 ms</Worst-caseRealTimeLatency>
+            <Interval-min>15695</Interval-min>
+            <Interval-max>15695</Interval-max>
         </SummaryOfOverallLatency>
         <SummaryOfLoopLatency>
+            <loop1>
+                <Slack>5.84</Slack>
+                <TripCount>64</TripCount>
+                <Latency>5568</Latency>
+                <AbsoluteTimeLatency>44544</AbsoluteTimeLatency>
+                <IterationLatency>87</IterationLatency>
+                <InstanceList/>
+            </loop1>
             <loop2>
                 <Slack>5.84</Slack>
                 <TripCount>64</TripCount>
@@ -61,6 +69,14 @@
                 <IterationLatency>5</IterationLatency>
                 <InstanceList/>
             </loop5>
+            <loop6>
+                <Slack>5.84</Slack>
+                <TripCount>64</TripCount>
+                <Latency>5568</Latency>
+                <AbsoluteTimeLatency>44544</AbsoluteTimeLatency>
+                <IterationLatency>87</IterationLatency>
+                <InstanceList/>
+            </loop6>
             <loop7>
                 <Slack>5.84</Slack>
                 <TripCount>64</TripCount>
@@ -107,6 +123,12 @@
             <ViolationType>-</ViolationType>
             <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:115</SourceLocation>
             <SummaryOfLoopViolations>
+                <loop1>
+                    <Name>loop1</Name>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:153</SourceLocation>
+                </loop1>
                 <loop2>
                     <Name>loop2</Name>
                     <IssueType>-</IssueType>
@@ -131,6 +153,12 @@
                     <ViolationType>-</ViolationType>
                     <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:235</SourceLocation>
                 </loop5>
+                <loop6>
+                    <Name>loop6</Name>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:252</SourceLocation>
+                </loop6>
                 <loop7>
                     <Name>loop7</Name>
                     <IssueType>-</IssueType>
@@ -167,9 +195,9 @@
     <AreaEstimates>
         <Resources>
             <BRAM_18K>8</BRAM_18K>
-            <DSP>163</DSP>
-            <FF>19390</FF>
-            <LUT>24401</LUT>
+            <DSP>308</DSP>
+            <FF>17091</FF>
+            <LUT>29068</LUT>
             <URAM>0</URAM>
         </Resources>
         <AvailableResources>
@@ -493,39 +521,30 @@
             <ModuleName>fft1D_512</ModuleName>
             <InstancesList>
                 <Instance>
-                    <InstName>grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550</InstName>
-                    <ModuleName>fft1D_512_Pipeline_loop1_twiddles</ModuleName>
+                    <InstName>grp_twiddles8_fu_1969</InstName>
+                    <ModuleName>twiddles8</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>1550</ID>
+                    <ID>1969</ID>
                     <InstancesList>
                         <Instance>
-                            <InstName>grp_sin_or_cos_double_s_fu_632</InstName>
+                            <InstName>grp_sin_or_cos_double_s_fu_119</InstName>
                             <ModuleName>sin_or_cos_double_s</ModuleName>
                             <IsCompInst>true</IsCompInst>
-                            <ID>632</ID>
+                            <ID>119</ID>
+                            <BindInstances>Ex_fu_591_p2 add_ln396_fu_416_p2 mul_170s_53ns_170_2_1_U9 Mx_bits_1_fu_525_p2 Ex_1_fu_630_p2 sub_ln506_fu_644_p2 mul_49ns_49ns_98_1_1_U4 mul_49ns_49ns_98_1_1_U5 mul_49ns_49ns_98_1_1_U6 mul_56ns_52s_108_1_1_U7 mul_49ns_44s_93_1_1_U3 mul_42ns_33ns_75_1_1_U2 mul_35ns_25ns_60_1_1_U1 mul_64s_63ns_126_1_1_U8 shift_1_fu_1334_p2 shift_2_fu_1356_p2 add_ln422_fu_1378_p2 add_ln432_fu_1448_p2 newexp_fu_1458_p2 ref_4oPi_table_256_U fourth_order_double_sin_cos_K0_U fourth_order_double_sin_cos_K1_U fourth_order_double_sin_cos_K2_U fourth_order_double_sin_cos_K3_U fourth_order_double_sin_cos_K4_U</BindInstances>
+                        </Instance>
+                        <Instance>
+                            <InstName>grp_sin_or_cos_double_s_fu_138</InstName>
+                            <ModuleName>sin_or_cos_double_s</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>138</ID>
                             <BindInstances>Ex_fu_591_p2 add_ln396_fu_416_p2 mul_170s_53ns_170_2_1_U9 Mx_bits_1_fu_525_p2 Ex_1_fu_630_p2 sub_ln506_fu_644_p2 mul_49ns_49ns_98_1_1_U4 mul_49ns_49ns_98_1_1_U5 mul_49ns_49ns_98_1_1_U6 mul_56ns_52s_108_1_1_U7 mul_49ns_44s_93_1_1_U3 mul_42ns_33ns_75_1_1_U2 mul_35ns_25ns_60_1_1_U1 mul_64s_63ns_126_1_1_U8 shift_1_fu_1334_p2 shift_2_fu_1356_p2 add_ln422_fu_1378_p2 add_ln432_fu_1448_p2 newexp_fu_1458_p2 ref_4oPi_table_256_U fourth_order_double_sin_cos_K0_U fourth_order_double_sin_cos_K1_U fourth_order_double_sin_cos_K2_U fourth_order_double_sin_cos_K3_U fourth_order_double_sin_cos_K4_U</BindInstances>
                         </Instance>
                     </InstancesList>
-                    <BindInstances>add_ln128_fu_900_p2 add_ln128_1_fu_932_p2 add_ln136_fu_997_p2 add_ln28_fu_1265_p2</BindInstances>
-                </Instance>
-                <Instance>
-                    <InstName>grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580</InstName>
-                    <ModuleName>fft1D_512_Pipeline_loop6_twiddles</ModuleName>
-                    <IsCompInst>true</IsCompInst>
-                    <ID>1580</ID>
-                    <InstancesList>
-                        <Instance>
-                            <InstName>grp_sin_or_cos_double_s_fu_474</InstName>
-                            <ModuleName>sin_or_cos_double_s</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>474</ID>
-                            <BindInstances>Ex_fu_591_p2 add_ln396_fu_416_p2 mul_170s_53ns_170_2_1_U9 Mx_bits_1_fu_525_p2 Ex_1_fu_630_p2 sub_ln506_fu_644_p2 mul_49ns_49ns_98_1_1_U4 mul_49ns_49ns_98_1_1_U5 mul_49ns_49ns_98_1_1_U6 mul_56ns_52s_108_1_1_U7 mul_49ns_44s_93_1_1_U3 mul_42ns_33ns_75_1_1_U2 mul_35ns_25ns_60_1_1_U1 mul_64s_63ns_126_1_1_U8 shift_1_fu_1334_p2 shift_2_fu_1356_p2 add_ln422_fu_1378_p2 add_ln432_fu_1448_p2 newexp_fu_1458_p2 ref_4oPi_table_256_U fourth_order_double_sin_cos_K0_U fourth_order_double_sin_cos_K1_U fourth_order_double_sin_cos_K2_U fourth_order_double_sin_cos_K3_U fourth_order_double_sin_cos_K4_U</BindInstances>
-                        </Instance>
-                    </InstancesList>
-                    <BindInstances>add_ln250_fu_744_p2 add_ln250_1_fu_776_p2 add_ln28_fu_1036_p2</BindInstances>
+                    <BindInstances>dmul_64ns_64ns_64_4_max_dsp_1_U33 ddiv_64ns_64ns_64_14_no_dsp_1_U39 dmul_64ns_64ns_64_4_max_dsp_1_U34 dmul_64ns_64ns_64_4_max_dsp_1_U35 dmul_64ns_64ns_64_4_max_dsp_1_U36 dsub_64ns_64ns_64_4_full_dsp_1_U31 dmul_64ns_64ns_64_4_max_dsp_1_U37 dmul_64ns_64ns_64_4_max_dsp_1_U38 dadd_64ns_64ns_64_4_full_dsp_1_U32 add_ln28_fu_238_p2 twiddles8_reversed8_U</BindInstances>
                 </Instance>
             </InstancesList>
-            <BindInstances>DATA_x_U DATA_y_U data_x_U_x data_y_U_x smem_U add_ln176_fu_1813_p2 add_ln182_fu_1864_p2 add_ln183_fu_1898_p2 add_ln184_fu_1909_p2 add_ln185_fu_1939_p2 add_ln186_fu_1949_p2 add_ln187_fu_1986_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 add_ln191_fu_2016_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 add_ln198_fu_2071_p2 dmul_64ns_64ns_64_4_max_dsp_1_U75 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 add_ln201_fu_2155_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U70 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 add_ln208_fu_2244_p2 add_ln215_fu_2295_p2 add_ln216_fu_2329_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dmul_64ns_64ns_64_4_max_dsp_1_U74 add_ln219_fu_2380_p2 add_ln220_fu_2417_p2 add_ln221_fu_2427_p2 add_ln224_fu_2447_p2 add_ln238_fu_2491_p2 add_ln105_fu_2502_p2 add_ln106_fu_2554_p2 add_ln107_fu_2564_p2 add_ln108_fu_2604_p2 add_ln109_fu_2614_p2 add_ln110_fu_2654_p2 add_ln111_fu_2664_p2 add_ln301_fu_2747_p2 add_ln307_fu_2798_p2 add_ln308_fu_2832_p2 add_ln309_fu_2843_p2 add_ln310_fu_2873_p2 add_ln311_fu_2883_p2 add_ln312_fu_2920_p2 add_ln313_fu_2930_p2 add_ln317_fu_2950_p2 add_ln324_fu_2987_p2 add_ln325_fu_3031_p2 add_ln326_fu_3041_p2 add_ln327_fu_3071_p2 add_ln328_fu_3081_p2 add_ln329_fu_3111_p2 add_ln330_fu_3121_p2 add_ln334_fu_3160_p2 add_ln341_fu_3211_p2 add_ln342_fu_3245_p2 add_ln343_fu_3256_p2 add_ln344_fu_3286_p2 add_ln345_fu_3296_p2 add_ln346_fu_3333_p2 add_ln347_fu_3343_p2 add_ln350_fu_3363_p2 add_ln105_1_fu_3400_p2 add_ln106_1_fu_3452_p2 add_ln107_1_fu_3462_p2 add_ln108_1_fu_3502_p2 add_ln109_1_fu_3512_p2 add_ln110_1_fu_3552_p2 add_ln111_1_fu_3562_p2 add_ln376_fu_3645_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 dadddsub_64ns_64ns_64_4_full_dsp_1_U69 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 dadddsub_64ns_64ns_64_4_full_dsp_1_U69 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 dadddsub_64ns_64ns_64_4_full_dsp_1_U69 dadddsub_64ns_64ns_64_4_full_dsp_1_U70 dadddsub_64ns_64ns_64_4_full_dsp_1_U71 dsub_64ns_64ns_64_4_full_dsp_1_U72 dsub_64ns_64ns_64_4_full_dsp_1_U73 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dmul_64ns_64ns_64_4_max_dsp_1_U74 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dmul_64ns_64ns_64_4_max_dsp_1_U75 dmul_64ns_64ns_64_4_max_dsp_1_U74 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dmul_64ns_64ns_64_4_max_dsp_1_U75 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 dmul_64ns_64ns_64_4_max_dsp_1_U76 dadddsub_64ns_64ns_64_4_full_dsp_1_U69 dmul_64ns_64ns_64_4_max_dsp_1_U77 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 dadddsub_64ns_64ns_64_4_full_dsp_1_U69 dadddsub_64ns_64ns_64_4_full_dsp_1_U70 dadddsub_64ns_64ns_64_4_full_dsp_1_U71 dsub_64ns_64ns_64_4_full_dsp_1_U72 dsub_64ns_64ns_64_4_full_dsp_1_U73 dmul_64ns_64ns_64_4_max_dsp_1_U78 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dmul_64ns_64ns_64_4_max_dsp_1_U79 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 dadddsub_64ns_64ns_64_4_full_dsp_1_U69 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 dadddsub_64ns_64ns_64_4_full_dsp_1_U69 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 dadddsub_64ns_64ns_64_4_full_dsp_1_U69 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 dadddsub_64ns_64ns_64_4_full_dsp_1_U69 dadddsub_64ns_64ns_64_4_full_dsp_1_U70 dadddsub_64ns_64ns_64_4_full_dsp_1_U71 dmul_64ns_64ns_64_4_max_dsp_1_U74 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dmul_64ns_64ns_64_4_max_dsp_1_U75 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 dadddsub_64ns_64ns_64_4_full_dsp_1_U69 dadddsub_64ns_64ns_64_4_full_dsp_1_U66 dadddsub_64ns_64ns_64_4_full_dsp_1_U67 dadddsub_64ns_64ns_64_4_full_dsp_1_U68 dadddsub_64ns_64ns_64_4_full_dsp_1_U69 add_ln406_fu_3984_p2 twiddles8_reversed8_U</BindInstances>
+            <BindInstances>DATA_x_U DATA_y_U data_x_U_x data_y_U_x smem_U add_ln128_fu_2331_p2 add_ln136_fu_2372_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U56 dadddsub_64ns_64ns_64_4_full_dsp_1_U57 dsub_64ns_64ns_64_4_full_dsp_1_U58 dsub_64ns_64ns_64_4_full_dsp_1_U59 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dmul_64ns_64ns_64_4_max_dsp_1_U60 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dmul_64ns_64ns_64_4_max_dsp_1_U61 dmul_64ns_64ns_64_4_max_dsp_1_U60 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dmul_64ns_64ns_64_4_max_dsp_1_U61 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dmul_64ns_64ns_64_4_max_dsp_1_U62 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dmul_64ns_64ns_64_4_max_dsp_1_U63 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U56 dadddsub_64ns_64ns_64_4_full_dsp_1_U57 dsub_64ns_64ns_64_4_full_dsp_1_U58 dsub_64ns_64ns_64_4_full_dsp_1_U59 dmul_64ns_64ns_64_4_max_dsp_1_U64 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dmul_64ns_64ns_64_4_max_dsp_1_U65 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U56 dadddsub_64ns_64ns_64_4_full_dsp_1_U57 dmul_64ns_64ns_64_4_max_dsp_1_U60 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dmul_64ns_64ns_64_4_max_dsp_1_U61 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 add_ln176_fu_2781_p2 add_ln182_fu_2832_p2 add_ln183_fu_2866_p2 add_ln184_fu_2877_p2 add_ln185_fu_2907_p2 add_ln186_fu_2917_p2 add_ln187_fu_2954_p2 add_ln188_fu_2964_p2 add_ln191_fu_2984_p2 offset_1_fu_3024_p2 add_ln198_fu_3039_p2 add_ln199_fu_3083_p2 add_ln200_fu_3093_p2 add_ln201_fu_3123_p2 add_ln202_fu_3133_p2 add_ln203_fu_3163_p2 add_ln204_fu_3173_p2 add_ln208_fu_3212_p2 add_ln215_fu_3263_p2 add_ln216_fu_3297_p2 add_ln217_fu_3308_p2 add_ln218_fu_3338_p2 add_ln219_fu_3348_p2 add_ln220_fu_3385_p2 add_ln221_fu_3395_p2 add_ln224_fu_3415_p2 add_ln238_fu_3459_p2 add_ln105_fu_3470_p2 add_ln106_fu_3514_p2 add_ln107_fu_3524_p2 add_ln108_fu_3554_p2 add_ln109_fu_3564_p2 add_ln110_fu_3594_p2 add_ln111_fu_3604_p2 add_ln250_fu_3643_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U56 dadddsub_64ns_64ns_64_4_full_dsp_1_U57 dsub_64ns_64ns_64_4_full_dsp_1_U58 dsub_64ns_64ns_64_4_full_dsp_1_U59 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dmul_64ns_64ns_64_4_max_dsp_1_U60 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dmul_64ns_64ns_64_4_max_dsp_1_U61 dmul_64ns_64ns_64_4_max_dsp_1_U60 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dmul_64ns_64ns_64_4_max_dsp_1_U61 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dmul_64ns_64ns_64_4_max_dsp_1_U62 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dmul_64ns_64ns_64_4_max_dsp_1_U63 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U56 dadddsub_64ns_64ns_64_4_full_dsp_1_U57 dsub_64ns_64ns_64_4_full_dsp_1_U58 dsub_64ns_64ns_64_4_full_dsp_1_U59 dmul_64ns_64ns_64_4_max_dsp_1_U64 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dmul_64ns_64ns_64_4_max_dsp_1_U65 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U56 dadddsub_64ns_64ns_64_4_full_dsp_1_U57 dmul_64ns_64ns_64_4_max_dsp_1_U60 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dmul_64ns_64ns_64_4_max_dsp_1_U61 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 add_ln301_fu_3928_p2 add_ln307_fu_3979_p2 add_ln308_fu_4013_p2 add_ln309_fu_4024_p2 add_ln310_fu_4054_p2 add_ln311_fu_4064_p2 add_ln312_fu_4101_p2 add_ln313_fu_4111_p2 add_ln317_fu_4131_p2 add_ln324_fu_4168_p2 add_ln325_fu_4212_p2 add_ln326_fu_4222_p2 add_ln327_fu_4252_p2 add_ln328_fu_4262_p2 add_ln329_fu_4292_p2 add_ln330_fu_4302_p2 add_ln334_fu_4341_p2 add_ln341_fu_4392_p2 add_ln342_fu_4426_p2 add_ln343_fu_4437_p2 add_ln344_fu_4467_p2 add_ln345_fu_4477_p2 add_ln346_fu_4514_p2 add_ln347_fu_4524_p2 add_ln350_fu_4544_p2 add_ln105_1_fu_4581_p2 add_ln106_1_fu_4633_p2 add_ln107_1_fu_4643_p2 add_ln108_1_fu_4683_p2 add_ln109_1_fu_4693_p2 add_ln110_1_fu_4733_p2 add_ln111_1_fu_4743_p2 add_ln376_fu_4826_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U56 dadddsub_64ns_64ns_64_4_full_dsp_1_U57 dsub_64ns_64ns_64_4_full_dsp_1_U58 dsub_64ns_64ns_64_4_full_dsp_1_U59 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dmul_64ns_64ns_64_4_max_dsp_1_U60 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dmul_64ns_64ns_64_4_max_dsp_1_U61 dmul_64ns_64ns_64_4_max_dsp_1_U60 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dmul_64ns_64ns_64_4_max_dsp_1_U61 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dmul_64ns_64ns_64_4_max_dsp_1_U62 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dmul_64ns_64ns_64_4_max_dsp_1_U63 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U56 dadddsub_64ns_64ns_64_4_full_dsp_1_U57 dsub_64ns_64ns_64_4_full_dsp_1_U58 dsub_64ns_64ns_64_4_full_dsp_1_U59 dmul_64ns_64ns_64_4_max_dsp_1_U64 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dmul_64ns_64ns_64_4_max_dsp_1_U65 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U56 dadddsub_64ns_64ns_64_4_full_dsp_1_U57 dmul_64ns_64ns_64_4_max_dsp_1_U60 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dmul_64ns_64ns_64_4_max_dsp_1_U61 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 dadddsub_64ns_64ns_64_4_full_dsp_1_U52 dadddsub_64ns_64ns_64_4_full_dsp_1_U53 dadddsub_64ns_64ns_64_4_full_dsp_1_U54 dadddsub_64ns_64ns_64_4_full_dsp_1_U55 add_ln406_fu_5165_p2</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
@@ -603,163 +622,98 @@
             </BindNodes>
         </Module>
         <Module>
-            <Name>fft1D_512_Pipeline_loop1_twiddles</Name>
+            <Name>twiddles8</Name>
             <Loops>
-                <loop1_twiddles/>
+                <twiddles/>
             </Loops>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>8.00</TargetClockPeriod>
                     <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>6.054</EstimatedClockPeriod>
+                    <EstimatedClockPeriod>5.558</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>7647</Best-caseLatency>
-                    <Average-caseLatency>7647</Average-caseLatency>
-                    <Worst-caseLatency>7647</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>61.176 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>61.176 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>61.176 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>7647</PipelineInitiationInterval>
+                    <Best-caseLatency>50</Best-caseLatency>
+                    <Average-caseLatency>50</Average-caseLatency>
+                    <Worst-caseLatency>50</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.400 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.400 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.400 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>50</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
-                    <loop1_twiddles>
-                        <Name>loop1_twiddles</Name>
+                    <twiddles>
+                        <Name>twiddles</Name>
                         <Slack>5.84</Slack>
-                        <TripCount>448</TripCount>
-                        <Latency>7645</Latency>
-                        <AbsoluteTimeLatency>61.160 us</AbsoluteTimeLatency>
-                        <PipelineII>17</PipelineII>
-                        <PipelineDepth>47</PipelineDepth>
+                        <TripCount>7</TripCount>
+                        <Latency>47</Latency>
+                        <AbsoluteTimeLatency>0.376 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>42</PipelineDepth>
                         <PipelineType>yes</PipelineType>
                         <InstanceList>
-                            <Instance>grp_sin_or_cos_double_s_fu_632</Instance>
+                            <Instance>grp_sin_or_cos_double_s_fu_119</Instance>
+                            <Instance>grp_sin_or_cos_double_s_fu_138</Instance>
                         </InstanceList>
-                    </loop1_twiddles>
+                    </twiddles>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
-                    <IssueType>Timing Violation</IssueType>
+                    <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:25~data/benchmarks/trans_fft/transposed_fft.c:153</SourceLocation>
+                    <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:25</SourceLocation>
                     <SummaryOfLoopViolations>
-                        <loop1_twiddles>
-                            <Name>loop1_twiddles</Name>
-                            <IssueType>II Violation</IssueType>
-                            <ViolationType>Resource Limitation</ViolationType>
-                            <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:128</SourceLocation>
-                        </loop1_twiddles>
+                        <twiddles>
+                            <Name>twiddles</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:28</SourceLocation>
+                        </twiddles>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <FF>3802</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>~0</UTIL_FF>
-                    <LUT>2624</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
                     <AVAIL_BRAM>2688</AVAIL_BRAM>
                     <UTIL_BRAM>0</UTIL_BRAM>
-                    <DSP>0</DSP>
+                    <DSP>236</DSP>
                     <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>0</UTIL_DSP>
+                    <UTIL_DSP>3</UTIL_DSP>
+                    <FF>8615</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>15146</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>1</UTIL_LUT>
                     <URAM>0</URAM>
                     <AVAIL_URAM>640</AVAIL_URAM>
                     <UTIL_URAM>0</UTIL_URAM>
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop1_twiddles" OPTYPE="add" PRAGMA="" RTLNAME="add_ln128_fu_900_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:128" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln128"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop1_twiddles" OPTYPE="add" PRAGMA="" RTLNAME="add_ln128_1_fu_932_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:128" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln128_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop1_twiddles" OPTYPE="add" PRAGMA="" RTLNAME="add_ln136_fu_997_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:136" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln136"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop1_twiddles" OPTYPE="add" PRAGMA="" RTLNAME="add_ln28_fu_1265_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:28" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln28"/>
-            </BindNodes>
-        </Module>
-        <Module>
-            <Name>fft1D_512_Pipeline_loop6_twiddles</Name>
-            <Loops>
-                <loop6_twiddles/>
-            </Loops>
-            <PerformanceEstimates>
-                <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>8.00</TargetClockPeriod>
-                    <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>6.054</EstimatedClockPeriod>
-                </SummaryOfTimingAnalysis>
-                <SummaryOfOverallLatency>
-                    <Best-caseLatency>7647</Best-caseLatency>
-                    <Average-caseLatency>7647</Average-caseLatency>
-                    <Worst-caseLatency>7647</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>61.176 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>61.176 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>61.176 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>7647</PipelineInitiationInterval>
-                    <PipelineType>no</PipelineType>
-                </SummaryOfOverallLatency>
-                <SummaryOfLoopLatency>
-                    <loop6_twiddles>
-                        <Name>loop6_twiddles</Name>
-                        <Slack>5.84</Slack>
-                        <TripCount>448</TripCount>
-                        <Latency>7645</Latency>
-                        <AbsoluteTimeLatency>61.160 us</AbsoluteTimeLatency>
-                        <PipelineII>17</PipelineII>
-                        <PipelineDepth>47</PipelineDepth>
-                        <PipelineType>yes</PipelineType>
-                        <InstanceList>
-                            <Instance>grp_sin_or_cos_double_s_fu_474</Instance>
-                        </InstanceList>
-                    </loop6_twiddles>
-                </SummaryOfLoopLatency>
-                <SummaryOfViolations>
-                    <IssueType>Timing Violation</IssueType>
-                    <ViolationType>-</ViolationType>
-                    <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:25~data/benchmarks/trans_fft/transposed_fft.c:277</SourceLocation>
-                    <SummaryOfLoopViolations>
-                        <loop6_twiddles>
-                            <Name>loop6_twiddles</Name>
-                            <IssueType>II Violation</IssueType>
-                            <ViolationType>Resource Limitation</ViolationType>
-                            <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:250</SourceLocation>
-                        </loop6_twiddles>
-                    </SummaryOfLoopViolations>
-                </SummaryOfViolations>
-            </PerformanceEstimates>
-            <AreaEstimates>
-                <Resources>
-                    <FF>4640</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>~0</UTIL_FF>
-                    <LUT>3002</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
-                    <BRAM_18K>0</BRAM_18K>
-                    <AVAIL_BRAM>2688</AVAIL_BRAM>
-                    <UTIL_BRAM>0</UTIL_BRAM>
-                    <DSP>0</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>0</UTIL_DSP>
-                    <URAM>0</URAM>
-                    <AVAIL_URAM>640</AVAIL_URAM>
-                    <UTIL_URAM>0</UTIL_URAM>
-                </Resources>
-            </AreaEstimates>
-            <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop6_twiddles" OPTYPE="add" PRAGMA="" RTLNAME="add_ln250_fu_744_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:250" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln250"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop6_twiddles" OPTYPE="add" PRAGMA="" RTLNAME="add_ln250_1_fu_776_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:250" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln250_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop6_twiddles" OPTYPE="add" PRAGMA="" RTLNAME="add_ln28_fu_1036_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:28" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln28"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="twiddles" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U33" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:30" STORAGESUBTYPE="" URAM="0" VARIABLE="mul"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op ddiv" DSP="0" ID="" IMPL="fabric" LATENCY="13" LOOP="twiddles" OPTYPE="ddiv" PRAGMA="" RTLNAME="ddiv_64ns_64ns_64_14_no_dsp_1_U39" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:30" STORAGESUBTYPE="" URAM="0" VARIABLE="div"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="twiddles" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U34" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:30" STORAGESUBTYPE="" URAM="0" VARIABLE="phi"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="twiddles" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U35" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:34" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="twiddles" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U36" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:34" STORAGESUBTYPE="" URAM="0" VARIABLE="mul1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="twiddles" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U31" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:34" STORAGESUBTYPE="" URAM="0" VARIABLE="sub"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="twiddles" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U37" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:35" STORAGESUBTYPE="" URAM="0" VARIABLE="mul2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="twiddles" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U38" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:35" STORAGESUBTYPE="" URAM="0" VARIABLE="mul3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="twiddles" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_4_full_dsp_1_U32" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:35" STORAGESUBTYPE="" URAM="0" VARIABLE="add"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="twiddles" OPTYPE="add" PRAGMA="" RTLNAME="add_ln28_fu_238_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:28" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln28"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="twiddles8_reversed8_U" SOURCE="" STORAGESIZE="32 8 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="twiddles8_reversed8"/>
             </BindNodes>
         </Module>
         <Module>
             <Name>fft1D_512</Name>
             <Loops>
+                <loop1/>
                 <loop2/>
                 <loop3/>
                 <loop4/>
                 <loop5/>
+                <loop6/>
                 <loop7/>
                 <loop8/>
                 <loop9/>
@@ -770,19 +724,32 @@
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>8.00</TargetClockPeriod>
                     <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>6.054</EstimatedClockPeriod>
+                    <EstimatedClockPeriod>6.136</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>19856</Best-caseLatency>
-                    <Average-caseLatency>19856</Average-caseLatency>
-                    <Worst-caseLatency>19856</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0.159 ms</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0.159 ms</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0.159 ms</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>19857</PipelineInitiationInterval>
+                    <Best-caseLatency>15694</Best-caseLatency>
+                    <Average-caseLatency>15694</Average-caseLatency>
+                    <Worst-caseLatency>15694</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.126 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.126 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.126 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>15695</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
+                    <loop1>
+                        <Name>loop1</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>5568</Latency>
+                        <AbsoluteTimeLatency>44.544 us</AbsoluteTimeLatency>
+                        <IterationLatency>87</IterationLatency>
+                        <PipelineDepth>87</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList>
+                            <Instance>grp_twiddles8_fu_1969</Instance>
+                        </InstanceList>
+                    </loop1>
                     <loop2>
                         <Name>loop2</Name>
                         <Slack>5.84</Slack>
@@ -827,6 +794,17 @@
                         <PipelineType>no</PipelineType>
                         <InstanceList/>
                     </loop5>
+                    <loop6>
+                        <Name>loop6</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>5568</Latency>
+                        <AbsoluteTimeLatency>44.544 us</AbsoluteTimeLatency>
+                        <IterationLatency>87</IterationLatency>
+                        <PipelineDepth>87</PipelineDepth>
+                        <PipelineType>no</PipelineType>
+                        <InstanceList/>
+                    </loop6>
                     <loop7>
                         <Name>loop7</Name>
                         <Slack>5.84</Slack>
@@ -888,6 +866,12 @@
                     <ViolationType>-</ViolationType>
                     <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:115</SourceLocation>
                     <SummaryOfLoopViolations>
+                        <loop1>
+                            <Name>loop1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:153</SourceLocation>
+                        </loop1>
                         <loop2>
                             <Name>loop2</Name>
                             <IssueType>-</IssueType>
@@ -912,6 +896,12 @@
                             <ViolationType>-</ViolationType>
                             <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:235</SourceLocation>
                         </loop5>
+                        <loop6>
+                            <Name>loop6</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/trans_fft/transposed_fft.c:252</SourceLocation>
+                        </loop6>
                         <loop7>
                             <Name>loop7</Name>
                             <IssueType>-</IssueType>
@@ -950,15 +940,15 @@
                     <BRAM_18K>8</BRAM_18K>
                     <AVAIL_BRAM>2688</AVAIL_BRAM>
                     <UTIL_BRAM>~0</UTIL_BRAM>
-                    <DSP>163</DSP>
+                    <DSP>308</DSP>
                     <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>2</UTIL_DSP>
-                    <FF>19390</FF>
+                    <UTIL_DSP>5</UTIL_DSP>
+                    <FF>17091</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>1</UTIL_FF>
-                    <LUT>24401</LUT>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>29068</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>2</UTIL_LUT>
+                    <UTIL_LUT>3</UTIL_LUT>
                     <URAM>0</URAM>
                     <AVAIL_URAM>640</AVAIL_URAM>
                     <UTIL_URAM>0</UTIL_URAM>
@@ -970,143 +960,281 @@
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="data_x_U_x" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:120" STORAGESIZE="64 8 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p array" URAM="0" VARIABLE="data_x"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="data_y_U_x" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:121" STORAGESIZE="64 8 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p array" URAM="0" VARIABLE="data_y"/>
                 <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="smem_U" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:123" STORAGESIZE="64 576 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p array" URAM="0" VARIABLE="smem"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln176_fu_1813_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:176" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln176"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln182_fu_1864_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:182" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln182"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln183_fu_1898_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:183" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln183"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln184_fu_1909_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:184" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln184"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln185_fu_1939_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:185" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln185"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln186_fu_1949_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:186" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln186"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln187_fu_1986_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:187" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln187"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:188" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln188"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln191_fu_2016_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:191" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln191"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:195" STORAGESUBTYPE="" URAM="0" VARIABLE="offset_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln198_fu_2071_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:198" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln198"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U75" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:199" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln199"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:200" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln200"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln201_fu_2155_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:201" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln201"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U70" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:202" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln202"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:203" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln203"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:204" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln204"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln208_fu_2244_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:208" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln208"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln215_fu_2295_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:215" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln215"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln216_fu_2329_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:216" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln216"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:217" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln217"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U74" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:218" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln218"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln219_fu_2380_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:219" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln219"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln220_fu_2417_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:220" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln220"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln221_fu_2427_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:221" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln221"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln224_fu_2447_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:224" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln224"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln238_fu_2491_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:238" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln238"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln105_fu_2502_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:105" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln105"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln106_fu_2554_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:106" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln106"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln107_fu_2564_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:107" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln107"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln108_fu_2604_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:108" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln108"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln109_fu_2614_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:109" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln109"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln110_fu_2654_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:110" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln110"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln111_fu_2664_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:111" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln111"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln301_fu_2747_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:301" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln301"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln307_fu_2798_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:307" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln307"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln308_fu_2832_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:308" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln308"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln309_fu_2843_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:309" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln309"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln310_fu_2873_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:310" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln310"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln311_fu_2883_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:311" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln311"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln312_fu_2920_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:312" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln312"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln313_fu_2930_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:313" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln313"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln317_fu_2950_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:317" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln317"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln324_fu_2987_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:324" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln324"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln325_fu_3031_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:325" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln325"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln326_fu_3041_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:326" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln326"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln327_fu_3071_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:327" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln327"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln328_fu_3081_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:328" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln328"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln329_fu_3111_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:329" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln329"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln330_fu_3121_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:330" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln330"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln334_fu_3160_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:334" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln334"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln341_fu_3211_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:341" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln341"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln342_fu_3245_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:342" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln342"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln343_fu_3256_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:343" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln343"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln344_fu_3286_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:344" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln344"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln345_fu_3296_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:345" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln345"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln346_fu_3333_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:346" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln346"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln347_fu_3343_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:347" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln347"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln350_fu_3363_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:350" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln350"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln105_1_fu_3400_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:105" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln105_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln106_1_fu_3452_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:106" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln106_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln107_1_fu_3462_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:107" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln107_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln108_1_fu_3502_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:108" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln108_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln109_1_fu_3512_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:109" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln109_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln110_1_fu_3552_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:110" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln110_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln111_1_fu_3562_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:111" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln111_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop11" OPTYPE="add" PRAGMA="" RTLNAME="add_ln376_fu_3645_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:376" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln376"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_20"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_20"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U69" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U69" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add19"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U69" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub20"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U70" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add20"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U71" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add21"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U72" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1_4"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U73" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub21"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub22"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U74" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add22"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U75" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U74" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub23"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U75" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul6"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add23"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub24"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U76" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul7"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U69" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add24"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U77" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_21"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_21"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_4"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U69" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_4"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U70" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add25"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U71" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add26"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U72" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_6"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U73" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub25"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U78" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul9"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub26"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U79" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul10"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub27"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add27"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add28"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub28"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U69" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub29"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add29"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add30"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub30"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U69" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub31"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_22"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_22"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_5"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U69" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_5"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add31"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U69" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add32"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U70" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_7"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U71" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub32"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U74" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul11"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub33"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U75" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul12"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub34"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add33"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add34"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub35"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U69" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub36"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U66" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add35"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U67" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add36"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U68" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub37"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U69" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub38"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop11" OPTYPE="add" PRAGMA="" RTLNAME="add_ln406_fu_3984_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:406" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln406"/>
-                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="twiddles8_reversed8_U" SOURCE="" STORAGESIZE="32 8 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="twiddles8_reversed8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln128_fu_2331_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:128" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln128"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln136_fu_2372_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:136" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln136"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U56" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U57" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U58" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U59" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U60" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U61" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U60" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="mul7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U61" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="mul1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U62" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="mul4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U63" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="mul6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U56" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U57" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U58" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U59" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U64" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="mul"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U65" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="mul2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add10"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub10"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add12"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub12"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_10"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_10"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add14"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U56" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1_50"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U57" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub14"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U60" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="mul3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U61" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="mul5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub16"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add16"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="add18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:150" STORAGESUBTYPE="" URAM="0" VARIABLE="sub19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln176_fu_2781_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:176" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln176"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln182_fu_2832_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:182" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln182"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln183_fu_2866_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:183" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln183"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln184_fu_2877_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:184" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln184"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln185_fu_2907_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:185" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln185"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln186_fu_2917_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:186" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln186"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln187_fu_2954_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:187" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln187"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln188_fu_2964_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:188" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln188"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln191_fu_2984_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:191" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln191"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="offset_1_fu_3024_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:195" STORAGESUBTYPE="" URAM="0" VARIABLE="offset_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln198_fu_3039_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:198" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln198"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln199_fu_3083_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:199" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln199"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln200_fu_3093_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:200" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln200"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln201_fu_3123_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:201" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln201"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln202_fu_3133_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:202" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln202"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln203_fu_3163_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:203" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln203"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln204_fu_3173_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:204" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln204"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln208_fu_3212_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:208" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln208"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln215_fu_3263_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:215" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln215"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln216_fu_3297_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:216" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln216"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln217_fu_3308_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:217" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln217"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln218_fu_3338_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:218" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln218"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln219_fu_3348_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:219" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln219"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln220_fu_3385_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:220" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln220"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln221_fu_3395_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:221" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln221"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln224_fu_3415_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:224" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln224"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln238_fu_3459_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:238" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln238"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln105_fu_3470_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:105" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln105"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln106_fu_3514_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:106" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln106"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln107_fu_3524_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:107" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln107"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln108_fu_3554_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:108" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln108"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln109_fu_3564_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:109" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln109"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln110_fu_3594_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:110" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln110"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln111_fu_3604_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:111" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln111"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln250_fu_3643_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:250" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln250"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_21"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_21"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub21"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U56" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add21"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U57" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add22"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U58" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U59" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub22"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub23"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop6" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U60" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add23"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop6" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U61" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop6" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U60" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub24"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop6" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U61" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="mul9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add24"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub25"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop6" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U62" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="mul10"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add25"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop6" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U63" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="mul11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U56" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add26"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U57" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add27"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U58" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U59" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub26"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop6" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U64" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="mul12"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub27"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop6" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U65" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="mul13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub28"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add28"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add29"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub29"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub30"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add30"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add31"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub31"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub32"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_23"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_23"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_22"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_22"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add32"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add33"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U56" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U57" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub33"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop6" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U60" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="mul14"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub34"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop6" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U61" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="mul15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub35"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add34"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add35"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub36"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub37"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add36"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="add37"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub38"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop6" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:271" STORAGESUBTYPE="" URAM="0" VARIABLE="sub39"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln301_fu_3928_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:301" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln301"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln307_fu_3979_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:307" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln307"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln308_fu_4013_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:308" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln308"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln309_fu_4024_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:309" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln309"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln310_fu_4054_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:310" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln310"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln311_fu_4064_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:311" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln311"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln312_fu_4101_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:312" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln312"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln313_fu_4111_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:313" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln313"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln317_fu_4131_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:317" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln317"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln324_fu_4168_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:324" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln324"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln325_fu_4212_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:325" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln325"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln326_fu_4222_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:326" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln326"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln327_fu_4252_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:327" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln327"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln328_fu_4262_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:328" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln328"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln329_fu_4292_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:329" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln329"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln330_fu_4302_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:330" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln330"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln334_fu_4341_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:334" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln334"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln341_fu_4392_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:341" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln341"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln342_fu_4426_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:342" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln342"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln343_fu_4437_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:343" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln343"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln344_fu_4467_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:344" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln344"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln345_fu_4477_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:345" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln345"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln346_fu_4514_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:346" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln346"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln347_fu_4524_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:347" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln347"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln350_fu_4544_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:350" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln350"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln105_1_fu_4581_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:105" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln105_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln106_1_fu_4633_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:106" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln106_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln107_1_fu_4643_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:107" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln107_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln108_1_fu_4683_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:108" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln108_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln109_1_fu_4693_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:109" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln109_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln110_1_fu_4733_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:110" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln110_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln111_1_fu_4743_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:111" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln111_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop11" OPTYPE="add" PRAGMA="" RTLNAME="add_ln376_fu_4826_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:376" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln376"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_33"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_33"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_25"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_25"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_27"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_27"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub40"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add38"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add39"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub41"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U56" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add40"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U57" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add41"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U58" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_1_8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U59" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub42"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub43"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U60" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_32"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add42"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U61" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_32"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U60" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul16"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub44"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U61" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add43"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub45"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U62" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add44"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U63" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_30"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_30"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_31"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_31"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U56" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add45"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U57" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add46"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U58" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dsub_64ns_64ns_64_4_full_dsp_1_U59" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub46"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U64" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul20"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub47"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U65" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul21"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub48"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add47"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add48"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub49"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub50"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add49"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add50"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub51"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub52"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_35"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_35"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_x_34"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="c0_y_34"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add51"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add52"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U56" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U57" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub53"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U60" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul22"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub54"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loop11" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U61" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="mul23"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub55"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add53"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add54"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub56"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub57"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U52" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add55"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dadd" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U53" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="add56"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U54" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub58"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop11" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U55" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:398" STORAGESUBTYPE="" URAM="0" VARIABLE="sub59"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop11" OPTYPE="add" PRAGMA="" RTLNAME="add_ln406_fu_5165_p2" SOURCE="data/benchmarks/trans_fft/transposed_fft.c:406" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln406"/>
             </BindNodes>
         </Module>
     </ModuleInformation>
@@ -1396,6 +1524,8 @@
         <Pragma type="loop_tripcount" location="data/benchmarks/trans_fft/transposed_fft.c:335" status="valid" parentFunction="fft1d_512" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/trans_fft/transposed_fft.c:351" status="valid" parentFunction="fft1d_512" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/trans_fft/transposed_fft.c:377" status="valid" parentFunction="fft1d_512" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
+        <Pragma type="loop_flatten" location="../base_directives/trans_fft.tcl:12" status="valid" parentFunction="fft1d_512" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/trans_fft.tcl:13" status="valid" parentFunction="fft1d_512" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/trans_fft.tcl:1" status="valid" parentFunction="fft1d_512" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/trans_fft.tcl:2" status="valid" parentFunction="fft1d_512" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/trans_fft.tcl:3" status="valid" parentFunction="fft1d_512" variable="" isDirective="1" options="off=true"/>
@@ -1407,6 +1537,8 @@
         <Pragma type="pipeline" location="../base_directives/trans_fft.tcl:9" status="valid" parentFunction="fft1d_512" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/trans_fft.tcl:10" status="valid" parentFunction="fft1d_512" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/trans_fft.tcl:11" status="valid" parentFunction="fft1d_512" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/trans_fft.tcl:15" status="valid" parentFunction="twiddles8" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/trans_fft.tcl:14" status="valid" parentFunction="twiddles8" variable="" isDirective="1" options="off=true"/>
     </PragmaReport>
 </profile>
 

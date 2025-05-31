@@ -199,7 +199,7 @@ entry:9 %call_ln12 = call void @Reflection_coefficients, i64 %L_ACF, i16 %LARc, 
 
 <Node id="6" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-entry:2 %spectopmodule_ln7 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_0
+entry:2 %spectopmodule_ln7 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_1
 
 ]]></Node>
 <StgValue><ssdm name="spectopmodule_ln7"/></StgValue>
@@ -415,10 +415,10 @@ for.body.i.split_ifconv:4 %LARc_addr = getelementptr i16 %LARc, i64 0, i64 %zext
 
 <Node id="29" bw="16" op_0_bw="3">
 <![CDATA[
-for.body.i.split_ifconv:5 %temp_28 = load i3 %LARc_addr
+for.body.i.split_ifconv:5 %temp_27 = load i3 %LARc_addr
 
 ]]></Node>
-<StgValue><ssdm name="temp_28"/></StgValue>
+<StgValue><ssdm name="temp_27"/></StgValue>
 </operation>
 
 <operation id="32" st_id="5" stage="1" lat="1">
@@ -511,7 +511,7 @@ for.body.i.split_ifconv:2 %speclooptripcount_ln249 = speclooptripcount void @_ss
 
 <Node id="27" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-for.body.i.split_ifconv:3 %specloopname_ln248 = specloopname void @_ssdm_op_SpecLoopName, void @empty_1
+for.body.i.split_ifconv:3 %specloopname_ln248 = specloopname void @_ssdm_op_SpecLoopName, void @empty_2
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln248"/></StgValue>
@@ -526,10 +526,10 @@ for.body.i.split_ifconv:3 %specloopname_ln248 = specloopname void @_ssdm_op_Spec
 
 <Node id="29" bw="16" op_0_bw="3">
 <![CDATA[
-for.body.i.split_ifconv:5 %temp_28 = load i3 %LARc_addr
+for.body.i.split_ifconv:5 %temp_27 = load i3 %LARc_addr
 
 ]]></Node>
-<StgValue><ssdm name="temp_28"/></StgValue>
+<StgValue><ssdm name="temp_27"/></StgValue>
 </operation>
 
 <operation id="39" st_id="6" stage="1" lat="1">
@@ -541,7 +541,7 @@ for.body.i.split_ifconv:5 %temp_28 = load i3 %LARc_addr
 
 <Node id="30" bw="1" op_0_bw="1" op_1_bw="16" op_2_bw="32">
 <![CDATA[
-for.body.i.split_ifconv:6 %tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %temp_28, i32 15
+for.body.i.split_ifconv:6 %tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %temp_27, i32 15
 
 ]]></Node>
 <StgValue><ssdm name="tmp"/></StgValue>
@@ -556,7 +556,7 @@ for.body.i.split_ifconv:6 %tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i1
 
 <Node id="31" bw="1" op_0_bw="16" op_1_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:7 %icmp_ln67 = icmp_eq  i16 %temp_28, i16 32768
+for.body.i.split_ifconv:7 %icmp_ln67 = icmp_eq  i16 %temp_27, i16 32768
 
 ]]></Node>
 <StgValue><ssdm name="icmp_ln67"/></StgValue>
@@ -571,7 +571,7 @@ for.body.i.split_ifconv:7 %icmp_ln67 = icmp_eq  i16 %temp_28, i16 32768
 
 <Node id="32" bw="16" op_0_bw="16" op_1_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:8 %sub_ln67 = sub i16 0, i16 %temp_28
+for.body.i.split_ifconv:8 %sub_ln67 = sub i16 0, i16 %temp_27
 
 ]]></Node>
 <StgValue><ssdm name="sub_ln67"/></StgValue>
@@ -601,7 +601,7 @@ for.body.i.split_ifconv:9 %select_ln67 = select i1 %icmp_ln67, i16 32767, i16 %s
 
 <Node id="34" bw="16" op_0_bw="1" op_1_bw="16" op_2_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:10 %temp = select i1 %tmp, i16 %select_ln67, i16 %temp_28
+for.body.i.split_ifconv:10 %temp = select i1 %tmp, i16 %select_ln67, i16 %temp_27
 
 ]]></Node>
 <StgValue><ssdm name="temp"/></StgValue>
@@ -631,10 +631,10 @@ for.body.i.split_ifconv:11 %icmp_ln253 = icmp_slt  i16 %temp, i16 22118
 
 <Node id="36" bw="15" op_0_bw="15" op_1_bw="16" op_2_bw="32" op_3_bw="32">
 <![CDATA[
-for.body.i.split_ifconv:12 %temp_29 = partselect i15 @_ssdm_op_PartSelect.i15.i16.i32.i32, i16 %temp, i32 1, i32 15
+for.body.i.split_ifconv:12 %temp_28 = partselect i15 @_ssdm_op_PartSelect.i15.i16.i32.i32, i16 %temp, i32 1, i32 15
 
 ]]></Node>
-<StgValue><ssdm name="temp_29"/></StgValue>
+<StgValue><ssdm name="temp_28"/></StgValue>
 </operation>
 
 <operation id="46" st_id="6" stage="1" lat="1">
@@ -646,7 +646,7 @@ for.body.i.split_ifconv:12 %temp_29 = partselect i15 @_ssdm_op_PartSelect.i15.i1
 
 <Node id="37" bw="16" op_0_bw="15">
 <![CDATA[
-for.body.i.split_ifconv:13 %sext_ln254 = sext i15 %temp_29
+for.body.i.split_ifconv:13 %sext_ln254 = sext i15 %temp_28
 
 ]]></Node>
 <StgValue><ssdm name="sext_ln254"/></StgValue>
@@ -676,10 +676,10 @@ for.body.i.split_ifconv:14 %icmp_ln255 = icmp_slt  i16 %temp, i16 31130
 
 <Node id="39" bw="16" op_0_bw="16" op_1_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:15 %temp_30 = add i16 %temp, i16 54477
+for.body.i.split_ifconv:15 %temp_29 = add i16 %temp, i16 54477
 
 ]]></Node>
-<StgValue><ssdm name="temp_30"/></StgValue>
+<StgValue><ssdm name="temp_29"/></StgValue>
 </operation>
 
 <operation id="49" st_id="6" stage="1" lat="1">
@@ -706,10 +706,10 @@ for.body.i.split_ifconv:16 %shl_ln259 = shl i16 %temp, i16 2
 
 <Node id="41" bw="16" op_0_bw="16" op_1_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:17 %temp_31 = add i16 %shl_ln259, i16 26624
+for.body.i.split_ifconv:17 %temp_30 = add i16 %shl_ln259, i16 26624
 
 ]]></Node>
-<StgValue><ssdm name="temp_31"/></StgValue>
+<StgValue><ssdm name="temp_30"/></StgValue>
 </operation>
 
 <operation id="51" st_id="6" stage="1" lat="1">
@@ -721,10 +721,10 @@ for.body.i.split_ifconv:17 %temp_31 = add i16 %shl_ln259, i16 26624
 
 <Node id="42" bw="16" op_0_bw="1" op_1_bw="16" op_2_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:18 %temp_32 = select i1 %icmp_ln253, i16 %sext_ln254, i16 %temp_31
+for.body.i.split_ifconv:18 %temp_31 = select i1 %icmp_ln253, i16 %sext_ln254, i16 %temp_30
 
 ]]></Node>
-<StgValue><ssdm name="temp_32"/></StgValue>
+<StgValue><ssdm name="temp_31"/></StgValue>
 </operation>
 
 <operation id="52" st_id="6" stage="1" lat="1">
@@ -766,10 +766,10 @@ for.body.i.split_ifconv:20 %and_ln255 = and i1 %icmp_ln255, i1 %xor_ln253
 
 <Node id="45" bw="16" op_0_bw="1" op_1_bw="16" op_2_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:21 %temp_33 = select i1 %and_ln255, i16 %temp_30, i16 %temp_32
+for.body.i.split_ifconv:21 %temp_32 = select i1 %and_ln255, i16 %temp_29, i16 %temp_31
 
 ]]></Node>
-<StgValue><ssdm name="temp_33"/></StgValue>
+<StgValue><ssdm name="temp_32"/></StgValue>
 </operation>
 
 <operation id="55" st_id="6" stage="1" lat="1">
@@ -781,7 +781,7 @@ for.body.i.split_ifconv:21 %temp_33 = select i1 %and_ln255, i16 %temp_30, i16 %t
 
 <Node id="46" bw="16" op_0_bw="16" op_1_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:22 %sub_ln262 = sub i16 0, i16 %temp_33
+for.body.i.split_ifconv:22 %sub_ln262 = sub i16 0, i16 %temp_32
 
 ]]></Node>
 <StgValue><ssdm name="sub_ln262"/></StgValue>
@@ -796,7 +796,7 @@ for.body.i.split_ifconv:22 %sub_ln262 = sub i16 0, i16 %temp_33
 
 <Node id="47" bw="16" op_0_bw="1" op_1_bw="16" op_2_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:23 %select_ln262 = select i1 %tmp, i16 %sub_ln262, i16 %temp_33
+for.body.i.split_ifconv:23 %select_ln262 = select i1 %tmp, i16 %sub_ln262, i16 %temp_32
 
 ]]></Node>
 <StgValue><ssdm name="select_ln262"/></StgValue>
@@ -943,7 +943,7 @@ Transformation_to_Log_Area_Ratios.exit:1 %ret_ln15 = ret
 </dataflow>
 <dataflow id="104" from="_ssdm_op_SpecTopModule" to="spectopmodule_ln7" fromId="103" toId="17">
 </dataflow>
-<dataflow id="106" from="empty_0" to="spectopmodule_ln7" fromId="105" toId="17">
+<dataflow id="106" from="empty_1" to="spectopmodule_ln7" fromId="105" toId="17">
 </dataflow>
 <dataflow id="108" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="107" toId="18">
 </dataflow>
@@ -1059,7 +1059,7 @@ Transformation_to_Log_Area_Ratios.exit:1 %ret_ln15 = ret
 </dataflow>
 <dataflow id="171" from="zext_ln248" to="LARc_addr" fromId="29" toId="30">
 </dataflow>
-<dataflow id="172" from="LARc_addr" to="temp_28" fromId="30" toId="31">
+<dataflow id="172" from="LARc_addr" to="temp_27" fromId="30" toId="31">
 </dataflow>
 <dataflow id="173" from="i_8" to="i_9" fromId="25" toId="32">
 </dataflow>
@@ -1095,23 +1095,23 @@ Transformation_to_Log_Area_Ratios.exit:1 %ret_ln15 = ret
 </dataflow>
 <dataflow id="193" from="_ssdm_op_SpecLoopName" to="specloopname_ln248" fromId="192" toId="37">
 </dataflow>
-<dataflow id="195" from="empty_1" to="specloopname_ln248" fromId="194" toId="37">
+<dataflow id="195" from="empty_2" to="specloopname_ln248" fromId="194" toId="37">
 </dataflow>
-<dataflow id="196" from="LARc_addr" to="temp_28" fromId="30" toId="38">
+<dataflow id="196" from="LARc_addr" to="temp_27" fromId="30" toId="38">
 </dataflow>
 <dataflow id="198" from="_ssdm_op_BitSelect.i1.i16.i32" to="tmp" fromId="197" toId="39">
 </dataflow>
-<dataflow id="199" from="temp_28" to="tmp" fromId="38" toId="39">
+<dataflow id="199" from="temp_27" to="tmp" fromId="38" toId="39">
 </dataflow>
 <dataflow id="201" from="StgValue_200" to="tmp" fromId="200" toId="39">
 </dataflow>
-<dataflow id="202" from="temp_28" to="icmp_ln67" fromId="38" toId="40">
+<dataflow id="202" from="temp_27" to="icmp_ln67" fromId="38" toId="40">
 </dataflow>
 <dataflow id="204" from="StgValue_203" to="icmp_ln67" fromId="203" toId="40">
 </dataflow>
 <dataflow id="206" from="StgValue_205" to="sub_ln67" fromId="205" toId="41">
 </dataflow>
-<dataflow id="207" from="temp_28" to="sub_ln67" fromId="38" toId="41">
+<dataflow id="207" from="temp_27" to="sub_ln67" fromId="38" toId="41">
 </dataflow>
 <dataflow id="208" from="icmp_ln67" to="select_ln67" fromId="40" toId="42">
 </dataflow>
@@ -1123,43 +1123,43 @@ Transformation_to_Log_Area_Ratios.exit:1 %ret_ln15 = ret
 </dataflow>
 <dataflow id="213" from="select_ln67" to="temp" fromId="42" toId="43">
 </dataflow>
-<dataflow id="214" from="temp_28" to="temp" fromId="38" toId="43">
+<dataflow id="214" from="temp_27" to="temp" fromId="38" toId="43">
 </dataflow>
 <dataflow id="215" from="temp" to="icmp_ln253" fromId="43" toId="44">
 </dataflow>
 <dataflow id="217" from="StgValue_216" to="icmp_ln253" fromId="216" toId="44">
 </dataflow>
-<dataflow id="219" from="_ssdm_op_PartSelect.i15.i16.i32.i32" to="temp_29" fromId="218" toId="45">
+<dataflow id="219" from="_ssdm_op_PartSelect.i15.i16.i32.i32" to="temp_28" fromId="218" toId="45">
 </dataflow>
-<dataflow id="220" from="temp" to="temp_29" fromId="43" toId="45">
+<dataflow id="220" from="temp" to="temp_28" fromId="43" toId="45">
 </dataflow>
-<dataflow id="221" from="StgValue_78" to="temp_29" fromId="78" toId="45">
+<dataflow id="221" from="StgValue_78" to="temp_28" fromId="78" toId="45">
 </dataflow>
-<dataflow id="222" from="StgValue_200" to="temp_29" fromId="200" toId="45">
+<dataflow id="222" from="StgValue_200" to="temp_28" fromId="200" toId="45">
 </dataflow>
-<dataflow id="223" from="temp_29" to="sext_ln254" fromId="45" toId="46">
+<dataflow id="223" from="temp_28" to="sext_ln254" fromId="45" toId="46">
 </dataflow>
 <dataflow id="224" from="temp" to="icmp_ln255" fromId="43" toId="47">
 </dataflow>
 <dataflow id="226" from="StgValue_225" to="icmp_ln255" fromId="225" toId="47">
 </dataflow>
-<dataflow id="227" from="temp" to="temp_30" fromId="43" toId="48">
+<dataflow id="227" from="temp" to="temp_29" fromId="43" toId="48">
 </dataflow>
-<dataflow id="229" from="StgValue_228" to="temp_30" fromId="228" toId="48">
+<dataflow id="229" from="StgValue_228" to="temp_29" fromId="228" toId="48">
 </dataflow>
 <dataflow id="230" from="temp" to="shl_ln259" fromId="43" toId="49">
 </dataflow>
 <dataflow id="232" from="StgValue_231" to="shl_ln259" fromId="231" toId="49">
 </dataflow>
-<dataflow id="233" from="shl_ln259" to="temp_31" fromId="49" toId="50">
+<dataflow id="233" from="shl_ln259" to="temp_30" fromId="49" toId="50">
 </dataflow>
-<dataflow id="235" from="StgValue_234" to="temp_31" fromId="234" toId="50">
+<dataflow id="235" from="StgValue_234" to="temp_30" fromId="234" toId="50">
 </dataflow>
-<dataflow id="236" from="icmp_ln253" to="temp_32" fromId="44" toId="51">
+<dataflow id="236" from="icmp_ln253" to="temp_31" fromId="44" toId="51">
 </dataflow>
-<dataflow id="237" from="sext_ln254" to="temp_32" fromId="46" toId="51">
+<dataflow id="237" from="sext_ln254" to="temp_31" fromId="46" toId="51">
 </dataflow>
-<dataflow id="238" from="temp_31" to="temp_32" fromId="50" toId="51">
+<dataflow id="238" from="temp_30" to="temp_31" fromId="50" toId="51">
 </dataflow>
 <dataflow id="239" from="icmp_ln253" to="xor_ln253" fromId="44" toId="52">
 </dataflow>
@@ -1169,21 +1169,21 @@ Transformation_to_Log_Area_Ratios.exit:1 %ret_ln15 = ret
 </dataflow>
 <dataflow id="243" from="xor_ln253" to="and_ln255" fromId="52" toId="53">
 </dataflow>
-<dataflow id="244" from="and_ln255" to="temp_33" fromId="53" toId="54">
+<dataflow id="244" from="and_ln255" to="temp_32" fromId="53" toId="54">
 </dataflow>
-<dataflow id="245" from="temp_30" to="temp_33" fromId="48" toId="54">
+<dataflow id="245" from="temp_29" to="temp_32" fromId="48" toId="54">
 </dataflow>
-<dataflow id="246" from="temp_32" to="temp_33" fromId="51" toId="54">
+<dataflow id="246" from="temp_31" to="temp_32" fromId="51" toId="54">
 </dataflow>
 <dataflow id="247" from="StgValue_205" to="sub_ln262" fromId="205" toId="55">
 </dataflow>
-<dataflow id="248" from="temp_33" to="sub_ln262" fromId="54" toId="55">
+<dataflow id="248" from="temp_32" to="sub_ln262" fromId="54" toId="55">
 </dataflow>
 <dataflow id="249" from="tmp" to="select_ln262" fromId="39" toId="56">
 </dataflow>
 <dataflow id="250" from="sub_ln262" to="select_ln262" fromId="55" toId="56">
 </dataflow>
-<dataflow id="251" from="temp_33" to="select_ln262" fromId="54" toId="56">
+<dataflow id="251" from="temp_32" to="select_ln262" fromId="54" toId="56">
 </dataflow>
 <dataflow id="252" from="select_ln262" to="store_ln262" fromId="56" toId="57">
 </dataflow>

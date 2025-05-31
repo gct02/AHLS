@@ -55,6 +55,6 @@ if __name__ == '__main__':
     from sys import argv
 
     log_file = argv[1]
-    residuals = parse_residuals(log_file)
-    plot_residuals(residuals)
+    # residuals = parse_residuals(log_file)
+    # plot_residuals(residuals)
     

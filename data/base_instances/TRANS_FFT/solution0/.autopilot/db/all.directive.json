@@ -236,6 +236,90 @@
     "id": 11,
     "ifcond": "",
     "insert_position": "",
+    "label": "loop1",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl",
+    "sourceLine": 12,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "fft1D_512",
+    "id": 12,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loop6",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl",
+    "sourceLine": 13,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "twiddles8",
+    "id": 13,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "twiddles",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl",
+    "sourceLine": 14,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "twiddles8",
+    "id": 14,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl",
+    "sourceLine": 15,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "fft1D_512",
+    "id": 15,
+    "ifcond": "",
+    "insert_position": "",
     "label": "",
     "pragma": {
       "name": "TOP",

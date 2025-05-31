@@ -1,6 +1,6 @@
 # This script segment is generated automatically by AutoPilot
 
-set id 54
+set id 55
 set name Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1
 set corename simcore_ama
 set op ama
@@ -63,7 +63,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_dsp48, check your p
 }
 
 
-set id 56
+set id 57
 set name Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1
 set corename simcore_am
 set op am
@@ -122,7 +122,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_dsp48, check your p
 }
 
 
-set id 57
+set id 58
 set name Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1
 set corename simcore_mac
 set op mac
@@ -181,7 +181,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_dsp48, check your p
 }
 
 
-set id 62
+set id 63
 set name Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1
 set corename simcore_mac
 set op mac
@@ -240,7 +240,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_dsp48, check your p
 }
 
 
-set id 64
+set id 65
 set name Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1
 set corename simcore_ama
 set op ama
@@ -314,7 +314,7 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 74 \
+    id 75 \
     name indata \
     reset_level 1 \
     sync_rst true \
@@ -333,7 +333,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 75 \
+    id 76 \
     name L_ACF \
     reset_level 1 \
     sync_rst true \
@@ -344,25 +344,6 @@ eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'L_ACF'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 76 \
-    name bitoff \
-    reset_level 1 \
-    sync_rst true \
-    dir I \
-    corename bitoff \
-    op interface \
-    ports { bitoff_address0 { O 8 vector } bitoff_ce0 { O 1 bit } bitoff_q0 { I 4 vector } bitoff_address1 { O 8 vector } bitoff_ce1 { O 1 bit } bitoff_q1 { I 4 vector } bitoff_address2 { O 8 vector } bitoff_ce2 { O 1 bit } bitoff_q2 { I 4 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'bitoff'"
 }
 }
 

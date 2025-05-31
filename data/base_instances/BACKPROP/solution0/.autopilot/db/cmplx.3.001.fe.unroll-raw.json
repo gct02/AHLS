@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 8,
-    "calls": "5 4 3 4 13 4 12 10 8 6 1 11 9 7",
+    "calls": "5 8 11 8 7 8 10 4 9 12 13 3 1 6",
     "file": "backprop.c",
     "fileloc": 330,
     "instructions": 96,
@@ -15,48 +15,18 @@
     "basicblocks": 6,
     "calls": "",
     "file": "backprop.c",
-    "fileloc": 153,
+    "fileloc": 186,
     "instructions": 24,
     "loads": {
       "L": 2
     },
-    "name": "get_delta_matrix_weights2",
+    "name": "get_delta_matrix_weights1",
     "stores": {
       "L": 1
     },
     "total_instructions": 24
   },
   "10": {
-    "basicblocks": 4,
-    "calls": "",
-    "file": "backprop.c",
-    "fileloc": 108,
-    "instructions": 22,
-    "loads": {
-      "L": 3
-    },
-    "name": "take_difference",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 22
-  },
-  "11": {
-    "basicblocks": 6,
-    "calls": "",
-    "file": "backprop.c",
-    "fileloc": 168,
-    "instructions": 41,
-    "loads": {
-      "L": 5
-    },
-    "name": "get_oracle_activations1",
-    "stores": {
-      "L": 3
-    },
-    "total_instructions": 41
-  },
-  "12": {
     "basicblocks": 7,
     "calls": "",
     "file": "backprop.c",
@@ -71,20 +41,50 @@
     },
     "total_instructions": 30
   },
-  "13": {
+  "11": {
     "basicblocks": 6,
     "calls": "2",
     "file": "backprop.c",
-    "fileloc": 90,
+    "fileloc": 72,
     "instructions": 32,
     "loads": {
       "L": 3
     },
-    "name": "matrix_vector_product_with_bias_output_layer",
+    "name": "matrix_vector_product_with_bias_second_layer",
     "stores": {
       "L": 2
     },
     "total_instructions": 54
+  },
+  "12": {
+    "basicblocks": 6,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 135,
+    "instructions": 41,
+    "loads": {
+      "L": 5
+    },
+    "name": "get_oracle_activations2",
+    "stores": {
+      "L": 3
+    },
+    "total_instructions": 41
+  },
+  "13": {
+    "basicblocks": 6,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 153,
+    "instructions": 24,
+    "loads": {
+      "L": 2
+    },
+    "name": "get_delta_matrix_weights2",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 24
   },
   "2": {
     "basicblocks": 6,
@@ -103,33 +103,33 @@
   },
   "3": {
     "basicblocks": 6,
-    "calls": "2",
-    "file": "backprop.c",
-    "fileloc": 72,
-    "instructions": 32,
-    "loads": {
-      "L": 3
-    },
-    "name": "matrix_vector_product_with_bias_second_layer",
-    "stores": {
-      "L": 2
-    },
-    "total_instructions": 54
-  },
-  "4": {
-    "basicblocks": 6,
     "calls": "",
     "file": "backprop.c",
-    "fileloc": 33,
-    "instructions": 33,
+    "fileloc": 168,
+    "instructions": 41,
+    "loads": {
+      "L": 5
+    },
+    "name": "get_oracle_activations1",
+    "stores": {
+      "L": 3
+    },
+    "total_instructions": 41
+  },
+  "4": {
+    "basicblocks": 4,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 108,
+    "instructions": 22,
     "loads": {
       "L": 3
     },
-    "name": "RELU",
+    "name": "take_difference",
     "stores": {
-      "L": 2
+      "L": 1
     },
-    "total_instructions": 33
+    "total_instructions": 22
   },
   "5": {
     "basicblocks": 6,
@@ -147,21 +147,6 @@
     "total_instructions": 54
   },
   "6": {
-    "basicblocks": 6,
-    "calls": "",
-    "file": "backprop.c",
-    "fileloc": 135,
-    "instructions": 41,
-    "loads": {
-      "L": 5
-    },
-    "name": "get_oracle_activations2",
-    "stores": {
-      "L": 3
-    },
-    "total_instructions": 41
-  },
-  "7": {
     "basicblocks": 49,
     "calls": "",
     "file": "backprop.c",
@@ -176,7 +161,37 @@
     },
     "total_instructions": 289
   },
+  "7": {
+    "basicblocks": 6,
+    "calls": "2",
+    "file": "backprop.c",
+    "fileloc": 90,
+    "instructions": 32,
+    "loads": {
+      "L": 3
+    },
+    "name": "matrix_vector_product_with_bias_output_layer",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 54
+  },
   "8": {
+    "basicblocks": 6,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 33,
+    "instructions": 33,
+    "loads": {
+      "L": 3
+    },
+    "name": "RELU",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 33
+  },
+  "9": {
     "basicblocks": 6,
     "calls": "",
     "file": "backprop.c",
@@ -186,21 +201,6 @@
       "L": 2
     },
     "name": "get_delta_matrix_weights3",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 24
-  },
-  "9": {
-    "basicblocks": 6,
-    "calls": "",
-    "file": "backprop.c",
-    "fileloc": 186,
-    "instructions": 24,
-    "loads": {
-      "L": 2
-    },
-    "name": "get_delta_matrix_weights1",
     "stores": {
       "L": 1
     },

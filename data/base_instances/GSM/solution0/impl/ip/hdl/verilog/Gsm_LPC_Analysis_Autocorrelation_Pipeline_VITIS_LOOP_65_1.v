@@ -20,7 +20,8 @@ module Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1 (
         indata_address1,
         indata_ce1,
         indata_q1,
-        zext_ln65
+        cmp_i68,
+        empty
 );
 
 parameter    ap_ST_fsm_pp0_stage0 = 1'd1;
@@ -38,7 +39,8 @@ output  [15:0] indata_d0;
 output  [7:0] indata_address1;
 output   indata_ce1;
 input  [15:0] indata_q1;
-input  [14:0] zext_ln65;
+input  [0:0] cmp_i68;
+input  [14:0] empty;
 
 reg ap_idle;
 reg indata_ce0;
@@ -54,27 +56,34 @@ reg    ap_enable_reg_pp0_iter3;
 reg    ap_enable_reg_pp0_iter4;
 reg    ap_idle_pp0;
 wire    ap_block_pp0_stage0_subdone;
-wire   [0:0] icmp_ln65_fu_83_p2;
+wire   [0:0] icmp_ln65_fu_97_p2;
 reg    ap_condition_exit_pp0_iter0_stage0;
 wire    ap_loop_exit_ready;
 reg    ap_ready_int;
-wire   [30:0] zext_ln65_cast_fu_71_p1;
-reg   [30:0] zext_ln65_cast_reg_134;
 wire    ap_block_pp0_stage0_11001;
-reg   [7:0] indata_addr_reg_143;
-reg   [7:0] indata_addr_reg_143_pp0_iter1_reg;
-reg   [7:0] indata_addr_reg_143_pp0_iter2_reg;
-reg   [7:0] indata_addr_reg_143_pp0_iter3_reg;
-wire   [63:0] zext_ln65_1_fu_95_p1;
+wire   [30:0] p_cast_fu_85_p1;
+reg   [30:0] p_cast_reg_171;
+reg   [7:0] indata_addr_reg_180;
+reg   [7:0] indata_addr_reg_180_pp0_iter1_reg;
+reg   [7:0] indata_addr_reg_180_pp0_iter2_reg;
+reg   [7:0] indata_addr_reg_180_pp0_iter3_reg;
+wire   [0:0] icmp_ln55_fu_119_p2;
+reg   [0:0] icmp_ln55_reg_186;
+reg   [0:0] icmp_ln55_reg_186_pp0_iter2_reg;
+reg   [0:0] icmp_ln55_reg_186_pp0_iter3_reg;
+wire   [63:0] zext_ln65_fu_109_p1;
 wire    ap_block_pp0_stage0;
-reg   [7:0] k_2_fu_44;
-wire   [7:0] add_ln65_fu_89_p2;
+reg   [7:0] k_2_fu_52;
+wire   [7:0] add_ln65_fu_103_p2;
 wire    ap_loop_init;
 reg   [7:0] ap_sig_allocacmp_k;
-wire  signed [30:0] trunc_ln_fu_109_p1;
-wire   [30:0] grp_fu_119_p3;
-wire   [14:0] grp_fu_119_p1;
-wire   [14:0] grp_fu_119_p2;
+wire  signed [15:0] icmp_ln55_fu_119_p0;
+wire  signed [30:0] trunc_ln9_fu_133_p1;
+wire   [30:0] grp_fu_151_p3;
+wire   [0:0] and_ln55_fu_129_p2;
+wire   [15:0] trunc_ln9_fu_133_p4;
+wire   [14:0] grp_fu_151_p1;
+wire   [14:0] grp_fu_151_p2;
 reg    ap_done_reg;
 wire    ap_continue_int;
 reg    ap_done_int;
@@ -93,7 +102,7 @@ initial begin
 #0 ap_enable_reg_pp0_iter2 = 1'b0;
 #0 ap_enable_reg_pp0_iter3 = 1'b0;
 #0 ap_enable_reg_pp0_iter4 = 1'b0;
-#0 k_2_fu_44 = 8'd0;
+#0 k_2_fu_52 = 8'd0;
 #0 ap_done_reg = 1'b0;
 end
 
@@ -108,10 +117,10 @@ mac_muladd_16s_15ns_15ns_31_4_1_U3(
     .clk(ap_clk),
     .reset(ap_rst),
     .din0(indata_q1),
-    .din1(grp_fu_119_p1),
-    .din2(grp_fu_119_p2),
+    .din1(grp_fu_151_p1),
+    .din2(grp_fu_151_p2),
     .ce(1'b1),
-    .dout(grp_fu_119_p3)
+    .dout(grp_fu_151_p3)
 );
 
 Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init flow_control_loop_pipe_sequential_init_U(
@@ -193,10 +202,10 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        if (((icmp_ln65_fu_83_p2 == 1'd0) & (ap_enable_reg_pp0_iter0 == 1'b1))) begin
-            k_2_fu_44 <= add_ln65_fu_89_p2;
+        if (((icmp_ln65_fu_97_p2 == 1'd0) & (ap_enable_reg_pp0_iter0 == 1'b1))) begin
+            k_2_fu_52 <= add_ln65_fu_103_p2;
         end else if ((ap_loop_init == 1'b1)) begin
-            k_2_fu_44 <= 8'd0;
+            k_2_fu_52 <= 8'd0;
         end
     end
 end
@@ -205,22 +214,25 @@ always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         ap_loop_exit_ready_pp0_iter1_reg <= ap_loop_exit_ready;
         ap_loop_exit_ready_pp0_iter2_reg <= ap_loop_exit_ready_pp0_iter1_reg;
-        indata_addr_reg_143 <= zext_ln65_1_fu_95_p1;
-        indata_addr_reg_143_pp0_iter1_reg <= indata_addr_reg_143;
-        zext_ln65_cast_reg_134[14 : 0] <= zext_ln65_cast_fu_71_p1[14 : 0];
+        icmp_ln55_reg_186 <= icmp_ln55_fu_119_p2;
+        indata_addr_reg_180 <= zext_ln65_fu_109_p1;
+        indata_addr_reg_180_pp0_iter1_reg <= indata_addr_reg_180;
+        p_cast_reg_171[14 : 0] <= p_cast_fu_85_p1[14 : 0];
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b0 == ap_block_pp0_stage0_11001)) begin
         ap_loop_exit_ready_pp0_iter3_reg <= ap_loop_exit_ready_pp0_iter2_reg;
-        indata_addr_reg_143_pp0_iter2_reg <= indata_addr_reg_143_pp0_iter1_reg;
-        indata_addr_reg_143_pp0_iter3_reg <= indata_addr_reg_143_pp0_iter2_reg;
+        icmp_ln55_reg_186_pp0_iter2_reg <= icmp_ln55_reg_186;
+        icmp_ln55_reg_186_pp0_iter3_reg <= icmp_ln55_reg_186_pp0_iter2_reg;
+        indata_addr_reg_180_pp0_iter2_reg <= indata_addr_reg_180_pp0_iter1_reg;
+        indata_addr_reg_180_pp0_iter3_reg <= indata_addr_reg_180_pp0_iter2_reg;
     end
 end
 
 always @ (*) begin
-    if (((icmp_ln65_fu_83_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+    if (((icmp_ln65_fu_97_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         ap_condition_exit_pp0_iter0_stage0 = 1'b1;
     end else begin
         ap_condition_exit_pp0_iter0_stage0 = 1'b0;
@@ -260,10 +272,10 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((ap_loop_init == 1'b1) & (1'b0 == ap_block_pp0_stage0) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+    if (((1'b0 == ap_block_pp0_stage0) & (1'b1 == ap_CS_fsm_pp0_stage0) & (ap_loop_init == 1'b1))) begin
         ap_sig_allocacmp_k = 8'd0;
     end else begin
-        ap_sig_allocacmp_k = k_2_fu_44;
+        ap_sig_allocacmp_k = k_2_fu_52;
     end
 end
 
@@ -302,7 +314,9 @@ always @ (*) begin
     endcase
 end
 
-assign add_ln65_fu_89_p2 = (ap_sig_allocacmp_k + 8'd1);
+assign add_ln65_fu_103_p2 = (ap_sig_allocacmp_k + 8'd1);
+
+assign and_ln55_fu_129_p2 = (icmp_ln55_reg_186_pp0_iter3_reg & cmp_i68);
 
 assign ap_CS_fsm_pp0_stage0 = ap_CS_fsm[32'd0];
 
@@ -318,26 +332,32 @@ assign ap_enable_reg_pp0_iter0 = ap_start_int;
 
 assign ap_loop_exit_ready = ap_condition_exit_pp0_iter0_stage0;
 
-assign grp_fu_119_p1 = zext_ln65_cast_reg_134;
+assign grp_fu_151_p1 = p_cast_reg_171;
 
-assign grp_fu_119_p2 = 31'd16384;
+assign grp_fu_151_p2 = 31'd16384;
 
-assign icmp_ln65_fu_83_p2 = ((ap_sig_allocacmp_k == 8'd160) ? 1'b1 : 1'b0);
+assign icmp_ln55_fu_119_p0 = indata_q1;
 
-assign indata_address0 = indata_addr_reg_143_pp0_iter3_reg;
+assign icmp_ln55_fu_119_p2 = ((icmp_ln55_fu_119_p0 == 16'd32768) ? 1'b1 : 1'b0);
 
-assign indata_address1 = zext_ln65_1_fu_95_p1;
+assign icmp_ln65_fu_97_p2 = ((ap_sig_allocacmp_k == 8'd160) ? 1'b1 : 1'b0);
 
-assign indata_d0 = {{trunc_ln_fu_109_p1[30:15]}};
+assign indata_address0 = indata_addr_reg_180_pp0_iter3_reg;
 
-assign trunc_ln_fu_109_p1 = grp_fu_119_p3;
+assign indata_address1 = zext_ln65_fu_109_p1;
 
-assign zext_ln65_1_fu_95_p1 = ap_sig_allocacmp_k;
+assign indata_d0 = ((and_ln55_fu_129_p2[0:0] == 1'b1) ? 16'd32767 : trunc_ln9_fu_133_p4);
 
-assign zext_ln65_cast_fu_71_p1 = zext_ln65;
+assign p_cast_fu_85_p1 = empty;
+
+assign trunc_ln9_fu_133_p1 = grp_fu_151_p3;
+
+assign trunc_ln9_fu_133_p4 = {{trunc_ln9_fu_133_p1[30:15]}};
+
+assign zext_ln65_fu_109_p1 = ap_sig_allocacmp_k;
 
 always @ (posedge ap_clk) begin
-    zext_ln65_cast_reg_134[30:15] <= 16'b0000000000000000;
+    p_cast_reg_171[30:15] <= 16'b0000000000000000;
 end
 
 endmodule //Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1

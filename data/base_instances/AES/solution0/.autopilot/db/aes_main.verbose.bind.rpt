@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'aes_main'
 ================================================================
-* Date:           Thu May 29 14:55:04 2025
+* Date:           Sat May 31 00:10:16 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        AES
@@ -29,7 +29,7 @@
     |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
     |   min   |   max   |    min    |    max    |  min |  max |   Type  |
     +---------+---------+-----------+-----------+------+------+---------+
-    |     2624|     2624|  20.992 us|  20.992 us|  2625|  2625|       no|
+    |     2634|     2634|  21.072 us|  21.072 us|  2635|  2635|       no|
     +---------+---------+-----------+-----------+------+------+---------+
 
     + Detail: 
@@ -38,8 +38,8 @@
         |                   |         |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
         |      Instance     |  Module |   min   |   max   |    min    |    max    |  min |  max |   Type  |
         +-------------------+---------+---------+---------+-----------+-----------+------+------+---------+
-        |grp_encrypt_fu_34  |encrypt  |     1054|     1054|   8.432 us|   8.432 us|  1054|  1054|       no|
-        |grp_decrypt_fu_50  |decrypt  |     1567|     1567|  12.536 us|  12.536 us|  1567|  1567|       no|
+        |grp_encrypt_fu_34  |encrypt  |     1059|     1059|   8.472 us|   8.472 us|  1059|  1059|       no|
+        |grp_decrypt_fu_50  |decrypt  |     1572|     1572|  12.576 us|  12.576 us|  1572|  1572|       no|
         +-------------------+---------+---------+---------+-----------+-----------+------+------+---------+
 
         * Loop: 
@@ -117,8 +117,8 @@ Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
 Port [ statemt]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=2; type=1; pingpong=0; private_global=0; MemPort=[22]; IO mode=ap_memory:ce=0
 Port [ key]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=1; pingpong=0; private_global=0; MemPort=[13]; IO mode=ap_memory:ce=0
 Port [ word]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=1; pingpong=0; private_global=1; MemPort=[21]; IO mode=ap_memory:ce=0
-Port [ Sbox]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[11]; IO mode=ap_memory:ce=0
-Port [ Rcon0]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[1]; IO mode=ap_memory:ce=0
+Port [ Sbox]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[11]; IO mode=ap_memory:ce=0
+Port [ Rcon0]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[1]; IO mode=ap_memory:ce=0
 Port [ Sbox_1]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=0; MemPort=[11]; IO mode=ap_memory:ce=0
 Port [ invSbox]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=0; MemPort=[11]; IO mode=ap_memory:ce=0
 ---------------- STG Properties END ------------------
@@ -398,10 +398,10 @@ ret_ln69           (ret          ) [ 00000]
 |----------|-------------------|---------|---------|---------|---------|---------|
 | Operation|  Functional Unit  |   BRAM  |  Delay  |    FF   |   LUT   |   URAM  |
 |----------|-------------------|---------|---------|---------|---------|---------|
-|   call   | grp_encrypt_fu_34 |    0    | 12.0131 |   1768  |   3350  |    0    |
-|          | grp_decrypt_fu_50 |    0    | 12.5651 |   1550  |   3598  |    0    |
+|   call   | grp_encrypt_fu_34 |    0    | 12.9686 |   1708  |   3269  |    0    |
+|          | grp_decrypt_fu_50 |    0    | 13.5205 |   1490  |   3517  |    0    |
 |----------|-------------------|---------|---------|---------|---------|---------|
-|   Total  |                   |    0    | 24.5782 |   3318  |   6948  |    0    |
+|   Total  |                   |    0    | 26.4891 |   3198  |   6786  |    0    |
 |----------|-------------------|---------|---------|---------|---------|---------|
 
 Memories:
@@ -433,10 +433,10 @@ N/A
 +-----------+--------+--------+--------+--------+--------+
 |           |  BRAM  |  Delay |   FF   |   LUT  |  URAM  |
 +-----------+--------+--------+--------+--------+--------+
-|  Function |    0   |   24   |  3318  |  6948  |    0   |
+|  Function |    0   |   26   |  3198  |  6786  |    0   |
 |   Memory  |    1   |    -   |   32   |   108  |    0   |
 |Multiplexer|    -   |    -   |    -   |    -   |    -   |
 |  Register |    -   |    -   |    -   |    -   |    -   |
 +-----------+--------+--------+--------+--------+--------+
-|   Total   |    1   |   24   |  3350  |  7056  |    0   |
+|   Total   |    1   |   26   |  3230  |  6894  |    0   |
 +-----------+--------+--------+--------+--------+--------+

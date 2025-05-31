@@ -13,7 +13,7 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550/grp_fft1D_512_Pipeline_loop1_twiddles_fu_1550_activity": {
+				"grp_twiddles8_fu_1969/grp_sin_or_cos_double_s_fu_119/grp_sin_or_cos_double_s_fu_119_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},
@@ -23,7 +23,7 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580/grp_fft1D_512_Pipeline_loop6_twiddles_fu_1580_activity": {
+				"grp_twiddles8_fu_1969/grp_sin_or_cos_double_s_fu_138/grp_sin_or_cos_double_s_fu_138_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},
@@ -33,7 +33,7 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"grp_sin_or_cos_double_s_fu_5138/grp_sin_or_cos_double_s_fu_5138_activity": {
+				"grp_twiddles8_fu_1969/grp_twiddles8_fu_1969_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},

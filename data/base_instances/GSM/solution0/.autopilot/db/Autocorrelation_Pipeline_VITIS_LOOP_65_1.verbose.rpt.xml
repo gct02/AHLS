@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Autocorrelation_Pipeline_VITIS_LOOP_65_1'" level="0">
-<item name = "Date">Thu May 29 16:47:04 2025
+<item name = "Date">Fri May 30 22:03:38 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GSM</item>
@@ -48,12 +48,12 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="DSP">-, 1, -, -, -</column>
-<column name="Expression">-, -, 0, 32, -</column>
+<column name="Expression">-, -, 0, 74, -</column>
 <column name="FIFO">-, -, -, -, -</column>
 <column name="Instance">-, -, -, -, -</column>
 <column name="Memory">-, -, -, -, -</column>
 <column name="Multiplexer">-, -, -, 36, -</column>
-<column name="Register">-, -, 104, 32, -</column>
+<column name="Register">-, -, 169, 64, -</column>
 <specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
 <specialColumn name="Utilization SLR (%)">0, ~0, ~0, ~0, 0</specialColumn>
 <specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
@@ -81,8 +81,11 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln65_fu_89_p2">+, 0, 0, 15, 8, 1</column>
-<column name="icmp_ln65_fu_83_p2">icmp, 0, 0, 15, 8, 8</column>
+<column name="add_ln65_fu_103_p2">+, 0, 0, 15, 8, 1</column>
+<column name="and_ln55_fu_129_p2">and, 0, 0, 2, 1, 1</column>
+<column name="icmp_ln55_fu_119_p2">icmp, 0, 0, 24, 16, 17</column>
+<column name="icmp_ln65_fu_97_p2">icmp, 0, 0, 15, 8, 8</column>
+<column name="indata_d0">select, 0, 0, 16, 1, 15</column>
 <column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
 </table>
 </item>
@@ -91,7 +94,7 @@
 <column name="ap_done_int">9, 2, 1, 2</column>
 <column name="ap_enable_reg_pp0_iter1">9, 2, 1, 2</column>
 <column name="ap_sig_allocacmp_k">9, 2, 8, 16</column>
-<column name="k_2_fu_44">9, 2, 8, 16</column>
+<column name="k_2_fu_52">9, 2, 8, 16</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
@@ -105,10 +108,12 @@
 <column name="ap_loop_exit_ready_pp0_iter1_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter2_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter3_reg">1, 0, 1, 0</column>
-<column name="indata_addr_reg_143">8, 0, 8, 0</column>
-<column name="k_2_fu_44">8, 0, 8, 0</column>
-<column name="zext_ln65_cast_reg_134">15, 0, 31, 16</column>
-<column name="indata_addr_reg_143">64, 32, 8, 0</column>
+<column name="icmp_ln55_reg_186">1, 0, 1, 0</column>
+<column name="indata_addr_reg_180">8, 0, 8, 0</column>
+<column name="k_2_fu_52">8, 0, 8, 0</column>
+<column name="p_cast_reg_171">15, 0, 31, 16</column>
+<column name="icmp_ln55_reg_186">64, 32, 1, 0</column>
+<column name="indata_addr_reg_180">64, 32, 8, 0</column>
 </table>
 </item>
 </section>
@@ -131,7 +136,8 @@
 <column name="indata_address1">out, 8, ap_memory, indata, array</column>
 <column name="indata_ce1">out, 1, ap_memory, indata, array</column>
 <column name="indata_q1">in, 16, ap_memory, indata, array</column>
-<column name="zext_ln65">in, 15, ap_none, zext_ln65, scalar</column>
+<column name="cmp_i68">in, 1, ap_none, cmp_i68, scalar</column>
+<column name="empty">in, 15, ap_none, empty, scalar</column>
 </table>
 </item>
 </section>

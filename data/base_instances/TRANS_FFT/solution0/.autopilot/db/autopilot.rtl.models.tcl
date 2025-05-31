@@ -18,20 +18,19 @@ set SynModuleInfo {
       {MODELNAME fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K4_ROM_1P_LUTRAM_1R RTLNAME fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K4_ROM_1P_LUTRAM_1R BINDTYPE storage TYPE rom_1p IMPL lutram LATENCY 2 ALLOW_PRAGMA 1}
     }
   }
-  {SRCNAME fft1D_512_Pipeline_loop1_twiddles MODELNAME fft1D_512_Pipeline_loop1_twiddles RTLNAME fft1D_512_fft1D_512_Pipeline_loop1_twiddles
+  {SRCNAME twiddles8 MODELNAME twiddles8 RTLNAME fft1D_512_twiddles8
     SUBMODULES {
+      {MODELNAME fft1D_512_dsub_64ns_64ns_64_4_full_dsp_1 RTLNAME fft1D_512_dsub_64ns_64ns_64_4_full_dsp_1 BINDTYPE op TYPE dsub IMPL fulldsp LATENCY 3 ALLOW_PRAGMA 1}
+      {MODELNAME fft1D_512_dadd_64ns_64ns_64_4_full_dsp_1 RTLNAME fft1D_512_dadd_64ns_64ns_64_4_full_dsp_1 BINDTYPE op TYPE dadd IMPL fulldsp LATENCY 3 ALLOW_PRAGMA 1}
+      {MODELNAME fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1 RTLNAME fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1 BINDTYPE op TYPE dmul IMPL maxdsp LATENCY 3 ALLOW_PRAGMA 1}
+      {MODELNAME fft1D_512_ddiv_64ns_64ns_64_14_no_dsp_1 RTLNAME fft1D_512_ddiv_64ns_64ns_64_14_no_dsp_1 BINDTYPE op TYPE ddiv IMPL fabric LATENCY 13 ALLOW_PRAGMA 1}
       {MODELNAME fft1D_512_sitodp_32ns_64_2_no_dsp_1 RTLNAME fft1D_512_sitodp_32ns_64_2_no_dsp_1 BINDTYPE op TYPE sitodp IMPL auto LATENCY 1 ALLOW_PRAGMA 1}
-      {MODELNAME fft1D_512_flow_control_loop_pipe_sequential_init RTLNAME fft1D_512_flow_control_loop_pipe_sequential_init BINDTYPE interface TYPE internal_upc_flow_control INSTNAME fft1D_512_flow_control_loop_pipe_sequential_init_U}
+      {MODELNAME fft1D_512_twiddles8_twiddles8_reversed8_ROM_AUTO_1R RTLNAME fft1D_512_twiddles8_twiddles8_reversed8_ROM_AUTO_1R BINDTYPE storage TYPE rom IMPL auto LATENCY 2 ALLOW_PRAGMA 1}
     }
   }
-  {SRCNAME fft1D_512_Pipeline_loop6_twiddles MODELNAME fft1D_512_Pipeline_loop6_twiddles RTLNAME fft1D_512_fft1D_512_Pipeline_loop6_twiddles}
   {SRCNAME fft1D_512 MODELNAME fft1D_512 RTLNAME fft1D_512 IS_TOP 1
     SUBMODULES {
       {MODELNAME fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1 RTLNAME fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1 BINDTYPE op TYPE dadd IMPL fulldsp LATENCY 3 ALLOW_PRAGMA 1}
-      {MODELNAME fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1 RTLNAME fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1 BINDTYPE op TYPE dsub IMPL fulldsp LATENCY 3 ALLOW_PRAGMA 1}
-      {MODELNAME fft1D_512_dsub_64ns_64ns_64_4_full_dsp_1 RTLNAME fft1D_512_dsub_64ns_64ns_64_4_full_dsp_1 BINDTYPE op TYPE dsub IMPL fulldsp LATENCY 3 ALLOW_PRAGMA 1}
-      {MODELNAME fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1 RTLNAME fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1 BINDTYPE op TYPE dmul IMPL maxdsp LATENCY 3 ALLOW_PRAGMA 1}
-      {MODELNAME fft1D_512_twiddles8_reversed8_ROM_AUTO_1R RTLNAME fft1D_512_twiddles8_reversed8_ROM_AUTO_1R BINDTYPE storage TYPE rom IMPL auto LATENCY 2 ALLOW_PRAGMA 1}
       {MODELNAME fft1D_512_DATA_x_RAM_AUTO_1R1W RTLNAME fft1D_512_DATA_x_RAM_AUTO_1R1W BINDTYPE storage TYPE ram IMPL auto LATENCY 2 ALLOW_PRAGMA 1}
       {MODELNAME fft1D_512_data_x_RAM_AUTO_1R1W_x RTLNAME fft1D_512_data_x_RAM_AUTO_1R1W_x BINDTYPE storage TYPE ram IMPL auto LATENCY 2 ALLOW_PRAGMA 1}
       {MODELNAME fft1D_512_smem_RAM_AUTO_1R1W RTLNAME fft1D_512_smem_RAM_AUTO_1R1W BINDTYPE storage TYPE ram IMPL auto LATENCY 2 ALLOW_PRAGMA 1}

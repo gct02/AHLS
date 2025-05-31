@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'Autocorrelation_Pipeline_Autocorrelation_label4'
 ================================================================
-* Date:           Thu May 29 16:47:04 2025
+* Date:           Fri May 30 22:03:37 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        GSM
@@ -101,7 +101,7 @@ ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 
 State 2 <SV = 1> <Delay = 1.42>
 ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%specpipeline_ln39 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty" [data/benchmarks/gsm/gsm_lpc.c:39]   --->   Operation 16 'specpipeline' 'specpipeline_ln39' <Predicate = true> <Delay = 0.00>
 ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%speclooptripcount_ln145 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 9, i64 9, i64 9" [data/benchmarks/gsm/gsm_lpc.c:145]   --->   Operation 17 'speclooptripcount' 'speclooptripcount_ln145' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%specloopname_ln144 = specloopname void @_ssdm_op_SpecLoopName, void @empty_3" [data/benchmarks/gsm/gsm_lpc.c:144]   --->   Operation 18 'specloopname' 'specloopname_ln144' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%specloopname_ln144 = specloopname void @_ssdm_op_SpecLoopName, void @empty_4" [data/benchmarks/gsm/gsm_lpc.c:144]   --->   Operation 18 'specloopname' 'specloopname_ln144' <Predicate = true> <Delay = 0.00>
 ST_2 : Operation 19 [1/2] (0.71ns)   --->   "%L_ACF_load = load i4 %L_ACF_addr" [data/benchmarks/gsm/gsm_lpc.c:146]   --->   Operation 19 'load' 'L_ACF_load' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
 ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%shl_ln146 = shl i64 %L_ACF_load, i64 1" [data/benchmarks/gsm/gsm_lpc.c:146]   --->   Operation 20 'shl' 'shl_ln146' <Predicate = true> <Delay = 0.00>
 ST_2 : Operation 21 [1/1] (0.71ns)   --->   "%store_ln146 = store i64 %shl_ln146, i4 %L_ACF_addr" [data/benchmarks/gsm/gsm_lpc.c:146]   --->   Operation 21 'store' 'store_ln146' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>

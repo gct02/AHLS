@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'AddRoundKey_InversMixColumn'" level="0">
-<item name = "Date">Thu May 29 14:55:04 2025
+<item name = "Date">Sat May 31 00:10:17 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">AES</item>
@@ -158,9 +158,9 @@
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_NS_fsm">65, 13, 1, 13</column>
-<column name="i_6_reg_308">9, 2, 3, 6</column>
+<column name="i_3_reg_308">9, 2, 3, 6</column>
 <column name="i_fu_104">9, 2, 3, 6</column>
-<column name="j_8_fu_100">9, 2, 3, 6</column>
+<column name="j_3_fu_100">9, 2, 3, 6</column>
 <column name="j_fu_92">9, 2, 3, 6</column>
 <column name="ret_address0">20, 4, 5, 20</column>
 <column name="ret_address1">14, 3, 5, 15</column>
@@ -179,20 +179,20 @@
 <column name="add_ln404_reg_1379">3, 0, 3, 0</column>
 <column name="ap_CS_fsm">12, 0, 12, 0</column>
 <column name="empty_reg_1357">2, 0, 2, 0</column>
-<column name="i_6_reg_308">3, 0, 3, 0</column>
+<column name="i_3_reg_308">3, 0, 3, 0</column>
 <column name="i_fu_104">3, 0, 3, 0</column>
-<column name="j_8_fu_100">3, 0, 3, 0</column>
+<column name="j_3_fu_100">3, 0, 3, 0</column>
 <column name="j_fu_92">3, 0, 3, 0</column>
 <column name="mul_reg_1283">4, 0, 6, 2</column>
 <column name="reg_351">32, 0, 32, 0</column>
 <column name="reg_356">32, 0, 32, 0</column>
 <column name="shl_ln5_reg_1428">2, 0, 4, 2</column>
 <column name="shl_ln_reg_1306">2, 0, 4, 2</column>
-<column name="statemt_addr_52_reg_1317">2, 0, 5, 3</column>
-<column name="statemt_addr_53_reg_1339">2, 0, 5, 3</column>
-<column name="statemt_addr_54_reg_1344">2, 0, 5, 3</column>
+<column name="statemt_addr_38_reg_1317">2, 0, 5, 3</column>
+<column name="statemt_addr_39_reg_1339">2, 0, 5, 3</column>
+<column name="statemt_addr_40_reg_1344">2, 0, 5, 3</column>
 <column name="statemt_addr_reg_1312">2, 0, 5, 3</column>
-<column name="statemt_load_52_reg_1405">32, 0, 32, 0</column>
+<column name="statemt_load_38_reg_1405">32, 0, 32, 0</column>
 <column name="tmp_s_reg_1364">2, 0, 4, 2</column>
 <column name="trunc_ln414_reg_1399">2, 0, 2, 0</column>
 <column name="xor_ln431_2_reg_1420">32, 0, 32, 0</column>

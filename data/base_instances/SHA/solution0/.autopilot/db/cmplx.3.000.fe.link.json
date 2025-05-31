@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 21,
-    "calls": "1 5 3",
+    "calls": "2 6 1",
     "file": "sha.c",
     "fileloc": 196,
     "instructions": 58,
@@ -17,6 +17,21 @@
     "total_instructions": 839
   },
   "1": {
+    "basicblocks": 4,
+    "calls": "4 5 4 4 5",
+    "file": "sha.c",
+    "fileloc": 173,
+    "instructions": 22,
+    "loads": {
+      "G": 2
+    },
+    "name": "sha_final",
+    "stores": {
+      "G": 3
+    },
+    "total_instructions": 475
+  },
+  "2": {
     "basicblocks": 1,
     "calls": "",
     "file": "sha.c",
@@ -28,7 +43,34 @@
     },
     "total_instructions": 8
   },
-  "2": {
+  "3": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "sha.c",
+    "fileloc": 72,
+    "instructions": 36,
+    "loads": {
+      "L": 4
+    },
+    "name": "local_memcpy",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 36
+  },
+  "4": {
+    "basicblocks": 9,
+    "calls": "",
+    "file": "sha.c",
+    "fileloc": 55,
+    "instructions": 21,
+    "name": "local_memset",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 21
+  },
+  "5": {
     "basicblocks": 31,
     "calls": "",
     "file": "sha.c",
@@ -45,36 +87,9 @@
     },
     "total_instructions": 195
   },
-  "3": {
-    "basicblocks": 4,
-    "calls": "4 2 4 4 2",
-    "file": "sha.c",
-    "fileloc": 173,
-    "instructions": 22,
-    "loads": {
-      "G": 2
-    },
-    "name": "sha_final",
-    "stores": {
-      "G": 3
-    },
-    "total_instructions": 475
-  },
-  "4": {
-    "basicblocks": 9,
-    "calls": "",
-    "file": "sha.c",
-    "fileloc": 55,
-    "instructions": 21,
-    "name": "local_memset",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 21
-  },
-  "5": {
+  "6": {
     "basicblocks": 7,
-    "calls": "6 2 6",
+    "calls": "3 5 3",
     "file": "sha.c",
     "fileloc": 154,
     "instructions": 31,
@@ -86,20 +101,5 @@
       "G": 3
     },
     "total_instructions": 298
-  },
-  "6": {
-    "basicblocks": 5,
-    "calls": "",
-    "file": "sha.c",
-    "fileloc": 72,
-    "instructions": 36,
-    "loads": {
-      "L": 4
-    },
-    "name": "local_memcpy",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 36
   }
 }

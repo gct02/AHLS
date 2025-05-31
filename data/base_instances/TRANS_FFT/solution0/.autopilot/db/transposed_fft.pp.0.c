@@ -2830,11 +2830,19 @@ __attribute__((sdx_kernel("fft1D_512", 0))) void fft1D_512(double work_x[512], d
 # 7 "data/benchmarks/trans_fft/transposed_fft.c" 2
 # 23 "data/benchmarks/trans_fft/transposed_fft.c"
 void twiddles8(double a_x[8], double a_y[8], int i, int n){
+#line 15 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 23 "data/benchmarks/trans_fft/transposed_fft.c"
+
     int reversed8[8] = {0,4,2,6,1,5,3,7};
     int j;
     double phi, tmp, phi_x, phi_y;
 
     twiddles:for(j=1; j < 8; j++){
+#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 28 "data/benchmarks/trans_fft/transposed_fft.c"
+
 #pragma HLS LOOP_TRIPCOUNT min=7 max=7 avg=7
  phi = ((-2*3.1415926535*reversed8[j]/n)*i);
         phi_x = cos(phi);
@@ -2888,6 +2896,10 @@ __attribute__((sdx_kernel("fft1D_512", 0))) void fft1D_512(double work_x[512], d
 loop1 : for(tid = 0; tid < 64; tid++){
 #line 1 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 128 "data/benchmarks/trans_fft/transposed_fft.c"
+
+#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 128 "data/benchmarks/trans_fft/transposed_fft.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
@@ -3028,6 +3040,10 @@ loop5 : for(tid = 0; tid < 64; tid++){
         }
 
 loop6 : for(tid = 0; tid < 64; tid++){
+#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 250 "data/benchmarks/trans_fft/transposed_fft.c"
+
 #line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 250 "data/benchmarks/trans_fft/transposed_fft.c"

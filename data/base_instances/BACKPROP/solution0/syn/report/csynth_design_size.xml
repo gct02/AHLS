@@ -7,49 +7,49 @@
             <column name="Unroll/Inline">, , After user unroll and inline pragmas are applied</column>
             <column name="">(1) unroll, 852, user unroll pragmas are applied</column>
             <column name="">(2) simplification, 634, simplification of applied user unroll pragmas</column>
-            <column name="">(3) inline, 540, user inline pragmas are applied</column>
-            <column name="">(4) simplification, 534, simplification of applied user inline pragmas</column>
+            <column name="">(3) inline, 556, user inline pragmas are applied</column>
+            <column name="">(4) simplification, 554, simplification of applied user inline pragmas</column>
             <column name="">, , </column>
             <column name="Array/Struct">, , After user array partition and struct aggregate/disaggregate pragmas are applied</column>
-            <column name="">(1) array partition, 528, user array partition pragmas are applied</column>
-            <column name="">(2) simplification, 528, simplification of applied user array partition &amp; struct aggregate/disaggregate pragmas</column>
-            <column name="">(3) aggregate/disaggregate , 528, user struct aggregate/disaggregate pragmas are applied</column>
-            <column name="">(4) array reshape, 528, apply array reshape pragmas</column>
-            <column name="">(5) access patterns, 543, array access pattern optmizations</column>
+            <column name="">(1) array partition, 544, user array partition pragmas are applied</column>
+            <column name="">(2) simplification, 544, simplification of applied user array partition &amp; struct aggregate/disaggregate pragmas</column>
+            <column name="">(3) aggregate/disaggregate , 544, user struct aggregate/disaggregate pragmas are applied</column>
+            <column name="">(4) array reshape, 544, apply array reshape pragmas</column>
+            <column name="">(5) access patterns, 559, array access pattern optmizations</column>
             <column name="">, , </column>
             <column name="Performance">, , After transformations are applied to meet performance pragma targets</column>
-            <column name="">(1) loop simplification, 528, loop and instruction simplification</column>
-            <column name="">(2) parallelization, 528, loops are unrolled or pipelined to meet performance targets</column>
-            <column name="">(3) simplification, 528, simplification of design after performance transformations</column>
+            <column name="">(1) loop simplification, 544, loop and instruction simplification</column>
+            <column name="">(2) parallelization, 544, loops are unrolled or pipelined to meet performance targets</column>
+            <column name="">(3) simplification, 544, simplification of design after performance transformations</column>
             <column name="">, , </column>
             <column name="HW Transforms">, , After hardware transfomations</column>
-            <column name="">(1) lowering, 579, initial conversion to HW specific instructions</column>
-            <column name="">(2) optimizations, 715, high level synthesis optimizations</column>
+            <column name="">(1) lowering, 595, initial conversion to HW specific instructions</column>
+            <column name="">(2) optimizations, 763, high level synthesis optimizations</column>
         </table>
     </item>
     <item name="Instructions per Function for each Compilation Phase">
         <hiertable>
             <header size="7" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Array/Struct" col5="Performance" col6="HW Transforms"/>
             <rows>
-                <row id="0" col0="backprop" col1="backprop.c:330" col2="977" col3="534" col4="543" col5="528" col6="715">
-                    <row id="9" col0="matrix_vector_product_with_bias_input_layer" col1="backprop.c:54" col2="54" col3="" col4="" col5="" col6="">
+                <row id="0" col0="backprop" col1="backprop.c:330" col2="977" col3="554" col4="559" col5="544" col6="763">
+                    <row id="9" col0="matrix_vector_product_with_bias_input_layer" col1="backprop.c:54" col2="54" col3="34" col4="36" col5="35" col6="50">
                         <row id="6" col0="add_bias_to_activations" col1="backprop.c:43" col2="19" col3="" col4="" col5="" col6=""/>
                     </row>
-                    <row id="8" col0="RELU" col1="backprop.c:33" col2="90" col2_disp=" 90 (3 calls)" col3="" col4="" col5="" col6=""/>
-                    <row id="7" col0="matrix_vector_product_with_bias_second_layer" col1="backprop.c:72" col2="54" col3="" col4="" col5="" col6="">
+                    <row id="12" col0="RELU" col1="backprop.c:33" col2="90" col2_disp=" 90 (3 calls)" col3="" col4="" col5="" col6=""/>
+                    <row id="3" col0="matrix_vector_product_with_bias_second_layer" col1="backprop.c:72" col2="54" col3="34" col4="35" col5="34" col6="48">
                         <row id="6" col0="add_bias_to_activations" col1="backprop.c:43" col2="19" col3="" col4="" col5="" col6=""/>
                     </row>
-                    <row id="5" col0="matrix_vector_product_with_bias_output_layer" col1="backprop.c:90" col2="54" col3="" col4="" col5="" col6="">
+                    <row id="11" col0="matrix_vector_product_with_bias_output_layer" col1="backprop.c:90" col2="54" col3="34" col4="35" col5="34" col6="48">
                         <row id="6" col0="add_bias_to_activations" col1="backprop.c:43" col2="19" col3="" col4="" col5="" col6=""/>
                     </row>
-                    <row id="4" col0="soft_max" col1="backprop.c:16" col2="33" col3="" col4="" col5="" col6=""/>
-                    <row id="2" col0="take_difference" col1="backprop.c:108" col2="24" col3="" col4="" col5="" col6=""/>
-                    <row id="12" col0="get_delta_matrix_weights3" col1="backprop.c:120" col2="29" col3="" col4="" col5="" col6=""/>
-                    <row id="10" col0="get_oracle_activations2" col1="backprop.c:135" col2="44" col3="" col4="" col5="" col6=""/>
-                    <row id="1" col0="get_delta_matrix_weights2" col1="backprop.c:153" col2="29" col3="" col4="" col5="" col6=""/>
-                    <row id="3" col0="get_oracle_activations1" col1="backprop.c:168" col2="44" col3="" col4="" col5="" col6=""/>
-                    <row id="13" col0="get_delta_matrix_weights1" col1="backprop.c:186" col2="29" col3="" col4="" col5="" col6=""/>
-                    <row id="11" col0="update_weights" col1="backprop.c:201" col2="340" col3="196" col4="205" col5="196" col6="274"/>
+                    <row id="2" col0="soft_max" col1="backprop.c:16" col2="33" col3="" col4="" col5="" col6=""/>
+                    <row id="8" col0="take_difference" col1="backprop.c:108" col2="24" col3="" col4="" col5="" col6=""/>
+                    <row id="13" col0="get_delta_matrix_weights3" col1="backprop.c:120" col2="29" col3="20" col4="20" col5="20" col6="28"/>
+                    <row id="4" col0="get_oracle_activations2" col1="backprop.c:135" col2="44" col3="26" col4="27" col5="26" col6="35"/>
+                    <row id="5" col0="get_delta_matrix_weights2" col1="backprop.c:153" col2="29" col3="20" col4="20" col5="20" col6="28"/>
+                    <row id="7" col0="get_oracle_activations1" col1="backprop.c:168" col2="44" col3="26" col4="27" col5="26" col6="35"/>
+                    <row id="1" col0="get_delta_matrix_weights1" col1="backprop.c:186" col2="29" col3="20" col4="21" col5="21" col6="30"/>
+                    <row id="10" col0="update_weights" col1="backprop.c:201" col2="340" col3="196" col4="205" col5="196" col6="280"/>
                 </row>
             </rows>
             <notes/>

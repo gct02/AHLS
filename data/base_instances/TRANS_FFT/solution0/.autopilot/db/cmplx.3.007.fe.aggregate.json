@@ -1,23 +1,54 @@
 {
   "0": {
-    "basicblocks": 27,
-    "calls": "2 2 2 2",
+    "basicblocks": 23,
+    "calls": "1 1",
     "file": "transposed_fft.c",
     "fileloc": 114,
-    "instructions": 1136,
+    "instructions": 1090,
     "loads": {
-      "G": 2,
       "L": 128,
       "T": 16
     },
     "name": "fft1D_512",
     "stores": {
-      "L": 148,
+      "L": 144,
       "T": 16
     },
-    "total_instructions": 2320
+    "total_instructions": 2330
   },
   "1": {
+    "basicblocks": 3,
+    "calls": "2 2",
+    "file": "transposed_fft.c",
+    "fileloc": 23,
+    "instructions": 28,
+    "loads": {
+      "G": 1,
+      "L": 2
+    },
+    "name": "twiddles8",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 620
+  },
+  "2": {
+    "basicblocks": 9,
+    "calls": "3",
+    "file": "hls_hotbm.h",
+    "fileloc": 209,
+    "instructions": 201,
+    "loads": {
+      "G": 6,
+      "L": 1
+    },
+    "name": "sin_or_cos<double>",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 296
+  },
+  "3": {
     "basicblocks": 12,
     "calls": "",
     "file": "x_hls_float_utils.h",
@@ -31,21 +62,5 @@
       "L": 5
     },
     "total_instructions": 95
-  },
-  "2": {
-    "basicblocks": 9,
-    "calls": "1",
-    "file": "hls_hotbm.h",
-    "fileloc": 209,
-    "instructions": 201,
-    "loads": {
-      "G": 6,
-      "L": 1
-    },
-    "name": "sin_or_cos<double>",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 296
   }
 }

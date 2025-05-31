@@ -198,7 +198,7 @@ entry:9 %call_ln12 = call void @Reflection_coefficients, i64 %L_ACF, i16 %LARc, 
 
 <Node id="6" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-entry:2 %spectopmodule_ln7 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_0
+entry:2 %spectopmodule_ln7 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_1
 
 ]]></Node>
 <StgValue><ssdm name="spectopmodule_ln7"/></StgValue>
@@ -414,10 +414,10 @@ for.body.i.split_ifconv:4 %LARc_addr = getelementptr i16 %LARc, i64 0, i64 %zext
 
 <Node id="29" bw="16" op_0_bw="3">
 <![CDATA[
-for.body.i.split_ifconv:5 %temp_28 = load i3 %LARc_addr
+for.body.i.split_ifconv:5 %temp_27 = load i3 %LARc_addr
 
 ]]></Node>
-<StgValue><ssdm name="temp_28"/></StgValue>
+<StgValue><ssdm name="temp_27"/></StgValue>
 </operation>
 
 <operation id="32" st_id="5" stage="1" lat="1">
@@ -510,7 +510,7 @@ for.body.i.split_ifconv:2 %speclooptripcount_ln249 = speclooptripcount void @_ss
 
 <Node id="27" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-for.body.i.split_ifconv:3 %specloopname_ln248 = specloopname void @_ssdm_op_SpecLoopName, void @empty_1
+for.body.i.split_ifconv:3 %specloopname_ln248 = specloopname void @_ssdm_op_SpecLoopName, void @empty_2
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln248"/></StgValue>
@@ -525,10 +525,10 @@ for.body.i.split_ifconv:3 %specloopname_ln248 = specloopname void @_ssdm_op_Spec
 
 <Node id="29" bw="16" op_0_bw="3">
 <![CDATA[
-for.body.i.split_ifconv:5 %temp_28 = load i3 %LARc_addr
+for.body.i.split_ifconv:5 %temp_27 = load i3 %LARc_addr
 
 ]]></Node>
-<StgValue><ssdm name="temp_28"/></StgValue>
+<StgValue><ssdm name="temp_27"/></StgValue>
 </operation>
 
 <operation id="39" st_id="6" stage="1" lat="1">
@@ -540,7 +540,7 @@ for.body.i.split_ifconv:5 %temp_28 = load i3 %LARc_addr
 
 <Node id="30" bw="1" op_0_bw="1" op_1_bw="16" op_2_bw="32">
 <![CDATA[
-for.body.i.split_ifconv:6 %tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %temp_28, i32 15
+for.body.i.split_ifconv:6 %tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %temp_27, i32 15
 
 ]]></Node>
 <StgValue><ssdm name="tmp"/></StgValue>
@@ -555,7 +555,7 @@ for.body.i.split_ifconv:6 %tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i1
 
 <Node id="31" bw="1" op_0_bw="16" op_1_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:7 %icmp_ln67 = icmp_eq  i16 %temp_28, i16 32768
+for.body.i.split_ifconv:7 %icmp_ln67 = icmp_eq  i16 %temp_27, i16 32768
 
 ]]></Node>
 <StgValue><ssdm name="icmp_ln67"/></StgValue>
@@ -570,7 +570,7 @@ for.body.i.split_ifconv:7 %icmp_ln67 = icmp_eq  i16 %temp_28, i16 32768
 
 <Node id="32" bw="16" op_0_bw="16" op_1_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:8 %sub_ln67 = sub i16 0, i16 %temp_28
+for.body.i.split_ifconv:8 %sub_ln67 = sub i16 0, i16 %temp_27
 
 ]]></Node>
 <StgValue><ssdm name="sub_ln67"/></StgValue>
@@ -600,7 +600,7 @@ for.body.i.split_ifconv:9 %select_ln67 = select i1 %icmp_ln67, i16 32767, i16 %s
 
 <Node id="34" bw="16" op_0_bw="1" op_1_bw="16" op_2_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:10 %temp = select i1 %tmp, i16 %select_ln67, i16 %temp_28
+for.body.i.split_ifconv:10 %temp = select i1 %tmp, i16 %select_ln67, i16 %temp_27
 
 ]]></Node>
 <StgValue><ssdm name="temp"/></StgValue>
@@ -630,10 +630,10 @@ for.body.i.split_ifconv:11 %icmp_ln253 = icmp_slt  i16 %temp, i16 22118
 
 <Node id="36" bw="15" op_0_bw="15" op_1_bw="16" op_2_bw="32" op_3_bw="32">
 <![CDATA[
-for.body.i.split_ifconv:12 %temp_29 = partselect i15 @_ssdm_op_PartSelect.i15.i16.i32.i32, i16 %temp, i32 1, i32 15
+for.body.i.split_ifconv:12 %temp_28 = partselect i15 @_ssdm_op_PartSelect.i15.i16.i32.i32, i16 %temp, i32 1, i32 15
 
 ]]></Node>
-<StgValue><ssdm name="temp_29"/></StgValue>
+<StgValue><ssdm name="temp_28"/></StgValue>
 </operation>
 
 <operation id="46" st_id="6" stage="1" lat="1">
@@ -645,7 +645,7 @@ for.body.i.split_ifconv:12 %temp_29 = partselect i15 @_ssdm_op_PartSelect.i15.i1
 
 <Node id="37" bw="16" op_0_bw="15">
 <![CDATA[
-for.body.i.split_ifconv:13 %sext_ln254 = sext i15 %temp_29
+for.body.i.split_ifconv:13 %sext_ln254 = sext i15 %temp_28
 
 ]]></Node>
 <StgValue><ssdm name="sext_ln254"/></StgValue>
@@ -675,10 +675,10 @@ for.body.i.split_ifconv:14 %icmp_ln255 = icmp_slt  i16 %temp, i16 31130
 
 <Node id="39" bw="16" op_0_bw="16" op_1_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:15 %temp_30 = add i16 %temp, i16 54477
+for.body.i.split_ifconv:15 %temp_29 = add i16 %temp, i16 54477
 
 ]]></Node>
-<StgValue><ssdm name="temp_30"/></StgValue>
+<StgValue><ssdm name="temp_29"/></StgValue>
 </operation>
 
 <operation id="49" st_id="6" stage="1" lat="1">
@@ -705,10 +705,10 @@ for.body.i.split_ifconv:16 %shl_ln259 = shl i16 %temp, i16 2
 
 <Node id="41" bw="16" op_0_bw="16" op_1_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:17 %temp_31 = add i16 %shl_ln259, i16 26624
+for.body.i.split_ifconv:17 %temp_30 = add i16 %shl_ln259, i16 26624
 
 ]]></Node>
-<StgValue><ssdm name="temp_31"/></StgValue>
+<StgValue><ssdm name="temp_30"/></StgValue>
 </operation>
 
 <operation id="51" st_id="6" stage="1" lat="1">
@@ -720,10 +720,10 @@ for.body.i.split_ifconv:17 %temp_31 = add i16 %shl_ln259, i16 26624
 
 <Node id="42" bw="16" op_0_bw="1" op_1_bw="16" op_2_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:18 %temp_32 = select i1 %icmp_ln253, i16 %sext_ln254, i16 %temp_31
+for.body.i.split_ifconv:18 %temp_31 = select i1 %icmp_ln253, i16 %sext_ln254, i16 %temp_30
 
 ]]></Node>
-<StgValue><ssdm name="temp_32"/></StgValue>
+<StgValue><ssdm name="temp_31"/></StgValue>
 </operation>
 
 <operation id="52" st_id="6" stage="1" lat="1">
@@ -765,10 +765,10 @@ for.body.i.split_ifconv:20 %and_ln255 = and i1 %icmp_ln255, i1 %xor_ln253
 
 <Node id="45" bw="16" op_0_bw="1" op_1_bw="16" op_2_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:21 %temp_33 = select i1 %and_ln255, i16 %temp_30, i16 %temp_32
+for.body.i.split_ifconv:21 %temp_32 = select i1 %and_ln255, i16 %temp_29, i16 %temp_31
 
 ]]></Node>
-<StgValue><ssdm name="temp_33"/></StgValue>
+<StgValue><ssdm name="temp_32"/></StgValue>
 </operation>
 
 <operation id="55" st_id="6" stage="1" lat="1">
@@ -780,7 +780,7 @@ for.body.i.split_ifconv:21 %temp_33 = select i1 %and_ln255, i16 %temp_30, i16 %t
 
 <Node id="46" bw="16" op_0_bw="16" op_1_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:22 %sub_ln262 = sub i16 0, i16 %temp_33
+for.body.i.split_ifconv:22 %sub_ln262 = sub i16 0, i16 %temp_32
 
 ]]></Node>
 <StgValue><ssdm name="sub_ln262"/></StgValue>
@@ -795,7 +795,7 @@ for.body.i.split_ifconv:22 %sub_ln262 = sub i16 0, i16 %temp_33
 
 <Node id="47" bw="16" op_0_bw="1" op_1_bw="16" op_2_bw="16">
 <![CDATA[
-for.body.i.split_ifconv:23 %select_ln262 = select i1 %tmp, i16 %sub_ln262, i16 %temp_33
+for.body.i.split_ifconv:23 %select_ln262 = select i1 %tmp, i16 %sub_ln262, i16 %temp_32
 
 ]]></Node>
 <StgValue><ssdm name="select_ln262"/></StgValue>

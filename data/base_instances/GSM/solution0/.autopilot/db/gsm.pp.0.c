@@ -201,7 +201,7 @@ void Quantization_and_coding(register word *LAR);
 
 __attribute__((sdx_kernel("Gsm_LPC_Analysis", 0))) void Gsm_LPC_Analysis(word indata[160], word LARc[8])
 {
-#line 11 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
 #pragma HLSDIRECTIVE TOP name=Gsm_LPC_Analysis
 # 8 "data/benchmarks/gsm/gsm.c"
 

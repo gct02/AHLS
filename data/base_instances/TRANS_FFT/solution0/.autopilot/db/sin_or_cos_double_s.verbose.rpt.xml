@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'sin_or_cos_double_s'" level="0">
-<item name = "Date">Thu May 29 21:12:26 2025
+<item name = "Date">Fri May 30 23:10:29 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">TRANS_FFT</item>
@@ -249,7 +249,6 @@
 <column name="ap_done">out, 1, ap_ctrl_hs, sin_or_cos&lt;double&gt;, return value</column>
 <column name="ap_idle">out, 1, ap_ctrl_hs, sin_or_cos&lt;double&gt;, return value</column>
 <column name="ap_ready">out, 1, ap_ctrl_hs, sin_or_cos&lt;double&gt;, return value</column>
-<column name="ap_ce">in, 1, ap_ctrl_hs, sin_or_cos&lt;double&gt;, return value</column>
 <column name="ap_return">out, 64, ap_ctrl_hs, sin_or_cos&lt;double&gt;, return value</column>
 <column name="t_in">in, 64, ap_none, t_in, scalar</column>
 <column name="do_cos">in, 1, ap_none, do_cos, scalar</column>

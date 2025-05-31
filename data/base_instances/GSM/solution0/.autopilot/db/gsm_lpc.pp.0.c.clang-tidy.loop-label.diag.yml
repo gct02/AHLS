@@ -7,7 +7,7 @@ Diagnostics:
     FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/gsm/gsm_lpc.c
     Replacements:    
       - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GSM/solution0/.autopilot/db/gsm_lpc.pp.0.c
-        Offset:          7756
+        Offset:          8079
         Length:          0
         ReplacementText: 'VITIS_LOOP_65_1: '
 ...

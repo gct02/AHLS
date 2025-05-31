@@ -5,13 +5,8 @@
       "Uses": [
         {
           "Name": "twiddles8_reversed8_addr",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 55
-        },
-        {
-          "Name": "twiddles8_reversed8_addr",
-          "FunctionName": "fft1D_512_Pipeline_loop6_twiddles",
-          "Idx": 53
+          "FunctionName": "twiddles8",
+          "Idx": 16
         }
       ]
     },
@@ -22,26 +17,6 @@
           "Name": "ref_4oPi_table_256_addr",
           "FunctionName": "sin_or_cos<double>",
           "Idx": 14
-        }
-      ]
-    },
-    {
-      "Name": "loop6_twiddles_str",
-      "Uses": [
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop6_twiddles",
-          "Idx": 111
-        }
-      ]
-    },
-    {
-      "Name": "loop1_twiddles_str",
-      "Uses": [
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 145
         }
       ]
     },
@@ -126,7 +101,7 @@
         {
           "Name": "",
           "FunctionName": "fft1D_512",
-          "Idx": 383
+          "Idx": 531
         }
       ]
     },
@@ -136,7 +111,7 @@
         {
           "Name": "",
           "FunctionName": "fft1D_512",
-          "Idx": 109
+          "Idx": 612
         }
       ]
     },
@@ -146,7 +121,7 @@
         {
           "Name": "",
           "FunctionName": "fft1D_512",
-          "Idx": 30
+          "Idx": 821
         }
       ]
     },
@@ -156,7 +131,7 @@
         {
           "Name": "",
           "FunctionName": "fft1D_512",
-          "Idx": 624
+          "Idx": 986
         }
       ]
     },
@@ -166,132 +141,7 @@
         {
           "Name": "",
           "FunctionName": "fft1D_512",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 2
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 2
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 2
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 2
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 2
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 2
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 54
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 3
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 3
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 3
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 3
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 3
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 3
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop6_twiddles",
-          "Idx": 52
+          "Idx": 39
         }
       ]
     },
@@ -300,8 +150,8 @@
       "Uses": [
         {
           "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 462
+          "FunctionName": "twiddles8",
+          "Idx": 15
         }
       ]
     },
@@ -311,22 +161,7 @@
         {
           "Name": "",
           "FunctionName": "fft1D_512",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512",
-          "Idx": 2
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 4
-        },
-        {
-          "Name": "",
-          "FunctionName": "fft1D_512_Pipeline_loop1_twiddles",
-          "Idx": 3
+          "Idx": 1062
         }
       ]
     },
@@ -336,7 +171,67 @@
         {
           "Name": "",
           "FunctionName": "fft1D_512",
-          "Idx": 1
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "twiddles8",
+          "Idx": 13
         }
       ]
     },
@@ -346,7 +241,7 @@
         {
           "Name": "",
           "FunctionName": "fft1D_512",
-          "Idx": 728
+          "Idx": 900
         }
       ]
     },
@@ -356,7 +251,12 @@
         {
           "Name": "",
           "FunctionName": "fft1D_512",
-          "Idx": 548
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
         }
       ]
     },
@@ -366,7 +266,7 @@
         {
           "Name": "",
           "FunctionName": "fft1D_512",
-          "Idx": 274
+          "Idx": 1
         }
       ]
     },
@@ -376,7 +276,37 @@
         {
           "Name": "",
           "FunctionName": "fft1D_512",
-          "Idx": 198
+          "Idx": 1166
+        }
+      ]
+    },
+    {
+      "Name": "empty_11",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 452
+        }
+      ]
+    },
+    {
+      "Name": "empty_12",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 371
+        }
+      ]
+    },
+    {
+      "Name": "empty_13",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 292
         }
       ]
     }

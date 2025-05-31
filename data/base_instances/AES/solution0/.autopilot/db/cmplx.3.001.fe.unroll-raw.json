@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 1,
-    "calls": "7 4",
+    "calls": "4 6",
     "file": "aes.c",
     "fileloc": 66,
     "instructions": 3,
@@ -41,31 +41,6 @@
     "total_instructions": 349
   },
   "3": {
-    "basicblocks": 36,
-    "calls": "",
-    "file": "aes_key.c",
-    "fileloc": 375,
-    "instructions": 298,
-    "loads": {
-      "G": 4,
-      "L": 22
-    },
-    "name": "AddRoundKey_InversMixColumn",
-    "stores": {
-      "L": 12
-    },
-    "total_instructions": 298
-  },
-  "4": {
-    "basicblocks": 6,
-    "calls": "8 5 1 3 1 5",
-    "file": "aes_dec.c",
-    "fileloc": 66,
-    "instructions": 15,
-    "name": "decrypt",
-    "total_instructions": 957
-  },
-  "5": {
     "basicblocks": 6,
     "calls": "",
     "file": "aes_key.c",
@@ -81,7 +56,16 @@
     },
     "total_instructions": 56
   },
-  "6": {
+  "4": {
+    "basicblocks": 6,
+    "calls": "7 3 5 2 5 3",
+    "file": "aes_enc.c",
+    "fileloc": 66,
+    "instructions": 16,
+    "name": "encrypt",
+    "total_instructions": 1009
+  },
+  "5": {
     "basicblocks": 3,
     "calls": "",
     "file": "aes_key.c",
@@ -97,16 +81,16 @@
     },
     "total_instructions": 192
   },
-  "7": {
+  "6": {
     "basicblocks": 6,
-    "calls": "8 5 6 2 6 5",
-    "file": "aes_enc.c",
+    "calls": "7 3 1 8 1 3",
+    "file": "aes_dec.c",
     "fileloc": 66,
-    "instructions": 16,
-    "name": "encrypt",
-    "total_instructions": 1009
+    "instructions": 15,
+    "name": "decrypt",
+    "total_instructions": 957
   },
-  "8": {
+  "7": {
     "basicblocks": 17,
     "calls": "",
     "file": "aes_key.c",
@@ -122,5 +106,21 @@
       "L": 8
     },
     "total_instructions": 148
+  },
+  "8": {
+    "basicblocks": 36,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 375,
+    "instructions": 298,
+    "loads": {
+      "G": 4,
+      "L": 22
+    },
+    "name": "AddRoundKey_InversMixColumn",
+    "stores": {
+      "L": 12
+    },
+    "total_instructions": 298
   }
 }

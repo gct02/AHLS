@@ -6,7 +6,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="aes_main_aes_main,hls_ip_2023_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xcu50-fsvh2104-2-e,HLS_INPUT_CLOCK=8.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=4.977500,HLS_SYN_LAT=2624,HLS_SYN_TPT=none,HLS_SYN_MEM=1,HLS_SYN_DSP=0,HLS_SYN_FF=1658,HLS_SYN_LUT=8430,HLS_VERSION=2023_2}" *)
+(* CORE_GENERATION_INFO="aes_main_aes_main,hls_ip_2023_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xcu50-fsvh2104-2-e,HLS_INPUT_CLOCK=8.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=4.977500,HLS_SYN_LAT=2634,HLS_SYN_TPT=none,HLS_SYN_MEM=1,HLS_SYN_DSP=0,HLS_SYN_FF=1666,HLS_SYN_LUT=8442,HLS_VERSION=2023_2}" *)
 
 module aes_main (
         ap_clk,
@@ -81,15 +81,6 @@ wire   [31:0] word_q0;
 reg   [8:0] word_address1;
 reg    word_ce1;
 wire   [31:0] word_q1;
-reg   [7:0] Sbox_address0;
-reg    Sbox_ce0;
-wire   [7:0] Sbox_q0;
-reg   [7:0] Sbox_address1;
-reg    Sbox_ce1;
-wire   [7:0] Sbox_q1;
-reg   [4:0] Rcon0_address0;
-reg    Rcon0_ce0;
-wire   [7:0] Rcon0_q0;
 wire    grp_encrypt_fu_34_ap_start;
 wire    grp_encrypt_fu_34_ap_done;
 wire    grp_encrypt_fu_34_ap_idle;
@@ -110,12 +101,6 @@ wire    grp_encrypt_fu_34_word_we0;
 wire   [31:0] grp_encrypt_fu_34_word_d0;
 wire   [8:0] grp_encrypt_fu_34_word_address1;
 wire    grp_encrypt_fu_34_word_ce1;
-wire   [7:0] grp_encrypt_fu_34_Sbox_address0;
-wire    grp_encrypt_fu_34_Sbox_ce0;
-wire   [7:0] grp_encrypt_fu_34_Sbox_address1;
-wire    grp_encrypt_fu_34_Sbox_ce1;
-wire   [4:0] grp_encrypt_fu_34_Rcon0_address0;
-wire    grp_encrypt_fu_34_Rcon0_ce0;
 wire    grp_decrypt_fu_50_ap_start;
 wire    grp_decrypt_fu_50_ap_done;
 wire    grp_decrypt_fu_50_ap_idle;
@@ -136,12 +121,6 @@ wire    grp_decrypt_fu_50_word_we0;
 wire   [31:0] grp_decrypt_fu_50_word_d0;
 wire   [8:0] grp_decrypt_fu_50_word_address1;
 wire    grp_decrypt_fu_50_word_ce1;
-wire   [7:0] grp_decrypt_fu_50_Sbox_address0;
-wire    grp_decrypt_fu_50_Sbox_ce0;
-wire   [7:0] grp_decrypt_fu_50_Sbox_address1;
-wire    grp_decrypt_fu_50_Sbox_ce1;
-wire   [4:0] grp_decrypt_fu_50_Rcon0_address0;
-wire    grp_decrypt_fu_50_Rcon0_ce0;
 reg    grp_encrypt_fu_34_ap_start_reg;
 wire    ap_CS_fsm_state2;
 reg    grp_decrypt_fu_50_ap_start_reg;
@@ -178,33 +157,6 @@ word_U(
     .q1(word_q1)
 );
 
-aes_main_ByteSub_ShiftRow_Sbox_1_ROM_AUTO_1R #(
-    .DataWidth( 8 ),
-    .AddressRange( 256 ),
-    .AddressWidth( 8 ))
-Sbox_U(
-    .clk(ap_clk),
-    .reset(ap_rst),
-    .address0(Sbox_address0),
-    .ce0(Sbox_ce0),
-    .q0(Sbox_q0),
-    .address1(Sbox_address1),
-    .ce1(Sbox_ce1),
-    .q1(Sbox_q1)
-);
-
-aes_main_Rcon0_ROM_AUTO_1R #(
-    .DataWidth( 8 ),
-    .AddressRange( 30 ),
-    .AddressWidth( 5 ))
-Rcon0_U(
-    .clk(ap_clk),
-    .reset(ap_rst),
-    .address0(Rcon0_address0),
-    .ce0(Rcon0_ce0),
-    .q0(Rcon0_q0)
-);
-
 aes_main_encrypt grp_encrypt_fu_34(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
@@ -232,16 +184,7 @@ aes_main_encrypt grp_encrypt_fu_34(
     .word_q0(word_q0),
     .word_address1(grp_encrypt_fu_34_word_address1),
     .word_ce1(grp_encrypt_fu_34_word_ce1),
-    .word_q1(word_q1),
-    .Sbox_address0(grp_encrypt_fu_34_Sbox_address0),
-    .Sbox_ce0(grp_encrypt_fu_34_Sbox_ce0),
-    .Sbox_q0(Sbox_q0),
-    .Sbox_address1(grp_encrypt_fu_34_Sbox_address1),
-    .Sbox_ce1(grp_encrypt_fu_34_Sbox_ce1),
-    .Sbox_q1(Sbox_q1),
-    .Rcon0_address0(grp_encrypt_fu_34_Rcon0_address0),
-    .Rcon0_ce0(grp_encrypt_fu_34_Rcon0_ce0),
-    .Rcon0_q0(Rcon0_q0)
+    .word_q1(word_q1)
 );
 
 aes_main_decrypt grp_decrypt_fu_50(
@@ -271,16 +214,7 @@ aes_main_decrypt grp_decrypt_fu_50(
     .word_q0(word_q0),
     .word_address1(grp_decrypt_fu_50_word_address1),
     .word_ce1(grp_decrypt_fu_50_word_ce1),
-    .word_q1(word_q1),
-    .Sbox_address0(grp_decrypt_fu_50_Sbox_address0),
-    .Sbox_ce0(grp_decrypt_fu_50_Sbox_ce0),
-    .Sbox_q0(Sbox_q0),
-    .Sbox_address1(grp_decrypt_fu_50_Sbox_address1),
-    .Sbox_ce1(grp_decrypt_fu_50_Sbox_ce1),
-    .Sbox_q1(Sbox_q1),
-    .Rcon0_address0(grp_decrypt_fu_50_Rcon0_address0),
-    .Rcon0_ce0(grp_decrypt_fu_50_Rcon0_ce0),
-    .Rcon0_q0(Rcon0_q0)
+    .word_q1(word_q1)
 );
 
 always @ (posedge ap_clk) begin
@@ -316,66 +250,6 @@ always @ (posedge ap_clk) begin
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        Rcon0_address0 = grp_decrypt_fu_50_Rcon0_address0;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        Rcon0_address0 = grp_encrypt_fu_34_Rcon0_address0;
-    end else begin
-        Rcon0_address0 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        Rcon0_ce0 = grp_decrypt_fu_50_Rcon0_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        Rcon0_ce0 = grp_encrypt_fu_34_Rcon0_ce0;
-    end else begin
-        Rcon0_ce0 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        Sbox_address0 = grp_decrypt_fu_50_Sbox_address0;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        Sbox_address0 = grp_encrypt_fu_34_Sbox_address0;
-    end else begin
-        Sbox_address0 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        Sbox_address1 = grp_decrypt_fu_50_Sbox_address1;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        Sbox_address1 = grp_encrypt_fu_34_Sbox_address1;
-    end else begin
-        Sbox_address1 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        Sbox_ce0 = grp_decrypt_fu_50_Sbox_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        Sbox_ce0 = grp_encrypt_fu_34_Sbox_ce0;
-    end else begin
-        Sbox_ce0 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        Sbox_ce1 = grp_decrypt_fu_50_Sbox_ce1;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        Sbox_ce1 = grp_encrypt_fu_34_Sbox_ce1;
-    end else begin
-        Sbox_ce1 = 1'b0;
-    end
-end
-
-always @ (*) begin
     if ((ap_start == 1'b0)) begin
         ap_ST_fsm_state1_blk = 1'b1;
     end else begin
@@ -402,7 +276,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state4) & (grp_decrypt_fu_50_ap_done == 1'b1))) begin
+    if (((grp_decrypt_fu_50_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state4))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -418,7 +292,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state4) & (grp_decrypt_fu_50_ap_done == 1'b1))) begin
+    if (((grp_decrypt_fu_50_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state4))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
@@ -605,7 +479,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state4;
         end
         ap_ST_fsm_state4 : begin
-            if (((1'b1 == ap_CS_fsm_state4) & (grp_decrypt_fu_50_ap_done == 1'b1))) begin
+            if (((grp_decrypt_fu_50_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state4))) begin
                 ap_NS_fsm = ap_ST_fsm_state1;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state4;

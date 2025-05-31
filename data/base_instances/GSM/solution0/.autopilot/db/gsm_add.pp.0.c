@@ -201,6 +201,10 @@ word gsm_abs(word a)
 
 word gsm_norm(longword a)
 {
+#line 11 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 71 "data/benchmarks/gsm/gsm_add.c"
+
     const unsigned char bitoff[256] = {
         8, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4,
         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
@@ -233,6 +237,10 @@ word gsm_norm(longword a)
 
 word gsm_div(word num, word denum)
 {
+#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 119 "data/benchmarks/gsm/gsm_add.c"
+
     longword L_num;
     longword L_denum;
     word div;

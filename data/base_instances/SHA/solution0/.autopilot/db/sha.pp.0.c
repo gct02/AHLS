@@ -161,16 +161,36 @@ unsigned char local_indata[2][8192];
 
 
 void local_memset(unsigned int *s, int c, int n, int e) {
+#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 55 "data/benchmarks/sha/sha.c"
+
+#line 15 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 55 "data/benchmarks/sha/sha.c"
+
     unsigned int uc = c;
     unsigned int *p = (unsigned int *)s;
     int m = n / 4;
 
     local_memset_label0:
     while (e-- > 0) {
+#line 1 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 61 "data/benchmarks/sha/sha.c"
+
+#line 10 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 61 "data/benchmarks/sha/sha.c"
+
         p++;
     }
     local_memset_label1:
     while (m-- > 0) {
+#line 11 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 65 "data/benchmarks/sha/sha.c"
+
 #pragma HLS LOOP_TRIPCOUNT max=14
  *p++ = uc;
     }
@@ -178,6 +198,10 @@ void local_memset(unsigned int *s, int c, int n, int e) {
 
 
 void local_memcpy(unsigned int *s1, const unsigned char *s2, int n) {
+#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 72 "data/benchmarks/sha/sha.c"
+
     unsigned int *p1 = (unsigned int *)s1;
     unsigned char *p2 = (unsigned char *)s2;
     unsigned int tmp;
@@ -185,7 +209,11 @@ void local_memcpy(unsigned int *s1, const unsigned char *s2, int n) {
 
     local_memcpy_label3:
     while (m-- > 0) {
-#line 1 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 79 "data/benchmarks/sha/sha.c"
+
+#line 2 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 79 "data/benchmarks/sha/sha.c"
 
@@ -202,13 +230,17 @@ void local_memcpy(unsigned int *s1, const unsigned char *s2, int n) {
 
 
 void sha_transform() {
+#line 16 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 92 "data/benchmarks/sha/sha.c"
+
     int i;
     unsigned int temp, A, B, C, D, E, W[80];
 
 
     sha_transform_label1:
     for (i = 0; i < 16; ++i) {
-#line 3 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#line 4 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 98 "data/benchmarks/sha/sha.c"
 
@@ -218,7 +250,7 @@ void sha_transform() {
 
     sha_transform_label2:
     for (i = 16; i < 80; ++i) {
-#line 4 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#line 5 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 104 "data/benchmarks/sha/sha.c"
 
@@ -235,7 +267,7 @@ void sha_transform() {
 
 
     sha_transform_label3: for (i = 0; i < 20; ++i) {
-#line 5 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 117 "data/benchmarks/sha/sha.c"
 
@@ -243,7 +275,7 @@ void sha_transform() {
  temp = ((A << 5) | (A >> (32 - 5))) + ((B & C) | (~B & D)) + E + W[i] + 0x5a827999L; E = D; D = C; C = ((B << 30) | (B >> (32 - 30))); B = A; A = temp;
     }
     sha_transform_label4: for (i = 20; i < 40; ++i) {
-#line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 121 "data/benchmarks/sha/sha.c"
 
@@ -251,7 +283,7 @@ void sha_transform() {
  temp = ((A << 5) | (A >> (32 - 5))) + (B ^ C ^ D) + E + W[i] + 0x6ed9eba1L; E = D; D = C; C = ((B << 30) | (B >> (32 - 30))); B = A; A = temp;
     }
     sha_transform_label5: for (i = 40; i < 60; ++i) {
-#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#line 8 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 125 "data/benchmarks/sha/sha.c"
 
@@ -259,7 +291,7 @@ void sha_transform() {
  temp = ((A << 5) | (A >> (32 - 5))) + ((B & C) | (B & D) | (C & D)) + E + W[i] + 0x8f1bbcdcL; E = D; D = C; C = ((B << 30) | (B >> (32 - 30))); B = A; A = temp;
     }
     sha_transform_label6: for (i = 60; i < 80; ++i) {
-#line 8 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 129 "data/benchmarks/sha/sha.c"
 
@@ -288,6 +320,10 @@ void sha_init() {
 
 
 void sha_update(const unsigned char *buffer, int count) {
+#line 17 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 154 "data/benchmarks/sha/sha.c"
+
     if ((sha_info_count_lo + ((unsigned int)count << 3)) < sha_info_count_lo) {
         ++sha_info_count_hi;
     }
@@ -296,7 +332,7 @@ void sha_update(const unsigned char *buffer, int count) {
 
     sha_update_label4:
     while (count >= 64) {
-#line 2 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#line 3 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 162 "data/benchmarks/sha/sha.c"
 
@@ -338,6 +374,10 @@ __attribute__((sdx_kernel("sha_stream", 0))) void sha_stream(
     const int in_i[2],
     unsigned int outdata[5]
 ) {
+#line 18 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 200 "data/benchmarks/sha/sha.c"
+
 #line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
 #pragma HLSDIRECTIVE TOP name=sha_stream
 # 200 "data/benchmarks/sha/sha.c"

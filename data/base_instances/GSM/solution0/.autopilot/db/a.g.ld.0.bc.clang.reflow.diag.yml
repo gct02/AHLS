@@ -19,20 +19,6 @@ DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 38, Column: 0 }
 Function:        Autocorrelation
 Args:            
   - String:          'Inlining function '''
-  - Callee:          gsm_norm
-    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 71, Column: 0 }
-  - String:          ''' into '''
-  - Caller:          Autocorrelation
-    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 38, Column: 0 }
-  - String:          ''''
-...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 38, Column: 0 }
-Function:        Autocorrelation
-Args:            
-  - String:          'Inlining function '''
   - Callee:          gsm_mult_r
     DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 52, Column: 0 }
   - String:          ''' into '''
@@ -47,39 +33,8 @@ DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, Column: 0 }
 Function:        Reflection_coefficients
 Args:            
   - String:          'Inlining function '''
-  - Callee:          gsm_norm
-    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 71, Column: 0 }
-  - String:          ''' into '''
-  - Caller:          Reflection_coefficients
-    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, 
-                       Column: 0 }
-  - String:          ''''
-...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, Column: 0 }
-Function:        Reflection_coefficients
-Args:            
-  - String:          'Inlining function '''
   - Callee:          gsm_abs
     DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 66, Column: 0 }
-  - String:          ''' into '''
-  - Caller:          Reflection_coefficients
-    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, 
-                       Column: 0 }
-  - String:          ''''
-...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, Column: 0 }
-Function:        Reflection_coefficients
-Args:            
-  - String:          'Inlining function '''
-  - Callee:          gsm_div
-    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 119, 
-                       Column: 0 }
   - String:          ''' into '''
   - Caller:          Reflection_coefficients
     DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, 
@@ -248,16 +203,6 @@ Args:
   - LoopName:        gsm_div_label0
   - String:          '> at '
   - LoopLoc:         'data/benchmarks/gsm/gsm_add.c:138:5'
-  - String:          ' '
-...
---- !HLSReportInfo
-Pass:            auto-loop-pipeline
-Name:            AutoLoopPipeline
-Args:            
-  - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        Autocorrelation_label0
-  - String:          '> at '
-  - LoopLoc:         'data/benchmarks/gsm/gsm_lpc.c:49:5'
   - String:          ' '
 ...
 --- !HLSReportInfo

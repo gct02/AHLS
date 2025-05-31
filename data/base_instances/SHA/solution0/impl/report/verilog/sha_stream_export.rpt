@@ -4,21 +4,21 @@ Implementation tool: Xilinx Vivado v.2023.2
 Project:             SHA
 Solution:            solution0
 Device target:       xcu50-fsvh2104-2-e
-Report date:         Thu May 29 17:37:47 -03 2025
+Report date:         Fri May 30 23:30:28 -03 2025
 
 #=== Post-Implementation Resource usage ===
 SLICE:            0
-LUT:           1708
-FF:            1623
+LUT:           2897
+FF:            2683
 DSP:              0
-BRAM:            14
+BRAM:            16
 URAM:             0
 LATCH:            0
 SRL:              0
-CLB:            327
+CLB:            495
 
 #=== Final timing ===
 CP required:                     8.000
-CP achieved post-synthesis:      2.605
-CP achieved post-implementation: 3.244
+CP achieved post-synthesis:      2.519
+CP achieved post-implementation: 3.794
 Timing met

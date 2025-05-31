@@ -16,7 +16,6 @@ port (
     ap_done : OUT STD_LOGIC;
     ap_idle : OUT STD_LOGIC;
     ap_ready : OUT STD_LOGIC;
-    ap_ce : IN STD_LOGIC;
     t_in : IN STD_LOGIC_VECTOR (63 downto 0);
     do_cos : IN STD_LOGIC_VECTOR (0 downto 0);
     ap_return : OUT STD_LOGIC_VECTOR (63 downto 0) );
@@ -309,7 +308,7 @@ attribute shreg_extract : string;
     signal out_bits_5_fu_1233_p3 : STD_LOGIC_VECTOR (31 downto 0);
     signal tmp_8_i_fu_1283_p4 : STD_LOGIC_VECTOR (31 downto 0);
     signal out_bits_6_fu_1240_p3 : STD_LOGIC_VECTOR (31 downto 0);
-    signal tmp_i_46_fu_1301_p4 : STD_LOGIC_VECTOR (31 downto 0);
+    signal tmp_i_49_fu_1301_p4 : STD_LOGIC_VECTOR (31 downto 0);
     signal c_fu_1257_p3 : STD_LOGIC_VECTOR (31 downto 0);
     signal zext_ln423_fu_1319_p1 : STD_LOGIC_VECTOR (62 downto 0);
     signal c_1_fu_1275_p3 : STD_LOGIC_VECTOR (31 downto 0);
@@ -363,7 +362,6 @@ attribute shreg_extract : string;
     signal results_exp_1_fu_1586_p3 : STD_LOGIC_VECTOR (10 downto 0);
     signal results_sig_1_fu_1615_p3 : STD_LOGIC_VECTOR (51 downto 0);
     signal t_2_fu_1623_p4 : STD_LOGIC_VECTOR (63 downto 0);
-    signal grp_fu_380_ce : STD_LOGIC;
     signal ap_NS_fsm : STD_LOGIC_VECTOR (0 downto 0);
     signal ap_idle_pp0_0to7 : STD_LOGIC;
     signal ap_reset_idle_pp0 : STD_LOGIC;
@@ -885,7 +883,7 @@ begin
         reset => ap_rst,
         din0 => grp_fu_380_p0,
         din1 => grp_fu_380_p1,
-        ce => grp_fu_380_ce,
+        ce => ap_const_logic_1,
         dout => grp_fu_380_p2);
 
     sparsemux_17_3_1_1_1_U10 : component fft1D_512_sparsemux_17_3_1_1_1
@@ -1174,7 +1172,7 @@ begin
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_const_logic_1 = ap_ce))) then
+            if ((ap_const_boolean_0 = ap_block_pp0_stage0_11001)) then
                 B_reg_1762 <= B_fu_748_p1;
                 B_squared_reg_1772 <= mul_ln25_fu_360_p2(97 downto 49);
                 Ex_1_reg_1725 <= Ex_1_fu_630_p2;
@@ -1248,7 +1246,7 @@ begin
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_const_logic_1 = ap_ce) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then
+            if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then
                 closepath_reg_1663 <= closepath_fu_410_p2;
                 closepath_reg_1663_pp0_iter1_reg <= closepath_reg_1663;
                 din_exp_reg_1650 <= data_fu_384_p1(62 downto 52);
@@ -1311,12 +1309,7 @@ begin
     ap_CS_fsm_pp0_stage0 <= ap_CS_fsm(0);
         ap_block_pp0_stage0 <= not((ap_const_boolean_1 = ap_const_boolean_1));
         ap_block_pp0_stage0_11001 <= not((ap_const_boolean_1 = ap_const_boolean_1));
-
-    ap_block_pp0_stage0_subdone_assign_proc : process(ap_ce)
-    begin
-                ap_block_pp0_stage0_subdone <= (ap_const_logic_0 = ap_ce);
-    end process;
-
+        ap_block_pp0_stage0_subdone <= not((ap_const_boolean_1 = ap_const_boolean_1));
 
     ap_done_assign_proc : process(ap_enable_reg_pp0_iter8, ap_block_pp0_stage0_subdone)
     begin
@@ -1405,11 +1398,11 @@ begin
     end process;
 
     
-    c_3_fu_1311_p3_proc : process(tmp_i_46_fu_1301_p4)
+    c_3_fu_1311_p3_proc : process(tmp_i_49_fu_1301_p4)
     begin
         c_3_fu_1311_p3 <= std_logic_vector(to_unsigned(32, 32));
         for i in 0 to 32 - 1 loop
-            if tmp_i_46_fu_1301_p4(i) = '1' then
+            if tmp_i_49_fu_1301_p4(i) = '1' then
                 c_3_fu_1311_p3 <= std_logic_vector(to_unsigned(i,32));
                 exit;
             end if;
@@ -1438,9 +1431,9 @@ begin
     empty_fu_1547_p1 <= newexp_fu_1458_p2(11 - 1 downto 0);
     fourth_order_double_sin_cos_K0_address0 <= zext_ln32_fu_793_p1(8 - 1 downto 0);
 
-    fourth_order_double_sin_cos_K0_ce0_assign_proc : process(ap_enable_reg_pp0_iter4, ap_ce, ap_block_pp0_stage0_11001)
+    fourth_order_double_sin_cos_K0_ce0_assign_proc : process(ap_enable_reg_pp0_iter4, ap_block_pp0_stage0_11001)
     begin
-        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_enable_reg_pp0_iter4 = ap_const_logic_1) and (ap_const_logic_1 = ap_ce))) then 
+        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_enable_reg_pp0_iter4 = ap_const_logic_1))) then 
             fourth_order_double_sin_cos_K0_ce0 <= ap_const_logic_1;
         else 
             fourth_order_double_sin_cos_K0_ce0 <= ap_const_logic_0;
@@ -1449,9 +1442,9 @@ begin
 
     fourth_order_double_sin_cos_K1_address0 <= zext_ln32_fu_793_p1(8 - 1 downto 0);
 
-    fourth_order_double_sin_cos_K1_ce0_assign_proc : process(ap_enable_reg_pp0_iter4, ap_ce, ap_block_pp0_stage0_11001)
+    fourth_order_double_sin_cos_K1_ce0_assign_proc : process(ap_enable_reg_pp0_iter4, ap_block_pp0_stage0_11001)
     begin
-        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_enable_reg_pp0_iter4 = ap_const_logic_1) and (ap_const_logic_1 = ap_ce))) then 
+        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_enable_reg_pp0_iter4 = ap_const_logic_1))) then 
             fourth_order_double_sin_cos_K1_ce0 <= ap_const_logic_1;
         else 
             fourth_order_double_sin_cos_K1_ce0 <= ap_const_logic_0;
@@ -1460,9 +1453,9 @@ begin
 
     fourth_order_double_sin_cos_K2_address0 <= zext_ln32_fu_793_p1(8 - 1 downto 0);
 
-    fourth_order_double_sin_cos_K2_ce0_assign_proc : process(ap_enable_reg_pp0_iter4, ap_ce, ap_block_pp0_stage0_11001)
+    fourth_order_double_sin_cos_K2_ce0_assign_proc : process(ap_enable_reg_pp0_iter4, ap_block_pp0_stage0_11001)
     begin
-        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_enable_reg_pp0_iter4 = ap_const_logic_1) and (ap_const_logic_1 = ap_ce))) then 
+        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_enable_reg_pp0_iter4 = ap_const_logic_1))) then 
             fourth_order_double_sin_cos_K2_ce0 <= ap_const_logic_1;
         else 
             fourth_order_double_sin_cos_K2_ce0 <= ap_const_logic_0;
@@ -1471,9 +1464,9 @@ begin
 
     fourth_order_double_sin_cos_K3_address0 <= zext_ln32_fu_793_p1(8 - 1 downto 0);
 
-    fourth_order_double_sin_cos_K3_ce0_assign_proc : process(ap_enable_reg_pp0_iter4, ap_ce, ap_block_pp0_stage0_11001)
+    fourth_order_double_sin_cos_K3_ce0_assign_proc : process(ap_enable_reg_pp0_iter4, ap_block_pp0_stage0_11001)
     begin
-        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_enable_reg_pp0_iter4 = ap_const_logic_1) and (ap_const_logic_1 = ap_ce))) then 
+        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_enable_reg_pp0_iter4 = ap_const_logic_1))) then 
             fourth_order_double_sin_cos_K3_ce0 <= ap_const_logic_1;
         else 
             fourth_order_double_sin_cos_K3_ce0 <= ap_const_logic_0;
@@ -1482,22 +1475,12 @@ begin
 
     fourth_order_double_sin_cos_K4_address0 <= zext_ln32_fu_793_p1(8 - 1 downto 0);
 
-    fourth_order_double_sin_cos_K4_ce0_assign_proc : process(ap_enable_reg_pp0_iter4, ap_ce, ap_block_pp0_stage0_11001)
+    fourth_order_double_sin_cos_K4_ce0_assign_proc : process(ap_enable_reg_pp0_iter4, ap_block_pp0_stage0_11001)
     begin
-        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_enable_reg_pp0_iter4 = ap_const_logic_1) and (ap_const_logic_1 = ap_ce))) then 
+        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_enable_reg_pp0_iter4 = ap_const_logic_1))) then 
             fourth_order_double_sin_cos_K4_ce0 <= ap_const_logic_1;
         else 
             fourth_order_double_sin_cos_K4_ce0 <= ap_const_logic_0;
-        end if; 
-    end process;
-
-
-    grp_fu_380_ce_assign_proc : process(ap_CS_fsm_pp0_stage0, ap_ce, ap_block_pp0_stage0_11001)
-    begin
-        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_const_logic_1 = ap_ce) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
-            grp_fu_380_ce <= ap_const_logic_1;
-        else 
-            grp_fu_380_ce <= ap_const_logic_0;
         end if; 
     end process;
 
@@ -1551,9 +1534,9 @@ begin
     out_bits_fu_1219_p3 <= (tmp_i_reg_1850 & ap_const_lv16_8000);
     ref_4oPi_table_256_address0 <= zext_ln397_fu_440_p1(4 - 1 downto 0);
 
-    ref_4oPi_table_256_ce0_assign_proc : process(ap_CS_fsm_pp0_stage0, ap_enable_reg_pp0_iter0, ap_ce, ap_block_pp0_stage0_11001)
+    ref_4oPi_table_256_ce0_assign_proc : process(ap_CS_fsm_pp0_stage0, ap_enable_reg_pp0_iter0, ap_block_pp0_stage0_11001)
     begin
-        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_enable_reg_pp0_iter0 = ap_const_logic_1) and (ap_const_logic_1 = ap_ce) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
+        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_enable_reg_pp0_iter0 = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
             ref_4oPi_table_256_ce0 <= ap_const_logic_1;
         else 
             ref_4oPi_table_256_ce0 <= ap_const_logic_0;
@@ -1796,11 +1779,11 @@ begin
     tmp_9_fu_808_p33 <= "X";
     tmp_fu_506_p3 <= grp_fu_380_p2(167 downto 167);
     
-    tmp_i_46_fu_1301_p4_proc : process(out_bits_6_fu_1240_p3)
+    tmp_i_49_fu_1301_p4_proc : process(out_bits_6_fu_1240_p3)
     variable vlo_cpy : STD_LOGIC_VECTOR(32+32 - 1 downto 0);
     variable vhi_cpy : STD_LOGIC_VECTOR(32+32 - 1 downto 0);
     variable v0_cpy : STD_LOGIC_VECTOR(32 - 1 downto 0);
-    variable tmp_i_46_fu_1301_p4_i : integer;
+    variable tmp_i_49_fu_1301_p4_i : integer;
     variable section : STD_LOGIC_VECTOR(32 - 1 downto 0);
     variable tmp_mask : STD_LOGIC_VECTOR(32 - 1 downto 0);
     variable resvalue, res_value, res_mask : STD_LOGIC_VECTOR(32 - 1 downto 0);
@@ -1813,8 +1796,8 @@ begin
         if (vlo_cpy(5 - 1 downto 0) > vhi_cpy(5 - 1 downto 0)) then
             vhi_cpy(5-1 downto 0) := std_logic_vector(32-1-unsigned(ap_const_lv32_0(5-1 downto 0)));
             vlo_cpy(5-1 downto 0) := std_logic_vector(32-1-unsigned(ap_const_lv32_1F(5-1 downto 0)));
-            for tmp_i_46_fu_1301_p4_i in 0 to 32-1 loop
-                v0_cpy(tmp_i_46_fu_1301_p4_i) := out_bits_6_fu_1240_p3(32-1-tmp_i_46_fu_1301_p4_i);
+            for tmp_i_49_fu_1301_p4_i in 0 to 32-1 loop
+                v0_cpy(tmp_i_49_fu_1301_p4_i) := out_bits_6_fu_1240_p3(32-1-tmp_i_49_fu_1301_p4_i);
             end loop;
         end if;
         res_value := std_logic_vector(shift_right(unsigned(v0_cpy), to_integer(unsigned('0' & vlo_cpy(5-1 downto 0)))));
@@ -1825,7 +1808,7 @@ begin
         res_mask := std_logic_vector(shift_left(unsigned(tmp_mask),to_integer(unsigned('0' & section(31-1 downto 0)))));
         res_mask := res_mask(32-2 downto 0) & '0';
         resvalue := res_value and not res_mask;
-        tmp_i_46_fu_1301_p4 <= resvalue(32-1 downto 0);
+        tmp_i_49_fu_1301_p4 <= resvalue(32-1 downto 0);
     end process;
 
     tmp_s_fu_430_p4 <= addr_fu_422_p3(10 downto 7);

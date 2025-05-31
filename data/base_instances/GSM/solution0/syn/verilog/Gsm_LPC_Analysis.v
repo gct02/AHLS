@@ -6,7 +6,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="Gsm_LPC_Analysis_Gsm_LPC_Analysis,hls_ip_2023_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xcu50-fsvh2104-2-e,HLS_INPUT_CLOCK=8.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=5.672063,HLS_SYN_LAT=1299,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=3059,HLS_SYN_LUT=8033,HLS_VERSION=2023_2}" *)
+(* CORE_GENERATION_INFO="Gsm_LPC_Analysis_Gsm_LPC_Analysis,hls_ip_2023_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xcu50-fsvh2104-2-e,HLS_INPUT_CLOCK=8.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=5.672063,HLS_SYN_LAT=1460,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=3240,HLS_SYN_LUT=7863,HLS_VERSION=2023_2}" *)
 
 module Gsm_LPC_Analysis (
         ap_clk,
@@ -81,17 +81,6 @@ reg LARc_we1;
 
 (* fsm_encoding = "none" *) reg   [6:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
-reg   [7:0] bitoff_address0;
-reg    bitoff_ce0;
-wire   [3:0] bitoff_q0;
-reg   [7:0] bitoff_address1;
-reg    bitoff_ce1;
-wire   [3:0] bitoff_q1;
-reg   [7:0] bitoff_address2;
-reg    bitoff_ce2;
-wire   [3:0] bitoff_q2;
-reg    bitoff_ce3;
-wire   [3:0] bitoff_q3;
 reg   [2:0] LARc_addr_reg_317;
 wire    ap_CS_fsm_pp0_stage0;
 wire    ap_block_pp0_stage0_11001;
@@ -127,12 +116,8 @@ wire   [3:0] grp_Autocorrelation_fu_103_L_ACF_address1;
 wire    grp_Autocorrelation_fu_103_L_ACF_ce1;
 wire    grp_Autocorrelation_fu_103_L_ACF_we1;
 wire   [63:0] grp_Autocorrelation_fu_103_L_ACF_d1;
-wire   [7:0] grp_Autocorrelation_fu_103_bitoff_address0;
-wire    grp_Autocorrelation_fu_103_bitoff_ce0;
-wire   [7:0] grp_Autocorrelation_fu_103_bitoff_address1;
-wire    grp_Autocorrelation_fu_103_bitoff_ce1;
-wire   [7:0] grp_Autocorrelation_fu_103_bitoff_address2;
-wire    grp_Autocorrelation_fu_103_bitoff_ce2;
+wire  signed [63:0] grp_Autocorrelation_fu_103_grp_gsm_norm_fu_323_p_din1;
+wire    grp_Autocorrelation_fu_103_grp_gsm_norm_fu_323_p_start;
 wire    grp_Reflection_coefficients_fu_113_ap_start;
 wire    grp_Reflection_coefficients_fu_113_ap_idle;
 wire    grp_Reflection_coefficients_fu_113_ap_ready;
@@ -142,14 +127,8 @@ wire   [2:0] grp_Reflection_coefficients_fu_113_LARc_address0;
 wire    grp_Reflection_coefficients_fu_113_LARc_ce0;
 wire    grp_Reflection_coefficients_fu_113_LARc_we0;
 wire   [15:0] grp_Reflection_coefficients_fu_113_LARc_d0;
-wire   [7:0] grp_Reflection_coefficients_fu_113_bitoff_address0;
-wire    grp_Reflection_coefficients_fu_113_bitoff_ce0;
-wire   [7:0] grp_Reflection_coefficients_fu_113_bitoff_address1;
-wire    grp_Reflection_coefficients_fu_113_bitoff_ce1;
-wire   [7:0] grp_Reflection_coefficients_fu_113_bitoff_address2;
-wire    grp_Reflection_coefficients_fu_113_bitoff_ce2;
-wire   [7:0] grp_Reflection_coefficients_fu_113_bitoff_address3;
-wire    grp_Reflection_coefficients_fu_113_bitoff_ce3;
+wire  signed [63:0] grp_Reflection_coefficients_fu_113_grp_gsm_norm_fu_323_p_din1;
+wire    grp_Reflection_coefficients_fu_113_grp_gsm_norm_fu_323_p_start;
 wire    grp_Quantization_and_coding_fu_122_ap_start;
 wire    grp_Quantization_and_coding_fu_122_ap_done;
 wire    grp_Quantization_and_coding_fu_122_ap_idle;
@@ -162,6 +141,12 @@ wire   [2:0] grp_Quantization_and_coding_fu_122_LARc_address1;
 wire    grp_Quantization_and_coding_fu_122_LARc_ce1;
 wire    grp_Quantization_and_coding_fu_122_LARc_we1;
 wire   [15:0] grp_Quantization_and_coding_fu_122_LARc_d1;
+reg    grp_gsm_norm_fu_323_ap_start;
+wire    grp_gsm_norm_fu_323_ap_done;
+wire    grp_gsm_norm_fu_323_ap_idle;
+wire    grp_gsm_norm_fu_323_ap_ready;
+reg   [63:0] grp_gsm_norm_fu_323_a;
+wire   [5:0] grp_gsm_norm_fu_323_ap_return;
 reg    grp_Autocorrelation_fu_103_ap_start_reg;
 wire    ap_CS_fsm_state2;
 reg    grp_Reflection_coefficients_fu_113_ap_start_reg;
@@ -181,17 +166,17 @@ wire   [15:0] sub_ln67_fu_191_p2;
 wire   [0:0] tmp_fu_177_p3;
 wire   [15:0] select_ln67_fu_197_p3;
 wire   [15:0] temp_fu_205_p3;
-wire   [14:0] temp_29_fu_219_p4;
+wire   [14:0] temp_28_fu_219_p4;
 wire   [15:0] shl_ln259_fu_245_p2;
 wire   [0:0] icmp_ln253_fu_213_p2;
 wire  signed [15:0] sext_ln254_fu_229_p1;
-wire   [15:0] temp_31_fu_251_p2;
+wire   [15:0] temp_30_fu_251_p2;
 wire   [0:0] icmp_ln255_fu_233_p2;
 wire   [0:0] xor_ln253_fu_265_p2;
 wire   [0:0] and_ln255_fu_271_p2;
-wire   [15:0] temp_30_fu_239_p2;
-wire   [15:0] temp_32_fu_257_p3;
-wire   [15:0] temp_33_fu_277_p3;
+wire   [15:0] temp_29_fu_239_p2;
+wire   [15:0] temp_31_fu_257_p3;
+wire   [15:0] temp_32_fu_277_p3;
 wire   [15:0] sub_ln262_fu_285_p2;
 reg   [6:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
@@ -215,27 +200,6 @@ initial begin
 #0 idx_fu_74 = 4'd0;
 #0 i_fu_78 = 4'd0;
 end
-
-Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R #(
-    .DataWidth( 4 ),
-    .AddressRange( 256 ),
-    .AddressWidth( 8 ))
-bitoff_U(
-    .clk(ap_clk),
-    .reset(ap_rst),
-    .address0(bitoff_address0),
-    .ce0(bitoff_ce0),
-    .q0(bitoff_q0),
-    .address1(bitoff_address1),
-    .ce1(bitoff_ce1),
-    .q1(bitoff_q1),
-    .address2(bitoff_address2),
-    .ce2(bitoff_ce2),
-    .q2(bitoff_q2),
-    .address3(grp_Reflection_coefficients_fu_113_bitoff_address3),
-    .ce3(bitoff_ce3),
-    .q3(bitoff_q3)
-);
 
 Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W #(
     .DataWidth( 64 ),
@@ -281,15 +245,12 @@ Gsm_LPC_Analysis_Autocorrelation grp_Autocorrelation_fu_103(
     .L_ACF_we1(grp_Autocorrelation_fu_103_L_ACF_we1),
     .L_ACF_d1(grp_Autocorrelation_fu_103_L_ACF_d1),
     .L_ACF_q1(L_ACF_q1),
-    .bitoff_address0(grp_Autocorrelation_fu_103_bitoff_address0),
-    .bitoff_ce0(grp_Autocorrelation_fu_103_bitoff_ce0),
-    .bitoff_q0(bitoff_q0),
-    .bitoff_address1(grp_Autocorrelation_fu_103_bitoff_address1),
-    .bitoff_ce1(grp_Autocorrelation_fu_103_bitoff_ce1),
-    .bitoff_q1(bitoff_q1),
-    .bitoff_address2(grp_Autocorrelation_fu_103_bitoff_address2),
-    .bitoff_ce2(grp_Autocorrelation_fu_103_bitoff_ce2),
-    .bitoff_q2(bitoff_q2)
+    .grp_gsm_norm_fu_323_p_din1(grp_Autocorrelation_fu_103_grp_gsm_norm_fu_323_p_din1),
+    .grp_gsm_norm_fu_323_p_dout0(grp_gsm_norm_fu_323_ap_return),
+    .grp_gsm_norm_fu_323_p_start(grp_Autocorrelation_fu_103_grp_gsm_norm_fu_323_p_start),
+    .grp_gsm_norm_fu_323_p_ready(grp_gsm_norm_fu_323_ap_ready),
+    .grp_gsm_norm_fu_323_p_done(grp_gsm_norm_fu_323_ap_done),
+    .grp_gsm_norm_fu_323_p_idle(grp_gsm_norm_fu_323_ap_idle)
 );
 
 Gsm_LPC_Analysis_Reflection_coefficients grp_Reflection_coefficients_fu_113(
@@ -306,18 +267,12 @@ Gsm_LPC_Analysis_Reflection_coefficients grp_Reflection_coefficients_fu_113(
     .LARc_ce0(grp_Reflection_coefficients_fu_113_LARc_ce0),
     .LARc_we0(grp_Reflection_coefficients_fu_113_LARc_we0),
     .LARc_d0(grp_Reflection_coefficients_fu_113_LARc_d0),
-    .bitoff_address0(grp_Reflection_coefficients_fu_113_bitoff_address0),
-    .bitoff_ce0(grp_Reflection_coefficients_fu_113_bitoff_ce0),
-    .bitoff_q0(bitoff_q0),
-    .bitoff_address1(grp_Reflection_coefficients_fu_113_bitoff_address1),
-    .bitoff_ce1(grp_Reflection_coefficients_fu_113_bitoff_ce1),
-    .bitoff_q1(bitoff_q1),
-    .bitoff_address2(grp_Reflection_coefficients_fu_113_bitoff_address2),
-    .bitoff_ce2(grp_Reflection_coefficients_fu_113_bitoff_ce2),
-    .bitoff_q2(bitoff_q2),
-    .bitoff_address3(grp_Reflection_coefficients_fu_113_bitoff_address3),
-    .bitoff_ce3(grp_Reflection_coefficients_fu_113_bitoff_ce3),
-    .bitoff_q3(bitoff_q3)
+    .grp_gsm_norm_fu_323_p_din1(grp_Reflection_coefficients_fu_113_grp_gsm_norm_fu_323_p_din1),
+    .grp_gsm_norm_fu_323_p_dout0(grp_gsm_norm_fu_323_ap_return),
+    .grp_gsm_norm_fu_323_p_start(grp_Reflection_coefficients_fu_113_grp_gsm_norm_fu_323_p_start),
+    .grp_gsm_norm_fu_323_p_ready(grp_gsm_norm_fu_323_ap_ready),
+    .grp_gsm_norm_fu_323_p_done(grp_gsm_norm_fu_323_ap_done),
+    .grp_gsm_norm_fu_323_p_idle(grp_gsm_norm_fu_323_ap_idle)
 );
 
 Gsm_LPC_Analysis_Quantization_and_coding grp_Quantization_and_coding_fu_122(
@@ -337,6 +292,17 @@ Gsm_LPC_Analysis_Quantization_and_coding grp_Quantization_and_coding_fu_122(
     .LARc_we1(grp_Quantization_and_coding_fu_122_LARc_we1),
     .LARc_d1(grp_Quantization_and_coding_fu_122_LARc_d1),
     .LARc_q1(LARc_q1)
+);
+
+Gsm_LPC_Analysis_gsm_norm grp_gsm_norm_fu_323(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_gsm_norm_fu_323_ap_start),
+    .ap_done(grp_gsm_norm_fu_323_ap_done),
+    .ap_idle(grp_gsm_norm_fu_323_ap_idle),
+    .ap_ready(grp_gsm_norm_fu_323_ap_ready),
+    .a(grp_gsm_norm_fu_323_a),
+    .ap_return(grp_gsm_norm_fu_323_ap_return)
 );
 
 always @ (posedge ap_clk) begin
@@ -432,7 +398,7 @@ always @ (posedge ap_clk) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0) & (1'b1 == ap_CS_fsm_pp0_stage0) & (ap_enable_reg_pp0_iter1 == 1'b1))) begin
+    if (((ap_enable_reg_pp0_iter1 == 1'b1) & (1'b0 == ap_block_pp0_stage0) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         LARc_address0 = LARc_addr_reg_317;
     end else if ((1'b1 == ap_CS_fsm_state8)) begin
         LARc_address0 = grp_Quantization_and_coding_fu_122_LARc_address0;
@@ -454,7 +420,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0) & (ap_enable_reg_pp0_iter1 == 1'b1))) begin
+    if (((ap_enable_reg_pp0_iter1 == 1'b1) & (1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         LARc_ce0 = 1'b1;
     end else if ((1'b1 == ap_CS_fsm_state8)) begin
         LARc_ce0 = grp_Quantization_and_coding_fu_122_LARc_ce0;
@@ -476,7 +442,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0) & (1'b1 == ap_CS_fsm_pp0_stage0) & (ap_enable_reg_pp0_iter1 == 1'b1))) begin
+    if (((ap_enable_reg_pp0_iter1 == 1'b1) & (1'b0 == ap_block_pp0_stage0) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         LARc_d0 = select_ln262_fu_291_p3;
     end else if ((1'b1 == ap_CS_fsm_state8)) begin
         LARc_d0 = grp_Quantization_and_coding_fu_122_LARc_d0;
@@ -488,7 +454,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0) & (ap_enable_reg_pp0_iter1 == 1'b1))) begin
+    if (((ap_enable_reg_pp0_iter1 == 1'b1) & (1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         LARc_we0 = 1'b1;
     end else if ((1'b1 == ap_CS_fsm_state8)) begin
         LARc_we0 = grp_Quantization_and_coding_fu_122_LARc_we0;
@@ -612,7 +578,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((ap_enable_reg_pp0_iter0 == 1'b0) & (ap_enable_reg_pp0_iter1 == 1'b0))) begin
+    if (((ap_enable_reg_pp0_iter1 == 1'b0) & (ap_enable_reg_pp0_iter0 == 1'b0))) begin
         ap_idle_pp0 = 1'b1;
     end else begin
         ap_idle_pp0 = 1'b0;
@@ -629,69 +595,21 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        bitoff_address0 = grp_Reflection_coefficients_fu_113_bitoff_address0;
+        grp_gsm_norm_fu_323_a = grp_Reflection_coefficients_fu_113_grp_gsm_norm_fu_323_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        bitoff_address0 = grp_Autocorrelation_fu_103_bitoff_address0;
+        grp_gsm_norm_fu_323_a = grp_Autocorrelation_fu_103_grp_gsm_norm_fu_323_p_din1;
     end else begin
-        bitoff_address0 = 'bx;
+        grp_gsm_norm_fu_323_a = 'bx;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        bitoff_address1 = grp_Reflection_coefficients_fu_113_bitoff_address1;
+        grp_gsm_norm_fu_323_ap_start = grp_Reflection_coefficients_fu_113_grp_gsm_norm_fu_323_p_start;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        bitoff_address1 = grp_Autocorrelation_fu_103_bitoff_address1;
+        grp_gsm_norm_fu_323_ap_start = grp_Autocorrelation_fu_103_grp_gsm_norm_fu_323_p_start;
     end else begin
-        bitoff_address1 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        bitoff_address2 = grp_Reflection_coefficients_fu_113_bitoff_address2;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        bitoff_address2 = grp_Autocorrelation_fu_103_bitoff_address2;
-    end else begin
-        bitoff_address2 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        bitoff_ce0 = grp_Reflection_coefficients_fu_113_bitoff_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        bitoff_ce0 = grp_Autocorrelation_fu_103_bitoff_ce0;
-    end else begin
-        bitoff_ce0 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        bitoff_ce1 = grp_Reflection_coefficients_fu_113_bitoff_ce1;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        bitoff_ce1 = grp_Autocorrelation_fu_103_bitoff_ce1;
-    end else begin
-        bitoff_ce1 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        bitoff_ce2 = grp_Reflection_coefficients_fu_113_bitoff_ce2;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        bitoff_ce2 = grp_Autocorrelation_fu_103_bitoff_ce2;
-    end else begin
-        bitoff_ce2 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        bitoff_ce3 = grp_Reflection_coefficients_fu_113_bitoff_ce3;
-    end else begin
-        bitoff_ce3 = 1'b0;
+        grp_gsm_norm_fu_323_ap_start = 1'b0;
     end
 end
 
@@ -722,9 +640,9 @@ always @ (*) begin
             end
         end
         ap_ST_fsm_pp0_stage0 : begin
-            if ((~((icmp_ln248_fu_144_p2 == 1'd1) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b0 == ap_block_pp0_stage0_subdone)) & ~((ap_enable_reg_pp0_iter0 == 1'b0) & (1'b0 == ap_block_pp0_stage0_subdone) & (1'b1 == ap_CS_fsm_pp0_stage0) & (ap_enable_reg_pp0_iter1 == 1'b1)))) begin
+            if ((~((icmp_ln248_fu_144_p2 == 1'd1) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b0 == ap_block_pp0_stage0_subdone)) & ~((ap_enable_reg_pp0_iter1 == 1'b1) & (ap_enable_reg_pp0_iter0 == 1'b0) & (1'b0 == ap_block_pp0_stage0_subdone) & (1'b1 == ap_CS_fsm_pp0_stage0)))) begin
                 ap_NS_fsm = ap_ST_fsm_pp0_stage0;
-            end else if ((((icmp_ln248_fu_144_p2 == 1'd1) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b0 == ap_block_pp0_stage0_subdone)) | ((ap_enable_reg_pp0_iter0 == 1'b0) & (1'b0 == ap_block_pp0_stage0_subdone) & (1'b1 == ap_CS_fsm_pp0_stage0) & (ap_enable_reg_pp0_iter1 == 1'b1)))) begin
+            end else if ((((icmp_ln248_fu_144_p2 == 1'd1) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b0 == ap_block_pp0_stage0_subdone)) | ((ap_enable_reg_pp0_iter1 == 1'b1) & (ap_enable_reg_pp0_iter0 == 1'b0) & (1'b0 == ap_block_pp0_stage0_subdone) & (1'b1 == ap_CS_fsm_pp0_stage0)))) begin
                 ap_NS_fsm = ap_ST_fsm_state7;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_pp0_stage0;
@@ -802,27 +720,27 @@ assign indata_d0 = grp_Autocorrelation_fu_103_indata_d0;
 
 assign indata_we0 = grp_Autocorrelation_fu_103_indata_we0;
 
-assign select_ln262_fu_291_p3 = ((tmp_fu_177_p3[0:0] == 1'b1) ? sub_ln262_fu_285_p2 : temp_33_fu_277_p3);
+assign select_ln262_fu_291_p3 = ((tmp_fu_177_p3[0:0] == 1'b1) ? sub_ln262_fu_285_p2 : temp_32_fu_277_p3);
 
 assign select_ln67_fu_197_p3 = ((icmp_ln67_fu_185_p2[0:0] == 1'b1) ? 16'd32767 : sub_ln67_fu_191_p2);
 
-assign sext_ln254_fu_229_p1 = $signed(temp_29_fu_219_p4);
+assign sext_ln254_fu_229_p1 = $signed(temp_28_fu_219_p4);
 
 assign shl_ln259_fu_245_p2 = temp_fu_205_p3 << 16'd2;
 
-assign sub_ln262_fu_285_p2 = (16'd0 - temp_33_fu_277_p3);
+assign sub_ln262_fu_285_p2 = (16'd0 - temp_32_fu_277_p3);
 
 assign sub_ln67_fu_191_p2 = (16'd0 - LARc_q1);
 
-assign temp_29_fu_219_p4 = {{temp_fu_205_p3[15:1]}};
+assign temp_28_fu_219_p4 = {{temp_fu_205_p3[15:1]}};
 
-assign temp_30_fu_239_p2 = ($signed(temp_fu_205_p3) + $signed(16'd54477));
+assign temp_29_fu_239_p2 = ($signed(temp_fu_205_p3) + $signed(16'd54477));
 
-assign temp_31_fu_251_p2 = (shl_ln259_fu_245_p2 + 16'd26624);
+assign temp_30_fu_251_p2 = (shl_ln259_fu_245_p2 + 16'd26624);
 
-assign temp_32_fu_257_p3 = ((icmp_ln253_fu_213_p2[0:0] == 1'b1) ? sext_ln254_fu_229_p1 : temp_31_fu_251_p2);
+assign temp_31_fu_257_p3 = ((icmp_ln253_fu_213_p2[0:0] == 1'b1) ? sext_ln254_fu_229_p1 : temp_30_fu_251_p2);
 
-assign temp_33_fu_277_p3 = ((and_ln255_fu_271_p2[0:0] == 1'b1) ? temp_30_fu_239_p2 : temp_32_fu_257_p3);
+assign temp_32_fu_277_p3 = ((and_ln255_fu_271_p2[0:0] == 1'b1) ? temp_29_fu_239_p2 : temp_31_fu_257_p3);
 
 assign temp_fu_205_p3 = ((tmp_fu_177_p3[0:0] == 1'b1) ? select_ln67_fu_197_p3 : LARc_q1);
 

@@ -1,12 +1,12 @@
 {
   "0": {
     "basicblocks": 1,
-    "calls": "4 6",
+    "calls": "4 8",
     "file": "aes.c",
     "fileloc": 66,
     "instructions": 7,
     "name": "aes_main",
-    "total_instructions": 1259
+    "total_instructions": 1275
   },
   "1": {
     "basicblocks": 9,
@@ -41,6 +41,32 @@
     "total_instructions": 145
   },
   "3": {
+    "basicblocks": 12,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 480,
+    "instructions": 93,
+    "loads": {
+      "G": 10,
+      "L": 2
+    },
+    "name": "KeySchedule",
+    "stores": {
+      "G": 2,
+      "L": 8
+    },
+    "total_instructions": 93
+  },
+  "4": {
+    "basicblocks": 3,
+    "calls": "3 7 2 5 2 7",
+    "file": "aes_enc.c",
+    "fileloc": 66,
+    "instructions": 12,
+    "name": "encrypt",
+    "total_instructions": 628
+  },
+  "5": {
     "basicblocks": 25,
     "calls": "",
     "file": "aes_key.c",
@@ -56,24 +82,7 @@
     },
     "total_instructions": 159
   },
-  "4": {
-    "basicblocks": 18,
-    "calls": "2 3 2",
-    "file": "aes_enc.c",
-    "fileloc": 66,
-    "instructions": 171,
-    "loads": {
-      "G": 18,
-      "L": 10
-    },
-    "name": "encrypt",
-    "stores": {
-      "G": 2,
-      "L": 16
-    },
-    "total_instructions": 620
-  },
-  "5": {
+  "6": {
     "basicblocks": 1,
     "calls": "",
     "file": "aes_key.c",
@@ -89,21 +98,29 @@
     },
     "total_instructions": 145
   },
-  "6": {
-    "basicblocks": 18,
-    "calls": "5 1 5",
+  "7": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 447,
+    "instructions": 37,
+    "loads": {
+      "G": 4,
+      "L": 4
+    },
+    "name": "AddRoundKey",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 37
+  },
+  "8": {
+    "basicblocks": 3,
+    "calls": "3 7 6 1 6 7",
     "file": "aes_dec.c",
     "fileloc": 66,
-    "instructions": 171,
-    "loads": {
-      "G": 18,
-      "L": 10
-    },
+    "instructions": 12,
     "name": "decrypt",
-    "stores": {
-      "G": 2,
-      "L": 16
-    },
-    "total_instructions": 632
+    "total_instructions": 640
   }
 }

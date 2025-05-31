@@ -471,11 +471,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu May 29 19:48:35 UTC 2025</spirit:value>
+            <spirit:value>Sat May 31 01:05:09 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:75743fa4</spirit:value>
+            <spirit:value>9:9d47177e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -486,7 +486,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:75743fa4</spirit:value>
+            <spirit:value>9:9d47177e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -502,11 +502,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu May 29 19:47:32 UTC 2025</spirit:value>
+            <spirit:value>Sat May 31 01:04:06 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:c437cecd</spirit:value>
+            <spirit:value>9:57154d8b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -522,11 +522,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu May 29 19:47:32 UTC 2025</spirit:value>
+            <spirit:value>Sat May 31 01:04:06 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:c437cecd</spirit:value>
+            <spirit:value>9:57154d8b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -542,11 +542,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu May 29 19:47:32 UTC 2025</spirit:value>
+            <spirit:value>Sat May 31 01:04:06 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:75743fa4</spirit:value>
+            <spirit:value>9:9d47177e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -562,11 +562,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu May 29 19:47:32 UTC 2025</spirit:value>
+            <spirit:value>Sat May 31 01:04:06 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:75743fa4</spirit:value>
+            <spirit:value>9:9d47177e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -970,126 +970,131 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label0.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label2.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label2.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label4.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label4.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label5.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label5.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_gsm_div.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_gsm_div_Pipeline_gsm_div_label0.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_gsm_norm.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_norm_bitoff_ROM_AUTO_1R.dat</spirit:name>
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_gsm_norm_bitoff_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_mul_16s_15ns_31_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_mul_16s_15ns_31_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_mul_16s_16s_32_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_mul_16s_16s_32_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Quantization_and_coding.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Quantization_and_coding.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_Pipeline_gsm_div_label0.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1110,103 +1115,107 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label0.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label2.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label2.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label4.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label4.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label5.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label5.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_gsm_div.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_gsm_div_Pipeline_gsm_div_label0.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_gsm_norm.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_norm_bitoff_ROM_AUTO_1R.dat</spirit:name>
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_gsm_norm_bitoff_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_mul_16s_15ns_31_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_mul_16s_15ns_31_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_mul_16s_16s_32_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_mul_16s_16s_32_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Quantization_and_coding.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Quantization_and_coding.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_Pipeline_gsm_div_label0.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/503f/hdl/verilog/Gsm_LPC_Analysis.v</spirit:name>
+        <spirit:name>../../ipshared/a69e/hdl/verilog/Gsm_LPC_Analysis.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -1260,7 +1269,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">1003</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">1160</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -1285,7 +1294,7 @@
     <xilinx:coreExtensions>
       <xilinx:displayName>Gsm_lpc_analysis</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114104727</xilinx:coreRevision>
+      <xilinx:coreRevision>2114106483</xilinx:coreRevision>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -1317,9 +1326,9 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="6eb03148"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="5ace1567"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e2881183"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="f03c8da8"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="58df758a"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="b4255988"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

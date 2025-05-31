@@ -6,23 +6,18 @@
         {
           "Name": "wl_code_table_addr",
           "FunctionName": "decode",
-          "Idx": 85
+          "Idx": 51
         },
         {
           "Name": "wl_code_table_addr",
           "FunctionName": "encode",
-          "Idx": 213
+          "Idx": 146
         }
       ]
     },
     {
       "Name": "tqmf",
       "Uses": [
-        {
-          "Name": "tqmf_addr",
-          "FunctionName": "adpcm_main",
-          "Idx": 92
-        },
         {
           "Name": "tqmf_ptr_2",
           "FunctionName": "encode",
@@ -42,6 +37,11 @@
           "Name": "tqmf_ptr",
           "FunctionName": "encode",
           "Idx": 33
+        },
+        {
+          "Name": "tqmf_addr",
+          "FunctionName": "reset",
+          "Idx": 85
         }
       ]
     },
@@ -50,8 +50,8 @@
       "Uses": [
         {
           "Name": "quant26bt_pos_addr",
-          "FunctionName": "encode",
-          "Idx": 191
+          "FunctionName": "quantl",
+          "Idx": 28
         }
       ]
     },
@@ -60,8 +60,8 @@
       "Uses": [
         {
           "Name": "quant26bt_neg_addr",
-          "FunctionName": "encode",
-          "Idx": 193
+          "FunctionName": "quantl",
+          "Idx": 30
         }
       ]
     },
@@ -71,7 +71,7 @@
         {
           "Name": "qq6_code6_table_addr",
           "FunctionName": "decode",
-          "Idx": 71
+          "Idx": 37
         }
       ]
     },
@@ -81,12 +81,12 @@
         {
           "Name": "qq4_code4_table_addr",
           "FunctionName": "decode",
-          "Idx": 62
+          "Idx": 28
         },
         {
           "Name": "qq4_code4_table_addr",
           "FunctionName": "encode",
-          "Idx": 199
+          "Idx": 132
         }
       ]
     },
@@ -96,22 +96,22 @@
         {
           "Name": "ilb_table_addr_2",
           "FunctionName": "decode",
-          "Idx": 300
+          "Idx": 174
         },
         {
           "Name": "ilb_table_addr",
           "FunctionName": "decode",
-          "Idx": 99
+          "Idx": 65
         },
         {
           "Name": "ilb_table_addr_1",
           "FunctionName": "encode",
-          "Idx": 443
+          "Idx": 283
         },
         {
           "Name": "ilb_table_addr",
           "FunctionName": "encode",
-          "Idx": 227
+          "Idx": 160
         }
       ]
     },
@@ -121,12 +121,12 @@
         {
           "Name": "h_ptr_2",
           "FunctionName": "decode",
-          "Idx": 462
+          "Idx": 273
         },
         {
           "Name": "h_ptr",
           "FunctionName": "decode",
-          "Idx": 457
+          "Idx": 268
         },
         {
           "Name": "h_ptr_1",
@@ -144,19 +144,19 @@
       "Name": "delay_dltx",
       "Uses": [
         {
-          "Name": "delay_dltx_addr",
-          "FunctionName": "adpcm_main",
-          "Idx": 52
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 168
+        },
+        {
+          "Name": "tmp",
+          "FunctionName": "encode",
+          "Idx": 106
         },
         {
           "Name": "delay_dltx_addr",
-          "FunctionName": "encode",
-          "Idx": 264
-        },
-        {
-          "Name": "delay_dltx_addr_1",
-          "FunctionName": "encode",
-          "Idx": 112
+          "FunctionName": "reset",
+          "Idx": 45
         }
       ]
     },
@@ -164,19 +164,19 @@
       "Name": "delay_dhx",
       "Uses": [
         {
-          "Name": "delay_dhx_addr",
-          "FunctionName": "adpcm_main",
-          "Idx": 54
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 291
+        },
+        {
+          "Name": "tmp_2",
+          "FunctionName": "encode",
+          "Idx": 223
         },
         {
           "Name": "delay_dhx_addr",
-          "FunctionName": "encode",
-          "Idx": 482
-        },
-        {
-          "Name": "delay_dhx_addr_1",
-          "FunctionName": "encode",
-          "Idx": 368
+          "FunctionName": "reset",
+          "Idx": 47
         }
       ]
     },
@@ -184,24 +184,19 @@
       "Name": "delay_bpl",
       "Uses": [
         {
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 168
+        },
+        {
+          "Name": "tmp",
+          "FunctionName": "encode",
+          "Idx": 106
+        },
+        {
           "Name": "delay_bpl_addr",
-          "FunctionName": "adpcm_main",
-          "Idx": 72
-        },
-        {
-          "Name": "delay_bpl_addr_1",
-          "FunctionName": "encode",
-          "Idx": 271
-        },
-        {
-          "Name": "delay_bpl_addr",
-          "FunctionName": "encode",
-          "Idx": 248
-        },
-        {
-          "Name": "delay_bpl_addr_2",
-          "FunctionName": "encode",
-          "Idx": 113
+          "FunctionName": "reset",
+          "Idx": 65
         }
       ]
     },
@@ -209,24 +204,19 @@
       "Name": "delay_bph",
       "Uses": [
         {
+          "Name": "",
+          "FunctionName": "encode",
+          "Idx": 291
+        },
+        {
+          "Name": "tmp_2",
+          "FunctionName": "encode",
+          "Idx": 223
+        },
+        {
           "Name": "delay_bph_addr",
-          "FunctionName": "adpcm_main",
-          "Idx": 74
-        },
-        {
-          "Name": "delay_bph_addr_1",
-          "FunctionName": "encode",
-          "Idx": 489
-        },
-        {
-          "Name": "delay_bph_addr",
-          "FunctionName": "encode",
-          "Idx": 463
-        },
-        {
-          "Name": "delay_bph_addr_2",
-          "FunctionName": "encode",
-          "Idx": 369
+          "FunctionName": "reset",
+          "Idx": 67
         }
       ]
     },
@@ -235,8 +225,8 @@
       "Uses": [
         {
           "Name": "decis_levl_addr",
-          "FunctionName": "encode",
-          "Idx": 179
+          "FunctionName": "quantl",
+          "Idx": 16
         }
       ]
     },
@@ -244,19 +234,19 @@
       "Name": "dec_del_dltx",
       "Uses": [
         {
-          "Name": "dec_del_dltx_addr",
-          "FunctionName": "adpcm_main",
-          "Idx": 56
+          "Name": "",
+          "FunctionName": "decode",
+          "Idx": 73
+        },
+        {
+          "Name": "tmp",
+          "FunctionName": "decode",
+          "Idx": 5
         },
         {
           "Name": "dec_del_dltx_addr",
-          "FunctionName": "decode",
-          "Idx": 136
-        },
-        {
-          "Name": "dec_del_dltx_addr_1",
-          "FunctionName": "decode",
-          "Idx": 22
+          "FunctionName": "reset",
+          "Idx": 49
         }
       ]
     },
@@ -264,19 +254,19 @@
       "Name": "dec_del_dhx",
       "Uses": [
         {
-          "Name": "dec_del_dhx_addr",
-          "FunctionName": "adpcm_main",
-          "Idx": 58
+          "Name": "",
+          "FunctionName": "decode",
+          "Idx": 182
+        },
+        {
+          "Name": "tmp_3",
+          "FunctionName": "decode",
+          "Idx": 128
         },
         {
           "Name": "dec_del_dhx_addr",
-          "FunctionName": "decode",
-          "Idx": 339
-        },
-        {
-          "Name": "dec_del_dhx_addr_1",
-          "FunctionName": "decode",
-          "Idx": 240
+          "FunctionName": "reset",
+          "Idx": 51
         }
       ]
     },
@@ -284,24 +274,19 @@
       "Name": "dec_del_bpl",
       "Uses": [
         {
+          "Name": "",
+          "FunctionName": "decode",
+          "Idx": 73
+        },
+        {
+          "Name": "tmp",
+          "FunctionName": "decode",
+          "Idx": 5
+        },
+        {
           "Name": "dec_del_bpl_addr",
-          "FunctionName": "adpcm_main",
-          "Idx": 76
-        },
-        {
-          "Name": "dec_del_bpl_addr_1",
-          "FunctionName": "decode",
-          "Idx": 143
-        },
-        {
-          "Name": "dec_del_bpl_addr",
-          "FunctionName": "decode",
-          "Idx": 120
-        },
-        {
-          "Name": "dec_del_bpl_addr_2",
-          "FunctionName": "decode",
-          "Idx": 23
+          "FunctionName": "reset",
+          "Idx": 69
         }
       ]
     },
@@ -309,24 +294,19 @@
       "Name": "dec_del_bph",
       "Uses": [
         {
+          "Name": "",
+          "FunctionName": "decode",
+          "Idx": 182
+        },
+        {
+          "Name": "tmp_3",
+          "FunctionName": "decode",
+          "Idx": 128
+        },
+        {
           "Name": "dec_del_bph_addr",
-          "FunctionName": "adpcm_main",
-          "Idx": 78
-        },
-        {
-          "Name": "dec_del_bph_addr_1",
-          "FunctionName": "decode",
-          "Idx": 346
-        },
-        {
-          "Name": "dec_del_bph_addr",
-          "FunctionName": "decode",
-          "Idx": 320
-        },
-        {
-          "Name": "dec_del_bph_addr_2",
-          "FunctionName": "decode",
-          "Idx": 241
+          "FunctionName": "reset",
+          "Idx": 71
         }
       ]
     },
@@ -334,24 +314,24 @@
       "Name": "accumd",
       "Uses": [
         {
-          "Name": "accumd_addr",
-          "FunctionName": "adpcm_main",
-          "Idx": 108
-        },
-        {
           "Name": "ad_ptr1",
           "FunctionName": "decode",
-          "Idx": 521
+          "Idx": 332
         },
         {
           "Name": "ad_ptr_1",
           "FunctionName": "decode",
-          "Idx": 516
+          "Idx": 327
         },
         {
           "Name": "ad_ptr",
           "FunctionName": "decode",
-          "Idx": 453
+          "Idx": 264
+        },
+        {
+          "Name": "accumd_addr",
+          "FunctionName": "reset",
+          "Idx": 98
         }
       ]
     },
@@ -359,24 +339,24 @@
       "Name": "accumc",
       "Uses": [
         {
-          "Name": "accumc_addr",
-          "FunctionName": "adpcm_main",
-          "Idx": 106
-        },
-        {
           "Name": "ac_ptr_1",
           "FunctionName": "decode",
-          "Idx": 520
+          "Idx": 331
         },
         {
           "Name": "ac_ptr1",
           "FunctionName": "decode",
-          "Idx": 519
+          "Idx": 330
         },
         {
           "Name": "ac_ptr",
           "FunctionName": "decode",
-          "Idx": 454
+          "Idx": 265
+        },
+        {
+          "Name": "accumc_addr",
+          "FunctionName": "reset",
+          "Idx": 96
         }
       ]
     },
@@ -385,8 +365,8 @@
       "Uses": [
         {
           "Name": "",
-          "FunctionName": "adpcm_main",
-          "Idx": 51
+          "FunctionName": "upzero",
+          "Idx": 32
         }
       ]
     },
@@ -395,8 +375,8 @@
       "Uses": [
         {
           "Name": "",
-          "FunctionName": "adpcm_main",
-          "Idx": 71
+          "FunctionName": "upzero",
+          "Idx": 13
         }
       ]
     },
@@ -406,7 +386,7 @@
         {
           "Name": "",
           "FunctionName": "adpcm_main",
-          "Idx": 105
+          "Idx": 20
         }
       ]
     },
@@ -416,7 +396,7 @@
         {
           "Name": "",
           "FunctionName": "decode",
-          "Idx": 452
+          "Idx": 263
         }
       ]
     },
@@ -426,7 +406,7 @@
         {
           "Name": "",
           "FunctionName": "decode",
-          "Idx": 513
+          "Idx": 324
         }
       ]
     },
@@ -550,23 +530,8 @@
       "Uses": [
         {
           "Name": "",
-          "FunctionName": "decode",
-          "Idx": 319
-        },
-        {
-          "Name": "",
-          "FunctionName": "decode",
-          "Idx": 119
-        },
-        {
-          "Name": "",
-          "FunctionName": "encode",
-          "Idx": 462
-        },
-        {
-          "Name": "",
-          "FunctionName": "encode",
-          "Idx": 247
+          "FunctionName": "reset",
+          "Idx": 95
         }
       ]
     },
@@ -595,23 +560,8 @@
       "Uses": [
         {
           "Name": "",
-          "FunctionName": "decode",
-          "Idx": 238
-        },
-        {
-          "Name": "",
-          "FunctionName": "decode",
-          "Idx": 20
-        },
-        {
-          "Name": "",
-          "FunctionName": "encode",
-          "Idx": 366
-        },
-        {
-          "Name": "",
-          "FunctionName": "encode",
-          "Idx": 110
+          "FunctionName": "reset",
+          "Idx": 64
         }
       ]
     },
@@ -620,8 +570,8 @@
       "Uses": [
         {
           "Name": "",
-          "FunctionName": "encode",
-          "Idx": 178
+          "FunctionName": "reset",
+          "Idx": 44
         }
       ]
     },
@@ -630,8 +580,8 @@
       "Uses": [
         {
           "Name": "",
-          "FunctionName": "adpcm_main",
-          "Idx": 1
+          "FunctionName": "quantl",
+          "Idx": 15
         }
       ]
     },
@@ -640,8 +590,8 @@
       "Uses": [
         {
           "Name": "",
-          "FunctionName": "adpcm_main",
-          "Idx": 91
+          "FunctionName": "filtez",
+          "Idx": 21
         }
       ]
     },
@@ -651,7 +601,7 @@
         {
           "Name": "",
           "FunctionName": "adpcm_main",
-          "Idx": 121
+          "Idx": 41
         }
       ]
     },
@@ -661,7 +611,7 @@
         {
           "Name": "",
           "FunctionName": "adpcm_main",
-          "Idx": 142
+          "Idx": 1
         }
       ]
     },
@@ -670,23 +620,8 @@
       "Uses": [
         {
           "Name": "",
-          "FunctionName": "decode",
-          "Idx": 338
-        },
-        {
-          "Name": "",
-          "FunctionName": "decode",
-          "Idx": 135
-        },
-        {
-          "Name": "",
-          "FunctionName": "encode",
-          "Idx": 481
-        },
-        {
-          "Name": "",
-          "FunctionName": "encode",
-          "Idx": 263
+          "FunctionName": "reset",
+          "Idx": 84
         }
       ]
     }

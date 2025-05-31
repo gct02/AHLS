@@ -15,7 +15,7 @@ set DLRegItemOffset 0
 set C_modelName {Autocorrelation_Pipeline_Autocorrelation_label3}
 set C_modelType { void 0 }
 set C_modelArgList {
-	{ L_ACF_load_8 int 64 regular  }
+	{ L_ACF_load_9 int 64 regular  }
 	{ add_ln126 int 64 regular  }
 	{ add_ln125 int 64 regular  }
 	{ add_ln124 int 64 regular  }
@@ -38,7 +38,7 @@ set C_modelArgList {
 set hasAXIMCache 0
 set AXIMCacheInstList { }
 set C_modelArgMapList {[ 
-	{ "Name" : "L_ACF_load_8", "interface" : "wire", "bitwidth" : 64, "direction" : "READONLY"} , 
+	{ "Name" : "L_ACF_load_9", "interface" : "wire", "bitwidth" : 64, "direction" : "READONLY"} , 
  	{ "Name" : "add_ln126", "interface" : "wire", "bitwidth" : 64, "direction" : "READONLY"} , 
  	{ "Name" : "add_ln125", "interface" : "wire", "bitwidth" : 64, "direction" : "READONLY"} , 
  	{ "Name" : "add_ln124", "interface" : "wire", "bitwidth" : 64, "direction" : "READONLY"} , 
@@ -66,7 +66,7 @@ set portList {
 	{ ap_done sc_out sc_logic 1 predone -1 } 
 	{ ap_idle sc_out sc_logic 1 done -1 } 
 	{ ap_ready sc_out sc_logic 1 ready -1 } 
-	{ L_ACF_load_8 sc_in sc_lv 64 signal 0 } 
+	{ L_ACF_load_9 sc_in sc_lv 64 signal 0 } 
 	{ add_ln126 sc_in sc_lv 64 signal 1 } 
 	{ add_ln125 sc_in sc_lv 64 signal 2 } 
 	{ add_ln124 sc_in sc_lv 64 signal 3 } 
@@ -107,7 +107,7 @@ set NewPortList {[
  	{ "name": "ap_done", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "predone", "bundle":{"name": "ap_done", "role": "default" }} , 
  	{ "name": "ap_idle", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "done", "bundle":{"name": "ap_idle", "role": "default" }} , 
  	{ "name": "ap_ready", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "ready", "bundle":{"name": "ap_ready", "role": "default" }} , 
- 	{ "name": "L_ACF_load_8", "direction": "in", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "L_ACF_load_8", "role": "default" }} , 
+ 	{ "name": "L_ACF_load_9", "direction": "in", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "L_ACF_load_9", "role": "default" }} , 
  	{ "name": "add_ln126", "direction": "in", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "add_ln126", "role": "default" }} , 
  	{ "name": "add_ln125", "direction": "in", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "add_ln125", "role": "default" }} , 
  	{ "name": "add_ln124", "direction": "in", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "add_ln124", "role": "default" }} , 
@@ -157,7 +157,7 @@ set RtlHierarchyInfo {[
 		"HasNonBlockingOperation" : "0",
 		"IsBlackBox" : "0",
 		"Port" : [
-			{"Name" : "L_ACF_load_8", "Type" : "None", "Direction" : "I"},
+			{"Name" : "L_ACF_load_9", "Type" : "None", "Direction" : "I"},
 			{"Name" : "add_ln126", "Type" : "None", "Direction" : "I"},
 			{"Name" : "add_ln125", "Type" : "None", "Direction" : "I"},
 			{"Name" : "add_ln124", "Type" : "None", "Direction" : "I"},
@@ -179,21 +179,21 @@ set RtlHierarchyInfo {[
 		"Loop" : [
 			{"Name" : "Autocorrelation_label3", "PipelineType" : "UPC",
 				"LoopDec" : {"FSMBitwidth" : "5", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter1", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage3", "QuitStateIter" : "ap_enable_reg_pp0_iter0", "QuitStateBlock" : "ap_block_pp0_stage3_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U8", "Parent" : "0"},
-	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U9", "Parent" : "0"},
-	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U10", "Parent" : "0"},
-	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U11", "Parent" : "0"},
-	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U12", "Parent" : "0"},
-	{"ID" : "6", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U13", "Parent" : "0"},
-	{"ID" : "7", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U14", "Parent" : "0"},
-	{"ID" : "8", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U15", "Parent" : "0"},
-	{"ID" : "9", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U16", "Parent" : "0"},
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U9", "Parent" : "0"},
+	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U10", "Parent" : "0"},
+	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U11", "Parent" : "0"},
+	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U12", "Parent" : "0"},
+	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U13", "Parent" : "0"},
+	{"ID" : "6", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U14", "Parent" : "0"},
+	{"ID" : "7", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U15", "Parent" : "0"},
+	{"ID" : "8", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U16", "Parent" : "0"},
+	{"ID" : "9", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_16s_16s_32_1_1_U17", "Parent" : "0"},
 	{"ID" : "10", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.flow_control_loop_pipe_sequential_init_U", "Parent" : "0"}]}
 
 
 set ArgLastReadFirstWriteLatency {
 	Autocorrelation_Pipeline_Autocorrelation_label3 {
-		L_ACF_load_8 {Type I LastRead 0 FirstWrite -1}
+		L_ACF_load_9 {Type I LastRead 0 FirstWrite -1}
 		add_ln126 {Type I LastRead 0 FirstWrite -1}
 		add_ln125 {Type I LastRead 0 FirstWrite -1}
 		add_ln124 {Type I LastRead 0 FirstWrite -1}
@@ -225,7 +225,7 @@ set PipelineEnableSignalInfo {[
 ]}
 
 set Spec2ImplPortList { 
-	L_ACF_load_8 { ap_none {  { L_ACF_load_8 in_data 0 64 } } }
+	L_ACF_load_9 { ap_none {  { L_ACF_load_9 in_data 0 64 } } }
 	add_ln126 { ap_none {  { add_ln126 in_data 0 64 } } }
 	add_ln125 { ap_none {  { add_ln125 in_data 0 64 } } }
 	add_ln124 { ap_none {  { add_ln124 in_data 0 64 } } }

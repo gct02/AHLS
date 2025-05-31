@@ -5,6 +5,12 @@
     <msg msg_groups="" msg_id="207-71" msg_severity="INFO" msg_loc="/usr/include/math.h:1158:10" msg_body="previous definition is here">
         <args/>
     </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl:15:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="twiddles8" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl:14:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="twiddles8" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/trans_fft/transposed_fft.c:29:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="twiddles8" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=7 max=7 avg=7" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
@@ -13,6 +19,9 @@
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl:1:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="fft1D_512" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl:12:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="fft1D_512" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/trans_fft/transposed_fft.c:129:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="fft1D_512" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=64 max=64 avg=64" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
@@ -40,6 +49,9 @@
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/trans_fft/transposed_fft.c:225:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="fft1D_512" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=64 max=64 avg=64" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl:13:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="fft1D_512" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/trans_fft.tcl:6:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="fft1D_512" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
@@ -127,9 +139,6 @@
     </msg>
     <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/trans_fft/transposed_fft.c:23:0" msg_body="Inlining function 'sin' into 'twiddles8'">
         <args Callee="sin" Callee-DebugLoc="File /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/src/c/sincosdouble.cpp Line 7 Column 0" Caller="twiddles8" Caller-DebugLoc="File data/benchmarks/trans_fft/transposed_fft.c Line 23 Column 0"/>
-    </msg>
-    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/trans_fft/transposed_fft.c:114:0" msg_body="Inlining function 'twiddles8' into 'fft1D_512'">
-        <args Callee="twiddles8" Callee-DebugLoc="File data/benchmarks/trans_fft/transposed_fft.c Line 23 Column 0" Caller="fft1D_512" Caller-DebugLoc="File data/benchmarks/trans_fft/transposed_fft.c Line 114 Column 0"/>
     </msg>
     <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/trans_fft/transposed_fft.c:114:0" msg_body="Inlining function 'loady8' into 'fft1D_512'">
         <args Callee="loady8" Callee-DebugLoc="File data/benchmarks/trans_fft/transposed_fft.c Line 103 Column 0" Caller="fft1D_512" Caller-DebugLoc="File data/benchmarks/trans_fft/transposed_fft.c Line 114 Column 0"/>

@@ -316,8 +316,323 @@
   },
   {
     "functionLabel": "",
-    "functionName": "aes_main",
+    "functionName": "AddRoundKey_InversMixColumn",
     "id": 15,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "AddRoundKey_InversMixColumn_label1",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 16,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "KeySchedule",
+    "id": 16,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "KeySchedule_label5",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 17,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "KeySchedule",
+    "id": 17,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "KeySchedule_label6",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 18,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "KeySchedule",
+    "id": 18,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "KeySchedule_label7",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 19,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "KeySchedule",
+    "id": 19,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "KeySchedule_label8",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 20,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "KeySchedule",
+    "id": 20,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "KeySchedule_label9",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 21,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "MixColumn_AddRoundKey",
+    "id": 21,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 22,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "AddRoundKey_InversMixColumn",
+    "id": 22,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 23,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "encrypt",
+    "id": 23,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 24,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "decrypt",
+    "id": 24,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 25,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "KeySchedule",
+    "id": 25,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 26,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "ByteSub_ShiftRow",
+    "id": 26,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 27,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "InversShiftRow_ByteSub",
+    "id": 27,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 28,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "AddRoundKey",
+    "id": 28,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 29,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "aes_main",
+    "id": 29,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
+    "sourceLine": 30,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "aes_main",
+    "id": 30,
     "ifcond": "",
     "insert_position": "",
     "label": "",
@@ -332,7 +647,7 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl",
-    "sourceLine": 12,
+    "sourceLine": 9,
     "success": true
   }
 ]

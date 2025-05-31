@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'sin_or_cos_double_s'
 ================================================================
-* Date:           Thu May 29 21:12:26 2025
+* Date:           Fri May 30 23:10:29 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        TRANS_FFT
@@ -271,7 +271,6 @@
 |ap_done    |  out|    1|  ap_ctrl_hs|  sin_or_cos<double>|  return value|
 |ap_idle    |  out|    1|  ap_ctrl_hs|  sin_or_cos<double>|  return value|
 |ap_ready   |  out|    1|  ap_ctrl_hs|  sin_or_cos<double>|  return value|
-|ap_ce      |   in|    1|  ap_ctrl_hs|  sin_or_cos<double>|  return value|
 |ap_return  |  out|   64|  ap_ctrl_hs|  sin_or_cos<double>|  return value|
 |t_in       |   in|   64|     ap_none|                t_in|        scalar|
 |do_cos     |   in|    1|     ap_none|              do_cos|        scalar|

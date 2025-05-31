@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Autocorrelation'" level="0">
-<item name = "Date">Thu May 29 16:47:04 2025
+<item name = "Date">Fri May 30 22:03:37 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GSM</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">971, 1298, 7.768 us, 10.384 us, 971, 1298, no</column>
+<column name="">1128, 1456, 9.024 us, 11.648 us, 1128, 1456, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,6 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- Autocorrelation_label0">320, 320, 2, -, -, 160, no</column>
 </table>
 </item>
 </section>

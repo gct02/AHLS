@@ -1,84 +1,100 @@
 <pragmas>
-<pragma file="data/benchmarks/backprop/backprop.c" line="20" pragmaType="pipeline" parentfunction="get_delta_matrix_weights1" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="39" pragmaType="inline" parentfunction="get_delta_matrix_weights1" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="11" pragmaType="pipeline" parentfunction="get_delta_matrix_weights1" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="192" pragmaType="loop_tripcount" parentfunction="get_delta_matrix_weights1" min="13" max="13" avg="13"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="21" pragmaType="pipeline" parentfunction="get_delta_matrix_weights1" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="12" pragmaType="pipeline" parentfunction="get_delta_matrix_weights1" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="49" pragmaType="loop_flatten" parentfunction="get_delta_matrix_weights1" off="1"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="195" pragmaType="loop_tripcount" parentfunction="get_delta_matrix_weights1" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="39" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="325" pragmaType="loop_tripcount" parentfunction="update_weights" min="3" max="3" avg="3"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="37" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="316" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="38" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="319" pragmaType="loop_tripcount" parentfunction="update_weights" min="3" max="3" avg="3"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="36" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="306" pragmaType="loop_tripcount" parentfunction="update_weights" min="3" max="3" avg="3"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="34" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="296" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="35" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="299" pragmaType="loop_tripcount" parentfunction="update_weights" min="3" max="3" avg="3"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="33" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="287" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="31" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="278" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="325" pragmaType="loop_tripcount" parentfunction="update_weights" min="3" max="3" avg="3"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="32" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="281" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="30" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="268" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="28" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="258" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="316" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="33" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="57" pragmaType="loop_flatten" parentfunction="update_weights" off="1"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="319" pragmaType="loop_tripcount" parentfunction="update_weights" min="3" max="3" avg="3"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="31" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="306" pragmaType="loop_tripcount" parentfunction="update_weights" min="3" max="3" avg="3"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="29" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="261" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="27" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="249" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="25" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="240" pragmaType="loop_tripcount" parentfunction="update_weights" min="13" max="13" avg="13"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="296" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="30" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="56" pragmaType="loop_flatten" parentfunction="update_weights" off="1"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="299" pragmaType="loop_tripcount" parentfunction="update_weights" min="3" max="3" avg="3"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="28" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="287" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="26" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="243" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="24" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="230" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="22" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="220" pragmaType="loop_tripcount" parentfunction="update_weights" min="13" max="13" avg="13"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="278" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="27" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="55" pragmaType="loop_flatten" parentfunction="update_weights" off="1"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="281" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="25" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="268" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="23" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="258" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="24" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="54" pragmaType="loop_flatten" parentfunction="update_weights" off="1"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="261" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="22" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="249" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="20" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="240" pragmaType="loop_tripcount" parentfunction="update_weights" min="13" max="13" avg="13"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="21" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="53" pragmaType="loop_flatten" parentfunction="update_weights" off="1"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="243" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="19" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="230" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="17" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="220" pragmaType="loop_tripcount" parentfunction="update_weights" min="13" max="13" avg="13"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="18" pragmaType="pipeline" parentfunction="update_weights" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="52" pragmaType="loop_flatten" parentfunction="update_weights" off="1"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="223" pragmaType="loop_tripcount" parentfunction="update_weights" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="40" pragmaType="pipeline" parentfunction="backprop" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="35" pragmaType="pipeline" parentfunction="backprop" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="357" pragmaType="loop_tripcount" parentfunction="backprop" min="163" max="163" avg="163"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="41" pragmaType="pipeline" parentfunction="backprop" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="360" pragmaType="loop_tripcount" parentfunction="backprop" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="14" pragmaType="pipeline" parentfunction="get_oracle_activations2" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="43" pragmaType="inline" parentfunction="get_oracle_activations2" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="9" pragmaType="pipeline" parentfunction="get_oracle_activations2" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="142" pragmaType="loop_tripcount" parentfunction="get_oracle_activations2" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="15" pragmaType="pipeline" parentfunction="get_oracle_activations2" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="10" pragmaType="pipeline" parentfunction="get_oracle_activations2" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="48" pragmaType="loop_flatten" parentfunction="get_oracle_activations2" off="1"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="146" pragmaType="loop_tripcount" parentfunction="get_oracle_activations2" min="3" max="3" avg="3"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="16" pragmaType="pipeline" parentfunction="get_delta_matrix_weights2" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="40" pragmaType="inline" parentfunction="get_delta_matrix_weights2" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="13" pragmaType="pipeline" parentfunction="get_delta_matrix_weights2" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="159" pragmaType="loop_tripcount" parentfunction="get_delta_matrix_weights2" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="17" pragmaType="pipeline" parentfunction="get_delta_matrix_weights2" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="14" pragmaType="pipeline" parentfunction="get_delta_matrix_weights2" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="50" pragmaType="loop_flatten" parentfunction="get_delta_matrix_weights2" off="1"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="162" pragmaType="loop_tripcount" parentfunction="get_delta_matrix_weights2" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="18" pragmaType="pipeline" parentfunction="get_oracle_activations1" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="42" pragmaType="inline" parentfunction="get_oracle_activations1" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="7" pragmaType="pipeline" parentfunction="get_oracle_activations1" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="175" pragmaType="loop_tripcount" parentfunction="get_oracle_activations1" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="19" pragmaType="pipeline" parentfunction="get_oracle_activations1" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="8" pragmaType="pipeline" parentfunction="get_oracle_activations1" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="47" pragmaType="loop_flatten" parentfunction="get_oracle_activations1" off="1"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="179" pragmaType="loop_tripcount" parentfunction="get_oracle_activations1" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="11" pragmaType="pipeline" parentfunction="take_difference" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="115" pragmaType="loop_tripcount" parentfunction="take_difference" min="3" max="3" avg="3"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="12" pragmaType="pipeline" parentfunction="get_delta_matrix_weights3" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="41" pragmaType="inline" parentfunction="get_delta_matrix_weights3" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="15" pragmaType="pipeline" parentfunction="get_delta_matrix_weights3" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="126" pragmaType="loop_tripcount" parentfunction="get_delta_matrix_weights3" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="13" pragmaType="pipeline" parentfunction="get_delta_matrix_weights3" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="16" pragmaType="pipeline" parentfunction="get_delta_matrix_weights3" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="51" pragmaType="loop_flatten" parentfunction="get_delta_matrix_weights3" off="1"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="129" pragmaType="loop_tripcount" parentfunction="get_delta_matrix_weights3" min="3" max="3" avg="3"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="7" pragmaType="pipeline" parentfunction="matrix_vector_product_with_bias_second_layer" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="37" pragmaType="inline" parentfunction="matrix_vector_product_with_bias_second_layer" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="3" pragmaType="pipeline" parentfunction="matrix_vector_product_with_bias_second_layer" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="79" pragmaType="loop_tripcount" parentfunction="matrix_vector_product_with_bias_second_layer" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="8" pragmaType="pipeline" parentfunction="matrix_vector_product_with_bias_second_layer" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="4" pragmaType="pipeline" parentfunction="matrix_vector_product_with_bias_second_layer" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="45" pragmaType="loop_flatten" parentfunction="matrix_vector_product_with_bias_second_layer" off="1"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="83" pragmaType="loop_tripcount" parentfunction="matrix_vector_product_with_bias_second_layer" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="9" pragmaType="pipeline" parentfunction="matrix_vector_product_with_bias_output_layer" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="97" pragmaType="loop_tripcount" parentfunction="matrix_vector_product_with_bias_output_layer" min="3" max="3" avg="3"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="10" pragmaType="pipeline" parentfunction="matrix_vector_product_with_bias_output_layer" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="101" pragmaType="loop_tripcount" parentfunction="matrix_vector_product_with_bias_output_layer" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="5" pragmaType="pipeline" parentfunction="matrix_vector_product_with_bias_input_layer" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="36" pragmaType="inline" parentfunction="matrix_vector_product_with_bias_input_layer" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="1" pragmaType="pipeline" parentfunction="matrix_vector_product_with_bias_input_layer" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="61" pragmaType="loop_tripcount" parentfunction="matrix_vector_product_with_bias_input_layer" min="64" max="64" avg="64"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="6" pragmaType="pipeline" parentfunction="matrix_vector_product_with_bias_input_layer" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="2" pragmaType="pipeline" parentfunction="matrix_vector_product_with_bias_input_layer" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="44" pragmaType="loop_flatten" parentfunction="matrix_vector_product_with_bias_input_layer" off="1"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="65" pragmaType="loop_tripcount" parentfunction="matrix_vector_product_with_bias_input_layer" min="13" max="13" avg="13"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="4" pragmaType="pipeline" parentfunction="add_bias_to_activations" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="49" pragmaType="loop_tripcount" parentfunction="add_bias_to_activations" min="3" max="64" avg="33"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="3" pragmaType="pipeline" parentfunction="RELU" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="37" pragmaType="loop_tripcount" parentfunction="RELU" min="3" max="64" avg="33"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="2" pragmaType="pipeline" parentfunction="soft_max" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="49" pragmaType="loop_tripcount" parentfunction="add_bias_to_activations" min="3" max="64" avg="33"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="38" pragmaType="inline" parentfunction="matrix_vector_product_with_bias_output_layer" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="5" pragmaType="pipeline" parentfunction="matrix_vector_product_with_bias_output_layer" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="97" pragmaType="loop_tripcount" parentfunction="matrix_vector_product_with_bias_output_layer" min="3" max="3" avg="3"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="6" pragmaType="pipeline" parentfunction="matrix_vector_product_with_bias_output_layer" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="46" pragmaType="loop_flatten" parentfunction="matrix_vector_product_with_bias_output_layer" off="1"/>
+<pragma file="data/benchmarks/backprop/backprop.c" line="101" pragmaType="loop_tripcount" parentfunction="matrix_vector_product_with_bias_output_layer" min="64" max="64" avg="64"/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="28" pragmaType="loop_tripcount" parentfunction="soft_max" min="3" max="3" avg="3"/>
-<pragma file="data/benchmarks/backprop/backprop.c" line="1" pragmaType="pipeline" parentfunction="soft_max" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/backprop/backprop.c" line="23" pragmaType="loop_tripcount" parentfunction="soft_max" min="3" max="3" avg="3"/>
 </pragmas>

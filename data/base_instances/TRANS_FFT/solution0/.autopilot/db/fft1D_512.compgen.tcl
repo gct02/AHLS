@@ -6,71 +6,6 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 }
 
 
-set name fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {dadd} IMPL {fulldsp} LATENCY 3 ALLOW_PRAGMA 1
-}
-
-
-set name fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {dsub} IMPL {fulldsp} LATENCY 3 ALLOW_PRAGMA 1
-}
-
-
-set name fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {dsub} IMPL {fulldsp} LATENCY 3 ALLOW_PRAGMA 1
-}
-
-
-set name fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {dadd} IMPL {fulldsp} LATENCY 3 ALLOW_PRAGMA 1
-}
-
-
-set name fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {dadd} IMPL {fulldsp} LATENCY 3 ALLOW_PRAGMA 1
-}
-
-
-set name fft1D_512_dsub_64ns_64ns_64_4_full_dsp_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {dsub} IMPL {fulldsp} LATENCY 3 ALLOW_PRAGMA 1
-}
-
-
-set name fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {dmul} IMPL {maxdsp} LATENCY 3 ALLOW_PRAGMA 1
-}
-
-
-set name fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {dmul} IMPL {maxdsp} LATENCY 3 ALLOW_PRAGMA 1
-}
-
-
-set name fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {dmul} IMPL {maxdsp} LATENCY 3 ALLOW_PRAGMA 1
-}
-
-
-set name fft1D_512_dmul_64ns_64ns_64_4_max_dsp_1
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {dmul} IMPL {maxdsp} LATENCY 3 ALLOW_PRAGMA 1
-}
-
-
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler fft1D_512_twiddles8_reversed8_ROM_AUTO_1R BINDTYPE {storage} TYPE {rom} IMPL {auto} LATENCY 2 ALLOW_PRAGMA 1
-}
-
-
 if {${::AESL::PGuard_rtl_comp_handler}} {
 	::AP::rtl_comp_handler fft1D_512_DATA_x_RAM_AUTO_1R1W BINDTYPE {storage} TYPE {ram} IMPL {auto} LATENCY 2 ALLOW_PRAGMA 1
 }
@@ -98,7 +33,7 @@ set axilite_register_dict [dict create]
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 95 \
+    id 70 \
     name work_x \
     reset_level 1 \
     sync_rst true \
@@ -117,7 +52,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 96 \
+    id 71 \
     name work_y \
     reset_level 1 \
     sync_rst true \

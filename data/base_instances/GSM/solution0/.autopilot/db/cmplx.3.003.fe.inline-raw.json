@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 11,
-    "calls": "3 2 1",
+    "calls": "1 5 4",
     "file": "gsm.c",
     "fileloc": 7,
     "instructions": 49,
@@ -12,9 +12,45 @@
     "stores": {
       "T": 1
     },
-    "total_instructions": 865
+    "total_instructions": 871
   },
   "1": {
+    "basicblocks": 24,
+    "calls": "3",
+    "file": "gsm_lpc.c",
+    "fileloc": 34,
+    "instructions": 280,
+    "loads": {
+      "L": 37
+    },
+    "name": "Autocorrelation",
+    "stores": {
+      "L": 21
+    },
+    "total_instructions": 328
+  },
+  "2": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 118,
+    "instructions": 23,
+    "name": "gsm_div",
+    "total_instructions": 23
+  },
+  "3": {
+    "basicblocks": 12,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 70,
+    "instructions": 48,
+    "loads": {
+      "G": 4
+    },
+    "name": "gsm_norm",
+    "total_instructions": 48
+  },
+  "4": {
     "basicblocks": 17,
     "calls": "",
     "file": "gsm_lpc.c",
@@ -29,36 +65,19 @@
     },
     "total_instructions": 236
   },
-  "2": {
-    "basicblocks": 49,
-    "calls": "",
+  "5": {
+    "basicblocks": 34,
+    "calls": "3 2",
     "file": "gsm_lpc.c",
     "fileloc": 160,
-    "instructions": 254,
+    "instructions": 187,
     "loads": {
-      "G": 4,
       "L": 11
     },
     "name": "Reflection_coefficients",
     "stores": {
       "L": 10
     },
-    "total_instructions": 254
-  },
-  "3": {
-    "basicblocks": 35,
-    "calls": "",
-    "file": "gsm_lpc.c",
-    "fileloc": 34,
-    "instructions": 326,
-    "loads": {
-      "G": 4,
-      "L": 37
-    },
-    "name": "Autocorrelation",
-    "stores": {
-      "L": 21
-    },
-    "total_instructions": 326
+    "total_instructions": 258
   }
 }

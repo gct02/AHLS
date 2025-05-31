@@ -168,7 +168,11 @@ __attribute__((sdx_kernel("aes_main", 0))) int aes_main (int statemt[32], int ke
 
 
 __attribute__((sdx_kernel("aes_main", 0))) int aes_main(int statemt[32], int key[32]) {
-#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
+#line 30 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE INLINE off=true
+# 66 "data/benchmarks/aes/aes.c"
+
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
 #pragma HLSDIRECTIVE TOP name=aes_main
 # 66 "data/benchmarks/aes/aes.c"
 

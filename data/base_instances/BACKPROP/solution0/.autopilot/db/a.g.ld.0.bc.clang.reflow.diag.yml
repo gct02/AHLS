@@ -57,59 +57,8 @@ DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337,
 Function:        backprop
 Args:            
   - String:          'Inlining function '''
-  - Callee:          matrix_vector_product_with_bias_input_layer
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 57, 
-                       Column: 0 }
-  - String:          ''' into '''
-  - Caller:          backprop
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                       Column: 0 }
-  - String:          ''''
-...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                   Column: 0 }
-Function:        backprop
-Args:            
-  - String:          'Inlining function '''
   - Callee:          RELU
     DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 33, 
-                       Column: 0 }
-  - String:          ''' into '''
-  - Caller:          backprop
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                       Column: 0 }
-  - String:          ''''
-...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                   Column: 0 }
-Function:        backprop
-Args:            
-  - String:          'Inlining function '''
-  - Callee:          matrix_vector_product_with_bias_second_layer
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 75, 
-                       Column: 0 }
-  - String:          ''' into '''
-  - Caller:          backprop
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                       Column: 0 }
-  - String:          ''''
-...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                   Column: 0 }
-Function:        backprop
-Args:            
-  - String:          'Inlining function '''
-  - Callee:          matrix_vector_product_with_bias_output_layer
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 93, 
                        Column: 0 }
   - String:          ''' into '''
   - Caller:          backprop
@@ -151,88 +100,103 @@ Args:
                        Column: 0 }
   - String:          ''''
 ...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                   Column: 0 }
-Function:        backprop
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
 Args:            
-  - String:          'Inlining function '''
-  - Callee:          get_delta_matrix_weights3
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 122, 
-                       Column: 0 }
-  - String:          ''' into '''
-  - Caller:          backprop
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                       Column: 0 }
-  - String:          ''''
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        add_bias_to_activations_loop1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/backprop/backprop.c:48:5'
+  - String:          ' '
 ...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                   Column: 0 }
-Function:        backprop
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
 Args:            
-  - String:          'Inlining function '''
-  - Callee:          get_oracle_activations2
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 138, 
-                       Column: 0 }
-  - String:          ''' into '''
-  - Caller:          backprop
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                       Column: 0 }
-  - String:          ''''
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        add_bias_to_activations_loop1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/backprop/backprop.c:48:5'
+  - String:          ' '
 ...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                   Column: 0 }
-Function:        backprop
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
 Args:            
-  - String:          'Inlining function '''
-  - Callee:          get_delta_matrix_weights2
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 155, 
-                       Column: 0 }
-  - String:          ''' into '''
-  - Caller:          backprop
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                       Column: 0 }
-  - String:          ''''
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        add_bias_to_activations_loop1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/backprop/backprop.c:48:5'
+  - String:          ' '
 ...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                   Column: 0 }
-Function:        backprop
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
 Args:            
-  - String:          'Inlining function '''
-  - Callee:          get_oracle_activations1
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 171, 
-                       Column: 0 }
-  - String:          ''' into '''
-  - Caller:          backprop
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                       Column: 0 }
-  - String:          ''''
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        take_difference_loop1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/backprop/backprop.c:114:5'
+  - String:          ' '
 ...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                   Column: 0 }
-Function:        backprop
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
 Args:            
-  - String:          'Inlining function '''
-  - Callee:          get_delta_matrix_weights1
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 188, 
-                       Column: 0 }
-  - String:          ''' into '''
-  - Caller:          backprop
-    DebugLoc:        { File: data/benchmarks/backprop/backprop.c, Line: 337, 
-                       Column: 0 }
-  - String:          ''''
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        soft_max_loop2
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/backprop/backprop.c:27:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        soft_max_loop1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/backprop/backprop.c:22:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        RELU_loop1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/backprop/backprop.c:36:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        RELU_loop1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/backprop/backprop.c:36:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        RELU_loop1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/backprop/backprop.c:36:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        backprop_loop1_1
+  - String:          '> at '
+  - LoopLoc:         'data/benchmarks/backprop/backprop.c:359:9'
+  - String:          ' '
 ...

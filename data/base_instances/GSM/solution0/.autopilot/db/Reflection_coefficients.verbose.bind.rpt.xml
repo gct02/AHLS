@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Reflection_coefficients'" level="0">
-<item name = "Date">Thu May 29 16:47:04 2025
+<item name = "Date">Fri May 30 22:03:38 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GSM</item>
@@ -24,14 +24,15 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">11, 550, 88.000 ns, 4.400 us, 11, 550, no</column>
+<column name="">11, 557, 88.000 ns, 4.456 us, 11, 557, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_Reflection_coefficients_Pipeline_gsm_div_label0_fu_402">Reflection_coefficients_Pipeline_gsm_div_label0, 16, 16, 0.128 us, 0.128 us, 16, 16, no</column>
+<column name="grp_gsm_norm_fu_298">gsm_norm, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
+<column name="grp_gsm_div_fu_306">gsm_div, 1, 18, 8.000 ns, 0.144 us, 1, 18, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
@@ -40,7 +41,7 @@
 <column name="- Reflection_coefficients_label1">18, 18, 2, -, -, 9, no</column>
 <column name="- Reflection_coefficients_label2">14, 14, 2, -, -, 7, no</column>
 <column name="- Reflection_coefficients_label3">18, 18, 2, -, -, 9, no</column>
-<column name="- Reflection_coefficients_label4">13, 484, 13 ~ 60, -, -, 1 ~ 8, no</column>
+<column name="- Reflection_coefficients_label4">14, 491, 14 ~ 61, -, -, 1 ~ 8, no</column>
 <column name=" + Reflection_coefficients_label5">5, 35, 5, -, -, 1 ~ 7, no</column>
 <column name="- Reflection_coefficients_label6">1, 8, 1, -, -, 1 ~ 8, no</column>
 </table>

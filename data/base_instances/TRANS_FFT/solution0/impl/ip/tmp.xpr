@@ -7,7 +7,7 @@
 <Project Product="Vivado" Version="7" Minor="65" Path="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/TRANS_FFT/solution0/impl/ip/tmp.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="54f0758151614bf89e015dc838ba1554"/>
+    <Option Name="Id" Val="9432e49e6a044bd0a1465e340c24c360"/>
     <Option Name="Part" Val="xcu50-fsvh2104-2-e"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -90,7 +90,21 @@
   <FileSets Version="1" Minor="32">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
       <Filter Type="Srcs"/>
+      <File Path="$PSRCDIR/sources_1/ip/fft1D_512_dadd_64ns_64ns_64_4_full_dsp_1_ip/fft1D_512_dadd_64ns_64ns_64_4_full_dsp_1_ip.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/ip/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip/fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/fft1D_512_ddiv_64ns_64ns_64_14_no_dsp_1_ip/fft1D_512_ddiv_64ns_64ns_64_14_no_dsp_1_ip.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>

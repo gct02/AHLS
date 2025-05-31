@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'MixColumn_AddRoundKey'" level="0">
-<item name = "Date">Thu May 29 14:55:04 2025
+<item name = "Date">Sat May 31 00:10:17 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">AES</item>
@@ -145,7 +145,7 @@
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_NS_fsm">49, 9, 1, 9</column>
-<column name="j_7_fu_84">9, 2, 3, 6</column>
+<column name="j_1_fu_84">9, 2, 3, 6</column>
 <column name="j_fu_76">9, 2, 3, 6</column>
 <column name="ret_address0">26, 5, 5, 25</column>
 <column name="ret_address1">26, 5, 5, 25</column>
@@ -163,12 +163,12 @@
 <column name="ap_CS_fsm">8, 0, 8, 0</column>
 <column name="icmp_ln327_reg_972">1, 0, 1, 0</column>
 <column name="icmp_ln336_reg_1020">1, 0, 1, 0</column>
-<column name="j_7_fu_84">3, 0, 3, 0</column>
+<column name="j_1_fu_84">3, 0, 3, 0</column>
 <column name="j_fu_76">3, 0, 3, 0</column>
 <column name="mul_reg_908">4, 0, 6, 2</column>
 <column name="shl_ln4_reg_1043">2, 0, 4, 2</column>
 <column name="shl_ln_reg_916">2, 0, 4, 2</column>
-<column name="word_load_23_reg_1025">32, 0, 32, 0</column>
+<column name="word_load_1_reg_1025">32, 0, 32, 0</column>
 <column name="word_load_reg_1015">32, 0, 32, 0</column>
 <column name="x_9_reg_964">32, 0, 32, 0</column>
 <column name="x_reg_977">32, 0, 32, 0</column>

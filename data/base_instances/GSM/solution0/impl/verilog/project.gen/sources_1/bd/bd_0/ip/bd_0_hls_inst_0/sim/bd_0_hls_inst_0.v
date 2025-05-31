@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:hls:Gsm_LPC_Analysis:1.0
-// IP Revision: 2114104727
+// IP Revision: 2114106483
 
 `timescale 1ns/1ps
 

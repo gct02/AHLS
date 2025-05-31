@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date             : Thu May 29 16:52:15 2025
+| Date             : Fri May 30 22:08:47 2025
 | Host             : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command          : report_power -file bd_0_wrapper_power_routed.rpt -pb bd_0_wrapper_power_summary_routed.pb -rpx bd_0_wrapper_power_routed.rpx
 | Design           : bd_0_wrapper
@@ -54,15 +54,15 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.009 |        3 |       --- |             --- |
-| CLB Logic                |     0.022 |     6518 |       --- |             --- |
-|   LUT as Logic           |     0.019 |     2826 |    871680 |            0.32 |
-|   CARRY8                 |     0.002 |      202 |    108960 |            0.19 |
+| Clocks                   |     0.010 |        3 |       --- |             --- |
+| CLB Logic                |     0.022 |     6651 |       --- |             --- |
+|   LUT as Logic           |     0.019 |     2839 |    871680 |            0.33 |
+|   CARRY8                 |     0.002 |      201 |    108960 |            0.18 |
 |   LUT as Distributed RAM |     0.001 |       24 |    403200 |           <0.01 |
-|   Register               |    <0.001 |     2189 |   1743360 |            0.13 |
+|   Register               |    <0.001 |     2302 |   1743360 |            0.13 |
 |   LUT as Shift Register  |    <0.001 |        9 |    403200 |           <0.01 |
-|   Others                 |     0.000 |      122 |       --- |             --- |
-| Signals                  |     0.013 |     5437 |       --- |             --- |
+|   Others                 |     0.000 |      123 |       --- |             --- |
+| Signals                  |     0.013 |     5574 |       --- |             --- |
 | Block RAM                |    <0.001 |        2 |      1344 |            0.15 |
 | DSPs                     |     0.016 |       40 |      5952 |            0.67 |
 | Static Power             |     2.213 |          |           |                 |

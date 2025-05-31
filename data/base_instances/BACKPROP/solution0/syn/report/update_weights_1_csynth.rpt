@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'update_weights_1'
 ================================================================
-* Date:           Thu May 29 16:17:25 2025
+* Date:           Fri May 30 21:43:16 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        BACKPROP
@@ -91,14 +91,14 @@
 
 + Detail: 
     * Instance: 
-    +-----------------------------------+--------------------------------+---------+----+---+----+-----+
-    |              Instance             |             Module             | BRAM_18K| DSP| FF| LUT| URAM|
-    +-----------------------------------+--------------------------------+---------+----+---+----+-----+
-    |dsqrt_64ns_64ns_64_12_no_dsp_1_U4  |dsqrt_64ns_64ns_64_12_no_dsp_1  |        0|   0|  0|   0|    0|
-    |mux_3_2_64_1_1_U5                  |mux_3_2_64_1_1                  |        0|   0|  0|  14|    0|
-    +-----------------------------------+--------------------------------+---------+----+---+----+-----+
-    |Total                              |                                |        0|   0|  0|  14|    0|
-    +-----------------------------------+--------------------------------+---------+----+---+----+-----+
+    +-------------------------------------+--------------------------------+---------+----+---+----+-----+
+    |               Instance              |             Module             | BRAM_18K| DSP| FF| LUT| URAM|
+    +-------------------------------------+--------------------------------+---------+----+---+----+-----+
+    |dsqrt_64ns_64ns_64_12_no_dsp_1_U149  |dsqrt_64ns_64ns_64_12_no_dsp_1  |        0|   0|  0|   0|    0|
+    |mux_3_2_64_1_1_U150                  |mux_3_2_64_1_1                  |        0|   0|  0|  14|    0|
+    +-------------------------------------+--------------------------------+---------+----+---+----+-----+
+    |Total                                |                                |        0|   0|  0|  14|    0|
+    +-------------------------------------+--------------------------------+---------+----+---+----+-----+
 
     * DSP: 
     N/A
@@ -293,75 +293,75 @@
 == Interface
 ================================================================
 * Summary: 
-+----------------------+-----+-----+------------+------------------+--------------+
-|       RTL Ports      | Dir | Bits|  Protocol  |   Source Object  |    C Type    |
-+----------------------+-----+-----+------------+------------------+--------------+
-|ap_clk                |   in|    1|  ap_ctrl_hs|  update_weights.1|  return value|
-|ap_rst                |   in|    1|  ap_ctrl_hs|  update_weights.1|  return value|
-|ap_start              |   in|    1|  ap_ctrl_hs|  update_weights.1|  return value|
-|ap_done               |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
-|ap_idle               |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
-|ap_ready              |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1258_p_din0    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1258_p_din1    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1258_p_opcode  |  out|    2|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1258_p_dout0   |   in|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1258_p_ce      |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1276_p_din0    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1276_p_din1    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1276_p_dout0   |   in|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1276_p_ce      |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1295_p_din0    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1295_p_din1    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1295_p_dout0   |   in|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_1295_p_ce      |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
-|weights1_address0     |  out|   10|   ap_memory|          weights1|         array|
-|weights1_ce0          |  out|    1|   ap_memory|          weights1|         array|
-|weights1_we0          |  out|    1|   ap_memory|          weights1|         array|
-|weights1_d0           |  out|   64|   ap_memory|          weights1|         array|
-|weights1_q0           |   in|   64|   ap_memory|          weights1|         array|
-|weights2_address0     |  out|   12|   ap_memory|          weights2|         array|
-|weights2_ce0          |  out|    1|   ap_memory|          weights2|         array|
-|weights2_we0          |  out|    1|   ap_memory|          weights2|         array|
-|weights2_d0           |  out|   64|   ap_memory|          weights2|         array|
-|weights2_q0           |   in|   64|   ap_memory|          weights2|         array|
-|weights3_address0     |  out|    8|   ap_memory|          weights3|         array|
-|weights3_ce0          |  out|    1|   ap_memory|          weights3|         array|
-|weights3_we0          |  out|    1|   ap_memory|          weights3|         array|
-|weights3_d0           |  out|   64|   ap_memory|          weights3|         array|
-|weights3_q0           |   in|   64|   ap_memory|          weights3|         array|
-|d_weights1_address0   |  out|   10|   ap_memory|        d_weights1|         array|
-|d_weights1_ce0        |  out|    1|   ap_memory|        d_weights1|         array|
-|d_weights1_q0         |   in|   64|   ap_memory|        d_weights1|         array|
-|d_weights2_address0   |  out|   12|   ap_memory|        d_weights2|         array|
-|d_weights2_ce0        |  out|    1|   ap_memory|        d_weights2|         array|
-|d_weights2_q0         |   in|   64|   ap_memory|        d_weights2|         array|
-|d_weights3_address0   |  out|    8|   ap_memory|        d_weights3|         array|
-|d_weights3_ce0        |  out|    1|   ap_memory|        d_weights3|         array|
-|d_weights3_q0         |   in|   64|   ap_memory|        d_weights3|         array|
-|biases1_address0      |  out|    6|   ap_memory|           biases1|         array|
-|biases1_ce0           |  out|    1|   ap_memory|           biases1|         array|
-|biases1_we0           |  out|    1|   ap_memory|           biases1|         array|
-|biases1_d0            |  out|   64|   ap_memory|           biases1|         array|
-|biases1_q0            |   in|   64|   ap_memory|           biases1|         array|
-|biases2_address0      |  out|    6|   ap_memory|           biases2|         array|
-|biases2_ce0           |  out|    1|   ap_memory|           biases2|         array|
-|biases2_we0           |  out|    1|   ap_memory|           biases2|         array|
-|biases2_d0            |  out|   64|   ap_memory|           biases2|         array|
-|biases2_q0            |   in|   64|   ap_memory|           biases2|         array|
-|biases3_address0      |  out|    2|   ap_memory|           biases3|         array|
-|biases3_ce0           |  out|    1|   ap_memory|           biases3|         array|
-|biases3_we0           |  out|    1|   ap_memory|           biases3|         array|
-|biases3_d0            |  out|   64|   ap_memory|           biases3|         array|
-|biases3_q0            |   in|   64|   ap_memory|           biases3|         array|
-|d_biases1_address0    |  out|    6|   ap_memory|         d_biases1|         array|
-|d_biases1_ce0         |  out|    1|   ap_memory|         d_biases1|         array|
-|d_biases1_q0          |   in|   64|   ap_memory|         d_biases1|         array|
-|d_biases2_address0    |  out|    6|   ap_memory|         d_biases2|         array|
-|d_biases2_ce0         |  out|    1|   ap_memory|         d_biases2|         array|
-|d_biases2_q0          |   in|   64|   ap_memory|         d_biases2|         array|
-|p_read                |   in|   64|     ap_none|            p_read|        scalar|
-|p_read1               |   in|   64|     ap_none|           p_read1|        scalar|
-|p_read2               |   in|   64|     ap_none|           p_read2|        scalar|
-+----------------------+-----+-----+------------+------------------+--------------+
++---------------------+-----+-----+------------+------------------+--------------+
+|      RTL Ports      | Dir | Bits|  Protocol  |   Source Object  |    C Type    |
++---------------------+-----+-----+------------+------------------+--------------+
+|ap_clk               |   in|    1|  ap_ctrl_hs|  update_weights.1|  return value|
+|ap_rst               |   in|    1|  ap_ctrl_hs|  update_weights.1|  return value|
+|ap_start             |   in|    1|  ap_ctrl_hs|  update_weights.1|  return value|
+|ap_done              |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
+|ap_idle              |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
+|ap_ready             |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_986_p_din0    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_986_p_din1    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_986_p_opcode  |  out|    2|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_986_p_dout0   |   in|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_986_p_ce      |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_990_p_din0    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_990_p_din1    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_990_p_dout0   |   in|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_990_p_ce      |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_998_p_din0    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_998_p_din1    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_998_p_dout0   |   in|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_998_p_ce      |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
+|weights1_address0    |  out|   10|   ap_memory|          weights1|         array|
+|weights1_ce0         |  out|    1|   ap_memory|          weights1|         array|
+|weights1_we0         |  out|    1|   ap_memory|          weights1|         array|
+|weights1_d0          |  out|   64|   ap_memory|          weights1|         array|
+|weights1_q0          |   in|   64|   ap_memory|          weights1|         array|
+|weights2_address0    |  out|   12|   ap_memory|          weights2|         array|
+|weights2_ce0         |  out|    1|   ap_memory|          weights2|         array|
+|weights2_we0         |  out|    1|   ap_memory|          weights2|         array|
+|weights2_d0          |  out|   64|   ap_memory|          weights2|         array|
+|weights2_q0          |   in|   64|   ap_memory|          weights2|         array|
+|weights3_address0    |  out|    8|   ap_memory|          weights3|         array|
+|weights3_ce0         |  out|    1|   ap_memory|          weights3|         array|
+|weights3_we0         |  out|    1|   ap_memory|          weights3|         array|
+|weights3_d0          |  out|   64|   ap_memory|          weights3|         array|
+|weights3_q0          |   in|   64|   ap_memory|          weights3|         array|
+|d_weights1_address0  |  out|   10|   ap_memory|        d_weights1|         array|
+|d_weights1_ce0       |  out|    1|   ap_memory|        d_weights1|         array|
+|d_weights1_q0        |   in|   64|   ap_memory|        d_weights1|         array|
+|d_weights2_address0  |  out|   12|   ap_memory|        d_weights2|         array|
+|d_weights2_ce0       |  out|    1|   ap_memory|        d_weights2|         array|
+|d_weights2_q0        |   in|   64|   ap_memory|        d_weights2|         array|
+|d_weights3_address0  |  out|    8|   ap_memory|        d_weights3|         array|
+|d_weights3_ce0       |  out|    1|   ap_memory|        d_weights3|         array|
+|d_weights3_q0        |   in|   64|   ap_memory|        d_weights3|         array|
+|biases1_address0     |  out|    6|   ap_memory|           biases1|         array|
+|biases1_ce0          |  out|    1|   ap_memory|           biases1|         array|
+|biases1_we0          |  out|    1|   ap_memory|           biases1|         array|
+|biases1_d0           |  out|   64|   ap_memory|           biases1|         array|
+|biases1_q0           |   in|   64|   ap_memory|           biases1|         array|
+|biases2_address0     |  out|    6|   ap_memory|           biases2|         array|
+|biases2_ce0          |  out|    1|   ap_memory|           biases2|         array|
+|biases2_we0          |  out|    1|   ap_memory|           biases2|         array|
+|biases2_d0           |  out|   64|   ap_memory|           biases2|         array|
+|biases2_q0           |   in|   64|   ap_memory|           biases2|         array|
+|biases3_address0     |  out|    2|   ap_memory|           biases3|         array|
+|biases3_ce0          |  out|    1|   ap_memory|           biases3|         array|
+|biases3_we0          |  out|    1|   ap_memory|           biases3|         array|
+|biases3_d0           |  out|   64|   ap_memory|           biases3|         array|
+|biases3_q0           |   in|   64|   ap_memory|           biases3|         array|
+|d_biases1_address0   |  out|    6|   ap_memory|         d_biases1|         array|
+|d_biases1_ce0        |  out|    1|   ap_memory|         d_biases1|         array|
+|d_biases1_q0         |   in|   64|   ap_memory|         d_biases1|         array|
+|d_biases2_address0   |  out|    6|   ap_memory|         d_biases2|         array|
+|d_biases2_ce0        |  out|    1|   ap_memory|         d_biases2|         array|
+|d_biases2_q0         |   in|   64|   ap_memory|         d_biases2|         array|
+|p_read               |   in|   64|     ap_none|            p_read|        scalar|
+|p_read1              |   in|   64|     ap_none|           p_read1|        scalar|
+|p_read2              |   in|   64|     ap_none|           p_read2|        scalar|
++---------------------+-----+-----+------------+------------------+--------------+
 

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'aes_main'" level="0">
-<item name = "Date">Thu May 29 14:55:04 2025
+<item name = "Date">Sat May 31 00:10:16 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">AES</item>
@@ -24,15 +24,15 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">2624, 2624, 20.992 us, 20.992 us, 2625, 2625, no</column>
+<column name="">2634, 2634, 21.072 us, 21.072 us, 2635, 2635, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_encrypt_fu_34">encrypt, 1054, 1054, 8.432 us, 8.432 us, 1054, 1054, no</column>
-<column name="grp_decrypt_fu_50">decrypt, 1567, 1567, 12.536 us, 12.536 us, 1567, 1567, no</column>
+<column name="grp_encrypt_fu_34">encrypt, 1059, 1059, 8.472 us, 8.472 us, 1059, 1059, no</column>
+<column name="grp_decrypt_fu_50">decrypt, 1572, 1572, 12.576 us, 12.576 us, 1572, 1572, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

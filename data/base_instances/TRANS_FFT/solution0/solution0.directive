@@ -55,6 +55,26 @@
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
+        <directive functionName="fft1D_512" label="loop1" functionLabel="">
+            <pragma name="LOOP_FLATTEN">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="fft1D_512" label="loop6" functionLabel="">
+            <pragma name="LOOP_FLATTEN">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="twiddles8" label="twiddles" functionLabel="">
+            <pragma name="LOOP_FLATTEN">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="twiddles8" label="" functionLabel="">
+            <pragma name="INLINE">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
         <directive functionName="fft1D_512" label="" functionLabel="">
             <pragma name="TOP">
                 <option name="name" value="fft1D_512"/>

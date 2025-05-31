@@ -70,7 +70,7 @@ reg   [14:0] ap_sig_allocacmp_indvar_flatten_load;
 wire   [0:0] icmp_ln207_fu_129_p2;
 wire   [1:0] add_ln205_fu_123_p2;
 wire   [0:0] trunc_ln209_fu_151_p1;
-wire   [13:0] tmp_8_fu_155_p3;
+wire   [13:0] tmp_fu_155_p3;
 wire   [13:0] select_ln201_fu_135_p3;
 wire   [13:0] add_ln209_fu_163_p2;
 reg    ap_done_reg;
@@ -279,7 +279,7 @@ assign add_ln205_fu_123_p2 = (ap_sig_allocacmp_i_load + 2'd1);
 
 assign add_ln207_fu_174_p2 = (select_ln201_fu_135_p3 + 14'd1);
 
-assign add_ln209_fu_163_p2 = (tmp_8_fu_155_p3 + select_ln201_fu_135_p3);
+assign add_ln209_fu_163_p2 = (tmp_fu_155_p3 + select_ln201_fu_135_p3);
 
 assign ap_CS_fsm_pp0_stage0 = ap_CS_fsm[32'd0];
 
@@ -309,7 +309,7 @@ assign select_ln201_fu_135_p3 = ((icmp_ln207_fu_129_p2[0:0] == 1'b1) ? 14'd0 : a
 
 assign select_ln205_fu_143_p3 = ((icmp_ln207_fu_129_p2[0:0] == 1'b1) ? add_ln205_fu_123_p2 : ap_sig_allocacmp_i_load);
 
-assign tmp_8_fu_155_p3 = {{trunc_ln209_fu_151_p1}, {13'd0}};
+assign tmp_fu_155_p3 = {{trunc_ln209_fu_151_p1}, {13'd0}};
 
 assign trunc_ln209_fu_151_p1 = select_ln205_fu_143_p3[0:0];
 

@@ -295,23 +295,6 @@ DebugLoc:        { File: data/benchmarks/trans_fft/transposed_fft.c, Line: 114,
 Function:        fft1D_512
 Args:            
   - String:          'Inlining function '''
-  - Callee:          twiddles8
-    DebugLoc:        { File: data/benchmarks/trans_fft/transposed_fft.c, 
-                       Line: 23, Column: 0 }
-  - String:          ''' into '''
-  - Caller:          fft1D_512
-    DebugLoc:        { File: data/benchmarks/trans_fft/transposed_fft.c, 
-                       Line: 114, Column: 0 }
-  - String:          ''''
-...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/trans_fft/transposed_fft.c, Line: 114, 
-                   Column: 0 }
-Function:        fft1D_512
-Args:            
-  - String:          'Inlining function '''
   - Callee:          loady8
     DebugLoc:        { File: data/benchmarks/trans_fft/transposed_fft.c, 
                        Line: 103, Column: 0 }

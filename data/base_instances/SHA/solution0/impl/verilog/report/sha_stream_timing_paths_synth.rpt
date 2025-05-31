@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Thu May 29 17:35:09 2025
+| Date              : Fri May 30 23:27:44 2025
 | Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing -max_paths 10 -file ./report/sha_stream_timing_paths_synth.rpt
 | Design            : bd_0_wrapper
@@ -13,7 +13,7 @@ Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanc
 
 Timing Report
 
-Slack (MET) :             5.395ns  (required time - arrival time)
+Slack (MET) :             5.481ns  (required time - arrival time)
   Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[25]
@@ -21,8 +21,8 @@ Slack (MET) :             5.395ns  (required time - arrival time)
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        2.273ns  (logic 1.770ns (77.871%)  route 0.503ns (22.129%))
-  Logic Levels:           4  (LUT5=1 RAMB36E2=3)
+  Data Path Delay:        2.187ns  (logic 1.733ns (79.241%)  route 0.454ns (20.759%))
+  Logic Levels:           4  (LUT4=1 RAMB36E2=3)
   Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
     Source Clock Delay      (SCD):    0.076ns
@@ -37,7 +37,7 @@ Slack (MET) :             5.395ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
+                         net (fo=2698, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_CASDOUTA[1])
@@ -51,15 +51,15 @@ Slack (MET) :             5.395ns  (required time - arrival time)
                          net (fo=1, unplaced)         0.036     1.747    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_42
                          RAMB36E2 (Prop_RAMB36E2_CASDINA[1]_DOUTADOUT[1])
                                                       0.117     1.864 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTADOUT[1]
-                         net (fo=2, unplaced)         0.239     2.103    bd_0_i/hls_inst/inst/local_indata_U/D[1]
-                         LUT5 (Prop_LUT5_I2_O)        0.090     2.193 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_12__2/O
-                         net (fo=1, unplaced)         0.156     2.349    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[9]
+                         net (fo=2, unplaced)         0.190     2.054    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_0[1]
+                         LUT4 (Prop_LUT4_I2_O)        0.053     2.107 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_12__3/O
+                         net (fo=1, unplaced)         0.156     2.263    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[25]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[25]
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
+                         net (fo=2698, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
                          clock pessimism              0.000     8.039    
                          clock uncertainty           -0.035     8.004    
@@ -67,69 +67,11 @@ Slack (MET) :             5.395ns  (required time - arrival time)
                                                      -0.260     7.744    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
   -------------------------------------------------------------------
                          required time                          7.744    
-                         arrival time                          -2.349    
+                         arrival time                          -2.263    
   -------------------------------------------------------------------
-                         slack                                  5.395    
+                         slack                                  5.481    
 
-Slack (MET) :             5.500ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
-                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[30]
-                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             ap_clk
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        2.115ns  (logic 1.718ns (81.229%)  route 0.397ns (18.771%))
-  Logic Levels:           4  (LUT5=1 RAMB36E2=3)
-  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.076ns
-    Clock Pessimism Removal (CPR):    0.000ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock ap_clk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
-                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
-  -------------------------------------------------------------------    -------------------
-                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_CASDOUTA[6])
-                                                      1.091     1.167 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CASDOUTA[6]
-                         net (fo=1, unplaced)         0.020     1.187    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_n_37
-                         RAMB36E2 (Prop_RAMB36E2_CASDINA[6]_CASDOUTA[6])
-                                                      0.210     1.397 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1/CASDOUTA[6]
-                         net (fo=1, unplaced)         0.020     1.417    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1_n_37
-                         RAMB36E2 (Prop_RAMB36E2_CASDINA[6]_CASDOUTA[6])
-                                                      0.210     1.627 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2/CASDOUTA[6]
-                         net (fo=1, unplaced)         0.020     1.647    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_37
-                         RAMB36E2 (Prop_RAMB36E2_CASDINA[6]_DOUTADOUT[6])
-                                                      0.117     1.764 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTADOUT[6]
-                         net (fo=2, unplaced)         0.191     1.955    bd_0_i/hls_inst/inst/local_indata_U/D[6]
-                         LUT5 (Prop_LUT5_I2_O)        0.090     2.045 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_7__2/O
-                         net (fo=1, unplaced)         0.146     2.191    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[14]
-                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[30]
-  -------------------------------------------------------------------    -------------------
-
-                         (clock ap_clk rise edge)     8.000     8.000 r  
-                                                      0.000     8.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
-                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
-                         clock pessimism              0.000     8.039    
-                         clock uncertainty           -0.035     8.004    
-                         RAMB36E2 (Setup_RAMB36E2_CLKARDCLK_DINADIN[30])
-                                                     -0.313     7.691    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
-  -------------------------------------------------------------------
-                         required time                          7.691    
-                         arrival time                          -2.191    
-  -------------------------------------------------------------------
-                         slack                                  5.500    
-
-Slack (MET) :             5.507ns  (required time - arrival time)
+Slack (MET) :             5.496ns  (required time - arrival time)
   Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKBWRCLK
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[16]
@@ -137,8 +79,8 @@ Slack (MET) :             5.507ns  (required time - arrival time)
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        2.160ns  (logic 1.772ns (82.037%)  route 0.388ns (17.963%))
-  Logic Levels:           4  (LUT5=1 RAMB36E2=3)
+  Data Path Delay:        2.171ns  (logic 1.735ns (79.917%)  route 0.436ns (20.083%))
+  Logic Levels:           4  (LUT4=1 RAMB36E2=3)
   Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
     Source Clock Delay      (SCD):    0.076ns
@@ -153,7 +95,7 @@ Slack (MET) :             5.507ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
+                         net (fo=2698, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKBWRCLK
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_CASDOUTB[0])
@@ -167,15 +109,15 @@ Slack (MET) :             5.507ns  (required time - arrival time)
                          net (fo=1, unplaced)         0.028     1.725    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_75
                          RAMB36E2 (Prop_RAMB36E2_CASDINB[0]_DOUTBDOUT[0])
                                                       0.117     1.842 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTBDOUT[0]
-                         net (fo=2, unplaced)         0.142     1.984    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_0[0]
-                         LUT5 (Prop_LUT5_I2_O)        0.090     2.074 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_21__1/O
-                         net (fo=1, unplaced)         0.162     2.236    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[0]
+                         net (fo=2, unplaced)         0.190     2.032    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_1[0]
+                         LUT4 (Prop_LUT4_I2_O)        0.053     2.085 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_21__2/O
+                         net (fo=1, unplaced)         0.162     2.247    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[16]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[16]
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
+                         net (fo=2698, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
                          clock pessimism              0.000     8.039    
                          clock uncertainty           -0.035     8.004    
@@ -183,69 +125,11 @@ Slack (MET) :             5.507ns  (required time - arrival time)
                                                      -0.261     7.743    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
   -------------------------------------------------------------------
                          required time                          7.743    
-                         arrival time                          -2.236    
+                         arrival time                          -2.247    
   -------------------------------------------------------------------
-                         slack                                  5.507    
+                         slack                                  5.496    
 
-Slack (MET) :             5.524ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKBWRCLK
-                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[17]
-                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             ap_clk
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        2.135ns  (logic 1.757ns (82.295%)  route 0.378ns (17.705%))
-  Logic Levels:           4  (LUT5=1 RAMB36E2=3)
-  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.076ns
-    Clock Pessimism Removal (CPR):    0.000ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock ap_clk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
-                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKBWRCLK
-  -------------------------------------------------------------------    -------------------
-                         RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_CASDOUTB[1])
-                                                      1.130     1.206 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CASDOUTB[1]
-                         net (fo=1, unplaced)         0.026     1.232    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_n_74
-                         RAMB36E2 (Prop_RAMB36E2_CASDINB[1]_CASDOUTB[1])
-                                                      0.210     1.442 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1/CASDOUTB[1]
-                         net (fo=1, unplaced)         0.026     1.468    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1_n_74
-                         RAMB36E2 (Prop_RAMB36E2_CASDINB[1]_CASDOUTB[1])
-                                                      0.210     1.678 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2/CASDOUTB[1]
-                         net (fo=1, unplaced)         0.026     1.704    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_74
-                         RAMB36E2 (Prop_RAMB36E2_CASDINB[1]_DOUTBDOUT[1])
-                                                      0.117     1.821 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTBDOUT[1]
-                         net (fo=2, unplaced)         0.189     2.010    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_0[1]
-                         LUT5 (Prop_LUT5_I2_O)        0.090     2.100 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_20__2/O
-                         net (fo=1, unplaced)         0.111     2.211    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[1]
-                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[17]
-  -------------------------------------------------------------------    -------------------
-
-                         (clock ap_clk rise edge)     8.000     8.000 r  
-                                                      0.000     8.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
-                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
-                         clock pessimism              0.000     8.039    
-                         clock uncertainty           -0.035     8.004    
-                         RAMB36E2 (Setup_RAMB36E2_CLKARDCLK_DINADIN[17])
-                                                     -0.269     7.735    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
-  -------------------------------------------------------------------
-                         required time                          7.735    
-                         arrival time                          -2.211    
-  -------------------------------------------------------------------
-                         slack                                  5.524    
-
-Slack (MET) :             5.537ns  (required time - arrival time)
+Slack (MET) :             5.526ns  (required time - arrival time)
   Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[24]
@@ -253,8 +137,8 @@ Slack (MET) :             5.537ns  (required time - arrival time)
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        2.126ns  (logic 1.783ns (83.866%)  route 0.343ns (16.134%))
-  Logic Levels:           4  (LUT5=1 RAMB36E2=3)
+  Data Path Delay:        2.137ns  (logic 1.746ns (81.703%)  route 0.391ns (18.297%))
+  Logic Levels:           4  (LUT4=1 RAMB36E2=3)
   Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
     Source Clock Delay      (SCD):    0.076ns
@@ -269,7 +153,7 @@ Slack (MET) :             5.537ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
+                         net (fo=2698, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_CASDOUTA[0])
@@ -283,15 +167,15 @@ Slack (MET) :             5.537ns  (required time - arrival time)
                          net (fo=1, unplaced)         0.032     1.748    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_43
                          RAMB36E2 (Prop_RAMB36E2_CASDINA[0]_DOUTADOUT[0])
                                                       0.117     1.865 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTADOUT[0]
-                         net (fo=2, unplaced)         0.140     2.005    bd_0_i/hls_inst/inst/local_indata_U/D[0]
-                         LUT5 (Prop_LUT5_I2_O)        0.090     2.095 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_13__1/O
-                         net (fo=1, unplaced)         0.107     2.202    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[8]
+                         net (fo=2, unplaced)         0.188     2.053    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_0[0]
+                         LUT4 (Prop_LUT4_I2_O)        0.053     2.106 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_13__3/O
+                         net (fo=1, unplaced)         0.107     2.213    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[24]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[24]
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
+                         net (fo=2698, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
                          clock pessimism              0.000     8.039    
                          clock uncertainty           -0.035     8.004    
@@ -299,20 +183,20 @@ Slack (MET) :             5.537ns  (required time - arrival time)
                                                      -0.265     7.739    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
   -------------------------------------------------------------------
                          required time                          7.739    
-                         arrival time                          -2.202    
+                         arrival time                          -2.213    
   -------------------------------------------------------------------
-                         slack                                  5.537    
+                         slack                                  5.526    
 
-Slack (MET) :             5.548ns  (required time - arrival time)
+Slack (MET) :             5.541ns  (required time - arrival time)
   Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[31]
+  Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[30]
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        2.113ns  (logic 1.712ns (81.022%)  route 0.401ns (18.978%))
-  Logic Levels:           4  (LUT5=1 RAMB36E2=3)
+  Data Path Delay:        2.074ns  (logic 1.681ns (81.051%)  route 0.393ns (18.949%))
+  Logic Levels:           4  (LUT4=1 RAMB36E2=3)
   Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
     Source Clock Delay      (SCD):    0.076ns
@@ -327,99 +211,41 @@ Slack (MET) :             5.548ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
+                         net (fo=2698, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
-                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_CASDOUTA[7])
-                                                      1.085     1.161 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CASDOUTA[7]
-                         net (fo=1, unplaced)         0.035     1.196    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_n_36
-                         RAMB36E2 (Prop_RAMB36E2_CASDINA[7]_CASDOUTA[7])
-                                                      0.210     1.406 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1/CASDOUTA[7]
-                         net (fo=1, unplaced)         0.035     1.441    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1_n_36
-                         RAMB36E2 (Prop_RAMB36E2_CASDINA[7]_CASDOUTA[7])
-                                                      0.210     1.651 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2/CASDOUTA[7]
-                         net (fo=1, unplaced)         0.035     1.686    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_36
-                         RAMB36E2 (Prop_RAMB36E2_CASDINA[7]_DOUTADOUT[7])
-                                                      0.117     1.803 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTADOUT[7]
-                         net (fo=2, unplaced)         0.190     1.993    bd_0_i/hls_inst/inst/local_indata_U/D[7]
-                         LUT5 (Prop_LUT5_I2_O)        0.090     2.083 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_6__2/O
-                         net (fo=1, unplaced)         0.106     2.189    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[15]
-                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[31]
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_CASDOUTA[6])
+                                                      1.091     1.167 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CASDOUTA[6]
+                         net (fo=1, unplaced)         0.020     1.187    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_n_37
+                         RAMB36E2 (Prop_RAMB36E2_CASDINA[6]_CASDOUTA[6])
+                                                      0.210     1.397 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1/CASDOUTA[6]
+                         net (fo=1, unplaced)         0.020     1.417    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1_n_37
+                         RAMB36E2 (Prop_RAMB36E2_CASDINA[6]_CASDOUTA[6])
+                                                      0.210     1.627 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2/CASDOUTA[6]
+                         net (fo=1, unplaced)         0.020     1.647    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_37
+                         RAMB36E2 (Prop_RAMB36E2_CASDINA[6]_DOUTADOUT[6])
+                                                      0.117     1.764 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTADOUT[6]
+                         net (fo=2, unplaced)         0.187     1.951    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_0[6]
+                         LUT4 (Prop_LUT4_I2_O)        0.053     2.004 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_7__3/O
+                         net (fo=1, unplaced)         0.146     2.150    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[30]
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[30]
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
+                         net (fo=2698, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
                          clock pessimism              0.000     8.039    
                          clock uncertainty           -0.035     8.004    
-                         RAMB36E2 (Setup_RAMB36E2_CLKARDCLK_DINADIN[31])
-                                                     -0.267     7.737    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
+                         RAMB36E2 (Setup_RAMB36E2_CLKARDCLK_DINADIN[30])
+                                                     -0.313     7.691    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
   -------------------------------------------------------------------
-                         required time                          7.737    
-                         arrival time                          -2.189    
+                         required time                          7.691    
+                         arrival time                          -2.150    
   -------------------------------------------------------------------
-                         slack                                  5.548    
+                         slack                                  5.541    
 
-Slack (MET) :             5.549ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKBWRCLK
-                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[22]
-                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             ap_clk
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        2.113ns  (logic 1.695ns (80.218%)  route 0.418ns (19.782%))
-  Logic Levels:           4  (LUT5=1 RAMB36E2=3)
-  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
-    Source Clock Delay      (SCD):    0.076ns
-    Clock Pessimism Removal (CPR):    0.000ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock ap_clk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
-                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKBWRCLK
-  -------------------------------------------------------------------    -------------------
-                         RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_CASDOUTB[6])
-                                                      1.068     1.144 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CASDOUTB[6]
-                         net (fo=1, unplaced)         0.027     1.171    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_n_69
-                         RAMB36E2 (Prop_RAMB36E2_CASDINB[6]_CASDOUTB[6])
-                                                      0.210     1.381 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1/CASDOUTB[6]
-                         net (fo=1, unplaced)         0.027     1.408    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1_n_69
-                         RAMB36E2 (Prop_RAMB36E2_CASDINB[6]_CASDOUTB[6])
-                                                      0.210     1.618 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2/CASDOUTB[6]
-                         net (fo=1, unplaced)         0.027     1.645    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_69
-                         RAMB36E2 (Prop_RAMB36E2_CASDINB[6]_DOUTBDOUT[6])
-                                                      0.117     1.762 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTBDOUT[6]
-                         net (fo=2, unplaced)         0.236     1.998    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_0[6]
-                         LUT5 (Prop_LUT5_I2_O)        0.090     2.088 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_15__2/O
-                         net (fo=1, unplaced)         0.101     2.189    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[6]
-                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[22]
-  -------------------------------------------------------------------    -------------------
-
-                         (clock ap_clk rise edge)     8.000     8.000 r  
-                                                      0.000     8.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
-                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
-                         clock pessimism              0.000     8.039    
-                         clock uncertainty           -0.035     8.004    
-                         RAMB36E2 (Setup_RAMB36E2_CLKARDCLK_DINADIN[22])
-                                                     -0.266     7.738    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
-  -------------------------------------------------------------------
-                         required time                          7.738    
-                         arrival time                          -2.189    
-  -------------------------------------------------------------------
-                         slack                                  5.549    
-
-Slack (MET) :             5.564ns  (required time - arrival time)
+Slack (MET) :             5.553ns  (required time - arrival time)
   Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[27]
@@ -427,8 +253,8 @@ Slack (MET) :             5.564ns  (required time - arrival time)
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        2.103ns  (logic 1.750ns (83.214%)  route 0.353ns (16.786%))
-  Logic Levels:           4  (LUT5=1 RAMB36E2=3)
+  Data Path Delay:        2.114ns  (logic 1.713ns (81.031%)  route 0.401ns (18.969%))
+  Logic Levels:           4  (LUT4=1 RAMB36E2=3)
   Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
     Source Clock Delay      (SCD):    0.076ns
@@ -443,7 +269,7 @@ Slack (MET) :             5.564ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
+                         net (fo=2698, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_CASDOUTA[3])
@@ -457,15 +283,15 @@ Slack (MET) :             5.564ns  (required time - arrival time)
                          net (fo=1, unplaced)         0.034     1.721    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_40
                          RAMB36E2 (Prop_RAMB36E2_CASDINA[3]_DOUTADOUT[3])
                                                       0.117     1.838 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTADOUT[3]
-                         net (fo=2, unplaced)         0.144     1.982    bd_0_i/hls_inst/inst/local_indata_U/D[3]
-                         LUT5 (Prop_LUT5_I2_O)        0.090     2.072 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_10__1/O
-                         net (fo=1, unplaced)         0.107     2.179    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[11]
+                         net (fo=2, unplaced)         0.192     2.030    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_0[3]
+                         LUT4 (Prop_LUT4_I2_O)        0.053     2.083 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_10__1/O
+                         net (fo=1, unplaced)         0.107     2.190    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[27]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[27]
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
+                         net (fo=2698, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
                          clock pessimism              0.000     8.039    
                          clock uncertainty           -0.035     8.004    
@@ -473,20 +299,20 @@ Slack (MET) :             5.564ns  (required time - arrival time)
                                                      -0.261     7.743    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
   -------------------------------------------------------------------
                          required time                          7.743    
-                         arrival time                          -2.179    
+                         arrival time                          -2.190    
   -------------------------------------------------------------------
-                         slack                                  5.564    
+                         slack                                  5.553    
 
-Slack (MET) :             5.582ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
+Slack (MET) :             5.565ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKBWRCLK
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[29]
+  Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[17]
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        2.077ns  (logic 1.725ns (83.052%)  route 0.352ns (16.948%))
-  Logic Levels:           4  (LUT5=1 RAMB36E2=3)
+  Data Path Delay:        2.094ns  (logic 1.720ns (82.139%)  route 0.374ns (17.861%))
+  Logic Levels:           4  (LUT4=1 RAMB36E2=3)
   Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
     Source Clock Delay      (SCD):    0.076ns
@@ -501,41 +327,41 @@ Slack (MET) :             5.582ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
-                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
+                         net (fo=2698, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKBWRCLK
   -------------------------------------------------------------------    -------------------
-                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_CASDOUTA[5])
-                                                      1.098     1.174 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CASDOUTA[5]
-                         net (fo=1, unplaced)         0.034     1.208    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_n_38
-                         RAMB36E2 (Prop_RAMB36E2_CASDINA[5]_CASDOUTA[5])
-                                                      0.210     1.418 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1/CASDOUTA[5]
-                         net (fo=1, unplaced)         0.034     1.452    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1_n_38
-                         RAMB36E2 (Prop_RAMB36E2_CASDINA[5]_CASDOUTA[5])
-                                                      0.210     1.662 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2/CASDOUTA[5]
-                         net (fo=1, unplaced)         0.034     1.696    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_38
-                         RAMB36E2 (Prop_RAMB36E2_CASDINA[5]_DOUTADOUT[5])
-                                                      0.117     1.813 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTADOUT[5]
-                         net (fo=2, unplaced)         0.144     1.957    bd_0_i/hls_inst/inst/local_indata_U/D[5]
-                         LUT5 (Prop_LUT5_I2_O)        0.090     2.047 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_8__2/O
-                         net (fo=1, unplaced)         0.106     2.153    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[13]
-                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[29]
+                         RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_CASDOUTB[1])
+                                                      1.130     1.206 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CASDOUTB[1]
+                         net (fo=1, unplaced)         0.026     1.232    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_n_74
+                         RAMB36E2 (Prop_RAMB36E2_CASDINB[1]_CASDOUTB[1])
+                                                      0.210     1.442 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1/CASDOUTB[1]
+                         net (fo=1, unplaced)         0.026     1.468    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1_n_74
+                         RAMB36E2 (Prop_RAMB36E2_CASDINB[1]_CASDOUTB[1])
+                                                      0.210     1.678 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2/CASDOUTB[1]
+                         net (fo=1, unplaced)         0.026     1.704    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_74
+                         RAMB36E2 (Prop_RAMB36E2_CASDINB[1]_DOUTBDOUT[1])
+                                                      0.117     1.821 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTBDOUT[1]
+                         net (fo=2, unplaced)         0.185     2.006    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_1[1]
+                         LUT4 (Prop_LUT4_I2_O)        0.053     2.059 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_20__2/O
+                         net (fo=1, unplaced)         0.111     2.170    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[17]
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[17]
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
+                         net (fo=2698, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
                          clock pessimism              0.000     8.039    
                          clock uncertainty           -0.035     8.004    
-                         RAMB36E2 (Setup_RAMB36E2_CLKARDCLK_DINADIN[29])
+                         RAMB36E2 (Setup_RAMB36E2_CLKARDCLK_DINADIN[17])
                                                      -0.269     7.735    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
   -------------------------------------------------------------------
                          required time                          7.735    
-                         arrival time                          -2.153    
+                         arrival time                          -2.170    
   -------------------------------------------------------------------
-                         slack                                  5.582    
+                         slack                                  5.565    
 
-Slack (MET) :             5.583ns  (required time - arrival time)
+Slack (MET) :             5.572ns  (required time - arrival time)
   Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKBWRCLK
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[19]
@@ -543,8 +369,8 @@ Slack (MET) :             5.583ns  (required time - arrival time)
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        2.109ns  (logic 1.739ns (82.456%)  route 0.370ns (17.544%))
-  Logic Levels:           4  (LUT5=1 RAMB36E2=3)
+  Data Path Delay:        2.120ns  (logic 1.702ns (80.283%)  route 0.418ns (19.717%))
+  Logic Levels:           4  (LUT4=1 RAMB36E2=3)
   Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
     Source Clock Delay      (SCD):    0.076ns
@@ -559,7 +385,7 @@ Slack (MET) :             5.583ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
+                         net (fo=2698, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKBWRCLK
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_CASDOUTB[3])
@@ -573,15 +399,15 @@ Slack (MET) :             5.583ns  (required time - arrival time)
                          net (fo=1, unplaced)         0.025     1.683    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_72
                          RAMB36E2 (Prop_RAMB36E2_CASDINB[3]_DOUTBDOUT[3])
                                                       0.117     1.800 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTBDOUT[3]
-                         net (fo=2, unplaced)         0.139     1.939    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_0[3]
-                         LUT5 (Prop_LUT5_I2_O)        0.090     2.029 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_18__2/O
-                         net (fo=1, unplaced)         0.156     2.185    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[3]
+                         net (fo=2, unplaced)         0.187     1.987    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_1[3]
+                         LUT4 (Prop_LUT4_I2_O)        0.053     2.040 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_18__2/O
+                         net (fo=1, unplaced)         0.156     2.196    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[19]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[19]
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=1637, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
+                         net (fo=2698, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
                          clock pessimism              0.000     8.039    
                          clock uncertainty           -0.035     8.004    
@@ -589,9 +415,183 @@ Slack (MET) :             5.583ns  (required time - arrival time)
                                                      -0.236     7.768    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
   -------------------------------------------------------------------
                          required time                          7.768    
-                         arrival time                          -2.185    
+                         arrival time                          -2.196    
   -------------------------------------------------------------------
-                         slack                                  5.583    
+                         slack                                  5.572    
+
+Slack (MET) :             5.588ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[31]
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        2.073ns  (logic 1.675ns (80.801%)  route 0.398ns (19.199%))
+  Logic Levels:           4  (LUT4=1 RAMB36E2=3)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.076ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=2698, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_CASDOUTA[7])
+                                                      1.085     1.161 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CASDOUTA[7]
+                         net (fo=1, unplaced)         0.035     1.196    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_n_36
+                         RAMB36E2 (Prop_RAMB36E2_CASDINA[7]_CASDOUTA[7])
+                                                      0.210     1.406 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1/CASDOUTA[7]
+                         net (fo=1, unplaced)         0.035     1.441    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1_n_36
+                         RAMB36E2 (Prop_RAMB36E2_CASDINA[7]_CASDOUTA[7])
+                                                      0.210     1.651 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2/CASDOUTA[7]
+                         net (fo=1, unplaced)         0.035     1.686    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_36
+                         RAMB36E2 (Prop_RAMB36E2_CASDINA[7]_DOUTADOUT[7])
+                                                      0.117     1.803 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTADOUT[7]
+                         net (fo=2, unplaced)         0.187     1.990    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_0[7]
+                         LUT4 (Prop_LUT4_I2_O)        0.053     2.043 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_6__3/O
+                         net (fo=1, unplaced)         0.106     2.149    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[31]
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[31]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=2698, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
+                         clock pessimism              0.000     8.039    
+                         clock uncertainty           -0.035     8.004    
+                         RAMB36E2 (Setup_RAMB36E2_CLKARDCLK_DINADIN[31])
+                                                     -0.267     7.737    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
+  -------------------------------------------------------------------
+                         required time                          7.737    
+                         arrival time                          -2.149    
+  -------------------------------------------------------------------
+                         slack                                  5.588    
+
+Slack (MET) :             5.620ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[29]
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        2.039ns  (logic 1.688ns (82.786%)  route 0.351ns (17.214%))
+  Logic Levels:           4  (LUT4=1 RAMB36E2=3)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.076ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=2698, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_CASDOUTA[5])
+                                                      1.098     1.174 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CASDOUTA[5]
+                         net (fo=1, unplaced)         0.034     1.208    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_n_38
+                         RAMB36E2 (Prop_RAMB36E2_CASDINA[5]_CASDOUTA[5])
+                                                      0.210     1.418 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1/CASDOUTA[5]
+                         net (fo=1, unplaced)         0.034     1.452    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1_n_38
+                         RAMB36E2 (Prop_RAMB36E2_CASDINA[5]_CASDOUTA[5])
+                                                      0.210     1.662 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2/CASDOUTA[5]
+                         net (fo=1, unplaced)         0.034     1.696    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_38
+                         RAMB36E2 (Prop_RAMB36E2_CASDINA[5]_DOUTADOUT[5])
+                                                      0.117     1.813 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTADOUT[5]
+                         net (fo=2, unplaced)         0.143     1.956    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_0[5]
+                         LUT4 (Prop_LUT4_I2_O)        0.053     2.009 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_8__3/O
+                         net (fo=1, unplaced)         0.106     2.115    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[29]
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[29]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=2698, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
+                         clock pessimism              0.000     8.039    
+                         clock uncertainty           -0.035     8.004    
+                         RAMB36E2 (Setup_RAMB36E2_CLKARDCLK_DINADIN[29])
+                                                     -0.269     7.735    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
+  -------------------------------------------------------------------
+                         required time                          7.735    
+                         arrival time                          -2.115    
+  -------------------------------------------------------------------
+                         slack                                  5.620    
+
+Slack (MET) :             5.635ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[22]
+                            (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        2.027ns  (logic 1.658ns (81.796%)  route 0.369ns (18.204%))
+  Logic Levels:           4  (LUT4=1 RAMB36E2=3)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
+    Source Clock Delay      (SCD):    0.076ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=2698, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_CASDOUTB[6])
+                                                      1.068     1.144 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CASDOUTB[6]
+                         net (fo=1, unplaced)         0.027     1.171    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_n_69
+                         RAMB36E2 (Prop_RAMB36E2_CASDINB[6]_CASDOUTB[6])
+                                                      0.210     1.381 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1/CASDOUTB[6]
+                         net (fo=1, unplaced)         0.027     1.408    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_1_n_69
+                         RAMB36E2 (Prop_RAMB36E2_CASDINB[6]_CASDOUTB[6])
+                                                      0.210     1.618 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2/CASDOUTB[6]
+                         net (fo=1, unplaced)         0.027     1.645    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_69
+                         RAMB36E2 (Prop_RAMB36E2_CASDINB[6]_DOUTBDOUT[6])
+                                                      0.117     1.762 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTBDOUT[6]
+                         net (fo=2, unplaced)         0.187     1.949    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_1[6]
+                         LUT4 (Prop_LUT4_I2_O)        0.053     2.002 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_15__2/O
+                         net (fo=1, unplaced)         0.101     2.103    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[22]
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[22]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     8.000     8.000 r  
+                                                      0.000     8.000 r  ap_clk (IN)
+                         net (fo=2698, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
+                         RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
+                         clock pessimism              0.000     8.039    
+                         clock uncertainty           -0.035     8.004    
+                         RAMB36E2 (Setup_RAMB36E2_CLKARDCLK_DINADIN[22])
+                                                     -0.266     7.738    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
+  -------------------------------------------------------------------
+                         required time                          7.738    
+                         arrival time                          -2.103    
+  -------------------------------------------------------------------
+                         slack                                  5.635    
 
 
 

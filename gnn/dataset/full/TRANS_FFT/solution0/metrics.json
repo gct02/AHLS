@@ -1,16 +1,16 @@
 {
-  "lut": 25603,
+  "lut": 27038,
   "bram": 20,
-  "ff": 15572,
-  "dsp": 163,
-  "snru": 0.018282605769588636,
-  "wns": 0.156,
+  "ff": 12711,
+  "dsp": 308,
+  "snru": 0.024374286165768352,
+  "wns": 0.137,
   "tns": 0.0,
   "target_clk": 8.0,
-  "achieved_clk": 7.844,
-  "total_power": 2.811,
-  "dynamic_power": 0.588,
-  "static_power": 2.223,
-  "cc": 19856,
-  "time": 155750.464
+  "achieved_clk": 7.863,
+  "total_power": 3.267,
+  "dynamic_power": 1.036,
+  "static_power": 2.231,
+  "cc": 15694,
+  "time": 123401.922
 }

@@ -4,5 +4,5 @@
 	<Message severity="INFO" prefix="[IMPL 213-8]" key="IMPL_8_1773" tag="" content="Starting RTL evaluation using Vivado ..." resolution=""/>
 	<Message severity="INFO" prefix="[HLS 200-802]" key="HLS 200-802" tag="" content="Generated output file data/base_instances/GSM/solution0/impl/export.dcp" resolution=""/>
 	<Message severity="INFO" prefix="[HLS 200-802]" key="HLS 200-802" tag="" content="Generated output file data/base_instances/GSM/solution0/impl/export.veo" resolution=""/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished Command export_design CPU user time: 192.18 seconds. CPU system time: 9.48 seconds. Elapsed time: 340.35 seconds; current allocated memory: 7.324 MB." resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished Command export_design CPU user time: 193.66 seconds. CPU system time: 8.5 seconds. Elapsed time: 338.91 seconds; current allocated memory: 7.422 MB." resolution=""/>
 </Messages>

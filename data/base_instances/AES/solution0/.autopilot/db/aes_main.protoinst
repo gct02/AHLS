@@ -13,7 +13,7 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_469/grp_AddRoundKey_InversMixColumn_fu_469_activity": {
+				"grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/grp_AddRoundKey_InversMixColumn_fu_83_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},
@@ -23,7 +23,27 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_461/grp_InversShiftRow_ByteSub_fu_461_activity": {
+				"grp_decrypt_fu_50/grp_AddRoundKey_fu_64/grp_AddRoundKey_fu_64_activity": {
+					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
+					"ports": {
+						"AP_CLK": { "actual": "ap_clk"},
+						"AP_DONE": { "actual": "ap_done"},
+						"AP_READY": { "actual": "ap_ready"},
+						"AP_RESET": { "actual": "ap_rst"},
+						"AP_START": { "actual": "ap_start"}
+					}
+				},
+				"grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/grp_InversShiftRow_ByteSub_fu_75_activity": {
+					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
+					"ports": {
+						"AP_CLK": { "actual": "ap_clk"},
+						"AP_DONE": { "actual": "ap_done"},
+						"AP_READY": { "actual": "ap_ready"},
+						"AP_RESET": { "actual": "ap_rst"},
+						"AP_START": { "actual": "ap_start"}
+					}
+				},
+				"grp_decrypt_fu_50/grp_KeySchedule_fu_52/grp_KeySchedule_fu_52_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},
@@ -43,7 +63,7 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_461/grp_ByteSub_ShiftRow_fu_461_activity": {
+				"grp_encrypt_fu_34/grp_AddRoundKey_fu_62/grp_AddRoundKey_fu_62_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},
@@ -53,7 +73,27 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_469/grp_MixColumn_AddRoundKey_fu_469_activity": {
+				"grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/grp_ByteSub_ShiftRow_fu_73_activity": {
+					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
+					"ports": {
+						"AP_CLK": { "actual": "ap_clk"},
+						"AP_DONE": { "actual": "ap_done"},
+						"AP_READY": { "actual": "ap_ready"},
+						"AP_RESET": { "actual": "ap_rst"},
+						"AP_START": { "actual": "ap_start"}
+					}
+				},
+				"grp_encrypt_fu_34/grp_KeySchedule_fu_50/grp_KeySchedule_fu_50_activity": {
+					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
+					"ports": {
+						"AP_CLK": { "actual": "ap_clk"},
+						"AP_DONE": { "actual": "ap_done"},
+						"AP_READY": { "actual": "ap_ready"},
+						"AP_RESET": { "actual": "ap_rst"},
+						"AP_START": { "actual": "ap_start"}
+					}
+				},
+				"grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/grp_MixColumn_AddRoundKey_fu_81_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'decrypt'" level="0">
-<item name = "Date">Thu May 29 14:55:04 2025
+<item name = "Date">Sat May 31 00:10:16 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">AES</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">1567, 1567, 12.536 us, 12.536 us, 1567, 1567, no</column>
+<column name="">1572, 1572, 12.576 us, 12.576 us, 1572, 1572, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,13 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- KeySchedule_label4">40, 40, 10, -, -, 4, no</column>
-<column name=" + KeySchedule_label5">8, 8, 2, -, -, 4, no</column>
-<column name="- KeySchedule_label6">520, 520, 13, -, -, 40, no</column>
-<column name=" + KeySchedule_label9">8, 8, 2, -, -, 4, no</column>
-<column name="- AddRoundKey_label0">16, 16, 4, -, -, 4, no</column>
 <column name="- decrypt_label4">954, 954, 106, -, -, 9, no</column>
-<column name="- AddRoundKey_label0">16, 16, 4, -, -, 4, no</column>
 </table>
 </item>
 </section>
