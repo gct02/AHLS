@@ -14,7 +14,10 @@ from gnn.data.kernel.vitis_kernel_info import (
     CDFG_NODE_TYPES,
     CDFG_EDGE_TYPES
 )
-from gnn.data.utils.parsers import parse_tcl_directives_file
+from gnn.data.utils.parsers import (
+    parse_tcl_directives_file,
+    extract_auto_dcts_from_log
+)
 
 
 DIRECTIVES = [
@@ -35,14 +38,14 @@ EDGE_TYPES = CDFG_EDGE_TYPES + [
 ]
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
-EMBEDDING_DIM = 256
+EMBEDDING_DIM = 512
 
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    "instr": 85, 
+    "instr": 89, 
     "port": 25,
     "const": 5,
-    "region": 13,
+    "region": 17,
     "block": EMBEDDING_DIM
 }
 
@@ -96,9 +99,13 @@ def build_hls_graph_data(
     solution_dct_tcl_path: str, 
     add_self_loops: bool = True,
     add_reversed_edges: bool = True,
+    solution_log_path: Optional[str] = None
 ) -> HeteroData:
     kernel_info = deepcopy(base_kernel_info)
-    include_directive_info(kernel_info, solution_dct_tcl_path)
+    include_directive_info(
+        kernel_info, solution_dct_tcl_path,
+        vitis_log_path=solution_log_path
+    )
     return to_hetero_data(
         kernel_info, 
         add_self_loops=add_self_loops,
@@ -219,8 +226,18 @@ def find_region_node(kernel_info, region_name, function_name):
 
 def include_directive_info(
     kernel_info: VitisKernelInfo, 
-    solution_dct_tcl_path: str
+    solution_dct_tcl_path: str,
+    vitis_log_path: Optional[str] = None
 ):
+    def unroll_subloops(sub_regions):
+        for sub_region in sub_regions:
+            region_node = kernel_info.nodes['region'][sub_region]
+            unroll_subloops(region_node.sub_regions)
+            if region_node.is_loop:
+                region_node.attrs["unroll"] = 1
+                unroll_factor = region_node.attrs.get("max_trip_count", 1)
+                region_node.attrs["unroll_factor"] = unroll_factor
+
     directives = parse_tcl_directives_file(solution_dct_tcl_path)
 
     for dct, args in directives:
@@ -272,13 +289,75 @@ def include_directive_info(
                 print(f"Warning: Region '{target_name}' "
                       f"(function '{function_name}') not found in nodes.")
                 continue
-            
-            region_node.attrs[dct] = 1
-            if dct == "unroll":
+
+            if dct == "pipeline":
+                unroll_subloops(region_node.sub_regions)
+            elif dct == "unroll":
+                if region_node.attrs.get("unroll", 0) == 1:
+                    continue  # Already unrolled
+
                 unroll_factor = int(args.get("factor", 0))
                 if unroll_factor <= 0:
                     unroll_factor = region_node.attrs.get("max_trip_count", 1)
+
                 region_node.attrs["unroll_factor"] = unroll_factor
+
+            region_node.attrs[dct] = 1
+
+    if vitis_log_path and os.path.exists(vitis_log_path):
+        auto_dcts = extract_auto_dcts_from_log(vitis_log_path)
+        for dct, dct_info in auto_dcts:
+            print(f"Applying auto directive: {dct} - {dct_info}")
+            found = False
+            if dct == "array_partition":
+                array_name = dct_info
+                for nt in ["port", "instr"]:
+                    for node in kernel_info.nodes.get(nt, []):
+                        if (node.name == array_name
+                            and node.attrs.get("array_partition", 0) == 0):
+                            array_node = node
+                            found = True
+                            break
+                    if found:
+                        break
+                if not found:
+                    print(f"Warning: Variable '{array_name}' not found in nodes.")
+                    continue
+
+                array_node.attrs["array_partition"] = 1
+                array_node.attrs["partition_factor"] = array_node.total_size
+                array_node.attrs["partition_dim"] = [1, 0, 0, 0, 0]
+                array_node.attrs["partition_type"] = [1, 0, 0]
+
+            elif dct == "loop_flatten":
+                loop_name, function_name = dct_info
+                for node in kernel_info.nodes.get('region', []):
+                    if (node.name == loop_name 
+                        and node.function == function_name):
+                        node.attrs["loop_flatten"] = 1
+                        break
+                else:
+                    print(f"Warning: Loop '{loop_name}' "
+                          f"(function '{function_name}') not found in nodes.")
+
+            elif dct == "inline":
+                function_name = dct_info
+                for node in kernel_info.nodes.get('region', []):
+                    if node.name == function_name:
+                        node.attrs["inline"] = 1
+                        break
+                else:
+                    print(f"Warning: Function '{function_name}' not found in nodes.")
+
+            elif dct == "pipeline":
+                loop_name = dct_info
+                for node in kernel_info.nodes.get('region', []):
+                    if node.name == loop_name:
+                        node.attrs["pipeline"] = 1
+                        unroll_subloops(node.sub_regions)
+                        break
+                else:
+                    print(f"Warning: Loop '{loop_name}' not found in nodes.")
 
 
 def fit_one_hot_encoders(hls_data_dict: Dict[str, VitisKernelInfo]):

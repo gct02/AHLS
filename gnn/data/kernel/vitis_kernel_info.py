@@ -7,7 +7,10 @@ from enum import IntEnum
 from typing import Optional, Dict, Union, List, Tuple
 
 from gnn.data.utils.xml_utils import findint, findfloat
-from gnn.data.utils.parsers import extract_metrics
+from gnn.data.utils.parsers import (
+    extract_metrics,
+    extract_utilization_per_module
+)
 
 
 CDFG_NODE_TYPES = [
@@ -42,7 +45,7 @@ CDFG_EDGE_TYPES = [
     ("block", "hrchy", "instr"),
 ]
 
-TARGET_RESOURCES = ['FF', 'LUT', 'DSP', 'BRAM']
+RESOURCES = {'FF', 'LUT', 'DSP', 'BRAM'}
 MAX_ARRAY_DIM = 4
 
 
@@ -87,7 +90,13 @@ class CDFGNode(Node):
         self.label = self.name
 
     def as_dict(self):
-        return {'label': self.label, 'attributes': self.attrs}
+        attributes = {}
+        for key, value in self.attributes.items():
+            if isinstance(value, list):
+                attributes[key] = value.index(1) if 1 in value else -1
+            else:
+                attributes[key] = value
+        return {'name': self.label, 'attributes': attributes}
     
     def __str__(self):
         return json.dumps(self.as_dict(), indent=2)
@@ -97,14 +106,21 @@ class CDFGNode(Node):
     
 
 class RegionNode(Node):
-    def __init__(self, element: ET.Element, function: str):
+    def __init__(
+        self, 
+        element: ET.Element, 
+        function: str,
+        utilization: Optional[Dict[str, int]] = None
+    ):
         self.id = findint(element, 'mId')
         if self.id is None:
             raise ValueError("Element does not contain 'mId' tag")
         
         self.name = element.findtext('mTag')
         self.function = function
-        self.label = f"{self.function}/{self.name}" if self.name else self.function
+        self.label = (f"{self.function}/{self.name}" 
+                      if self.name and self.name != self.function
+                      else self.function)
         self.label = self.label.replace(' ', '_')
 
         self.is_loop = findint(element, 'mType', 0) == 1
@@ -136,9 +152,14 @@ class RegionNode(Node):
             'inline': 0,
         }
 
-        self.sub_regions = self._extract_items(element, 'sub_regions')
-        self.parents = []
+        if utilization is not None:
+            for res in RESOURCES:
+                self.attrs[f"local_{res}"] = utilization.get(res, 0)
+        else:
+            for res in RESOURCES:
+                self.attrs[f"local_{res}"] = 0
 
+        self.sub_regions = self._extract_items(element, 'sub_regions')
         self.blocks = self._extract_items(element, 'basic_blocks')
         self.instrs = []
     
@@ -149,9 +170,15 @@ class RegionNode(Node):
         ]
     
     def as_dict(self):
+        attributes = {}
+        for key, value in self.attrs.items():
+            if isinstance(value, list):
+                attributes[key] = value.index(1) if 1 in value else -1
+            else:
+                attributes[key] = value
         return {
-            'label': self.label, 
-            'attributes': self.attrs,
+            'name': self.label, 
+            'attributes': attributes,
             'sub_regions': self.sub_regions,
             'blocks': self.blocks,
             'instructions': self.instrs
@@ -218,13 +245,33 @@ class PortNode(CDFGNode):
             'partition_factor': 0
         })
 
+    def as_dict(self):
+        attributes = {}
+        for key, value in self.attrs.items():
+            if isinstance(value, list):
+                attributes[key] = value.index(1) if 1 in value else -1
+            else:
+                attributes[key] = value
+        return {
+            'name': self.label, 
+            'is_array': self.is_array,
+            'attributes': attributes
+        }
+
+    def __str__(self):
+        return json.dumps(self.as_dict(), indent=2)
+    
+    def __repr__(self):
+        return self.__str__()
+
 
 class InstructionNode(CDFGNode):
     def __init__(
         self, 
         element: ET.Element, 
         function: str,
-        resources: Optional[Dict[str, int]] = None,
+        resource_estimates: Optional[Dict[str, int]] = None,
+        utilization: Optional[Dict[str, int]] = None,
         array_info: Optional[ArrayInfo] = None
     ):
         super().__init__(element, function)
@@ -274,12 +321,41 @@ class InstructionNode(CDFGNode):
             for edge in element.find('oprand_edges').findall('item')
         ]
 
-        if resources is not None:
-            for resource_type in TARGET_RESOURCES:
-                self.attrs[resource_type] = resources.get(resource_type, 0)
+        if resource_estimates is not None:
+            for res in RESOURCES:
+                self.attrs[f"{res}_estimate"] = resource_estimates.get(res, 0)
         else:
-            for resource_type in TARGET_RESOURCES:
-                self.attrs[resource_type] = 0
+            for res in RESOURCES:
+                self.attrs[f"{res}_estimate"] = 0
+
+        if utilization is not None:
+            for res in RESOURCES:
+                self.attrs[res] = utilization.get(res, 0)
+        else:
+            for res in RESOURCES:
+                self.attrs[res] = 0
+
+    def as_dict(self):
+        attributes = {}
+        for key, value in self.attrs.items():
+            if isinstance(value, list):
+                attributes[key] = value.index(1) if 1 in value else -1
+            else:
+                attributes[key] = value
+        return {
+            'name': self.label, 
+            'rtl_name': self.rtl_name,
+            'function': self.function,
+            'opcode': self.opcode,
+            'is_array': self.is_array,
+            'attributes': attributes
+        }
+    
+    def __str__(self):
+        return json.dumps(self.as_dict(), indent=2)
+    
+    def __repr__(self):
+        return self.__str__()
 
 
 class ConstantNode(CDFGNode):
@@ -291,6 +367,25 @@ class ConstantNode(CDFGNode):
             'bitwidth': findint(element, 'Value/bitwidth', 0),
             'const_type': element.findtext('const_type', '-1'),
         })
+
+    def as_dict(self):
+        attributes = {}
+        for key, value in self.attrs.items():
+            if isinstance(value, list):
+                attributes[key] = value.index(1) if 1 in value else -1
+            else:
+                attributes[key] = value
+        return {
+            'name': self.name, 
+            'content': self.label,
+            'attributes': attributes
+        }
+    
+    def __str__(self):
+        return json.dumps(self.as_dict(), indent=2)
+    
+    def __repr__(self):
+        return self.__str__()
 
 
 class BlockNode(CDFGNode):
@@ -308,7 +403,7 @@ class BlockNode(CDFGNode):
 
     def as_dict(self):
         return {
-            'label': self.label, 
+            'name': self.label, 
             'instructions': self.instrs
         }
     
@@ -325,6 +420,7 @@ class CDFG:
         root: ET.Element, 
         top_level_function: str, 
         array_info_list: List[ArrayInfo],
+        utilization: Dict[str, Dict[str, int]],
         offsets: Optional[Dict[str, int]] = None,
     ):
         self.nodes = {nt: [] for nt in CDFG_NODE_TYPES}
@@ -346,17 +442,17 @@ class CDFG:
         self.is_top_level = self.name == top_level_function
         self.function_calls = []
 
-        self._get_node_resource_map(root)
+        self._get_resource_estimate_map(root)
 
         try:
-            self._parse_nodes(cdfg, cdfg_regions, array_info_list)
+            self._parse_nodes(cdfg, cdfg_regions, array_info_list, utilization)
             self._parse_edges(cdfg)
             self._build_hierarchy_edges()
         except Exception as e:
             print(f"Error parsing CDFG: {e}")
             raise
 
-    def _parse_nodes(self, cdfg, regions, array_info_list):
+    def _parse_nodes(self, cdfg, regions, array_info_list, utilization):
         if (consts := cdfg.find('consts')) is None:
             raise ValueError("CDFG does not contain 'consts' section")
         if (instrs := cdfg.find('nodes')) is None:
@@ -366,13 +462,13 @@ class CDFG:
         if (blocks := cdfg.find('blocks')) is None:
             raise ValueError("CDFG does not contain 'blocks' section")
         
-        self._process_instrs(instrs, array_info_list)
+        self._process_instrs(instrs, array_info_list, utilization)
         self._process_ports(ports, array_info_list)
         self._process_consts(consts)
         self._process_blocks(blocks)
-        self._process_regions(regions)
+        self._process_regions(regions, utilization)
 
-    def _process_instrs(self, instrs, array_info_list):
+    def _process_instrs(self, instrs, array_info_list, utilization):
         # Note: the 'nodes' section contains instructions and global variables
         # (represented as instructions with a 'GlobalMem' opcode)
         offset = self._offsets['instr']
@@ -385,7 +481,8 @@ class CDFG:
             
             name = obj.findtext('name', '')
             rtl_name = obj.findtext('rtlName', '')
-            resources = self._node_resource_map.get(rtl_name) if rtl_name else None
+            resource_estimates = self._resource_estimate_map.get(rtl_name) if rtl_name else None
+            utilization_info = utilization.get(rtl_name) if rtl_name else None
             opcode = elem.findtext('opcode', '')
 
             array_info = get_array_info(
@@ -394,7 +491,8 @@ class CDFG:
             )
             node = InstructionNode(
                 elem, self.name, 
-                resources=resources,
+                resource_estimates=resource_estimates,
+                utilization=utilization_info,
                 array_info=array_info
             )
             self._node_id_map[node.id] = (i + offset, 'instr')
@@ -452,11 +550,18 @@ class CDFG:
             ]
             self.nodes['block'].append(node)
 
-    def _process_regions(self, regions):
+    def _process_regions(self, regions, utilization):
         offset = self._offsets['region']
         for elem in regions.findall('item'):
-            node = RegionNode(elem, self.name)
+            region_name = elem.findtext('mTag', '')
+            if region_name:
+                utilization_info = utilization.get(region_name, {})
+            else:
+                utilization_info = None
+
+            node = RegionNode(elem, self.name, utilization=utilization_info)
             node.id += offset - 1
+            
             node.sub_regions = [
                 sub_region_id + offset - 1
                 for sub_region_id in node.sub_regions
@@ -466,11 +571,13 @@ class CDFG:
                 for block_id in node.blocks 
                 if block_id in self._node_id_map
             ]
-            self.nodes['region'].append(node)
 
-        for i, node in enumerate(self.nodes['region']):
-            for sub_region_id in node.sub_regions:
-                self.nodes['region'][sub_region_id - offset].parents.append(node.id)
+            utilization_info = utilization.get(node.name)
+            if utilization_info is not None:
+                for res in RESOURCES:
+                    node.attrs[f"local_{res}"] = utilization_info.get(res, 0)
+
+            self.nodes['region'].append(node)
 
     def _parse_edges(self, cdfg):
         for elem in cdfg.find('edges').findall('item'):
@@ -524,28 +631,31 @@ class CDFG:
                     self.edges[('region', 'hrchy', 'instr')].append((region.id, instr_id))
                     self.edges[('block', 'hrchy', 'instr')].append((block_id, instr_id))
 
-    def _get_node_resource_map(self, root):
+    def _get_resource_estimate_map(self, root):
         res_items = root.findall('*/res/*/item')
         rx = re.compile(' \(.*\)')
 
-        self._node_resource_map = {}
+        self._resource_estimate_map = {}
         
         for item in res_items:
             rtl_name = re.sub(rx, '', item.find('first').text).strip()
             rtl_resources = item.find('second')
-            if rtl_resources is None or rtl_name in self._node_resource_map:
+            if rtl_resources is None or rtl_name in self._resource_estimate_map:
                 continue
-            res_map = {res: 0 for res in TARGET_RESOURCES}
+            res_map = {res: 0 for res in RESOURCES}
             for res in rtl_resources.iter('item'):
                 res_name = res.findtext('first')
                 if res_name in res_map:
                     res_map[res_name] = findint(res, 'second')
-            self._node_resource_map[rtl_name] = res_map
+            self._resource_estimate_map[rtl_name] = res_map
 
     def as_dict(self):
         return {
             'name': self.name,
-            'bitwidth': self.ret_bitwidth,
+            'ret_bitwidth': self.ret_bitwidth,
+            'is_top_level': self.is_top_level,
+            'function_calls': self.function_calls,
+            'resource_estimates': self._resource_estimate_map,
             'nodes': {
                 nt: [n.as_dict() for n in nodes] 
                 for nt, nodes in self.nodes.items()
@@ -580,6 +690,7 @@ class VitisKernelInfo:
         self.edges = {et: [] for et in CDFG_EDGE_TYPES}
 
         self.metrics = extract_metrics(solution_dir, filtered=filtered)
+        self.utilization = extract_utilization_per_module(solution_dir, filtered=filtered)
 
         self._offsets = {nt: 0 for nt in CDFG_NODE_TYPES}
         self._cdfgs = {}
@@ -633,7 +744,10 @@ class VitisKernelInfo:
             tree = ET.parse(path)
             root = tree.getroot()
             cdfg = CDFG(
-                root, self.top_level_function, array_info_list, 
+                root=root, 
+                top_level_function=self.top_level_function, 
+                array_info_list=array_info_list, 
+                utilization=self.utilization,
                 offsets=self._offsets
             )
             self._cdfgs[cdfg.name] = cdfg
@@ -714,14 +828,12 @@ class VitisKernelInfo:
     def as_dict(self):
         return {
             'name': self.kernel_name,
+            'top_level_function': self.top_level_function,
             'metrics': self.metrics,
-            'nodes': {
-                nt: [n.as_dict() for n in nodes] 
-                for nt, nodes in self.nodes.items()
-            },
-            'edges': {
-                f"{et[0]}__{et[1]}__{et[2]}": edges 
-                for et, edges in self.edges.items()
+            'utilization': self.utilization,
+            'cdfgs': {
+                name: cdfg.as_dict() 
+                for name, cdfg in self._cdfgs.items()
             }
         }
 
@@ -777,3 +889,46 @@ def collect_adb_files(solution_dir, filtered=False):
             file_paths.append(os.path.join(ir_dir, file_name))
 
     return file_paths
+
+
+if __name__ == "__main__":
+    # Example usage
+    import sys
+
+    from gnn.data.kernel.llvm_utils import extract_llvm_ir_array_info
+
+    solution_dir = sys.argv[1] if len(sys.argv) > 1 else "data/base_instances/ADPCM/solution0"
+    top_level_function = sys.argv[2] if len(sys.argv) > 2 else "adpcm_main"
+    output_path = sys.argv[3] if len(sys.argv) > 3 else "kernel_info.json"
+    kernel_name = sys.argv[4] if len(sys.argv) > 4 else "ADPCM"
+
+    ir_dir = os.path.join(solution_dir, ".autopilot/db")
+    if not os.path.exists(ir_dir):
+        print(f"Directory {ir_dir} not found")
+        sys.exit(1)
+
+    array_info_path = os.path.join(ir_dir, "array_info.json")
+    global_array_usage_path = os.path.join(ir_dir, "global_array_usage.json")
+
+    # Extract array info from LLVM IR files
+    extract_llvm_ir_array_info(ir_dir, array_info_path, global_array_usage_path)
+
+    if not os.path.exists(array_info_path):
+        print(f"Array info file {array_info_path} not found")
+        sys.exit(1)
+
+    if not os.path.exists(global_array_usage_path):
+        print(f"Global array usage file {global_array_usage_path} not found")
+        sys.exit(1)
+
+    kernel_info = VitisKernelInfo(
+        solution_dir, 
+        top_level_function, 
+        array_info_path, 
+        global_array_usage_path,
+        kernel_name=kernel_name,
+        filtered=False
+    )
+    
+    print(kernel_info)
+    kernel_info.save_as_json(output_path)

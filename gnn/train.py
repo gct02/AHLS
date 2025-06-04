@@ -3,6 +3,7 @@ import argparse
 import random
 import copy
 import pickle
+import json
 from typing import List, Dict, Tuple, Optional, Union, Any
 
 import matplotlib
@@ -84,15 +85,10 @@ def evaluate(
                 data.solution_index 
                 for data in loader.dataset
             ]
-            with open(f"{output_dir}/predictions.csv", "a") as f:
+            with open(f"{output_dir}/best_predictions.csv", "r") as f:
                 f.write(f"Epoch: {epoch + 1} - MRE: {mre:.2f}%\n")
-
-                print(f"\nCHECKPOINT: Saving predictions for epoch "
-                      f"{epoch + 1} with MRE: {mre:.2f}%\n")
-                
                 for i, t, p in zip(indices, targets.tolist(), preds.tolist()):
                     f.write(f"{i},{t},{p}\n")
-                    print(f"Index: {i}, Target: {t}, Prediction: {p}")
 
         evaluate.min_mre = mre
         evaluate.best_epoch = epoch
@@ -229,17 +225,17 @@ def main(args: Dict[str, Any]):
     os.makedirs(checkpoint_dir, exist_ok=True)
     os.makedirs(graphs_dir, exist_ok=True)
 
-    with open(f"{training_info_dir}/training_args.pkl", 'wb') as f:
-        pickle.dump(args, f)
+    with open(f"{training_info_dir}/training_args.json", 'w') as f:
+        json.dump(args, f, indent=2)
 
     model_args = {
         'in_channels': NODE_FEATURE_DIMS,
-        'hidden_channels': [EMBEDDING_DIM, 192, 128, 64],
+        'hidden_channels': [EMBEDDING_DIM, 384, 256, 128],
         'num_layers': 4,
         'out_channels': 1,
         'metadata': METADATA,
         'heads': [8, 8, 4, 4],
-        'dropout_gnn': 0.1,
+        'dropout_gnn': 0.2,
         'dropout_mlp': 0.2
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)

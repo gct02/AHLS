@@ -58,8 +58,7 @@ def prepare_data_loader(
 
 def load_model(
     model_path: str, 
-    model_args_path: str,
-    dropout: float = 0.3
+    model_args_path: str
 ) -> nn.Module:
     with open(model_args_path, 'rb') as f:
         model_args = pickle.load(f)
@@ -67,7 +66,6 @@ def load_model(
     if not isinstance(model_args, dict):
         raise ValueError("Model arguments must be a dictionary.")
     
-    model_args['dropout'] = dropout
     model = HLSQoREstimator(**model_args)
     model.load_state_dict(torch.load(model_path, map_location=DEVICE))
     return model.to(DEVICE)
@@ -82,8 +80,7 @@ def main(args: Dict[str, str]):
     feature_ranges_path = args.get("feature_ranges", "")
     target_metric = args.get("target", "snru")
     epochs = int(args.get("epochs", 10))
-    lr = float(args.get("learning_rate", 1e-4))
-    dropout = float(args.get("dropout", 0.3))
+    lr = float(args.get("learning_rate", 1e-5))
     output_dir = args.get("output_dir", "")
 
     if not dataset_dir or not model_path or not model_args_path:
@@ -100,6 +97,7 @@ def main(args: Dict[str, str]):
             raise ValueError("Feature ranges must be a dictionary.")
     else:
         scale_features = False
+        feature_ranges = None
     
     # Load the dataset
     loader = prepare_data_loader(
@@ -109,32 +107,21 @@ def main(args: Dict[str, str]):
     )
     
     # Load the model
-    model = load_model(model_path, model_args_path, dropout=dropout)
+    model = load_model(model_path, model_args_path)
 
     if pretraining_args_path:
         with open(pretraining_args_path, 'rb') as f:
             pretraining_args = pickle.load(f)
 
-        betas = pretraining_args.get('betas', (0.9, 0.999))
-        weight_decay = pretraining_args.get('weight_decay', 1e-4)
-    
-        loss = pretraining_args.get('loss', 'mse')
-        if loss == 'mse':
-            loss_fn = nn.MSELoss()
-        elif loss == 'l1':
-            loss_fn = nn.L1Loss()
-        elif loss == 'huber':
-            delta = pretraining_args.get('delta', 1.0)
-            loss_fn = nn.SmoothL1Loss(beta=delta)
-        else:
-            raise ValueError(f"Unsupported loss function: {loss}")
-        
+        betas = pretraining_args.get('betas', (0.9, 0.95))
+        weight_decay = pretraining_args.get('weight_decay', 5e-4)
         max_norm = pretraining_args.get('max_norm', 5.0)
     else:
-        betas = (0.9, 0.999)
-        weight_decay = 1e-4
-        loss_fn = nn.MSELoss()
+        betas = (0.9, 0.95)
+        weight_decay = 5e-4
         max_norm = 5.0
+
+    loss_fn = nn.L1Loss()
 
     optimizer = torch.optim.AdamW(
         model.parameters(), 
@@ -182,8 +169,6 @@ if __name__ == "__main__":
                         help="Number of epochs for fine-tuning.")
     parser.add_argument("-lr", "--learning_rate", type=float, default=1e-5,
                         help="Learning rate for the optimizer.")
-    parser.add_argument("-dr", "--dropout", type=float, default=0.3,
-                        help="Dropout rate for the model.")
     parser.add_argument("-o", "--output_dir", type=str, default="", 
                         help="Directory to save the fine-tuned model.")
 

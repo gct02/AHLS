@@ -42,9 +42,6 @@
 *.idb
 *.pdb
 
-# Logs
-*.log
-
 # Environment specific files
 .vscode/
 __pycache__/
@@ -57,10 +54,13 @@ build/
 # Approximate Computing project files (on hold)
 approx/
 
-# Test files and statistics
 models/
-gnn_prediction_analysis.py
 
-# The HLS DSE dataset
 dataset/test/
 dataset/train/
+
+hls_config.tcl
+vitis_hls.log
+
+process_dataset.sh
+test_model.sh

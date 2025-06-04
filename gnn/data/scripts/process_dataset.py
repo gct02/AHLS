@@ -49,7 +49,7 @@ def main(args: Dict[str, Any]):
             print(f"Top-level function not found for {bench.name}")
             continue
 
-        base_sol_dir = Path("data/base_instances") / bench.name / "solution0"
+        base_sol_dir = dataset_dir / bench.name / "solution0"
         if not base_sol_dir.exists():
             print(f"Base solution directory not found for {bench.name}")
             continue
@@ -107,7 +107,10 @@ def main(args: Dict[str, Any]):
             with open(sol_out_dir / "metrics.json", "w") as f:
                 json.dump(metrics, f, indent=2)
 
-            data = build_hls_graph_data(kernel_info, dct_tcl_path)
+            data = build_hls_graph_data(
+                kernel_info, dct_tcl_path,
+                solution_log_path=None
+            )
             torch.save(data, sol_out_dir / "graph.pt")
 
             count += 1

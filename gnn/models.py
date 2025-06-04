@@ -9,7 +9,9 @@ from torch_geometric.nn import (
     LayerNorm,
     HGTConv,
     JumpingKnowledge,
-    global_add_pool
+    global_add_pool,
+    global_mean_pool,
+    global_max_pool
 )
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 
@@ -200,18 +202,18 @@ class HLSQoREstimator(nn.Module):
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
             Linear(1, 16), 
-            nn.PReLU(),
+            nn.GELU(),
             Linear(16, 16)
         )
 
         self.mlp = nn.Sequential(
-            Linear(len(self.node_types) * 128 + 16, 256), 
-            nn.LayerNorm(256), nn.PReLU(), nn.Dropout(dropout_mlp),
-            Linear(256, 128),  
-            nn.LayerNorm(128), nn.PReLU(), nn.Dropout(dropout_mlp),
-            Linear(128, 64),
-            nn.LayerNorm(64), nn.PReLU(), nn.Dropout(dropout_mlp),
-            Linear(64, out_channels)
+            Linear(len(self.node_types) * 128 * 3 + 16, 512), 
+            nn.LayerNorm(512), nn.GELU(), nn.Dropout(dropout_mlp),
+            Linear(512, 256),  
+            nn.LayerNorm(256), nn.GELU(), nn.Dropout(dropout_mlp),
+            Linear(256, 128),
+            nn.LayerNorm(128), nn.GELU(), nn.Dropout(dropout_mlp),
+            Linear(128, out_channels)
         )
         self.reset_parameters()
 
@@ -253,7 +255,7 @@ class HLSQoREstimator(nn.Module):
 
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
-        batch_size = _compute_batch_size(batch_dict)
+        batch_size = self._compute_batch_size(batch_dict)
 
         x_dict = {
             nt: self.proj_lin[nt](x) if nt in self.proj_lin else x
@@ -266,7 +268,11 @@ class HLSQoREstimator(nn.Module):
     
         x_pooled_list = []
         for nt, x in x_dict.items():
-            x_pooled = global_add_pool(x, batch_dict[nt], size=batch_size)
+            batch = batch_dict[nt]
+            x_add = global_add_pool(x, batch, size=batch_size)
+            x_mean = global_mean_pool(x, batch, size=batch_size)
+            x_max = global_max_pool(x, batch, size=batch_size)
+            x_pooled = torch.cat([x_add, x_mean, x_max], dim=1)
             x_pooled_list.append(x_pooled.view(batch_size, -1))
 
         x_aggr = torch.cat(x_pooled_list, dim=1)
@@ -279,9 +285,9 @@ class HLSQoREstimator(nn.Module):
         return out.squeeze(1)
     
 
-def _compute_batch_size(batch_dict: Dict[NodeType, Tensor]) -> int:
-    batch_size = 0
-    for batch in batch_dict.values():
-        if batch.numel() > 0:
-            batch_size = max(batch_size, int(batch.max().item()))
-    return batch_size + 1
+    def _compute_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
+        batch_size = 0
+        for batch in batch_dict.values():
+            if batch.numel() > 0:
+                batch_size = max(batch_size, int(batch.max().item()))
+        return batch_size + 1

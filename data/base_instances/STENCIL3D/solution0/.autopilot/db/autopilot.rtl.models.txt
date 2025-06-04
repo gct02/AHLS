@@ -1,2 +1,0 @@
-stencil3d_mul_32s_32s_32_1_1
-stencil3d

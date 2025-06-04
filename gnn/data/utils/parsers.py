@@ -149,6 +149,91 @@ def extract_metrics(solution_dir, filtered=False) -> Dict[str, Union[float, int]
     return metrics
 
 
+def extract_utilization_per_module(solution_dir, filtered=False):
+    RESOURCES = ['BRAM', 'DSP', 'FF', 'LUT']
+    if filtered:
+        rpt_path = Path(solution_dir) / 'reports/export_impl.xml'
+    else:
+        rpt_path = Path(solution_dir) / 'impl/report/verilog/export_impl.xml'
+        if not rpt_path.is_file():
+            rpt_path = Path(solution_dir) / 'impl/verilog/report/vivado_impl.xml'
+
+    if not rpt_path.is_file():
+        print(f'Utilization report not found in {solution_dir}')
+        return {}
+    
+    tree = ET.parse(rpt_path)
+    root = tree.getroot()
+
+    modules = root.findall('RtlModules/RtlModule')
+    module_utilization = {}
+    for module in modules:
+        module_type = module.get('TYPE')
+        if module_type == 'function':
+            resources = module.find('LocalResources')
+            module_name = module.get('MODULENAME')
+        else:
+            resources = module.find('Resources')
+            module_name = module.get('DISPNAME')
+        
+        if resources is None or module_name is None:
+            continue
+
+        module_resources = {}
+        for res in RESOURCES:
+            res_elem = int(resources.get(res, default=0))
+            module_resources[res] = res_elem
+
+        module_utilization[module_name] = module_resources
+
+    return module_utilization
+
+
+def extract_auto_dcts_from_log(hls_log_path):
+    AUTO_INLINE_CODE = '[HLS 214-178]'
+    AUTO_PIPE_CODE = '[HLS 214-376]'
+    AUTO_AP_CODE = '[XFORM 203-102]'
+    AUTO_LF_CODE = '[XFORM 203-541]'
+
+    with open(hls_log_path, "r") as f:
+        lines = f.readlines()
+
+    auto_dcts = {
+        "inline": set(),
+        "pipeline": set(),
+        "array_partition": set(),
+        "loop_flatten": set()
+    }
+
+    for line in lines:
+        if AUTO_INLINE_CODE in line:
+            if 'Inlining function \'' not in line:
+                continue
+            function = line.split('Inlining function \'')[1].split('\'')[0].strip()
+            auto_dcts['inline'].add(function)
+
+        elif AUTO_PIPE_CODE in line:
+            if 'automatically set the pipeline for Loop<' not in line:
+                continue
+            loop = line.split('automatically set the pipeline for Loop<')[1].split('>')[0].strip()
+            auto_dcts['pipeline'].add(loop)
+
+        elif AUTO_AP_CODE in line:
+            if 'Automatically partitioning small array \'' not in line:
+                continue
+            array = line.split('Automatically partitioning small array \'')[1].split('\'')[0].strip()
+            auto_dcts['array_partition'].add(array)
+
+        elif AUTO_LF_CODE in line:
+            if 'Flattening a loop nest \'' not in line or 'in function \'' not in line:
+                continue
+            loop = line.split('Flattening a loop nest \'')[1].split('\'')[0].strip()
+            function = line.split('in function \'')[1].split('\'')[0].strip()
+            auto_dcts['loop_flatten'].add((loop, function))
+
+    return auto_dcts 
+
+
 def export_directives_as_tcl(
     solution_data_json_path: Union[str, Path],
     output_path: Union[str, Path]
