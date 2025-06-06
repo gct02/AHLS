@@ -44,17 +44,10 @@ class HLSFineTuningDataset(Dataset):
                              f"{self.base_metrics_path}")
 
         metric = metric.lower()
-        if metric == "snru":
-            try:
-                self._base_target = self._compute_snru(base_metrics)
-            except ValueError:
-                raise ValueError(f"SNRU computation failed in "
-                                 f"{self.base_metrics_path}")
-        else:
-            self._base_target = float(base_metrics.get(metric, -1.0))
-            if self._base_target < 0:
-                raise ValueError(f"Base target value not found in "
-                                 f"{self.base_metrics_path}")
+        self._base_target = float(base_metrics.get(metric, -1.0))
+        if self._base_target < 0:
+            raise ValueError(f"Base target value not found in "
+                             f"{self.base_metrics_path}")
 
         self._metric = metric
         self._log_transform = log_transform
@@ -85,19 +78,11 @@ class HLSFineTuningDataset(Dataset):
                 shutil.rmtree(solution_dir)
                 continue
 
-            if self._metric == "snru":
-                try:
-                    target = self._compute_snru(metrics)
-                except ValueError:
-                    print(f"Deleting {solution} folder (SNRU computation failed)")
-                    shutil.rmtree(solution_dir)
-                    continue
-            else:
-                target = float(metrics.get(self._metric, -1.0))
-                if target < 0:
-                    print(f"Deleting {solution} folder (target value not found)")
-                    shutil.rmtree(solution_dir)
-                    continue
+            target = float(metrics.get(self._metric, -1.0))
+            if target < 0:
+                print(f"Deleting {solution} folder (target value not found)")
+                shutil.rmtree(solution_dir)
+                continue
 
             self._raw_file_names.append((f"{solution}/graph.pt",
                                          f"{solution}/metrics.json"))
@@ -132,10 +117,7 @@ class HLSFineTuningDataset(Dataset):
             with open(metrics_path, 'r') as f:
                 metrics = json.load(f)
 
-            if self._metric == "snru":
-                target = self._compute_snru(metrics)
-            else:
-                target = float(metrics.get(self._metric))
+            target = float(metrics.get(self._metric))
 
             data = torch.load(graph_path)
             data.y = torch.tensor([target])
@@ -166,14 +148,3 @@ class HLSFineTuningDataset(Dataset):
             diffs[diffs == 0] = 1
             data.x_dict[nt] = (x - mins) / diffs
         return data
-    
-    def _compute_snru(metrics):
-        """Compute the SNRU (Sum of Normalized Resource Utilization) metric."""
-        snru = 0
-        for resource, available in AVAILABLE_RESOURCES.items():
-            value = metrics.get(resource, -1)
-            if value < 0:
-                raise ValueError(f"Resource {resource} not found in metrics.")
-            snru += value / available
-        snru /= len(AVAILABLE_RESOURCES)
-        return snru

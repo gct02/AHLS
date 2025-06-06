@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Source the Vitis HLS settings
+# (Make sure to change the path to your Vitis HLS installation)
 source /tools/Xilinx/Vitis_HLS/2023.2/settings64.sh
 
 HLS_LLVM_DIR="${HOME}/Documents/hls-llvm-project" # Change this to the path of the hls-llvm-project directory

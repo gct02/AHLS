@@ -8,7 +8,7 @@ from random import randint
 from hls.hls_config import gen_design_config_tcl   
 
 
-NUM_INSTANCES = 10
+NUM_INSTANCES = 15
 
 
 class DatasetGenerator:
@@ -349,7 +349,7 @@ if __name__ == "__main__":
 
     if args.filter_dct:
         import pickle
-        from gnn.fine_tuning.data.directive_filtering import filter_directives
+        from gnn.fine_tuning.data.dct_filter import filter_directives
 
         if not args.kernel_info_path:
             print('Kernel info path is required when filtering directives.')

@@ -168,18 +168,26 @@ def extract_utilization_per_module(solution_dir, filtered=False):
     modules = root.findall('RtlModules/RtlModule')
     module_utilization = {}
     for module in modules:
+        module_resources = {}
         module_type = module.get('TYPE')
         if module_type == 'function':
-            resources = module.find('LocalResources')
             module_name = module.get('MODULENAME')
-        else:
-            resources = module.find('Resources')
-            module_name = module.get('DISPNAME')
-        
-        if resources is None or module_name is None:
-            continue
+            local_resources = module.find('LocalResources')
+            if module_name is None or local_resources is None:
+                continue
 
-        module_resources = {}
+            for res in RESOURCES:
+                res_elem = int(local_resources.get(res, default=0))
+                module_resources[f"local_{res}"] = res_elem
+        else:
+            module_name = module.get('DISPNAME')
+
+        resources = module.find('Resources')
+        if resources is None:
+            resources = module.find('LocalResources')
+            if resources is None:
+                continue
+
         for res in RESOURCES:
             res_elem = int(resources.get(res, default=0))
             module_resources[res] = res_elem
@@ -269,7 +277,7 @@ def compute_snru(util_report: Dict[str, int]) -> float:
         util_report[res] / total
         for res, total in AVAILABLE_RESOURCES.items()
         if res in util_report and total > 0
-    ]) / len(AVAILABLE_RESOURCES)
+    ])
 
 
 def _parse_utilization_report_xml(rpt_path):

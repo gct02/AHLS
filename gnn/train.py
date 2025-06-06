@@ -22,8 +22,7 @@ from gnn.data.dataset import HLSDataset
 from gnn.utils import percentage_diff
 from gnn.data.graph import (
     METADATA,
-    NODE_FEATURE_DIMS,
-    EMBEDDING_DIM
+    NODE_FEATURE_DIMS
 )
 from gnn.analysis import (
     plot_prediction_bars,
@@ -85,7 +84,7 @@ def evaluate(
                 data.solution_index 
                 for data in loader.dataset
             ]
-            with open(f"{output_dir}/best_predictions.csv", "r") as f:
+            with open(f"{output_dir}/best_predictions.csv", "w") as f:
                 f.write(f"Epoch: {epoch + 1} - MRE: {mre:.2f}%\n")
                 for i, t, p in zip(indices, targets.tolist(), preds.tolist()):
                     f.write(f"{i},{t},{p}\n")
@@ -181,7 +180,6 @@ def main(args: Dict[str, Any]):
     max_norm = float(args['max_norm'])
     loss = args['loss']
     log_scale = args['log_scale']
-    huber_delta = float(args['huber_delta'])
     output_dir = args['output_dir']
 
     if not dataset_dir:
@@ -230,25 +228,26 @@ def main(args: Dict[str, Any]):
 
     model_args = {
         'in_channels': NODE_FEATURE_DIMS,
-        'hidden_channels': [EMBEDDING_DIM, 384, 256, 128],
+        'hidden_channels': [256, 192, 128, 64],
         'num_layers': 4,
         'out_channels': 1,
         'metadata': METADATA,
         'heads': [8, 8, 4, 4],
-        'dropout_gnn': 0.2,
+        'dropout_gnn': 0.0,
         'dropout_mlp': 0.2
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
 
-    model_args_path = f"{model_info_dir}/{target_metric.upper()}_estimator_args.pkl"
-    with open(model_args_path, 'wb') as f:
-        pickle.dump(model_args, f)
+    model_args_path = f"{model_info_dir}/{target_metric.upper()}_estimator_args.json"
+    with open(model_args_path, 'w') as f:
+        json.dump(model_args, f, indent=2)
 
     if loss == 'mse':
         loss_fn = nn.MSELoss()
     elif loss == 'l1':
         loss_fn = nn.L1Loss()
     elif loss == 'huber':
+        huber_delta = float(args['huber_delta'])
         loss_fn = nn.HuberLoss(delta=huber_delta)
     else:
         raise ValueError(f"Unsupported loss function: {loss}")
@@ -264,11 +263,14 @@ def main(args: Dict[str, Any]):
     with open(f"{model_info_dir}/feature_ranges.pkl", 'wb') as f:
         pickle.dump(feat_ranges, f)
 
+    grouped_params = get_optimizer_param_groups(
+        model=model,
+        weight_decay_val=5e-4
+    )
     optimizer = torch.optim.AdamW(
-        model.parameters(), 
+        grouped_params,
         lr=learning_rate, 
         betas=betas,
-        weight_decay=5e-4
     )
 
     total_steps = epochs * len(train_loader)
@@ -348,6 +350,51 @@ def set_random_seeds(seed: int):
     torch.cuda.manual_seed_all(seed)
     np.random.seed(seed)
     random.seed(seed)
+
+
+def get_optimizer_param_groups(model, weight_decay_val):
+    """
+    Separates model parameters into two groups: one with weight decay and one without.
+    Excludes PReLU parameters, LayerNorm parameters, and all bias terms from weight decay.
+    """
+    decay_params = []
+    no_decay_params = []
+    
+    no_decay_param_names = set()
+
+    # Find all modules that are PReLU or LayerNorm and add their parameters to the exclusion set
+    for module_name, module in model.named_modules():
+        if isinstance(module, (torch.nn.PReLU, torch.nn.LayerNorm)):
+            for param_name, _ in module.named_parameters():
+                # Add the full parameter name like "gnn.convs.0.norm_dict.instr.weight"
+                no_decay_param_names.add(f"{module_name}.{param_name}")
+
+    # Also add all bias terms to the exclusion set
+    for param_name, param in model.named_parameters():
+        if param_name.endswith(".bias"):
+            no_decay_param_names.add(param_name)
+
+    # Create the two lists of parameters based on the exclusion set
+    for name, param in model.named_parameters():
+        if not param.requires_grad:
+            continue
+        
+        if name in no_decay_param_names:
+            no_decay_params.append(param)
+        else:
+            decay_params.append(param)
+            
+    optimizer_grouped_parameters = [
+        {
+            "params": decay_params,
+            "weight_decay": weight_decay_val,
+        },
+        {
+            "params": no_decay_params,
+            "weight_decay": 0.0, # NO weight decay for this group
+        },
+    ]
+    return optimizer_grouped_parameters
 
 
 def prepare_data_loaders(

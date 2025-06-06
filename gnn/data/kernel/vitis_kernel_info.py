@@ -154,9 +154,11 @@ class RegionNode(Node):
 
         if utilization is not None:
             for res in RESOURCES:
-                self.attrs[f"local_{res}"] = utilization.get(res, 0)
+                self.attrs[res] = utilization.get(res, 0)
+                self.attrs[f"local_{res}"] = utilization.get(f"local_{res}", 0)
         else:
             for res in RESOURCES:
+                self.attrs[res] = 0
                 self.attrs[f"local_{res}"] = 0
 
         self.sub_regions = self._extract_items(element, 'sub_regions')
@@ -539,6 +541,7 @@ class CDFG:
 
     def _process_blocks(self, blocks):
         offset = self._offsets['block']
+        instr_offset = self._offsets['instr']
         for i, elem in enumerate(blocks.findall('item')):
             node = BlockNode(elem, self.name)
             self._node_id_map[node.id] = (i + offset, 'block')
@@ -548,6 +551,18 @@ class CDFG:
                 for instr_id in node.instrs
                 if instr_id in self._node_id_map
             ]
+            node.attrs = {'num_instrs': len(node.instrs), 'delay': 0.0}
+            for res in RESOURCES:
+                node.attrs[res] = 0
+                node.attrs[f"local_{res}"] = 0
+
+            for instr_id in node.instrs:
+                instr_node = self.nodes['instr'][instr_id - instr_offset]
+                node.attrs['delay'] += instr_node.attrs['delay']
+                for res in RESOURCES:
+                    node.attrs[res] += instr_node.attrs[res]
+                    node.attrs[f'{res}_estimate'] += instr_node.attrs[f'{res}_estimate']
+
             self.nodes['block'].append(node)
 
     def _process_regions(self, regions, utilization):

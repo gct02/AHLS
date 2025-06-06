@@ -38,15 +38,13 @@ EDGE_TYPES = CDFG_EDGE_TYPES + [
 ]
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
-EMBEDDING_DIM = 512
-
 # Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
     "instr": 89, 
     "port": 25,
     "const": 5,
-    "region": 17,
-    "block": EMBEDDING_DIM
+    "region": 21,
+    "block": 10
 }
 
 
@@ -129,24 +127,18 @@ def to_hetero_data(
             data[nt].label = []
             continue
 
-        if nt == 'block':
-            # Block nodes does not have features
-            data[nt].x = torch.zeros(
-                (len(nodes), EMBEDDING_DIM), dtype=torch.float32
+        features = []
+        for node in nodes:
+            attrs = []
+            for attr in node.attrs.values():
+                if isinstance(attr, list):
+                    attrs.extend(attr)
+                else:
+                    attrs.append(attr)
+            features.append(
+                torch.tensor(attrs, dtype=torch.float32)
             )
-        else:
-            features = []
-            for node in nodes:
-                attrs = []
-                for attr in node.attrs.values():
-                    if isinstance(attr, list):
-                        attrs.extend(attr)
-                    else:
-                        attrs.append(attr)
-                features.append(
-                    torch.tensor(attrs, dtype=torch.float32)
-                )
-            data[nt].x = torch.stack(features, dim=0)
+        data[nt].x = torch.stack(features, dim=0)
             
         data[nt].label = [node.label for node in nodes]
 
@@ -229,15 +221,6 @@ def include_directive_info(
     solution_dct_tcl_path: str,
     vitis_log_path: Optional[str] = None
 ):
-    def unroll_subloops(sub_regions):
-        for sub_region in sub_regions:
-            region_node = kernel_info.nodes['region'][sub_region]
-            unroll_subloops(region_node.sub_regions)
-            if region_node.is_loop:
-                region_node.attrs["unroll"] = 1
-                unroll_factor = region_node.attrs.get("max_trip_count", 1)
-                region_node.attrs["unroll_factor"] = unroll_factor
-
     directives = parse_tcl_directives_file(solution_dct_tcl_path)
 
     for dct, args in directives:
@@ -289,20 +272,13 @@ def include_directive_info(
                 print(f"Warning: Region '{target_name}' "
                       f"(function '{function_name}') not found in nodes.")
                 continue
-
-            if dct == "pipeline":
-                unroll_subloops(region_node.sub_regions)
-            elif dct == "unroll":
-                if region_node.attrs.get("unroll", 0) == 1:
-                    continue  # Already unrolled
-
+            
+            region_node.attrs[dct] = 1
+            if dct == "unroll":
                 unroll_factor = int(args.get("factor", 0))
                 if unroll_factor <= 0:
                     unroll_factor = region_node.attrs.get("max_trip_count", 1)
-
                 region_node.attrs["unroll_factor"] = unroll_factor
-
-            region_node.attrs[dct] = 1
 
     if vitis_log_path and os.path.exists(vitis_log_path):
         auto_dcts = extract_auto_dcts_from_log(vitis_log_path)
@@ -354,7 +330,6 @@ def include_directive_info(
                 for node in kernel_info.nodes.get('region', []):
                     if node.name == loop_name:
                         node.attrs["pipeline"] = 1
-                        unroll_subloops(node.sub_regions)
                         break
                 else:
                     print(f"Warning: Loop '{loop_name}' not found in nodes.")

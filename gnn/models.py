@@ -9,9 +9,7 @@ from torch_geometric.nn import (
     LayerNorm,
     HGTConv,
     JumpingKnowledge,
-    global_add_pool,
-    global_mean_pool,
-    global_max_pool
+    global_add_pool
 )
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 
@@ -43,23 +41,10 @@ class HGTJK(nn.Module):
         self.norm_dicts = nn.ModuleList()
 
         for i in range(num_layers):
-            # Since blocks do not come with features (we learn them 
-            # via the GNN), we need to exclude it as source type in
-            # the first iteration:
-            if i == 0:
-                layer_edge_types = [
-                    et for et in metadata[1] 
-                    if et[0] != 'block'
-                ]
-            else:
-                layer_edge_types = metadata[1]
-            
-            layer_metadata = (metadata[0], layer_edge_types)
-
             conv = HGTConv(
                 in_channels if i == 0 else hidden_channels[i-1],
                 hidden_channels[i],
-                metadata=layer_metadata,
+                metadata=metadata,
                 heads=heads[i]
             )
             self.convs.append(conv)
@@ -106,17 +91,7 @@ class HGTJK(nn.Module):
         xs_dict = {nt: [] for nt in self.node_types}
 
         for i in range(self.num_layers):
-            if i == 0:
-                layer_edge_index_dict = {
-                    et: edge_index
-                    for et, edge_index in edge_index_dict.items()
-                    if et[0] != 'block'
-                }
-            else:
-                layer_edge_index_dict = edge_index_dict
-
-            x_dict = self.convs[i](x_dict, layer_edge_index_dict)
-
+            x_dict = self.convs[i](x_dict, edge_index_dict)
             if i != self.num_layers - 1:
                 for nt, x in x_dict.items():
                     x = self.dropout(x)
@@ -180,13 +155,12 @@ class HLSQoREstimator(nn.Module):
         if isinstance(heads, int):
             heads = [heads] * num_layers
 
-        self.proj_lin = nn.ModuleDict({
+        self.proj_lin_dict = nn.ModuleDict({
             nt: Linear(
                 in_channels=in_channels[nt], 
                 out_channels=hidden_channels[0]
             ) 
             for nt in self.node_types
-            if nt != 'block'
         })
 
         self.gnn = HGTJK(
@@ -202,24 +176,24 @@ class HLSQoREstimator(nn.Module):
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
             Linear(1, 16), 
-            nn.GELU(),
+            nn.PReLU(16),
             Linear(16, 16)
         )
 
         self.mlp = nn.Sequential(
-            Linear(len(self.node_types) * 128 * 3 + 16, 512), 
-            nn.LayerNorm(512), nn.GELU(), nn.Dropout(dropout_mlp),
-            Linear(512, 256),  
-            nn.LayerNorm(256), nn.GELU(), nn.Dropout(dropout_mlp),
-            Linear(256, 128),
-            nn.LayerNorm(128), nn.GELU(), nn.Dropout(dropout_mlp),
-            Linear(128, out_channels)
+            Linear(len(self.node_types) * 128 + 16, 256), 
+            nn.LayerNorm(256), nn.PReLU(256), nn.Dropout(dropout_mlp),
+            Linear(256, 128),  
+            nn.LayerNorm(128), nn.PReLU(128), nn.Dropout(dropout_mlp),
+            Linear(128, 64),
+            nn.LayerNorm(64), nn.PReLU(64), nn.Dropout(dropout_mlp),
+            Linear(64, out_channels)
         )
         self.reset_parameters()
 
     def reset_parameters(self):
         """Reinitializes model parameters."""
-        for lin in self.proj_lin.values():
+        for lin in self.proj_lin_dict.values():
             lin.reset_parameters()
 
         self.gnn.reset_parameters()
@@ -255,10 +229,10 @@ class HLSQoREstimator(nn.Module):
 
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
-        batch_size = self._compute_batch_size(batch_dict)
+        batch_size = _compute_batch_size(batch_dict)
 
         x_dict = {
-            nt: self.proj_lin[nt](x) if nt in self.proj_lin else x
+            nt: self.proj_lin_dict[nt](x) if nt in self.proj_lin_dict else x
             for nt, x in x_dict.items()
         }
         x_dict = self.gnn(
@@ -268,11 +242,7 @@ class HLSQoREstimator(nn.Module):
     
         x_pooled_list = []
         for nt, x in x_dict.items():
-            batch = batch_dict[nt]
-            x_add = global_add_pool(x, batch, size=batch_size)
-            x_mean = global_mean_pool(x, batch, size=batch_size)
-            x_max = global_max_pool(x, batch, size=batch_size)
-            x_pooled = torch.cat([x_add, x_mean, x_max], dim=1)
+            x_pooled = global_add_pool(x, batch_dict[nt], size=batch_size)
             x_pooled_list.append(x_pooled.view(batch_size, -1))
 
         x_aggr = torch.cat(x_pooled_list, dim=1)
@@ -285,9 +255,9 @@ class HLSQoREstimator(nn.Module):
         return out.squeeze(1)
     
 
-    def _compute_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
-        batch_size = 0
-        for batch in batch_dict.values():
-            if batch.numel() > 0:
-                batch_size = max(batch_size, int(batch.max().item()))
-        return batch_size + 1
+def _compute_batch_size(batch_dict: Dict[NodeType, Tensor]) -> int:
+    batch_size = 0
+    for batch in batch_dict.values():
+        if batch.numel() > 0:
+            batch_size = max(batch_size, int(batch.max().item()))
+    return batch_size + 1

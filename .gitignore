@@ -49,15 +49,19 @@ __pycache__/
 .venv/
 
 # Build folders
-build/
+*build/
 
 # Approximate Computing project files (on hold)
 approx/
+llvm/profiler/
+llvm/utils/
+llvm/clang_plugins/
 
-models/
+gnn/models/
 
-dataset/test/
-dataset/train/
+gnn/dataset/test/
+gnn/dataset/train/
+gnn/fine_tuning/dataset/
 
 hls_config.tcl
 vitis_hls.log
