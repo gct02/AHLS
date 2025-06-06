@@ -554,7 +554,7 @@ class CDFG:
             node.attrs = {'num_instrs': len(node.instrs), 'delay': 0.0}
             for res in RESOURCES:
                 node.attrs[res] = 0
-                node.attrs[f"local_{res}"] = 0
+                node.attrs[f'{res}_estimate'] = 0
 
             for instr_id in node.instrs:
                 instr_node = self.nodes['instr'][instr_id - instr_offset]
