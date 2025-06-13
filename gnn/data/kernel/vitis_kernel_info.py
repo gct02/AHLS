@@ -251,7 +251,7 @@ class PortNode(CDFGNode):
     def as_dict(self):
         attributes = {}
         for key, value in self.attrs.items():
-            if isinstance(value, list):
+            if isinstance(value, list) and key != 'dims':
                 attributes[key] = value.index(1) if 1 in value else -1
             else:
                 attributes[key] = value
@@ -279,6 +279,8 @@ class InstructionNode(CDFGNode):
     ):
         super().__init__(element, function)
 
+        self.opcode = element.findtext('opcode', '')
+
         self.is_array = array_info is not None
         if self.is_array:
             base_type = array_info.get('BaseType', -1)
@@ -294,13 +296,12 @@ class InstructionNode(CDFGNode):
                     dims.pop()
             elif num_dims < MAX_ARRAY_DIM: # Pad with 1s
                 dims.extend([1] * (MAX_ARRAY_DIM - num_dims))
+            self.label = self.name
         else:
             base_type = -1
             self.total_size = 1
             dims = [1] * MAX_ARRAY_DIM
-
-        self.opcode = element.findtext('opcode', '')
-        self.label = 'gep' if self.opcode == 'getelementptr' else self.opcode
+            self.label = 'gep' if self.opcode == 'getelementptr' else self.opcode
 
         self.line_number = findint(element, 'Value/Obj/lineNumber', 0)
 
@@ -341,12 +342,12 @@ class InstructionNode(CDFGNode):
     def as_dict(self):
         attributes = {}
         for key, value in self.attrs.items():
-            if isinstance(value, list):
+            if isinstance(value, list) and key != 'dims':
                 attributes[key] = value.index(1) if 1 in value else -1
             else:
                 attributes[key] = value
         return {
-            'name': self.label, 
+            'name': self.name, 
             'rtl_name': self.rtl_name,
             'function': self.function,
             'opcode': self.opcode,

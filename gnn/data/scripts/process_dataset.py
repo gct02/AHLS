@@ -106,11 +106,12 @@ def main(args: Dict[str, Any]):
             with open(sol_out_dir / "metrics.json", "w") as f:
                 json.dump(metrics, f, indent=2)
 
-            data = build_hls_graph_data(
+            processed_kernel_info, data = build_hls_graph_data(
                 kernel_info, dct_tcl_path,
                 solution_log_path=hls_log_path,
             )
             torch.save(data, sol_out_dir / "graph.pt")
+            processed_kernel_info.save_as_json(sol_out_dir / "kernel_info.json")
 
             count += 1
             if count >= max_instances:

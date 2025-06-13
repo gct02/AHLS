@@ -271,7 +271,7 @@ def extract_forbidden_dcts_from_log(hls_log_path):
     return forbidden_dcts
 
 
-def extract_ignored_pipelines_from_log(hls_log_path):
+def get_ignored_pipeline_indices(hls_log_path):
     ignored_pipeline_code = '[XFORM 203-505]'
 
     with open(hls_log_path, "r") as f:
@@ -287,7 +287,8 @@ def extract_ignored_pipelines_from_log(hls_log_path):
                 tcl_line_number = int(tcl_line_number)
             except ValueError:
                 continue
-            ignored_pipelines.add(tcl_line_number)
+            if tcl_line_number > 0:
+                ignored_pipelines.add(tcl_line_number - 1) # Convert to 0-based index
 
     return ignored_pipelines
 
