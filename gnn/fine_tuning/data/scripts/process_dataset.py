@@ -31,14 +31,20 @@ def main(args: Dict[str, str]):
             or not sol.name.startswith("solution")
             or sol.name == "solution0"):
             continue
+
+        hls_log_path = sol / f"{sol.name}.log"
+        if not hls_log_path.exists():
+            print(f"Log file {hls_log_path} does not exist for {sol.name}")
+            continue
         
         dct_tcl_path = sol / "directives.tcl"
         if not dct_tcl_path.exists():
-            hls_data_json_path = sol / "hls_data.json"
+            hls_data_json_path = sol / f"{sol.name}.json"
             if not hls_data_json_path.exists():
-                raise FileNotFoundError(
-                    f"Neither directives.tcl nor hls_data.json found in {sol}"
+                print(
+                    f"Neither directives.tcl nor {sol.name}.json found in {sol}"
                 )
+                continue
             export_directives_as_tcl(hls_data_json_path, dct_tcl_path)
 
         sol_out_dir = raw_output_dir / sol.stem
@@ -48,7 +54,10 @@ def main(args: Dict[str, str]):
         with open(sol_out_dir / "metrics.json", "w") as f:
             json.dump(metrics, f, indent=2)
 
-        data = build_hls_graph_data(kernel_info, dct_tcl_path)
+        data = build_hls_graph_data(
+            kernel_info, dct_tcl_path,
+            solution_log_path=hls_log_path
+        )
         torch.save(data, sol_out_dir / "graph.pt")
 
 

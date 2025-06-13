@@ -10,8 +10,7 @@ from torch_geometric.loader import DataLoader
 
 from gnn.models import HLSQoREstimator
 from gnn.data.dataset import HLSDataset
-from gnn.analysis import plot_prediction_bars
-from gnn.utils import percentage_diff
+from gnn.analysis import plot_prediction_bars, percentage_diff
 
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -28,25 +27,40 @@ def evaluate(
     with torch.no_grad():
         for batch in loader:
             batch = batch.to(DEVICE)
-            pred = model(batch)
-            preds.append(pred.item())
-            targets.append(batch.y.item())
+            pred = model(
+                batch.x_dict,
+                batch.edge_index_dict,
+                batch.batch_dict,
+                batch.y_base
+            )
+            preds.append(pred)
+            targets.append(batch.y)
+
+    preds = torch.cat(preds)
+    targets = torch.cat(targets)
 
     if exp_adjust:
-        preds, targets = np.exp(preds), np.exp(targets)
+        preds = preds.expm1()
+        targets = targets.expm1()
 
     mre = percentage_diff(preds, targets).mean().item()
 
-    for p, t in zip(preds, targets):
+    for p, t in zip(preds.tolist(), targets.tolist()):
         print(f"Target: {t}; Prediction: {p}")
     print(f"\nMRE: {mre:.2f}%")
     
-    return preds
+    return preds.tolist()
 
 
 def load_model(model_path: str, model_args_path: str) -> nn.Module:
     with open(model_args_path, 'rb') as f:
         model_args = pickle.load(f)
+
+    metadata = model_args["metadata"]
+    node_types = metadata[0]
+    edge_types = metadata[1]
+    edge_type_tuples = [(et[0], et[1], et[2]) for et in edge_types]
+    model_args["metadata"] = (node_types, edge_type_tuples)
 
     model = HLSQoREstimator(**model_args)
     model.load_state_dict(torch.load(model_path, map_location=DEVICE))
@@ -78,7 +92,7 @@ def prepare_data_loader(
         benchmarks=benchmarks, 
         log_scale=log_scale
     )
-    loader = DataLoader(dataset, batch_size=1, shuffle=False)
+    loader = DataLoader(dataset, batch_size=16, shuffle=False)
 
     return loader
 
@@ -96,7 +110,7 @@ def main(args):
     loader = prepare_data_loader(
         dataset_dir, 
         target_metric, 
-        [benchmark], 
+        benchmark, 
         log_scale=log_scale,
         feature_ranges_path=feature_ranges_path
     )
@@ -136,7 +150,7 @@ if __name__ == "__main__":
                         help="Path to dataset directory")
     parser.add_argument("-m", "--model_path", type=str, required=True, 
                         help="Path to the trained model")
-    parser.add_argument("-a", "--model_args_path", type=str, required=True,
+    parser.add_argument("-ma", "--model_args_path", type=str, required=True,
                         help="Path to model arguments")
     parser.add_argument("-b", "--benchmark", type=str, required=True, 
                         help="Benchmark name for evaluation")

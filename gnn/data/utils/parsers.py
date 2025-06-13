@@ -20,7 +20,7 @@ AVAILABLE_RESOURCES = {
 
 POWER_METRICS = ['total_power', 'dynamic_power', 'static_power']
 TIMING_METRICS = ['wns', 'tns', 'target_clk', 'achieved_clk']
-UTILIZATION_METRICS = ['lut', 'ff', 'dsp', 'bram']
+AREA_METRICS = ['lut', 'ff', 'dsp', 'bram']
 
 
 def extract_timing_summary(solution_dir, filtered=False) -> Dict[str, float]:
@@ -60,7 +60,7 @@ def extract_utilization(solution_dir, filtered=False) -> Dict[str, int]:
         if rpt_path.is_file():
             return _parse_utilization_report_txt(rpt_path)
         
-        return {m: -1 for m in UTILIZATION_METRICS}
+        return {m: -1 for m in AREA_METRICS}
 
     rpt_path = Path(solution_dir) / 'impl/report/verilog/export_impl.xml'
     if rpt_path.is_file():
@@ -74,7 +74,7 @@ def extract_utilization(solution_dir, filtered=False) -> Dict[str, int]:
     if rpt_path.is_file():
         return _parse_utilization_report_txt(rpt_path)
     
-    return {m: -1 for m in UTILIZATION_METRICS}
+    return {m: -1 for m in AREA_METRICS}
 
 
 def extract_cc_report(solution_dir, filtered=False) -> Dict[str, int]:
@@ -242,6 +242,56 @@ def extract_auto_dcts_from_log(hls_log_path):
     return auto_dcts 
 
 
+def extract_forbidden_dcts_from_log(hls_log_path):
+    forbidden_flatten_code = '[HLS 200-960]'
+    forbidden_merge_code = '[HLS 200-946]'
+
+    with open(hls_log_path, "r") as f:
+        log_lines = f.readlines()
+
+    forbidden_dcts = {
+        "loop_flatten": set(),
+        "loop_merge": set()
+    }
+
+    for line in log_lines:
+        if forbidden_flatten_code in line:
+            if 'Cannot flatten loop \'' not in line or 'in function \'' not in line:
+                continue
+            loop = line.split('Cannot flatten loop \'')[1].split('\'')[0].strip()
+            function = line.split('in function \'')[1].split('\'')[0].strip()
+            forbidden_dcts['loop_flatten'].add((loop, function)) 
+
+        elif forbidden_merge_code in line:
+            if 'Cannot merge loops in region \'':
+                continue
+            region = line.split('Cannot merge loops in region \'')[1].split('\'')[0].strip()
+            forbidden_dcts['loop_merge'].add(region)
+
+    return forbidden_dcts
+
+
+def extract_ignored_pipelines_from_log(hls_log_path):
+    ignored_pipeline_code = '[XFORM 203-505]'
+
+    with open(hls_log_path, "r") as f:
+        log_lines = f.readlines()
+
+    ignored_pipelines = set()
+
+    for line in log_lines:
+        if ignored_pipeline_code in line:
+            line = line.split('WARNING: [XFORM 203-505] ')[1]
+            tcl_line_number = line.split('(')[1].split(')')[0].split(':')[1].strip()
+            try:
+                tcl_line_number = int(tcl_line_number)
+            except ValueError:
+                continue
+            ignored_pipelines.add(tcl_line_number)
+
+    return ignored_pipelines
+
+
 def export_directives_as_tcl(
     solution_data_json_path: Union[str, Path],
     output_path: Union[str, Path]
@@ -254,12 +304,19 @@ def export_directives_as_tcl(
         f.write(directives)
 
 
-def parse_tcl_directives_file(tcl_path) -> List[Tuple[str, Dict[str, str]]]:
+def parse_tcl_directives_file(
+    tcl_path,
+    exclude_indices: List[int] = None
+) -> List[Tuple[str, Dict[str, str]]]:
     if not os.path.exists(tcl_path):
         raise ValueError(f"Directives file not found: {tcl_path}")
     with open(tcl_path, "r") as f:
         lines = f.readlines()
-    directives = [parse_directive_cmd(l) for l in lines]
+    directives = []
+    for i, line in enumerate(lines):
+        if exclude_indices and i in exclude_indices:
+            continue
+        directives.append(parse_directive_cmd(line))
     return directives
 
 
@@ -277,7 +334,7 @@ def compute_snru(util_report: Dict[str, int]) -> float:
         util_report[res] / total
         for res, total in AVAILABLE_RESOURCES.items()
         if res in util_report and total > 0
-    ])
+    ]) * 100.0
 
 
 def _parse_utilization_report_xml(rpt_path):

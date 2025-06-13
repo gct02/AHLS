@@ -144,11 +144,12 @@ class RegionNode(Node):
             'ii': ii, 
 
             'pipeline': 0,
+            'pipelined_parent': 0,
             'unroll': 0,
             'unroll_factor': 0,
             'loop_merge': 0,
             'loop_flatten': 0,
-            'dataflow': 0, 
+            'dataflow': 0,
             'inline': 0,
         }
 

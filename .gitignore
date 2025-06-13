@@ -68,3 +68,7 @@ vitis_hls.log
 
 process_dataset.sh
 test_model.sh
+
+detect_broken_designs.py
+detect_redundant_designs.py
+detect_outliers.py

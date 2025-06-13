@@ -1,5 +1,6 @@
 from typing import List, Optional, Union
 
+import torch
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -7,7 +8,15 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 from torch import Tensor
 
-from gnn.utils import percentage_diff
+
+def percentage_diff(pred, target):
+    pred, target = map(torch.as_tensor, (pred, target))
+    avg = (torch.abs(pred) + torch.abs(target)) / 2
+    return torch.where(
+        target == 0, 
+        torch.abs(pred - target) / avg, 
+        torch.abs(pred - target) / torch.abs(target)
+    ) * 100
 
 
 def plot_learning_curves(

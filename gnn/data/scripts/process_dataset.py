@@ -63,9 +63,6 @@ def main(args: Dict[str, Any]):
         bench_out_dir = output_dir / bench.name
         bench_out_dir.mkdir(parents=True, exist_ok=True)
 
-        base_sol_out_dir = bench_out_dir / "solution0"
-        base_sol_out_dir.mkdir(parents=True, exist_ok=True)
-
         kernel_info = kernel_info_dict.get(bench.name)
         if not kernel_info:
             print(f"Could not parse kernel info for {bench.name}")
@@ -80,36 +77,38 @@ def main(args: Dict[str, Any]):
         with open(bench_out_dir / "base_metrics.json", "w") as f:
             json.dump(base_metrics, f, indent=2)
 
-        with open(base_sol_out_dir / "metrics.json", "w") as f:
-            json.dump(base_metrics, f, indent=2)
-
         base_data = to_hetero_data(kernel_info)
         torch.save(base_data, bench_out_dir / "base_graph.pt")
-        torch.save(base_data, base_sol_out_dir / "graph.pt")
 
         count = 0
         for sol in bench.iterdir():
-            if not sol.is_dir() or sol.stem == "solution0":
+            if not sol.is_dir():
                 continue
 
             hls_data_json_path = sol / f"{sol.stem}_data.json"
             if not hls_data_json_path.exists():
                 print(f"Directives JSON file not found for {sol}")
                 continue
+
+            hls_log_path = sol / f"{sol.stem}.log"
+            if not hls_log_path.exists():
+                print(f"Solution log file not found for {sol}")
+                continue
             
             dct_tcl_path = sol / f"directives.tcl"
-            export_directives_as_tcl(hls_data_json_path, dct_tcl_path)
+            if not dct_tcl_path.exists():
+                export_directives_as_tcl(hls_data_json_path, dct_tcl_path)
 
             sol_out_dir = bench_out_dir / sol.stem
             sol_out_dir.mkdir(parents=True, exist_ok=True)
 
-            metrics = extract_metrics(sol, filtered=filtered)
+            metrics = extract_metrics(sol, filtered=filtered and sol.stem != "solution0")
             with open(sol_out_dir / "metrics.json", "w") as f:
                 json.dump(metrics, f, indent=2)
 
             data = build_hls_graph_data(
                 kernel_info, dct_tcl_path,
-                solution_log_path=None
+                solution_log_path=hls_log_path,
             )
             torch.save(data, sol_out_dir / "graph.pt")
 

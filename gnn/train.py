@@ -16,10 +16,10 @@ from torch.optim import Optimizer
 from torch.optim.lr_scheduler import LRScheduler
 
 from torch_geometric.loader import DataLoader
+from torch_geometric.nn import LayerNorm
 
 from gnn.models import HLSQoREstimator
 from gnn.data.dataset import HLSDataset
-from gnn.utils import percentage_diff
 from gnn.data.graph import (
     METADATA,
     NODE_FEATURE_DIMS
@@ -27,7 +27,8 @@ from gnn.data.graph import (
 from gnn.analysis import (
     plot_prediction_bars,
     plot_prediction_scatter,
-    plot_learning_curves
+    plot_learning_curves,
+    percentage_diff
 )
 
 
@@ -77,7 +78,7 @@ def evaluate(
     mre = percentage_diff(preds, targets).mean().item()
 
     if mre < evaluate.min_mre:
-        if output_dir and epoch >= 50:
+        if output_dir and epoch >= 20:
             model_path = f"{output_dir}/best_model.pt"
             torch.save(obj=model.state_dict(), f=model_path)
             indices = [
@@ -265,7 +266,7 @@ def main(args: Dict[str, Any]):
 
     grouped_params = get_optimizer_param_groups(
         model=model,
-        weight_decay_val=5e-4
+        weight_decay_val=1e-4
     )
     optimizer = torch.optim.AdamW(
         grouped_params,
@@ -364,7 +365,7 @@ def get_optimizer_param_groups(model, weight_decay_val):
 
     # Find all modules that are PReLU or LayerNorm and add their parameters to the exclusion set
     for module_name, module in model.named_modules():
-        if isinstance(module, (torch.nn.PReLU, torch.nn.LayerNorm)):
+        if isinstance(module, (nn.PReLU, nn.LayerNorm, LayerNorm)):
             for param_name, _ in module.named_parameters():
                 # Add the full parameter name like "gnn.convs.0.norm_dict.instr.weight"
                 no_decay_param_names.add(f"{module_name}.{param_name}")
@@ -449,10 +450,10 @@ def parse_arguments():
                         help='The size of the training batch (default: 32).')
     parser.add_argument('-l', '--loss', type=str, default='mse', choices=['mse', 'l1', 'huber'],
                         help='The loss function to use for training (default: mse).')
-    parser.add_argument('-lr', '--learning-rate', type=float, default=5e-4,
-                        help='The learning rate for the optimizer (default: 5e-4).')
-    parser.add_argument('-bs', '--betas', type=float, nargs=2, default=(0.9, 0.95),
-                        help='The betas for the Adam optimizer (default: 0.9, 0.95).')
+    parser.add_argument('-lr', '--learning-rate', type=float, default=3e-4,
+                        help='The learning rate for the optimizer (default: 3e-4).')
+    parser.add_argument('-bs', '--betas', type=float, nargs=2, default=(0.9, 0.999),
+                        help='The betas for the Adam optimizer (default: 0.9, 0.999).')
     parser.add_argument('-mn', '--max-norm', type=float, default=10.0,
                         help='Maximum norm for gradient clipping (default: 10.0).')
     parser.add_argument('-ls', '--log-scale', action='store_true',
