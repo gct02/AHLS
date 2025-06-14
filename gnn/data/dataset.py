@@ -9,23 +9,46 @@ from torch import Tensor
 from torch_geometric.data import Dataset, HeteroData
 from torch_geometric.typing import NodeType
 
+from gnn.data.utils.parsers import METRICS
+
+
+TARGET_AREA_METRICS = ['lut', 'ff', 'dsp', 'bram']
+TARGET_TIMING_METRICS = ['achieved_clk', 'cc']
+TARGET_POWER_METRICS = ['dynamic_power', 'static_power']
+TARGET_METRICS = {
+    'area': TARGET_AREA_METRICS,
+    'timing': TARGET_TIMING_METRICS,
+    'power': TARGET_POWER_METRICS
+}
+
+TARGET_SIZE_PER_TYPE = {
+    key: len(value) for key, value in TARGET_METRICS.items()
+}
+
 
 class HLSDataset(Dataset):
     def __init__(
         self, 
         root: str, 
-        metric: str,
-        mode: str = "train",
+        target_metric: str,
         scale_features: bool = False,
         feature_ranges: Optional[Dict[NodeType, Tuple[Tensor, Tensor]]] = None,
         benchmarks: Optional[Union[str, List[str]]] = None,
         log_scale: bool = False,
+        mode: str = "train",
         **kwargs
     ):
+        target_metric = target_metric.lower()
+        if target_metric not in TARGET_METRICS:
+            raise ValueError(
+                f"Invalid target metric '{target_metric}'. "
+                f"Available options are: {list(TARGET_METRICS.keys())}"
+            )
+        self._metric = TARGET_METRICS[target_metric]
+        
         self._true_root = root
         self._full_dir = os.path.join(root, "full")
 
-        self.metric = metric.lower()
         self.log_transform = log_scale
         self.root = os.path.join(root, mode)
 
@@ -51,27 +74,27 @@ class HLSDataset(Dataset):
             with open(base_metrics_path, 'r') as f:
                 base_metrics = json.load(f)
 
-            if not base_metrics:
-                print(f"Skipping {benchmark} (base metrics file is empty)")
+            if not base_metrics or not _all_metrics_present(base_metrics):
+                print(f"Skipping {benchmark} (missing metrics in base solution)")
                 continue
 
-            base_target = float(base_metrics.get(self.metric, -1.0))
-            if base_target < 0:
-                print(f"Skipping {benchmark} (base target value not found)")
-                continue
+            base_target = []
+            for metric in self._metric:
+                base_target.append(float(base_metrics[metric]))
+            base_target = torch.tensor(base_target).unsqueeze(0)
+            if self.log_transform:
+                base_target = torch.log1p(base_target)
             
-            self.benchmarks.append(benchmark)
             self.base_targets[benchmark] = base_target
+            self.benchmarks.append(benchmark)
 
+        self.feature_ranges = None
         if scale_features:
             if not feature_ranges:
-                self.feature_ranges = _compute_feature_ranges(
-                    self._full_dir, self.benchmarks, metric=self.metric
+                feature_ranges = _compute_feature_ranges(
+                    self._full_dir, self.benchmarks
                 )
-            else:
-                self.feature_ranges = feature_ranges
-        else:
-            self.feature_ranges = None
+            self.feature_ranges = feature_ranges
 
         self._raw_file_names = []
         self._processed_file_names = []
@@ -139,26 +162,23 @@ class HLSDataset(Dataset):
                 with open(metrics_path, 'r') as f:
                     metrics = json.load(f)
 
-                if not metrics:
-                    print(f"Skipping {idx} (metrics file is empty)")
+                if not metrics or not _all_metrics_present(metrics):
+                    print(f"Skipping {idx} (missing metrics)")
                     continue
 
-                target = float(metrics.get(self.metric, -1.0))
-                if target < 0:
-                    print(f"Skipping {idx} (target value not found)")
-                    continue
+                target = []
+                for metric in self._metric:
+                    target.append(float(metrics[metric]))
+                target = torch.tensor(target).unsqueeze(0)
+                if self.log_transform:
+                    target = torch.log1p(target)
 
                 data = torch.load(graph_path)
-
-                data.y = torch.tensor([target])
-                data.y_base = torch.tensor([self.base_targets[benchmark]]).unsqueeze(0)
-                if self.log_transform:
-                    data.y = torch.log1p(data.y)
-                    data.y_base = torch.log1p(data.y_base)
+                data.y = target
+                data.y_base = self.base_targets[benchmark]
 
                 data.solution_index = idx
                 data.benchmark = benchmark
-
                 if self.feature_ranges is not None:
                     data = self._scale_features(data)
 
@@ -190,7 +210,7 @@ class HLSDataset(Dataset):
 def _compute_feature_ranges(
     dataset_dir: str,
     benchmarks: Optional[Union[str, List[str]]] = None,
-    metric: str = "snru"
+    # metric: str = "snru"
 ) -> Dict[NodeType, Tuple[Tensor, Tensor]]:
     if benchmarks is None:
         benchmarks = sorted(os.listdir(dataset_dir))
@@ -222,10 +242,8 @@ def _compute_feature_ranges(
             with open(metrics_path, 'r') as f:
                 metrics = json.load(f)
 
-            target = float(metrics.get(metric, -1.0)) if metrics else -1.0
-            if target < 0:
-                print(f"Skipping {sol} on feature range computing "
-                      f"(missing or invalid {metric} value)")
+            if not metrics or not _all_metrics_present(metrics):
+                print(f"Skipping {sol} (missing metrics)")
                 continue
 
             data = torch.load(graph_path)
@@ -245,3 +263,10 @@ def _compute_feature_ranges(
                     )
 
     return feat_ranges
+
+
+def _all_metrics_present(metrics: Dict[str, float]) -> bool:
+    for metric in METRICS:
+        if metric not in metrics or float(metrics[metric]) < -1e-6:
+            return False
+    return True

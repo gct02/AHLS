@@ -325,12 +325,12 @@ class InstructionNode(CDFGNode):
             for edge in element.find('oprand_edges').findall('item')
         ]
 
-        if resource_estimates is not None:
-            for res in RESOURCES:
-                self.attrs[f"{res}_estimate"] = resource_estimates.get(res, 0)
-        else:
-            for res in RESOURCES:
-                self.attrs[f"{res}_estimate"] = 0
+        # if resource_estimates is not None:
+        #     for res in RESOURCES:
+        #         self.attrs[f"{res}_estimate"] = resource_estimates.get(res, 0)
+        # else:
+        #     for res in RESOURCES:
+        #         self.attrs[f"{res}_estimate"] = 0
 
         if utilization is not None:
             for res in RESOURCES:
@@ -556,14 +556,14 @@ class CDFG:
             node.attrs = {'num_instrs': len(node.instrs), 'delay': 0.0}
             for res in RESOURCES:
                 node.attrs[res] = 0
-                node.attrs[f'{res}_estimate'] = 0
+                # node.attrs[f'{res}_estimate'] = 0
 
             for instr_id in node.instrs:
                 instr_node = self.nodes['instr'][instr_id - instr_offset]
                 node.attrs['delay'] += instr_node.attrs['delay']
                 for res in RESOURCES:
                     node.attrs[res] += instr_node.attrs[res]
-                    node.attrs[f'{res}_estimate'] += instr_node.attrs[f'{res}_estimate']
+                    # node.attrs[f'{res}_estimate'] += instr_node.attrs[f'{res}_estimate']
 
             self.nodes['block'].append(node)
 

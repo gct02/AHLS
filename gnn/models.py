@@ -13,6 +13,8 @@ from torch_geometric.nn import (
 )
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 
+from gnn.data.dataset import TARGET_SIZE_PER_TYPE
+
 
 class HGTJK(nn.Module):
     def __init__(
@@ -47,16 +49,14 @@ class HGTJK(nn.Module):
                 metadata=metadata,
                 heads=heads[i]
             )
+            norm_dict = nn.ModuleDict({
+                nt: LayerNorm(hidden_channels[i])
+                for nt in metadata[0]
+            })
             self.convs.append(conv)
+            self.norm_dicts.append(norm_dict)
 
-            if i != self.num_layers - 1:
-                norm_dict = nn.ModuleDict({
-                    nt: LayerNorm(hidden_channels[i])
-                    for nt in metadata[0]
-                })
-                self.norm_dicts.append(norm_dict)
-
-        self.dropout = nn.Dropout(dropout)
+        # self.dropout = nn.Dropout(dropout)
 
         self.jk_dict = nn.ModuleDict({
             nt: JumpingKnowledge(mode='cat')
@@ -64,7 +64,8 @@ class HGTJK(nn.Module):
         })
 
         self.out_lin = HeteroDictLinear(
-            sum(hidden_channels), out_channels,
+            sum(hidden_channels[-3:]),
+            out_channels,
             types=metadata[0]
         )
 
@@ -92,17 +93,17 @@ class HGTJK(nn.Module):
 
         for i in range(self.num_layers):
             x_dict = self.convs[i](x_dict, edge_index_dict)
-            if i != self.num_layers - 1:
-                for nt, x in x_dict.items():
-                    x = self.dropout(x)
-                    x = self.norm_dicts[i][nt](
-                        x, batch_dict[nt],
-                        batch_size=batch_size
-                    )
-                    x_dict[nt] = x
-
             for nt, x in x_dict.items():
-                xs_dict[nt].append(x)
+                # x = self.dropout(x)
+                x = self.norm_dicts[i][nt](
+                    x, batch_dict[nt],
+                    batch_size=batch_size
+                )
+                x_dict[nt] = x
+
+            if i >= self.num_layers - 3:
+                for nt, x in x_dict.items():
+                    xs_dict[nt].append(x)
 
         x_dict = {
             nt: self.jk_dict[nt](xs)
@@ -118,12 +119,13 @@ class HLSQoREstimator(nn.Module):
     r"""Model for estimating HLS QoR using a heterogeneous graph neural network.
 
     Args:
+        target_metric (str): The target metric to learn. Should be one of the metrics
+            defined in the dataset ("area", "timing" or "power").
         in_channels (Union[int, Dict[NodeType, int]]): Input feature dimension or 
             a dictionary mapping node types to their input feature dimensions.
         hidden_channels (Union[int, List[int]]): Hidden feature dimension for the 
             GNN layers.
         num_layers (int): Number of GNN layers.
-        out_channels (int): Output feature dimension.
         metadata (Metadata): Metadata containing node and edge types.
         heads (Union[int, List[int]]): Number of attention heads for GNN (HGTConv) 
             layers. Default is 1.
@@ -132,10 +134,10 @@ class HLSQoREstimator(nn.Module):
     """
     def __init__(
         self,
+        target_metric: str,
         in_channels: Union[int, Dict[NodeType, int]],
         hidden_channels: Union[int, List[int]],
         num_layers: int,
-        out_channels: int,
         metadata: Metadata,
         heads: Union[int, List[int]] = 1,
         dropout_gnn: float = 0.0,
@@ -167,7 +169,7 @@ class HLSQoREstimator(nn.Module):
             in_channels=hidden_channels[0],
             hidden_channels=hidden_channels,
             num_layers=num_layers,
-            out_channels=128,
+            out_channels=96,
             metadata=metadata,
             heads=heads,
             dropout=dropout_gnn
@@ -175,19 +177,17 @@ class HLSQoREstimator(nn.Module):
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
-            Linear(1, 16), 
+            Linear(TARGET_SIZE_PER_TYPE[target_metric], 16), 
             nn.PReLU(16),
             Linear(16, 16)
         )
 
         self.mlp = nn.Sequential(
-            Linear(len(self.node_types) * 128 + 16, 256), 
-            nn.LayerNorm(256), nn.PReLU(256), nn.Dropout(dropout_mlp),
-            Linear(256, 128),  
-            nn.LayerNorm(128), nn.PReLU(128), nn.Dropout(dropout_mlp),
+            Linear(len(self.node_types) * 96 + 16, 128), 
+            nn.LayerNorm(128), nn.GELU(), nn.Dropout(dropout_mlp),
             Linear(128, 64),
-            nn.LayerNorm(64), nn.PReLU(64), nn.Dropout(dropout_mlp),
-            Linear(64, out_channels)
+            nn.LayerNorm(64), nn.GELU(), nn.Dropout(dropout_mlp),
+            Linear(64, TARGET_SIZE_PER_TYPE[target_metric])
         )
         self.reset_parameters()
 

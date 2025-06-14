@@ -183,3 +183,39 @@ def plot_prediction_bars(
     plt.tight_layout()
     plt.savefig(output_path, bbox_inches='tight', dpi=180)
     plt.close()
+
+
+def compute_snru(util_resources: Tensor, avail_resources: Tensor) -> Tensor:
+    if util_resources.dim() == 1:
+        util_resources = util_resources.unsqueeze(0)
+    if avail_resources.dim() == 1:
+        avail_resources = avail_resources.unsqueeze(0)
+    if util_resources.size(1) != avail_resources.size(1):
+        raise ValueError(
+            f"Expected util_resources and avail_resources with same number of columns, "
+            f"got {util_resources.size(1)} and {avail_resources.size(1)}"
+        )
+    snru = (torch.sum(util_resources / avail_resources, dim=1)
+            / avail_resources.size(1))
+    return snru * 100  # Convert to percentage
+
+
+def compute_time(timing_metrics: Tensor) -> Tensor:
+    if timing_metrics.dim() == 1:
+        timing_metrics = timing_metrics.unsqueeze(0)
+    if timing_metrics.size(1) != 2:
+        raise ValueError(
+            f"Expected timing metrics with 2 values, got {timing_metrics.size(1)}"
+        )
+    achieved_clk, cc = timing_metrics[:, 0], timing_metrics[:, 1]
+    return achieved_clk * cc
+
+
+def compute_power(power_metrics: Tensor) -> Tensor:
+    if power_metrics.dim() == 1:
+        power_metrics = power_metrics.unsqueeze(0)
+    if power_metrics.size(1) != 2:
+        raise ValueError(
+            f"Expected power metrics with 2 values, got {power_metrics.size(1)}"
+        )
+    return torch.sum(power_metrics, dim=1)

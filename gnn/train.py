@@ -19,7 +19,10 @@ from torch_geometric.loader import DataLoader
 from torch_geometric.nn import LayerNorm
 
 from gnn.models import HLSQoREstimator
-from gnn.data.dataset import HLSDataset
+from gnn.data.dataset import (
+    HLSDataset,
+    TARGET_METRICS
+)
 from gnn.data.graph import (
     METADATA,
     NODE_FEATURE_DIMS
@@ -28,7 +31,13 @@ from gnn.analysis import (
     plot_prediction_bars,
     plot_prediction_scatter,
     plot_learning_curves,
-    percentage_diff
+    percentage_diff,
+    compute_snru,
+    compute_time,
+    compute_power
+)
+from gnn.data.utils.parsers import (
+    AVAILABLE_RESOURCES
 )
 
 
@@ -76,20 +85,17 @@ def evaluate(
         preds = torch.expm1(preds)
 
     mre = percentage_diff(preds, targets).mean().item()
-
     if mre < evaluate.min_mre:
-        if output_dir and epoch >= 20:
+        if output_dir: # Save model only after 20 epochs
             model_path = f"{output_dir}/best_model.pt"
             torch.save(obj=model.state_dict(), f=model_path)
-            indices = [
-                data.solution_index 
-                for data in loader.dataset
-            ]
+            indices = [data.solution_index for data in loader.dataset]
             with open(f"{output_dir}/best_predictions.csv", "w") as f:
-                f.write(f"Epoch: {epoch + 1} - MRE: {mre:.2f}%\n")
-                for i, t, p in zip(indices, targets.tolist(), preds.tolist()):
-                    f.write(f"{i},{t},{p}\n")
-
+                f.write(f"index,target,prediction\n")
+                for i, index in enumerate(indices):
+                    for target, pred in zip(targets[i, :].tolist(), preds[i, :].tolist()):
+                        f.write(f"{index},{target},{pred}\n")
+                    
         evaluate.min_mre = mre
         evaluate.best_epoch = epoch
         evaluate.best_preds = preds
@@ -109,8 +115,8 @@ def train_model(
     train_loader: DataLoader,
     test_loader: DataLoader,
     epochs: int,
+    max_norm: float = 5.0,
     scheduler: Optional[LRScheduler] = None,
-    max_norm: Optional[float] = None,
     exp_adjust: bool = False,
     output_dir: Optional[str] = None
 ) -> Tuple[List[float], List[float]]:
@@ -121,10 +127,10 @@ def train_model(
                 
         model.train()
         for data in train_loader:
-            torch.cuda.empty_cache()
-            
+            # torch.cuda.empty_cache()
             optimizer.zero_grad()
             data = data.to(DEVICE)
+            
             pred = model(
                 data.x_dict, 
                 data.edge_index_dict, 
@@ -134,17 +140,17 @@ def train_model(
             loss = loss_fn(pred, data.y)
             loss.backward()
 
-            if max_norm is not None:
-                clip_grad_norm_(
-                    model.parameters(), 
-                    max_norm=max_norm
-                )
+            clip_grad_norm_(
+                model.parameters(), 
+                max_norm=max_norm
+            )
             optimizer.step()
-            if scheduler is not None:
-                scheduler.step()
 
             targets.append(data.y)
             preds.append(pred)
+        
+        if scheduler is not None:
+            scheduler.step()
 
         targets = torch.cat(targets, dim=0)
         preds = torch.cat(preds, dim=0)
@@ -228,14 +234,14 @@ def main(args: Dict[str, Any]):
         json.dump(args, f, indent=2)
 
     model_args = {
+        'target_metric': target_metric,
         'in_channels': NODE_FEATURE_DIMS,
         'hidden_channels': [256, 192, 128, 64],
         'num_layers': 4,
-        'out_channels': 1,
         'metadata': METADATA,
-        'heads': [8, 8, 4, 4],
+        'heads': [4, 4, 4, 4],
         'dropout_gnn': 0.0,
-        'dropout_mlp': 0.2
+        'dropout_mlp': 0.1
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
 
@@ -274,12 +280,14 @@ def main(args: Dict[str, Any]):
         betas=betas,
     )
 
-    total_steps = epochs * len(train_loader)
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-        optimizer, 
-        T_0=total_steps // 10, 
-        T_mult=2, 
-        eta_min=1e-5
+    warmup = torch.optim.lr_scheduler.LinearLR(
+        optimizer, start_factor=0.1, end_factor=1.0, total_iters=10
+    )
+    cosine = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
+        optimizer, T_0=100, T_mult=1, eta_min=1e-6
+    )
+    scheduler = torch.optim.lr_scheduler.SequentialLR(
+        optimizer, schedulers=[warmup, cosine], milestones=[10]
     )
 
     train_errors, test_errors = train_model(
@@ -295,13 +303,38 @@ def main(args: Dict[str, Any]):
     torch.save(obj=evaluate.best_model, f=model_path)
 
     indices = [data.solution_index for data in test_loader.dataset]
-    targets = [data.y.item() for data in test_loader.dataset]
-    preds = evaluate.best_preds.tolist()
+
+    avail_resources = torch.tensor(
+        [AVAILABLE_RESOURCES[r] for r in TARGET_METRICS[target_metric]],
+        dtype=torch.float32,
+        device=DEVICE
+    )
+
+    targets = []
+    for data in test_loader:
+        target = data.y.to(DEVICE)
+        if target_metric == 'area':
+            targets.extend(compute_snru(target, avail_resources).tolist())
+        elif target_metric == 'timing':
+            targets.extend(compute_time(target).tolist())
+        else:
+            targets.extend(compute_power(target).tolist())
+
+    preds = []
+    best_preds = evaluate.best_preds.to(DEVICE)
+    for i in range(best_preds.size(0)):
+        pred = evaluate.best_preds[i]
+        if target_metric == 'area':
+            preds.extend(compute_snru(pred, avail_resources).tolist())
+        elif target_metric == 'timing':
+            preds.extend(compute_time(pred).tolist())
+        else:
+            preds.extend(compute_power(pred).tolist())
 
     with open(f"{model_info_dir}/predictions.csv", 'w') as f:
         f.write("Index,Target,Prediction\n")
-        for idx, target, pred in zip(indices, targets, preds):
-            f.write(f"{idx},{target},{pred}\n")
+        for index, target, pred in zip(indices, targets, preds):
+            f.write(f"{index},{target},{pred}\n")
 
     plot_prediction_bars(
         targets=targets,
@@ -363,11 +396,13 @@ def get_optimizer_param_groups(model, weight_decay_val):
     
     no_decay_param_names = set()
 
-    # Find all modules that are PReLU or LayerNorm and add their parameters to the exclusion set
+    # Find all modules that are PReLU or LayerNorm and add 
+    # their parameters to the exclusion set
     for module_name, module in model.named_modules():
         if isinstance(module, (nn.PReLU, nn.LayerNorm, LayerNorm)):
             for param_name, _ in module.named_parameters():
-                # Add the full parameter name like "gnn.convs.0.norm_dict.instr.weight"
+                # Add the full parameter name like 
+                # "gnn.convs.0.norm_dict.instr.weight"
                 no_decay_param_names.add(f"{module_name}.{param_name}")
 
     # Also add all bias terms to the exclusion set
@@ -408,26 +443,34 @@ def prepare_data_loaders(
 ) -> Tuple[DataLoader, DataLoader, Dict[str, Tuple[Tensor, Tensor]]]:
     train_dataset = HLSDataset(
         root=dataset_dir, 
-        metric=target_metric, 
-        mode="train", 
+        target_metric=target_metric, 
         scale_features=True, 
         benchmarks=train_benches, 
-        log_scale=log_scale
+        log_scale=log_scale,
+        mode="train"
     )
     test_dataset = HLSDataset(
         root=dataset_dir, 
-        metric=target_metric, 
-        mode="test", 
+        target_metric=target_metric,
         scale_features=True,
         feature_ranges=train_dataset.feature_ranges,
         benchmarks=test_benches,
-        log_scale=log_scale
+        log_scale=log_scale,
+        mode="test"
     )
     train_loader = DataLoader(
-        train_dataset, batch_size=batch_size, shuffle=True
+        train_dataset, 
+        batch_size=batch_size, 
+        shuffle=True,
+        num_workers=4,
+        pin_memory=True
     )
     test_loader = DataLoader(
-        test_dataset, batch_size=batch_size, shuffle=False
+        test_dataset, 
+        batch_size=batch_size, 
+        shuffle=False,
+        num_workers=4,
+        pin_memory=True
     )
     return (train_loader, test_loader, 
             train_dataset.feature_ranges)
@@ -439,9 +482,8 @@ def parse_arguments():
                         help='The root directory of the dataset.')
     parser.add_argument('-tb', '--test-bench', type=str, required=True, 
                         help='The name of the benchmark to use for testing.')
-    parser.add_argument('-t', '--target', type=str, default='snru', 
-                        choices=['snru', 'time', 'power', 'lut', 'ff', 'dsp', 'bram'],
-                        help='The target metric to predict (default: snru).')
+    parser.add_argument('-t', '--target', type=str, default='area', choices=['area', 'timing', 'power'],
+                        help='The target metric to predict (default: area).')
     parser.add_argument('-e', '--epoch', type=int, default=300, 
                         help='The number of training epochs (default: 300).')
     parser.add_argument('-s', '--seed', type=int, default=42, 
@@ -450,12 +492,12 @@ def parse_arguments():
                         help='The size of the training batch (default: 32).')
     parser.add_argument('-l', '--loss', type=str, default='mse', choices=['mse', 'l1', 'huber'],
                         help='The loss function to use for training (default: mse).')
-    parser.add_argument('-lr', '--learning-rate', type=float, default=3e-4,
-                        help='The learning rate for the optimizer (default: 3e-4).')
+    parser.add_argument('-lr', '--learning-rate', type=float, default=5e-4,
+                        help='The learning rate for the optimizer (default: 5e-4).')
     parser.add_argument('-bs', '--betas', type=float, nargs=2, default=(0.9, 0.999),
                         help='The betas for the Adam optimizer (default: 0.9, 0.999).')
-    parser.add_argument('-mn', '--max-norm', type=float, default=10.0,
-                        help='Maximum norm for gradient clipping (default: 10.0).')
+    parser.add_argument('-mn', '--max-norm', type=float, default=5.0,
+                        help='Maximum norm for gradient clipping (default: 5.0).')
     parser.add_argument('-ls', '--log-scale', action='store_true',
                         help='Apply log transformation to the target variable.')
     parser.add_argument('-hd', '--huber-delta', type=float, default=1.0,

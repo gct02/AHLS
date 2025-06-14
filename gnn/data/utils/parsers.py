@@ -21,6 +21,7 @@ AVAILABLE_RESOURCES = {
 POWER_METRICS = ['total_power', 'dynamic_power', 'static_power']
 TIMING_METRICS = ['wns', 'tns', 'target_clk', 'achieved_clk']
 AREA_METRICS = ['lut', 'ff', 'dsp', 'bram']
+METRICS = AREA_METRICS + TIMING_METRICS + POWER_METRICS + ['cc']
 
 
 def extract_timing_summary(solution_dir, filtered=False) -> Dict[str, float]:
